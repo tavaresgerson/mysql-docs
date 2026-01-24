@@ -1,29 +1,29 @@
-### 15.8.1 Visão geral do mecanismo de armazenamento FEDERATED
+### 15.8.1 FEDERATED Storage Engine Overview
 
-Quando você cria uma tabela usando um dos motores de armazenamento padrão (como `MyISAM`, `CSV` ou `InnoDB`), a tabela consiste na definição da tabela e nos dados associados. Quando você cria uma tabela `FEDERATED`, a definição da tabela é a mesma, mas o armazenamento físico dos dados é gerenciado em um servidor remoto.
+When you create a table using one of the standard storage engines (such as `MyISAM`, `CSV` or `InnoDB`), the table consists of the table definition and the associated data. When you create a `FEDERATED` table, the table definition is the same, but the physical storage of the data is handled on a remote server.
 
-Uma tabela `FEDERATED` é composta por dois elementos:
+A `FEDERATED` table consists of two elements:
 
-- Um *servidor remoto* com uma tabela de banco de dados, que por sua vez consiste na definição da tabela (armazenada no arquivo `.frm`) e na tabela associada. O tipo de tabela do banco de dados remoto pode ser qualquer tipo suportado pelo servidor `mysqld` remoto, incluindo `MyISAM` ou `InnoDB`.
+* A *remote server* with a database table, which in turn consists of the table definition (stored in the `.frm` file) and the associated table. The table type of the remote table may be any type supported by the remote `mysqld` server, including `MyISAM` or `InnoDB`.
 
-- Um *servidor local* com uma tabela de banco de dados, onde a definição da tabela corresponde à tabela correspondente no servidor remoto. A definição da tabela é armazenada dentro do arquivo `.frm`. No entanto, não há nenhum arquivo de dados no servidor local. Em vez disso, a definição da tabela inclui uma string de conexão que aponta para a tabela remota.
+* A *local server* with a database table, where the table definition matches that of the corresponding table on the remote server. The table definition is stored within the `.frm` file. However, there is no data file on the local server. Instead, the table definition includes a connection string that points to the remote table.
 
-Ao executar consultas e declarações em uma tabela `FEDERATED` no servidor local, as operações que normalmente inseririam, atualizariam ou excluiriam informações de um arquivo de dados local são enviadas ao servidor remoto para execução, onde elas atualizam o arquivo de dados no servidor remoto ou retornam linhas correspondentes do servidor remoto.
+When executing queries and statements on a `FEDERATED` table on the local server, the operations that would normally insert, update or delete information from a local data file are instead sent to the remote server for execution, where they update the data file on the remote server or return matching rows from the remote server.
 
-A estrutura básica de uma configuração de tabela `FEDERATED` é mostrada na Figura 15.2, "Estrutura da Tabela FEDERATED".
+The basic structure of a `FEDERATED` table setup is shown in Figure 15.2, “FEDERATED Table Structure”.
 
-**Figura 15.2 Estrutura da Tabela FEDERATED**
+**Figure 15.2 FEDERATED Table Structure**
 
-![O conteúdo é descrito no texto ao redor.](images/se-federated-structure.png)
+![Content is described in the surrounding text.](images/se-federated-structure.png)
 
-Quando um cliente emite uma instrução SQL que se refere a uma tabela `FEDERATED`, o fluxo de informações entre o servidor local (onde a instrução SQL é executada) e o servidor remoto (onde os dados são armazenados fisicamente) é o seguinte:
+When a client issues an SQL statement that refers to a `FEDERATED` table, the flow of information between the local server (where the SQL statement is executed) and the remote server (where the data is physically stored) is as follows:
 
-1. O mecanismo de armazenamento examina cada coluna que a tabela `FEDERATED` possui e constrói uma declaração SQL apropriada que faz referência à tabela remota.
+1. The storage engine looks through each column that the `FEDERATED` table has and constructs an appropriate SQL statement that refers to the remote table.
 
-2. A declaração é enviada ao servidor remoto usando a API do cliente MySQL.
+2. The statement is sent to the remote server using the MySQL client API.
 
-3. O servidor remoto processa a declaração e o servidor local recupera qualquer resultado que a declaração produza (um número de linhas afetadas ou um conjunto de resultados).
+3. The remote server processes the statement and the local server retrieves any result that the statement produces (an affected-rows count or a result set).
 
-4. Se a declaração produzir um conjunto de resultados, cada coluna é convertida para o formato do motor de armazenamento interno que o motor `FEDERATED` espera e pode usar para exibir o resultado ao cliente que emitiu a declaração original.
+4. If the statement produces a result set, each column is converted to internal storage engine format that the `FEDERATED` engine expects and can use to display the result to the client that issued the original statement.
 
-O servidor local comunica-se com o servidor remoto usando as funções do cliente C da MySQL. Ele invoca `mysql_real_query()` para enviar a instrução. Para ler um conjunto de resultados, ele usa `mysql_store_result()` e recupera as linhas uma de cada vez usando `mysql_fetch_row()`.
+The local server communicates with the remote server using MySQL client C API functions. It invokes `mysql_real_query()` to send the statement. To read a result set, it uses `mysql_store_result()` and fetches rows one at a time using `mysql_fetch_row()`.

@@ -1,16 +1,16 @@
-#### 16.1.2.1 Configuração da fonte de replicação
+#### 16.1.2.1 Setting the Replication Source Configuration
 
-Para configurar uma fonte para usar a replicação com base na posição do arquivo de log binário, você deve garantir que o registro binário esteja habilitado e estabelecer um ID de servidor único.
+To configure a source to use binary log file position based replication, you must ensure that binary logging is enabled, and establish a unique server ID.
 
-Cada servidor dentro de uma topologia de replicação deve ser configurado com um ID de servidor único, que você pode especificar usando a variável de sistema `server_id`. Esse ID de servidor é usado para identificar servidores individuais dentro da topologia de replicação e deve ser um número inteiro positivo entre 1 e (232) - 1. Você pode alterar o valor da variável de sistema `server_id` dinamicamente, emitindo uma declaração como esta:
+Each server within a replication topology must be configured with a unique server ID, which you can specify using the [`server_id`](replication-options.html#sysvar_server_id) system variable. This server ID is used to identify individual servers within the replication topology, and must be a positive integer between 1 and (232)−1. You can change the [`server_id`](replication-options.html#sysvar_server_id) value dynamically by issuing a statement like this:
 
 ```sql
 SET GLOBAL server_id = 2;
 ```
 
-Com o ID de servidor padrão de 0, uma fonte recusa quaisquer conexões de réplicas, e uma réplica se recusa a se conectar a uma fonte, portanto, esse valor não pode ser usado em uma topologia de replicação. Além disso, a forma como você organiza e seleciona os IDs de servidor é sua escolha, desde que cada ID de servidor seja diferente de todos os outros IDs de servidor em uso por qualquer outro servidor na topologia de replicação. Observe que, se um valor de 0 foi definido anteriormente para o ID de servidor, você deve reiniciar o servidor para inicializar a fonte com seu novo ID de servidor não nulo. Caso contrário, um reinício do servidor não é necessário, a menos que você precise habilitar o registro binário ou fazer outras alterações de configuração que exijam um reinício.
+With the default server ID of 0, a source refuses any connections from replicas, and a replica refuses to connect to a source, so this value cannot be used in a replication topology. Other than that, how you organize and select the server IDs is your choice, so long as each server ID is different from every other server ID in use by any other server in the replication topology. Note that if a value of 0 was set previously for the server ID, you must restart the server to initialize the source with your new nonzero server ID. Otherwise, a server restart is not needed, unless you need to enable binary logging or make other configuration changes that require a restart.
 
-O registro binário *deve* ser habilitado na fonte porque o log binário é a base para a replicação das alterações da fonte para suas réplicas. Se o registro binário não estiver habilitado na fonte usando a opção `log-bin`, a replicação não será possível. Para habilitar o registro binário em um servidor onde ele ainda não está habilitado, você deve reiniciar o servidor. Nesse caso, desligue o servidor MySQL e edite o arquivo `my.cnf` ou `my.ini`. Na seção `[mysqld]` do arquivo de configuração, adicione as opções `log-bin` e `server-id`. Se essas opções já existirem, mas estiverem comentadas, descomente as opções e altere-as de acordo com suas necessidades. Por exemplo, para habilitar o registro binário usando um prefixo de nome de arquivo de log `mysql-bin` e configurar um ID de servidor de 1, use essas linhas:
+Binary logging *must* be enabled on the source because the binary log is the basis for replicating changes from the source to its replicas. If binary logging is not enabled on the source using the `log-bin` option, replication is not possible. To enable binary logging on a server where it is not already enabled, you must restart the server. In this case, shut down the MySQL server and edit the `my.cnf` or `my.ini` file. Within the `[mysqld]` section of the configuration file, add the `log-bin` and `server-id` options. If these options already exist, but are commented out, uncomment the options and alter them according to your needs. For example, to enable binary logging using a log file name prefix of `mysql-bin`, and configure a server ID of 1, use these lines:
 
 ```sql
 [mysqld]
@@ -18,12 +18,12 @@ log-bin=mysql-bin
 server-id=1
 ```
 
-Após fazer as alterações, reinicie o servidor.
+After making the changes, restart the server.
 
-Nota
+Note
 
-As seguintes opções têm impacto sobre este procedimento:
+The following options have an impact on this procedure:
 
-- Para obter a maior durabilidade e consistência possível em uma configuração de replicação usando o `InnoDB` com transações, você deve usar `innodb_flush_log_at_trx_commit=1` e `sync_binlog=1` no arquivo `my.cnf` da fonte.
+* For the greatest possible durability and consistency in a replication setup using [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") with transactions, you should use `innodb_flush_log_at_trx_commit=1` and `sync_binlog=1` in the source's `my.cnf` file.
 
-- Certifique-se de que a variável de sistema `skip_networking` não esteja habilitada em sua fonte. Se a rede estiver desativada, a replica não poderá se comunicar com a fonte e a replicação falhará.
+* Ensure that the [`skip_networking`](server-system-variables.html#sysvar_skip_networking) system variable is not enabled on your source. If networking has been disabled, the replica cannot communicate with the source and replication fails.

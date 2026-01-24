@@ -1,62 +1,62 @@
-#### 21.6.15.44 Tabela de transportadores ndbinfo
+#### 21.6.15.44 The ndbinfo transporters Table
 
-Esta tabela contém informações sobre os transportadores NDB.
+This table contains information about NDB transporters.
 
-A tabela `transporters` contém as seguintes colunas:
+The `transporters` table contains the following columns:
 
-- `node_id`
+* `node_id`
 
-  ID de nó único deste nó de dados no cluster
+  This data node's unique node ID in the cluster
 
-- `remote_node_id`
+* `remote_node_id`
 
-  O ID do nó do nó de dados remoto
+  The remote data node's node ID
 
-- `status`
+* `status`
 
-  Status da conexão
+  Status of the connection
 
-- `endereço_remoto`
+* `remote_address`
 
-  Nome ou endereço IP do host remoto
+  Name or IP address of the remote host
 
-- `bytes_sent`
+* `bytes_sent`
 
-  Número de bytes enviados usando essa conexão
+  Number of bytes sent using this connection
 
-- `bytes_received`
+* `bytes_received`
 
-  Número de bytes recebidos usando essa conexão
+  Number of bytes received using this connection
 
-- `connect_count`
+* `connect_count`
 
-  Número de vezes que a conexão foi estabelecida neste transportador
+  Number of times connection established on this transporter
 
-- sobrecarregado
+* `overloaded`
 
-  1 se este transportador estiver sobrecarregado atualmente, caso contrário, 0
+  1 if this transporter is currently overloaded, otherwise 0
 
-- `sobrecarga_count`
+* `overload_count`
 
-  Número de vezes que este transportador entrou em estado de sobrecarga desde a conexão
+  Number of times this transporter has entered overload state since connecting
 
-- `baixa a velocidade`
+* `slowdown`
 
-  1 se este transportador estiver no estado de desaceleração, caso contrário, 0
+  1 if this transporter is in slowdown state, otherwise 0
 
-- `slowdown_count`
+* `slowdown_count`
 
-  Número de vezes que este transportador entrou no estado de desaceleração desde a conexão
+  Number of times this transporter has entered slowdown state since connecting
 
-##### Notas
+##### Notes
 
-Para cada nó de dados em execução no clúster, a tabela `transporters` exibe uma linha que mostra o status de cada uma das conexões desse nó com todos os nós no clúster, *incluindo ele mesmo*. Essa informação é exibida na coluna *status* da tabela, que pode ter qualquer um dos seguintes valores: `CONNECTING`, `CONNECTED`, `DISCONNECTING` ou `DISCONNECTED`.
+For each running data node in the cluster, the `transporters` table displays a row showing the status of each of that node's connections with all nodes in the cluster, *including itself*. This information is shown in the table's *status* column, which can have any one of the following values: `CONNECTING`, `CONNECTED`, `DISCONNECTING`, or `DISCONNECTED`.
 
-As conexões aos nós de API e de gerenciamento que estão configurados, mas atualmente não conectados ao clúster, são exibidas com o status `DESCONECTADO`. As linhas onde o `node_id` é o de um nó de dados que não está atualmente conectado não são exibidas nesta tabela. (Essa é uma omissão semelhante de nós desconectados na tabela `ndbinfo.nodes`.
+Connections to API and management nodes which are configured but not currently connected to the cluster are shown with status `DISCONNECTED`. Rows where the `node_id` is that of a data node which is not currently connected are not shown in this table. (This is similar omission of disconnected nodes in the [`ndbinfo.nodes`](mysql-cluster-ndbinfo-nodes.html "21.6.15.28 The ndbinfo nodes Table") table.
 
-O `remote_address` é o nome do host ou endereço do nó cujo ID está exibido na coluna `remote_node_id`. Os valores `bytes_sent` (bytes enviados) e `bytes_received` (bytes recebidos) desse nó são, respectivamente, o número de bytes enviados e recebidos pelo nó usando essa conexão desde que ela foi estabelecida. Para nós cujo status é `CONNECTING` (conectando) ou `DISCONNECTED` (desconectado), essas colunas sempre exibem `0`.
+The `remote_address` is the host name or address for the node whose ID is shown in the `remote_node_id` column. The `bytes_sent` from this node and `bytes_received` by this node are the numbers, respectively, of bytes sent and received by the node using this connection since it was established. For nodes whose status is `CONNECTING` or `DISCONNECTED`, these columns always display `0`.
 
-Suponha que você tenha um clúster de 5 nós, composto por 2 nós de dados, 2 nós SQL e 1 nó de gerenciamento, conforme mostrado na saída do comando `SHOW` no cliente **ndb_mgm**:
+Assume you have a 5-node cluster consisting of 2 data nodes, 2 SQL nodes, and 1 management node, as shown in the output of the [`SHOW`](mysql-cluster-mgm-client-commands.html#ndbclient-show) command in the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") client:
 
 ```sql
 ndb_mgm> SHOW
@@ -75,7 +75,7 @@ id=20   @10.100.10.20  (5.7.44-ndb-7.6.36)
 id=21   @10.100.10.21  (5.7.44-ndb-7.6.36)
 ```
 
-Há 10 linhas na tabela `transporters` — 5 para o primeiro nó de dados e 5 para o segundo — assumindo que todos os nós de dados estão em funcionamento, conforme mostrado aqui:
+There are 10 rows in the `transporters` table—5 for the first data node, and 5 for the second—assuming that all data nodes are running, as shown here:
 
 ```sql
 mysql> SELECT node_id, remote_node_id, status
@@ -97,7 +97,7 @@ mysql> SELECT node_id, remote_node_id, status
 10 rows in set (0.04 sec)
 ```
 
-Se você desligar um dos nós de dados neste clúster usando o comando `2 STOP` no cliente **ndb_mgm**, então repita a consulta anterior (novamente usando o cliente **mysql**), esta tabela agora mostra apenas 5 linhas — 1 linha para cada conexão do nó de gerenciamento restante para outro nó, incluindo tanto ele quanto o nó de dados que está atualmente offline — e exibe `CONNECTING` (conectando) para o status de cada conexão restante ao nó de dados que está atualmente offline, como mostrado aqui:
+If you shut down one of the data nodes in this cluster using the command `2 STOP` in the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") client, then repeat the previous query (again using the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client), this table now shows only 5 rows—1 row for each connection from the remaining management node to another node, including both itself and the data node that is currently offline—and displays `CONNECTING` for the status of each remaining connection to the data node that is currently offline, as shown here:
 
 ```sql
 mysql> SELECT node_id, remote_node_id, status
@@ -114,22 +114,21 @@ mysql> SELECT node_id, remote_node_id, status
 5 rows in set (0.02 sec)
 ```
 
-Os contadores `connect_count`, `overloaded`, `overload_count`, `slowdown` e `slowdown_count` são zerados na conexão e mantêm seus valores após o nó remoto se desconectar. Os contadores `bytes_sent` e `bytes_received` também são zerados na conexão e, portanto, mantêm seus valores após a desconexão (até que a próxima conexão os redefina).
+The `connect_count`, `overloaded`, `overload_count`, `slowdown`, and `slowdown_count` counters are reset on connection, and retain their values after the remote node disconnects. The `bytes_sent` and `bytes_received` counters are also reset on connection, and so retain their values following disconnection (until the next connection resets them).
 
-O estado de *sobrecarga* referido pelas colunas `overloaded` e `overload_count` ocorre quando o buffer de envio deste transportador contém mais de [`OVerloadLimit`]\(mysql-cluster-tcp-definition.html#ndbparam-tcp-overloadlimit] bytes (o valor padrão é 80% de `SendBufferMemory`, ou seja, 0,8 \* 2097152 = 1677721 bytes). Quando um transportador específico está em estado de sobrecarga, qualquer nova transação que tente usar este transportador falha com o erro 1218 (Buffers de envio sobrecarregados no kernel NDB). Isso afeta tanto as pesquisas quanto as operações de chave primária.
+The *overload* state referred to by the `overloaded` and `overload_count` columns occurs when this transporter's send buffer contains more than [`OVerloadLimit`](mysql-cluster-tcp-definition.html#ndbparam-tcp-overloadlimit) bytes (default is 80% of [`SendBufferMemory`](mysql-cluster-tcp-definition.html#ndbparam-tcp-sendbuffermemory), that is, 0.8 \* 2097152 = 1677721 bytes). When a given transporter is in a state of overload, any new transaction that tries to use this transporter fails with Error 1218 (Send Buffers overloaded in NDB kernel). This affects both scans and primary key operations.
 
-O estado de *redução de velocidade* referido pelas colunas `slowdown` e `slowdown_count` desta tabela ocorre quando o buffer de envio do transportador contém mais de 60% do limite de sobrecarga (igual a 0,6 \* 2097152 = 1258291 bytes por padrão). Nesse estado, qualquer nova varredura usando este transportador reduz o tamanho do lote para minimizar a carga no transportador.
+The *slowdown* state referenced by the `slowdown` and `slowdown_count` columns of this table occurs when the transporter's send buffer contains more than 60% of the overload limit (equal to 0.6 \* 2097152 = 1258291 bytes by default). In this state, any new scan using this transporter has its batch size reduced to minimize the load on the transporter.
 
-As causas comuns de lentidão ou sobrecarga do buffer de envio incluem as seguintes:
+Common causes of send buffer slowdown or overloading include the following:
 
-- Tamanho dos dados, em particular a quantidade de dados armazenados nas colunas `TEXT` ou nas colunas `BLOB` (ou em ambos os tipos de colunas)
+* Data size, in particular the quantity of data stored in [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") columns or [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") columns (or both types of columns)
 
-- Ter um nó de dados (ndbd ou ndbmtd) no mesmo host que um nó SQL que está envolvido no registro binário
+* Having a data node (ndbd or ndbmtd) on the same host as an SQL node that is engaged in binary logging
 
-- Grande número de linhas por transação ou lote de transações
+* Large number of rows per transaction or transaction batch
+* Configuration issues such as insufficient [`SendBufferMemory`](mysql-cluster-tcp-definition.html#ndbparam-tcp-sendbuffermemory)
 
-- Problemas de configuração, como insuficiente `SendBufferMemory`
+* Hardware issues such as insufficient RAM or poor network connectivity
 
-- Problemas de hardware, como memória RAM insuficiente ou conectividade de rede ruim
-
-Veja também Seção 21.4.3.13, “Configurando Parâmetros do Buffer de Envio do NDB Cluster”.
+See also [Section 21.4.3.13, “Configuring NDB Cluster Send Buffer Parameters”](mysql-cluster-config-send-buffers.html "21.4.3.13 Configuring NDB Cluster Send Buffer Parameters").

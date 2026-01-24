@@ -1,67 +1,67 @@
-#### 14.7.2.4 Leitura de bloqueio
+#### 14.7.2.4 Locking Reads
 
-Se você fizer uma consulta aos dados e, em seguida, inserir ou atualizar dados relacionados na mesma transação, a declaração `SELECT` regular não oferece proteção suficiente. Outras transações podem atualizar ou excluir as mesmas linhas que você acabou de consultar. O `InnoDB` suporta dois tipos de leituras com bloqueio que oferecem segurança extra:
+If you query data and then insert or update related data within the same transaction, the regular `SELECT` statement does not give enough protection. Other transactions can update or delete the same rows you just queried. `InnoDB` supports two types of locking reads that offer extra safety:
 
-- `SELECT ... LOCK IN SHARE MODE`
+* `SELECT ... LOCK IN SHARE MODE`
 
-  Define um bloqueio de modo compartilhado em quaisquer linhas que estejam sendo lidas. Outras sessões podem ler as linhas, mas não podem modificá-las até que sua transação seja confirmada. Se alguma dessas linhas tiver sido alterada por outra transação que ainda não tenha sido confirmada, sua consulta aguarda até que essa transação termine e, em seguida, usa os valores mais recentes.
+  Sets a shared mode lock on any rows that are read. Other sessions can read the rows, but cannot modify them until your transaction commits. If any of these rows were changed by another transaction that has not yet committed, your query waits until that transaction ends and then uses the latest values.
 
-- `SELECT ... FOR UPDATE`
+* `SELECT ... FOR UPDATE`
 
-  Para registros de índice, a pesquisa encontra, bloqueia as linhas e quaisquer entradas de índice associadas, da mesma forma que se emitisse uma declaração `UPDATE` para essas linhas. Outras transações são bloqueadas para atualizar essas linhas, para fazer `SELECT ... LOCK IN SHARE MODE` ou para ler os dados em certos níveis de isolamento de transação. Leitura consistente ignora quaisquer bloqueios definidos nos registros que existem na visão de leitura. (Versões antigas de um registro não podem ser bloqueadas; elas são reconstruídas aplicando registros de desfazer em uma cópia em memória do registro.)
+  For index records the search encounters, locks the rows and any associated index entries, the same as if you issued an `UPDATE` statement for those rows. Other transactions are blocked from updating those rows, from doing `SELECT ... LOCK IN SHARE MODE`, or from reading the data in certain transaction isolation levels. Consistent reads ignore any locks set on the records that exist in the read view. (Old versions of a record cannot be locked; they are reconstructed by applying undo logs on an in-memory copy of the record.)
 
-Essas cláusulas são principalmente úteis ao lidar com dados estruturados em árvore ou em gráficos, seja em uma única tabela ou distribuídos em várias tabelas. Você percorre arestas ou ramos da árvore de um lugar para outro, reservando o direito de voltar e alterar qualquer um desses valores de "ponteiro".
+These clauses are primarily useful when dealing with tree-structured or graph-structured data, either in a single table or split across multiple tables. You traverse edges or tree branches from one place to another, while reserving the right to come back and change any of these “pointer” values.
 
-Todas as bloquagens definidas pelas consultas `LOCK IN SHARE MODE` e `FOR UPDATE` são liberadas quando a transação é confirmada ou revertida.
+All locks set by `LOCK IN SHARE MODE` and `FOR UPDATE` queries are released when the transaction is committed or rolled back.
 
-Nota
+Note
 
-As leituras bloqueadas só são possíveis quando o autocommit está desativado (iniciando a transação com `START TRANSACTION` ou configurando o `autocommit` para 0.
+Locking reads are only possible when autocommit is disabled (either by beginning transaction with `START TRANSACTION` or by setting `autocommit` to 0.
 
-Uma cláusula de leitura com bloqueio em uma declaração externa não bloqueia as linhas de uma tabela em uma subconsulta aninhada, a menos que uma cláusula de leitura com bloqueio também seja especificada na subconsulta. Por exemplo, a seguinte declaração não bloqueia as linhas da tabela `t2`.
+A locking read clause in an outer statement does not lock the rows of a table in a nested subquery unless a locking read clause is also specified in the subquery. For example, the following statement does not lock rows in table `t2`.
 
 ```sql
 SELECT * FROM t1 WHERE c1 = (SELECT c1 FROM t2) FOR UPDATE;
 ```
 
-Para bloquear linhas na tabela `t2`, adicione uma cláusula de leitura de bloqueio à subconsulta:
+To lock rows in table `t2`, add a locking read clause to the subquery:
 
 ```sql
 SELECT * FROM t1 WHERE c1 = (SELECT c1 FROM t2 FOR UPDATE) FOR UPDATE;
 ```
 
-##### Bloquear Exemplos de Leitura
+##### Locking Read Examples
 
-Suponha que você queira inserir uma nova linha em uma tabela `child` e garantir que a linha filha tenha uma linha pai na tabela `parent`. Seu código de aplicação pode garantir a integridade referencial ao longo dessa sequência de operações.
+Suppose that you want to insert a new row into a table `child`, and make sure that the child row has a parent row in table `parent`. Your application code can ensure referential integrity throughout this sequence of operations.
 
-Primeiro, use uma leitura consistente para consultar a tabela `PARENT` e verificar se a linha pai existe. Você pode inserir com segurança a linha filho na tabela `CHILD`? Não, porque outra sessão pode excluir a linha pai no momento entre seu `SELECT` e seu `INSERT`, sem que você perceba.
+First, use a consistent read to query the table `PARENT` and verify that the parent row exists. Can you safely insert the child row to table `CHILD`? No, because some other session could delete the parent row in the moment between your `SELECT` and your `INSERT`, without you being aware of it.
 
-Para evitar esse problema potencial, execute a consulta `SELECT` usando `LOCK IN SHARE MODE`:
+To avoid this potential issue, perform the `SELECT` using `LOCK IN SHARE MODE`:
 
 ```sql
 SELECT * FROM parent WHERE NAME = 'Jones' LOCK IN SHARE MODE;
 ```
 
-Depois que a consulta `LOCK IN SHARE MODE` retorna o registro pai `'Jones'`, você pode adicionar com segurança o registro filho à tabela `CHILD` e confirmar a transação. Qualquer transação que tente adquirir um bloqueio exclusivo na linha aplicável na tabela `PARENT` aguarda até que você termine, ou seja, até que os dados em todas as tabelas estejam em um estado consistente.
+After the `LOCK IN SHARE MODE` query returns the parent `'Jones'`, you can safely add the child record to the `CHILD` table and commit the transaction. Any transaction that tries to acquire an exclusive lock in the applicable row in the `PARENT` table waits until you are finished, that is, until the data in all tables is in a consistent state.
 
-Para outro exemplo, considere um campo de contador inteiro em uma tabela `CHILD_CODES`, usado para atribuir um identificador único a cada criança adicionada à tabela `CHILD`. Não use leitura consistente ou leitura em modo compartilhado para ler o valor atual do contador, porque dois usuários do banco de dados poderiam ver o mesmo valor para o contador, e um erro de chave duplicada ocorreria se duas transações tentassem adicionar linhas com o mesmo identificador à tabela `CHILD`.
+For another example, consider an integer counter field in a table `CHILD_CODES`, used to assign a unique identifier to each child added to table `CHILD`. Do not use either consistent read or a shared mode read to read the present value of the counter, because two users of the database could see the same value for the counter, and a duplicate-key error occurs if two transactions attempt to add rows with the same identifier to the `CHILD` table.
 
-Aqui, `LOCK IN SHARE MODE` não é uma boa solução, pois, se dois usuários lerem o contador ao mesmo tempo, pelo menos um deles acaba em um impasse ao tentar atualizar o contador.
+Here, `LOCK IN SHARE MODE` is not a good solution because if two users read the counter at the same time, at least one of them ends up in deadlock when it attempts to update the counter.
 
-Para implementar a leitura e o incremento do contador, primeiro realize uma leitura com bloqueio do contador usando `FOR UPDATE` e, em seguida, incremente o contador. Por exemplo:
+To implement reading and incrementing the counter, first perform a locking read of the counter using `FOR UPDATE`, and then increment the counter. For example:
 
 ```sql
 SELECT counter_field FROM child_codes FOR UPDATE;
 UPDATE child_codes SET counter_field = counter_field + 1;
 ```
 
-Um `SELECT ... FOR UPDATE` lê os dados mais recentes disponíveis, configurando bloqueios exclusivos em cada linha que lê. Assim, ele configura os mesmos bloqueios que um `UPDATE` SQL pesquisado configuraria nas linhas.
+A `SELECT ... FOR UPDATE` reads the latest available data, setting exclusive locks on each row it reads. Thus, it sets the same locks a searched SQL `UPDATE` would set on the rows.
 
-A descrição anterior é apenas um exemplo de como o `SELECT ... FOR UPDATE` funciona. No MySQL, a tarefa específica de gerar um identificador único pode ser realizada usando apenas um único acesso à tabela:
+The preceding description is merely an example of how `SELECT ... FOR UPDATE` works. In MySQL, the specific task of generating a unique identifier actually can be accomplished using only a single access to the table:
 
 ```sql
 UPDATE child_codes SET counter_field = LAST_INSERT_ID(counter_field + 1);
 SELECT LAST_INSERT_ID();
 ```
 
-A instrução `SELECT` apenas recupera as informações de identificador (específicas para a conexão atual). Ela não acessa nenhuma tabela.
+The `SELECT` statement merely retrieves the identifier information (specific to the current connection). It does not access any table.

@@ -1,77 +1,77 @@
-#### 21.6.15.34 Tabela servidor_operações ndbinfo
+#### 21.6.15.34 The ndbinfo server_operations Table
 
-A tabela `server_operations` contém entradas para todas as operações em andamento do `NDB` nas quais o nó SQL atual (MySQL Server) está envolvido. Ela é, efetivamente, um subconjunto da tabela `cluster_operations`]\(mysql-cluster-ndbinfo-cluster-operations.html), na qual as operações de outros nós SQL e API não são exibidas.
+The `server_operations` table contains entries for all ongoing [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") operations that the current SQL node (MySQL Server) is currently involved in. It effectively is a subset of the [`cluster_operations`](mysql-cluster-ndbinfo-cluster-operations.html "21.6.15.5 The ndbinfo cluster_operations Table") table, in which operations for other SQL and API nodes are not shown.
 
-A tabela `server_operations` contém as seguintes colunas:
+The `server_operations` table contains the following columns:
 
-- `mysql_connection_id`
+* `mysql_connection_id`
 
-  ID de conexão do servidor MySQL
+  MySQL Server connection ID
 
-- `node_id`
+* `node_id`
 
-  ID do nó
+  Node ID
 
-- `block_instance`
+* `block_instance`
 
-  Bloquear instância
+  Block instance
 
-- `transid`
+* `transid`
 
-  ID da transação
+  Transaction ID
 
-- `tipo_operação`
+* `operation_type`
 
-  Tipo de operação (consulte o texto para os possíveis valores)
+  Operation type (see text for possible values)
 
-- "estado"
+* `state`
 
-  Estado de operação (consulte o texto para os possíveis valores)
+  Operation state (see text for possible values)
 
-- `tableid`
+* `tableid`
 
-  Tabela ID
+  Table ID
 
-- `fragmentid`
+* `fragmentid`
 
-  ID do fragmento
+  Fragment ID
 
-- `client_node_id`
+* `client_node_id`
 
-  ID do nó do cliente
+  Client node ID
 
-- `client_block_ref`
+* `client_block_ref`
 
-  Referência de bloqueio do cliente
+  Client block reference
 
-- `tc_node_id`
+* `tc_node_id`
 
-  ID do nó do coordenador de transação
+  Transaction coordinator node ID
 
-- `tc_block_no`
+* `tc_block_no`
 
-  Número do bloco do coordenador de transação
+  Transaction coordinator block number
 
-- `tc_block_instance`
+* `tc_block_instance`
 
-  Instância de bloco do coordenador de transação
+  Transaction coordinator block instance
 
-##### Notas
+##### Notes
 
-O `mysql_connection_id` é o mesmo ID de conexão ou sessão exibido na saída de `SHOW PROCESSLIST`. Ele é obtido a partir da tabela `INFORMATION_SCHEMA` `NDB_TRANSID_MYSQL_CONNECTION_MAP`.
+The `mysql_connection_id` is the same as the connection or session ID shown in the output of [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement"). It is obtained from the `INFORMATION_SCHEMA` table [`NDB_TRANSID_MYSQL_CONNECTION_MAP`](information-schema-ndb-transid-mysql-connection-map-table.html "24.3.13 The INFORMATION_SCHEMA ndb_transid_mysql_connection_map Table").
 
-`block_instance` refere-se a uma instância de um bloco de kernel. Juntamente com o nome do bloco, esse número pode ser usado para procurar uma instância específica na tabela `threadblocks`.
+`block_instance` refers to an instance of a kernel block. Together with the block name, this number can be used to look up a given instance in the [`threadblocks`](mysql-cluster-ndbinfo-threadblocks.html "21.6.15.41 The ndbinfo threadblocks Table") table.
 
-O ID da transação (`transid`) é um número único de 64 bits que pode ser obtido usando o método `getTransactionId()` da API NDB. (Atualmente, o MySQL Server não exibe o ID da transação da API NDB de uma transação em andamento.)
+The transaction ID (`transid`) is a unique 64-bit number which can be obtained using the NDB API's [`getTransactionId()`](/doc/ndbapi/en/ndb-ndbtransaction.html#ndb-ndbtransaction-gettransactionid) method. (Currently, the MySQL Server does not expose the NDB API transaction ID of an ongoing transaction.)
 
-A coluna `operation_type` pode assumir qualquer um dos valores `READ`, `READ-SH`, `READ-EX`, `INSERT`, `UPDATE`, `DELETE`, `WRITE`, `UNLOCK`, `REFRESH`, `SCAN`, `SCAN-SH`, `SCAN-EX`, ou `<unknown>`.
+The `operation_type` column can take any one of the values `READ`, `READ-SH`, `READ-EX`, `INSERT`, `UPDATE`, `DELETE`, `WRITE`, `UNLOCK`, `REFRESH`, `SCAN`, `SCAN-SH`, `SCAN-EX`, or `<unknown>`.
 
-A coluna `state` pode ter qualquer um dos valores `ABORT_QUEUED`, `ABORT_STOPPED`, `COMMITTED`, `COMMIT_QUEUED`, `COMMIT_STOPPED`, `COPY_CLOSE_STOPPED`, `COPY_FIRST_STOPPED`, `COPY_STOPPED`, `COPY_TUPKEY`, `IDLE`, `LOG_ABORT_QUEUED`, `LOG_COMMIT_QUEUED`, `LOG_COMMIT_QUEUED_WAIT_SIGNAL`, `LOG_COMMIT_WRITTEN`, `LOG_COMMIT_WRITTEN_WAIT_SIGNAL`, `LOG_QUEUED`, `PREPARED`, `PREPARED_RECEIVED_COMMIT`, `SCAN_CHECK_STOPPED`, `SCAN_CLOSE_STOPPED`, `SCAN_FIRST_STOPPED`, `SCAN_RELEASE_STOPPED`, `SCAN_STATE_USED`, `SCAN_STOPPED`, `SCAN_TUPKEY`, `STOPPED`, `TC_NOT_CONNECTED`, `WAIT_ACC`, `WAIT_ACC_ABORT`, `WAIT_AI_AFTER_ABORT`, `WAIT_ATTR`, `WAIT_SCAN_AI`, `WAIT_TUP`, `WAIT_TUPKEYINFO`, `WAIT_TUP_COMMIT`, ou `WAIT_TUP_TO_ABORT`. (Se o servidor MySQL estiver rodando com a opção `ndbinfo_show_hidden` habilitada, você pode visualizar essa lista de estados selecionando da tabela `ndb$dblqh_tcconnect_state`, que normalmente está oculta.)
+The `state` column can have any one of the values `ABORT_QUEUED`, `ABORT_STOPPED`, `COMMITTED`, `COMMIT_QUEUED`, `COMMIT_STOPPED`, `COPY_CLOSE_STOPPED`, `COPY_FIRST_STOPPED`, `COPY_STOPPED`, `COPY_TUPKEY`, `IDLE`, `LOG_ABORT_QUEUED`, `LOG_COMMIT_QUEUED`, `LOG_COMMIT_QUEUED_WAIT_SIGNAL`, `LOG_COMMIT_WRITTEN`, `LOG_COMMIT_WRITTEN_WAIT_SIGNAL`, `LOG_QUEUED`, `PREPARED`, `PREPARED_RECEIVED_COMMIT`, `SCAN_CHECK_STOPPED`, `SCAN_CLOSE_STOPPED`, `SCAN_FIRST_STOPPED`, `SCAN_RELEASE_STOPPED`, `SCAN_STATE_USED`, `SCAN_STOPPED`, `SCAN_TUPKEY`, `STOPPED`, `TC_NOT_CONNECTED`, `WAIT_ACC`, `WAIT_ACC_ABORT`, `WAIT_AI_AFTER_ABORT`, `WAIT_ATTR`, `WAIT_SCAN_AI`, `WAIT_TUP`, `WAIT_TUPKEYINFO`, `WAIT_TUP_COMMIT`, or `WAIT_TUP_TO_ABORT`. (If the MySQL Server is running with [`ndbinfo_show_hidden`](mysql-cluster-options-variables.html#sysvar_ndbinfo_show_hidden) enabled, you can view this list of states by selecting from the `ndb$dblqh_tcconnect_state` table, which is normally hidden.)
 
-Você pode obter o nome de uma tabela `NDB` a partir de seu ID de tabela, verificando a saída de **ndb_show_tables**.
+You can obtain the name of an `NDB` table from its table ID by checking the output of [**ndb_show_tables**](mysql-cluster-programs-ndb-show-tables.html "21.5.27 ndb_show_tables — Display List of NDB Tables").
 
-O `fragid` é o mesmo número de partição visto na saída do **ndb_desc** `--extra-partition-info` (forma abreviada `-p`).
+The `fragid` is the same as the partition number seen in the output of [**ndb_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables") [`--extra-partition-info`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_extra-partition-info) (short form `-p`).
 
-Em `client_node_id` e `client_block_ref`, `client` refere-se a um nó da API do NDB Cluster ou a um nó SQL (ou seja, um cliente da API NDB ou um servidor MySQL conectado ao cluster).
+In `client_node_id` and `client_block_ref`, `client` refers to an NDB Cluster API or SQL node (that is, an NDB API client or a MySQL Server attached to the cluster).
 
-As colunas `block_instance` e `tc_block_instance` fornecem números de instâncias de bloco do kernel NDB. Você pode usá-las para obter informações sobre threads específicas a partir da tabela `threadblocks`.
+The `block_instance` and `tc_block_instance` column provide NDB kernel block instance numbers. You can use these to obtain information about specific threads from the [`threadblocks`](mysql-cluster-ndbinfo-threadblocks.html "21.6.15.41 The ndbinfo threadblocks Table") table.

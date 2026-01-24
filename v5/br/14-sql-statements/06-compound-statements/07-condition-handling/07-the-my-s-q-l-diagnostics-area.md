@@ -1,24 +1,24 @@
-#### 13.6.7.7. Área de Diagnóstico do MySQL
+#### 13.6.7.7 The MySQL Diagnostics Area
 
-As instruções SQL produzem informações de diagnóstico que preenchem a área de diagnóstico. O SQL padrão tem uma pilha de área de diagnóstico, contendo uma área de diagnóstico para cada contexto de execução aninhado. O SQL padrão também suporta a sintaxe `GET STACKED DIAGNOSTICS` para referenciar a segunda área de diagnóstico durante a execução do manipulador de condição. O MySQL suporta a palavra-chave `STACKED` a partir do MySQL 5.7. Antes disso, o MySQL não suporta `STACKED`; existe uma única área de diagnóstico que contém informações da declaração mais recente que a escreveu.
+SQL statements produce diagnostic information that populates the diagnostics area. Standard SQL has a diagnostics area stack, containing a diagnostics area for each nested execution context. Standard SQL also supports [`GET STACKED DIAGNOSTICS`](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement") syntax for referring to the second diagnostics area during condition handler execution. MySQL supports the `STACKED` keyword as of MySQL 5.7. Before that, MySQL does not support `STACKED`; there is a single diagnostics area containing information from the most recent statement that wrote to it.
 
-A discussão a seguir descreve a estrutura da área de diagnóstico no MySQL, os itens de informação reconhecidos pelo MySQL, como as instruções limpam e definem a área de diagnóstico, e como as áreas de diagnóstico são empilhadas e desempilhadas da pilha.
+The following discussion describes the structure of the diagnostics area in MySQL, the information items recognized by MySQL, how statements clear and set the diagnostics area, and how diagnostics areas are pushed to and popped from the stack.
 
-- Estrutura da Área de Diagnóstico
-- Itens de Informações da Área de Diagnóstico
-- Como a Área de Diagnósticos é Limpada e Populada
-- Como funciona a pilha da área de diagnóstico
-- Variáveis de sistema relacionadas à área de diagnóstico
+* [Diagnostics Area Structure](diagnostics-area.html#diagnostics-area-structure "Diagnostics Area Structure")
+* [Diagnostics Area Information Items](diagnostics-area.html#diagnostics-area-information-items "Diagnostics Area Information Items")
+* [How the Diagnostics Area is Cleared and Populated](diagnostics-area.html#diagnostics-area-populating "How the Diagnostics Area is Cleared and Populated")
+* [How the Diagnostics Area Stack Works](diagnostics-area.html#diagnostics-area-stack "How the Diagnostics Area Stack Works")
+* [Diagnostics Area-Related System Variables](diagnostics-area.html#diagnostics-area-system-variables "Diagnostics Area-Related System Variables")
 
-##### Estrutura da Área de Diagnóstico
+##### Diagnostics Area Structure
 
-A área de diagnóstico contém dois tipos de informações:
+The diagnostics area contains two kinds of information:
 
-- Informações de declaração, como o número de condições que ocorreram ou o número de linhas afetadas.
+* Statement information, such as the number of conditions that occurred or the affected-rows count.
 
-- Informações sobre a condição, como o código e a mensagem de erro. Se uma declaração gerar várias condições, esta parte da área de diagnóstico tem uma área de condição para cada uma. Se uma declaração não gerar nenhuma condição, esta parte da área de diagnóstico está vazia.
+* Condition information, such as the error code and message. If a statement raises multiple conditions, this part of the diagnostics area has a condition area for each one. If a statement raises no conditions, this part of the diagnostics area is empty.
 
-Para uma declaração que produz três condições, a área de diagnóstico contém informações sobre a declaração e as condições, como esta:
+For a statement that produces three conditions, the diagnostics area contains statement and condition information like this:
 
 ```sql
 Statement information:
@@ -39,60 +39,60 @@ Condition area list:
     ... other condition information items ...
 ```
 
-##### Diagnóstico Informações sobre itens da área
+##### Diagnostics Area Information Items
 
-A área de diagnóstico contém itens de informações de declarações e condições. Os itens numéricos são inteiros. O conjunto de caracteres para itens de caracteres é UTF-8. Nenhum item pode ser `NULL`. Se um item de declaração ou condição não for definido por uma declaração que preenche a área de diagnóstico, seu valor é 0 ou a string vazia, dependendo do tipo de dados do item.
+The diagnostics area contains statement and condition information items. Numeric items are integers. The character set for character items is UTF-8. No item can be `NULL`. If a statement or condition item is not set by a statement that populates the diagnostics area, its value is 0 or the empty string, depending on the item data type.
 
-A parte de informações de declaração da área de diagnóstico contém os seguintes itens:
+The statement information part of the diagnostics area contains these items:
 
-- `NUMBER`: Um número inteiro que indica o número de áreas de condição que possuem informações.
+* `NUMBER`: An integer indicating the number of condition areas that have information.
 
-- `ROW_COUNT`: Um inteiro que indica o número de linhas afetadas pela instrução. `ROW_COUNT` tem o mesmo valor que a função `ROW_COUNT()` (veja Seção 12.15, “Funções de Informação”).
+* `ROW_COUNT`: An integer indicating the number of rows affected by the statement. `ROW_COUNT` has the same value as the [`ROW_COUNT()`](information-functions.html#function_row-count) function (see [Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions")).
 
-A parte de informações de condição da área de diagnóstico contém uma área de condição para cada condição. As áreas de condição são numeradas de 1 até o valor do item de condição da declaração `NUMBER`. Se `NUMBER` for 0, não haverá áreas de condição.
+The condition information part of the diagnostics area contains a condition area for each condition. Condition areas are numbered from 1 to the value of the `NUMBER` statement condition item. If `NUMBER` is 0, there are no condition areas.
 
-Cada área de condição contém os itens da seguinte lista. Todos os itens são padrão SQL, exceto `MYSQL_ERRNO`, que é uma extensão do MySQL. As definições se aplicam a condições geradas por outros meios que não um sinal (ou seja, por uma declaração `SIGNAL` ou `RESIGNAL`. Para condições não sinalizadas, o MySQL preenche apenas os itens da condição que não são descritos como sempre vazios. Os efeitos dos sinais na área de condição são descritos mais adiante.
+Each condition area contains the items in the following list. All items are standard SQL except `MYSQL_ERRNO`, which is a MySQL extension. The definitions apply for conditions generated other than by a signal (that is, by a [`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement") or [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement") statement). For nonsignal conditions, MySQL populates only those condition items not described as always empty. The effects of signals on the condition area are described later.
 
-- `CLASS_ORIGIN`: Uma string que contém a classe do valor `RETURNED_SQLSTATE`. Se o valor `RETURNED_SQLSTATE` começar com um valor de classe definido no documento de padrões SQL ISO 9075-2 (seção 24.1, SQLSTATE), `CLASS_ORIGIN` é `'ISO 9075'`. Caso contrário, `CLASS_ORIGIN` é `'MySQL'`.
+* `CLASS_ORIGIN`: A string containing the class of the `RETURNED_SQLSTATE` value. If the `RETURNED_SQLSTATE` value begins with a class value defined in SQL standards document ISO 9075-2 (section 24.1, SQLSTATE), `CLASS_ORIGIN` is `'ISO 9075'`. Otherwise, `CLASS_ORIGIN` is `'MySQL'`.
 
-- `SUBCLASS_ORIGIN`: Uma string que contém a subclasse do valor `RETURNED_SQLSTATE`. Se `CLASS_ORIGIN` for `'ISO 9075'` ou `RETURNED_SQLSTATE` terminar com `'000'`, `SUBCLASS_ORIGIN` será `'ISO 9075'`. Caso contrário, `SUBCLASS_ORIGIN` será `'MySQL'`.
+* `SUBCLASS_ORIGIN`: A string containing the subclass of the `RETURNED_SQLSTATE` value. If `CLASS_ORIGIN` is `'ISO 9075'` or `RETURNED_SQLSTATE` ends with `'000'`, `SUBCLASS_ORIGIN` is `'ISO 9075'`. Otherwise, `SUBCLASS_ORIGIN` is `'MySQL'`.
 
-- `RETURNED_SQLSTATE`: Uma string que indica o valor `SQLSTATE` para a condição.
+* `RETURNED_SQLSTATE`: A string that indicates the `SQLSTATE` value for the condition.
 
-- `MESSAGE_TEXT`: Uma string que indica a mensagem de erro para a condição.
+* `MESSAGE_TEXT`: A string that indicates the error message for the condition.
 
-- `MYSQL_ERRNO`: Um número inteiro que indica o código de erro MySQL para a condição.
+* `MYSQL_ERRNO`: An integer that indicates the MySQL error code for the condition.
 
-- `CONSTRAINT_CATALOG`, `CONSTRAINT_SCHEMA`, `CONSTRAINT_NAME`: Strings que indicam o catálogo, o esquema e o nome de uma restrição violada. Elas são sempre vazias.
+* `CONSTRAINT_CATALOG`, `CONSTRAINT_SCHEMA`, `CONSTRAINT_NAME`: Strings that indicate the catalog, schema, and name for a violated constraint. They are always empty.
 
-- `CATALOG_NAME`, `SCHEMA_NAME`, `TABLE_NAME`, `COLUMN_NAME`: Strings que indicam o catálogo, o esquema, a tabela e a coluna relacionadas à condição. Elas são sempre vazias.
+* `CATALOG_NAME`, `SCHEMA_NAME`, `TABLE_NAME`, `COLUMN_NAME`: Strings that indicate the catalog, schema, table, and column related to the condition. They are always empty.
 
-- `CURSOR_NAME`: Uma string que indica o nome do cursor. Isso é sempre vazio.
+* `CURSOR_NAME`: A string that indicates the cursor name. This is always empty.
 
-Para os valores `RETURNED_SQLSTATE`, `MESSAGE_TEXT` e `MYSQL_ERRNO` para erros específicos, consulte Referência de Mensagem de Erro do Servidor.
+For the `RETURNED_SQLSTATE`, `MESSAGE_TEXT`, and `MYSQL_ERRNO` values for particular errors, see [Server Error Message Reference](/doc/mysql-errors/5.7/en/server-error-reference.html).
 
-Se uma declaração `SIGNAL` (ou `RESIGNAL`) preencher a área de diagnóstico, sua cláusula `SET` pode atribuir a qualquer item de informação de condição, exceto `RETURNED_SQLSTATE`, qualquer valor que seja legal para o tipo de dados do item. O `SIGNAL` também define o valor `RETURNED_SQLSTATE`, mas não diretamente em sua cláusula `SET`. Esse valor vem do argumento `SQLSTATE` da declaração `SIGNAL`.
+If a [`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement") (or [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement")) statement populates the diagnostics area, its `SET` clause can assign to any condition information item except `RETURNED_SQLSTATE` any value that is legal for the item data type. [`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement") also sets the `RETURNED_SQLSTATE` value, but not directly in its `SET` clause. That value comes from the [`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement") statement `SQLSTATE` argument.
 
-`SIGNAL` também define itens de informações de declaração. Ele define `NUMBER` para 1. Define `ROW_COUNT` para −1 para erros e 0 caso contrário.
+[`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement") also sets statement information items. It sets `NUMBER` to 1. It sets `ROW_COUNT` to −1 for errors and 0 otherwise.
 
-##### Como a Área de Diagnóstico é Limpada e Populada
+##### How the Diagnostics Area is Cleared and Populated
 
-As instruções SQL não diagnósticas preenchem a área de diagnóstico automaticamente, e seu conteúdo pode ser definido explicitamente com as instruções `SIGNAL` e `RESIGNAL`. A área de diagnóstico pode ser examinada com `GET DIAGNOSTICS` para extrair itens específicos, ou com `SHOW WARNINGS` ou `SHOW ERRORS` para ver condições ou erros.
+Nondiagnostic SQL statements populate the diagnostics area automatically, and its contents can be set explicitly with the [`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement") and [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement") statements. The diagnostics area can be examined with [`GET DIAGNOSTICS`](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement") to extract specific items, or with [`SHOW WARNINGS`](show-warnings.html "13.7.5.40 SHOW WARNINGS Statement") or [`SHOW ERRORS`](show-errors.html "13.7.5.17 SHOW ERRORS Statement") to see conditions or errors.
 
-As instruções SQL definem e configuram a área de diagnóstico da seguinte forma:
+SQL statements clear and set the diagnostics area as follows:
 
-- Quando o servidor começa a executar uma instrução após analisá-la, ele limpa a área de diagnóstico para instruções não diagnósticas. Instruções diagnósticas não limpam a área de diagnóstico. Essas instruções são diagnósticas:
+* When the server starts executing a statement after parsing it, it clears the diagnostics area for nondiagnostic statements. Diagnostic statements do not clear the diagnostics area. These statements are diagnostic:
 
-  - `DIAGNÓSTICOS`
-  - `Mostrar Erros`
-  - `MOSTRE ALARMES`
-- Se uma declaração levantar uma condição, a área de diagnóstico é limpa das condições que pertencem a declarações anteriores. A exceção é que as condições levantadas por `GET DIAGNOSTICS` e `RESIGNAL` são adicionadas à área de diagnóstico sem serem limpas.
+  + [`GET DIAGNOSTICS`](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement")
+  + [`SHOW ERRORS`](show-errors.html "13.7.5.17 SHOW ERRORS Statement")
+  + [`SHOW WARNINGS`](show-warnings.html "13.7.5.40 SHOW WARNINGS Statement")
+* If a statement raises a condition, the diagnostics area is cleared of conditions that belong to earlier statements. The exception is that conditions raised by [`GET DIAGNOSTICS`](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement") and [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement") are added to the diagnostics area without clearing it.
 
-Assim, mesmo uma declaração que normalmente não limpa a área de diagnóstico quando começa a ser executada, a limpa se a declaração gerar uma condição.
+Thus, even a statement that does not normally clear the diagnostics area when it begins executing clears it if the statement raises a condition.
 
-O exemplo a seguir mostra o efeito de várias declarações na área de diagnóstico, usando `SHOW WARNINGS` para exibir informações sobre as condições armazenadas lá.
+The following example shows the effect of various statements on the diagnostics area, using [`SHOW WARNINGS`](show-warnings.html "13.7.5.40 SHOW WARNINGS Statement") to display information about conditions stored there.
 
-Esta instrução `DROP TABLE` limpa a área de diagnóstico e a preenche quando a condição ocorre:
+This [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement") statement clears the diagnostics area and populates it when the condition occurs:
 
 ```sql
 mysql> DROP TABLE IF EXISTS test.no_such_table;
@@ -107,7 +107,7 @@ mysql> SHOW WARNINGS;
 1 row in set (0.00 sec)
 ```
 
-Esta instrução `SET` gera um erro, então ela limpa e preenche a área de diagnóstico:
+This [`SET`](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment") statement generates an error, so it clears and populates the diagnostics area:
 
 ```sql
 mysql> SET @x = @@x;
@@ -122,7 +122,7 @@ mysql> SHOW WARNINGS;
 1 row in set (0.00 sec)
 ```
 
-A declaração anterior `SET` produziu uma única condição, então 1 é o único número de condição válido para `GET DIAGNOSTICS` neste momento. A declaração seguinte usa um número de condição de 2, o que produz um aviso que é adicionado à área de diagnósticos sem ser apagado:
+The previous [`SET`](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment") statement produced a single condition, so 1 is the only valid condition number for [`GET DIAGNOSTICS`](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement") at this point. The following statement uses a condition number of 2, which produces a warning that is added to the diagnostics area without clearing it:
 
 ```sql
 mysql> GET DIAGNOSTICS CONDITION 2 @p = MESSAGE_TEXT;
@@ -138,7 +138,7 @@ mysql> SHOW WARNINGS;
 2 rows in set (0.00 sec)
 ```
 
-Agora existem duas condições na área de diagnóstico, então a mesma declaração `GET DIAGNOSTICS` é bem-sucedida:
+Now there are two conditions in the diagnostics area, so the same [`GET DIAGNOSTICS`](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement") statement succeeds:
 
 ```sql
 mysql> GET DIAGNOSTICS CONDITION 2 @p = MESSAGE_TEXT;
@@ -153,38 +153,38 @@ mysql> SELECT @p;
 1 row in set (0.01 sec)
 ```
 
-##### Como funciona o Stack da Área de Diagnóstico
+##### How the Diagnostics Area Stack Works
 
-Quando ocorre um empurrão para a pilha da área de diagnóstico, a primeira (atual) área de diagnóstico se torna a segunda (em pilha) área de diagnóstico e uma nova área de diagnóstico atual é criada como uma cópia dela. As áreas de diagnóstico são empurradas para a pilha e tiradas dela sob as seguintes circunstâncias:
+When a push to the diagnostics area stack occurs, the first (current) diagnostics area becomes the second (stacked) diagnostics area and a new current diagnostics area is created as a copy of it. Diagnostics areas are pushed to and popped from the stack under the following circumstances:
 
-- Execução de um programa armazenado
+* Execution of a stored program
 
-  Uma empurrão ocorre antes que o programa seja executado e uma empurrão ocorre depois. Se o programa armazenado terminar enquanto os manipuladores estão executando, pode haver mais de uma área de diagnóstico para ser empurrada; isso ocorre devido a uma exceção para a qual não há manipuladores apropriados ou devido a `RETURN` no manipulador.
+  A push occurs before the program executes and a pop occurs afterward. If the stored program ends while handlers are executing, there can be more than one diagnostics area to pop; this occurs due to an exception for which there are no appropriate handlers or due to [`RETURN`](return.html "13.6.5.7 RETURN Statement") in the handler.
 
-  Quaisquer condições de aviso ou erro nas áreas de diagnóstico exibidas são então adicionadas à área de diagnóstico atual, exceto que, para os gatilhos, apenas erros são adicionados. Quando o programa armazenado termina, o chamador vê essas condições em sua área de diagnóstico atual.
+  Any warning or error conditions in the popped diagnostics areas then are added to the current diagnostics area, except that, for triggers, only errors are added. When the stored program ends, the caller sees these conditions in its current diagonstics area.
 
-- Execução de um manipulador de condição dentro de um programa armazenado
+* Execution of a condition handler within a stored program
 
-  Quando uma empurrada ocorre como resultado da ativação do manipulador de condição, a área de diagnósticos empilhados é a área que estava atualizada no programa armazenado antes da empurrada. A nova área de diagnósticos atual é a área de diagnósticos atual do manipulador. `GET [CURRENT] DIAGNOSTICS` e `GET STACKED DIAGNOSTICS` podem ser usados dentro do manipulador para acessar o conteúdo das áreas de diagnósticos atuais (do manipulador) e empilhadas (do programa armazenado). Inicialmente, eles retornam o mesmo resultado, mas as instruções que são executadas dentro do manipulador modificam a área de diagnósticos atual, apagando e definindo seu conteúdo de acordo com as regras normais (veja Como a Área de Diagnósticos é Apagada e Populada). A área de diagnósticos empilhados não pode ser modificada por instruções que são executadas dentro do manipulador, exceto `RESIGNAL`.
+  When a push occurs as a result of condition handler activation, the stacked diagnostics area is the area that was current within the stored program prior to the push. The new now-current diagnostics area is the handler's current diagnostics area. [`GET [CURRENT] DIAGNOSTICS`](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement") and [`GET STACKED DIAGNOSTICS`](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement") can be used within the handler to access the contents of the current (handler) and stacked (stored program) diagnostics areas. Initially, they return the same result, but statements executing within the handler modify the current diagnostics area, clearing and setting its contents according to the normal rules (see [How the Diagnostics Area is Cleared and Populated](diagnostics-area.html#diagnostics-area-populating "How the Diagnostics Area is Cleared and Populated")). The stacked diagnostics area cannot be modified by statements executing within the handler except [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement").
 
-  Se o manipulador for executado com sucesso, a área de diagnóstico atual (manipulador) é removida e a área de diagnóstico de programa empilhado (armazenado) volta a ser a área de diagnóstico atual. As condições adicionadas à área de diagnóstico do manipulador durante a execução do manipulador são adicionadas à área de diagnóstico atual.
+  If the handler executes successfully, the current (handler) diagnostics area is popped and the stacked (stored program) diagnostics area again becomes the current diagnostics area. Conditions added to the handler diagnostics area during handler execution are added to the current diagnostics area.
 
-- Execução de `RESIGNAL`
+* Execution of [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement")
 
-  A instrução `RESIGNAL` transmite as informações sobre a condição de erro disponíveis durante a execução de um manipulador de condição dentro de uma instrução composta dentro de um programa armazenado. O `RESIGNAL` pode alterar algumas ou todas as informações antes de transmiti-las, modificando a pilha de diagnóstico conforme descrito na Seção 13.6.7.4, “Instrução RESIGNAL”.
+  The [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement") statement passes on the error condition information that is available during execution of a condition handler within a compound statement inside a stored program. [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement") may change some or all information before passing it on, modifying the diagnostics stack as described in [Section 13.6.7.4, “RESIGNAL Statement”](resignal.html "13.6.7.4 RESIGNAL Statement").
 
-##### Diagnóstico Variáveis de sistema relacionadas à área
+##### Diagnostics Area-Related System Variables
 
-Algumas variáveis do sistema controlam ou estão relacionadas a alguns aspectos da área de diagnóstico:
+Certain system variables control or are related to some aspects of the diagnostics area:
 
-- `max_error_count` controla o número de áreas de condição na área de diagnóstico. Se ocorrerem mais condições do que esse número, o MySQL descarta silenciosamente as informações das condições em excesso. (As condições adicionadas por `RESIGNAL` são sempre adicionadas, e as condições mais antigas são descartadas conforme necessário para liberar espaço.)
+* [`max_error_count`](server-system-variables.html#sysvar_max_error_count) controls the number of condition areas in the diagnostics area. If more conditions than this occur, MySQL silently discards information for the excess conditions. (Conditions added by [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement") are always added, with older conditions being discarded as necessary to make room.)
 
-- `warning_count` indica o número de condições que ocorreram. Isso inclui erros, avisos e notas. Normalmente, `NUMBER` e `warning_count` são iguais. No entanto, à medida que o número de condições geradas excede `max_error_count`, o valor de `warning_count` continua a aumentar, enquanto `NUMBER` permanece limitado a `max_error_count` porque nenhuma condição adicional é armazenada na área de diagnóstico.
+* [`warning_count`](server-system-variables.html#sysvar_warning_count) indicates the number of conditions that occurred. This includes errors, warnings, and notes. Normally, `NUMBER` and [`warning_count`](server-system-variables.html#sysvar_warning_count) are the same. However, as the number of conditions generated exceeds [`max_error_count`](server-system-variables.html#sysvar_max_error_count), the value of [`warning_count`](server-system-variables.html#sysvar_warning_count) continues to rise whereas `NUMBER` remains capped at [`max_error_count`](server-system-variables.html#sysvar_max_error_count) because no additional conditions are stored in the diagnostics area.
 
-- `error_count` indica o número de erros que ocorreram. Esse valor inclui condições de "não encontrado" e exceções, mas exclui avisos e notas. Assim como `warning_count`, seu valor pode exceder `max_error_count`.
+* [`error_count`](server-system-variables.html#sysvar_error_count) indicates the number of errors that occurred. This value includes “not found” and exception conditions, but excludes warnings and notes. Like [`warning_count`](server-system-variables.html#sysvar_warning_count), its value can exceed [`max_error_count`](server-system-variables.html#sysvar_max_error_count).
 
-- Se a variável de sistema `sql_notes` estiver definida como 0, as notas não serão armazenadas e o número de avisos `warning_count` não será incrementado.
+* If the [`sql_notes`](server-system-variables.html#sysvar_sql_notes) system variable is set to 0, notes are not stored and do not increment [`warning_count`](server-system-variables.html#sysvar_warning_count).
 
-Exemplo: Se `max_error_count` for 10, a área de diagnóstico pode conter um máximo de 10 áreas de condição. Suponha que uma declaração gere 20 condições, das quais 12 são erros. Nesse caso, a área de diagnóstico contém as primeiras 10 condições, `NUMBER` é 10, `warning_count` é 20 e `error_count` é 12.
+Example: If [`max_error_count`](server-system-variables.html#sysvar_max_error_count) is 10, the diagnostics area can contain a maximum of 10 condition areas. Suppose that a statement raises 20 conditions, 12 of which are errors. In that case, the diagnostics area contains the first 10 conditions, `NUMBER` is 10, [`warning_count`](server-system-variables.html#sysvar_warning_count) is 20, and [`error_count`](server-system-variables.html#sysvar_error_count) is 12.
 
-Alterações no valor de `max_error_count` não terão efeito até a próxima tentativa de modificar a área de diagnóstico. Se a área de diagnóstico contiver 10 áreas de condição e `max_error_count` estiver definido para 5, isso não terá efeito imediato no tamanho ou no conteúdo da área de diagnóstico.
+Changes to the value of [`max_error_count`](server-system-variables.html#sysvar_max_error_count) have no effect until the next attempt to modify the diagnostics area. If the diagnostics area contains 10 condition areas and [`max_error_count`](server-system-variables.html#sysvar_max_error_count) is set to 5, that has no immediate effect on the size or content of the diagnostics area.

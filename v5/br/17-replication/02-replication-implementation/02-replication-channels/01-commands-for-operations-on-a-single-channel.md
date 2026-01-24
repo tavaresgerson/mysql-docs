@@ -1,34 +1,29 @@
-#### 16.2.2.1 Comandos para operações em um único canal
+#### 16.2.2.1 Commands for Operations on a Single Channel
 
-Para permitir que as operações de replicação do MySQL atuem em canais de replicação individuais, use a cláusula `FOR CHANNEL channel` com as seguintes instruções de replicação:
+To enable MySQL replication operations to act on individual replication channels, use the `FOR CHANNEL channel` clause with the following replication statements:
 
-- `MUDAR MASTER PARA`
+* [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement")
+* [`START SLAVE`](start-slave.html "13.4.2.5 START SLAVE Statement")
+* [`STOP SLAVE`](stop-slave.html "13.4.2.6 STOP SLAVE Statement")
+* [`SHOW RELAYLOG EVENTS`](show-relaylog-events.html "13.7.5.32 SHOW RELAYLOG EVENTS Statement")
+* [`FLUSH RELAY LOGS`](flush.html "13.7.6.3 FLUSH Statement")
 
-- `START SLAVE`
+* [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement")
+* [`RESET SLAVE`](reset-slave.html "13.4.2.3 RESET SLAVE Statement")
 
-- `STOP SLAVE`
+Similarly, an additional `channel` parameter is introduced for the following functions:
 
-- `Mostre eventos do RELAYLOG`
+* [`MASTER_POS_WAIT()`](miscellaneous-functions.html#function_master-pos-wait)
+* [`WAIT_UNTIL_SQL_THREAD_AFTER_GTIDS()`](gtid-functions.html#function_wait-until-sql-thread-after-gtids)
 
-- `Limpar logs do repositório de mensagens de correio eletrônico`
+The following statements are disallowed for the `group_replication_recovery` channel:
 
-- `Mostre o status do escravo`
+* [`START SLAVE`](start-slave.html "13.4.2.5 START SLAVE Statement")
+* [`STOP SLAVE`](stop-slave.html "13.4.2.6 STOP SLAVE Statement")
 
-- `RESET SLAVE`
+The following statements are disallowed for the `group_replication_applier` channel:
 
-Da mesma forma, um parâmetro adicional `channel` é introduzido para as seguintes funções:
-
-- `MASTER_POS_WAIT()`
-- `WAIT_UNTIL_SQL_THREAD_AFTER_GTIDS()`
-
-As seguintes declarações são desaconselhadas para o canal `group_replication_recovery`:
-
-- `START SLAVE`
-- `STOP SLAVE`
-
-As seguintes declarações são desaconselhadas para o canal `group_replication_applier`:
-
-- `START SLAVE`
-- `STOP SLAVE`
-- `Mostre o status do escravo`
-- `Limpar logs do repositório de mensagens de correio eletrônico`
+* [`START SLAVE`](start-slave.html "13.4.2.5 START SLAVE Statement")
+* [`STOP SLAVE`](stop-slave.html "13.4.2.6 STOP SLAVE Statement")
+* [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement")
+* [`FLUSH RELAY LOGS`](flush.html "13.7.6.3 FLUSH Statement")

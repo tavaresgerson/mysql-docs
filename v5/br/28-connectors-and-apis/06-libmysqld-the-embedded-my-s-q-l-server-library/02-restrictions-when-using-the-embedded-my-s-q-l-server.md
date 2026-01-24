@@ -1,25 +1,21 @@
-### 27.6.2 Restrições ao usar o servidor MySQL integrado
+### 27.6.2 Restrictions When Using the Embedded MySQL Server
 
-O servidor integrado tem as seguintes limitações:
+The embedded server has the following limitations:
 
-- Nenhuma função carregável.
+* No loadable functions.
+* No stack trace on core dump.
+* You cannot set this up as a source or a replica (no replication).
 
-- Nenhum traço de pilha no core dump.
+* Very large result sets may be unusable on low memory systems.
+* You cannot connect to an embedded server from an outside process with sockets or TCP/IP. However, you can connect to an intermediate application, which in turn can connect to an embedded server on the behalf of a remote client or outside process.
 
-- Você não pode configurá-lo como uma fonte ou uma réplica (sem replicação).
+* `libmysqld` does not support encrypted connections. An implication is that if an application linked against `libmysqld` establishes a connection to a remote server, the connection cannot be encrypted.
 
-- Conjunto de resultados muito grande pode não ser utilizável em sistemas com memória baixa.
+* `InnoDB` is not reentrant in the embedded server and cannot be used for multiple connections, either successively or simultaneously.
 
-- Você não pode se conectar a um servidor integrado a partir de um processo externo com soquetes ou TCP/IP. No entanto, você pode se conectar a uma aplicação intermediária, que, por sua vez, pode se conectar a um servidor integrado em nome de um cliente remoto ou de um processo externo.
+* The Event Scheduler is not available. Because of this, the [`event_scheduler`](server-system-variables.html#sysvar_event_scheduler) system variable is disabled.
 
-- O `libmysqld` não suporta conexões criptografadas. Isso implica que, se um aplicativo vinculado ao `libmysqld` estabelecer uma conexão com um servidor remoto, a conexão não poderá ser criptografada.
+* The Performance Schema is not available.
+* The embedded server cannot share the same [`secure_file_priv`](server-system-variables.html#sysvar_secure_file_priv) directory with another server. As of MySQL 5.7.8, the default value for this directory can be set at build time with the [`INSTALL_SECURE_FILE_PRIV_EMBEDDEDDIR`](source-configuration-options.html#option_cmake_install_secure_file_priv_embeddeddir) **CMake** option.
 
-- O `InnoDB` não é reentrante no servidor integrado e não pode ser usado para múltiplas conexões, seja sucessivamente ou simultaneamente.
-
-- O Agendamento de Eventos não está disponível. Por isso, a variável de sistema `event_scheduler` está desativada.
-
-- O Schema de Desempenho não está disponível.
-
-- O servidor integrado não pode compartilhar o mesmo diretório `secure_file_priv` com outro servidor. A partir do MySQL 5.7.8, o valor padrão para este diretório pode ser definido no momento da construção com a opção **CMake** `INSTALL_SECURE_FILE_PRIV_EMBEDDEDDIR`.
-
-Algumas dessas limitações podem ser alteradas editando o arquivo de inclusão `mysql_embed.h` e recompilando o MySQL.
+Some of these limitations can be changed by editing the `mysql_embed.h` include file and recompiling MySQL.

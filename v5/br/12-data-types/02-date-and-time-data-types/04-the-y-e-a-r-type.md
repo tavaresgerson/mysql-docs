@@ -1,27 +1,27 @@
-### 11.2.4 O Tipo ANO
+### 11.2.4 The YEAR Type
 
-O tipo `YEAR` é um tipo de 1 byte usado para representar valores de ano. Ele pode ser declarado como `YEAR` com uma largura de exibição implícita de 4 caracteres, ou, de forma equivalente, como `YEAR(4)` com uma largura de exibição explícita.
+The `YEAR` type is a 1-byte type used to represent year values. It can be declared as `YEAR` with an implicit display width of 4 characters, or equivalently as `YEAR(4)` with an explicit display width.
 
-Nota
+Note
 
-O tipo de dados `YEAR(2)` de 2 dígitos está desatualizado e o suporte a ele foi removido no MySQL 5.7.5. Para converter colunas `YEAR(2)` de 2 dígitos em colunas `YEAR` de 4 dígitos, consulte a Seção 11.2.5, “Limitações do 2-Digit YEAR(2) e Migração para YEAR de 4 Dígitos” e “Limitações e Migração para YEAR de 4 Dígitos”).
+The 2-digit `YEAR(2)` data type is deprecated and support for it is removed in MySQL 5.7.5. To convert 2-digit `YEAR(2)` columns to 4-digit `YEAR` columns, see Section 11.2.5, “2-Digit YEAR(2) Limitations and Migrating to 4-Digit YEAR” Limitations and Migrating to 4-Digit YEAR").
 
-O MySQL exibe os valores de `YEAR` no formato *`YYYY`*, com um intervalo de `1901` a `2155` e `0000`.
+MySQL displays `YEAR` values in *`YYYY`* format, with a range of `1901` to `2155`, and `0000`.
 
-`YEAR` aceita valores de entrada em uma variedade de formatos:
+`YEAR` accepts input values in a variety of formats:
 
-- Como cadeias de 4 dígitos no intervalo `'1901'` a `'2155'`.
+* As 4-digit strings in the range `'1901'` to `'2155'`.
 
-- Como números de 4 dígitos na faixa de `1901` a `2155`.
+* As 4-digit numbers in the range `1901` to `2155`.
 
-- Como cadeias de 1 ou 2 dígitos no intervalo `'0'` a `'99'`. O MySQL converte valores nos intervalos `'0'` a `'69'` e `'70'` a `'99'` em valores `YEAR` nos intervalos `2000` a `2069` e `1970` a `1999`.
+* As 1- or 2-digit strings in the range `'0'` to `'99'`. MySQL converts values in the ranges `'0'` to `'69'` and `'70'` to `'99'` to `YEAR` values in the ranges `2000` to `2069` and `1970` to `1999`.
 
-- Como números de 1 ou 2 dígitos no intervalo de `0` a `99`. O MySQL converte valores nos intervalos de `1` a `69` e `70` a `99` em valores `YEAR` nos intervalos de `2001` a `2069` e `1970` a `1999`.
+* As 1- or 2-digit numbers in the range `0` to `99`. MySQL converts values in the ranges `1` to `69` and `70` to `99` to `YEAR` values in the ranges `2001` to `2069` and `1970` to `1999`.
 
-  O resultado da inserção de um `0` numérico tem um valor de exibição de `0000` e um valor interno de `0000`. Para inserir zero e fazê-lo ser interpretado como `2000`, especifique-o como uma string `'0'` ou `'00'`.
+  The result of inserting a numeric `0` has a display value of `0000` and an internal value of `0000`. To insert zero and have it be interpreted as `2000`, specify it as a string `'0'` or `'00'`.
 
-- Como resultado de funções que retornam um valor aceitável no contexto `YEAR`, como `NOW()`.
+* As the result of functions that return a value that is acceptable in `YEAR` context, such as `NOW()`.
 
-Se o modo SQL rigoroso não estiver habilitado, o MySQL converte valores `YEAR` inválidos em `0000`. No modo SQL rigoroso, tentar inserir um valor `YEAR` inválido produz um erro.
+If strict SQL mode is not enabled, MySQL converts invalid `YEAR` values to `0000`. In strict SQL mode, attempting to insert an invalid `YEAR` value produces an error.
 
-Veja também a Seção 11.2.10, “Anos de 2 dígitos em datas”.
+See also Section 11.2.10, “2-Digit Years in Dates”.

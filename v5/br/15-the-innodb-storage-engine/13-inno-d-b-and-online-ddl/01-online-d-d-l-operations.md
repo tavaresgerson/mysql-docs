@@ -1,27 +1,27 @@
-### 14.13.1 Operações de DDL online
+### 14.13.1 Online DDL Operations
 
-Detalhes de suporte online, exemplos de sintaxe e notas de uso para operações DDL estão disponíveis nos tópicos a seguir nesta seção.
+Online support details, syntax examples, and usage notes for DDL operations are provided under the following topics in this section.
 
-- Operações de índice
-- Operações de Chave Primária
-- Operações de Coluna
-- Operações de Colunas Geradas
-- Operações de Chave Estrangeira
-- Operações de tabela
-- Operações de Tablespace
-- Operações de Partição
+* Index Operations
+* Primary Key Operations
+* Column Operations
+* Generated Column Operations
+* Foreign Key Operations
+* Table Operations
+* Tablespace Operations
+* Partitioning Operations
 
-#### Operações de índice
+#### Index Operations
 
-A tabela a seguir fornece uma visão geral do suporte de DDL online para operações de índice. Um asterisco indica informações adicionais, uma exceção ou uma dependência. Para detalhes, consulte as Notas de sintaxe e uso.
+The following table provides an overview of online DDL support for index operations. An asterisk indicates additional information, an exception, or a dependency. For details, see Syntax and Usage Notes.
 
-**Tabela 14.10 Suporte de DDL Online para Operações de Índices**
+**Table 14.10 Online DDL Support for Index Operations**
 
-<table summary="Suporte online para DDL de operações de índice que indica se a operação é realizada no local, reconstrui a tabela, permite DML concorrente ou apenas modifica metadados."><col align="left" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><thead><tr> <th>Operação</th> <th>No lugar</th> <th>Reestruturar a tabela</th> <th>Permissões DML concorrentes</th> <th>Apenas modifica metadados</th> </tr></thead><tbody><tr> <th>Criar ou adicionar um índice secundário</th> <td>Sim</td> <td>Não</td> <td>Sim</td> <td>Não</td> </tr><tr> <th>A queda de um índice</th> <td>Sim</td> <td>Não</td> <td>Sim</td> <td>Sim</td> </tr><tr> <th>Renomear um índice</th> <td>Sim</td> <td>Não</td> <td>Sim</td> <td>Sim</td> </tr><tr> <th>Adicionar um índice <code>FULLTEXT</code></th> <td>Sim*</td> <td>Não*</td> <td>Não</td> <td>Não</td> </tr><tr> <th>Adicionar um índice <code>SPATIAL</code></th> <td>Sim</td> <td>Não</td> <td>Não</td> <td>Não</td> </tr><tr> <th>Alterar o tipo de índice</th> <td>Sim</td> <td>Não</td> <td>Sim</td> <td>Sim</td> </tr></tbody></table>
+<table summary="Online DDL support for index operations indicating whether the operation is performed in place, rebuilds the table, permits concurrent DML, or only modifies metadata."><col align="left" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><thead><tr> <th>Operation</th> <th>In Place</th> <th>Rebuilds Table</th> <th>Permits Concurrent DML</th> <th>Only Modifies Metadata</th> </tr></thead><tbody><tr> <th>Creating or adding a secondary index</th> <td>Yes</td> <td>No</td> <td>Yes</td> <td>No</td> </tr><tr> <th>Dropping an index</th> <td>Yes</td> <td>No</td> <td>Yes</td> <td>Yes</td> </tr><tr> <th>Renaming an index</th> <td>Yes</td> <td>No</td> <td>Yes</td> <td>Yes</td> </tr><tr> <th>Adding a <code>FULLTEXT</code> index</th> <td>Yes*</td> <td>No*</td> <td>No</td> <td>No</td> </tr><tr> <th>Adding a <code>SPATIAL</code> index</th> <td>Yes</td> <td>No</td> <td>No</td> <td>No</td> </tr><tr> <th>Changing the index type</th> <td>Yes</td> <td>No</td> <td>Yes</td> <td>Yes</td> </tr></tbody></table>
 
-##### Observações sobre sintaxe e uso
+##### Syntax and Usage Notes
 
-- Criar ou adicionar um índice secundário
+* Creating or adding a secondary index
 
   ```sql
   CREATE INDEX name ON table (col_list);
@@ -31,17 +31,17 @@ A tabela a seguir fornece uma visão geral do suporte de DDL online para operaç
   ALTER TABLE tbl_name ADD INDEX name (col_list);
   ```
 
-  A tabela permanece disponível para operações de leitura e escrita enquanto o índice está sendo criado. A instrução `CREATE INDEX` só termina após todas as transações que estão acessando a tabela serem concluídas, para que o estado inicial do índice reflita os conteúdos mais recentes da tabela.
+  The table remains available for read and write operations while the index is being created. The `CREATE INDEX` statement only finishes after all transactions that are accessing the table are completed, so that the initial state of the index reflects the most recent contents of the table.
 
-  O suporte online para DDL (Data Definition Language) para adicionar índices secundários significa que você pode, geralmente, acelerar o processo geral de criação e carregamento de uma tabela e índices associados, criando a tabela sem índices secundários e, em seguida, adicionando os índices secundários após o carregamento dos dados.
+  Online DDL support for adding secondary indexes means that you can generally speed the overall process of creating and loading a table and associated indexes by creating the table without secondary indexes, then adding secondary indexes after the data is loaded.
 
-  Um índice secundário recém-criado contém apenas os dados comprometidos na tabela no momento em que a instrução `CREATE INDEX` ou `ALTER TABLE` terminar de ser executada. Ele não contém quaisquer valores não comprometidos, versões antigas de valores ou valores marcados para exclusão, mas ainda não removidos do antigo índice.
+  A newly created secondary index contains only the committed data in the table at the time the `CREATE INDEX` or `ALTER TABLE` statement finishes executing. It does not contain any uncommitted values, old versions of values, or values marked for deletion but not yet removed from the old index.
 
-  Se o servidor sair enquanto estiver criando um índice secundário, na recuperação, o MySQL exclui quaisquer índices parcialmente criados. Você deve executar novamente a instrução `ALTER TABLE` ou `CREATE INDEX`.
+  If the server exits while creating a secondary index, upon recovery, MySQL drops any partially created indexes. You must re-run the `ALTER TABLE` or `CREATE INDEX` statement.
 
-  Alguns fatores afetam o desempenho, o uso de espaço e a semântica dessa operação. Para obter detalhes, consulte a Seção 14.13.6, “Limitações do DDL online”.
+  Some factors affect the performance, space usage, and semantics of this operation. For details, see Section 14.13.6, “Online DDL Limitations”.
 
-- A queda de um índice
+* Dropping an index
 
   ```sql
   DROP INDEX name ON table;
@@ -51,156 +51,156 @@ A tabela a seguir fornece uma visão geral do suporte de DDL online para operaç
   ALTER TABLE tbl_name DROP INDEX name;
   ```
 
-  A tabela permanece disponível para operações de leitura e escrita enquanto o índice está sendo excluído. A instrução `DROP INDEX` só termina após todas as transações que estão acessando a tabela serem concluídas, para que o estado inicial do índice reflita os conteúdos mais recentes da tabela.
+  The table remains available for read and write operations while the index is being dropped. The `DROP INDEX` statement only finishes after all transactions that are accessing the table are completed, so that the initial state of the index reflects the most recent contents of the table.
 
-- Renomear um índice
+* Renaming an index
 
   ```sql
   ALTER TABLE tbl_name RENAME INDEX old_index_name TO new_index_name, ALGORITHM=INPLACE, LOCK=NONE;
   ```
 
-- Adicionar um índice `FULLTEXT`
+* Adding a `FULLTEXT` index
 
   ```sql
   CREATE FULLTEXT INDEX name ON table(column);
   ```
 
-  A adição do primeiro índice `FULLTEXT` reconstrui a tabela se não houver uma coluna `FTS_DOC_ID` definida pelo usuário. Índices `FULLTEXT` adicionais podem ser adicionados sem a necessidade de reconstruir a tabela.
+  Adding the first `FULLTEXT` index rebuilds the table if there is no user-defined `FTS_DOC_ID` column. Additional `FULLTEXT` indexes may be added without rebuilding the table.
 
-- Adicionar um índice `SPATIAL`
+* Adding a `SPATIAL` index
 
   ```sql
   CREATE TABLE geom (g GEOMETRY NOT NULL);
   ALTER TABLE geom ADD SPATIAL INDEX(g), ALGORITHM=INPLACE, LOCK=SHARED;
   ```
 
-- Alterar o tipo de índice (`USING {BTREE | HASH}`)
+* Changing the index type (`USING {BTREE | HASH}`)
 
   ```sql
   ALTER TABLE tbl_name DROP INDEX i1, ADD INDEX i1(key_part,...) USING BTREE, ALGORITHM=INPLACE;
   ```
 
-#### Operações de Chave Primária
+#### Primary Key Operations
 
-A tabela a seguir fornece uma visão geral do suporte de DDL online para operações de chave primária. Um asterisco indica informações adicionais, uma exceção ou uma dependência. Consulte as Notas de sintaxe e uso.
+The following table provides an overview of online DDL support for primary key operations. An asterisk indicates additional information, an exception, or a dependency. See Syntax and Usage Notes.
 
-**Tabela 14.11 Suporte de DDL Online para Operações de Chave Primária**
+**Table 14.11 Online DDL Support for Primary Key Operations**
 
-<table summary="Suporte online para DDL de operações de chave primária, indicando se a operação é realizada no local, reconstrui a tabela, permite DML concorrente ou apenas modifica metadados."><col align="left" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><thead><tr> <th>Operação</th> <th>No lugar</th> <th>Reestruturar a tabela</th> <th>Permissões DML concorrentes</th> <th>Apenas modifica metadados</th> </tr></thead><tbody><tr> <th>Adicionar uma chave primária</th> <td>Sim*</td> <td>Sim*</td> <td>Sim</td> <td>Não</td> </tr><tr> <th>Remover uma chave primária</th> <td>Não</td> <td>Sim</td> <td>Não</td> <td>Não</td> </tr><tr> <th>Excluir uma chave primária e adicionar outra</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td>Não</td> </tr></tbody></table>
+<table summary="Online DDL support for primary key operations indicating whether the operation is performed in place, rebuilds the table, permits concurrent DML, or only modifies metadata."><col align="left" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><thead><tr> <th>Operation</th> <th>In Place</th> <th>Rebuilds Table</th> <th>Permits Concurrent DML</th> <th>Only Modifies Metadata</th> </tr></thead><tbody><tr> <th>Adding a primary key</th> <td>Yes*</td> <td>Yes*</td> <td>Yes</td> <td>No</td> </tr><tr> <th>Dropping a primary key</th> <td>No</td> <td>Yes</td> <td>No</td> <td>No</td> </tr><tr> <th>Dropping a primary key and adding another</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td>No</td> </tr></tbody></table>
 
-##### Observações sobre sintaxe e uso
+##### Syntax and Usage Notes
 
-- Adicionar uma chave primária
+* Adding a primary key
 
   ```sql
   ALTER TABLE tbl_name ADD PRIMARY KEY (column), ALGORITHM=INPLACE, LOCK=NONE;
   ```
 
-  Refaz a tabela no local. Os dados são reorganizados substancialmente, tornando-a uma operação cara. `ALGORITHM=INPLACE` não é permitido sob certas condições se as colunas tiverem que ser convertidas em `NOT NULL`.
+  Rebuilds the table in place. Data is reorganized substantially, making it an expensive operation. `ALGORITHM=INPLACE` is not permitted under certain conditions if columns have to be converted to `NOT NULL`.
 
-  A reestruturação do índice agrupado sempre requer a cópia dos dados da tabela. Portanto, é melhor definir a chave primária ao criar uma tabela, em vez de emitir `ALTER TABLE ... ADD PRIMARY KEY` mais tarde.
+  Restructuring the clustered index always requires copying of table data. Thus, it is best to define the primary key when you create a table, rather than issuing `ALTER TABLE ... ADD PRIMARY KEY` later.
 
-  Quando você cria um índice `UNIQUE` ou `PRIMARY KEY`, o MySQL precisa realizar um trabalho adicional. Para índices `UNIQUE`, o MySQL verifica se a tabela não contém valores duplicados para a chave. Para um índice `PRIMARY KEY`, o MySQL também verifica se nenhuma das colunas `PRIMARY KEY` contém um `NULL`.
+  When you create a `UNIQUE` or `PRIMARY KEY` index, MySQL must do some extra work. For `UNIQUE` indexes, MySQL checks that the table contains no duplicate values for the key. For a `PRIMARY KEY` index, MySQL also checks that none of the `PRIMARY KEY` columns contains a `NULL`.
 
-  Quando você adiciona uma chave primária usando a cláusula `ALGORITHM=COPY`, o MySQL converte os valores `NULL` nas colunas associadas em valores padrão: 0 para números, uma string vazia para colunas baseadas em caracteres e BLOBs, e 0000-00-00 00:00:00 para `DATETIME`. Esse é um comportamento não padrão que a Oracle não recomenda que você confie. Adicionar uma chave primária usando `ALGORITHM=INPLACE` é permitido apenas quando a configuração `SQL_MODE` inclui as flags `strict_trans_tables` ou `strict_all_tables`; quando a configuração `SQL_MODE` é rigorosa, `ALGORITHM=INPLACE` é permitido, mas a declaração ainda pode falhar se as colunas da chave primária solicitadas contiverem valores `NULL`. O comportamento `ALGORITHM=INPLACE` é mais compatível com o padrão.
+  When you add a primary key using the `ALGORITHM=COPY` clause, MySQL converts `NULL` values in the associated columns to default values: 0 for numbers, an empty string for character-based columns and BLOBs, and 0000-00-00 00:00:00 for `DATETIME`. This is a non-standard behavior that Oracle recommends you not rely on. Adding a primary key using `ALGORITHM=INPLACE` is only permitted when the `SQL_MODE` setting includes the `strict_trans_tables` or `strict_all_tables` flags; when the `SQL_MODE` setting is strict, `ALGORITHM=INPLACE` is permitted, but the statement can still fail if the requested primary key columns contain `NULL` values. The `ALGORITHM=INPLACE` behavior is more standard-compliant.
 
-  Se você criar uma tabela sem uma chave primária, o `InnoDB` escolhe uma para você, que pode ser a primeira chave `UNIQUE` definida em colunas `NOT NULL` ou uma chave gerada pelo sistema. Para evitar a incerteza e o potencial requisito de espaço para uma coluna oculta extra, especifique a cláusula `PRIMARY KEY` como parte da instrução `CREATE TABLE`.
+  If you create a table without a primary key, `InnoDB` chooses one for you, which can be the first `UNIQUE` key defined on `NOT NULL` columns, or a system-generated key. To avoid uncertainty and the potential space requirement for an extra hidden column, specify the `PRIMARY KEY` clause as part of the `CREATE TABLE` statement.
 
-  O MySQL cria um novo índice agrupado copiando os dados existentes da tabela original para uma tabela temporária que possui a estrutura de índice desejada. Uma vez que os dados são completamente copiados para a tabela temporária, a tabela original é renomeada com um nome diferente para a tabela temporária. A tabela temporária que compõe o novo índice agrupado é renomeada com o nome da tabela original, e a tabela original é excluída do banco de dados.
+  MySQL creates a new clustered index by copying the existing data from the original table to a temporary table that has the desired index structure. Once the data is completely copied to the temporary table, the original table is renamed with a different temporary table name. The temporary table comprising the new clustered index is renamed with the name of the original table, and the original table is dropped from the database.
 
-  Os aprimoramentos de desempenho online que se aplicam às operações em índices secundários não se aplicam ao índice de chave primária. As linhas de uma tabela InnoDB são armazenadas em um índice agrupado organizado com base na chave primária, formando o que alguns sistemas de banco de dados chamam de "tabela organizada por índice". Como a estrutura da tabela está intimamente ligada à chave primária, redefinir a chave primária ainda requer a cópia dos dados.
+  The online performance enhancements that apply to operations on secondary indexes do not apply to the primary key index. The rows of an InnoDB table are stored in a clustered index organized based on the primary key, forming what some database systems call an “index-organized table”. Because the table structure is closely tied to the primary key, redefining the primary key still requires copying the data.
 
-  Quando uma operação na chave primária usa `ALGORITHM=INPLACE`, mesmo que os dados ainda estejam sendo copiados, ela é mais eficiente do que usar `ALGORITHM=COPY`, porque:
+  When an operation on the primary key uses `ALGORITHM=INPLACE`, even though the data is still copied, it is more efficient than using `ALGORITHM=COPY` because:
 
-  - Não é necessário registrar o log de desfazer ou o log de refazer associado ao `ALGORITHM=INPLACE`. Essas operações adicionam sobrecarga às instruções DDL que usam `ALGORITHM=COPY`.
+  + No undo logging or associated redo logging is required for `ALGORITHM=INPLACE`. These operations add overhead to DDL statements that use `ALGORITHM=COPY`.
 
-  - As entradas do índice secundário estão pré-ordenadas e, portanto, podem ser carregadas em ordem.
+  + The secondary index entries are pre-sorted, and so can be loaded in order.
 
-  - O buffer de alteração não é usado, porque não há inserções de acesso aleatório nos índices secundários.
+  + The change buffer is not used, because there are no random-access inserts into the secondary indexes.
 
-  Se o servidor sair durante a criação de um novo índice agrupado, os dados não serão perdidos, mas você deve completar o processo de recuperação usando as tabelas temporárias que existem durante o processo. Como é raro recriar um índice agrupado ou redefinir chaves primárias em tabelas grandes ou encontrar um travamento do sistema durante essa operação, este manual não fornece informações sobre como recuperar desse cenário.
+  If the server exits while creating a new clustered index, no data is lost, but you must complete the recovery process using the temporary tables that exist during the process. Since it is rare to re-create a clustered index or re-define primary keys on large tables, or to encounter a system crash during this operation, this manual does not provide information on recovering from this scenario.
 
-- Remover uma chave primária
+* Dropping a primary key
 
   ```sql
   ALTER TABLE tbl_name DROP PRIMARY KEY, ALGORITHM=COPY;
   ```
 
-  Apenas o `ALGORITHM=COPY` permite a remoção de uma chave primária sem a adição de uma nova na mesma instrução `ALTER TABLE`.
+  Only `ALGORITHM=COPY` supports dropping a primary key without adding a new one in the same `ALTER TABLE` statement.
 
-- Excluir uma chave primária e adicionar outra
+* Dropping a primary key and adding another
 
   ```sql
   ALTER TABLE tbl_name DROP PRIMARY KEY, ADD PRIMARY KEY (column), ALGORITHM=INPLACE, LOCK=NONE;
   ```
 
-  Os dados são reorganizados de forma substancial, o que torna a operação cara.
+  Data is reorganized substantially, making it an expensive operation.
 
-#### Operações de Coluna
+#### Column Operations
 
-A tabela a seguir fornece uma visão geral do suporte online para operações de DDL de coluna. Um asterisco indica informações adicionais, uma exceção ou uma dependência. Para detalhes, consulte as Notas de sintaxe e uso.
+The following table provides an overview of online DDL support for column operations. An asterisk indicates additional information, an exception, or a dependency. For details, see Syntax and Usage Notes.
 
-**Tabela 14.12 Suporte de DDL Online para Operações de Colunas**
+**Table 14.12 Online DDL Support for Column Operations**
 
-<table summary="Suporte online para DDL de operações de coluna que indica se a operação é realizada no local, reconstrui a tabela, permite DML concorrente ou apenas modifica metadados."><col align="left" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><thead><tr> <th>Operação</th> <th>No lugar</th> <th>Reestruturar a tabela</th> <th>Permissões DML concorrentes</th> <th>Apenas modifica metadados</th> </tr></thead><tbody><tr> <th>Adicionar uma coluna</th> <td>Sim</td> <td>Sim</td> <td>Sim*</td> <td>Não</td> </tr><tr> <th>Excluir uma coluna</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td>Não</td> </tr><tr> <th>Renomear uma coluna</th> <td>Sim</td> <td>Não</td> <td>Sim*</td> <td>Sim</td> </tr><tr> <th>Rearranjar colunas</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td>Não</td> </tr><tr> <th>Definir um valor padrão para uma coluna</th> <td>Sim</td> <td>Não</td> <td>Sim</td> <td>Sim</td> </tr><tr> <th>Alterar o tipo de dados da coluna</th> <td>Não</td> <td>Sim</td> <td>Não</td> <td>Não</td> </tr><tr> <th>Extender o tamanho da coluna <code>VARCHAR</code></th> <td>Sim</td> <td>Não</td> <td>Sim</td> <td>Sim</td> </tr><tr> <th>Remover o valor padrão da coluna</th> <td>Sim</td> <td>Não</td> <td>Sim</td> <td>Sim</td> </tr><tr> <th>Alterar o valor de autoincremento</th> <td>Sim</td> <td>Não</td> <td>Sim</td> <td>Não*</td> </tr><tr> <th>Criando uma coluna <code>NULL</code></th> <td>Sim</td> <td>Sim*</td> <td>Sim</td> <td>Não</td> </tr><tr> <th>Criando uma coluna <code>NOT NULL</code></th> <td>Sim*</td> <td>Sim*</td> <td>Sim</td> <td>Não</td> </tr><tr> <th>Modificar a definição de uma coluna <code>ENUM</code> ou <code>SET</code></th> <td>Sim</td> <td>Não</td> <td>Sim</td> <td>Sim</td> </tr></tbody></table>
+<table summary="Online DDL support for column operations indicating whether the operation is performed in place, rebuilds the table, permits concurrent DML, or only modifies metadata."><col align="left" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><thead><tr> <th>Operation</th> <th>In Place</th> <th>Rebuilds Table</th> <th>Permits Concurrent DML</th> <th>Only Modifies Metadata</th> </tr></thead><tbody><tr> <th>Adding a column</th> <td>Yes</td> <td>Yes</td> <td>Yes*</td> <td>No</td> </tr><tr> <th>Dropping a column</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td>No</td> </tr><tr> <th>Renaming a column</th> <td>Yes</td> <td>No</td> <td>Yes*</td> <td>Yes</td> </tr><tr> <th>Reordering columns</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td>No</td> </tr><tr> <th>Setting a column default value</th> <td>Yes</td> <td>No</td> <td>Yes</td> <td>Yes</td> </tr><tr> <th>Changing the column data type</th> <td>No</td> <td>Yes</td> <td>No</td> <td>No</td> </tr><tr> <th>Extending <code>VARCHAR</code> column size</th> <td>Yes</td> <td>No</td> <td>Yes</td> <td>Yes</td> </tr><tr> <th>Dropping the column default value</th> <td>Yes</td> <td>No</td> <td>Yes</td> <td>Yes</td> </tr><tr> <th>Changing the auto-increment value</th> <td>Yes</td> <td>No</td> <td>Yes</td> <td>No*</td> </tr><tr> <th>Making a column <code>NULL</code></th> <td>Yes</td> <td>Yes*</td> <td>Yes</td> <td>No</td> </tr><tr> <th>Making a column <code>NOT NULL</code></th> <td>Yes*</td> <td>Yes*</td> <td>Yes</td> <td>No</td> </tr><tr> <th>Modifying the definition of an <code>ENUM</code> or <code>SET</code> column</th> <td>Yes</td> <td>No</td> <td>Yes</td> <td>Yes</td> </tr></tbody></table>
 
-##### Observações sobre sintaxe e uso
+##### Syntax and Usage Notes
 
-- Adicionar uma coluna
+* Adding a column
 
   ```sql
   ALTER TABLE tbl_name ADD COLUMN column_name column_definition, ALGORITHM=INPLACE, LOCK=NONE;
   ```
 
-  A DML concorrente não é permitida ao adicionar uma coluna de autoincremento. Os dados são reorganizados substancialmente, tornando-a uma operação cara. No mínimo, é necessário `ALGORITHM=INPLACE, LOCK=SHARED`.
+  Concurrent DML is not permitted when adding an auto-increment column. Data is reorganized substantially, making it an expensive operation. At a minimum, `ALGORITHM=INPLACE, LOCK=SHARED` is required.
 
-- Excluir uma coluna
+* Dropping a column
 
   ```sql
   ALTER TABLE tbl_name DROP COLUMN column_name, ALGORITHM=INPLACE, LOCK=NONE;
   ```
 
-  Os dados são reorganizados de forma substancial, o que torna a operação cara.
+  Data is reorganized substantially, making it an expensive operation.
 
-- Renomear uma coluna
+* Renaming a column
 
   ```sql
   ALTER TABLE tbl CHANGE old_col_name new_col_name data_type, ALGORITHM=INPLACE, LOCK=NONE;
   ```
 
-  Para permitir a DML concorrente, mantenha o mesmo tipo de dados e altere apenas o nome da coluna.
+  To permit concurrent DML, keep the same data type and only change the column name.
 
-  Quando você mantém o mesmo tipo de dados e o atributo "[NOT] NULL", apenas alterando o nome da coluna, a operação sempre pode ser realizada online.
+  When you keep the same data type and `[NOT] NULL` attribute, only changing the column name, the operation can always be performed online.
 
-  Você também pode renomear uma coluna que faz parte de uma restrição de chave estrangeira. A definição da chave estrangeira é atualizada automaticamente para usar o novo nome da coluna. Renomear uma coluna que participa de uma chave estrangeira só funciona com `ALGORITHM=INPLACE`. Se você usar a cláusula `ALGORITHM=COPY` ou alguma outra condição faz com que a operação use `ALGORITHM=COPY`, a instrução `ALTER TABLE` falha.
+  You can also rename a column that is part of a foreign key constraint. The foreign key definition is automatically updated to use the new column name. Renaming a column participating in a foreign key only works with `ALGORITHM=INPLACE`. If you use the `ALGORITHM=COPY` clause, or some other condition causes the operation to use `ALGORITHM=COPY`, the `ALTER TABLE` statement fails.
 
-  O `ALGORITHM=INPLACE` não é suportado para renomear uma coluna gerada.
+  `ALGORITHM=INPLACE` is not supported for renaming a generated column.
 
-- Rearranjar colunas
+* Reordering columns
 
-  Para reorganizar as colunas, use `FIRST` ou `AFTER` nas operações `CHANGE` ou `MODIFY`.
+  To reorder columns, use `FIRST` or `AFTER` in `CHANGE` or `MODIFY` operations.
 
   ```sql
   ALTER TABLE tbl_name MODIFY COLUMN col_name column_definition FIRST, ALGORITHM=INPLACE, LOCK=NONE;
   ```
 
-  Os dados são reorganizados de forma substancial, o que torna a operação cara.
+  Data is reorganized substantially, making it an expensive operation.
 
-- Alterar o tipo de dados da coluna
+* Changing the column data type
 
   ```sql
   ALTER TABLE tbl_name CHANGE c1 c1 BIGINT, ALGORITHM=COPY;
   ```
 
-  A alteração do tipo de dados da coluna só é suportada com `ALGORITHM=COPY`.
+  Changing the column data type is only supported with `ALGORITHM=COPY`.
 
-- Extensão do tamanho da coluna `VARCHAR`
+* Extending `VARCHAR` column size
 
   ```sql
   ALTER TABLE tbl_name CHANGE COLUMN c1 c1 VARCHAR(255), ALGORITHM=INPLACE, LOCK=NONE;
   ```
 
-  O número de bytes de comprimento necessários para uma coluna `VARCHAR` deve permanecer o mesmo. Para colunas `VARCHAR` de tamanho de 0 a 255 bytes, um byte de comprimento é necessário para codificar o valor. Para colunas `VARCHAR` de tamanho de 256 bytes ou mais, são necessários dois bytes de comprimento. Como resultado, a `ALTER TABLE` in-place só suporta o aumento do tamanho da coluna `VARCHAR` de 0 a 255 bytes ou de 256 bytes para um tamanho maior. A `ALTER TABLE` in-place não suporta o aumento do tamanho de uma coluna `VARCHAR` de menos de 256 bytes para um tamanho igual ou maior que 256 bytes. Neste caso, o número de bytes de comprimento necessários muda de 1 para 2, o que é suportado apenas por uma cópia da tabela (`ALGORITHM=COPY`). Por exemplo, tentar alterar o tamanho da coluna `VARCHAR` para um conjunto de caracteres de um único byte de VARCHAR(255) para VARCHAR(256) usando `ALTER TABLE` in-place retorna este erro:
+  The number of length bytes required by a `VARCHAR` column must remain the same. For `VARCHAR` columns of 0 to 255 bytes in size, one length byte is required to encode the value. For `VARCHAR` columns of 256 bytes in size or more, two length bytes are required. As a result, in-place `ALTER TABLE` only supports increasing `VARCHAR` column size from 0 to 255 bytes, or from 256 bytes to a greater size. In-place `ALTER TABLE` does not support increasing the size of a `VARCHAR` column from less than 256 bytes to a size equal to or greater than 256 bytes. In this case, the number of required length bytes changes from 1 to 2, which is only supported by a table copy (`ALGORITHM=COPY`). For example, attempting to change `VARCHAR` column size for a single byte character set from VARCHAR(255) to VARCHAR(256) using in-place `ALTER TABLE` returns this error:
 
   ```sql
   ALTER TABLE tbl_name ALGORITHM=INPLACE, CHANGE COLUMN c1 c1 VARCHAR(256);
@@ -208,290 +208,290 @@ A tabela a seguir fornece uma visão geral do suporte online para operações de
   column type INPLACE. Try ALGORITHM=COPY.
   ```
 
-  Nota
+  Note
 
-  O comprimento em bytes de uma coluna `VARCHAR` depende do comprimento em bytes do conjunto de caracteres.
+  The byte length of a `VARCHAR` column is dependant on the byte length of the character set.
 
-  A redução do tamanho do `VARCHAR` usando `ALTER TABLE` in-place não é suportada. A redução do tamanho do `VARCHAR` requer uma cópia da tabela (`ALGORITHM=COPY`).
+  Decreasing `VARCHAR` size using in-place `ALTER TABLE` is not supported. Decreasing `VARCHAR` size requires a table copy (`ALGORITHM=COPY`).
 
-- Definir um valor padrão para uma coluna
+* Setting a column default value
 
   ```sql
   ALTER TABLE tbl_name ALTER COLUMN col SET DEFAULT literal, ALGORITHM=INPLACE, LOCK=NONE;
   ```
 
-  Apenas modifica os metadados da tabela. Os valores padrão das colunas são armazenados no arquivo .frm da tabela, e não no dicionário de dados do `InnoDB`.
+  Only modifies table metadata. Default column values are stored in the .frm file for the table, not the `InnoDB` data dictionary.
 
-- Definir um valor padrão para uma coluna
+* Dropping a column default value
 
   ```sql
   ALTER TABLE tbl ALTER COLUMN col DROP DEFAULT, ALGORITHM=INPLACE, LOCK=NONE;
   ```
 
-- Alterar o valor de autoincremento
+* Changing the auto-increment value
 
   ```sql
   ALTER TABLE table AUTO_INCREMENT=next_value, ALGORITHM=INPLACE, LOCK=NONE;
   ```
 
-  Modifica um valor armazenado na memória, não o arquivo de dados.
+  Modifies a value stored in memory, not the data file.
 
-  Em um sistema distribuído que utiliza replicação ou particionamento, você às vezes redefere o contador de autoincremento de uma tabela para um valor específico. A próxima linha inserida na tabela usa o valor especificado para sua coluna de autoincremento. Você também pode usar essa técnica em um ambiente de data warehousing, onde você periodicamente esvazia todas as tabelas e as carrega novamente e reinicia a sequência de autoincremento a partir do 1.
+  In a distributed system using replication or sharding, you sometimes reset the auto-increment counter for a table to a specific value. The next row inserted into the table uses the specified value for its auto-increment column. You might also use this technique in a data warehousing environment where you periodically empty all the tables and reload them, and restart the auto-increment sequence from 1.
 
-- Tornar uma coluna `NULL`
+* Making a column `NULL`
 
   ```sql
   ALTER TABLE tbl_name MODIFY COLUMN column_name data_type NULL, ALGORITHM=INPLACE, LOCK=NONE;
   ```
 
-  Refaz a tabela no local. Os dados são reorganizados substancialmente, tornando-se uma operação cara.
+  Rebuilds the table in place. Data is reorganized substantially, making it an expensive operation.
 
-- Tornar uma coluna `NOT NULL`
+* Making a column `NOT NULL`
 
   ```sql
   ALTER TABLE tbl_name MODIFY COLUMN column_name data_type NOT NULL, ALGORITHM=INPLACE, LOCK=NONE;
   ```
 
-  Refaz a tabela no local. O `SQL_MODE` `STRICT_ALL_TABLES` ou `STRICT_TRANS_TABLES` é necessário para que a operação seja bem-sucedida. A operação falha se a coluna contiver valores NULL. O servidor proíbe alterações em colunas de chave estrangeira que possam causar perda de integridade referencial. Veja a Seção 13.1.8, “Instrução ALTER TABLE”. Os dados são reorganizados substancialmente, tornando-a uma operação cara.
+  Rebuilds the table in place. `STRICT_ALL_TABLES` or `STRICT_TRANS_TABLES` `SQL_MODE` is required for the operation to succeed. The operation fails if the column contains NULL values. The server prohibits changes to foreign key columns that have the potential to cause loss of referential integrity. See Section 13.1.8, “ALTER TABLE Statement”. Data is reorganized substantially, making it an expensive operation.
 
-- Modificando a definição de uma coluna `ENUM` ou `SET`
+* Modifying the definition of an `ENUM` or `SET` column
 
   ```sql
   CREATE TABLE t1 (c1 ENUM('a', 'b', 'c'));
   ALTER TABLE t1 MODIFY COLUMN c1 ENUM('a', 'b', 'c', 'd'), ALGORITHM=INPLACE, LOCK=NONE;
   ```
 
-  A modificação da definição de uma coluna `ENUM` ou `SET` adicionando novos membros à lista de valores válidos no *final* da lista pode ser realizada in situ, desde que o tamanho de armazenamento do tipo de dados não mude. Por exemplo, adicionar um membro a uma coluna `SET` que tem 8 membros altera o armazenamento necessário por valor de 1 byte para 2 bytes; isso requer uma cópia da tabela. Adicionar membros no meio da lista causa a reenumeração dos membros existentes, o que requer uma cópia da tabela.
+  Modifying the definition of an `ENUM` or `SET` column by adding new enumeration or set members to the *end* of the list of valid member values may be performed in place, as long as the storage size of the data type does not change. For example, adding a member to a `SET` column that has 8 members changes the required storage per value from 1 byte to 2 bytes; this requires a table copy. Adding members in the middle of the list causes renumbering of existing members, which requires a table copy.
 
-#### Operações de Colunas Geradas
+#### Generated Column Operations
 
-A tabela a seguir fornece uma visão geral do suporte de DDL online para operações de coluna geradas. Para detalhes, consulte as Notas de sintaxe e uso.
+The following table provides an overview of online DDL support for generated column operations. For details, see Syntax and Usage Notes.
 
-**Tabela 14.13 Suporte de DDL Online para Operações de Coluna Gerada**
+**Table 14.13 Online DDL Support for Generated Column Operations**
 
-<table summary="Suporte online para DDL de operações de coluna geradas, indicando se a operação é realizada in loco, reconstrui a tabela, permite DML concorrente ou apenas modifica metadados."><col align="left" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><thead><tr> <th>Operação</th> <th>No lugar</th> <th>Reestruturar a tabela</th> <th>Permissões DML concorrentes</th> <th>Apenas modifica metadados</th> </tr></thead><tbody><tr> <th>Adicionar uma coluna <code>STORED</code></th> <td>Não</td> <td>Sim</td> <td>Não</td> <td>Não</td> </tr><tr> <th>Modificar a ordem da coluna <code>STORED</code></th> <td>Não</td> <td>Sim</td> <td>Não</td> <td>Não</td> </tr><tr> <th>Remover uma coluna <code>STORED</code></th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td>Não</td> </tr><tr> <th>Adicionar uma coluna <code>VIRTUAL</code></th> <td>Sim</td> <td>Não</td> <td>Sim</td> <td>Sim</td> </tr><tr> <th>Modificar a ordem da coluna <code>VIRTUAL</code></th> <td>Não</td> <td>Sim</td> <td>Não</td> <td>Não</td> </tr><tr> <th>Remover uma coluna <code>VIRTUAL</code></th> <td>Sim</td> <td>Não</td> <td>Sim</td> <td>Sim</td> </tr></tbody></table>
+<table summary="Online DDL support for generated column operations indicating whether the operation is performed in place, rebuilds the table, permits concurrent DML, or only modifies metadata."><col align="left" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><thead><tr> <th>Operation</th> <th>In Place</th> <th>Rebuilds Table</th> <th>Permits Concurrent DML</th> <th>Only Modifies Metadata</th> </tr></thead><tbody><tr> <th>Adding a <code>STORED</code> column</th> <td>No</td> <td>Yes</td> <td>No</td> <td>No</td> </tr><tr> <th>Modifying <code>STORED</code> column order</th> <td>No</td> <td>Yes</td> <td>No</td> <td>No</td> </tr><tr> <th>Dropping a <code>STORED</code> column</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td>No</td> </tr><tr> <th>Adding a <code>VIRTUAL</code> column</th> <td>Yes</td> <td>No</td> <td>Yes</td> <td>Yes</td> </tr><tr> <th>Modifying <code>VIRTUAL</code> column order</th> <td>No</td> <td>Yes</td> <td>No</td> <td>No</td> </tr><tr> <th>Dropping a <code>VIRTUAL</code> column</th> <td>Yes</td> <td>No</td> <td>Yes</td> <td>Yes</td> </tr></tbody></table>
 
-##### Observações sobre sintaxe e uso
+##### Syntax and Usage Notes
 
-- Adicionar uma coluna `STORED`
+* Adding a `STORED` column
 
   ```sql
   ALTER TABLE t1 ADD COLUMN (c2 INT GENERATED ALWAYS AS (c1 + 1) STORED), ALGORITHM=COPY;
   ```
 
-  `ADD COLUMN` não é uma operação de inserção em tempo real para colunas armazenadas (realizada sem o uso de uma tabela temporária), porque a expressão deve ser avaliada pelo servidor.
+  `ADD COLUMN` is not an in-place operation for stored columns (done without using a temporary table) because the expression must be evaluated by the server.
 
-- Modificar a ordem da coluna `STORED`
+* Modifying `STORED` column order
 
   ```sql
   ALTER TABLE t1 MODIFY COLUMN c2 INT GENERATED ALWAYS AS (c1 + 1) STORED FIRST, ALGORITHM=COPY;
   ```
 
-  Refaz a mesa no local.
+  Rebuilds the table in place.
 
-- Remover uma coluna `STORED`
+* Dropping a `STORED` column
 
   ```sql
   ALTER TABLE t1 DROP COLUMN c2, ALGORITHM=INPLACE, LOCK=NONE;
   ```
 
-  Refaz a mesa no local.
+  Rebuilds the table in place.
 
-- Adicionar uma coluna `VIRTUAL`
+* Adding a `VIRTUAL` column
 
   ```sql
   ALTER TABLE t1 ADD COLUMN (c2 INT GENERATED ALWAYS AS (c1 + 1) VIRTUAL), ALGORITHM=INPLACE, LOCK=NONE;
   ```
 
-  Adicionar uma coluna virtual é uma operação in-place para tabelas não particionadas. No entanto, a adição de uma coluna virtual não pode ser combinada com outras ações de `ALTER TABLE`.
+  Adding a virtual column is an in-place operation for non-partitioned tables. However, adding a virtual column cannot be combined with other `ALTER TABLE` actions.
 
-  Adicionar um `VIRTUAL` não é uma operação in-place para tabelas particionadas.
+  Adding a `VIRTUAL` is not an in-place operation for partitioned tables.
 
-- Modificar a ordem da coluna `VIRTUAL`
+* Modifying `VIRTUAL` column order
 
   ```sql
   ALTER TABLE t1 MODIFY COLUMN c2 INT GENERATED ALWAYS AS (c1 + 1) VIRTUAL FIRST, ALGORITHM=COPY;
   ```
 
-- Remover uma coluna `VIRTUAL`
+* Dropping a `VIRTUAL` column
 
   ```sql
   ALTER TABLE t1 DROP COLUMN c2, ALGORITHM=INPLACE, LOCK=NONE;
   ```
 
-  A remoção de uma coluna `VIRTUAL` é uma operação in-place para tabelas não particionadas. No entanto, a remoção de uma coluna virtual não pode ser combinada com outras ações `ALTER TABLE`.
+  Dropping a `VIRTUAL` column is an in-place operation for non-partitioned tables. However, dropping a virtual column cannot be combined with other `ALTER TABLE` actions.
 
-  A remoção de um `VIRTUAL` não é uma operação in-place para tabelas particionadas.
+  Dropping a `VIRTUAL` is not an in-place operation for partitioned tables.
 
-#### Operações de Chave Estrangeira
+#### Foreign Key Operations
 
-A tabela a seguir fornece uma visão geral do suporte de DDL online para operações de chave estrangeira. Um asterisco indica informações adicionais, uma exceção ou uma dependência. Para detalhes, consulte as Notas de sintaxe e uso.
+The following table provides an overview of online DDL support for foreign key operations. An asterisk indicates additional information, an exception, or a dependency. For details, see Syntax and Usage Notes.
 
-**Tabela 14.14 Suporte de DDL Online para Operações de Chave Estrangeira**
+**Table 14.14 Online DDL Support for Foreign Key Operations**
 
-<table summary="Suporte online para DDL de operações de chave estrangeira, indicando se a operação é realizada no local, reconstrui a tabela, permite DML concorrente ou apenas modifica metadados."><col align="left" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><thead><tr> <th>Operação</th> <th>No lugar</th> <th>Reestruturar a tabela</th> <th>Permissões DML concorrentes</th> <th>Apenas modifica metadados</th> </tr></thead><tbody><tr> <th>Adicionar uma restrição de chave estrangeira</th> <td>Sim*</td> <td>Não</td> <td>Sim</td> <td>Sim</td> </tr><tr> <th>Excluir uma restrição de chave estrangeira</th> <td>Sim</td> <td>Não</td> <td>Sim</td> <td>Sim</td> </tr></tbody></table>
+<table summary="Online DDL support for foreign key operations indicating whether the operation is performed in place, rebuilds the table, permits concurrent DML, or only modifies metadata."><col align="left" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><thead><tr> <th>Operation</th> <th>In Place</th> <th>Rebuilds Table</th> <th>Permits Concurrent DML</th> <th>Only Modifies Metadata</th> </tr></thead><tbody><tr> <th>Adding a foreign key constraint</th> <td>Yes*</td> <td>No</td> <td>Yes</td> <td>Yes</td> </tr><tr> <th>Dropping a foreign key constraint</th> <td>Yes</td> <td>No</td> <td>Yes</td> <td>Yes</td> </tr></tbody></table>
 
-##### Observações sobre sintaxe e uso
+##### Syntax and Usage Notes
 
-- Adicionar uma restrição de chave estrangeira
+* Adding a foreign key constraint
 
-  O algoritmo `INPLACE` é suportado quando `foreign_key_checks` está desativado. Caso contrário, apenas o algoritmo `COPY` é suportado.
+  The `INPLACE` algorithm is supported when `foreign_key_checks` is disabled. Otherwise, only the `COPY` algorithm is supported.
 
   ```sql
   ALTER TABLE tbl1 ADD CONSTRAINT fk_name FOREIGN KEY index (col1)
     REFERENCES tbl2(col2) referential_actions;
   ```
 
-- Excluir uma restrição de chave estrangeira
+* Dropping a foreign key constraint
 
   ```sql
   ALTER TABLE tbl DROP FOREIGN KEY fk_name;
   ```
 
-  A eliminação de uma chave estrangeira pode ser realizada online com a opção `foreign_key_checks` habilitada ou desabilitada.
+  Dropping a foreign key can be performed online with the `foreign_key_checks` option enabled or disabled.
 
-  Se você não conhece os nomes das restrições de chave estrangeira de uma tabela específica, execute a seguinte declaração e encontre o nome da restrição na cláusula `CONSTRAINT` para cada chave estrangeira:
+  If you do not know the names of the foreign key constraints on a particular table, issue the following statement and find the constraint name in the `CONSTRAINT` clause for each foreign key:
 
   ```sql
   SHOW CREATE TABLE table\G
   ```
 
-  Ou, consulte a tabela do esquema de informações `TABLE_CONSTRAINTS` e use as colunas `CONSTRAINT_NAME` e `CONSTRAINT_TYPE` para identificar os nomes das chaves estrangeiras.
+  Or, query the Information Schema `TABLE_CONSTRAINTS` table and use the `CONSTRAINT_NAME` and `CONSTRAINT_TYPE` columns to identify the foreign key names.
 
-  Você também pode excluir uma chave estrangeira e seu índice associado em uma única instrução:
+  You can also drop a foreign key and its associated index in a single statement:
 
   ```sql
   ALTER TABLE table DROP FOREIGN KEY constraint, DROP INDEX index;
   ```
 
-Nota
+Note
 
-Se as chaves estrangeiras já estiverem presentes na tabela que está sendo alterada (ou seja, se for uma tabela filha que contém uma cláusula `FOREIGN KEY ... REFERENCE`), restrições adicionais se aplicam às operações DDL online, mesmo aquelas que não envolvem diretamente as colunas da chave estrangeira:
+If foreign keys are already present in the table being altered (that is, it is a child table containing a `FOREIGN KEY ... REFERENCE` clause), additional restrictions apply to online DDL operations, even those not directly involving the foreign key columns:
 
-- Uma `ALTER TABLE` na tabela filha pode aguardar que outra transação seja confirmada, se uma alteração na tabela pai causar alterações associadas na tabela filha por meio de uma cláusula `ON UPDATE` ou `ON DELETE` usando os parâmetros `CASCADE` ou `SET NULL`.
+* An `ALTER TABLE` on the child table could wait for another transaction to commit, if a change to the parent table causes associated changes in the child table through an `ON UPDATE` or `ON DELETE` clause using the `CASCADE` or `SET NULL` parameters.
 
-- Da mesma forma, se uma tabela for a tabela pai em uma relação de chave estrangeira, mesmo que ela não contenha nenhuma cláusula `FOREIGN KEY`, ela pode esperar que a `ALTER TABLE` seja concluída se uma instrução `INSERT`, `UPDATE` ou `DELETE` causar uma ação `ON UPDATE` ou `ON DELETE` na tabela filha.
+* In the same way, if a table is the parent table in a foreign key relationship, even though it does not contain any `FOREIGN KEY` clauses, it could wait for the `ALTER TABLE` to complete if an `INSERT`, `UPDATE`, or `DELETE` statement causes an `ON UPDATE` or `ON DELETE` action in the child table.
 
-#### Operações de tabela
+#### Table Operations
 
-A tabela a seguir fornece uma visão geral do suporte de DDL online para operações de tabela. Um asterisco indica informações adicionais, uma exceção ou uma dependência. Para detalhes, consulte as Notas de sintaxe e uso.
+The following table provides an overview of online DDL support for table operations. An asterisk indicates additional information, an exception, or a dependency. For details, see Syntax and Usage Notes.
 
-**Tabela 14.15 Suporte de DDL Online para Operações de Tabela**
+**Table 14.15 Online DDL Support for Table Operations**
 
-<table summary="Suporte online para DDL de operações de tabelas, indicando se a operação é realizada in loco, reconstrui a tabela, permite DML concorrente ou apenas modifica metadados."><col align="left" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><thead><tr> <th>Operação</th> <th>No lugar</th> <th>Reestruturar a tabela</th> <th>Permissões DML concorrentes</th> <th>Apenas modifica metadados</th> </tr></thead><tbody><tr> <th>Alterar o <code>ROW_FORMAT</code></th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td>Não</td> </tr><tr> <th>Alterar o <code>KEY_BLOCK_SIZE</code></th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td>Não</td> </tr><tr> <th>Definir estatísticas persistentes de tabela</th> <td>Sim</td> <td>Não</td> <td>Sim</td> <td>Sim</td> </tr><tr> <th>Especificar um conjunto de caracteres</th> <td>Sim</td> <td>Sim*</td> <td>Sim</td> <td>Não</td> </tr><tr> <th>Conversão de um conjunto de caracteres</th> <td>Não</td> <td>Sim*</td> <td>Não</td> <td>Não</td> </tr><tr> <th>Otimizando uma tabela</th> <td>Sim*</td> <td>Sim</td> <td>Sim</td> <td>Não</td> </tr><tr> <th>Reestruturação com a opção <code>FORCE</code></th> <td>Sim*</td> <td>Sim</td> <td>Sim</td> <td>Não</td> </tr><tr> <th>Realizar uma reconstrução nula</th> <td>Sim*</td> <td>Sim</td> <td>Sim</td> <td>Não</td> </tr><tr> <th>Renomear uma tabela</th> <td>Sim</td> <td>Não</td> <td>Sim</td> <td>Sim</td> </tr></tbody></table>
+<table summary="Online DDL support for table operations indicating whether the operation is performed in place, rebuilds the table, permits concurrent DML, or only modifies metadata."><col align="left" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><thead><tr> <th>Operation</th> <th>In Place</th> <th>Rebuilds Table</th> <th>Permits Concurrent DML</th> <th>Only Modifies Metadata</th> </tr></thead><tbody><tr> <th>Changing the <code>ROW_FORMAT</code></th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td>No</td> </tr><tr> <th>Changing the <code>KEY_BLOCK_SIZE</code></th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td>No</td> </tr><tr> <th>Setting persistent table statistics</th> <td>Yes</td> <td>No</td> <td>Yes</td> <td>Yes</td> </tr><tr> <th>Specifying a character set</th> <td>Yes</td> <td>Yes*</td> <td>Yes</td> <td>No</td> </tr><tr> <th>Converting a character set</th> <td>No</td> <td>Yes*</td> <td>No</td> <td>No</td> </tr><tr> <th>Optimizing a table</th> <td>Yes*</td> <td>Yes</td> <td>Yes</td> <td>No</td> </tr><tr> <th>Rebuilding with the <code>FORCE</code> option</th> <td>Yes*</td> <td>Yes</td> <td>Yes</td> <td>No</td> </tr><tr> <th>Performing a null rebuild</th> <td>Yes*</td> <td>Yes</td> <td>Yes</td> <td>No</td> </tr><tr> <th>Renaming a table</th> <td>Yes</td> <td>No</td> <td>Yes</td> <td>Yes</td> </tr></tbody></table>
 
-##### Observações sobre sintaxe e uso
+##### Syntax and Usage Notes
 
-- Alterar o `ROW_FORMAT`
+* Changing the `ROW_FORMAT`
 
   ```sql
   ALTER TABLE tbl_name ROW_FORMAT = row_format, ALGORITHM=INPLACE, LOCK=NONE;
   ```
 
-  Os dados são reorganizados de forma substancial, o que torna a operação cara.
+  Data is reorganized substantially, making it an expensive operation.
 
-  Para obter informações adicionais sobre a opção `ROW_FORMAT`, consulte Opções de tabela.
+  For additional information about the `ROW_FORMAT` option, see Table Options.
 
-- Alterar o `KEY_BLOCK_SIZE`
+* Changing the `KEY_BLOCK_SIZE`
 
   ```sql
   ALTER TABLE tbl_name KEY_BLOCK_SIZE = value, ALGORITHM=INPLACE, LOCK=NONE;
   ```
 
-  Os dados são reorganizados de forma substancial, o que torna a operação cara.
+  Data is reorganized substantially, making it an expensive operation.
 
-  Para obter informações adicionais sobre a opção `KEY_BLOCK_SIZE`, consulte Opções de tabela.
+  For additional information about the `KEY_BLOCK_SIZE` option, see Table Options.
 
-- Definir opções de estatísticas de tabela persistentes
+* Setting persistent table statistics options
 
   ```sql
   ALTER TABLE tbl_name STATS_PERSISTENT=0, STATS_SAMPLE_PAGES=20, STATS_AUTO_RECALC=1, ALGORITHM=INPLACE, LOCK=NONE;
   ```
 
-  Apenas modifica os metadados da tabela.
+  Only modifies table metadata.
 
-  As estatísticas persistentes incluem `STATS_PERSISTENT`, `STATS_AUTO_RECALC` e `STATS_SAMPLE_PAGES`. Para obter mais informações, consulte a Seção 14.8.11.1, “Configurando Parâmetros de Estatísticas do Otimizador Persistente”.
+  Persistent statistics include `STATS_PERSISTENT`, `STATS_AUTO_RECALC`, and `STATS_SAMPLE_PAGES`. For more information, see Section 14.8.11.1, “Configuring Persistent Optimizer Statistics Parameters”.
 
-- Especificar um conjunto de caracteres
+* Specifying a character set
 
   ```sql
   ALTER TABLE tbl_name CHARACTER SET = charset_name, ALGORITHM=INPLACE, LOCK=NONE;
   ```
 
-  Refaz a tabela se o novo codificação de caracteres for diferente.
+  Rebuilds the table if the new character encoding is different.
 
-- Conversão de um conjunto de caracteres
+* Converting a character set
 
   ```sql
   ALTER TABLE tbl_name CONVERT TO CHARACTER SET charset_name, ALGORITHM=COPY;
   ```
 
-  Refaz a tabela se o novo codificação de caracteres for diferente.
+  Rebuilds the table if the new character encoding is different.
 
-- Otimizando uma tabela
+* Optimizing a table
 
   ```sql
   OPTIMIZE TABLE tbl_name;
   ```
 
-  A operação in-place não é suportada para tabelas com índices `FULLTEXT`. A operação usa o algoritmo `INPLACE`, mas a sintaxe `ALGORITHM` e `LOCK` não é permitida.
+  In-place operation is not supported for tables with `FULLTEXT` indexes. The operation uses the `INPLACE` algorithm, but `ALGORITHM` and `LOCK` syntax is not permitted.
 
-- Reestruturando uma tabela com a opção `FORCE`
+* Rebuilding a table with the `FORCE` option
 
   ```sql
   ALTER TABLE tbl_name FORCE, ALGORITHM=INPLACE, LOCK=NONE;
   ```
 
-  Usa `ALGORITHM=INPLACE` a partir do MySQL 5.6.17. `ALGORITHM=INPLACE` não é suportado para tabelas com índices `FULLTEXT`.
+  Uses `ALGORITHM=INPLACE` as of MySQL 5.6.17. `ALGORITHM=INPLACE` is not supported for tables with `FULLTEXT` indexes.
 
-- Realizar uma reconstrução "nulo"
+* Performing a "null" rebuild
 
   ```sql
   ALTER TABLE tbl_name ENGINE=InnoDB, ALGORITHM=INPLACE, LOCK=NONE;
   ```
 
-  Usa `ALGORITHM=INPLACE` a partir do MySQL 5.6.17. `ALGORITHM=INPLACE` não é suportado para tabelas com índices `FULLTEXT`.
+  Uses `ALGORITHM=INPLACE` as of MySQL 5.6.17. `ALGORITHM=INPLACE` is not supported for tables with `FULLTEXT` indexes.
 
-- Renomear uma tabela
+* Renaming a table
 
   ```sql
   ALTER TABLE old_tbl_name RENAME TO new_tbl_name, ALGORITHM=INPLACE, LOCK=NONE;
   ```
 
-  O MySQL renomeia os arquivos que correspondem à tabela *`tbl_name`* sem fazer uma cópia. (Você também pode usar a instrução `RENAME TABLE` para renomear tabelas. Veja a Seção 13.1.33, “Instrução RENAME TABLE”.) Os privilégios concedidos especificamente para a tabela renomeada não são migrados para o novo nome. Eles devem ser alterados manualmente.
+  MySQL renames files that correspond to the table *`tbl_name`* without making a copy. (You can also use the `RENAME TABLE` statement to rename tables. See Section 13.1.33, “RENAME TABLE Statement”.) Privileges granted specifically for the renamed table are not migrated to the new name. They must be changed manually.
 
-#### Operações de Tablespace
+#### Tablespace Operations
 
-A tabela a seguir fornece uma visão geral do suporte de DDL online para operações de tablespace. Para detalhes, consulte Sintaxe e Notas de Uso.
+The following table provides an overview of online DDL support for tablespace operations. For details, see Syntax and Usage Notes.
 
-**Tabela 14.16 Suporte de DDL Online para Operações de Tablespace**
+**Table 14.16 Online DDL Support for Tablespace Operations**
 
-<table summary="Suporte online para DDL de operações de tablespace que indicam se a operação é realizada no local, reconstrui tabelas dentro do tablespace, permite DML concorrente ou apenas modifica metadados."><col align="left" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><thead><tr> <th>Operação</th> <th>No lugar</th> <th>Reestruturar a tabela</th> <th>Permissões DML concorrentes</th> <th>Apenas modifica metadados</th> </tr></thead><tbody><tr> <th>Ativar ou desativar a criptografia do espaço de tabela por arquivo</th> <td>Não</td> <td>Sim</td> <td>Não</td> <td>Não</td> </tr></tbody></table>
+<table summary="Online DDL support for tablespace operations indicating whether the operation is performed in place, rebuilds tables within the tablespace, permits concurrent DML, or only modifies metadata."><col align="left" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><col align="center" style="width: 20%"/><thead><tr> <th>Operation</th> <th>In Place</th> <th>Rebuilds Table</th> <th>Permits Concurrent DML</th> <th>Only Modifies Metadata</th> </tr></thead><tbody><tr> <th>Enabling or disabling file-per-table tablespace encryption</th> <td>No</td> <td>Yes</td> <td>No</td> <td>No</td> </tr></tbody></table>
 
-##### Observações sobre sintaxe e uso
+##### Syntax and Usage Notes
 
-Ativar ou desativar a criptografia do espaço de tabela por arquivo
+Enabling or disabling file-per-table tablespace encryption
 
 ```sql
 ALTER TABLE tbl_name ENCRYPTION='Y', ALGORITHM=COPY;
 ```
 
-A criptografia é suportada apenas para espaços de tabelas por arquivo. Para informações relacionadas, consulte a Seção 14.14, “Criptografia de Dados em Repouso do InnoDB”.
+Encryption is only supported for file-per-table tablespaces. For related information, see Section 14.14, “InnoDB Data-at-Rest Encryption”.
 
-#### Operações de Partição
+#### Partitioning Operations
 
-Com exceção da maioria das cláusulas de particionamento `ALTER TABLE`, as operações de DDL online para tabelas `InnoDB` particionadas seguem as mesmas regras que se aplicam às tabelas `InnoDB` regulares.
+With the exception of most `ALTER TABLE` partitioning clauses, online DDL operations for partitioned `InnoDB` tables follow the same rules that apply to regular `InnoDB` tables.
 
-A maioria das cláusulas de particionamento `ALTER TABLE` não passa pela mesma API interna de DDL online que as tabelas regulares `InnoDB` sem particionamento. Como resultado, o suporte online para cláusulas de particionamento `ALTER TABLE` varia.
+Most `ALTER TABLE` partitioning clauses do not go through the same internal online DDL API as regular non-partitioned `InnoDB` tables. As a result, online support for `ALTER TABLE` partitioning clauses varies.
 
-A tabela a seguir mostra o status online para cada instrução de particionamento `ALTER TABLE`. Independentemente da API de DDL online utilizada, o MySQL tenta minimizar a cópia e o bloqueio de dados sempre que possível.
+The following table shows the online status for each `ALTER TABLE` partitioning statement. Regardless of the online DDL API that is used, MySQL attempts to minimize data copying and locking where possible.
 
-As opções de particionamento `ALTER TABLE` que utilizam `ALGORITHM=COPY` ou que permitem apenas “`ALGORITHM=DEFAULT, LOCK=DEFAULT`” reparam a tabela usando o algoritmo `COPY`. Em outras palavras, uma nova tabela particionada é criada com o novo esquema de particionamento. A tabela recém-criada inclui quaisquer alterações aplicadas pela instrução `ALTER TABLE`, e os dados da tabela são copiados para a nova estrutura da tabela.
+`ALTER TABLE` partitioning options that use `ALGORITHM=COPY` or that only permit “`ALGORITHM=DEFAULT, LOCK=DEFAULT`”, repartition the table using the `COPY` algorithm. In other words, a new partitioned table is created with the new partitioning scheme. The newly created table includes any changes applied by the `ALTER TABLE` statement, and table data is copied into the new table structure.
 
-**Tabela 14.17 Suporte de DDL Online para Operações de Partição**
+**Table 14.17 Online DDL Support for Partitioning Operations**
 
-<table summary="Suporte online para DDL de particionamento que indica se a operação é realizada no local e permite DML concorrente."><col align="left" style="width: 24%"/><col align="center" style="width: 8%"/><col align="center" style="width: 12%"/><col align="left" style="width: 32%"/><thead><tr> <th>Cláusula de Partição</th> <th>No lugar</th> <th>Permissões DML</th> <th>Notas</th> </tr></thead><tbody><tr> <th>PH_HTML_CODE_<code>DROP PARTITION</code>]</th> <td>Não</td> <td>Não</td> <td>Permissões PH_HTML_CODE_<code>DROP PARTITION</code>], PH_HTML_CODE_<code>LOCK=DEFAULT</code>]</td> </tr><tr> <th>PH_HTML_CODE_<code>RANGE</code>]</th> <td>Não</td> <td>Não</td> <td>Apenas permite permissões PH_HTML_CODE_<code>LIST</code>], PH_HTML_CODE_<code>DISCARD PARTITION</code>]. Não copia dados existentes para tabelas particionadas por PH_HTML_CODE_<code>ALGORITHM=DEFAULT</code>] ou PH_HTML_CODE_<code>LOCK=DEFAULT</code>]. Consultas concorrentes são permitidas para tabelas particionadas por PH_HTML_CODE_<code>IMPORT PARTITION</code>] ou PH_HTML_CODE_<code>ALGORITHM=DEFAULT</code>]. O MySQL copia os dados enquanto mantém um bloqueio compartilhado.</td> </tr><tr> <th><code>DROP PARTITION</code></th> <td>Não</td> <td>Não</td> <td>Apenas permite permissões <code>ALGORITHM=COPY</code><code>DROP PARTITION</code>], <code>LOCK=DEFAULT</code>. Não copia dados existentes para tabelas particionadas por <code>RANGE</code> ou <code>LIST</code>.</td> </tr><tr> <th><code>DISCARD PARTITION</code></th> <td>Não</td> <td>Não</td> <td>Apenas autorizações <code>ALGORITHM=DEFAULT</code>, <code>LOCK=DEFAULT</code></td> </tr><tr> <th><code>IMPORT PARTITION</code></th> <td>Não</td> <td>Não</td> <td>Apenas autorizações <code>ALGORITHM=DEFAULT</code>, <code>LOCK={DEFAULT|SHARED|EXCLUSIVE}</code><code>DROP PARTITION</code>]</td> </tr><tr> <th><code>LOCK={DEFAULT|SHARED|EXCLUSIVE}</code><code>DROP PARTITION</code>]</th> <td>Sim</td> <td>Sim</td> <td>Não copia dados existentes. Ele apenas exclui linhas; ele não altera a definição da própria tabela ou de qualquer uma de suas partições.</td> </tr><tr> <th><code>LOCK={DEFAULT|SHARED|EXCLUSIVE}</code><code>LOCK=DEFAULT</code>]</th> <td>Não</td> <td>Não</td> <td>Apenas permitem-se as permissões <code>LOCK={DEFAULT|SHARED|EXCLUSIVE}</code><code>RANGE</code>], <code>LOCK={DEFAULT|SHARED|EXCLUSIVE}</code><code>LIST</code>]. Consultas concorrentes são permitidas para tabelas particionadas por <code>LOCK={DEFAULT|SHARED|EXCLUSIVE}</code><code>DISCARD PARTITION</code>] ou <code>LOCK={DEFAULT|SHARED|EXCLUSIVE}</code><code>ALGORITHM=DEFAULT</code>], pois o MySQL copia os dados enquanto mantém um bloqueio compartilhado.</td> </tr><tr> <th><code>LOCK={DEFAULT|SHARED|EXCLUSIVE}</code><code>LOCK=DEFAULT</code>]</th> <td>Não</td> <td>Não</td> <td>Apenas os permissões <code>LOCK={DEFAULT|SHARED|EXCLUSIVE}</code><code>IMPORT PARTITION</code>], <code>LOCK={DEFAULT|SHARED|EXCLUSIVE}</code><code>ALGORITHM=DEFAULT</code>] são permitidas. Consultas concorrentes são permitidas para tabelas particionadas por <code>ADD PARTITION</code><code>DROP PARTITION</code>] ou <code>ADD PARTITION</code><code>DROP PARTITION</code>]. O MySQL copia os dados das partições afetadas enquanto mantém uma trava de metadados compartilhada.</td> </tr><tr> <th><code>ADD PARTITION</code><code>LOCK=DEFAULT</code>]</th> <td>Sim</td> <td>Sim</td> <td></td> </tr><tr> <th><code>ADD PARTITION</code><code>RANGE</code>]</th> <td>Sim</td> <td>Sim</td> <td></td> </tr><tr> <th><code>ADD PARTITION</code><code>LIST</code>]</th> <td>Sim</td> <td>Sim</td> <td></td> </tr><tr> <th><code>ADD PARTITION</code><code>DISCARD PARTITION</code>]</th> <td>Não</td> <td>Não</td> <td>As cláusulas <code>ADD PARTITION</code><code>ALGORITHM=DEFAULT</code>] e <code>ADD PARTITION</code><code>LOCK=DEFAULT</code>] são ignoradas. Reconstrói toda a tabela. VejaSeção 22.3.4, “Manutenção de Partições”.</td> </tr><tr> <th><code>ADD PARTITION</code><code>IMPORT PARTITION</code>]</th> <td>Não</td> <td>Não</td> <td>Apenas permitem-se permissões <code>ADD PARTITION</code><code>ALGORITHM=DEFAULT</code>], <code>ALGORITHM=DEFAULT</code><code>DROP PARTITION</code>]. Consultas concorrentes são permitidas para tabelas particionadas por <code>ALGORITHM=DEFAULT</code><code>DROP PARTITION</code>] ou <code>ALGORITHM=DEFAULT</code><code>LOCK=DEFAULT</code>]. O MySQL copia os dados das partições afetadas enquanto mantém uma trava de metadados compartilhada.</td> </tr><tr> <th><code>ALGORITHM=DEFAULT</code><code>RANGE</code>]</th> <td>Sim</td> <td>Sim</td> <td></td> </tr><tr> <th><code>ALGORITHM=DEFAULT</code><code>LIST</code>]</th> <td>Não</td> <td>Não</td> <td>Permissões <code>ALGORITHM=DEFAULT</code><code>DISCARD PARTITION</code>], <code>ALGORITHM=DEFAULT</code><code>ALGORITHM=DEFAULT</code>]</td> </tr></tbody></table>
+<table summary="Online DDL support for partitioning operatings indicating whether the operation is performed in place and permits concurrent DML."><col align="left" style="width: 24%"/><col align="center" style="width: 8%"/><col align="center" style="width: 12%"/><col align="left" style="width: 32%"/><thead><tr> <th>Partitioning Clause</th> <th>In Place</th> <th>Permits DML</th> <th>Notes</th> </tr></thead><tbody><tr> <th><code>PARTITION BY</code></th> <td>No</td> <td>No</td> <td>Permits <code>ALGORITHM=COPY</code>, <code>LOCK={DEFAULT|SHARED|EXCLUSIVE}</code></td> </tr><tr> <th><code>ADD PARTITION</code></th> <td>No</td> <td>No</td> <td>Only permits <code>ALGORITHM=DEFAULT</code>, <code>LOCK=DEFAULT</code>. Does not copy existing data for tables partitioned by <code>RANGE</code> or <code>LIST</code>. Concurrent queries are permitted for tables partitioned by <code>HASH</code> or <code>LIST</code>. MySQL copies the data while holding a shared lock.</td> </tr><tr> <th><code>DROP PARTITION</code></th> <td>No</td> <td>No</td> <td>Only permits <code>ALGORITHM=DEFAULT</code>, <code>LOCK=DEFAULT</code>. Does not copy existing data for tables partitioned by <code>RANGE</code> or <code>LIST</code>.</td> </tr><tr> <th><code>DISCARD PARTITION</code></th> <td>No</td> <td>No</td> <td>Only permits <code>ALGORITHM=DEFAULT</code>, <code>LOCK=DEFAULT</code></td> </tr><tr> <th><code>IMPORT PARTITION</code></th> <td>No</td> <td>No</td> <td>Only permits <code>ALGORITHM=DEFAULT</code>, <code>LOCK=DEFAULT</code></td> </tr><tr> <th><code>TRUNCATE PARTITION</code></th> <td>Yes</td> <td>Yes</td> <td>Does not copy existing data. It merely deletes rows; it does not alter the definition of the table itself, or of any of its partitions.</td> </tr><tr> <th><code>COALESCE PARTITION</code></th> <td>No</td> <td>No</td> <td>Only permits <code>ALGORITHM=DEFAULT</code>, <code>LOCK=DEFAULT</code>. Concurrent queries are permitted for tables partitioned by <code>HASH</code> or <code>LIST</code>, as MySQL copies the data while holding a shared lock.</td> </tr><tr> <th><code>REORGANIZE PARTITION</code></th> <td>No</td> <td>No</td> <td>Only permits <code>ALGORITHM=DEFAULT</code>, <code>LOCK=DEFAULT</code>. Concurrent queries are permitted for tables partitioned by <code>LINEAR HASH</code> or <code>LIST</code>. MySQL copies data from affected partitions while holding a shared metadata lock.</td> </tr><tr> <th><code>EXCHANGE PARTITION</code></th> <td>Yes</td> <td>Yes</td> <td></td> </tr><tr> <th><code>ANALYZE PARTITION</code></th> <td>Yes</td> <td>Yes</td> <td></td> </tr><tr> <th><code>CHECK PARTITION</code></th> <td>Yes</td> <td>Yes</td> <td></td> </tr><tr> <th><code>OPTIMIZE PARTITION</code></th> <td>No</td> <td>No</td> <td><code>ALGORITHM</code> and <code>LOCK</code> clauses are ignored. Rebuilds the entire table. See Section 22.3.4, “Maintenance of Partitions”.</td> </tr><tr> <th><code>REBUILD PARTITION</code></th> <td>No</td> <td>No</td> <td>Only permits <code>ALGORITHM=DEFAULT</code>, <code>LOCK=DEFAULT</code>. Concurrent queries are permitted for tables partitioned by <code>LINEAR HASH</code> or <code>LIST</code>. MySQL copies data from affected partitions while holding a shared metadata lock.</td> </tr><tr> <th><code>REPAIR PARTITION</code></th> <td>Yes</td> <td>Yes</td> <td></td> </tr><tr> <th><code>REMOVE PARTITIONING</code></th> <td>No</td> <td>No</td> <td>Permits <code>ALGORITHM=COPY</code>, <code>LOCK={DEFAULT|SHARED|EXCLUSIVE}</code></td> </tr></tbody></table>
 
-As operações `ALTER TABLE` online sem particionamento em tabelas particionadas seguem as mesmas regras que se aplicam às tabelas regulares. No entanto, o `ALTER TABLE` executa operações online em cada partição da tabela, o que causa um aumento na demanda por recursos do sistema devido às operações sendo realizadas em múltiplas partições.
+Non-partitioning online `ALTER TABLE` operations on partitioned tables follow the same rules that apply to regular tables. However, `ALTER TABLE` performs online operations on each table partition, which causes increased demand on system resources due to operations being performed on multiple partitions.
 
-Para obter informações adicionais sobre as cláusulas de particionamento `ALTER TABLE`, consulte Opções de particionamento e Seção 13.1.8.1, “Operações de particionamento de tabelas ALTER”. Para informações sobre particionamento em geral, consulte o Capítulo 22, *Particionamento*.
+For additional information about `ALTER TABLE` partitioning clauses, see Partitioning Options, and Section 13.1.8.1, “ALTER TABLE Partition Operations”. For information about partitioning in general, see Chapter 22, *Partitioning*.

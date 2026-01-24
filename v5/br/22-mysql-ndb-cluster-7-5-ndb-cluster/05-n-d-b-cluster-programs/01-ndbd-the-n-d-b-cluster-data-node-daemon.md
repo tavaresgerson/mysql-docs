@@ -1,156 +1,156 @@
-### 21.5.1 ndbd — O daemon do nó de dados do clúster NDB
+### 21.5.1 ndbd — The NDB Cluster Data Node Daemon
 
-O binário **ndbd** fornece a versão de fluxo único do processo que é usada para lidar com todos os dados nas tabelas que utilizam o mecanismo de armazenamento `NDBCLUSTER`. Esse processo de nó de dados permite que um nó de dados realize o gerenciamento de transações distribuídas, recuperação de nós, checkpointing em disco, backup online e tarefas relacionadas. No NDB 7.6.31 e versões posteriores, quando iniciado, o **ndbd** registra um aviso semelhante ao mostrado aqui:
+The [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") binary provides the single-threaded version of the process that is used to handle all the data in tables employing the `NDBCLUSTER` storage engine. This data node process enables a data node to accomplish distributed transaction handling, node recovery, checkpointing to disk, online backup, and related tasks. In NDB 7.6.31 and later, when started, [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") logs a warning similar to that shown here:
 
 ```sql
 2024-05-28 13:32:16 [ndbd] WARNING  -- Running ndbd with a single thread of
 signal execution.  For multi-threaded signal execution run the ndbmtd binary.
 ```
 
-**ndbmtd** é a versão multi-threaded deste binário.
+[**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") is the multi-threaded version of this binary.
 
-Em um NDB Cluster, um conjunto de processos **ndbd** coopera na manipulação de dados. Esses processos podem ser executados no mesmo computador (host) ou em computadores diferentes. As correspondências entre nós de dados e hosts do Cluster são completamente configuráveis.
+In an NDB Cluster, a set of [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") processes cooperate in handling data. These processes can execute on the same computer (host) or on different computers. The correspondences between data nodes and Cluster hosts is completely configurable.
 
-As opções que podem ser usadas com **ndbd** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
+Options that can be used with [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") are shown in the following table. Additional descriptions follow the table.
 
-**Tabela 21.22 Opções de linha de comando usadas com o programa ndbd**
+**Table 21.22 Command-line options used with the program ndbd**
 
-<table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Formato</th> <th>Descrição</th> <th>Adicionado, Descontinuado ou Removido</th> </tr></thead><tbody><tr> <th><p> PH_HTML_CODE_<code> --defaults-extra-file=path </code>] </p></th> <td>Endereço de ligação local</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> PH_HTML_CODE_<code> --defaults-extra-file=path </code>] </p></th> <td>Diretório contendo conjuntos de caracteres</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> PH_HTML_CODE_<code> --defaults-group-suffix=string </code>] </p></th> <td>Sinônimo obsoleto para --connect-retry-delay, que deve ser usado em vez desta opção</td> <td><p>REMOÇÃO: NDB 7.5.25, NDB 7.6.21</p></td> </tr></tbody><tbody><tr> <th><p> PH_HTML_CODE_<code> --foreground </code>] </p></th> <td>Defina o número de vezes para tentar novamente uma conexão antes de desistir; 0 significa apenas uma tentativa (e nenhuma tentativa subsequente); -1 significa continuar tentando indefinidamente</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> PH_HTML_CODE_<code>--help</code>] </p></th> <td>Tempo de espera entre as tentativas de contato com um servidor de gerenciamento, em segundos; 0 significa não esperar entre as tentativas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p>PH_HTML_CODE_<code> -? </code>],</p><p> PH_HTML_CODE_<code> --initial </code>] </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> PH_HTML_CODE_<code> --initial-start </code>] </p></th> <td>Escreva o arquivo de núcleo em erro; usado no depuração</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p>PH_HTML_CODE_<code> --install[=nam<code> <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_logbuffer-size">--logbuffer-size=# </code></a> </code>],</p><p> PH_HTML_CODE_<code> --logbuffer-size=# </code>] </p></th> <td>Inicie o ndbd como daemon (padrão); substitua com --nodaemon</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-extra-file=path </code> </p></th> <td>Leia o arquivo fornecido após os arquivos globais terem sido lidos</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> --character-sets-dir=path </code><code> --defaults-extra-file=path </code>] </p></th> <td>Ler opções padrão a partir do arquivo fornecido apenas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-group-suffix=string </code> </p></th> <td>Leia também grupos com concatenação(grupo, sufixo)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> --foreground </code> </p></th> <td>Execute o ndbd em primeiro plano, para fins de depuração (implica em --nodaemon)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p><code>--help</code>,</p><p> <code> -? </code> </p></th> <td>Exibir texto de ajuda e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> --initial </code> </p></th> <td>Realize o início inicial do ndbd, incluindo a limpeza do sistema de arquivos; consulte a documentação antes de usar essa opção</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> --initial-start </code> </p></th> <td>Realize o início inicial parcial (requer --nowait-nodes)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> --install[=nam<code> <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_logbuffer-size">--logbuffer-size=# </code></a> </code> </p></th> <td>Usado para instalar o processo do nó de dados como serviço do Windows; não se aplica em outras plataformas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> --logbuffer-size=# </code> </p></th> <td>Controle o tamanho do buffer de log; use quando estiver depurando com muitas mensagens de log sendo geradas; o padrão é suficiente para operações normais</td> <td><p>ADICIONADO: NDB 7.6.6</p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-delay=# </code><code> --defaults-extra-file=path </code>] </p></th> <td>Leia o caminho fornecido a partir do arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p><code> --connect-delay=# </code><code> --defaults-extra-file=path </code>],</p><p> <code> --connect-delay=# </code><code> --defaults-group-suffix=string </code>] </p></th> <td>Defina a string de conexão para se conectar ao ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:por<code> --defaults-extra-file=path </code>". Substitui as entradas no NDB_CONNECTSTRING e no my.cnf</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p><code> --connect-delay=# </code><code> --foreground </code>],</p><p> <code> --connect-delay=# </code><code>--help</code>] </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-delay=# </code><code> -? </code>] </p></th> <td>Defina o ID do nó para este nó, substituindo qualquer ID definida pela opção --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-delay=# </code><code> --initial </code>] </p></th> <td>Não inicie o ndbd como daemon; fornecido para fins de teste</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-delay=# </code><code> --initial-start </code>] </p></th> <td>Não leia as opções padrão de nenhum arquivo de opção, exceto o arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p><code> --connect-delay=# </code><code> --install[=nam<code> <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_logbuffer-size">--logbuffer-size=# </code></a> </code>],</p><p> <code> --connect-delay=# </code><code> --logbuffer-size=# </code>] </p></th> <td>Não inicie o ndbd imediatamente; o ndbd aguarda o comando para ser iniciado a partir do ndb_mgm</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-retries=# </code><code> --defaults-extra-file=path </code>] </p></th> <td>Não espere que esses nós de dados comecem (requer uma lista separada por vírgula dos IDs dos nós); requer --ndb-nodeid</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-retries=# </code><code> --defaults-extra-file=path </code>] </p></th> <td>Ative as otimizações para a seleção de nós para transações. Ativado por padrão; use --skip-ndb-optimized-node-selection para desativá-lo</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-retries=# </code><code> --defaults-group-suffix=string </code>] </p></th> <td>Imprimir a lista de argumentos do programa e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-retries=# </code><code> --foreground </code>] </p></th> <td>Usado para remover o processo do nó de dados que foi instalado anteriormente como serviço do Windows; não se aplica em outras plataformas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p><code> --connect-retries=# </code><code>--help</code>],</p><p> <code> --connect-retries=# </code><code> -? </code>] </p></th> <td>Exibir texto de ajuda e sair; o mesmo que --help</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p><code> --connect-retries=# </code><code> --initial </code>],</p><p> <code> --connect-retries=# </code><code> --initial-start </code>] </p></th> <td>Escreva informações de depuração adicionais no log do nó</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p><code> --connect-retries=# </code><code> --install[=nam<code> <a class="link" href="mysql-cluster-programs-ndbd.html#option_ndbd_logbuffer-size">--logbuffer-size=# </code></a> </code>],</p><p> <code> --connect-retries=# </code><code> --logbuffer-size=# </code>] </p></th> <td>Exibir informações da versão e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody></table>
+<table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Format</th> <th>Description</th> <th>Added, Deprecated, or Removed</th> </tr></thead><tbody><tr> <th><p> <code> --bind-address=name </code> </p></th> <td>Local bind address</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --character-sets-dir=path </code> </p></th> <td>Directory containing character sets</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-delay=# </code> </p></th> <td>Obsolete synonym for --connect-retry-delay, which should be used instead of this option</td> <td><p> REMOVED: NDB 7.5.25, NDB 7.6.21 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-retries=# </code> </p></th> <td>Set the number of times to retry a connection before giving up; 0 means 1 attempt only (and no retries); -1 means continue retrying indefinitely</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-retry-delay=# </code> </p></th> <td>Time to wait between attempts to contact a management server, in seconds; 0 means do not wait between attempts</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--connect-string=connection_string</code>, </p><p> <code> -c connection_string </code> </p></th> <td>Same as --ndb-connectstring</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --core-file </code> </p></th> <td>Write core file on error; used in debugging</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--daemon</code>, </p><p> <code> -d </code> </p></th> <td>Start ndbd as daemon (default); override with --nodaemon</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-extra-file=path </code> </p></th> <td>Read given file after global files are read</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-file=path </code> </p></th> <td>Read default options from given file only</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-group-suffix=string </code> </p></th> <td>Also read groups with concat(group, suffix)</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --foreground </code> </p></th> <td>Run ndbd in foreground, provided for debugging purposes (implies --nodaemon)</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--help</code>, </p><p> <code> -? </code> </p></th> <td>Display help text and exit</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --initial </code> </p></th> <td>Perform initial start of ndbd, including file system cleanup; consult documentation before using this option</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --initial-start </code> </p></th> <td>Perform partial initial start (requires --nowait-nodes)</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --install[=name] </code> </p></th> <td>Used to install data node process as Windows service; does not apply on other platforms</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --logbuffer-size=# </code> </p></th> <td>Control size of log buffer; for use when debugging with many log messages being generated; default is sufficient for normal operations</td> <td><p> ADDED: NDB 7.6.6 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --login-path=path </code> </p></th> <td>Read given path from login file</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-connectstring=connection_string</code>, </p><p> <code> -c connection_string </code> </p></th> <td>Set connect string for connecting to ndb_mgmd. Syntax: "[nodeid=id;][host=]hostname[:port]". Overrides entries in NDB_CONNECTSTRING and my.cnf</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-mgmd-host=connection_string</code>, </p><p> <code> -c connection_string </code> </p></th> <td>Same as --ndb-connectstring</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --ndb-nodeid=# </code> </p></th> <td>Set node ID for this node, overriding any ID set by --ndb-connectstring</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --nodaemon </code> </p></th> <td>Do not start ndbd as daemon; provided for testing purposes</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --no-defaults </code> </p></th> <td>Do not read default options from any option file other than login file</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--nostart</code>, </p><p> <code> -n </code> </p></th> <td>Do not start ndbd immediately; ndbd waits for command to start from ndb_mgm</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --nowait-nodes=list </code> </p></th> <td>Do not wait for these data nodes to start (takes comma-separated list of node IDs); requires --ndb-nodeid</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --ndb-optimized-node-selection </code> </p></th> <td>Enable optimizations for selection of nodes for transactions. Enabled by default; use --skip-ndb-optimized-node-selection to disable</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --print-defaults </code> </p></th> <td>Print program argument list and exit</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --remove[=name] </code> </p></th> <td>Used to remove data node process that was previously installed as Windows service; does not apply on other platforms</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--usage</code>, </p><p> <code> -? </code> </p></th> <td>Display help text and exit; same as --help</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--verbose</code>, </p><p> <code> -v </code> </p></th> <td>Write extra debugging information to node log</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--version</code>, </p><p> <code> -V </code> </p></th> <td>Display version information and exit</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody></table>
 
-Nota
+Note
 
-Todas essas opções também se aplicam à versão multithread deste programa (**ndbmtd**) e você pode substituir “**ndbmtd**” por “**ndbd**” sempre que este último ocorrer nesta seção.
+All of these options also apply to the multithreaded version of this program ([**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)")) and you may substitute “[**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)")” for “[**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon")” wherever the latter occurs in this section.
 
-- `--bind-address`
+* `--bind-address`
 
-  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td><code>--bind-address=name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
-  Faz com que **ndbd** se ligue a uma interface de rede específica (nome de host ou endereço IP). Esta opção não tem um valor padrão.
+  Causes [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") to bind to a specific network interface (host name or IP address). This option has no default value.
 
-- `--character-sets-dir`
+* `--character-sets-dir`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Diretório contendo conjuntos de caracteres.
+  Directory containing character sets.
 
-- `--connect-delay=#`
+* `--connect-delay=#`
 
-  <table frame="box" rules="all" summary="Propriedades para delay de conexão"><tbody><tr><th>Formato de linha de comando</th> <td><code>--connect-delay=#</code></td> </tr><tr><th>Desatualizado</th> <td>Sim (removido em 5.7.36-ndb-7.6.21)</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td><code>5</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>3600</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-delay"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-delay=#</code></td> </tr><tr><th>Deprecated</th> <td>Yes (removed in 5.7.36-ndb-7.6.21)</td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>5</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>3600</code></td> </tr></tbody></table>
 
-  Determina o tempo de espera entre as tentativas de contato com um servidor de gerenciamento ao iniciar (o número de tentativas é controlado pela opção `--connect-retries`). O valor padrão é de 5 segundos.
+  Determines the time to wait between attempts to contact a management server when starting (the number of attempts is controlled by the [`--connect-retries`](mysql-cluster-programs-ndbd.html#option_ndbd_connect-retries) option). The default is 5 seconds.
 
-  Esta opção está desatualizada e está sujeita à remoção em uma futura versão do NDB Cluster. Use `--connect-retry-delay` em vez disso.
+  This option is deprecated, and is subject to removal in a future release of NDB Cluster. Use [`--connect-retry-delay`](mysql-cluster-programs-ndbd.html#option_ndbd_connect-retry-delay) instead.
 
-- `--connect-retries=#`
+* `--connect-retries=#`
 
-  <table frame="box" rules="all" summary="Propriedades para tentativas de conexão de reposição"><tbody><tr><th>Formato de linha de comando</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td><code>12</code></td> </tr><tr><th>Valor mínimo (≥ 5.7.36-ndb-7.6.21)</th> <td><code>-1</code></td> </tr><tr><th>Valor mínimo (≥ 5.7.36-ndb-7.5.25)</th> <td><code>-1</code></td> </tr><tr><th>Valor mínimo (≤ 5.7.36-ndb-7.5.24)</th> <td><code>0</code></td> </tr><tr><th>Valor mínimo (≤ 5.7.36-ndb-7.6.20)</th> <td><code>0</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>12</code></td> </tr><tr><th>Minimum Value (≥ 5.7.36-ndb-7.6.21)</th> <td><code>-1</code></td> </tr><tr><th>Minimum Value (≥ 5.7.36-ndb-7.5.25)</th> <td><code>-1</code></td> </tr><tr><th>Minimum Value (≤ 5.7.36-ndb-7.5.24)</th> <td><code>0</code></td> </tr><tr><th>Minimum Value (≤ 5.7.36-ndb-7.6.20)</th> <td><code>0</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>
 
-  Defina o número de vezes para tentar uma conexão novamente antes de desistir; 0 significa apenas uma tentativa (e nenhuma tentativa adicional). O padrão é 12 tentativas. O tempo de espera entre as tentativas é controlado pela opção `--connect-retry-delay`.
+  Set the number of times to retry a connection before giving up; 0 means 1 attempt only (and no retries). The default is 12 attempts. The time to wait between attempts is controlled by the [`--connect-retry-delay`](mysql-cluster-programs-ndbd.html#option_ndbd_connect-retry-delay) option.
 
-  A partir do NDB 7.5.25 e do NDB 7.6.21, você pode definir essa opção para -1, caso em que o processo do nó de dados continua indefinidamente tentando se conectar.
+  Beginning with NDB 7.5.25 and NDB 7.6.21, you can set this option to -1, in which case, the data node process continues indefinitely to try to connect.
 
-- `--connect-retry-delay=#`
+* `--connect-retry-delay=#`
 
-  <table frame="box" rules="all" summary="Propriedades para connect-retry-delay"><tbody><tr><th>Formato de linha de comando</th> <td><code>--connect-retry-delay=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td><code>5</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-retry-delay"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retry-delay=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>5</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  Determina o tempo de espera entre as tentativas de contato com um servidor de gerenciamento ao iniciar (o tempo entre as tentativas é controlado pela opção `--connect-retries`). O valor padrão é de 5 segundos.
+  Determines the time to wait between attempts to contact a management server when starting (the time between attempts is controlled by the [`--connect-retries`](mysql-cluster-programs-ndbd.html#option_ndbd_connect-retries) option). The default is 5 seconds.
 
-  Esta opção substitui a opção `--connect-delay`, que já está desatualizada e está sujeita à remoção em uma futura versão do NDB Cluster.
+  This option takes the place of the [`--connect-delay`](mysql-cluster-programs-ndbd.html#option_ndbd_connect-delay) option, which is now deprecated and subject to removal in a future release of NDB Cluster.
 
-  A forma abreviada `-r` para essa opção foi descontinuada a partir da NDB 7.5.25 e NDB 7.6.21 e está sujeita à remoção em uma futura versão do NDB Cluster. Use a forma longa em vez disso.
+  The short form `-r` for this option is deprecated as of NDB 7.5.25 and NDB 7.6.21, and subject to removal in a future release of NDB Cluster. Use the long form instead.
 
-- `--connect-string`
+* `--connect-string`
 
-  <table frame="box" rules="all" summary="Propriedades para a string de conexão"><tbody><tr><th>Formato de linha de comando</th> <td><code>--connect-string=connection_string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-string"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-string=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  O mesmo que `--ndb-connectstring`.
+  Same as [`--ndb-connectstring`](mysql-cluster-programs-ndbd.html#option_ndbd_ndb-connectstring).
 
-- `--core-file`
+* `--core-file`
 
-  <table frame="box" rules="all" summary="Propriedades para arquivo de núcleo"><tbody><tr><th>Formato de linha de comando</th> <td><code>--core-file</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for core-file"><tbody><tr><th>Command-Line Format</th> <td><code>--core-file</code></td> </tr></tbody></table>
 
-  Escreva o arquivo de núcleo em erro; usado no depuração.
+  Write core file on error; used in debugging.
 
-- `--daemon`, `-d`
+* `--daemon`, `-d`
 
-  <table frame="box" rules="all" summary="Propriedades para daemon"><tbody><tr><th>Formato de linha de comando</th> <td><code>--daemon</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for daemon"><tbody><tr><th>Command-Line Format</th> <td><code>--daemon</code></td> </tr></tbody></table>
 
-  Instrua o **ndbd** ou o **ndbmtd** a executar como um processo de daemon. Esse é o comportamento padrão. A opção `--nodaemon` (mysql-cluster-programs-ndbd.html#option_ndbd_nodaemon) pode ser usada para impedir que o processo seja executado como um daemon.
+  Instructs [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") or [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") to execute as a daemon process. This is the default behavior. [`--nodaemon`](mysql-cluster-programs-ndbd.html#option_ndbd_nodaemon) can be used to prevent the process from running as a daemon.
 
-  Esta opção não tem efeito quando você executa **ndbd** ou **ndbmtd** em plataformas Windows.
+  This option has no effect when running [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") or [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") on Windows platforms.
 
-- `--defaults-extra-file`
+* `--defaults-extra-file`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-extra-file=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-extra-file"><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-extra-file=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Leia o arquivo fornecido após a leitura dos arquivos globais.
+  Read given file after global files are read.
 
-- `--defaults-file`
+* `--defaults-file`
 
-  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td><code>--bind-address=name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
-  Leia as opções padrão do arquivo fornecido.
+  Read default options from given file only.
 
-- `--defaults-group-suffix`
+* `--defaults-group-suffix`
 
-  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td><code>--bind-address=name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
-  Leia também grupos com concatenação (grupo, sufixo).
+  Also read groups with concat(group, suffix).
 
-- `--foreground`
+* `--foreground`
 
-  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td><code>--bind-address=name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
-  Faça com que **ndbd** ou **ndbmtd** sejam executados como um processo em primeiro plano, principalmente para fins de depuração. Esta opção implica na opção `--nodaemon`.
+  Causes [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") or [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") to execute as a foreground process, primarily for debugging purposes. This option implies the [`--nodaemon`](mysql-cluster-programs-ndbd.html#option_ndbd_nodaemon) option.
 
-  Esta opção não tem efeito quando você executa **ndbd** ou **ndbmtd** em plataformas Windows.
+  This option has no effect when running [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") or [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") on Windows platforms.
 
-- `--help`
+* `--help`
 
-  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td><code>--bind-address=name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
-  Exibir texto de ajuda e sair.
+  Display help text and exit.
 
-- `--initial`
+* `--initial`
 
-  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td><code>--bind-address=name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
-  Instrui o **ndbd** a realizar um início inicial. Um início inicial apaga quaisquer arquivos criados para fins de recuperação por instâncias anteriores do **ndbd**. Também recria os arquivos de log de recuperação. Em alguns sistemas operacionais, esse processo pode levar um tempo substancial.
+  Instructs [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") to perform an initial start. An initial start erases any files created for recovery purposes by earlier instances of [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon"). It also re-creates recovery log files. On some operating systems, this process can take a substantial amount of time.
 
-  Um início `--initial` deve ser usado *apenas* quando iniciar o processo **ndbd** em circunstâncias muito especiais; isso ocorre porque essa opção faz com que todos os arquivos sejam removidos do sistema de arquivos do NDB Cluster e todos os arquivos de log de refazer sejam recriados. Essas circunstâncias estão listadas aqui:
+  An [`--initial`](mysql-cluster-programs-ndbd.html#option_ndbd_initial) start is to be used *only* when starting the [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") process under very special circumstances; this is because this option causes all files to be removed from the NDB Cluster file system and all redo log files to be re-created. These circumstances are listed here:
 
-  - Ao realizar uma atualização de software que alterou o conteúdo de quaisquer arquivos.
+  + When performing a software upgrade which has changed the contents of any files.
 
-  - Ao reiniciar o nó com uma nova versão de **ndbd**.
+  + When restarting the node with a new version of [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon").
 
-  - Como medida de último recurso quando, por algum motivo, o reinício do nó ou do sistema falha repetidamente. Nesse caso, esteja ciente de que esse nó não pode mais ser usado para restaurar dados devido à destruição dos arquivos de dados.
+  + As a measure of last resort when for some reason the node restart or system restart repeatedly fails. In this case, be aware that this node can no longer be used to restore data due to the destruction of the data files.
 
-  Aviso
+  Warning
 
-  Para evitar a possibilidade de perda de dados eventual, recomenda-se que você *não* use a opção `--initial` junto com `StopOnError = 0`. Em vez disso, defina `StopOnError` para 0 em `config.ini` apenas após o clúster ter sido iniciado, e então reinicie os nós de dados normalmente — ou seja, sem a opção `--initial`. Consulte a descrição do parâmetro `[StopOnError]` (mysql-cluster-ndbd-definition.html#ndbparam-ndb-stoponerror) para uma explicação detalhada sobre esse problema. (Bug
-  \#24945638)
+  To avoid the possibility of eventual data loss, it is recommended that you *not* use the `--initial` option together with `StopOnError = 0`. Instead, set `StopOnError` to 0 in `config.ini` only after the cluster has been started, then restart the data nodes normally—that is, without the `--initial` option. See the description of the [`StopOnError`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-stoponerror) parameter for a detailed explanation of this issue. (Bug
+  #24945638)
 
-  O uso desta opção impede que os parâmetros de configuração `StartPartialTimeout` e `StartPartitionedTimeout` tenham qualquer efeito.
+  Use of this option prevents the [`StartPartialTimeout`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-startpartialtimeout) and [`StartPartitionedTimeout`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-startpartitionedtimeout) configuration parameters from having any effect.
 
-  Importante
+  Important
 
-  Esta opção *não* afeta nenhum dos seguintes tipos de arquivos:
+  This option does *not* affect either of the following types of files:
 
-  - Arquivos de backup que já foram criados pelo nó afetado
+  + Backup files that have already been created by the affected node
 
-  - Arquivos de dados do disco do NDB Cluster (consulte Seção 21.6.11, “Tabelas de dados do disco do NDB Cluster”).
+  + NDB Cluster Disk Data files (see [Section 21.6.11, “NDB Cluster Disk Data Tables”](mysql-cluster-disk-data.html "21.6.11 NDB Cluster Disk Data Tables")).
 
-  Essa opção também não afeta a recuperação de dados por um nó de dados que está apenas começando (ou reiniciando) a partir de nós de dados que já estão em execução. Essa recuperação de dados ocorre automaticamente e não requer intervenção do usuário em um NDB Cluster que está funcionando normalmente.
+  This option also has no effect on recovery of data by a data node that is just starting (or restarting) from data nodes that are already running. This recovery of data occurs automatically, and requires no user intervention in an NDB Cluster that is running normally.
 
-  É permitido usar essa opção ao iniciar o clúster pela primeira vez (ou seja, antes que quaisquer arquivos de nó de dados tenham sido criados); no entanto, não é *necessário* fazer isso.
+  It is permissible to use this option when starting the cluster for the very first time (that is, before any data node files have been created); however, it is *not* necessary to do so.
 
-- `--initial-start`
+* `--initial-start`
 
-  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td><code>--bind-address=name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
-  Esta opção é usada ao realizar um início inicial parcial do clúster. Cada nó deve ser iniciado com esta opção, bem como com `--nowait-nodes`.
+  This option is used when performing a partial initial start of the cluster. Each node should be started with this option, as well as [`--nowait-nodes`](mysql-cluster-programs-ndbd.html#option_ndbd_nowait-nodes).
 
-  Suponha que você tenha um clúster de 4 nós, cujos nós de dados têm os IDs 2, 3, 4 e 5, e que você queira realizar um início inicial parcial usando apenas os nós 2, 4 e 5 — ou seja, omitindo o nó 3:
+  Suppose that you have a 4-node cluster whose data nodes have the IDs 2, 3, 4, and 5, and you wish to perform a partial initial start using only nodes 2, 4, and 5—that is, omitting node 3:
 
   ```sql
   $> ndbd --ndb-nodeid=2 --nowait-nodes=3 --initial-start
@@ -158,125 +158,125 @@ Todas essas opções também se aplicam à versão multithread deste programa (*
   $> ndbd --ndb-nodeid=5 --nowait-nodes=3 --initial-start
   ```
 
-  Ao usar essa opção, você também deve especificar o ID do nó para o nó de dados que está sendo iniciado com a opção `--ndb-nodeid` (mysql-cluster-programs-ndbd.html#option_ndbd_ndb-nodeid).
+  When using this option, you must also specify the node ID for the data node being started with the [`--ndb-nodeid`](mysql-cluster-programs-ndbd.html#option_ndbd_ndb-nodeid) option.
 
-  Importante
+  Important
 
-  Não confunda essa opção com a opção `--nowait-nodes` para **ndb_mgmd**, que pode ser usada para permitir que um clúster configurado com múltiplos servidores de gerenciamento seja iniciado sem que todos os servidores de gerenciamento estejam online.
+  Do not confuse this option with the [`--nowait-nodes`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_nowait-nodes) option for [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon"), which can be used to enable a cluster configured with multiple management servers to be started without all management servers being online.
 
-- `--install[=nome]`
+* `--install[=name]`
 
-  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td><code>--bind-address=name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
-  Faça com que o **ndbd** seja instalado como um serviço do Windows. Opcionalmente, você pode especificar um nome para o serviço; se não for definido, o nome do serviço será `ndbd`. Embora seja preferível especificar outras opções do programa **ndbd** em um arquivo de configuração `my.ini` ou `my.cnf`, é possível usá-lo junto com `--install`. No entanto, nesse caso, a opção `--install` deve ser especificada primeiro, antes de quaisquer outras opções, para que a instalação do serviço do Windows seja bem-sucedida.
+  Causes [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") to be installed as a Windows service. Optionally, you can specify a name for the service; if not set, the service name defaults to `ndbd`. Although it is preferable to specify other [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") program options in a `my.ini` or `my.cnf` configuration file, it is possible to use together with `--install`. However, in such cases, the `--install` option must be specified first, before any other options are given, for the Windows service installation to succeed.
 
-  Geralmente, não é aconselhável usar essa opção junto com a opção `--initial`, pois isso faz com que o sistema de arquivos do nó de dados seja apagado e reconstruído toda vez que o serviço é parado e reiniciado. Também é necessário tomar extremo cuidado se você pretende usar qualquer uma das outras opções de **ndbd** que afetam o início dos nós de dados — incluindo `--initial-start`, `--nostart` e `--nowait-nodes` — junto com `--install`, e você deve ter certeza absoluta de que entende completamente e permite quaisquer possíveis consequências de fazer isso.
+  It is generally not advisable to use this option together with the [`--initial`](mysql-cluster-programs-ndbd.html#option_ndbd_initial) option, since this causes the data node file system to be wiped and rebuilt every time the service is stopped and started. Extreme care should also be taken if you intend to use any of the other [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") options that affect the starting of data nodes—including [`--initial-start`](mysql-cluster-programs-ndbd.html#option_ndbd_initial-start), [`--nostart`](mysql-cluster-programs-ndbd.html#option_ndbd_nostart), and [`--nowait-nodes`](mysql-cluster-programs-ndbd.html#option_ndbd_nowait-nodes)—together with [`--install`](mysql-cluster-programs-ndbd.html#option_ndbd_install), and you should make absolutely certain you fully understand and allow for any possible consequences of doing so.
 
-  A opção `--install` não tem efeito em plataformas que não são do Windows.
+  The [`--install`](mysql-cluster-programs-ndbd.html#option_ndbd_install) option has no effect on non-Windows platforms.
 
-- `--logbuffer-size=#`
+* `--logbuffer-size=#`
 
-  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td><code>--bind-address=name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
-  Define o tamanho do buffer de log do nó de dados. Ao depurar com grandes quantidades de registros extras, é possível que o buffer de log fique sem espaço se houver muitas mensagens de log, o que pode resultar na perda de algumas mensagens de log. Isso não deve ocorrer durante operações normais.
+  Sets the size of the data node log buffer. When debugging with high amounts of extra logging, it is possible for the log buffer to run out of space if there are too many log messages, in which case some log messages can be lost. This should not occur during normal operations.
 
-- `--login-path`
+* `--login-path`
 
-  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td><code>--bind-address=name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
-  Leia o caminho fornecido a partir do arquivo de login.
+  Read given path from login file.
 
-- `--ndb-connectstring`
+* `--ndb-connectstring`
 
-  <table frame="box" rules="all" summary="Propriedades para endereço de ligação"><tbody><tr><th>Formato de linha de comando</th> <td><code>--bind-address=name</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for bind-address"><tbody><tr><th>Command-Line Format</th> <td><code>--bind-address=name</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
-  Defina a string de conexão para se conectar ao ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Oculte entradas no NDB_CONNECTSTRING e no my.cnf.
+  Set connect string for connecting to ndb_mgmd. Syntax: "[nodeid=id;][host=]hostname[:port]". Overrides entries in NDB_CONNECTSTRING and my.cnf.
 
-- `--ndb-mgmd-host`
+* `--ndb-mgmd-host`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  O mesmo que `--ndb-connectstring`.
+  Same as [`--ndb-connectstring`](mysql-cluster-programs-ndbd.html#option_ndbd_ndb-connectstring).
 
-- `--ndb-nodeid`
+* `--ndb-nodeid`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Defina o ID do nó para este nó, substituindo qualquer ID definida por `--ndb-connectstring`.
+  Set node ID for this node, overriding any ID set by [`--ndb-connectstring`](mysql-cluster-programs-ndbd.html#option_ndbd_ndb-connectstring).
 
-- `--ndb-optimized-node-selection`
+* `--ndb-optimized-node-selection`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Ative as otimizações para a seleção de nós para transações. Ativado por padrão; use `--skip-ndb-optimized-node-selection` para desativá-lo.
+  Enable optimizations for selection of nodes for transactions. Enabled by default; use `--skip-ndb-optimized-node-selection` to disable.
 
-- `--nodaemon`
+* `--nodaemon`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  impede que **ndbd** ou **ndbmtd** sejam executados como um processo de daemon. Esta opção substitui a opção `--daemon`. Isso é útil para redirecionar a saída para a tela durante a depuração do binário.
+  Prevents [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") or [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") from executing as a daemon process. This option overrides the [`--daemon`](mysql-cluster-programs-ndbd.html#option_ndbd_daemon) option. This is useful for redirecting output to the screen when debugging the binary.
 
-  O comportamento padrão para **ndbd** e **ndbmtd** no Windows é executar em primeiro plano, tornando essa opção desnecessária nas plataformas Windows, onde ela não tem efeito.
+  The default behavior for [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") and [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") on Windows is to run in the foreground, making this option unnecessary on Windows platforms, where it has no effect.
 
-- `--no-defaults`
+* `--no-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Não leia as opções padrão de nenhum arquivo de opção, exceto o arquivo de login.
+  Do not read default options from any option file other than login file.
 
-- `--nostart`, `-n`
+* `--nostart`, `-n`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Instrua o **ndbd** a não iniciar automaticamente. Quando essa opção é usada, o **ndbd** se conecta ao servidor de gerenciamento, obtém dados de configuração dele e inicializa objetos de comunicação. No entanto, ele não inicia efetivamente o motor de execução até que seja especificamente solicitado a fazer isso pelo servidor de gerenciamento. Isso pode ser feito emitindo o comando apropriado `START` no cliente de gerenciamento (veja Seção 21.6.1, “Comandos no Cliente de Gerenciamento do NDB Cluster”).
+  Instructs [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") not to start automatically. When this option is used, [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") connects to the management server, obtains configuration data from it, and initializes communication objects. However, it does not actually start the execution engine until specifically requested to do so by the management server. This can be accomplished by issuing the proper [`START`](mysql-cluster-mgm-client-commands.html#ndbclient-start) command in the management client (see [Section 21.6.1, “Commands in the NDB Cluster Management Client”](mysql-cluster-mgm-client-commands.html "21.6.1 Commands in the NDB Cluster Management Client")).
 
-- `--nowait-nodes=node_id_1[, node_id_2[, ...`
+* `--nowait-nodes=node_id_1[, node_id_2[, ...`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Esta opção recebe uma lista de nós de dados para os quais o cluster não espera antes de começar.
+  This option takes a list of data nodes which for which the cluster does not wait for before starting.
 
-  Isso pode ser usado para iniciar o clúster em um estado particionado. Por exemplo, para iniciar o clúster com apenas metade dos nós de dados (nós 2, 3, 4 e 5) rodando em um clúster de 4 nós, você pode iniciar cada processo **ndbd** com `--nowait-nodes=3,5`. Neste caso, o clúster começa assim que os nós 2 e 4 se conectam e *não* aguarda [`StartPartitionedTimeout`]\(mysql-cluster-ndbd-definition.html#ndbparam-ndbd-startpartitionedtimeout] milissegundos para os nós 3 e 5 se conectarem como faria de outra forma.
+  This can be used to start the cluster in a partitioned state. For example, to start the cluster with only half of the data nodes (nodes 2, 3, 4, and 5) running in a 4-node cluster, you can start each [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") process with `--nowait-nodes=3,5`. In this case, the cluster starts as soon as nodes 2 and 4 connect, and does *not* wait [`StartPartitionedTimeout`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-startpartitionedtimeout) milliseconds for nodes 3 and 5 to connect as it would otherwise.
 
-  Se você quisesse iniciar o mesmo clúster do exemplo anterior sem um **ndbd** (digamos, por exemplo, que a máquina hospedeira do nó 3 sofreu uma falha de hardware), então inicie os nós 2, 4 e 5 com `--nowait-nodes=3`. Então o clúster começa assim que os nós 2, 4 e 5 se conectam e não espera que o nó 3 seja iniciado.
+  If you wanted to start up the same cluster as in the previous example without one [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") (say, for example, that the host machine for node 3 has suffered a hardware failure) then start nodes 2, 4, and 5 with `--nowait-nodes=3`. Then the cluster starts as soon as nodes 2, 4, and 5 connect and does not wait for node 3 to start.
 
-- `--print-defaults`
+* `--print-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Imprima a lista de argumentos do programa e saia.
+  Print program argument list and exit.
 
-- `--remove[=nome]`
+* [`--remove[=name]`](mysql-cluster-programs-ndbd.html#option_ndbd_remove)
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Faz com que o processo **ndbd** que foi instalado anteriormente como um serviço do Windows seja removido. Opcionalmente, você pode especificar um nome para o serviço que será desinstalado; se não for definido, o nome do serviço será `ndbd` por padrão.
+  Causes an [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") process that was previously installed as a Windows service to be removed. Optionally, you can specify a name for the service to be uninstalled; if not set, the service name defaults to `ndbd`.
 
-  A opção `--remove` não tem efeito em plataformas que não são do Windows.
+  The [`--remove`](mysql-cluster-programs-ndbd.html#option_ndbd_remove) option has no effect on non-Windows platforms.
 
-- `--usage`
+* `--usage`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Exibir texto de ajuda e sair; o mesmo que `--help`.
+  Display help text and exit; same as [`--help`](mysql-cluster-programs-ndbd.html#option_ndbd_help).
 
-- `--verbose`, `-v`
+* `--verbose`, `-v`
 
-  Faz com que a saída de depuração extra seja escrita no log do nó.
+  Causes extra debug output to be written to the node log.
 
-  No NDB 7.6, você também pode usar `NODELOG DEBUG ON` e `NODELOG DEBUG OFF` para habilitar e desabilitar esse registro extra enquanto o nó de dados estiver em execução.
+  In NDB 7.6, you can also use [`NODELOG DEBUG ON`](mysql-cluster-mgm-client-commands.html#ndbclient-nodelog-debug) and [`NODELOG DEBUG OFF`](mysql-cluster-mgm-client-commands.html#ndbclient-nodelog-debug) to enable and disable this extra logging while the data node is running.
 
-- `--version`
+* `--version`
 
-  <table frame="box" rules="all" summary="Propriedades para delay de conexão"><tbody><tr><th>Formato de linha de comando</th> <td><code>--connect-delay=#</code></td> </tr><tr><th>Desatualizado</th> <td>Sim (removido em 5.7.36-ndb-7.6.21)</td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td><code>5</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>3600</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-delay"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-delay=#</code></td> </tr><tr><th>Deprecated</th> <td>Yes (removed in 5.7.36-ndb-7.6.21)</td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>5</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>3600</code></td> </tr></tbody></table>
 
-  Exibir informações da versão e sair.
+  Display version information and exit.
 
-**ndbd** gera um conjunto de arquivos de log que são colocados no diretório especificado por `DataDir` no arquivo de configuração `config.ini`.
+[**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") generates a set of log files which are placed in the directory specified by [`DataDir`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datadir) in the `config.ini` configuration file.
 
-Esses arquivos de registro estão listados abaixo. *`node_id`* é o identificador único do nó. Por exemplo, `ndb_2_error.log` é o log de erros gerado pelo nó de dados cujo ID de nó é `2`.
+These log files are listed below. *`node_id`* is and represents the node's unique identifier. For example, `ndb_2_error.log` is the error log generated by the data node whose node ID is `2`.
 
-- `ndb_node_id_error.log` é um arquivo que contém registros de todos os travamentos que o processo **ndbd** referenciado encontrou. Cada registro neste arquivo contém uma breve string de erro e uma referência a um arquivo de registro para esse travamento. Uma entrada típica neste arquivo pode aparecer como mostrado aqui:
+* `ndb_node_id_error.log` is a file containing records of all crashes which the referenced [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") process has encountered. Each record in this file contains a brief error string and a reference to a trace file for this crash. A typical entry in this file might appear as shown here:
 
   ```sql
   Date/Time: Saturday 30 July 2004 - 00:20:01
@@ -291,36 +291,36 @@ Esses arquivos de registro estão listados abaixo. *`node_id`* é o identificado
   ***EOM***
   ```
 
-  As listagens dos possíveis códigos de saída e mensagens de erro **ndbd** gerados quando um processo de nó de dados é desligado prematuramente podem ser encontradas em Mensagens de Erro do Nó de Dados.
+  Listings of possible [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") exit codes and messages generated when a data node process shuts down prematurely can be found in [Data Node Error Messages](/doc/ndb-internals/en/ndb-node-error-messages.html).
 
-  Importante
+  Important
 
-  *A última entrada no arquivo de log de erros não é necessariamente a mais recente* (e também não é provável que seja). As entradas no log de erros não estão listadas em ordem cronológica; elas correspondem ao arquivo de arquivos de registro conforme determinado no arquivo `ndb_node_id_trace.log.next` (veja abaixo). As entradas do log de erros são, portanto, sobrescritas de forma cíclica e não sequencial.
+  *The last entry in the error log file is not necessarily the newest one* (nor is it likely to be). Entries in the error log are *not* listed in chronological order; rather, they correspond to the order of the trace files as determined in the `ndb_node_id_trace.log.next` file (see below). Error log entries are thus overwritten in a cyclical and not sequential fashion.
 
-- `ndb_node_id_trace.log.trace_id` é um arquivo de registro que descreve exatamente o que aconteceu logo antes do erro ocorrer. Essas informações são úteis para análise pela equipe de desenvolvimento do NDB Cluster.
+* `ndb_node_id_trace.log.trace_id` is a trace file describing exactly what happened just before the error occurred. This information is useful for analysis by the NDB Cluster development team.
 
-  É possível configurar o número desses arquivos de registro que são criados antes que os arquivos antigos sejam sobrescritos. *`trace_id`* é um número que é incrementado para cada arquivo de registro subsequente.
+  It is possible to configure the number of these trace files that are created before old files are overwritten. *`trace_id`* is a number which is incremented for each successive trace file.
 
-- `ndb_node_id_trace.log.next` é o arquivo que mantém o controle do próximo número de arquivo de rastreamento a ser atribuído.
+* `ndb_node_id_trace.log.next` is the file that keeps track of the next trace file number to be assigned.
 
-- `ndb_node_id_out.log` é um arquivo que contém quaisquer dados emitidos pelo processo **ndbd**. Esse arquivo é criado apenas se o **ndbd** for iniciado como um daemon, que é o comportamento padrão.
+* `ndb_node_id_out.log` is a file containing any data output by the [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") process. This file is created only if [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") is started as a daemon, which is the default behavior.
 
-- `ndb_node_id.pid` é um arquivo que contém o ID do processo do **ndbd** quando iniciado como um daemon. Ele também funciona como um arquivo de bloqueio para evitar o início de nós com o mesmo identificador.
+* `ndb_node_id.pid` is a file containing the process ID of the [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") process when started as a daemon. It also functions as a lock file to avoid the starting of nodes with the same identifier.
 
-- `ndb_node_id_signal.log` é um arquivo usado apenas em versões de depuração do **ndbd**, onde é possível rastrear todas as mensagens de entrada, saída e internas com seus dados no processo **ndbd**.
+* `ndb_node_id_signal.log` is a file used only in debug versions of [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon"), where it is possible to trace all incoming, outgoing, and internal messages with their data in the [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") process.
 
-Recomenda-se não usar um diretório montado através do NFS, pois, em alguns ambientes, isso pode causar problemas, onde o bloqueio do arquivo `.pid` permanece em vigor mesmo após o processo ter sido encerrado.
+It is recommended not to use a directory mounted through NFS because in some environments this can cause problems whereby the lock on the `.pid` file remains in effect even after the process has terminated.
 
-Para iniciar o **ndbd**, também pode ser necessário especificar o nome do host do servidor de gerenciamento e a porta na qual ele está ouvindo. Opcionalmente, também é possível especificar o ID do nó que o processo deve usar.
+To start [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon"), it may also be necessary to specify the host name of the management server and the port on which it is listening. Optionally, one may also specify the node ID that the process is to use.
 
 ```sql
 $> ndbd --connect-string="nodeid=2;host=ndb_mgmd.mysql.com:1186"
 ```
 
-Consulte Seção 21.4.3.3, "Cadeias de Conexão do NDB Cluster" para obter informações adicionais sobre esse problema. Para mais informações sobre os parâmetros de configuração dos nós de dados, consulte Seção 21.4.3.6, "Definindo Nodos de Dados do NDB Cluster".
+See [Section 21.4.3.3, “NDB Cluster Connection Strings”](mysql-cluster-connection-strings.html "21.4.3.3 NDB Cluster Connection Strings"), for additional information about this issue. For more information about data node configuration parameters, see [Section 21.4.3.6, “Defining NDB Cluster Data Nodes”](mysql-cluster-ndbd-definition.html "21.4.3.6 Defining NDB Cluster Data Nodes").
 
-Quando o **ndbd** é iniciado, ele realmente inicia dois processos. O primeiro deles é chamado de "processo anjo"; seu único trabalho é descobrir quando o processo de execução foi concluído e, em seguida, reiniciar o processo **ndbd** se estiver configurado para isso. Assim, se você tentar matar **ndbd** usando o comando Unix **kill**, é necessário matar ambos os processos, começando com o processo anjo. O método preferido de término de um processo **ndbd** é usar o cliente de gerenciamento e parar o processo a partir daí.
+When [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") starts, it actually initiates two processes. The first of these is called the “angel process”; its only job is to discover when the execution process has been completed, and then to restart the [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") process if it is configured to do so. Thus, if you attempt to kill [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") using the Unix [**kill**](kill.html "13.7.6.4 KILL Statement") command, it is necessary to kill both processes, beginning with the angel process. The preferred method of terminating an [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") process is to use the management client and stop the process from there.
 
-O processo de execução utiliza um único thread para leitura, escrita e varredura de dados, bem como para todas as outras atividades. Esse thread é implementado de forma assíncrona para que possa lidar facilmente com milhares de ações concorrentes. Além disso, um thread de guarda-costas supervisiona o thread de execução para garantir que ele não fique preso em um loop infinito. Um conjunto de fios lida com o E/S de arquivos, com cada thread capaz de lidar com um arquivo aberto. Os fios também podem ser usados para conexões de transportador pelos transportadores no processo **ndbd**. Em um sistema multi-processador que realiza um grande número de operações (incluindo atualizações), o processo **ndbd** pode consumir até 2 CPUs, se permitido.
+The execution process uses one thread for reading, writing, and scanning data, as well as all other activities. This thread is implemented asynchronously so that it can easily handle thousands of concurrent actions. In addition, a watch-dog thread supervises the execution thread to make sure that it does not hang in an endless loop. A pool of threads handles file I/O, with each thread able to handle one open file. Threads can also be used for transporter connections by the transporters in the [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") process. In a multi-processor system performing a large number of operations (including updates), the [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") process can consume up to 2 CPUs if permitted to do so.
 
-Para uma máquina com muitas CPUs, é possível usar vários processos **ndbd** que pertencem a diferentes grupos de nós; no entanto, essa configuração ainda é considerada experimental e não é suportada para o MySQL 5.7 em um ambiente de produção. Veja Seção 21.2.7, “Limitações Conhecidas do NDB Cluster”.
+For a machine with many CPUs it is possible to use several [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") processes which belong to different node groups; however, such a configuration is still considered experimental and is not supported for MySQL 5.7 in a production setting. See [Section 21.2.7, “Known Limitations of NDB Cluster”](mysql-cluster-limitations.html "21.2.7 Known Limitations of NDB Cluster").

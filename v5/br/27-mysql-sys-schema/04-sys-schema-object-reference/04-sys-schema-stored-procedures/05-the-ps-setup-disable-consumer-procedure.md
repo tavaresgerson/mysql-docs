@@ -1,16 +1,16 @@
-#### 26.4.4.5 O procedimento ps_setup_disable_consumer()
+#### 26.4.4.5 The ps_setup_disable_consumer() Procedure
 
-Desabilita os consumidores do Schema de Desempenho com nomes que contêm o argumento. Produz um conjunto de resultados indicando quantos consumidores foram desativados. Os consumidores já desativados não são contabilizados.
+Disables Performance Schema consumers with names that contain the argument. Produces a result set indicating how many consumers were disabled. Already disabled consumers do not count.
 
-##### Parâmetros
+##### Parameters
 
-- `consumer VARCHAR(128)`: O valor usado para combinar nomes de consumidores, que são identificados usando `%consumer%` como um operando para uma correspondência de padrão `LIKE`.
+* `consumer VARCHAR(128)`: The value used to match consumer names, which are identified by using `%consumer%` as an operand for a `LIKE` pattern match.
 
-  Um valor de `''` corresponde a todos os consumidores.
+  A value of `''` matches all consumers.
 
-##### Exemplo
+##### Example
 
-Desative todos os consumidores de declaração:
+Disable all statement consumers:
 
 ```sql
 mysql> CALL sys.ps_setup_disable_consumer('statement');

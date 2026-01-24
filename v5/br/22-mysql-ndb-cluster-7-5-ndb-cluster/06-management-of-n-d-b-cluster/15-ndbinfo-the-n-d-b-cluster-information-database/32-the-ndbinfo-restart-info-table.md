@@ -1,189 +1,189 @@
-#### 21.6.15.32 Tabela ndbinfo restart_info
+#### 21.6.15.32 The ndbinfo restart_info Table
 
-A tabela `restart_info` contém informações sobre operações de reinício de nós. Cada entrada na tabela corresponde a um relatório de status de reinício de nó em tempo real de um nó de dados com o ID de nó fornecido. Apenas o relatório mais recente para qualquer nó específico é exibido.
+The `restart_info` table contains information about node restart operations. Each entry in the table corresponds to a node restart status report in real time from a data node with the given node ID. Only the most recent report for any given node is shown.
 
-A tabela `restart_info` contém as seguintes colunas:
+The `restart_info` table contains the following columns:
 
-- `node_id`
+* `node_id`
 
-  ID do nó no cluster
+  Node ID in the cluster
 
-- `node_restart_status`
+* `node_restart_status`
 
-  Status do nó; consulte o texto para os valores. Cada um deles corresponde a um valor possível de `node_restart_status_int`.
+  Node status; see text for values. Each of these corresponds to a possible value of `node_restart_status_int`.
 
-- `node_restart_status_int`
+* `node_restart_status_int`
 
-  Código de status do nó; consulte o texto para os valores.
+  Node status code; see text for values.
 
-- `secs_to_complete_node_failure`
+* `secs_to_complete_node_failure`
 
-  Tempo em segundos para completar o gerenciamento de falha de nó
+  Time in seconds to complete node failure handling
 
-- `secs_to_allocate_node_id`
+* `secs_to_allocate_node_id`
 
-  Tempo em segundos desde a conclusão da falha do nó até a alocação do ID do nó
+  Time in seconds from node failure completion to allocation of node ID
 
-- `secs_to_include_in_heartbeat_protocol`
+* `secs_to_include_in_heartbeat_protocol`
 
-  Tempo em segundos desde a alocação do ID do nó até a inclusão no protocolo de batida de coração
+  Time in seconds from allocation of node ID to inclusion in heartbeat protocol
 
-- `segundos_até_esperar_por_ndbcntr_master`
+* `secs_until_wait_for_ndbcntr_master`
 
-  Tempo em segundos desde que foi incluído no protocolo de batimentos cardíacos até o início da espera pelo mestre `NDBCNTR`
+  Time in seconds from being included in heartbeat protocol until waiting for [`NDBCNTR`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-ndbcntr.html) master began
 
-- `secs_wait_for_ndbcntr_master`
+* `secs_wait_for_ndbcntr_master`
 
-  Tempo em segundos gasto esperando ser aceito pelo mestre `NDBCNTR` para iniciar
+  Time in seconds spent waiting to be accepted by [`NDBCNTR`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-ndbcntr.html) master for starting
 
-- `secs_to_get_start_permitted`
+* `secs_to_get_start_permitted`
 
-  Tempo em segundos decorrido desde a recepção da permissão para iniciar a partir do mestre até que todos os nós tenham aceitado o início deste nó
+  Time in seconds elapsed from receiving of permission for start from master until all nodes have accepted start of this node
 
-- `secs_to_wait_for_lcp_for_copy_meta_data`
+* `secs_to_wait_for_lcp_for_copy_meta_data`
 
-  Tempo em segundos gasto esperando a conclusão do LCP antes de copiar os metadados
+  Time in seconds spent waiting for LCP completion before copying metadata
 
-- `secs_to_copy_meta_data`
+* `secs_to_copy_meta_data`
 
-  Tempo em segundos necessário para copiar metadados do mestre para o nó recém-iniciado
+  Time in seconds required to copy metadata from master to newly starting node
 
-- `secs_to_include_node`
+* `secs_to_include_node`
 
-  Tempo em segundos aguardado pelo GCP e inclusão de todos os nós nos protocolos
+  Time in seconds waited for GCP and inclusion of all nodes into protocols
 
-- `secs_starting_node_to_request_local_recovery`
+* `secs_starting_node_to_request_local_recovery`
 
-  Tempo em segundos que o nó recém-iniciado passou esperando para solicitar a recuperação local
+  Time in seconds that the node just starting spent waiting to request local recovery
 
-- `secs_for_local_recovery`
+* `secs_for_local_recovery`
 
-  Tempo em segundos necessário para a recuperação local pelo nó que acabou de começar
+  Time in seconds required for local recovery by node just starting
 
-- `secs_restore_fragments`
+* `secs_restore_fragments`
 
-  Tempo em segundos necessário para restaurar fragmentos de arquivos LCP
+  Time in seconds required to restore fragments from LCP files
 
-- `secs_undo_disk_data`
+* `secs_undo_disk_data`
 
-  Tempo em segundos necessário para executar o registro de desfazer na parte de dados do disco dos registros
+  Time in seconds required to execute undo log on disk data part of records
 
-- `secs_exec_redo_log`
+* `secs_exec_redo_log`
 
-  Tempo em segundos necessário para executar o log de refazer em todos os fragmentos restaurados
+  Time in seconds required to execute redo log on all restored fragments
 
-- `secs_index_rebuild`
+* `secs_index_rebuild`
 
-  Tempo em segundos necessário para reconstruir índices em fragmentos restaurados
+  Time in seconds required to rebuild indexes on restored fragments
 
-- `secs_to_synchronize_starting_node`
+* `secs_to_synchronize_starting_node`
 
-  Tempo em segundos necessário para sincronizar o nó inicial a partir dos nós ao vivo
+  Time in seconds required to synchronize starting node from live nodes
 
-- `secs_wait_lcp_for_restart`
+* `secs_wait_lcp_for_restart`
 
-  Tempo em segundos necessário para o início e conclusão do LCP antes do reinício ser concluído
+  Time in seconds required for LCP start and completion before restart was completed
 
-- `secs_wait_subscription_handover`
+* `secs_wait_subscription_handover`
 
-  Tempo em segundos gasto esperando pela entrega das assinaturas de replicação
+  Time in seconds spent waiting for handover of replication subscriptions
 
-- `total_restart_secs`
+* `total_restart_secs`
 
-  Número total de segundos entre a falha do nó e o início do nó novamente
+  Total number of seconds from node failure until node is started again
 
-##### Notas
+##### Notes
 
-A lista a seguir contém os valores definidos para a coluna `node_restart_status_int` com seus nomes de status internos (em parênteses) e as mensagens correspondentes exibidas na coluna `node_restart_status`:
+The following list contains values defined for the `node_restart_status_int` column with their internal status names (in parentheses), and the corresponding messages shown in the `node_restart_status` column:
 
-- `0` (`ALLOCATED_NODE_ID`)
+* `0` (`ALLOCATED_NODE_ID`)
 
-  `ID de nó atribuído`
+  `Allocated node id`
 
-- `1` (`INCLUÍDO_NO_PROTOCOLO_HB`)
+* `1` (`INCLUDED_IN_HB_PROTOCOL`)
 
-  Incluído no protocolo de batimentos cardíacos
+  `Included in heartbeat protocol`
 
-- `2` (`NDBCNTR_START_WAIT`)
+* `2` (`NDBCNTR_START_WAIT`)
 
-  "Aguarde o mestre NDBCNTR nos permitir começar"
+  `Wait for NDBCNTR master to permit us to start`
 
-- `3` (`NDBCNTR_STARTED`)
+* `3` (`NDBCNTR_STARTED`)
 
-  O mestre NDBCNTR nos permitiu começar
+  `NDBCNTR master permitted us to start`
 
-- `4` (`START_PERMITTED`)
+* `4` (`START_PERMITTED`)
 
-  "Todos os nós nos permitiram começar"
+  `All nodes permitted us to start`
 
-- `5` (`WAIT_LCP_TO_COPY_DICT`)
+* `5` (`WAIT_LCP_TO_COPY_DICT`)
 
-  "Aguarde a conclusão do LCP para começar a copiar os metadados"
+  `Wait for LCP completion to start copying metadata`
 
-- `6` (`COPY_DICT_TO_STARTING_NODE`)
+* `6` (`COPY_DICT_TO_STARTING_NODE`)
 
-  `Copiar metadados para o nó inicial`
+  `Copying metadata to starting node`
 
-- `7` (`INCLUDE_NODE_IN_LCP_AND_GCP`)
+* `7` (`INCLUDE_NODE_IN_LCP_AND_GCP`)
 
-  `Incluir nó nos protocolos LCP e GCP`
+  `Include node in LCP and GCP protocols`
 
-- `8` (`LOCAL_RECOVERY_STARTED`)
+* `8` (`LOCAL_RECOVERY_STARTED`)
 
-  `Restaurar fragmentos em andamento`
+  `Restore fragments ongoing`
 
-- `9` (`COPY_FRAGMENTS_STARTED`)
+* `9` (`COPY_FRAGMENTS_STARTED`)
 
-  `Sincronizando o nó inicial com os nós ao vivo`
+  `Synchronizing starting node with live nodes`
 
-- `10` (`WAIT_LCP_FOR_RESTART`)
+* `10` (`WAIT_LCP_FOR_RESTART`)
 
-  "Aguarde o LCP para garantir a durabilidade"
+  `Wait for LCP to ensure durability`
 
-- `11` (`WAIT_SUMA_HANDOVER`)
+* `11` (`WAIT_SUMA_HANDOVER`)
 
-  "Aguarde a entrega das assinaturas"
+  `Wait for handover of subscriptions`
 
-- `12` (`RESTART_COMPLETED`)
+* `12` (`RESTART_COMPLETED`)
 
-  `Reinício concluído`
+  `Restart completed`
 
-- `13` (`NODE_FAILED`)
+* `13` (`NODE_FAILED`)
 
-  "O nó falhou, a gestão do erro está em andamento"
+  `Node failed, failure handling in progress`
 
-- `14` (`NODE_FAILURE_COMPLETED`)
+* `14` (`NODE_FAILURE_COMPLETED`)
 
-  "O tratamento de falha no nó foi concluído"
+  `Node failure handling completed`
 
-- `15` (`NODE_GETTING_PERMIT`)
+* `15` (`NODE_GETTING_PERMIT`)
 
-  "Todos os nós nos permitiram começar"
+  `All nodes permitted us to start`
 
-- `16` (`NODE_GETTING_INCLUDED`)
+* `16` (`NODE_GETTING_INCLUDED`)
 
-  `Incluir nó nos protocolos LCP e GCP`
+  `Include node in LCP and GCP protocols`
 
-- `17` (`NODE_GETTING_SYNCHED`)
+* `17` (`NODE_GETTING_SYNCHED`)
 
-  `Sincronizando o nó inicial com os nós ao vivo`
+  `Synchronizing starting node with live nodes`
 
-- `18` (`NODE_GETTING_LCP_WAITED`)
+* `18` (`NODE_GETTING_LCP_WAITED`)
 
-  [nenhum]
+  [none]
 
-- `19` (`NODE_ACTIVE`)
+* `19` (`NODE_ACTIVE`)
 
-  `Reinício concluído`
+  `Restart completed`
 
-- `20` (`NOT_DEFINIDO_NO_CLUSTERO`)
+* `20` (`NOT_DEFINED_IN_CLUSTER`)
 
-  [nenhum]
+  [none]
 
-- `21` (`NODE_NOT_RESTARTED_YET`)
+* `21` (`NODE_NOT_RESTARTED_YET`)
 
-  "Estado inicial"
+  `Initial state`
 
-Os números de status de 0 a 12 se aplicam apenas aos nós principais; o restante dos números mostrados na tabela se aplica a todos os nós de dados que estão sendo reiniciados. Os números de status 13 e 14 definem os estados de falha do nó; os números 20 e 21 ocorrem quando não há informações sobre o reinício de um nó específico.
+Status numbers 0 through 12 apply on master nodes only; the remainder of those shown in the table apply to all restarting data nodes. Status numbers 13 and 14 define node failure states; 20 and 21 occur when no information about the restart of a given node is available.
 
-Veja também Seção 21.6.4, “Resumo das Fases de Início do NDB Cluster”.
+See also [Section 21.6.4, “Summary of NDB Cluster Start Phases”](mysql-cluster-start-phases.html "21.6.4 Summary of NDB Cluster Start Phases").

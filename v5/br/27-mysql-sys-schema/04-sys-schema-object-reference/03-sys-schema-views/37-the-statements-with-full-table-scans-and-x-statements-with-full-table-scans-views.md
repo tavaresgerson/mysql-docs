@@ -1,61 +1,61 @@
-#### 26.4.3.37 As declarações com varreduras completas da tabela e as visualizações x$declarativas_com_varreduras_completos_da_tabela
+#### 26.4.3.37 The statements_with_full_table_scans and x$statements_with_full_table_scans Views
 
-Essas visualizações exibem declarações normalizadas que realizaram varreduras completas da tabela. Por padrão, as linhas são ordenadas por porcentagem decrescente de tempo em que uma varredura completa foi realizada e latência total decrescente.
+These views display normalized statements that have done full table scans. By default, rows are sorted by descending percentage of time a full scan was done and descending total latency.
 
-As views `statements_with_full_table_scans` e `x$statements_with_full_table_scans` possuem essas colunas:
+The `statements_with_full_table_scans` and `x$statements_with_full_table_scans` views have these columns:
 
-- `consulta`
+* `query`
 
-  A string de declaração normalizada.
+  The normalized statement string.
 
-- `db`
+* `db`
 
-  O banco de dados padrão para a declaração, ou `NULL` se não houver nenhum.
+  The default database for the statement, or `NULL` if there is none.
 
-- `exec_count`
+* `exec_count`
 
-  O número total de vezes que a declaração foi executada.
+  The total number of times the statement has executed.
 
-- `total_latency`
+* `total_latency`
 
-  O tempo total de espera de eventos de declaração cronometrados para a declaração.
+  The total wait time of timed statement events for the statement.
 
-- `no_index_used_count`
+* `no_index_used_count`
 
-  O número total de vezes em que não foi usado um índice para pesquisar a tabela.
+  The total number of times no index was used to scan the table.
 
-- `no_good_index_used_count`
+* `no_good_index_used_count`
 
-  O número total de vezes em que não foi usado um bom índice para escanear a tabela.
+  The total number of times no good index was used to scan the table.
 
-- `no_index_used_pct`
+* `no_index_used_pct`
 
-  A porcentagem do tempo em que não foi usado um índice para pesquisar a tabela.
+  The percentage of the time no index was used to scan the table.
 
-- `rows_sent`
+* `rows_sent`
 
-  O número total de linhas devolvidas da tabela.
+  The total number of rows returned from the table.
 
-- `rows_examined`
+* `rows_examined`
 
-  O número total de linhas lidas do mecanismo de armazenamento para a tabela.
+  The total number of rows read from the storage engine for the table.
 
-- `rows_sent_avg`
+* `rows_sent_avg`
 
-  O número médio de linhas devolvidas da tabela.
+  The average number of rows returned from the table.
 
-- `rows_examined_avg`
+* `rows_examined_avg`
 
-  O número médio de linhas lidas do mecanismo de armazenamento para a tabela.
+  The average number of rows read from the storage engine for the table.
 
-- `primeiro_avistado`
+* `first_seen`
 
-  O momento em que a declaração foi vista pela primeira vez.
+  The time at which the statement was first seen.
 
-- `última_visualização`
+* `last_seen`
 
-  O horário em que a declaração foi vista pela última vez.
+  The time at which the statement was most recently seen.
 
-- `digest`
+* `digest`
 
-  O resumo da declaração.
+  The statement digest.

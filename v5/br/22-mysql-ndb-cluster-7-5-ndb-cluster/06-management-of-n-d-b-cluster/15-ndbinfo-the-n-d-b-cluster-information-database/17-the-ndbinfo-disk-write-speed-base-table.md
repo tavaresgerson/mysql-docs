@@ -1,33 +1,33 @@
-#### 21.6.15.17 Tabela ndbinfo disk_write_speed_base
+#### 21.6.15.17 The ndbinfo disk_write_speed_base Table
 
-A tabela `disk_write_speed_base` fornece informações básicas sobre a velocidade de escrita em disco durante operações de LCP, backup e restauração.
+The `disk_write_speed_base` table provides base information about the speed of disk writes during LCP, backup, and restore operations.
 
-A tabela `disk_write_speed_base` contém as seguintes colunas:
+The `disk_write_speed_base` table contains the following columns:
 
-- `node_id`
+* `node_id`
 
-  ID do nó deste nó
+  Node ID of this node
 
-- `thr_no`
+* `thr_no`
 
-  ID do thread deste thread LDM
+  Thread ID of this LDM thread
 
-- `millis_ago`
+* `millis_ago`
 
-  Milissegundos desde o término deste período de relatórios
+  Milliseconds since this reporting period ended
 
-- `millis_passed`
+* `millis_passed`
 
-  Milissegundos se passaram neste período de relatórios
+  Milliseconds elapsed in this reporting period
 
-- `backup_lcp_bytes_written`
+* `backup_lcp_bytes_written`
 
-  Número de bytes escritos no disco por pontos de verificação locais e processos de backup durante este período
+  Number of bytes written to disk by local checkpoints and backup processes during this period
 
-- `redo_bytes_written`
+* `redo_bytes_written`
 
-  Número de bytes escritos no log REDO durante este período
+  Number of bytes written to REDO log during this period
 
-- `target_disk_write_speed`
+* `target_disk_write_speed`
 
-  Velocidade real de escrita de disco por thread LDM (dados básicos)
+  Actual speed of disk writes per LDM thread (base data)

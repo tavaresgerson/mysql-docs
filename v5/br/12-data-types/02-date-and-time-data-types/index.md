@@ -1,59 +1,59 @@
-## 11.2 Tipos de dados de data e hora
+## 11.2 Date and Time Data Types
 
-11.2.1 Data e Hora Tipo de Dados Sintaxe
+11.2.1 Date and Time Data Type Syntax
 
-11.2.2 Tipos DATE, DATETIME e TIMESTAMP
+11.2.2 The DATE, DATETIME, and TIMESTAMP Types
 
-11.2.3 O Tipo TIME
+11.2.3 The TIME Type
 
-11.2.4 O tipo YEAR
+11.2.4 The YEAR Type
 
-11.2.5 ANO de 2 dígitos (2) Limitações e migração para ANO de 4 dígitos
+11.2.5 2-Digit YEAR(2) Limitations and Migrating to 4-Digit YEAR
 
-11.2.6 Inicialização e atualização automáticas para TIMESTAMP e DATETIME
+11.2.6 Automatic Initialization and Updating for TIMESTAMP and DATETIME
 
-11.2.7 Segundos fracionários em valores de tempo
+11.2.7 Fractional Seconds in Time Values
 
-11.2.8 Qual calendário é usado pelo MySQL?
+11.2.8 What Calendar Is Used By MySQL?
 
-11.2.9 Conversão entre tipos de data e hora
+11.2.9 Conversion Between Date and Time Types
 
-11.2.10 Anos de 2 dígitos nas datas
+11.2.10 2-Digit Years in Dates
 
-Os tipos de dados de data e hora para representar valores temporais são `DATE`, `TIME`, `DATETIME`, `TIMESTAMP` e `YEAR`. Cada tipo temporal tem um intervalo de valores válidos, bem como um valor “zero” que pode ser usado quando você especifica um valor inválido que o MySQL não pode representar. Os tipos `TIMESTAMP` e `DATETIME` têm um comportamento de atualização automática especial, descrito na Seção 11.2.6, “Inicialização e Atualização Automática para TIMESTAMP e DATETIME”.
+The date and time data types for representing temporal values are `DATE`, `TIME`, `DATETIME`, `TIMESTAMP`, and `YEAR`. Each temporal type has a range of valid values, as well as a “zero” value that may be used when you specify an invalid value that MySQL cannot represent. The `TIMESTAMP` and `DATETIME` types have special automatic updating behavior, described in Section 11.2.6, “Automatic Initialization and Updating for TIMESTAMP and DATETIME”.
 
-Para obter informações sobre os requisitos de armazenamento dos tipos de dados temporais, consulte a Seção 11.7, “Requisitos de Armazenamento de Tipos de Dados”.
+For information about storage requirements of the temporal data types, see Section 11.7, “Data Type Storage Requirements”.
 
-Para descrições de funções que operam com valores temporais, consulte a Seção 12.7, “Funções de Data e Hora”.
+For descriptions of functions that operate on temporal values, see Section 12.7, “Date and Time Functions”.
 
-Tenha em mente essas considerações gerais ao trabalhar com tipos de data e hora:
+Keep in mind these general considerations when working with date and time types:
 
-- O MySQL recupera valores para uma data ou hora específica em um formato de saída padrão, mas tenta interpretar uma variedade de formatos para os valores de entrada que você fornece (por exemplo, quando você especifica um valor a ser atribuído ou comparado a uma data ou hora). Para uma descrição dos formatos permitidos para tipos de data e hora, consulte a Seção 9.1.3, “Letrais de Data e Hora”. Espera-se que você forneça valores válidos. Resultados imprevisíveis podem ocorrer se você usar valores em outros formatos.
+* MySQL retrieves values for a given date or time type in a standard output format, but it attempts to interpret a variety of formats for input values that you supply (for example, when you specify a value to be assigned to or compared to a date or time type). For a description of the permitted formats for date and time types, see Section 9.1.3, “Date and Time Literals”. It is expected that you supply valid values. Unpredictable results may occur if you use values in other formats.
 
-- Embora o MySQL tente interpretar valores em vários formatos, as partes da data devem sempre ser fornecidas na ordem ano-mês-dia (por exemplo, `'98-09-04'`), em vez da ordem mês-dia-ano ou dia-mês-ano comumente usada em outros lugares (por exemplo, `'09-04-98'`, `'04-09-98'`). Para converter strings em outras ordens para a ordem ano-mês-dia, a função `STR_TO_DATE()` pode ser útil.
+* Although MySQL tries to interpret values in several formats, date parts must always be given in year-month-day order (for example, `'98-09-04'`), rather than in the month-day-year or day-month-year orders commonly used elsewhere (for example, `'09-04-98'`, `'04-09-98'`). To convert strings in other orders to year-month-day order, the `STR_TO_DATE()` function may be useful.
 
-- As datas que contêm valores de ano de 2 dígitos são ambíguas porque o século é desconhecido. O MySQL interpreta valores de ano de 2 dígitos usando essas regras:
+* Dates containing 2-digit year values are ambiguous because the century is unknown. MySQL interprets 2-digit year values using these rules:
 
-  - Os valores do ano na faixa `70-99` se tornam `1970-1999`.
+  + Year values in the range `70-99` become `1970-1999`.
 
-  - Os valores do ano na faixa `00-69` se tornam `2000-2069`.
+  + Year values in the range `00-69` become `2000-2069`.
 
-  Veja também a Seção 11.2.10, “Anos de 2 dígitos em datas”.
+  See also Section 11.2.10, “2-Digit Years in Dates”.
 
-- A conversão de valores de um tipo temporal para outro ocorre de acordo com as regras da Seção 11.2.9, “Conversão entre tipos de data e hora”.
+* Conversion of values from one temporal type to another occurs according to the rules in Section 11.2.9, “Conversion Between Date and Time Types”.
 
-- O MySQL converte automaticamente um valor de data ou hora em um número se o valor for usado em um contexto numérico e vice-versa.
+* MySQL automatically converts a date or time value to a number if the value is used in numeric context and vice versa.
 
-- Por padrão, quando o MySQL encontra um valor para um tipo de data ou hora que está fora do intervalo ou é inválido para o tipo, ele converte o valor para o valor “zero” para esse tipo. A exceção é que os valores `TIME` fora do intervalo são recortados para o ponto final apropriado do intervalo `TIME`.
+* By default, when MySQL encounters a value for a date or time type that is out of range or otherwise invalid for the type, it converts the value to the “zero” value for that type. The exception is that out-of-range `TIME` values are clipped to the appropriate endpoint of the `TIME` range.
 
-- Ao definir o modo SQL para o valor apropriado, você pode especificar com mais precisão que tipo de datas você deseja que o MySQL suporte. (Veja a Seção 5.1.10, “Modos SQL do Servidor”.) Você pode fazer o MySQL aceitar certas datas, como `'2009-11-31'`, ao habilitar o modo SQL `ALLOW_INVALID_DATES`. Isso é útil quando você deseja armazenar um valor “possivelmente incorreto” que o usuário especificou (por exemplo, em um formulário da web) no banco de dados para processamento futuro. Nesse modo, o MySQL verifica apenas que o mês esteja no intervalo de 1 a 12 e que o dia esteja no intervalo de 1 a 31.
+* By setting the SQL mode to the appropriate value, you can specify more exactly what kind of dates you want MySQL to support. (See Section 5.1.10, “Server SQL Modes”.) You can get MySQL to accept certain dates, such as `'2009-11-31'`, by enabling the `ALLOW_INVALID_DATES` SQL mode. This is useful when you want to store a “possibly wrong” value which the user has specified (for example, in a web form) in the database for future processing. Under this mode, MySQL verifies only that the month is in the range from 1 to 12 and that the day is in the range from 1 to 31.
 
-- O MySQL permite que você armazene datas em que o dia ou o mês e o dia são zero em uma coluna `DATE` ou `DATETIME`. Isso é útil para aplicações que precisam armazenar datas de nascimento para as quais você pode não saber a data exata. Neste caso, você simplesmente armazena a data como `'2009-00-00'` ou `'2009-01-00'`. No entanto, com datas como essas, você não deve esperar obter resultados corretos para funções como `DATE_SUB()` ou `DATE_ADD()` que exigem datas completas. Para impedir que partes do mês ou do dia sejam zero em datas, habilite o modo `NO_ZERO_IN_DATE`.
+* MySQL permits you to store dates where the day or month and day are zero in a `DATE` or `DATETIME` column. This is useful for applications that need to store birthdates for which you may not know the exact date. In this case, you simply store the date as `'2009-00-00'` or `'2009-01-00'`. However, with dates such as these, you should not expect to get correct results for functions such as `DATE_SUB()` or `DATE_ADD()` that require complete dates. To disallow zero month or day parts in dates, enable the `NO_ZERO_IN_DATE` mode.
 
-- O MySQL permite que você armazene um valor "zero" de `'0000-00-00'` como uma "data fictícia". Em alguns casos, isso é mais conveniente do que usar valores `NULL` e utiliza menos espaço de dados e de índice. Para desabilitar `'0000-00-00'`, habilite o modo `NO_ZERO_DATE`.
+* MySQL permits you to store a “zero” value of `'0000-00-00'` as a “dummy date.” In some cases, this is more convenient than using `NULL` values, and uses less data and index space. To disallow `'0000-00-00'`, enable the `NO_ZERO_DATE` mode.
 
-- Os valores de data ou hora “zero” usados através do Connector/ODBC são convertidos automaticamente em `NULL` porque o ODBC não consegue lidar com esses valores.
+* “Zero” date or time values used through Connector/ODBC are converted automatically to `NULL` because ODBC cannot handle such values.
 
-A tabela a seguir mostra o formato do valor "zero" para cada tipo. Os valores "zero" são especiais, mas você pode armazená-los ou referenciá-los explicitamente usando os valores mostrados na tabela. Você também pode fazer isso usando os valores `'0'` ou `0`, que são mais fáceis de escrever. Para tipos temporais que incluem uma parte de data (`DATE`, `DATETIME` e `TIMESTAMP`), o uso desses valores pode gerar avisos ou erros. O comportamento preciso depende de quais, se houver, os modos SQL estritos e `NO_ZERO_DATE` estão habilitados; consulte a Seção 5.1.10, “Modos SQL do Servidor”.
+The following table shows the format of the “zero” value for each type. The “zero” values are special, but you can store or refer to them explicitly using the values shown in the table. You can also do this using the values `'0'` or `0`, which are easier to write. For temporal types that include a date part (`DATE`, `DATETIME`, and `TIMESTAMP`), use of these values may produce warning or errors. The precise behavior depends on which, if any, of the strict and `NO_ZERO_DATE` SQL modes are enabled; see Section 5.1.10, “Server SQL Modes”.
 
-<table summary="Formato do valor zero para tipos de dados temporais."><col style="width: 30%"/><col style="width: 40%"/><thead><tr> <th>Tipo de dados</th> <th><span class="quote">“<span class="quote">Zero</span>”</span>Valor</th> </tr></thead><tbody><tr> <td><code>DATE</code></td> <td><code>'0000-00-00'</code></td> </tr><tr> <td><code>TIME</code></td> <td><code>'00:00:00'</code></td> </tr><tr> <td><code>DATETIME</code></td> <td><code>'0000-00-00 00:00:00'</code></td> </tr><tr> <td><code>TIMESTAMP</code></td> <td><code>'0000-00-00 00:00:00'</code></td> </tr><tr> <td><code>YEAR</code></td> <td><code>0000</code></td> </tr></tbody></table>
+<table summary="Format of the zero value for temporal data types."><col style="width: 30%"/><col style="width: 40%"/><thead><tr> <th>Data Type</th> <th><span class="quote">“<span class="quote">Zero</span>”</span> Value</th> </tr></thead><tbody><tr> <td><code>DATE</code></td> <td><code>'0000-00-00'</code></td> </tr><tr> <td><code>TIME</code></td> <td><code>'00:00:00'</code></td> </tr><tr> <td><code>DATETIME</code></td> <td><code>'0000-00-00 00:00:00'</code></td> </tr><tr> <td><code>TIMESTAMP</code></td> <td><code>'0000-00-00 00:00:00'</code></td> </tr><tr> <td><code>YEAR</code></td> <td><code>0000</code></td> </tr></tbody></table>

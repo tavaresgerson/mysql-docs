@@ -1,6 +1,6 @@
-#### 13.2.10.12 Restrições sobre subconsultas
+#### 13.2.10.12 Restrictions on Subqueries
 
-- Em geral, você não pode modificar uma tabela e selecionar dela em uma subconsulta. Por exemplo, essa limitação se aplica a declarações dos seguintes formatos:
+* In general, you cannot modify a table and select from the same table in a subquery. For example, this limitation applies to statements of the following forms:
 
   ```sql
   DELETE FROM t WHERE ... (SELECT ... FROM t ...);
@@ -8,37 +8,37 @@
   {INSERT|REPLACE} INTO t (SELECT ... FROM t ...);
   ```
 
-  Exceção: A proibição anterior não se aplica se você estiver usando uma tabela derivada para a tabela modificada e essa tabela derivada estiver materializada, em vez de estar integrada à consulta externa. (Consulte Seção 8.2.2.4, “Otimização de tabelas derivadas e referências de visualizações com junção ou materialização”). Exemplo:
+  Exception: The preceding prohibition does not apply if for the modified table you are using a derived table and that derived table is materialized rather than merged into the outer query. (See [Section 8.2.2.4, “Optimizing Derived Tables and View References with Merging or Materialization”](derived-table-optimization.html "8.2.2.4 Optimizing Derived Tables and View References with Merging or Materialization").) Example:
 
   ```sql
   UPDATE t ... WHERE col = (SELECT * FROM (SELECT ... FROM t...) AS dt ...);
   ```
 
-  Aqui, o resultado da tabela derivada é materializado como uma tabela temporária, portanto, as linhas relevantes em `t` já foram selecionadas no momento em que a atualização em `t` ocorre.
+  Here the result from the derived table is materialized as a temporary table, so the relevant rows in `t` have already been selected by the time the update to `t` takes place.
 
-- As operações de comparação de linhas são suportadas apenas parcialmente:
+* Row comparison operations are only partially supported:
 
-  - Para `expr [NOT] IN subquery`, *`expr`* pode ser um *`n`*-tuplo (especificado usando a sintaxe do construtor de linha) e a subconsulta pode retornar linhas de *`n`*-tuplos. A sintaxe permitida é, portanto, expressa de forma mais específica como `construtor_linha [NOT] IN subconsulta_tabela`
+  + For `expr [NOT] IN subquery`, *`expr`* can be an *`n`*-tuple (specified using row constructor syntax) and the subquery can return rows of *`n`*-tuples. The permitted syntax is therefore more specifically expressed as `row_constructor [NOT] IN table_subquery`
 
-  - Para `expr op {ALL|ANY|SOME} subquery`, *`expr`* deve ser um valor escalar e a subconsulta deve ser uma subconsulta de coluna; ela não pode retornar linhas com múltiplas colunas.
+  + For `expr op {ALL|ANY|SOME} subquery`, *`expr`* must be a scalar value and the subquery must be a column subquery; it cannot return multiple-column rows.
 
-  Em outras palavras, para uma subconsulta que retorna linhas de *`n`*-tuplas, isso é suportado:
+  In other words, for a subquery that returns rows of *`n`*-tuples, this is supported:
 
   ```sql
   (expr_1, ..., expr_n) [NOT] IN table_subquery
   ```
 
-  Mas isso não é suportado:
+  But this is not supported:
 
   ```sql
   (expr_1, ..., expr_n) op {ALL|ANY|SOME} subquery
   ```
 
-  A razão para suportar comparações de linhas para `IN`, mas não para as outras é que `IN` é implementado reescrevendo-o como uma sequência de comparações de `=` e operações de `AND`. Essa abordagem não pode ser usada para `ALL`, `ANY` ou `SOME`.
+  The reason for supporting row comparisons for `IN` but not for the others is that `IN` is implemented by rewriting it as a sequence of [`=`](comparison-operators.html#operator_equal) comparisons and [`AND`](logical-operators.html#operator_and) operations. This approach cannot be used for `ALL`, `ANY`, or `SOME`.
 
-- As subconsultas na cláusula `FROM` não podem ser subconsultas correlacionadas. Elas são materializadas no todo (avaliadas para produzir um conjunto de resultados) durante a execução da consulta, portanto, não podem ser avaliadas por linha da consulta externa. O otimizador adista a materialização até que o resultado seja necessário, o que pode permitir que a materialização seja evitada. Veja Seção 8.2.2.4, “Otimização de tabelas derivadas e referências de visualizações com fusão ou materialização”.
+* Subqueries in the `FROM` clause cannot be correlated subqueries. They are materialized in whole (evaluated to produce a result set) during query execution, so they cannot be evaluated per row of the outer query. The optimizer delays materialization until the result is needed, which may permit materialization to be avoided. See [Section 8.2.2.4, “Optimizing Derived Tables and View References with Merging or Materialization”](derived-table-optimization.html "8.2.2.4 Optimizing Derived Tables and View References with Merging or Materialization").
 
-- O MySQL não suporta `LIMIT` em subconsultas para certos operadores de subconsulta:
+* MySQL does not support `LIMIT` in subqueries for certain subquery operators:
 
   ```sql
   mysql> SELECT * FROM t1
@@ -47,12 +47,12 @@
    'LIMIT & IN/ALL/ANY/SOME subquery'
   ```
 
-- O MySQL permite que uma subconsulta faça referência a uma função armazenada que tenha efeitos colaterais que modifiquem dados, como inserir linhas em uma tabela. Por exemplo, se `f()` insere linhas, a seguinte consulta pode modificar os dados:
+* MySQL permits a subquery to refer to a stored function that has data-modifying side effects such as inserting rows into a table. For example, if `f()` inserts rows, the following query can modify data:
 
   ```sql
   SELECT ... WHERE x IN (SELECT f() ...);
   ```
 
-  Esse comportamento é uma extensão do padrão SQL. No MySQL, ele pode produzir resultados não determinísticos porque o `f()` pode ser executado um número diferente de vezes para diferentes execuções de uma consulta específica, dependendo de como o otimizador decide lidar com isso.
+  This behavior is an extension to the SQL standard. In MySQL, it can produce nondeterministic results because `f()` might be executed a different number of times for different executions of a given query depending on how the optimizer chooses to handle it.
 
-  Para a replicação baseada em declarações ou em formato misto, uma implicação desse indeterminismo é que uma consulta desse tipo pode produzir resultados diferentes na fonte e em suas réplicas.
+  For statement-based or mixed-format replication, one implication of this indeterminism is that such a query can produce different results on the source and its replicas.

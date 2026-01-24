@@ -1,21 +1,21 @@
-#### 14.6.2.1 Indekses agrupados e secundários
+#### 14.6.2.1 Clustered and Secondary Indexes
 
-Cada tabela `InnoDB` possui um índice especial chamado índice agrupado que armazena os dados das linhas. Tipicamente, o índice agrupado é sinônimo da chave primária. Para obter o melhor desempenho em consultas, inserções e outras operações do banco de dados, é importante entender como o `InnoDB` utiliza o índice agrupado para otimizar as operações de busca comum e DML.
+Each `InnoDB` table has a special index called the clustered index that stores row data. Typically, the clustered index is synonymous with the primary key. To get the best performance from queries, inserts, and other database operations, it is important to understand how `InnoDB` uses the clustered index to optimize the common lookup and DML operations.
 
-- Quando você define uma `PRIMARY KEY` em uma tabela, o `InnoDB` usa-a como índice agrupado. Uma chave primária deve ser definida para cada tabela. Se não houver uma coluna única lógica e não nula ou um conjunto de colunas para usar como chave primária, adicione uma coluna de autoincremento. Os valores das colunas de autoincremento são únicos e são adicionados automaticamente à medida que novas linhas são inseridas.
+* When you define a `PRIMARY KEY` on a table, `InnoDB` uses it as the clustered index. A primary key should be defined for each table. If there is no logical unique and non-null column or set of columns to use a the primary key, add an auto-increment column. Auto-increment column values are unique and are added automatically as new rows are inserted.
 
-- Se você não definir uma `PRIMARY KEY` para uma tabela, o `InnoDB` usa o primeiro índice `UNIQUE` com todas as colunas da chave definidas como `NOT NULL` como o índice agrupado.
+* If you do not define a `PRIMARY KEY` for a table, `InnoDB` uses the first `UNIQUE` index with all key columns defined as `NOT NULL` as the clustered index.
 
-- Se uma tabela não tiver um `PRIMARY KEY` ou um índice `UNIQUE` adequado, o `InnoDB` gera um índice agrupado oculto chamado `GEN_CLUST_INDEX` em uma coluna sintética que contém valores de ID de linha. As linhas são ordenadas pelo ID de linha que o `InnoDB` atribui. O ID de linha é um campo de 6 bytes que aumenta de forma monótona à medida que novas linhas são inseridas. Assim, as linhas ordenadas pelo ID de linha estão fisicamente em ordem de inserção.
+* If a table has no `PRIMARY KEY` or suitable `UNIQUE` index, `InnoDB` generates a hidden clustered index named `GEN_CLUST_INDEX` on a synthetic column that contains row ID values. The rows are ordered by the row ID that `InnoDB` assigns. The row ID is a 6-byte field that increases monotonically as new rows are inserted. Thus, the rows ordered by the row ID are physically in order of insertion.
 
-##### Como o Índice Agrupado Acelera as Consultas
+##### How the Clustered Index Speeds Up Queries
 
-Aceder a uma linha através do índice agrupado é rápido porque a pesquisa no índice leva diretamente à página que contém os dados da linha. Se uma tabela for grande, a arquitetura do índice agrupado muitas vezes economiza uma operação de E/S de disco em comparação com organizações de armazenamento que armazenam os dados da linha usando uma página diferente do registro do índice.
+Accessing a row through the clustered index is fast because the index search leads directly to the page that contains the row data. If a table is large, the clustered index architecture often saves a disk I/O operation when compared to storage organizations that store row data using a different page from the index record.
 
-##### Como os índices secundários se relacionam com o índice agrupado
+##### How Secondary Indexes Relate to the Clustered Index
 
-Os índices que não são o índice agrupado são conhecidos como índices secundários. No `InnoDB`, cada registro em um índice secundário contém as colunas da chave primária da linha, além das colunas especificadas para o índice secundário. O `InnoDB` usa esse valor da chave primária para procurar a linha no índice agrupado.
+Indexes other than the clustered index are known as secondary indexes. In `InnoDB`, each record in a secondary index contains the primary key columns for the row, as well as the columns specified for the secondary index. `InnoDB` uses this primary key value to search for the row in the clustered index.
 
-Se a chave primária for longa, os índices secundários ocuparão mais espaço, portanto, é vantajoso ter uma chave primária curta.
+If the primary key is long, the secondary indexes use more space, so it is advantageous to have a short primary key.
 
-Para obter orientações sobre como aproveitar os índices agrupados e secundários do InnoDB, consulte a Seção 8.3, “Otimização e índices”.
+For guidelines to take advantage of `InnoDB` clustered and secondary indexes, see Section 8.3, “Optimization and Indexes”.

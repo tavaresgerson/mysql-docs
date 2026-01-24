@@ -1,102 +1,101 @@
-### 12.9.9 Plugin do Analizador de Texto Completo MeCab
+### 12.9.9 MeCab Full-Text Parser Plugin
 
-O analisador de texto completo MySQL integrado usa o espaço em branco entre as palavras como delimitador para determinar onde as palavras começam e terminam, o que é uma limitação ao trabalhar com idiomas ideográficos que não usam delimitadores de palavras. Para resolver essa limitação para o japonês, o MySQL fornece um plugin de analisador de texto completo MeCab. O plugin de analisador de texto completo MeCab é suportado para uso com `InnoDB` e `MyISAM`.
+The built-in MySQL full-text parser uses the white space between words as a delimiter to determine where words begin and end, which is a limitation when working with ideographic languages that do not use word delimiters. To address this limitation for Japanese, MySQL provides a MeCab full-text parser plugin. The MeCab full-text parser plugin is supported for use with `InnoDB` and `MyISAM`.
 
-Nota
+Note
 
-O MySQL também fornece um plugin de analisador de texto completo ngram que suporta o japonês. Para mais informações, consulte a Seção 12.9.8, “Analisador de Texto Completo ngram”.
+MySQL also provides an ngram full-text parser plugin that supports Japanese. For more information, see Section 12.9.8, “ngram Full-Text Parser”.
 
-O plugin de analisador de texto completo MeCab é um plugin de analisador de texto completo para japonês que tokeniza uma sequência de texto em palavras significativas. Por exemplo, o MeCab tokeniza “データベース管理” (“Gestão de Bancos de Dados”) em “データベース” (“Banco de Dados”) e “管理” (“Gestão”). Em comparação, o analisador de texto completo ngram tokeniza o texto em uma sequência contínua de *`n`* caracteres, onde *`n`* representa um número entre 1 e 10.
+The MeCab full-text parser plugin is a full-text parser plugin for Japanese that tokenizes a sequence of text into meaningful words. For example, MeCab tokenizes “データベース管理” (“Database Management”) into “データベース” (“Database”) and “管理” (“Management”). By comparison, the ngram full-text parser tokenizes text into a contiguous sequence of *`n`* characters, where *`n`* represents a number between 1 and 10.
 
-Além de tokenizar o texto em palavras significativas, os índices do MeCab são geralmente menores que os índices de ngram, e as pesquisas de texto completo do MeCab são geralmente mais rápidas. Uma desvantagem é que pode levar mais tempo para o analisador de texto completo do MeCab tokenizar documentos, em comparação com o analisador de texto completo de ngram.
+In addition to tokenizing text into meaningful words, MeCab indexes are typically smaller than ngram indexes, and MeCab full-text searches are generally faster. One drawback is that it may take longer for the MeCab full-text parser to tokenize documents, compared to the ngram full-text parser.
 
-A sintaxe de pesquisa de texto completo descrita na Seção 12.9, “Funções de Pesquisa de Texto Completo”, aplica-se ao plugin de analisador MeCab. As diferenças no comportamento de análise são descritas nesta seção. As opções de configuração relacionadas ao texto completo também são aplicáveis.
+The full-text search syntax described in Section 12.9, “Full-Text Search Functions” applies to the MeCab parser plugin. Differences in parsing behavior are described in this section. Full-text related configuration options are also applicable.
 
-Para obter informações adicionais sobre o analisador MeCab, consulte o projeto MeCab: Yet Another Part-of-Speech and Morphological Analyzer no Github.
+For additional information about the MeCab parser, refer to the MeCab: Yet Another Part-of-Speech and Morphological Analyzer project on Github.
 
-#### Instalando o Plugin do Parser MeCab
+#### Installing the MeCab Parser Plugin
 
-O plugin de analisador MeCab requer `mecab` e `mecab-ipadic`.
+The MeCab parser plugin requires `mecab` and `mecab-ipadic`.
 
-Nas plataformas Fedora, Debian e Ubuntu suportadas (exceto o Ubuntu 12.04, onde a versão do sistema `mecab` é muito antiga), o MySQL vincula dinamicamente à instalação do sistema `mecab` se ela estiver instalada no local padrão. Em outras plataformas Unix-like suportadas, o `libmecab.so` é vinculado staticamente no `libpluginmecab.so`, que está localizado no diretório do plugin MySQL. O `mecab-ipadic` está incluído nos binários do MySQL e está localizado em `MYSQL_HOME\lib\mecab`.
+On supported Fedora, Debian and Ubuntu platforms (except Ubuntu 12.04 where the system `mecab` version is too old), MySQL dynamically links to the system `mecab` installation if it is installed to the default location. On other supported Unix-like platforms, `libmecab.so` is statically linked in `libpluginmecab.so`, which is located in the MySQL plugin directory. `mecab-ipadic` is included in MySQL binaries and is located in `MYSQL_HOME\lib\mecab`.
 
-Você pode instalar `mecab` e `mecab-ipadic` usando um utilitário de gerenciamento de pacotes nativo (no Fedora, Debian e Ubuntu), ou você pode construir `mecab` e `mecab-ipadic` a partir da fonte. Para obter informações sobre como instalar `mecab` e `mecab-ipadic` usando um utilitário de gerenciamento de pacotes nativo, consulte "Instalando MeCab a partir de uma distribuição binária (opcional)"). Se você quiser construir `mecab` e `mecab-ipadic` a partir da fonte, consulte "Construindo MeCab a partir da fonte (opcional)").
+You can install `mecab` and `mecab-ipadic` using a native package management utility (on Fedora, Debian, and Ubuntu), or you can build `mecab` and `mecab-ipadic` from source. For information about installing `mecab` and `mecab-ipadic` using a native package management utility, see Installing MeCab From a Binary Distribution (Optional)"). If you want to build `mecab` and `mecab-ipadic` from source, see Building MeCab From Source (Optional)").
 
-No Windows, o `libmecab.dll` está localizado no diretório `bin` do MySQL. O `mecab-ipadic` está localizado em `MYSQL_HOME/lib/mecab`.
+On Windows, `libmecab.dll` is found in the MySQL `bin` directory. `mecab-ipadic` is located in `MYSQL_HOME/lib/mecab`.
 
-Para instalar e configurar o plugin do analisador MeCab, siga os passos abaixo:
+To install and configure the MeCab parser plugin, perform the following steps:
 
-1. No arquivo de configuração do MySQL, defina a opção de configuração `mecab_rc_file` para o local do arquivo de configuração `mecabrc`, que é o arquivo de configuração do MeCab. Se você estiver usando o pacote MeCab distribuído com o MySQL, o arquivo `mecabrc` está localizado em `MYSQL_HOME/lib/mecab/etc/`.
+1. In the MySQL configuration file, set the `mecab_rc_file` configuration option to the location of the `mecabrc` configuration file, which is the configuration file for MeCab. If you are using the MeCab package distributed with MySQL, the `mecabrc` file is located in `MYSQL_HOME/lib/mecab/etc/`.
 
    ```sql
    [mysqld]
    loose-mecab-rc-file=MYSQL_HOME/lib/mecab/etc/mecabrc
    ```
 
-   O prefixo `loose` é um modificador de opção. A opção `mecab_rc_file` não é reconhecida pelo MySQL até que o plugin do analisador MeCaB seja instalado, mas ele deve ser definido antes de tentar instalar o plugin do analisador MeCaB. O prefixo `loose` permite que você reinicie o MySQL sem encontrar um erro devido a uma variável não reconhecida.
+   The `loose` prefix is an option modifier. The `mecab_rc_file` option is not recognized by MySQL until the MeCaB parser plugin is installed but it must be set before attempting to install the MeCaB parser plugin. The `loose` prefix allows you restart MySQL without encountering an error due to an unrecognized variable.
 
-   Se você usa sua própria instalação do MeCab ou compila o MeCab a partir da fonte, o local do arquivo de configuração `mecabrc` pode ser diferente.
+   If you use your own MeCab installation, or build MeCab from source, the location of the `mecabrc` configuration file may differ.
 
-   Para obter informações sobre o arquivo de configuração do MySQL e sua localização, consulte a Seção 4.2.2.2, “Usando arquivos de opção”.
+   For information about the MySQL configuration file and its location, see Section 4.2.2.2, “Using Option Files”.
 
-2. Além disso, no arquivo de configuração do MySQL, defina o tamanho mínimo do token para 1 ou 2, que são os valores recomendados para uso com o analisador MeCab. Para as tabelas `InnoDB`, o tamanho mínimo do token é definido pela opção de configuração `innodb_ft_min_token_size`, que tem um valor padrão de 3. Para as tabelas `MyISAM`, o tamanho mínimo do token é definido por `ft_min_word_len`, que tem um valor padrão de 4.
+2. Also in the MySQL configuration file, set the minimum token size to 1 or 2, which are the values recommended for use with the MeCab parser. For `InnoDB` tables, minimum token size is defined by the `innodb_ft_min_token_size` configuration option, which has a default value of 3. For `MyISAM` tables, minimum token size is defined by `ft_min_word_len`, which has a default value of 4.
 
    ```sql
    [mysqld]
    innodb_ft_min_token_size=1
    ```
 
-3. Modifique o arquivo de configuração `mecabrc` para especificar o dicionário que você deseja usar. O pacote `mecab-ipadic` distribuído com os binários do MySQL inclui três dicionários (`ipadic_euc-jp`, `ipadic_sjis` e `ipadic_utf-8`). O arquivo de configuração `mecabrc` incluído com o MySQL contém uma entrada semelhante à seguinte:
+3. Modify the `mecabrc` configuration file to specify the dictionary you want to use. The `mecab-ipadic` package distributed with MySQL binaries includes three dictionaries (`ipadic_euc-jp`, `ipadic_sjis`, and `ipadic_utf-8`). The `mecabrc` configuration file packaged with MySQL contains and entry similar to the following:
 
    ```sql
    dicdir =  /path/to/mysql/lib/mecab/lib/mecab/dic/ipadic_euc-jp
    ```
 
-   Para usar o dicionário `ipadic_utf-8`, por exemplo, modifique a entrada da seguinte forma:
+   To use the `ipadic_utf-8` dictionary, for example, modify the entry as follows:
 
    ```sql
    dicdir=MYSQL_HOME/lib/mecab/dic/ipadic_utf-8
    ```
 
-   Se você estiver usando sua própria instalação do MeCab ou construiu o MeCab a partir do código-fonte, a entrada padrão `dicdir` no arquivo `mecabrc` difere, assim como os dicionários e sua localização.
+   If you are using your own MeCab installation or have built MeCab from source, the default `dicdir` entry in the `mecabrc` file differs, as do the dictionaries and their location.
 
-   Nota
+   Note
 
-   Depois que o plugin do analisador MeCab é instalado, você pode usar a variável de status `mecab_charset` para visualizar o conjunto de caracteres usado com o MeCab. Os três dicionários do MeCab fornecidos com o suporte binário do MySQL suportam os seguintes conjuntos de caracteres.
+   After the MeCab parser plugin is installed, you can use the `mecab_charset` status variable to view the character set used with MeCab. The three MeCab dictionaries provided with the MySQL binary support the following character sets.
 
-   - O dicionário `ipadic_euc-jp` suporta os conjuntos de caracteres `ujis` e `eucjpms`.
+   * The `ipadic_euc-jp` dictionary supports the `ujis` and `eucjpms` character sets.
 
-   - O dicionário `ipadic_sjis` suporta os conjuntos de caracteres `sjis` e `cp932`.
+   * The `ipadic_sjis` dictionary supports the `sjis` and `cp932` character sets.
 
-   - O dicionário `ipadic_utf-8` suporta os conjuntos de caracteres `utf8` e `utf8mb4`.
+   * The `ipadic_utf-8` dictionary supports the `utf8` and `utf8mb4` character sets.
 
-   `mecab_charset` apenas relata o primeiro conjunto de caracteres suportado. Por exemplo, o dicionário `ipadic_utf-8` suporta tanto `utf8` quanto `utf8mb4`. `mecab_charset` sempre relata `utf8` quando este dicionário está em uso.
+   `mecab_charset` only reports the first supported character set. For example, the `ipadic_utf-8` dictionary supports both `utf8` and `utf8mb4`. `mecab_charset` always reports `utf8` when this dictionary is in use.
 
-4. Reinicie o MySQL.
+4. Restart MySQL.
+5. Install the MeCab parser plugin:
 
-5. Instale o plugin do analisador MeCab:
-
-   O plugin analisador MeCab é instalado usando `INSTALL PLUGIN`. O nome do plugin é `mecab` e o nome da biblioteca compartilhada é `libpluginmecab.so`. Para obter informações adicionais sobre a instalação de plugins, consulte a Seção 5.5.1, “Instalando e Desinstalando Plugins”.
+   The MeCab parser plugin is installed using `INSTALL PLUGIN`. The plugin name is `mecab`, and the shared library name is `libpluginmecab.so`. For additional information about installing plugins, see Section 5.5.1, “Installing and Uninstalling Plugins”.
 
    ```sql
    INSTALL PLUGIN mecab SONAME 'libpluginmecab.so';
    ```
 
-   Uma vez instalado, o plugin de analisador MeCab é carregado a cada reinício normal do MySQL.
+   Once installed, the MeCab parser plugin loads at every normal MySQL restart.
 
-6. Verifique se o plugin do analisador MeCab está carregado usando a instrução `SHOW PLUGINS`.
+6. Verify that the MeCab parser plugin is loaded using the `SHOW PLUGINS` statement.
 
    ```sql
    mysql> SHOW PLUGINS;
    ```
 
-   Um plugin `mecab` deve aparecer na lista de plugins.
+   A `mecab` plugin should appear in the list of plugins.
 
-#### Criando um índice FULLTEXT que usa o Parser MeCab
+#### Creating a FULLTEXT Index that uses the MeCab Parser
 
-Para criar um índice `FULLTEXT` que use o analisador mecab, especifique `WITH PARSER ngram` com `CREATE TABLE`, `ALTER TABLE` ou `CREATE INDEX`.
+To create a `FULLTEXT` index that uses the mecab parser, specify `WITH PARSER ngram` with `CREATE TABLE`, `ALTER TABLE`, or `CREATE INDEX`.
 
-Este exemplo demonstra como criar uma tabela com um índice `FULLTEXT` do `mecab`, inserir dados de exemplo e visualizar dados tokenizados na tabela do esquema de informações `INNODB_FT_INDEX_CACHE`:
+This example demonstrates creating a table with a `mecab` `FULLTEXT` index, inserting sample data, and viewing tokenized data in the Information Schema `INNODB_FT_INDEX_CACHE` table:
 
 ```sql
 mysql> USE test;
@@ -119,7 +118,7 @@ mysql> SET GLOBAL innodb_ft_aux_table="test/articles";
 mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_FT_INDEX_CACHE ORDER BY doc_id, position;
 ```
 
-Para adicionar um índice `FULLTEXT` a uma tabela existente, você pode usar `ALTER TABLE` ou `CREATE INDEX`. Por exemplo:
+To add a `FULLTEXT` index to an existing table, you can use `ALTER TABLE` or `CREATE INDEX`. For example:
 
 ```sql
 CREATE TABLE articles (
@@ -135,66 +134,66 @@ ALTER TABLE articles ADD FULLTEXT INDEX ft_index (title,body) WITH PARSER mecab;
 CREATE FULLTEXT INDEX ft_index ON articles (title,body) WITH PARSER mecab;
 ```
 
-#### Manipulação de Espaço do Parser MeCab
+#### MeCab Parser Space Handling
 
-O analisador MeCab usa espaços como separadores nas cadeias de caracteres de consulta. Por exemplo, o analisador MeCab tokeniza データベース管理 como データベース e 管理.
+The MeCab parser uses spaces as separators in query strings. For example, the MeCab parser tokenizes データベース管理 as データベース and 管理.
 
-#### Tratamento de palavras-chave de parada do MeCab Parser
+#### MeCab Parser Stopword Handling
 
-Por padrão, o analisador MeCab usa a lista de palavras-chave padrão, que contém uma lista curta de palavras-chave em inglês. Para uma lista de palavras-chave aplicável ao japonês, você deve criar a sua própria. Para obter informações sobre como criar listas de palavras-chave, consulte a Seção 12.9.4, “Palavras-chave de Texto Completo”.
+By default, the MeCab parser uses the default stopword list, which contains a short list of English stopwords. For a stopword list applicable to Japanese, you must create your own. For information about creating stopword lists, see Section 12.9.4, “Full-Text Stopwords”.
 
-#### Busca de termos pelo Parser MeCab
+#### MeCab Parser Term Search
 
-Para a pesquisa no modo de linguagem natural, o termo de busca é convertido em uma união de tokens. Por exemplo, データベース管理 é convertido em データベース 管理.
+For natural language mode search, the search term is converted to a union of tokens. For example, データベース管理 is converted to データベース 管理.
 
 ```sql
 SELECT COUNT(*) FROM articles WHERE MATCH(title,body) AGAINST('データベース管理' IN NATURAL LANGUAGE MODE);
 ```
 
-Para a pesquisa no modo booleano, o termo de pesquisa é convertido em uma frase de pesquisa. Por exemplo, データベース管理 é convertido em データベース 管理.
+For boolean mode search, the search term is converted to a search phrase. For example, データベース管理 is converted to データベース 管理.
 
 ```sql
 SELECT COUNT(*) FROM articles WHERE MATCH(title,body) AGAINST('データベース管理' IN BOOLEAN MODE);
 ```
 
-#### Pesquisas com caracteres especiais no Parser MeCab
+#### MeCab Parser Wildcard Search
 
-Os termos de pesquisa com asterisco não são tokenizados. Uma pesquisa em "banco de dados gerenciamento\*" é realizada no prefixo, "banco de dados gerenciamento".
+Wildcard search terms are not tokenized. A search on データベース管理\* is performed on the prefix, データベース管理.
 
 ```sql
 SELECT COUNT(*) FROM articles WHERE MATCH(title,body) AGAINST('データベース*' IN BOOLEAN MODE);
 ```
 
-#### Pesquisador de frases do MeCab Parser
+#### MeCab Parser Phrase Search
 
-As frases são tokenizadas. Por exemplo, "データベース管理" é tokenizado como "GESTÃO DE BANCO DE DADOS".
+Phrases are tokenized. For example, データベース管理 is tokenized as データベース 管理.
 
 ```sql
 SELECT COUNT(*) FROM articles WHERE MATCH(title,body) AGAINST('"データベース管理"' IN BOOLEAN MODE);
 ```
 
-#### Instalando o MeCab a partir de uma distribuição binária (opcional)
+#### Installing MeCab From a Binary Distribution (Optional)
 
-Esta seção descreve como instalar o `mecab` e o `mecab-ipadic` a partir de uma distribuição binária usando um utilitário de gerenciamento de pacotes nativo. Por exemplo, no Fedora, você pode usar o Yum para realizar a instalação:
+This section describes how to install `mecab` and `mecab-ipadic` from a binary distribution using a native package management utility. For example, on Fedora, you can use Yum to perform the installation:
 
 ```sql
 yum mecab-devel
 ```
 
-No Debian ou Ubuntu, você pode realizar uma instalação do APT:
+On Debian or Ubuntu, you can perform an APT installation:
 
 ```sql
 apt-get install mecab
 apt-get install mecab-ipadic
 ```
 
-#### Instalando o MeCab a partir da fonte (opcional)
+#### Installing MeCab From Source (Optional)
 
-Se você quiser construir `mecab` e `mecab-ipadic` a partir do código-fonte, as etapas básicas de instalação estão fornecidas abaixo. Para obter informações adicionais, consulte a documentação do MeCab.
+If you want to build `mecab` and `mecab-ipadic` from source, basic installation steps are provided below. For additional information, refer to the MeCab documentation.
 
-1. Baixe os pacotes tar.gz para `mecab` e `mecab-ipadic` a partir de <http://taku910.github.io/mecab/#download>. Em fevereiro de 2016, os pacotes mais recentes disponíveis são `mecab-0.996.tar.gz` e `mecab-ipadic-2.7.0-20070801.tar.gz`.
+1. Download the tar.gz packages for `mecab` and `mecab-ipadic` from <http://taku910.github.io/mecab/#download>. As of February, 2016, the latest available packages are `mecab-0.996.tar.gz` and `mecab-ipadic-2.7.0-20070801.tar.gz`.
 
-2. Instale `mecab`:
+2. Install `mecab`:
 
    ```sql
    tar zxfv mecab-0.996.tar
@@ -206,7 +205,7 @@ Se você quiser construir `mecab` e `mecab-ipadic` a partir do código-fonte, as
    make install
    ```
 
-3. Instale `mecab-ipadic`:
+3. Install `mecab-ipadic`:
 
    ```sql
    tar zxfv mecab-ipadic-2.7.0-20070801.tar
@@ -217,13 +216,13 @@ Se você quiser construir `mecab` e `mecab-ipadic` a partir do código-fonte, as
    make install
    ```
 
-4. Compile o MySQL usando a opção `WITH_MECAB` do CMake. Defina a opção `WITH_MECAB` para `system` se você instalou `mecab` e `mecab-ipadic` no local padrão.
+4. Compile MySQL using the `WITH_MECAB` CMake option. Set the `WITH_MECAB` option to `system` if you have installed `mecab` and `mecab-ipadic` to the default location.
 
    ```sql
    -DWITH_MECAB=system
    ```
 
-   Se você definiu um diretório de instalação personalizado, defina `WITH_MECAB` para o diretório personalizado. Por exemplo:
+   If you defined a custom installation directory, set `WITH_MECAB` to the custom directory. For example:
 
    ```sql
    -DWITH_MECAB=/path/to/mecab

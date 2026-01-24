@@ -1,51 +1,50 @@
-#### 13.1.18.1 Arquivos criados por CREATE TABLE
+#### 13.1.18.1 Files Created by CREATE TABLE
 
-MySQL representa cada tabela por um arquivo de formato `.frm` (definição) no diretório do banco de dados. O mecanismo de armazenamento da tabela pode criar outros arquivos também.
+MySQL represents each table by an `.frm` table format (definition) file in the database directory. The storage engine for the table might create other files as well.
 
-Para uma tabela `InnoDB` criada em um espaço de tabelas por arquivo ou espaço de tabelas geral, os dados da tabela e os índices associados são armazenados em um arquivo .ibd no diretório do banco de dados. Quando uma tabela `InnoDB` é criada no espaço de tabelas do sistema, os dados da tabela e os índices são armazenados nos arquivos ibdata\* que representam o espaço de tabelas do sistema. A opção `TABLESPACE` pode ser usada para colocar uma tabela em um espaço de tabelas por arquivo, espaço de tabelas geral ou espaço de tabelas do sistema, independentemente da configuração da variável de sistema `innodb_file_per_table` (innodb-parameters.html#sysvar_innodb_file_per_table).
+For an `InnoDB` table created in a file-per-table tablespace or general tablespace, table data and associated indexes are stored in a [.ibd file](glossary.html#glos_ibd_file ".ibd file") in the database directory. When an `InnoDB` table is created in the system tablespace, table data and indexes are stored in the [ibdata\* files](glossary.html#glos_ibdata_file "ibdata file") that represent the system tablespace. The [`innodb_file_per_table`](innodb-parameters.html#sysvar_innodb_file_per_table) option controls whether tables are created in file-per-table tablespaces or the system tablespace, by default. The `TABLESPACE` option can be used to place a table in a file-per-table tablespace, general tablespace, or the system tablespace, regardless of the [`innodb_file_per_table`](innodb-parameters.html#sysvar_innodb_file_per_table) setting.
 
-Para as tabelas `MyISAM`, o mecanismo de armazenamento cria arquivos de dados e índices. Assim, para cada tabela `MyISAM *` `tbl_name *`, existem três arquivos no disco.
+For `MyISAM` tables, the storage engine creates data and index files. Thus, for each `MyISAM` table *`tbl_name`*, there are three disk files.
 
-<table summary="O propósito dos arquivos de disco da tabela MyISAM tbl_name."><thead><tr> <th>Arquivo</th> <th>Objetivo</th> </tr></thead><tbody><tr> <td><code><em><code>tbl_name</code></em>.frm</code></td> <td>Arquivo de formato de tabela (definição)</td> </tr><tr> <td><code><em><code>tbl_name</code></em>.MYD</code></td> <td>Arquivo de dados</td> </tr><tr> <td><code><em><code>tbl_name</code></em>.MYI</code></td> <td>Arquivo de índice</td> </tr></tbody></table>
+<table summary="The purpose of MyISAM table tbl_name disk files."><thead><tr> <th>File</th> <th>Purpose</th> </tr></thead><tbody><tr> <td><code><em><code>tbl_name</code></em>.frm</code></td> <td>Table format (definition) file</td> </tr><tr> <td><code><em><code>tbl_name</code></em>.MYD</code></td> <td>Data file</td> </tr><tr> <td><code><em><code>tbl_name</code></em>.MYI</code></td> <td>Index file</td> </tr></tbody></table>
 
-[Capítulo 15, *Motores de Armazenamento Alternativos*] (storage-engines.html), descreve quais arquivos cada motor de armazenamento cria para representar tabelas. Se o nome de uma tabela contiver caracteres especiais, os nomes dos arquivos da tabela contêm versões codificadas desses caracteres, conforme descrito em Seção 9.2.4, “Mapeamento de Identificadores a Nomes de Arquivos”.
+[Chapter 15, *Alternative Storage Engines*](storage-engines.html "Chapter 15 Alternative Storage Engines"), describes what files each storage engine creates to represent tables. If a table name contains special characters, the names for the table files contain encoded versions of those characters as described in [Section 9.2.4, “Mapping of Identifiers to File Names”](identifier-mapping.html "9.2.4 Mapping of Identifiers to File Names").
 
-##### Limitações impostas pela estrutura do arquivo .frm
+##### Limits Imposed by .frm File Structure
 
-Como descrito anteriormente, cada tabela tem um arquivo `.frm` que contém a definição da tabela. O servidor usa a seguinte expressão para verificar algumas das informações da tabela armazenadas no arquivo contra um limite máximo de 64 KB:
+As described previously, each table has an `.frm` file that contains the table definition. The server uses the following expression to check some of the table information stored in the file against an upper limit of 64KB:
 
 ```sql
 if (info_length+(ulong) create_fields.elements*FCOMP+288+
     n_length+int_length+com_length > 65535L || int_count > 255)
 ```
 
-A porção da informação armazenada no arquivo `.frm` que é verificada contra a expressão não pode ultrapassar o limite de 64 KB, portanto, se a definição da tabela atingir esse tamanho, não será possível adicionar mais colunas.
+The portion of the information stored in the `.frm` file that is checked against the expression cannot grow beyond the 64KB limit, so if the table definition reaches this size, no more columns can be added.
 
-Os fatores relevantes na expressão são:
+The relevant factors in the expression are:
 
-- `info_length` é o espaço necessário para "ecrans". Isso está relacionado à herança Unireg do MySQL.
+* `info_length` is space needed for “screens.” This is related to MySQL's Unireg heritage.
 
-- `create_fields.elements` é o número de colunas.
+* `create_fields.elements` is the number of columns.
 
-- `FCOMP` é 17.
+* `FCOMP` is 17.
+* `n_length` is the total length of all column names, including one byte per name as a separator.
 
-- `n_length` é o comprimento total de todos os nomes de coluna, incluindo um byte por nome como separador.
+* `int_length` is related to the list of values for [`ENUM`](enum.html "11.3.5 The ENUM Type") and [`SET`](set.html "11.3.6 The SET Type") columns. In this context, “int” does not mean “integer.” It means “interval,” a term that refers collectively to [`ENUM`](enum.html "11.3.5 The ENUM Type") and [`SET`](set.html "11.3.6 The SET Type") columns.
 
-- `int_length` está relacionado à lista de valores das colunas `ENUM` (enum.html) e `SET` (set.html). Nesse contexto, “int” não significa “inteiro”. Significa “intervalo”, um termo que se refere coletivamente às colunas `ENUM` (enum.html) e `SET` (set.html).
+* `int_count` is the number of unique [`ENUM`](enum.html "11.3.5 The ENUM Type") and [`SET`](set.html "11.3.6 The SET Type") definitions.
 
-- `int_count` é o número de definições únicas de `ENUM` e `SET`.
+* `com_length` is the total length of column comments.
 
-- `com_length` é o comprimento total dos comentários da coluna.
+The expression just described has several implications for permitted table definitions:
 
-A expressão descrita acima tem várias implicações para as definições de tabelas permitidas:
+* Using long column names can reduce the maximum number of columns, as can the inclusion of [`ENUM`](enum.html "11.3.5 The ENUM Type") or [`SET`](set.html "11.3.6 The SET Type") columns, or use of column comments.
 
-- O uso de nomes de colunas longos pode reduzir o número máximo de colunas, assim como a inclusão de colunas `[ENUM]` (enum.html) ou `[SET]` (set.html), ou o uso de comentários nas colunas.
-
-- Uma tabela não pode ter mais de 255 definições únicas de `ENUM` e `SET`. Colunas com listas de elementos idênticas são consideradas iguais para este limite. Por exemplo, se uma tabela contiver estas duas colunas, elas contam como uma (e não duas) para este limite, porque as definições são idênticas:
+* A table can have no more than 255 unique [`ENUM`](enum.html "11.3.5 The ENUM Type") and [`SET`](set.html "11.3.6 The SET Type") definitions. Columns with identical element lists are considered the same against this limt. For example, if a table contains these two columns, they count as one (not two) toward this limit because the definitions are identical:
 
   ```sql
   e1 ENUM('a','b','c')
   e2 ENUM('a','b','c')
   ```
 
-- A soma da extensão dos nomes dos elementos nas definições únicas de `ENUM` e `SET` conta para o limite de 64 KB, então, embora o limite teórico de número de elementos em uma coluna específica de `ENUM` seja de 65.535, o limite prático é menor que 3000.
+* The sum of the length of element names in the unique [`ENUM`](enum.html "11.3.5 The ENUM Type") and [`SET`](set.html "11.3.6 The SET Type") definitions counts toward the 64KB limit, so although the theoretical limit on number of elements in a given [`ENUM`](enum.html "11.3.5 The ENUM Type") column is 65,535, the practical limit is less than 3000.

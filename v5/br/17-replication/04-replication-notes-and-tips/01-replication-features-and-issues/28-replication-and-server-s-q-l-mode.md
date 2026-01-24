@@ -1,7 +1,7 @@
-#### 16.4.1.28 Modo de replicação e servidor SQL
+#### 16.4.1.28 Replication and Server SQL Mode
 
-Usar diferentes configurações de modo SQL do servidor na fonte e na replica pode fazer com que as mesmas instruções de inserção sejam tratadas de maneira diferente na fonte e na replica, levando à divergência entre elas. Para obter os melhores resultados, você deve sempre usar o mesmo modo SQL do servidor na fonte e na replica. Esse conselho se aplica se você estiver usando replicação baseada em instruções ou baseada em linhas.
+Using different server SQL mode settings on the source and the replica may cause the same [`INSERT`](insert.html "13.2.5 INSERT Statement") statements to be handled differently on the source and the replica, leading the source and replica to diverge. For best results, you should always use the same server SQL mode on the source and on the replica. This advice applies whether you are using statement-based or row-based replication.
 
-Se você estiver replicando tabelas particionadas, usar diferentes modos SQL na fonte e na replica provavelmente causará problemas. No mínimo, isso provavelmente fará com que a distribuição dos dados entre as partições seja diferente nas cópias da fonte e da replica de uma determinada tabela. Isso também pode fazer com que as inserções em tabelas particionadas que tenham sucesso na fonte falhem na replica.
+If you are replicating partitioned tables, using different SQL modes on the source and the replica is likely to cause issues. At a minimum, this is likely to cause the distribution of data among partitions to be different in the source's and replica's copies of a given table. It may also cause inserts into partitioned tables that succeed on the source to fail on the replica.
 
-Para obter mais informações, consulte Seção 5.1.10, “Modos SQL do Servidor”. Em particular, consulte Alterações no Modo SQL no MySQL 5.7, que descreve as alterações no MySQL 5.7, para que você possa avaliar se suas aplicações estão afetadas.
+For more information, see [Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes"). In particular, see [SQL Mode Changes in MySQL 5.7](sql-mode.html#sql-mode-changes "SQL Mode Changes in MySQL 5.7"), which describes changes in MySQL 5.7, so that you can assess whether your applications are affected.

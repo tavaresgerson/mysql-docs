@@ -1,59 +1,56 @@
-#### 17.9.7.3 Controle de fluxo
+#### 17.9.7.3 Flow Control
 
-A replicação em grupo garante que uma transação só seja confirmada após a maioria dos membros de um grupo a ter recebido e concordado com a ordem relativa entre todas as transações enviadas simultaneamente.
+Group Replication ensures that a transaction only commits after a majority of the members in a group have received it and agreed on the relative order between all transactions that were sent concurrently.
 
-Essa abordagem funciona bem se o número total de escritas no grupo não exceder a capacidade de escrita de qualquer membro do grupo. Se isso acontecer e alguns dos membros tiverem um desempenho de escrita menor do que outros, especialmente menor do que os membros que escrevem, esses membros podem começar a ficar para trás dos escritores.
+This approach works well if the total number of writes to the group does not exceed the write capacity of any member in the group. If it does and some of the members have less write throughput than others, particularly less than the writer members, those members can start lagging behind of the writers.
 
-Ter alguns membros atrasados em relação ao grupo traz algumas consequências problemáticas, especialmente, as leituras desses membros podem externalizar dados muito antigos. Dependendo da razão pela qual o membro está atrasado, outros membros do grupo podem ter que salvar mais ou menos contexto de replicação para poder atender a solicitações potenciais de transferência de dados do membro lento.
+Having some members lagging behind the group brings some problematic consequences, particularly, the reads on such members may externalize very old data. Depending on why the member is lagging behind, other members in the group may have to save more or less replication context to be able to fulfil potential data transfer requests from the slow member.
 
-No entanto, há um mecanismo no protocolo de replicação para evitar que haja uma distância excessiva, em termos de transações aplicadas, entre membros rápidos e lentos. Isso é conhecido como mecanismo de controle de fluxo. Ele tenta atender a vários objetivos:
+There is however a mechanism in the replication protocol to avoid having too much distance, in terms of transactions applied, between fast and slow members. This is known as the flow control mechanism. It tries to address several goals:
 
-1. para manter os membros próximos o suficiente para tornar o buffer e a des-sincronização entre os membros um pequeno problema;
+1. to keep the members close enough to make buffering and de-synchronization between members a small problem;
 
-2. adaptar-se rapidamente às condições em mudança, como diferentes cargas de trabalho ou mais escritores no grupo;
+2. to adapt quickly to changing conditions like different workloads or more writers in the group;
 
-3. para dar a cada membro uma parte justa da capacidade de escrita disponível;
+3. to give each member a fair share of the available write capacity;
 
-4. não reduzir o desempenho mais do que o estritamente necessário para evitar o desperdício de recursos.
+4. to not reduce throughput more than strictly necessary to avoid wasting resources.
 
-Dada a estrutura da Replicação em Grupo, a decisão de ativar ou não o controle de fluxo pode ser tomada considerando duas filas de trabalho: *(i)* a fila de *certificação* e *(ii)* a fila de *aplicador* do log binário. Sempre que o tamanho de uma dessas filas exceder o limite definido pelo usuário, o mecanismo de controle de fluxo é acionado. Configure apenas: *(i)* se o controle de fluxo deve ser feito no nível do certificador ou do aplicador, ou em ambos; e *(ii)* qual é o limite para cada fila.
+Given the design of Group Replication, the decision whether to throttle or not may be decided taking into account two work queues: *(i)* the *certification* queue; *(ii)* and on the binary log *applier* queue. Whenever the size of one of these queues exceeds the user-defined threshold, the throttling mechanism is triggered. Only configure: *(i)* whether to do flow control at the certifier or at the applier level, or both; and *(ii)* what is the threshold for each queue.
 
-O controle de fluxo depende de dois mecanismos básicos:
+The flow control depends on two basic mechanisms:
 
-1. o monitoramento dos membros para coletar algumas estatísticas sobre o desempenho e o tamanho da fila de todos os membros do grupo para fazer suposições informadas sobre qual é a pressão máxima de escrita que cada membro deve ser submetido;
+1. the monitoring of members to collect some statistics on throughput and queue sizes of all group members to make educated guesses on what is the maximum write pressure each member should be subjected to;
 
-2. o controle dos membros que tentam escrever além de sua parte justa da capacidade disponível em cada momento.
+2. the throttling of members that are trying to write beyond their fair-share of the available capacity at each moment in time.
 
-##### 17.9.7.3.1 Sondas e Estatísticas
+##### 17.9.7.3.1 Probes and Statistics
 
-O mecanismo de monitoramento funciona com cada membro enviando um conjunto de sondas para coletar informações sobre suas filas de trabalho e desempenho. Em seguida, ele propaga essas informações periodicamente para o grupo para compartilhar esses dados com os outros membros.
+The monitoring mechanism works by having each member deploying a set of probes to collect information about its work queues and throughput. It then propagates that information to the group periodically to share that data with the other members.
 
-Essas sondagens estão espalhadas por toda a pilha de plugins e permitem estabelecer métricas, como:
+Such probes are scattered throughout the plugin stack and allow one to establish metrics, such as:
 
-- o tamanho da fila de certificadores;
+* the certifier queue size;
+* the replication applier queue size;
+* the total number of transactions certified;
+* the total number of remote transactions applied in the member;
 
-- tamanho da fila de aplicador de replicação;
+* the total number of local transactions.
 
-- o número total de transações certificadas;
+Once a member receives a message with statistics from another member, it calculates additional metrics regarding how many transactions were certified, applied and locally executed in the last monitoring period.
 
-- o número total de transações remotas aplicadas no membro;
+Monitoring data is shared with others in the group periodically. The monitoring period must be high enough to allow the other members to decide on the current write requests, but low enough that it has minimal impact on group bandwidth. The information is shared every second, and this period is sufficient to address both concerns.
 
-- o número total de transações locais.
+##### 17.9.7.3.2 Group Replication Throttling
 
-Quando um membro recebe uma mensagem com estatísticas de outro membro, ele calcula métricas adicionais sobre quantas transações foram certificadas, aplicadas e executadas localmente no último período de monitoramento.
+Based on the metrics gathered across all servers in the group, a throttling mechanism kicks in and decides whether to limit the rate a member is able to execute/commit new transactions.
 
-Os dados de monitoramento são compartilhados com outros membros do grupo periodicamente. O período de monitoramento deve ser suficientemente longo para permitir que os outros membros decidam sobre as solicitações de escrita atuais, mas suficientemente curto para que tenha um impacto mínimo na largura de banda do grupo. As informações são compartilhadas a cada segundo, e esse período é suficiente para atender a ambas as preocupações.
+Therefore, metrics acquired from all members are the basis for calculating the capacity of each member: if a member has a large queue (for certification or the applier thread), then the capacity to execute new transactions should be close to ones certified or applied in the last period.
 
-##### 17.9.7.3.2 Limitação da replicação em grupo
+The lowest capacity of all the members in the group determines the real capacity of the group, while the number of local transactions determines how many members are writing to it, and, consequently, how many members should that available capacity be shared with.
 
-Com base nas métricas coletadas em todos os servidores do grupo, um mecanismo de controle é ativado e decide se é necessário limitar a taxa na qual um membro pode executar/confirmar novas transações.
+This means that every member has an established write quota based on the available capacity, in other words a number of transactions it can safely issue for the next period. The writer quota is enforced by the throttling mechanism if the queue size of the certifier or the binary log applier exceeds a user defined threshold.
 
-Portanto, as métricas adquiridas de todos os membros são a base para calcular a capacidade de cada membro: se um membro tiver uma fila grande (para certificação ou para o thread de solicitação), então a capacidade de executar novas transações deve estar próxima àquelas certificadas ou aplicadas no último período.
+The quota is reduced by the number of transactions that were delayed in the last period, and then also further reduced by 10% to allow the queue that triggered the problem to reduce its size. In order to avoid large jumps in throughput once the queue size goes beyond the threshold, the throughput is only allowed to grow by the same 10% per period after that.
 
-A capacidade mais baixa de todos os membros do grupo determina a capacidade real do grupo, enquanto o número de transações locais determina quantos membros estão escrevendo nele e, consequentemente, quantos membros essa capacidade disponível deve ser compartilhada.
-
-Isso significa que cada membro tem uma quota de escrita estabelecida com base na capacidade disponível, ou seja, um número de transações que pode emitir com segurança no próximo período. A quota de escritor é aplicada pelo mecanismo de controle se o tamanho da fila do certificador ou do aplicativo do log binário exceder um limite definido pelo usuário.
-
-A cotas são reduzidas com base no número de transações que foram atrasadas no último período, e depois reduzidas em mais 10% para permitir que a fila que causou o problema diminua de tamanho. Para evitar grandes saltos na taxa de processamento assim que o tamanho da fila ultrapassar o limite, a taxa de processamento só pode crescer em mais 10% por período após isso.
-
-O mecanismo atual de controle não penaliza transações abaixo da cotas, mas retarda o término das transações que excedem essa quantidade até o final do período de monitoramento. Como consequência, se a quota for muito pequena para as solicitações de escrita, algumas transações podem ter latências próximas ao período de monitoramento.
+The current throttling mechanism does not penalize transactions below quota, but delays finishing those transactions that exceed it until the end of the monitoring period. As a consequence, if the quota is very small for the write requests issued some transactions may have latencies close to the monitoring period.

@@ -1,6 +1,6 @@
-#### 25.12.16.2 Tabela performance_timers
+#### 25.12.16.2 The performance_timers Table
 
-A tabela `performance_timers` mostra quais temporizadores de evento estão disponíveis:
+The [`performance_timers`](performance-schema-performance-timers-table.html "25.12.16.2 The performance_timers Table") table shows which event timers are available:
 
 ```sql
 mysql> SELECT * FROM performance_schema.performance_timers;
@@ -15,28 +15,28 @@ mysql> SELECT * FROM performance_schema.performance_timers;
 +-------------+-----------------+------------------+----------------+
 ```
 
-Se os valores associados a um nome de temporizador específico forem `NULL`, esse temporizador não é suportado na sua plataforma. As linhas que não contêm `NULL` indicam quais temporizadores você pode usar em `setup_timers`. Para uma explicação sobre como o temporizador de eventos ocorre, consulte Seção 25.4.1, “Temporizador de Eventos do Schema de Desempenho”.
+If the values associated with a given timer name are `NULL`, that timer is not supported on your platform. The rows that do not contain `NULL` indicate which timers you can use in [`setup_timers`](performance-schema-setup-timers-table.html "25.12.2.5 The setup_timers Table"). For an explanation of how event timing occurs, see [Section 25.4.1, “Performance Schema Event Timing”](performance-schema-timing.html "25.4.1 Performance Schema Event Timing").
 
-Nota
+Note
 
-A partir do MySQL 5.7.21, a tabela do Schema de Desempenho `setup_timers` está desatualizada e será removida no MySQL 8.0, assim como a linha `TICKS` na tabela `performance_timers`.
+As of MySQL 5.7.21, the Performance Schema [`setup_timers`](performance-schema-setup-timers-table.html "25.12.2.5 The setup_timers Table") table is deprecated and is removed in MySQL 8.0, as is the `TICKS` row in the [`performance_timers`](performance-schema-performance-timers-table.html "25.12.16.2 The performance_timers Table") table.
 
-A tabela `performance_timers` tem as seguintes colunas:
+The [`performance_timers`](performance-schema-performance-timers-table.html "25.12.16.2 The performance_timers Table") table has these columns:
 
-- `TIMER_NAME`
+* `TIMER_NAME`
 
-  O nome pelo qual se refere ao temporizador ao configurar a tabela `setup_timers`.
+  The name by which to refer to the timer when configuring the [`setup_timers`](performance-schema-setup-timers-table.html "25.12.2.5 The setup_timers Table") table.
 
-- `TIMER_FREQUENCY`
+* `TIMER_FREQUENCY`
 
-  O número de unidades temporizadoras por segundo. Para um temporizador de ciclo, a frequência geralmente está relacionada à velocidade da CPU. Por exemplo, em um sistema com um processador de 2,4 GHz, o `CYCLE` pode estar próximo de 2400000000.
+  The number of timer units per second. For a cycle timer, the frequency is generally related to the CPU speed. For example, on a system with a 2.4GHz processor, the `CYCLE` may be close to 2400000000.
 
-- `TIMER_RESOLUTION`
+* `TIMER_RESOLUTION`
 
-  Indica o número de unidades de temporizador pelas quais os valores do temporizador aumentam. Se um temporizador tiver uma resolução de 10, seu valor aumenta em 10 cada vez.
+  Indicates the number of timer units by which timer values increase. If a timer has a resolution of 10, its value increases by 10 each time.
 
-- `TIMER_OVERHEAD`
+* `TIMER_OVERHEAD`
 
-  O número mínimo de ciclos de overhead para obter um temporizador com o temporizador dado. O Schema de Desempenho determina esse valor ao invocar o temporizador 20 vezes durante a inicialização e selecionar o menor valor. O overhead total é realmente o dobro desse valor porque o instrumentação invoca o temporizador no início e no final de cada evento. O código do temporizador é chamado apenas para eventos temporizados, então esse overhead não se aplica para eventos não temporizados.
+  The minimal number of cycles of overhead to obtain one timing with the given timer. The Performance Schema determines this value by invoking the timer 20 times during initialization and picking the smallest value. The total overhead really is twice this amount because the instrumentation invokes the timer at the start and end of each event. The timer code is called only for timed events, so this overhead does not apply for nontimed events.
 
-A operação `TRUNCATE TABLE` não é permitida para a tabela `performance_timers`.
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is not permitted for the [`performance_timers`](performance-schema-performance-timers-table.html "25.12.16.2 The performance_timers Table") table.

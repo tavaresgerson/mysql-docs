@@ -1,28 +1,28 @@
-### B.3.5 Problemas relacionados ao otimizador
+### B.3.5 Optimizer-Related Issues
 
-O MySQL utiliza um otimizador baseado em custos para determinar a melhor maneira de resolver uma consulta. Em muitos casos, o MySQL pode calcular o melhor plano de consulta possível, mas às vezes o MySQL não tem informações suficientes sobre os dados disponíveis e tem que fazer suposições “educadas” sobre os dados.
+MySQL uses a cost-based optimizer to determine the best way to resolve a query. In many cases, MySQL can calculate the best possible query plan, but sometimes MySQL does not have enough information about the data at hand and has to make “educated” guesses about the data.
 
-Para os casos em que o MySQL não faz a coisa "certa", as ferramentas que você tem disponíveis para ajudar o MySQL são:
+For the cases when MySQL does not do the "right" thing, tools that you have available to help MySQL are:
 
-- Use a instrução [`EXPLAIN`](explain.html) para obter informações sobre como o MySQL processa uma consulta. Para usá-la, basta adicionar a palavra-chave [`EXPLAIN`](explain.html) na frente da sua instrução [`SELECT`](select.html):
+* Use the [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") statement to get information about how MySQL processes a query. To use it, just add the keyword [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") to the front of your [`SELECT`](select.html "13.2.9 SELECT Statement") statement:
 
   ```sql
   mysql> EXPLAIN SELECT * FROM t1, t2 WHERE t1.i = t2.i;
   ```
 
-  [`EXPLAIN`](explain.html) é discutido em mais detalhes na [Seção 13.8.2, "Instrução EXPLAIN"](explain.html).
+  [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") is discussed in more detail in [Section 13.8.2, “EXPLAIN Statement”](explain.html "13.8.2 EXPLAIN Statement").
 
-- Use `ANALYZE TABLE tbl_name` para atualizar as distribuições de chaves da tabela digitalizada. Consulte [Seção 13.7.2.1, “Instrução ANALYZE TABLE”](analyze-table.html).
+* Use `ANALYZE TABLE tbl_name` to update the key distributions for the scanned table. See [Section 13.7.2.1, “ANALYZE TABLE Statement”](analyze-table.html "13.7.2.1 ANALYZE TABLE Statement").
 
-- Use `FORCE INDEX` na tabela digitalizada para informar ao MySQL que as consultas à tabela são muito caras em comparação com o uso do índice fornecido:
+* Use `FORCE INDEX` for the scanned table to tell MySQL that table scans are very expensive compared to using the given index:
 
   ```sql
   SELECT * FROM t1, t2 FORCE INDEX (index_for_column)
   WHERE t1.col_name=t2.col_name;
   ```
 
-  `USE INDEX` e `IGNORE INDEX` também podem ser úteis. Veja [Seção 8.9.4, “Dicas de índice”](index-hints.html).
+  `USE INDEX` and `IGNORE INDEX` may also be useful. See [Section 8.9.4, “Index Hints”](index-hints.html "8.9.4 Index Hints").
 
-- `STRAIGHT_JOIN` global e em nível de tabela. Veja [Seção 13.2.9, “Instrução SELECT”](select.html).
+* Global and table-level `STRAIGHT_JOIN`. See [Section 13.2.9, “SELECT Statement”](select.html "13.2.9 SELECT Statement").
 
-- Você pode ajustar variáveis de sistema globais ou específicas de um thread. Por exemplo, inicie o [**mysqld**](mysqld.html) com a opção [`--max-seeks-for-key=1000`](server-system-variables.html#sysvar_max_seeks_for_key) ou use `SET max_seeks_for_key=1000` para informar ao otimizador que nenhuma varredura de chave causa mais de 1.000 buscas de chave. Veja [Seção 5.1.7, “Variáveis de Sistema do Servidor”](server-system-variables.html).
+* You can tune global or thread-specific system variables. For example, start [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") with the [`--max-seeks-for-key=1000`](server-system-variables.html#sysvar_max_seeks_for_key) option or use `SET max_seeks_for_key=1000` to tell the optimizer to assume that no key scan causes more than 1,000 key seeks. See [Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables").

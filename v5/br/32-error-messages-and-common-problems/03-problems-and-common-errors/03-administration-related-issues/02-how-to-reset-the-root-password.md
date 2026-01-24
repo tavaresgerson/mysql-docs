@@ -1,45 +1,44 @@
-#### B.3.3.2 Como redefinir a senha de root
+#### B.3.3.2 How to Reset the Root Password
 
-Se você nunca tiver atribuído uma senha de `root` para o MySQL, o servidor não exigirá nenhuma senha para se conectar como `root`. No entanto, isso é inseguro. Para obter instruções sobre como atribuir uma senha, consulte [Seção 2.9.4, “Segurança da Conta Inicial do MySQL”](default-privileges.html).
+If you have never assigned a `root` password for MySQL, the server does not require a password at all for connecting as `root`. However, this is insecure. For instructions on assigning a password, see [Section 2.9.4, “Securing the Initial MySQL Account”](default-privileges.html "2.9.4 Securing the Initial MySQL Account").
 
-Se você conhece a senha do `root` e deseja alterá-la, consulte [Seção 13.7.1.1, "Instrução ALTER USER"](alter-user.html) e [Seção 13.7.1.7, "Instrução SET PASSWORD"](set-password.html).
+If you know the `root` password and want to change it, see [Section 13.7.1.1, “ALTER USER Statement”](alter-user.html "13.7.1.1 ALTER USER Statement"), and [Section 13.7.1.7, “SET PASSWORD Statement”](set-password.html "13.7.1.7 SET PASSWORD Statement").
 
-Se você definiu uma senha de `root` anteriormente, mas esqueceu-a, você pode definir uma nova senha. As seções a seguir fornecem instruções para sistemas Windows e Unix e sistemas semelhantes ao Unix, além de instruções genéricas que se aplicam a qualquer sistema.
+If you assigned a `root` password previously but have forgotten it, you can assign a new password. The following sections provide instructions for Windows and Unix and Unix-like systems, as well as generic instructions that apply to any system.
 
-##### B.3.3.2.1. Redefinir a senha de root: Sistemas Windows
+##### B.3.3.2.1 Resetting the Root Password: Windows Systems
 
-No Windows, use o seguinte procedimento para redefinir a senha da conta `'root'@'localhost'` do MySQL. Para alterar a senha de uma conta `root` com uma parte do nome de host diferente, modifique as instruções para usar esse nome de host.
+On Windows, use the following procedure to reset the password for the MySQL `'root'@'localhost'` account. To change the password for a `root` account with a different host name part, modify the instructions to use that host name.
 
-1. Faça login no seu sistema como Administrador.
+1. Log on to your system as Administrator.
+2. Stop the MySQL server if it is running. For a server that is running as a Windows service, go to the Services manager: From the Start menu, select Control Panel, then Administrative Tools, then Services. Find the MySQL service in the list and stop it.
 
-2. Pare o servidor MySQL se ele estiver em execução. Para um servidor que está em execução como um serviço do Windows, vá para o Gerenciador de Serviços: No menu Iniciar, selecione Painel de Controle, depois Ferramentas Administrativas, depois Serviços. Encontre o serviço MySQL na lista e pare-o.
+   If your server is not running as a service, you may need to use the Task Manager to force it to stop.
 
-   Se o seu servidor não estiver rodando como serviço, você pode precisar usar o Gerenciador de Tarefas para forçá-lo a parar.
-
-3. Crie um arquivo de texto contendo a declaração de atribuição de senha em uma única linha. Substitua a senha pela senha que você deseja usar.
+3. Create a text file containing the password-assignment statement on a single line. Replace the password with the password that you want to use.
 
    ```sql
    ALTER USER 'root'@'localhost' IDENTIFIED BY 'MyNewPass';
    ```
 
-4. Salve o arquivo. Este exemplo assume que você nomeia o arquivo como `C:\mysql-init.txt`.
+4. Save the file. This example assumes that you name the file `C:\mysql-init.txt`.
 
-5. Abra uma janela do console para acessar o prompt de comando: No menu Iniciar, selecione Executar e, em seguida, insira **cmd** como o comando a ser executado.
+5. Open a console window to get to the command prompt: From the Start menu, select Run, then enter **cmd** as the command to be run.
 
-6. Inicie o servidor MySQL com a variável de sistema [`init_file`](server-system-variables.html#sysvar_init_file) definida para nomear o arquivo (observe que o traço duplo na opção de valor é necessário):
+6. Start the MySQL server with the [`init_file`](server-system-variables.html#sysvar_init_file) system variable set to name the file (notice that the backslash in the option value is doubled):
 
    ```sql
    C:\> cd "C:\Program Files\MySQL\MySQL Server 5.7\bin"
    C:\> mysqld --init-file=C:\\mysql-init.txt
    ```
 
-   Se você instalou o MySQL em um local diferente, ajuste o comando **cd** conforme necessário.
+   If you installed MySQL to a different location, adjust the **cd** command accordingly.
 
-   O servidor executa o conteúdo do arquivo nomeado pela variável de sistema [`init_file`](server-system-variables.html#sysvar_init_file) ao iniciar, alterando a senha da conta `'root'@'localhost'`.
+   The server executes the contents of the file named by the [`init_file`](server-system-variables.html#sysvar_init_file) system variable at startup, changing the `'root'@'localhost'` account password.
 
-   Para que a saída do servidor apareça na janela do console em vez de em um arquivo de log, adicione a opção [`--console`](server-options.html#option_mysqld_console) ao comando [**mysqld**](mysqld.html).
+   To have server output to appear in the console window rather than in a log file, add the [`--console`](server-options.html#option_mysqld_console) option to the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") command.
 
-   Se você instalou o MySQL usando o Assistente de instalação do MySQL, talvez precise especificar a opção [`--defaults-file`](option-file-options.html#option_general_defaults-file). Por exemplo:
+   If you installed MySQL using the MySQL Installation Wizard, you may need to specify a [`--defaults-file`](option-file-options.html#option_general_defaults-file) option. For example:
 
    ```sql
    C:\> mysqld
@@ -47,13 +46,13 @@ No Windows, use o seguinte procedimento para redefinir a senha da conta `'root'@
             --init-file=C:\\mysql-init.txt
    ```
 
-   A configuração apropriada [`--defaults-file`](option-file-options.html#option_general_defaults-file) pode ser encontrada usando o Gerenciador de Serviços: No menu Iniciar, selecione Painel de Controle, depois Ferramentas Administrativas, depois Serviços. Encontre o serviço MySQL na lista, clique com o botão direito nele e escolha a opção `Propriedades`. O campo `Caminho para executável` contém a configuração [`--defaults-file`](option-file-options.html#option_general_defaults-file).
+   The appropriate [`--defaults-file`](option-file-options.html#option_general_defaults-file) setting can be found using the Services Manager: From the Start menu, select Control Panel, then Administrative Tools, then Services. Find the MySQL service in the list, right-click it, and choose the `Properties` option. The `Path to executable` field contains the [`--defaults-file`](option-file-options.html#option_general_defaults-file) setting.
 
-7. Depois que o servidor tiver iniciado com sucesso, exclua `C:\mysql-init.txt`.
+7. After the server has started successfully, delete `C:\mysql-init.txt`.
 
-Agora você deve conseguir se conectar ao servidor MySQL como `root` usando a nova senha. Parar o servidor MySQL e reiniciá-lo normalmente. Se você estiver executando o servidor como um serviço, inicie-o a partir da janela Serviços do Windows. Se você iniciar o servidor manualmente, use o comando que você normalmente usa.
+You should now be able to connect to the MySQL server as `root` using the new password. Stop the MySQL server and restart it normally. If you run the server as a service, start it from the Windows Services window. If you start the server manually, use whatever command you normally use.
 
-Se a instrução [`ALTER USER`](alter-user.html) não conseguir redefinir a senha, tente repetir o procedimento usando as seguintes instruções para modificar diretamente a tabela `user`:
+If the [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") statement fails to reset the password, try repeating the procedure using the following statements to modify the `user` table directly:
 
 ```sql
 UPDATE mysql.user
@@ -62,47 +61,47 @@ UPDATE mysql.user
 FLUSH PRIVILEGES;
 ```
 
-##### B.3.3.2.2 Redefinindo a Senha de Root: Sistemas Unix e Unix-Like
+##### B.3.3.2.2 Resetting the Root Password: Unix and Unix-Like Systems
 
-No Unix, use o seguinte procedimento para redefinir a senha da conta `'root'@'localhost'` do MySQL. Para alterar a senha de uma conta `root` com uma parte do nome de host diferente, modifique as instruções para usar esse nome de host.
+On Unix, use the following procedure to reset the password for the MySQL `'root'@'localhost'` account. To change the password for a `root` account with a different host name part, modify the instructions to use that host name.
 
-As instruções assumem que você inicia o servidor MySQL a partir da conta de login Unix que você normalmente usa para executá-lo. Por exemplo, se você executar o servidor usando a conta de login `mysql`, você deve fazer login como `mysql` antes de usar as instruções. Alternativamente, você pode fazer login como `root`, mas, nesse caso, você *deve* iniciar o [**mysqld**](mysqld.html) com a opção [`--user=mysql`](server-options.html#option_mysqld_user). Se você iniciar o servidor como `root` sem usar a opção [`--user=mysql`](server-options.html#option_mysqld_user), o servidor pode criar arquivos de propriedade de `root` no diretório de dados, como arquivos de log, e isso pode causar problemas relacionados a permissões para futuras inicializações do servidor. Se isso acontecer, você deve alterar a propriedade dos arquivos para `mysql` ou removê-los.
+The instructions assume that you start the MySQL server from the Unix login account that you normally use for running it. For example, if you run the server using the `mysql` login account, you should log in as `mysql` before using the instructions. Alternatively, you can log in as `root`, but in this case you *must* start [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") with the [`--user=mysql`](server-options.html#option_mysqld_user) option. If you start the server as `root` without using [`--user=mysql`](server-options.html#option_mysqld_user), the server may create `root`-owned files in the data directory, such as log files, and these may cause permission-related problems for future server startups. If that happens, you must either change the ownership of the files to `mysql` or remove them.
 
-1. Faça login no seu sistema como o usuário Unix no qual o servidor MySQL está rodando (por exemplo, `mysql`).
+1. Log on to your system as the Unix user that the MySQL server runs as (for example, `mysql`).
 
-2. Pare o servidor MySQL se ele estiver em execução. Localize o arquivo `.pid` que contém o ID do processo do servidor. A localização exata e o nome deste arquivo dependem da sua distribuição, nome do host e configuração. Locais comuns são `/var/lib/mysql/`, `/var/run/mysqld/` e `/usr/local/mysql/data/`. Geralmente, o nome do arquivo tem a extensão `.pid` e começa com `mysqld` ou com o nome do host do seu sistema.
+2. Stop the MySQL server if it is running. Locate the `.pid` file that contains the server's process ID. The exact location and name of this file depend on your distribution, host name, and configuration. Common locations are `/var/lib/mysql/`, `/var/run/mysqld/`, and `/usr/local/mysql/data/`. Generally, the file name has an extension of `.pid` and begins with either `mysqld` or your system's host name.
 
-   Pare o servidor MySQL enviando um `kill` normal (não `kill -9`) ao processo [**mysqld**](mysqld.html). Use o nome real do caminho do arquivo `.pid` no seguinte comando:
+   Stop the MySQL server by sending a normal `kill` (not `kill -9`) to the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") process. Use the actual path name of the `.pid` file in the following command:
 
    ```sql
    $> kill `cat /mysql-data-directory/host_name.pid`
    ```
 
-   Use backticks (não as aspas simples) com o comando `cat`. Esses fazem com que a saída do `cat` seja substituída pelo comando `kill`.
+   Use backticks (not forward quotation marks) with the `cat` command. These cause the output of `cat` to be substituted into the `kill` command.
 
-3. Crie um arquivo de texto contendo a declaração de atribuição de senha em uma única linha. Substitua a senha pela senha que você deseja usar.
+3. Create a text file containing the password-assignment statement on a single line. Replace the password with the password that you want to use.
 
    ```sql
    ALTER USER 'root'@'localhost' IDENTIFIED BY 'MyNewPass';
    ```
 
-4. Salve o arquivo. Este exemplo assume que você nomeia o arquivo `/home/me/mysql-init`. O arquivo contém a senha, então não o salve em um local onde ele possa ser lido por outros usuários. Se você não estiver logado como `mysql` (o usuário pelo qual o servidor é executado), certifique-se de que o arquivo tenha permissões que permitam que o `mysql` o leia.
+4. Save the file. This example assumes that you name the file `/home/me/mysql-init`. The file contains the password, so do not save it where it can be read by other users. If you are not logged in as `mysql` (the user the server runs as), make sure that the file has permissions that permit `mysql` to read it.
 
-5. Inicie o servidor MySQL com a variável de sistema [`init_file`](server-system-variables.html#sysvar_init_file) definida para nomear o arquivo:
+5. Start the MySQL server with the [`init_file`](server-system-variables.html#sysvar_init_file) system variable set to name the file:
 
    ```sql
    $> mysqld --init-file=/home/me/mysql-init &
    ```
 
-   O servidor executa o conteúdo do arquivo nomeado pela variável de sistema [`init_file`](server-system-variables.html#sysvar_init_file) ao iniciar, alterando a senha da conta `'root'@'localhost'`.
+   The server executes the contents of the file named by the [`init_file`](server-system-variables.html#sysvar_init_file) system variable at startup, changing the `'root'@'localhost'` account password.
 
-   Outras opções também podem ser necessárias, dependendo de como você normalmente inicia seu servidor. Por exemplo, [`--defaults-file`](option-file-options.html#option_general_defaults-file) pode ser necessário antes do argumento [`init_file`](server-system-variables.html#sysvar_init_file).
+   Other options may be necessary as well, depending on how you normally start your server. For example, [`--defaults-file`](option-file-options.html#option_general_defaults-file) may be needed before the [`init_file`](server-system-variables.html#sysvar_init_file) argument.
 
-6. Depois que o servidor tiver iniciado com sucesso, exclua `/home/me/mysql-init`.
+6. After the server has started successfully, delete `/home/me/mysql-init`.
 
-Agora você deve conseguir se conectar ao servidor MySQL como `root` usando a nova senha. Parar o servidor e reiniciá-lo normalmente.
+You should now be able to connect to the MySQL server as `root` using the new password. Stop the server and restart it normally.
 
-Se a instrução [`ALTER USER`](alter-user.html) não conseguir redefinir a senha, tente repetir o procedimento usando as seguintes instruções para modificar diretamente a tabela `user`:
+If the [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") statement fails to reset the password, try repeating the procedure using the following statements to modify the `user` table directly:
 
 ```sql
 UPDATE mysql.user
@@ -111,33 +110,33 @@ UPDATE mysql.user
 FLUSH PRIVILEGES;
 ```
 
-##### B.3.3.2.3. Redefinir a senha de root: instruções genéricas
+##### B.3.3.2.3 Resetting the Root Password: Generic Instructions
 
-As seções anteriores fornecem instruções para redefinir a senha especificamente para sistemas Windows e Unix e sistemas semelhantes ao Unix. Alternativamente, em qualquer plataforma, você pode redefinir a senha usando o cliente [**mysql**](mysql.html) (mas essa abordagem é menos segura):
+The preceding sections provide password-resetting instructions specifically for Windows and Unix and Unix-like systems. Alternatively, on any platform, you can reset the password using the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client (but this approach is less secure):
 
-1. Interrompa o servidor MySQL, se necessário, e reinicie-o com a opção [`--skip-grant-tables`](server-options.html#option_mysqld_skip-grant-tables). Isso permite que qualquer pessoa se conecte sem senha e com todos os privilégios, e desabilita declarações de gerenciamento de contas, como [`ALTER USER`](alter-user.html) e [`SET PASSWORD`](set-password.html). Como isso é inseguro, você pode querer usar [`--skip-grant-tables`](server-options.html#option_mysqld_skip-grant-tables) em conjunto com a habilitação da variável de sistema [`skip_networking`](server-system-variables.html#sysvar_skip_networking) para impedir que clientes remotos se conectem. Em plataformas Windows, se você habilitar `skip_networking`, também deve habilitar [`shared_memory`](server-system-variables.html#sysvar_shared_memory) ou [`named_pipe`](server-system-variables.html#sysvar_named_pipe); caso contrário, o servidor não poderá ser iniciado.
+1. Stop the MySQL server if necessary, then restart it with the [`--skip-grant-tables`](server-options.html#option_mysqld_skip-grant-tables) option. This enables anyone to connect without a password and with all privileges, and disables account-management statements such as [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") and [`SET PASSWORD`](set-password.html "13.7.1.7 SET PASSWORD Statement"). Because this is insecure, you might want to use [`--skip-grant-tables`](server-options.html#option_mysqld_skip-grant-tables) in conjunction with enabling the [`skip_networking`](server-system-variables.html#sysvar_skip_networking) system variable to prevent remote clients from connecting. On Windows platforms, if you enable `skip_networking`, you must also enable [`shared_memory`](server-system-variables.html#sysvar_shared_memory) or [`named_pipe`](server-system-variables.html#sysvar_named_pipe); otherwise the server cannot start.
 
-2. Conecte-se ao servidor MySQL usando o cliente [**mysql**](mysql.html); não é necessário digitar a senha, pois o servidor foi iniciado com [`--skip-grant-tables`](server-options.html#option_mysqld_skip-grant-tables):
+2. Connect to the MySQL server using the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client; no password is necessary because the server was started with [`--skip-grant-tables`](server-options.html#option_mysqld_skip-grant-tables):
 
    ```sql
    $> mysql
    ```
 
-3. No cliente `mysql`, peça ao servidor para recarregar as tabelas de concessão para que as declarações de gerenciamento de contas funcionem:
+3. In the `mysql` client, tell the server to reload the grant tables so that account-management statements work:
 
    ```sql
    mysql> FLUSH PRIVILEGES;
    ```
 
-   Em seguida, altere a senha da conta `'root'@'localhost'`. Substitua a senha pela senha que você deseja usar. Para alterar a senha de uma conta `root` com uma parte do nome de host diferente, modifique as instruções para usar esse nome de host.
+   Then change the `'root'@'localhost'` account password. Replace the password with the password that you want to use. To change the password for a `root` account with a different host name part, modify the instructions to use that host name.
 
    ```sql
    mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'MyNewPass';
    ```
 
-Agora você deve conseguir se conectar ao servidor MySQL como `root` usando a nova senha. Parar o servidor e reiniciá-lo normalmente (sem a opção [`--skip-grant-tables`](server-options.html#option_mysqld_skip-grant-tables) e sem habilitar a variável de sistema [`skip_networking`](server-system-variables.html#sysvar_skip_networking)).
+You should now be able to connect to the MySQL server as `root` using the new password. Stop the server and restart it normally (without the [`--skip-grant-tables`](server-options.html#option_mysqld_skip-grant-tables) option and without enabling the [`skip_networking`](server-system-variables.html#sysvar_skip_networking) system variable).
 
-Se a instrução [`ALTER USER`](alter-user.html) não conseguir redefinir a senha, tente repetir o procedimento usando as seguintes instruções para modificar diretamente a tabela `user`:
+If the [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") statement fails to reset the password, try repeating the procedure using the following statements to modify the `user` table directly:
 
 ```sql
 UPDATE mysql.user SET authentication_string = PASSWORD('MyNewPass')

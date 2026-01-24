@@ -1,21 +1,21 @@
-### 14.13.3 Requisitos de Espaço para DDL Online
+### 14.13.3 Online DDL Space Requirements
 
-As operações online de DDL têm os seguintes requisitos de espaço:
+Online DDL operations have the following space requirements:
 
-- Arquivos de registro temporários:
+* Temporary log files:
 
-  Um arquivo de registro temporário registra operações DML concorrentes quando uma operação DDL online cria um índice ou altera uma tabela. O arquivo de registro temporário é estendido conforme necessário pelo valor de `innodb_sort_buffer_size` até um máximo especificado por `innodb_online_alter_log_max_size`. Se a operação demorar muito tempo e a DML concorrente modificar a tabela tanto que o tamanho do arquivo de registro temporário exceda o valor de `innodb_online_alter_log_max_size`, a operação DDL online falha com um erro `DB_ONLINE_LOG_TOO_BIG` e as operações DML concorrentes não confirmadas são revertidas. Um grande valor de `innodb_online_alter_log_max_size` permite mais DML durante uma operação DDL online, mas também estende o período de tempo no final da operação DDL quando a tabela é bloqueada para aplicar a DML registrada.
+  A temporary log file records concurrent DML when an online DDL operation creates an index or alters a table. The temporary log file is extended as required by the value of `innodb_sort_buffer_size` up to a maximum specified by `innodb_online_alter_log_max_size`. If the operation takes a long time and concurrent DML modifies the table so much that the size of the temporary log file exceeds the value of `innodb_online_alter_log_max_size`, the online DDL operation fails with a `DB_ONLINE_LOG_TOO_BIG` error and uncommitted concurrent DML operations are rolled back. A large `innodb_online_alter_log_max_size` setting permits more DML during an online DDL operation, but it also extends the period of time at the end of the DDL operation when the table is locked to apply logged DML.
 
-  A variável `innodb_sort_buffer_size` também define o tamanho do buffer de leitura e do buffer de escrita do arquivo de log temporário.
+  The `innodb_sort_buffer_size` variable also defines the size of the temporary log file read buffer and write buffer.
 
-- Filtrar arquivos temporariamente:
+* Temporary sort files:
 
-  As operações DDL online que recriam a tabela escrevem arquivos temporários de ordenação no diretório temporário do MySQL (`$TMPDIR` no Unix, `%TEMP%` no Windows ou o diretório especificado por `--tmpdir`) durante a criação do índice. Arquivos temporários de ordenação não são criados no diretório que contém a tabela original. Cada arquivo temporário de ordenação é grande o suficiente para conter uma coluna de dados, e cada arquivo de ordenação é removido quando seus dados são mesclados na tabela ou índice final. As operações que envolvem arquivos temporários de ordenação podem exigir espaço temporário igual à quantidade de dados na tabela mais os índices. Um erro é relatado se a operação DDL online usar todo o espaço disponível no sistema de arquivos onde o diretório de dados reside.
+  Online DDL operations that rebuild the table write temporary sort files to the MySQL temporary directory (`$TMPDIR` on Unix, `%TEMP%` on Windows, or the directory specified by `--tmpdir`) during index creation. Temporary sort files are not created in the directory that contains the original table. Each temporary sort file is large enough to hold one column of data, and each sort file is removed when its data is merged into the final table or index. Operations involving temporary sort files may require temporary space equal to the amount of data in the table plus indexes. An error is reported if online DDL operation uses all of the available disk space on the file system where the data directory resides.
 
-  Se o diretório temporário do MySQL não for grande o suficiente para armazenar os arquivos de ordenação, defina `tmpdir` para um diretório diferente. Alternativamente, defina um diretório temporário separado para operações DDL online usando `innodb_tmpdir`. Esta opção foi introduzida no MySQL 5.7.11 para ajudar a evitar a exaustão do diretório temporário que poderia ocorrer como resultado de grandes arquivos de ordenação temporários.
+  If the MySQL temporary directory is not large enough to hold the sort files, set `tmpdir` to a different directory. Alternatively, define a separate temporary directory for online DDL operations using `innodb_tmpdir`. This option was introduced in MySQL 5.7.11 to help avoid temporary directory overflows that could occur as a result of large temporary sort files.
 
-- Arquivos de tabela intermediários:
+* Intermediate table files:
 
-  Algumas operações de DDL online que reconstruem a tabela criam um arquivo de tabela intermediária temporária no mesmo diretório da tabela original. Um arquivo de tabela intermediária pode exigir espaço igual ao tamanho da tabela original. Os nomes dos arquivos de tabela intermediária começam com o prefixo `#sql-ib` e aparecem brevemente durante a operação de DDL online.
+  Some online DDL operations that rebuild the table create a temporary intermediate table file in the same directory as the original table. An intermediate table file may require space equal to the size of the original table. Intermediate table file names begin with `#sql-ib` prefix and only appear briefly during the online DDL operation.
 
-  A opção `innodb_tmpdir` não é aplicável aos arquivos de tabela intermediários.
+  The `innodb_tmpdir` option is not applicable to intermediate table files.

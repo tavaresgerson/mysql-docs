@@ -1,33 +1,33 @@
-#### 26.4.3.19 As visualizações memory_global_by_current_bytes e x$memory_global_by_current_bytes
+#### 26.4.3.19 The memory_global_by_current_bytes and x$memory_global_by_current_bytes Views
 
-Esses pontos resumem o uso da memória, agrupados por tipo de alocação (ou seja, por evento). Por padrão, as linhas são ordenadas em ordem decrescente de quantidade de memória usada.
+These views summarize memory use, grouped by allocation type (that is, by event). By default, rows are sorted by descending amount of memory used.
 
-As vistas `memory_global_by_current_bytes` e `x$memory_global_by_current_bytes` possuem essas colunas:
+The `memory_global_by_current_bytes` and `x$memory_global_by_current_bytes` views have these columns:
 
-- `nome_do_evento`
+* `event_name`
 
-  O nome do evento de memória.
+  The memory event name.
 
-- `current_count`
+* `current_count`
 
-  O número total de ocorrências do evento.
+  The total number of occurrences of the event.
 
-- `current_alloc`
+* `current_alloc`
 
-  O número atual de bytes alocados que ainda não foram liberados para o evento.
+  The current number of allocated bytes that have not been freed yet for the event.
 
-- `current_avg_alloc`
+* `current_avg_alloc`
 
-  O número atual de bytes alocados por bloco de memória para o evento.
+  The current number of allocated bytes per memory block for the event.
 
-- `high_count`
+* `high_count`
 
-  O limite máximo de blocos de memória alocados para o evento.
+  The high-water mark for number of memory blocks allocated for the event.
 
-- `high_alloc`
+* `high_alloc`
 
-  O limite máximo de bytes alocados para o evento.
+  The high-water mark for number of bytes allocated for the event.
 
-- `high_avg_alloc`
+* `high_avg_alloc`
 
-  O limite máximo para o número médio de bytes por bloco de memória alocado para o evento.
+  The high-water mark for average number of bytes per memory block allocated for the event.

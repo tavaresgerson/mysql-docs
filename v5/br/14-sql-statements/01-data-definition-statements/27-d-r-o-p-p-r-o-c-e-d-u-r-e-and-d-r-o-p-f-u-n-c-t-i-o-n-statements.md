@@ -1,13 +1,13 @@
-### 13.1.27 Declarações de procedimentos de exclusão e funções de exclusão
+### 13.1.27 DROP PROCEDURE and DROP FUNCTION Statements
 
 ```sql
 DROP {PROCEDURE | FUNCTION} [IF EXISTS] sp_name
 ```
 
-Essas declarações são usadas para descartar uma rotina armazenada (um procedimento ou função armazenada). Ou seja, a rotina especificada é removida do servidor. (`DROP FUNCTION` também é usado para descartar funções carregáveis; veja Seção 13.7.3.2, “Declaração DROP FUNCTION para Funções Carregáveis”.)
+These statements are used to drop a stored routine (a stored procedure or function). That is, the specified routine is removed from the server. (`DROP FUNCTION` is also used to drop loadable functions; see [Section 13.7.3.2, “DROP FUNCTION Statement for Loadable Functions”](drop-function-loadable.html "13.7.3.2 DROP FUNCTION Statement for Loadable Functions").)
 
-Para descartar uma rotina armazenada, você deve ter o privilégio `ALTER ROUTINE`. (Se a variável de sistema `automatic_sp_privileges` estiver habilitada, esse privilégio e `EXECUTE` são concedidos automaticamente ao criador da rotina quando ela é criada e descartada pelo criador quando a rotina é descartada. Veja Seção 23.2.2, “Rotinas Armazenadas e Privilégios do MySQL”.)
+To drop a stored routine, you must have the [`ALTER ROUTINE`](privileges-provided.html#priv_alter-routine) privilege for it. (If the `automatic_sp_privileges` system variable is enabled, that privilege and [`EXECUTE`](privileges-provided.html#priv_execute) are granted automatically to the routine creator when the routine is created and dropped from the creator when the routine is dropped. See [Section 23.2.2, “Stored Routines and MySQL Privileges”](stored-routines-privileges.html "23.2.2 Stored Routines and MySQL Privileges").)
 
-A cláusula `IF EXISTS` é uma extensão do MySQL. Ela impede que um erro ocorra se o procedimento ou função não existir. Um aviso é gerado e pode ser visualizado com `SHOW WARNINGS`.
+The `IF EXISTS` clause is a MySQL extension. It prevents an error from occurring if the procedure or function does not exist. A warning is produced that can be viewed with [`SHOW WARNINGS`](show-warnings.html "13.7.5.40 SHOW WARNINGS Statement").
 
-`DROP FUNCTION` também é usado para descartar funções carregáveis (veja Seção 13.7.3.2, “Instrução DROP FUNCTION para Funções Carregáveis”).
+[`DROP FUNCTION`](drop-function.html "13.1.24 DROP FUNCTION Statement") is also used to drop loadable functions (see [Section 13.7.3.2, “DROP FUNCTION Statement for Loadable Functions”](drop-function-loadable.html "13.7.3.2 DROP FUNCTION Statement for Loadable Functions")).

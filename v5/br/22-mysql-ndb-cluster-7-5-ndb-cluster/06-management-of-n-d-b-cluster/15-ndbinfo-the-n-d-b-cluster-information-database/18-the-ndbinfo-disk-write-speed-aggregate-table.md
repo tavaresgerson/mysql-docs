@@ -1,69 +1,69 @@
-#### 21.6.15.18 Tabela ndbinfo disk_write_speed_aggregate
+#### 21.6.15.18 The ndbinfo disk_write_speed_aggregate Table
 
-A tabela `disk_write_speed_aggregate` fornece informações agregadas sobre a velocidade de escrita em disco durante operações de LCP, backup e restauração.
+The `disk_write_speed_aggregate` table provides aggregated information about the speed of disk writes during LCP, backup, and restore operations.
 
-A tabela `disk_write_speed_aggregate` contém as seguintes colunas:
+The `disk_write_speed_aggregate` table contains the following columns:
 
-- `node_id`
+* `node_id`
 
-  ID do nó deste nó
+  Node ID of this node
 
-- `thr_no`
+* `thr_no`
 
-  ID do thread deste thread LDM
+  Thread ID of this LDM thread
 
-- `backup_lcp_speed_last_sec`
+* `backup_lcp_speed_last_sec`
 
-  Número de bytes escritos no disco pelos processos de backup e LCP no último segundo
+  Number of bytes written to disk by backup and LCP processes in the last second
 
-- `redo_speed_last_sec`
+* `redo_speed_last_sec`
 
-  Número de bytes escritos no log REDO na última segundo
+  Number of bytes written to REDO log in the last second
 
-- `backup_lcp_speed_last_10sec`
+* `backup_lcp_speed_last_10sec`
 
-  Número de bytes escritos no disco pelos processos de backup e LCP por segundo, calculado em média nos últimos 10 segundos
+  Number of bytes written to disk by backup and LCP processes per second, averaged over the last 10 seconds
 
-- `redo_speed_last_10sec`
+* `redo_speed_last_10sec`
 
-  Número de bytes escritos no log REDO por segundo, calculado em média nos últimos 10 segundos
+  Number of bytes written to REDO log per second, averaged over the last 10 seconds
 
-- `std_dev_backup_lcp_speed_last_10sec`
+* `std_dev_backup_lcp_speed_last_10sec`
 
-  Desvio padrão no número de bytes escritos no disco pelos processos de backup e LCP por segundo, calculado em média nos últimos 10 segundos
+  Standard deviation in number of bytes written to disk by backup and LCP processes per second, averaged over the last 10 seconds
 
-- `std_dev_redo_speed_last_10sec`
+* `std_dev_redo_speed_last_10sec`
 
-  Desvio padrão no número de bytes escritos no log REDO por segundo, calculado em média nos últimos 10 segundos
+  Standard deviation in number of bytes written to REDO log per second, averaged over the last 10 seconds
 
-- `backup_lcp_speed_last_60sec`
+* `backup_lcp_speed_last_60sec`
 
-  Número de bytes escritos no disco pelos processos de backup e LCP por segundo, calculado em média nos últimos 60 segundos
+  Number of bytes written to disk by backup and LCP processes per second, averaged over the last 60 seconds
 
-- `redo_speed_last_60sec`
+* `redo_speed_last_60sec`
 
-  Número de bytes escritos no log REDO por segundo, calculado em média nos últimos 10 segundos
+  Number of bytes written to REDO log per second, averaged over the last 10 seconds
 
-- `std_dev_backup_lcp_speed_last_60sec`
+* `std_dev_backup_lcp_speed_last_60sec`
 
-  Desvio padrão no número de bytes escritos no disco pelos processos de backup e LCP por segundo, calculado em média nos últimos 60 segundos
+  Standard deviation in number of bytes written to disk by backup and LCP processes per second, averaged over the last 60 seconds
 
-- `std_dev_redo_speed_last_60sec`
+* `std_dev_redo_speed_last_60sec`
 
-  Desvio padrão no número de bytes escritos no log REDO por segundo, calculado em média nos últimos 60 segundos
+  Standard deviation in number of bytes written to REDO log per second, averaged over the last 60 seconds
 
-- "reduções de velocidade devido ao atraso de I/O"
+* `slowdowns_due_to_io_lag`
 
-  Número de segundos desde o último início do nó em que as gravações de disco foram retardadas devido à lacuna de I/O do log REDO
+  Number of seconds since last node start that disk writes were slowed due to REDO log I/O lag
 
-- "reduções de velocidade devido ao alto uso do CPU"
+* `slowdowns_due_to_high_cpu`
 
-  Número de segundos desde o último início do nó em que as gravações de disco foram reduzidas devido ao uso elevado da CPU
+  Number of seconds since last node start that disk writes were slowed due to high CPU usage
 
-- `defina a velocidade de escrita do disco para o mínimo`
+* `disk_write_speed_set_to_min`
 
-  Número de segundos desde o último início do nó em que a velocidade de escrita do disco foi definida para o mínimo
+  Number of seconds since last node start that disk write speed was set to minimum
 
-- `current_target_disk_write_speed`
+* `current_target_disk_write_speed`
 
-  Velocidade real de escrita de disco por thread LDM (agregada)
+  Actual speed of disk writes per LDM thread (aggregated)

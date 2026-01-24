@@ -1,53 +1,53 @@
-#### 14.6.1.6 Gerenciamento de AUTO_INCREMENT no InnoDB
+#### 14.6.1.6 AUTO_INCREMENT Handling in InnoDB
 
-O `InnoDB` oferece um mecanismo de bloqueio configurável que pode melhorar significativamente a escalabilidade e o desempenho das instruções SQL que adicionam linhas a tabelas com colunas `AUTO_INCREMENT`. Para usar o mecanismo `AUTO_INCREMENT` com uma tabela `InnoDB`, uma coluna `AUTO_INCREMENT` deve ser definida como a primeira ou a única coluna de algum índice, de modo que seja possível realizar a consulta equivalente a um `SELECT MAX(ai_col)` indexado na tabela para obter o valor máximo da coluna. O índice não precisa ser um `PRIMARY KEY` ou `UNIQUE`, mas para evitar valores duplicados na coluna `AUTO_INCREMENT`, esses tipos de índice são recomendados.
+`InnoDB` provides a configurable locking mechanism that can significantly improve scalability and performance of SQL statements that add rows to tables with `AUTO_INCREMENT` columns. To use the `AUTO_INCREMENT` mechanism with an `InnoDB` table, an `AUTO_INCREMENT` column must be defined as the first or only column of some index such that it is possible to perform the equivalent of an indexed `SELECT MAX(ai_col)` lookup on the table to obtain the maximum column value. The index is not required to be a `PRIMARY KEY` or `UNIQUE`, but to avoid duplicate values in the `AUTO_INCREMENT` column, those index types are recommended.
 
-Esta seção descreve os modos de bloqueio `AUTO_INCREMENT`, as implicações de uso das diferentes configurações dos modos de bloqueio `AUTO_INCREMENT` e como o `InnoDB` inicializa o contador `AUTO_INCREMENT`.
+This section describes the `AUTO_INCREMENT` lock modes, usage implications of different `AUTO_INCREMENT` lock mode settings, and how `InnoDB` initializes the `AUTO_INCREMENT` counter.
 
-- Modos de bloqueio do AUTO_INCREMENT do InnoDB
-- Implicações do uso do modo de bloqueio AUTO_INCREMENT do InnoDB
-- Inicialização do contador de AUTO_INCREMENT do InnoDB
-- Notas
+* InnoDB AUTO_INCREMENT Lock Modes
+* InnoDB AUTO_INCREMENT Lock Mode Usage Implications
+* InnoDB AUTO_INCREMENT Counter Initialization
+* Notes
 
-##### Modos de bloqueio do AUTO_INCREMENT do InnoDB
+##### InnoDB AUTO_INCREMENT Lock Modes
 
-Esta seção descreve os modos de bloqueio `AUTO_INCREMENT` usados para gerar valores de autoincremento e como cada modo de bloqueio afeta a replicação. O modo de bloqueio de autoincremento é configurado durante a inicialização usando a variável `innodb_autoinc_lock_mode`.
+This section describes the `AUTO_INCREMENT` lock modes used to generate auto-increment values, and how each lock mode affects replication. The auto-increment lock mode is configured at startup using the `innodb_autoinc_lock_mode` variable.
 
-Os seguintes termos são usados para descrever as configurações de `innodb_autoinc_lock_mode`:
+The following terms are used in describing `innodb_autoinc_lock_mode` settings:
 
-- `INSERT`-like\` declarações
+* “`INSERT`-like” statements
 
-  Todas as declarações que geram novas linhas em uma tabela, incluindo `INSERT`, `INSERT ... SELECT`, `REPLACE`, `REPLACE ... SELECT` e `LOAD DATA`. Inclui inserções de “inserções simples”, “inserções em lote” e inserções em “modo misto”.
+  All statements that generate new rows in a table, including `INSERT`, `INSERT ... SELECT`, `REPLACE`, `REPLACE ... SELECT`, and `LOAD DATA`. Includes “simple-inserts”, “bulk-inserts”, and “mixed-mode” inserts.
 
-- “Inserções simples”
+* “Simple inserts”
 
-  Declarações para as quais o número de linhas a serem inseridas pode ser determinado antecipadamente (quando a declaração é processada inicialmente). Isso inclui declarações `INSERT` e `REPLACE` de uma única linha e múltiplas linhas que não possuem uma subconsulta aninhada, mas não `INSERT ... ON DUPLICATE KEY UPDATE`.
+  Statements for which the number of rows to be inserted can be determined in advance (when the statement is initially processed). This includes single-row and multiple-row `INSERT` and `REPLACE` statements that do not have a nested subquery, but not `INSERT ... ON DUPLICATE KEY UPDATE`.
 
-- “Inserir em lote”
+* “Bulk inserts”
 
-  Declarações para as quais o número de linhas a serem inseridas (e o número de valores de autoincremento necessários) não é conhecido antecipadamente. Isso inclui as declarações `INSERT ... SELECT`, `REPLACE ... SELECT` e `LOAD DATA`, mas não as declarações simples `INSERT`. O `InnoDB` atribui novos valores para a coluna `AUTO_INCREMENT` uma de cada vez à medida que cada linha é processada.
+  Statements for which the number of rows to be inserted (and the number of required auto-increment values) is not known in advance. This includes `INSERT ... SELECT`, `REPLACE ... SELECT`, and `LOAD DATA` statements, but not plain `INSERT`. `InnoDB` assigns new values for the `AUTO_INCREMENT` column one at a time as each row is processed.
 
-- “Inserções em modo misto”
+* “Mixed-mode inserts”
 
-  Estes são declarações de "inserção simples" que especificam o valor de autoincremento para algumas (mas não todas) das novas linhas. Um exemplo segue, onde `c1` é uma coluna `AUTO_INCREMENT` da tabela `t1`:
+  These are “simple insert” statements that specify the auto-increment value for some (but not all) of the new rows. An example follows, where `c1` is an `AUTO_INCREMENT` column of table `t1`:
 
   ```sql
   INSERT INTO t1 (c1,c2) VALUES (1,'a'), (NULL,'b'), (5,'c'), (NULL,'d');
   ```
 
-  Outro tipo de inserção em modo misto é `INSERT ... ON DUPLICATE KEY UPDATE`, que, no pior dos casos, é, na verdade, uma `INSERT` seguida de uma `UPDATE`, onde o valor alocado para a coluna `AUTO_INCREMENT` pode ou não ser usado durante a fase de atualização.
+  Another type of “mixed-mode insert” is `INSERT ... ON DUPLICATE KEY UPDATE`, which in the worst case is in effect an `INSERT` followed by a `UPDATE`, where the allocated value for the `AUTO_INCREMENT` column may or may not be used during the update phase.
 
-Existem três configurações possíveis para a variável `innodb_autoinc_lock_mode`. As configurações são 0, 1 ou 2, para os modos de bloqueio “tradicional”, “consecutivo” ou “interlaçado”, respectivamente.
+There are three possible settings for the `innodb_autoinc_lock_mode` variable. The settings are 0, 1, or 2, for “traditional”, “consecutive”, or “interleaved” lock mode, respectively.
 
-- `innodb_autoinc_lock_mode = 0` (modo de bloqueio "tradicional")
+* `innodb_autoinc_lock_mode = 0` (“traditional” lock mode)
 
-  O modo de bloqueio tradicional oferece o mesmo comportamento que existia antes da introdução da variável `innodb_autoinc_lock_mode`. A opção de modo de bloqueio tradicional é fornecida para compatibilidade com versões anteriores, testes de desempenho e para contornar problemas com inserções em modo misto, devido às possíveis diferenças na semântica.
+  The traditional lock mode provides the same behavior that existed before the `innodb_autoinc_lock_mode` variable was introduced. The traditional lock mode option is provided for backward compatibility, performance testing, and working around issues with “mixed-mode inserts”, due to possible differences in semantics.
 
-  Neste modo de bloqueio, todas as instruções semelhantes a `INSERT` obtêm um bloqueio especial de nível de tabela `AUTO-INC` para inserções em tabelas com colunas `AUTO_INCREMENT`. Esse bloqueio é normalmente mantido até o final da instrução (e não até o final da transação) para garantir que os valores de autoincremento sejam atribuídos em uma ordem previsível e repetiível para uma sequência dada de instruções `INSERT`, e para garantir que os valores de autoincremento atribuídos por qualquer instrução dada sejam consecutivos.
+  In this lock mode, all “INSERT-like” statements obtain a special table-level `AUTO-INC` lock for inserts into tables with `AUTO_INCREMENT` columns. This lock is normally held to the end of the statement (not to the end of the transaction) to ensure that auto-increment values are assigned in a predictable and repeatable order for a given sequence of `INSERT` statements, and to ensure that auto-increment values assigned by any given statement are consecutive.
 
-  No caso da replicação baseada em declarações, isso significa que, quando uma declaração SQL é replicada em um servidor de replica, os mesmos valores são usados para a coluna de autoincremento como no servidor de origem. O resultado da execução de múltiplas declarações `INSERT` é determinístico, e a replica reproduz os mesmos dados que no origem. Se os valores de autoincremento gerados por múltiplas declarações `INSERT` fossem intercalados, o resultado de duas declarações `INSERT` concorrentes seria não determinístico e não poderia ser propagado de forma confiável para um servidor de replicação usando a replicação baseada em declarações.
+  In the case of statement-based replication, this means that when an SQL statement is replicated on a replica server, the same values are used for the auto-increment column as on the source server. The result of execution of multiple `INSERT` statements is deterministic, and the replica reproduces the same data as on the source. If auto-increment values generated by multiple `INSERT` statements were interleaved, the result of two concurrent `INSERT` statements would be nondeterministic, and could not reliably be propagated to a replica server using statement-based replication.
 
-  Para esclarecer isso, considere um exemplo que usa essa tabela:
+  To make this clear, consider an example that uses this table:
 
   ```sql
   CREATE TABLE t1 (
@@ -57,78 +57,78 @@ Existem três configurações possíveis para a variável `innodb_autoinc_lock_m
   ) ENGINE=InnoDB;
   ```
 
-  Suponha que haja duas transações em execução, cada uma inserindo linhas em uma tabela com uma coluna `AUTO_INCREMENT`. Uma transação está usando uma instrução `INSERT ... SELECT` que insere 1000 linhas, e outra está usando uma simples instrução `INSERT` que insere uma linha:
+  Suppose that there are two transactions running, each inserting rows into a table with an `AUTO_INCREMENT` column. One transaction is using an `INSERT ... SELECT` statement that inserts 1000 rows, and another is using a simple `INSERT` statement that inserts one row:
 
   ```sql
   Tx1: INSERT INTO t1 (c2) SELECT 1000 rows from another table ...
   Tx2: INSERT INTO t1 (c2) VALUES ('xxx');
   ```
 
-  O `InnoDB` não pode prever antecipadamente quantos registros são recuperados da consulta `SELECT` na instrução `INSERT` no Tx1, e atribui os valores de autoincremento um de cada vez à medida que a instrução prossegue. Com um bloqueio de nível de tabela, mantido até o final da instrução, apenas uma instrução `INSERT` que faça referência à tabela `t1` pode ser executada de cada vez, e a geração de números de autoincremento por diferentes instruções não é interrompida. Os valores de autoincremento gerados pela instrução `INSERT ... SELECT` do Tx1 são consecutivos, e o valor de autoincremento (único) usado pela instrução `INSERT` no Tx2 é menor ou maior que todos os usados para o Tx1, dependendo da instrução que é executada primeiro.
+  `InnoDB` cannot tell in advance how many rows are retrieved from the `SELECT` in the `INSERT` statement in Tx1, and it assigns the auto-increment values one at a time as the statement proceeds. With a table-level lock, held to the end of the statement, only one `INSERT` statement referring to table `t1` can execute at a time, and the generation of auto-increment numbers by different statements is not interleaved. The auto-increment values generated by the Tx1 `INSERT ... SELECT` statement are consecutive, and the (single) auto-increment value used by the `INSERT` statement in Tx2 is either smaller or larger than all those used for Tx1, depending on which statement executes first.
 
-  Enquanto as instruções SQL forem executadas na mesma ordem ao serem reexecutadas a partir do log binário (ao usar a replicação baseada em instruções ou em cenários de recuperação), os resultados serão os mesmos que quando Tx1 e Tx2 foram executados pela primeira vez. Assim, os bloqueios de nível de tabela mantidos até o final de uma instrução tornam as instruções `INSERT` com autoincremento seguras para uso com a replicação baseada em instruções. No entanto, esses bloqueios de nível de tabela limitam a concorrência e a escalabilidade quando várias transações estão executando instruções de inserção ao mesmo tempo.
+  As long as the SQL statements execute in the same order when replayed from the binary log (when using statement-based replication, or in recovery scenarios), the results are the same as they were when Tx1 and Tx2 first ran. Thus, table-level locks held until the end of a statement make `INSERT` statements using auto-increment safe for use with statement-based replication. However, those table-level locks limit concurrency and scalability when multiple transactions are executing insert statements at the same time.
 
-  No exemplo anterior, se não houvesse bloqueio no nível da tabela, o valor da coluna de autoincremento usada para o `INSERT` em Tx2 dependeria exatamente de quando a instrução é executada. Se o `INSERT` de Tx2 for executado enquanto o `INSERT` de Tx1 estiver em execução (em vez de antes de começar ou depois de ser concluído), os valores específicos de autoincremento atribuídos pelas duas instruções `INSERT` serão não determinísticos e podem variar de execução para execução.
+  In the preceding example, if there were no table-level lock, the value of the auto-increment column used for the `INSERT` in Tx2 depends on precisely when the statement executes. If the `INSERT` of Tx2 executes while the `INSERT` of Tx1 is running (rather than before it starts or after it completes), the specific auto-increment values assigned by the two `INSERT` statements are nondeterministic, and may vary from run to run.
 
-  No modo de bloqueio consecutivo, o `InnoDB` pode evitar o uso de bloqueios de nível de tabela `AUTO-INC` para declarações de "inserção simples" onde o número de linhas é conhecido antecipadamente, e ainda preservar a execução determinística e a segurança para a replicação baseada em declarações.
+  Under the consecutive lock mode, `InnoDB` can avoid using table-level `AUTO-INC` locks for “simple insert” statements where the number of rows is known in advance, and still preserve deterministic execution and safety for statement-based replication.
 
-  Se você não estiver usando o log binário para reproduzir instruções SQL como parte da recuperação ou replicação, o modo de bloqueio entrelaçado pode ser usado para eliminar todo o uso de bloqueios `AUTO-INC` de nível de tabela para uma concorrência e desempenho ainda maiores, ao custo de permitir lacunas nos números de autoincremento atribuídos por uma instrução e, potencialmente, ter os números atribuídos por instruções executadas simultaneamente entrelaçadas.
+  If you are not using the binary log to replay SQL statements as part of recovery or replication, the interleaved lock mode can be used to eliminate all use of table-level `AUTO-INC` locks for even greater concurrency and performance, at the cost of permitting gaps in auto-increment numbers assigned by a statement and potentially having the numbers assigned by concurrently executing statements interleaved.
 
-- `innodb_autoinc_lock_mode = 1` (modo de bloqueio consecutivo)
+* `innodb_autoinc_lock_mode = 1` (“consecutive” lock mode)
 
-  Este é o modo de bloqueio padrão. Nesse modo, as "inserções em lote" usam o bloqueio especial `AUTO-INC` ao nível da tabela e o mantêm até o final da instrução. Isso se aplica a todas as instruções `INSERT ... SELECT`, `REPLACE ... SELECT` e `LOAD DATA`. Apenas uma instrução que mantém o bloqueio `AUTO-INC` pode ser executada de cada vez. Se a tabela de origem da operação de inserção em lote for diferente da tabela de destino, o bloqueio `AUTO-INC` na tabela de destino é tomado após a aquisição de um bloqueio compartilhado na primeira linha selecionada da tabela de origem. Se a origem e o destino da operação de inserção em lote forem a mesma tabela, o bloqueio `AUTO-INC` é tomado após a aquisição de blocos compartilhados em todas as linhas selecionadas.
+  This is the default lock mode. In this mode, “bulk inserts” use the special `AUTO-INC` table-level lock and hold it until the end of the statement. This applies to all `INSERT ... SELECT`, `REPLACE ... SELECT`, and `LOAD DATA` statements. Only one statement holding the `AUTO-INC` lock can execute at a time. If the source table of the bulk insert operation is different from the target table, the `AUTO-INC` lock on the target table is taken after a shared lock is taken on the first row selected from the source table. If the source and target of the bulk insert operation are the same table, the `AUTO-INC` lock is taken after shared locks are taken on all selected rows.
 
-  Os “insertos simples” (para os quais o número de linhas a serem inseridas é conhecido antecipadamente) evitam os bloqueios de nível de tabela `AUTO-INC` obtendo o número necessário de valores de autoincremento sob o controle de um mutex (um bloqueio leve) que é mantido apenas durante a duração do processo de alocação, *não* até que a instrução seja concluída. Não é usado um bloqueio de nível de tabela `AUTO-INC` a menos que um bloqueio `AUTO-INC` seja mantido por outra transação. Se outra transação mantiver um bloqueio `AUTO-INC`, um “inserto simples” aguarda pelo bloqueio `AUTO-INC`, como se fosse um “inserto em massa”.
+  “Simple inserts” (for which the number of rows to be inserted is known in advance) avoid table-level `AUTO-INC` locks by obtaining the required number of auto-increment values under the control of a mutex (a light-weight lock) that is only held for the duration of the allocation process, *not* until the statement completes. No table-level `AUTO-INC` lock is used unless an `AUTO-INC` lock is held by another transaction. If another transaction holds an `AUTO-INC` lock, a “simple insert” waits for the `AUTO-INC` lock, as if it were a “bulk insert”.
 
-  Esse modo de bloqueio garante que, na presença de instruções `INSERT` onde o número de linhas não é conhecido antecipadamente (e onde os números de autoincremento são atribuídos à medida que a instrução avança), todos os valores de autoincremento atribuídos por qualquer instrução semelhante a `INSERT` sejam consecutivos, e as operações sejam seguras para a replicação baseada em instruções.
+  This lock mode ensures that, in the presence of `INSERT` statements where the number of rows is not known in advance (and where auto-increment numbers are assigned as the statement progresses), all auto-increment values assigned by any “`INSERT`-like” statement are consecutive, and operations are safe for statement-based replication.
 
-  Simplificando, esse modo de bloqueio melhora significativamente a escalabilidade, sendo seguro para uso com replicação baseada em declarações. Além disso, assim como no modo "tradicional", os números de autoincremento atribuídos por qualquer declaração são *consecutivos*. Não há *nenhuma mudança* na semântica em comparação com o modo "tradicional" para qualquer declaração que use autoincremento, com uma exceção importante.
+  Simply put, this lock mode significantly improves scalability while being safe for use with statement-based replication. Further, as with “traditional” lock mode, auto-increment numbers assigned by any given statement are *consecutive*. There is *no change* in semantics compared to “traditional” mode for any statement that uses auto-increment, with one important exception.
 
-  A exceção é para os “insertos em modo misto”, onde o usuário fornece valores explícitos para uma coluna `AUTO_INCREMENT` para algumas, mas não todas, as linhas em um “inserto simples” de várias linhas. Para esses insertos, o `InnoDB` aloca mais valores de autoincremento do que o número de linhas a serem inseridas. No entanto, todos os valores atribuídos automaticamente são gerados consecutivamente (e, portanto, são maiores que) o valor de autoincremento gerado pela declaração anterior mais recentemente executada. Os números “excedentes” são perdidos.
+  The exception is for “mixed-mode inserts”, where the user provides explicit values for an `AUTO_INCREMENT` column for some, but not all, rows in a multiple-row “simple insert”. For such inserts, `InnoDB` allocates more auto-increment values than the number of rows to be inserted. However, all values automatically assigned are consecutively generated (and thus higher than) the auto-increment value generated by the most recently executed previous statement. “Excess” numbers are lost.
 
-- `innodb_autoinc_lock_mode = 2` (modo de bloqueio interligado)
+* `innodb_autoinc_lock_mode = 2` (“interleaved” lock mode)
 
-  Neste modo de bloqueio, nenhuma declaração semelhante ao `INSERT` usa o bloqueio `AUTO-INC` no nível da tabela, e múltiplas declarações podem ser executadas ao mesmo tempo. Este é o modo de bloqueio mais rápido e escalável, mas não é *seguro* ao usar replicação baseada em declarações ou cenários de recuperação quando as declarações SQL são regravadas a partir do log binário.
+  In this lock mode, no “`INSERT`-like” statements use the table-level `AUTO-INC` lock, and multiple statements can execute at the same time. This is the fastest and most scalable lock mode, but it is *not safe* when using statement-based replication or recovery scenarios when SQL statements are replayed from the binary log.
 
-  Neste modo de bloqueio, os valores de autoincremento são garantidos como únicos e aumentam de forma monótona em todas as declarações "`INSERT`-like\`\` que estão sendo executadas simultaneamente. No entanto, como múltiplas declarações podem estar gerando números ao mesmo tempo (ou seja, a alocação de números é \*interligada\` entre as declarações), os valores gerados para as linhas inseridas por qualquer declaração dada podem não ser consecutivos.
+  In this lock mode, auto-increment values are guaranteed to be unique and monotonically increasing across all concurrently executing “`INSERT`-like” statements. However, because multiple statements can be generating numbers at the same time (that is, allocation of numbers is *interleaved* across statements), the values generated for the rows inserted by any given statement may not be consecutive.
 
-  Se as únicas instruções que executam são "inserções simples", onde o número de linhas a serem inseridas é conhecido antecipadamente, não há lacunas nos números gerados para uma única instrução, exceto para "inserções em modo misto". No entanto, quando as "inserções em lote" são executadas, podem haver lacunas nos valores de autoincremento atribuídos por qualquer instrução dada.
+  If the only statements executing are “simple inserts” where the number of rows to be inserted is known ahead of time, there are no gaps in the numbers generated for a single statement, except for “mixed-mode inserts”. However, when “bulk inserts” are executed, there may be gaps in the auto-increment values assigned by any given statement.
 
-##### Implicações do uso do modo de bloqueio AUTO_INCREMENT do InnoDB
+##### InnoDB AUTO_INCREMENT Lock Mode Usage Implications
 
-- Usando o autoincremento com replicação
+* Using auto-increment with replication
 
-  Se você estiver usando a replicação baseada em declarações, defina `innodb_autoinc_lock_mode` para 0 ou 1 e use o mesmo valor na fonte e nas suas réplicas. Os valores de autoincremento não são garantidos para serem os mesmos nas réplicas e na fonte se você usar `innodb_autoinc_lock_mode` = 2 (“interleaved”) ou configurações onde a fonte e as réplicas não usam o mesmo modo de bloqueio.
+  If you are using statement-based replication, set `innodb_autoinc_lock_mode` to 0 or 1 and use the same value on the source and its replicas. Auto-increment values are not ensured to be the same on the replicas as on the source if you use `innodb_autoinc_lock_mode` = 2 (“interleaved”) or configurations where the source and replicas do not use the same lock mode.
 
-  Se você estiver usando replicação baseada em linhas ou de formato misto, todos os modos de bloqueio de autoincremento são seguros, pois a replicação baseada em linhas não é sensível à ordem de execução das instruções SQL (e o formato misto usa replicação baseada em linhas para quaisquer instruções que sejam inseguras para a replicação baseada em instruções).
+  If you are using row-based or mixed-format replication, all of the auto-increment lock modes are safe, since row-based replication is not sensitive to the order of execution of the SQL statements (and the mixed format uses row-based replication for any statements that are unsafe for statement-based replication).
 
-- Valores de autoincremento “perdidos” e lacunas na sequência
+* “Lost” auto-increment values and sequence gaps
 
-  Em todos os modos de bloqueio (0, 1 e 2), se uma transação que gerou valores de autoincremento for revertida, esses valores de autoincremento são “perdidos”. Uma vez que um valor é gerado para uma coluna de autoincremento, ele não pode ser revertido, independentemente de a instrução “`INSERT`-like`” ser concluída ou não, e independentemente de a transação contendo ser revertida ou não. Esses valores perdidos não são reutilizados. Assim, pode haver lacunas nos valores armazenados em uma coluna `AUTO_INCREMENT\` de uma tabela.
+  In all lock modes (0, 1, and 2), if a transaction that generated auto-increment values rolls back, those auto-increment values are “lost”. Once a value is generated for an auto-increment column, it cannot be rolled back, whether or not the “`INSERT`-like” statement is completed, and whether or not the containing transaction is rolled back. Such lost values are not reused. Thus, there may be gaps in the values stored in an `AUTO_INCREMENT` column of a table.
 
-- Especificar NULL ou 0 para a coluna `AUTO_INCREMENT`
+* Specifying NULL or 0 for the `AUTO_INCREMENT` column
 
-  Em todos os modos de bloqueio (0, 1 e 2), se um usuário especificar NULL ou 0 para a coluna `AUTO_INCREMENT` em uma `INSERT`, o `InnoDB` trata a linha como se o valor não tivesse sido especificado e gera um novo valor para ela.
+  In all lock modes (0, 1, and 2), if a user specifies NULL or 0 for the `AUTO_INCREMENT` column in an `INSERT`, `InnoDB` treats the row as if the value was not specified and generates a new value for it.
 
-- Atribuir um valor negativo à coluna `AUTO_INCREMENT`
+* Assigning a negative value to the `AUTO_INCREMENT` column
 
-  Em todos os modos de bloqueio (0, 1 e 2), o comportamento do mecanismo de autoincremento é indefinido se você atribuir um valor negativo à coluna `AUTO_INCREMENT`.
+  In all lock modes (0, 1, and 2), the behavior of the auto-increment mechanism is undefined if you assign a negative value to the `AUTO_INCREMENT` column.
 
-- Se o valor `AUTO_INCREMENT` ficar maior que o máximo inteiro para o tipo de inteiro especificado
+* If the `AUTO_INCREMENT` value becomes larger than the maximum integer for the specified integer type
 
-  Em todos os modos de bloqueio (0, 1 e 2), o comportamento do mecanismo de autoincremento é indefinido se o valor se tornar maior que o inteiro máximo que pode ser armazenado no tipo de inteiro especificado.
+  In all lock modes (0, 1, and 2), the behavior of the auto-increment mechanism is undefined if the value becomes larger than the maximum integer that can be stored in the specified integer type.
 
-- Lacunas nos valores de autoincremento para “inserções em lote”
+* Gaps in auto-increment values for “bulk inserts”
 
-  Com `innodb_autoinc_lock_mode` definido como 0 (“tradicional”) ou 1 (“consecutivo”), os valores de autoincremento gerados por qualquer declaração são consecutivos, sem lacunas, porque o bloqueio `AUTO-INC` de nível de tabela é mantido até o final da declaração, e apenas uma declaração desse tipo pode ser executada de cada vez.
+  With `innodb_autoinc_lock_mode` set to 0 (“traditional”) or 1 (“consecutive”), the auto-increment values generated by any given statement are consecutive, without gaps, because the table-level `AUTO-INC` lock is held until the end of the statement, and only one such statement can execute at a time.
 
-  Com `innodb_autoinc_lock_mode` definido como 2 (“interleaved”), pode haver lacunas nos valores de autoincremento gerados por “inserções em lote”, mas apenas se houver instruções “`INSERT`-like” sendo executadas simultaneamente.
+  With `innodb_autoinc_lock_mode` set to 2 (“interleaved”), there may be gaps in the auto-increment values generated by “bulk inserts,” but only if there are concurrently executing “`INSERT`-like” statements.
 
-  Para os modos de bloqueio 1 ou 2, podem ocorrer lacunas entre as declarações sucessivas, pois, para inserções em massa, o número exato de valores de autoincremento necessários por cada declaração pode não ser conhecido e a superestimação é possível.
+  For lock modes 1 or 2, gaps may occur between successive statements because for bulk inserts the exact number of auto-increment values required by each statement may not be known and overestimation is possible.
 
-- Valores de autoincremento atribuídos por "inserções em modo misto"
+* Auto-increment values assigned by “mixed-mode inserts”
 
-  Considere um "inserto em modo misto", onde um "inserto simples" especifica o valor de autoincremento para algumas (mas não todas) das linhas resultantes. Tal declaração se comporta de maneira diferente nos modos de bloqueio 0, 1 e 2. Por exemplo, suponha que `c1` seja uma coluna `AUTO_INCREMENT` da tabela `t1`, e que o número de sequência gerado automaticamente mais recente seja 100.
+  Consider a “mixed-mode insert,” where a “simple insert” specifies the auto-increment value for some (but not all) resulting rows. Such a statement behaves differently in lock modes 0, 1, and 2. For example, assume `c1` is an `AUTO_INCREMENT` column of table `t1`, and that the most recent automatically generated sequence number is 100.
 
   ```sql
   mysql> CREATE TABLE t1 (
@@ -137,13 +137,13 @@ Existem três configurações possíveis para a variável `innodb_autoinc_lock_m
       -> ) ENGINE = INNODB;
   ```
 
-  Agora, considere a seguinte declaração de "inserção em modo misto":
+  Now, consider the following “mixed-mode insert” statement:
 
   ```sql
   mysql> INSERT INTO t1 (c1,c2) VALUES (1,'a'), (NULL,'b'), (5,'c'), (NULL,'d');
   ```
 
-  Com `innodb_autoinc_lock_mode` definido como 0 (“tradicional”), os quatro novos registros são:
+  With `innodb_autoinc_lock_mode` set to 0 (“traditional”), the four new rows are:
 
   ```sql
   mysql> SELECT c1, c2 FROM t1 ORDER BY c2;
@@ -157,9 +157,9 @@ Existem três configurações possíveis para a variável `innodb_autoinc_lock_m
   +-----+------+
   ```
 
-  O próximo valor de autoincremento disponível é 103 porque os valores de autoincremento são alocados um de cada vez, não todos de uma vez no início da execução da instrução. Esse resultado é verdadeiro, independentemente de haver ou não instruções "`INSERT`-like" (de qualquer tipo) sendo executadas simultaneamente.
+  The next available auto-increment value is 103 because the auto-increment values are allocated one at a time, not all at once at the beginning of statement execution. This result is true whether or not there are concurrently executing “`INSERT`-like” statements (of any type).
 
-  Com `innodb_autoinc_lock_mode` definido como 1 (“consecutivo”), as quatro novas linhas também são:
+  With `innodb_autoinc_lock_mode` set to 1 (“consecutive”), the four new rows are also:
 
   ```sql
   mysql> SELECT c1, c2 FROM t1 ORDER BY c2;
@@ -173,9 +173,9 @@ Existem três configurações possíveis para a variável `innodb_autoinc_lock_m
   +-----+------+
   ```
 
-  No entanto, neste caso, o próximo valor de autoincremento disponível é 105, e não 103, porque quatro valores de autoincremento são alocados no momento em que a instrução é processada, mas apenas dois são usados. Esse resultado é verdadeiro, independentemente de haver ou não instruções “`INSERT`-like\`” (de qualquer tipo) sendo executadas simultaneamente.
+  However, in this case, the next available auto-increment value is 105, not 103 because four auto-increment values are allocated at the time the statement is processed, but only two are used. This result is true whether or not there are concurrently executing “`INSERT`-like” statements (of any type).
 
-  Com `innodb_autoinc_lock_mode` definido como 2 (“interleaved”), os quatro novos registros são:
+  With `innodb_autoinc_lock_mode` set to 2 (“interleaved”), the four new rows are:
 
   ```sql
   mysql> SELECT c1, c2 FROM t1 ORDER BY c2;
@@ -189,19 +189,19 @@ Existem três configurações possíveis para a variável `innodb_autoinc_lock_m
   +-----+------+
   ```
 
-  Os valores de *`x`* e *`y`* são únicos e maiores do que quaisquer linhas geradas anteriormente. No entanto, os valores específicos de *`x`* e *`y`* dependem do número de valores de autoincremento gerados ao executar instruções simultaneamente.
+  The values of *`x`* and *`y`* are unique and larger than any previously generated rows. However, the specific values of *`x`* and *`y`* depend on the number of auto-increment values generated by concurrently executing statements.
 
-  Por fim, considere a seguinte declaração, emitida quando o número de sequência gerado mais recentemente é 100:
+  Finally, consider the following statement, issued when the most-recently generated sequence number is 100:
 
   ```sql
   mysql> INSERT INTO t1 (c1,c2) VALUES (1,'a'), (NULL,'b'), (101,'c'), (NULL,'d');
   ```
 
-  Com qualquer configuração do `innodb_autoinc_lock_mode`, essa declaração gera um erro de chave duplicada 23000 (`Não é possível escrever; chave duplicada na tabela`) porque o valor 101 é alocado para a linha `(NULL, 'b')` e a inserção da linha `(101, 'c')` falha.
+  With any `innodb_autoinc_lock_mode` setting, this statement generates a duplicate-key error 23000 (`Can't write; duplicate key in table`) because 101 is allocated for the row `(NULL, 'b')` and insertion of the row `(101, 'c')` fails.
 
-- Modificando os valores da coluna `AUTO_INCREMENT` no meio de uma sequência de instruções `INSERT`
+* Modifying `AUTO_INCREMENT` column values in the middle of a sequence of `INSERT` statements
 
-  Em todos os modos de bloqueio (0, 1 e 2), modificar o valor de uma coluna `AUTO_INCREMENT` no meio de uma sequência de instruções `INSERT` pode levar a erros de “Entrada duplicada”. Por exemplo, se você executar uma operação `UPDATE` que altera o valor de uma coluna `AUTO_INCREMENT` para um valor maior que o valor máximo atual de autoincremento, operações `INSERT` subsequentes que não especificam um valor de autoincremento não utilizado podem encontrar erros de “Entrada duplicada”. Esse comportamento é demonstrado no exemplo a seguir.
+  In all lock modes (0, 1, and 2), modifying an `AUTO_INCREMENT` column value in the middle of a sequence of `INSERT` statements could lead to “Duplicate entry” errors. For example, if you perform an `UPDATE` operation that changes an `AUTO_INCREMENT` column value to a value larger than the current maximum auto-increment value, subsequent `INSERT` operations that do not specify an unused auto-increment value could encounter “Duplicate entry” errors. This behavior is demonstrated in the following example.
 
   ```sql
   mysql> CREATE TABLE t1 (
@@ -235,34 +235,34 @@ Existem três configurações possíveis para a variável `innodb_autoinc_lock_m
   ERROR 1062 (23000): Duplicate entry '4' for key 'PRIMARY'
   ```
 
-##### Inicialização do contador de AUTO_INCREMENT do InnoDB
+##### InnoDB AUTO_INCREMENT Counter Initialization
 
-Esta seção descreve como o `InnoDB` inicializa os contadores `AUTO_INCREMENT`.
+This section describes how `InnoDB` initializes `AUTO_INCREMENT` counters.
 
-Se você especificar uma coluna `AUTO_INCREMENT` para uma tabela `InnoDB`, o identificador da tabela no dicionário de dados `InnoDB` contém um contador especial chamado contador de autoincremento, que é usado para atribuir novos valores à coluna. Esse contador é armazenado apenas na memória principal, não no disco.
+If you specify an `AUTO_INCREMENT` column for an `InnoDB` table, the table handle in the `InnoDB` data dictionary contains a special counter called the auto-increment counter that is used in assigning new values for the column. This counter is stored only in main memory, not on disk.
 
-Para inicializar um contador de autoincremento após o reinício do servidor, o `InnoDB` executa o equivalente à seguinte instrução na primeira inserção em uma tabela que contém uma coluna `AUTO_INCREMENT`.
+To initialize an auto-increment counter after a server restart, `InnoDB` executes the equivalent of the following statement on the first insert into a table containing an `AUTO_INCREMENT` column.
 
 ```sql
 SELECT MAX(ai_col) FROM table_name FOR UPDATE;
 ```
 
-O `InnoDB` incrementa o valor recuperado pela instrução e atribui-o à coluna e ao contador de autoincremento da tabela. Por padrão, o valor é incrementado em
+`InnoDB` increments the value retrieved by the statement and assigns it to the column and to the auto-increment counter for the table. By default, the value is incremented by
 
-1. Essa configuração padrão pode ser substituída pela configuração `auto_increment_increment`.
+1. This default can be overridden by the `auto_increment_increment` configuration setting.
 
-Se a tabela estiver vazia, o `InnoDB` usa o valor `1`. Esse padrão pode ser substituído pela configuração `auto_increment_offset`.
+If the table is empty, `InnoDB` uses the value `1`. This default can be overridden by the `auto_increment_offset` configuration setting.
 
-Se uma instrução `SHOW TABLE STATUS` examinar a tabela antes que o contador de autoincremento seja inicializado, o `InnoDB` inicializa, mas não incrementa o valor. O valor é armazenado para uso em inserções posteriores. Essa inicialização usa uma leitura de bloqueio exclusivo normal na tabela e o bloqueio dura até o final da transação. O `InnoDB` segue o mesmo procedimento para inicializar o contador de autoincremento para uma tabela recém-criada.
+If a `SHOW TABLE STATUS` statement examines the table before the auto-increment counter is initialized, `InnoDB` initializes but does not increment the value. The value is stored for use by later inserts. This initialization uses a normal exclusive-locking read on the table and the lock lasts to the end of the transaction. `InnoDB` follows the same procedure for initializing the auto-increment counter for a newly created table.
 
-Depois que o contador de autoincremento foi inicializado, se você não especificar explicitamente um valor para uma coluna `AUTO_INCREMENT`, o `InnoDB` incrementa o contador e atribui o novo valor à coluna. Se você inserir uma linha que especifique explicitamente o valor da coluna e o valor for maior que o valor atual do contador, o contador é definido para o valor da coluna especificado.
+After the auto-increment counter has been initialized, if you do not explicitly specify a value for an `AUTO_INCREMENT` column, `InnoDB` increments the counter and assigns the new value to the column. If you insert a row that explicitly specifies the column value, and the value is greater than the current counter value, the counter is set to the specified column value.
 
-O `InnoDB` usa o contador de incremento automático de memória enquanto o servidor estiver em execução. Quando o servidor é desligado e reiniciado, o `InnoDB` reinicia o contador para cada tabela na primeira `INSERT` na tabela, conforme descrito anteriormente.
+`InnoDB` uses the in-memory auto-increment counter as long as the server runs. When the server is stopped and restarted, `InnoDB` reinitializes the counter for each table for the first `INSERT` to the table, as described earlier.
 
-A reinicialização do servidor também cancela o efeito da opção `AUTO_INCREMENT = N` nas instruções `CREATE TABLE` e `ALTER TABLE`, que você pode usar com tabelas `InnoDB` para definir o valor inicial do contador ou alterar o valor atual do contador.
+A server restart also cancels the effect of the `AUTO_INCREMENT = N` table option in `CREATE TABLE` and `ALTER TABLE` statements, which you can use with `InnoDB` tables to set the initial counter value or alter the current counter value.
 
-##### Notas
+##### Notes
 
-- Quando uma coluna inteira `AUTO_INCREMENT` esgota seus valores, uma operação de `INSERT` subsequente retorna um erro de chave duplicada. Esse é o comportamento geral do MySQL.
+* When an `AUTO_INCREMENT` integer column runs out of values, a subsequent `INSERT` operation returns a duplicate-key error. This is general MySQL behavior.
 
-- Quando você reiniciar o servidor MySQL, o `InnoDB` pode reutilizar um valor antigo que foi gerado para uma coluna `AUTO_INCREMENT`, mas nunca armazenado (ou seja, um valor que foi gerado durante uma transação antiga que foi revertida).
+* When you restart the MySQL server, `InnoDB` may reuse an old value that was generated for an `AUTO_INCREMENT` column but never stored (that is, a value that was generated during an old transaction that was rolled back).

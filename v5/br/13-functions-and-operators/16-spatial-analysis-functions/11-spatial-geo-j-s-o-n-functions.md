@@ -1,24 +1,24 @@
-### 12.16.11 Funções GeoJSON Espacial
+### 12.16.11 Spatial GeoJSON Functions
 
-Esta seção descreve funções para a conversão entre documentos GeoJSON e valores espaciais. O GeoJSON é um padrão aberto para codificação de recursos geométricos/geográficos. Para mais informações, consulte <http://geojson.org>. As funções discutidas aqui seguem a revisão da especificação GeoJSON 1.0.
+This section describes functions for converting between GeoJSON documents and spatial values. GeoJSON is an open standard for encoding geometric/geographical features. For more information, see <http://geojson.org>. The functions discussed here follow GeoJSON specification revision 1.0.
 
-O GeoJSON suporta os mesmos tipos de dados geométricos/geográficos que o MySQL suporta. Os objetos Feature e FeatureCollection não são suportados, exceto que os objetos de geometria são extraídos deles. O suporte ao CRS é limitado a valores que identificam um SRID.
+GeoJSON supports the same geometric/geographic data types that MySQL supports. Feature and FeatureCollection objects are not supported, except that geometry objects are extracted from them. CRS support is limited to values that identify an SRID.
 
-O MySQL também suporta um tipo de dados nativo `JSON` e um conjunto de funções SQL para permitir operações em valores JSON. Para mais informações, consulte a Seção 11.5, “O Tipo de Dados JSON”, e a Seção 12.17, “Funções JSON”.
+MySQL also supports a native `JSON` data type and a set of SQL functions to enable operations on JSON values. For more information, see Section 11.5, “The JSON Data Type”, and Section 12.17, “JSON Functions”.
 
-- [`ST_AsGeoJSON(g [, max_dec_digits [, opções)`](https://docs.oracle.com/en/spatial/OracleSpatial/11/9/943555/ST_AsGeoJSON.htm#STASGEOJSON)
+* [`ST_AsGeoJSON(g [, max_dec_digits [, options)`](spatial-geojson-functions.html#function_st-asgeojson)
 
-  Gera um objeto GeoJSON a partir da geometria *`g`*. A string do objeto tem o conjunto de caracteres de conexão e a collation.
+  Generates a GeoJSON object from the geometry *`g`*. The object string has the connection character set and collation.
 
-  Se qualquer argumento for `NULL`, o valor de retorno será `NULL`. Se qualquer argumento que não for `NULL` for inválido, ocorrerá um erro.
+  If any argument is `NULL`, the return value is `NULL`. If any non-`NULL` argument is invalid, an error occurs.
 
-  *`max_dec_digits`*, se especificado, limita o número de dígitos decimais para as coordenadas e faz o arredondamento do resultado. Se não for especificado, este argumento tem como valor padrão seu valor máximo de 232 −
+  *`max_dec_digits`*, if specified, limits the number of decimal digits for coordinates and causes rounding of output. If not specified, this argument defaults to its maximum value of 232 −
 
-  1. O mínimo é 0.
+  1. The minimum is 0.
 
-  *`options`*, se especificado, é uma máscara de bits. A tabela a seguir mostra os valores de sinalizador permitidos. Se o argumento de geometria tiver um SRID de 0, nenhum objeto de CRS é produzido, mesmo para esses valores de sinalizador que o solicitam.
+  *`options`*, if specified, is a bitmask. The following table shows the permitted flag values. If the geometry argument has an SRID of 0, no CRS object is produced even for those flag values that request one.
 
-  <table summary="Ferramentas de opção para a função ST_AsGeoJSON()."><col style="width: 10%"/><col style="width: 90%"/><thead><tr> <th>Valor da bandeira</th> <th>Significado</th> </tr></thead><tbody><tr> <td>0</td> <td>Sem opções. Isso é o padrão se<em><code>options</code></em>não é especificado.</td> </tr><tr> <td>1</td> <td>Adicione uma caixa de seleção à saída.</td> </tr><tr> <td>2</td> <td>Adicione um URN CRS de formato curto à saída. O formato padrão é um formato curto (<code>EPSG:<em><code>srid</code></em></code>).</td> </tr><tr> <td>4</td> <td>Adicione um URN de CRS de formato longo (<code>urn:ogc:def:crs:EPSG::<em><code>srid</code></em></code>). Essa bandeira substitui a bandeira 2. Por exemplo, os valores das opções 5 e 7 significam a mesma coisa (adicionar uma caixa de seleção e um URN de CRS de formato longo).</td> </tr></tbody></table>
+  <table summary="Option flags for the ST_AsGeoJSON() function."><col style="width: 10%"/><col style="width: 90%"/><thead><tr> <th>Flag Value</th> <th>Meaning</th> </tr></thead><tbody><tr> <td>0</td> <td>No options. This is the default if <em><code>options</code></em> is not specified.</td> </tr><tr> <td>1</td> <td>Add a bounding box to the output.</td> </tr><tr> <td>2</td> <td>Add a short-format CRS URN to the output. The default format is a short format (<code>EPSG:<em><code>srid</code></em></code>).</td> </tr><tr> <td>4</td> <td>Add a long-format CRS URN (<code>urn:ogc:def:crs:EPSG::<em><code>srid</code></em></code>). This flag overrides flag 2. For example, option values of 5 and 7 mean the same (add a bounding box and a long-format CRS URN).</td> </tr></tbody></table>
 
   ```sql
   mysql> SELECT ST_AsGeoJSON(ST_GeomFromText('POINT(11.11111 12.22222)'),2);
@@ -29,25 +29,25 @@ O MySQL também suporta um tipo de dados nativo `JSON` e um conjunto de funçõe
   +-------------------------------------------------------------+
   ```
 
-- [`ST_GeomFromGeoJSON(str [, opções [, srid)`](https://docs.oracle.com/database/122/SPATIAL/SPATIAL-GEOMJSON-FUNCTIONS.HTML#function_st-geomfromgeojson)
+* [`ST_GeomFromGeoJSON(str [, options [, srid)`](spatial-geojson-functions.html#function_st-geomfromgeojson)
 
-  Analisa uma string *`str`* que representa um objeto GeoJSON e retorna uma geometria.
+  Parses a string *`str`* representing a GeoJSON object and returns a geometry.
 
-  Se qualquer argumento for `NULL`, o valor de retorno será `NULL`. Se qualquer argumento que não for `NULL` for inválido, ocorrerá um erro.
+  If any argument is `NULL`, the return value is `NULL`. If any non-`NULL` argument is invalid, an error occurs.
 
-  *`options`*, se fornecido, descreve como lidar com documentos GeoJSON que contêm geometrias com dimensões de coordenadas superiores a 2. A tabela a seguir mostra os valores permitidos de *`options`*.
+  *`options`*, if given, describes how to handle GeoJSON documents that contain geometries with coordinate dimensions higher than 2. The following table shows the permitted *`options`* values.
 
-  <table summary="Ferramentas de opção para a função ST_GeomFromGeoJSON()."><col style="width: 10%"/><col style="width: 90%"/><thead><tr> <th>Valor da Opção</th> <th>Significado</th> </tr></thead><tbody><tr> <td>1</td> <td>Rejeite o documento e produza um erro. Isso é o padrão se<em><code>options</code></em>não é especificado.</td> </tr><tr> <td>2, 3, 4</td> <td>Aceite o documento e elimine as coordenadas para obter dimensões de coordenadas mais altas.</td> </tr></tbody></table>
+  <table summary="Option flags for the ST_GeomFromGeoJSON() function."><col style="width: 10%"/><col style="width: 90%"/><thead><tr> <th>Option Value</th> <th>Meaning</th> </tr></thead><tbody><tr> <td>1</td> <td>Reject the document and produce an error. This is the default if <em><code>options</code></em> is not specified.</td> </tr><tr> <td>2, 3, 4</td> <td>Accept the document and strip off the coordinates for higher coordinate dimensions.</td> </tr></tbody></table>
 
-  Os valores de *`options`* 2, 3 e 4 atualmente produzem o mesmo efeito. Se as geometrias com dimensões de coordenadas superiores a 2 forem suportadas no futuro, espera-se que esses valores produzam efeitos diferentes.
+  *`options`* values of 2, 3, and 4 currently produce the same effect. If geometries with coordinate dimensions higher than 2 are supported in the future, these values can be expected to produce different effects.
 
-  O argumento *`srid`*, se fornecido, deve ser um inteiro sem sinal de 32 bits. Se não for fornecido, o valor de retorno da geometria tem um SRID de 4326.
+  The *`srid`* argument, if given, must be a 32-bit unsigned integer. If not given, the geometry return value has an SRID of 4326.
 
-  Os objetos de geometria, recursos e coleções de recursos GeoJSON podem ter uma propriedade `crs`. A função de parsing analisa URNs de CRS nomeados nos namespaces `urn:ogc:def:crs:EPSG::srid` e `EPSG:srid`, mas não CRSs fornecidos como objetos de link. Além disso, `urn:ogc:def:crs:OGC:1.3:CRS84` é reconhecido como SRID 4326. Se um objeto tiver um CRS que não é compreendido, ocorre um erro, com exceção de que, se o argumento opcional *`srid`* for fornecido, qualquer CRS é ignorado, mesmo que seja inválido.
+  GeoJSON geometry, feature, and feature collection objects may have a `crs` property. The parsing function parses named CRS URNs in the `urn:ogc:def:crs:EPSG::srid` and `EPSG:srid` namespaces, but not CRSs given as link objects. Also, `urn:ogc:def:crs:OGC:1.3:CRS84` is recognized as SRID 4326. If an object has a CRS that is not understood, an error occurs, with the exception that if the optional *`srid`* argument is given, any CRS is ignored even if it is invalid.
 
-  Conforme especificado na especificação GeoJSON, a análise é sensível ao caso para o membro `type` do input GeoJSON (`Point`, `LineString`, e assim por diante). A especificação é silenciosa em relação à sensibilidade ao caso para outras análises, o que, no MySQL, não é sensível ao caso.
+  As specified in the GeoJSON specification, parsing is case-sensitive for the `type` member of the GeoJSON input (`Point`, `LineString`, and so forth). The specification is silent regarding case sensitivity for other parsing, which in MySQL is not case-sensitive.
 
-  Este exemplo mostra o resultado da análise de um objeto GeoJSON simples:
+  This example shows the parsing result for a simple GeoJSON object:
 
   ```sql
   mysql> SET @json = '{ "type": "Point", "coordinates": [102.0, 0.0]}';

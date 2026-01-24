@@ -1,22 +1,22 @@
-#### 21.6.15.9 A tabela ndbinfo config_values
+#### 21.6.15.9 The ndbinfo config_values Table
 
-A tabela `config_values`, implementada no NDB 7.5.0, fornece informações sobre o estado atual dos valores dos parâmetros de configuração do nó. Cada linha da tabela corresponde ao valor atual de um parâmetro em um nó específico.
+The `config_values` table, implemented in NDB 7.5.0, provides information about the current state of node configuration parameter values. Each row in the table corresponds to the current value of a parameter on a given node.
 
-- `node_id`
+* `node_id`
 
-  ID do nó no cluster
+  ID of the node in the cluster
 
-- `config_param`
+* `config_param`
 
-  O número de ID interno do parâmetro
+  The parameter's internal ID number
 
-- `config_value`
+* `config_value`
 
-  Valor atual do parâmetro
+  Current value of the parameter
 
-##### Notas
+##### Notes
 
-A coluna `config_param` da tabela e a coluna `param_number` da tabela `config_params` usam os mesmos identificadores de parâmetros. Ao juntar as duas tabelas nessas colunas, você pode obter informações detalhadas sobre os parâmetros de configuração desejados para cada nó do clúster. A consulta mostrada aqui fornece os valores atuais para todos os parâmetros em cada nó de dados do clúster, ordenados por ID de nó e nome do parâmetro:
+This table's `config_param` column and the [`config_params`](mysql-cluster-ndbinfo-config-params.html "21.6.15.8 The ndbinfo config_params Table") table's `param_number` column use the same parameter identifiers. By joining the two tables on these columns, you can obtain detailed information about desired node configuration parameters. The query shown here provides the current values for all parameters on each data node in the cluster, ordered by node ID and parameter name:
 
 ```sql
 SELECT    v.node_id AS 'Node Id',
@@ -29,7 +29,7 @@ WHERE     p.param_name NOT LIKE '__%'
 ORDER BY  v.node_id, p.param_name;
 ```
 
-Saída parcial da consulta anterior quando executada em um pequeno exemplo de cluster usado para testes simples:
+Partial output from the previous query when run on a small example cluster used for simple testing:
 
 ```sql
 +---------+------------------------------------------+----------------+
@@ -55,9 +55,9 @@ Saída parcial da consulta anterior quando executada em um pequeno exemplo de cl
 248 rows in set (0.02 sec)
 ```
 
-A cláusula `WHERE` filtra parâmetros cujos nomes começam com um duplo sublinhado (`__`); esses parâmetros são reservados para testes e outros usos internos pelos desenvolvedores do NDB e não são destinados ao uso em um NDB Cluster em produção.
+The `WHERE` clause filters out parameters whose names begin with a double underscore (`__`); these parameters are reserved for testing and other internal uses by the NDB developers, and are not intended for use in a production NDB Cluster.
 
-Você pode obter resultados mais específicos, mais detalhados ou ambos ao emitir as consultas adequadas. Este exemplo fornece todos os tipos de informações disponíveis sobre os parâmetros `NodeId`, `NoOfReplicas`, `HostName`, `DataMemory`, `IndexMemory` e `TotalSendBufferMemory`, conforme configurados atualmente para todos os nós de dados no clúster:
+You can obtain output that is more specific, more detailed, or both by issuing the proper queries. This example provides all types of available information about the `NodeId`, `NoOfReplicas`, `HostName`, `DataMemory`, `IndexMemory`, and `TotalSendBufferMemory` parameters as currently set for all data nodes in the cluster:
 
 ```sql
 SELECT  p.param_name AS Name,
@@ -76,7 +76,7 @@ WHERE   p. param_name
       'DataMemory', 'IndexMemory', 'TotalSendBufferMemory')\G
 ```
 
-O resultado dessa consulta, quando executada em um pequeno NDB Cluster com 2 nós de dados usados para testes simples, é mostrado aqui:
+The output from this query when run on a small NDB Cluster with 2 data nodes used for simple testing is shown here:
 
 ```sql
 *************************** 1. row ***************************

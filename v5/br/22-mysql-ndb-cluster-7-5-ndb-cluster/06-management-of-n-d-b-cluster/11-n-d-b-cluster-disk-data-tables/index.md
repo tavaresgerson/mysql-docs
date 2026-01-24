@@ -1,15 +1,15 @@
-### 21.6.11 Tabelas de dados de disco do cluster NDB
+### 21.6.11 NDB Cluster Disk Data Tables
 
-21.6.11.1 Objetos de dados de disco do cluster NDB
+[21.6.11.1 NDB Cluster Disk Data Objects](mysql-cluster-disk-data-objects.html)
 
-21.6.11.2 Uso de Links Simbólicos com Objetos de Dados de Disco
+[21.6.11.2 Using Symbolic Links with Disk Data Objects](mysql-cluster-disk-data-symlinks.html)
 
-21.6.11.3 Requisitos de Armazenamento de Dados de Disco do NDB Cluster
+[21.6.11.3 NDB Cluster Disk Data Storage Requirements](mysql-cluster-disk-data-storage-requirements.html)
 
-É possível armazenar as colunas não indexadas das tabelas de `NDB` no disco, em vez de na RAM.
+It is possible to store the nonindexed columns of [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables on disk, rather than in RAM.
 
-Como parte da implementação do trabalho com NDB Cluster Disk Data, várias melhorias foram feitas no NDB Cluster para o manejo eficiente de grandes quantidades (terabytes) de dados durante a recuperação e reinício de nós. Essas melhorias incluem um algoritmo de "não roubo" para sincronizar um nó inicial com conjuntos de dados muito grandes. Para mais informações, consulte o artigo *Princípios de Recuperação do NDB Cluster 5.1*, dos desenvolvedores do NDB Cluster Mikael Ronström e Jonas Oreland.
+As part of implementing NDB Cluster Disk Data work, a number of improvements were made in NDB Cluster for the efficient handling of very large amounts (terabytes) of data during node recovery and restart. These include a “no-steal” algorithm for synchronizing a starting node with very large data sets. For more information, see the paper *[Recovery Principles of NDB Cluster 5.1](http://www.vldb2005.org/program/paper/wed/p1108-ronstrom.pdf)*, by NDB Cluster developers Mikael Ronström and Jonas Oreland.
 
-O desempenho dos dados do disco do NDB Cluster pode ser influenciado por vários parâmetros de configuração. Para obter informações sobre esses parâmetros e seus efeitos, consulte *Parâmetros de configuração dos dados do disco do NDB Cluster* e *Erros de armazenamento e GCP Stop dos dados do disco do NDB Cluster*
+NDB Cluster Disk Data performance can be influenced by a number of configuration parameters. For information about these parameters and their effects, see *[NDB Cluster Disk Data configuration parameters](mysql-cluster-ndbd-definition.html#mysql-cluster-ndbd-definition-disk-data-parameters "Disk Data Configuration Parameters")* and *[NDB Cluster Disk Data storage and GCP Stop errors](mysql-cluster-ndbd-definition.html#mysql-cluster-ndbd-definition-gcp-stop-errors "Disk Data and GCP Stop errors")*
 
-O desempenho de um NDB Cluster que utiliza o armazenamento de dados em disco também pode ser significativamente melhorado ao separar os sistemas de arquivos dos nós de dados dos arquivos de log de desfazer e dos arquivos de dados do espaço de tabelas, o que pode ser feito usando links simbólicos. Para mais informações, consulte Seção 21.6.11.2, “Usando Links Simbólicos com Objetos de Dados em Disco”.
+The performance of an NDB Cluster that uses Disk Data storage can also be greatly improved by separating data node file systems from undo log files and tablespace data files, which can be done using symbolic links. For more information, see [Section 21.6.11.2, “Using Symbolic Links with Disk Data Objects”](mysql-cluster-disk-data-symlinks.html "21.6.11.2 Using Symbolic Links with Disk Data Objects").

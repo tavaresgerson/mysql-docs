@@ -1,6 +1,6 @@
-#### 13.2.10.1 Subconsulta como Operando Escalar
+#### 13.2.10.1 The Subquery as Scalar Operand
 
-Na sua forma mais simples, uma subconsulta é uma subconsulta escalar que retorna um único valor. Uma subconsulta escalar é um operando simples, e você pode usá-la quase em qualquer lugar onde um valor de coluna ou literal seja legal, e você pode esperar que ela tenha as características que todos os operandos têm: um tipo de dados, uma extensão, uma indicação de que ela pode ser `NULL`, e assim por diante. Por exemplo:
+In its simplest form, a subquery is a scalar subquery that returns a single value. A scalar subquery is a simple operand, and you can use it almost anywhere a single column value or literal is legal, and you can expect it to have those characteristics that all operands have: a data type, a length, an indication that it can be `NULL`, and so on. For example:
 
 ```sql
 CREATE TABLE t1 (s1 INT, s2 CHAR(5) NOT NULL);
@@ -8,13 +8,13 @@ INSERT INTO t1 VALUES(100, 'abcde');
 SELECT (SELECT s2 FROM t1);
 ```
 
-A subconsulta nesta `SELECT` retorna um único valor (`'abcde'`) que tem um tipo de dados de `CHAR`, uma extensão de 5 caracteres, um conjunto de caracteres e uma ordenação iguais aos padrões em vigor no momento da `CREATE TABLE` e uma indicação de que o valor na coluna pode ser `NULL`. A nulibilidade do valor selecionado por uma subconsulta escalar não é copiada porque, se o resultado da subconsulta for vazio, o resultado será `NULL`. Para a subconsulta mostrada acima, se `t1` estivesse vazio, o resultado seria `NULL`, mesmo que `s2` seja `NOT NULL`.
+The subquery in this [`SELECT`](select.html "13.2.9 SELECT Statement") returns a single value (`'abcde'`) that has a data type of [`CHAR`](char.html "11.3.2 The CHAR and VARCHAR Types"), a length of 5, a character set and collation equal to the defaults in effect at [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") time, and an indication that the value in the column can be `NULL`. Nullability of the value selected by a scalar subquery is not copied because if the subquery result is empty, the result is `NULL`. For the subquery just shown, if `t1` were empty, the result would be `NULL` even though `s2` is `NOT NULL`.
 
-Há alguns contextos em que uma subconsulta escalar não pode ser usada. Se uma instrução permite apenas um valor literal, você não pode usar uma subconsulta. Por exemplo, o `LIMIT` requer argumentos inteiros literais, e `LOAD DATA` requer um nome de arquivo literal. Você não pode usar subconsultas para fornecer esses valores.
+There are a few contexts in which a scalar subquery cannot be used. If a statement permits only a literal value, you cannot use a subquery. For example, `LIMIT` requires literal integer arguments, and [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") requires a literal string file name. You cannot use subqueries to supply these values.
 
-Quando você vir exemplos nas seções seguintes que contêm o construtor bastante minimalista `(SELECT column1 FROM t1)`, imagine que seu próprio código contém construções muito mais diversas e complexas.
+When you see examples in the following sections that contain the rather spartan construct `(SELECT column1 FROM t1)`, imagine that your own code contains much more diverse and complex constructions.
 
-Suponha que façamos duas tabelas:
+Suppose that we make two tables:
 
 ```sql
 CREATE TABLE t1 (s1 INT);
@@ -23,15 +23,15 @@ CREATE TABLE t2 (s1 INT);
 INSERT INTO t2 VALUES (2);
 ```
 
-Em seguida, execute uma consulta `SELECT`:
+Then perform a [`SELECT`](select.html "13.2.9 SELECT Statement"):
 
 ```sql
 SELECT (SELECT s1 FROM t2) FROM t1;
 ```
 
-O resultado é `2` porque há uma linha em `t2` que contém uma coluna `s1` com um valor de `2`.
+The result is `2` because there is a row in `t2` containing a column `s1` that has a value of `2`.
 
-Uma subconsulta escalar pode fazer parte de uma expressão, mas lembre-se das chaves, mesmo que a subconsulta seja um operando que forneça um argumento para uma função. Por exemplo:
+A scalar subquery can be part of an expression, but remember the parentheses, even if the subquery is an operand that provides an argument for a function. For example:
 
 ```sql
 SELECT UPPER((SELECT s1 FROM t1)) FROM t2;

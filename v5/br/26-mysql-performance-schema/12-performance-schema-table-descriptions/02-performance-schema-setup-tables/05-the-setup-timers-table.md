@@ -1,6 +1,6 @@
-#### 25.12.2.5 A tabela setup_timers
+#### 25.12.2.5 The setup_timers Table
 
-A tabela `setup_timers` mostra os temporizadores de evento atualmente selecionados:
+The [`setup_timers`](performance-schema-setup-timers-table.html "25.12.2.5 The setup_timers Table") table shows the currently selected event timers:
 
 ```sql
 mysql> SELECT * FROM performance_schema.setup_timers;
@@ -15,22 +15,22 @@ mysql> SELECT * FROM performance_schema.setup_timers;
 +-------------+-------------+
 ```
 
-Nota
+Note
 
-A partir do MySQL 5.7.21, a tabela do Schema de Desempenho `setup_timers` está desatualizada e será removida no MySQL 8.0, assim como a linha `TICKS` na tabela `performance_timers`.
+As of MySQL 5.7.21, the Performance Schema [`setup_timers`](performance-schema-setup-timers-table.html "25.12.2.5 The setup_timers Table") table is deprecated and is removed in MySQL 8.0, as is the `TICKS` row in the [`performance_timers`](performance-schema-performance-timers-table.html "25.12.16.2 The performance_timers Table") table.
 
-O valor `setup_timers.TIMER_NAME` pode ser alterado para selecionar um temporizador diferente. O valor pode ser qualquer um dos valores na coluna `performance_timers.TIMER_NAME`. Para uma explicação sobre como o temporização de eventos ocorre, consulte Seção 25.4.1, “Temporização de Eventos do Schema de Desempenho”.
+The `setup_timers.TIMER_NAME` value can be changed to select a different timer. The value can be any of the values in the `performance_timers.TIMER_NAME` column. For an explanation of how event timing occurs, see [Section 25.4.1, “Performance Schema Event Timing”](performance-schema-timing.html "25.4.1 Performance Schema Event Timing").
 
-As modificações na tabela `setup_timers` afetam o monitoramento imediatamente. Eventos já em andamento podem usar o temporizador original para a hora de início e o novo temporizador para a hora de término. Para evitar resultados imprevisíveis após fazer alterações nos temporizadores, use `TRUNCATE TABLE` para redefinir as estatísticas do Schema de Desempenho.
+Modifications to the [`setup_timers`](performance-schema-setup-timers-table.html "25.12.2.5 The setup_timers Table") table affect monitoring immediately. Events already in progress may use the original timer for the begin time and the new timer for the end time. To avoid unpredictable results after you make timer changes, use [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") to reset Performance Schema statistics.
 
-A tabela `setup_timers` tem as seguintes colunas:
+The [`setup_timers`](performance-schema-setup-timers-table.html "25.12.2.5 The setup_timers Table") table has these columns:
 
-- `NOME`
+* `NAME`
 
-  O tipo de instrumento para o qual o temporizador é utilizado.
+  The type of instrument the timer is used for.
 
-- `TIMER_NAME`
+* `TIMER_NAME`
 
-  O temporizador que se aplica ao tipo de instrumento. Esta coluna pode ser modificada.
+  The timer that applies to the instrument type. This column can be modified.
 
-A operação `TRUNCATE TABLE` não é permitida para a tabela `setup_timers`.
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is not permitted for the [`setup_timers`](performance-schema-setup-timers-table.html "25.12.2.5 The setup_timers Table") table.

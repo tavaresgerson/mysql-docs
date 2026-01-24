@@ -1,84 +1,84 @@
-### 14.5.2 Buffer de alteração
+### 14.5.2 Change Buffer
 
-O buffer de alterações é uma estrutura de dados especial que armazena alterações em páginas de índice secundário quando essas páginas não estão no pool de buffer. As alterações armazenadas, que podem resultar de operações de inserção, atualização ou exclusão (DML), são mescladas posteriormente quando as páginas são carregadas no pool de buffer por outras operações de leitura.
+The change buffer is a special data structure that caches changes to secondary index pages when those pages are not in the buffer pool. The buffered changes, which may result from `INSERT`, `UPDATE`, or `DELETE` operations (DML), are merged later when the pages are loaded into the buffer pool by other read operations.
 
-**Figura 14.3: Buffer de Alteração**
+**Figure 14.3 Change Buffer**
 
-![O conteúdo é descrito no texto ao redor.](images/innodb-change-buffer.png)
+![Content is described in the surrounding text.](images/innodb-change-buffer.png)
 
-Ao contrário dos índices agrupados, os índices secundários geralmente não são exclusivos, e as inserções em índices secundários ocorrem em uma ordem relativamente aleatória. Da mesma forma, as exclusões e atualizações podem afetar páginas de índice secundário que não estão adjacentes a uma árvore de índice. A fusão de alterações armazenadas em cache em um momento posterior, quando as páginas afetadas são lidas no pool de buffer por outras operações, evita o acesso aleatório de I/O substancial que seria necessário para ler páginas de índice secundário no pool de buffer a partir do disco.
+Unlike clustered indexes, secondary indexes are usually nonunique, and inserts into secondary indexes happen in a relatively random order. Similarly, deletes and updates may affect secondary index pages that are not adjacently located in an index tree. Merging cached changes at a later time, when affected pages are read into the buffer pool by other operations, avoids substantial random access I/O that would be required to read secondary index pages into the buffer pool from disk.
 
-Periodicamente, a operação de purga que é executada quando o sistema está quase parado ou durante uma desligamento lento, escreve as páginas do índice atualizadas no disco. A operação de purga pode escrever blocos de disco para uma série de valores de índice de forma mais eficiente do que se cada valor fosse escrito no disco imediatamente.
+Periodically, the purge operation that runs when the system is mostly idle, or during a slow shutdown, writes the updated index pages to disk. The purge operation can write disk blocks for a series of index values more efficiently than if each value were written to disk immediately.
 
-A fusão de buffers de alteração pode levar várias horas quando há muitas linhas afetadas e vários índices secundários a serem atualizados. Durante esse tempo, o I/O do disco aumenta, o que pode causar um atraso significativo para consultas que dependem do disco. A fusão de buffers de alteração também pode continuar a ocorrer após o commit de uma transação e até mesmo após o desligamento e reinício do servidor (consulte a Seção 14.22.2, “Forçar a Recuperação do InnoDB”, para obter mais informações).
+Change buffer merging may take several hours when there are many affected rows and numerous secondary indexes to update. During this time, disk I/O is increased, which can cause a significant slowdown for disk-bound queries. Change buffer merging may also continue to occur after a transaction is committed, and even after a server shutdown and restart (see Section 14.22.2, “Forcing InnoDB Recovery” for more information).
 
-Na memória, o buffer de alterações ocupa parte do pool de buffers. No disco, o buffer de alterações faz parte do espaço de tabela do sistema, onde as alterações de índice são armazenadas em cache quando o servidor de banco de dados é desligado.
+In memory, the change buffer occupies part of the buffer pool. On disk, the change buffer is part of the system tablespace, where index changes are buffered when the database server is shut down.
 
-O tipo de dados armazenados no buffer de alterações é controlado pela variável `innodb_change_buffering`. Para obter mais informações, consulte Configurando o buffer de alterações. Você também pode configurar o tamanho máximo do buffer de alterações. Para mais informações, consulte Configurando o tamanho máximo do buffer de alterações.
+The type of data cached in the change buffer is governed by the `innodb_change_buffering` variable. For more information, see Configuring Change Buffering. You can also configure the maximum change buffer size. For more information, see Configuring the Change Buffer Maximum Size.
 
-A alteração de buffer não é suportada para um índice secundário se o índice contiver uma coluna de índice descendente ou se a chave primária incluir uma coluna de índice descendente.
+Change buffering is not supported for a secondary index if the index contains a descending index column or if the primary key includes a descending index column.
 
-Para respostas a perguntas frequentes sobre o buffer de alterações, consulte a Seção A.16, “Perguntas frequentes do MySQL 5.7: Buffer de Alterações InnoDB”.
+For answers to frequently asked questions about the change buffer, see Section A.16, “MySQL 5.7 FAQ: InnoDB Change Buffer”.
 
-#### Configurando o Bufferamento de Alterações
+#### Configuring Change Buffering
 
-Quando as operações `INSERT`, `UPDATE` e `DELETE` são realizadas em uma tabela, os valores das colunas indexadas (especialmente os valores das chaves secundárias) muitas vezes estão em ordem não ordenada, exigindo um grande volume de I/O para atualizar os índices secundários. O buffer de alterações armazena as alterações nas entradas do índice secundário quando a página relevante não está no pool de buffer, evitando assim operações de I/O caras ao não ler a página imediatamente do disco. As alterações em buffer são mescladas quando a página é carregada no pool de buffer e a página atualizada é posteriormente descarregada no disco. O principal thread do `InnoDB` mescla as alterações em buffer quando o servidor está quase parado e durante uma parada lenta.
+When `INSERT`, `UPDATE`, and `DELETE` operations are performed on a table, the values of indexed columns (particularly the values of secondary keys) are often in an unsorted order, requiring substantial I/O to bring secondary indexes up to date. The change buffer caches changes to secondary index entries when the relevant page is not in the buffer pool, thus avoiding expensive I/O operations by not immediately reading in the page from disk. The buffered changes are merged when the page is loaded into the buffer pool, and the updated page is later flushed to disk. The `InnoDB` main thread merges buffered changes when the server is nearly idle, and during a slow shutdown.
 
-Como isso pode resultar em menos leituras e escritas no disco, a mudança de bufferização é mais valiosa para cargas de trabalho que são limitadas por I/O; por exemplo, aplicativos com um alto volume de operações DML, como inserções em massa, se beneficiam da mudança de bufferização.
+Because it can result in fewer disk reads and writes, change buffering is most valuable for workloads that are I/O-bound; for example, applications with a high volume of DML operations such as bulk inserts benefit from change buffering.
 
-No entanto, o buffer de alterações ocupa uma parte do pool de buffers, reduzindo a memória disponível para as páginas de cache de dados. Se o conjunto de trabalho quase cabe no pool de buffers ou se suas tabelas tiverem índices secundários relativamente poucos, pode ser útil desativar o buffer de alterações. Se o conjunto de dados em uso cabe inteiramente no pool de buffers, o buffer de alterações não impõe um custo adicional, pois ele só se aplica a páginas que não estão no pool de buffers.
+However, the change buffer occupies a part of the buffer pool, reducing the memory available to cache data pages. If the working set almost fits in the buffer pool, or if your tables have relatively few secondary indexes, it may be useful to disable change buffering. If the working data set fits entirely within the buffer pool, change buffering does not impose extra overhead, because it only applies to pages that are not in the buffer pool.
 
-A variável `innodb_change_buffering` controla a extensão em que o `InnoDB` realiza o bufferamento de alterações. Você pode habilitar ou desabilitar o bufferamento para inserções, operações de exclusão (quando os registros de índice são marcados inicialmente para exclusão) e operações de purga (quando os registros de índice são excluídos fisicamente). Uma operação de atualização é uma combinação de uma inserção e uma exclusão. O valor padrão de `innodb_change_buffering` é `all`.
+The `innodb_change_buffering` variable controls the extent to which `InnoDB` performs change buffering. You can enable or disable buffering for inserts, delete operations (when index records are initially marked for deletion) and purge operations (when index records are physically deleted). An update operation is a combination of an insert and a delete. The default `innodb_change_buffering` value is `all`.
 
-Os valores permitidos para `innodb_change_buffering` incluem:
+Permitted `innodb_change_buffering` values include:
 
-- **`todos`**
+* **`all`**
 
-  O valor padrão: operações de inserção de buffer, marcação de apagamento e purges.
+  The default value: buffer inserts, delete-marking operations, and purges.
 
-- **`nenhum`**
+* **`none`**
 
-  Não tampone nenhuma operação.
+  Do not buffer any operations.
 
-- **`insere`**
+* **`inserts`**
 
-  Operações de inserção de tampão.
+  Buffer insert operations.
 
-- **“Exclui”**
+* **`deletes`**
 
-  Operações de marcação de apagamento de buffer.
+  Buffer delete-marking operations.
 
-- **`mudanças`**
+* **`changes`**
 
-  Bloqueie tanto as operações de inserção quanto as de marcação de exclusão.
+  Buffer both inserts and delete-marking operations.
 
-- **"purges"**
+* **`purges`**
 
-  Bloqueie operações de exclusão física que ocorrem em segundo plano.
+  Buffer physical deletion operations that happen in the background.
 
-Você pode definir a variável `innodb_change_buffering` no arquivo de opções do MySQL (`my.cnf` ou `my.ini`) ou alterá-la dinamicamente com a instrução `SET GLOBAL`, que requer privilégios suficientes para definir variáveis de sistema globais. Veja a Seção 5.1.8.1, “Privilégios de Variáveis de Sistema”. A alteração do ajuste afeta o bufferamento de novas operações; a fusão de entradas bufferadas existentes não é afetada.
+You can set the `innodb_change_buffering` variable in the MySQL option file (`my.cnf` or `my.ini`) or change it dynamically with the `SET GLOBAL` statement, which requires privileges sufficient to set global system variables. See Section 5.1.8.1, “System Variable Privileges”. Changing the setting affects the buffering of new operations; the merging of existing buffered entries is not affected.
 
-#### Configurando o tamanho máximo do buffer de alteração
+#### Configuring the Change Buffer Maximum Size
 
-A variável `innodb_change_buffer_max_size` permite configurar o tamanho máximo do buffer de alterações como uma porcentagem do tamanho total do pool de buffers. Por padrão, `innodb_change_buffer_max_size` está definido para 25. O valor máximo é 50.
+The `innodb_change_buffer_max_size` variable permits configuring the maximum size of the change buffer as a percentage of the total size of the buffer pool. By default, `innodb_change_buffer_max_size` is set to 25. The maximum setting is 50.
 
-Considere aumentar `innodb_change_buffer_max_size` em um servidor MySQL com alta atividade de inserção, atualização e exclusão, onde a fusão do buffer de alterações não acompanha as novas entradas no buffer de alterações, fazendo com que o buffer de alterações atinja seu limite máximo de tamanho.
+Consider increasing `innodb_change_buffer_max_size` on a MySQL server with heavy insert, update, and delete activity, where change buffer merging does not keep pace with new change buffer entries, causing the change buffer to reach its maximum size limit.
 
-Considere diminuir `innodb_change_buffer_max_size` em um servidor MySQL com dados estáticos usados para relatórios, ou se o buffer de alterações consumir muito do espaço de memória compartilhado com o pool de buffers, fazendo com que as páginas sejam excluídas do pool de buffers mais cedo do que o desejado.
+Consider decreasing `innodb_change_buffer_max_size` on a MySQL server with static data used for reporting, or if the change buffer consumes too much of the memory space shared with the buffer pool, causing pages to age out of the buffer pool sooner than desired.
 
-Teste diferentes configurações com uma carga de trabalho representativa para determinar uma configuração ótima. A variável `innodb_change_buffer_max_size` é dinâmica, o que permite modificar a configuração sem reiniciar o servidor.
+Test different settings with a representative workload to determine an optimal configuration. The `innodb_change_buffer_max_size` variable is dynamic, which permits modifying the setting without restarting the server.
 
-#### Monitorar o Buffer de Mudança
+#### Monitoring the Change Buffer
 
-As seguintes opções estão disponíveis para monitoramento do buffer de alteração:
+The following options are available for change buffer monitoring:
 
-- A saída do Monitor Padrão `InnoDB` inclui informações sobre o status do buffer de alterações. Para visualizar os dados do monitor, execute a instrução `SHOW ENGINE INNODB STATUS`.
+* `InnoDB` Standard Monitor output includes change buffer status information. To view monitor data, issue the `SHOW ENGINE INNODB STATUS` statement.
 
   ```sql
   mysql> SHOW ENGINE INNODB STATUS\G
   ```
 
-  As informações de status do buffer são encontradas sob o título `INSERT BUFFER AND ADAPTIVE HASH INDEX` e aparecem de forma semelhante à seguinte:
+  Change buffer status information is located under the `INSERT BUFFER AND ADAPTIVE HASH INDEX` heading and appears similar to the following:
 
   ```sql
   -------------------------------------
@@ -93,23 +93,23 @@ As seguintes opções estão disponíveis para monitoramento do buffer de altera
   13577.57 hash searches/s, 202.47 non-hash searches/s
   ```
 
-  Para obter mais informações, consulte a Seção 14.18.3, “Saída do Monitor Padrão InnoDB e do Monitor de Bloqueio”.
+  For more information, see Section 14.18.3, “InnoDB Standard Monitor and Lock Monitor Output”.
 
-- A tabela do esquema de informações `INNODB_METRICS` fornece a maioria dos pontos de dados encontrados na saída do Monitor Padrão do `InnoDB`, além de outros pontos de dados. Para visualizar as métricas do buffer de alterações e uma descrição de cada uma, execute a seguinte consulta:
+* The Information Schema `INNODB_METRICS` table provides most of the data points found in `InnoDB` Standard Monitor output plus other data points. To view change buffer metrics and a description of each, issue the following query:
 
   ```sql
   mysql> SELECT NAME, COMMENT FROM INFORMATION_SCHEMA.INNODB_METRICS WHERE NAME LIKE '%ibuf%'\G
   ```
 
-  Para informações sobre o uso da tabela `INNODB_METRICS`, consulte a Seção 14.16.6, “Tabela de métricas do esquema de informações InnoDB”.
+  For `INNODB_METRICS` table usage information, see Section 14.16.6, “InnoDB INFORMATION_SCHEMA Metrics Table”.
 
-- A tabela do esquema de informações `INNODB_BUFFER_PAGE` fornece metadados sobre cada página no pool de buffers, incluindo páginas de índice do buffer de alterações e páginas de mapa de bits do buffer de alterações. As páginas do buffer de alterações são identificadas pelo `PAGE_TYPE`. `IBUF_INDEX` é o tipo de página para páginas de índice do buffer de alterações, e `IBUF_BITMAP` é o tipo de página para páginas de mapa de bits do buffer de alterações.
+* The Information Schema `INNODB_BUFFER_PAGE` table provides metadata about each page in the buffer pool, including change buffer index and change buffer bitmap pages. Change buffer pages are identified by `PAGE_TYPE`. `IBUF_INDEX` is the page type for change buffer index pages, and `IBUF_BITMAP` is the page type for change buffer bitmap pages.
 
-  Aviso
+  Warning
 
-  Fazer consultas na tabela `INNODB_BUFFER_PAGE` pode introduzir um grande sobrecarga de desempenho. Para evitar afetar o desempenho, reproduza o problema que você deseja investigar em uma instância de teste e execute suas consultas na instância de teste.
+  Querying the `INNODB_BUFFER_PAGE` table can introduce significant performance overhead. To avoid impacting performance, reproduce the issue you want to investigate on a test instance and run your queries on the test instance.
 
-  Por exemplo, você pode consultar a tabela `INNODB_BUFFER_PAGE` para determinar o número aproximado de páginas `IBUF_INDEX` e `IBUF_BITMAP` como uma porcentagem das páginas totais do pool de buffers.
+  For example, you can query the `INNODB_BUFFER_PAGE` table to determine the approximate number of `IBUF_INDEX` and `IBUF_BITMAP` pages as a percentage of total buffer pool pages.
 
   ```sql
   mysql> SELECT (SELECT COUNT(*) FROM INFORMATION_SCHEMA.INNODB_BUFFER_PAGE
@@ -124,9 +124,9 @@ As seguintes opções estão disponíveis para monitoramento do buffer de altera
   +---------------------+-------------+-------------------------------+
   ```
 
-  Para obter informações sobre outros dados fornecidos pela tabela `INNODB_BUFFER_PAGE`, consulte a Seção 24.4.2, “A Tabela INFORMATION_SCHEMA INNODB_BUFFER_PAGE”. Para informações sobre o uso relacionado, consulte a Seção 14.16.5, “Tabelas de Banco de Armazenamento de Buffer do INFORMATION_SCHEMA InnoDB”.
+  For information about other data provided by the `INNODB_BUFFER_PAGE` table, see Section 24.4.2, “The INFORMATION_SCHEMA INNODB_BUFFER_PAGE Table”. For related usage information, see Section 14.16.5, “InnoDB INFORMATION_SCHEMA Buffer Pool Tables”.
 
-- O Schema de Desempenho fornece instrumentação de espera por mutex de buffer de alterações para monitoramento avançado de desempenho. Para visualizar a instrumentação do buffer de alterações, execute a seguinte consulta:
+* Performance Schema provides change buffer mutex wait instrumentation for advanced performance monitoring. To view change buffer instrumentation, issue the following query:
 
   ```sql
   mysql> SELECT * FROM performance_schema.setup_instruments
@@ -140,4 +140,4 @@ As seguintes opções estão disponíveis para monitoramento do buffer de altera
   +-------------------------------------------------------+---------+-------+
   ```
 
-  Para obter informações sobre o monitoramento das espera dos mutses do InnoDB, consulte a Seção 14.17.2, “Monitoramento das Espera dos Mutses do InnoDB Usando o Schema de Desempenho”.
+  For information about monitoring `InnoDB` mutex waits, see Section 14.17.2, “Monitoring InnoDB Mutex Waits Using Performance Schema”.

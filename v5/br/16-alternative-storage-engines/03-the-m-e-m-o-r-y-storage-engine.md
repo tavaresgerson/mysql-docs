@@ -1,81 +1,79 @@
-## 15.3 O Motor de Armazenamento de MEMORY
+## 15.3 The MEMORY Storage Engine
 
-O mecanismo de armazenamento `MEMORY` (anteriormente conhecido como `HEAP`) cria tabelas de propósito especial com conteúdos armazenados na memória. Como os dados são vulneráveis a falhas, problemas de hardware ou interrupções de energia, use essas tabelas apenas como áreas de trabalho temporárias ou caches de leitura apenas para dados extraídos de outras tabelas.
+The `MEMORY` storage engine (formerly known as `HEAP`) creates special-purpose tables with contents that are stored in memory. Because the data is vulnerable to crashes, hardware issues, or power outages, only use these tables as temporary work areas or read-only caches for data pulled from other tables.
 
-**Tabela 15.4 Características do Motor de Armazenamento de MEMORY**
+**Table 15.4 MEMORY Storage Engine Features**
 
-<table frame="box" rules="all" summary="Recursos suportados pelo motor de armazenamento MEMORY."><col style="width: 60%"/><col style="width: 40%"/><thead><tr><th>Característica</th> <th>Suporte</th> </tr></thead><tbody><tr><td><span><strong>Índices de árvores B</strong></span></td> <td>Sim</td> </tr><tr><td><span><strong>Backup/recuperação em ponto no tempo</strong></span>(Implementado no servidor, e não no motor de armazenamento.)</td> <td>Sim</td> </tr><tr><td><span><strong>Suporte a bancos de dados em cluster</strong></span></td> <td>Não</td> </tr><tr><td><span><strong>Índices agrupados</strong></span></td> <td>Não</td> </tr><tr><td><span><strong>Dados comprimidos</strong></span></td> <td>Não</td> </tr><tr><td><span><strong>Caches de dados</strong></span></td> <td>N/A</td> </tr><tr><td><span><strong>Dados criptografados</strong></span></td> <td>Sim (implementado no servidor por meio de funções de criptografia.)</td> </tr><tr><td><span><strong>Suporte para chave estrangeira</strong></span></td> <td>Não</td> </tr><tr><td><span><strong>Índices de pesquisa de texto completo</strong></span></td> <td>Não</td> </tr><tr><td><span><strong>Suporte ao tipo de dados geográficos</strong></span></td> <td>Não</td> </tr><tr><td><span><strong>Suporte de indexação geospacial</strong></span></td> <td>Não</td> </tr><tr><td><span><strong>Índices de hash</strong></span></td> <td>Sim</td> </tr><tr><td><span><strong>Caches de índice</strong></span></td> <td>N/A</td> </tr><tr><td><span><strong>Granularidade de bloqueio</strong></span></td> <td>Tabela</td> </tr><tr><td><span><strong>MVCC</strong></span></td> <td>Não</td> </tr><tr><td><span><strong>Suporte à replicação</strong></span>(Implementado no servidor, e não no motor de armazenamento.)</td> <td>Limita (veja a discussão mais adiante nesta seção.)</td> </tr><tr><td><span><strong>Limites de armazenamento</strong></span></td> <td>RAM</td> </tr><tr><td><span><strong>Índices de T-tree</strong></span></td> <td>Não</td> </tr><tr><td><span><strong>Transações</strong></span></td> <td>Não</td> </tr><tr><td><span><strong>Atualizar estatísticas para o dicionário de dados</strong></span></td> <td>Sim</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Features supported by the MEMORY storage engine."><col style="width: 60%"/><col style="width: 40%"/><thead><tr><th>Feature</th> <th>Support</th> </tr></thead><tbody><tr><td><span><strong>B-tree indexes</strong></span></td> <td>Yes</td> </tr><tr><td><span><strong>Backup/point-in-time recovery</strong></span> (Implemented in the server, rather than in the storage engine.)</td> <td>Yes</td> </tr><tr><td><span><strong>Cluster database support</strong></span></td> <td>No</td> </tr><tr><td><span><strong>Clustered indexes</strong></span></td> <td>No</td> </tr><tr><td><span><strong>Compressed data</strong></span></td> <td>No</td> </tr><tr><td><span><strong>Data caches</strong></span></td> <td>N/A</td> </tr><tr><td><span><strong>Encrypted data</strong></span></td> <td>Yes (Implemented in the server via encryption functions.)</td> </tr><tr><td><span><strong>Foreign key support</strong></span></td> <td>No</td> </tr><tr><td><span><strong>Full-text search indexes</strong></span></td> <td>No</td> </tr><tr><td><span><strong>Geospatial data type support</strong></span></td> <td>No</td> </tr><tr><td><span><strong>Geospatial indexing support</strong></span></td> <td>No</td> </tr><tr><td><span><strong>Hash indexes</strong></span></td> <td>Yes</td> </tr><tr><td><span><strong>Index caches</strong></span></td> <td>N/A</td> </tr><tr><td><span><strong>Locking granularity</strong></span></td> <td>Table</td> </tr><tr><td><span><strong>MVCC</strong></span></td> <td>No</td> </tr><tr><td><span><strong>Replication support</strong></span> (Implemented in the server, rather than in the storage engine.)</td> <td>Limited (See the discussion later in this section.)</td> </tr><tr><td><span><strong>Storage limits</strong></span></td> <td>RAM</td> </tr><tr><td><span><strong>T-tree indexes</strong></span></td> <td>No</td> </tr><tr><td><span><strong>Transactions</strong></span></td> <td>No</td> </tr><tr><td><span><strong>Update statistics for data dictionary</strong></span></td> <td>Yes</td> </tr></tbody></table>
 
-- Quando usar MEMORY ou NDB Cluster
-- Características de desempenho
-- Características das Tabelas de MEMORY
-- Operações DDL para tabelas de MEMORY
-- Índices
-- Tabelas criadas pelo usuário e temporárias
-- Carregando dados
-- MEMORY Tabelas e Replicação
-- Gerenciamento do uso da memória
-- Recursos adicionais
+* When to Use MEMORY or NDB Cluster
+* Performance Characteristics
+* Characteristics of MEMORY Tables
+* DDL Operations for MEMORY Tables
+* Indexes
+* User-Created and Temporary Tables
+* Loading Data
+* MEMORY Tables and Replication
+* Managing Memory Use
+* Additional Resources
 
-### Quando usar MEMORY ou NDB Cluster
+### When to Use MEMORY or NDB Cluster
 
-Os desenvolvedores que pretendem implantar aplicações que utilizam o motor de armazenamento `MEMORY` para dados importantes, altamente disponíveis ou frequentemente atualizados devem considerar se o NDB Cluster é uma escolha melhor. Um caso de uso típico do motor `MEMORY` envolve essas características:
+Developers looking to deploy applications that use the `MEMORY` storage engine for important, highly available, or frequently updated data should consider whether NDB Cluster is a better choice. A typical use case for the `MEMORY` engine involves these characteristics:
 
-- Operações que envolvem dados transitórios e não críticos, como gerenciamento de sessões ou cache. Quando o servidor MySQL é interrompido ou reiniciado, os dados nas tabelas `MEMORY` são perdidos.
+* Operations involving transient, non-critical data such as session management or caching. When the MySQL server halts or restarts, the data in `MEMORY` tables is lost.
 
-- Armazenamento em memória para acesso rápido e baixa latência. O volume de dados pode caber inteiramente na memória sem que o sistema operacional precise trocar páginas de memória virtual.
+* In-memory storage for fast access and low latency. Data volume can fit entirely in memory without causing the operating system to swap out virtual memory pages.
 
-- Um padrão de acesso a dados apenas de leitura ou quase apenas de leitura (atualizações limitadas).
+* A read-only or read-mostly data access pattern (limited updates).
 
-O NDB Cluster oferece as mesmas funcionalidades do motor `MEMORY`, com níveis de desempenho mais elevados, e fornece funcionalidades adicionais que não estão disponíveis com o `MEMORY`:
+NDB Cluster offers the same features as the `MEMORY` engine with higher performance levels, and provides additional features not available with `MEMORY`:
 
-- Bloqueio em nível de linha e operação em múltiplos threads para baixa concorrência entre os clientes.
+* Row-level locking and multiple-thread operation for low contention between clients.
 
-- Escalabilidade mesmo com misturas de declarações que incluem gravações.
+* Scalability even with statement mixes that include writes.
+* Optional disk-backed operation for data durability.
+* Shared-nothing architecture and multiple-host operation with no single point of failure, enabling 99.999% availability.
 
-- Operação com disco como suporte opcional para a durabilidade dos dados.
+* Automatic data distribution across nodes; application developers need not craft custom sharding or partitioning solutions.
 
-- Arquitetura sem compartilhamento de nada e operação em múltiplos hosts, sem um único ponto de falha, permitindo uma disponibilidade de 99,999%.
+* Support for variable-length data types (including `BLOB` and `TEXT`) not supported by `MEMORY`.
 
-- Distribuição automática de dados entre os nós; os desenvolvedores de aplicativos não precisam criar soluções personalizadas de fragmentação ou particionamento.
+### Performance Characteristics
 
-- O suporte para tipos de dados de comprimento variável (incluindo `BLOB` e `TEXT`) não é suportado pelo `MEMORY`.
+`MEMORY` performance is constrained by contention resulting from single-thread execution and table lock overhead when processing updates. This limits scalability when load increases, particularly for statement mixes that include writes.
 
-### Características de desempenho
+Despite the in-memory processing for `MEMORY` tables, they are not necessarily faster than `InnoDB` tables on a busy server, for general-purpose queries, or under a read/write workload. In particular, the table locking involved with performing updates can slow down concurrent usage of `MEMORY` tables from multiple sessions.
 
-O desempenho da função `MEMORY` é limitado pela concorrência decorrente da execução em um único thread e pelo overhead de bloqueio de tabelas ao processar atualizações. Isso limita a escalabilidade quando a carga aumenta, especialmente para misturas de instruções que incluem escritas.
+Depending on the kinds of queries performed on a `MEMORY` table, you might create indexes as either the default hash data structure (for looking up single values based on a unique key), or a general-purpose B-tree data structure (for all kinds of queries involving equality, inequality, or range operators such as less than or greater than). The following sections illustrate the syntax for creating both kinds of indexes. A common performance issue is using the default hash indexes in workloads where B-tree indexes are more efficient.
 
-Apesar do processamento em memória para as tabelas `MEMORY`, elas não são necessariamente mais rápidas que as tabelas `InnoDB` em um servidor ocupado, para consultas de uso geral, ou sob uma carga de trabalho de leitura/escrita. Em particular, o bloqueio da tabela envolvido na realização de atualizações pode atrasar o uso concorrente das tabelas `MEMORY` por várias sessões.
+### Characteristics of MEMORY Tables
 
-Dependendo do tipo de consulta realizada em uma tabela `MEMORY`, você pode criar índices como a estrutura de dados hash padrão (para procurar valores únicos com base em uma chave única) ou uma estrutura de dados B-tree de propósito geral (para todos os tipos de consultas que envolvem operadores de igualdade, desigualdade ou intervalo, como menor que ou maior que). As seções a seguir ilustram a sintaxe para criar ambos os tipos de índices. Um problema comum de desempenho é o uso dos índices hash padrão em cargas de trabalho onde os índices B-tree são mais eficientes.
+The `MEMORY` storage engine associates each table with one disk file, which stores the table definition (not the data). The file name begins with the table name and has an extension of `.frm`.
 
-### Características das Tabelas de MEMORY
+`MEMORY` tables have the following characteristics:
 
-O mecanismo de armazenamento `MEMORY` associa cada tabela a um arquivo de disco, que armazena a definição da tabela (não os dados). O nome do arquivo começa com o nome da tabela e tem a extensão `.frm`.
+* Space for `MEMORY` tables is allocated in small blocks. Tables use 100% dynamic hashing for inserts. No overflow area or extra key space is needed. No extra space is needed for free lists. Deleted rows are put in a linked list and are reused when you insert new data into the table. `MEMORY` tables also have none of the problems commonly associated with deletes plus inserts in hashed tables.
 
-As tabelas `MEMORY` têm as seguintes características:
+* `MEMORY` tables use a fixed-length row-storage format. Variable-length types such as `VARCHAR` are stored using a fixed length.
 
-- O espaço para as tabelas `MEMORY` é alocado em blocos pequenos. As tabelas usam hashing dinâmico de 100% para inserções. Não é necessário uma área de overflow ou espaço de chave extra. Não é necessário espaço extra para listas livres. As linhas excluídas são colocadas em uma lista encadeada e são reutilizadas quando você insere novos dados na tabela. As tabelas `MEMORY` também não apresentam nenhum dos problemas comumente associados a exclusões mais inserções em tabelas hash.
+* `MEMORY` tables cannot contain `BLOB` or `TEXT` columns.
 
-- As tabelas `MEMORY` usam um formato de armazenamento de linhas de comprimento fixo. Tipos de comprimento variável, como `VARCHAR`, são armazenados com um comprimento fixo.
+* `MEMORY` includes support for `AUTO_INCREMENT` columns.
 
-- As tabelas `MEMORY` não podem conter colunas `BLOB` ou `TEXT`.
+* Non-`TEMPORARY` `MEMORY` tables are shared among all clients, just like any other non-`TEMPORARY` table.
 
-- `MEMORY` inclui suporte para colunas `AUTO_INCREMENT`.
+### DDL Operations for MEMORY Tables
 
-- As tabelas que não são `TEMPORARY` são compartilhadas entre todos os clientes, assim como qualquer outra tabela que não seja `TEMPORARY`.
-
-### Operações DDL para tabelas de MEMORY
-
-Para criar uma tabela `MEMORY`, especifique a cláusula `ENGINE=MEMORY` na instrução `CREATE TABLE`.
+To create a `MEMORY` table, specify the clause `ENGINE=MEMORY` on the `CREATE TABLE` statement.
 
 ```sql
 CREATE TABLE t (i INT) ENGINE = MEMORY;
 ```
 
-Como indicado pelo nome do motor, as tabelas `MEMORY` são armazenadas na memória. Elas usam índices hash por padrão, o que as torna muito rápidas para consultas de um único valor e muito úteis para criar tabelas temporárias. No entanto, quando o servidor é desligado, todas as linhas armazenadas nas tabelas `MEMORY` são perdidas. As tabelas em si continuam a existir porque suas definições são armazenadas em arquivos `.frm` no disco, mas elas estão vazias quando o servidor é reiniciado.
+As indicated by the engine name, `MEMORY` tables are stored in memory. They use hash indexes by default, which makes them very fast for single-value lookups, and very useful for creating temporary tables. However, when the server shuts down, all rows stored in `MEMORY` tables are lost. The tables themselves continue to exist because their definitions are stored in `.frm` files on disk, but they are empty when the server restarts.
 
-Este exemplo mostra como você pode criar, usar e remover uma tabela `MEMORY`:
+This example shows how you might create, use, and remove a `MEMORY` table:
 
 ```sql
 mysql> CREATE TABLE test ENGINE=MEMORY
@@ -85,11 +83,11 @@ mysql> SELECT COUNT(ip),AVG(down) FROM test;
 mysql> DROP TABLE test;
 ```
 
-O tamanho máximo das tabelas `MEMORY` é limitado pela variável de sistema `max_heap_table_size`, que tem um valor padrão de 16 MB. Para impor limites de tamanho diferentes para as tabelas `MEMORY`, altere o valor dessa variável. O valor em vigor para `CREATE TABLE`, ou para uma `ALTER TABLE` ou `TRUNCATE TABLE` subsequente, é o valor usado durante a vida da tabela. Uma reinicialização do servidor também define o tamanho máximo das tabelas `MEMORY` para o valor global `max_heap_table_size`. Você pode definir o tamanho para tabelas individuais conforme descrito mais adiante nesta seção.
+The maximum size of `MEMORY` tables is limited by the `max_heap_table_size` system variable, which has a default value of 16MB. To enforce different size limits for `MEMORY` tables, change the value of this variable. The value in effect for `CREATE TABLE`, or a subsequent `ALTER TABLE` or `TRUNCATE TABLE`, is the value used for the life of the table. A server restart also sets the maximum size of existing `MEMORY` tables to the global `max_heap_table_size` value. You can set the size for individual tables as described later in this section.
 
-### Índices
+### Indexes
 
-O mecanismo de armazenamento `MEMORY` suporta tanto os índices `HASH` quanto `BTREE`. Você pode especificar um ou outro para um índice dado, adicionando uma cláusula `USING`, conforme mostrado aqui:
+The `MEMORY` storage engine supports both `HASH` and `BTREE` indexes. You can specify one or the other for a given index by adding a `USING` clause as shown here:
 
 ```sql
 CREATE TABLE lookup
@@ -100,41 +98,41 @@ CREATE TABLE lookup
     ENGINE = MEMORY;
 ```
 
-Para características gerais de índices B-tree e hash, consulte a Seção 8.3.1, “Como o MySQL usa índices”.
+For general characteristics of B-tree and hash indexes, see Section 8.3.1, “How MySQL Uses Indexes”.
 
-As tabelas `MEMORY` podem ter até 64 índices por tabela, 16 colunas por índice e um comprimento máximo de chave de 3072 bytes.
+`MEMORY` tables can have up to 64 indexes per table, 16 columns per index and a maximum key length of 3072 bytes.
 
-Se um índice de hash da tabela `MEMORY` tiver um alto grau de duplicação de chaves (muitas entradas do índice contendo o mesmo valor), as atualizações na tabela que afetam os valores das chaves e todas as exclusões são significativamente mais lentas. O grau desse retardo é proporcional ao grau de duplicação (ou, inversamente proporcional à cardinalidade do índice). Você pode usar um índice `BTREE` para evitar esse problema.
+If a `MEMORY` table hash index has a high degree of key duplication (many index entries containing the same value), updates to the table that affect key values and all deletes are significantly slower. The degree of this slowdown is proportional to the degree of duplication (or, inversely proportional to the index cardinality). You can use a `BTREE` index to avoid this problem.
 
-As tabelas `MEMORY` podem ter chaves não únicas. (Esse é um recurso incomum para implementações de índices de hash.)
+`MEMORY` tables can have nonunique keys. (This is an uncommon feature for implementations of hash indexes.)
 
-Colunas que estão indexadas podem conter valores `NULL`.
+Columns that are indexed can contain `NULL` values.
 
-### Tabelas criadas pelo usuário e temporárias
+### User-Created and Temporary Tables
 
-O conteúdo da tabela `MEMORY` é armazenado na memória, que é uma propriedade que as tabelas `MEMORY` compartilham com as tabelas temporárias internas que o servidor cria conforme o processamento das consultas. No entanto, os dois tipos de tabelas diferem na medida em que as tabelas `MEMORY` não estão sujeitas à conversão de armazenamento, enquanto as tabelas temporárias internas estão:
+`MEMORY` table contents are stored in memory, which is a property that `MEMORY` tables share with internal temporary tables that the server creates on the fly while processing queries. However, the two types of tables differ in that `MEMORY` tables are not subject to storage conversion, whereas internal temporary tables are:
 
-- Se uma tabela temporária interna ficar muito grande, o servidor a converte automaticamente para armazenamento em disco, conforme descrito na Seção 8.4.4, “Uso de Tabelas Temporárias Internas no MySQL”.
+* If an internal temporary table becomes too large, the server automatically converts it to on-disk storage, as described in Section 8.4.4, “Internal Temporary Table Use in MySQL”.
 
-- As tabelas `MEMORY` criadas pelo usuário nunca são convertidas em tabelas de disco.
+* User-created `MEMORY` tables are never converted to disk tables.
 
-### Carregando dados
+### Loading Data
 
-Para povoar uma tabela `MEMORY` quando o servidor MySQL for iniciado, você pode usar a variável de sistema `init_file`. Por exemplo, você pode colocar instruções como `INSERT INTO ... SELECT` ou `LOAD DATA` em um arquivo para carregar a tabela de uma fonte de dados persistente e usar `init_file` para nomear o arquivo. Veja a Seção 5.1.7, “Variáveis de Sistema do Servidor”, e a Seção 13.2.6, “Instrução LOAD DATA”.
+To populate a `MEMORY` table when the MySQL server starts, you can use the `init_file` system variable. For example, you can put statements such as `INSERT INTO ... SELECT` or `LOAD DATA` into a file to load the table from a persistent data source, and use `init_file` to name the file. See Section 5.1.7, “Server System Variables”, and Section 13.2.6, “LOAD DATA Statement”.
 
-### MEMORY Tabelas e Replicação
+### MEMORY Tables and Replication
 
-Quando um servidor de origem de replicação é desligado e reiniciado, suas tabelas `MEMORY` ficam vazias. Para replicar esse efeito nas réplicas, na primeira vez que a fonte usar uma tabela `MEMORY` específica após a inicialização, ela registra um evento que notifica as réplicas de que a tabela deve ser esvaziada, escrevendo uma instrução `DELETE` ou (a partir do MySQL 5.7.32) `TRUNCATE TABLE` para que a tabela seja escrita no log binário. Quando um servidor de réplica é desligado e reiniciado, suas tabelas `MEMORY` também ficam vazias, e ele escreve uma instrução `DELETE` ou (a partir do MySQL 5.7.32) `TRUNCATE TABLE` em seu próprio log binário, que é passado para quaisquer réplicas subsequentes.
+When a replication source server shuts down and restarts, its `MEMORY` tables become empty. To replicate this effect to replicas, the first time that the source uses a given `MEMORY` table after startup, it logs an event that notifies replicas that the table must be emptied by writing a `DELETE` or (from MySQL 5.7.32) `TRUNCATE TABLE` statement for that table to the binary log. When a replica server shuts down and restarts, its `MEMORY` tables also become empty, and it writes a `DELETE` or (from MySQL 5.7.32) `TRUNCATE TABLE` statement to its own binary log, which is passed on to any downstream replicas.
 
-Quando você usa tabelas `MEMORY` em uma topologia de replicação, em algumas situações, a tabela na fonte e a tabela na replica podem diferir. Para obter informações sobre como lidar com cada uma dessas situações para evitar leituras desatualizadas ou erros, consulte a Seção 16.4.1.20, “Replicação e Tabelas MEMORY”.
+When you use `MEMORY` tables in a replication topology, in some situations, the table on the source and the table on the replica may differ. For information on handling each of these situations to prevent stale reads or errors, see Section 16.4.1.20, “Replication and MEMORY Tables”.
 
-### Gerenciamento do uso da memória
+### Managing Memory Use
 
-O servidor precisa de memória suficiente para manter todas as tabelas `MEMORY` que estão em uso ao mesmo tempo.
+The server needs sufficient memory to maintain all `MEMORY` tables that are in use at the same time.
 
-A memória não é recuperada se você excluir linhas individuais de uma tabela `MEMORY`. A memória é recuperada apenas quando toda a tabela é excluída. A memória que foi anteriormente usada para as linhas excluídas é reutilizada para novas linhas na mesma tabela. Para liberar toda a memória usada por uma tabela `MEMORY` quando você não precisar mais de seu conteúdo, execute `DELETE` ou `TRUNCATE TABLE` para remover todas as linhas, ou remova a tabela completamente usando `DROP TABLE`. Para liberar a memória usada por linhas excluídas, use `ALTER TABLE ENGINE=MEMORY` para forçar a reconstrução da tabela.
+Memory is not reclaimed if you delete individual rows from a `MEMORY` table. Memory is reclaimed only when the entire table is deleted. Memory that was previously used for deleted rows is re-used for new rows within the same table. To free all the memory used by a `MEMORY` table when you no longer require its contents, execute `DELETE` or `TRUNCATE TABLE` to remove all rows, or remove the table altogether using `DROP TABLE`. To free up the memory used by deleted rows, use `ALTER TABLE ENGINE=MEMORY` to force a table rebuild.
 
-A memória necessária para uma linha em uma tabela `MEMORY` é calculada usando a seguinte expressão:
+The memory needed for one row in a `MEMORY` table is calculated using the following expression:
 
 ```sql
 SUM_OVER_ALL_BTREE_KEYS(max_length_of_key + sizeof(char*) * 4)
@@ -142,9 +140,9 @@ SUM_OVER_ALL_BTREE_KEYS(max_length_of_key + sizeof(char*) * 4)
 + ALIGN(length_of_row+1, sizeof(char*))
 ```
 
-`ALIGN()` representa um fator de arredondamento para garantir que o comprimento da linha seja um múltiplo exato do tamanho do ponteiro `char`. `sizeof(char*)` é 4 em máquinas de 32 bits e 8 em máquinas de 64 bits.
+`ALIGN()` represents a round-up factor to cause the row length to be an exact multiple of the `char` pointer size. `sizeof(char*)` is 4 on 32-bit machines and 8 on 64-bit machines.
 
-Como mencionado anteriormente, a variável de sistema `max_heap_table_size` define o limite do tamanho máximo das tabelas `MEMORY`. Para controlar o tamanho máximo para tabelas individuais, defina o valor da sessão desta variável antes de criar cada tabela. (Não altere o valor global `max_heap_table_size` a menos que pretenda que o valor seja usado para tabelas `MEMORY` criadas por todos os clientes.) O exemplo a seguir cria duas tabelas `MEMORY`, com um tamanho máximo de 1 MB e 2 MB, respectivamente:
+As mentioned earlier, the `max_heap_table_size` system variable sets the limit on the maximum size of `MEMORY` tables. To control the maximum size for individual tables, set the session value of this variable before creating each table. (Do not change the global `max_heap_table_size` value unless you intend the value to be used for `MEMORY` tables created by all clients.) The following example creates two `MEMORY` tables, with a maximum size of 1MB and 2MB, respectively:
 
 ```sql
 mysql> SET max_heap_table_size = 1024*1024;
@@ -160,10 +158,10 @@ mysql> CREATE TABLE t2 (id INT, UNIQUE(id)) ENGINE = MEMORY;
 Query OK, 0 rows affected (0.00 sec)
 ```
 
-Ambas as tabelas retornam ao valor global `max_heap_table_size` do servidor se o servidor for reiniciado.
+Both tables revert to the server's global `max_heap_table_size` value if the server restarts.
 
-Você também pode especificar uma opção de tabela `MAX_ROWS` nas instruções `CREATE TABLE` para tabelas `MEMORY` para fornecer uma dica sobre o número de linhas que você planeja armazenar nelas. Isso não permite que a tabela cresça além do valor `max_heap_table_size`, que ainda atua como uma restrição sobre o tamanho máximo da tabela. Para obter a máxima flexibilidade para usar `MAX_ROWS`, defina `max_heap_table_size` pelo menos tão alto quanto o valor para o qual você deseja que cada tabela `MEMORY` possa crescer.
+You can also specify a `MAX_ROWS` table option in `CREATE TABLE` statements for `MEMORY` tables to provide a hint about the number of rows you plan to store in them. This does not enable the table to grow beyond the `max_heap_table_size` value, which still acts as a constraint on maximum table size. For maximum flexibility in being able to use `MAX_ROWS`, set `max_heap_table_size` at least as high as the value to which you want each `MEMORY` table to be able to grow.
 
-### Recursos adicionais
+### Additional Resources
 
-Um fórum dedicado ao motor de armazenamento `MEMORY` está disponível em <https://forums.mysql.com/list.php?92>.
+A forum dedicated to the `MEMORY` storage engine is available at <https://forums.mysql.com/list.php?92>.

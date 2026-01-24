@@ -1,22 +1,22 @@
-#### 13.7.1.5 Declaração de RENOMEAR USUÁRIO
+#### 13.7.1.5 RENAME USER Statement
 
 ```sql
 RENAME USER old_user TO new_user
     [, old_user TO new_user] ...
 ```
 
-A instrução `RENAME USER` renomeia contas MySQL existentes. Um erro ocorre para contas antigas que não existem ou novas contas que já existem.
+The [`RENAME USER`](rename-user.html "13.7.1.5 RENAME USER Statement") statement renames existing MySQL accounts. An error occurs for old accounts that do not exist or new accounts that already exist.
 
-Para usar `RENAME USER`, você deve ter o privilégio global `CREATE USER` ou o privilégio `UPDATE` para o banco de dados do sistema `mysql`. Quando a variável de sistema `read_only` é habilitada, `RENAME USER` também requer o privilégio `SUPER`.
+To use [`RENAME USER`](rename-user.html "13.7.1.5 RENAME USER Statement"), you must have the global [`CREATE USER`](privileges-provided.html#priv_create-user) privilege, or the [`UPDATE`](privileges-provided.html#priv_update) privilege for the `mysql` system database. When the [`read_only`](server-system-variables.html#sysvar_read_only) system variable is enabled, [`RENAME USER`](rename-user.html "13.7.1.5 RENAME USER Statement") additionally requires the [`SUPER`](privileges-provided.html#priv_super) privilege.
 
-Cada nome de conta usa o formato descrito na Seção 6.2.4, “Especificação de Nomes de Conta”. Por exemplo:
+Each account name uses the format described in [Section 6.2.4, “Specifying Account Names”](account-names.html "6.2.4 Specifying Account Names"). For example:
 
 ```sql
 RENAME USER 'jeffrey'@'localhost' TO 'jeff'@'127.0.0.1';
 ```
 
-A parte do nome do host do nome da conta, se omitida, tem como padrão `'%'.`
+The host name part of the account name, if omitted, defaults to `'%'`.
 
-`RENAME USER` faz com que os privilégios do usuário antigo sejam os do novo usuário. No entanto, `RENAME USER` não exclui ou invalida automaticamente bancos de dados ou objetos dentro deles que o usuário antigo criou. Isso inclui programas ou visualizações armazenadas para as quais o atributo `DEFINER` nomeia o usuário antigo. Tentativas de acessar tais objetos podem produzir um erro se forem executados no contexto de segurança do definidor. (Para informações sobre contexto de segurança, consulte Seção 23.6, “Controle de Acesso a Objetos Armazenados”.)
+[`RENAME USER`](rename-user.html "13.7.1.5 RENAME USER Statement") causes the privileges held by the old user to be those held by the new user. However, [`RENAME USER`](rename-user.html "13.7.1.5 RENAME USER Statement") does not automatically drop or invalidate databases or objects within them that the old user created. This includes stored programs or views for which the `DEFINER` attribute names the old user. Attempts to access such objects may produce an error if they execute in definer security context. (For information about security context, see [Section 23.6, “Stored Object Access Control”](stored-objects-security.html "23.6 Stored Object Access Control").)
 
-As alterações de privilégio entram em vigor conforme indicado em Seção 6.2.9, “Quando as Alterações de Privilégio Entram em Vigor”.
+The privilege changes take effect as indicated in [Section 6.2.9, “When Privilege Changes Take Effect”](privilege-changes.html "6.2.9 When Privilege Changes Take Effect").

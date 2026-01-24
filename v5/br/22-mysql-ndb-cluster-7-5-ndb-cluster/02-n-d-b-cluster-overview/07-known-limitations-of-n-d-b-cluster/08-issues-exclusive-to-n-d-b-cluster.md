@@ -1,41 +1,32 @@
-#### 21.2.7.8 Questões exclusivas do cluster NDB
+#### 21.2.7.8 Issues Exclusive to NDB Cluster
 
-As seguintes são limitações específicas do mecanismo de armazenamento `NDB`:
+The following are limitations specific to the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine:
 
-- **Arquitetura da máquina.** Todas as máquinas utilizadas no clúster devem ter a mesma arquitetura. Ou seja, todas as máquinas que hospedam nós devem ser big-endian ou little-endian, e não é possível usar uma mistura de ambas. Por exemplo, não é possível ter um nó de gerenciamento rodando em um PowerPC que direciona um nó de dados que está rodando em uma máquina x86. Esta restrição não se aplica a máquinas que simplesmente executam **mysql** ou outros clientes que possam estar acessando os nós SQL do clúster.
+* **Machine architecture.** All machines used in the cluster must have the same architecture. That is, all machines hosting nodes must be either big-endian or little-endian, and you cannot use a mixture of both. For example, you cannot have a management node running on a PowerPC which directs a data node that is running on an x86 machine. This restriction does not apply to machines simply running [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") or other clients that may be accessing the cluster's SQL nodes.
 
-- **Registro binário.** O NDB Cluster tem as seguintes limitações ou restrições em relação ao registro binário:
+* **Binary logging.** NDB Cluster has the following limitations or restrictions with regard to binary logging:
 
-  - O NDB Cluster não pode gerar um log binário para tabelas que possuem colunas `BLOB` mas sem chave primária.
+  + NDB Cluster cannot produce a binary log for tables having [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") columns but no primary key.
 
-  - Apenas as seguintes operações de esquema são registradas em um log binário de cluster que *não* está em execução no **mysqld** com a seguinte instrução:
+  + Only the following schema operations are logged in a cluster binary log which is *not* on the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") executing the statement:
 
-    - `CREATE TABLE`
+    - [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement")
+    - [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement")
+    - [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement")
+    - [`CREATE DATABASE`](create-database.html "13.1.11 CREATE DATABASE Statement") / [`CREATE SCHEMA`](create-database.html "13.1.11 CREATE DATABASE Statement")
 
-    - `ALTER TABLE`
+    - [`DROP DATABASE`](drop-database.html "13.1.22 DROP DATABASE Statement") / [`DROP SCHEMA`](drop-database.html "13.1.22 DROP DATABASE Statement")
 
-    - `DROP TABLE`
+    - [`CREATE TABLESPACE`](create-tablespace.html "13.1.19 CREATE TABLESPACE Statement")
+    - [`ALTER TABLESPACE`](alter-tablespace.html "13.1.9 ALTER TABLESPACE Statement")
+    - [`DROP TABLESPACE`](drop-tablespace.html "13.1.30 DROP TABLESPACE Statement")
+    - [`CREATE LOGFILE GROUP`](create-logfile-group.html "13.1.15 CREATE LOGFILE GROUP Statement")
+    - [`ALTER LOGFILE GROUP`](alter-logfile-group.html "13.1.5 ALTER LOGFILE GROUP Statement")
+    - [`DROP LOGFILE GROUP`](drop-logfile-group.html "13.1.26 DROP LOGFILE GROUP Statement")
+* **Schema operations.** Schema operations (DDL statements) are rejected while any data node restarts. Schema operations are also not supported while performing an online upgrade or downgrade.
 
-    - `CREATE DATABASE` / `CREATE SCHEMA`
+* **Number of fragment replicas.** The number of fragment replicas, as determined by the [`NoOfReplicas`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-noofreplicas) data node configuration parameter, is the number of copies of all data stored by NDB Cluster. Setting this parameter to 1 means there is only a single copy; in this case, no redundancy is provided, and the loss of a data node entails loss of data. To guarantee redundancy, and thus preservation of data even if a data node fails, set this parameter to 2, which is the default and recommended value in production.
 
-    - `DROP DATABASE` / `DROP SCHEMA`
+  Setting [`NoOfReplicas`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-noofreplicas) to a value greater than 2 is possible (to a maximum of 4) but unnecessary to guard against loss of data. In addition, *values greater than 2 for this parameter are not supported in production*.
 
-    - `CREATE TABLESPACE`
-
-    - `ALTER TABLESPACE`
-
-    - `DROP TABLESPACE`
-
-    - `CREATE LOGFILE GROUP`
-
-    - `ALTER LOGFILE GROUP`
-
-    - `DROP LOGFILE GROUP`
-
-- **Operações de esquema.** As operações de esquema (instruções DDL) são rejeitadas enquanto qualquer nó de dados for reiniciado. As operações de esquema também não são suportadas durante uma atualização ou atualização online.
-
-- **Número de réplicas de fragmentos.** O número de réplicas de fragmentos, conforme determinado pelo parâmetro de configuração do nó de dados `NoOfReplicas`, é o número de cópias de todos os dados armazenados pelo NDB Cluster. Definir este parâmetro para 1 significa que há apenas uma única cópia; nesse caso, não há redundância e a perda de um nó de dados implica na perda de dados. Para garantir a redundância e, assim, a preservação dos dados mesmo em caso de falha de um nó de dados, defina este parâmetro para 2, que é o valor padrão e recomendado em produção.
-
-  Definir `NoOfReplicas` para um valor maior que 2 é possível (até um máximo de 4), mas não é necessário para evitar a perda de dados. Além disso, **valores maiores que 2 para este parâmetro não são suportados em produção**.
-
-Veja também Seção 21.2.7.10, “Limitações relacionadas a múltiplos nós do cluster NDB”.
+See also [Section 21.2.7.10, “Limitations Relating to Multiple NDB Cluster Nodes”](mysql-cluster-limitations-multiple-nodes.html "21.2.7.10 Limitations Relating to Multiple NDB Cluster Nodes").

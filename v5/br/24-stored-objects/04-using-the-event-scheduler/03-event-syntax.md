@@ -1,11 +1,11 @@
-### 23.4.3 Sintaxe de eventos
+### 23.4.3 Event Syntax
 
-O MySQL oferece várias instruções SQL para trabalhar com eventos agendados:
+MySQL provides several SQL statements for working with scheduled events:
 
-- Novos eventos são definidos usando a instrução `CREATE EVENT`. Veja a Seção 13.1.12, “Instrução CREATE EVENT”.
+* New events are defined using the `CREATE EVENT` statement. See Section 13.1.12, “CREATE EVENT Statement”.
 
-- A definição de um evento existente pode ser alterada por meio da instrução `ALTER EVENT`. Veja a Seção 13.1.2, “Instrução ALTER EVENT”.
+* The definition of an existing event can be changed by means of the `ALTER EVENT` statement. See Section 13.1.2, “ALTER EVENT Statement”.
 
-- Quando um evento agendado não é mais desejado ou necessário, ele pode ser excluído do servidor pelo seu definidor usando a instrução `DROP EVENT`. Veja a Seção 13.1.23, “Instrução DROP EVENT”. Se um evento persistir após o término de sua programação, isso também depende de sua cláusula `ON COMPLETION`, se houver. Veja a Seção 13.1.12, “Instrução CREATE EVENT”.
+* When a scheduled event is no longer wanted or needed, it can be deleted from the server by its definer using the `DROP EVENT` statement. See Section 13.1.23, “DROP EVENT Statement”. Whether an event persists past the end of its schedule also depends on its `ON COMPLETION` clause, if it has one. See Section 13.1.12, “CREATE EVENT Statement”.
 
-  Um evento pode ser excluído por qualquer usuário que tenha o privilégio `EVENT` para o banco de dados no qual o evento está definido. Veja a Seção 23.4.6, “O Agendamento de Eventos e os Privilégios do MySQL”.
+  An event can be dropped by any user having the `EVENT` privilege for the database on which the event is defined. See Section 23.4.6, “The Event Scheduler and MySQL Privileges”.

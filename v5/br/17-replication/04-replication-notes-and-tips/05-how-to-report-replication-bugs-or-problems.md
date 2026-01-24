@@ -1,29 +1,26 @@
-### 16.4.5 Como relatar erros ou problemas de replicação
+### 16.4.5 How to Report Replication Bugs or Problems
 
-Quando você tiver determinado que não há erro do usuário envolvido e a replicação ainda não funciona ou é instável, é hora de nos enviar um relatório de erro. Precisamos obter o máximo de informações possível de você para poder localizar o erro. Por favor, reserve um tempo e esforço para preparar um bom relatório de erro.
+When you have determined that there is no user error involved, and replication still either does not work at all or is unstable, it is time to send us a bug report. We need to obtain as much information as possible from you to be able to track down the bug. Please spend some time and effort in preparing a good bug report.
 
-Se você tiver um caso de teste repetiível que demonstre o erro, insira-o em nosso banco de dados de bugs usando as instruções fornecidas em Seção 1.5, “Como Relatar Erros ou Problemas”. Se você tiver um problema “fantasma” (um que você não consegue duplicar à vontade), use o seguinte procedimento:
+If you have a repeatable test case that demonstrates the bug, please enter it into our bugs database using the instructions given in [Section 1.5, “How to Report Bugs or Problems”](bug-reports.html "1.5 How to Report Bugs or Problems"). If you have a “phantom” problem (one that you cannot duplicate at will), use the following procedure:
 
-1. Verifique se não há erro do usuário envolvido. Por exemplo, se você atualizar a replica fora do thread de replicação, os dados saem de sincronia e você pode ter violações de chave única nas atualizações. Nesse caso, o thread de SQL de replicação para e espera que você limpe as tabelas manualmente para colocá-las em sincronia. *Isso não é um problema de replicação. É um problema de interferência externa que faz com que a replicação falhe.*
+1. Verify that no user error is involved. For example, if you update the replica outside of the replication thread, the data goes out of synchrony, and you can have unique key violations on updates. In this case, the replication SQL thread stops and waits for you to clean up the tables manually to bring them into synchrony. *This is not a replication problem. It is a problem of outside interference causing replication to fail.*
 
-2. Execute a replica com as opções [`--log-slave-updates`](https://pt.wikipedia.org/wiki/Replicação_\(database\)#Op%C3%A9rnicas_de_replicac%C3%A3o) e [`--log-bin`](https://pt.wikipedia.org/wiki/Replicação_\(database\)#Op%C3%A9rnicas_de_replicac%C3%A3o) no arquivo de opções binárias de replicação. Essas opções fazem com que a replica registre as atualizações que recebe do banco de dados fonte em seus próprios logs binários.
+2. Run the replica with the [`--log-slave-updates`](replication-options-binary-log.html#sysvar_log_slave_updates) and [`--log-bin`](replication-options-binary-log.html#option_mysqld_log-bin) options. These options cause the replica to log the updates that it receives from the source into its own binary logs.
 
-3. Salve todas as evidências antes de reiniciar o estado de replicação. Se não tivermos informações ou apenas informações vagas, fica difícil ou impossível para nós localizar o problema. As evidências que você deve coletar são:
+3. Save all evidence before resetting the replication state. If we have no information or only sketchy information, it becomes difficult or impossible for us to track down the problem. The evidence you should collect is:
 
-   - Todos os arquivos de log binários da fonte
+   * All binary log files from the source
+   * All binary log files from the replica
+   * The output of [`SHOW MASTER STATUS`](show-master-status.html "13.7.5.23 SHOW MASTER STATUS Statement") from the source at the time you discovered the problem
 
-   - Todos os arquivos de log binários da replica
+   * The output of [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") from the replica at the time you discovered the problem
 
-   - A saída de `SHOW MASTER STATUS` da fonte no momento em que você descobriu o problema
-
-   - A saída de `SHOW SLAVE STATUS` da replica no momento em que você descobriu o problema
-
-   - Registros de erro da fonte e da replica
-
-4. Use **mysqlbinlog** para examinar os logs binários. O seguinte deve ser útil para encontrar a declaração do problema. *`log_file`* e *`log_pos`* são os valores de `Master_Log_File` e `Read_Master_Log_Pos` da consulta `SHOW SLAVE STATUS` (exibir status do escravo).
+   * Error logs from the source and the replica
+4. Use [**mysqlbinlog**](mysqlbinlog.html "4.6.7 mysqlbinlog — Utility for Processing Binary Log Files") to examine the binary logs. The following should be helpful to find the problem statement. *`log_file`* and *`log_pos`* are the `Master_Log_File` and `Read_Master_Log_Pos` values from [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement").
 
    ```sql
    $> mysqlbinlog --start-position=log_pos log_file | head
    ```
 
-Depois de coletar as evidências para o problema, tente isolá-lo como um caso de teste separado primeiro. Em seguida, insira o problema com o máximo de informações possível em nossa base de dados de bugs usando as instruções na Seção 1.5, “Como Relatar Bugs ou Problemas”.
+After you have collected the evidence for the problem, try to isolate it as a separate test case first. Then enter the problem with as much information as possible into our bugs database using the instructions at [Section 1.5, “How to Report Bugs or Problems”](bug-reports.html "1.5 How to Report Bugs or Problems").

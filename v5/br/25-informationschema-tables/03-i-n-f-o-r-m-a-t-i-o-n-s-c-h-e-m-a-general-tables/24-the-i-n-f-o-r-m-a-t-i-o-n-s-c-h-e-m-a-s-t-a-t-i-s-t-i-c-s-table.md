@@ -1,86 +1,86 @@
-### 24.3.24 A tabela INFORMATION_SCHEMA STATISTICS
+### 24.3.24 The INFORMATION_SCHEMA STATISTICS Table
 
-A tabela `STATÍSTICAS` fornece informações sobre índices de tabelas.
+The [`STATISTICS`](information-schema-statistics-table.html "24.3.24 The INFORMATION_SCHEMA STATISTICS Table") table provides information about table indexes.
 
-A tabela `STATÍSTICAS` tem essas colunas:
+The [`STATISTICS`](information-schema-statistics-table.html "24.3.24 The INFORMATION_SCHEMA STATISTICS Table") table has these columns:
 
-- `TABLE_CATALOG`
+* `TABLE_CATALOG`
 
-  O nome do catálogo ao qual a tabela que contém o índice pertence. Esse valor é sempre `def`.
+  The name of the catalog to which the table containing the index belongs. This value is always `def`.
 
-- `TABLE_SCHEMA`
+* `TABLE_SCHEMA`
 
-  O nome do esquema (banco de dados) ao qual a tabela que contém o índice pertence.
+  The name of the schema (database) to which the table containing the index belongs.
 
-- `NOME_TABELA`
+* `TABLE_NAME`
 
-  O nome da tabela que contém o índice.
+  The name of the table containing the index.
 
-- `NON_UNIQUE`
+* `NON_UNIQUE`
 
-  0 se o índice não puder conter duplicatas; 1 se puder.
+  0 if the index cannot contain duplicates, 1 if it can.
 
-- `INDEX_SCHEMA`
+* `INDEX_SCHEMA`
 
-  O nome do esquema (banco de dados) ao qual o índice pertence.
+  The name of the schema (database) to which the index belongs.
 
-- `INDEX_NAME`
+* `INDEX_NAME`
 
-  O nome do índice. Se o índice for a chave primária, o nome será sempre `PRIMARY`.
+  The name of the index. If the index is the primary key, the name is always `PRIMARY`.
 
-- `SEQ_IN_INDEX`
+* `SEQ_IN_INDEX`
 
-  O número de sequência da coluna no índice, começando com 1.
+  The column sequence number in the index, starting with 1.
 
-- `NOME_COLUNA`
+* `COLUMN_NAME`
 
-  O nome da coluna. Veja também a descrição da coluna `EXPRESSION`.
+  The column name. See also the description for the `EXPRESSION` column.
 
-- `COLAÇAO`
+* `COLLATION`
 
-  Como a coluna é ordenada no índice. Isso pode ter valores `A` (crescente), `D` (decrescente) ou `NULL` (não ordenado).
+  How the column is sorted in the index. This can have values `A` (ascending), `D` (descending), or `NULL` (not sorted).
 
-- `CARDINALIDADE`
+* `CARDINALITY`
 
-  Uma estimativa do número de valores únicos no índice. Para atualizar esse número, execute `ANALYZE TABLE` ou (para tabelas `MyISAM`) **myisamchk -a**.
+  An estimate of the number of unique values in the index. To update this number, run [`ANALYZE TABLE`](analyze-table.html "13.7.2.1 ANALYZE TABLE Statement") or (for `MyISAM` tables) [**myisamchk -a**](myisamchk.html "4.6.3 myisamchk — MyISAM Table-Maintenance Utility").
 
-  A `CARDINALITY` é contada com base em estatísticas armazenadas como inteiros, portanto, o valor não é necessariamente exato, mesmo para tabelas pequenas. Quanto maior a cardinalidade, maior a chance de o MySQL usar o índice ao realizar junções.
+  `CARDINALITY` is counted based on statistics stored as integers, so the value is not necessarily exact even for small tables. The higher the cardinality, the greater the chance that MySQL uses the index when doing joins.
 
-- `SUB_PART`
+* `SUB_PART`
 
-  O prefixo do índice. Ou seja, o número de caracteres indexados se a coluna estiver apenas parcialmente indexada, `NULL` se toda a coluna estiver indexada.
+  The index prefix. That is, the number of indexed characters if the column is only partly indexed, `NULL` if the entire column is indexed.
 
-  Nota
+  Note
 
-  Os prefixos *limits* são medidos em bytes. No entanto, os prefixos *lengths* para especificações de índice nas instruções `CREATE TABLE`, `ALTER TABLE` e `CREATE INDEX` são interpretados como número de caracteres para tipos de string não binários (`CHAR`, `VARCHAR`, `TEXT`) e número de bytes para tipos de string binários (`BINARY`, `VARBINARY`, `BLOB`). Tenha isso em mente ao especificar um comprimento de prefixo para uma coluna de string não binária que usa um conjunto de caracteres multibyte.
+  Prefix *limits* are measured in bytes. However, prefix *lengths* for index specifications in [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement"), [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement"), and [`CREATE INDEX`](create-index.html "13.1.14 CREATE INDEX Statement") statements are interpreted as number of characters for nonbinary string types ([`CHAR`](char.html "11.3.2 The CHAR and VARCHAR Types"), [`VARCHAR`](char.html "11.3.2 The CHAR and VARCHAR Types"), [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types")) and number of bytes for binary string types ([`BINARY`](binary-varbinary.html "11.3.3 The BINARY and VARBINARY Types"), [`VARBINARY`](binary-varbinary.html "11.3.3 The BINARY and VARBINARY Types"), [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types")). Take this into account when specifying a prefix length for a nonbinary string column that uses a multibyte character set.
 
-  Para obter informações adicionais sobre prefixos de índice, consulte Seção 8.3.4, “Índices de Colunas” e Seção 13.1.14, “Instrução CREATE INDEX”.
+  For additional information about index prefixes, see [Section 8.3.4, “Column Indexes”](column-indexes.html "8.3.4 Column Indexes"), and [Section 13.1.14, “CREATE INDEX Statement”](create-index.html "13.1.14 CREATE INDEX Statement").
 
-- `PACKADO`
+* `PACKED`
 
-  Indica como a chave está compactada. `NULL` se não estiver.
+  Indicates how the key is packed. `NULL` if it is not.
 
-- `NULLÁVEL`
+* `NULLABLE`
 
-  Contém `SIM` se a coluna pode conter valores `NULL` e `''` se
+  Contains `YES` if the column may contain `NULL` values and `''` if not.
 
-- `INDEX_TYPE`
+* `INDEX_TYPE`
 
-  O método de índice utilizado (`BTREE`, `FULLTEXT`, `HASH`, `RTREE`).
+  The index method used (`BTREE`, `FULLTEXT`, `HASH`, `RTREE`).
 
-- `COMENTÁRIO`
+* `COMMENT`
 
-  Informações sobre o índice não descritas em sua própria coluna, como `desativado`, se o índice estiver desativado.
+  Information about the index not described in its own column, such as `disabled` if the index is disabled.
 
-- `INDEX_COMMENT`
+* `INDEX_COMMENT`
 
-  Qualquer comentário fornecido para o índice com o atributo `COMMENT` quando o índice foi criado.
+  Any comment provided for the index with a `COMMENT` attribute when the index was created.
 
-#### Notas
+#### Notes
 
-- Não existe uma tabela padrão `INFORMATION_SCHEMA` para índices. A lista de colunas do MySQL é semelhante àquela que o SQL Server 2000 retorna para `sp_statistics`, exceto que `QUALIFIER` e `OWNER` são substituídos por `CATALOG` e `SCHEMA`, respectivamente.
+* There is no standard `INFORMATION_SCHEMA` table for indexes. The MySQL column list is similar to what SQL Server 2000 returns for `sp_statistics`, except that `QUALIFIER` and `OWNER` are replaced with `CATALOG` and `SCHEMA`, respectively.
 
-Informações sobre índices de tabela também estão disponíveis na instrução `SHOW INDEX`. Veja Seção 13.7.5.22, “Instrução SHOW INDEX”. As seguintes instruções são equivalentes:
+Information about table indexes is also available from the [`SHOW INDEX`](show-index.html "13.7.5.22 SHOW INDEX Statement") statement. See [Section 13.7.5.22, “SHOW INDEX Statement”](show-index.html "13.7.5.22 SHOW INDEX Statement"). The following statements are equivalent:
 
 ```sql
 SELECT * FROM INFORMATION_SCHEMA.STATISTICS

@@ -1,4 +1,4 @@
-#### 13.2.9.3 Cláusula de UNIÃO
+#### 13.2.9.3 UNION Clause
 
 ```sql
 SELECT ...
@@ -6,7 +6,7 @@ UNION [ALL | DISTINCT] SELECT ...
 [UNION [ALL | DISTINCT] SELECT ...]
 ```
 
-`UNION` combina o resultado de várias instruções `SELECT` em um único conjunto de resultados. Exemplo:
+[`UNION`](union.html "13.2.9.3 UNION Clause") combines the result from multiple [`SELECT`](select.html "13.2.9 SELECT Statement") statements into a single result set. Example:
 
 ```sql
 mysql> SELECT 1, 2;
@@ -30,16 +30,16 @@ mysql> SELECT 1, 2 UNION SELECT 'a', 'b';
 +---+---+
 ```
 
-- Nomes das Colunas do Conjunto de Resultados e Tipos de Dados
-- UNION DISTINCT e UNION ALL
-- ORDEM POR e LIMITE em Uniões
-- Restrições da União
+* [Result Set Column Names and Data Types](union.html#union-result-set "Result Set Column Names and Data Types")
+* [UNION DISTINCT and UNION ALL](union.html#union-distinct-all "UNION DISTINCT and UNION ALL")
+* [ORDER BY and LIMIT in Unions](union.html#union-order-by-limit "ORDER BY and LIMIT in Unions")
+* [UNION Restrictions](union.html#union-restrictions "UNION Restrictions")
 
-##### Nomes das Colunas e Tipos de Dados do Conjunto de Resultados
+##### Result Set Column Names and Data Types
 
-Os nomes das colunas de um conjunto de resultados de `UNION` são obtidos dos nomes das colunas da primeira instrução `SELECT`.
+The column names for a [`UNION`](union.html "13.2.9.3 UNION Clause") result set are taken from the column names of the first [`SELECT`](select.html "13.2.9 SELECT Statement") statement.
 
-As colunas selecionadas listadas nas posições correspondentes de cada declaração `SELECT` devem ter o mesmo tipo de dado. Por exemplo, a primeira coluna selecionada pela primeira declaração deve ter o mesmo tipo que a primeira coluna selecionada pelas outras declarações. Se os tipos de dados das colunas correspondentes das declarações `SELECT` não corresponderem, os tipos e comprimentos das colunas no resultado da `UNION` levarão em consideração os valores recuperados por todas as declarações `SELECT`. Por exemplo, considere o seguinte, onde o comprimento da coluna não é limitado ao comprimento do valor da primeira declaração `SELECT`:
+Selected columns listed in corresponding positions of each [`SELECT`](select.html "13.2.9 SELECT Statement") statement should have the same data type. For example, the first column selected by the first statement should have the same type as the first column selected by the other statements. If the data types of corresponding [`SELECT`](select.html "13.2.9 SELECT Statement") columns do not match, the types and lengths of the columns in the [`UNION`](union.html "13.2.9.3 UNION Clause") result take into account the values retrieved by all the [`SELECT`](select.html "13.2.9 SELECT Statement") statements. For example, consider the following, where the column length is not constrained to the length of the value from the first [`SELECT`](select.html "13.2.9 SELECT Statement"):
 
 ```sql
 mysql> SELECT REPEAT('a',1) UNION SELECT REPEAT('b',20);
@@ -51,15 +51,15 @@ mysql> SELECT REPEAT('a',1) UNION SELECT REPEAT('b',20);
 +----------------------+
 ```
 
-##### UNIÃO DISTINCT e UNIÃO ALL
+##### UNION DISTINCT and UNION ALL
 
-Por padrão, as linhas duplicadas são removidas dos resultados do `UNION`. A palavra-chave opcional `DISTINCT` tem o mesmo efeito, mas torna isso explícito. Com a palavra-chave opcional `ALL`, a remoção de linhas duplicadas não ocorre e o resultado inclui todas as linhas correspondentes de todas as instruções de `SELECT`.
+By default, duplicate rows are removed from [`UNION`](union.html "13.2.9.3 UNION Clause") results. The optional `DISTINCT` keyword has the same effect but makes it explicit. With the optional `ALL` keyword, duplicate-row removal does not occur and the result includes all matching rows from all the [`SELECT`](select.html "13.2.9 SELECT Statement") statements.
 
-Você pode misturar `UNION ALL` e `UNION DISTINCT` na mesma consulta. Os tipos de `UNION` misturados são tratados de forma que uma união `DISTINCT` substitui qualquer união `ALL` à sua esquerda. Uma união `DISTINCT` pode ser produzida explicitamente usando `UNION DISTINCT` ou implicitamente usando `UNION` sem a palavra-chave `DISTINCT` ou `ALL` subsequente.
+You can mix [`UNION ALL`](union.html "13.2.9.3 UNION Clause") and [`UNION DISTINCT`](union.html "13.2.9.3 UNION Clause") in the same query. Mixed [`UNION`](union.html "13.2.9.3 UNION Clause") types are treated such that a `DISTINCT` union overrides any `ALL` union to its left. A `DISTINCT` union can be produced explicitly by using [`UNION DISTINCT`](union.html "13.2.9.3 UNION Clause") or implicitly by using [`UNION`](union.html "13.2.9.3 UNION Clause") with no following `DISTINCT` or `ALL` keyword.
 
-##### ORDEM POR e LIMITE em Uniões
+##### ORDER BY and LIMIT in Unions
 
-Para aplicar uma cláusula `ORDER BY` ou `LIMIT` a um `SELECT` individual, coloque entre parênteses o `SELECT` e coloque a cláusula dentro dos parênteses:
+To apply an `ORDER BY` or `LIMIT` clause to an individual [`SELECT`](select.html "13.2.9 SELECT Statement"), parenthesize the [`SELECT`](select.html "13.2.9 SELECT Statement") and place the clause inside the parentheses:
 
 ```sql
 (SELECT a FROM t1 WHERE a=10 AND B=1 ORDER BY a LIMIT 10)
@@ -67,13 +67,13 @@ UNION
 (SELECT a FROM t2 WHERE a=11 AND B=2 ORDER BY a LIMIT 10);
 ```
 
-Nota
+Note
 
-Versões anteriores do MySQL podem permitir essas declarações sem as chaves. No MySQL 5.7, o requisito de chaves é exigido.
+Previous versions of MySQL may permit such statements without parentheses. In MySQL 5.7, the requirement for parentheses is enforced.
 
-O uso de `ORDER BY` em instruções individuais de `SELECT` (select.html) não implica em nada sobre a ordem em que as linhas aparecem no resultado final, porque a `UNION` (union.html) produz, por padrão, um conjunto não ordenado de linhas. Portanto, `ORDER BY` neste contexto é tipicamente usado em conjunto com `LIMIT` para determinar o subconjunto das linhas selecionadas a serem recuperadas para a `SELECT` (select.html), embora isso não afete necessariamente a ordem dessas linhas no resultado final da `UNION` (union.html). Se `ORDER BY` aparece sem `LIMIT` em uma `SELECT` (select.html), ele é otimizado, pois não tem efeito.
+Use of `ORDER BY` for individual [`SELECT`](select.html "13.2.9 SELECT Statement") statements implies nothing about the order in which the rows appear in the final result because [`UNION`](union.html "13.2.9.3 UNION Clause") by default produces an unordered set of rows. Therefore, `ORDER BY` in this context typically is used in conjunction with `LIMIT`, to determine the subset of the selected rows to retrieve for the [`SELECT`](select.html "13.2.9 SELECT Statement"), even though it does not necessarily affect the order of those rows in the final [`UNION`](union.html "13.2.9.3 UNION Clause") result. If `ORDER BY` appears without `LIMIT` in a [`SELECT`](select.html "13.2.9 SELECT Statement"), it is optimized away because it has no effect.
 
-Para usar uma cláusula `ORDER BY` ou `LIMIT` para ordenar ou limitar todo o resultado da consulta `UNION`, coloque entre parênteses as instruções individuais `SELECT` e coloque a cláusula `ORDER BY` ou `LIMIT` após a última:
+To use an `ORDER BY` or `LIMIT` clause to sort or limit the entire [`UNION`](union.html "13.2.9.3 UNION Clause") result, parenthesize the individual [`SELECT`](select.html "13.2.9 SELECT Statement") statements and place the `ORDER BY` or `LIMIT` after the last one:
 
 ```sql
 (SELECT a FROM t1 WHERE a=10 AND B=1)
@@ -82,18 +82,18 @@ UNION
 ORDER BY a LIMIT 10;
 ```
 
-Uma declaração sem parênteses é equivalente a uma declaração com parênteses, como mostrado acima.
+A statement without parentheses is equivalent to one parenthesized as just shown.
 
-Esse tipo de `ORDER BY` não pode usar referências de coluna que incluam o nome de uma tabela (ou seja, nomes no formato *`tbl_name`.*`col_name`\*). Em vez disso, forneça um alias de coluna na primeira instrução `SELECT` e faça referência ao alias no `ORDER BY`. (Alternativamente, você pode fazer referência à coluna no `ORDER BY` usando sua posição na coluna. No entanto, o uso de posições de coluna é desaconselhável.)
+This kind of `ORDER BY` cannot use column references that include a table name (that is, names in *`tbl_name`*.*`col_name`* format). Instead, provide a column alias in the first [`SELECT`](select.html "13.2.9 SELECT Statement") statement and refer to the alias in the `ORDER BY`. (Alternatively, refer to the column in the `ORDER BY` using its column position. However, use of column positions is deprecated.)
 
-Além disso, se uma coluna a ser ordenada está aliassiada, a cláusula `ORDER BY` *deve* se referir ao alias, e não ao nome da coluna. A primeira das seguintes declarações é permitida, mas a segunda falha com um erro `Coluna desconhecida 'a' na cláusula de ordem`:
+Also, if a column to be sorted is aliased, the `ORDER BY` clause *must* refer to the alias, not the column name. The first of the following statements is permitted, but the second fails with an `Unknown column 'a' in 'order clause'` error:
 
 ```sql
 (SELECT a AS b FROM t) UNION (SELECT ...) ORDER BY b;
 (SELECT a AS b FROM t) UNION (SELECT ...) ORDER BY a;
 ```
 
-Para fazer com que as linhas de um resultado de `UNION` consistam nos conjuntos de linhas recuperadas por cada `SELECT` uma após a outra, selecione uma coluna adicional em cada `SELECT` para usar como coluna de ordenação e adicione um `ORDER BY` que ordene nessa coluna após o último `SELECT`:
+To cause rows in a [`UNION`](union.html "13.2.9.3 UNION Clause") result to consist of the sets of rows retrieved by each [`SELECT`](select.html "13.2.9 SELECT Statement") one after the other, select an additional column in each [`SELECT`](select.html "13.2.9 SELECT Statement") to use as a sort column and add an `ORDER BY` that sorts on that column following the last [`SELECT`](select.html "13.2.9 SELECT Statement"):
 
 ```sql
 (SELECT 1 AS sort_col, col1a, col1b, ... FROM t1)
@@ -101,7 +101,7 @@ UNION
 (SELECT 2, col2a, col2b, ... FROM t2) ORDER BY sort_col;
 ```
 
-Para manter a ordem de classificação dentro dos resultados individuais de `SELECT`, adicione uma coluna secundária à cláusula `ORDER BY`:
+To additionally maintain sort order within individual [`SELECT`](select.html "13.2.9 SELECT Statement") results, add a secondary column to the `ORDER BY` clause:
 
 ```sql
 (SELECT 1 AS sort_col, col1a, col1b, ... FROM t1)
@@ -109,18 +109,18 @@ UNION
 (SELECT 2, col2a, col2b, ... FROM t2) ORDER BY sort_col, col1a;
 ```
 
-O uso de uma coluna adicional também permite determinar de qual `SELECT` cada linha vem. Colunas extras podem fornecer outras informações de identificação, como uma string que indica o nome de uma tabela.
+Use of an additional column also enables you to determine which [`SELECT`](select.html "13.2.9 SELECT Statement") each row comes from. Extra columns can provide other identifying information as well, such as a string that indicates a table name.
 
-Consultas de `UNION` com uma função agregada em uma cláusula `ORDER BY` são rejeitadas com um erro `ER_AGGREGATE_ORDER_FOR_UNION` (/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_aggregate_order_for_union). Exemplo:
+[`UNION`](union.html "13.2.9.3 UNION Clause") queries with an aggregate function in an `ORDER BY` clause are rejected with an [`ER_AGGREGATE_ORDER_FOR_UNION`](/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_aggregate_order_for_union) error. Example:
 
 ```sql
 SELECT 1 AS foo UNION SELECT 2 ORDER BY MAX(1);
 ```
 
-##### UNION Restrições
+##### UNION Restrictions
 
-Em uma `UNION`, as instruções `SELECT` são instruções de seleção normais, mas com as seguintes restrições:
+In a [`UNION`](union.html "13.2.9.3 UNION Clause"), the [`SELECT`](select.html "13.2.9 SELECT Statement") statements are normal select statements, but with the following restrictions:
 
-- `HIGH_PRIORITY` no primeiro `SELECT` não tem efeito. `HIGH_PRIORITY` em qualquer `SELECT` subsequente produz um erro de sintaxe.
+* `HIGH_PRIORITY` in the first [`SELECT`](select.html "13.2.9 SELECT Statement") has no effect. `HIGH_PRIORITY` in any subsequent [`SELECT`](select.html "13.2.9 SELECT Statement") produces a syntax error.
 
-- Apenas a última instrução `SELECT` pode usar uma cláusula `INTO`. No entanto, todo o resultado da instrução `UNION` é escrito no destino de saída `INTO`.
+* Only the last [`SELECT`](select.html "13.2.9 SELECT Statement") statement can use an `INTO` clause. However, the entire [`UNION`](union.html "13.2.9.3 UNION Clause") result is written to the `INTO` output destination.

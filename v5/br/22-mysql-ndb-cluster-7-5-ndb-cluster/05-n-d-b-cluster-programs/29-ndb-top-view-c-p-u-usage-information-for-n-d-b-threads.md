@@ -1,189 +1,189 @@
-### 21.5.29 ndb_top — Visualizar informações de uso da CPU para os threads do NDB
+### 21.5.29 ndb_top — View CPU usage information for NDB threads
 
-**ndb_top** exibe informações em execução no terminal sobre o uso da CPU por threads do NDB em um nó de dados do NDB Cluster. Cada thread é representada por duas linhas no resultado, a primeira mostrando estatísticas do sistema e a segunda mostrando as estatísticas medidas para a thread.
+[**ndb_top**](mysql-cluster-programs-ndb-top.html "21.5.29 ndb_top — View CPU usage information for NDB threads") displays running information in the terminal about CPU usage by NDB threads on an NDB Cluster data node. Each thread is represented by two rows in the output, the first showing system statistics, the second showing the measured statistics for the thread.
 
-**ndb_top** está disponível no MySQL NDB Cluster 7.6 (e versões posteriores).
+[**ndb_top**](mysql-cluster-programs-ndb-top.html "21.5.29 ndb_top — View CPU usage information for NDB threads") is available in MySQL NDB Cluster 7.6 (and later).
 
-#### Uso
+#### Usage
 
 ```sql
 ndb_top [-h hostname] [-t port] [-u user] [-p pass] [-n node_id]
 ```
 
-**ndb_top** se conecta a um servidor MySQL que está rodando como um nó SQL do clúster. Por padrão, ele tenta se conectar a um **mysqld** rodando em `localhost` e na porta 3306, como o usuário `root` do MySQL sem senha especificada. Você pode substituir o host e a porta padrão usando, respectivamente, as opções `--host` (`-h`) e `--port` (`-t`). Para especificar um usuário e senha do MySQL, use as opções `--user` (`-u`) e `--passwd` (`-p`). Esse usuário deve ser capaz de ler tabelas no banco de dados `ndbinfo` (**ndb_top** usa informações do `ndbinfo.cpustat` e tabelas relacionadas).
+[**ndb_top**](mysql-cluster-programs-ndb-top.html "21.5.29 ndb_top — View CPU usage information for NDB threads") connects to a MySQL Server running as an SQL node of the cluster. By default, it attempts to connect to a [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") running on `localhost` and port 3306, as the MySQL `root` user with no password specified. You can override the default host and port using, respectively, [`--host`](mysql-cluster-programs-ndb-top.html#option_ndb_top_host) (`-h`) and [`--port`](mysql-cluster-programs-ndb-top.html#option_ndb_top_port) (`-t`). To specify a MySQL user and password, use the [`--user`](mysql-cluster-programs-ndb-top.html#option_ndb_top_user) (`-u`) and [`--passwd`](mysql-cluster-programs-ndb-top.html#option_ndb_top_passwd) (`-p`) options. This user must be able to read tables in the [`ndbinfo`](mysql-cluster-ndbinfo.html "21.6.15 ndbinfo: The NDB Cluster Information Database") database ([**ndb_top**](mysql-cluster-programs-ndb-top.html "21.5.29 ndb_top — View CPU usage information for NDB threads") uses information from [`ndbinfo.cpustat`](mysql-cluster-ndbinfo-cpustat.html "21.6.15.11 The ndbinfo cpustat Table") and related tables).
 
-Para obter mais informações sobre contas e senhas de usuários do MySQL, consulte Seção 6.2, “Controle de Acesso e Gerenciamento de Contas”.
+For more information about MySQL user accounts and passwords, see [Section 6.2, “Access Control and Account Management”](access-control.html "6.2 Access Control and Account Management").
 
-A saída está disponível como texto simples ou um gráfico ASCII; você pode especificar isso usando as opções `--text` (`-x`) e `--graph` (`-g`), respectivamente. Esses dois modos de exibição fornecem as mesmas informações; eles podem ser usados simultaneamente. Pelo menos um modo de exibição deve estar em uso.
+Output is available as plain text or an ASCII graph; you can specify this using the [`--text`](mysql-cluster-programs-ndb-top.html#option_ndb_top_text) (`-x`) and [`--graph`](mysql-cluster-programs-ndb-top.html#option_ndb_top_graph) (`-g`) options, respectively. These two display modes provide the same information; they can be used concurrently. At least one display mode must be in use.
 
-A exibição colorida do gráfico é suportada e ativada por padrão (`--color` ou opção `-c`). Com o suporte à cor ativado, a exibição do gráfico mostra o tempo de uso do usuário do sistema em azul, o tempo do sistema do sistema em verde e o tempo de inatividade como branco. Para a carga medida, o azul é usado para o tempo de execução, o amarelo para o tempo de envio, o vermelho para o tempo gasto em espera de buffer de envio cheio e espaços em branco para o tempo de inatividade. A porcentagem exibida na exibição do gráfico é a soma das porcentagens para todos os threads que não estão inativos. As cores atualmente não são configuráveis; você pode usar tons de cinza ao invés disso usando `--skip-color`.
+Color display of the graph is supported and enabled by default ([`--color`](mysql-cluster-programs-ndb-top.html#option_ndb_top_color) or `-c` option). With color support enabled, the graph display shows OS user time in blue, OS system time in green, and idle time as blank. For measured load, blue is used for execution time, yellow for send time, red for time spent in send buffer full waits, and blank spaces for idle time. The percentage shown in the graph display is the sum of percentages for all threads which are not idle. Colors are not currently configurable; you can use grayscale instead by using `--skip-color`.
 
-A visualização ordenada (`--sort`, `-r`) é baseada no máximo da carga medida e na carga relatada pelo sistema operacional. A exibição dessas cargas pode ser habilitada ou desabilitada usando as opções `--measured-load` (`-m`) e `--os-load` (`-o`) ([mysql-cluster-programs-ndb-top.html#option_ndb_top_measured-load] e [mysql-cluster-programs-ndb-top.html#option_ndb_top_os-load]). A exibição de pelo menos uma dessas cargas deve ser habilitada.
+The sorted view ([`--sort`](mysql-cluster-programs-ndb-top.html#option_ndb_top_sort), `-r`) is based on the maximum of the measured load and the load reported by the OS. Display of these can be enabled and disabled using the [`--measured-load`](mysql-cluster-programs-ndb-top.html#option_ndb_top_measured-load) (`-m`) and [`--os-load`](mysql-cluster-programs-ndb-top.html#option_ndb_top_os-load) (`-o`) options. Display of at least one of these loads must be enabled.
 
-O programa tenta obter estatísticas de um nó de dados com o ID de nó fornecido pela opção `--node-id` (mysql-cluster-programs-ndb-top.html#option_ndb_top_node-id) (`-n`); se não for especificado, esse valor é 1. **ndb_top** não pode fornecer informações sobre outros tipos de nós.
+The program tries to obtain statistics from a data node having the node ID given by the [`--node-id`](mysql-cluster-programs-ndb-top.html#option_ndb_top_node-id) (`-n`) option; if unspecified, this is 1. [**ndb_top**](mysql-cluster-programs-ndb-top.html "21.5.29 ndb_top — View CPU usage information for NDB threads") cannot provide information about other types of nodes.
 
-A visualização se ajusta à altura e largura da janela do terminal; a largura mínima suportada é de 76 caracteres.
+The view adjusts itself to the height and width of the terminal window; the minimum supported width is 76 characters.
 
-Uma vez iniciado, **ndb_top** funciona continuamente até ser forçado a sair; você pode encerrar o programa usando `Ctrl-C`. A exibição é atualizada uma vez por segundo; para definir um intervalo de atraso diferente, use `--sleep-time` (`-s`).
+Once started, [**ndb_top**](mysql-cluster-programs-ndb-top.html "21.5.29 ndb_top — View CPU usage information for NDB threads") runs continuously until forced to exit; you can quit the program using `Ctrl-C`. The display updates once per second; to set a different delay interval, use [`--sleep-time`](mysql-cluster-programs-ndb-top.html#option_ndb_top_sleep-time) (`-s`).
 
-Nota
+Note
 
-**ndb_top** está disponível no macOS, Linux e Solaris. Atualmente, não é suportado nas plataformas Windows.
+[**ndb_top**](mysql-cluster-programs-ndb-top.html "21.5.29 ndb_top — View CPU usage information for NDB threads") is available on macOS, Linux, and Solaris. It is not currently supported on Windows platforms.
 
-A tabela a seguir inclui todas as opções específicas do programa NDB Cluster **ndb_top**. Descrições adicionais seguem a tabela.
+The following table includes all options that are specific to the NDB Cluster program [**ndb_top**](mysql-cluster-programs-ndb-top.html "21.5.29 ndb_top — View CPU usage information for NDB threads"). Additional descriptions follow the table.
 
-**Tabela 21.45 Opções de linha de comando usadas com o programa ndb_top**
+**Table 21.45 Command-line options used with the program ndb_top**
 
-<table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Formato</th> <th>Descrição</th> <th>Adicionado, Descontinuado ou Removido</th> </tr></thead><tbody><tr> <th><p>PH_HTML_CODE_<code> --login-path=path </code>],</p><p> PH_HTML_CODE_<code> --login-path=path </code>] </p></th> <td>Mostrar gráficos ASCII coloridos; use --skip-colors para desativá-los</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p> PH_HTML_CODE_<code> -m </code>] </p></th> <td>Leia o arquivo fornecido após os arquivos globais terem sido lidos</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> PH_HTML_CODE_<code> --no-defaults </code>] </p></th> <td>Ler opções padrão a partir do arquivo fornecido apenas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> PH_HTML_CODE_<code>--node-id=#</code>] </p></th> <td>Leia também grupos com concatenação(grupo, sufixo)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p>PH_HTML_CODE_<code> <a class="link" href="mysql-cluster-programs-ndb-top.html#option_ndb_top_node-id">-n
-                #</a> </code>],</p><p> PH_HTML_CODE_<code>--os-load</code>] </p></th> <td>Exiba os dados usando gráficos; use --skip-graphs para desabilitar</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p> PH_HTML_CODE_<code> -o </code>] </p></th> <td>Mostrar informações de uso do programa</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p>PH_HTML_CODE_<code>--passwd=password</code>],</p><p> PH_HTML_CODE_<code> -p password </code>] </p></th> <td>Nome do host ou endereço IP do servidor MySQL para se conectar</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p> <code> --login-path=path </code> </p></th> <td>Leia o caminho fornecido a partir do arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p><code> -c </code><code> --login-path=path </code>],</p><p> <code> -m </code> </p></th> <td>Mostrar carga medida por thread</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p> <code> --no-defaults </code> </p></th> <td>Não leia as opções padrão de nenhum arquivo de opção, exceto o arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p><code>--node-id=#</code>,</p><p> <code> <a class="link" href="mysql-cluster-programs-ndb-top.html#option_ndb_top_node-id">-n
-                #</a> </code> </p></th> <td>Nodo de visualização com este ID de nó</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p><code>--os-load</code>,</p><p> <code> -o </code> </p></th> <td>Mostrar a carga medida pelo sistema operacional</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p><code>--passwd=password</code>,</p><p> <code> -p password </code> </p></th> <td>Conecte-se usando essa senha (mesma que a opção --password)</td> <td><p>ADICIONADO: NDB 7.6.3</p><p>REMOvido: NDB 7.6.4</p></td> </tr></tbody><tbody><tr> <th><p><code> --defaults-extra-file=path </code><code> --login-path=path </code>],</p><p> <code> --defaults-extra-file=path </code><code> --login-path=path </code>] </p></th> <td>Conecte-se usando essa senha</td> <td><p>ADICIONADO: NDB 7.6.6</p></td> </tr></tbody><tbody><tr> <th><p><code> --defaults-extra-file=path </code><code> -m </code>],</p><p><code> --defaults-extra-file=path </code><code> --no-defaults </code>] (&lt;=7.6.5),</p><p><code> --defaults-extra-file=path </code><code>--node-id=#</code>] (&gt;=7.6.6)</p></th> <td>Número de porta a ser usado ao se conectar ao servidor MySQL</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-extra-file=path </code><code> <a class="link" href="mysql-cluster-programs-ndb-top.html#option_ndb_top_node-id">-n
-                #</a> </code>] </p></th> <td>Imprimir a lista de argumentos do programa e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p><code> --defaults-extra-file=path </code><code>--os-load</code>],</p><p> <code> --defaults-extra-file=path </code><code> -o </code>] </p></th> <td>Tempo de espera entre atualizações da tela, em segundos</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p><code> --defaults-extra-file=path </code><code>--passwd=password</code>],</p><p> <code> --defaults-extra-file=path </code><code> -p password </code>] </p></th> <td>Arquivo de soquete a ser usado para a conexão</td> <td><p>ADICIONADO: NDB 7.6.6</p></td> </tr></tbody><tbody><tr> <th><p><code> --defaults-file=path </code><code> --login-path=path </code>],</p><p> <code> --defaults-file=path </code><code> --login-path=path </code>] </p></th> <td>Classifique os tópicos por uso; use --skip-sort para desativá-lo</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p><code> --defaults-file=path </code><code> -m </code>],</p><p><code> --defaults-file=path </code><code> --no-defaults </code>] (&lt;=7.6.5),</p><p><code> --defaults-file=path </code><code>--node-id=#</code>] (&gt;=7.6.6)</p></th> <td>Exibir dados usando texto</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-file=path </code><code> <a class="link" href="mysql-cluster-programs-ndb-top.html#option_ndb_top_node-id">-n
-                #</a> </code>] </p></th> <td>Mostrar informações de uso do programa; o mesmo que --help</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p><code> --defaults-file=path </code><code>--os-load</code>],</p><p> <code> --defaults-file=path </code><code> -o </code>] </p></th> <td>Conecte-se como este usuário do MySQL</td> <td><p>ADICIONADO: NDB 7.6.3</p></td> </tr></tbody></table>
+<table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Format</th> <th>Description</th> <th>Added, Deprecated, or Removed</th> </tr></thead><tbody><tr> <th><p> <code>--color</code>, </p><p> <code> -c </code> </p></th> <td>Show ASCII graphs in color; use --skip-colors to disable</td> <td><p> ADDED: NDB 7.6.3 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-extra-file=path </code> </p></th> <td>Read given file after global files are read</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-file=path </code> </p></th> <td>Read default options from given file only</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-group-suffix=string </code> </p></th> <td>Also read groups with concat(group, suffix)</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--graph</code>, </p><p> <code> -g </code> </p></th> <td>Display data using graphs; use --skip-graphs to disable</td> <td><p> ADDED: NDB 7.6.3 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --help </code> </p></th> <td>Show program usage information</td> <td><p> ADDED: NDB 7.6.3 </p></td> </tr></tbody><tbody><tr> <th><p> <code>--host=string</code>, </p><p> <code> -h string </code> </p></th> <td>Host name or IP address of MySQL Server to connect to</td> <td><p> ADDED: NDB 7.6.3 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --login-path=path </code> </p></th> <td>Read given path from login file</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--measured-load</code>, </p><p> <code> -m </code> </p></th> <td>Show measured load by thread</td> <td><p> ADDED: NDB 7.6.3 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --no-defaults </code> </p></th> <td>Do not read default options from any option file other than login file</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--node-id=#</code>, </p><p> <code> <a class="link" href="mysql-cluster-programs-ndb-top.html#option_ndb_top_node-id">-n
+                #</a> </code> </p></th> <td>Watch node having this node ID</td> <td><p> ADDED: NDB 7.6.3 </p></td> </tr></tbody><tbody><tr> <th><p> <code>--os-load</code>, </p><p> <code> -o </code> </p></th> <td>Show load measured by operating system</td> <td><p> ADDED: NDB 7.6.3 </p></td> </tr></tbody><tbody><tr> <th><p> <code>--passwd=password</code>, </p><p> <code> -p password </code> </p></th> <td>Connect using this password (same as --password option)</td> <td><p> ADDED: NDB 7.6.3 </p><p> REMOVED: NDB 7.6.4 </p></td> </tr></tbody><tbody><tr> <th><p> <code>--password=password</code>, </p><p> <code> -p password </code> </p></th> <td>Connect using this password</td> <td><p> ADDED: NDB 7.6.6 </p></td> </tr></tbody><tbody><tr> <th><p> <code>--port=#</code>, </p><p> <code><a class="link" href="mysql-cluster-programs-ndb-top.html#option_ndb_top_port">-t
+                #</a></code> (&lt;=7.6.5), </p><p> <code><a class="link" href="mysql-cluster-programs-ndb-top.html#option_ndb_top_port">-P
+                #</a></code> (&gt;=7.6.6) </p></th> <td>Port number to use when connecting to MySQL Server</td> <td><p> ADDED: NDB 7.6.3 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --print-defaults </code> </p></th> <td>Print program argument list and exit</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--sleep-time=#</code>, </p><p> <code> <a class="link" href="mysql-cluster-programs-ndb-top.html#option_ndb_top_sleep-time">-s
+                #</a> </code> </p></th> <td>Time to wait between display refreshes, in seconds</td> <td><p> ADDED: NDB 7.6.3 </p></td> </tr></tbody><tbody><tr> <th><p> <code>--socket=path</code>, </p><p> <code> -S path </code> </p></th> <td>Socket file to use for connection</td> <td><p> ADDED: NDB 7.6.6 </p></td> </tr></tbody><tbody><tr> <th><p> <code>--sort</code>, </p><p> <code> -r </code> </p></th> <td>Sort threads by usage; use --skip-sort to disable</td> <td><p> ADDED: NDB 7.6.3 </p></td> </tr></tbody><tbody><tr> <th><p> <code>--text</code>, </p><p> <code>-x</code> (&lt;=7.6.5), </p><p> <code>-t</code> (&gt;=7.6.6) </p></th> <td>Display data using text</td> <td><p> ADDED: NDB 7.6.3 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --usage </code> </p></th> <td>Show program usage information; same as --help</td> <td><p> ADDED: NDB 7.6.3 </p></td> </tr></tbody><tbody><tr> <th><p> <code>--user=name</code>, </p><p> <code> -u name </code> </p></th> <td>Connect as this MySQL user</td> <td><p> ADDED: NDB 7.6.3 </p></td> </tr></tbody></table>
 
-#### Opções adicionais
+#### Additional Options
 
-- `--color`, `-c`
+* `--color`, `-c`
 
-  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td><code>--color</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for color"><tbody><tr><th>Command-Line Format</th> <td><code>--color</code></td> </tr><tr><th>Introduced</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
 
-  Mostre gráficos ASCII coloridos; use `--skip-colors` para desativá-los.
+  Show ASCII graphs in color; use `--skip-colors` to disable.
 
-- `--defaults-extra-file`
+* `--defaults-extra-file`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-extra-file=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-extra-file"><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-extra-file=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Leia o arquivo fornecido após a leitura dos arquivos globais.
+  Read given file after global files are read.
 
-- `--defaults-file`
+* `--defaults-file`
 
-  <table frame="box" rules="all" summary="Propriedades para arquivo de falhas"><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-file=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-file"><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-file=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Leia as opções padrão do arquivo fornecido.
+  Read default options from given file only.
 
-- `--defaults-group-suffix`
+* `--defaults-group-suffix`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-group-suffix"><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-group-suffix=string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-group-suffix"><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-group-suffix=string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Leia também grupos com concatenação (grupo, sufixo).
+  Also read groups with concat(group, suffix).
 
-- `--graph`, `-g`
+* `--graph`, `-g`
 
-  <table frame="box" rules="all" summary="Propriedades para gráfico"><tbody><tr><th>Formato de linha de comando</th> <td><code>--graph</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for graph"><tbody><tr><th>Command-Line Format</th> <td><code>--graph</code></td> </tr><tr><th>Introduced</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
 
-  Exibir dados usando gráficos; use `--skip-graphs` para desabilitar. Esta opção ou `--text` deve ser verdadeira; ambas as opções podem ser verdadeiras.
+  Display data using graphs; use `--skip-graphs` to disable. This option or [`--text`](mysql-cluster-programs-ndb-top.html#option_ndb_top_text) must be true; both options may be true.
 
-- `--help`, `-?`
+* `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr><tr><th>Introduced</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
 
-  Mostrar informações de uso do programa.
+  Show program usage information.
 
-- `--host[`=*`nome]`*, `-h`
+* `--host[`=*`name]`*, `-h`
 
-  <table frame="box" rules="all" summary="Propriedades para o anfitrião"><tbody><tr><th>Formato de linha de comando</th> <td><code>--host=string</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>localhost</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for host"><tbody><tr><th>Command-Line Format</th> <td><code>--host=string</code></td> </tr><tr><th>Introduced</th> <td>5.7.19-ndb-7.6.3</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>localhost</code></td> </tr></tbody></table>
 
-  Nome do host ou endereço IP do servidor MySQL para se conectar.
+  Host name or IP address of MySQL Server to connect to.
 
-- `--login-path`
+* `--login-path`
 
-  <table frame="box" rules="all" summary="Propriedades para o caminho de login"><tbody><tr><th>Formato de linha de comando</th> <td><code>--login-path=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for login-path"><tbody><tr><th>Command-Line Format</th> <td><code>--login-path=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Leia o caminho fornecido a partir do arquivo de login.
+  Read given path from login file.
 
-- `--measured-load`, `-m`
+* `--measured-load`, `-m`
 
-  <table frame="box" rules="all" summary="Propriedades para carga medida"><tbody><tr><th>Formato de linha de comando</th> <td><code>--measured-load</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for measured-load"><tbody><tr><th>Command-Line Format</th> <td><code>--measured-load</code></td> </tr><tr><th>Introduced</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
 
-  Mostre a carga medida por thread. Esta opção ou `--os-load` deve ser verdadeira; ambas as opções podem ser verdadeiras.
+  Show measured load by thread. This option or [`--os-load`](mysql-cluster-programs-ndb-top.html#option_ndb_top_os-load) must be true; both options may be true.
 
-- `--no-defaults`
+* `--no-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td><code>--color</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for color"><tbody><tr><th>Command-Line Format</th> <td><code>--color</code></td> </tr><tr><th>Introduced</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
 
-  Não leia as opções padrão de nenhum arquivo de opção, exceto o arquivo de login.
+  Do not read default options from any option file other than login file.
 
-- `--node-id[`=*`#`]*`, `-n\`
+* `--node-id[`=*`#]`*, `-n`
 
-  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td><code>--color</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for color"><tbody><tr><th>Command-Line Format</th> <td><code>--color</code></td> </tr><tr><th>Introduced</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
 
-  Acompanhe o nó de dados que tem esse ID de nó.
+  Watch the data node having this node ID.
 
-- `--os-load`, `-o`
+* `--os-load`, `-o`
 
-  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td><code>--color</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for color"><tbody><tr><th>Command-Line Format</th> <td><code>--color</code></td> </tr><tr><th>Introduced</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
 
-  Mostrar a carga medida pelo sistema operacional. Esta opção ou `--measured-load` deve ser verdadeira; ambas as opções podem ser verdadeiras.
+  Show load measured by operating system. This option or [`--measured-load`](mysql-cluster-programs-ndb-top.html#option_ndb_top_measured-load) must be true; both options may be true.
 
-- `--passwd[`=*`senha]`*, `-p`
+* `--passwd[`=*`password]`*, `-p`
 
-  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td><code>--color</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for color"><tbody><tr><th>Command-Line Format</th> <td><code>--color</code></td> </tr><tr><th>Introduced</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
 
-  Conecte-se a um servidor MySQL usando essa senha e o usuário MySQL especificado por `--user`. Sinônimo de `--password`.
+  Connect to a MySQL Server using this password and the MySQL user specified by [`--user`](mysql-cluster-programs-ndb-top.html#option_ndb_top_user). Synonym for [`--password`](mysql-cluster-programs-ndb-top.html#option_ndb_top_password).
 
-  Essa senha está associada apenas a uma conta de usuário do MySQL e não está relacionada de nenhuma forma à senha usada com backups criptografados do `NDB`.
+  This password is associated with a MySQL user account only, and is not related in any way to the password used with encrypted `NDB` backups.
 
-- `--password[`=*`senha]`*, `-p`
+* `--password[`=*`password]`*, `-p`
 
-  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td><code>--color</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for color"><tbody><tr><th>Command-Line Format</th> <td><code>--color</code></td> </tr><tr><th>Introduced</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
 
-  Conecte-se a um servidor MySQL usando essa senha e o usuário MySQL especificado por `--user`.
+  Connect to a MySQL Server using this password and the MySQL user specified by [`--user`](mysql-cluster-programs-ndb-top.html#option_ndb_top_user).
 
-  Essa senha está associada apenas a uma conta de usuário do MySQL e não está relacionada de nenhuma forma à senha usada com backups criptografados do `NDB`.
+  This password is associated with a MySQL user account only, and is not related in any way to the password used with encrypted `NDB` backups.
 
-- `--port[`=*`#]`*, `-P`
+* `--port[`=*`#]`*, `-P`
 
-  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td><code>--color</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for color"><tbody><tr><th>Command-Line Format</th> <td><code>--color</code></td> </tr><tr><th>Introduced</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
 
-  Número de porta a ser usado ao se conectar ao servidor MySQL.
+  Port number to use when connecting to MySQL Server.
 
-  (Anteriormente, a forma abreviada dessa opção era `-t`, que foi reativada como a forma abreviada de `--text`.)
+  (Formerly, the short form for this option was `-t`, which was repurposed as the short form of [`--text`](mysql-cluster-programs-ndb-top.html#option_ndb_top_text).)
 
-- `--print-defaults`
+* `--print-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td><code>--color</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for color"><tbody><tr><th>Command-Line Format</th> <td><code>--color</code></td> </tr><tr><th>Introduced</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
 
-  Imprima a lista de argumentos do programa e saia.
+  Print program argument list and exit.
 
-- `--sleep-time[`=*`segundos]`*, `-s`
+* `--sleep-time[`=*`seconds]`*, `-s`
 
-  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td><code>--color</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for color"><tbody><tr><th>Command-Line Format</th> <td><code>--color</code></td> </tr><tr><th>Introduced</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
 
-  Tempo de espera entre atualizações da tela, em segundos.
+  Time to wait between display refreshes, in seconds.
 
-- `--socket=caminho/para/arquivo`, *`-S`*
+* `--socket=path/to/file`, *`-S`*
 
-  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td><code>--color</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for color"><tbody><tr><th>Command-Line Format</th> <td><code>--color</code></td> </tr><tr><th>Introduced</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
 
-  Use o arquivo de soquete especificado para a conexão.
+  Use the specified socket file for the connection.
 
-- `--sort`, `-r`
+* `--sort`, `-r`
 
-  <table frame="box" rules="all" summary="Propriedades para cor"><tbody><tr><th>Formato de linha de comando</th> <td><code>--color</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for color"><tbody><tr><th>Command-Line Format</th> <td><code>--color</code></td> </tr><tr><th>Introduced</th> <td>5.7.19-ndb-7.6.3</td> </tr></tbody></table>
 
-  Classifique os tópicos por uso; use `--skip-sort` para desativá-lo.
+  Sort threads by usage; use `--skip-sort` to disable.
 
-- `--text`, `-t`
+* `--text`, `-t`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-extra-file=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-extra-file"><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-extra-file=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Exibir dados usando texto. Esta opção ou `--graph` deve ser verdadeira; ambas as opções podem ser verdadeiras.
+  Display data using text. This option or [`--graph`](mysql-cluster-programs-ndb-top.html#option_ndb_top_graph) must be true; both options may be true.
 
-  (A forma abreviada dessa opção era `-x` nas versões anteriores do NDB Cluster, mas isso não é mais suportado.)
+  (The short form for this option was `-x` in previous versions of NDB Cluster, but this is no longer supported.)
 
-- `--usage`
+* `--usage`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-extra-file=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-extra-file"><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-extra-file=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Exibir texto de ajuda e sair; o mesmo que `--help`.
+  Display help text and exit; same as [`--help`](mysql-cluster-programs-ndb-top.html#option_ndb_top_help).
 
-- `--user[`=*`nome]`*, `-u`
+* `--user[`=*`name]`*, `-u`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-extra-file=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-extra-file"><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-extra-file=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Conecte-se como este usuário MySQL. Normalmente requer uma senha fornecida pela opção `--password`.
+  Connect as this MySQL user. Normally requires a password supplied by the [`--password`](mysql-cluster-programs-ndb-top.html#option_ndb_top_password) option.
 
-**Saída de exemplo.** A figura a seguir mostra **ndb_top** em execução em uma janela de terminal em um sistema Linux com um nó de dados **ndbmtd** sob uma carga moderada. Aqui, o programa foi invocado usando **ndb_top** `-n8` `-x` para fornecer saída tanto de texto quanto de gráfico:
+**Sample Output.** The next figure shows [**ndb_top**](mysql-cluster-programs-ndb-top.html "21.5.29 ndb_top — View CPU usage information for NDB threads") running in a terminal window on a Linux system with an [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") data node under a moderate load. Here, the program has been invoked using [**ndb_top**](mysql-cluster-programs-ndb-top.html "21.5.29 ndb_top — View CPU usage information for NDB threads") [`-n8`](mysql-cluster-programs-ndb-top.html#option_ndb_top_node-id) [`-x`](mysql-cluster-programs-ndb-top.html#option_ndb_top_text) to provide both text and graph output:
 
-**Figura 21.7 ndb_top Executando no Terminal**
+**Figure 21.7 ndb_top Running in Terminal**
 
-![Exibição do ndb_top, rodando em uma janela de terminal. Mostra informações para cada nó, incluindo os recursos utilizados.](images/ndb-top-1.png)
+![Display from ndb_top, running in a terminal window. Shows information for each node, including the utilized resources.](images/ndb-top-1.png)

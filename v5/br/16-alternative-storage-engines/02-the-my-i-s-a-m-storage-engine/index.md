@@ -1,83 +1,83 @@
-## 15.2 O Motor de Armazenamento MyISAM
+## 15.2 The MyISAM Storage Engine
 
-15.2.1 Opções de inicialização do MyISAM
+15.2.1 MyISAM Startup Options
 
-15.2.2 Espaço necessário para as chaves
+15.2.2 Space Needed for Keys
 
-15.2.3 Formas de armazenamento de tabelas MyISAM
+15.2.3 MyISAM Table Storage Formats
 
-15.2.4 Problemas com tabelas MyISAM
+15.2.4 MyISAM Table Problems
 
-`MyISAM` é baseado no motor de armazenamento mais antigo (e já não disponível) `ISAM`, mas possui muitas extensões úteis.
+`MyISAM` is based on the older (and no longer available) `ISAM` storage engine but has many useful extensions.
 
-**Tabela 15.2 Características do Motor de Armazenamento MyISAM**
+**Table 15.2 MyISAM Storage Engine Features**
 
-<table frame="box" rules="all" summary="Recursos suportados pelo motor de armazenamento MyISAM."><col style="width: 60%"/><col style="width: 40%"/><thead><tr><th>Característica</th> <th>Suporte</th> </tr></thead><tbody><tr><td><span><strong>Índices de árvores B</strong></span></td> <td>Sim</td> </tr><tr><td><span><strong>Backup/recuperação em ponto no tempo</strong></span>(Implementado no servidor, e não no motor de armazenamento.)</td> <td>Sim</td> </tr><tr><td><span><strong>Suporte a bancos de dados em cluster</strong></span></td> <td>Não</td> </tr><tr><td><span><strong>Índices agrupados</strong></span></td> <td>Não</td> </tr><tr><td><span><strong>Dados comprimidos</strong></span></td> <td>Sim (As tabelas MyISAM compactadas são suportadas apenas quando o formato de linha compactado é usado. As tabelas que usam o formato de linha compactada com MyISAM são apenas de leitura.)</td> </tr><tr><td><span><strong>Caches de dados</strong></span></td> <td>Não</td> </tr><tr><td><span><strong>Dados criptografados</strong></span></td> <td>Sim (implementado no servidor por meio de funções de criptografia.)</td> </tr><tr><td><span><strong>Suporte para chave estrangeira</strong></span></td> <td>Não</td> </tr><tr><td><span><strong>Índices de pesquisa de texto completo</strong></span></td> <td>Sim</td> </tr><tr><td><span><strong>Suporte ao tipo de dados geográficos</strong></span></td> <td>Sim</td> </tr><tr><td><span><strong>Suporte de indexação geospacial</strong></span></td> <td>Sim</td> </tr><tr><td><span><strong>Índices de hash</strong></span></td> <td>Não</td> </tr><tr><td><span><strong>Caches de índice</strong></span></td> <td>Sim</td> </tr><tr><td><span><strong>Granularidade de bloqueio</strong></span></td> <td>Tabela</td> </tr><tr><td><span><strong>MVCC</strong></span></td> <td>Não</td> </tr><tr><td><span><strong>Suporte à replicação</strong></span>(Implementado no servidor, e não no motor de armazenamento.)</td> <td>Sim</td> </tr><tr><td><span><strong>Limites de armazenamento</strong></span></td> <td>256 TB</td> </tr><tr><td><span><strong>Índices de T-tree</strong></span></td> <td>Não</td> </tr><tr><td><span><strong>Transações</strong></span></td> <td>Não</td> </tr><tr><td><span><strong>Atualizar estatísticas para o dicionário de dados</strong></span></td> <td>Sim</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Features supported by the MyISAM storage engine."><col style="width: 60%"/><col style="width: 40%"/><thead><tr><th>Feature</th> <th>Support</th> </tr></thead><tbody><tr><td><span><strong>B-tree indexes</strong></span></td> <td>Yes</td> </tr><tr><td><span><strong>Backup/point-in-time recovery</strong></span> (Implemented in the server, rather than in the storage engine.)</td> <td>Yes</td> </tr><tr><td><span><strong>Cluster database support</strong></span></td> <td>No</td> </tr><tr><td><span><strong>Clustered indexes</strong></span></td> <td>No</td> </tr><tr><td><span><strong>Compressed data</strong></span></td> <td>Yes (Compressed MyISAM tables are supported only when using the compressed row format. Tables using the compressed row format with MyISAM are read only.)</td> </tr><tr><td><span><strong>Data caches</strong></span></td> <td>No</td> </tr><tr><td><span><strong>Encrypted data</strong></span></td> <td>Yes (Implemented in the server via encryption functions.)</td> </tr><tr><td><span><strong>Foreign key support</strong></span></td> <td>No</td> </tr><tr><td><span><strong>Full-text search indexes</strong></span></td> <td>Yes</td> </tr><tr><td><span><strong>Geospatial data type support</strong></span></td> <td>Yes</td> </tr><tr><td><span><strong>Geospatial indexing support</strong></span></td> <td>Yes</td> </tr><tr><td><span><strong>Hash indexes</strong></span></td> <td>No</td> </tr><tr><td><span><strong>Index caches</strong></span></td> <td>Yes</td> </tr><tr><td><span><strong>Locking granularity</strong></span></td> <td>Table</td> </tr><tr><td><span><strong>MVCC</strong></span></td> <td>No</td> </tr><tr><td><span><strong>Replication support</strong></span> (Implemented in the server, rather than in the storage engine.)</td> <td>Yes</td> </tr><tr><td><span><strong>Storage limits</strong></span></td> <td>256TB</td> </tr><tr><td><span><strong>T-tree indexes</strong></span></td> <td>No</td> </tr><tr><td><span><strong>Transactions</strong></span></td> <td>No</td> </tr><tr><td><span><strong>Update statistics for data dictionary</strong></span></td> <td>Yes</td> </tr></tbody></table>
 
-Cada tabela `MyISAM` é armazenada no disco em três arquivos. Os arquivos têm nomes que começam com o nome da tabela e têm uma extensão para indicar o tipo de arquivo. Um arquivo `.frm` armazena o formato da tabela. O arquivo de dados tem a extensão `.MYD` (`MYData`). O arquivo de índice tem a extensão `.MYI` (`MYIndex`).
+Each `MyISAM` table is stored on disk in three files. The files have names that begin with the table name and have an extension to indicate the file type. An `.frm` file stores the table format. The data file has an `.MYD` (`MYData`) extension. The index file has an `.MYI` (`MYIndex`) extension.
 
-Para especificar explicitamente que você deseja uma tabela `MyISAM`, indique isso com uma opção de tabela `ENGINE`:
+To specify explicitly that you want a `MyISAM` table, indicate that with an `ENGINE` table option:
 
 ```sql
 CREATE TABLE t (i INT) ENGINE = MYISAM;
 ```
 
-No MySQL 5.7, normalmente é necessário usar `ENGINE` para especificar o motor de armazenamento `MyISAM`, pois `InnoDB` é o motor padrão.
+In MySQL 5.7, it is normally necessary to use `ENGINE` to specify the `MyISAM` storage engine because `InnoDB` is the default engine.
 
-Você pode verificar ou reparar as tabelas `MyISAM` com o cliente **mysqlcheck** ou o utilitário **myisamchk**. Você também pode comprimir as tabelas `MyISAM` com **myisampack** para ocupar muito menos espaço. Veja a Seção 4.5.3, “mysqlcheck — Um Programa de Manutenção de Tabelas”, a Seção 4.6.3, “myisamchk — Utilitário de Manutenção de Tabelas MyISAM” e a Seção 4.6.5, “myisampack — Gerar Tabelas MyISAM Compridas e Apenas de Leitura”.
+You can check or repair `MyISAM` tables with the **mysqlcheck** client or **myisamchk** utility. You can also compress `MyISAM` tables with **myisampack** to take up much less space. See Section 4.5.3, “mysqlcheck — A Table Maintenance Program”, Section 4.6.3, “myisamchk — MyISAM Table-Maintenance Utility”, and Section 4.6.5, “myisampack — Generate Compressed, Read-Only MyISAM Tables”.
 
-As tabelas `MyISAM` têm as seguintes características:
+`MyISAM` tables have the following characteristics:
 
-- Todos os valores de dados são armazenados com o byte de menor ordem primeiro. Isso torna o sistema de dados independente do sistema operacional. Os únicos requisitos para a portabilidade binária são que a máquina use inteiros assinados em complemento de dois e o formato de ponto flutuante IEEE. Esses requisitos são amplamente utilizados em máquinas convencionais. A compatibilidade binária pode não ser aplicável a sistemas embarcados, que às vezes têm processadores peculiares.
+* All data values are stored with the low byte first. This makes the data machine and operating system independent. The only requirements for binary portability are that the machine uses two's-complement signed integers and IEEE floating-point format. These requirements are widely used among mainstream machines. Binary compatibility might not be applicable to embedded systems, which sometimes have peculiar processors.
 
-  Não há penalidade significativa de velocidade ao armazenar os dados com os bytes mais baixos primeiro; os bytes de uma linha de tabela normalmente não estão alinhados e leva um pouco mais de processamento para ler um byte desalinhado em ordem inversa do que em ordem direta. Além disso, o código no servidor que recupera os valores das colunas não é crítico em termos de tempo em comparação com outros códigos.
+  There is no significant speed penalty for storing data low byte first; the bytes in a table row normally are unaligned and it takes little more processing to read an unaligned byte in order than in reverse order. Also, the code in the server that fetches column values is not time critical compared to other code.
 
-- Todos os valores de teclas numéricas são armazenados com o byte alto primeiro para permitir uma melhor compressão de índice.
+* All numeric key values are stored with the high byte first to permit better index compression.
 
-- Arquivos grandes (até 63 bits de comprimento de arquivo) são suportados em sistemas de arquivos e sistemas operacionais que suportam arquivos grandes.
+* Large files (up to 63-bit file length) are supported on file systems and operating systems that support large files.
 
-- Há um limite de (232)2 (1,844E+19) linhas em uma tabela `MyISAM`.
+* There is a limit of (232)2 (1.844E+19) rows in a `MyISAM` table.
 
-- O número máximo de índices por tabela `MyISAM` é de 64.
+* The maximum number of indexes per `MyISAM` table is 64.
 
-  O número máximo de colunas por índice é 16.
+  The maximum number of columns per index is 16.
 
-- O comprimento máximo da chave é de 1000 bytes. Isso também pode ser alterado alterando a fonte e recompilando. No caso de uma chave maior que 250 bytes, um tamanho de bloco de chave maior que o padrão de 1024 bytes é usado.
+* The maximum key length is 1000 bytes. This can also be changed by changing the source and recompiling. For the case of a key longer than 250 bytes, a larger key block size than the default of 1024 bytes is used.
 
-- Quando as linhas são inseridas em ordem ordenada (como quando você está usando uma coluna `AUTO_INCREMENT`), a árvore de índice é dividida para que o nó superior contenha apenas uma chave. Isso melhora a utilização do espaço na árvore de índice.
+* When rows are inserted in sorted order (as when you are using an `AUTO_INCREMENT` column), the index tree is split so that the high node only contains one key. This improves space utilization in the index tree.
 
-- O gerenciamento interno de uma coluna `AUTO_INCREMENT` por tabela é suportado. O `MyISAM` atualiza automaticamente essa coluna para operações `INSERT` e `UPDATE`. Isso torna as colunas `AUTO_INCREMENT` mais rápidas (pelo menos 10%). Os valores no topo da sequência não são reutilizados após serem excluídos. (Quando uma coluna `AUTO_INCREMENT` é definida como a última coluna de um índice de múltiplas colunas, a reutilização de valores excluídos do topo de uma sequência ocorre.) O valor `AUTO_INCREMENT` pode ser redefinido com `ALTER TABLE` ou **myisamchk**.
+* Internal handling of one `AUTO_INCREMENT` column per table is supported. `MyISAM` automatically updates this column for `INSERT` and `UPDATE` operations. This makes `AUTO_INCREMENT` columns faster (at least 10%). Values at the top of the sequence are not reused after being deleted. (When an `AUTO_INCREMENT` column is defined as the last column of a multiple-column index, reuse of values deleted from the top of a sequence does occur.) The `AUTO_INCREMENT` value can be reset with `ALTER TABLE` or **myisamchk**.
 
-- As linhas de tamanho dinâmico são muito menos fragmentadas ao combinar exclusividades com atualizações e inserções. Isso é feito combinando automaticamente blocos excluídos adjacentes e estendendo blocos se o próximo bloco for excluído.
+* Dynamic-sized rows are much less fragmented when mixing deletes with updates and inserts. This is done by automatically combining adjacent deleted blocks and by extending blocks if the next block is deleted.
 
-- `MyISAM` suporta inserções concorrentes: se uma tabela não tiver blocos livres no meio do arquivo de dados, você pode `INSERT` novas linhas nela ao mesmo tempo em que outros threads estão lendo da tabela. Um bloco livre pode ocorrer como resultado da exclusão de linhas ou de uma atualização de uma linha de comprimento dinâmico com mais dados do que seu conteúdo atual. Quando todos os blocos livres são esgotados (preenchidos), as inserções futuras tornam-se concorrentes novamente. Veja a Seção 8.11.3, “Inserções Concorrentes”.
+* `MyISAM` supports concurrent inserts: If a table has no free blocks in the middle of the data file, you can `INSERT` new rows into it at the same time that other threads are reading from the table. A free block can occur as a result of deleting rows or an update of a dynamic length row with more data than its current contents. When all free blocks are used up (filled in), future inserts become concurrent again. See Section 8.11.3, “Concurrent Inserts”.
 
-- Você pode colocar o arquivo de dados e o arquivo de índice em diretórios diferentes em dispositivos físicos diferentes para obter mais velocidade com as opções de tabela `DATA DIRECTORY` e `INDEX DIRECTORY` no comando `CREATE TABLE`. Veja a Seção 13.1.18, “Instrução CREATE TABLE”.
+* You can put the data file and index file in different directories on different physical devices to get more speed with the `DATA DIRECTORY` and `INDEX DIRECTORY` table options to `CREATE TABLE`. See Section 13.1.18, “CREATE TABLE Statement”.
 
-- As colunas `BLOB` e `TEXT` podem ser indexadas.
+* `BLOB` and `TEXT` columns can be indexed.
 
-- Os valores `NULL` são permitidos em colunas indexadas. Isso consome de 0 a 1 byte por chave.
+* `NULL` values are permitted in indexed columns. This takes 0 to 1 bytes per key.
 
-- Cada coluna de caracteres pode ter um conjunto de caracteres diferente. Veja o Capítulo 10, *Conjunto de caracteres, Colagens, Unicode*.
+* Each character column can have a different character set. See Chapter 10, *Character Sets, Collations, Unicode*.
 
-- Existe uma bandeira no arquivo de índice `MyISAM` que indica se a tabela foi fechada corretamente. Se o **mysqld** for iniciado com a variável de sistema `myisam_recover_options` definida, as tabelas `MyISAM` são verificadas automaticamente ao serem abertas e reparadas se a tabela não tiver sido fechada corretamente.
+* There is a flag in the `MyISAM` index file that indicates whether the table was closed correctly. If **mysqld** is started with the `myisam_recover_options` system variable set, `MyISAM` tables are automatically checked when opened, and are repaired if the table wasn't closed properly.
 
-- O **myisamchk** marca as tabelas como verificadas se você executá-lo com a opção **--update-state**. O **myisamchk --fast** verifica apenas as tabelas que não têm essa marca.
+* **myisamchk** marks tables as checked if you run it with the `--update-state` option. **myisamchk --fast** checks only those tables that don't have this mark.
 
-- O comando **myisamchk --analyze** armazena estatísticas para partes de chaves, bem como para chaves inteiras.
+* **myisamchk --analyze** stores statistics for portions of keys, as well as for entire keys.
 
-- O **myisampack** pode embalar colunas `BLOB` e `VARCHAR`.
+* **myisampack** can pack `BLOB` and `VARCHAR` columns.
 
-`MyISAM` também suporta os seguintes recursos:
+`MyISAM` also supports the following features:
 
-- Suporte para um tipo `VARCHAR` verdadeiro; uma coluna `VARCHAR` começa com um comprimento armazenado em um ou dois bytes.
+* Support for a true `VARCHAR` type; a `VARCHAR` column starts with a length stored in one or two bytes.
 
-- As tabelas com colunas `VARCHAR` podem ter comprimento de linha fixo ou dinâmico.
+* Tables with `VARCHAR` columns may have fixed or dynamic row length.
 
-- A soma das comprimentos das colunas `VARCHAR` e `CHAR` em uma tabela pode ser de até 64 KB.
+* The sum of the lengths of the `VARCHAR` and `CHAR` columns in a table may be up to 64KB.
 
-- Restrições `UNIQUE` de comprimento arbitrário.
+* Arbitrary length `UNIQUE` constraints.
 
-### Recursos adicionais
+### Additional Resources
 
-- Um fórum dedicado ao motor de armazenamento `MyISAM` está disponível em <https://forums.mysql.com/list.php?21>.
+* A forum dedicated to the `MyISAM` storage engine is available at <https://forums.mysql.com/list.php?21>.

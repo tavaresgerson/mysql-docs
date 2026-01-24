@@ -1,17 +1,17 @@
-### 16.3.1 Uso da replicação para backups
+### 16.3.1 Using Replication for Backups
 
-16.3.1.1 Fazer backup de uma réplica usando mysqldump
+[16.3.1.1 Backing Up a Replica Using mysqldump](replication-solutions-backups-mysqldump.html)
 
-16.3.1.2 Fazer backup de dados brutos de uma réplica
+[16.3.1.2 Backing Up Raw Data from a Replica](replication-solutions-backups-rawdata.html)
 
-16.3.1.3 Fazer backup de uma fonte ou réplica tornando-a apenas de leitura
+[16.3.1.3 Backing Up a Source or Replica by Making It Read Only](replication-solutions-backups-read-only.html)
 
-Para usar a replicação como solução de backup, replique os dados da fonte para uma replica e, em seguida, faça o backup da replica. A replica pode ser pausada e desligada sem afetar o funcionamento da operação em andamento da fonte, permitindo que você produza um instantâneo eficaz dos dados "ativos" que, de outra forma, exigiriam o desligamento da fonte.
+To use replication as a backup solution, replicate data from the source to a replica, and then back up the replica. The replica can be paused and shut down without affecting the running operation of the source, so you can produce an effective snapshot of “live” data that would otherwise require the source to be shut down.
 
-A forma como você faz o backup de um banco de dados depende do seu tamanho e se você está fazendo o backup apenas dos dados ou dos dados e do estado da replica, para que você possa reconstruir a replica em caso de falha. Portanto, há duas opções:
+How you back up a database depends on its size and whether you are backing up only the data, or the data and the replica state so that you can rebuild the replica in the event of failure. There are therefore two choices:
 
-- Se você está usando a replicação como uma solução para fazer backup dos dados na fonte e o tamanho do seu banco de dados não for muito grande, a ferramenta **mysqldump** pode ser adequada. Veja Seção 16.3.1.1, “Fazendo backup de uma réplica usando mysqldump”.
+* If you are using replication as a solution to enable you to back up the data on the source, and the size of your database is not too large, the [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") tool may be suitable. See [Section 16.3.1.1, “Backing Up a Replica Using mysqldump”](replication-solutions-backups-mysqldump.html "16.3.1.1 Backing Up a Replica Using mysqldump").
 
-- Para bancos de dados maiores, onde o **mysqldump** seria impraticável ou ineficiente, você pode fazer backup dos arquivos de dados brutos. Ao usar a opção de arquivos de dados brutos, você também pode fazer backup dos logs binários e de retransmissão, o que permite recriar a replica em caso de falha da replica. Para mais informações, consulte Seção 16.3.1.2, “Fazendo backup de dados brutos de uma replica”.
+* For larger databases, where [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") would be impractical or inefficient, you can back up the raw data files instead. Using the raw data files option also means that you can back up the binary and relay logs that enable you to re-create the replica in the event of a replica failure. For more information, see [Section 16.3.1.2, “Backing Up Raw Data from a Replica”](replication-solutions-backups-rawdata.html "16.3.1.2 Backing Up Raw Data from a Replica").
 
-Outra estratégia de backup, que pode ser usada para servidores de origem ou replica, é colocar o servidor em estado de leitura apenas. O backup é realizado contra o servidor de leitura apenas, que é então alterado de volta ao seu estado operacional normal de leitura/escrita. Veja Seção 16.3.1.3, “Fazendo um backup de uma origem ou replica tornando-a de leitura apenas”.
+Another backup strategy, which can be used for either source or replica servers, is to put the server in a read-only state. The backup is performed against the read-only server, which then is changed back to its usual read/write operational status. See [Section 16.3.1.3, “Backing Up a Source or Replica by Making It Read Only”](replication-solutions-backups-read-only.html "16.3.1.3 Backing Up a Source or Replica by Making It Read Only").

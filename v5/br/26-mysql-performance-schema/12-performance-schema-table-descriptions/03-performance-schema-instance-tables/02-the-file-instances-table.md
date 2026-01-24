@@ -1,19 +1,19 @@
-#### 25.12.3.2 A tabela file_instances
+#### 25.12.3.2 The file_instances Table
 
-A tabela `file_instances` lista todos os arquivos vistos pelo Schema de Desempenho ao executar a instrumentação de E/S de arquivos. Se um arquivo no disco nunca tiver sido aberto, ele não estará na tabela `file_instances`. Quando um arquivo é excluído do disco, ele também é removido da tabela `file_instances`.
+The [`file_instances`](performance-schema-file-instances-table.html "25.12.3.2 The file_instances Table") table lists all the files seen by the Performance Schema when executing file I/O instrumentation. If a file on disk has never been opened, it is not in [`file_instances`](performance-schema-file-instances-table.html "25.12.3.2 The file_instances Table"). When a file is deleted from the disk, it is also removed from the [`file_instances`](performance-schema-file-instances-table.html "25.12.3.2 The file_instances Table") table.
 
-A tabela `file_instances` tem as seguintes colunas:
+The [`file_instances`](performance-schema-file-instances-table.html "25.12.3.2 The file_instances Table") table has these columns:
 
-- `NOME_DO_ARQUIVO`
+* `FILE_NAME`
 
-  O nome do arquivo.
+  The file name.
 
-- `NOME_DO_Evento`
+* `EVENT_NAME`
 
-  O nome do instrumento associado ao arquivo.
+  The instrument name associated with the file.
 
-- `OPEN_COUNT`
+* `OPEN_COUNT`
 
-  O número de abas abertas no arquivo. Se um arquivo foi aberto e depois fechado, ele foi aberto 1 vez, mas `OPEN_COUNT` é 0. Para listar todos os arquivos atualmente abertos pelo servidor, use `WHERE OPEN_COUNT > 0`.
+  The count of open handles on the file. If a file was opened and then closed, it was opened 1 time, but `OPEN_COUNT` is 0. To list all the files currently opened by the server, use `WHERE OPEN_COUNT > 0`.
 
-A operação `TRUNCATE TABLE` não é permitida para a tabela `file_instances`.
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is not permitted for the [`file_instances`](performance-schema-file-instances-table.html "25.12.3.2 The file_instances Table") table.

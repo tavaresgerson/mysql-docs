@@ -1,42 +1,42 @@
-#### 25.12.12.1 Tabela metadata_locks
+#### 25.12.12.1 The metadata_locks Table
 
-O MySQL utiliza o bloqueio de metadados para gerenciar o acesso concorrente a objetos de banco de dados e garantir a consistência dos dados; veja Seção 8.11.4, “Bloqueio de Metadados”. O bloqueio de metadados não se aplica apenas a tabelas, mas também a esquemas, programas armazenados (procedimentos, funções, gatilhos, eventos agendados), espaços de tabelas, bloqueios de usuário adquiridos com a função `GET_LOCK()` (veja Seção 12.14, “Funções de Bloqueio”), e bloqueios adquiridos com o serviço de bloqueio descrito em Seção 5.5.6.1, “O Serviço de Bloqueio”.
+MySQL uses metadata locking to manage concurrent access to database objects and to ensure data consistency; see [Section 8.11.4, “Metadata Locking”](metadata-locking.html "8.11.4 Metadata Locking"). Metadata locking applies not just to tables, but also to schemas, stored programs (procedures, functions, triggers, scheduled events), tablespaces, user locks acquired with the [`GET_LOCK()`](locking-functions.html#function_get-lock) function (see [Section 12.14, “Locking Functions”](locking-functions.html "12.14 Locking Functions")), and locks acquired with the locking service described in [Section 5.5.6.1, “The Locking Service”](locking-service.html "5.5.6.1 The Locking Service").
 
-O Schema de Desempenho expõe informações de bloqueio de metadados através da tabela `metadata_locks`:
+The Performance Schema exposes metadata lock information through the [`metadata_locks`](performance-schema-metadata-locks-table.html "25.12.12.1 The metadata_locks Table") table:
 
-- Lås que foram concedidos (mostra quais sessões possuem quais blocos de metadados atuais).
+* Locks that have been granted (shows which sessions own which current metadata locks).
 
-- Lås que foram solicitados, mas ainda não concedidos (mostra quais sessões estão aguardando quais bloqueios de metadados).
+* Locks that have been requested but not yet granted (shows which sessions are waiting for which metadata locks).
 
-- Solicitações de bloqueio que foram eliminadas pelo detector de travamento.
+* Lock requests that have been killed by the deadlock detector.
 
-- Pedidos de bloqueio que expiraram e estão aguardando que o pedido de bloqueio da sessão solicitante seja descartado.
+* Lock requests that have timed out and are waiting for the requesting session's lock request to be discarded.
 
-Essas informações permitem que você entenda as dependências de bloqueio de metadados entre as sessões. Você pode ver não apenas qual bloqueio uma sessão está esperando, mas também qual sessão atualmente detém esse bloqueio.
+This information enables you to understand metadata lock dependencies between sessions. You can see not only which lock a session is waiting for, but which session currently holds that lock.
 
-A tabela `metadata_locks` é de leitura somente e não pode ser atualizada. Ela é dimensionada automaticamente por padrão; para configurar o tamanho da tabela, defina a variável de sistema `performance_schema_max_metadata_locks` na inicialização do servidor.
+The [`metadata_locks`](performance-schema-metadata-locks-table.html "25.12.12.1 The metadata_locks Table") table is read only and cannot be updated. It is autosized by default; to configure the table size, set the [`performance_schema_max_metadata_locks`](performance-schema-system-variables.html#sysvar_performance_schema_max_metadata_locks) system variable at server startup.
 
-A instrumentação de bloqueio de metadados usa a ferramenta `wait/lock/metadata/sql/mdl`, que está desativada por padrão.
+Metadata lock instrumentation uses the `wait/lock/metadata/sql/mdl` instrument, which is disabled by default.
 
-Para controlar o estado de instrumentação de bloqueio de metadados ao iniciar o servidor, use linhas como estas no seu arquivo `my.cnf`:
+To control metadata lock instrumentation state at server startup, use lines like these in your `my.cnf` file:
 
-- Ativar:
+* Enable:
 
   ```sql
   [mysqld]
   performance-schema-instrument='wait/lock/metadata/sql/mdl=ON'
   ```
 
-- Desativar:
+* Disable:
 
   ```sql
   [mysqld]
   performance-schema-instrument='wait/lock/metadata/sql/mdl=OFF'
   ```
 
-Para controlar o estado de instrumentação de bloqueio de metadados em tempo de execução, atualize a tabela `setup_instruments`:
+To control metadata lock instrumentation state at runtime, update the [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table:
 
-- Ativar:
+* Enable:
 
   ```sql
   UPDATE performance_schema.setup_instruments
@@ -44,7 +44,7 @@ Para controlar o estado de instrumentação de bloqueio de metadados em tempo de
   WHERE NAME = 'wait/lock/metadata/sql/mdl';
   ```
 
-- Desativar:
+* Disable:
 
   ```sql
   UPDATE performance_schema.setup_instruments
@@ -52,68 +52,67 @@ Para controlar o estado de instrumentação de bloqueio de metadados em tempo de
   WHERE NAME = 'wait/lock/metadata/sql/mdl';
   ```
 
-O Schema de Desempenho mantém o conteúdo da tabela `metadata_locks` (performance-schema-metadata-locks-table.html) da seguinte forma, usando a coluna `LOCK_STATUS` para indicar o status de cada bloqueio:
+The Performance Schema maintains [`metadata_locks`](performance-schema-metadata-locks-table.html "25.12.12.1 The metadata_locks Table") table content as follows, using the `LOCK_STATUS` column to indicate the status of each lock:
 
-- Quando uma solicitação de bloqueio de metadados é solicitada e obtida imediatamente, uma linha com um status de `GRANTED` é inserida.
+* When a metadata lock is requested and obtained immediately, a row with a status of `GRANTED` is inserted.
 
-- Quando uma solicitação de bloqueio de metadados é feita e não é obtida imediatamente, uma linha com o status `PENDING` é inserida.
+* When a metadata lock is requested and not obtained immediately, a row with a status of `PENDING` is inserted.
 
-- Quando uma restrição de metadados solicitada anteriormente é concedida, seu status de linha é atualizado para `CONCEDIDA`.
+* When a metadata lock previously requested is granted, its row status is updated to `GRANTED`.
 
-- Quando uma restrição de metadados é liberada, sua linha é excluída.
+* When a metadata lock is released, its row is deleted.
+* When a pending lock request is canceled by the deadlock detector to break a deadlock ([`ER_LOCK_DEADLOCK`](/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_lock_deadlock)), its row status is updated from `PENDING` to `VICTIM`.
 
-- Quando um pedido de bloqueio pendente é cancelado pelo detector de impasses para quebrar um impasse (`ER_LOCK_DEADLOCK`), seu status de linha é atualizado de `PENDING` para `VICTIM`.
+* When a pending lock request times out ([`ER_LOCK_WAIT_TIMEOUT`](/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_lock_wait_timeout)), its row status is updated from `PENDING` to `TIMEOUT`.
 
-- Quando um pedido de bloqueio pendente expira (`ER_LOCK_WAIT_TIMEOUT`), o status da linha é atualizado de `PENDING` para `TIMEOUT`.
+* When granted lock or pending lock request is killed, its row status is updated from `GRANTED` or `PENDING` to `KILLED`.
 
-- Quando o pedido de bloqueio ou bloqueio pendente é cancelado, o status da linha é atualizado de `GRANTED` ou `PENDING` para `KILLED`.
+* The `VICTIM`, `TIMEOUT`, and `KILLED` status values are brief and signify that the lock row is about to be deleted.
 
-- Os valores de status `VICTIM`, `TIMEOUT` e `KILLED` são breves e indicam que a linha de bloqueio está prestes a ser excluída.
+* The `PRE_ACQUIRE_NOTIFY` and `POST_RELEASE_NOTIFY` status values are brief and signify that the metadata locking subsubsystem is notifying interested storage engines while entering lock acquisition operations or leaving lock release operations. These status values were added in MySQL 5.7.11.
 
-- Os valores de status `PRE_ACQUIRE_NOTIFY` e `POST_RELEASE_NOTIFY` são breves e indicam que o subsistema de notificação de bloqueio de metadados está notificando os motores de armazenamento interessados enquanto executa operações de aquisição de bloqueio ou deixa operações de liberação de bloqueio. Esses valores de status foram adicionados no MySQL 5.7.11.
+The [`metadata_locks`](performance-schema-metadata-locks-table.html "25.12.12.1 The metadata_locks Table") table has these columns:
 
-A tabela `metadata_locks` tem as seguintes colunas:
+* `OBJECT_TYPE`
 
-- `OBJETO_TIPO`
+  The type of lock used in the metadata lock subsystem. The value is one of `GLOBAL`, `SCHEMA`, `TABLE`, `FUNCTION`, `PROCEDURE`, `TRIGGER` (currently unused), `EVENT`, `COMMIT`, `USER LEVEL LOCK`, `TABLESPACE`, or `LOCKING SERVICE`.
 
-  O tipo de bloqueio utilizado no subsistema de bloqueio de metadados. O valor é um dos `GLOBAL`, `SCHEMA`, `TABLE`, `FUNCTION`, `PROCEDURE`, `TRIGGER` (atualmente não utilizado), `EVENT`, `COMMIT`, `USER LEVEL LOCK`, `TABLESPACE` ou `LOCKING SERVICE`.
+  A value of `USER LEVEL LOCK` indicates a lock acquired with [`GET_LOCK()`](locking-functions.html#function_get-lock). A value of `LOCKING SERVICE` indicates a lock acquired with the locking service described in [Section 5.5.6.1, “The Locking Service”](locking-service.html "5.5.6.1 The Locking Service").
 
-  Um valor de `USER LEVEL LOCK` indica uma trava adquirida com `GET_LOCK()`. Um valor de `LOCKING SERVICE` indica uma trava adquirida com o serviço de bloqueio descrito na Seção 5.5.6.1, “O Serviço de Bloqueio”.
+* `OBJECT_SCHEMA`
 
-- `OBJECT_SCHEMA`
+  The schema that contains the object.
 
-  O esquema que contém o objeto.
+* `OBJECT_NAME`
 
-- `NOME_OBJETO`
+  The name of the instrumented object.
 
-  O nome do objeto instrumentado.
+* `OBJECT_INSTANCE_BEGIN`
 
-- `OBJECT_INSTANCE_BEGIN`
+  The address in memory of the instrumented object.
 
-  O endereço na memória do objeto instrumentado.
+* `LOCK_TYPE`
 
-- `LOCK_TYPE`
+  The lock type from the metadata lock subsystem. The value is one of `INTENTION_EXCLUSIVE`, `SHARED`, `SHARED_HIGH_PRIO`, `SHARED_READ`, `SHARED_WRITE`, `SHARED_UPGRADABLE`, `SHARED_NO_WRITE`, `SHARED_NO_READ_WRITE`, or `EXCLUSIVE`.
 
-  O tipo de bloqueio do subsistema de bloqueio de metadados. O valor é `INTENTION_EXCLUSIVE`, `SHARED`, `SHARED_HIGH_PRIO`, `SHARED_READ`, `SHARED_WRITE`, `SHARED_UPGRADABLE`, `SHARED_NO_WRITE`, `SHARED_NO_READ_WRITE` ou `EXCLUSIVE`.
+* `LOCK_DURATION`
 
-- `LOCK_DURATION`
+  The lock duration from the metadata lock subsystem. The value is one of `STATEMENT`, `TRANSACTION`, or `EXPLICIT`. The `STATEMENT` and `TRANSACTION` values signify locks that are released implicitly at statement or transaction end, respectively. The `EXPLICIT` value signifies locks that survive statement or transaction end and are released by explicit action, such as global locks acquired with [`FLUSH TABLES WITH READ LOCK`](flush.html#flush-tables-with-read-lock).
 
-  A duração do bloqueio do subsistema de bloqueio de metadados. O valor é `STATEMENT`, `TRANSACTION` ou `EXPLICIT`. Os valores `STATEMENT` e `TRANSACTION` indicam blocos que são liberados implicitamente no final da declaração ou da transação, respectivamente. O valor `EXPLICIT` indica blocos que sobrevivem ao final da declaração ou da transação e são liberados por ação explícita, como blocos globais adquiridos com `FLUSH TABLES WITH READ LOCK` (flush.html#flush-tables-with-read-lock).
+* `LOCK_STATUS`
 
-- `LOCK_STATUS`
+  The lock status from the metadata lock subsystem. The value is one of `PENDING`, `GRANTED`, `VICTIM`, `TIMEOUT`, `KILLED`, `PRE_ACQUIRE_NOTIFY`, or `POST_RELEASE_NOTIFY`. The Performance Schema assigns these values as described previously.
 
-  O status do bloqueio do subsistema de bloqueio de metadados. O valor é um dos `PENDING`, `GRANTED`, `VICTIM`, `TIMEOUT`, `KILLED`, `PRE_ACQUIRE_NOTIFY` ou `POST_RELEASE_NOTIFY`. O Schema de Desempenho atribui esses valores conforme descrito anteriormente.
+* `SOURCE`
 
-- `FONTE`
+  The name of the source file containing the instrumented code that produced the event and the line number in the file at which the instrumentation occurs. This enables you to check the source to determine exactly what code is involved.
 
-  O nome do arquivo fonte que contém o código instrumentado que produziu o evento e o número da linha no arquivo onde a instrumentação ocorre. Isso permite que você verifique a fonte para determinar exatamente qual código está envolvido.
+* `OWNER_THREAD_ID`
 
-- `OWNER_THREAD_ID`
+  The thread requesting a metadata lock.
 
-  O thread que solicita uma bloqueio de metadados.
+* `OWNER_EVENT_ID`
 
-- `OWNER_EVENT_ID`
+  The event requesting a metadata lock.
 
-  O evento que solicita uma bloqueio de metadados.
-
-A operação `TRUNCATE TABLE` não é permitida para a tabela `metadata_locks`.
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is not permitted for the [`metadata_locks`](performance-schema-metadata-locks-table.html "25.12.12.1 The metadata_locks Table") table.

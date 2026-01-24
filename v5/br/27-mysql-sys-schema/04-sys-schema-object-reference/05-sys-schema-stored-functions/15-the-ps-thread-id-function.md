@@ -1,16 +1,16 @@
-#### 26.4.5.15 A função ps_thread_id()
+#### 26.4.5.15 The ps_thread_id() Function
 
-Retorna o ID de thread do Schema de Desempenho atribuído a um ID de conexão dado, ou o ID de thread para a conexão atual, se o ID de conexão for `NULL`.
+Returns the Performance Schema thread ID assigned to a given connection ID, or the thread ID for the current connection if the connection ID is `NULL`.
 
-##### Parâmetros
+##### Parameters
 
-- `in_connection_id BIGINT UNSIGNED`: O ID da conexão para a qual deseja-se retornar o ID do thread. Este é um valor do tipo especificado na coluna `PROCESSLIST_ID` da tabela `threads` do Gerenciamento de Desempenho ou na coluna `Id` da saída do comando `SHOW PROCESSLIST`.
+* `in_connection_id BIGINT UNSIGNED`: The ID of the connection for which to return the thread ID. This is a value of the type given in the `PROCESSLIST_ID` column of the Performance Schema `threads` table or the `Id` column of `SHOW PROCESSLIST` output.
 
-##### Valor de retorno
+##### Return Value
 
-Um valor `BIGINT UNSIGNED`.
+A `BIGINT UNSIGNED` value.
 
-##### Exemplo
+##### Example
 
 ```sql
 mysql> SELECT sys.ps_thread_id(260);

@@ -1,23 +1,23 @@
-#### B.3.2.15 Não é possível inicializar o conjunto de caracteres
+#### B.3.2.15 Can't initialize character set
 
-Você pode ver um erro como este se tiver problemas com o conjunto de caracteres:
+You might see an error like this if you have character set problems:
 
 ```sql
 MySQL Connection Failed: Can't initialize character set charset_name
 ```
 
-Esse erro pode ter qualquer uma das seguintes causas:
+This error can have any of the following causes:
 
-- O conjunto de caracteres é um conjunto de caracteres multibyte e você não tem suporte para o conjunto de caracteres no cliente. Nesse caso, você precisa recompilar o cliente executando o **CMake** com a opção [`-DDEFAULT_CHARSET=charset_name`](source-configuration-options.html#option_cmake_default_charset) ou [`-DWITH_EXTRA_CHARSETS=charset_name`](source-configuration-options.html#option_cmake_with_extra_charsets). Veja [Seção 2.8.7, “Opções de Configuração de Código-Fonte do MySQL”](source-configuration-options.html).
+* The character set is a multibyte character set and you have no support for the character set in the client. In this case, you need to recompile the client by running **CMake** with the [`-DDEFAULT_CHARSET=charset_name`](source-configuration-options.html#option_cmake_default_charset) or [`-DWITH_EXTRA_CHARSETS=charset_name`](source-configuration-options.html#option_cmake_with_extra_charsets) option. See [Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options").
 
-  Todos os binários padrão do MySQL são compilados com [`-DWITH_EXTRA_CHARSETS=complex`](source-configuration-options.html#option_cmake_with_extra_charsets), o que permite o suporte para todos os conjuntos de caracteres multibyte. Veja [Seção 2.8.7, “Opções de Configuração de Código-Fonte do MySQL”](source-configuration-options.html).
+  All standard MySQL binaries are compiled with [`-DWITH_EXTRA_CHARSETS=complex`](source-configuration-options.html#option_cmake_with_extra_charsets), which enables support for all multibyte character sets. See [Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options").
 
-- O conjunto de caracteres é um conjunto de caracteres simples que não está compilado no [**mysqld**](mysqld.html), e os arquivos de definição do conjunto de caracteres não estão no local onde o cliente espera encontrá-los.
+* The character set is a simple character set that is not compiled into [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"), and the character set definition files are not in the place where the client expects to find them.
 
-  Nesse caso, você precisa usar um dos seguintes métodos para resolver o problema:
+  In this case, you need to use one of the following methods to solve the problem:
 
-  - Reconcompile o cliente com suporte para o conjunto de caracteres. Consulte [Seção 2.8.7, “Opções de Configuração de Fonte do MySQL”](source-configuration-options.html).
+  + Recompile the client with support for the character set. See [Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options").
 
-  - Especifique ao cliente o diretório onde os arquivos de definição do conjunto de caracteres estão localizados. Para muitos clientes, você pode fazer isso com a opção `--character-sets-dir`.
+  + Specify to the client the directory where the character set definition files are located. For many clients, you can do this with the `--character-sets-dir` option.
 
-  - Copie os arquivos de definição de caracteres para o caminho onde o cliente espera que eles estejam.
+  + Copy the character definition files to the path where the client expects them to be.

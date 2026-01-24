@@ -1,34 +1,34 @@
-### 25.12.4 Tabelas de Eventos de Aguarda do Schema de Desempenho
+### 25.12.4 Performance Schema Wait Event Tables
 
-25.12.4.1 Tabela events_waits_current
+[25.12.4.1 The events_waits_current Table](performance-schema-events-waits-current-table.html)
 
-25.12.4.2 Tabela de eventos_waits_history
+[25.12.4.2 The events_waits_history Table](performance-schema-events-waits-history-table.html)
 
-25.12.4.3 A tabela events_waits_history_long
+[25.12.4.3 The events_waits_history_long Table](performance-schema-events-waits-history-long-table.html)
 
-Os instrumentos do esquema de desempenho que aguardam, que são eventos que levam tempo. Dentro da hierarquia de eventos, os eventos de espera estão dentro dos eventos de estágio, que estão dentro dos eventos de declaração, que estão dentro dos eventos de transação.
+The Performance Schema instruments waits, which are events that take time. Within the event hierarchy, wait events nest within stage events, which nest within statement events, which nest within transaction events.
 
-Essas tabelas armazenam eventos de espera:
+These tables store wait events:
 
-- `eventos_waits_current`: O evento de espera atual para cada thread.
+* [`events_waits_current`](performance-schema-events-waits-current-table.html "25.12.4.1 The events_waits_current Table"): The current wait event for each thread.
 
-- `eventos_waits_history`: Os eventos de espera mais recentes que terminaram por thread.
+* [`events_waits_history`](performance-schema-events-waits-history-table.html "25.12.4.2 The events_waits_history Table"): The most recent wait events that have ended per thread.
 
-- `eventos_waits_history_long`: Os eventos de espera mais recentes que terminaram globalmente (em todas as threads).
+* [`events_waits_history_long`](performance-schema-events-waits-history-long-table.html "25.12.4.3 The events_waits_history_long Table"): The most recent wait events that have ended globally (across all threads).
 
-As seções a seguir descrevem as tabelas de eventos de espera. Existem também tabelas resumidas que agregam informações sobre eventos de espera; consulte Seção 25.12.15.1, “Tabelas Resumo de Eventos de Espera”.
+The following sections describe the wait event tables. There are also summary tables that aggregate information about wait events; see [Section 25.12.15.1, “Wait Event Summary Tables”](performance-schema-wait-summary-tables.html "25.12.15.1 Wait Event Summary Tables").
 
-Para obter mais informações sobre a relação entre as três tabelas de eventos de espera, consulte Seção 25.9, "Tabelas do Schema de Desempenho para Eventos Atuais e Históricos".
+For more information about the relationship between the three wait event tables, see [Section 25.9, “Performance Schema Tables for Current and Historical Events”](performance-schema-event-tables.html "25.9 Performance Schema Tables for Current and Historical Events").
 
-#### Configurar a Coleta de Eventos de Aguardar
+#### Configuring Wait Event Collection
 
-Para controlar se os eventos de espera devem ser coletados, defina o estado dos instrumentos e dos consumidores relevantes:
+To control whether to collect wait events, set the state of the relevant instruments and consumers:
 
-- A tabela `setup_instruments` contém instrumentos com nomes que começam com `wait`. Use esses instrumentos para habilitar ou desabilitar a coleta de classes individuais de eventos de espera.
+* The [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table contains instruments with names that begin with `wait`. Use these instruments to enable or disable collection of individual wait event classes.
 
-- A tabela `setup_consumers` contém valores de consumidores com nomes correspondentes aos nomes atuais e históricos das tabelas de eventos de espera. Use esses consumidores para filtrar a coleção de eventos de espera.
+* The [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") table contains consumer values with names corresponding to the current and historical wait event table names. Use these consumers to filter collection of wait events.
 
-Alguns instrumentos de espera estão habilitados por padrão; outros estão desabilitados. Por exemplo:
+Some wait instruments are enabled by default; others are disabled. For example:
 
 ```sql
 mysql> SELECT * FROM performance_schema.setup_instruments
@@ -52,7 +52,7 @@ mysql> SELECT *
 +----------------------------------------+---------+-------+
 ```
 
-A espera dos consumidores é desabilitada por padrão:
+The wait consumers are disabled by default:
 
 ```sql
 mysql> SELECT *
@@ -67,9 +67,9 @@ mysql> SELECT *
 +---------------------------+---------+
 ```
 
-Para controlar a coleta de eventos de espera na inicialização do servidor, use linhas como estas no seu arquivo `my.cnf`:
+To control wait event collection at server startup, use lines like these in your `my.cnf` file:
 
-- Ativar:
+* Enable:
 
   ```sql
   [mysqld]
@@ -79,7 +79,7 @@ Para controlar a coleta de eventos de espera na inicialização do servidor, use
   performance-schema-consumer-events-waits-history-long=ON
   ```
 
-- Desativar:
+* Disable:
 
   ```sql
   [mysqld]
@@ -89,9 +89,9 @@ Para controlar a coleta de eventos de espera na inicialização do servidor, use
   performance-schema-consumer-events-waits-history-long=OFF
   ```
 
-Para controlar a coleta de eventos de espera em tempo de execução, atualize as tabelas `setup_instruments` e `setup_consumers`:
+To control wait event collection at runtime, update the [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") and [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") tables:
 
-- Ativar:
+* Enable:
 
   ```sql
   UPDATE performance_schema.setup_instruments
@@ -103,7 +103,7 @@ Para controlar a coleta de eventos de espera em tempo de execução, atualize as
   WHERE NAME LIKE 'events_waits%';
   ```
 
-- Desativar:
+* Disable:
 
   ```sql
   UPDATE performance_schema.setup_instruments
@@ -115,9 +115,9 @@ Para controlar a coleta de eventos de espera em tempo de execução, atualize as
   WHERE NAME LIKE 'events_waits%';
   ```
 
-Para coletar apenas eventos de espera específicos, habilite apenas os instrumentos de espera correspondentes. Para coletar eventos de espera apenas para tabelas de eventos de espera específicas, habilite os instrumentos de espera, mas apenas os consumidores de espera correspondentes às tabelas desejadas.
+To collect only specific wait events, enable only the corresponding wait instruments. To collect wait events only for specific wait event tables, enable the wait instruments but only the wait consumers corresponding to the desired tables.
 
-A tabela `setup_timers` contém uma linha com o valor `NAME` de `wait`, que indica a unidade para o cronometramento de eventos de espera. A unidade padrão é `CYCLE`:
+The [`setup_timers`](performance-schema-setup-timers-table.html "25.12.2.5 The setup_timers Table") table contains a row with a `NAME` value of `wait` that indicates the unit for wait event timing. The default unit is `CYCLE`:
 
 ```sql
 mysql> SELECT *
@@ -130,7 +130,7 @@ mysql> SELECT *
 +------+------------+
 ```
 
-Para alterar a unidade de temporização, modifique o valor `TIMER_NAME`:
+To change the timing unit, modify the `TIMER_NAME` value:
 
 ```sql
 UPDATE performance_schema.setup_timers
@@ -138,4 +138,4 @@ SET TIMER_NAME = 'NANOSECOND'
 WHERE NAME = 'wait';
 ```
 
-Para obter informações adicionais sobre a configuração da coleta de eventos, consulte Seção 25.3, “Configuração de Inicialização do Schema de Desempenho” e Seção 25.4, “Configuração de Execução em Tempo Real do Schema de Desempenho”.
+For additional information about configuring event collection, see [Section 25.3, “Performance Schema Startup Configuration”](performance-schema-startup-configuration.html "25.3 Performance Schema Startup Configuration"), and [Section 25.4, “Performance Schema Runtime Configuration”](performance-schema-runtime-configuration.html "25.4 Performance Schema Runtime Configuration").

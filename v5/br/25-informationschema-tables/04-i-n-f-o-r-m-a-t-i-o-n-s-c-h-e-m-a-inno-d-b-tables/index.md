@@ -1,61 +1,61 @@
-## 24.4 INFORMATION_SCHEMA Tabelas InnoDB
+## 24.4 INFORMATION_SCHEMA InnoDB Tables
 
-24.4.1 Referência da Tabela INFORMATION_SCHEMA InnoDB
+[24.4.1 INFORMATION_SCHEMA InnoDB Table Reference](information-schema-innodb-table-reference.html)
 
-Tabela INFORMATION_SCHEMA INNODB_BUFFER_PAGE
+[24.4.2 The INFORMATION_SCHEMA INNODB_BUFFER_PAGE Table](information-schema-innodb-buffer-page-table.html)
 
-Tabela INFORMATION_SCHEMA INNODB_BUFFER_PAGE_LRU
+[24.4.3 The INFORMATION_SCHEMA INNODB_BUFFER_PAGE_LRU Table](information-schema-innodb-buffer-page-lru-table.html)
 
-Tabela INFORMATION_SCHEMA INNODB_BUFFER_POOL_STATS
+[24.4.4 The INFORMATION_SCHEMA INNODB_BUFFER_POOL_STATS Table](information-schema-innodb-buffer-pool-stats-table.html)
 
-Tabelas INFORMATION_SCHEMA INNODB_CMP e INNODB_CMP_RESET
+[24.4.5 The INFORMATION_SCHEMA INNODB_CMP and INNODB_CMP_RESET Tables](information-schema-innodb-cmp-table.html)
 
-Tabelas INFORMATION_SCHEMA INNODB_CMPMEM e INNODB_CMPMEM_RESET
+[24.4.6 The INFORMATION_SCHEMA INNODB_CMPMEM and INNODB_CMPMEM_RESET Tables](information-schema-innodb-cmpmem-table.html)
 
-Tabelas INFORMATION_SCHEMA INNODB_CMP_PER_INDEX e INNODB_CMP_PER_INDEX_RESET
+[24.4.7 The INFORMATION_SCHEMA INNODB_CMP_PER_INDEX and INNODB_CMP_PER_INDEX_RESET Tables](information-schema-innodb-cmp-per-index-table.html)
 
-Tabela INFORMATION_SCHEMA INNODB_FT_BEING_DELETED
+[24.4.8 The INFORMATION_SCHEMA INNODB_FT_BEING_DELETED Table](information-schema-innodb-ft-being-deleted-table.html)
 
-24.4.9 A tabela INFORMATION_SCHEMA INNODB_FT_CONFIG
+[24.4.9 The INFORMATION_SCHEMA INNODB_FT_CONFIG Table](information-schema-innodb-ft-config-table.html)
 
-Tabela INFORMATION_SCHEMA INNODB_FT_DEFAULT_STOPWORD
+[24.4.10 The INFORMATION_SCHEMA INNODB_FT_DEFAULT_STOPWORD Table](information-schema-innodb-ft-default-stopword-table.html)
 
-24.4.11 A tabela INFORMATION_SCHEMA INNODB_FT_DELETED
+[24.4.11 The INFORMATION_SCHEMA INNODB_FT_DELETED Table](information-schema-innodb-ft-deleted-table.html)
 
-Tabela INFORMATION_SCHEMA INNODB_FT_INDEX_CACHE
+[24.4.12 The INFORMATION_SCHEMA INNODB_FT_INDEX_CACHE Table](information-schema-innodb-ft-index-cache-table.html)
 
-24.4.13 A tabela INFORMATION_SCHEMA INNODB_FT_INDEX_TABLE
+[24.4.13 The INFORMATION_SCHEMA INNODB_FT_INDEX_TABLE Table](information-schema-innodb-ft-index-table-table.html)
 
-24.4.14 A tabela INFORMATION_SCHEMA INNODB_LOCKS
+[24.4.14 The INFORMATION_SCHEMA INNODB_LOCKS Table](information-schema-innodb-locks-table.html)
 
-24.4.15 A tabela INFORMATION_SCHEMA INNODB_LOCK_WAITS
+[24.4.15 The INFORMATION_SCHEMA INNODB_LOCK_WAITS Table](information-schema-innodb-lock-waits-table.html)
 
-24.4.16 A tabela INFORMATION_SCHEMA INNODB_METRICS
+[24.4.16 The INFORMATION_SCHEMA INNODB_METRICS Table](information-schema-innodb-metrics-table.html)
 
-24.4.17 A tabela INFORMATION_SCHEMA INNODB_SYS_COLUMNS
+[24.4.17 The INFORMATION_SCHEMA INNODB_SYS_COLUMNS Table](information-schema-innodb-sys-columns-table.html)
 
-24.4.18 A tabela INFORMATION_SCHEMA INNODB_SYS_DATAFILES
+[24.4.18 The INFORMATION_SCHEMA INNODB_SYS_DATAFILES Table](information-schema-innodb-sys-datafiles-table.html)
 
-24.4.19 A tabela INFORMATION_SCHEMA INNODB_SYS_FIELDS
+[24.4.19 The INFORMATION_SCHEMA INNODB_SYS_FIELDS Table](information-schema-innodb-sys-fields-table.html)
 
-24.4.20 Tabela INFORMATION_SCHEMA INNODB_SYS_FOREIGN
+[24.4.20 The INFORMATION_SCHEMA INNODB_SYS_FOREIGN Table](information-schema-innodb-sys-foreign-table.html)
 
-Tabela INFORMATION_SCHEMA INNODB_SYS_FOREIGN_COLS
+[24.4.21 The INFORMATION_SCHEMA INNODB_SYS_FOREIGN_COLS Table](information-schema-innodb-sys-foreign-cols-table.html)
 
-Tabela INFORMATION_SCHEMA INNODB_SYS_INDEXES
+[24.4.22 The INFORMATION_SCHEMA INNODB_SYS_INDEXES Table](information-schema-innodb-sys-indexes-table.html)
 
-24.4.23 A tabela INFORMATION_SCHEMA INNODB_SYS_TABLES
+[24.4.23 The INFORMATION_SCHEMA INNODB_SYS_TABLES Table](information-schema-innodb-sys-tables-table.html)
 
-Tabela INFORMATION_SCHEMA INNODB_SYS_TABLESPACES
+[24.4.24 The INFORMATION_SCHEMA INNODB_SYS_TABLESPACES Table](information-schema-innodb-sys-tablespaces-table.html)
 
-24.4.25 A visão INFORMATION_SCHEMA INNODB_SYS_TABLESTATS
+[24.4.25 The INFORMATION_SCHEMA INNODB_SYS_TABLESTATS View](information-schema-innodb-sys-tablestats-table.html)
 
-Tabela INFORMATION_SCHEMA INNODB_SYS_VIRTUAL
+[24.4.26 The INFORMATION_SCHEMA INNODB_SYS_VIRTUAL Table](information-schema-innodb-sys-virtual-table.html)
 
-Tabela INFORMATION_SCHEMA INNODB_TEMP_TABLE_INFO
+[24.4.27 The INFORMATION_SCHEMA INNODB_TEMP_TABLE_INFO Table](information-schema-innodb-temp-table-info-table.html)
 
-24.4.28 A tabela INFORMATION_SCHEMA INNODB_TRX
+[24.4.28 The INFORMATION_SCHEMA INNODB_TRX Table](information-schema-innodb-trx-table.html)
 
-Esta seção fornece definições de tabelas para as tabelas do `INFORMATION_SCHEMA` `InnoDB`. Para informações relacionadas e exemplos, consulte Seção 14.16, “Tabelas do INFORMATION_SCHEMA do InnoDB”.
+This section provides table definitions for `INFORMATION_SCHEMA` `InnoDB` tables. For related information and examples, see [Section 14.16, “InnoDB INFORMATION_SCHEMA Tables”](innodb-information-schema.html "14.16 InnoDB INFORMATION_SCHEMA Tables").
 
-As tabelas do esquema de informações `InnoDB` podem ser usadas para monitorar a atividade contínua do `InnoDB`, para detectar ineficiências antes que se tornem problemas ou para solucionar problemas de desempenho e capacidade. À medida que seu banco de dados se torna maior e mais movimentado, enfrentando os limites da capacidade do hardware, você monitora e ajusta esses aspectos para manter o banco de dados funcionando sem problemas.
+`INFORMATION_SCHEMA` `InnoDB` tables can be used to monitor ongoing `InnoDB` activity, to detect inefficiencies before they turn into issues, or to troubleshoot performance and capacity issues. As your database becomes bigger and busier, running up against the limits of your hardware capacity, you monitor and tune these aspects to keep the database running smoothly.

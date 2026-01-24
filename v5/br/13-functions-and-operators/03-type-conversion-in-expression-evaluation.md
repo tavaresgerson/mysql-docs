@@ -1,6 +1,6 @@
-## 12.3 Conversão de Tipo na Avaliação de Expressões
+## 12.3 Type Conversion in Expression Evaluation
 
-Quando um operador é usado com operandos de tipos diferentes, ocorre a conversão de tipo para tornar os operandos compatíveis. Algumas conversões ocorrem implicitamente. Por exemplo, o MySQL converte automaticamente strings em números conforme necessário e vice-versa.
+When an operator is used with operands of different types, type conversion occurs to make the operands compatible. Some conversions occur implicitly. For example, MySQL automatically converts strings to numbers as necessary, and vice versa.
 
 ```sql
 mysql> SELECT 1+'1';
@@ -9,7 +9,7 @@ mysql> SELECT CONCAT(2,' test');
         -> '2 test'
 ```
 
-É também possível converter um número para uma string explicitamente usando a função `CAST()`. A conversão ocorre implicitamente com a função `CONCAT()`, pois ela espera argumentos de string.
+It is also possible to convert a number to a string explicitly using the `CAST()` function. Conversion occurs implicitly with the `CONCAT()` function because it expects string arguments.
 
 ```sql
 mysql> SELECT 38.8, CAST(38.8 AS CHAR);
@@ -18,31 +18,30 @@ mysql> SELECT 38.8, CONCAT(38.8);
         -> 38.8, '38.8'
 ```
 
-Consulte mais informações sobre o conjunto de caracteres das conversões implícitas de número para string e sobre as regras modificadas que se aplicam às instruções `CREATE TABLE ... SELECT` nesta seção.
+See later in this section for information about the character set of implicit number-to-string conversions, and for modified rules that apply to `CREATE TABLE ... SELECT` statements.
 
-As regras a seguir descrevem como a conversão ocorre para operações de comparação:
+The following rules describe how conversion occurs for comparison operations:
 
-- Se um ou ambos os argumentos forem `NULL`, o resultado da comparação será `NULL`, exceto para o operador de comparação de igualdade `NULL-safe <=>`. Para `NULL <=> NULL`, o resultado é verdadeiro. Não é necessária nenhuma conversão.
+* If one or both arguments are `NULL`, the result of the comparison is `NULL`, except for the `NULL`-safe `<=>` equality comparison operator. For `NULL <=> NULL`, the result is true. No conversion is needed.
 
-- Se ambos os argumentos de uma operação de comparação forem strings, eles são comparados como strings.
+* If both arguments in a comparison operation are strings, they are compared as strings.
 
-- Se ambos os argumentos forem inteiros, eles serão comparados como inteiros.
+* If both arguments are integers, they are compared as integers.
+* Hexadecimal values are treated as binary strings if not compared to a number.
 
-- Os valores hexadecimais são tratados como strings binárias se não forem comparados a um número.
+* If one of the arguments is a `TIMESTAMP` or `DATETIME` column and the other argument is a constant, the constant is converted to a timestamp before the comparison is performed. This is done to be more ODBC-friendly. This is not done for the arguments to `IN()`. To be safe, always use complete datetime, date, or time strings when doing comparisons. For example, to achieve best results when using `BETWEEN` with date or time values, use `CAST()` to explicitly convert the values to the desired data type.
 
-- Se um dos argumentos for uma coluna `TIMESTAMP` ou `DATETIME` e o outro argumento for uma constante, a constante é convertida em um timestamp antes que a comparação seja realizada. Isso é feito para ser mais compatível com o ODBC. Isso não é feito para os argumentos de `IN()`. Para garantir a segurança, sempre use strings de data, hora ou datetime completas ao fazer comparações. Por exemplo, para obter os melhores resultados ao usar `BETWEEN` com valores de data ou hora, use `CAST()` para converter explicitamente os valores para o tipo de dados desejado.
+  A single-row subquery from a table or tables is not considered a constant. For example, if a subquery returns an integer to be compared to a `DATETIME` value, the comparison is done as two integers. The integer is not converted to a temporal value. To compare the operands as `DATETIME` values, use `CAST()` to explicitly convert the subquery value to `DATETIME`.
 
-  Uma subconsulta de uma única linha de uma tabela ou tabelas não é considerada uma constante. Por exemplo, se uma subconsulta retorna um inteiro para ser comparado a um valor `DATETIME`, a comparação é feita como dois inteiros. O inteiro não é convertido para um valor temporal. Para comparar os operandos como valores `DATETIME`, use `CAST()` para converter explicitamente o valor da subconsulta para `DATETIME`.
+* If one of the arguments is a decimal value, comparison depends on the other argument. The arguments are compared as decimal values if the other argument is a decimal or integer value, or as floating-point values if the other argument is a floating-point value.
 
-- Se um dos argumentos for um valor decimal, a comparação depende do outro argumento. Os argumentos são comparados como valores decimais se o outro argumento for um valor decimal ou inteiro, ou como valores de ponto flutuante se o outro argumento for um valor de ponto flutuante.
+* In all other cases, the arguments are compared as floating-point (double-precision) numbers. For example, a comparison of string and numeric operands takes place as a comparison of floating-point numbers.
 
-- Em todos os outros casos, os argumentos são comparados como números em ponto flutuante (dupla precisão). Por exemplo, uma comparação de operadores de string e numéricos ocorre como uma comparação de números em ponto flutuante.
+For information about conversion of values from one temporal type to another, see Section 11.2.9, “Conversion Between Date and Time Types”.
 
-Para obter informações sobre a conversão de valores de um tipo temporal para outro, consulte a Seção 11.2.9, “Conversão entre tipos de data e hora”.
+Comparison of JSON values takes place at two levels. The first level of comparison is based on the JSON types of the compared values. If the types differ, the comparison result is determined solely by which type has higher precedence. If the two values have the same JSON type, a second level of comparison occurs using type-specific rules. For comparison of JSON and non-JSON values, the non-JSON value is converted to JSON and the values compared as JSON values. For details, see Comparison and Ordering of JSON Values.
 
-A comparação de valores JSON ocorre em dois níveis. O primeiro nível de comparação é baseado nos tipos JSON dos valores comparados. Se os tipos forem diferentes, o resultado da comparação é determinado exclusivamente pelo tipo que tem precedência maior. Se os dois valores tiverem o mesmo tipo JSON, ocorre um segundo nível de comparação usando regras específicas do tipo. Para a comparação de valores JSON e não JSON, o valor não JSON é convertido para JSON e os valores são comparados como valores JSON. Para detalhes, consulte Comparação e Ordenação de Valores JSON.
-
-Os exemplos a seguir ilustram a conversão de cadeias de caracteres em números para operações de comparação:
+The following examples illustrate conversion of strings to numbers for comparison operations:
 
 ```sql
 mysql> SELECT 1 > '6x';
@@ -55,15 +54,15 @@ mysql> SELECT 0 = 'x6';
         -> 1
 ```
 
-Para comparações de uma coluna de texto com um número, o MySQL não pode usar um índice na coluna para buscar o valor rapidamente. Se *`str_col`* for uma coluna de texto indexada, o índice não pode ser usado ao realizar a busca na seguinte instrução:
+For comparisons of a string column with a number, MySQL cannot use an index on the column to look up the value quickly. If *`str_col`* is an indexed string column, the index cannot be used when performing the lookup in the following statement:
 
 ```sql
 SELECT * FROM tbl_name WHERE str_col=1;
 ```
 
-A razão para isso é que existem muitas cadeias de caracteres diferentes que podem ser convertidas para o valor `1`, como `'1'`, `' 1'` ou `'1a'`.
+The reason for this is that there are many different strings that may convert to the value `1`, such as `'1'`, `' 1'`, or `'1a'`.
 
-Outro problema pode surgir ao comparar uma coluna de string com o inteiro `0`. Considere a tabela `t1` criada e preenchida conforme mostrado aqui:
+Another issue can arise when comparing a string column with integer `0`. Consider table `t1` created and populated as shown here:
 
 ```sql
 mysql> CREATE TABLE t1 (
@@ -81,7 +80,7 @@ Query OK, 5 rows affected (0.01 sec)
 Records: 5  Duplicates: 0  Warnings: 0
 ```
 
-Observe o resultado ao selecionar desta tabela e comparar `c3`, que é uma coluna `VARCHAR`, com o inteiro `0`:
+Observe the result when selecting from this table and comparing `c3`, which is a `VARCHAR` column, with integer `0`:
 
 ```sql
 mysql> SELECT * FROM t1 WHERE c3 = 0;
@@ -97,21 +96,21 @@ mysql> SELECT * FROM t1 WHERE c3 = 0;
 5 rows in set, 5 warnings (0.00 sec)
 ```
 
-*Isso ocorre mesmo ao usar o modo SQL rigoroso*. Para evitar que isso aconteça, cite o valor, conforme mostrado aqui:
+*This occurs even when using strict SQL mode*. To prevent this from happening, quote the value, as shown here:
 
 ```sql
 mysql> SELECT * FROM t1 WHERE c3 = '0';
 Empty set (0.00 sec)
 ```
 
-Isso **não** ocorre quando `SELECT` faz parte de uma declaração de definição de dados, como `CREATE TABLE ... SELECT`; no modo estrito, a declaração falha devido à comparação inválida:
+This does *not* occur when `SELECT` is part of a data definition statement such as `CREATE TABLE ... SELECT`; in strict mode, the statement fails due to the invalid comparison:
 
 ```sql
 mysql> CREATE TABLE t2 SELECT * FROM t1 WHERE c3 = 0;
 ERROR 1292 (22007): Truncated incorrect DOUBLE value: 'grape'
 ```
 
-Quando o `0` é citado, a declaração é bem-sucedida, mas a tabela criada não contém nenhuma linha porque não havia nenhuma que correspondesse a `'0'`, como mostrado aqui:
+When the `0` is quoted, the statement succeeds, but the table created contains no rows because there were none matching `'0'`, as shown here:
 
 ```sql
 mysql> CREATE TABLE t2 SELECT * FROM t1 WHERE c3 = '0';
@@ -122,11 +121,11 @@ mysql> SELECT * FROM t2;
 Empty set (0.00 sec)
 ```
 
-Este é um problema conhecido, que ocorre porque o modo estrito não é aplicado ao processamento de `SELECT`. Veja também o Modo SQL Estrito.
+This is a known issue, which is due to the fact that strict mode is not applied when processing `SELECT`. See also Strict SQL Mode.
 
-As comparações entre números de ponto flutuante e valores de inteiros grandes são aproximadas porque o inteiro é convertido para ponto flutuante de dupla precisão antes da comparação, o que não é capaz de representar exatamente todos os inteiros de 64 bits. Por exemplo, o valor inteiro 253 + 1 não pode ser representado como um float e é arredondado para 253 ou 253 + 2 antes de uma comparação com um float, dependendo da plataforma.
+Comparisons between floating-point numbers and large integer values are approximate because the integer is converted to double-precision floating point before comparison, which is not capable of representing all 64-bit integers exactly. For example, the integer value 253 + 1 is not representable as a float, and is rounded to 253 or 253 + 2 before a float comparison, depending on the platform.
 
-Para ilustrar, apenas a primeira das seguintes comparações compara valores iguais, mas ambas as comparações retornam verdadeiro (1):
+To illustrate, only the first of the following comparisons compares equal values, but both comparisons return true (1):
 
 ```sql
 mysql> SELECT '9223372036854775807' = 9223372036854775807;
@@ -135,46 +134,46 @@ mysql> SELECT '9223372036854775807' = 9223372036854775806;
         -> 1
 ```
 
-Quando ocorrem conversões de string para ponto flutuante e de inteiro para ponto flutuante, elas nem sempre ocorrem da mesma maneira. O inteiro pode ser convertido para ponto flutuante pela CPU, enquanto a string é convertida caracter por caractere em uma operação que envolve multiplicações em ponto flutuante. Além disso, os resultados podem ser afetados por fatores como a arquitetura do computador ou a versão ou nível de otimização do compilador. Uma maneira de evitar tais problemas é usar `CAST()` para que um valor não seja convertido implicitamente para um número em ponto flutuante:
+When conversions from string to floating-point and from integer to floating-point occur, they do not necessarily occur the same way. The integer may be converted to floating-point by the CPU, whereas the string is converted digit by digit in an operation that involves floating-point multiplications. Also, results can be affected by factors such as computer architecture or the compiler version or optimization level. One way to avoid such problems is to use `CAST()` so that a value is not converted implicitly to a float-point number:
 
 ```sql
 mysql> SELECT CAST('9223372036854775807' AS UNSIGNED) = 9223372036854775806;
         -> 0
 ```
 
-Para obter mais informações sobre comparações de ponto flutuante, consulte a Seção B.3.4.8, “Problemas com Valores de Ponto Flutuante”.
+For more information about floating-point comparisons, see Section B.3.4.8, “Problems with Floating-Point Values”.
 
-O servidor inclui `dtoa`, uma biblioteca de conversão que fornece a base para conversões aprimoradas entre valores de string ou `DECIMAL` - `DECIMAL`, NUMERIC") e números de valor aproximado (`FLOAT` - `FLOAT`, `DOUBLE")/`DOUBLE`-`FLOAT`, `DOUBLE")):
+The server includes `dtoa`, a conversion library that provides the basis for improved conversion between string or `DECIMAL` - DECIMAL, NUMERIC") values and approximate-value (`FLOAT` - FLOAT, DOUBLE")/`DOUBLE` - FLOAT, DOUBLE")) numbers:
 
-- Resultados de conversão consistentes em todas as plataformas, o que elimina, por exemplo, as diferenças de conversão entre Unix e Windows.
+* Consistent conversion results across platforms, which eliminates, for example, Unix versus Windows conversion differences.
 
-- Representação precisa dos valores nos casos em que os resultados anteriormente não forneciam precisão suficiente, como para valores próximos aos limites da IEEE.
+* Accurate representation of values in cases where results previously did not provide sufficient precision, such as for values close to IEEE limits.
 
-- Conversão de números para formato de string com a melhor precisão possível. A precisão do `dtoa` é sempre a mesma ou melhor que a das funções padrão da biblioteca C.
+* Conversion of numbers to string format with the best possible precision. The precision of `dtoa` is always the same or better than that of the standard C library functions.
 
-Como as conversões produzidas por essa biblioteca diferem, em alguns casos, dos resultados obtidos sem o uso do `dtoa`, existe a possibilidade de incompatibilidades em aplicativos que dependem de resultados anteriores. Por exemplo, aplicativos que dependem de um resultado exato específico de conversões anteriores podem precisar de ajustes para acomodar uma precisão adicional.
+Because the conversions produced by this library differ in some cases from non-`dtoa` results, the potential exists for incompatibilities in applications that rely on previous results. For example, applications that depend on a specific exact result from previous conversions might need adjustment to accommodate additional precision.
 
-A biblioteca `dtoa` oferece conversões com as seguintes propriedades. *`D`* representa um valor com uma representação `DECIMAL` (DECIMAL, NUMERIC") ou de string, e *`F`* representa um número de ponto flutuante no formato binário nativo (IEEE).
+The `dtoa` library provides conversions with the following properties. *`D`* represents a value with a `DECIMAL` - DECIMAL, NUMERIC") or string representation, and *`F`* represents a floating-point number in native binary (IEEE) format.
 
-- A conversão de *`F`* para *`D`* é feita com a maior precisão possível, retornando *`D`* como a string mais curta que gera *`F`* quando lida de volta e arredondada para o valor mais próximo no formato binário nativo, conforme especificado pela IEEE.
+* *`F`* -> *`D`* conversion is done with the best possible precision, returning *`D`* as the shortest string that yields *`F`* when read back in and rounded to the nearest value in native binary format as specified by IEEE.
 
-- A conversão de *`D`* para *`F`* é feita de modo que *`F`* seja o número binário nativo mais próximo da string decimal de entrada *`D`*.
+* *`D`* -> *`F`* conversion is done such that *`F`* is the nearest native binary number to the input decimal string *`D`*.
 
-Essas propriedades implicam que as conversões de *`F`* -> *`D`* -> *`F`* são sem perda, a menos que *`F`* seja `-inf`, `+inf` ou `NaN`. Os valores `NaN` não são suportados porque o padrão SQL os define como valores inválidos para `FLOAT` - FLOAT, DOUBLE") ou `DOUBLE` - FLOAT, DOUBLE").
+These properties imply that *`F`* -> *`D`* -> *`F`* conversions are lossless unless *`F`* is `-inf`, `+inf`, or `NaN`. The latter values are not supported because the SQL standard defines them as invalid values for `FLOAT` - FLOAT, DOUBLE") or `DOUBLE` - FLOAT, DOUBLE").
 
-Para as conversões de *`D`* -> *`F`* -> *`D`*, uma condição suficiente para a perda de precisão é que *`D`* use 15 dígitos ou menos de precisão, não seja um valor denormalizado, *–inf*, *+inf* ou *NaN*. Em alguns casos, a conversão é sem perda de precisão mesmo que *`D`* tenha mais de 15 dígitos de precisão, mas isso nem sempre é o caso.
+For *`D`* -> *`F`* -> *`D`* conversions, a sufficient condition for losslessness is that *`D`* uses 15 or fewer digits of precision, is not a denormal value, `-inf`, `+inf`, or `NaN`. In some cases, the conversion is lossless even if *`D`* has more than 15 digits of precision, but this is not always the case.
 
-A conversão implícita de um valor numérico ou temporal para string produz um valor que tem um conjunto de caracteres e uma ordenação determinados pelas variáveis de sistema `character_set_connection` e `collation_connection`. (Essas variáveis são comumente definidas com `SET NAMES`. Para informações sobre conjuntos de caracteres de conexão, consulte a Seção 10.4, “Conjunto de caracteres de conexão e ordenações”).
+Implicit conversion of a numeric or temporal value to string produces a value that has a character set and collation determined by the `character_set_connection` and `collation_connection` system variables. (These variables commonly are set with `SET NAMES`. For information about connection character sets, see Section 10.4, “Connection Character Sets and Collations”.)
 
-Isso significa que essa conversão resulta em uma string de caractere (não binária) (um valor `CHAR`, `VARCHAR` ou `LONGTEXT`), exceto no caso em que o conjunto de caracteres de conexão é definido como `binary`. Nesse caso, o resultado da conversão é uma string binária (um valor `BINARY`, `VARBINARY` ou `LONGBLOB`).
+This means that such a conversion results in a character (nonbinary) string (a `CHAR`, `VARCHAR`, or `LONGTEXT` value), except in the case that the connection character set is set to `binary`. In that case, the conversion result is a binary string (a `BINARY`, `VARBINARY`, or `LONGBLOB` value).
 
-Para expressões inteiras, as observações anteriores sobre a avaliação da expressão se aplicam de maneira um pouco diferente para a atribuição da expressão; por exemplo, em uma declaração como esta:
+For integer expressions, the preceding remarks about expression *evaluation* apply somewhat differently for expression *assignment*; for example, in a statement such as this:
 
 ```sql
 CREATE TABLE t SELECT integer_expr;
 ```
 
-Neste caso, a tabela na coluna resultante da expressão tem o tipo `INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") ou `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") dependendo da extensão da expressão inteira. Se a extensão máxima da expressão não cabe em um `INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), é usado `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") em vez disso. A extensão é obtida a partir do valor `max_length` do conjunto de resultados do `SELECT` (ver Estruturas de Dados Básicas da API C). Isso significa que você pode forçar um `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") em vez de `INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") usando uma expressão suficientemente longa:
+In this case, the table in the column resulting from the expression has type `INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") or `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") depending on the length of the integer expression. If the maximum length of the expression does not fit in an `INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") is used instead. The length is taken from the `max_length` value of the `SELECT` result set metadata (see C API Basic Data Structures). This means that you can force a `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") rather than `INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") by use of a sufficiently long expression:
 
 ```sql
 CREATE TABLE t SELECT 000000000000000000000;

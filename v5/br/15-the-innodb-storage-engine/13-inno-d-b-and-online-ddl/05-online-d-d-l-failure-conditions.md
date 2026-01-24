@@ -1,15 +1,15 @@
-### 14.13.5 Condições de falha do DDL online
+### 14.13.5 Online DDL Failure Conditions
 
-O fracasso de uma operação DDL online geralmente ocorre devido a uma das seguintes condições:
+The failure of an online DDL operation is typically due to one of the following conditions:
 
-- Uma cláusula `ALGORITHM` especifica um algoritmo que não é compatível com o tipo específico de operação de DDL ou motor de armazenamento.
+* An `ALGORITHM` clause specifies an algorithm that is not compatible with the particular type of DDL operation or storage engine.
 
-- Uma cláusula `LOCK` especifica um baixo grau de bloqueio (`SHARED` ou `NONE`) que não é compatível com o tipo específico de operação de DDL.
+* A `LOCK` clause specifies a low degree of locking (`SHARED` or `NONE`) that is not compatible with the particular type of DDL operation.
 
-- Um tempo de espera ocorre enquanto se aguarda por um bloqueio exclusivo na tabela, o que pode ser necessário brevemente durante as fases inicial e final da operação DDL.
+* A timeout occurs while waiting for an exclusive lock on the table, which may be needed briefly during the initial and final phases of the DDL operation.
 
-- O sistema de arquivos `tmpdir` ou `innodb_tmpdir` fica sem espaço em disco, enquanto o MySQL escreve arquivos temporários de ordenação no disco durante a criação de índices. Para obter mais informações, consulte a Seção 14.13.3, “Requisitos de Espaço DDL Online”.
+* The `tmpdir` or `innodb_tmpdir` file system runs out of disk space, while MySQL writes temporary sort files on disk during index creation. For more information, see Section 14.13.3, “Online DDL Space Requirements”.
 
-- A operação leva muito tempo e a DML concorrente modifica a tabela tanto que o tamanho do log online temporário excede o valor da opção de configuração `innodb_online_alter_log_max_size`. Essa condição causa um erro `DB_ONLINE_LOG_TOO_BIG`.
+* The operation takes a long time and concurrent DML modifies the table so much that the size of the temporary online log exceeds the value of the `innodb_online_alter_log_max_size` configuration option. This condition causes a `DB_ONLINE_LOG_TOO_BIG` error.
 
-- A DML concorrente faz alterações na tabela que são permitidas com a definição original da tabela, mas não com a nova. A operação só falha no final, quando o MySQL tenta aplicar todas as alterações das instruções DML concorrentes. Por exemplo, você pode inserir valores duplicados em uma coluna enquanto um índice único está sendo criado, ou pode inserir valores `NULL` em uma coluna enquanto cria um índice de chave primária nessa coluna. As alterações feitas pela DML concorrente têm precedência, e a operação `ALTER TABLE` é efetivamente revertida.
+* Concurrent DML makes changes to the table that are allowed with the original table definition, but not with the new one. The operation only fails at the very end, when MySQL tries to apply all the changes from concurrent DML statements. For example, you might insert duplicate values into a column while a unique index is being created, or you might insert `NULL` values into a column while creating a primary key index on that column. The changes made by the concurrent DML take precedence, and the `ALTER TABLE` operation is effectively rolled back.

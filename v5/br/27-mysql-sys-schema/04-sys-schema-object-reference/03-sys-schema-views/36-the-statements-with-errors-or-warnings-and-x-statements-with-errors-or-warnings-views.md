@@ -1,45 +1,45 @@
-#### 26.4.3.36 As visualizações statements_with_errors_or_warnings e x$statements_with_errors_or_warnings
+#### 26.4.3.36 The statements_with_errors_or_warnings and x$statements_with_errors_or_warnings Views
 
-Essas visualizações exibem declarações normalizadas que produziram erros ou avisos. Por padrão, as linhas são ordenadas por contagem descendente de erros e avisos.
+These views display normalized statements that have produced errors or warnings. By default, rows are sorted by descending error and warning counts.
 
-As views `statements_with_errors_or_warnings` e `x$statements_with_errors_or_warnings` possuem essas colunas:
+The `statements_with_errors_or_warnings` and `x$statements_with_errors_or_warnings` views have these columns:
 
-- `consulta`
+* `query`
 
-  A string de declaração normalizada.
+  The normalized statement string.
 
-- `db`
+* `db`
 
-  O banco de dados padrão para a declaração, ou `NULL` se não houver nenhum.
+  The default database for the statement, or `NULL` if there is none.
 
-- `exec_count`
+* `exec_count`
 
-  O número total de vezes que a declaração foi executada.
+  The total number of times the statement has executed.
 
-- `erros`
+* `errors`
 
-  O número total de erros produzidos por ocorrências da declaração.
+  The total number of errors produced by occurrences of the statement.
 
-- `error_pct`
+* `error_pct`
 
-  A porcentagem de ocorrências de declarações que produziram erros.
+  The percentage of statement occurrences that produced errors.
 
-- `avaliações de risco`
+* `warnings`
 
-  O número total de avisos gerados por ocorrências da declaração.
+  The total number of warnings produced by occurrences of the statement.
 
-- `warning_pct`
+* `warning_pct`
 
-  A porcentagem de ocorrências de declarações que produziram avisos.
+  The percentage of statement occurrences that produced warnings.
 
-- `primeiro_avistado`
+* `first_seen`
 
-  O momento em que a declaração foi vista pela primeira vez.
+  The time at which the statement was first seen.
 
-- `última_visualização`
+* `last_seen`
 
-  O horário em que a declaração foi vista pela última vez.
+  The time at which the statement was most recently seen.
 
-- `digest`
+* `digest`
 
-  O resumo da declaração.
+  The statement digest.

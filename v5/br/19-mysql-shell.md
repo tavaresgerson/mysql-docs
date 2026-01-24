@@ -1,13 +1,13 @@
-# Capítulo 18 MySQL Shell
+# Chapter 18 MySQL Shell
 
-O MySQL Shell é um cliente e editor de código avançado para o MySQL Server. Além das funcionalidades SQL fornecidas, semelhante ao **mysql**, o MySQL Shell oferece capacidades de script para JavaScript e Python e inclui APIs para trabalhar com o MySQL. O MySQL Shell é um componente que você pode instalar separadamente.
+MySQL Shell is an advanced client and code editor for MySQL Server. In addition to the provided SQL functionality, similar to **mysql**, MySQL Shell provides scripting capabilities for JavaScript and Python and includes APIs for working with MySQL. MySQL Shell is a component that you can install separately.
 
-A discussão a seguir descreve brevemente as capacidades do MySQL Shell. Para mais informações, consulte o manual do MySQL Shell, disponível em <https://dev.mysql.com/doc/mysql-shell/pt/>.
+The following discussion briefly describes MySQL Shell's capabilities. For more information, see the MySQL Shell manual, available at https://dev.mysql.com/doc/mysql-shell/en/.
 
-O MySQL Shell inclui as seguintes APIs implementadas em JavaScript e Python, que você pode usar para desenvolver código que interage com o MySQL.
+MySQL Shell includes the following APIs implemented in JavaScript and Python which you can use to develop code that interacts with MySQL.
 
-- O X DevAPI permite que os desenvolvedores trabalhem com dados relacionais e de documentos quando o MySQL Shell está conectado a um servidor MySQL usando o Protocolo X. Isso permite que você use o MySQL como um Armazenamento de Documentos, às vezes referido como “uso de NoSQL”. Para mais informações, consulte o Capítulo 19, *Usando o MySQL como um Armazenamento de Documentos*. Para documentação sobre os conceitos e o uso do X DevAPI, que é implementado no MySQL Shell, consulte o Guia do Usuário do X DevAPI.
+* The X DevAPI enables developers to work with both relational and document data when MySQL Shell is connected to a MySQL server using the X Protocol. This enables you to use MySQL as a Document Store, sometimes referred to as “using NoSQL”. For more information, see Chapter 19, *Using MySQL as a Document Store*. For documentation on the concepts and usage of X DevAPI, which is implemented in MySQL Shell, see X DevAPI User Guide.
 
-- O AdminAPI permite que os administradores de banco de dados trabalhem com o InnoDB Cluster, que oferece uma solução integrada para alta disponibilidade e escalabilidade usando bancos de dados MySQL baseados em InnoDB, sem exigir conhecimentos avançados de MySQL. O AdminAPI também inclui suporte para InnoDB ReplicaSet, que permite administrar um conjunto de instâncias MySQL que executam replicação baseada em GTID assíncrona de maneira semelhante ao InnoDB Cluster. Além disso, o AdminAPI facilita a administração do MySQL Router, incluindo integração tanto com o InnoDB Cluster quanto com o InnoDB ReplicaSet. Veja MySQL AdminAPI.
+* The AdminAPI enables database administrators to work with InnoDB Cluster, which provides an integrated solution for high availability and scalability using InnoDB based MySQL databases, without requiring advanced MySQL expertise. The AdminAPI also includes support for InnoDB ReplicaSet, which enables you to administer a set of MySQL instances running asynchronous GTID-based replication in a similar way to InnoDB Cluster. Additionally, the AdminAPI makes administration of MySQL Router easier, including integration with both InnoDB Cluster and InnoDB ReplicaSet. See MySQL AdminAPI.
 
-O MySQL Shell está disponível em duas edições: a Edição Comunitária e a Edição Comercial. A Edição Comunitária está disponível gratuitamente. A Edição Comercial oferece recursos empresariais adicionais a um custo baixo.
+MySQL Shell is available in two editions, the Community Edition and the Commercial Edition. The Community Edition is available free of charge. The Commercial Edition provides additional Enterprise features at low cost.

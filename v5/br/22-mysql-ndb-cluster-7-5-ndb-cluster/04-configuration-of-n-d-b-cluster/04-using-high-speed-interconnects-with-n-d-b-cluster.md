@@ -1,5 +1,5 @@
-### 21.4.4 Uso de interconexões de alta velocidade com o NDB Cluster
+### 21.4.4 Using High-Speed Interconnects with NDB Cluster
 
-Mesmo antes do início do projeto do `NDBCLUSTER` em 1996, já era evidente que um dos principais problemas a serem enfrentados na construção de bancos de dados paralelos seria a comunicação entre os nós da rede. Por essa razão, o `NDBCLUSTER` foi projetado desde o início para permitir o uso de vários mecanismos de transporte de dados diferentes, ou transportadores.
+Even before design of [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") began in 1996, it was evident that one of the major problems to be encountered in building parallel databases would be communication between the nodes in the network. For this reason, [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") was designed from the very beginning to permit the use of a number of different data transport mechanisms, or transporters.
 
-O NDB Cluster 7.5 e 7.6 suportam três desses (veja Seção 21.2.1, “Conceitos Básicos do NDB Cluster”). Um quarto transportador, a Scalable Coherent Interface (SCI), também era suportado em versões muito antigas do `NDB`. Isso exigia hardware, software e binários do MySQL especializados que já não estão mais disponíveis.
+NDB Cluster 7.5 and 7.6 support three of these (see [Section 21.2.1, “NDB Cluster Core Concepts”](mysql-cluster-basics.html "21.2.1 NDB Cluster Core Concepts")). A fourth transporter, Scalable Coherent Interface (SCI), was also supported in very old versions of `NDB`. This required specialized hardware, software, and MySQL binaries that are no longer available.

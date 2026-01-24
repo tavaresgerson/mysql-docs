@@ -1,23 +1,23 @@
-## 12.17 Funções JSON
+## 12.17 JSON Functions
 
-12.17.1 Referência de Função JSON
+12.17.1 JSON Function Reference
 
-12.17.2 Funções que criam valores JSON
+12.17.2 Functions That Create JSON Values
 
-12.17.3 Funções que buscam valores JSON
+12.17.3 Functions That Search JSON Values
 
-12.17.4 Funções que modificam valores JSON
+12.17.4 Functions That Modify JSON Values
 
-12.17.5 Funções que retornam atributos de valor JSON
+12.17.5 Functions That Return JSON Value Attributes
 
-12.17.6 Funções de Utilitário JSON
+12.17.6 JSON Utility Functions
 
-As funções descritas nesta seção realizam operações em valores JSON. Para discussão sobre o tipo de dados `JSON` e exemplos adicionais que mostram como usar essas funções, consulte a Seção 11.5, “O Tipo de Dados JSON”.
+The functions described in this section perform operations on JSON values. For discussion of the `JSON` data type and additional examples showing how to use these functions, see Section 11.5, “The JSON Data Type”.
 
-Para funções que aceitam um argumento JSON, ocorre um erro se o argumento não for um valor JSON válido. Argumentos analisados como JSON são indicados por *`json_doc`*; argumentos indicados por *`val`* não são analisados.
+For functions that take a JSON argument, an error occurs if the argument is not a valid JSON value. Arguments parsed as JSON are indicated by *`json_doc`*; arguments indicated by *`val`* are not parsed.
 
-As funções que retornam valores JSON sempre realizam a normalização desses valores (veja Normalização, Fusão e Autoenrolagem de Valores JSON) e, assim, os ordenam. *O resultado preciso da ordenação pode ser alterado a qualquer momento; não confie nele para ser consistente entre as versões*.
+Functions that return JSON values always perform normalization of these values (see Normalization, Merging, and Autowrapping of JSON Values), and thus orders them. *The precise outcome of the sort is subject to change at any time; do not rely on it to be consistent between releases*.
 
-A menos que indicado de outra forma, as funções JSON foram adicionadas no MySQL 5.7.8.
+Unless otherwise indicated, the JSON functions were added in MySQL 5.7.8.
 
-Também está disponível um conjunto de funções espaciais para operar com valores GeoJSON. Consulte a Seção 12.16.11, “Funções GeoJSON Espaciais”.
+A set of spatial functions for operating on GeoJSON values is also available. See Section 12.16.11, “Spatial GeoJSON Functions”.

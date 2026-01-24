@@ -1,78 +1,78 @@
-#### 26.4.4.2 O procedimento diagnostics()
+#### 26.4.4.2 The diagnostics() Procedure
 
-Cria um relatório do status atual do servidor para fins de diagnóstico.
+Creates a report of the current server status for diagnostic purposes.
 
-Esse procedimento desabilita o registro binário durante sua execução, manipulando o valor da sessão da variável de sistema `sql_log_bin`. Essa é uma operação restrita, portanto, o procedimento requer privilégios suficientes para definir variáveis de sessão restritas. Consulte a Seção 5.1.8.1, “Privilégios de Variáveis de Sistema”.
+This procedure disables binary logging during its execution by manipulating the session value of the `sql_log_bin` system variable. That is a restricted operation, so the procedure requires privileges sufficient to set restricted session variables. See Section 5.1.8.1, “System Variable Privileges”.
 
-Os dados coletados para o procedimento `diagnostics()` incluem essas informações:
+Data collected for `diagnostics()` Procedure") includes this information:
 
-- Informações da visualização de métricas (consulte a Seção 26.4.3.21, “A visualização de métricas”)
+* Information from the `metrics` view (see Section 26.4.3.21, “The metrics View”)
 
-- Informações de outras visualizações relevantes do esquema `sys`, como a que determina consultas no 95º percentil
+* Information from other relevant `sys` schema views, such as the one that detemines queries in the 95th percentile
 
-- Informações do esquema `ndbinfo`, se o servidor MySQL faz parte do NDB Cluster
+* Information from the `ndbinfo` schema, if the MySQL server is part of NDB Cluster
 
-- Status de replicação (tanto da fonte quanto da replica)
+* Replication status (both source and replica)
 
-Alguns dos pontos de vista do esquema sys são calculados como valores iniciais (opcionais), gerais e delta:
+Some of the sys schema views are calculated as initial (optional), overall, and delta values:
 
-- A visão inicial é o conteúdo da visão no início do procedimento `diagnostics()`). Esse resultado é o mesmo dos valores iniciais usados para a visão delta. A visão inicial é incluída se a opção de configuração `diagnostics.include_raw` estiver ativada.
+* The initial view is the content of the view at the start of the `diagnostics()` Procedure") procedure. This output is the same as the start values used for the delta view. The initial view is included if the `diagnostics.include_raw` configuration option is `ON`.
 
-- A visão geral é o conteúdo da visão no final do procedimento `diagnostics()`). Esse resultado é o mesmo dos valores finais usados para a visão delta. A visão geral é sempre incluída.
+* The overall view is the content of the view at the end of the `diagnostics()` Procedure") procedure. This output is the same as the end values used for the delta view. The overall view is always included.
 
-- A visualização do delta é a diferença entre o início e o fim da execução do procedimento. Os valores mínimo e máximo são os valores mínimo e máximo da visualização final, respectivamente. Eles não refletem necessariamente os valores mínimo e máximo no período monitorado. Exceto pela visualização de `metrics`, o delta é calculado apenas entre as primeiras e as últimas saídas.
+* The delta view is the difference from the beginning to the end of procedure execution. The minimum and maximum values are the minimum and maximum values from the end view, respectively. They do not necessarily reflect the minimum and maximum values in the monitored period. Except for the `metrics` view, the delta is calculated only between the first and last outputs.
 
-##### Parâmetros
+##### Parameters
 
-- `in_max_runtime INT UNSIGNED`: O tempo máximo de coleta de dados em segundos. Use `NULL` para coletar dados pelo valor padrão de 60 segundos. Caso contrário, use um valor maior que 0.
+* `in_max_runtime INT UNSIGNED`: The maximum data collection time in seconds. Use `NULL` to collect data for the default of 60 seconds. Otherwise, use a value greater than 0.
 
-- `in_interval INT UNSIGNED`: O tempo de sono entre as coleções de dados em segundos. Use `NULL` para dormir por 30 segundos, que é o valor padrão. Caso contrário, use um valor maior que 0.
+* `in_interval INT UNSIGNED`: The sleep time between data collections in seconds. Use `NULL` to sleep for the default of 30 seconds. Otherwise, use a value greater than 0.
 
-- `in_auto_config ENUM('current', 'medium', 'full')`: A configuração do Schema de Desempenho a ser usada. Os valores permitidos são:
+* `in_auto_config ENUM('current', 'medium', 'full')`: The Performance Schema configuration to use. Permitted values are:
 
-  - `current`: Use o instrumento e as configurações atuais do consumidor.
+  + `current`: Use the current instrument and consumer settings.
 
-  - `medium`: Habilitar alguns instrumentos e consumidores.
+  + `medium`: Enable some instruments and consumers.
 
-  - `full`: Ative todos os instrumentos e consumidores.
+  + `full`: Enable all instruments and consumers.
 
-  Nota
+  Note
 
-  Quanto mais instrumentos e consumidores habilitados, maior o impacto no desempenho do servidor MySQL. Tenha cuidado com o ajuste `medium` e, especialmente, o ajuste `full`, que tem um grande impacto no desempenho.
+  The more instruments and consumers enabled, the more impact on MySQL server performance. Be careful with the `medium` setting and especially the `full` setting, which has a large performance impact.
 
-  O uso da configuração `medium` ou `full` requer o privilégio `SUPER`.
+  Use of the `medium` or `full` setting requires the `SUPER` privilege.
 
-  Se uma configuração diferente de `current` for escolhida, as configurações atuais serão restauradas no final do procedimento.
+  If a setting other than `current` is chosen, the current settings are restored at the end of the procedure.
 
-##### Opções de configuração
+##### Configuration Options
 
-A operação `diagnostics()` ("diagnósticos") pode ser modificada usando as seguintes opções de configuração ou suas variáveis definidas pelo usuário correspondentes (consulte a Seção 26.4.2.1, "A Tabela sys_config"):
+`diagnostics()` Procedure") operation can be modified using the following configuration options or their corresponding user-defined variables (see Section 26.4.2.1, “The sys_config Table”):
 
-- `debug`, `@sys.debug`
+* `debug`, `@sys.debug`
 
-  Se esta opção estiver ativada, será gerado o output de depuração. O padrão é `OFF`.
+  If this option is `ON`, produce debugging output. The default is `OFF`.
 
-- `diagnostics.allow_i_s_tables`, `@sys.diagnostics.allow_i_s_tables`
+* `diagnostics.allow_i_s_tables`, `@sys.diagnostics.allow_i_s_tables`
 
-  Se esta opção estiver ativada, o procedimento `diagnostics()` pode realizar varreduras de tabelas na tabela do esquema de informações `TABLES`. Isso pode ser caro se houver muitas tabelas. O padrão é `OFF`.
+  If this option is `ON`, the `diagnostics()` Procedure") procedure is permitted to perform table scans on the Information Schema `TABLES` table. This can be expensive if there are many tables. The default is `OFF`.
 
-- `diagnostics.include_raw`, `@sys.diagnostics.include_raw`
+* `diagnostics.include_raw`, `@sys.diagnostics.include_raw`
 
-  Se esta opção estiver ativada, a saída do procedimento `diagnostics()` inclui a saída bruta da consulta à vista `metrics`. O padrão é `OFF`.
+  If this option is `ON`, the `diagnostics()` Procedure") procedure output includes the raw output from querying the `metrics` view. The default is `OFF`.
 
-- `statement_truncate_len`, `@sys.statement_truncate_len`
+* `statement_truncate_len`, `@sys.statement_truncate_len`
 
-  O comprimento máximo das declarações retornadas pela função `format_statement()`") é o comprimento máximo das declarações. Declarações mais longas são truncadas para esse comprimento. O padrão é 64.
+  The maximum length of statements returned by the `format_statement()` Function") function. Longer statements are truncated to this length. The default is 64.
 
-##### Exemplo
+##### Example
 
-Crie um relatório de diagnóstico que inicie uma iteração a cada 30 segundos e execute por no máximo 120 segundos, usando as configurações atuais do Schema de Desempenho:
+Create a diagnostics report that starts an iteration every 30 seconds and runs for at most 120 seconds using the current Performance Schema settings:
 
 ```sql
 mysql> CALL sys.diagnostics(120, 30, 'current');
 ```
 
-Para capturar a saída do procedimento `diagnostics()` em um arquivo enquanto ele está sendo executado, use os comandos do cliente `mysql` `tee nome_do_arquivo` e `notee` (consulte a Seção 4.5.1.2, “Comandos do Cliente `mysql`):
+To capture the output from the `diagnostics()` procedure in a file as it runs, use the **mysql** client `tee filename` and `notee` commands (see Section 4.5.1.2, “mysql Client Commands”):
 
 ```sql
 mysql> tee diag.out;

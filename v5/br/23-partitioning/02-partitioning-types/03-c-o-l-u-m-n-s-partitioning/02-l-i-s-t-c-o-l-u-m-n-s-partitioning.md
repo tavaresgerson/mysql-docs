@@ -1,12 +1,12 @@
-#### 22.2.3.2 Partição de colunas da lista
+#### 22.2.3.2 LIST COLUMNS partitioning
 
-O MySQL 5.7 oferece suporte à partição `LIST COLUMNS`. Esta é uma variante da partição `LIST` que permite o uso de múltiplas colunas como chaves de partição e, para colunas de tipos de dados diferentes dos inteiros, como colunas de partição; você pode usar tipos de string, colunas `[DATA]` (datetime.html) e `[DATA/Hora]` (datetime.html). (Para mais informações sobre os tipos de dados permitidos para as colunas de partição `COLUMNS`, consulte Seção 22.2.3, “Partição COLUMNS”.)
+MySQL 5.7 provides support for `LIST COLUMNS` partitioning. This is a variant of `LIST` partitioning that enables the use of multiple columns as partition keys, and for columns of data types other than integer types to be used as partitioning columns; you can use string types, [`DATE`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types"), and [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") columns. (For more information about permitted data types for `COLUMNS` partitioning columns, see [Section 22.2.3, “COLUMNS Partitioning”](partitioning-columns.html "22.2.3 COLUMNS Partitioning").)
 
-Suponha que você tenha um negócio com clientes em 12 cidades, que, para fins de vendas e marketing, você organiza em 4 regiões de 3 cidades cada, conforme mostrado na tabela a seguir:
+Suppose that you have a business that has customers in 12 cities which, for sales and marketing purposes, you organize into 4 regions of 3 cities each as shown in the following table:
 
-<table summary="O exemplo descrito no texto anterior de uma empresa com quatro regiões de vendas e marketing, com cada região tendo três cidades."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Região</th> <th>Cidades</th> </tr></thead><tbody><tr> <td>1</td> <td>Oskarshamn, Högsby, Mönsterås</td> </tr><tr> <td>2</td> <td>Vimmerby, Hultsfred, Västervik</td> </tr><tr> <td>3</td> <td>Nässjö, Eksjö, Vetlanda</td> </tr><tr> <td>4</td> <td>Uppvidinge, Alvesta, Växjo</td> </tr></tbody></table>
+<table summary="The example described in the preceding text of a business with four sales and marketing regions, with each region having three cities."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Region</th> <th>Cities</th> </tr></thead><tbody><tr> <td>1</td> <td>Oskarshamn, Högsby, Mönsterås</td> </tr><tr> <td>2</td> <td>Vimmerby, Hultsfred, Västervik</td> </tr><tr> <td>3</td> <td>Nässjö, Eksjö, Vetlanda</td> </tr><tr> <td>4</td> <td>Uppvidinge, Alvesta, Växjo</td> </tr></tbody></table>
 
-Com a partição `LIST COLUMNS`, você pode criar uma tabela para dados de clientes que atribui uma linha a qualquer uma das 4 partições correspondentes a essas regiões com base no nome da cidade onde um cliente reside, como mostrado aqui:
+With `LIST COLUMNS` partitioning, you can create a table for customer data that assigns a row to any of 4 partitions corresponding to these regions based on the name of the city where a customer resides, as shown here:
 
 ```sql
 CREATE TABLE customers_1 (
@@ -25,9 +25,9 @@ PARTITION BY LIST COLUMNS(city) (
 );
 ```
 
-Assim como na partição por `COLUNAS DE CAMPO`, você não precisa usar expressões na cláusula `COLUMNS()` para converter os valores das colunas em inteiros. (Na verdade, o uso de expressões diferentes dos nomes das colunas não é permitido com `COLUMNS()`.
+As with partitioning by `RANGE COLUMNS`, you do not need to use expressions in the `COLUMNS()` clause to convert column values into integers. (In fact, the use of expressions other than column names is not permitted with `COLUMNS()`.)
 
-Também é possível usar as colunas `DATE` e `DATETIME`, como mostrado no exemplo a seguir, que usa o mesmo nome e colunas da tabela `customers_1` mostrada anteriormente, mas emprega a partição `LIST COLUMNS` com base na coluna `renewal` para armazenar linhas em uma das 4 partições, dependendo da semana de fevereiro de 2010 em que a conta do cliente está programada para ser renovada:
+It is also possible to use [`DATE`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") and [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") columns, as shown in the following example that uses the same name and columns as the `customers_1` table shown previously, but employs `LIST COLUMNS` partitioning based on the `renewal` column to store rows in one of 4 partitions depending on the week in February 2010 the customer's account is scheduled to renew:
 
 ```sql
 CREATE TABLE customers_2 (
@@ -50,7 +50,7 @@ PARTITION BY LIST COLUMNS(renewal) (
 );
 ```
 
-Isso funciona, mas torna-se complicado definir e manter se o número de datas envolvidas crescer muito; nesses casos, geralmente é mais prático usar o particionamento `RANGE` ou `RANGE COLUMNS`. Neste caso, como a coluna que desejamos usar como chave de particionamento é uma coluna `[DATE]` (datetime.html), usamos o particionamento `RANGE COLUMNS`, como mostrado aqui:
+This works, but becomes cumbersome to define and maintain if the number of dates involved grows very large; in such cases, it is usually more practical to employ `RANGE` or `RANGE COLUMNS` partitioning instead. In this case, since the column we wish to use as the partitioning key is a [`DATE`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") column, we use `RANGE COLUMNS` partitioning, as shown here:
 
 ```sql
 CREATE TABLE customers_3 (
@@ -69,8 +69,8 @@ PARTITION BY RANGE COLUMNS(renewal) (
 );
 ```
 
-Para mais informações, consulte Seção 22.2.3.1, “Particionamento de COLUNAS DE ÁREA”.
+See [Section 22.2.3.1, “RANGE COLUMNS partitioning”](partitioning-columns-range.html "22.2.3.1 RANGE COLUMNS partitioning"), for more information.
 
-Além disso (como no caso da partição `RANGE COLUMNS`), você pode usar várias colunas na cláusula `COLUMNS()`.
+In addition (as with `RANGE COLUMNS` partitioning), you can use multiple columns in the `COLUMNS()` clause.
 
-Consulte Seção 13.1.18, “Instrução CREATE TABLE” para obter informações adicionais sobre a sintaxe `PARTITION BY LIST COLUMNS()`.
+See [Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement"), for additional information about `PARTITION BY LIST COLUMNS()` syntax.

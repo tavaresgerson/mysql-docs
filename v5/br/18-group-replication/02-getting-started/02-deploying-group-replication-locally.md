@@ -1,12 +1,12 @@
-### 17.2.2 Implantação da Replicação em Grupo Localmente
+### 17.2.2 Deploying Group Replication Locally
 
-A maneira mais comum de implementar a Replicação em Grupo é usando várias instâncias de servidor, para fornecer alta disponibilidade. Também é possível implementar a Replicação em Grupo localmente, por exemplo, para fins de teste. Esta seção explica como você pode implementar a Replicação em Grupo localmente.
+The most common way to deploy Group Replication is using multiple server instances, to provide high availability. It is also possible to deploy Group Replication locally, for example for testing purposes. This section explains how you can deploy Group Replication locally.
 
-Importante
+Important
 
-A replicação em grupo é geralmente implantada em vários hosts, pois isso garante a alta disponibilidade. As instruções nesta seção não são adequadas para implantações em produção, pois todas as instâncias do servidor MySQL estão em um único host. Em caso de falha deste host, todo o grupo falha. Portanto, essas informações devem ser usadas para fins de teste e não devem ser usadas em ambientes de produção.
+Group Replication is usually deployed on multiple hosts because this ensures that high-availability is provided. The instructions in this section are not suitable for production deployments because all MySQL server instances are running on the same single host. In the event of failure of this host, the whole group fails. Therefore this information should be used for testing purposes and it should not be used in a production environments.
 
-Esta seção explica como criar um grupo de replicação com três instâncias do MySQL Server em uma única máquina física. Isso significa que são necessários três diretórios de dados, um por instância do servidor, e que você precisa configurar cada instância de forma independente. Este procedimento assume que o MySQL Server foi baixado e descompactado - no diretório denominado `mysql-5.7`. Cada instância do servidor MySQL requer um diretório de dados específico. Crie um diretório denominado `data`, em seguida, nesse diretório crie um subdiretório para cada instância do servidor, por exemplo, s1, s2 e s3, e inicie cada um.
+This section explains how to create a replication group with three MySQL Server instances on one physical machine. This means that three data directories are needed, one per server instance, and that you need to configure each instance independently. This - procedure assumes that MySQL Server was downloaded and unpacked - into the directory named `mysql-5.7`. Each MySQL server instance requires a specific data directory. Create a directory named `data`, then in that directory create a subdirectory for each server instance, for example s1, s2 and s3, and initialize each one.
 
 ```sql
 mysql-5.7/bin/mysqld --initialize-insecure --basedir=$PWD/mysql-5.7 --datadir=$PWD/data/s1
@@ -14,15 +14,15 @@ mysql-5.7/bin/mysqld --initialize-insecure --basedir=$PWD/mysql-5.7 --datadir=$P
 mysql-5.7/bin/mysqld --initialize-insecure --basedir=$PWD/mysql-5.7 --datadir=$PWD/data/s3
 ```
 
-Dentro de `data/s1`, `data/s2` e `data/s3`, há um diretório de dados inicializado, contendo o banco de dados do sistema MySQL e tabelas relacionadas, entre outros. Para saber mais sobre o procedimento de inicialização, consulte Seção 2.9.1, “Inicializando o Diretório de Dados”.
+Inside `data/s1`, `data/s2`, `data/s3` is an initialized data directory, containing the mysql system database and related tables and much more. To learn more about the initialization procedure, see [Section 2.9.1, “Initializing the Data Directory”](data-directory-initialization.html "2.9.1 Initializing the Data Directory").
 
-Aviso
+Warning
 
-Não use `-initialize-insecure` em ambientes de produção, ele é usado apenas aqui para simplificar o tutorial. Para mais informações sobre as configurações de segurança, consulte Seção 17.6, “Segurança da Replicação por Grupo”.
+Do not use `-initialize-insecure` in production environments, it is only used here to simplify the tutorial. For more information on security settings, see [Section 17.6, “Group Replication Security”](group-replication-security.html "17.6 Group Replication Security").
 
-#### Configuração de membros da replicação de grupo local
+#### Configuration of Local Group Replication Members
 
-Ao seguir Seção 17.2.1.2, “Configurando uma Instância para Replicação em Grupo”, você precisa adicionar a configuração para os diretórios de dados adicionados na seção anterior. Por exemplo:
+When you are following [Section 17.2.1.2, “Configuring an Instance for Group Replication”](group-replication-configuring-instances.html "17.2.1.2 Configuring an Instance for Group Replication"), you need to add configuration for the data directories added in the previous section. For example:
 
 ```sql
 [mysqld]
@@ -35,21 +35,21 @@ port=24801
 socket=<full_path_to_sock_dir>/s1.sock
 ```
 
-Essas configurações configuram o servidor MySQL para usar o diretório de dados criado anteriormente e a porta que o servidor deve abrir e começar a ouvir conexões de entrada.
+These settings configure MySQL server to use the data directory created earlier and which port the server should open and start listening for incoming connections.
 
-Nota
+Note
 
-O porto não padrão de 24801 é usado porque, neste tutorial, as três instâncias do servidor usam o mesmo nome de host. Em uma configuração com três máquinas diferentes, isso não seria necessário.
+The non-default port of 24801 is used because in this tutorial the three server instances use the same hostname. In a setup with three different machines this would not be required.
 
-A replicação em grupo requer uma conexão de rede entre os membros, o que significa que cada membro deve ser capaz de resolver o endereço de rede de todos os outros membros. Por exemplo, neste tutorial, todas as três instâncias estão em uma única máquina, então, para garantir que os membros possam se comunicar, você pode adicionar uma linha ao arquivo de opções, como `report_host=127.0.0.1`.
+Group Replication requires a network connection between the members, which means that each member must be able to resolve the network address of all of the other members. For example in this tutorial all three instances run on one machine, so to ensure that the members can contact each other you could add a line to the option file such as [`report_host=127.0.0.1`](replication-options-replica.html#sysvar_report_host).
 
-Então, cada membro precisa ser capaz de se conectar aos outros membros em seu `group_replication_local_address`. Por exemplo, no arquivo de opções do membro s1, adicione:
+Then each member needs to be able to connect to the other members on their [`group_replication_local_address`](group-replication-system-variables.html#sysvar_group_replication_local_address). For example in the option file of member s1 add:
 
 ```sql
 group_replication_local_address= "127.0.0.1:24901"
 group_replication_group_seeds= "127.0.0.1:24901,127.0.0.1:24902,127.0.0.1:24903"
 ```
 
-Isso configura o s1 para usar a porta 24901 para comunicação interna de grupo com os membros da semente. Para cada instância do servidor que você deseja adicionar ao grupo, faça essas alterações no arquivo de opções do membro. Para cada membro, você deve garantir que um endereço único seja especificado, então use uma porta única por instância para `group_replication_local_address`. Geralmente, você deseja que todos os membros possam atuar como sementes para membros que estão se juntando ao grupo e não receberam as transações processadas pelo grupo. Nesse caso, adicione todas as portas ao `group_replication_group_seeds` conforme mostrado acima.
+This configures s1 to use port 24901 for internal group communication with seed members. For each server instance you want to add to the group, make these changes in the option file of the member. For each member you must ensure a unique address is specified, so use a unique port per instance for [`group_replication_local_address`](group-replication-system-variables.html#sysvar_group_replication_local_address). Usually you want all members to be able to serve as seeds for members that are joining the group and have not got the transactions processed by the group. In this case, add all of the ports to [`group_replication_group_seeds`](group-replication-system-variables.html#sysvar_group_replication_group_seeds) as shown above.
 
-Os passos restantes da Seção 17.2.1, “Implementando a Replicação em Grupo no Modo de Primárias Únicas” se aplicam igualmente a um grupo que você tenha implementado localmente dessa maneira.
+The remaining steps of [Section 17.2.1, “Deploying Group Replication in Single-Primary Mode”](group-replication-deploying-in-single-primary-mode.html "17.2.1 Deploying Group Replication in Single-Primary Mode") apply equally to a group which you have deployed locally in this way.

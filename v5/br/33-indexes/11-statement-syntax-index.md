@@ -1,8523 +1,8523 @@
-## Índice de Declarações/Sintaxe
+## Statement/Syntax Index
 
-[A](dynindex-statement.html#stmt-index-A) | [B](dynindex-statement.html#stmt-index-B) | [C](dynindex-statement.html#stmt-index-C) | [D](dynindex-statement.html#stmt-index-D) | [E](dynindex-statement.html#stmt-index-E) | [F](dynindex-statement.html#stmt-index-F) | [G](dynindex-statement.html#stmt-index-G) | [H](dynindex-statement.html#stmt-index-H) | [I](dynindex-statement.html#stmt-index-I) | [K](dynindex-statement.html#stmt-index-K) | [L](dynindex-statement.html#stmt-index-L) | [O](dynindex-statement.html#stmt-index-O) | [P](dynindex-statement.html#stmt-index-P) | [R](dynindex-statement.html#stmt-index-R) | [S](dynindex-statement.html#stmt-index-S) | [T](dynindex-statement.html#stmt-index-T) | [U](dynindex-statement.html#stmt-index-U) | [W](dynindex-statement.html#stmt-index-W) | [X](dynindex-statement.html#stmt-index-X)
+[A](dynindex-statement.html#stmt-index-A "A") | [B](dynindex-statement.html#stmt-index-B "B") | [C](dynindex-statement.html#stmt-index-C "C") | [D](dynindex-statement.html#stmt-index-D "D") | [E](dynindex-statement.html#stmt-index-E "E") | [F](dynindex-statement.html#stmt-index-F "F") | [G](dynindex-statement.html#stmt-index-G "G") | [H](dynindex-statement.html#stmt-index-H "H") | [I](dynindex-statement.html#stmt-index-I "I") | [K](dynindex-statement.html#stmt-index-K "K") | [L](dynindex-statement.html#stmt-index-L "L") | [O](dynindex-statement.html#stmt-index-O "O") | [P](dynindex-statement.html#stmt-index-P "P") | [R](dynindex-statement.html#stmt-index-R "R") | [S](dynindex-statement.html#stmt-index-S "S") | [T](dynindex-statement.html#stmt-index-T "T") | [U](dynindex-statement.html#stmt-index-U "U") | [W](dynindex-statement.html#stmt-index-W "W") | [X](dynindex-statement.html#stmt-index-X "X")
 
 ### A
 
-index topo](dynindex-statement.html#stmt-index-topo)]
+index top](dynindex-statement.html#stmt-index-top)]
 
-### ADICIONAR PARTIÇÃO
+### ADD PARTITION
 
-[Seção 14.13.1, “Operações DDL Online”](innodb-online-ddl-operations.html)
+[Section 14.13.1, “Online DDL Operations”](innodb-online-ddl-operations.html "14.13.1 Online DDL Operations")
 
-### ALTERAR BASE DE DADOS
+### ALTER DATABASE
 
-[Seção 13.1.1, "Instrução ALTER DATABASE"](alter-database.html)
+[Section 13.1.1, “ALTER DATABASE Statement”](alter-database.html "13.1.1 ALTER DATABASE Statement")
 
-[Seção 10.5, “Configurando o Conjunto de Caracteres e a Cotação da Aplicação”](charset-applications.html)
+[Section 10.5, “Configuring Application Character Set and Collation”](charset-applications.html "10.5 Configuring Application Character Set and Collation")
 
-[Seção 10.3.3, "Conjunto de caracteres e classificação de banco de dados"](charset-database.html)
+[Section 10.3.3, “Database Character Set and Collation”](charset-database.html "10.3.3 Database Character Set and Collation")
 
-[Seção 16.2.5.1, “Avaliação das opções de replicação de nível de banco de dados e registro binário”](replication-rules-db-options.html)
+[Section 16.2.5.1, “Evaluation of Database-Level Replication and Binary Logging Options”](replication-rules-db-options.html "16.2.5.1 Evaluation of Database-Level Replication and Binary Logging Options")
 
-[Seção 16.2.5, “Como os Servidores Avaliam as Regras de Filtragem de Replicação”](replication-rules.html)
+[Section 16.2.5, “How Servers Evaluate Replication Filtering Rules”](replication-rules.html "16.2.5 How Servers Evaluate Replication Filtering Rules")
 
-[Seção 9.2.4, “Mapeamento de Identificadores para Nomes de Arquivos”](identifier-mapping.html)
+[Section 9.2.4, “Mapping of Identifiers to File Names”](identifier-mapping.html "9.2.4 Mapping of Identifiers to File Names")
 
-[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html)
+[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
 
-[Seção 4.6.7, “mysqlbinlog — Ferramenta para processamento de arquivos de log binário”](mysqlbinlog.html)
+[Section 4.6.7, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "4.6.7 mysqlbinlog — Utility for Processing Binary Log Files")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
+[Section 16.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "16.1.6.3 Replica Server Options and Variables")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
-### ALTERAR BASE DE DADOS ... CARREGAR DIRETORIO DE DADOS COM O NOME ALTERADO
+### ALTER DATABASE ... UPGRADE DATA DIRECTORY NAME
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-### ALTERAR O EVENTO
+### ALTER EVENT
 
-[Seção 13.1.2, "Declaração de Alteração de Evento"](alter-event.html)
+[Section 13.1.2, “ALTER EVENT Statement”](alter-event.html "13.1.2 ALTER EVENT Statement")
 
-[Seção 13.1.12, "Declaração CREATE EVENT"](create-event.html)
+[Section 13.1.12, “CREATE EVENT Statement”](create-event.html "13.1.12 CREATE EVENT Statement")
 
-[Seção 23.4.4, “Metadados do Evento”](events-metadata.html)
+[Section 23.4.4, “Event Metadata”](events-metadata.html "23.4.4 Event Metadata")
 
-[Seção 23.4.1, “Visão geral do Agendamento de Eventos”](events-overview.html)
+[Section 23.4.1, “Event Scheduler Overview”](events-overview.html "23.4.1 Event Scheduler Overview")
 
-[Seção 23.4.3, "Sintaxe de Eventos"](events-syntax.html)
+[Section 23.4.3, “Event Syntax”](events-syntax.html "23.4.3 Event Syntax")
 
-[Seção 12.15, “Funções de Informação”](information-functions.html)
+[Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions")
 
-[Seção 16.4.1.8, “Replicação de CURRENT_USER()”](replication-features-current-user.html)
+[Section 16.4.1.8, “Replication of CURRENT_USER()”](replication-features-current-user.html "16.4.1.8 Replication of CURRENT_USER()")
 
-[Seção 16.4.1.16, “Replicação de Recursos Ativados”](replication-features-invoked.html)
+[Section 16.4.1.16, “Replication of Invoked Features”](replication-features-invoked.html "16.4.1.16 Replication of Invoked Features")
 
-[Seção 23.8, “Restrições aos Programas Armazenados”](stored-program-restrictions.html)
+[Section 23.8, “Restrictions on Stored Programs”](stored-program-restrictions.html "23.8 Restrictions on Stored Programs")
 
-[Seção 13.7.5.18, "Declaração de Eventos de Exibição"](show-events.html)
+[Section 13.7.5.18, “SHOW EVENTS Statement”](show-events.html "13.7.5.18 SHOW EVENTS Statement")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 23.6, “Controle de Acesso a Objetos Armazenados”](stored-objects-security.html)
+[Section 23.6, “Stored Object Access Control”](stored-objects-security.html "23.6 Stored Object Access Control")
 
-[Seção 23.7, "Registro de Log de Binário de Programa Armazenado"](stored-programs-logging.html)
+[Section 23.7, “Stored Program Binary Logging”](stored-programs-logging.html "23.7 Stored Program Binary Logging")
 
-[Seção 23.4.6, “O Agendamento de Eventos e Permissões do MySQL”](events-privileges.html)
+[Section 23.4.6, “The Event Scheduler and MySQL Privileges”](events-privileges.html "23.4.6 The Event Scheduler and MySQL Privileges")
 
-[Seção 24.3.8, “A tabela INFORMATION_SCHEMA EVENTS”](information-schema-events-table.html)
+[Section 24.3.8, “The INFORMATION_SCHEMA EVENTS Table”](information-schema-events-table.html "24.3.8 The INFORMATION_SCHEMA EVENTS Table")
 
-### ALTERAR evento nome_do_evento ENABLE
+### ALTER EVENT event_name ENABLE
 
-[Seção 16.4.1.16, “Replicação de Recursos Ativados”](replication-features-invoked.html)
+[Section 16.4.1.16, “Replication of Invoked Features”](replication-features-invoked.html "16.4.1.16 Replication of Invoked Features")
 
-### ALTERAR FUNÇÃO
+### ALTER FUNCTION
 
-[Seção 13.1.3, "Instrução ALTER FUNCTION"](alter-function.html)
+[Section 13.1.3, “ALTER FUNCTION Statement”](alter-function.html "13.1.3 ALTER FUNCTION Statement")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 23.7, "Registro de Log de Binário de Programa Armazenado"](stored-programs-logging.html)
+[Section 23.7, “Stored Program Binary Logging”](stored-programs-logging.html "23.7 Stored Program Binary Logging")
 
-[Seção 23.2.1, "Sintaxe de Rotinas Armazenadas"](stored-routines-syntax.html)
+[Section 23.2.1, “Stored Routine Syntax”](stored-routines-syntax.html "23.2.1 Stored Routine Syntax")
 
 ### ALTER IGNORE TABLE
 
-[Seção 22.3.4, “Manutenção de Partições”](partitioning-maintenance.html)
+[Section 22.3.4, “Maintenance of Partitions”](partitioning-maintenance.html "22.3.4 Maintenance of Partitions")
 
-### ALTERAR INSTÂNCIA ROTAR CHAVE MASTER INNODB
+### ALTER INSTANCE ROTATE INNODB MASTER KEY
 
-[Seção 14.14, “Criptografia de Dados em Repouso do InnoDB”](innodb-data-encryption.html)
+[Section 14.14, “InnoDB Data-at-Rest Encryption”](innodb-data-encryption.html "14.14 InnoDB Data-at-Rest Encryption")
 
-[Seção A.17, “Perguntas frequentes sobre o MySQL 5.7: Criptografia de dados em repouso do InnoDB”](faqs-tablespace-encryption.html)
+[Section A.17, “MySQL 5.7 FAQ: InnoDB Data-at-Rest Encryption”](faqs-tablespace-encryption.html "A.17 MySQL 5.7 FAQ: InnoDB Data-at-Rest Encryption")
 
-### ALTERAR GRUPO DE LOGFILE
+### ALTER LOGFILE GROUP
 
-[Seção 13.1.5, "Instrução ALTER LOGFILE GROUP"](alter-logfile-group.html)
+[Section 13.1.5, “ALTER LOGFILE GROUP Statement”](alter-logfile-group.html "13.1.5 ALTER LOGFILE GROUP Statement")
 
-[Seção 21.4.3.6, “Definindo nós de dados do cluster NDB”](mysql-cluster-ndbd-definition.html)
+[Section 21.4.3.6, “Defining NDB Cluster Data Nodes”](mysql-cluster-ndbd-definition.html "21.4.3.6 Defining NDB Cluster Data Nodes")
 
-[Seção 21.2.7.8, "Problemas Exclusivos do NDB Cluster"](mysql-cluster-limitations-exclusive-to-cluster.html)
+[Section 21.2.7.8, “Issues Exclusive to NDB Cluster”](mysql-cluster-limitations-exclusive-to-cluster.html "21.2.7.8 Issues Exclusive to NDB Cluster")
 
-[Seção 21.6.11.1, “Objetos de dados de disco do cluster NDB”](mysql-cluster-disk-data-objects.html)
+[Section 21.6.11.1, “NDB Cluster Disk Data Objects”](mysql-cluster-disk-data-objects.html "21.6.11.1 NDB Cluster Disk Data Objects")
 
-[Seção 24.3.9, “A tabela INFORMATION_SCHEMA FILES”](information-schema-files-table.html)
+[Section 24.3.9, “The INFORMATION_SCHEMA FILES Table”](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table")
 
 ### ALTER PROCEDURE
 
-[Seção 13.1.6, "Instrução ALTER PROCEDURE"](alter-procedure.html)
+[Section 13.1.6, “ALTER PROCEDURE Statement”](alter-procedure.html "13.1.6 ALTER PROCEDURE Statement")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 23.7, "Registro de Log de Binário de Programa Armazenado"](stored-programs-logging.html)
+[Section 23.7, “Stored Program Binary Logging”](stored-programs-logging.html "23.7 Stored Program Binary Logging")
 
-[Seção 23.2.1, "Sintaxe de Rotinas Armazenadas"](stored-routines-syntax.html)
+[Section 23.2.1, “Stored Routine Syntax”](stored-routines-syntax.html "23.2.1 Stored Routine Syntax")
 
-### ALTERAR ESCHEMA
+### ALTER SCHEMA
 
-[Seção 13.1.1, "Instrução ALTER DATABASE"](alter-database.html)
+[Section 13.1.1, “ALTER DATABASE Statement”](alter-database.html "13.1.1 ALTER DATABASE Statement")
 
-### ALTERAR SERVIDOR
+### ALTER SERVER
 
-[Seção 16.1.6.5, “Variáveis do Sistema de ID de Transação Global”](replication-options-gtids.html)
+[Section 16.1.6.5, “Global Transaction ID System Variables”](replication-options-gtids.html "16.1.6.5 Global Transaction ID System Variables")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 16.4.1.7, “Replicação de CREATE SERVER, ALTER SERVER e DROP SERVER”](replication-features-create-alter-drop-server.html)
+[Section 16.4.1.7, “Replication of CREATE SERVER, ALTER SERVER, and DROP SERVER”](replication-features-create-alter-drop-server.html "16.4.1.7 Replication of CREATE SERVER, ALTER SERVER, and DROP SERVER")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
 ### ALTER TABLE
 
-[Seção 11.2.5, “Limitações do ANO(2) de 2 dígitos e migração para o ANO de 4 dígitos”](migrando-de-ano2.html)
+[Section 11.2.5, “2-Digit YEAR(2) Limitations and Migrating to 4-Digit YEAR”](migrating-from-year2.html "11.2.5 2-Digit YEAR(2) Limitations and Migrating to 4-Digit YEAR")
 
-[Seção 21.6.7.3, “Adicionar nós de dados do NDB Cluster Online: Exemplo detalhado”](mysql-cluster-online-add-node-example.html)
+[Section 21.6.7.3, “Adding NDB Cluster Data Nodes Online: Detailed Example”](mysql-cluster-online-add-node-example.html "21.6.7.3 Adding NDB Cluster Data Nodes Online: Detailed Example")
 
-[Seção 13.1.8.2, "ALTER TABLE e Colunas Geradas"](alter-table-generated-columns.html)
+[Section 13.1.8.2, “ALTER TABLE and Generated Columns”](alter-table-generated-columns.html "13.1.8.2 ALTER TABLE and Generated Columns")
 
-[Seção 13.1.8.3, “Exemplos de ALTER TABLE”](alter-table-examples.html)
+[Section 13.1.8.3, “ALTER TABLE Examples”](alter-table-examples.html "13.1.8.3 ALTER TABLE Examples")
 
-[Seção 13.1.8.1, “Operações de Partição de Tabela”](alter-table-partition-operations.html)
+[Section 13.1.8.1, “ALTER TABLE Partition Operations”](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations")
 
-[Seção 13.1.8, "Instrução ALTER TABLE"](alter-table.html)
+[Section 13.1.8, “ALTER TABLE Statement”](alter-table.html "13.1.8 ALTER TABLE Statement")
 
-[Seção 14.6.1.6, “Tratamento de AUTO_INCREMENT no InnoDB”](innodb-auto-increment-handling.html)
+[Section 14.6.1.6, “AUTO_INCREMENT Handling in InnoDB”](innodb-auto-increment-handling.html "14.6.1.6 AUTO_INCREMENT Handling in InnoDB")
 
-[Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
+[Section 16.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "16.1.6.4 Binary Logging Options and Variables")
 
-[Seção 13.7.2.2, "Instrução CHECK TABLE"](check-table.html)
+[Section 13.7.2.2, “CHECK TABLE Statement”](check-table.html "13.7.2.2 CHECK TABLE Statement")
 
-[Seção 10.3.5, "Conjunto de caracteres da coluna e cotação"](charset-column.html)
+[Section 10.3.5, “Column Character Set and Collation”](charset-column.html "10.3.5 Column Character Set and Collation")
 
-[Seção 10.7, “Conversão do Conjunto de Caracteres da Coluna”](charset-conversion.html)
+[Section 10.7, “Column Character Set Conversion”](charset-conversion.html "10.7 Column Character Set Conversion")
 
-[Seção 8.3.4, “Índices de Colunas”](column-indexes.html)
+[Section 8.3.4, “Column Indexes”](column-indexes.html "8.3.4 Column Indexes")
 
-[Seção 14.8.11, “Configurando estatísticas do otimizador para InnoDB”](innodb-performance-optimizer-statistics.html)
+[Section 14.8.11, “Configuring Optimizer Statistics for InnoDB”](innodb-performance-optimizer-statistics.html "14.8.11 Configuring Optimizer Statistics for InnoDB")
 
-[Seção 14.8.11.1.2, “Configurando Parâmetros de Estatísticas do Optimizer para Tabelas Individuais”](innodb-persistent-stats.html#innodb-persistent-stats-table-configuration)
+[Section 14.8.11.1.2, “Configuring Optimizer Statistics Parameters for Individual Tables”](innodb-persistent-stats.html#innodb-persistent-stats-table-configuration "14.8.11.1.2 Configuring Optimizer Statistics Parameters for Individual Tables")
 
-[Seção 14.8.12, “Configurando o Limiar de Fusão para Páginas de Índice”](index-page-merge-threshold.html)
+[Section 14.8.12, “Configuring the Merge Threshold for Index Pages”](index-page-merge-threshold.html "14.8.12 Configuring the Merge Threshold for Index Pages")
 
-[Seção 14.7.2.3, “Leitura Consistente sem Bloqueio”](innodb-consistent-read.html)
+[Section 14.7.2.3, “Consistent Nonlocking Reads”](innodb-consistent-read.html "14.7.2.3 Consistent Nonlocking Reads")
 
-[Seção 14.21.5.4, “Controle do comportamento transacional do plugin InnoDB memcached”](innodb-memcached-txn.html)
+[Section 14.21.5.4, “Controlling Transactional Behavior of the InnoDB memcached Plugin”](innodb-memcached-txn.html "14.21.5.4 Controlling Transactional Behavior of the InnoDB memcached Plugin")
 
-[Seção 10.9.8, “Conversão entre conjuntos de caracteres Unicode de 3 e 4 bytes”](charset-unicode-conversion.html)
+[Section 10.9.8, “Converting Between 3-Byte and 4-Byte Unicode Character Sets”](charset-unicode-conversion.html "10.9.8 Converting Between 3-Byte and 4-Byte Unicode Character Sets")
 
-[Seção 14.6.1.5, “Conversão de tabelas de MyISAM para InnoDB”](converting-tables-to-innodb.html)
+[Section 14.6.1.5, “Converting Tables from MyISAM to InnoDB”](converting-tables-to-innodb.html "14.6.1.5 Converting Tables from MyISAM to InnoDB")
 
-[Seção 13.1.14, "Instrução CREATE INDEX"](create-index.html)
+[Section 13.1.14, “CREATE INDEX Statement”](create-index.html "13.1.14 CREATE INDEX Statement")
 
-[Seção 13.1.18, "Instrução CREATE TABLE"](create-table.html)
+[Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement")
 
-[Seção 3.3.2, “Criando uma Tabela”](criando-tabelas.html)
+[Section 3.3.2, “Creating a Table”](creating-tables.html "3.3.2 Creating a Table")
 
-[Seção 14.9.1.2, “Criando tabelas compactadas”](innodb-compression-usage.html)
+[Section 14.9.1.2, “Creating Compressed Tables”](innodb-compression-usage.html "14.9.1.2 Creating Compressed Tables")
 
-[Seção 14.6.1.1, “Criando tabelas InnoDB”](using-innodb-tables.html)
+[Section 14.6.1.1, “Creating InnoDB Tables”](using-innodb-tables.html "14.6.1.1 Creating InnoDB Tables")
 
-[Seção 11.4.5, “Criando Colunas Espaciais”](criando-colunas-espaciais.html)
+[Section 11.4.5, “Creating Spatial Columns”](creating-spatial-columns.html "11.4.5 Creating Spatial Columns")
 
-[Seção 11.4.9, “Criando Índices Espaciais”](criando-índices-espaciais.html)
+[Section 11.4.9, “Creating Spatial Indexes”](creating-spatial-indexes.html "11.4.9 Creating Spatial Indexes")
 
-[Seção 14.6.1.2, “Criando tabelas externamente”](innodb-create-table-external.html)
+[Section 14.6.1.2, “Creating Tables Externally”](innodb-create-table-external.html "14.6.1.2 Creating Tables Externally")
 
-[Seção 21.4.3.6, “Definindo nós de dados do cluster NDB”](mysql-cluster-ndbd-definition.html)
+[Section 21.4.3.6, “Defining NDB Cluster Data Nodes”](mysql-cluster-ndbd-definition.html "21.4.3.6 Defining NDB Cluster Data Nodes")
 
-[Seção 14.12.4, “Desfragmentação de uma Tabela”](innodb-file-defragmenting.html)
+[Section 14.12.4, “Defragmenting a Table”](innodb-file-defragmenting.html "14.12.4 Defragmenting a Table")
 
-[Seção 13.1.25, "Instrução DROP INDEX"](drop-index.html)
+[Section 13.1.25, “DROP INDEX Statement”](drop-index.html "13.1.25 DROP INDEX Statement")
 
-[Seção 14.10.1, “Habilitar formatos de arquivo”](innodb-file-format-enabling.html)
+[Section 14.10.1, “Enabling File Formats”](innodb-file-format-enabling.html "14.10.1 Enabling File Formats")
 
-[Seção 14.8.11.3, “Estimativa da Complexidade da Tabela ANALYZE para Tabelas InnoDB”](innodb-analyze-table-complexity.html)
+[Section 14.8.11.3, “Estimating ANALYZE TABLE Complexity for InnoDB Tables”](innodb-analyze-table-complexity.html "14.8.11.3 Estimating ANALYZE TABLE Complexity for InnoDB Tables")
 
-[Seção 22.3.3, “Troca de Partições e Subpartições com Tabelas”](partitioning-management-exchange.html)
+[Section 22.3.3, “Exchanging Partitions and Subpartitions with Tables”](partitioning-management-exchange.html "22.3.3 Exchanging Partitions and Subpartitions with Tables")
 
-[Seção 8.8.2, “Formato de Saída EXPLAIN”](explain-output.html)
+[Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
 
-[Seção 15.8.3, “Notas e dicas do mecanismo de armazenamento federado”](federated-usagenotes.html)
+[Section 15.8.3, “FEDERATED Storage Engine Notes and Tips”](federated-usagenotes.html "15.8.3 FEDERATED Storage Engine Notes and Tips")
 
-[Seção 14.6.3.2, “Tablespaces por arquivo para tabelas”](innodb-file-per-table-tablespaces.html)
+[Section 14.6.3.2, “File-Per-Table Tablespaces”](innodb-file-per-table-tablespaces.html "14.6.3.2 File-Per-Table Tablespaces")
 
-[Seção 12.9.6, “Ajuste fino da pesquisa full-text do MySQL”](fulltext-fine-tuning.html)
+[Section 12.9.6, “Fine-Tuning MySQL Full-Text Search”](fulltext-fine-tuning.html "12.9.6 Fine-Tuning MySQL Full-Text Search")
 
-[Seção 14.22.2, “Forçar a recuperação do InnoDB”](forcing-innodb-recovery.html)
+[Section 14.22.2, “Forcing InnoDB Recovery”](forcing-innodb-recovery.html "14.22.2 Forcing InnoDB Recovery")
 
-[Seção 1.6.3.2, “Restrições de Chave Estrangeira”](constraint-foreign-key.html)
+[Section 1.6.3.2, “FOREIGN KEY Constraints”](constraint-foreign-key.html "1.6.3.2 FOREIGN KEY Constraints")
 
-[Seção 13.1.18.5, “Restrições de Chave Estrangeira”](create-table-foreign-keys.html)
+[Section 13.1.18.5, “FOREIGN KEY Constraints”](create-table-foreign-keys.html "13.1.18.5 FOREIGN KEY Constraints")
 
-[Seção 12.9, “Funções de Busca de Texto Completo”](fulltext-search.html)
+[Section 12.9, “Full-Text Search Functions”](fulltext-search.html "12.9 Full-Text Search Functions")
 
-[Seção 14.6.3.3, “Tabelas gerais”](general-tablespaces.html)
+[Section 14.6.3.3, “General Tablespaces”](general-tablespaces.html "14.6.3.3 General Tablespaces")
 
-[Seção 8.14.3, “Estados gerais de fios”](general-thread-states.html)
+[Section 8.14.3, “General Thread States”](general-thread-states.html "8.14.3 General Thread States")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 14.9.1.5, “Como a compressão funciona para tabelas InnoDB”](innodb-compression-internals.html)
+[Section 14.9.1.5, “How Compression Works for InnoDB Tables”](innodb-compression-internals.html "14.9.1.5 How Compression Works for InnoDB Tables")
 
-[Seção B.3.3.4, “Como o MySQL lida com um disco completo”](full-disk.html)
+[Section B.3.3.4, “How MySQL Handles a Full Disk”](full-disk.html "B.3.3.4 How MySQL Handles a Full Disk")
 
-[Seção 8.10.3.1, “Como o Cache de Consultas Funciona”](query-cache-operation.html)
+[Section 8.10.3.1, “How the Query Cache Operates”](query-cache-operation.html "8.10.3.1 How the Query Cache Operates")
 
-[Seção 7.6.3, “Como reparar as tabelas MyISAM”](myisam-repair.html)
+[Section 7.6.3, “How to Repair MyISAM Tables”](myisam-repair.html "7.6.3 How to Repair MyISAM Tables")
 
-[Seção 12.15, “Funções de Informação”](information-functions.html)
+[Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions")
 
-[Seção 21.3.3, “Configuração Inicial do NDB Cluster”](mysql-cluster-install-configuration.html)
+[Section 21.3.3, “Initial Configuration of NDB Cluster”](mysql-cluster-install-configuration.html "21.3.3 Initial Configuration of NDB Cluster")
 
-[Seção 8.3.7, “Coleta de estatísticas de índices InnoDB e MyISAM”](index-statistics.html)
+[Section 8.3.7, “InnoDB and MyISAM Index Statistics Collection”](index-statistics.html "8.3.7 InnoDB and MyISAM Index Statistics Collection")
 
-[Seção 14.13, “InnoDB e DDL Online”](innodb-online-ddl.html)
+[Section 14.13, “InnoDB and Online DDL”](innodb-online-ddl.html "14.13 InnoDB and Online DDL")
 
-[Seção 14.14, “Criptografia de Dados em Repouso do InnoDB”](innodb-data-encryption.html)
+[Section 14.14, “InnoDB Data-at-Rest Encryption”](innodb-data-encryption.html "14.14 InnoDB Data-at-Rest Encryption")
 
-[Seção 14.6.2.4, “Índices de Texto Completo InnoDB”](innodb-fulltext-index.html)
+[Section 14.6.2.4, “InnoDB Full-Text Indexes”](innodb-fulltext-index.html "14.6.2.4 InnoDB Full-Text Indexes")
 
-[Seção 14.17, “Integração InnoDB com o MySQL Performance Schema”](innodb-performance-schema.html)
+[Section 14.17, “InnoDB Integration with MySQL Performance Schema”](innodb-performance-schema.html "14.17 InnoDB Integration with MySQL Performance Schema")
 
-[Seção 14.9.2, “Compressão de Páginas InnoDB”](innodb-page-compression.html)
+[Section 14.9.2, “InnoDB Page Compression”](innodb-page-compression.html "14.9.2 InnoDB Page Compression")
 
-[Seção 14.11, "Formatos de Linhas InnoDB"](innodb-row-format.html)
+[Section 14.11, “InnoDB Row Formats”](innodb-row-format.html "14.11 InnoDB Row Formats")
 
-[Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
+[Section 14.15, “InnoDB Startup Options and System Variables”](innodb-parameters.html "14.15 InnoDB Startup Options and System Variables")
 
-[Seção 14.9.1, “Compressão de Tabelas InnoDB”](innodb-table-compression.html)
+[Section 14.9.1, “InnoDB Table Compression”](innodb-table-compression.html "14.9.1 InnoDB Table Compression")
 
-[Seção 21.2.7.8, "Problemas Exclusivos do NDB Cluster"](mysql-cluster-limitations-exclusive-to-cluster.html)
+[Section 21.2.7.8, “Issues Exclusive to NDB Cluster”](mysql-cluster-limitations-exclusive-to-cluster.html "21.2.7.8 Issues Exclusive to NDB Cluster")
 
-[Seção 13.7.6.4, "Declaração de KILL"](kill.html)
+[Section 13.7.6.4, “KILL Statement”](kill.html "13.7.6.4 KILL Statement")
 
-[Seção B.3.7, “Problemas Conhecidos no MySQL”](known-issues.html)
+[Section B.3.7, “Known Issues in MySQL”](known-issues.html "B.3.7 Known Issues in MySQL")
 
-[Seção 21.2.7.10, “Limitações relacionadas a múltiplos nós do cluster NDB”](mysql-cluster-limitations-multiple-nodes.html)
+[Section 21.2.7.10, “Limitations Relating to Multiple NDB Cluster Nodes”](mysql-cluster-limitations-multiple-nodes.html "21.2.7.10 Limitations Relating to Multiple NDB Cluster Nodes")
 
-[Seção 21.2.7.2, “Limites e Diferenças do NDB Cluster em Relação aos Limites Padrão do MySQL”](mysql-cluster-limitations-limits.html)
+[Section 21.2.7.2, “Limits and Differences of NDB Cluster from Standard MySQL Limits”](mysql-cluster-limitations-limits.html "21.2.7.2 Limits and Differences of NDB Cluster from Standard MySQL Limits")
 
-[Seção 8.4.6, “Limites de tamanho da tabela”](table-size-limit.html)
+[Section 8.4.6, “Limits on Table Size”](table-size-limit.html "8.4.6 Limits on Table Size")
 
-[Seção 21.2.7.3, “Limitações relacionadas ao processamento de transações no NDB Cluster”](mysql-cluster-limitations-transactions.html)
+[Section 21.2.7.3, “Limits Relating to Transaction Handling in NDB Cluster”](mysql-cluster-limitations-transactions.html "21.2.7.3 Limits Relating to Transaction Handling in NDB Cluster")
 
-[Seção 13.3.5, “Instruções LOCK TABLES e UNLOCK TABLES”](lock-tables.html)
+[Section 13.3.5, “LOCK TABLES and UNLOCK TABLES Statements”](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements")
 
-[Seção 22.3.4, “Manutenção de Partições”](partitioning-maintenance.html)
+[Section 22.3.4, “Maintenance of Partitions”](partitioning-maintenance.html "22.3.4 Maintenance of Partitions")
 
-[Seção 22.3.2, “Gestão de Partições HASH e KEY”](partitioning-management-hash-key.html)
+[Section 22.3.2, “Management of HASH and KEY Partitions”](partitioning-management-hash-key.html "22.3.2 Management of HASH and KEY Partitions")
 
-[Seção 22.3.1, “Gestão de Partições RANGE e LIST”](partitioning-management-range-list.html)
+[Section 22.3.1, “Management of RANGE and LIST Partitions”](partitioning-management-range-list.html "22.3.1 Management of RANGE and LIST Partitions")
 
-[Seção 12.9.9, “Plugin do Analizador de Texto Completo MeCab”](fulltext-search-mecab.html)
+[Section 12.9.9, “MeCab Full-Text Parser Plugin”](fulltext-search-mecab.html "12.9.9 MeCab Full-Text Parser Plugin")
 
-[Seção 15.7.2, “Problemas da Tabela MERGE”](merge-table-problems.html)
+[Section 15.7.2, “MERGE Table Problems”](merge-table-problems.html "15.7.2 MERGE Table Problems")
 
-[Seção 14.17.1, “Monitoramento do progresso da alteração de tabelas ALTER TABLE para tabelas InnoDB usando o Gerenciador de Desempenho”](monitor-alter-table-performance-schema.html)
+[Section 14.17.1, “Monitoring ALTER TABLE Progress for InnoDB Tables Using Performance Schema”](monitor-alter-table-performance-schema.html "14.17.1 Monitoring ALTER TABLE Progress for InnoDB Tables Using Performance Schema")
 
-[Seção 14.6.1.4, “Mover ou Copiar Tabelas InnoDB”](innodb-migration.html)
+[Section 14.6.1.4, “Moving or Copying InnoDB Tables”](innodb-migration.html "14.6.1.4 Moving or Copying InnoDB Tables")
 
-[Seção 15.2.1, “Opções de inicialização do MyISAM”](myisam-start.html)
+[Section 15.2.1, “MyISAM Startup Options”](myisam-start.html "15.2.1 MyISAM Startup Options")
 
-[Seção 15.2.3, “Formatos de Armazenamento de Tabelas MyISAM”](myisam-table-formats.html)
+[Section 15.2.3, “MyISAM Table Storage Formats”](myisam-table-formats.html "15.2.3 MyISAM Table Storage Formats")
 
-[Seção 4.6.3.1, “Opções Gerais do myisamchk”](myisamchk-general-options.html)
+[Section 4.6.3.1, “myisamchk General Options”](myisamchk-general-options.html "4.6.3.1 myisamchk General Options")
 
-[Seção A.10, “Perguntas frequentes sobre o MySQL 5.7: NDB Cluster”](faqs-mysql-cluster.html)
+[Section A.10, “MySQL 5.7 FAQ: NDB Cluster”](faqs-mysql-cluster.html "A.10 MySQL 5.7 FAQ: NDB Cluster")
 
-[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html)
+[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
 
-[Glossário do MySQL](glossary.html)
+[MySQL Glossary](glossary.html "MySQL Glossary")
 
-[Seção 21.4.3.9.1, “Opções do Servidor MySQL para NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld)
+[Section 21.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "21.4.3.9.1 MySQL Server Options for NDB Cluster")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
+[Section 4.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "4.5.6 mysqlpump — A Database Backup Program")
 
-[Seção 21.4.3.1, “Configuração do NDB Cluster: Exemplo Básico”](mysql-cluster-config-example.html)
+[Section 21.4.3.1, “NDB Cluster Configuration: Basic Example”](mysql-cluster-config-example.html "21.4.3.1 NDB Cluster Configuration: Basic Example")
 
-[Seção 21.6.11.1, “Objetos de dados de disco do cluster NDB”](mysql-cluster-disk-data-objects.html)
+[Section 21.6.11.1, “NDB Cluster Disk Data Objects”](mysql-cluster-disk-data-objects.html "21.6.11.1 NDB Cluster Disk Data Objects")
 
-[Seção 21.3.5, “Exemplo de Cluster NDB com Tabelas e Dados”](mysql-cluster-install-example-data.html)
+[Section 21.3.5, “NDB Cluster Example with Tables and Data”](mysql-cluster-install-example-data.html "21.3.5 NDB Cluster Example with Tables and Data")
 
-[Seção 21.7.4, “Esquema e tabelas de replicação de cluster NDB”](mysql-cluster-replication-schema.html)
+[Section 21.7.4, “NDB Cluster Replication Schema and Tables”](mysql-cluster-replication-schema.html "21.7.4 NDB Cluster Replication Schema and Tables")
 
-[Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
+[Section 21.4.3.9.2, “NDB Cluster System Variables”](mysql-cluster-options-variables.html#mysql-cluster-system-variables "21.4.3.9.2 NDB Cluster System Variables")
 
-[Seção 21.5.10, “ndb_desc — Descrever tabelas NDB”](mysql-cluster-programs-ndb-desc.html)
+[Section 21.5.10, “ndb_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables")
 
-[Seção 21.5.24, “ndb_restore — Restaurar um backup de um cluster NDB”](mysql-cluster-programs-ndb-restore.html)
+[Section 21.5.24, “ndb_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup")
 
-[Seção 12.9.8, “Parser de Texto Completo ngram”](fulltext-search-ngram.html)
+[Section 12.9.8, “ngram Full-Text Parser”](fulltext-search-ngram.html "12.9.8 ngram Full-Text Parser")
 
-[Seção 21.2.7.1, "Desconexão com a sintaxe SQL no NDB Cluster"](mysql-cluster-limitations-syntax.html)
+[Section 21.2.7.1, “Noncompliance with SQL Syntax in NDB Cluster”](mysql-cluster-limitations-syntax.html "21.2.7.1 Noncompliance with SQL Syntax in NDB Cluster")
 
-[Seção 14.13.5, “Condições de Falha do DDL Online”](innodb-online-ddl-failure-conditions.html)
+[Section 14.13.5, “Online DDL Failure Conditions”](innodb-online-ddl-failure-conditions.html "14.13.5 Online DDL Failure Conditions")
 
-[Seção 14.13.6, “Limitações do DDL Online”](innodb-online-ddl-limitations.html)
+[Section 14.13.6, “Online DDL Limitations”](innodb-online-ddl-limitations.html "14.13.6 Online DDL Limitations")
 
-[Seção 14.13.1, “Operações DDL Online”](innodb-online-ddl-operations.html)
+[Section 14.13.1, “Online DDL Operations”](innodb-online-ddl-operations.html "14.13.1 Online DDL Operations")
 
-[Seção 14.13.2, “Desempenho e Concorrência do DDL Online”](innodb-online-ddl-performance.html)
+[Section 14.13.2, “Online DDL Performance and Concurrency”](innodb-online-ddl-performance.html "14.13.2 Online DDL Performance and Concurrency")
 
-[Seção 21.6.12, "Operações online com ALTER TABLE no NDB Cluster"](mysql-cluster-online-operations.html)
+[Section 21.6.12, “Online Operations with ALTER TABLE in NDB Cluster”](mysql-cluster-online-operations.html "21.6.12 Online Operations with ALTER TABLE in NDB Cluster")
 
-[Seção 13.7.2.4, "Instrução OPTIMIZE TABLE"](optimize-table.html)
+[Section 13.7.2.4, “OPTIMIZE TABLE Statement”](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement")
 
-[Seção 8.4.1, “Otimização do Tamanho dos Dados”](data-size.html)
+[Section 8.4.1, “Optimizing Data Size”](data-size.html "8.4.1 Optimizing Data Size")
 
-[Seção 11.1.7, “Tratamento de Saída de Faixa e Excesso de Dados”](out-of-range-and-overflow.html)
+[Section 11.1.7, “Out-of-Range and Overflow Handling”](out-of-range-and-overflow.html "11.1.7 Out-of-Range and Overflow Handling")
 
-[Seção 22.1, “Visão geral da partição no MySQL”](partitioning-overview.html)
+[Section 22.1, “Overview of Partitioning in MySQL”](partitioning-overview.html "22.1 Overview of Partitioning in MySQL")
 
-[Seção 14.9.1.1, “Visão geral da compressão de tabelas”](innodb-compression-background.html)
+[Section 14.9.1.1, “Overview of Table Compression”](innodb-compression-background.html "14.9.1.1 Overview of Table Compression")
 
-[Seção 22.3, “Gestão de Partições”](partitioning-management.html)
+[Section 22.3, “Partition Management”](partitioning-management.html "22.3 Partition Management")
 
-[Seção 22.6.4, “Partição e Bloqueio”](partitioning-limitations-locking.html)
+[Section 22.6.4, “Partitioning and Locking”](partitioning-limitations-locking.html "22.6.4 Partitioning and Locking")
 
-[Seção 22.6.1, "Chaves de Partição, Chaves Primárias e Chaves Únicas"](partitioning-limitations-partitioning-keys-unique-keys.html)
+[Section 22.6.1, “Partitioning Keys, Primary Keys, and Unique Keys”](partitioning-limitations-partitioning-keys-unique-keys.html "22.6.1 Partitioning Keys, Primary Keys, and Unique Keys")
 
-[Seção 22.6.2, “Limitações de Partição Relacionadas a Motores de Armazenamento”](partitioning-limitations-storage-engines.html)
+[Section 22.6.2, “Partitioning Limitations Relating to Storage Engines”](partitioning-limitations-storage-engines.html "22.6.2 Partitioning Limitations Relating to Storage Engines")
 
-[Seção 25.12.5, "Tabelas de Eventos de Estágio do Schema de Desempenho"](performance-schema-stage-tables.html)
+[Section 25.12.5, “Performance Schema Stage Event Tables”](performance-schema-stage-tables.html "25.12.5 Performance Schema Stage Event Tables")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção B.3.6.1, “Problemas com ALTER TABLE”](alter-table-problems.html)
+[Section B.3.6.1, “Problems with ALTER TABLE”](alter-table-problems.html "B.3.6.1 Problems with ALTER TABLE")
 
-[Seção 22.2.3.1, "Divisão de colunas de intervalo"](partitioning-columns-range.html)
+[Section 22.2.3.1, “RANGE COLUMNS partitioning”](partitioning-columns-range.html "22.2.3.1 RANGE COLUMNS partitioning")
 
-[Seção 22.2.1, “Divisão de Faixa”](partitioning-range.html)
+[Section 22.2.1, “RANGE Partitioning”](partitioning-range.html "22.2.1 RANGE Partitioning")
 
-[Seção 2.10.12, “Reestruturação ou reparo de tabelas ou índices”](rebuilding-tables.html)
+[Section 2.10.12, “Rebuilding or Repairing Tables or Indexes”](rebuilding-tables.html "2.10.12 Rebuilding or Repairing Tables or Indexes")
 
-[Seção 13.1.33, "Instrução RENAME TABLE"](rename-table.html)
+[Section 13.1.33, “RENAME TABLE Statement”](rename-table.html "13.1.33 RENAME TABLE Statement")
 
-[Seção 16.4.1.1, “Replicação e AUTO_INCREMENT”](replication-features-auto-increment.html)
+[Section 16.4.1.1, “Replication and AUTO_INCREMENT”](replication-features-auto-increment.html "16.4.1.1 Replication and AUTO_INCREMENT")
 
-[Seção 16.4.1.25, “Replicação e Palavras Reservadas”](replication-features-reserved-words.html)
+[Section 16.4.1.25, “Replication and Reserved Words”](replication-features-reserved-words.html "16.4.1.25 Replication and Reserved Words")
 
-[Seção 16.4.1.10.1, “Replicação com mais colunas na fonte ou réplica”](replication-features-differing-tables.html#replication-features-more-columns)
+[Section 16.4.1.10.1, “Replication with More Columns on Source or Replica”](replication-features-differing-tables.html#replication-features-more-columns "16.4.1.10.1 Replication with More Columns on Source or Replica")
 
-[Seção 22.6, “Restrições e Limitações sobre Partição”](partitioning-limitations.html)
+[Section 22.6, “Restrictions and Limitations on Partitioning”](partitioning-limitations.html "22.6 Restrictions and Limitations on Partitioning")
 
-[Seção 23.9, “Restrições de visualização”](view-restrictions.html)
+[Section 23.9, “Restrictions on Views”](view-restrictions.html "23.9 Restrictions on Views")
 
-[Seção 5.4.1, “Selecionando destinos de saída do Log de consulta geral e do Log de consulta lenta”](log-destinations.html)
+[Section 5.4.1, “Selecting General Query Log and Slow Query Log Output Destinations”](log-destinations.html "5.4.1 Selecting General Query Log and Slow Query Log Output Destinations")
 
-[Seção 5.1.6, “Opções de comando do servidor”](server-options.html)
+[Section 5.1.6, “Server Command Options”](server-options.html "5.1.6 Server Command Options")
 
-[Seção 5.1.10, "Modos SQL do Servidor"](sql-mode.html)
+[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 13.1.18.9, “Definindo opções de comentário do NDB”](create-table-ndb-comment-options.html)
+[Section 13.1.18.9, “Setting NDB Comment Options”](create-table-ndb-comment-options.html "13.1.18.9 Setting NDB Comment Options")
 
-[Seção 5.4.4.2, “Definindo o formato do log binário”](binary-log-setting.html)
+[Section 5.4.4.2, “Setting The Binary Log Format”](binary-log-setting.html "5.4.4.2 Setting The Binary Log Format")
 
-[Seção 15.1, “Configurando o Motor de Armazenamento”](storage-engine-setting.html)
+[Section 15.1, “Setting the Storage Engine”](storage-engine-setting.html "15.1 Setting the Storage Engine")
 
-[Seção 13.7.5.15, "Declaração do Motor de Exibição"](show-engine.html)
+[Section 13.7.5.15, “SHOW ENGINE Statement”](show-engine.html "13.7.5.15 SHOW ENGINE Statement")
 
-[Seção 13.7.5.22, "Declaração SHOW INDEX"](show-index.html)
+[Section 13.7.5.22, “SHOW INDEX Statement”](show-index.html "13.7.5.22 SHOW INDEX Statement")
 
-[Seção 13.7.5.40, "Declaração de avisos"](show-warnings.html)
+[Section 13.7.5.40, “SHOW WARNINGS Statement”](show-warnings.html "13.7.5.40 SHOW WARNINGS Statement")
 
-[Seção 13.1.18.6, “Alterações na Especificação da Coluna Silenciosa”](silent-column-changes.html)
+[Section 13.1.18.6, “Silent Column Specification Changes”](silent-column-changes.html "13.1.18.6 Silent Column Specification Changes")
 
-[Seção 14.13.4, “Simplificando declarações DDL com DDL Online”](innodb-online-ddl-single-multi.html)
+[Section 14.13.4, “Simplifying DDL Statements with Online DDL”](innodb-online-ddl-single-multi.html "14.13.4 Simplifying DDL Statements with Online DDL")
 
-[Seção 14.9.1.7, “Avisos e Erros de Sintaxe de Compressão SQL”](innodb-compression-syntax-warnings.html)
+[Section 14.9.1.7, “SQL Compression Syntax Warnings and Errors”](innodb-compression-syntax-warnings.html "14.9.1.7 SQL Compression Syntax Warnings and Errors")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 11.3.1, "Sintaxe do Tipo de Dados String"](string-type-syntax.html)
+[Section 11.3.1, “String Data Type Syntax”](string-type-syntax.html "11.3.1 String Data Type Syntax")
 
-[Seção 10.3.4, "Conjunto de caracteres da tabela e cotação"](charset-table.html)
+[Section 10.3.4, “Table Character Set and Collation”](charset-table.html "10.3.4 Table Character Set and Collation")
 
-[Seção B.3.6.2, “Problemas com tabelas temporárias”](temporary-table-problems.html)
+[Section B.3.6.2, “TEMPORARY Table Problems”](temporary-table-problems.html "B.3.6.2 TEMPORARY Table Problems")
 
-[Seção 24.4.23, “A tabela INFORMATION_SCHEMA INNODB_SYS_TABLES”](information-schema-innodb-sys-tables-table.html)
+[Section 24.4.23, “The INFORMATION_SCHEMA INNODB_SYS_TABLES Table”](information-schema-innodb-sys-tables-table.html "24.4.23 The INFORMATION_SCHEMA INNODB_SYS_TABLES Table")
 
-[Seção 24.3.16, “A tabela INFORMATION_SCHEMA PARTITIONS”](information-schema-partitions-table.html)
+[Section 24.3.16, “The INFORMATION_SCHEMA PARTITIONS Table”](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table")
 
-[Seção 24.3.24, “A Tabela INFORMATION_SCHEMA STATISTICS”](information-schema-statistics-table.html)
+[Section 24.3.24, “The INFORMATION_SCHEMA STATISTICS Table”](information-schema-statistics-table.html "24.3.24 The INFORMATION_SCHEMA STATISTICS Table")
 
-[Seção 15.3, “O Motor de Armazenamento de MEMORY”](memory-storage-engine.html)
+[Section 15.3, “The MEMORY Storage Engine”](memory-storage-engine.html "15.3 The MEMORY Storage Engine")
 
-[Seção 15.2, “O Motor de Armazenamento MyISAM”](myisam-storage-engine.html)
+[Section 15.2, “The MyISAM Storage Engine”](myisam-storage-engine.html "15.2 The MyISAM Storage Engine")
 
-[Seção 5.4.5, “O Log de Consultas Lentas”](slow-query-log.html)
+[Section 5.4.5, “The Slow Query Log”](slow-query-log.html "5.4.5 The Slow Query Log")
 
-[Seção 14.22.3, “Soluções de problemas para operações do dicionário de dados InnoDB”](innodb-troubleshooting-datadict.html)
+[Section 14.22.3, “Troubleshooting InnoDB Data Dictionary Operations”](innodb-troubleshooting-datadict.html "14.22.3 Troubleshooting InnoDB Data Dictionary Operations")
 
-[Seção 21.2.7.6, “Recursos não suportados ou ausentes no NDB Cluster”](mysql-cluster-limitations-unsupported.html)
+[Section 21.2.7.6, “Unsupported or Missing Features in NDB Cluster”](mysql-cluster-limitations-unsupported.html "21.2.7.6 Unsupported or Missing Features in NDB Cluster")
 
-[Seção 3.6.9, “Usando AUTO_INCREMENT”](example-auto-increment.html)
+[Section 3.6.9, “Using AUTO_INCREMENT”](example-auto-increment.html "3.6.9 Using AUTO_INCREMENT")
 
-[Seção 16.3.3, “Usando replicação com diferentes engines de armazenamento de origem e réplica”](replication-solutions-diffengines.html)
+[Section 16.3.3, “Using Replication with Different Source and Replica Storage Engines”](replication-solutions-diffengines.html "16.3.3 Using Replication with Different Source and Replica Storage Engines")
 
-[Seção 8.12.3.2, “Usando Links Simbólicos para Tabelas MyISAM no Unix”](symbolic-links-to-tables.html)
+[Section 8.12.3.2, “Using Symbolic Links for MyISAM Tables on Unix”](symbolic-links-to-tables.html "8.12.3.2 Using Symbolic Links for MyISAM Tables on Unix")
 
-[Seção 14.10.2, “Verificação da Compatibilidade com o Formato de Arquivo”](innodb-file-format-compatibility.html)
+[Section 14.10.2, “Verifying File Format Compatibility”](innodb-file-format-compatibility.html "14.10.2 Verifying File Format Compatibility")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
-[Seção 21.2.4.1, “O que há de novo no NDB Cluster 7.5”](mysql-cluster-what-is-new-7-5.html)
+[Section 21.2.4.1, “What is New in NDB Cluster 7.5”](mysql-cluster-what-is-new-7-5.html "21.2.4.1 What is New in NDB Cluster 7.5")
 
-[Seção B.3.3.3, “O que fazer se o MySQL continuar a falhar”](crashing.html)
+[Section B.3.3.3, “What to Do If MySQL Keeps Crashing”](crashing.html "B.3.3.3 What to Do If MySQL Keeps Crashing")
 
 ### ALTER TABLE ... ADD FOREIGN KEY
 
-[Seção 13.1.8, "Instrução ALTER TABLE"](alter-table.html)
+[Section 13.1.8, “ALTER TABLE Statement”](alter-table.html "13.1.8 ALTER TABLE Statement")
 
 ### ALTER TABLE ... ADD PARTITION
 
-[Seção 22.3.1, “Gestão de Partições RANGE e LIST”](partitioning-management-range-list.html)
+[Section 22.3.1, “Management of RANGE and LIST Partitions”](partitioning-management-range-list.html "22.3.1 Management of RANGE and LIST Partitions")
 
 ### ALTER TABLE ... ALGORITHM=COPY
 
-[Seção 13.1.8, "Instrução ALTER TABLE"](alter-table.html)
+[Section 13.1.8, “ALTER TABLE Statement”](alter-table.html "13.1.8 ALTER TABLE Statement")
 
-[Seção 13.1.18.5, “Restrições de Chave Estrangeira”](create-table-foreign-keys.html)
+[Section 13.1.18.5, “FOREIGN KEY Constraints”](create-table-foreign-keys.html "13.1.18.5 FOREIGN KEY Constraints")
 
 ### ALTER TABLE ... ALGORITHM=DEFAULT|INPLACE|COPY
 
-[Seção 21.6.12, "Operações online com ALTER TABLE no NDB Cluster"](mysql-cluster-online-operations.html)
+[Section 21.6.12, “Online Operations with ALTER TABLE in NDB Cluster”](mysql-cluster-online-operations.html "21.6.12 Online Operations with ALTER TABLE in NDB Cluster")
 
 ### ALTER TABLE ... ALGORITHM=INPLACE
 
-[Seção 13.1.8, "Instrução ALTER TABLE"](alter-table.html)
+[Section 13.1.8, “ALTER TABLE Statement”](alter-table.html "13.1.8 ALTER TABLE Statement")
 
-[Seção 13.1.18.5, “Restrições de Chave Estrangeira”](create-table-foreign-keys.html)
+[Section 13.1.18.5, “FOREIGN KEY Constraints”](create-table-foreign-keys.html "13.1.18.5 FOREIGN KEY Constraints")
 
-[Seção 14.13.6, “Limitações do DDL Online”](innodb-online-ddl-limitations.html)
+[Section 14.13.6, “Online DDL Limitations”](innodb-online-ddl-limitations.html "14.13.6 Online DDL Limitations")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
 ### ALTER TABLE ... ALGORITHM=INPLACE ...
 
-[Seção 21.2.4.1, “O que há de novo no NDB Cluster 7.5”](mysql-cluster-what-is-new-7-5.html)
+[Section 21.2.4.1, “What is New in NDB Cluster 7.5”](mysql-cluster-what-is-new-7-5.html "21.2.4.1 What is New in NDB Cluster 7.5")
 
 ### ALTER TABLE ... ALGORITHM=INPLACE, REORGANIZE PARTITION
 
-[Seção 21.6.7.2, “Adicionar nós de dados do NDB Cluster Online: procedimento básico”](mysql-cluster-online-add-node-basics.html)
+[Section 21.6.7.2, “Adding NDB Cluster Data Nodes Online: Basic procedure”](mysql-cluster-online-add-node-basics.html "21.6.7.2 Adding NDB Cluster Data Nodes Online: Basic procedure")
 
-[Seção 21.6.7.3, “Adicionar nós de dados do NDB Cluster Online: Exemplo detalhado”](mysql-cluster-online-add-node-example.html)
+[Section 21.6.7.3, “Adding NDB Cluster Data Nodes Online: Detailed Example”](mysql-cluster-online-add-node-example.html "21.6.7.3 Adding NDB Cluster Data Nodes Online: Detailed Example")
 
 ### ALTER TABLE ... COMPRESSION
 
-[Seção 14.9.2, “Compressão de Páginas InnoDB”](innodb-page-compression.html)
+[Section 14.9.2, “InnoDB Page Compression”](innodb-page-compression.html "14.9.2 InnoDB Page Compression")
 
 ### ALTER TABLE ... COMPRESSION=None
 
-[Seção 14.9.2, “Compressão de Páginas InnoDB”](innodb-page-compression.html)
+[Section 14.9.2, “InnoDB Page Compression”](innodb-page-compression.html "14.9.2 InnoDB Page Compression")
 
-### ALTER TABLE ... DESABILITAR CHAVES
+### ALTER TABLE ... DISABLE KEYS
 
-[Seção 13.2.6, “Instrução LOAD DATA”](load-data.html)
+[Section 13.2.6, “LOAD DATA Statement”](load-data.html "13.2.6 LOAD DATA Statement")
 
 ### ALTER TABLE ... DISCARD PARTITION ... TABLESPACE
 
-[Seção 14.6.1.3, “Importando tabelas InnoDB”](innodb-table-import.html)
+[Section 14.6.1.3, “Importing InnoDB Tables”](innodb-table-import.html "14.6.1.3 Importing InnoDB Tables")
 
 ### ALTER TABLE ... DISCARD TABLESPACE
 
-[Seção 13.1.19, "Instrução CREATE TABLESPACE"](create-tablespace.html)
+[Section 13.1.19, “CREATE TABLESPACE Statement”](create-tablespace.html "13.1.19 CREATE TABLESPACE Statement")
 
-[Seção 14.6.3.3, “Tabelas gerais”](general-tablespaces.html)
+[Section 14.6.3.3, “General Tablespaces”](general-tablespaces.html "14.6.3.3 General Tablespaces")
 
-[Seção 14.6.1.3, “Importando tabelas InnoDB”](innodb-table-import.html)
+[Section 14.6.1.3, “Importing InnoDB Tables”](innodb-table-import.html "14.6.1.3 Importing InnoDB Tables")
 
-[Glossário do MySQL](glossary.html)
+[MySQL Glossary](glossary.html "MySQL Glossary")
 
 ### ALTER TABLE ... DROP FOREIGN KEY
 
-[Seção 13.1.8, "Instrução ALTER TABLE"](alter-table.html)
+[Section 13.1.8, “ALTER TABLE Statement”](alter-table.html "13.1.8 ALTER TABLE Statement")
 
 ### ALTER TABLE ... DROP PARTITION
 
-[Seção 16.4.1.23, “Replicação e Partição”](replication-features-partitioning.html)
+[Section 16.4.1.23, “Replication and Partitioning”](replication-features-partitioning.html "16.4.1.23 Replication and Partitioning")
 
 ### ALTER TABLE ... ENABLE KEYS
 
-[Seção 13.2.6, “Instrução LOAD DATA”](load-data.html)
+[Section 13.2.6, “LOAD DATA Statement”](load-data.html "13.2.6 LOAD DATA Statement")
 
 ### ALTER TABLE ... ENCRYPTION
 
-[Seção 13.1.4, "Declaração ALTER INSTANCE"](alter-instance.html)
+[Section 13.1.4, “ALTER INSTANCE Statement”](alter-instance.html "13.1.4 ALTER INSTANCE Statement")
 
 ### ALTER TABLE ... ENGINE
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
 ### ALTER TABLE ... ENGINE = MEMORY
 
-[Seção 16.4.1.20, “Replicação e Tabelas de MEMORY”](replication-features-memory.html)
+[Section 16.4.1.20, “Replication and MEMORY Tables”](replication-features-memory.html "16.4.1.20 Replication and MEMORY Tables")
 
 ### ALTER TABLE ... ENGINE = NDB
 
-[Seção 21.6.13, “Distribuição de privilégios usando tabelas de concessão compartilhadas”](mysql-cluster-privilege-distribution.html)
+[Section 21.6.13, “Distributed Privileges Using Shared Grant Tables”](mysql-cluster-privilege-distribution.html "21.6.13 Distributed Privileges Using Shared Grant Tables")
 
-### ALTER TABLE ... ENGINE motor_permitido
+### ALTER TABLE ... ENGINE permitted_engine
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
 ### ALTER TABLE ... ENGINE=INNODB
 
-[Seção 21.7.4, “Esquema e tabelas de replicação de cluster NDB”](mysql-cluster-replication-schema.html)
+[Section 21.7.4, “NDB Cluster Replication Schema and Tables”](mysql-cluster-replication-schema.html "21.7.4 NDB Cluster Replication Schema and Tables")
 
-[Seção 21.3.7.1, “Atualização e Downgrade do NDB 7.5”](mysql-cluster-upgrade-downgrade-7-5.html)
+[Section 21.3.7.1, “Upgrading and Downgrading NDB 7.5”](mysql-cluster-upgrade-downgrade-7-5.html "21.3.7.1 Upgrading and Downgrading NDB 7.5")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
-[Seção 21.2.4.1, “O que há de novo no NDB Cluster 7.5”](mysql-cluster-what-is-new-7-5.html)
+[Section 21.2.4.1, “What is New in NDB Cluster 7.5”](mysql-cluster-what-is-new-7-5.html "21.2.4.1 What is New in NDB Cluster 7.5")
 
 ### ALTER TABLE ... ENGINE=NDB
 
-[Seção 21.5.14, “ndb_import — Importar dados CSV no NDB”](mysql-cluster-programs-ndb-import.html)
+[Section 21.5.14, “ndb_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "21.5.14 ndb_import — Import CSV Data Into NDB")
 
 ### ALTER TABLE ... EXCHANGE PARTITION
 
-[Seção 13.1.8.1, “Operações de Partição de Tabela”](alter-table-partition-operations.html)
+[Section 13.1.8.1, “ALTER TABLE Partition Operations”](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations")
 
-[Seção 22.3.3, “Troca de Partições e Subpartições com Tabelas”](partitioning-management-exchange.html)
+[Section 22.3.3, “Exchanging Partitions and Subpartitions with Tables”](partitioning-management-exchange.html "22.3.3 Exchanging Partitions and Subpartitions with Tables")
 
-[Seção 22.6.4, “Partição e Bloqueio”](partitioning-limitations-locking.html)
+[Section 22.6.4, “Partitioning and Locking”](partitioning-limitations-locking.html "22.6.4 Partitioning and Locking")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
 ### ALTER TABLE ... FORCE
 
-[Seção 13.7.2.4, "Instrução OPTIMIZE TABLE"](optimize-table.html)
+[Section 13.7.2.4, “OPTIMIZE TABLE Statement”](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
-### ALTER TABLE ... IMPORT PARTIÇÃO ... TABLESPACE
+### ALTER TABLE ... IMPORT PARTITION ... TABLESPACE
 
-[Seção 14.6.1.3, “Importando tabelas InnoDB”](innodb-table-import.html)
+[Section 14.6.1.3, “Importing InnoDB Tables”](innodb-table-import.html "14.6.1.3 Importing InnoDB Tables")
 
 ### ALTER TABLE ... IMPORT TABLESPACE
 
-[Seção 14.6.1.3, “Importando tabelas InnoDB”](innodb-table-import.html)
+[Section 14.6.1.3, “Importing InnoDB Tables”](innodb-table-import.html "14.6.1.3 Importing InnoDB Tables")
 
-[Seção 14.6.1.4, “Mover ou Copiar Tabelas InnoDB”](innodb-migration.html)
+[Section 14.6.1.4, “Moving or Copying InnoDB Tables”](innodb-migration.html "14.6.1.4 Moving or Copying InnoDB Tables")
 
-[Glossário do MySQL](glossary.html)
+[MySQL Glossary](glossary.html "MySQL Glossary")
 
 ### ALTER TABLE ... OPTIMIZE PARTITION
 
-[Seção 22.3.4, “Manutenção de Partições”](partitioning-maintenance.html)
+[Section 22.3.4, “Maintenance of Partitions”](partitioning-maintenance.html "22.3.4 Maintenance of Partitions")
 
-[Seção 22.6.2, “Limitações de Partição Relacionadas a Motores de Armazenamento”](partitioning-limitations-storage-engines.html)
+[Section 22.6.2, “Partitioning Limitations Relating to Storage Engines”](partitioning-limitations-storage-engines.html "22.6.2 Partitioning Limitations Relating to Storage Engines")
 
 ### ALTER TABLE ... PARTITION BY
 
-[Seção 22.6.1, "Chaves de Partição, Chaves Primárias e Chaves Únicas"](partitioning-limitations-partitioning-keys-unique-keys.html)
+[Section 22.6.1, “Partitioning Keys, Primary Keys, and Unique Keys”](partitioning-limitations-partitioning-keys-unique-keys.html "22.6.1 Partitioning Keys, Primary Keys, and Unique Keys")
 
 ### ALTER TABLE ... PARTITION BY ...
 
-[Seção 22.3.1, “Gestão de Partições RANGE e LIST”](partitioning-management-range-list.html)
+[Section 22.3.1, “Management of RANGE and LIST Partitions”](partitioning-management-range-list.html "22.3.1 Management of RANGE and LIST Partitions")
 
-[Seção 22.6, “Restrições e Limitações sobre Partição”](partitioning-limitations.html)
+[Section 22.6, “Restrictions and Limitations on Partitioning”](partitioning-limitations.html "22.6 Restrictions and Limitations on Partitioning")
 
-### ALTER TABLE ... RENOMEIE
+### ALTER TABLE ... RENAME
 
-[Seção 8.12.3.2, “Usando Links Simbólicos para Tabelas MyISAM no Unix”](symbolic-links-to-tables.html)
+[Section 8.12.3.2, “Using Symbolic Links for MyISAM Tables on Unix”](symbolic-links-to-tables.html "8.12.3.2 Using Symbolic Links for MyISAM Tables on Unix")
 
-### ALTER TABLE ... REORGANIZE PARTIÇÃO
+### ALTER TABLE ... REORGANIZE PARTITION
 
-[Seção 21.6.7.3, “Adicionar nós de dados do NDB Cluster Online: Exemplo detalhado”](mysql-cluster-online-add-node-example.html)
+[Section 21.6.7.3, “Adding NDB Cluster Data Nodes Online: Detailed Example”](mysql-cluster-online-add-node-example.html "21.6.7.3 Adding NDB Cluster Data Nodes Online: Detailed Example")
 
-[Seção 21.6.7.1, “Adicionar nós de dados do NDB Cluster Online: Problemas gerais”](mysql-cluster-online-add-node-remarks.html)
+[Section 21.6.7.1, “Adding NDB Cluster Data Nodes Online: General Issues”](mysql-cluster-online-add-node-remarks.html "21.6.7.1 Adding NDB Cluster Data Nodes Online: General Issues")
 
-[Seção 21.6.1, “Comandos no Cliente de Gerenciamento de NDB Cluster”](mysql-cluster-mgm-client-commands.html)
+[Section 21.6.1, “Commands in the NDB Cluster Management Client”](mysql-cluster-mgm-client-commands.html "21.6.1 Commands in the NDB Cluster Management Client")
 
 ### ALTER TABLE ... REPAIR PARTITION
 
-[Seção 22.3.3, “Troca de Partições e Subpartições com Tabelas”](partitioning-management-exchange.html)
+[Section 22.3.3, “Exchanging Partitions and Subpartitions with Tables”](partitioning-management-exchange.html "22.3.3 Exchanging Partitions and Subpartitions with Tables")
 
-[Seção 22.3.4, “Manutenção de Partições”](partitioning-maintenance.html)
+[Section 22.3.4, “Maintenance of Partitions”](partitioning-maintenance.html "22.3.4 Maintenance of Partitions")
 
 ### ALTER TABLE ... TABLESPACE
 
-[Seção 13.1.19, "Instrução CREATE TABLESPACE"](create-tablespace.html)
+[Section 13.1.19, “CREATE TABLESPACE Statement”](create-tablespace.html "13.1.19 CREATE TABLESPACE Statement")
 
-[Seção 14.6.3.2, “Tablespaces por arquivo para tabelas”](innodb-file-per-table-tablespaces.html)
+[Section 14.6.3.2, “File-Per-Table Tablespaces”](innodb-file-per-table-tablespaces.html "14.6.3.2 File-Per-Table Tablespaces")
 
-### ALTER TABLE ... TRUNCAR PARTIÇÃO
+### ALTER TABLE ... TRUNCATE PARTITION
 
-[Seção 22.3.4, “Manutenção de Partições”](partitioning-maintenance.html)
+[Section 22.3.4, “Maintenance of Partitions”](partitioning-maintenance.html "22.3.4 Maintenance of Partitions")
 
-[Seção 22.3, “Gestão de Partições”](partitioning-management.html)
+[Section 22.3, “Partition Management”](partitioning-management.html "22.3 Partition Management")
 
-[Seção 22.6.4, “Partição e Bloqueio”](partitioning-limitations-locking.html)
+[Section 22.6.4, “Partitioning and Locking”](partitioning-limitations-locking.html "22.6.4 Partitioning and Locking")
 
 ### ALTER TABLE ... TRUNCATE PARTITION ALL
 
-[Seção 22.3.4, “Manutenção de Partições”](partitioning-maintenance.html)
+[Section 22.3.4, “Maintenance of Partitions”](partitioning-maintenance.html "22.3.4 Maintenance of Partitions")
 
 ### ALTER TABLE ... UPGRADE PARTITIONING
 
-[Seção 4.4.7, “mysql_upgrade — Verificar e atualizar tabelas do MySQL”](mysql-upgrade.html)
+[Section 4.4.7, “mysql_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
-### ALTER TABLE ... IMPORT TABLESPACE
+### ALTER TABLE ...IMPORT TABLESPACE
 
-[Seção 13.1.19, "Instrução CREATE TABLESPACE"](create-tablespace.html)
+[Section 13.1.19, “CREATE TABLESPACE Statement”](create-tablespace.html "13.1.19 CREATE TABLESPACE Statement")
 
-[Seção 14.6.3.3, “Tabelas gerais”](general-tablespaces.html)
+[Section 14.6.3.3, “General Tablespaces”](general-tablespaces.html "14.6.3.3 General Tablespaces")
 
 ### ALTER TABLE EXCHANGE PARTITION
 
-[Seção 22.3.3, “Troca de Partições e Subpartições com Tabelas”](partitioning-management-exchange.html)
+[Section 22.3.3, “Exchanging Partitions and Subpartitions with Tables”](partitioning-management-exchange.html "22.3.3 Exchanging Partitions and Subpartitions with Tables")
 
 ### ALTER TABLE mysql.ndb_apply_status ENGINE=MyISAM
 
-[Seção 21.7.3, “Problemas Conhecidos na Replicação de NDB Cluster”](mysql-cluster-replication-issues.html)
+[Section 21.7.3, “Known Issues in NDB Cluster Replication”](mysql-cluster-replication-issues.html "21.7.3 Known Issues in NDB Cluster Replication")
 
 ### ALTER TABLE t TRUNCATE PARTITION ()
 
-[Seção 13.2.2, “Instrução DELETE”](delete.html)
+[Section 13.2.2, “DELETE Statement”](delete.html "13.2.2 DELETE Statement")
 
 ### ALTER TABLE t3 DROP PARTITION p2
 
-[Seção 5.4.6, “O Log do DDL”](ddl-log.html)
+[Section 5.4.6, “The DDL Log”](ddl-log.html "5.4.6 The DDL Log")
 
-### ALTER TABLE nome_tabela ENGINE=InnoDB;
+### ALTER TABLE table_name ENGINE=InnoDB;
 
-[Seção 14.1.4, “Testes e Benchmarking com InnoDB”](innodb-benchmarking.html)
+[Section 14.1.4, “Testing and Benchmarking with InnoDB”](innodb-benchmarking.html "14.1.4 Testing and Benchmarking with InnoDB")
 
-### ALTER TABLE nome_tabela REORGANIZE PARTIÇÃO
+### ALTER TABLE table_name REORGANIZE PARTITION
 
-[Seção 21.6.7.3, “Adicionar nós de dados do NDB Cluster Online: Exemplo detalhado”](mysql-cluster-online-add-node-example.html)
+[Section 21.6.7.3, “Adding NDB Cluster Data Nodes Online: Detailed Example”](mysql-cluster-online-add-node-example.html "21.6.7.3 Adding NDB Cluster Data Nodes Online: Detailed Example")
 
-### ALTER TABLE nome_tabela UPGRADE PARTITIONING
+### ALTER TABLE table_name UPGRADE PARTITIONING
 
-[Seção 2.10.3, “Alterações no MySQL 5.7”](upgrading-from-previous-series.html)
+[Section 2.10.3, “Changes in MySQL 5.7”](upgrading-from-previous-series.html "2.10.3 Changes in MySQL 5.7")
 
 ### ALTER TABLE tbl_name COMPRESSION='None'
 
-[Seção 2.11.3, “Notas de Downgrade”](downgrading-to-previous-series.html)
+[Section 2.11.3, “Downgrade Notes”](downgrading-to-previous-series.html "2.11.3 Downgrade Notes")
 
 ### ALTER TABLE tbl_name ENCRYPTION = 'Y'
 
-[Seção A.17, “Perguntas frequentes sobre o MySQL 5.7: Criptografia de dados em repouso do InnoDB”](faqs-tablespace-encryption.html)
+[Section A.17, “MySQL 5.7 FAQ: InnoDB Data-at-Rest Encryption”](faqs-tablespace-encryption.html "A.17 MySQL 5.7 FAQ: InnoDB Data-at-Rest Encryption")
 
-### ALTER TABLE tbl_nome ENGINE=INNODB
+### ALTER TABLE tbl_name ENGINE=INNODB
 
-[Seção 13.1.8, "Instrução ALTER TABLE"](alter-table.html)
+[Section 13.1.8, “ALTER TABLE Statement”](alter-table.html "13.1.8 ALTER TABLE Statement")
 
-[Seção 14.12.4, “Desfragmentação de uma Tabela”](innodb-file-defragmenting.html)
+[Section 14.12.4, “Defragmenting a Table”](innodb-file-defragmenting.html "14.12.4 Defragmenting a Table")
 
 ### ALTER TABLE tbl_name FORCE
 
-[Seção 13.1.8, "Instrução ALTER TABLE"](alter-table.html)
+[Section 13.1.8, “ALTER TABLE Statement”](alter-table.html "13.1.8 ALTER TABLE Statement")
 
-[Seção 14.12.4, “Desfragmentação de uma Tabela”](innodb-file-defragmenting.html)
+[Section 14.12.4, “Defragmenting a Table”](innodb-file-defragmenting.html "14.12.4 Defragmenting a Table")
 
 ### ALTER TABLE tbl_name TABLESPACE tablespace_name
 
-[Seção 13.1.19, "Instrução CREATE TABLESPACE"](create-tablespace.html)
+[Section 13.1.19, “CREATE TABLESPACE Statement”](create-tablespace.html "13.1.19 CREATE TABLESPACE Statement")
 
-[Seção 14.6.3.3, “Tabelas gerais”](general-tablespaces.html)
+[Section 14.6.3.3, “General Tablespaces”](general-tablespaces.html "14.6.3.3 General Tablespaces")
 
-[Glossário do MySQL](glossary.html)
+[MySQL Glossary](glossary.html "MySQL Glossary")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
 ### ALTER TABLESPACE
 
-[Seção 13.1.9, "Instrução ALTER TABLESPACE"](alter-tablespace.html)
+[Section 13.1.9, “ALTER TABLESPACE Statement”](alter-tablespace.html "13.1.9 ALTER TABLESPACE Statement")
 
-[Seção 13.1.19, "Instrução CREATE TABLESPACE"](create-tablespace.html)
+[Section 13.1.19, “CREATE TABLESPACE Statement”](create-tablespace.html "13.1.19 CREATE TABLESPACE Statement")
 
-[Seção 21.4.3.6, “Definindo nós de dados do cluster NDB”](mysql-cluster-ndbd-definition.html)
+[Section 21.4.3.6, “Defining NDB Cluster Data Nodes”](mysql-cluster-ndbd-definition.html "21.4.3.6 Defining NDB Cluster Data Nodes")
 
-[Seção 13.1.30, "Declaração DROP TABLESPACE"](drop-tablespace.html)
+[Section 13.1.30, “DROP TABLESPACE Statement”](drop-tablespace.html "13.1.30 DROP TABLESPACE Statement")
 
-[Seção 14.6.3.3, “Tabelas gerais”](general-tablespaces.html)
+[Section 14.6.3.3, “General Tablespaces”](general-tablespaces.html "14.6.3.3 General Tablespaces")
 
-[Seção 21.2.7.8, "Problemas Exclusivos do NDB Cluster"](mysql-cluster-limitations-exclusive-to-cluster.html)
+[Section 21.2.7.8, “Issues Exclusive to NDB Cluster”](mysql-cluster-limitations-exclusive-to-cluster.html "21.2.7.8 Issues Exclusive to NDB Cluster")
 
-[Seção 21.6.11.1, “Objetos de dados de disco do cluster NDB”](mysql-cluster-disk-data-objects.html)
+[Section 21.6.11.1, “NDB Cluster Disk Data Objects”](mysql-cluster-disk-data-objects.html "21.6.11.1 NDB Cluster Disk Data Objects")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 24.3.9, “A tabela INFORMATION_SCHEMA FILES”](information-schema-files-table.html)
+[Section 24.3.9, “The INFORMATION_SCHEMA FILES Table”](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table")
 
 ### ALTER TABLESPACE ... ADD DATAFILE
 
-[Seção 13.1.19, "Instrução CREATE TABLESPACE"](create-tablespace.html)
+[Section 13.1.19, “CREATE TABLESPACE Statement”](create-tablespace.html "13.1.19 CREATE TABLESPACE Statement")
 
 ### ALTER TABLESPACE ... DROP DATAFILE
 
-[Seção 13.1.30, "Declaração DROP TABLESPACE"](drop-tablespace.html)
+[Section 13.1.30, “DROP TABLESPACE Statement”](drop-tablespace.html "13.1.30 DROP TABLESPACE Statement")
 
 ### ALTER TABLESPACE ... DROP DATATFILE
 
-[Seção 13.1.19, "Instrução CREATE TABLESPACE"](create-tablespace.html)
+[Section 13.1.19, “CREATE TABLESPACE Statement”](create-tablespace.html "13.1.19 CREATE TABLESPACE Statement")
 
 ### ALTER TABLESPACE ... ENGINE
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
 ### ALTER TABLESPACE tablespace_name ENCRYPTION = 'Y'
 
-[Seção A.17, “Perguntas frequentes sobre o MySQL 5.7: Criptografia de dados em repouso do InnoDB”](faqs-tablespace-encryption.html)
+[Section A.17, “MySQL 5.7 FAQ: InnoDB Data-at-Rest Encryption”](faqs-tablespace-encryption.html "A.17 MySQL 5.7 FAQ: InnoDB Data-at-Rest Encryption")
 
-### ALTERAR USUÁRIO
+### ALTER USER
 
-[Seção 6.2.5, “Controle de Acesso, Etapa 1: Verificação de Conexão”](connection-access.html)
+[Section 6.2.5, “Access Control, Stage 1: Connection Verification”](connection-access.html "6.2.5 Access Control, Stage 1: Connection Verification")
 
-[Seção 6.2.15, “Bloqueio da Conta”](account-locking.html)
+[Section 6.2.15, “Account Locking”](account-locking.html "6.2.15 Account Locking")
 
-[Seção 13.7.1.1, "Instrução ALTER USER"](alter-user.html)
+[Section 13.7.1.1, “ALTER USER Statement”](alter-user.html "13.7.1.1 ALTER USER Statement")
 
-[Seção 6.2.10, “Atribuição de Senhas de Conta”](atribuição-de-senhas.html)
+[Section 6.2.10, “Assigning Account Passwords”](assigning-passwords.html "6.2.10 Assigning Account Passwords")
 
-[Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
+[Section 16.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "16.1.6.4 Binary Logging Options and Variables")
 
-[Seção 4.2.3, “Opções de comando para conectar ao servidor”](connection-options.html)
+[Section 4.2.3, “Command Options for Connecting to the Server”](connection-options.html "4.2.3 Command Options for Connecting to the Server")
 
-[Seção 6.3.1, “Configurando o MySQL para usar conexões criptografadas”](using-encrypted-connections.html)
+[Section 6.3.1, “Configuring MySQL to Use Encrypted Connections”](using-encrypted-connections.html "6.3.1 Configuring MySQL to Use Encrypted Connections")
 
-[Seção 6.1.2.1, “Diretrizes para o Usuário Final sobre Segurança de Senhas”](password-security-user.html)
+[Section 6.1.2.1, “End-User Guidelines for Password Security”](password-security-user.html "6.1.2.1 End-User Guidelines for Password Security")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 6.2.3, “Tabelas de subsídios”](grant-tables.html)
+[Section 6.2.3, “Grant Tables”](grant-tables.html "6.2.3 Grant Tables")
 
-[Seção 2.9.1, “Inicializando o Diretório de Dados”](data-directory-initialization.html)
+[Section 2.9.1, “Initializing the Data Directory”](data-directory-initialization.html "2.9.1 Initializing the Data Directory")
 
-[Seção 6.1.3, “Tornar o MySQL seguro contra atacantes”](security-against-attack.html)
+[Section 6.1.3, “Making MySQL Secure Against Attackers”](security-against-attack.html "6.1.3 Making MySQL Secure Against Attackers")
 
-[Seção 6.4.1.3, “Migrando para fora da hashing de senhas pré-4.1 e do plugin mysql_old_password”](account-upgrades.html)
+[Section 6.4.1.3, “Migrating Away from Pre-4.1 Password Hashing and the mysql_old_password Plugin”](account-upgrades.html "6.4.1.3 Migrating Away from Pre-4.1 Password Hashing and the mysql_old_password Plugin")
 
-[Seção 4.4.7, “mysql_upgrade — Verificar e atualizar tabelas do MySQL”](mysql-upgrade.html)
+[Section 4.4.7, “mysql_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables")
 
-[Seção 6.2.11, “Gestão de Senhas”](password-management.html)
+[Section 6.2.11, “Password Management”](password-management.html "6.2.11 Password Management")
 
-[Seção 6.4.3.2, “Opções e variáveis do plugin de validação de senha”](validate-password-options-variables.html)
+[Section 6.4.3.2, “Password Validation Plugin Options and Variables”](validate-password-options-variables.html "6.4.3.2 Password Validation Plugin Options and Variables")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 6.2.14, “Usuários de Proxy”](proxy-users.html)
+[Section 6.2.14, “Proxy Users”](proxy-users.html "6.2.14 Proxy Users")
 
-[Seção B.3.3.2.3, “Redefinindo a Senha de Root: Instruções Gerais”](resetting-permissions.html#resetting-permissions-generic)
+[Section B.3.3.2.3, “Resetting the Root Password: Generic Instructions”](resetting-permissions.html#resetting-permissions-generic "B.3.3.2.3 Resetting the Root Password: Generic Instructions")
 
-[Seção B.3.3.2.2, “Redefinindo a Senha de Root: Sistemas Unix e Unix-like”](resetting-permissions.html#resetting-permissions-unix)
+[Section B.3.3.2.2, “Resetting the Root Password: Unix and Unix-Like Systems”](resetting-permissions.html#resetting-permissions-unix "B.3.3.2.2 Resetting the Root Password: Unix and Unix-Like Systems")
 
-[Seção B.3.3.2.1, “Redefinindo a Senha de Root: Sistemas Windows”](resetting-permissions.html#resetting-permissions-windows)
+[Section B.3.3.2.1, “Resetting the Root Password: Windows Systems”](resetting-permissions.html#resetting-permissions-windows "B.3.3.2.1 Resetting the Root Password: Windows Systems")
 
-[Seção 6.2.12, “Tratamento de Senhas Expirantes pelo Servidor”](expired-password-handling.html)
+[Section 6.2.12, “Server Handling of Expired Passwords”](expired-password-handling.html "6.2.12 Server Handling of Expired Passwords")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 13.7.1.7, "Declaração de Definir Senha"](set-password.html)
+[Section 13.7.1.7, “SET PASSWORD Statement”](set-password.html "13.7.1.7 SET PASSWORD Statement")
 
-[Seção 6.2.16, “Definir limites de recursos da conta”](user-resources.html)
+[Section 6.2.16, “Setting Account Resource Limits”](user-resources.html "6.2.16 Setting Account Resource Limits")
 
-[Seção 6.4.1.11, “Autenticação Pluggable de Credenciais de Peer de Soquete”](socket-pluggable-authentication.html)
+[Section 6.4.1.11, “Socket Peer-Credential Pluggable Authentication”](socket-pluggable-authentication.html "6.4.1.11 Socket Peer-Credential Pluggable Authentication")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 6.4.3, “O Plugin de Validação de Senha”](validate-password.html)
+[Section 6.4.3, “The Password Validation Plugin”](validate-password.html "6.4.3 The Password Validation Plugin")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
-### ALTERAR VISTO
+### ALTER VIEW
 
-[Seção 13.1.10, "Instrução ALTER VIEW"](alter-view.html)
+[Section 13.1.10, “ALTER VIEW Statement”](alter-view.html "13.1.10 ALTER VIEW Statement")
 
-[Seção 12.15, “Funções de Informação”](information-functions.html)
+[Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions")
 
-[Seção 16.4.1.8, “Replicação de CURRENT_USER()”](replication-features-current-user.html)
+[Section 16.4.1.8, “Replication of CURRENT_USER()”](replication-features-current-user.html "16.4.1.8 Replication of CURRENT_USER()")
 
-[Seção 23.8, “Restrições aos Programas Armazenados”](stored-program-restrictions.html)
+[Section 23.8, “Restrictions on Stored Programs”](stored-program-restrictions.html "23.8 Restrictions on Stored Programs")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 23.6, “Controle de Acesso a Objetos Armazenados”](stored-objects-security.html)
+[Section 23.6, “Stored Object Access Control”](stored-objects-security.html "23.6 Stored Object Access Control")
 
-[Seção 23.5.2, “Ver Algoritmos de Processamento”](view-algorithms.html)
+[Section 23.5.2, “View Processing Algorithms”](view-algorithms.html "23.5.2 View Processing Algorithms")
 
-[Seção 23.5.1, "Sintaxe de visualização"](view-syntax.html)
+[Section 23.5.1, “View Syntax”](view-syntax.html "23.5.1 View Syntax")
 
-### ANALISE PARTIÇÃO
+### ANALYZE PARTITION
 
-[Seção 14.13.1, “Operações DDL Online”](innodb-online-ddl-operations.html)
+[Section 14.13.1, “Online DDL Operations”](innodb-online-ddl-operations.html "14.13.1 Online DDL Operations")
 
-### ANALISE TÁBLULA
+### ANALYZE TABLE
 
-[Seção 13.1.8, "Instrução ALTER TABLE"](alter-table.html)
+[Section 13.1.8, “ALTER TABLE Statement”](alter-table.html "13.1.8 ALTER TABLE Statement")
 
-[Seção 13.7.2.1, "Declaração de Tabela de Análise"](analyze-table.html)
+[Section 13.7.2.1, “ANALYZE TABLE Statement”](analyze-table.html "13.7.2.1 ANALYZE TABLE Statement")
 
-[Seção 14.8.11.1.1, “Configurando o Cálculo Automático de Estatísticas para Estatísticas de Otimizador Persistente”](innodb-persistent-stats.html#innodb-persistent-stats-auto-recalc)
+[Section 14.8.11.1.1, “Configuring Automatic Statistics Calculation for Persistent Optimizer Statistics”](innodb-persistent-stats.html#innodb-persistent-stats-auto-recalc "14.8.11.1.1 Configuring Automatic Statistics Calculation for Persistent Optimizer Statistics")
 
-[Seção 14.8.11.2, “Configurando Parâmetros de Estatísticas de Otimizador Não Persistente”](innodb-statistics-estimation.html)
+[Section 14.8.11.2, “Configuring Non-Persistent Optimizer Statistics Parameters”](innodb-statistics-estimation.html "14.8.11.2 Configuring Non-Persistent Optimizer Statistics Parameters")
 
-[Seção 14.8.11, “Configurando estatísticas do otimizador para InnoDB”](innodb-performance-optimizer-statistics.html)
+[Section 14.8.11, “Configuring Optimizer Statistics for InnoDB”](innodb-performance-optimizer-statistics.html "14.8.11 Configuring Optimizer Statistics for InnoDB")
 
-[Seção 14.8.11.1.2, “Configurando Parâmetros de Estatísticas do Optimizer para Tabelas Individuais”](innodb-persistent-stats.html#innodb-persistent-stats-table-configuration)
+[Section 14.8.11.1.2, “Configuring Optimizer Statistics Parameters for Individual Tables”](innodb-persistent-stats.html#innodb-persistent-stats-table-configuration "14.8.11.1.2 Configuring Optimizer Statistics Parameters for Individual Tables")
 
-[Seção 14.8.11.1.3, “Configurando o Número de Páginas Amostradas para Estatísticas do Otimizador InnoDB”](innodb-persistent-stats.html#innodb-persistent-stats-pages-sampled)
+[Section 14.8.11.1.3, “Configuring the Number of Sampled Pages for InnoDB Optimizer Statistics”](innodb-persistent-stats.html#innodb-persistent-stats-pages-sampled "14.8.11.1.3 Configuring the Number of Sampled Pages for InnoDB Optimizer Statistics")
 
-[Seção 13.1.14, "Instrução CREATE INDEX"](create-index.html)
+[Section 13.1.14, “CREATE INDEX Statement”](create-index.html "13.1.14 CREATE INDEX Statement")
 
-[Seção 13.1.18, "Instrução CREATE TABLE"](create-table.html)
+[Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement")
 
-[Seção 14.8.11.3, “Estimativa da Complexidade da Tabela ANALYZE para Tabelas InnoDB”](innodb-analyze-table-complexity.html)
+[Section 14.8.11.3, “Estimating ANALYZE TABLE Complexity for InnoDB Tables”](innodb-analyze-table-complexity.html "14.8.11.3 Estimating ANALYZE TABLE Complexity for InnoDB Tables")
 
-[Seção 8.8.2, “Formato de Saída EXPLAIN”](explain-output.html)
+[Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
 
-[Seção 13.8.2, “Instrução EXPLAIN”](explain.html)
+[Section 13.8.2, “EXPLAIN Statement”](explain.html "13.8.2 EXPLAIN Statement")
 
-[Seção 12.9.6, “Ajuste fino da pesquisa full-text do MySQL”](fulltext-fine-tuning.html)
+[Section 12.9.6, “Fine-Tuning MySQL Full-Text Search”](fulltext-fine-tuning.html "12.9.6 Fine-Tuning MySQL Full-Text Search")
 
-[Seção 8.14.3, “Estados gerais de fios”](general-thread-states.html)
+[Section 8.14.3, “General Thread States”](general-thread-states.html "8.14.3 General Thread States")
 
-[Seção 16.1.6.5, “Variáveis do Sistema de ID de Transação Global”](replication-options-gtids.html)
+[Section 16.1.6.5, “Global Transaction ID System Variables”](replication-options-gtids.html "16.1.6.5 Global Transaction ID System Variables")
 
-[Seção 14.8.11.1.4, “Inclusão de registros marcados para exclusão em cálculos de estatísticas persistentes”](innodb-persistent-stats.html#innodb-persistent-stats-delete-marked)
+[Section 14.8.11.1.4, “Including Delete-marked Records in Persistent Statistics Calculations”](innodb-persistent-stats.html#innodb-persistent-stats-delete-marked "14.8.11.1.4 Including Delete-marked Records in Persistent Statistics Calculations")
 
-[Seção 8.3.7, “Coleta de estatísticas de índices InnoDB e MyISAM”](index-statistics.html)
+[Section 8.3.7, “InnoDB and MyISAM Index Statistics Collection”](index-statistics.html "8.3.7 InnoDB and MyISAM Index Statistics Collection")
 
-[Seção 14.8.11.1.5, “Tabelas de estatísticas persistentes do InnoDB”](innodb-persistent-stats.html#innodb-persistent-stats-tables)
+[Section 14.8.11.1.5, “InnoDB Persistent Statistics Tables”](innodb-persistent-stats.html#innodb-persistent-stats-tables "14.8.11.1.5 InnoDB Persistent Statistics Tables")
 
-[Seção 14.8.11.1.6, “Exemplo de tabelas de estatísticas persistentes do InnoDB”](innodb-persistent-stats.html#innodb-persistent-stats-tables-example)
+[Section 14.8.11.1.6, “InnoDB Persistent Statistics Tables Example”](innodb-persistent-stats.html#innodb-persistent-stats-tables-example "14.8.11.1.6 InnoDB Persistent Statistics Tables Example")
 
-[Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
+[Section 14.15, “InnoDB Startup Options and System Variables”](innodb-parameters.html "14.15 InnoDB Startup Options and System Variables")
 
-[Seção 22.3.4, “Manutenção de Partições”](partitioning-maintenance.html)
+[Section 22.3.4, “Maintenance of Partitions”](partitioning-maintenance.html "22.3.4 Maintenance of Partitions")
 
-[Seção 15.7.2, “Problemas da Tabela MERGE”](merge-table-problems.html)
+[Section 15.7.2, “MERGE Table Problems”](merge-table-problems.html "15.7.2 MERGE Table Problems")
 
-[Seção 7.6, “Manutenção de tabelas MyISAM e recuperação em caso de falha”](myisam-table-maintenance.html)
+[Section 7.6, “MyISAM Table Maintenance and Crash Recovery”](myisam-table-maintenance.html "7.6 MyISAM Table Maintenance and Crash Recovery")
 
-[Seção 4.6.3.1, “Opções Gerais do myisamchk”](myisamchk-general-options.html)
+[Section 4.6.3.1, “myisamchk General Options”](myisamchk-general-options.html "4.6.3.1 myisamchk General Options")
 
-[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html)
+[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
 
-[Glossário do MySQL](glossary.html)
+[MySQL Glossary](glossary.html "MySQL Glossary")
 
-[Seção 4.5.3, “mysqlcheck — Um programa de manutenção de tabelas”](mysqlcheck.html)
+[Section 4.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "4.5.3 mysqlcheck — A Table Maintenance Program")
 
-[Seção 21.5.15, “ndb_index_stat — Ferramenta de estatísticas de índice NDB”](mysql-cluster-programs-ndb-index-stat.html)
+[Section 21.5.15, “ndb_index_stat — NDB Index Statistics Utility”](mysql-cluster-programs-ndb-index-stat.html "21.5.15 ndb_index_stat — NDB Index Statistics Utility")
 
-[Seção 8.6.1, “Otimizando consultas MyISAM”](optimizando-consultas-myisam.html)
+[Section 8.6.1, “Optimizing MyISAM Queries”](optimizing-queries-myisam.html "8.6.1 Optimizing MyISAM Queries")
 
-[Seção 8.8.1, “Otimizando consultas com EXPLAIN”](using-explain.html)
+[Section 8.8.1, “Optimizing Queries with EXPLAIN”](using-explain.html "8.8.1 Optimizing Queries with EXPLAIN")
 
-[Seção 8.2.1, “Otimização de instruções SELECT”](select-optimization.html)
+[Section 8.2.1, “Optimizing SELECT Statements”](select-optimization.html "8.2.1 Optimizing SELECT Statements")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 8.2.1.2, “Otimização de alcance”](range-optimization.html)
+[Section 8.2.1.2, “Range Optimization”](range-optimization.html "8.2.1.2 Range Optimization")
 
-[Seção 16.4.1.14, “Replicação e FLUSH”](replication-features-flush.html)
+[Section 16.4.1.14, “Replication and FLUSH”](replication-features-flush.html "16.4.1.14 Replication and FLUSH")
 
-[Seção 22.6, “Restrições e Limitações sobre Partição”](partitioning-limitations.html)
+[Section 22.6, “Restrictions and Limitations on Partitioning”](partitioning-limitations.html "22.6 Restrictions and Limitations on Partitioning")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 13.7.5.22, "Declaração SHOW INDEX"](show-index.html)
+[Section 13.7.5.22, “SHOW INDEX Statement”](show-index.html "13.7.5.22 SHOW INDEX Statement")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 24.4.25, “A visão INFORMATION_SCHEMA INNODB_SYS_TABLESTATS”](information-schema-innodb-sys-tablestats-table.html)
+[Section 24.4.25, “The INFORMATION_SCHEMA INNODB_SYS_TABLESTATS View”](information-schema-innodb-sys-tablestats-table.html "24.4.25 The INFORMATION_SCHEMA INNODB_SYS_TABLESTATS View")
 
-[Seção 24.3.24, “A Tabela INFORMATION_SCHEMA STATISTICS”](information-schema-statistics-table.html)
+[Section 24.3.24, “The INFORMATION_SCHEMA STATISTICS Table”](information-schema-statistics-table.html "24.3.24 The INFORMATION_SCHEMA STATISTICS Table")
 
-[Seção 5.4.5, “O Log de Consultas Lentas”](slow-query-log.html)
+[Section 5.4.5, “The Slow Query Log”](slow-query-log.html "5.4.5 The Slow Query Log")
 
 ### B
 
-index topo](dynindex-statement.html#stmt-index-topo)]
+index top](dynindex-statement.html#stmt-index-top)]
 
-### COMEÇAR
+### BEGIN
 
-[Seção 14.7.2.2, "autocommit, Commit e Rollback"](innodb-autocommit-commit-rollback.html)
+[Section 14.7.2.2, “autocommit, Commit, and Rollback”](innodb-autocommit-commit-rollback.html "14.7.2.2 autocommit, Commit, and Rollback")
 
-[Seção 13.6.1, “INÍCIO ... FIM de uma declaração composta”](begin-end.html)
+[Section 13.6.1, “BEGIN ... END Compound Statement”](begin-end.html "13.6.1 BEGIN ... END Compound Statement")
 
-[Seção 21.7.11, "Resolução de conflitos de replicação de cluster do NDB"](mysql-cluster-replication-conflict-resolution.html)
+[Section 21.7.11, “NDB Cluster Replication Conflict Resolution”](mysql-cluster-replication-conflict-resolution.html "21.7.11 NDB Cluster Replication Conflict Resolution")
 
-[Seção 25.12.7, "Tabelas de Transações do Schema de Desempenho"](performance-schema-transaction-tables.html)
+[Section 25.12.7, “Performance Schema Transaction Tables”](performance-schema-transaction-tables.html "25.12.7 Performance Schema Transaction Tables")
 
-[Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
+[Section 16.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "16.1.6.3 Replica Server Options and Variables")
 
-[Seção 16.4.1.33, “Replicação e Transações”](replication-features-transactions.html)
+[Section 16.4.1.33, “Replication and Transactions”](replication-features-transactions.html "16.4.1.33 Replication and Transactions")
 
-[Seção 23.8, “Restrições aos Programas Armazenados”](stored-program-restrictions.html)
+[Section 23.8, “Restrictions on Stored Programs”](stored-program-restrictions.html "23.8 Restrictions on Stored Programs")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 23.7, "Registro de Log de Binário de Programa Armazenado"](stored-programs-logging.html)
+[Section 23.7, “Stored Program Binary Logging”](stored-programs-logging.html "23.7 Stored Program Binary Logging")
 
-[Seção 25.12.7.1, “A tabela events_transactions_current”](performance-schema-events-transactions-current-table.html)
+[Section 25.12.7.1, “The events_transactions_current Table”](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table")
 
-### COMEÇO ... FIM
+### BEGIN ... END
 
-[Seção 13.6.1, “INÍCIO ... FIM de uma declaração composta”](begin-end.html)
+[Section 13.6.1, “BEGIN ... END Compound Statement”](begin-end.html "13.6.1 BEGIN ... END Compound Statement")
 
-[Seção 13.6.5.1, "Instrução case"](case.html)
+[Section 13.6.5.1, “CASE Statement”](case.html "13.6.5.1 CASE Statement")
 
-[Seção 13.6, "Expressões Compostas"](sql-compound-statements.html)
+[Section 13.6, “Compound Statements”](sql-compound-statements.html "13.6 Compound Statements")
 
-[Seção 13.1.20, "Instrução CREATE TRIGGER"](create-trigger.html)
+[Section 13.1.20, “CREATE TRIGGER Statement”](create-trigger.html "13.1.20 CREATE TRIGGER Statement")
 
-[Seção 13.6.6.1, "Instrução CLOSE do cursor"](close.html)
+[Section 13.6.6.1, “Cursor CLOSE Statement”](close.html "13.6.6.1 Cursor CLOSE Statement")
 
-[Seção 13.6.6.3, "Instrução FETCH do cursor"](fetch.html)
+[Section 13.6.6.3, “Cursor FETCH Statement”](fetch.html "13.6.6.3 Cursor FETCH Statement")
 
-[Seção 13.6.7.2, "DECLARAR ... Declaração de Manipulador"](declare-handler.html)
+[Section 13.6.7.2, “DECLARE ... HANDLER Statement”](declare-handler.html "13.6.7.2 DECLARE ... HANDLER Statement")
 
-[Seção 13.6.3, “Declaração DECLARE”](declare.html)
+[Section 13.6.3, “DECLARE Statement”](declare.html "13.6.3 DECLARE Statement")
 
-[Seção 23.1, “Definindo Programas Armazenados”](stored-programs-defining.html)
+[Section 23.1, “Defining Stored Programs”](stored-programs-defining.html "23.1 Defining Stored Programs")
 
-[Seção 23.4.1, “Visão geral do Agendamento de Eventos”](events-overview.html)
+[Section 23.4.1, “Event Scheduler Overview”](events-overview.html "23.4.1 Event Scheduler Overview")
 
-[Seção 13.6.5.4, "Declaração LEAVE"](leave.html)
+[Section 13.6.5.4, “LEAVE Statement”](leave.html "13.6.5.4 LEAVE Statement")
 
-[Seção 13.6.4.1, "Declaração de Variável Local DECLARE"](declare-local-variable.html)
+[Section 13.6.4.1, “Local Variable DECLARE Statement”](declare-local-variable.html "13.6.4.1 Local Variable DECLARE Statement")
 
-[Seção 13.6.4.2, "Âmbito e resolução de variáveis locais"](local-variable-scope.html)
+[Section 13.6.4.2, “Local Variable Scope and Resolution”](local-variable-scope.html "13.6.4.2 Local Variable Scope and Resolution")
 
-[Seção 23.8, “Restrições aos Programas Armazenados”](stored-program-restrictions.html)
+[Section 23.8, “Restrictions on Stored Programs”](stored-program-restrictions.html "23.8 Restrictions on Stored Programs")
 
-[Seção 13.6.7.6, “Regras de escopo para manipuladores”](handler-scope.html)
+[Section 13.6.7.6, “Scope Rules for Handlers”](handler-scope.html "13.6.7.6 Scope Rules for Handlers")
 
-[Seção 13.3.1, "Instruções START TRANSACTION, COMMIT e ROLLBACK"](commit.html)
+[Section 13.3.1, “START TRANSACTION, COMMIT, and ROLLBACK Statements”](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements")
 
-[Seção 13.6.2, "Rotulagem de declarações"](statement-labels.html)
+[Section 13.6.2, “Statement Labels”](statement-labels.html "13.6.2 Statement Labels")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 23.3.1, "Sintaxe de gatilho e exemplos"](trigger-syntax.html)
+[Section 23.3.1, “Trigger Syntax and Examples”](trigger-syntax.html "23.3.1 Trigger Syntax and Examples")
 
 ### BINLOG
 
-[Seção 13.7.6.1, "Declaração BINLOG"](binlog.html)
+[Section 13.7.6.1, “BINLOG Statement”](binlog.html "13.7.6.1 BINLOG Statement")
 
-[Seção 4.6.7.2, “Exibição de eventos de linha do mysqlbinlog”](mysqlbinlog-row-events.html)
+[Section 4.6.7.2, “mysqlbinlog Row Event Display”](mysqlbinlog-row-events.html "4.6.7.2 mysqlbinlog Row Event Display")
 
-[Seção 4.6.7, “mysqlbinlog — Ferramenta para processamento de arquivos de log binário”](mysqlbinlog.html)
+[Section 4.6.7, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "4.6.7 mysqlbinlog — Utility for Processing Binary Log Files")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
 ### C
 
-index topo](dynindex-statement.html#stmt-index-topo)]
+index top](dynindex-statement.html#stmt-index-top)]
 
 ### CACHE INDEX
 
-[Seção 13.7.6.2, “Declaração de ÍNDICE DE CACHE”](cache-index.html)
+[Section 13.7.6.2, “CACHE INDEX Statement”](cache-index.html "13.7.6.2 CACHE INDEX Statement")
 
-[Seção 16.1.6.5, “Variáveis do Sistema de ID de Transação Global”](replication-options-gtids.html)
+[Section 16.1.6.5, “Global Transaction ID System Variables”](replication-options-gtids.html "16.1.6.5 Global Transaction ID System Variables")
 
-[Seção 8.10.2.4, "Pré-carregamento do índice"](index-preloading.html)
+[Section 8.10.2.4, “Index Preloading”](index-preloading.html "8.10.2.4 Index Preloading")
 
-[Seção 13.7.6.5, "Instrução de carregamento de índice na memória cache"](load-index.html)
+[Section 13.7.6.5, “LOAD INDEX INTO CACHE Statement”](load-index.html "13.7.6.5 LOAD INDEX INTO CACHE Statement")
 
-[Seção 8.10.2.2, "Caches de Chave Múltiplos"](multiple-key-caches.html)
+[Section 8.10.2.2, “Multiple Key Caches”](multiple-key-caches.html "8.10.2.2 Multiple Key Caches")
 
-[Seção 22.6, “Restrições e Limitações sobre Partição”](partitioning-limitations.html)
+[Section 22.6, “Restrictions and Limitations on Partitioning”](partitioning-limitations.html "22.6 Restrictions and Limitations on Partitioning")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-### TELEFONE
+### CALL
 
-[Seção 13.2.1, “Instrução CALL”](call.html)
+[Section 13.2.1, “CALL Statement”](call.html "13.2.1 CALL Statement")
 
-[Seção 13.1.16, "Instruções CREATE PROCEDURE e CREATE FUNCTION"](create-procedure.html)
+[Section 13.1.16, “CREATE PROCEDURE and CREATE FUNCTION Statements”](create-procedure.html "13.1.16 CREATE PROCEDURE and CREATE FUNCTION Statements")
 
-[Seção 13.5, "Declarações Preparadas"](sql-prepared-statements.html)
+[Section 13.5, “Prepared Statements”](sql-prepared-statements.html "13.5 Prepared Statements")
 
-[Seção 23.6, “Controle de Acesso a Objetos Armazenados”](stored-objects-security.html)
+[Section 23.6, “Stored Object Access Control”](stored-objects-security.html "23.6 Stored Object Access Control")
 
-[Capítulo 23, *Objetos Armazenados*] (stored-objects.html)
+[Chapter 23, *Stored Objects*](stored-objects.html "Chapter 23 Stored Objects")
 
-[Seção 23.7, "Registro de Log de Binário de Programa Armazenado"](stored-programs-logging.html)
+[Section 23.7, “Stored Program Binary Logging”](stored-programs-logging.html "23.7 Stored Program Binary Logging")
 
-[Seção 23.2.1, "Sintaxe de Rotinas Armazenadas"](stored-routines-syntax.html)
+[Section 23.2.1, “Stored Routine Syntax”](stored-routines-syntax.html "23.2.1 Stored Routine Syntax")
 
-[Seção 8.15.3, “Declarações rastreáveis”](traceable-statements.html)
+[Section 8.15.3, “Traceable Statements”](traceable-statements.html "8.15.3 Traceable Statements")
 
-[Seção 23.3.1, "Sintaxe de gatilho e exemplos"](trigger-syntax.html)
+[Section 23.3.1, “Trigger Syntax and Examples”](trigger-syntax.html "23.3.1 Trigger Syntax and Examples")
 
-### Chame p()
+### CALL p()
 
-[Seção 13.6.7.4, "Declaração RESIGNAL"](resignal.html)
+[Section 13.6.7.4, “RESIGNAL Statement”](resignal.html "13.6.7.4 RESIGNAL Statement")
 
 ### CALL stored_procedure()
 
-[Seção 22.6.4, “Partição e Bloqueio”](partitioning-limitations-locking.html)
+[Section 22.6.4, “Partitioning and Locking”](partitioning-limitations-locking.html "22.6.4 Partitioning and Locking")
 
-### CASO
+### CASE
 
-[Seção 8.10.4, “Cache de Declarações Preparadas e Programas Armazenados”](statement-caching.html)
+[Section 8.10.4, “Caching of Prepared Statements and Stored Programs”](statement-caching.html "8.10.4 Caching of Prepared Statements and Stored Programs")
 
-[Seção 13.6.5.1, "Instrução case"](case.html)
+[Section 13.6.5.1, “CASE Statement”](case.html "13.6.5.1 CASE Statement")
 
-[Seção 12.5, “Funções de Controle de Fluxo”](flow-control-functions.html)
+[Section 12.5, “Flow Control Functions”](flow-control-functions.html "12.5 Flow Control Functions")
 
-[Seção 13.6.5, “Instruções de controle de fluxo”](flow-control-statements.html)
+[Section 13.6.5, “Flow Control Statements”](flow-control-statements.html "13.6.5 Flow Control Statements")
 
-[Seção 8.15.3, “Declarações rastreáveis”](traceable-statements.html)
+[Section 8.15.3, “Traceable Statements”](traceable-statements.html "8.15.3 Traceable Statements")
 
-### ALTERE O MASTER PARA
+### CHANGE MASTER TO
 
-[Seção 16.1.5.4, “Adicionar uma fonte de log binário à replica de múltiplas fontes”](replication-multi-source-adding-binlog-master.html)
+[Section 16.1.5.4, “Adding a Binary Log Based Source to a Multi-Source Replica”](replication-multi-source-adding-binlog-master.html "16.1.5.4 Adding a Binary Log Based Source to a Multi-Source Replica")
 
-[Seção 16.1.5.3, “Adicionar fontes baseadas em GTID a uma réplica de múltiplas fontes”](replication-multi-source-adding-gtid-master.html)
+[Section 16.1.5.3, “Adding GTID-Based Sources to a Multi-Source Replica”](replication-multi-source-adding-gtid-master.html "16.1.5.3 Adding GTID-Based Sources to a Multi-Source Replica")
 
-[Seção 6.2.10, “Atribuição de Senhas de Conta”](atribuição-de-senhas.html)
+[Section 6.2.10, “Assigning Account Passwords”](assigning-passwords.html "6.2.10 Assigning Account Passwords")
 
-[Seção 16.3.1.2, "Fazer backup de dados brutos de uma réplica"](replication-solutions-backups-rawdata.html)
+[Section 16.3.1.2, “Backing Up Raw Data from a Replica”](replication-solutions-backups-rawdata.html "16.3.1.2 Backing Up Raw Data from a Replica")
 
-[Seção 16.1.1, “Visão geral da configuração de replicação baseada na posição do arquivo de log binário”](binlog-replication-configuration-overview.html)
+[Section 16.1.1, “Binary Log File Position Based Replication Configuration Overview”](binlog-replication-configuration-overview.html "16.1.1 Binary Log File Position Based Replication Configuration Overview")
 
-[Seção 13.4.2.1, “Mudar o mestre para declaração”](change-master-to.html)
+[Section 13.4.2.1, “CHANGE MASTER TO Statement”](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement")
 
-[Seção 2.10.3, “Alterações no MySQL 5.7”](upgrading-from-previous-series.html)
+[Section 2.10.3, “Changes in MySQL 5.7”](upgrading-from-previous-series.html "2.10.3 Changes in MySQL 5.7")
 
-[Seção 16.1.7.1, “Verificar o status da replicação”](replication-administration-status.html)
+[Section 16.1.7.1, “Checking Replication Status”](replication-administration-status.html "16.1.7.1 Checking Replication Status")
 
-[Seção 16.2.2.1, “Comandos para operações em um único canal”](channels-commands-single-channel.html)
+[Section 16.2.2.1, “Commands for Operations on a Single Channel”](channels-commands-single-channel.html "16.2.2.1 Commands for Operations on a Single Channel")
 
-[Seção 16.2.2.2, “Compatibilidade com Declarações de Replicação Prévias”](channels-with-prev-replication.html)
+[Section 16.2.2.2, “Compatibility with Previous Replication Statements”](channels-with-prev-replication.html "16.2.2.2 Compatibility with Previous Replication Statements")
 
-[Seção 16.1.2.4.1, “Criando um Instantâneo de Dados Usando mysqldump”](replication-snapshot-method.html#replication-howto-mysqldump)
+[Section 16.1.2.4.1, “Creating a Data Snapshot Using mysqldump”](replication-snapshot-method.html#replication-howto-mysqldump "16.1.2.4.1 Creating a Data Snapshot Using mysqldump")
 
-[Seção 16.3.10, “Replicação Atrasa”](replication-delayed.html)
+[Section 16.3.10, “Delayed Replication”](replication-delayed.html "16.3.10 Delayed Replication")
 
-[Seção 6.3.2, “Protocolos e cifra de conexão encriptada TLS”](encrypted-connection-protocols-ciphers.html)
+[Section 6.3.2, “Encrypted Connection TLS Protocols and Ciphers”](encrypted-connection-protocols-ciphers.html "6.3.2 Encrypted Connection TLS Protocols and Ciphers")
 
-[Seção 17.8, “Perguntas Frequentes”](group-replication-frequently-asked-questions.html)
+[Section 17.8, “Frequently Asked Questions”](group-replication-frequently-asked-questions.html "17.8 Frequently Asked Questions")
 
-[Seção 16.1.6.5, “Variáveis do Sistema de ID de Transação Global”](replication-options-gtids.html)
+[Section 16.1.6.5, “Global Transaction ID System Variables”](replication-options-gtids.html "16.1.6.5 Global Transaction ID System Variables")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 16.1.3.3, “Autoposicionamento GTID”](replication-gtids-auto-positioning.html)
+[Section 16.1.3.3, “GTID Auto-Positioning”](replication-gtids-auto-positioning.html "16.1.3.3 GTID Auto-Positioning")
 
-[Seção 16.3.2, “Tratamento de um Parada Inesperada de uma Replicação”](replication-solutions-unexpected-replica-halt.html)
+[Section 16.3.2, “Handling an Unexpected Halt of a Replica”](replication-solutions-unexpected-replica-halt.html "16.3.2 Handling an Unexpected Halt of a Replica")
 
-[Seção 21.7.8, “Implementando Failover com Replicação de NDB Cluster”](mysql-cluster-replication-failover.html)
+[Section 21.7.8, “Implementing Failover with NDB Cluster Replication”](mysql-cluster-replication-failover.html "21.7.8 Implementing Failover with NDB Cluster Replication")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 21.7.9, "Backup do NDB Cluster com Replicação do NDB Cluster"](mysql-cluster-replication-backups.html)
+[Section 21.7.9, “NDB Cluster Backups With NDB Cluster Replication”](mysql-cluster-replication-backups.html "21.7.9 NDB Cluster Backups With NDB Cluster Replication")
 
-[Seção 21.7.10, “Replicação em Nuvem do NDB: Replicação Bidirecional e Circular”](mysql-cluster-replication-multi-source.html)
+[Section 21.7.10, “NDB Cluster Replication: Bidirectional and Circular Replication”](mysql-cluster-replication-multi-source.html "21.7.10 NDB Cluster Replication: Bidirectional and Circular Replication")
 
-[Seção 25.12.11, "Tabelas de Replicação do Schema de Desempenho"](performance-schema-replication-tables.html)
+[Section 25.12.11, “Performance Schema Replication Tables”](performance-schema-replication-tables.html "25.12.11 Performance Schema Replication Tables")
 
-[Seção 21.7.5, “Preparando o NDB Cluster para Replicação”](mysql-cluster-replication-preparation.html)
+[Section 21.7.5, “Preparing the NDB Cluster for Replication”](mysql-cluster-replication-preparation.html "21.7.5 Preparing the NDB Cluster for Replication")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
+[Section 16.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "16.1.6.3 Replica Server Options and Variables")
 
-[Seção 16.1.6, “Opções e variáveis de registro binário e replicação”](replication-options.html)
+[Section 16.1.6, “Replication and Binary Logging Options and Variables”](replication-options.html "16.1.6 Replication and Binary Logging Options and Variables")
 
-[Seção 16.4.1.26, “Replicação e Parada de Fonte ou Replicação”](replication-features-shutdowns.html)
+[Section 16.4.1.26, “Replication and Source or Replica Shutdowns”](replication-features-shutdowns.html "16.4.1.26 Replication and Source or Replica Shutdowns")
 
-[Seção 16.4.1.32, "Inconsistências de Replicação e Transação"](replication-features-transaction-inconsistencies.html)
+[Section 16.4.1.32, “Replication and Transaction Inconsistencies”](replication-features-transaction-inconsistencies.html "16.4.1.32 Replication and Transaction Inconsistencies")
 
-[Seção 16.2.4.2, "Repositórios de Metadados de Replicação"](replica-logs-status.html)
+[Section 16.2.4.2, “Replication Metadata Repositories”](replica-logs-status.html "16.2.4.2 Replication Metadata Repositories")
 
-[Seção 8.14.8, “Estados de Conexão de Replica Thread”](replica-connection-thread-states.html)
+[Section 8.14.8, “Replication Replica Connection Thread States”](replica-connection-thread-states.html "8.14.8 Replication Replica Connection Thread States")
 
-[Seção 8.14.6, “Estados de E/S de Fila de Replicação Replica”](replica-io-thread-states.html)
+[Section 8.14.6, “Replication Replica I/O Thread States”](replica-io-thread-states.html "8.14.6 Replication Replica I/O Thread States")
 
-[Seção 8.14.7, “Estados de Solução de Conflitos do SQL Thread”](replica-sql-thread-states.html)
+[Section 8.14.7, “Replication Replica SQL Thread States”](replica-sql-thread-states.html "8.14.7 Replication Replica SQL Thread States")
 
-[Seção 13.4.2.3, "Declaração de RESET SLAVE"](reset-slave.html)
+[Section 13.4.2.3, “RESET SLAVE Statement”](reset-slave.html "13.4.2.3 RESET SLAVE Statement")
 
-[Seção 16.1.3.6, “Restrições à Replicação com GTIDs”](replication-gtids-restrictions.html)
+[Section 16.1.3.6, “Restrictions on Replication with GTIDs”](replication-gtids-restrictions.html "16.1.3.6 Restrictions on Replication with GTIDs")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 16.1.2.5.2, “Definindo a Configuração da Fonte no Replica”](replication-setup-replicas.html#replication-howto-slaveinit)
+[Section 16.1.2.5.2, “Setting the Source Configuration on the Replica”](replication-setup-replicas.html#replication-howto-slaveinit "16.1.2.5.2 Setting the Source Configuration on the Replica")
 
-[Seção 16.1.2.5.3, “Configurando a replicação entre uma nova fonte e réplicas”](replication-setup-replicas.html#replication-howto-newservers)
+[Section 16.1.2.5.3, “Setting Up Replication between a New Source and Replicas”](replication-setup-replicas.html#replication-howto-newservers "16.1.2.5.3 Setting Up Replication between a New Source and Replicas")
 
-[Seção 16.3.8, “Configurando a replicação para usar conexões criptografadas”](replication-encrypted-connections.html)
+[Section 16.3.8, “Setting Up Replication to Use Encrypted Connections”](replication-encrypted-connections.html "16.3.8 Setting Up Replication to Use Encrypted Connections")
 
-[Seção 16.1.3.4, “Configurando a replicação usando GTIDs”](replication-gtids-howto.html)
+[Section 16.1.3.4, “Setting Up Replication Using GTIDs”](replication-gtids-howto.html "16.1.3.4 Setting Up Replication Using GTIDs")
 
-[Seção 16.1.2.5.4, “Configurando a replicação com dados existentes”](replication-setup-replicas.html#replication-howto-existingdata)
+[Section 16.1.2.5.4, “Setting Up Replication with Existing Data”](replication-setup-replicas.html#replication-howto-existingdata "16.1.2.5.4 Setting Up Replication with Existing Data")
 
-[Seção 13.7.5.34, "Declaração de Status de Escravo"](show-slave-status.html)
+[Section 13.7.5.34, “SHOW SLAVE STATUS Statement”](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement")
 
-[Seção 16.1.7.3.2.2, “Saltar Transações com `CHANGE MASTER TO`”](replication-administration-skip.html#replication-administration-skip-change-master-to)
+[Section 16.1.7.3.2.2, “Skipping Transactions With `CHANGE MASTER TO`”](replication-administration-skip.html#replication-administration-skip-change-master-to "16.1.7.3.2.2 Skipping Transactions With CHANGE MASTER TO")
 
-[Seção 16.1.7.3.2, “Saltar Transações sem GTIDs”](replication-administration-skip.html#replication-administration-skip-nogtid)
+[Section 16.1.7.3.2, “Skipping Transactions Without GTIDs”](replication-administration-skip.html#replication-administration-skip-nogtid "16.1.7.3.2 Skipping Transactions Without GTIDs")
 
-[Seção 13.4.2.5, "Declaração START SLAVE"](start-slave.html)
+[Section 13.4.2.5, “START SLAVE Statement”](start-slave.html "13.4.2.5 START SLAVE Statement")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 16.3.7, “Alteração de fontes durante o failover”](replication-solutions-switch.html)
+[Section 16.3.7, “Switching Sources During Failover”](replication-solutions-switch.html "16.3.7 Switching Sources During Failover")
 
-[Seção 14.21.6, “O Plugin InnoDB memcached e Replicação”](innodb-memcached-replication.html)
+[Section 14.21.6, “The InnoDB memcached Plugin and Replication”](innodb-memcached-replication.html "14.21.6 The InnoDB memcached Plugin and Replication")
 
-[Seção 25.12.11.3, “Tabela replication_applier_configuration”](performance-schema-replication-applier-configuration-table.html)
+[Section 25.12.11.3, “The replication_applier_configuration Table”](performance-schema-replication-applier-configuration-table.html "25.12.11.3 The replication_applier_configuration Table")
 
-[Seção 25.12.11.1, “Tabela de configuração de conexão de replicação”](performance-schema-replication-connection-configuration-table.html)
+[Section 25.12.11.1, “The replication_connection_configuration Table”](performance-schema-replication-connection-configuration-table.html "25.12.11.1 The replication_connection_configuration Table")
 
-[Seção 16.2.1.2, “Uso de Registro e Replicação Baseados em Linhas”](replication-rbr-usage.html)
+[Section 16.2.1.2, “Usage of Row-Based Logging and Replication”](replication-rbr-usage.html "16.2.1.2 Usage of Row-Based Logging and Replication")
 
-[Seção 17.2.1.3, “Credenciais do Usuário”](group-replication-user-credentials.html)
+[Section 17.2.1.3, “User Credentials”](group-replication-user-credentials.html "17.2.1.3 User Credentials")
 
-[Seção 16.1.3.5, “Uso de GTIDs para Failover e Scaleout”](replication-gtids-failover.html)
+[Section 16.1.3.5, “Using GTIDs for Failover and Scaleout”](replication-gtids-failover.html "16.1.3.5 Using GTIDs for Failover and Scaleout")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
-### REPRODUÇÃO DE FILTRO DE MUDANÇA
+### CHANGE REPLICATION FILTER
 
-[Seção 13.4.2.2, “Declaração de Filtro de Replicação de Mudança”](change-replication-filter.html)
+[Section 13.4.2.2, “CHANGE REPLICATION FILTER Statement”](change-replication-filter.html "13.4.2.2 CHANGE REPLICATION FILTER Statement")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### ALTERE O FILTRO DE REPLICAÇÃO REPLICATE_DO_DB
+### CHANGE REPLICATION FILTER REPLICATE_DO_DB
 
-[Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
+[Section 16.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "16.1.6.3 Replica Server Options and Variables")
 
-### ALTERE O FILTRO DE REPLICAÇÃO REPLICATE_DO_TABLE
+### CHANGE REPLICATION FILTER REPLICATE_DO_TABLE
 
-[Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
+[Section 16.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "16.1.6.3 Replica Server Options and Variables")
 
-### ALTERE O FILTRO DE REPLICAÇÃO REPLICA_IGNORE_DB
+### CHANGE REPLICATION FILTER REPLICATE_IGNORE_DB
 
-[Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
+[Section 16.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "16.1.6.3 Replica Server Options and Variables")
 
-### ALTERE O FILTRO DE REPLICAÇÃO REPLICA_IGNORE_TABLE
+### CHANGE REPLICATION FILTER REPLICATE_IGNORE_TABLE
 
-[Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
+[Section 16.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "16.1.6.3 Replica Server Options and Variables")
 
-### ALTERE O FILTRO DE REPLICAÇÃO REPLICA_REWRITE_DB
+### CHANGE REPLICATION FILTER REPLICATE_REWRITE_DB
 
-[Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
+[Section 16.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "16.1.6.3 Replica Server Options and Variables")
 
-### ALTERE O FILTRO DE REPLICAÇÃO REPLICA_WILD_DO_TABLE
+### CHANGE REPLICATION FILTER REPLICATE_WILD_DO_TABLE
 
-[Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
+[Section 16.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "16.1.6.3 Replica Server Options and Variables")
 
-### ALTERE O FILTRO DE REPLICAÇÃO REPLICA_WILD_IGNORE_TABLE
+### CHANGE REPLICATION FILTER REPLICATE_WILD_IGNORE_TABLE
 
-[Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
+[Section 16.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "16.1.6.3 Replica Server Options and Variables")
 
-### VER PARTIÇÃO
+### CHECK PARTITION
 
-[Seção 14.13.1, “Operações DDL Online”](innodb-online-ddl-operations.html)
+[Section 14.13.1, “Online DDL Operations”](innodb-online-ddl-operations.html "14.13.1 Online DDL Operations")
 
-### VER TABELA
+### CHECK TABLE
 
-[Seção 11.2.5, “Limitações do ANO(2) de 2 dígitos e migração para o ANO de 4 dígitos”](migrando-de-ano2.html)
+[Section 11.2.5, “2-Digit YEAR(2) Limitations and Migrating to 4-Digit YEAR”](migrating-from-year2.html "11.2.5 2-Digit YEAR(2) Limitations and Migrating to 4-Digit YEAR")
 
-[Seção 13.1.8.1, “Operações de Partição de Tabela”](alter-table-partition-operations.html)
+[Section 13.1.8.1, “ALTER TABLE Partition Operations”](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations")
 
-[Seção 2.10.3, “Alterações no MySQL 5.7”](upgrading-from-previous-series.html)
+[Section 2.10.3, “Changes in MySQL 5.7”](upgrading-from-previous-series.html "2.10.3 Changes in MySQL 5.7")
 
-[Seção 13.7.2.2, "Instrução CHECK TABLE"](check-table.html)
+[Section 13.7.2.2, “CHECK TABLE Statement”](check-table.html "13.7.2.2 CHECK TABLE Statement")
 
-[Seção 15.2.4.1, “Tabelas MyISAM corrompidas”](corrompidas-myisam-tables.html)
+[Section 15.2.4.1, “Corrupted MyISAM Tables”](corrupted-myisam-tables.html "15.2.4.1 Corrupted MyISAM Tables")
 
-[Seção 13.1.16, "Instruções CREATE PROCEDURE e CREATE FUNCTION"](create-procedure.html)
+[Section 13.1.16, “CREATE PROCEDURE and CREATE FUNCTION Statements”](create-procedure.html "13.1.16 CREATE PROCEDURE and CREATE FUNCTION Statements")
 
-[Seção 13.1.21, "Instrução CREATE VIEW"](create-view.html)
+[Section 13.1.21, “CREATE VIEW Statement”](create-view.html "13.1.21 CREATE VIEW Statement")
 
-[Seção 8.11.5, “Bloqueio Externo”](external-locking.html)
+[Section 8.11.5, “External Locking”](external-locking.html "8.11.5 External Locking")
 
-[Seção 16.1.6.5, “Variáveis do Sistema de ID de Transação Global”](replication-options-gtids.html)
+[Section 16.1.6.5, “Global Transaction ID System Variables”](replication-options-gtids.html "16.1.6.5 Global Transaction ID System Variables")
 
-[Seção 7.6.3, “Como reparar as tabelas MyISAM”](myisam-repair.html)
+[Section 7.6.3, “How to Repair MyISAM Tables”](myisam-repair.html "7.6.3 How to Repair MyISAM Tables")
 
-[Seção 1.5, “Como relatar bugs ou problemas”](bug-reports.html)
+[Section 1.5, “How to Report Bugs or Problems”](bug-reports.html "1.5 How to Report Bugs or Problems")
 
-[Seção 4.6.1, “innochecksum — Ferramenta de verificação de checksum de arquivo InnoDB offline”](innochecksum.html)
+[Section 4.6.1, “innochecksum — Offline InnoDB File Checksum Utility”](innochecksum.html "4.6.1 innochecksum — Offline InnoDB File Checksum Utility")
 
-[Seção 14.19.2, “Recuperação do InnoDB”](innodb-recovery.html)
+[Section 14.19.2, “InnoDB Recovery”](innodb-recovery.html "14.19.2 InnoDB Recovery")
 
-[Seção 14.22, "Solução de problemas do InnoDB"](innodb-troubleshooting.html)
+[Section 14.22, “InnoDB Troubleshooting”](innodb-troubleshooting.html "14.22 InnoDB Troubleshooting")
 
-[Seção 22.3.4, “Manutenção de Partições”](partitioning-maintenance.html)
+[Section 22.3.4, “Maintenance of Partitions”](partitioning-maintenance.html "22.3.4 Maintenance of Partitions")
 
-[Seção 7.6, “Manutenção de tabelas MyISAM e recuperação em caso de falha”](myisam-table-maintenance.html)
+[Section 7.6, “MyISAM Table Maintenance and Crash Recovery”](myisam-table-maintenance.html "7.6 MyISAM Table Maintenance and Crash Recovery")
 
-[Seção 4.6.3, “myisamchk — Ferramenta de manutenção de tabelas MyISAM”](myisamchk.html)
+[Section 4.6.3, “myisamchk — MyISAM Table-Maintenance Utility”](myisamchk.html "4.6.3 myisamchk — MyISAM Table-Maintenance Utility")
 
-[Seção A.6, “Perguntas frequentes sobre o MySQL 5.7: Visualizações”](faqs-views.html)
+[Section A.6, “MySQL 5.7 FAQ: Views”](faqs-views.html "A.6 MySQL 5.7 FAQ: Views")
 
-[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html)
+[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
 
-[Seção B.3.2.7, “O servidor MySQL desapareceu”](gone-away.html)
+[Section B.3.2.7, “MySQL server has gone away”](gone-away.html "B.3.2.7 MySQL server has gone away")
 
-[Seção 4.4.7, “mysql_upgrade — Verificar e atualizar tabelas do MySQL”](mysql-upgrade.html)
+[Section 4.4.7, “mysql_upgrade — Check and Upgrade MySQL Tables”](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables")
 
-[Seção 4.5.3, “mysqlcheck — Um programa de manutenção de tabelas”](mysqlcheck.html)
+[Section 4.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "4.5.3 mysqlcheck — A Table Maintenance Program")
 
-[Seção 15.2.4.2, “Problemas com tabelas que não são fechadas corretamente”](myisam-table-close.html)
+[Section 15.2.4.2, “Problems from Tables Not Being Closed Properly”](myisam-table-close.html "15.2.4.2 Problems from Tables Not Being Closed Properly")
 
-[Seção 2.10.12, “Reestruturação ou reparo de tabelas ou índices”](rebuilding-tables.html)
+[Section 2.10.12, “Rebuilding or Repairing Tables or Indexes”](rebuilding-tables.html "2.10.12 Rebuilding or Repairing Tables or Indexes")
 
-[Seção 15.4.1, “Reparando e verificando tabelas CSV”](se-csv-repair.html)
+[Section 15.4.1, “Repairing and Checking CSV Tables”](se-csv-repair.html "15.4.1 Repairing and Checking CSV Tables")
 
-[Seção 21.5.24.1.2, “Restauração de um backup do NDB para uma versão posterior do NDB Cluster”](ndb-restore-to-different-version.html#ndb-restore-to-later-version)
+[Section 21.5.24.1.2, “Restoring an NDB backup to a later version of NDB Cluster”](ndb-restore-to-different-version.html#ndb-restore-to-later-version "21.5.24.1.2 Restoring an NDB backup to a later version of NDB Cluster")
 
-[Seção 22.6, “Restrições e Limitações sobre Partição”](partitioning-limitations.html)
+[Section 22.6, “Restrictions and Limitations on Partitioning”](partitioning-limitations.html "22.6 Restrictions and Limitations on Partitioning")
 
-[Seção 13.6.6.5, “Restrições aos cursors no lado do servidor”](cursor-restrictions.html)
+[Section 13.6.6.5, “Restrictions on Server-Side Cursors”](cursor-restrictions.html "13.6.6.5 Restrictions on Server-Side Cursors")
 
-[Seção 23.8, “Restrições aos Programas Armazenados”](stored-program-restrictions.html)
+[Section 23.8, “Restrictions on Stored Programs”](stored-program-restrictions.html "23.8 Restrictions on Stored Programs")
 
-[Seção 23.9, “Restrições de visualização”](view-restrictions.html)
+[Section 23.9, “Restrictions on Views”](view-restrictions.html "23.9 Restrictions on Views")
 
-[Seção 5.4.1, “Selecionando destinos de saída do Log de consulta geral e do Log de consulta lenta”](log-destinations.html)
+[Section 5.4.1, “Selecting General Query Log and Slow Query Log Output Destinations”](log-destinations.html "5.4.1 Selecting General Query Log and Slow Query Log Output Destinations")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 7.6.5, “Configurando um cronograma de manutenção de tabela MyISAM”](myisam-maintenance-schedule.html)
+[Section 7.6.5, “Setting Up a MyISAM Table Maintenance Schedule”](myisam-maintenance-schedule.html "7.6.5 Setting Up a MyISAM Table Maintenance Schedule")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 15.5, “O Motor de Armazenamento ARCHIVE”](archive-storage-engine.html)
+[Section 15.5, “The ARCHIVE Storage Engine”](archive-storage-engine.html "15.5 The ARCHIVE Storage Engine")
 
-[Seção 15.7, “O Motor de Armazenamento MERGE”](merge-storage-engine.html)
+[Section 15.7, “The MERGE Storage Engine”](merge-storage-engine.html "15.7 The MERGE Storage Engine")
 
-[Seção 5.4.5, “O Log de Consultas Lentas”](slow-query-log.html)
+[Section 5.4.5, “The Slow Query Log”](slow-query-log.html "5.4.5 The Slow Query Log")
 
-### VER TABELA ... EXTENSÃO
+### CHECK TABLE ... EXTENDED
 
-[Seção 13.7.2.2, "Instrução CHECK TABLE"](check-table.html)
+[Section 13.7.2.2, “CHECK TABLE Statement”](check-table.html "13.7.2.2 CHECK TABLE Statement")
 
-### VER TABELA ... PARA O MELHORAMENTO
+### CHECK TABLE ... FOR UPGRADE
 
-[Seção 2.10.3, “Alterações no MySQL 5.7”](upgrading-from-previous-series.html)
+[Section 2.10.3, “Changes in MySQL 5.7”](upgrading-from-previous-series.html "2.10.3 Changes in MySQL 5.7")
 
-[Seção 13.7.2.2, "Instrução CHECK TABLE"](check-table.html)
+[Section 13.7.2.2, “CHECK TABLE Statement”](check-table.html "13.7.2.2 CHECK TABLE Statement")
 
-[Seção 13.7.2.5, “Declaração de REPAIR TABLE”](repair-table.html)
+[Section 13.7.2.5, “REPAIR TABLE Statement”](repair-table.html "13.7.2.5 REPAIR TABLE Statement")
 
-### VER TABELA AGORA
+### CHECK TABLE QUICK
 
-[Seção 13.7.2.2, "Instrução CHECK TABLE"](check-table.html)
+[Section 13.7.2.2, “CHECK TABLE Statement”](check-table.html "13.7.2.2 CHECK TABLE Statement")
 
-### VER TABELA CHECKSUM
+### CHECKSUM TABLE
 
-[Seção 13.7.2.3, "Declaração de Tabela CHECKSUM"](checksum-table.html)
+[Section 13.7.2.3, “CHECKSUM TABLE Statement”](checksum-table.html "13.7.2.3 CHECKSUM TABLE Statement")
 
-[Seção 13.1.18, "Instrução CREATE TABLE"](create-table.html)
+[Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement")
 
-[Seção 16.4.1.4, “Replicação e TABELA CHECKSUM”](replication-features-checksum-table.html)
+[Section 16.4.1.4, “Replication and CHECKSUM TABLE”](replication-features-checksum-table.html "16.4.1.4 Replication and CHECKSUM TABLE")
 
-### VERIFICAR A TABELA ... RÁPIDO
+### CHECKSUM TABLE ... QUICK
 
-[Seção 13.7.2.3, "Declaração de Tabela CHECKSUM"](checksum-table.html)
+[Section 13.7.2.3, “CHECKSUM TABLE Statement”](checksum-table.html "13.7.2.3 CHECKSUM TABLE Statement")
 
-### COALESCE PARTIÇÃO
+### COALESCE PARTITION
 
-[Seção 14.13.1, “Operações DDL Online”](innodb-online-ddl-operations.html)
+[Section 14.13.1, “Online DDL Operations”](innodb-online-ddl-operations.html "14.13.1 Online DDL Operations")
 
-### COMPROMETIDO
+### COMMIT
 
-[Seção 14.7.2.2, "autocommit, Commit e Rollback"](innodb-autocommit-commit-rollback.html)
+[Section 14.7.2.2, “autocommit, Commit, and Rollback”](innodb-autocommit-commit-rollback.html "14.7.2.2 autocommit, Commit, and Rollback")
 
-[Seção 8.5.5, “Carregamento de Dados em Massa para Tabelas InnoDB”](optimizando-innodb-bulk-data-loading.html)
+[Section 8.5.5, “Bulk Data Loading for InnoDB Tables”](optimizing-innodb-bulk-data-loading.html "8.5.5 Bulk Data Loading for InnoDB Tables")
 
-[Seção 14.6.1.5, “Conversão de tabelas de MyISAM para InnoDB”](converting-tables-to-innodb.html)
+[Section 14.6.1.5, “Converting Tables from MyISAM to InnoDB”](converting-tables-to-innodb.html "14.6.1.5 Converting Tables from MyISAM to InnoDB")
 
-[Seção 13.1.16, "Instruções CREATE PROCEDURE e CREATE FUNCTION"](create-procedure.html)
+[Section 13.1.16, “CREATE PROCEDURE and CREATE FUNCTION Statements”](create-procedure.html "13.1.16 CREATE PROCEDURE and CREATE FUNCTION Statements")
 
-[Seção 14.2, “InnoDB e o Modelo ACID”](mysql-acid.html)
+[Section 14.2, “InnoDB and the ACID Model”](mysql-acid.html "14.2 InnoDB and the ACID Model")
 
-[Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
+[Section 14.15, “InnoDB Startup Options and System Variables”](innodb-parameters.html "14.15 InnoDB Startup Options and System Variables")
 
-[Seção 14.7.3, "Bloqueios Definidos por Diferentes Instruções SQL no InnoDB"](innodb-locks-set.html)
+[Section 14.7.3, “Locks Set by Different SQL Statements in InnoDB”](innodb-locks-set.html "14.7.3 Locks Set by Different SQL Statements in InnoDB")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
+[Section 21.4.3.9.2, “NDB Cluster System Variables”](mysql-cluster-options-variables.html#mysql-cluster-system-variables "21.4.3.9.2 NDB Cluster System Variables")
 
-[Seção 16.1.2.3, “Obtendo as coordenadas do log binário da fonte de replicação”](replication-howto-masterstatus.html)
+[Section 16.1.2.3, “Obtaining the Replication Source's Binary Log Coordinates”](replication-howto-masterstatus.html "16.1.2.3 Obtaining the Replication Source's Binary Log Coordinates")
 
-[Seção 8.5.3, “Otimização de Transações de Leitura Apenas de Leitura InnoDB”](innodb-performance-ro-txn.html)
+[Section 8.5.3, “Optimizing InnoDB Read-Only Transactions”](innodb-performance-ro-txn.html "8.5.3 Optimizing InnoDB Read-Only Transactions")
 
-[Seção 25.12.7, "Tabelas de Transações do Schema de Desempenho"](performance-schema-transaction-tables.html)
+[Section 25.12.7, “Performance Schema Transaction Tables”](performance-schema-transaction-tables.html "25.12.7 Performance Schema Transaction Tables")
 
-[Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
+[Section 16.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "16.1.6.3 Replica Server Options and Variables")
 
-[Seção 16.4.1.33, “Replicação e Transações”](replication-features-transactions.html)
+[Section 16.4.1.33, “Replication and Transactions”](replication-features-transactions.html "16.4.1.33 Replication and Transactions")
 
-[Seção 5.5.4.3.2, “Procedimentos e funções do plugin de reescrita de consultas do reescritor”](rewriter-query-rewrite-plugin-reference.html#rewriter-query-rewrite-plugin-routines)
+[Section 5.5.4.3.2, “Rewriter Query Rewrite Plugin Procedures and Functions”](rewriter-query-rewrite-plugin-reference.html#rewriter-query-rewrite-plugin-routines "5.5.4.3.2 Rewriter Query Rewrite Plugin Procedures and Functions")
 
-[Seção 13.3.4, "Instruções SAVEPOINT, ROLLBACK TO SAVEPOINT e RELEASE SAVEPOINT"](savepoint.html)
+[Section 13.3.4, “SAVEPOINT, ROLLBACK TO SAVEPOINT, and RELEASE SAVEPOINT Statements”](savepoint.html "13.3.4 SAVEPOINT, ROLLBACK TO SAVEPOINT, and RELEASE SAVEPOINT Statements")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 5.1.15, “Rastreamento do Estado da Sessão do Cliente no Servidor”](session-state-tracking.html)
+[Section 5.1.15, “Server Tracking of Client Session State”](session-state-tracking.html "5.1.15 Server Tracking of Client Session State")
 
-[Seção 13.7.5.36, "Declaração de Status da Tabela"](show-table-status.html)
+[Section 13.7.5.36, “SHOW TABLE STATUS Statement”](show-table-status.html "13.7.5.36 SHOW TABLE STATUS Statement")
 
-[Seção 13.3.1, "Instruções START TRANSACTION, COMMIT e ROLLBACK"](commit.html)
+[Section 13.3.1, “START TRANSACTION, COMMIT, and ROLLBACK Statements”](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 23.7, "Registro de Log de Binário de Programa Armazenado"](stored-programs-logging.html)
+[Section 23.7, “Stored Program Binary Logging”](stored-programs-logging.html "23.7 Stored Program Binary Logging")
 
-[Seção 5.4.4, “O Log Binário”](binary-log.html)
+[Section 5.4.4, “The Binary Log”](binary-log.html "5.4.4 The Binary Log")
 
-[Seção 25.12.7.1, “A tabela events_transactions_current”](performance-schema-events-transactions-current-table.html)
+[Section 25.12.7.1, “The events_transactions_current Table”](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table")
 
-[Seção 24.3.25, “A tabela INFORMATION_SCHEMA TABLES”](information-schema-tables-table.html)
+[Section 24.3.25, “The INFORMATION_SCHEMA TABLES Table”](information-schema-tables-table.html "24.3.25 The INFORMATION_SCHEMA TABLES Table")
 
-[Seção 13.3, "Instruções Transacionais e de Bloqueio"](sql-transactional-statements.html)
+[Section 13.3, “Transactional and Locking Statements”](sql-transactional-statements.html "13.3 Transactional and Locking Statements")
 
-[Seção 23.3.1, "Sintaxe de gatilho e exemplos"](trigger-syntax.html)
+[Section 23.3.1, “Trigger Syntax and Examples”](trigger-syntax.html "23.3.1 Trigger Syntax and Examples")
 
-### COMPROMISSO E CORRENTE
+### COMMIT AND CHAIN
 
-[Seção 25.12.7, "Tabelas de Transações do Schema de Desempenho"](performance-schema-transaction-tables.html)
+[Section 25.12.7, “Performance Schema Transaction Tables”](performance-schema-transaction-tables.html "25.12.7 Performance Schema Transaction Tables")
 
-[Seção 5.1.15, “Rastreamento do Estado da Sessão do Cliente no Servidor”](session-state-tracking.html)
+[Section 5.1.15, “Server Tracking of Client Session State”](session-state-tracking.html "5.1.15 Server Tracking of Client Session State")
 
-### COMPRESSÃO
+### COMPRESSION
 
-[Seção 14.14, “Criptografia de Dados em Repouso do InnoDB”](innodb-data-encryption.html)
+[Section 14.14, “InnoDB Data-at-Rest Encryption”](innodb-data-encryption.html "14.14 InnoDB Data-at-Rest Encryption")
 
-### Crie a base de dados
+### CREATE DATABASE
 
-[Seção 7.1, “Tipos de Backup e Recuperação”](backup-types.html)
+[Section 7.1, “Backup and Recovery Types”](backup-types.html "7.1 Backup and Recovery Types")
 
-[Seção 10.5, “Configurando o Conjunto de Caracteres e a Cotação da Aplicação”](charset-applications.html)
+[Section 10.5, “Configuring Application Character Set and Collation”](charset-applications.html "10.5 Configuring Application Character Set and Collation")
 
-[Seção 7.4.5.2, “Copiar um banco de dados de um servidor para outro”](mysqldump-copying-to-other-server.html)
+[Section 7.4.5.2, “Copy a Database from one Server to Another”](mysqldump-copying-to-other-server.html "7.4.5.2 Copy a Database from one Server to Another")
 
-[Seção 13.1.11, "Instrução CREATE DATABASE"](create-database.html)
+[Section 13.1.11, “CREATE DATABASE Statement”](create-database.html "13.1.11 CREATE DATABASE Statement")
 
-[Seção 10.3.3, "Conjunto de caracteres e classificação de banco de dados"](charset-database.html)
+[Section 10.3.3, “Database Character Set and Collation”](charset-database.html "10.3.3 Database Character Set and Collation")
 
-[Seção 7.4.1, “Exportação de dados no formato SQL com mysqldump”](mysqldump-sql-format.html)
+[Section 7.4.1, “Dumping Data in SQL Format with mysqldump”](mysqldump-sql-format.html "7.4.1 Dumping Data in SQL Format with mysqldump")
 
-[Seção 16.2.5.1, “Avaliação das opções de replicação de nível de banco de dados e registro binário”](replication-rules-db-options.html)
+[Section 16.2.5.1, “Evaluation of Database-Level Replication and Binary Logging Options”](replication-rules-db-options.html "16.2.5.1 Evaluation of Database-Level Replication and Binary Logging Options")
 
-[Seção 16.2.5, “Como os Servidores Avaliam as Regras de Filtragem de Replicação”](replication-rules.html)
+[Section 16.2.5, “How Servers Evaluate Replication Filtering Rules”](replication-rules.html "16.2.5 How Servers Evaluate Replication Filtering Rules")
 
-[Seção 9.2.3, “Sensibilidade do identificador”](identifier-case-sensitivity.html)
+[Section 9.2.3, “Identifier Case Sensitivity”](identifier-case-sensitivity.html "9.2.3 Identifier Case Sensitivity")
 
-[Seção 21.2.7.8, "Problemas Exclusivos do NDB Cluster"](mysql-cluster-limitations-exclusive-to-cluster.html)
+[Section 21.2.7.8, “Issues Exclusive to NDB Cluster”](mysql-cluster-limitations-exclusive-to-cluster.html "21.2.7.8 Issues Exclusive to NDB Cluster")
 
-[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html)
+[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
 
-[Seção 4.6.7, “mysqlbinlog — Ferramenta para processamento de arquivos de log binário”](mysqlbinlog.html)
+[Section 4.6.7, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "4.6.7 mysqlbinlog — Utility for Processing Binary Log Files")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
+[Section 4.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "4.5.6 mysqlpump — A Database Backup Program")
 
-[Seção 21.7.9, "Backup do NDB Cluster com Replicação do NDB Cluster"](mysql-cluster-replication-backups.html)
+[Section 21.7.9, “NDB Cluster Backups With NDB Cluster Replication”](mysql-cluster-replication-backups.html "21.7.9 NDB Cluster Backups With NDB Cluster Replication")
 
-[Seção 25.6, “Convenções de Nomenclatura de Instrumentos do Schema de Desempenho”](performance-schema-instrument-naming.html)
+[Section 25.6, “Performance Schema Instrument Naming Conventions”](performance-schema-instrument-naming.html "25.6 Performance Schema Instrument Naming Conventions")
 
-[Seção 7.4.2, “Recarga de backups no formato SQL”](reloading-sql-format-dumps.html)
+[Section 7.4.2, “Reloading SQL-Format Backups”](reloading-sql-format-dumps.html "7.4.2 Reloading SQL-Format Backups")
 
-[Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
+[Section 16.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "16.1.6.3 Replica Server Options and Variables")
 
-[Seção 10.3.2, "Conjunto de caracteres do servidor e cotação"](charset-server.html)
+[Section 10.3.2, “Server Character Set and Collation”](charset-server.html "10.3.2 Server Character Set and Collation")
 
-[Seção 13.7.5.6, “Instrução SHOW CREATE DATABASE”](show-create-database.html)
+[Section 13.7.5.6, “SHOW CREATE DATABASE Statement”](show-create-database.html "13.7.5.6 SHOW CREATE DATABASE Statement")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-### Crie a base de dados dbx
+### CREATE DATABASE dbx
 
-[Seção 16.2.5, “Como os Servidores Avaliam as Regras de Filtragem de Replicação”](replication-rules.html)
+[Section 16.2.5, “How Servers Evaluate Replication Filtering Rules”](replication-rules.html "16.2.5 How Servers Evaluate Replication Filtering Rules")
 
 ### CREATE DATABASE IF NOT EXISTS
 
-[Seção 16.4.1.5, “Replicação de declarações CREATE ... IF NOT EXISTS”](replication-features-create-if-not-exists.html)
+[Section 16.4.1.5, “Replication of CREATE ... IF NOT EXISTS Statements”](replication-features-create-if-not-exists.html "16.4.1.5 Replication of CREATE ... IF NOT EXISTS Statements")
 
-### Crie um evento
+### CREATE EVENT
 
-[Seção 13.1.2, "Declaração de Alteração de Evento"](alter-event.html)
+[Section 13.1.2, “ALTER EVENT Statement”](alter-event.html "13.1.2 ALTER EVENT Statement")
 
-[Seção 13.1.12, "Declaração CREATE EVENT"](create-event.html)
+[Section 13.1.12, “CREATE EVENT Statement”](create-event.html "13.1.12 CREATE EVENT Statement")
 
-[Seção 23.4.4, “Metadados do Evento”](events-metadata.html)
+[Section 23.4.4, “Event Metadata”](events-metadata.html "23.4.4 Event Metadata")
 
-[Seção 23.4.3, "Sintaxe de Eventos"](events-syntax.html)
+[Section 23.4.3, “Event Syntax”](events-syntax.html "23.4.3 Event Syntax")
 
-[Seção 9.5, “Expressões”](expressions.html)
+[Section 9.5, “Expressions”](expressions.html "9.5 Expressions")
 
-[Seção 12.15, “Funções de Informação”](information-functions.html)
+[Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
+[Section 4.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "4.5.6 mysqlpump — A Database Backup Program")
 
-[Seção 16.4.1.8, “Replicação de CURRENT_USER()”](replication-features-current-user.html)
+[Section 16.4.1.8, “Replication of CURRENT_USER()”](replication-features-current-user.html "16.4.1.8 Replication of CURRENT_USER()")
 
-[Seção 16.4.1.16, “Replicação de Recursos Ativados”](replication-features-invoked.html)
+[Section 16.4.1.16, “Replication of Invoked Features”](replication-features-invoked.html "16.4.1.16 Replication of Invoked Features")
 
-[Seção 23.8, “Restrições aos Programas Armazenados”](stored-program-restrictions.html)
+[Section 23.8, “Restrictions on Stored Programs”](stored-program-restrictions.html "23.8 Restrictions on Stored Programs")
 
-[Seção 5.1.6, “Opções de comando do servidor”](server-options.html)
+[Section 5.1.6, “Server Command Options”](server-options.html "5.1.6 Server Command Options")
 
-[Seção 13.7.5.7, "Declaração SHOW CREATE EVENT"](show-create-event.html)
+[Section 13.7.5.7, “SHOW CREATE EVENT Statement”](show-create-event.html "13.7.5.7 SHOW CREATE EVENT Statement")
 
-[Seção 13.7.5.18, "Declaração de Eventos de Exibição"](show-events.html)
+[Section 13.7.5.18, “SHOW EVENTS Statement”](show-events.html "13.7.5.18 SHOW EVENTS Statement")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Capítulo 23, *Objetos Armazenados*] (stored-objects.html)
+[Chapter 23, *Stored Objects*](stored-objects.html "Chapter 23 Stored Objects")
 
-[Seção 23.7, "Registro de Log de Binário de Programa Armazenado"](stored-programs-logging.html)
+[Section 23.7, “Stored Program Binary Logging”](stored-programs-logging.html "23.7 Stored Program Binary Logging")
 
-[Seção 23.4.6, “O Agendamento de Eventos e Permissões do MySQL”](events-privileges.html)
+[Section 23.4.6, “The Event Scheduler and MySQL Privileges”](events-privileges.html "23.4.6 The Event Scheduler and MySQL Privileges")
 
-[Seção 24.3.8, “A tabela INFORMATION_SCHEMA EVENTS”](information-schema-events-table.html)
+[Section 24.3.8, “The INFORMATION_SCHEMA EVENTS Table”](information-schema-events-table.html "24.3.8 The INFORMATION_SCHEMA EVENTS Table")
 
-[Seção 5.3, “O banco de dados do sistema mysql”](system-schema.html)
+[Section 5.3, “The mysql System Database”](system-schema.html "5.3 The mysql System Database")
 
-### Crie o evento se ele não existir
+### CREATE EVENT IF NOT EXISTS
 
-[Seção 16.4.1.5, “Replicação de declarações CREATE ... IF NOT EXISTS”](replication-features-create-if-not-exists.html)
+[Section 16.4.1.5, “Replication of CREATE ... IF NOT EXISTS Statements”](replication-features-create-if-not-exists.html "16.4.1.5 Replication of CREATE ... IF NOT EXISTS Statements")
 
-### Crie índice FULLTEXT
+### CREATE FULLTEXT INDEX
 
-[Seção 8.5.5, “Carregamento de Dados em Massa para Tabelas InnoDB”](optimizando-innodb-bulk-data-loading.html)
+[Section 8.5.5, “Bulk Data Loading for InnoDB Tables”](optimizing-innodb-bulk-data-loading.html "8.5.5 Bulk Data Loading for InnoDB Tables")
 
-### Crie função
+### CREATE FUNCTION
 
-[Seção 13.1.3, "Instrução ALTER FUNCTION"](alter-function.html)
+[Section 13.1.3, “ALTER FUNCTION Statement”](alter-function.html "13.1.3 ALTER FUNCTION Statement")
 
-[Seção 13.1.13, "Instrução CREATE FUNCTION"](create-function.html)
+[Section 13.1.13, “CREATE FUNCTION Statement”](create-function.html "13.1.13 CREATE FUNCTION Statement")
 
-[Seção 13.7.3.1, "Instrução CREATE FUNCTION para Funções Carregáveis"](create-function-loadable.html)
+[Section 13.7.3.1, “CREATE FUNCTION Statement for Loadable Functions”](create-function-loadable.html "13.7.3.1 CREATE FUNCTION Statement for Loadable Functions")
 
-[Seção 13.1.16, "Instruções CREATE PROCEDURE e CREATE FUNCTION"](create-procedure.html)
+[Section 13.1.16, “CREATE PROCEDURE and CREATE FUNCTION Statements”](create-procedure.html "13.1.16 CREATE PROCEDURE and CREATE FUNCTION Statements")
 
-[Seção 13.7.3.2, "Instrução DROP FUNCTION para Funções Carregáveis"](drop-function-loadable.html)
+[Section 13.7.3.2, “DROP FUNCTION Statement for Loadable Functions”](drop-function-loadable.html "13.7.3.2 DROP FUNCTION Statement for Loadable Functions")
 
-[Seção 9.2.5, "Análise e resolução de nomes de funções"](function-resolution.html)
+[Section 9.2.5, “Function Name Parsing and Resolution”](function-resolution.html "9.2.5 Function Name Parsing and Resolution")
 
-[Seção 6.4.4.8, “Funções de Gerenciamento de Chave do Pendrive de Uso Geral”](keyring-functions-general-purpose.html)
+[Section 6.4.4.8, “General-Purpose Keyring Key-Management Functions”](keyring-functions-general-purpose.html "6.4.4.8 General-Purpose Keyring Key-Management Functions")
 
-[Seção 12.15, “Funções de Informação”](information-functions.html)
+[Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions")
 
-[Seção 5.6.1, “Instalando e Desinstalando Funções Carregáveis”](function-loading.html)
+[Section 5.6.1, “Installing and Uninstalling Loadable Functions”](function-loading.html "5.6.1 Installing and Uninstalling Loadable Functions")
 
-[Seção 6.5.2, “Instalando ou Desinstalando o Máscara de Dados e a Desidentificação do MySQL Enterprise”](data-masking-installation.html)
+[Section 6.5.2, “Installing or Uninstalling MySQL Enterprise Data Masking and De-Identification”](data-masking-installation.html "6.5.2 Installing or Uninstalling MySQL Enterprise Data Masking and De-Identification")
 
-[Seção 5.5.5.2, “Instalando ou Desinstalando Tokens de Versão”](version-tokens-installation.html)
+[Section 5.5.5.2, “Installing or Uninstalling Version Tokens”](version-tokens-installation.html "5.5.5.2 Installing or Uninstalling Version Tokens")
 
-[Seção 6.6.1, “Instalação de Encriptação Empresarial do MySQL”](enterprise-encryption-installation.html)
+[Section 6.6.1, “MySQL Enterprise Encryption Installation”](enterprise-encryption-installation.html "6.6.1 MySQL Enterprise Encryption Installation")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
+[Section 4.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "4.5.6 mysqlpump — A Database Backup Program")
 
-[Seção 5.6.2, “Obtendo Informações sobre Funções Carregáveis”](obtaining-loadable-function-information.html)
+[Section 5.6.2, “Obtaining Information About Loadable Functions”](obtaining-loadable-function-information.html "5.6.2 Obtaining Information About Loadable Functions")
 
-[Seção 16.4.1.8, “Replicação de CURRENT_USER()”](replication-features-current-user.html)
+[Section 16.4.1.8, “Replication of CURRENT_USER()”](replication-features-current-user.html "16.4.1.8 Replication of CURRENT_USER()")
 
-[Seção 16.4.1.16, “Replicação de Recursos Ativados”](replication-features-invoked.html)
+[Section 16.4.1.16, “Replication of Invoked Features”](replication-features-invoked.html "16.4.1.16 Replication of Invoked Features")
 
-[Seção 23.8, “Restrições aos Programas Armazenados”](stored-program-restrictions.html)
+[Section 23.8, “Restrictions on Stored Programs”](stored-program-restrictions.html "23.8 Restrictions on Stored Programs")
 
-[Seção 5.1.6, “Opções de comando do servidor”](server-options.html)
+[Section 5.1.6, “Server Command Options”](server-options.html "5.1.6 Server Command Options")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Capítulo 23, *Objetos Armazenados*] (stored-objects.html)
+[Chapter 23, *Stored Objects*](stored-objects.html "Chapter 23 Stored Objects")
 
-[Seção 23.7, "Registro de Log de Binário de Programa Armazenado"](stored-programs-logging.html)
+[Section 23.7, “Stored Program Binary Logging”](stored-programs-logging.html "23.7 Stored Program Binary Logging")
 
-[Seção 23.2.1, "Sintaxe de Rotinas Armazenadas"](stored-routines-syntax.html)
+[Section 23.2.1, “Stored Routine Syntax”](stored-routines-syntax.html "23.2.1 Stored Routine Syntax")
 
-[Seção 5.5.6.1.2, “Interface da Função de Serviço de Fechamento”](locking-service.html#locking-service-interface)
+[Section 5.5.6.1.2, “The Locking Service Function Interface”](locking-service.html#locking-service-interface "5.5.6.1.2 The Locking Service Function Interface")
 
-[Seção 5.3, “O banco de dados do sistema mysql”](system-schema.html)
+[Section 5.3, “The mysql System Database”](system-schema.html "5.3 The mysql System Database")
 
-[Seção 2.10.11, "Solução de problemas de atualização"](upgrade-troubleshooting.html)
+[Section 2.10.11, “Upgrade Troubleshooting”](upgrade-troubleshooting.html "2.10.11 Upgrade Troubleshooting")
 
-### Crie índice
+### CREATE INDEX
 
-[Seção 8.3.4, “Índices de Colunas”](column-indexes.html)
+[Section 8.3.4, “Column Indexes”](column-indexes.html "8.3.4 Column Indexes")
 
-[Seção 14.8.12, “Configurando o Limiar de Fusão para Páginas de Índice”](index-page-merge-threshold.html)
+[Section 14.8.12, “Configuring the Merge Threshold for Index Pages”](index-page-merge-threshold.html "14.8.12 Configuring the Merge Threshold for Index Pages")
 
-[Seção 14.21.5.4, “Controle do comportamento transacional do plugin InnoDB memcached”](innodb-memcached-txn.html)
+[Section 14.21.5.4, “Controlling Transactional Behavior of the InnoDB memcached Plugin”](innodb-memcached-txn.html "14.21.5.4 Controlling Transactional Behavior of the InnoDB memcached Plugin")
 
-[Seção 13.1.14, "Instrução CREATE INDEX"](create-index.html)
+[Section 13.1.14, “CREATE INDEX Statement”](create-index.html "13.1.14 CREATE INDEX Statement")
 
-[Seção 13.1.18, "Instrução CREATE TABLE"](create-table.html)
+[Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement")
 
-[Seção 11.4.9, “Criando Índices Espaciais”](criando-índices-espaciais.html)
+[Section 11.4.9, “Creating Spatial Indexes”](creating-spatial-indexes.html "11.4.9 Creating Spatial Indexes")
 
-[Seção 12.9, “Funções de Busca de Texto Completo”](fulltext-search.html)
+[Section 12.9, “Full-Text Search Functions”](fulltext-search.html "12.9 Full-Text Search Functions")
 
-[Seção 14.9.1.5, “Como a compressão funciona para tabelas InnoDB”](innodb-compression-internals.html)
+[Section 14.9.1.5, “How Compression Works for InnoDB Tables”](innodb-compression-internals.html "14.9.1.5 How Compression Works for InnoDB Tables")
 
-[Seção 14.6.2.4, “Índices de Texto Completo InnoDB”](innodb-fulltext-index.html)
+[Section 14.6.2.4, “InnoDB Full-Text Indexes”](innodb-fulltext-index.html "14.6.2.4 InnoDB Full-Text Indexes")
 
-[Seção 12.9.9, “Plugin do Analizador de Texto Completo MeCab”](fulltext-search-mecab.html)
+[Section 12.9.9, “MeCab Full-Text Parser Plugin”](fulltext-search-mecab.html "12.9.9 MeCab Full-Text Parser Plugin")
 
-[Glossário do MySQL](glossary.html)
+[MySQL Glossary](glossary.html "MySQL Glossary")
 
-[Seção 12.9.8, “Parser de Texto Completo ngram”](fulltext-search-ngram.html)
+[Section 12.9.8, “ngram Full-Text Parser”](fulltext-search-ngram.html "12.9.8 ngram Full-Text Parser")
 
-[Seção 14.13.1, “Operações DDL Online”](innodb-online-ddl-operations.html)
+[Section 14.13.1, “Online DDL Operations”](innodb-online-ddl-operations.html "14.13.1 Online DDL Operations")
 
-[Seção 21.6.12, "Operações online com ALTER TABLE no NDB Cluster"](mysql-cluster-online-operations.html)
+[Section 21.6.12, “Online Operations with ALTER TABLE in NDB Cluster”](mysql-cluster-online-operations.html "21.6.12 Online Operations with ALTER TABLE in NDB Cluster")
 
-[Seção 8.7, “Otimização para Tabelas de MEMORY”](optimizing-memory-tables.html)
+[Section 8.7, “Optimizing for MEMORY Tables”](optimizing-memory-tables.html "8.7 Optimizing for MEMORY Tables")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 13.7.5.22, "Declaração SHOW INDEX"](show-index.html)
+[Section 13.7.5.22, “SHOW INDEX Statement”](show-index.html "13.7.5.22 SHOW INDEX Statement")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 24.3.24, “A Tabela INFORMATION_SCHEMA STATISTICS”](information-schema-statistics-table.html)
+[Section 24.3.24, “The INFORMATION_SCHEMA STATISTICS Table”](information-schema-statistics-table.html "24.3.24 The INFORMATION_SCHEMA STATISTICS Table")
 
-[Seção 5.4.5, “O Log de Consultas Lentas”](slow-query-log.html)
+[Section 5.4.5, “The Slow Query Log”](slow-query-log.html "5.4.5 The Slow Query Log")
 
-[Seção 21.2.7.6, “Recursos não suportados ou ausentes no NDB Cluster”](mysql-cluster-limitations-unsupported.html)
+[Section 21.2.7.6, “Unsupported or Missing Features in NDB Cluster”](mysql-cluster-limitations-unsupported.html "21.2.7.6 Unsupported or Missing Features in NDB Cluster")
 
-### Crie o grupo de arquivos de registro
+### CREATE LOGFILE GROUP
 
-[Seção 13.1.5, "Instrução ALTER LOGFILE GROUP"](alter-logfile-group.html)
+[Section 13.1.5, “ALTER LOGFILE GROUP Statement”](alter-logfile-group.html "13.1.5 ALTER LOGFILE GROUP Statement")
 
-[Seção 13.1.15, "Instrução CREATE LOGFILE GROUP"](create-logfile-group.html)
+[Section 13.1.15, “CREATE LOGFILE GROUP Statement”](create-logfile-group.html "13.1.15 CREATE LOGFILE GROUP Statement")
 
-[Seção 13.1.19, "Instrução CREATE TABLESPACE"](create-tablespace.html)
+[Section 13.1.19, “CREATE TABLESPACE Statement”](create-tablespace.html "13.1.19 CREATE TABLESPACE Statement")
 
-[Seção 21.4.3.6, “Definindo nós de dados do cluster NDB”](mysql-cluster-ndbd-definition.html)
+[Section 21.4.3.6, “Defining NDB Cluster Data Nodes”](mysql-cluster-ndbd-definition.html "21.4.3.6 Defining NDB Cluster Data Nodes")
 
-[Seção 21.2.7.8, "Problemas Exclusivos do NDB Cluster"](mysql-cluster-limitations-exclusive-to-cluster.html)
+[Section 21.2.7.8, “Issues Exclusive to NDB Cluster”](mysql-cluster-limitations-exclusive-to-cluster.html "21.2.7.8 Issues Exclusive to NDB Cluster")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 21.6.11.1, “Objetos de dados de disco do cluster NDB”](mysql-cluster-disk-data-objects.html)
+[Section 21.6.11.1, “NDB Cluster Disk Data Objects”](mysql-cluster-disk-data-objects.html "21.6.11.1 NDB Cluster Disk Data Objects")
 
-[Seção 24.3.9, “A tabela INFORMATION_SCHEMA FILES”](information-schema-files-table.html)
+[Section 24.3.9, “The INFORMATION_SCHEMA FILES Table”](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table")
 
-[Seção 21.6.15.31, “Tabela de recursos ndbinfo”](mysql-cluster-ndbinfo-resources.html)
+[Section 21.6.15.31, “The ndbinfo resources Table”](mysql-cluster-ndbinfo-resources.html "21.6.15.31 The ndbinfo resources Table")
 
-### CREATE OU REPLACE VIEW
+### CREATE OR REPLACE VIEW
 
-[Seção 13.1.21, "Instrução CREATE VIEW"](create-view.html)
+[Section 13.1.21, “CREATE VIEW Statement”](create-view.html "13.1.21 CREATE VIEW Statement")
 
-[Seção 23.9, “Restrições de visualização”](view-restrictions.html)
+[Section 23.9, “Restrictions on Views”](view-restrictions.html "23.9 Restrictions on Views")
 
-### Crie procedimento
+### CREATE PROCEDURE
 
-[Seção 13.1.6, "Instrução ALTER PROCEDURE"](alter-procedure.html)
+[Section 13.1.6, “ALTER PROCEDURE Statement”](alter-procedure.html "13.1.6 ALTER PROCEDURE Statement")
 
-[Seção 13.2.1, “Instrução CALL”](call.html)
+[Section 13.2.1, “CALL Statement”](call.html "13.2.1 CALL Statement")
 
-[Seção 13.1.16, "Instruções CREATE PROCEDURE e CREATE FUNCTION"](create-procedure.html)
+[Section 13.1.16, “CREATE PROCEDURE and CREATE FUNCTION Statements”](create-procedure.html "13.1.16 CREATE PROCEDURE and CREATE FUNCTION Statements")
 
-[Seção 12.15, “Funções de Informação”](information-functions.html)
+[Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
+[Section 4.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "4.5.6 mysqlpump — A Database Backup Program")
 
-[Seção 16.4.1.8, “Replicação de CURRENT_USER()”](replication-features-current-user.html)
+[Section 16.4.1.8, “Replication of CURRENT_USER()”](replication-features-current-user.html "16.4.1.8 Replication of CURRENT_USER()")
 
-[Seção 16.4.1.16, “Replicação de Recursos Ativados”](replication-features-invoked.html)
+[Section 16.4.1.16, “Replication of Invoked Features”](replication-features-invoked.html "16.4.1.16 Replication of Invoked Features")
 
-[Seção 23.8, “Restrições aos Programas Armazenados”](stored-program-restrictions.html)
+[Section 23.8, “Restrictions on Stored Programs”](stored-program-restrictions.html "23.8 Restrictions on Stored Programs")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Capítulo 23, *Objetos Armazenados*] (stored-objects.html)
+[Chapter 23, *Stored Objects*](stored-objects.html "Chapter 23 Stored Objects")
 
-[Seção 23.7, "Registro de Log de Binário de Programa Armazenado"](stored-programs-logging.html)
+[Section 23.7, “Stored Program Binary Logging”](stored-programs-logging.html "23.7 Stored Program Binary Logging")
 
-[Seção 23.2.1, "Sintaxe de Rotinas Armazenadas"](stored-routines-syntax.html)
+[Section 23.2.1, “Stored Routine Syntax”](stored-routines-syntax.html "23.2.1 Stored Routine Syntax")
 
-### Crie o esquema
+### CREATE SCHEMA
 
-[Seção 13.1.11, "Instrução CREATE DATABASE"](create-database.html)
+[Section 13.1.11, “CREATE DATABASE Statement”](create-database.html "13.1.11 CREATE DATABASE Statement")
 
-[Seção 21.2.7.8, "Problemas Exclusivos do NDB Cluster"](mysql-cluster-limitations-exclusive-to-cluster.html)
+[Section 21.2.7.8, “Issues Exclusive to NDB Cluster”](mysql-cluster-limitations-exclusive-to-cluster.html "21.2.7.8 Issues Exclusive to NDB Cluster")
 
-[Seção 21.7.9, "Backup do NDB Cluster com Replicação do NDB Cluster"](mysql-cluster-replication-backups.html)
+[Section 21.7.9, “NDB Cluster Backups With NDB Cluster Replication”](mysql-cluster-replication-backups.html "21.7.9 NDB Cluster Backups With NDB Cluster Replication")
 
-### Crie o servidor
+### CREATE SERVER
 
-[Seção 13.1.7, "Instrução ALTER SERVER"](alter-server.html)
+[Section 13.1.7, “ALTER SERVER Statement”](alter-server.html "13.1.7 ALTER SERVER Statement")
 
-[Seção 15.8.2.2, “Criando uma Tabela FEDERATED Usando CREATE SERVER”](federated-create-server.html)
+[Section 15.8.2.2, “Creating a FEDERATED Table Using CREATE SERVER”](federated-create-server.html "15.8.2.2 Creating a FEDERATED Table Using CREATE SERVER")
 
-[Seção 15.8.3, “Notas e dicas do mecanismo de armazenamento federado”](federated-usagenotes.html)
+[Section 15.8.3, “FEDERATED Storage Engine Notes and Tips”](federated-usagenotes.html "15.8.3 FEDERATED Storage Engine Notes and Tips")
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
-[Seção 16.1.6.5, “Variáveis do Sistema de ID de Transação Global”](replication-options-gtids.html)
+[Section 16.1.6.5, “Global Transaction ID System Variables”](replication-options-gtids.html "16.1.6.5 Global Transaction ID System Variables")
 
-[Seção 8.12.4.1, “Como o MySQL Usa a Memória”](memory-use.html)
+[Section 8.12.4.1, “How MySQL Uses Memory”](memory-use.html "8.12.4.1 How MySQL Uses Memory")
 
-[Seção 15.8.2, “Como criar tabelas FEDERATED”](federated-create.html)
+[Section 15.8.2, “How to Create FEDERATED Tables”](federated-create.html "15.8.2 How to Create FEDERATED Tables")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 16.4.1.7, “Replicação de CREATE SERVER, ALTER SERVER e DROP SERVER”](replication-features-create-alter-drop-server.html)
+[Section 16.4.1.7, “Replication of CREATE SERVER, ALTER SERVER, and DROP SERVER”](replication-features-create-alter-drop-server.html "16.4.1.7 Replication of CREATE SERVER, ALTER SERVER, and DROP SERVER")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
 ### CREATE TABLE
 
-[Seção 13.1.8.3, “Exemplos de ALTER TABLE”](alter-table-examples.html)
+[Section 13.1.8.3, “ALTER TABLE Examples”](alter-table-examples.html "13.1.8.3 ALTER TABLE Examples")
 
-[Seção 13.1.8.1, “Operações de Partição de Tabela”](alter-table-partition-operations.html)
+[Section 13.1.8.1, “ALTER TABLE Partition Operations”](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations")
 
-[Seção 13.1.8, "Instrução ALTER TABLE"](alter-table.html)
+[Section 13.1.8, “ALTER TABLE Statement”](alter-table.html "13.1.8 ALTER TABLE Statement")
 
-[Capítulo 15, *Motores de Armazenamento Alternativos*](storage-engines.html)
+[Chapter 15, *Alternative Storage Engines*](storage-engines.html "Chapter 15 Alternative Storage Engines")
 
-[Seção 14.6.1.6, “Tratamento de AUTO_INCREMENT no InnoDB”](innodb-auto-increment-handling.html)
+[Section 14.6.1.6, “AUTO_INCREMENT Handling in InnoDB”](innodb-auto-increment-handling.html "14.6.1.6 AUTO_INCREMENT Handling in InnoDB")
 
-[Seção 7.1, “Tipos de Backup e Recuperação”](backup-types.html)
+[Section 7.1, “Backup and Recovery Types”](backup-types.html "7.1 Backup and Recovery Types")
 
-[Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
+[Section 16.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "16.1.6.4 Binary Logging Options and Variables")
 
-[Seção 2.10.3, “Alterações no MySQL 5.7”](upgrading-from-previous-series.html)
+[Section 2.10.3, “Changes in MySQL 5.7”](upgrading-from-previous-series.html "2.10.3 Changes in MySQL 5.7")
 
-[Seção 10.3.5, "Conjunto de caracteres da coluna e cotação"](charset-column.html)
+[Section 10.3.5, “Column Character Set and Collation”](charset-column.html "10.3.5 Column Character Set and Collation")
 
-[Seção 8.3.4, “Índices de Colunas”](column-indexes.html)
+[Section 8.3.4, “Column Indexes”](column-indexes.html "8.3.4 Column Indexes")
 
-[Seção 14.8.11, “Configurando estatísticas do otimizador para InnoDB”](innodb-performance-optimizer-statistics.html)
+[Section 14.8.11, “Configuring Optimizer Statistics for InnoDB”](innodb-performance-optimizer-statistics.html "14.8.11 Configuring Optimizer Statistics for InnoDB")
 
-[Seção 14.8.11.1.2, “Configurando Parâmetros de Estatísticas do Optimizer para Tabelas Individuais”](innodb-persistent-stats.html#innodb-persistent-stats-table-configuration)
+[Section 14.8.11.1.2, “Configuring Optimizer Statistics Parameters for Individual Tables”](innodb-persistent-stats.html#innodb-persistent-stats-table-configuration "14.8.11.1.2 Configuring Optimizer Statistics Parameters for Individual Tables")
 
-[Seção 14.8.12, “Configurando o Limiar de Fusão para Páginas de Índice”](index-page-merge-threshold.html)
+[Section 14.8.12, “Configuring the Merge Threshold for Index Pages”](index-page-merge-threshold.html "14.8.12 Configuring the Merge Threshold for Index Pages")
 
-[Seção 14.6.1.5, “Conversão de tabelas de MyISAM para InnoDB”](converting-tables-to-innodb.html)
+[Section 14.6.1.5, “Converting Tables from MyISAM to InnoDB”](converting-tables-to-innodb.html "14.6.1.5 Converting Tables from MyISAM to InnoDB")
 
-[Seção 13.1.12, "Declaração CREATE EVENT"](create-event.html)
+[Section 13.1.12, “CREATE EVENT Statement”](create-event.html "13.1.12 CREATE EVENT Statement")
 
-[Seção 13.1.14, "Instrução CREATE INDEX"](create-index.html)
+[Section 13.1.14, “CREATE INDEX Statement”](create-index.html "13.1.14 CREATE INDEX Statement")
 
-[Seção 13.1.17, "Instrução CREATE SERVER"](create-server.html)
+[Section 13.1.17, “CREATE SERVER Statement”](create-server.html "13.1.17 CREATE SERVER Statement")
 
-[Seção 13.1.18.3, "Instrução CREATE TABLE ... LIKE"](create-table-like.html)
+[Section 13.1.18.3, “CREATE TABLE ... LIKE Statement”](create-table-like.html "13.1.18.3 CREATE TABLE ... LIKE Statement")
 
-[Seção 13.1.18.4, "Instrução CREATE TABLE ... SELECT"](create-table-select.html)
+[Section 13.1.18.4, “CREATE TABLE ... SELECT Statement”](create-table-select.html "13.1.18.4 CREATE TABLE ... SELECT Statement")
 
-[Seção 13.1.18.7, “Criar Tabela e Colunas Geradas”](create-table-generated-columns.html)
+[Section 13.1.18.7, “CREATE TABLE and Generated Columns”](create-table-generated-columns.html "13.1.18.7 CREATE TABLE and Generated Columns")
 
-[Seção 13.1.18, "Instrução CREATE TABLE"](create-table.html)
+[Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement")
 
-[Seção 13.1.19, "Instrução CREATE TABLESPACE"](create-tablespace.html)
+[Section 13.1.19, “CREATE TABLESPACE Statement”](create-tablespace.html "13.1.19 CREATE TABLESPACE Statement")
 
-[Seção 13.1.18.2, "Instrução CREATE TEMPORARY TABLE"](create-temporary-table.html)
+[Section 13.1.18.2, “CREATE TEMPORARY TABLE Statement”](create-temporary-table.html "13.1.18.2 CREATE TEMPORARY TABLE Statement")
 
-[Seção 15.8.2.1, “Criando uma Tabela FEDERATED Usando CONEXÃO”](federated-create-connection.html)
+[Section 15.8.2.1, “Creating a FEDERATED Table Using CONNECTION”](federated-create-connection.html "15.8.2.1 Creating a FEDERATED Table Using CONNECTION")
 
-[Seção 3.3.2, “Criando uma Tabela”](criando-tabelas.html)
+[Section 3.3.2, “Creating a Table”](creating-tables.html "3.3.2 Creating a Table")
 
-[Seção 14.9.1.2, “Criando tabelas compactadas”](innodb-compression-usage.html)
+[Section 14.9.1.2, “Creating Compressed Tables”](innodb-compression-usage.html "14.9.1.2 Creating Compressed Tables")
 
-[Seção 14.6.1.1, “Criando tabelas InnoDB”](using-innodb-tables.html)
+[Section 14.6.1.1, “Creating InnoDB Tables”](using-innodb-tables.html "14.6.1.1 Creating InnoDB Tables")
 
-[Seção 11.4.5, “Criando Colunas Espaciais”](criando-colunas-espaciais.html)
+[Section 11.4.5, “Creating Spatial Columns”](creating-spatial-columns.html "11.4.5 Creating Spatial Columns")
 
-[Seção 11.4.9, “Criando Índices Espaciais”](criando-índices-espaciais.html)
+[Section 11.4.9, “Creating Spatial Indexes”](creating-spatial-indexes.html "11.4.9 Creating Spatial Indexes")
 
-[Seção 7.2, “Métodos de backup de banco de dados”](backup-methods.html)
+[Section 7.2, “Database Backup Methods”](backup-methods.html "7.2 Database Backup Methods")
 
-[Seção 10.3.3, "Conjunto de caracteres e classificação de banco de dados"](charset-database.html)
+[Section 10.3.3, “Database Character Set and Collation”](charset-database.html "10.3.3 Database Character Set and Collation")
 
-[Seção 21.4.3.6, “Definindo nós de dados do cluster NDB”](mysql-cluster-ndbd-definition.html)
+[Section 21.4.3.6, “Defining NDB Cluster Data Nodes”](mysql-cluster-ndbd-definition.html "21.4.3.6 Defining NDB Cluster Data Nodes")
 
-[Seção 7.4.3, “Exportação de dados no formato de texto delimitado com mysqldump”](mysqldump-delimited-text.html)
+[Section 7.4.3, “Dumping Data in Delimited-Text Format with mysqldump”](mysqldump-delimited-text.html "7.4.3 Dumping Data in Delimited-Text Format with mysqldump")
 
-[Seção 14.10.1, “Habilitar formatos de arquivo”](innodb-file-format-enabling.html)
+[Section 14.10.1, “Enabling File Formats”](innodb-file-format-enabling.html "14.10.1 Enabling File Formats")
 
-[Seção B.2, “Interfaces de Informação de Erros”](error-interfaces.html)
+[Section B.2, “Error Information Interfaces”](error-interfaces.html "B.2 Error Information Interfaces")
 
-[Seção 14.8.11.3, “Estimativa da Complexidade da Tabela ANALYZE para Tabelas InnoDB”](innodb-analyze-table-complexity.html)
+[Section 14.8.11.3, “Estimating ANALYZE TABLE Complexity for InnoDB Tables”](innodb-analyze-table-complexity.html "14.8.11.3 Estimating ANALYZE TABLE Complexity for InnoDB Tables")
 
-[Seção 14.6.3.2, “Tablespaces por arquivo para tabelas”](innodb-file-per-table-tablespaces.html)
+[Section 14.6.3.2, “File-Per-Table Tablespaces”](innodb-file-per-table-tablespaces.html "14.6.3.2 File-Per-Table Tablespaces")
 
-[Seção 1.6.3.2, “Restrições de Chave Estrangeira”](constraint-foreign-key.html)
+[Section 1.6.3.2, “FOREIGN KEY Constraints”](constraint-foreign-key.html "1.6.3.2 FOREIGN KEY Constraints")
 
-[Seção 13.1.18.5, “Restrições de Chave Estrangeira”](create-table-foreign-keys.html)
+[Section 13.1.18.5, “FOREIGN KEY Constraints”](create-table-foreign-keys.html "13.1.18.5 FOREIGN KEY Constraints")
 
-[Seção 12.9, “Funções de Busca de Texto Completo”](fulltext-search.html)
+[Section 12.9, “Full-Text Search Functions”](fulltext-search.html "12.9 Full-Text Search Functions")
 
-[Seção 14.6.3.3, “Tabelas gerais”](general-tablespaces.html)
+[Section 14.6.3.3, “General Tablespaces”](general-tablespaces.html "14.6.3.3 General Tablespaces")
 
-[Seção 3.4, “Obtendo Informações sobre Bancos de Dados e Tabelas”](getting-information.html)
+[Section 3.4, “Getting Information About Databases and Tables”](getting-information.html "3.4 Getting Information About Databases and Tables")
 
-[Seção 16.1.3.1, "Formato e Armazenamento do GTID"](replication-gtids-concepts.html)
+[Section 16.1.3.1, “GTID Format and Storage”](replication-gtids-concepts.html "16.1.3.1 GTID Format and Storage")
 
-[Seção 16.1.3.2, “Ciclo de Vida do GTID”](replication-gtids-lifecycle.html)
+[Section 16.1.3.2, “GTID Life Cycle”](replication-gtids-lifecycle.html "16.1.3.2 GTID Life Cycle")
 
-[Seção 22.2.4, “Divisão de HASH”](partitioning-hash.html)
+[Section 22.2.4, “HASH Partitioning”](partitioning-hash.html "22.2.4 HASH Partitioning")
 
-[Seção 13.8.3, “Declaração de Ajuda”](help.html)
+[Section 13.8.3, “HELP Statement”](help.html "13.8.3 HELP Statement")
 
-[Seção 14.9.1.5, “Como a compressão funciona para tabelas InnoDB”](innodb-compression-internals.html)
+[Section 14.9.1.5, “How Compression Works for InnoDB Tables”](innodb-compression-internals.html "14.9.1.5 How Compression Works for InnoDB Tables")
 
-[Seção 22.2.7, “Como o Partição do MySQL lida com NULLs”](partitioning-handling-nulls.html)
+[Section 22.2.7, “How MySQL Partitioning Handles NULL”](partitioning-handling-nulls.html "22.2.7 How MySQL Partitioning Handles NULL")
 
-[Seção 8.12.4.1, “Como o MySQL Usa a Memória”](memory-use.html)
+[Section 8.12.4.1, “How MySQL Uses Memory”](memory-use.html "8.12.4.1 How MySQL Uses Memory")
 
-[Seção 9.2.3, “Sensibilidade do identificador”](identifier-case-sensitivity.html)
+[Section 9.2.3, “Identifier Case Sensitivity”](identifier-case-sensitivity.html "9.2.3 Identifier Case Sensitivity")
 
-[Seção 14.6.1.3, “Importando tabelas InnoDB”](innodb-table-import.html)
+[Section 14.6.1.3, “Importing InnoDB Tables”](innodb-table-import.html "14.6.1.3 Importing InnoDB Tables")
 
-[Seção 12.15, “Funções de Informação”](information-functions.html)
+[Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions")
 
-[Seção 21.3.3, “Configuração Inicial do NDB Cluster”](mysql-cluster-install-configuration.html)
+[Section 21.3.3, “Initial Configuration of NDB Cluster”](mysql-cluster-install-configuration.html "21.3.3 Initial Configuration of NDB Cluster")
 
-[Seção 14.20, “InnoDB e Replicação do MySQL”](innodb-e-mysql-replicacao.html)
+[Section 14.20, “InnoDB and MySQL Replication”](innodb-and-mysql-replication.html "14.20 InnoDB and MySQL Replication")
 
-[Seção 14.14, “Criptografia de Dados em Repouso do InnoDB”](innodb-data-encryption.html)
+[Section 14.14, “InnoDB Data-at-Rest Encryption”](innodb-data-encryption.html "14.14 InnoDB Data-at-Rest Encryption")
 
-[Seção 14.6.2.4, “Índices de Texto Completo InnoDB”](innodb-fulltext-index.html)
+[Section 14.6.2.4, “InnoDB Full-Text Indexes”](innodb-fulltext-index.html "14.6.2.4 InnoDB Full-Text Indexes")
 
-[Seção 14.16.3, “Tabelas do Sistema InnoDB INFORMATION_SCHEMA”](innodb-information-schema-system-tables.html)
+[Section 14.16.3, “InnoDB INFORMATION_SCHEMA System Tables”](innodb-information-schema-system-tables.html "14.16.3 InnoDB INFORMATION_SCHEMA System Tables")
 
-[Seção 14.9.2, “Compressão de Páginas InnoDB”](innodb-page-compression.html)
+[Section 14.9.2, “InnoDB Page Compression”](innodb-page-compression.html "14.9.2 InnoDB Page Compression")
 
-[Seção 14.11, "Formatos de Linhas InnoDB"](innodb-row-format.html)
+[Section 14.11, “InnoDB Row Formats”](innodb-row-format.html "14.11 InnoDB Row Formats")
 
-[Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
+[Section 14.15, “InnoDB Startup Options and System Variables”](innodb-parameters.html "14.15 InnoDB Startup Options and System Variables")
 
-[Seção 14.9.1, “Compressão de Tabelas InnoDB”](innodb-table-compression.html)
+[Section 14.9.1, “InnoDB Table Compression”](innodb-table-compression.html "14.9.1 InnoDB Table Compression")
 
-[Seção 14.22, "Solução de problemas do InnoDB"](innodb-troubleshooting.html)
+[Section 14.22, “InnoDB Troubleshooting”](innodb-troubleshooting.html "14.22 InnoDB Troubleshooting")
 
-[Seção 16.2.5.3, “Interações entre as Opções de Filtragem de Replicação”](replication-rules-examples.html)
+[Section 16.2.5.3, “Interactions Between Replication Filtering Options”](replication-rules-examples.html "16.2.5.3 Interactions Between Replication Filtering Options")
 
-[Seção 8.4.4, “Uso de Tabelas Temporárias Internas no MySQL”](internal-temporary-tables.html)
+[Section 8.4.4, “Internal Temporary Table Use in MySQL”](internal-temporary-tables.html "8.4.4 Internal Temporary Table Use in MySQL")
 
-[Seção 14.1, “Introdução ao InnoDB”](innodb-introduction.html)
+[Section 14.1, “Introduction to InnoDB”](innodb-introduction.html "14.1 Introduction to InnoDB")
 
-[Seção 21.2.7.8, "Problemas Exclusivos do NDB Cluster"](mysql-cluster-limitations-exclusive-to-cluster.html)
+[Section 21.2.7.8, “Issues Exclusive to NDB Cluster”](mysql-cluster-limitations-exclusive-to-cluster.html "21.2.7.8 Issues Exclusive to NDB Cluster")
 
-[Seção 22.2.5, “Partição de Chave”](partitioning-key.html)
+[Section 22.2.5, “KEY Partitioning”](partitioning-key.html "22.2.5 KEY Partitioning")
 
-[Seção 21.2.7.5, “Limites associados a objetos de banco de dados no NDB Cluster”](mysql-cluster-limitations-database-objects.html)
+[Section 21.2.7.5, “Limits Associated with Database Objects in NDB Cluster”](mysql-cluster-limitations-database-objects.html "21.2.7.5 Limits Associated with Database Objects in NDB Cluster")
 
-[Seção 8.4.6, “Limites de tamanho da tabela”](table-size-limit.html)
+[Section 8.4.6, “Limits on Table Size”](table-size-limit.html "8.4.6 Limits on Table Size")
 
-[Seção 21.2.7.3, “Limitações relacionadas ao processamento de transações no NDB Cluster”](mysql-cluster-limitations-transactions.html)
+[Section 21.2.7.3, “Limits Relating to Transaction Handling in NDB Cluster”](mysql-cluster-limitations-transactions.html "21.2.7.3 Limits Relating to Transaction Handling in NDB Cluster")
 
-[Seção 22.2.2, “Divisão de Lista”](partitioning-list.html)
+[Section 22.2.2, “LIST Partitioning”](partitioning-list.html "22.2.2 LIST Partitioning")
 
-[Seção 13.2.7, “Declaração de Carregamento XML”](load-xml.html)
+[Section 13.2.7, “LOAD XML Statement”](load-xml.html "13.2.7 LOAD XML Statement")
 
-[Seção 3.3.3, “Carregando dados em uma tabela”](loading-tables.html)
+[Section 3.3.3, “Loading Data into a Table”](loading-tables.html "3.3.3 Loading Data into a Table")
 
-[Seção 13.3.5, “Instruções LOCK TABLES e UNLOCK TABLES”](lock-tables.html)
+[Section 13.3.5, “LOCK TABLES and UNLOCK TABLES Statements”](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements")
 
-[Seção 5.4.4.4, "Formato de registro para alterações nas tabelas do banco de dados mysql"](binary-log-mysql-database.html)
+[Section 5.4.4.4, “Logging Format for Changes to mysql Database Tables”](binary-log-mysql-database.html "5.4.4.4 Logging Format for Changes to mysql Database Tables")
 
-[Seção 22.3.1, “Gestão de Partições RANGE e LIST”](partitioning-management-range-list.html)
+[Section 22.3.1, “Management of RANGE and LIST Partitions”](partitioning-management-range-list.html "22.3.1 Management of RANGE and LIST Partitions")
 
-[Seção 12.9.9, “Plugin do Analizador de Texto Completo MeCab”](fulltext-search-mecab.html)
+[Section 12.9.9, “MeCab Full-Text Parser Plugin”](fulltext-search-mecab.html "12.9.9 MeCab Full-Text Parser Plugin")
 
-[Seção 15.2.3, “Formatos de Armazenamento de Tabelas MyISAM”](myisam-table-formats.html)
+[Section 15.2.3, “MyISAM Table Storage Formats”](myisam-table-formats.html "15.2.3 MyISAM Table Storage Formats")
 
-[Seção A.10, “Perguntas frequentes sobre o MySQL 5.7: NDB Cluster”](faqs-mysql-cluster.html)
+[Section A.10, “MySQL 5.7 FAQ: NDB Cluster”](faqs-mysql-cluster.html "A.10 MySQL 5.7 FAQ: NDB Cluster")
 
-[Seção 4.5.1.1, “Opções do cliente do MySQL”](mysql-command-options.html)
+[Section 4.5.1.1, “mysql Client Options”](mysql-command-options.html "4.5.1.1 mysql Client Options")
 
-[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html)
+[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
 
-[Glossário do MySQL](glossary.html)
+[MySQL Glossary](glossary.html "MySQL Glossary")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
+[Section 4.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "4.5.6 mysqlpump — A Database Backup Program")
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.1, “Configuração do NDB Cluster: Exemplo Básico”](mysql-cluster-config-example.html)
+[Section 21.4.3.1, “NDB Cluster Configuration: Basic Example”](mysql-cluster-config-example.html "21.4.3.1 NDB Cluster Configuration: Basic Example")
 
-[Seção 21.6.11.1, “Objetos de dados de disco do cluster NDB”](mysql-cluster-disk-data-objects.html)
+[Section 21.6.11.1, “NDB Cluster Disk Data Objects”](mysql-cluster-disk-data-objects.html "21.6.11.1 NDB Cluster Disk Data Objects")
 
-[Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
+[Section 21.4.3.9.2, “NDB Cluster System Variables”](mysql-cluster-options-variables.html#mysql-cluster-system-variables "21.4.3.9.2 NDB Cluster System Variables")
 
-[Seção 21.5.6, “ndb_blob_tool — Verificar e reparar colunas BLOB e TEXT de tabelas de NDB Cluster”](mysql-cluster-programs-ndb-blob-tool.html)
+[Section 21.5.6, “ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”](mysql-cluster-programs-ndb-blob-tool.html "21.5.6 ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables")
 
-[Seção 21.5.10, “ndb_desc — Descrever tabelas NDB”](mysql-cluster-programs-ndb-desc.html)
+[Section 21.5.10, “ndb_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables")
 
-[Seção 12.9.8, “Parser de Texto Completo ngram”](fulltext-search-ngram.html)
+[Section 12.9.8, “ngram Full-Text Parser”](fulltext-search-ngram.html "12.9.8 ngram Full-Text Parser")
 
-[Seção 21.2.7.1, "Desconexão com a sintaxe SQL no NDB Cluster"](mysql-cluster-limitations-syntax.html)
+[Section 21.2.7.1, “Noncompliance with SQL Syntax in NDB Cluster”](mysql-cluster-limitations-syntax.html "21.2.7.1 Noncompliance with SQL Syntax in NDB Cluster")
 
-[Seção 14.13.1, “Operações DDL Online”](innodb-online-ddl-operations.html)
+[Section 14.13.1, “Online DDL Operations”](innodb-online-ddl-operations.html "14.13.1 Online DDL Operations")
 
-[Seção 21.6.12, "Operações online com ALTER TABLE no NDB Cluster"](mysql-cluster-online-operations.html)
+[Section 21.6.12, “Online Operations with ALTER TABLE in NDB Cluster”](mysql-cluster-online-operations.html "21.6.12 Online Operations with ALTER TABLE in NDB Cluster")
 
-[Seção 8.4.1, “Otimização do Tamanho dos Dados”](data-size.html)
+[Section 8.4.1, “Optimizing Data Size”](data-size.html "8.4.1 Optimizing Data Size")
 
-[Seção 8.5.7, “Otimização das operações de DDL do InnoDB”](optimizing-innodb-ddl-operations.html)
+[Section 8.5.7, “Optimizing InnoDB DDL Operations”](optimizing-innodb-ddl-operations.html "8.5.7 Optimizing InnoDB DDL Operations")
 
-[Seção 22.1, “Visão geral da partição no MySQL”](partitioning-overview.html)
+[Section 22.1, “Overview of Partitioning in MySQL”](partitioning-overview.html "22.1 Overview of Partitioning in MySQL")
 
-[Seção 14.9.1.1, “Visão geral da compressão de tabelas”](innodb-compression-background.html)
+[Section 14.9.1.1, “Overview of Table Compression”](innodb-compression-background.html "14.9.1.1 Overview of Table Compression")
 
-[Seção 22.3, “Gestão de Partições”](partitioning-management.html)
+[Section 22.3, “Partition Management”](partitioning-management.html "22.3 Partition Management")
 
-[Seção 22.6.1, "Chaves de Partição, Chaves Primárias e Chaves Únicas"](partitioning-limitations-partitioning-keys-unique-keys.html)
+[Section 22.6.1, “Partitioning Keys, Primary Keys, and Unique Keys”](partitioning-limitations-partitioning-keys-unique-keys.html "22.6.1 Partitioning Keys, Primary Keys, and Unique Keys")
 
-[Seção 22.6.3, “Limitações de Partição Relacionadas a Funções”](partitioning-limitations-functions.html)
+[Section 22.6.3, “Partitioning Limitations Relating to Functions”](partitioning-limitations-functions.html "22.6.3 Partitioning Limitations Relating to Functions")
 
-[Seção 22.6.2, “Limitações de Partição Relacionadas a Motores de Armazenamento”](partitioning-limitations-storage-engines.html)
+[Section 22.6.2, “Partitioning Limitations Relating to Storage Engines”](partitioning-limitations-storage-engines.html "22.6.2 Partitioning Limitations Relating to Storage Engines")
 
-[Seção 22.2, “Tipos de Partição”](partitioning-types.html)
+[Section 22.2, “Partitioning Types”](partitioning-types.html "22.2 Partitioning Types")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 22.2.3.1, "Divisão de colunas de intervalo"](partitioning-columns-range.html)
+[Section 22.2.3.1, “RANGE COLUMNS partitioning”](partitioning-columns-range.html "22.2.3.1 RANGE COLUMNS partitioning")
 
-[Seção 22.2.1, “Divisão de Faixa”](partitioning-range.html)
+[Section 22.2.1, “RANGE Partitioning”](partitioning-range.html "22.2.1 RANGE Partitioning")
 
-[Seção 7.4.4, “Recarga de backups no formato de texto delimitado”](reloading-delimited-text-dumps.html)
+[Section 7.4.4, “Reloading Delimited-Text Format Backups”](reloading-delimited-text-dumps.html "7.4.4 Reloading Delimited-Text Format Backups")
 
-[Seção 13.2.8, “Instrução REPLACE”](replace.html)
+[Section 13.2.8, “REPLACE Statement”](replace.html "13.2.8 REPLACE Statement")
 
-[Seção 16.4.1.1, “Replicação e AUTO_INCREMENT”](replication-features-auto-increment.html)
+[Section 16.4.1.1, “Replication and AUTO_INCREMENT”](replication-features-auto-increment.html "16.4.1.1 Replication and AUTO_INCREMENT")
 
-[Seção 16.4.1.3, “Replicação e Conjuntos de Caracteres”](replication-features-charset.html)
+[Section 16.4.1.3, “Replication and Character Sets”](replication-features-charset.html "16.4.1.3 Replication and Character Sets")
 
-[Seção 16.4.1.11, “Opções da Tabela de Replicação e DIRECTORY”](replication-features-directory.html)
+[Section 16.4.1.11, “Replication and DIRECTORY Table Options”](replication-features-directory.html "16.4.1.11 Replication and DIRECTORY Table Options")
 
-[Seção 16.4.1.13, “Suporte a Replicação e Segundos Fracionários”](replication-features-fractional-seconds.html)
+[Section 16.4.1.13, “Replication and Fractional Seconds Support”](replication-features-fractional-seconds.html "16.4.1.13 Replication and Fractional Seconds Support")
 
-[Seção 16.4.1.15, “Replicação e Funções do Sistema”](replication-features-functions.html)
+[Section 16.4.1.15, “Replication and System Functions”](replication-features-functions.html "16.4.1.15 Replication and System Functions")
 
-[Seção 16.4.1.6, “Replicação de declarações CREATE TABLE ... SELECT”](replication-features-create-select.html)
+[Section 16.4.1.6, “Replication of CREATE TABLE ... SELECT Statements”](replication-features-create-select.html "16.4.1.6 Replication of CREATE TABLE ... SELECT Statements")
 
-[Seção 16.4.1.10.1, “Replicação com mais colunas na fonte ou réplica”](replication-features-differing-tables.html#replication-features-more-columns)
+[Section 16.4.1.10.1, “Replication with More Columns on Source or Replica”](replication-features-differing-tables.html#replication-features-more-columns "16.4.1.10.1 Replication with More Columns on Source or Replica")
 
-[Seção 21.5.24.1.1, “Restauração de um backup do NDB para uma versão anterior do NDB Cluster”](ndb-restore-to-different-version.html#ndb-restore-to-previous-version)
+[Section 21.5.24.1.1, “Restoring an NDB backup to a previous version of NDB Cluster”](ndb-restore-to-different-version.html#ndb-restore-to-previous-version "21.5.24.1.1 Restoring an NDB backup to a previous version of NDB Cluster")
 
-[Seção 22.6, “Restrições e Limitações sobre Partição”](partitioning-limitations.html)
+[Section 22.6, “Restrictions and Limitations on Partitioning”](partitioning-limitations.html "22.6 Restrictions and Limitations on Partitioning")
 
-[Seção 5.4.1, “Selecionando destinos de saída do Log de consulta geral e do Log de consulta lenta”](log-destinations.html)
+[Section 5.4.1, “Selecting General Query Log and Slow Query Log Output Destinations”](log-destinations.html "5.4.1 Selecting General Query Log and Slow Query Log Output Destinations")
 
-[Seção 5.1.6, “Opções de comando do servidor”](server-options.html)
+[Section 5.1.6, “Server Command Options”](server-options.html "5.1.6 Server Command Options")
 
-[Seção 5.1.10, "Modos SQL do Servidor"](sql-mode.html)
+[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 5.4.4.2, “Definindo o formato do log binário”](binary-log-setting.html)
+[Section 5.4.4.2, “Setting The Binary Log Format”](binary-log-setting.html "5.4.4.2 Setting The Binary Log Format")
 
-[Seção 15.1, “Configurando o Motor de Armazenamento”](storage-engine-setting.html)
+[Section 15.1, “Setting the Storage Engine”](storage-engine-setting.html "15.1 Setting the Storage Engine")
 
-[Seção 13.7.5.5, "Declaração SHOW COLUMNS"](show-columns.html)
+[Section 13.7.5.5, “SHOW COLUMNS Statement”](show-columns.html "13.7.5.5 SHOW COLUMNS Statement")
 
-[Seção 13.7.5.10, "Mostrar declaração CREATE TABLE"](show-create-table.html)
+[Section 13.7.5.10, “SHOW CREATE TABLE Statement”](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement")
 
-[Seção 13.7.5.15, "Declaração do Motor de Exibição"](show-engine.html)
+[Section 13.7.5.15, “SHOW ENGINE Statement”](show-engine.html "13.7.5.15 SHOW ENGINE Statement")
 
-[Seção 13.7.5.22, "Declaração SHOW INDEX"](show-index.html)
+[Section 13.7.5.22, “SHOW INDEX Statement”](show-index.html "13.7.5.22 SHOW INDEX Statement")
 
-[Seção 13.7.5.36, "Declaração de Status da Tabela"](show-table-status.html)
+[Section 13.7.5.36, “SHOW TABLE STATUS Statement”](show-table-status.html "13.7.5.36 SHOW TABLE STATUS Statement")
 
-[Seção 13.7.5.40, "Declaração de avisos"](show-warnings.html)
+[Section 13.7.5.40, “SHOW WARNINGS Statement”](show-warnings.html "13.7.5.40 SHOW WARNINGS Statement")
 
-[Seção 13.1.18.6, “Alterações na Especificação da Coluna Silenciosa”](silent-column-changes.html)
+[Section 13.1.18.6, “Silent Column Specification Changes”](silent-column-changes.html "13.1.18.6 Silent Column Specification Changes")
 
-[Seção 14.9.1.7, “Avisos e Erros de Sintaxe de Compressão SQL”](innodb-compression-syntax-warnings.html)
+[Section 14.9.1.7, “SQL Compression Syntax Warnings and Errors”](innodb-compression-syntax-warnings.html "14.9.1.7 SQL Compression Syntax Warnings and Errors")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 11.3.1, "Sintaxe do Tipo de Dados String"](string-type-syntax.html)
+[Section 11.3.1, “String Data Type Syntax”](string-type-syntax.html "11.3.1 String Data Type Syntax")
 
-[Seção 22.2.6, “Subpartição”](partitioning-subpartitions.html)
+[Section 22.2.6, “Subpartitioning”](partitioning-subpartitions.html "22.2.6 Subpartitioning")
 
-[Seção 10.3.4, "Conjunto de caracteres da tabela e cotação"](charset-table.html)
+[Section 10.3.4, “Table Character Set and Collation”](charset-table.html "10.3.4 Table Character Set and Collation")
 
-[Seção 14.1.4, “Testes e Benchmarking com InnoDB”](innodb-benchmarking.html)
+[Section 14.1.4, “Testing and Benchmarking with InnoDB”](innodb-benchmarking.html "14.1.4 Testing and Benchmarking with InnoDB")
 
-[Seção 15.5, “O Motor de Armazenamento ARCHIVE”](archive-storage-engine.html)
+[Section 15.5, “The ARCHIVE Storage Engine”](archive-storage-engine.html "15.5 The ARCHIVE Storage Engine")
 
-[Seção 11.3.5, “O Tipo ENUM”](enum.html)
+[Section 11.3.5, “The ENUM Type”](enum.html "11.3.5 The ENUM Type")
 
-[Seção 24.4.23, “A tabela INFORMATION_SCHEMA INNODB_SYS_TABLES”](information-schema-innodb-sys-tables-table.html)
+[Section 24.4.23, “The INFORMATION_SCHEMA INNODB_SYS_TABLES Table”](information-schema-innodb-sys-tables-table.html "24.4.23 The INFORMATION_SCHEMA INNODB_SYS_TABLES Table")
 
-[Seção 24.3.16, “A tabela INFORMATION_SCHEMA PARTITIONS”](information-schema-partitions-table.html)
+[Section 24.3.16, “The INFORMATION_SCHEMA PARTITIONS Table”](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table")
 
-[Seção 24.3.24, “A Tabela INFORMATION_SCHEMA STATISTICS”](information-schema-statistics-table.html)
+[Section 24.3.24, “The INFORMATION_SCHEMA STATISTICS Table”](information-schema-statistics-table.html "24.3.24 The INFORMATION_SCHEMA STATISTICS Table")
 
-[Seção 24.3.25, “A tabela INFORMATION_SCHEMA TABLES”](information-schema-tables-table.html)
+[Section 24.3.25, “The INFORMATION_SCHEMA TABLES Table”](information-schema-tables-table.html "24.3.25 The INFORMATION_SCHEMA TABLES Table")
 
-[Seção 15.3, “O Motor de Armazenamento de MEMORY”](memory-storage-engine.html)
+[Section 15.3, “The MEMORY Storage Engine”](memory-storage-engine.html "15.3 The MEMORY Storage Engine")
 
-[Seção 15.2, “O Motor de Armazenamento MyISAM”](myisam-storage-engine.html)
+[Section 15.2, “The MyISAM Storage Engine”](myisam-storage-engine.html "15.2 The MyISAM Storage Engine")
 
-[Seção 13.2.10.1, “A subconsulta como operando escalar”](scalar-subqueries.html)
+[Section 13.2.10.1, “The Subquery as Scalar Operand”](scalar-subqueries.html "13.2.10.1 The Subquery as Scalar Operand")
 
-[Seção 14.22.3, “Soluções de problemas para operações do dicionário de dados InnoDB”](innodb-troubleshooting-datadict.html)
+[Section 14.22.3, “Troubleshooting InnoDB Data Dictionary Operations”](innodb-troubleshooting-datadict.html "14.22.3 Troubleshooting InnoDB Data Dictionary Operations")
 
-[Seção 13.1.34, "Instrução TRUNCATE TABLE"](truncate-table.html)
+[Section 13.1.34, “TRUNCATE TABLE Statement”](truncate-table.html "13.1.34 TRUNCATE TABLE Statement")
 
-[Seção 13.7.3.4, "Declaração de DESINSTALAR PLUGIN"](uninstall-plugin.html)
+[Section 13.7.3.4, “UNINSTALL PLUGIN Statement”](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement")
 
-[Seção 21.2.7.6, “Recursos não suportados ou ausentes no NDB Cluster”](mysql-cluster-limitations-unsupported.html)
+[Section 21.2.7.6, “Unsupported or Missing Features in NDB Cluster”](mysql-cluster-limitations-unsupported.html "21.2.7.6 Unsupported or Missing Features in NDB Cluster")
 
-[Seção 3.6.9, “Usando AUTO_INCREMENT”](example-auto-increment.html)
+[Section 3.6.9, “Using AUTO_INCREMENT”](example-auto-increment.html "3.6.9 Using AUTO_INCREMENT")
 
-[Seção 3.3.4.9, “Usando mais de uma tabela”](multiple-tables.html)
+[Section 3.3.4.9, “Using More Than one Table”](multiple-tables.html "3.3.4.9 Using More Than one Table")
 
-[Seção 7.4, “Usando mysqldump para backups”](using-mysqldump.html)
+[Section 7.4, “Using mysqldump for Backups”](using-mysqldump.html "7.4 Using mysqldump for Backups")
 
-[Seção 16.3.3, “Usando replicação com diferentes engines de armazenamento de origem e réplica”](replication-solutions-diffengines.html)
+[Section 16.3.3, “Using Replication with Different Source and Replica Storage Engines”](replication-solutions-diffengines.html "16.3.3 Using Replication with Different Source and Replica Storage Engines")
 
-[Seção 8.12.3, “Usando Links Simbólicos”](symbolic-links.html)
+[Section 8.12.3, “Using Symbolic Links”](symbolic-links.html "8.12.3 Using Symbolic Links")
 
-[Seção 8.12.3.2, “Usando Links Simbólicos para Tabelas MyISAM no Unix”](symbolic-links-to-tables.html)
+[Section 8.12.3.2, “Using Symbolic Links for MyISAM Tables on Unix”](symbolic-links-to-tables.html "8.12.3.2 Using Symbolic Links for MyISAM Tables on Unix")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
-[Seção 21.2.4.1, “O que há de novo no NDB Cluster 7.5”](mysql-cluster-what-is-new-7-5.html)
+[Section 21.2.4.1, “What is New in NDB Cluster 7.5”](mysql-cluster-what-is-new-7-5.html "21.2.4.1 What is New in NDB Cluster 7.5")
 
-[Seção 2.3.7, “Restrições da Plataforma Windows”](windows-restrictions.html)
+[Section 2.3.7, “Windows Platform Restrictions”](windows-restrictions.html "2.3.7 Windows Platform Restrictions")
 
-### Crie uma tabela com criptografia
+### CREATE TABLE ... ENCRYPTION
 
-[Seção 13.1.4, "Declaração ALTER INSTANCE"](alter-instance.html)
+[Section 13.1.4, “ALTER INSTANCE Statement”](alter-instance.html "13.1.4 ALTER INSTANCE Statement")
 
 ### CREATE TABLE ... LIKE
 
-[Seção 13.1.18.3, "Instrução CREATE TABLE ... LIKE"](create-table-like.html)
+[Section 13.1.18.3, “CREATE TABLE ... LIKE Statement”](create-table-like.html "13.1.18.3 CREATE TABLE ... LIKE Statement")
 
-[Seção 13.1.18.7, “Criar Tabela e Colunas Geradas”](create-table-generated-columns.html)
+[Section 13.1.18.7, “CREATE TABLE and Generated Columns”](create-table-generated-columns.html "13.1.18.7 CREATE TABLE and Generated Columns")
 
-[Seção 13.3.5, “Instruções LOCK TABLES e UNLOCK TABLES”](lock-tables.html)
+[Section 13.3.5, “LOCK TABLES and UNLOCK TABLES Statements”](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements")
 
-[Seção 16.4.1.1, “Replicação e AUTO_INCREMENT”](replication-features-auto-increment.html)
+[Section 16.4.1.1, “Replication and AUTO_INCREMENT”](replication-features-auto-increment.html "16.4.1.1 Replication and AUTO_INCREMENT")
 
-[Seção 15.7, “O Motor de Armazenamento MERGE”](merge-storage-engine.html)
+[Section 15.7, “The MERGE Storage Engine”](merge-storage-engine.html "15.7 The MERGE Storage Engine")
 
-### Crie a tabela ... ROW_FORMAT=COMPRESSED
+### CREATE TABLE ... ROW_FORMAT=COMPRESSED
 
-[Seção 2.10.3, “Alterações no MySQL 5.7”](upgrading-from-previous-series.html)
+[Section 2.10.3, “Changes in MySQL 5.7”](upgrading-from-previous-series.html "2.10.3 Changes in MySQL 5.7")
 
 ### CREATE TABLE ... SELECT
 
-[Seção 16.2.1.1, “Vantagens e desvantagens da replicação baseada em declarações e baseada em linhas”](replication-sbr-rbr.html)
+[Section 16.2.1.1, “Advantages and Disadvantages of Statement-Based and Row-Based Replication”](replication-sbr-rbr.html "16.2.1.1 Advantages and Disadvantages of Statement-Based and Row-Based Replication")
 
-[Seção 12.10, "Funções e Operadores de Castagem"](cast-functions.html)
+[Section 12.10, “Cast Functions and Operators”](cast-functions.html "12.10 Cast Functions and Operators")
 
-[Seção 14.7.2.3, “Leitura Consistente sem Bloqueio”](innodb-consistent-read.html)
+[Section 14.7.2.3, “Consistent Nonlocking Reads”](innodb-consistent-read.html "14.7.2.3 Consistent Nonlocking Reads")
 
-[Seção 13.1.18.4, "Instrução CREATE TABLE ... SELECT"](create-table-select.html)
+[Section 13.1.18.4, “CREATE TABLE ... SELECT Statement”](create-table-select.html "13.1.18.4 CREATE TABLE ... SELECT Statement")
 
-[Seção 13.1.18.7, “Criar Tabela e Colunas Geradas”](create-table-generated-columns.html)
+[Section 13.1.18.7, “CREATE TABLE and Generated Columns”](create-table-generated-columns.html "13.1.18.7 CREATE TABLE and Generated Columns")
 
-[Seção 16.1.6.5, “Variáveis do Sistema de ID de Transação Global”](replication-options-gtids.html)
+[Section 16.1.6.5, “Global Transaction ID System Variables”](replication-options-gtids.html "16.1.6.5 Global Transaction ID System Variables")
 
-[Seção 16.1.3.2, “Ciclo de Vida do GTID”](replication-gtids-lifecycle.html)
+[Section 16.1.3.2, “GTID Life Cycle”](replication-gtids-lifecycle.html "16.1.3.2 GTID Life Cycle")
 
-[Seção B.3.7, “Problemas Conhecidos no MySQL”](known-issues.html)
+[Section B.3.7, “Known Issues in MySQL”](known-issues.html "B.3.7 Known Issues in MySQL")
 
-[Seção 5.4.4.4, "Formato de registro para alterações nas tabelas do banco de dados mysql"](binary-log-mysql-database.html)
+[Section 5.4.4.4, “Logging Format for Changes to mysql Database Tables”](binary-log-mysql-database.html "5.4.4.4 Logging Format for Changes to mysql Database Tables")
 
-[Seção 16.4.1.6, “Replicação de declarações CREATE TABLE ... SELECT”](replication-features-create-select.html)
+[Section 16.4.1.6, “Replication of CREATE TABLE ... SELECT Statements”](replication-features-create-select.html "16.4.1.6 Replication of CREATE TABLE ... SELECT Statements")
 
-[Seção 16.1.3.6, “Restrições à Replicação com GTIDs”](replication-gtids-restrictions.html)
+[Section 16.1.3.6, “Restrictions on Replication with GTIDs”](replication-gtids-restrictions.html "16.1.3.6 Restrictions on Replication with GTIDs")
 
-[Seção 1.6.2.1, “Diferenças para Selecionar em Tabela”](ansi-diff-select-into-table.html)
+[Section 1.6.2.1, “SELECT INTO TABLE Differences”](ansi-diff-select-into-table.html "1.6.2.1 SELECT INTO TABLE Differences")
 
-[Seção 13.2.9, "Instrução SELECT"](select.html)
+[Section 13.2.9, “SELECT Statement”](select.html "13.2.9 SELECT Statement")
 
-[Seção 5.1.10, "Modos SQL do Servidor"](sql-mode.html)
+[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 23.7, "Registro de Log de Binário de Programa Armazenado"](stored-programs-logging.html)
+[Section 23.7, “Stored Program Binary Logging”](stored-programs-logging.html "23.7 Stored Program Binary Logging")
 
-[Seção 12.3, “Conversão de Tipo na Avaliação de Expressões”](type-conversion.html)
+[Section 12.3, “Type Conversion in Expression Evaluation”](type-conversion.html "12.3 Type Conversion in Expression Evaluation")
 
-### Crie a tabela ... Selecione ...
+### CREATE TABLE ... SELECT ...
 
-[Seção 14.7.3, "Bloqueios Definidos por Diferentes Instruções SQL no InnoDB"](innodb-locks-set.html)
+[Section 14.7.3, “Locks Set by Different SQL Statements in InnoDB”](innodb-locks-set.html "14.7.3 Locks Set by Different SQL Statements in InnoDB")
 
-[Seção 22.3.1, “Gestão de Partições RANGE e LIST”](partitioning-management-range-list.html)
+[Section 22.3.1, “Management of RANGE and LIST Partitions”](partitioning-management-range-list.html "22.3.1 Management of RANGE and LIST Partitions")
 
 ### CREATE TABLE ... TABLESPACE
 
-[Seção 13.1.8, "Instrução ALTER TABLE"](alter-table.html)
+[Section 13.1.8, “ALTER TABLE Statement”](alter-table.html "13.1.8 ALTER TABLE Statement")
 
-[Seção 13.1.19, "Instrução CREATE TABLESPACE"](create-tablespace.html)
+[Section 13.1.19, “CREATE TABLESPACE Statement”](create-tablespace.html "13.1.19 CREATE TABLESPACE Statement")
 
-[Seção 14.6.1.1, “Criando tabelas InnoDB”](using-innodb-tables.html)
+[Section 14.6.1.1, “Creating InnoDB Tables”](using-innodb-tables.html "14.6.1.1 Creating InnoDB Tables")
 
-[Seção 14.6.1.2, “Criando tabelas externamente”](innodb-create-table-external.html)
+[Section 14.6.1.2, “Creating Tables Externally”](innodb-create-table-external.html "14.6.1.2 Creating Tables Externally")
 
-[Seção 14.6.3.2, “Tablespaces por arquivo para tabelas”](innodb-file-per-table-tablespaces.html)
+[Section 14.6.3.2, “File-Per-Table Tablespaces”](innodb-file-per-table-tablespaces.html "14.6.3.2 File-Per-Table Tablespaces")
 
 ### CREATE TABLE IF NOT EXISTS
 
-[Seção 16.4.1.5, “Replicação de declarações CREATE ... IF NOT EXISTS”](replication-features-create-if-not-exists.html)
+[Section 16.4.1.5, “Replication of CREATE ... IF NOT EXISTS Statements”](replication-features-create-if-not-exists.html "16.4.1.5 Replication of CREATE ... IF NOT EXISTS Statements")
 
 ### CREATE TABLE IF NOT EXISTS ... LIKE
 
-[Seção 16.4.1.5, “Replicação de declarações CREATE ... IF NOT EXISTS”](replication-features-create-if-not-exists.html)
+[Section 16.4.1.5, “Replication of CREATE ... IF NOT EXISTS Statements”](replication-features-create-if-not-exists.html "16.4.1.5 Replication of CREATE ... IF NOT EXISTS Statements")
 
 ### CREATE TABLE IF NOT EXISTS ... SELECT
 
-[Seção 16.4.1.5, “Replicação de declarações CREATE ... IF NOT EXISTS”](replication-features-create-if-not-exists.html)
+[Section 16.4.1.5, “Replication of CREATE ... IF NOT EXISTS Statements”](replication-features-create-if-not-exists.html "16.4.1.5 Replication of CREATE ... IF NOT EXISTS Statements")
 
 ### CREATE TABLE LIKE
 
-[Seção 21.5.14, “ndb_import — Importar dados CSV no NDB”](mysql-cluster-programs-ndb-import.html)
+[Section 21.5.14, “ndb_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "21.5.14 ndb_import — Import CSV Data Into NDB")
 
-### Crie a tabela nova_tabela SELECT ... FROM antiga_tabela ...
+### CREATE TABLE new_table SELECT ... FROM old_table ...
 
-[Seção 13.1.18.4, "Instrução CREATE TABLE ... SELECT"](create-table-select.html)
+[Section 13.1.18.4, “CREATE TABLE ... SELECT Statement”](create-table-select.html "13.1.18.4 CREATE TABLE ... SELECT Statement")
 
-[Seção 13.2.9, "Instrução SELECT"](select.html)
+[Section 13.2.9, “SELECT Statement”](select.html "13.2.9 SELECT Statement")
 
-### Crie a tabela tbl_name ... TABLESPACE tablespace_name
+### CREATE TABLE tbl_name ... TABLESPACE tablespace_name
 
-[Seção 13.1.19, "Instrução CREATE TABLESPACE"](create-tablespace.html)
+[Section 13.1.19, “CREATE TABLESPACE Statement”](create-tablespace.html "13.1.19 CREATE TABLESPACE Statement")
 
-[Seção 14.6.3.3, “Tabelas gerais”](general-tablespaces.html)
+[Section 14.6.3.3, “General Tablespaces”](general-tablespaces.html "14.6.3.3 General Tablespaces")
 
-[Glossário do MySQL](glossary.html)
+[MySQL Glossary](glossary.html "MySQL Glossary")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
 ### CREATE TABLE...AS SELECT
 
-[Seção 8.2.1, “Otimização de instruções SELECT”](select-optimization.html)
+[Section 8.2.1, “Optimizing SELECT Statements”](select-optimization.html "8.2.1 Optimizing SELECT Statements")
 
-### Crie TABLESPACE
+### CREATE TABLESPACE
 
-[Seção 13.1.9, "Instrução ALTER TABLESPACE"](alter-tablespace.html)
+[Section 13.1.9, “ALTER TABLESPACE Statement”](alter-tablespace.html "13.1.9 ALTER TABLESPACE Statement")
 
-[Seção 13.1.19, "Instrução CREATE TABLESPACE"](create-tablespace.html)
+[Section 13.1.19, “CREATE TABLESPACE Statement”](create-tablespace.html "13.1.19 CREATE TABLESPACE Statement")
 
-[Seção 21.4.3.6, “Definindo nós de dados do cluster NDB”](mysql-cluster-ndbd-definition.html)
+[Section 21.4.3.6, “Defining NDB Cluster Data Nodes”](mysql-cluster-ndbd-definition.html "21.4.3.6 Defining NDB Cluster Data Nodes")
 
-[Seção 13.1.30, "Declaração DROP TABLESPACE"](drop-tablespace.html)
+[Section 13.1.30, “DROP TABLESPACE Statement”](drop-tablespace.html "13.1.30 DROP TABLESPACE Statement")
 
-[Seção 14.12.2, “Gestão do Espaço de Arquivo”](innodb-file-space.html)
+[Section 14.12.2, “File Space Management”](innodb-file-space.html "14.12.2 File Space Management")
 
-[Seção 14.6.3.3, “Tabelas gerais”](general-tablespaces.html)
+[Section 14.6.3.3, “General Tablespaces”](general-tablespaces.html "14.6.3.3 General Tablespaces")
 
-[Seção 21.2.7.8, "Problemas Exclusivos do NDB Cluster"](mysql-cluster-limitations-exclusive-to-cluster.html)
+[Section 21.2.7.8, “Issues Exclusive to NDB Cluster”](mysql-cluster-limitations-exclusive-to-cluster.html "21.2.7.8 Issues Exclusive to NDB Cluster")
 
-[Glossário do MySQL](glossary.html)
+[MySQL Glossary](glossary.html "MySQL Glossary")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
+[Section 4.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "4.5.6 mysqlpump — A Database Backup Program")
 
-[Seção 21.6.11.1, “Objetos de dados de disco do cluster NDB”](mysql-cluster-disk-data-objects.html)
+[Section 21.6.11.1, “NDB Cluster Disk Data Objects”](mysql-cluster-disk-data-objects.html "21.6.11.1 NDB Cluster Disk Data Objects")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 24.3.9, “A tabela INFORMATION_SCHEMA FILES”](information-schema-files-table.html)
+[Section 24.3.9, “The INFORMATION_SCHEMA FILES Table”](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table")
 
-[Seção 24.4.23, “A tabela INFORMATION_SCHEMA INNODB_SYS_TABLES”](information-schema-innodb-sys-tables-table.html)
+[Section 24.4.23, “The INFORMATION_SCHEMA INNODB_SYS_TABLES Table”](information-schema-innodb-sys-tables-table.html "24.4.23 The INFORMATION_SCHEMA INNODB_SYS_TABLES Table")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
-### Crie uma tabela temporária
+### CREATE TEMPORARY TABLE
 
-[Seção 13.1.18, "Instrução CREATE TABLE"](create-table.html)
+[Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement")
 
-[Seção 13.1.18.2, "Instrução CREATE TEMPORARY TABLE"](create-temporary-table.html)
+[Section 13.1.18.2, “CREATE TEMPORARY TABLE Statement”](create-temporary-table.html "13.1.18.2 CREATE TEMPORARY TABLE Statement")
 
-[Seção 16.1.6.5, “Variáveis do Sistema de ID de Transação Global”](replication-options-gtids.html)
+[Section 16.1.6.5, “Global Transaction ID System Variables”](replication-options-gtids.html "16.1.6.5 Global Transaction ID System Variables")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção A.10, “Perguntas frequentes sobre o MySQL 5.7: NDB Cluster”](faqs-mysql-cluster.html)
+[Section A.10, “MySQL 5.7 FAQ: NDB Cluster”](faqs-mysql-cluster.html "A.10 MySQL 5.7 FAQ: NDB Cluster")
 
-[Seção 4.6.7, “mysqlbinlog — Ferramenta para processamento de arquivos de log binário”](mysqlbinlog.html)
+[Section 4.6.7, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "4.6.7 mysqlbinlog — Utility for Processing Binary Log Files")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 16.1.3.6, “Restrições à Replicação com GTIDs”](replication-gtids-restrictions.html)
+[Section 16.1.3.6, “Restrictions on Replication with GTIDs”](replication-gtids-restrictions.html "16.1.3.6 Restrictions on Replication with GTIDs")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 15.1, “Configurando o Motor de Armazenamento”](storage-engine-setting.html)
+[Section 15.1, “Setting the Storage Engine”](storage-engine-setting.html "15.1 Setting the Storage Engine")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção B.3.6.2, “Problemas com tabelas temporárias”](temporary-table-problems.html)
+[Section B.3.6.2, “TEMPORARY Table Problems”](temporary-table-problems.html "B.3.6.2 TEMPORARY Table Problems")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
-### Crie TRIGGER
+### CREATE TRIGGER
 
-[Seção 13.1.20, "Instrução CREATE TRIGGER"](create-trigger.html)
+[Section 13.1.20, “CREATE TRIGGER Statement”](create-trigger.html "13.1.20 CREATE TRIGGER Statement")
 
-[Seção 12.15, “Funções de Informação”](information-functions.html)
+[Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions")
 
-[Seção A.5, “Perguntas frequentes sobre o MySQL 5.7: gatilhos”](faqs-triggers.html)
+[Section A.5, “MySQL 5.7 FAQ: Triggers”](faqs-triggers.html "A.5 MySQL 5.7 FAQ: Triggers")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 8.2.2.3, “Otimização de subconsultas com a estratégia EXISTS”](subquery-optimization-with-exists.html)
+[Section 8.2.2.3, “Optimizing Subqueries with the EXISTS Strategy”](subquery-optimization-with-exists.html "8.2.2.3 Optimizing Subqueries with the EXISTS Strategy")
 
-[Seção 16.4.1.8, “Replicação de CURRENT_USER()”](replication-features-current-user.html)
+[Section 16.4.1.8, “Replication of CURRENT_USER()”](replication-features-current-user.html "16.4.1.8 Replication of CURRENT_USER()")
 
-[Seção 16.4.1.16, “Replicação de Recursos Ativados”](replication-features-invoked.html)
+[Section 16.4.1.16, “Replication of Invoked Features”](replication-features-invoked.html "16.4.1.16 Replication of Invoked Features")
 
-[Seção 23.8, “Restrições aos Programas Armazenados”](stored-program-restrictions.html)
+[Section 23.8, “Restrictions on Stored Programs”](stored-program-restrictions.html "23.8 Restrictions on Stored Programs")
 
-[Seção 13.7.5.11, "Mostrar declaração CREATE TRIGGER"](show-create-trigger.html)
+[Section 13.7.5.11, “SHOW CREATE TRIGGER Statement”](show-create-trigger.html "13.7.5.11 SHOW CREATE TRIGGER Statement")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Capítulo 23, *Objetos Armazenados*] (stored-objects.html)
+[Chapter 23, *Stored Objects*](stored-objects.html "Chapter 23 Stored Objects")
 
-[Seção 23.7, "Registro de Log de Binário de Programa Armazenado"](stored-programs-logging.html)
+[Section 23.7, “Stored Program Binary Logging”](stored-programs-logging.html "23.7 Stored Program Binary Logging")
 
-[Seção 23.3.1, "Sintaxe de gatilho e exemplos"](trigger-syntax.html)
+[Section 23.3.1, “Trigger Syntax and Examples”](trigger-syntax.html "23.3.1 Trigger Syntax and Examples")
 
-### Crie o espaço de tabelas DESFAÇA
+### CREATE UNDO TABLESPACE
 
-[Glossário do MySQL](glossary.html)
+[MySQL Glossary](glossary.html "MySQL Glossary")
 
-### Crie usuário
+### CREATE USER
 
-[Seção 6.2, “Controle de Acesso e Gerenciamento de Contas”](access-control.html)
+[Section 6.2, “Access Control and Account Management”](access-control.html "6.2 Access Control and Account Management")
 
-[Seção 6.2.5, “Controle de Acesso, Etapa 1: Verificação de Conexão”](connection-access.html)
+[Section 6.2.5, “Access Control, Stage 1: Connection Verification”](connection-access.html "6.2.5 Access Control, Stage 1: Connection Verification")
 
-[Seção 6.2.15, “Bloqueio da Conta”](account-locking.html)
+[Section 6.2.15, “Account Locking”](account-locking.html "6.2.15 Account Locking")
 
-[Seção 6.2.1, “Nomes de Usuários e Senhas de Conta”](user-names.html)
+[Section 6.2.1, “Account User Names and Passwords”](user-names.html "6.2.1 Account User Names and Passwords")
 
-[Seção 6.2.7, “Adicionar contas, atribuir privilégios e excluir contas”](creating-accounts.html)
+[Section 6.2.7, “Adding Accounts, Assigning Privileges, and Dropping Accounts”](creating-accounts.html "6.2.7 Adding Accounts, Assigning Privileges, and Dropping Accounts")
 
-[Seção 6.2.10, “Atribuição de Senhas de Conta”](atribuição-de-senhas.html)
+[Section 6.2.10, “Assigning Account Passwords”](assigning-passwords.html "6.2.10 Assigning Account Passwords")
 
-[Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
+[Section 16.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "16.1.6.4 Binary Logging Options and Variables")
 
-[Seção 6.4.1.4, “Cache de Autenticação Pluggable SHA-2”](caching-sha2-pluggable-authentication.html)
+[Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”](caching-sha2-pluggable-authentication.html "6.4.1.4 Caching SHA-2 Pluggable Authentication")
 
-[Seção 4.2.3, “Opções de comando para conectar ao servidor”](connection-options.html)
+[Section 4.2.3, “Command Options for Connecting to the Server”](connection-options.html "4.2.3 Command Options for Connecting to the Server")
 
-[Seção 6.3.1, “Configurando o MySQL para usar conexões criptografadas”](using-encrypted-connections.html)
+[Section 6.3.1, “Configuring MySQL to Use Encrypted Connections”](using-encrypted-connections.html "6.3.1 Configuring MySQL to Use Encrypted Connections")
 
-[Seção 5.1.12.3, “Conectar usando a Endereço IPv6 do Host Local”](ipv6-local-connections.html)
+[Section 5.1.12.3, “Connecting Using the IPv6 Local Host Address”](ipv6-local-connections.html "5.1.12.3 Connecting Using the IPv6 Local Host Address")
 
-[Seção 13.7.1.2, "Instrução CREATE USER"](create-user.html)
+[Section 13.7.1.2, “CREATE USER Statement”](create-user.html "13.7.1.2 CREATE USER Statement")
 
-[Seção 16.1.2.2, “Criando um Usuário para Replicação”](replication-howto-repuser.html)
+[Section 16.1.2.2, “Creating a User for Replication”](replication-howto-repuser.html "16.1.2.2 Creating a User for Replication")
 
-[Seção 12.13, “Funções de Criptografia e Compressão”](encryption-functions.html)
+[Section 12.13, “Encryption and Compression Functions”](encryption-functions.html "12.13 Encryption and Compression Functions")
 
-[Seção 6.1.2.1, “Diretrizes para o Usuário Final sobre Segurança de Senhas”](password-security-user.html)
+[Section 6.1.2.1, “End-User Guidelines for Password Security”](password-security-user.html "6.1.2.1 End-User Guidelines for Password Security")
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 6.2.3, “Tabelas de subsídios”](grant-tables.html)
+[Section 6.2.3, “Grant Tables”](grant-tables.html "6.2.3 Grant Tables")
 
-[Seção 8.12.4.1, “Como o MySQL Usa a Memória”](memory-use.html)
+[Section 8.12.4.1, “How MySQL Uses Memory”](memory-use.html "8.12.4.1 How MySQL Uses Memory")
 
-[Seção 2.9.1, “Inicializando o Diretório de Dados”](data-directory-initialization.html)
+[Section 2.9.1, “Initializing the Data Directory”](data-directory-initialization.html "2.9.1 Initializing the Data Directory")
 
-[Seção 5.1.12, “Suporte ao IPv6”](ipv6-support.html)
+[Section 5.1.12, “IPv6 Support”](ipv6-support.html "5.1.12 IPv6 Support")
 
-[Seção 6.4.1.9, “Autenticação Conectada a LDAP”](ldap-pluggable-authentication.html)
+[Section 6.4.1.9, “LDAP Pluggable Authentication”](ldap-pluggable-authentication.html "6.4.1.9 LDAP Pluggable Authentication")
 
-[Seção 5.4.4.4, "Formato de registro para alterações nas tabelas do banco de dados mysql"](binary-log-mysql-database.html)
+[Section 5.4.4.4, “Logging Format for Changes to mysql Database Tables”](binary-log-mysql-database.html "5.4.4.4 Logging Format for Changes to mysql Database Tables")
 
-[Seção 6.1.3, “Tornar o MySQL seguro contra atacantes”](security-against-attack.html)
+[Section 6.1.3, “Making MySQL Secure Against Attackers”](security-against-attack.html "6.1.3 Making MySQL Secure Against Attackers")
 
-[Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
+[Section 4.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "4.5.6 mysqlpump — A Database Backup Program")
 
-[Seção 21.6.18.2, "Nível de privilégio do NDB Cluster e MySQL"](mysql-cluster-security-mysql-privileges.html)
+[Section 21.6.18.2, “NDB Cluster and MySQL Privileges”](mysql-cluster-security-mysql-privileges.html "21.6.18.2 NDB Cluster and MySQL Privileges")
 
-[Seção 6.4.1.10, “Autenticação Pluggable sem Login”](no-login-pluggable-authentication.html)
+[Section 6.4.1.10, “No-Login Pluggable Authentication”](no-login-pluggable-authentication.html "6.4.1.10 No-Login Pluggable Authentication")
 
-[Seção 6.4.1.7, “Autenticação Conectada (PAM)](pam-pluggable-authentication.html)
+[Section 6.4.1.7, “PAM Pluggable Authentication”](pam-pluggable-authentication.html "6.4.1.7 PAM Pluggable Authentication")
 
-[Seção 6.1.2.4, “Hashing de Senhas no MySQL”](password-hashing.html)
+[Section 6.1.2.4, “Password Hashing in MySQL”](password-hashing.html "6.1.2.4 Password Hashing in MySQL")
 
-[Seção 6.2.11, “Gestão de Senhas”](password-management.html)
+[Section 6.2.11, “Password Management”](password-management.html "6.2.11 Password Management")
 
-[Seção 6.1.2.3, “Senhas e Registro de Ações”](password-logging.html)
+[Section 6.1.2.3, “Passwords and Logging”](password-logging.html "6.1.2.3 Passwords and Logging")
 
-[Seção 21.7.5, “Preparando o NDB Cluster para Replicação”](mysql-cluster-replication-preparation.html)
+[Section 21.7.5, “Preparing the NDB Cluster for Replication”](mysql-cluster-replication-preparation.html "21.7.5 Preparing the NDB Cluster for Replication")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 6.2.14, “Usuários de Proxy”](proxy-users.html)
+[Section 6.2.14, “Proxy Users”](proxy-users.html "6.2.14 Proxy Users")
 
-[Seção 5.1.10, "Modos SQL do Servidor"](sql-mode.html)
+[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 6.2.16, “Definir limites de recursos da conta”](user-resources.html)
+[Section 6.2.16, “Setting Account Resource Limits”](user-resources.html "6.2.16 Setting Account Resource Limits")
 
-[Seção 6.4.1.5, “Autenticação Pluggable SHA-256”](sha256-pluggable-authentication.html)
+[Section 6.4.1.5, “SHA-256 Pluggable Authentication”](sha256-pluggable-authentication.html "6.4.1.5 SHA-256 Pluggable Authentication")
 
-[Seção 13.7.5.12, "Instrução SHOW CREATE USER"](show-create-user.html)
+[Section 13.7.5.12, “SHOW CREATE USER Statement”](show-create-user.html "13.7.5.12 SHOW CREATE USER Statement")
 
-[Seção 6.4.1.11, “Autenticação Pluggable de Credenciais de Peer de Soquete”](socket-pluggable-authentication.html)
+[Section 6.4.1.11, “Socket Peer-Credential Pluggable Authentication”](socket-pluggable-authentication.html "6.4.1.11 Socket Peer-Credential Pluggable Authentication")
 
-[Seção 6.2.4, “Especificação de Nomes de Conta”](account-names.html)
+[Section 6.2.4, “Specifying Account Names”](account-names.html "6.2.4 Specifying Account Names")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 6.4.3, “O Plugin de Validação de Senha”](validate-password.html)
+[Section 6.4.3, “The Password Validation Plugin”](validate-password.html "6.4.3 The Password Validation Plugin")
 
-[Seção 6.3, “Usando Conexões Encriptadas”](encrypted-connections.html)
+[Section 6.3, “Using Encrypted Connections”](encrypted-connections.html "6.3 Using Encrypted Connections")
 
-[Seção 19.4.1, “Usando Conexões Encriptadas com o Plugin X”](x-plugin-encrypted-connections.html)
+[Section 19.4.1, “Using Encrypted Connections with X Plugin”](x-plugin-encrypted-connections.html "19.4.1 Using Encrypted Connections with X Plugin")
 
-[Seção 6.4.6.3, “Uso do Firewall da MySQL Enterprise”](firewall-usage.html)
+[Section 6.4.6.3, “Using MySQL Enterprise Firewall”](firewall-usage.html "6.4.6.3 Using MySQL Enterprise Firewall")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
-[Seção 6.4.1.8, “Autenticação Conectada a Janelas”](windows-pluggable-authentication.html)
+[Section 6.4.1.8, “Windows Pluggable Authentication”](windows-pluggable-authentication.html "6.4.1.8 Windows Pluggable Authentication")
 
-### Crie a visualização
+### CREATE VIEW
 
-[Seção 13.1.10, "Instrução ALTER VIEW"](alter-view.html)
+[Section 13.1.10, “ALTER VIEW Statement”](alter-view.html "13.1.10 ALTER VIEW Statement")
 
-[Seção 13.1.21, "Instrução CREATE VIEW"](create-view.html)
+[Section 13.1.21, “CREATE VIEW Statement”](create-view.html "13.1.21 CREATE VIEW Statement")
 
-[Seção 8.14.3, “Estados gerais de fios”](general-thread-states.html)
+[Section 8.14.3, “General Thread States”](general-thread-states.html "8.14.3 General Thread States")
 
-[Seção 9.2.1, “Limites de comprimento do identificador”](identifier-length.html)
+[Section 9.2.1, “Identifier Length Limits”](identifier-length.html "9.2.1 Identifier Length Limits")
 
-[Seção 12.15, “Funções de Informação”](information-functions.html)
+[Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions")
 
-[Seção 13.3.5, “Instruções LOCK TABLES e UNLOCK TABLES”](lock-tables.html)
+[Section 13.3.5, “LOCK TABLES and UNLOCK TABLES Statements”](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements")
 
-[Seção 22.6.4, “Partição e Bloqueio”](partitioning-limitations-locking.html)
+[Section 22.6.4, “Partitioning and Locking”](partitioning-limitations-locking.html "22.6.4 Partitioning and Locking")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 16.4.1.8, “Replicação de CURRENT_USER()”](replication-features-current-user.html)
+[Section 16.4.1.8, “Replication of CURRENT_USER()”](replication-features-current-user.html "16.4.1.8 Replication of CURRENT_USER()")
 
-[Seção 23.9, “Restrições de visualização”](view-restrictions.html)
+[Section 23.9, “Restrictions on Views”](view-restrictions.html "23.9 Restrictions on Views")
 
-[Seção 13.7.5.13, "Mostrar declaração CREATE VIEW"](show-create-view.html)
+[Section 13.7.5.13, “SHOW CREATE VIEW Statement”](show-create-view.html "13.7.5.13 SHOW CREATE VIEW Statement")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Capítulo 23, *Objetos Armazenados*] (stored-objects.html)
+[Chapter 23, *Stored Objects*](stored-objects.html "Chapter 23 Stored Objects")
 
-[Seção 24.3.31, “A Tabela INFORMATION_SCHEMA VIEWS”](information-schema-views-table.html)
+[Section 24.3.31, “The INFORMATION_SCHEMA VIEWS Table”](information-schema-views-table.html "24.3.31 The INFORMATION_SCHEMA VIEWS Table")
 
-[Seção 23.5.3, “Visões Atualizáveis e Inseríveis”](view-updatability.html)
+[Section 23.5.3, “Updatable and Insertable Views”](view-updatability.html "23.5.3 Updatable and Insertable Views")
 
-[Seção 23.5.2, “Ver Algoritmos de Processamento”](view-algorithms.html)
+[Section 23.5.2, “View Processing Algorithms”](view-algorithms.html "23.5.2 View Processing Algorithms")
 
-[Seção 23.5.1, "Sintaxe de visualização"](view-syntax.html)
+[Section 23.5.1, “View Syntax”](view-syntax.html "23.5.1 View Syntax")
 
 ### D
 
-index topo](dynindex-statement.html#stmt-index-topo)]
+index top](dynindex-statement.html#stmt-index-top)]
 
-### DESLOCAR PREPARAR
+### DEALLOCATE PREPARE
 
-[Seção 13.5.3, “Instrução DEALLOCATE PREPARE”](deallocate-prepare.html)
+[Section 13.5.3, “DEALLOCATE PREPARE Statement”](deallocate-prepare.html "13.5.3 DEALLOCATE PREPARE Statement")
 
-[Seção 13.5.1, “Declaração PREPARE”](prepare.html)
+[Section 13.5.1, “PREPARE Statement”](prepare.html "13.5.1 PREPARE Statement")
 
-[Seção 13.5, "Declarações Preparadas"](sql-prepared-statements.html)
+[Section 13.5, “Prepared Statements”](sql-prepared-statements.html "13.5 Prepared Statements")
 
-[Seção 23.8, “Restrições aos Programas Armazenados”](stored-program-restrictions.html)
+[Section 23.8, “Restrictions on Stored Programs”](stored-program-restrictions.html "23.8 Restrictions on Stored Programs")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 25.12.6.4, “Tabela prepared_statements_instances”](performance-schema-prepared-statements-instances-table.html)
+[Section 25.12.6.4, “The prepared_statements_instances Table”](performance-schema-prepared-statements-instances-table.html "25.12.6.4 The prepared_statements_instances Table")
 
-### DECLARAR
+### DECLARE
 
-[Seção 13.1.16, "Instruções CREATE PROCEDURE e CREATE FUNCTION"](create-procedure.html)
+[Section 13.1.16, “CREATE PROCEDURE and CREATE FUNCTION Statements”](create-procedure.html "13.1.16 CREATE PROCEDURE and CREATE FUNCTION Statements")
 
-[Seção 13.6.3, “Declaração DECLARE”](declare.html)
+[Section 13.6.3, “DECLARE Statement”](declare.html "13.6.3 DECLARE Statement")
 
-[Seção 13.6.7.3, "Declaração de DIAGNÓSTICOS"](get-diagnostics.html)
+[Section 13.6.7.3, “GET DIAGNOSTICS Statement”](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement")
 
-[Seção 13.6.7.5, “Declaração de Sinal”](signal.html)
+[Section 13.6.7.5, “SIGNAL Statement”](signal.html "13.6.7.5 SIGNAL Statement")
 
-[Seção 8.15.3, “Declarações rastreáveis”](traceable-statements.html)
+[Section 8.15.3, “Traceable Statements”](traceable-statements.html "8.15.3 Traceable Statements")
 
-[Seção 13.6.4, “Variáveis em Programas Armazenados”](stored-program-variables.html)
+[Section 13.6.4, “Variables in Stored Programs”](stored-program-variables.html "13.6.4 Variables in Stored Programs")
 
-### DECLARAR ... CONDIÇÃO
+### DECLARE ... CONDITION
 
-[Seção 13.6.7, “Tratamento de Condições”](condition-handling.html)
+[Section 13.6.7, “Condition Handling”](condition-handling.html "13.6.7 Condition Handling")
 
-[Seção 13.6.7.1, "Declaração de condição ... DECLARE"](declare-condition.html)
+[Section 13.6.7.1, “DECLARE ... CONDITION Statement”](declare-condition.html "13.6.7.1 DECLARE ... CONDITION Statement")
 
-[Seção 13.6.7.2, "DECLARAR ... Declaração de Manipulador"](declare-handler.html)
+[Section 13.6.7.2, “DECLARE ... HANDLER Statement”](declare-handler.html "13.6.7.2 DECLARE ... HANDLER Statement")
 
-[Seção 13.6.7.5, “Declaração de Sinal”](signal.html)
+[Section 13.6.7.5, “SIGNAL Statement”](signal.html "13.6.7.5 SIGNAL Statement")
 
-### DECLARAR ... HANDLER
+### DECLARE ... HANDLER
 
-[Seção 13.6.7, “Tratamento de Condições”](condition-handling.html)
+[Section 13.6.7, “Condition Handling”](condition-handling.html "13.6.7 Condition Handling")
 
-[Seção 13.6.7.1, "Declaração de condição ... DECLARE"](declare-condition.html)
+[Section 13.6.7.1, “DECLARE ... CONDITION Statement”](declare-condition.html "13.6.7.1 DECLARE ... CONDITION Statement")
 
-[Seção 13.6.7.2, "DECLARAR ... Declaração de Manipulador"](declare-handler.html)
+[Section 13.6.7.2, “DECLARE ... HANDLER Statement”](declare-handler.html "13.6.7.2 DECLARE ... HANDLER Statement")
 
-[Seção 13.6.7.5, “Declaração de Sinal”](signal.html)
+[Section 13.6.7.5, “SIGNAL Statement”](signal.html "13.6.7.5 SIGNAL Statement")
 
-### DELETA
+### DELETE
 
-[Seção 6.2, “Controle de Acesso e Gerenciamento de Contas”](access-control.html)
+[Section 6.2, “Access Control and Account Management”](access-control.html "6.2 Access Control and Account Management")
 
-[Seção 14.21.5.5, “Adaptando declarações DML para operações memcached”](innodb-memcached-dml.html)
+[Section 14.21.5.5, “Adapting DML Statements to memcached Operations”](innodb-memcached-dml.html "14.21.5.5 Adapting DML Statements to memcached Operations")
 
-[Seção 6.2.7, “Adicionar contas, atribuir privilégios e excluir contas”](creating-accounts.html)
+[Section 6.2.7, “Adding Accounts, Assigning Privileges, and Dropping Accounts”](creating-accounts.html "6.2.7 Adding Accounts, Assigning Privileges, and Dropping Accounts")
 
-[Seção 16.2.1.1, “Vantagens e desvantagens da replicação baseada em declarações e baseada em linhas”](replication-sbr-rbr.html)
+[Section 16.2.1.1, “Advantages and Disadvantages of Statement-Based and Row-Based Replication”](replication-sbr-rbr.html "16.2.1.1 Advantages and Disadvantages of Statement-Based and Row-Based Replication")
 
-[Seção 13.1.8.1, “Operações de Partição de Tabela”](alter-table-partition-operations.html)
+[Section 13.1.8.1, “ALTER TABLE Partition Operations”](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations")
 
-[Seção 6.4.5.7, “Filtragem do Log de Auditoria”](audit-log-filtering.html)
+[Section 6.4.5.7, “Audit Log Filtering”](audit-log-filtering.html "6.4.5.7 Audit Log Filtering")
 
-[Seção 6.4.5.11, “Referência do Log de Auditoria”](audit-log-reference.html)
+[Section 6.4.5.11, “Audit Log Reference”](audit-log-reference.html "6.4.5.11 Audit Log Reference")
 
-[Seção 14.1.2, “Melhores Práticas para Tabelas InnoDB”](innodb-best-practices.html)
+[Section 14.1.2, “Best Practices for InnoDB Tables”](innodb-best-practices.html "14.1.2 Best Practices for InnoDB Tables")
 
-[Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
+[Section 16.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "16.1.6.4 Binary Logging Options and Variables")
 
-[Seção 8.6.2, “Carregamento de dados em massa para tabelas MyISAM”](optimizando-myisam-carregamento-de-dados-em-massa.html)
+[Section 8.6.2, “Bulk Data Loading for MyISAM Tables”](optimizing-myisam-bulk-data-loading.html "8.6.2 Bulk Data Loading for MyISAM Tables")
 
-[Seção 14.5.2, “Buffer de Mudança”](innodb-change-buffer.html)
+[Section 14.5.2, “Change Buffer”](innodb-change-buffer.html "14.5.2 Change Buffer")
 
-[Seção 2.10.3, “Alterações no MySQL 5.7”](upgrading-from-previous-series.html)
+[Section 2.10.3, “Changes in MySQL 5.7”](upgrading-from-previous-series.html "2.10.3 Changes in MySQL 5.7")
 
-[Seção 14.9.1.6, "Compressão para cargas de trabalho OLTP"](innodb-performance-compression-oltp.html)
+[Section 14.9.1.6, “Compression for OLTP Workloads”](innodb-performance-compression-oltp.html "14.9.1.6 Compression for OLTP Workloads")
 
-[Seção 14.7.2.3, “Leitura Consistente sem Bloqueio”](innodb-consistent-read.html)
+[Section 14.7.2.3, “Consistent Nonlocking Reads”](innodb-consistent-read.html "14.7.2.3 Consistent Nonlocking Reads")
 
-[Seção 14.6.1.5, “Conversão de tabelas de MyISAM para InnoDB”](converting-tables-to-innodb.html)
+[Section 14.6.1.5, “Converting Tables from MyISAM to InnoDB”](converting-tables-to-innodb.html "14.6.1.5 Converting Tables from MyISAM to InnoDB")
 
-[Seção 13.1.16, "Instruções CREATE PROCEDURE e CREATE FUNCTION"](create-procedure.html)
+[Section 13.1.16, “CREATE PROCEDURE and CREATE FUNCTION Statements”](create-procedure.html "13.1.16 CREATE PROCEDURE and CREATE FUNCTION Statements")
 
-[Seção 13.1.20, "Instrução CREATE TRIGGER"](create-trigger.html)
+[Section 13.1.20, “CREATE TRIGGER Statement”](create-trigger.html "13.1.20 CREATE TRIGGER Statement")
 
-[Seção 13.1.21, "Instrução CREATE VIEW"](create-view.html)
+[Section 13.1.21, “CREATE VIEW Statement”](create-view.html "13.1.21 CREATE VIEW Statement")
 
-[Seção 13.2.2, “Instrução DELETE”](delete.html)
+[Section 13.2.2, “DELETE Statement”](delete.html "13.2.2 DELETE Statement")
 
-[Seção B.3.4.6, “Excluindo Linhas de Tabelas Relacionadas”](excluindo-de-tabelas-relacionadas.html)
+[Section B.3.4.6, “Deleting Rows from Related Tables”](deleting-from-related-tables.html "B.3.4.6 Deleting Rows from Related Tables")
 
-[Seção 2.11.3, “Notas de Downgrade”](downgrading-to-previous-series.html)
+[Section 2.11.3, “Downgrade Notes”](downgrading-to-previous-series.html "2.11.3 Downgrade Notes")
 
-[Seção 8.8.2, “Formato de Saída EXPLAIN”](explain-output.html)
+[Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
 
-[Seção 13.8.2, “Instrução EXPLAIN”](explain.html)
+[Section 13.8.2, “EXPLAIN Statement”](explain.html "13.8.2 EXPLAIN Statement")
 
-[Seção 8.8.3, “Formato de saída EXPLAIN estendido”](explain-extended.html)
+[Section 8.8.3, “Extended EXPLAIN Output Format”](explain-extended.html "8.8.3 Extended EXPLAIN Output Format")
 
-[Seção 15.8.3, “Notas e dicas do mecanismo de armazenamento federado”](federated-usagenotes.html)
+[Section 15.8.3, “FEDERATED Storage Engine Notes and Tips”](federated-usagenotes.html "15.8.3 FEDERATED Storage Engine Notes and Tips")
 
-[Seção 14.22.2, “Forçar a recuperação do InnoDB”](forcing-innodb-recovery.html)
+[Section 14.22.2, “Forcing InnoDB Recovery”](forcing-innodb-recovery.html "14.22.2 Forcing InnoDB Recovery")
 
-[Seção 13.1.18.5, “Restrições de Chave Estrangeira”](create-table-foreign-keys.html)
+[Section 13.1.18.5, “FOREIGN KEY Constraints”](create-table-foreign-keys.html "13.1.18.5 FOREIGN KEY Constraints")
 
-[Seção 12.9.5, “Restrições de texto completo”](fulltext-restrictions.html)
+[Section 12.9.5, “Full-Text Restrictions”](fulltext-restrictions.html "12.9.5 Full-Text Restrictions")
 
-[Capítulo 12, *Funções e Operadores*] (functions.html)
+[Chapter 12, *Functions and Operators*](functions.html "Chapter 12 Functions and Operators")
 
-[Seção 8.14.3, “Estados gerais de fios”](general-thread-states.html)
+[Section 8.14.3, “General Thread States”](general-thread-states.html "8.14.3 General Thread States")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 6.2.3, “Tabelas de subsídios”](grant-tables.html)
+[Section 6.2.3, “Grant Tables”](grant-tables.html "6.2.3 Grant Tables")
 
-[Seção 8.10.3.1, “Como o Cache de Consultas Funciona”](query-cache-operation.html)
+[Section 8.10.3.1, “How the Query Cache Operates”](query-cache-operation.html "8.10.3.1 How the Query Cache Operates")
 
-[Seção 21.6.9, “Importando dados no MySQL Cluster”](mysql-cluster-importing-data.html)
+[Section 21.6.9, “Importing Data Into MySQL Cluster”](mysql-cluster-importing-data.html "21.6.9 Importing Data Into MySQL Cluster")
 
-[Seção 8.9.4, “Dicas de índice”](index-hints.html)
+[Section 8.9.4, “Index Hints”](index-hints.html "8.9.4 Index Hints")
 
-[Seção 12.15, “Funções de Informação”](information-functions.html)
+[Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions")
 
-[Seção 14.20, “InnoDB e Replicação do MySQL”](innodb-e-mysql-replicacao.html)
+[Section 14.20, “InnoDB and MySQL Replication”](innodb-and-mysql-replication.html "14.20 InnoDB and MySQL Replication")
 
-[Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
+[Section 14.15, “InnoDB Startup Options and System Variables”](innodb-parameters.html "14.15 InnoDB Startup Options and System Variables")
 
-[Seção 8.11.1, “Métodos de bloqueio interno”](internal-locking.html)
+[Section 8.11.1, “Internal Locking Methods”](internal-locking.html "8.11.1 Internal Locking Methods")
 
-[Seção 24.1, “Introdução”](information-schema-introduction.html)
+[Section 24.1, “Introduction”](information-schema-introduction.html "24.1 Introduction")
 
-[Seção 13.2.9.2, "Cláusula JOIN"](join.html)
+[Section 13.2.9.2, “JOIN Clause”](join.html "13.2.9.2 JOIN Clause")
 
-[Seção 9.3, “Palavras-chave e Palavras Reservadas”](keywords.html)
+[Section 9.3, “Keywords and Reserved Words”](keywords.html "9.3 Keywords and Reserved Words")
 
-[Seção 13.7.6.4, "Declaração de KILL"](kill.html)
+[Section 13.7.6.4, “KILL Statement”](kill.html "13.7.6.4 KILL Statement")
 
-[Seção B.3.7, “Problemas Conhecidos no MySQL”](known-issues.html)
+[Section B.3.7, “Known Issues in MySQL”](known-issues.html "B.3.7 Known Issues in MySQL")
 
-[Seção 21.2.7.2, “Limites e Diferenças do NDB Cluster em Relação aos Limites Padrão do MySQL”](mysql-cluster-limitations-limits.html)
+[Section 21.2.7.2, “Limits and Differences of NDB Cluster from Standard MySQL Limits”](mysql-cluster-limitations-limits.html "21.2.7.2 Limits and Differences of NDB Cluster from Standard MySQL Limits")
 
-[Seção 21.2.7.3, “Limitações relacionadas ao processamento de transações no NDB Cluster”](mysql-cluster-limitations-transactions.html)
+[Section 21.2.7.3, “Limits Relating to Transaction Handling in NDB Cluster”](mysql-cluster-limitations-transactions.html "21.2.7.3 Limits Relating to Transaction Handling in NDB Cluster")
 
-[Seção 22.2.2, “Divisão de Lista”](partitioning-list.html)
+[Section 22.2.2, “LIST Partitioning”](partitioning-list.html "22.2.2 LIST Partitioning")
 
-[Seção 14.7.3, "Bloqueios Definidos por Diferentes Instruções SQL no InnoDB"](innodb-locks-set.html)
+[Section 14.7.3, “Locks Set by Different SQL Statements in InnoDB”](innodb-locks-set.html "14.7.3 Locks Set by Different SQL Statements in InnoDB")
 
-[Seção 5.4.4.4, "Formato de registro para alterações nas tabelas do banco de dados mysql"](binary-log-mysql-database.html)
+[Section 5.4.4.4, “Logging Format for Changes to mysql Database Tables”](binary-log-mysql-database.html "5.4.4.4 Logging Format for Changes to mysql Database Tables")
 
-[Seção 22.3.1, “Gestão de Partições RANGE e LIST”](partitioning-management-range-list.html)
+[Section 22.3.1, “Management of RANGE and LIST Partitions”](partitioning-management-range-list.html "22.3.1 Management of RANGE and LIST Partitions")
 
-[Seção 15.7.2, “Problemas da Tabela MERGE”](merge-table-problems.html)
+[Section 15.7.2, “MERGE Table Problems”](merge-table-problems.html "15.7.2 MERGE Table Problems")
 
-[Seção 4.5.1.1, “Opções do cliente do MySQL”](mysql-command-options.html)
+[Section 4.5.1.1, “mysql Client Options”](mysql-command-options.html "4.5.1.1 mysql Client Options")
 
-[Seção 4.5.1.6, “Dicas do cliente do MySQL”](mysql-tips.html)
+[Section 4.5.1.6, “mysql Client Tips”](mysql-tips.html "4.5.1.6 mysql Client Tips")
 
-[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html)
+[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
 
-[Glossário do MySQL](glossary.html)
+[MySQL Glossary](glossary.html "MySQL Glossary")
 
-[Seção 21.6.18.3, “Procedimentos de segurança do NDB Cluster e MySQL”](mysql-cluster-security-mysql-security-procedures.html)
+[Section 21.6.18.3, “NDB Cluster and MySQL Security Procedures”](mysql-cluster-security-mysql-security-procedures.html "21.6.18.3 NDB Cluster and MySQL Security Procedures")
 
-[Seção 21.6.11.1, “Objetos de dados de disco do cluster NDB”](mysql-cluster-disk-data-objects.html)
+[Section 21.6.11.1, “NDB Cluster Disk Data Objects”](mysql-cluster-disk-data-objects.html "21.6.11.1 NDB Cluster Disk Data Objects")
 
-[Seção 21.5.9, “ndb_delete_all — Deletar todas as linhas de uma tabela NDB”](mysql-cluster-programs-ndb-delete-all.html)
+[Section 21.5.9, “ndb_delete_all — Delete All Rows from an NDB Table”](mysql-cluster-programs-ndb-delete-all.html "21.5.9 ndb_delete_all — Delete All Rows from an NDB Table")
 
-[Seção 8.8.4, “Obtendo informações do plano de execução para uma conexão nomeada”](explain-for-connection.html)
+[Section 8.8.4, “Obtaining Execution Plan Information for a Named Connection”](explain-for-connection.html "8.8.4 Obtaining Execution Plan Information for a Named Connection")
 
-[Seção 14.13.1, “Operações DDL Online”](innodb-online-ddl-operations.html)
+[Section 14.13.1, “Online DDL Operations”](innodb-online-ddl-operations.html "14.13.1 Online DDL Operations")
 
-[Seção 8.9.3, “Dicas do otimizador”](optimizer-hints.html)
+[Section 8.9.3, “Optimizer Hints”](optimizer-hints.html "8.9.3 Optimizer Hints")
 
-[Seção 8.2.4, “Otimização das declarações de alteração de dados”](data-change-optimization.html)
+[Section 8.2.4, “Optimizing Data Change Statements”](data-change-optimization.html "8.2.4 Optimizing Data Change Statements")
 
-[Seção 8.8.1, “Otimizando consultas com EXPLAIN”](using-explain.html)
+[Section 8.8.1, “Optimizing Queries with EXPLAIN”](using-explain.html "8.8.1 Optimizing Queries with EXPLAIN")
 
-[Seção 8.2.1, “Otimização de instruções SELECT”](select-optimization.html)
+[Section 8.2.1, “Optimizing SELECT Statements”](select-optimization.html "8.2.1 Optimizing SELECT Statements")
 
-[Seção 8.2.2, “Otimização de Subconsultas, Tabelas Derivadas e Referências de Visualização”](subquery-optimization.html)
+[Section 8.2.2, “Optimizing Subqueries, Derived Tables, and View References”](subquery-optimization.html "8.2.2 Optimizing Subqueries, Derived Tables, and View References")
 
-[Seção 22.1, “Visão geral da partição no MySQL”](partitioning-overview.html)
+[Section 22.1, “Overview of Partitioning in MySQL”](partitioning-overview.html "22.1 Overview of Partitioning in MySQL")
 
-[Seção 22.4, “Rimação de Partições”](partitioning-pruning.html)
+[Section 22.4, “Partition Pruning”](partitioning-pruning.html "22.4 Partition Pruning")
 
-[Seção 22.5, “Seleção de Partição”](partitioning-selection.html)
+[Section 22.5, “Partition Selection”](partitioning-selection.html "22.5 Partition Selection")
 
-[Seção 21.6.5, “Realizar um Reinício Rotativo de um NDB Cluster”](mysql-cluster-rolling-restart.html)
+[Section 21.6.5, “Performing a Rolling Restart of an NDB Cluster”](mysql-cluster-rolling-restart.html "21.6.5 Performing a Rolling Restart of an NDB Cluster")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 14.8.10, “Configuração de Purga”](innodb-purge-configuration.html)
+[Section 14.8.10, “Purge Configuration”](innodb-purge-configuration.html "14.8.10 Purge Configuration")
 
-[Seção 8.14.4, “Estados de Cache de Consulta de Fila”](query-cache-thread-states.html)
+[Section 8.14.4, “Query Cache Thread States”](query-cache-thread-states.html "8.14.4 Query Cache Thread States")
 
-[Seção 8.2.1.2, “Otimização de alcance”](range-optimization.html)
+[Section 8.2.1.2, “Range Optimization”](range-optimization.html "8.2.1.2 Range Optimization")
 
-[Seção 22.2.1, “Divisão de Faixa”](partitioning-range.html)
+[Section 22.2.1, “RANGE Partitioning”](partitioning-range.html "22.2.1 RANGE Partitioning")
 
-[Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
+[Section 16.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "16.1.6.3 Replica Server Options and Variables")
 
-[Seção 16.4.1.17, “Replicação e LIMIT”](replication-features-limit.html)
+[Section 16.4.1.17, “Replication and LIMIT”](replication-features-limit.html "16.4.1.17 Replication and LIMIT")
 
-[Seção 16.4.1.20, “Replicação e Tabelas de MEMORY”](replication-features-memory.html)
+[Section 16.4.1.20, “Replication and MEMORY Tables”](replication-features-memory.html "16.4.1.20 Replication and MEMORY Tables")
 
-[Seção 16.4.1.22, "Replicação e o otimizador de consultas"](replication-features-optimizer.html)
+[Section 16.4.1.22, “Replication and the Query Optimizer”](replication-features-optimizer.html "16.4.1.22 Replication and the Query Optimizer")
 
-[Seção 16.4.1.34, “Replicação e gatilhos”](replication-features-triggers.html)
+[Section 16.4.1.34, “Replication and Triggers”](replication-features-triggers.html "16.4.1.34 Replication and Triggers")
 
-[Seção 13.2.10.11, “Reescrita de subconsultas como junções”](rewriting-subqueries.html)
+[Section 13.2.10.11, “Rewriting Subqueries as Joins”](rewriting-subqueries.html "13.2.10.11 Rewriting Subqueries as Joins")
 
-[Seção 3.3.4.1, “Selecionar todos os dados”](selecionando-todos.html)
+[Section 3.3.4.1, “Selecting All Data”](selecting-all.html "3.3.4.1 Selecting All Data")
 
-[Seção 5.4.1, “Selecionando destinos de saída do Log de consulta geral e do Log de consulta lenta”](log-destinations.html)
+[Section 5.4.1, “Selecting General Query Log and Slow Query Log Output Destinations”](log-destinations.html "5.4.1 Selecting General Query Log and Slow Query Log Output Destinations")
 
-[Seção 5.1.10, "Modos SQL do Servidor"](sql-mode.html)
+[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 13.7.5.36, "Declaração de Status da Tabela"](show-table-status.html)
+[Section 13.7.5.36, “SHOW TABLE STATUS Statement”](show-table-status.html "13.7.5.36 SHOW TABLE STATUS Statement")
 
-[Seção 5.8.4.1.12, "Provas de declaração"](dba-dtrace-mysqld-ref.html#dba-dtrace-ref-statement)
+[Section 5.8.4.1.12, “Statement Probes”](dba-dtrace-mysqld-ref.html#dba-dtrace-ref-statement "5.8.4.1.12 Statement Probes")
 
-[Seção 13.2.10, "Subconsultas"](subqueries.html)
+[Section 13.2.10, “Subqueries”](subqueries.html "13.2.10 Subqueries")
 
-[Seção 13.2.10.9, “Erros de subconsultas”](subquery-errors.html)
+[Section 13.2.10.9, “Subquery Errors”](subquery-errors.html "13.2.10.9 Subquery Errors")
 
-[Seção 8.11.2, “Problemas de bloqueio de tabelas”](table-locking.html)
+[Section 8.11.2, “Table Locking Issues”](table-locking.html "8.11.2 Table Locking Issues")
 
-[Seção 15.5, “O Motor de Armazenamento ARCHIVE”](archive-storage-engine.html)
+[Section 15.5, “The ARCHIVE Storage Engine”](archive-storage-engine.html "15.5 The ARCHIVE Storage Engine")
 
-[Seção 5.4.4, “O Log Binário”](binary-log.html)
+[Section 5.4.4, “The Binary Log”](binary-log.html "5.4.4 The Binary Log")
 
-[Seção 15.6, “O Motor de Armazenamento BLACKHOLE”](blackhole-storage-engine.html)
+[Section 15.6, “The BLACKHOLE Storage Engine”](blackhole-storage-engine.html "15.6 The BLACKHOLE Storage Engine")
 
-[Seção 24.4.25, “A visão INFORMATION_SCHEMA INNODB_SYS_TABLESTATS”](information-schema-innodb-sys-tablestats-table.html)
+[Section 24.4.25, “The INFORMATION_SCHEMA INNODB_SYS_TABLESTATS View”](information-schema-innodb-sys-tablestats-table.html "24.4.25 The INFORMATION_SCHEMA INNODB_SYS_TABLESTATS View")
 
-[Seção 24.3.25, “A tabela INFORMATION_SCHEMA TABLES”](information-schema-tables-table.html)
+[Section 24.3.25, “The INFORMATION_SCHEMA TABLES Table”](information-schema-tables-table.html "24.3.25 The INFORMATION_SCHEMA TABLES Table")
 
-[Seção 24.3.31, “A Tabela INFORMATION_SCHEMA VIEWS”](information-schema-views-table.html)
+[Section 24.3.31, “The INFORMATION_SCHEMA VIEWS Table”](information-schema-views-table.html "24.3.31 The INFORMATION_SCHEMA VIEWS Table")
 
-[Seção 1.2.2, “Principais características do MySQL”](features.html)
+[Section 1.2.2, “The Main Features of MySQL”](features.html "1.2.2 The Main Features of MySQL")
 
-[Seção 15.3, “O Motor de Armazenamento de MEMORY”](memory-storage-engine.html)
+[Section 15.3, “The MEMORY Storage Engine”](memory-storage-engine.html "15.3 The MEMORY Storage Engine")
 
-[Seção 15.7, “O Motor de Armazenamento MERGE”](merge-storage-engine.html)
+[Section 15.7, “The MERGE Storage Engine”](merge-storage-engine.html "15.7 The MERGE Storage Engine")
 
-[Seção 8.15.3, “Declarações rastreáveis”](traceable-statements.html)
+[Section 8.15.3, “Traceable Statements”](traceable-statements.html "8.15.3 Traceable Statements")
 
-[Seção 14.7.2.1, “Níveis de Isolamento de Transações”](innodb-transaction-isolation-levels.html)
+[Section 14.7.2.1, “Transaction Isolation Levels”](innodb-transaction-isolation-levels.html "14.7.2.1 Transaction Isolation Levels")
 
-[Seção 23.3.1, "Sintaxe de gatilho e exemplos"](trigger-syntax.html)
+[Section 23.3.1, “Trigger Syntax and Examples”](trigger-syntax.html "23.3.1 Trigger Syntax and Examples")
 
-[Seção 6.2.17, “Soluções para problemas de conexão com o MySQL”](problemas-conectando.html)
+[Section 6.2.17, “Troubleshooting Problems Connecting to MySQL”](problems-connecting.html "6.2.17 Troubleshooting Problems Connecting to MySQL")
 
-[Seção 13.1.34, "Instrução TRUNCATE TABLE"](truncate-table.html)
+[Section 13.1.34, “TRUNCATE TABLE Statement”](truncate-table.html "13.1.34 TRUNCATE TABLE Statement")
 
-[Seção 14.6.7, "Desfazer Logs"](innodb-undo-logs.html)
+[Section 14.6.7, “Undo Logs”](innodb-undo-logs.html "14.6.7 Undo Logs")
 
-[Seção 23.5.3, “Visões Atualizáveis e Inseríveis”](view-updatability.html)
+[Section 23.5.3, “Updatable and Insertable Views”](view-updatability.html "23.5.3 Updatable and Insertable Views")
 
-[Seção 16.2.1.2, “Uso de Registro e Replicação Baseados em Linhas”](replication-rbr-usage.html)
+[Section 16.2.1.2, “Usage of Row-Based Logging and Replication”](replication-rbr-usage.html "16.2.1.2 Usage of Row-Based Logging and Replication")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
-[Seção 6.2.9, “Quando as Alterações de Privilegios Se Tornam Efetivas”](privilege-changes.html)
+[Section 6.2.9, “When Privilege Changes Take Effect”](privilege-changes.html "6.2.9 When Privilege Changes Take Effect")
 
-[Seção 8.2.1.1, "Otimização da cláusula WHERE"](where-optimization.html)
+[Section 8.2.1.1, “WHERE Clause Optimization”](where-optimization.html "8.2.1.1 WHERE Clause Optimization")
 
-[Seção 6.4.5.8, “Definições de filtro de registro de auditoria”](audit-log-filter-definitions.html)
+[Section 6.4.5.8, “Writing Audit Log Filter Definitions”](audit-log-filter-definitions.html "6.4.5.8 Writing Audit Log Filter Definitions")
 
-### DELETAR DE ... WHERE ...
+### DELETE FROM ... WHERE ...
 
-[Seção 14.7.3, "Bloqueios Definidos por Diferentes Instruções SQL no InnoDB"](innodb-locks-set.html)
+[Section 14.7.3, “Locks Set by Different SQL Statements in InnoDB”](innodb-locks-set.html "14.7.3 Locks Set by Different SQL Statements in InnoDB")
 
-### DELETE DE t1, t2
+### DELETE FROM t1,t2
 
-[Seção 5.8.4.1.12, "Provas de declaração"](dba-dtrace-mysqld-ref.html#dba-dtrace-ref-statement)
+[Section 5.8.4.1.12, “Statement Probes”](dba-dtrace-mysqld-ref.html#dba-dtrace-ref-statement "5.8.4.1.12 Statement Probes")
 
-### DESCREVA
+### DESCRIBE
 
-[Seção 3.3.2, “Criando uma Tabela”](criando-tabelas.html)
+[Section 3.3.2, “Creating a Table”](creating-tables.html "3.3.2 Creating a Table")
 
-[Seção 13.8.1, “Declaração DESCRIBE”](describe.html)
+[Section 13.8.1, “DESCRIBE Statement”](describe.html "13.8.1 DESCRIBE Statement")
 
-[Seção 13.8.2, “Instrução EXPLAIN”](explain.html)
+[Section 13.8.2, “EXPLAIN Statement”](explain.html "13.8.2 EXPLAIN Statement")
 
-[Seção 24.8, “Extensões para declarações SHOW”](extended-show.html)
+[Section 24.8, “Extensions to SHOW Statements”](extended-show.html "24.8 Extensions to SHOW Statements")
 
-[Seção 1.6.2.3, “Diferenças na restrição de chave estrangeira”](ansi-diff-foreign-keys.html)
+[Section 1.6.2.3, “FOREIGN KEY Constraint Differences”](ansi-diff-foreign-keys.html "1.6.2.3 FOREIGN KEY Constraint Differences")
 
-[Seção 3.4, “Obtendo Informações sobre Bancos de Dados e Tabelas”](getting-information.html)
+[Section 3.4, “Getting Information About Databases and Tables”](getting-information.html "3.4 Getting Information About Databases and Tables")
 
-[Seção 8.4.4, “Uso de Tabelas Temporárias Internas no MySQL”](internal-temporary-tables.html)
+[Section 8.4.4, “Internal Temporary Table Use in MySQL”](internal-temporary-tables.html "8.4.4 Internal Temporary Table Use in MySQL")
 
-[Seção 13.7.5.5, "Declaração SHOW COLUMNS"](show-columns.html)
+[Section 13.7.5.5, “SHOW COLUMNS Statement”](show-columns.html "13.7.5.5 SHOW COLUMNS Statement")
 
-[Seção 13.1.18.6, “Alterações na Especificação da Coluna Silenciosa”](silent-column-changes.html)
+[Section 13.1.18.6, “Silent Column Specification Changes”](silent-column-changes.html "13.1.18.6 Silent Column Specification Changes")
 
-[Seção 10.2.2, “UTF-8 para Metadados”](charset-metadata.html)
+[Section 10.2.2, “UTF-8 for Metadata”](charset-metadata.html "10.2.2 UTF-8 for Metadata")
 
-### DESCARTE A PARTIÇÃO
+### DISCARD PARTITION
 
-[Seção 14.13.1, “Operações DDL Online”](innodb-online-ddl-operations.html)
+[Section 14.13.1, “Online DDL Operations”](innodb-online-ddl-operations.html "14.13.1 Online DDL Operations")
 
-### DESCARTE PARTIÇÃO ... TABLESPACE
+### DISCARD PARTITION ... TABLESPACE
 
-[Seção 13.1.8.1, “Operações de Partição de Tabela”](alter-table-partition-operations.html)
+[Section 13.1.8.1, “ALTER TABLE Partition Operations”](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations")
 
 ### DO
 
-[Seção 13.1.2, "Declaração de Alteração de Evento"](alter-event.html)
+[Section 13.1.2, “ALTER EVENT Statement”](alter-event.html "13.1.2 ALTER EVENT Statement")
 
-[Seção 13.1.12, "Declaração CREATE EVENT"](create-event.html)
+[Section 13.1.12, “CREATE EVENT Statement”](create-event.html "13.1.12 CREATE EVENT Statement")
 
-[Seção 13.2.3, “Declaração do DO”](do.html)
+[Section 13.2.3, “DO Statement”](do.html "13.2.3 DO Statement")
 
-[Seção 12.14, “Funções de bloqueio”](locking-functions.html)
+[Section 12.14, “Locking Functions”](locking-functions.html "12.14 Locking Functions")
 
-[Seção 5.4.4.4, "Formato de registro para alterações nas tabelas do banco de dados mysql"](binary-log-mysql-database.html)
+[Section 5.4.4.4, “Logging Format for Changes to mysql Database Tables”](binary-log-mysql-database.html "5.4.4.4 Logging Format for Changes to mysql Database Tables")
 
-[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html)
+[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
 
-[Seção 22.6.4, “Partição e Bloqueio”](partitioning-limitations-locking.html)
+[Section 22.6.4, “Partitioning and Locking”](partitioning-limitations-locking.html "22.6.4 Partitioning and Locking")
 
-[Seção 23.8, “Restrições aos Programas Armazenados”](stored-program-restrictions.html)
+[Section 23.8, “Restrictions on Stored Programs”](stored-program-restrictions.html "23.8 Restrictions on Stored Programs")
 
-[Seção 23.7, "Registro de Log de Binário de Programa Armazenado"](stored-programs-logging.html)
+[Section 23.7, “Stored Program Binary Logging”](stored-programs-logging.html "23.7 Stored Program Binary Logging")
 
-[Seção 13.2.10, "Subconsultas"](subqueries.html)
+[Section 13.2.10, “Subqueries”](subqueries.html "13.2.10 Subqueries")
 
-[Seção 24.3.8, “A tabela INFORMATION_SCHEMA EVENTS”](information-schema-events-table.html)
+[Section 24.3.8, “The INFORMATION_SCHEMA EVENTS Table”](information-schema-events-table.html "24.3.8 The INFORMATION_SCHEMA EVENTS Table")
 
-[Seção 8.15.3, “Declarações rastreáveis”](traceable-statements.html)
+[Section 8.15.3, “Traceable Statements”](traceable-statements.html "8.15.3 Traceable Statements")
 
 ### DROP DATABASE
 
-[Seção 13.1.22, "Instrução DROP DATABASE"](drop-database.html)
+[Section 13.1.22, “DROP DATABASE Statement”](drop-database.html "13.1.22 DROP DATABASE Statement")
 
-[Seção 13.1.30, "Declaração DROP TABLESPACE"](drop-tablespace.html)
+[Section 13.1.30, “DROP TABLESPACE Statement”](drop-tablespace.html "13.1.30 DROP TABLESPACE Statement")
 
-[Seção 7.4.1, “Exportação de dados no formato SQL com mysqldump”](mysqldump-sql-format.html)
+[Section 7.4.1, “Dumping Data in SQL Format with mysqldump”](mysqldump-sql-format.html "7.4.1 Dumping Data in SQL Format with mysqldump")
 
-[Seção 16.2.5.1, “Avaliação das opções de replicação de nível de banco de dados e registro binário”](replication-rules-db-options.html)
+[Section 16.2.5.1, “Evaluation of Database-Level Replication and Binary Logging Options”](replication-rules-db-options.html "16.2.5.1 Evaluation of Database-Level Replication and Binary Logging Options")
 
-[Seção 14.6.3.3, “Tabelas gerais”](general-tablespaces.html)
+[Section 14.6.3.3, “General Tablespaces”](general-tablespaces.html "14.6.3.3 General Tablespaces")
 
-[Seção 16.2.5, “Como os Servidores Avaliam as Regras de Filtragem de Replicação”](replication-rules.html)
+[Section 16.2.5, “How Servers Evaluate Replication Filtering Rules”](replication-rules.html "16.2.5 How Servers Evaluate Replication Filtering Rules")
 
-[Seção 8.10.3.1, “Como o Cache de Consultas Funciona”](query-cache-operation.html)
+[Section 8.10.3.1, “How the Query Cache Operates”](query-cache-operation.html "8.10.3.1 How the Query Cache Operates")
 
-[Seção 21.6.9, “Importando dados no MySQL Cluster”](mysql-cluster-importing-data.html)
+[Section 21.6.9, “Importing Data Into MySQL Cluster”](mysql-cluster-importing-data.html "21.6.9 Importing Data Into MySQL Cluster")
 
-[Seção 21.2.7.8, "Problemas Exclusivos do NDB Cluster"](mysql-cluster-limitations-exclusive-to-cluster.html)
+[Section 21.2.7.8, “Issues Exclusive to NDB Cluster”](mysql-cluster-limitations-exclusive-to-cluster.html "21.2.7.8 Issues Exclusive to NDB Cluster")
 
-[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html)
+[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
 
-[Seção 4.6.7, “mysqlbinlog — Ferramenta para processamento de arquivos de log binário”](mysqlbinlog.html)
+[Section 4.6.7, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "4.6.7 mysqlbinlog — Utility for Processing Binary Log Files")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
+[Section 4.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "4.5.6 mysqlpump — A Database Backup Program")
 
-[Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
+[Section 16.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "16.1.6.3 Replica Server Options and Variables")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 2.3.7, “Restrições da Plataforma Windows”](windows-restrictions.html)
+[Section 2.3.7, “Windows Platform Restrictions”](windows-restrictions.html "2.3.7 Windows Platform Restrictions")
 
 ### DROP DATABASE IF EXISTS
 
-[Seção 16.4.1.9, “Replicação de declarações DROP ... IF EXISTS”](replication-features-drop-if-exists.html)
+[Section 16.4.1.9, “Replication of DROP ... IF EXISTS Statements”](replication-features-drop-if-exists.html "16.4.1.9 Replication of DROP ... IF EXISTS Statements")
 
 ### DROP EVENT
 
-[Seção 23.4.3, "Sintaxe de Eventos"](events-syntax.html)
+[Section 23.4.3, “Event Syntax”](events-syntax.html "23.4.3 Event Syntax")
 
-[Seção 16.4.1.16, “Replicação de Recursos Ativados”](replication-features-invoked.html)
+[Section 16.4.1.16, “Replication of Invoked Features”](replication-features-invoked.html "16.4.1.16 Replication of Invoked Features")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 23.7, "Registro de Log de Binário de Programa Armazenado"](stored-programs-logging.html)
+[Section 23.7, “Stored Program Binary Logging”](stored-programs-logging.html "23.7 Stored Program Binary Logging")
 
-[Seção 23.4.6, “O Agendamento de Eventos e Permissões do MySQL”](events-privileges.html)
+[Section 23.4.6, “The Event Scheduler and MySQL Privileges”](events-privileges.html "23.4.6 The Event Scheduler and MySQL Privileges")
 
 ### DROP FUNCTION
 
-[Seção 13.1.3, "Instrução ALTER FUNCTION"](alter-function.html)
+[Section 13.1.3, “ALTER FUNCTION Statement”](alter-function.html "13.1.3 ALTER FUNCTION Statement")
 
-[Seção 13.7.3.1, "Instrução CREATE FUNCTION para Funções Carregáveis"](create-function-loadable.html)
+[Section 13.7.3.1, “CREATE FUNCTION Statement for Loadable Functions”](create-function-loadable.html "13.7.3.1 CREATE FUNCTION Statement for Loadable Functions")
 
-[Seção 13.1.24, "Instrução DROP FUNCTION"](drop-function.html)
+[Section 13.1.24, “DROP FUNCTION Statement”](drop-function.html "13.1.24 DROP FUNCTION Statement")
 
-[Seção 13.7.3.2, "Instrução DROP FUNCTION para Funções Carregáveis"](drop-function-loadable.html)
+[Section 13.7.3.2, “DROP FUNCTION Statement for Loadable Functions”](drop-function-loadable.html "13.7.3.2 DROP FUNCTION Statement for Loadable Functions")
 
-[Seção 13.1.27, "Instruções DROP PROCEDURE e DROP FUNCTION"](drop-procedure.html)
+[Section 13.1.27, “DROP PROCEDURE and DROP FUNCTION Statements”](drop-procedure.html "13.1.27 DROP PROCEDURE and DROP FUNCTION Statements")
 
-[Seção 9.2.5, "Análise e resolução de nomes de funções"](function-resolution.html)
+[Section 9.2.5, “Function Name Parsing and Resolution”](function-resolution.html "9.2.5 Function Name Parsing and Resolution")
 
-[Seção 6.4.4.8, “Funções de Gerenciamento de Chave do Pendrive de Uso Geral”](keyring-functions-general-purpose.html)
+[Section 6.4.4.8, “General-Purpose Keyring Key-Management Functions”](keyring-functions-general-purpose.html "6.4.4.8 General-Purpose Keyring Key-Management Functions")
 
-[Seção 5.6.1, “Instalando e Desinstalando Funções Carregáveis”](function-loading.html)
+[Section 5.6.1, “Installing and Uninstalling Loadable Functions”](function-loading.html "5.6.1 Installing and Uninstalling Loadable Functions")
 
-[Seção 6.5.2, “Instalando ou Desinstalando o Máscara de Dados e a Desidentificação do MySQL Enterprise”](data-masking-installation.html)
+[Section 6.5.2, “Installing or Uninstalling MySQL Enterprise Data Masking and De-Identification”](data-masking-installation.html "6.5.2 Installing or Uninstalling MySQL Enterprise Data Masking and De-Identification")
 
-[Seção 5.5.5.2, “Instalando ou Desinstalando Tokens de Versão”](version-tokens-installation.html)
+[Section 5.5.5.2, “Installing or Uninstalling Version Tokens”](version-tokens-installation.html "5.5.5.2 Installing or Uninstalling Version Tokens")
 
-[Seção 6.6.1, “Instalação de Encriptação Empresarial do MySQL”](enterprise-encryption-installation.html)
+[Section 6.6.1, “MySQL Enterprise Encryption Installation”](enterprise-encryption-installation.html "6.6.1 MySQL Enterprise Encryption Installation")
 
-[Seção 16.4.1.16, “Replicação de Recursos Ativados”](replication-features-invoked.html)
+[Section 16.4.1.16, “Replication of Invoked Features”](replication-features-invoked.html "16.4.1.16 Replication of Invoked Features")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 23.7, "Registro de Log de Binário de Programa Armazenado"](stored-programs-logging.html)
+[Section 23.7, “Stored Program Binary Logging”](stored-programs-logging.html "23.7 Stored Program Binary Logging")
 
-[Seção 23.2.1, "Sintaxe de Rotinas Armazenadas"](stored-routines-syntax.html)
+[Section 23.2.1, “Stored Routine Syntax”](stored-routines-syntax.html "23.2.1 Stored Routine Syntax")
 
-[Seção 5.5.6.1.2, “Interface da Função de Serviço de Fechamento”](locking-service.html#locking-service-interface)
+[Section 5.5.6.1.2, “The Locking Service Function Interface”](locking-service.html#locking-service-interface "5.5.6.1.2 The Locking Service Function Interface")
 
-[Seção 2.10.11, "Solução de problemas de atualização"](upgrade-troubleshooting.html)
+[Section 2.10.11, “Upgrade Troubleshooting”](upgrade-troubleshooting.html "2.10.11 Upgrade Troubleshooting")
 
 ### DROP INDEX
 
-[Seção 13.1.8, "Instrução ALTER TABLE"](alter-table.html)
+[Section 13.1.8, “ALTER TABLE Statement”](alter-table.html "13.1.8 ALTER TABLE Statement")
 
-[Seção 11.4.9, “Criando Índices Espaciais”](criando-índices-espaciais.html)
+[Section 11.4.9, “Creating Spatial Indexes”](creating-spatial-indexes.html "11.4.9 Creating Spatial Indexes")
 
-[Seção 13.1.25, "Instrução DROP INDEX"](drop-index.html)
+[Section 13.1.25, “DROP INDEX Statement”](drop-index.html "13.1.25 DROP INDEX Statement")
 
-[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html)
+[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
 
-[Glossário do MySQL](glossary.html)
+[MySQL Glossary](glossary.html "MySQL Glossary")
 
-[Seção 14.13.1, “Operações DDL Online”](innodb-online-ddl-operations.html)
+[Section 14.13.1, “Online DDL Operations”](innodb-online-ddl-operations.html "14.13.1 Online DDL Operations")
 
-[Seção 21.6.12, "Operações online com ALTER TABLE no NDB Cluster"](mysql-cluster-online-operations.html)
+[Section 21.6.12, “Online Operations with ALTER TABLE in NDB Cluster”](mysql-cluster-online-operations.html "21.6.12 Online Operations with ALTER TABLE in NDB Cluster")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 5.4.5, “O Log de Consultas Lentas”](slow-query-log.html)
+[Section 5.4.5, “The Slow Query Log”](slow-query-log.html "5.4.5 The Slow Query Log")
 
 ### DROP LOGFILE GROUP
 
-[Seção 13.1.26, "Declaração DROP LOGFILE GROUP"](drop-logfile-group.html)
+[Section 13.1.26, “DROP LOGFILE GROUP Statement”](drop-logfile-group.html "13.1.26 DROP LOGFILE GROUP Statement")
 
-[Seção 21.2.7.8, "Problemas Exclusivos do NDB Cluster"](mysql-cluster-limitations-exclusive-to-cluster.html)
+[Section 21.2.7.8, “Issues Exclusive to NDB Cluster”](mysql-cluster-limitations-exclusive-to-cluster.html "21.2.7.8 Issues Exclusive to NDB Cluster")
 
 ### DROP PARTITION
 
-[Seção 14.13.1, “Operações DDL Online”](innodb-online-ddl-operations.html)
+[Section 14.13.1, “Online DDL Operations”](innodb-online-ddl-operations.html "14.13.1 Online DDL Operations")
 
 ### DROP PREPARE
 
-[Seção 25.12.6.4, “Tabela prepared_statements_instances”](performance-schema-prepared-statements-instances-table.html)
+[Section 25.12.6.4, “The prepared_statements_instances Table”](performance-schema-prepared-statements-instances-table.html "25.12.6.4 The prepared_statements_instances Table")
 
 ### DROP PROCEDURE
 
-[Seção 13.1.6, "Instrução ALTER PROCEDURE"](alter-procedure.html)
+[Section 13.1.6, “ALTER PROCEDURE Statement”](alter-procedure.html "13.1.6 ALTER PROCEDURE Statement")
 
-[Seção 16.4.1.16, “Replicação de Recursos Ativados”](replication-features-invoked.html)
+[Section 16.4.1.16, “Replication of Invoked Features”](replication-features-invoked.html "16.4.1.16 Replication of Invoked Features")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 23.7, "Registro de Log de Binário de Programa Armazenado"](stored-programs-logging.html)
+[Section 23.7, “Stored Program Binary Logging”](stored-programs-logging.html "23.7 Stored Program Binary Logging")
 
-[Seção 23.2.1, "Sintaxe de Rotinas Armazenadas"](stored-routines-syntax.html)
+[Section 23.2.1, “Stored Routine Syntax”](stored-routines-syntax.html "23.2.1 Stored Routine Syntax")
 
 ### DROP SCHEMA
 
-[Seção 13.1.22, "Instrução DROP DATABASE"](drop-database.html)
+[Section 13.1.22, “DROP DATABASE Statement”](drop-database.html "13.1.22 DROP DATABASE Statement")
 
-[Seção 21.2.7.8, "Problemas Exclusivos do NDB Cluster"](mysql-cluster-limitations-exclusive-to-cluster.html)
+[Section 21.2.7.8, “Issues Exclusive to NDB Cluster”](mysql-cluster-limitations-exclusive-to-cluster.html "21.2.7.8 Issues Exclusive to NDB Cluster")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
 ### DROP SERVER
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
-[Seção 16.1.6.5, “Variáveis do Sistema de ID de Transação Global”](replication-options-gtids.html)
+[Section 16.1.6.5, “Global Transaction ID System Variables”](replication-options-gtids.html "16.1.6.5 Global Transaction ID System Variables")
 
-[Seção 8.12.4.1, “Como o MySQL Usa a Memória”](memory-use.html)
+[Section 8.12.4.1, “How MySQL Uses Memory”](memory-use.html "8.12.4.1 How MySQL Uses Memory")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 16.4.1.7, “Replicação de CREATE SERVER, ALTER SERVER e DROP SERVER”](replication-features-create-alter-drop-server.html)
+[Section 16.4.1.7, “Replication of CREATE SERVER, ALTER SERVER, and DROP SERVER”](replication-features-create-alter-drop-server.html "16.4.1.7 Replication of CREATE SERVER, ALTER SERVER, and DROP SERVER")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
 ### DROP TABLE
 
-[Seção 21.6.7.1, “Adicionar nós de dados do NDB Cluster Online: Problemas gerais”](mysql-cluster-online-add-node-remarks.html)
+[Section 21.6.7.1, “Adding NDB Cluster Data Nodes Online: General Issues”](mysql-cluster-online-add-node-remarks.html "21.6.7.1 Adding NDB Cluster Data Nodes Online: General Issues")
 
-[Seção 13.1.8, "Instrução ALTER TABLE"](alter-table.html)
+[Section 13.1.8, “ALTER TABLE Statement”](alter-table.html "13.1.8 ALTER TABLE Statement")
 
-[Seção 6.4.5.4, "Formatos de arquivo de registro de auditoria"](audit-log-file-formats.html)
+[Section 6.4.5.4, “Audit Log File Formats”](audit-log-file-formats.html "6.4.5.4 Audit Log File Formats")
 
-[Seção 21.6.1, “Comandos no Cliente de Gerenciamento de NDB Cluster”](mysql-cluster-mgm-client-commands.html)
+[Section 21.6.1, “Commands in the NDB Cluster Management Client”](mysql-cluster-mgm-client-commands.html "21.6.1 Commands in the NDB Cluster Management Client")
 
-[Seção 14.7.2.3, “Leitura Consistente sem Bloqueio”](innodb-consistent-read.html)
+[Section 14.7.2.3, “Consistent Nonlocking Reads”](innodb-consistent-read.html "14.7.2.3 Consistent Nonlocking Reads")
 
-[Seção 13.1.19, "Instrução CREATE TABLESPACE"](create-tablespace.html)
+[Section 13.1.19, “CREATE TABLESPACE Statement”](create-tablespace.html "13.1.19 CREATE TABLESPACE Statement")
 
-[Seção 13.1.18.2, "Instrução CREATE TEMPORARY TABLE"](create-temporary-table.html)
+[Section 13.1.18.2, “CREATE TEMPORARY TABLE Statement”](create-temporary-table.html "13.1.18.2 CREATE TEMPORARY TABLE Statement")
 
-[Seção 13.1.20, "Instrução CREATE TRIGGER"](create-trigger.html)
+[Section 13.1.20, “CREATE TRIGGER Statement”](create-trigger.html "13.1.20 CREATE TRIGGER Statement")
 
-[Seção 13.1.29, "Instrução DROP TABLE"](drop-table.html)
+[Section 13.1.29, “DROP TABLE Statement”](drop-table.html "13.1.29 DROP TABLE Statement")
 
-[Seção 15.8.3, “Notas e dicas do mecanismo de armazenamento federado”](federated-usagenotes.html)
+[Section 15.8.3, “FEDERATED Storage Engine Notes and Tips”](federated-usagenotes.html "15.8.3 FEDERATED Storage Engine Notes and Tips")
 
-[Seção 14.6.3.2, “Tablespaces por arquivo para tabelas”](innodb-file-per-table-tablespaces.html)
+[Section 14.6.3.2, “File-Per-Table Tablespaces”](innodb-file-per-table-tablespaces.html "14.6.3.2 File-Per-Table Tablespaces")
 
-[Seção 14.22.2, “Forçar a recuperação do InnoDB”](forcing-innodb-recovery.html)
+[Section 14.22.2, “Forcing InnoDB Recovery”](forcing-innodb-recovery.html "14.22.2 Forcing InnoDB Recovery")
 
-[Seção 14.6.3.3, “Tabelas gerais”](general-tablespaces.html)
+[Section 14.6.3.3, “General Tablespaces”](general-tablespaces.html "14.6.3.3 General Tablespaces")
 
-[Seção 16.1.6.5, “Variáveis do Sistema de ID de Transação Global”](replication-options-gtids.html)
+[Section 16.1.6.5, “Global Transaction ID System Variables”](replication-options-gtids.html "16.1.6.5 Global Transaction ID System Variables")
 
-[Seção 16.1.3.2, “Ciclo de Vida do GTID”](replication-gtids-lifecycle.html)
+[Section 16.1.3.2, “GTID Life Cycle”](replication-gtids-lifecycle.html "16.1.3.2 GTID Life Cycle")
 
-[Seção 8.10.3.1, “Como o Cache de Consultas Funciona”](query-cache-operation.html)
+[Section 8.10.3.1, “How the Query Cache Operates”](query-cache-operation.html "8.10.3.1 How the Query Cache Operates")
 
-[Seção 21.6.9, “Importando dados no MySQL Cluster”](mysql-cluster-importing-data.html)
+[Section 21.6.9, “Importing Data Into MySQL Cluster”](mysql-cluster-importing-data.html "21.6.9 Importing Data Into MySQL Cluster")
 
-[Seção 12.15, “Funções de Informação”](information-functions.html)
+[Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions")
 
-[Seção 21.2.7.8, "Problemas Exclusivos do NDB Cluster"](mysql-cluster-limitations-exclusive-to-cluster.html)
+[Section 21.2.7.8, “Issues Exclusive to NDB Cluster”](mysql-cluster-limitations-exclusive-to-cluster.html "21.2.7.8 Issues Exclusive to NDB Cluster")
 
-[Seção 21.2.7.2, “Limites e Diferenças do NDB Cluster em Relação aos Limites Padrão do MySQL”](mysql-cluster-limitations-limits.html)
+[Section 21.2.7.2, “Limits and Differences of NDB Cluster from Standard MySQL Limits”](mysql-cluster-limitations-limits.html "21.2.7.2 Limits and Differences of NDB Cluster from Standard MySQL Limits")
 
-[Seção 13.3.5, “Instruções LOCK TABLES e UNLOCK TABLES”](lock-tables.html)
+[Section 13.3.5, “LOCK TABLES and UNLOCK TABLES Statements”](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements")
 
-[Seção 15.7.2, “Problemas da Tabela MERGE”](merge-table-problems.html)
+[Section 15.7.2, “MERGE Table Problems”](merge-table-problems.html "15.7.2 MERGE Table Problems")
 
-[Seção 4.5.1.1, “Opções do cliente do MySQL”](mysql-command-options.html)
+[Section 4.5.1.1, “mysql Client Options”](mysql-command-options.html "4.5.1.1 mysql Client Options")
 
-[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html)
+[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
 
-[Glossário do MySQL](glossary.html)
+[MySQL Glossary](glossary.html "MySQL Glossary")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
+[Section 4.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "4.5.6 mysqlpump — A Database Backup Program")
 
-[Seção 21.5.11, “ndb_drop_index — Remover índice de uma tabela NDB”](mysql-cluster-programs-ndb-drop-index.html)
+[Section 21.5.11, “ndb_drop_index — Drop Index from an NDB Table”](mysql-cluster-programs-ndb-drop-index.html "21.5.11 ndb_drop_index — Drop Index from an NDB Table")
 
-[Seção 21.5.12, “ndb_drop_table — Remover uma tabela NDB”](mysql-cluster-programs-ndb-drop-table.html)
+[Section 21.5.12, “ndb_drop_table — Drop an NDB Table”](mysql-cluster-programs-ndb-drop-table.html "21.5.12 ndb_drop_table — Drop an NDB Table")
 
-[Seção 8.5.7, “Otimização das operações de DDL do InnoDB”](optimizing-innodb-ddl-operations.html)
+[Section 8.5.7, “Optimizing InnoDB DDL Operations”](optimizing-innodb-ddl-operations.html "8.5.7 Optimizing InnoDB DDL Operations")
 
-[Seção 21.7.9.2, "Recuperação em Ponto de Tempo Usando a Replicação do NDB Cluster"](mysql-cluster-replication-pitr.html)
+[Section 21.7.9.2, “Point-In-Time Recovery Using NDB Cluster Replication”](mysql-cluster-replication-pitr.html "21.7.9.2 Point-In-Time Recovery Using NDB Cluster Replication")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 23.9, “Restrições de visualização”](view-restrictions.html)
+[Section 23.9, “Restrictions on Views”](view-restrictions.html "23.9 Restrictions on Views")
 
-[Seção 13.6.7.6, “Regras de escopo para manipuladores”](handler-scope.html)
+[Section 13.6.7.6, “Scope Rules for Handlers”](handler-scope.html "13.6.7.6 Scope Rules for Handlers")
 
-[Seção 5.4.1, “Selecionando destinos de saída do Log de consulta geral e do Log de consulta lenta”](log-destinations.html)
+[Section 5.4.1, “Selecting General Query Log and Slow Query Log Output Destinations”](log-destinations.html "5.4.1 Selecting General Query Log and Slow Query Log Output Destinations")
 
-[Seção 5.1.6, “Opções de comando do servidor”](server-options.html)
+[Section 5.1.6, “Server Command Options”](server-options.html "5.1.6 Server Command Options")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 5.4.4.2, “Definindo o formato do log binário”](binary-log-setting.html)
+[Section 5.4.4.2, “Setting The Binary Log Format”](binary-log-setting.html "5.4.4.2 Setting The Binary Log Format")
 
-[Seção 13.6.7.5, “Declaração de Sinal”](signal.html)
+[Section 13.6.7.5, “SIGNAL Statement”](signal.html "13.6.7.5 SIGNAL Statement")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 15.3, “O Motor de Armazenamento de MEMORY”](memory-storage-engine.html)
+[Section 15.3, “The MEMORY Storage Engine”](memory-storage-engine.html "15.3 The MEMORY Storage Engine")
 
-[Seção 15.7, “O Motor de Armazenamento MERGE”](merge-storage-engine.html)
+[Section 15.7, “The MERGE Storage Engine”](merge-storage-engine.html "15.7 The MERGE Storage Engine")
 
-[Seção 13.6.7.7, “A Área de Diagnóstico do MySQL”](diagnostics-area.html)
+[Section 13.6.7.7, “The MySQL Diagnostics Area”](diagnostics-area.html "13.6.7.7 The MySQL Diagnostics Area")
 
-[Seção 14.22.3, “Soluções de problemas para operações do dicionário de dados InnoDB”](innodb-troubleshooting-datadict.html)
+[Section 14.22.3, “Troubleshooting InnoDB Data Dictionary Operations”](innodb-troubleshooting-datadict.html "14.22.3 Troubleshooting InnoDB Data Dictionary Operations")
 
-[Seção 13.1.34, "Instrução TRUNCATE TABLE"](truncate-table.html)
+[Section 13.1.34, “TRUNCATE TABLE Statement”](truncate-table.html "13.1.34 TRUNCATE TABLE Statement")
 
-[Seção 13.7.3.4, "Declaração de DESINSTALAR PLUGIN"](uninstall-plugin.html)
+[Section 13.7.3.4, “UNINSTALL PLUGIN Statement”](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
 ### DROP TABLE IF EXISTS
 
-[Seção 16.4.1.9, “Replicação de declarações DROP ... IF EXISTS”](replication-features-drop-if-exists.html)
+[Section 16.4.1.9, “Replication of DROP ... IF EXISTS Statements”](replication-features-drop-if-exists.html "16.4.1.9 Replication of DROP ... IF EXISTS Statements")
 
 ### DROP TABLE IF EXISTS mysql.user mysql.db mysql.tables_priv mysql.columns_priv mysql.procs_priv
 
-[Seção 21.6.13, “Distribuição de privilégios usando tabelas de concessão compartilhadas”](mysql-cluster-privilege-distribution.html)
+[Section 21.6.13, “Distributed Privileges Using Shared Grant Tables”](mysql-cluster-privilege-distribution.html "21.6.13 Distributed Privileges Using Shared Grant Tables")
 
 ### DROP TABLESPACE
 
-[Seção 14.6.3.3, “Tabelas gerais”](general-tablespaces.html)
+[Section 14.6.3.3, “General Tablespaces”](general-tablespaces.html "14.6.3.3 General Tablespaces")
 
-[Seção 21.2.7.8, "Problemas Exclusivos do NDB Cluster"](mysql-cluster-limitations-exclusive-to-cluster.html)
+[Section 21.2.7.8, “Issues Exclusive to NDB Cluster”](mysql-cluster-limitations-exclusive-to-cluster.html "21.2.7.8 Issues Exclusive to NDB Cluster")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
 ### DROP TABLESPACE tablespace_name
 
-[Seção 14.6.3.3, “Tabelas gerais”](general-tablespaces.html)
+[Section 14.6.3.3, “General Tablespaces”](general-tablespaces.html "14.6.3.3 General Tablespaces")
 
-### DROP TABLE TEMPORÁRIA
+### DROP TEMPORARY TABLE
 
-[Seção 16.1.6.5, “Variáveis do Sistema de ID de Transação Global”](replication-options-gtids.html)
+[Section 16.1.6.5, “Global Transaction ID System Variables”](replication-options-gtids.html "16.1.6.5 Global Transaction ID System Variables")
 
-[Seção 16.1.3.6, “Restrições à Replicação com GTIDs”](replication-gtids-restrictions.html)
+[Section 16.1.3.6, “Restrictions on Replication with GTIDs”](replication-gtids-restrictions.html "16.1.3.6 Restrictions on Replication with GTIDs")
 
 ### DROP TRIGGER
 
-[Seção 13.1.31, "Declaração DROP TRIGGER"](drop-trigger.html)
+[Section 13.1.31, “DROP TRIGGER Statement”](drop-trigger.html "13.1.31 DROP TRIGGER Statement")
 
-[Seção A.5, “Perguntas frequentes sobre o MySQL 5.7: gatilhos”](faqs-triggers.html)
+[Section A.5, “MySQL 5.7 FAQ: Triggers”](faqs-triggers.html "A.5 MySQL 5.7 FAQ: Triggers")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 16.4.1.16, “Replicação de Recursos Ativados”](replication-features-invoked.html)
+[Section 16.4.1.16, “Replication of Invoked Features”](replication-features-invoked.html "16.4.1.16 Replication of Invoked Features")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 23.3.1, "Sintaxe de gatilho e exemplos"](trigger-syntax.html)
+[Section 23.3.1, “Trigger Syntax and Examples”](trigger-syntax.html "23.3.1 Trigger Syntax and Examples")
 
 ### DROP USER
 
-[Seção 6.2.1, “Nomes de Usuários e Senhas de Conta”](user-names.html)
+[Section 6.2.1, “Account User Names and Passwords”](user-names.html "6.2.1 Account User Names and Passwords")
 
-[Seção 6.2.7, “Adicionar contas, atribuir privilégios e excluir contas”](creating-accounts.html)
+[Section 6.2.7, “Adding Accounts, Assigning Privileges, and Dropping Accounts”](creating-accounts.html "6.2.7 Adding Accounts, Assigning Privileges, and Dropping Accounts")
 
-[Seção 13.7.1.3, Declaração DROP USER](drop-user.html)
+[Section 13.7.1.3, “DROP USER Statement”](drop-user.html "13.7.1.3 DROP USER Statement")
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 8.12.4.1, “Como o MySQL Usa a Memória”](memory-use.html)
+[Section 8.12.4.1, “How MySQL Uses Memory”](memory-use.html "8.12.4.1 How MySQL Uses Memory")
 
-[Seção 12.15, “Funções de Informação”](information-functions.html)
+[Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions")
 
-[Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
+[Section 4.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "4.5.6 mysqlpump — A Database Backup Program")
 
-[Seção 21.6.18.2, "Nível de privilégio do NDB Cluster e MySQL"](mysql-cluster-security-mysql-privileges.html)
+[Section 21.6.18.2, “NDB Cluster and MySQL Privileges”](mysql-cluster-security-mysql-privileges.html "21.6.18.2 NDB Cluster and MySQL Privileges")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 16.4.1.8, “Replicação de CURRENT_USER()”](replication-features-current-user.html)
+[Section 16.4.1.8, “Replication of CURRENT_USER()”](replication-features-current-user.html "16.4.1.8 Replication of CURRENT_USER()")
 
-[Seção 13.7.1.6, "Declaração de Revogação"](revoke.html)
+[Section 13.7.1.6, “REVOKE Statement”](revoke.html "13.7.1.6 REVOKE Statement")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 23.6, “Controle de Acesso a Objetos Armazenados”](stored-objects-security.html)
+[Section 23.6, “Stored Object Access Control”](stored-objects-security.html "23.6 Stored Object Access Control")
 
-[Seção 23.4.6, “O Agendamento de Eventos e Permissões do MySQL”](events-privileges.html)
+[Section 23.4.6, “The Event Scheduler and MySQL Privileges”](events-privileges.html "23.4.6 The Event Scheduler and MySQL Privileges")
 
 ### DROP VIEW
 
-[Seção 13.1.32, "Instrução DROP VIEW"](drop-view.html)
+[Section 13.1.32, “DROP VIEW Statement”](drop-view.html "13.1.32 DROP VIEW Statement")
 
-[Seção 13.3.5, “Instruções LOCK TABLES e UNLOCK TABLES”](lock-tables.html)
+[Section 13.3.5, “LOCK TABLES and UNLOCK TABLES Statements”](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements")
 
-[Seção 23.9, “Restrições de visualização”](view-restrictions.html)
+[Section 23.9, “Restrictions on Views”](view-restrictions.html "23.9 Restrictions on Views")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 23.5.1, "Sintaxe de visualização"](view-syntax.html)
+[Section 23.5.1, “View Syntax”](view-syntax.html "23.5.1 View Syntax")
 
 ### DROP VIEW IF EXISTS
 
-[Seção 16.4.1.9, “Replicação de declarações DROP ... IF EXISTS”](replication-features-drop-if-exists.html)
+[Section 16.4.1.9, “Replication of DROP ... IF EXISTS Statements”](replication-features-drop-if-exists.html "16.4.1.9 Replication of DROP ... IF EXISTS Statements")
 
 ### E
 
-index topo](dynindex-statement.html#stmt-index-topo)]
+index top](dynindex-statement.html#stmt-index-top)]
 
-### ENCRIPTAÇÃO
+### ENCRYPTION
 
-[Seção 14.14, “Criptografia de Dados em Repouso do InnoDB”](innodb-data-encryption.html)
+[Section 14.14, “InnoDB Data-at-Rest Encryption”](innodb-data-encryption.html "14.14 InnoDB Data-at-Rest Encryption")
 
-### DIVISÃO DE TROCA
+### EXCHANGE PARTITION
 
-[Seção 14.13.1, “Operações DDL Online”](innodb-online-ddl-operations.html)
+[Section 14.13.1, “Online DDL Operations”](innodb-online-ddl-operations.html "14.13.1 Online DDL Operations")
 
-### EXECUTAR
+### EXECUTE
 
-[Seção 13.2.1, “Instrução CALL”](call.html)
+[Section 13.2.1, “CALL Statement”](call.html "13.2.1 CALL Statement")
 
-[Seção 13.5.2, “Instrução EXECUTE”](execute.html)
+[Section 13.5.2, “EXECUTE Statement”](execute.html "13.5.2 EXECUTE Statement")
 
-[Seção 13.5.1, “Declaração PREPARE”](prepare.html)
+[Section 13.5.1, “PREPARE Statement”](prepare.html "13.5.1 PREPARE Statement")
 
-[Seção 13.5, "Declarações Preparadas"](sql-prepared-statements.html)
+[Section 13.5, “Prepared Statements”](sql-prepared-statements.html "13.5 Prepared Statements")
 
-[Seção 23.8, “Restrições aos Programas Armazenados”](stored-program-restrictions.html)
+[Section 23.8, “Restrictions on Stored Programs”](stored-program-restrictions.html "23.8 Restrictions on Stored Programs")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 25.12.6.4, “Tabela prepared_statements_instances”](performance-schema-prepared-statements-instances-table.html)
+[Section 25.12.6.4, “The prepared_statements_instances Table”](performance-schema-prepared-statements-instances-table.html "25.12.6.4 The prepared_statements_instances Table")
 
-### EXPLIQUE
+### EXPLAIN
 
-[Seção 13.1.8, "Instrução ALTER TABLE"](alter-table.html)
+[Section 13.1.8, “ALTER TABLE Statement”](alter-table.html "13.1.8 ALTER TABLE Statement")
 
-[Seção 8.2.1.20, “Evitar varreduras completas da tabela”](table-scan-avoidance.html)
+[Section 8.2.1.20, “Avoiding Full Table Scans”](table-scan-avoidance.html "8.2.1.20 Avoiding Full Table Scans")
 
-[Seção 8.2.1.11, "Conjuntos de junção de laço aninhado e acesso a chave em lote"](bnl-bka-optimization.html)
+[Section 8.2.1.11, “Block Nested-Loop and Batched Key Access Joins”](bnl-bka-optimization.html "8.2.1.11 Block Nested-Loop and Batched Key Access Joins")
 
-[Seção 8.3.4, “Índices de Colunas”](column-indexes.html)
+[Section 8.3.4, “Column Indexes”](column-indexes.html "8.3.4 Column Indexes")
 
-[Seção 8.2.1.12, “Filtragem de Condições”](condition-filtering.html)
+[Section 8.2.1.12, “Condition Filtering”](condition-filtering.html "8.2.1.12 Condition Filtering")
 
-[Seção 14.8.11.1.3, “Configurando o Número de Páginas Amostradas para Estatísticas do Otimizador InnoDB”](innodb-persistent-stats.html#innodb-persistent-stats-pages-sampled)
+[Section 14.8.11.1.3, “Configuring the Number of Sampled Pages for InnoDB Optimizer Statistics”](innodb-persistent-stats.html#innodb-persistent-stats-pages-sampled "14.8.11.1.3 Configuring the Number of Sampled Pages for InnoDB Optimizer Statistics")
 
-[Seção 13.1.16, "Instruções CREATE PROCEDURE e CREATE FUNCTION"](create-procedure.html)
+[Section 13.1.16, “CREATE PROCEDURE and CREATE FUNCTION Statements”](create-procedure.html "13.1.16 CREATE PROCEDURE and CREATE FUNCTION Statements")
 
-[Seção 5.8.1, “Depuração de um servidor MySQL”](debugging-server.html)
+[Section 5.8.1, “Debugging a MySQL Server”](debugging-server.html "5.8.1 Debugging a MySQL Server")
 
-[Seção 13.2.10.8, “Tabelas Derivadas”](derived-tables.html)
+[Section 13.2.10.8, “Derived Tables”](derived-tables.html "13.2.10.8 Derived Tables")
 
-[Seção 13.8.1, “Declaração DESCRIBE”](describe.html)
+[Section 13.8.1, “DESCRIBE Statement”](describe.html "13.8.1 DESCRIBE Statement")
 
-[Seção 8.2.1.16, “Otimização DISTINCT”](distinct-optimization.html)
+[Section 8.2.1.16, “DISTINCT Optimization”](distinct-optimization.html "8.2.1.16 DISTINCT Optimization")
 
-[Seção 8.2.1.4, “Otimização da Depressão do Estado do Motor”](engine-condition-pushdown-optimization.html)
+[Section 8.2.1.4, “Engine Condition Pushdown Optimization”](engine-condition-pushdown-optimization.html "8.2.1.4 Engine Condition Pushdown Optimization")
 
-[Seção 8.15.12, “Exemplo”](tracing-example.html)
+[Section 8.15.12, “Example”](tracing-example.html "8.15.12 Example")
 
-[Seção 8.8.2, “Formato de Saída EXPLAIN”](explain-output.html)
+[Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
 
-[Seção 13.8.2, “Instrução EXPLAIN”](explain.html)
+[Section 13.8.2, “EXPLAIN Statement”](explain.html "13.8.2 EXPLAIN Statement")
 
-[Seção 8.8.3, “Formato de saída EXPLAIN estendido”](explain-extended.html)
+[Section 8.8.3, “Extended EXPLAIN Output Format”](explain-extended.html "8.8.3 Extended EXPLAIN Output Format")
 
-[Seção 12.17.3, “Funções que buscam valores JSON”](json-search-functions.html)
+[Section 12.17.3, “Functions That Search JSON Values”](json-search-functions.html "12.17.3 Functions That Search JSON Values")
 
-[Seção 8.2.1.15, "Otimização por GRUPO"](group-by-optimization.html)
+[Section 8.2.1.15, “GROUP BY Optimization”](group-by-optimization.html "8.2.1.15 GROUP BY Optimization")
 
-[Seção 8.2.1.5, “Otimização de empilhamento de condições de índice”](index-condition-pushdown-optimization.html)
+[Section 8.2.1.5, “Index Condition Pushdown Optimization”](index-condition-pushdown-optimization.html "8.2.1.5 Index Condition Pushdown Optimization")
 
-[Seção 8.9.4, “Dicas de índice”](index-hints.html)
+[Section 8.9.4, “Index Hints”](index-hints.html "8.9.4 Index Hints")
 
-[Seção 8.2.1.3, “Otimização da Fusão de Índices”](index-merge-optimization.html)
+[Section 8.2.1.3, “Index Merge Optimization”](index-merge-optimization.html "8.2.1.3 Index Merge Optimization")
 
-[Seção 8.4.4, “Uso de Tabelas Temporárias Internas no MySQL”](internal-temporary-tables.html)
+[Section 8.4.4, “Internal Temporary Table Use in MySQL”](internal-temporary-tables.html "8.4.4 Internal Temporary Table Use in MySQL")
 
-[Seção 24.1, “Introdução”](information-schema-introduction.html)
+[Section 24.1, “Introduction”](information-schema-introduction.html "24.1 Introduction")
 
-[Seção 8.2.1.13, “Otimização IS NULL”](is-null-optimization.html)
+[Section 8.2.1.13, “IS NULL Optimization”](is-null-optimization.html "8.2.1.13 IS NULL Optimization")
 
-[Seção 8.2.1.17, "Otimização da consulta LIMIT"](limit-optimization.html)
+[Section 8.2.1.17, “LIMIT Query Optimization”](limit-optimization.html "8.2.1.17 LIMIT Query Optimization")
 
-[Seção 8.2.1.10, "Otimização da Leitura de Múltiplos Alcance"](mrr-optimization.html)
+[Section 8.2.1.10, “Multi-Range Read Optimization”](mrr-optimization.html "8.2.1.10 Multi-Range Read Optimization")
 
-[Seção 4.5.1.6, “Dicas do cliente do MySQL”](mysql-tips.html)
+[Section 4.5.1.6, “mysql Client Tips”](mysql-tips.html "4.5.1.6 mysql Client Tips")
 
-[Capítulo 25, *MySQL Performance Schema*](performance-schema.html)
+[Chapter 25, *MySQL Performance Schema*](performance-schema.html "Chapter 25 MySQL Performance Schema")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
-[Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
+[Section 21.4.3.9.2, “NDB Cluster System Variables”](mysql-cluster-options-variables.html#mysql-cluster-system-variables "21.4.3.9.2 NDB Cluster System Variables")
 
-[Seção 8.8.4, “Obtendo informações do plano de execução para uma conexão nomeada”](explain-for-connection.html)
+[Section 8.8.4, “Obtaining Execution Plan Information for a Named Connection”](explain-for-connection.html "8.8.4 Obtaining Execution Plan Information for a Named Connection")
 
-[Seção 22.3.5, “Obtendo Informações sobre Partições”](partitioning-info.html)
+[Section 22.3.5, “Obtaining Information About Partitions”](partitioning-info.html "22.3.5 Obtaining Information About Partitions")
 
-[Seção 8.9.3, “Dicas do otimizador”](optimizer-hints.html)
+[Section 8.9.3, “Optimizer Hints”](optimizer-hints.html "8.9.3 Optimizer Hints")
 
-[Seção 8.3.10, “Uso do otimizador de índices de colunas geradas”](generated-column-index-optimizations.html)
+[Section 8.3.10, “Optimizer Use of Generated Column Indexes”](generated-column-index-optimizations.html "8.3.10 Optimizer Use of Generated Column Indexes")
 
-[Seção B.3.5, “Problemas relacionados ao otimizador”](optimizer-issues.html)
+[Section B.3.5, “Optimizer-Related Issues”](optimizer-issues.html "B.3.5 Optimizer-Related Issues")
 
-[Seção 8.2.2.4, “Otimização de tabelas derivadas e referências de visualização com fusão ou materialização”](derived-table-optimization.html)
+[Section 8.2.2.4, “Optimizing Derived Tables and View References with Merging or Materialization”](derived-table-optimization.html "8.2.2.4 Optimizing Derived Tables and View References with Merging or Materialization")
 
-[Seção 8.2.3, “Otimização de consultas do INFORMATION_SCHEMA”](information-schema-optimization.html)
+[Section 8.2.3, “Optimizing INFORMATION_SCHEMA Queries”](information-schema-optimization.html "8.2.3 Optimizing INFORMATION_SCHEMA Queries")
 
-[Seção 8.8.1, “Otimizando consultas com EXPLAIN”](using-explain.html)
+[Section 8.8.1, “Optimizing Queries with EXPLAIN”](using-explain.html "8.8.1 Optimizing Queries with EXPLAIN")
 
-[Seção 8.2.1, “Otimização de instruções SELECT”](select-optimization.html)
+[Section 8.2.1, “Optimizing SELECT Statements”](select-optimization.html "8.2.1 Optimizing SELECT Statements")
 
-[Seção 13.2.10.10, “Otimização de Subconsultas”](optimizing-subqueries.html)
+[Section 13.2.10.10, “Optimizing Subqueries”](optimizing-subqueries.html "13.2.10.10 Optimizing Subqueries")
 
-[Seção 8.2.2.2, “Otimização de subconsultas com materialização”](subquery-materialization.html)
+[Section 8.2.2.2, “Optimizing Subqueries with Materialization”](subquery-materialization.html "8.2.2.2 Optimizing Subqueries with Materialization")
 
-[Seção 8.2.2.3, “Otimização de subconsultas com a estratégia EXISTS”](subquery-optimization-with-exists.html)
+[Section 8.2.2.3, “Optimizing Subqueries with the EXISTS Strategy”](subquery-optimization-with-exists.html "8.2.2.3 Optimizing Subqueries with the EXISTS Strategy")
 
-[Seção 8.2.2.1, “Otimização de subconsultas, tabelas derivadas e referências de visualizações com transformações de semijoin”](semijoins.html)
+[Section 8.2.2.1, “Optimizing Subqueries, Derived Tables, and View References with Semijoin Transformations”](semijoins.html "8.2.2.1 Optimizing Subqueries, Derived Tables, and View References with Semijoin Transformations")
 
-[Seção 8.2.1.14, “Otimização de ORDEM”](order-by-optimization.html)
+[Section 8.2.1.14, “ORDER BY Optimization”](order-by-optimization.html "8.2.1.14 ORDER BY Optimization")
 
-[Seção 22.4, “Rimação de Partições”](partitioning-pruning.html)
+[Section 22.4, “Partition Pruning”](partitioning-pruning.html "22.4 Partition Pruning")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 8.2.1.2, “Otimização de alcance”](range-optimization.html)
+[Section 8.2.1.2, “Range Optimization”](range-optimization.html "8.2.1.2 Range Optimization")
 
-[Seção 23.8, “Restrições aos Programas Armazenados”](stored-program-restrictions.html)
+[Section 23.8, “Restrictions on Stored Programs”](stored-program-restrictions.html "23.8 Restrictions on Stored Programs")
 
-[Seção 13.1.18.8, “Índices Secundários e Colunas Geradas”](create-table-secondary-indexes.html)
+[Section 13.1.18.8, “Secondary Indexes and Generated Columns”](create-table-secondary-indexes.html "13.1.18.8 Secondary Indexes and Generated Columns")
 
-[Seção 13.2.9, "Instrução SELECT"](select.html)
+[Section 13.2.9, “SELECT Statement”](select.html "13.2.9 SELECT Statement")
 
-[Seção 8.15.10, “Selecionando recursos do otimizador para rastreamento”](optimizer-features-to-trace.html)
+[Section 8.15.10, “Selecting Optimizer Features to Trace”](optimizer-features-to-trace.html "8.15.10 Selecting Optimizer Features to Trace")
 
-[Seção 13.7.5.40, "Declaração de avisos"](show-warnings.html)
+[Section 13.7.5.40, “SHOW WARNINGS Statement”](show-warnings.html "13.7.5.40 SHOW WARNINGS Statement")
 
-[Seção B.3.4.7, “Resolvendo Problemas sem Linhas Correspondentes”](no-matching-rows.html)
+[Section B.3.4.7, “Solving Problems with No Matching Rows”](no-matching-rows.html "B.3.4.7 Solving Problems with No Matching Rows")
 
-[Seção 1.2.2, “Principais características do MySQL”](features.html)
+[Section 1.2.2, “The Main Features of MySQL”](features.html "1.2.2 The Main Features of MySQL")
 
-[Seção 26.4.4.22, “O procedimento ps_trace_statement_digest()”](sys-ps-trace-statement-digest.html)
+[Section 26.4.4.22, “The ps_trace_statement_digest() Procedure”](sys-ps-trace-statement-digest.html "26.4.4.22 The ps_trace_statement_digest() Procedure")
 
-[Seção 8.15.3, “Declarações rastreáveis”](traceable-statements.html)
+[Section 8.15.3, “Traceable Statements”](traceable-statements.html "8.15.3 Traceable Statements")
 
-[Seção 8.8, “Entendendo o Plano de Execução da Consulta”](execution-plan-information.html)
+[Section 8.8, “Understanding the Query Execution Plan”](execution-plan-information.html "8.8 Understanding the Query Execution Plan")
 
-[Seção 8.3.9, “Uso de Extensões de Índice”](index-extensions.html)
+[Section 8.3.9, “Use of Index Extensions”](index-extensions.html "8.3.9 Use of Index Extensions")
 
-[Seção 5.8.1.6, “Usando logs do servidor para encontrar causas de erros no mysqld”](using-log-files.html)
+[Section 5.8.1.6, “Using Server Logs to Find Causes of Errors in mysqld”](using-log-files.html "5.8.1.6 Using Server Logs to Find Causes of Errors in mysqld")
 
-[Seção 11.4.10, “Usando índices espaciais”](using-spatial-indexes.html)
+[Section 11.4.10, “Using Spatial Indexes”](using-spatial-indexes.html "11.4.10 Using Spatial Indexes")
 
-[Seção 8.3.6, “Verificação do Uso do Índice”](verifying-index-usage.html)
+[Section 8.3.6, “Verifying Index Usage”](verifying-index-usage.html "8.3.6 Verifying Index Usage")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
-[Seção 21.2.4.1, “O que há de novo no NDB Cluster 7.5”](mysql-cluster-what-is-new-7-5.html)
+[Section 21.2.4.1, “What is New in NDB Cluster 7.5”](mysql-cluster-what-is-new-7-5.html "21.2.4.1 What is New in NDB Cluster 7.5")
 
-### EXPLICAR EXTENSIVO
+### EXPLAIN EXTENDED
 
-[Seção 8.8.2, “Formato de Saída EXPLAIN”](explain-output.html)
+[Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
 
-[Seção 13.8.2, “Instrução EXPLAIN”](explain.html)
+[Section 13.8.2, “EXPLAIN Statement”](explain.html "13.8.2 EXPLAIN Statement")
 
-[Seção 8.8.3, “Formato de saída EXPLAIN estendido”](explain-extended.html)
+[Section 8.8.3, “Extended EXPLAIN Output Format”](explain-extended.html "8.8.3 Extended EXPLAIN Output Format")
 
-### EXPLIQUE PARA A CONEXÃO
+### EXPLAIN FOR CONNECTION
 
-[Seção 8.8.2, “Formato de Saída EXPLAIN”](explain-output.html)
+[Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
 
-[Seção 8.8.4, “Obtendo informações do plano de execução para uma conexão nomeada”](explain-for-connection.html)
+[Section 8.8.4, “Obtaining Execution Plan Information for a Named Connection”](explain-for-connection.html "8.8.4 Obtaining Execution Plan Information for a Named Connection")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### EXPLIQUE FORMATO=JSON
+### EXPLAIN FORMAT=JSON
 
-[Seção 8.15.2, “Variáveis do sistema que controlam o rastreamento”](system-variables-controlling-tracing.html)
+[Section 8.15.2, “System Variables Controlling Tracing”](system-variables-controlling-tracing.html "8.15.2 System Variables Controlling Tracing")
 
-### EXPLIQUE AS PARTIÇÕES
+### EXPLAIN PARTITIONS
 
-[Seção 8.8.2, “Formato de Saída EXPLAIN”](explain-output.html)
+[Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
 
-[Seção 13.8.2, “Instrução EXPLAIN”](explain.html)
+[Section 13.8.2, “EXPLAIN Statement”](explain.html "13.8.2 EXPLAIN Statement")
 
-[Seção 22.3.5, “Obtendo Informações sobre Partições”](partitioning-info.html)
+[Section 22.3.5, “Obtaining Information About Partitions”](partitioning-info.html "22.3.5 Obtaining Information About Partitions")
 
 ### EXPLAIN SELECT
 
-[Seção 13.2.10.8, “Tabelas Derivadas”](derived-tables.html)
+[Section 13.2.10.8, “Derived Tables”](derived-tables.html "13.2.10.8 Derived Tables")
 
-[Seção 8.8.2, “Formato de Saída EXPLAIN”](explain-output.html)
+[Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
 
-[Seção 14.7.5.3, “Como minimizar e lidar com deadlocks”](innodb-deadlocks-handling.html)
+[Section 14.7.5.3, “How to Minimize and Handle Deadlocks”](innodb-deadlocks-handling.html "14.7.5.3 How to Minimize and Handle Deadlocks")
 
-[Seção 1.5, “Como relatar bugs ou problemas”](bug-reports.html)
+[Section 1.5, “How to Report Bugs or Problems”](bug-reports.html "1.5 How to Report Bugs or Problems")
 
-[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html)
+[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
 
-[Seção 22.3.5, “Obtendo Informações sobre Partições”](partitioning-info.html)
+[Section 22.3.5, “Obtaining Information About Partitions”](partitioning-info.html "22.3.5 Obtaining Information About Partitions")
 
-### EXPLIQUE SELECT COUNT()
+### EXPLAIN SELECT COUNT()
 
-[Seção 22.2.1, “Divisão de Faixa”](partitioning-range.html)
+[Section 22.2.1, “RANGE Partitioning”](partitioning-range.html "22.2.1 RANGE Partitioning")
 
-### EXPLIQUE tbl_name
+### EXPLAIN tbl_name
 
-[Seção 8.8.1, “Otimizando consultas com EXPLAIN”](using-explain.html)
+[Section 8.8.1, “Optimizing Queries with EXPLAIN”](using-explain.html "8.8.1 Optimizing Queries with EXPLAIN")
 
 ### F
 
-index topo](dynindex-statement.html#stmt-index-topo)]
+index top](dynindex-statement.html#stmt-index-top)]
 
 ### FETCH
 
-[Seção 13.6.6.2, "Declaração Cursor DECLARE"](declare-cursor.html)
+[Section 13.6.6.2, “Cursor DECLARE Statement”](declare-cursor.html "13.6.6.2 Cursor DECLARE Statement")
 
-[Seção 13.6.6.3, "Instrução FETCH do cursor"](fetch.html)
+[Section 13.6.6.3, “Cursor FETCH Statement”](fetch.html "13.6.6.3 Cursor FETCH Statement")
 
-[Seção 23.8, “Restrições aos Programas Armazenados”](stored-program-restrictions.html)
+[Section 23.8, “Restrictions on Stored Programs”](stored-program-restrictions.html "23.8 Restrictions on Stored Programs")
 
-### PESQUISE ... EM var_list
+### FETCH ... INTO var_list
 
-[Seção 13.6.4, “Variáveis em Programas Armazenados”](stored-program-variables.html)
+[Section 13.6.4, “Variables in Stored Programs”](stored-program-variables.html "13.6.4 Variables in Stored Programs")
 
-### LIXEIRA
+### FLUSH
 
-[Seção 7.3.1, “Estabelecimento de uma Política de Backup”](backup-policy.html)
+[Section 7.3.1, “Establishing a Backup Policy”](backup-policy.html "7.3.1 Establishing a Backup Policy")
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
-[Seção 16.1.6.5, “Variáveis do Sistema de ID de Transação Global”](replication-options-gtids.html)
+[Section 16.1.6.5, “Global Transaction ID System Variables”](replication-options-gtids.html "16.1.6.5 Global Transaction ID System Variables")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html)
+[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 16.4.1.14, “Replicação e FLUSH”](replication-features-flush.html)
+[Section 16.4.1.14, “Replication and FLUSH”](replication-features-flush.html "16.4.1.14 Replication and FLUSH")
 
-[Seção 13.7.6.6, "Declaração de RESET"](reset.html)
+[Section 13.7.6.6, “RESET Statement”](reset.html "13.7.6.6 RESET Statement")
 
-[Seção 23.8, “Restrições aos Programas Armazenados”](stored-program-restrictions.html)
+[Section 23.8, “Restrictions on Stored Programs”](stored-program-restrictions.html "23.8 Restrictions on Stored Programs")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 4.10, "Tratamento de Sinais Unix no MySQL"](unix-signal-response.html)
+[Section 4.10, “Unix Signal Handling in MySQL”](unix-signal-response.html "4.10 Unix Signal Handling in MySQL")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
-### LIMPE OS LOGS BINÁRIOS
+### FLUSH BINARY LOGS
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
-[Seção 5.4.7, “Manutenção do Log do Servidor”](log-file-maintenance.html)
+[Section 5.4.7, “Server Log Maintenance”](log-file-maintenance.html "5.4.7 Server Log Maintenance")
 
-### LIMPE DES_KEY_FILE
+### FLUSH DES_KEY_FILE
 
-[Seção 12.13, “Funções de Criptografia e Compressão”](encryption-functions.html)
+[Section 12.13, “Encryption and Compression Functions”](encryption-functions.html "12.13 Encryption and Compression Functions")
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
-### LIMPE OS LOGS DO MOTOR
+### FLUSH ENGINE LOGS
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
-### LOGS DE ERROS DE LIMPEZA
+### FLUSH ERROR LOGS
 
-[Seção 5.4.2.6, "Limpeza e Renomeação do Arquivo de Registro de Erros"](error-log-rotation.html)
+[Section 5.4.2.6, “Error Log File Flushing and Renaming”](error-log-rotation.html "5.4.2.6 Error Log File Flushing and Renaming")
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
-### LIMPE OS LOGS GERAIS
+### FLUSH GENERAL LOGS
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
 ### FLUSH HOSTS
 
-[Seção 5.1.11.2, "Consultas DNS e Cache de Anfitriões"](host-cache.html)
+[Section 5.1.11.2, “DNS Lookups and the Host Cache”](host-cache.html "5.1.11.2 DNS Lookups and the Host Cache")
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
-### LIMPE OS LOGS
+### FLUSH LOGS
 
-[Seção 7.3.3, “Resumo da Estratégia de Backup”](backup-strategy-summary.html)
+[Section 7.3.3, “Backup Strategy Summary”](backup-strategy-summary.html "7.3.3 Backup Strategy Summary")
 
-[Seção 7.2, “Métodos de backup de banco de dados”](backup-methods.html)
+[Section 7.2, “Database Backup Methods”](backup-methods.html "7.2 Database Backup Methods")
 
-[Seção 16.1.4.3, “Desativar transações GTID online”](replication-mode-change-online-disable-gtids.html)
+[Section 16.1.4.3, “Disabling GTID Transactions Online”](replication-mode-change-online-disable-gtids.html "16.1.4.3 Disabling GTID Transactions Online")
 
-[Seção 16.1.4.2, “Habilitar transações GTID online”](replication-mode-change-online-enable-gtids.html)
+[Section 16.1.4.2, “Enabling GTID Transactions Online”](replication-mode-change-online-enable-gtids.html "16.1.4.2 Enabling GTID Transactions Online")
 
-[Seção 5.4.2.6, "Limpeza e Renomeação do Arquivo de Registro de Erros"](error-log-rotation.html)
+[Section 5.4.2.6, “Error Log File Flushing and Renaming”](error-log-rotation.html "5.4.2.6 Error Log File Flushing and Renaming")
 
-[Seção 7.3.1, “Estabelecimento de uma Política de Backup”](backup-policy.html)
+[Section 7.3.1, “Establishing a Backup Policy”](backup-policy.html "7.3.1 Establishing a Backup Policy")
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
-[Seção 5.4, "Logs do Servidor MySQL"](server-logs.html)
+[Section 5.4, “MySQL Server Logs”](server-logs.html "5.4 MySQL Server Logs")
 
-[Seção 4.5.2, “mysqladmin — Um programa de administração do servidor MySQL”](mysqladmin.html)
+[Section 4.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program")
 
-[Seção 16.4.1.14, “Replicação e FLUSH”](replication-features-flush.html)
+[Section 16.4.1.14, “Replication and FLUSH”](replication-features-flush.html "16.4.1.14 Replication and FLUSH")
 
-[Seção 5.4.1, “Selecionando destinos de saída do Log de consulta geral e do Log de consulta lenta”](log-destinations.html)
+[Section 5.4.1, “Selecting General Query Log and Slow Query Log Output Destinations”](log-destinations.html "5.4.1 Selecting General Query Log and Slow Query Log Output Destinations")
 
-[Seção 5.4.7, “Manutenção do Log do Servidor”](log-file-maintenance.html)
+[Section 5.4.7, “Server Log Maintenance”](log-file-maintenance.html "5.4.7 Server Log Maintenance")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 16.1.3.4, “Configurando a replicação usando GTIDs”](replication-gtids-howto.html)
+[Section 16.1.3.4, “Setting Up Replication Using GTIDs”](replication-gtids-howto.html "16.1.3.4 Setting Up Replication Using GTIDs")
 
-[Seção 16.2.4.1, "O Log de Retransmissão"](replica-logs-relaylog.html)
+[Section 16.2.4.1, “The Relay Log”](replica-logs-relaylog.html "16.2.4.1 The Relay Log")
 
-[Seção 16.1.3.5, “Uso de GTIDs para Failover e Scaleout”](replication-gtids-failover.html)
+[Section 16.1.3.5, “Using GTIDs for Failover and Scaleout”](replication-gtids-failover.html "16.1.3.5 Using GTIDs for Failover and Scaleout")
 
-### OBRIGUARDO POR USAR O FLUSH OPTIMIZER_COSTS
+### FLUSH OPTIMIZER_COSTS
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
-[Seção 8.9.5, “O Modelo de Custo do Otimizador”](cost-model.html)
+[Section 8.9.5, “The Optimizer Cost Model”](cost-model.html "8.9.5 The Optimizer Cost Model")
 
-### LIMPE OS PRIVILEGIOS
+### FLUSH PRIVILEGES
 
-[Seção 1.1, “Sobre este manual”](manual-info.html)
+[Section 1.1, “About This Manual”](manual-info.html "1.1 About This Manual")
 
-[Seção 21.6.13, “Distribuição de privilégios usando tabelas de concessão compartilhadas”](mysql-cluster-privilege-distribution.html)
+[Section 21.6.13, “Distributed Privileges Using Shared Grant Tables”](mysql-cluster-privilege-distribution.html "21.6.13 Distributed Privileges Using Shared Grant Tables")
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
-[Seção 6.2.3, “Tabelas de subsídios”](grant-tables.html)
+[Section 6.2.3, “Grant Tables”](grant-tables.html "6.2.3 Grant Tables")
 
-[Seção 8.12.4.1, “Como o MySQL Usa a Memória”](memory-use.html)
+[Section 8.12.4.1, “How MySQL Uses Memory”](memory-use.html "8.12.4.1 How MySQL Uses Memory")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 21.6.18.3, “Procedimentos de segurança do NDB Cluster e MySQL”](mysql-cluster-security-mysql-security-procedures.html)
+[Section 21.6.18.3, “NDB Cluster and MySQL Security Procedures”](mysql-cluster-security-mysql-security-procedures.html "21.6.18.3 NDB Cluster and MySQL Security Procedures")
 
-[Seção 16.4.1.14, “Replicação e FLUSH”](replication-features-flush.html)
+[Section 16.4.1.14, “Replication and FLUSH”](replication-features-flush.html "16.4.1.14 Replication and FLUSH")
 
-[Seção 5.1.6, “Opções de comando do servidor”](server-options.html)
+[Section 5.1.6, “Server Command Options”](server-options.html "5.1.6 Server Command Options")
 
-[Seção 6.2.16, “Definir limites de recursos da conta”](user-resources.html)
+[Section 6.2.16, “Setting Account Resource Limits”](user-resources.html "6.2.16 Setting Account Resource Limits")
 
-[Seção 6.2.17, “Soluções para problemas de conexão com o MySQL”](problemas-conectando.html)
+[Section 6.2.17, “Troubleshooting Problems Connecting to MySQL”](problems-connecting.html "6.2.17 Troubleshooting Problems Connecting to MySQL")
 
-[Seção 6.2.9, “Quando as Alterações de Privilegios Se Tornam Efetivas”](privilege-changes.html)
+[Section 6.2.9, “When Privilege Changes Take Effect”](privilege-changes.html "6.2.9 When Privilege Changes Take Effect")
 
-### LIMPE O CACHE DA PESQUISA
+### FLUSH QUERY CACHE
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
-[Seção 8.10.3.4, “Consultar o estado e a manutenção do cache de consultas”](query-cache-status-and-maintenance.html)
+[Section 8.10.3.4, “Query Cache Status and Maintenance”](query-cache-status-and-maintenance.html "8.10.3.4 Query Cache Status and Maintenance")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
-### LÓGICA DE LIMPEZA DE RELAY
+### FLUSH RELAY LOGS
 
-[Seção 16.2.2.1, “Comandos para operações em um único canal”](channels-commands-single-channel.html)
+[Section 16.2.2.1, “Commands for Operations on a Single Channel”](channels-commands-single-channel.html "16.2.2.1 Commands for Operations on a Single Channel")
 
-[Seção 16.2.2.2, “Compatibilidade com Declarações de Replicação Prévias”](channels-with-prev-replication.html)
+[Section 16.2.2.2, “Compatibility with Previous Replication Statements”](channels-with-prev-replication.html "16.2.2.2 Compatibility with Previous Replication Statements")
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
-### LIMPE OS LOGS DE RELAY PARA O CANAL channel
+### FLUSH RELAY LOGS FOR CHANNEL channel
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
-### LIMPE OS LOGS LENTOS
+### FLUSH SLOW LOGS
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
-### LIMPE O STATUS
+### FLUSH STATUS
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
-[Seção 17.4, “Monitoramento do Grupo de Replicação”](group-replication-monitoring.html)
+[Section 17.4, “Monitoring Group Replication”](group-replication-monitoring.html "17.4 Monitoring Group Replication")
 
-[Seção 25.12.14, "Tabelas de Variáveis de Status do Schema de Desempenho"](performance-schema-status-variable-tables.html)
+[Section 25.12.14, “Performance Schema Status Variable Tables”](performance-schema-status-variable-tables.html "25.12.14 Performance Schema Status Variable Tables")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 25.12.15.10, “Tabelas de Resumo de Variáveis de Status”](performance-schema-status-variable-summary-tables.html)
+[Section 25.12.15.10, “Status Variable Summary Tables”](performance-schema-status-variable-summary-tables.html "25.12.15.10 Status Variable Summary Tables")
 
-[Seção 8.3.9, “Uso de Extensões de Índice”](index-extensions.html)
+[Section 8.3.9, “Use of Index Extensions”](index-extensions.html "8.3.9 Use of Index Extensions")
 
-### LIMPE A TÁBUA
+### FLUSH TABLE
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
-### LIMPE AS TABELAS
+### FLUSH TABLES
 
-[Seção 8.6.2, “Carregamento de dados em massa para tabelas MyISAM”](optimizando-myisam-carregamento-de-dados-em-massa.html)
+[Section 8.6.2, “Bulk Data Loading for MyISAM Tables”](optimizing-myisam-bulk-data-loading.html "8.6.2 Bulk Data Loading for MyISAM Tables")
 
-[Seção 8.10.4, “Cache de Declarações Preparadas e Programas Armazenados”](statement-caching.html)
+[Section 8.10.4, “Caching of Prepared Statements and Stored Programs”](statement-caching.html "8.10.4 Caching of Prepared Statements and Stored Programs")
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
-[Seção 8.14.3, “Estados gerais de fios”](general-thread-states.html)
+[Section 8.14.3, “General Thread States”](general-thread-states.html "8.14.3 General Thread States")
 
-[Seção 13.2.4, “Declaração do Gestor”](handler.html)
+[Section 13.2.4, “HANDLER Statement”](handler.html "13.2.4 HANDLER Statement")
 
-[Seção 8.4.3.1, “Como o MySQL Abre e Fecha Tabelas”](table-cache.html)
+[Section 8.4.3.1, “How MySQL Opens and Closes Tables”](table-cache.html "8.4.3.1 How MySQL Opens and Closes Tables")
 
-[Seção 8.12.4.1, “Como o MySQL Usa a Memória”](memory-use.html)
+[Section 8.12.4.1, “How MySQL Uses Memory”](memory-use.html "8.12.4.1 How MySQL Uses Memory")
 
-[Seção 15.7.2, “Problemas da Tabela MERGE”](merge-table-problems.html)
+[Section 15.7.2, “MERGE Table Problems”](merge-table-problems.html "15.7.2 MERGE Table Problems")
 
-[Seção 4.6.3, “myisamchk — Ferramenta de manutenção de tabelas MyISAM”](myisamchk.html)
+[Section 4.6.3, “myisamchk — MyISAM Table-Maintenance Utility”](myisamchk.html "4.6.3 myisamchk — MyISAM Table-Maintenance Utility")
 
-[Seção 16.1.2.3, “Obtendo as coordenadas do log binário da fonte de replicação”](replication-howto-masterstatus.html)
+[Section 16.1.2.3, “Obtaining the Replication Source's Binary Log Coordinates”](replication-howto-masterstatus.html "16.1.2.3 Obtaining the Replication Source's Binary Log Coordinates")
 
-[Seção 15.2.4.2, “Problemas com tabelas que não são fechadas corretamente”](myisam-table-close.html)
+[Section 15.2.4.2, “Problems from Tables Not Being Closed Properly”](myisam-table-close.html "15.2.4.2 Problems from Tables Not Being Closed Properly")
 
-[Seção 8.10.3.4, “Consultar o estado e a manutenção do cache de consultas”](query-cache-status-and-maintenance.html)
+[Section 8.10.3.4, “Query Cache Status and Maintenance”](query-cache-status-and-maintenance.html "8.10.3.4 Query Cache Status and Maintenance")
 
-[Seção 16.4.1.14, “Replicação e FLUSH”](replication-features-flush.html)
+[Section 16.4.1.14, “Replication and FLUSH”](replication-features-flush.html "16.4.1.14 Replication and FLUSH")
 
-[Seção 22.6, “Restrições e Limitações sobre Partição”](partitioning-limitations.html)
+[Section 22.6, “Restrictions and Limitations on Partitioning”](partitioning-limitations.html "22.6 Restrictions and Limitations on Partitioning")
 
-[Seção 5.4.1, “Selecionando destinos de saída do Log de consulta geral e do Log de consulta lenta”](log-destinations.html)
+[Section 5.4.1, “Selecting General Query Log and Slow Query Log Output Destinations”](log-destinations.html "5.4.1 Selecting General Query Log and Slow Query Log Output Destinations")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 8.3.9, “Uso de Extensões de Índice”](index-extensions.html)
+[Section 8.3.9, “Use of Index Extensions”](index-extensions.html "8.3.9 Use of Index Extensions")
 
-### LIMPE AS TÁBUAS ... PARA EXPORTAÇÃO
+### FLUSH TABLES ... FOR EXPORT
 
-[Seção 14.6.1.2, “Criando tabelas externamente”](innodb-create-table-external.html)
+[Section 14.6.1.2, “Creating Tables Externally”](innodb-create-table-external.html "14.6.1.2 Creating Tables Externally")
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
-[Seção 14.6.1.3, “Importando tabelas InnoDB”](innodb-table-import.html)
+[Section 14.6.1.3, “Importing InnoDB Tables”](innodb-table-import.html "14.6.1.3 Importing InnoDB Tables")
 
-[Glossário do MySQL](glossary.html)
+[MySQL Glossary](glossary.html "MySQL Glossary")
 
-### LIMPE AS TÁBUAS ... PARA EXPORTAÇÃO
+### FLUSH TABLES ...FOR EXPORT
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
-### LIMPE TABELAS tbl_name...
+### FLUSH TABLES tbl_name ...
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
-### LIMPE TABELAS tbl_name ... PARA EXPORTAÇÃO
+### FLUSH TABLES tbl_name ... FOR EXPORT
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
-### LIMPE TABELAS tbl_name ... COM BLOQUEIO DE LEITURA
+### FLUSH TABLES tbl_name ... WITH READ LOCK
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
-### LIMPE TABELAS tbl_name COM BLOQUEIO DE LEITURA
+### FLUSH TABLES tbl_name WITH READ LOCK
 
-[Seção 13.2.4, “Declaração do Gestor”](handler.html)
+[Section 13.2.4, “HANDLER Statement”](handler.html "13.2.4 HANDLER Statement")
 
-### LIMPE AS TÁBUAS COM BLOQUEIO DE LEITURA
+### FLUSH TABLES WITH READ LOCK
 
-[Seção 7.2, “Métodos de backup de banco de dados”](backup-methods.html)
+[Section 7.2, “Database Backup Methods”](backup-methods.html "7.2 Database Backup Methods")
 
-[Seção 7.3.1, “Estabelecimento de uma Política de Backup”](backup-policy.html)
+[Section 7.3.1, “Establishing a Backup Policy”](backup-policy.html "7.3.1 Establishing a Backup Policy")
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
-[Seção 8.14.3, “Estados gerais de fios”](general-thread-states.html)
+[Section 8.14.3, “General Thread States”](general-thread-states.html "8.14.3 General Thread States")
 
-[Seção 13.3.5, “Instruções LOCK TABLES e UNLOCK TABLES”](lock-tables.html)
+[Section 13.3.5, “LOCK TABLES and UNLOCK TABLES Statements”](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements")
 
-[Glossário do MySQL](glossary.html)
+[MySQL Glossary](glossary.html "MySQL Glossary")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 16.1.2.3, “Obtendo as coordenadas do log binário da fonte de replicação”](replication-howto-masterstatus.html)
+[Section 16.1.2.3, “Obtaining the Replication Source's Binary Log Coordinates”](replication-howto-masterstatus.html "16.1.2.3 Obtaining the Replication Source's Binary Log Coordinates")
 
-[Seção 16.4.1.14, “Replicação e FLUSH”](replication-features-flush.html)
+[Section 16.4.1.14, “Replication and FLUSH”](replication-features-flush.html "16.4.1.14 Replication and FLUSH")
 
-[Seção 13.3.7.3, “Restrições às Transações XA”](xa-restrições.html)
+[Section 13.3.7.3, “Restrictions on XA Transactions”](xa-restrictions.html "13.3.7.3 Restrictions on XA Transactions")
 
-[Seção 5.4.1, “Selecionando destinos de saída do Log de consulta geral e do Log de consulta lenta”](log-destinations.html)
+[Section 5.4.1, “Selecting General Query Log and Slow Query Log Output Destinations”](log-destinations.html "5.4.1 Selecting General Query Log and Slow Query Log Output Destinations")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 13.3.1, "Instruções START TRANSACTION, COMMIT e ROLLBACK"](commit.html)
+[Section 13.3.1, “START TRANSACTION, COMMIT, and ROLLBACK Statements”](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 25.12.12.1, “A tabela metadata_locks”](performance-schema-metadata-locks-table.html)
+[Section 25.12.12.1, “The metadata_locks Table”](performance-schema-metadata-locks-table.html "25.12.12.1 The metadata_locks Table")
 
-### LIMPE OS RECURSOS DO USUÁRIO
+### FLUSH USER_RESOURCES
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
-[Seção 6.2.16, “Definir limites de recursos da conta”](user-resources.html)
+[Section 6.2.16, “Setting Account Resource Limits”](user-resources.html "6.2.16 Setting Account Resource Limits")
 
 ### G
 
-index topo](dynindex-statement.html#stmt-index-topo)]
+index top](dynindex-statement.html#stmt-index-top)]
 
-### Obtenha diagnósticos
+### GET DIAGNOSTICS
 
-[Seção 13.6.7, “Tratamento de Condições”](condition-handling.html)
+[Section 13.6.7, “Condition Handling”](condition-handling.html "13.6.7 Condition Handling")
 
-[Seção B.2, “Interfaces de Informação de Erros”](error-interfaces.html)
+[Section B.2, “Error Information Interfaces”](error-interfaces.html "B.2 Error Information Interfaces")
 
-[Seção 13.6.7.3, "Declaração de DIAGNÓSTICOS"](get-diagnostics.html)
+[Section 13.6.7.3, “GET DIAGNOSTICS Statement”](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement")
 
-[Seção 13.6.7.4, "Declaração RESIGNAL"](resignal.html)
+[Section 13.6.7.4, “RESIGNAL Statement”](resignal.html "13.6.7.4 RESIGNAL Statement")
 
-[Seção 13.6.7.9, “Restrições para o manuseio de condições”](condition-handling-restrictions.html)
+[Section 13.6.7.9, “Restrictions on Condition Handling”](condition-handling-restrictions.html "13.6.7.9 Restrictions on Condition Handling")
 
-[Seção 23.8, “Restrições aos Programas Armazenados”](stored-program-restrictions.html)
+[Section 23.8, “Restrictions on Stored Programs”](stored-program-restrictions.html "23.8 Restrictions on Stored Programs")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 13.7.5.40, "Declaração de avisos"](show-warnings.html)
+[Section 13.7.5.40, “SHOW WARNINGS Statement”](show-warnings.html "13.7.5.40 SHOW WARNINGS Statement")
 
-[Seção 13.6.7.5, “Declaração de Sinal”](signal.html)
+[Section 13.6.7.5, “SIGNAL Statement”](signal.html "13.6.7.5 SIGNAL Statement")
 
-[Seção 13.6.7.7, “A Área de Diagnóstico do MySQL”](diagnostics-area.html)
+[Section 13.6.7.7, “The MySQL Diagnostics Area”](diagnostics-area.html "13.6.7.7 The MySQL Diagnostics Area")
 
-### Obtenha diagnósticos completos
+### GET STACKED DIAGNOSTICS
 
-[Seção 13.6.7.3, "Declaração de DIAGNÓSTICOS"](get-diagnostics.html)
+[Section 13.6.7.3, “GET DIAGNOSTICS Statement”](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement")
 
-[Seção 13.6.7.7, “A Área de Diagnóstico do MySQL”](diagnostics-area.html)
+[Section 13.6.7.7, “The MySQL Diagnostics Area”](diagnostics-area.html "13.6.7.7 The MySQL Diagnostics Area")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
-### CONCEDER
+### GRANT
 
-[Seção 6.2, “Controle de Acesso e Gerenciamento de Contas”](access-control.html)
+[Section 6.2, “Access Control and Account Management”](access-control.html "6.2 Access Control and Account Management")
 
-[Seção 6.2.6, “Controle de Acesso, Etapa 2: Solicitação de Verificação”](request-access.html)
+[Section 6.2.6, “Access Control, Stage 2: Request Verification”](request-access.html "6.2.6 Access Control, Stage 2: Request Verification")
 
-[Seção 6.2.1, “Nomes de Usuários e Senhas de Conta”](user-names.html)
+[Section 6.2.1, “Account User Names and Passwords”](user-names.html "6.2.1 Account User Names and Passwords")
 
-[Seção 6.2.7, “Adicionar contas, atribuir privilégios e excluir contas”](creating-accounts.html)
+[Section 6.2.7, “Adding Accounts, Assigning Privileges, and Dropping Accounts”](creating-accounts.html "6.2.7 Adding Accounts, Assigning Privileges, and Dropping Accounts")
 
-[Seção 16.2.1.1, “Vantagens e desvantagens da replicação baseada em declarações e baseada em linhas”](replication-sbr-rbr.html)
+[Section 16.2.1.1, “Advantages and Disadvantages of Statement-Based and Row-Based Replication”](replication-sbr-rbr.html "16.2.1.1 Advantages and Disadvantages of Statement-Based and Row-Based Replication")
 
-[Seção 14.8.2, “Configurando a InnoDB para operação apenas de leitura”](innodb-read-only-instance.html)
+[Section 14.8.2, “Configuring InnoDB for Read-Only Operation”](innodb-read-only-instance.html "14.8.2 Configuring InnoDB for Read-Only Operation")
 
-[Seção 5.1.12.3, “Conectar usando a Endereço IPv6 do Host Local”](ipv6-local-connections.html)
+[Section 5.1.12.3, “Connecting Using the IPv6 Local Host Address”](ipv6-local-connections.html "5.1.12.3 Connecting Using the IPv6 Local Host Address")
 
-[Seção 13.7.1.2, "Instrução CREATE USER"](create-user.html)
+[Section 13.7.1.2, “CREATE USER Statement”](create-user.html "13.7.1.2 CREATE USER Statement")
 
-[Seção 16.1.2.2, “Criando um Usuário para Replicação”](replication-howto-repuser.html)
+[Section 16.1.2.2, “Creating a User for Replication”](replication-howto-repuser.html "16.1.2.2 Creating a User for Replication")
 
-[Seção 12.13, “Funções de Criptografia e Compressão”](encryption-functions.html)
+[Section 12.13, “Encryption and Compression Functions”](encryption-functions.html "12.13 Encryption and Compression Functions")
 
-[Seção 16.2.5.2, “Avaliação das Opções de Replicação de Nível de Tabela”](replication-rules-table-options.html)
+[Section 16.2.5.2, “Evaluation of Table-Level Replication Options”](replication-rules-table-options.html "16.2.5.2 Evaluation of Table-Level Replication Options")
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 6.2.3, “Tabelas de subsídios”](grant-tables.html)
+[Section 6.2.3, “Grant Tables”](grant-tables.html "6.2.3 Grant Tables")
 
-[Seção 8.12.4.1, “Como o MySQL Usa a Memória”](memory-use.html)
+[Section 8.12.4.1, “How MySQL Uses Memory”](memory-use.html "8.12.4.1 How MySQL Uses Memory")
 
-[Seção 12.15, “Funções de Informação”](information-functions.html)
+[Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions")
 
-[Seção 2.9.1, “Inicializando o Diretório de Dados”](data-directory-initialization.html)
+[Section 2.9.1, “Initializing the Data Directory”](data-directory-initialization.html "2.9.1 Initializing the Data Directory")
 
-[Seção 5.1.12, “Suporte ao IPv6”](ipv6-support.html)
+[Section 5.1.12, “IPv6 Support”](ipv6-support.html "5.1.12 IPv6 Support")
 
-[Seção 5.4.4.4, "Formato de registro para alterações nas tabelas do banco de dados mysql"](binary-log-mysql-database.html)
+[Section 5.4.4.4, “Logging Format for Changes to mysql Database Tables”](binary-log-mysql-database.html "5.4.4.4 Logging Format for Changes to mysql Database Tables")
 
-[Seção A.14, “Perguntas frequentes sobre o MySQL 5.7: Replicação”](faqs-replication.html)
+[Section A.14, “MySQL 5.7 FAQ: Replication”](faqs-replication.html "A.14 MySQL 5.7 FAQ: Replication")
 
-[Glossário do MySQL](glossary.html)
+[MySQL Glossary](glossary.html "MySQL Glossary")
 
-[Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
+[Section 4.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "4.5.6 mysqlpump — A Database Backup Program")
 
-[Seção 21.6.18.2, "Nível de privilégio do NDB Cluster e MySQL"](mysql-cluster-security-mysql-privileges.html)
+[Section 21.6.18.2, “NDB Cluster and MySQL Privileges”](mysql-cluster-security-mysql-privileges.html "21.6.18.2 NDB Cluster and MySQL Privileges")
 
-[Seção 8.2.5, “Otimização de privilégios de banco de dados”](permission-optimization.html)
+[Section 8.2.5, “Optimizing Database Privileges”](permission-optimization.html "8.2.5 Optimizing Database Privileges")
 
-[Seção 6.1.2.4, “Hashing de Senhas no MySQL”](password-hashing.html)
+[Section 6.1.2.4, “Password Hashing in MySQL”](password-hashing.html "6.1.2.4 Password Hashing in MySQL")
 
-[Seção 6.1.2.3, “Senhas e Registro de Ações”](password-logging.html)
+[Section 6.1.2.3, “Passwords and Logging”](password-logging.html "6.1.2.3 Passwords and Logging")
 
-[Seção 21.7.5, “Preparando o NDB Cluster para Replicação”](mysql-cluster-replication-preparation.html)
+[Section 21.7.5, “Preparing the NDB Cluster for Replication”](mysql-cluster-replication-preparation.html "21.7.5 Preparing the NDB Cluster for Replication")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 6.2.14, “Usuários de Proxy”](proxy-users.html)
+[Section 6.2.14, “Proxy Users”](proxy-users.html "6.2.14 Proxy Users")
 
-[Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
+[Section 16.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "16.1.6.3 Replica Server Options and Variables")
 
-[Seção 16.4.1.14, “Replicação e FLUSH”](replication-features-flush.html)
+[Section 16.4.1.14, “Replication and FLUSH”](replication-features-flush.html "16.4.1.14 Replication and FLUSH")
 
-[Seção 16.4.1.8, “Replicação de CURRENT_USER()”](replication-features-current-user.html)
+[Section 16.4.1.8, “Replication of CURRENT_USER()”](replication-features-current-user.html "16.4.1.8 Replication of CURRENT_USER()")
 
-[Seção 16.4.1.21, “Replicação do banco de dados do sistema mysql”](replication-features-mysqldb.html)
+[Section 16.4.1.21, “Replication of the mysql System Database”](replication-features-mysqldb.html "16.4.1.21 Replication of the mysql System Database")
 
-[Seção 13.7.1.6, "Declaração de Revogação"](revoke.html)
+[Section 13.7.1.6, “REVOKE Statement”](revoke.html "13.7.1.6 REVOKE Statement")
 
-[Seção 6.1.1, “Diretrizes de Segurança”](security-guidelines.html)
+[Section 6.1.1, “Security Guidelines”](security-guidelines.html "6.1.1 Security Guidelines")
 
-[Seção 5.1.6, “Opções de comando do servidor”](server-options.html)
+[Section 5.1.6, “Server Command Options”](server-options.html "5.1.6 Server Command Options")
 
-[Seção 5.1.10, "Modos SQL do Servidor"](sql-mode.html)
+[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 13.7.5.21, "Declaração de GRANTS SHOW"](show-grants.html)
+[Section 13.7.5.21, “SHOW GRANTS Statement”](show-grants.html "13.7.5.21 SHOW GRANTS Statement")
 
-[Seção 6.2.4, “Especificação de Nomes de Conta”](account-names.html)
+[Section 6.2.4, “Specifying Account Names”](account-names.html "6.2.4 Specifying Account Names")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 23.4.6, “O Agendamento de Eventos e Permissões do MySQL”](events-privileges.html)
+[Section 23.4.6, “The Event Scheduler and MySQL Privileges”](events-privileges.html "23.4.6 The Event Scheduler and MySQL Privileges")
 
-[Seção 6.4.3, “O Plugin de Validação de Senha”](validate-password.html)
+[Section 6.4.3, “The Password Validation Plugin”](validate-password.html "6.4.3 The Password Validation Plugin")
 
-[Seção 6.4.6.3, “Uso do Firewall da MySQL Enterprise”](firewall-usage.html)
+[Section 6.4.6.3, “Using MySQL Enterprise Firewall”](firewall-usage.html "6.4.6.3 Using MySQL Enterprise Firewall")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
-[Seção 6.2.9, “Quando as Alterações de Privilegios Se Tornam Efetivas”](privilege-changes.html)
+[Section 6.2.9, “When Privilege Changes Take Effect”](privilege-changes.html "6.2.9 When Privilege Changes Take Effect")
 
-[Seção 6.4.1.8, “Autenticação Conectada a Janelas”](windows-pluggable-authentication.html)
+[Section 6.4.1.8, “Windows Pluggable Authentication”](windows-pluggable-authentication.html "6.4.1.8 Windows Pluggable Authentication")
 
-### CONCEDA TODO
+### GRANT ALL
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-### CONCURSO DE GRÃNCIA
+### GRANT EVENT
 
-[Seção 23.4.6, “O Agendamento de Eventos e Permissões do MySQL”](events-privileges.html)
+[Section 23.4.6, “The Event Scheduler and MySQL Privileges”](events-privileges.html "23.4.6 The Event Scheduler and MySQL Privileges")
 
 ### GROUP BY
 
-[Seção 14.1.1, “Benefícios de usar tabelas InnoDB”](innodb-benefits.html)
+[Section 14.1.1, “Benefits of Using InnoDB Tables”](innodb-benefits.html "14.1.1 Benefits of Using InnoDB Tables")
 
 ### H
 
-index topo](dynindex-statement.html#stmt-index-topo)]
+index top](dynindex-statement.html#stmt-index-top)]
 
 ### HANDLER
 
-[Seção 15.8.3, “Notas e dicas do mecanismo de armazenamento federado”](federated-usagenotes.html)
+[Section 15.8.3, “FEDERATED Storage Engine Notes and Tips”](federated-usagenotes.html "15.8.3 FEDERATED Storage Engine Notes and Tips")
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
-[Seção A.4, “Perguntas frequentes sobre o MySQL 5.7: Procedimentos e funções armazenadas”](faqs-stored-procs.html)
+[Section A.4, “MySQL 5.7 FAQ: Stored Procedures and Functions”](faqs-stored-procs.html "A.4 MySQL 5.7 FAQ: Stored Procedures and Functions")
 
-[Seção 1.6, “Conformidade com os Padrões MySQL”](compatibilidade.html)
+[Section 1.6, “MySQL Standards Compliance”](compatibility.html "1.6 MySQL Standards Compliance")
 
-[Seção 22.6, “Restrições e Limitações sobre Partição”](partitioning-limitations.html)
+[Section 22.6, “Restrictions and Limitations on Partitioning”](partitioning-limitations.html "22.6 Restrictions and Limitations on Partitioning")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
-### HANDLER ... FECHAR
+### HANDLER ... CLOSE
 
-[Seção 13.7.5.24, "Declaração SHOW OPEN TABLES"](show-open-tables.html)
+[Section 13.7.5.24, “SHOW OPEN TABLES Statement”](show-open-tables.html "13.7.5.24 SHOW OPEN TABLES Statement")
 
-### HANDLER...OPEN
+### HANDLER ... OPEN
 
-[Seção 13.7.5.24, "Declaração SHOW OPEN TABLES"](show-open-tables.html)
+[Section 13.7.5.24, “SHOW OPEN TABLES Statement”](show-open-tables.html "13.7.5.24 SHOW OPEN TABLES Statement")
 
-### HANDLER...LEIA
+### HANDLER ... READ
 
-[Seção 23.8, “Restrições aos Programas Armazenados”](stored-program-restrictions.html)
+[Section 23.8, “Restrictions on Stored Programs”](stored-program-restrictions.html "23.8 Restrictions on Stored Programs")
 
 ### HANDLER OPEN
 
-[Seção 13.2.4, “Declaração do Gestor”](handler.html)
+[Section 13.2.4, “HANDLER Statement”](handler.html "13.2.4 HANDLER Statement")
 
-[Seção 13.1.34, "Instrução TRUNCATE TABLE"](truncate-table.html)
+[Section 13.1.34, “TRUNCATE TABLE Statement”](truncate-table.html "13.1.34 TRUNCATE TABLE Statement")
 
-### AJUDA
+### HELP
 
-[Seção 13.8.3, “Declaração de Ajuda”](help.html)
+[Section 13.8.3, “HELP Statement”](help.html "13.8.3 HELP Statement")
 
-[Seção 2.9.1, “Inicializando o Diretório de Dados”](data-directory-initialization.html)
+[Section 2.9.1, “Initializing the Data Directory”](data-directory-initialization.html "2.9.1 Initializing the Data Directory")
 
-[Seção 13.3.5, “Instruções LOCK TABLES e UNLOCK TABLES”](lock-tables.html)
+[Section 13.3.5, “LOCK TABLES and UNLOCK TABLES Statements”](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements")
 
-[Seção 5.1.14, “Suporte de Ajuda no Servidor”](server-side-help-support.html)
+[Section 5.1.14, “Server-Side Help Support”](server-side-help-support.html "5.1.14 Server-Side Help Support")
 
-### Eu
+### I
 
-index topo](dynindex-statement.html#stmt-index-topo)]
+index top](dynindex-statement.html#stmt-index-top)]
 
 ### IF
 
-[Seção 8.10.4, “Cache de Declarações Preparadas e Programas Armazenados”](statement-caching.html)
+[Section 8.10.4, “Caching of Prepared Statements and Stored Programs”](statement-caching.html "8.10.4 Caching of Prepared Statements and Stored Programs")
 
-[Seção 13.6.7.2, "DECLARAR ... Declaração de Manipulador"](declare-handler.html)
+[Section 13.6.7.2, “DECLARE ... HANDLER Statement”](declare-handler.html "13.6.7.2 DECLARE ... HANDLER Statement")
 
-[Seção 12.5, “Funções de Controle de Fluxo”](flow-control-functions.html)
+[Section 12.5, “Flow Control Functions”](flow-control-functions.html "12.5 Flow Control Functions")
 
-[Seção 13.6.5, “Instruções de controle de fluxo”](flow-control-statements.html)
+[Section 13.6.5, “Flow Control Statements”](flow-control-statements.html "13.6.5 Flow Control Statements")
 
-[Seção 13.6.5.2, "Instrução `if`"](if.html)
+[Section 13.6.5.2, “IF Statement”](if.html "13.6.5.2 IF Statement")
 
-[Seção 8.15.3, “Declarações rastreáveis”](traceable-statements.html)
+[Section 8.15.3, “Traceable Statements”](traceable-statements.html "8.15.3 Traceable Statements")
 
-### PARTIÇÃO DE IMPORTE
+### IMPORT PARTITION
 
-[Seção 14.13.1, “Operações DDL Online”](innodb-online-ddl-operations.html)
+[Section 14.13.1, “Online DDL Operations”](innodb-online-ddl-operations.html "14.13.1 Online DDL Operations")
 
-### IMPORT PARTIÇÃO ... TABLESPACE
+### IMPORT PARTITION ... TABLESPACE
 
-[Seção 13.1.8.1, “Operações de Partição de Tabela”](alter-table-partition-operations.html)
+[Section 13.1.8.1, “ALTER TABLE Partition Operations”](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations")
 
-### INSERIR
+### INSERT
 
-[Seção 6.2, “Controle de Acesso e Gerenciamento de Contas”](access-control.html)
+[Section 6.2, “Access Control and Account Management”](access-control.html "6.2 Access Control and Account Management")
 
-[Seção 6.2.6, “Controle de Acesso, Etapa 2: Solicitação de Verificação”](request-access.html)
+[Section 6.2.6, “Access Control, Stage 2: Request Verification”](request-access.html "6.2.6 Access Control, Stage 2: Request Verification")
 
-[Seção 6.2.7, “Adicionar contas, atribuir privilégios e excluir contas”](creating-accounts.html)
+[Section 6.2.7, “Adding Accounts, Assigning Privileges, and Dropping Accounts”](creating-accounts.html "6.2.7 Adding Accounts, Assigning Privileges, and Dropping Accounts")
 
-[Seção 16.2.1.1, “Vantagens e desvantagens da replicação baseada em declarações e baseada em linhas”](replication-sbr-rbr.html)
+[Section 16.2.1.1, “Advantages and Disadvantages of Statement-Based and Row-Based Replication”](replication-sbr-rbr.html "16.2.1.1 Advantages and Disadvantages of Statement-Based and Row-Based Replication")
 
-[Seção 6.4.5.7, “Filtragem do Log de Auditoria”](audit-log-filtering.html)
+[Section 6.4.5.7, “Audit Log Filtering”](audit-log-filtering.html "6.4.5.7 Audit Log Filtering")
 
-[Seção 6.4.5.11, “Referência do Log de Auditoria”](audit-log-reference.html)
+[Section 6.4.5.11, “Audit Log Reference”](audit-log-reference.html "6.4.5.11 Audit Log Reference")
 
-[Seção 14.6.1.6, “Tratamento de AUTO_INCREMENT no InnoDB”](innodb-auto-increment-handling.html)
+[Section 14.6.1.6, “AUTO_INCREMENT Handling in InnoDB”](innodb-auto-increment-handling.html "14.6.1.6 AUTO_INCREMENT Handling in InnoDB")
 
-[Seção 14.7.2.2, "autocommit, Commit e Rollback"](innodb-autocommit-commit-rollback.html)
+[Section 14.7.2.2, “autocommit, Commit, and Rollback”](innodb-autocommit-commit-rollback.html "14.7.2.2 autocommit, Commit, and Rollback")
 
-[Seção 7.1, “Tipos de Backup e Recuperação”](backup-types.html)
+[Section 7.1, “Backup and Recovery Types”](backup-types.html "7.1 Backup and Recovery Types")
 
-[Seção 14.1.2, “Melhores Práticas para Tabelas InnoDB”](innodb-best-practices.html)
+[Section 14.1.2, “Best Practices for InnoDB Tables”](innodb-best-practices.html "14.1.2 Best Practices for InnoDB Tables")
 
-[Seção 8.5.5, “Carregamento de Dados em Massa para Tabelas InnoDB”](optimizando-innodb-bulk-data-loading.html)
+[Section 8.5.5, “Bulk Data Loading for InnoDB Tables”](optimizing-innodb-bulk-data-loading.html "8.5.5 Bulk Data Loading for InnoDB Tables")
 
-[Seção 8.6.2, “Carregamento de dados em massa para tabelas MyISAM”](optimizando-myisam-carregamento-de-dados-em-massa.html)
+[Section 8.6.2, “Bulk Data Loading for MyISAM Tables”](optimizing-myisam-bulk-data-loading.html "8.6.2 Bulk Data Loading for MyISAM Tables")
 
-[Seção 8.10.4, “Cache de Declarações Preparadas e Programas Armazenados”](statement-caching.html)
+[Section 8.10.4, “Caching of Prepared Statements and Stored Programs”](statement-caching.html "8.10.4 Caching of Prepared Statements and Stored Programs")
 
-[Seção 14.5.2, “Buffer de Mudança”](innodb-change-buffer.html)
+[Section 14.5.2, “Change Buffer”](innodb-change-buffer.html "14.5.2 Change Buffer")
 
-[Seção 2.10.3, “Alterações no MySQL 5.7”](upgrading-from-previous-series.html)
+[Section 2.10.3, “Changes in MySQL 5.7”](upgrading-from-previous-series.html "2.10.3 Changes in MySQL 5.7")
 
-[Seção 10.7, “Conversão do Conjunto de Caracteres da Coluna”](charset-conversion.html)
+[Section 10.7, “Column Character Set Conversion”](charset-conversion.html "10.7 Column Character Set Conversion")
 
-[Seção 14.9.1.6, "Compressão para cargas de trabalho OLTP"](innodb-performance-compression-oltp.html)
+[Section 14.9.1.6, “Compression for OLTP Workloads”](innodb-performance-compression-oltp.html "14.9.1.6 Compression for OLTP Workloads")
 
-[Seção 8.11.3, “Inserções Concorrentes”](concurrent-inserts.html)
+[Section 8.11.3, “Concurrent Inserts”](concurrent-inserts.html "8.11.3 Concurrent Inserts")
 
-[Seção 1.6.3.3, “Restrições para Dados Inválidos”](constraint-invalid-data.html)
+[Section 1.6.3.3, “Constraints on Invalid Data”](constraint-invalid-data.html "1.6.3.3 Constraints on Invalid Data")
 
-[Seção 14.6.1.5, “Conversão de tabelas de MyISAM para InnoDB”](converting-tables-to-innodb.html)
+[Section 14.6.1.5, “Converting Tables from MyISAM to InnoDB”](converting-tables-to-innodb.html "14.6.1.5 Converting Tables from MyISAM to InnoDB")
 
-[Seção 13.1.14, "Instrução CREATE INDEX"](create-index.html)
+[Section 13.1.14, “CREATE INDEX Statement”](create-index.html "13.1.14 CREATE INDEX Statement")
 
-[Seção 13.1.16, "Instruções CREATE PROCEDURE e CREATE FUNCTION"](create-procedure.html)
+[Section 13.1.16, “CREATE PROCEDURE and CREATE FUNCTION Statements”](create-procedure.html "13.1.16 CREATE PROCEDURE and CREATE FUNCTION Statements")
 
-[Seção 13.1.18.7, “Criar Tabela e Colunas Geradas”](create-table-generated-columns.html)
+[Section 13.1.18.7, “CREATE TABLE and Generated Columns”](create-table-generated-columns.html "13.1.18.7 CREATE TABLE and Generated Columns")
 
-[Seção 13.1.18.2, "Instrução CREATE TEMPORARY TABLE"](create-temporary-table.html)
+[Section 13.1.18.2, “CREATE TEMPORARY TABLE Statement”](create-temporary-table.html "13.1.18.2 CREATE TEMPORARY TABLE Statement")
 
-[Seção 13.1.20, "Instrução CREATE TRIGGER"](create-trigger.html)
+[Section 13.1.20, “CREATE TRIGGER Statement”](create-trigger.html "13.1.20 CREATE TRIGGER Statement")
 
-[Seção 13.1.21, "Instrução CREATE VIEW"](create-view.html)
+[Section 13.1.21, “CREATE VIEW Statement”](create-view.html "13.1.21 CREATE VIEW Statement")
 
-[Seção 15.8.2.1, “Criando uma Tabela FEDERATED Usando CONEXÃO”](federated-create-connection.html)
+[Section 15.8.2.1, “Creating a FEDERATED Table Using CONNECTION”](federated-create-connection.html "15.8.2.1 Creating a FEDERATED Table Using CONNECTION")
 
-[Seção 11.6, “Valores padrão de tipo de dados”](data-type-defaults.html)
+[Section 11.6, “Data Type Default Values”](data-type-defaults.html "11.6 Data Type Default Values")
 
-[Seção 11.2.1, "Sintaxe do tipo de dados de data e hora"](date-and-time-type-syntax.html)
+[Section 11.2.1, “Date and Time Data Type Syntax”](date-and-time-type-syntax.html "11.2.1 Date and Time Data Type Syntax")
 
-[Seção 13.6.7.2, "DECLARAR ... Declaração de Manipulador"](declare-handler.html)
+[Section 13.6.7.2, “DECLARE ... HANDLER Statement”](declare-handler.html "13.6.7.2 DECLARE ... HANDLER Statement")
 
-[Seção 13.2.2, “Instrução DELETE”](delete.html)
+[Section 13.2.2, “DELETE Statement”](delete.html "13.2.2 DELETE Statement")
 
-[Seção 16.2.1.3, “Determinação de declarações seguras e inseguras no registro binário”](replication-rbr-safe-unsafe.html)
+[Section 16.2.1.3, “Determination of Safe and Unsafe Statements in Binary Logging”](replication-rbr-safe-unsafe.html "16.2.1.3 Determination of Safe and Unsafe Statements in Binary Logging")
 
-[Seção 2.11.3, “Notas de Downgrade”](downgrading-to-previous-series.html)
+[Section 2.11.3, “Downgrade Notes”](downgrading-to-previous-series.html "2.11.3 Downgrade Notes")
 
-[Seção 7.3.1, “Estabelecimento de uma Política de Backup”](backup-policy.html)
+[Section 7.3.1, “Establishing a Backup Policy”](backup-policy.html "7.3.1 Establishing a Backup Policy")
 
-[Seção 8.8.2, “Formato de Saída EXPLAIN”](explain-output.html)
+[Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
 
-[Seção 13.8.2, “Instrução EXPLAIN”](explain.html)
+[Section 13.8.2, “EXPLAIN Statement”](explain.html "13.8.2 EXPLAIN Statement")
 
-[Seção 12.21.3, “Tratamento de expressões”](precision-math-expressions.html)
+[Section 12.21.3, “Expression Handling”](precision-math-expressions.html "12.21.3 Expression Handling")
 
-[Seção 8.8.3, “Formato de saída EXPLAIN estendido”](explain-extended.html)
+[Section 8.8.3, “Extended EXPLAIN Output Format”](explain-extended.html "8.8.3 Extended EXPLAIN Output Format")
 
-[Seção 15.8.3, “Notas e dicas do mecanismo de armazenamento federado”](federated-usagenotes.html)
+[Section 15.8.3, “FEDERATED Storage Engine Notes and Tips”](federated-usagenotes.html "15.8.3 FEDERATED Storage Engine Notes and Tips")
 
-[Seção 14.22.2, “Forçar a recuperação do InnoDB”](forcing-innodb-recovery.html)
+[Section 14.22.2, “Forcing InnoDB Recovery”](forcing-innodb-recovery.html "14.22.2 Forcing InnoDB Recovery")
 
-[Seção 13.1.18.5, “Restrições de Chave Estrangeira”](create-table-foreign-keys.html)
+[Section 13.1.18.5, “FOREIGN KEY Constraints”](create-table-foreign-keys.html "13.1.18.5 FOREIGN KEY Constraints")
 
-[Seção 12.9.5, “Restrições de texto completo”](fulltext-restrictions.html)
+[Section 12.9.5, “Full-Text Restrictions”](fulltext-restrictions.html "12.9.5 Full-Text Restrictions")
 
-[Seção 8.14.3, “Estados gerais de fios”](general-thread-states.html)
+[Section 8.14.3, “General Thread States”](general-thread-states.html "8.14.3 General Thread States")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 6.2.3, “Tabelas de subsídios”](grant-tables.html)
+[Section 6.2.3, “Grant Tables”](grant-tables.html "6.2.3 Grant Tables")
 
-[Seção 8.10.3.1, “Como o Cache de Consultas Funciona”](query-cache-operation.html)
+[Section 8.10.3.1, “How the Query Cache Operates”](query-cache-operation.html "8.10.3.1 How the Query Cache Operates")
 
-[Seção 12.15, “Funções de Informação”](information-functions.html)
+[Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions")
 
-[Seção 14.7.1, "Bloqueio InnoDB"](innodb-locking.html)
+[Section 14.7.1, “InnoDB Locking”](innodb-locking.html "14.7.1 InnoDB Locking")
 
-[Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
+[Section 14.15, “InnoDB Startup Options and System Variables”](innodb-parameters.html "14.15 InnoDB Startup Options and System Variables")
 
-[Seção 13.2.5.2, "Instrução INSERT ... ON DUPLICATE KEY UPDATE"](insert-on-duplicate.html)
+[Section 13.2.5.2, “INSERT ... ON DUPLICATE KEY UPDATE Statement”](insert-on-duplicate.html "13.2.5.2 INSERT ... ON DUPLICATE KEY UPDATE Statement")
 
-[Seção 13.2.5.1, "INSERIR ... Instrução SELECT"](insert-select.html)
+[Section 13.2.5.1, “INSERT ... SELECT Statement”](insert-select.html "13.2.5.1 INSERT ... SELECT Statement")
 
-[Seção 13.2.5.3, "Instrução INSERT com Retardo"](insert-delayed.html)
+[Section 13.2.5.3, “INSERT DELAYED Statement”](insert-delayed.html "13.2.5.3 INSERT DELAYED Statement")
 
-[Seção 13.2.5, “Instrução INSERT”](insert.html)
+[Section 13.2.5, “INSERT Statement”](insert.html "13.2.5 INSERT Statement")
 
-[Seção 16.2.5.3, “Interações entre as Opções de Filtragem de Replicação”](replication-rules-examples.html)
+[Section 16.2.5.3, “Interactions Between Replication Filtering Options”](replication-rules-examples.html "16.2.5.3 Interactions Between Replication Filtering Options")
 
-[Seção 8.11.1, “Métodos de bloqueio interno”](internal-locking.html)
+[Section 8.11.1, “Internal Locking Methods”](internal-locking.html "8.11.1 Internal Locking Methods")
 
-[Seção 24.1, “Introdução”](information-schema-introduction.html)
+[Section 24.1, “Introduction”](information-schema-introduction.html "24.1 Introduction")
 
-[Seção 21.2.7.3, “Limitações relacionadas ao processamento de transações no NDB Cluster”](mysql-cluster-limitations-transactions.html)
+[Section 21.2.7.3, “Limits Relating to Transaction Handling in NDB Cluster”](mysql-cluster-limitations-transactions.html "21.2.7.3 Limits Relating to Transaction Handling in NDB Cluster")
 
-[Seção 22.2.2, “Divisão de Lista”](partitioning-list.html)
+[Section 22.2.2, “LIST Partitioning”](partitioning-list.html "22.2.2 LIST Partitioning")
 
-[Seção 13.2.6, “Instrução LOAD DATA”](load-data.html)
+[Section 13.2.6, “LOAD DATA Statement”](load-data.html "13.2.6 LOAD DATA Statement")
 
-[Seção 3.3.3, “Carregando dados em uma tabela”](loading-tables.html)
+[Section 3.3.3, “Loading Data into a Table”](loading-tables.html "3.3.3 Loading Data into a Table")
 
-[Seção 13.3.5, “Instruções LOCK TABLES e UNLOCK TABLES”](lock-tables.html)
+[Section 13.3.5, “LOCK TABLES and UNLOCK TABLES Statements”](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements")
 
-[Seção 14.7.3, "Bloqueios Definidos por Diferentes Instruções SQL no InnoDB"](innodb-locks-set.html)
+[Section 14.7.3, “Locks Set by Different SQL Statements in InnoDB”](innodb-locks-set.html "14.7.3 Locks Set by Different SQL Statements in InnoDB")
 
-[Seção 5.4.4.4, "Formato de registro para alterações nas tabelas do banco de dados mysql"](binary-log-mysql-database.html)
+[Section 5.4.4.4, “Logging Format for Changes to mysql Database Tables”](binary-log-mysql-database.html "5.4.4.4 Logging Format for Changes to mysql Database Tables")
 
-[Seção 22.3.1, “Gestão de Partições RANGE e LIST”](partitioning-management-range-list.html)
+[Section 22.3.1, “Management of RANGE and LIST Partitions”](partitioning-management-range-list.html "22.3.1 Management of RANGE and LIST Partitions")
 
-[Seção 15.7.2, “Problemas da Tabela MERGE”](merge-table-problems.html)
+[Section 15.7.2, “MERGE Table Problems”](merge-table-problems.html "15.7.2 MERGE Table Problems")
 
-[Seção 8.11.4, "Bloqueio de Metadados"](metadata-locking.html)
+[Section 8.11.4, “Metadata Locking”](metadata-locking.html "8.11.4 Metadata Locking")
 
-[Seção 12.20, “Funções Diversas”](funcoes-diversas.html)
+[Section 12.20, “Miscellaneous Functions”](miscellaneous-functions.html "12.20 Miscellaneous Functions")
 
-[Seção A.1, “Perguntas frequentes do MySQL 5.7: Geral”](faqs-general.html)
+[Section A.1, “MySQL 5.7 FAQ: General”](faqs-general.html "A.1 MySQL 5.7 FAQ: General")
 
-[Seção A.11, “Perguntas frequentes sobre o MySQL 5.7: conjuntos de caracteres chineses, japoneses e coreanos do MySQL”](faqs-cjk.html)
+[Section A.11, “MySQL 5.7 FAQ: MySQL Chinese, Japanese, and Korean Character Sets”](faqs-cjk.html "A.11 MySQL 5.7 FAQ: MySQL Chinese, Japanese, and Korean Character Sets")
 
-[Seção A.5, “Perguntas frequentes sobre o MySQL 5.7: gatilhos”](faqs-triggers.html)
+[Section A.5, “MySQL 5.7 FAQ: Triggers”](faqs-triggers.html "A.5 MySQL 5.7 FAQ: Triggers")
 
-[Seção A.6, “Perguntas frequentes sobre o MySQL 5.7: Visualizações”](faqs-views.html)
+[Section A.6, “MySQL 5.7 FAQ: Views”](faqs-views.html "A.6 MySQL 5.7 FAQ: Views")
 
-[Seção 4.5.1.1, “Opções do cliente do MySQL”](mysql-command-options.html)
+[Section 4.5.1.1, “mysql Client Options”](mysql-command-options.html "4.5.1.1 mysql Client Options")
 
-[Seção 6.6.2, “Uso e exemplos de criptografia empresarial do MySQL”](enterprise-encryption-usage.html)
+[Section 6.6.2, “MySQL Enterprise Encryption Usage and Examples”](enterprise-encryption-usage.html "6.6.2 MySQL Enterprise Encryption Usage and Examples")
 
-[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html)
+[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
 
-[Glossário do MySQL](glossary.html)
+[MySQL Glossary](glossary.html "MySQL Glossary")
 
-[Seção B.3.2.7, “O servidor MySQL desapareceu”](gone-away.html)
+[Section B.3.2.7, “MySQL server has gone away”](gone-away.html "B.3.2.7 MySQL server has gone away")
 
-[Seção 4.6.7, “mysqlbinlog — Ferramenta para processamento de arquivos de log binário”](mysqlbinlog.html)
+[Section 4.6.7, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "4.6.7 mysqlbinlog — Utility for Processing Binary Log Files")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
+[Section 4.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "4.5.6 mysqlpump — A Database Backup Program")
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.6.11.1, “Objetos de dados de disco do cluster NDB”](mysql-cluster-disk-data-objects.html)
+[Section 21.6.11.1, “NDB Cluster Disk Data Objects”](mysql-cluster-disk-data-objects.html "21.6.11.1 NDB Cluster Disk Data Objects")
 
-[Seção 21.3.5, “Exemplo de Cluster NDB com Tabelas e Dados”](mysql-cluster-install-example-data.html)
+[Section 21.3.5, “NDB Cluster Example with Tables and Data”](mysql-cluster-install-example-data.html "21.3.5 NDB Cluster Example with Tables and Data")
 
-[Seção 21.7.11, "Resolução de conflitos de replicação de cluster do NDB"](mysql-cluster-replication-conflict-resolution.html)
+[Section 21.7.11, “NDB Cluster Replication Conflict Resolution”](mysql-cluster-replication-conflict-resolution.html "21.7.11 NDB Cluster Replication Conflict Resolution")
 
-[Seção 8.8.4, “Obtendo informações do plano de execução para uma conexão nomeada”](explain-for-connection.html)
+[Section 8.8.4, “Obtaining Execution Plan Information for a Named Connection”](explain-for-connection.html "8.8.4 Obtaining Execution Plan Information for a Named Connection")
 
-[Seção 14.13.1, “Operações DDL Online”](innodb-online-ddl-operations.html)
+[Section 14.13.1, “Online DDL Operations”](innodb-online-ddl-operations.html "14.13.1 Online DDL Operations")
 
-[Seção 13.7.2.4, "Instrução OPTIMIZE TABLE"](optimize-table.html)
+[Section 13.7.2.4, “OPTIMIZE TABLE Statement”](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement")
 
-[Seção 8.9.3, “Dicas do otimizador”](optimizer-hints.html)
+[Section 8.9.3, “Optimizer Hints”](optimizer-hints.html "8.9.3 Optimizer Hints")
 
-[Seção 8.2.4, “Otimização das declarações de alteração de dados”](data-change-optimization.html)
+[Section 8.2.4, “Optimizing Data Change Statements”](data-change-optimization.html "8.2.4 Optimizing Data Change Statements")
 
-[Seção 8.2.4.1, “Otimização de instruções INSERT”](insert-optimization.html)
+[Section 8.2.4.1, “Optimizing INSERT Statements”](insert-optimization.html "8.2.4.1 Optimizing INSERT Statements")
 
-[Seção 8.6.1, “Otimizando consultas MyISAM”](optimizando-consultas-myisam.html)
+[Section 8.6.1, “Optimizing MyISAM Queries”](optimizing-queries-myisam.html "8.6.1 Optimizing MyISAM Queries")
 
-[Seção 8.8.1, “Otimizando consultas com EXPLAIN”](using-explain.html)
+[Section 8.8.1, “Optimizing Queries with EXPLAIN”](using-explain.html "8.8.1 Optimizing Queries with EXPLAIN")
 
-[Seção 11.1.7, “Tratamento de Saída de Faixa e Excesso de Dados”](out-of-range-and-overflow.html)
+[Section 11.1.7, “Out-of-Range and Overflow Handling”](out-of-range-and-overflow.html "11.1.7 Out-of-Range and Overflow Handling")
 
-[Seção 22.1, “Visão geral da partição no MySQL”](partitioning-overview.html)
+[Section 22.1, “Overview of Partitioning in MySQL”](partitioning-overview.html "22.1 Overview of Partitioning in MySQL")
 
-[Seção 22.4, “Rimação de Partições”](partitioning-pruning.html)
+[Section 22.4, “Partition Pruning”](partitioning-pruning.html "22.4 Partition Pruning")
 
-[Seção 22.5, “Seleção de Partição”](partitioning-selection.html)
+[Section 22.5, “Partition Selection”](partitioning-selection.html "22.5 Partition Selection")
 
-[Seção 22.6.4, “Partição e Bloqueio”](partitioning-limitations-locking.html)
+[Section 22.6.4, “Partitioning and Locking”](partitioning-limitations-locking.html "22.6.4 Partitioning and Locking")
 
-[Seção 6.1.2.3, “Senhas e Registro de Ações”](password-logging.html)
+[Section 6.1.2.3, “Passwords and Logging”](password-logging.html "6.1.2.3 Passwords and Logging")
 
-[Seção 25.12.6, “Tabelas de Eventos de Declaração do Schema de Desempenho”](performance-schema-statement-tables.html)
+[Section 25.12.6, “Performance Schema Statement Event Tables”](performance-schema-statement-tables.html "25.12.6 Performance Schema Statement Event Tables")
 
-[Seção 21.6.5, “Realizar um Reinício Rotativo de um NDB Cluster”](mysql-cluster-rolling-restart.html)
+[Section 21.6.5, “Performing a Rolling Restart of an NDB Cluster”](mysql-cluster-rolling-restart.html "21.6.5 Performing a Rolling Restart of an NDB Cluster")
 
-[Seção 11.4.6, “População de Colunas Espaciais”](população-de-colunas-espaciais.html)
+[Section 11.4.6, “Populating Spatial Columns”](populating-spatial-columns.html "11.4.6 Populating Spatial Columns")
 
-[Seção 25.4.6, “Pré-filtragem por Fio”](performance-schema-thread-filtering.html)
+[Section 25.4.6, “Pre-Filtering by Thread”](performance-schema-thread-filtering.html "25.4.6 Pre-Filtering by Thread")
 
-[Seção 1.6.3.1, “Constrangimentos de Índices Primario e Único”](constraint-primary-key.html)
+[Section 1.6.3.1, “PRIMARY KEY and UNIQUE Index Constraints”](constraint-primary-key.html "1.6.3.1 PRIMARY KEY and UNIQUE Index Constraints")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 14.8.10, “Configuração de Purga”](innodb-purge-configuration.html)
+[Section 14.8.10, “Purge Configuration”](innodb-purge-configuration.html "14.8.10 Purge Configuration")
 
-[Seção 8.14.4, “Estados de Cache de Consulta de Fila”](query-cache-thread-states.html)
+[Section 8.14.4, “Query Cache Thread States”](query-cache-thread-states.html "8.14.4 Query Cache Thread States")
 
-[Seção 22.2.1, “Divisão de Faixa”](partitioning-range.html)
+[Section 22.2.1, “RANGE Partitioning”](partitioning-range.html "22.2.1 RANGE Partitioning")
 
-[Seção 13.2.8, “Instrução REPLACE”](replace.html)
+[Section 13.2.8, “REPLACE Statement”](replace.html "13.2.8 REPLACE Statement")
 
-[Seção 16.4.1.27, “Erros de replicação durante a replicação”](replication-features-errors.html)
+[Section 16.4.1.27, “Replica Errors During Replication”](replication-features-errors.html "16.4.1.27 Replica Errors During Replication")
 
-[Seção 16.4.1.1, “Replicação e AUTO_INCREMENT”](replication-features-auto-increment.html)
+[Section 16.4.1.1, “Replication and AUTO_INCREMENT”](replication-features-auto-increment.html "16.4.1.1 Replication and AUTO_INCREMENT")
 
-[Seção 16.4.1.28, "Modo de Replicação e Servidor SQL"](replication-features-sql-mode.html)
+[Section 16.4.1.28, “Replication and Server SQL Mode”](replication-features-sql-mode.html "16.4.1.28 Replication and Server SQL Mode")
 
-[Seção 16.4.1.15, “Replicação e Funções do Sistema”](replication-features-functions.html)
+[Section 16.4.1.15, “Replication and System Functions”](replication-features-functions.html "16.4.1.15 Replication and System Functions")
 
-[Seção 16.4.1.34, “Replicação e gatilhos”](replication-features-triggers.html)
+[Section 16.4.1.34, “Replication and Triggers”](replication-features-triggers.html "16.4.1.34 Replication and Triggers")
 
-[Seção 16.4.1.37, “Replicação e Variáveis”](replication-features-variables.html)
+[Section 16.4.1.37, “Replication and Variables”](replication-features-variables.html "16.4.1.37 Replication and Variables")
 
-[Seção 16.1.6.2, “Opções e variáveis de fonte de replicação”](replication-options-source.html)
+[Section 16.1.6.2, “Replication Source Options and Variables”](replication-options-source.html "16.1.6.2 Replication Source Options and Variables")
 
-[Seção 22.6, “Restrições e Limitações sobre Partição”](partitioning-limitations.html)
+[Section 22.6, “Restrictions and Limitations on Partitioning”](partitioning-limitations.html "22.6 Restrictions and Limitations on Partitioning")
 
-[Seção 5.8.4.1.7, “Provas de nível de linha”](dba-dtrace-mysqld-ref.html#dba-dtrace-ref-rowlevel)
+[Section 5.8.4.1.7, “Row-Level Probes”](dba-dtrace-mysqld-ref.html#dba-dtrace-ref-rowlevel "5.8.4.1.7 Row-Level Probes")
 
-[Seção 13.1.18.8, “Índices Secundários e Colunas Geradas”](create-table-secondary-indexes.html)
+[Section 13.1.18.8, “Secondary Indexes and Generated Columns”](create-table-secondary-indexes.html "13.1.18.8 Secondary Indexes and Generated Columns")
 
-[Seção 5.4.1, “Selecionando destinos de saída do Log de consulta geral e do Log de consulta lenta”](log-destinations.html)
+[Section 5.4.1, “Selecting General Query Log and Slow Query Log Output Destinations”](log-destinations.html "5.4.1 Selecting General Query Log and Slow Query Log Output Destinations")
 
-[Seção 5.1.10, "Modos SQL do Servidor"](sql-mode.html)
+[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 13.7.5.27, "Declaração de CÓDIGO DO PROCEDIMENTO"] (show-procedure-code.html)
+[Section 13.7.5.27, “SHOW PROCEDURE CODE Statement”](show-procedure-code.html "13.7.5.27 SHOW PROCEDURE CODE Statement")
 
-[Seção 13.7.5.36, "Declaração de Status da Tabela"](show-table-status.html)
+[Section 13.7.5.36, “SHOW TABLE STATUS Statement”](show-table-status.html "13.7.5.36 SHOW TABLE STATUS Statement")
 
-[Seção 13.7.5.40, "Declaração de avisos"](show-warnings.html)
+[Section 13.7.5.40, “SHOW WARNINGS Statement”](show-warnings.html "13.7.5.40 SHOW WARNINGS Statement")
 
-[Seção 5.8.4.1.12, "Provas de declaração"](dba-dtrace-mysqld-ref.html#dba-dtrace-ref-statement)
+[Section 5.8.4.1.12, “Statement Probes”](dba-dtrace-mysqld-ref.html#dba-dtrace-ref-statement "5.8.4.1.12 Statement Probes")
 
-[Seção 23.7, "Registro de Log de Binário de Programa Armazenado"](stored-programs-logging.html)
+[Section 23.7, “Stored Program Binary Logging”](stored-programs-logging.html "23.7 Stored Program Binary Logging")
 
-[Seção 13.2.10, "Subconsultas"](subqueries.html)
+[Section 13.2.10, “Subqueries”](subqueries.html "13.2.10 Subqueries")
 
-[Seção 8.11.2, “Problemas de bloqueio de tabelas”](table-locking.html)
+[Section 8.11.2, “Table Locking Issues”](table-locking.html "8.11.2 Table Locking Issues")
 
-[Seção 15.5, “O Motor de Armazenamento ARCHIVE”](archive-storage-engine.html)
+[Section 15.5, “The ARCHIVE Storage Engine”](archive-storage-engine.html "15.5 The ARCHIVE Storage Engine")
 
-[Seção 10.8.5, “A Colagem Binária Comparada às Colagens _bin”](charset-binary-collations.html)
+[Section 10.8.5, “The binary Collation Compared to _bin Collations”](charset-binary-collations.html "10.8.5 The binary Collation Compared to _bin Collations")
 
-[Seção 5.4.4, “O Log Binário”](binary-log.html)
+[Section 5.4.4, “The Binary Log”](binary-log.html "5.4.4 The Binary Log")
 
-[Seção 15.6, “O Motor de Armazenamento BLACKHOLE”](blackhole-storage-engine.html)
+[Section 15.6, “The BLACKHOLE Storage Engine”](blackhole-storage-engine.html "15.6 The BLACKHOLE Storage Engine")
 
-[Seção 24.3.25, “A tabela INFORMATION_SCHEMA TABLES”](information-schema-tables-table.html)
+[Section 24.3.25, “The INFORMATION_SCHEMA TABLES Table”](information-schema-tables-table.html "24.3.25 The INFORMATION_SCHEMA TABLES Table")
 
-[Seção 24.3.31, “A Tabela INFORMATION_SCHEMA VIEWS”](information-schema-views-table.html)
+[Section 24.3.31, “The INFORMATION_SCHEMA VIEWS Table”](information-schema-views-table.html "24.3.31 The INFORMATION_SCHEMA VIEWS Table")
 
-[Seção 1.2.2, “Principais características do MySQL”](features.html)
+[Section 1.2.2, “The Main Features of MySQL”](features.html "1.2.2 The Main Features of MySQL")
 
-[Seção 15.7, “O Motor de Armazenamento MERGE”](merge-storage-engine.html)
+[Section 15.7, “The MERGE Storage Engine”](merge-storage-engine.html "15.7 The MERGE Storage Engine")
 
-[Seção 15.2, “O Motor de Armazenamento MyISAM”](myisam-storage-engine.html)
+[Section 15.2, “The MyISAM Storage Engine”](myisam-storage-engine.html "15.2 The MyISAM Storage Engine")
 
-[Seção 8.10.3, “O Cache de Consultas MySQL”](query-cache.html)
+[Section 8.10.3, “The MySQL Query Cache”](query-cache.html "8.10.3 The MySQL Query Cache")
 
-[Seção 5.1.16, “O processo de desligamento do servidor”](server-shutdown.html)
+[Section 5.1.16, “The Server Shutdown Process”](server-shutdown.html "5.1.16 The Server Shutdown Process")
 
-[Seção 8.15.3, “Declarações rastreáveis”](traceable-statements.html)
+[Section 8.15.3, “Traceable Statements”](traceable-statements.html "8.15.3 Traceable Statements")
 
-[Seção 14.7.2.1, “Níveis de Isolamento de Transações”](innodb-transaction-isolation-levels.html)
+[Section 14.7.2.1, “Transaction Isolation Levels”](innodb-transaction-isolation-levels.html "14.7.2.1 Transaction Isolation Levels")
 
-[Seção 23.3.1, "Sintaxe de gatilho e exemplos"](trigger-syntax.html)
+[Section 23.3.1, “Trigger Syntax and Examples”](trigger-syntax.html "23.3.1 Trigger Syntax and Examples")
 
-[Seção 6.2.17, “Soluções para problemas de conexão com o MySQL”](problemas-conectando.html)
+[Section 6.2.17, “Troubleshooting Problems Connecting to MySQL”](problems-connecting.html "6.2.17 Troubleshooting Problems Connecting to MySQL")
 
-[Seção 14.21.8, “Solução de problemas do plugin InnoDB memcached”](innodb-memcached-troubleshoot.html)
+[Section 14.21.8, “Troubleshooting the InnoDB memcached Plugin”](innodb-memcached-troubleshoot.html "14.21.8 Troubleshooting the InnoDB memcached Plugin")
 
-[Seção 14.6.7, "Desfazer Logs"](innodb-undo-logs.html)
+[Section 14.6.7, “Undo Logs”](innodb-undo-logs.html "14.6.7 Undo Logs")
 
-[Seção 23.5.3, “Visões Atualizáveis e Inseríveis”](view-updatability.html)
+[Section 23.5.3, “Updatable and Insertable Views”](view-updatability.html "23.5.3 Updatable and Insertable Views")
 
-[Seção 13.2.11, "Declaração de Atualização"](update.html)
+[Section 13.2.11, “UPDATE Statement”](update.html "13.2.11 UPDATE Statement")
 
-[Seção 14.16.2.1, “Usando informações de transação e bloqueio do InnoDB”](innodb-information-schema-examples.html)
+[Section 14.16.2.1, “Using InnoDB Transaction and Locking Information”](innodb-information-schema-examples.html "14.16.2.1 Using InnoDB Transaction and Locking Information")
 
-[Seção 5.5.4.2, “Usando o Plugin de Reescrita de Consultas de Reescritor”](rewriter-query-rewrite-plugin-usage.html)
+[Section 5.5.4.2, “Using the Rewriter Query Rewrite Plugin”](rewriter-query-rewrite-plugin-usage.html "5.5.4.2 Using the Rewriter Query Rewrite Plugin")
 
-[Seção 23.3, “Usando gatilhos”](triggers.html)
+[Section 23.3, “Using Triggers”](triggers.html "23.3 Using Triggers")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
-[Seção 6.2.9, “Quando as Alterações de Privilegios Se Tornam Efetivas”](privilege-changes.html)
+[Section 6.2.9, “When Privilege Changes Take Effect”](privilege-changes.html "6.2.9 When Privilege Changes Take Effect")
 
-[Seção 6.4.5.8, “Definições de filtro de registro de auditoria”](audit-log-filter-definitions.html)
+[Section 6.4.5.8, “Writing Audit Log Filter Definitions”](audit-log-filter-definitions.html "6.4.5.8 Writing Audit Log Filter Definitions")
 
-### INSERIR ... ()
+### INSERT ... ()
 
-[Seção 5.8.4.1.12, "Provas de declaração"](dba-dtrace-mysqld-ref.html#dba-dtrace-ref-statement)
+[Section 5.8.4.1.12, “Statement Probes”](dba-dtrace-mysqld-ref.html#dba-dtrace-ref-statement "5.8.4.1.12 Statement Probes")
 
 ### INSERT ... ON DUPLICATE KEY UPDATE
 
-[Seção 14.6.1.6, “Tratamento de AUTO_INCREMENT no InnoDB”](innodb-auto-increment-handling.html)
+[Section 14.6.1.6, “AUTO_INCREMENT Handling in InnoDB”](innodb-auto-increment-handling.html "14.6.1.6 AUTO_INCREMENT Handling in InnoDB")
 
-[Seção 16.2.1.3, “Determinação de declarações seguras e inseguras no registro binário”](replication-rbr-safe-unsafe.html)
+[Section 16.2.1.3, “Determination of Safe and Unsafe Statements in Binary Logging”](replication-rbr-safe-unsafe.html "16.2.1.3 Determination of Safe and Unsafe Statements in Binary Logging")
 
-[Seção 15.8.3, “Notas e dicas do mecanismo de armazenamento federado”](federated-usagenotes.html)
+[Section 15.8.3, “FEDERATED Storage Engine Notes and Tips”](federated-usagenotes.html "15.8.3 FEDERATED Storage Engine Notes and Tips")
 
-[Seção 12.15, “Funções de Informação”](information-functions.html)
+[Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions")
 
-[Seção 13.2.5.2, "Instrução INSERT ... ON DUPLICATE KEY UPDATE"](insert-on-duplicate.html)
+[Section 13.2.5.2, “INSERT ... ON DUPLICATE KEY UPDATE Statement”](insert-on-duplicate.html "13.2.5.2 INSERT ... ON DUPLICATE KEY UPDATE Statement")
 
-[Seção 13.2.5, “Instrução INSERT”](insert.html)
+[Section 13.2.5, “INSERT Statement”](insert.html "13.2.5 INSERT Statement")
 
-[Seção 21.7.3, “Problemas Conhecidos na Replicação de NDB Cluster”](mysql-cluster-replication-issues.html)
+[Section 21.7.3, “Known Issues in NDB Cluster Replication”](mysql-cluster-replication-issues.html "21.7.3 Known Issues in NDB Cluster Replication")
 
-[Seção 14.7.3, "Bloqueios Definidos por Diferentes Instruções SQL no InnoDB"](innodb-locks-set.html)
+[Section 14.7.3, “Locks Set by Different SQL Statements in InnoDB”](innodb-locks-set.html "14.7.3 Locks Set by Different SQL Statements in InnoDB")
 
-[Seção 15.7.2, “Problemas da Tabela MERGE”](merge-table-problems.html)
+[Section 15.7.2, “MERGE Table Problems”](merge-table-problems.html "15.7.2 MERGE Table Problems")
 
-[Seção 12.20, “Funções Diversas”](funcoes-diversas.html)
+[Section 12.20, “Miscellaneous Functions”](miscellaneous-functions.html "12.20 Miscellaneous Functions")
 
-[Glossário do MySQL](glossary.html)
+[MySQL Glossary](glossary.html "MySQL Glossary")
 
-[Seção 22.6.4, “Partição e Bloqueio”](partitioning-limitations-locking.html)
+[Section 22.6.4, “Partitioning and Locking”](partitioning-limitations-locking.html "22.6.4 Partitioning and Locking")
 
 ### INSERT ... SELECT
 
-[Seção 16.2.1.1, “Vantagens e desvantagens da replicação baseada em declarações e baseada em linhas”](replication-sbr-rbr.html)
+[Section 16.2.1.1, “Advantages and Disadvantages of Statement-Based and Row-Based Replication”](replication-sbr-rbr.html "16.2.1.1 Advantages and Disadvantages of Statement-Based and Row-Based Replication")
 
-[Seção 14.6.1.6, “Tratamento de AUTO_INCREMENT no InnoDB”](innodb-auto-increment-handling.html)
+[Section 14.6.1.6, “AUTO_INCREMENT Handling in InnoDB”](innodb-auto-increment-handling.html "14.6.1.6 AUTO_INCREMENT Handling in InnoDB")
 
-[Seção 8.11.3, “Inserções Concorrentes”](concurrent-inserts.html)
+[Section 8.11.3, “Concurrent Inserts”](concurrent-inserts.html "8.11.3 Concurrent Inserts")
 
-[Seção 13.2.5.2, "Instrução INSERT ... ON DUPLICATE KEY UPDATE"](insert-on-duplicate.html)
+[Section 13.2.5.2, “INSERT ... ON DUPLICATE KEY UPDATE Statement”](insert-on-duplicate.html "13.2.5.2 INSERT ... ON DUPLICATE KEY UPDATE Statement")
 
-[Seção 13.2.5.1, "INSERIR ... Instrução SELECT"](insert-select.html)
+[Section 13.2.5.1, “INSERT ... SELECT Statement”](insert-select.html "13.2.5.1 INSERT ... SELECT Statement")
 
-[Seção 13.2.5, “Instrução INSERT”](insert.html)
+[Section 13.2.5, “INSERT Statement”](insert.html "13.2.5 INSERT Statement")
 
-[Seção 8.4.4, “Uso de Tabelas Temporárias Internas no MySQL”](internal-temporary-tables.html)
+[Section 8.4.4, “Internal Temporary Table Use in MySQL”](internal-temporary-tables.html "8.4.4 Internal Temporary Table Use in MySQL")
 
-[Seção B.3.7, “Problemas Conhecidos no MySQL”](known-issues.html)
+[Section B.3.7, “Known Issues in MySQL”](known-issues.html "B.3.7 Known Issues in MySQL")
 
-[Seção 14.7.3, "Bloqueios Definidos por Diferentes Instruções SQL no InnoDB"](innodb-locks-set.html)
+[Section 14.7.3, “Locks Set by Different SQL Statements in InnoDB”](innodb-locks-set.html "14.7.3 Locks Set by Different SQL Statements in InnoDB")
 
-[Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
+[Section 21.4.3.9.2, “NDB Cluster System Variables”](mysql-cluster-options-variables.html#mysql-cluster-system-variables "21.4.3.9.2 NDB Cluster System Variables")
 
-[Seção 22.5, “Seleção de Partição”](partitioning-selection.html)
+[Section 22.5, “Partition Selection”](partitioning-selection.html "22.5 Partition Selection")
 
-[Seção 22.6.4, “Partição e Bloqueio”](partitioning-limitations-locking.html)
+[Section 22.6.4, “Partitioning and Locking”](partitioning-limitations-locking.html "22.6.4 Partitioning and Locking")
 
-[Seção 16.4.1.17, “Replicação e LIMIT”](replication-features-limit.html)
+[Section 16.4.1.17, “Replication and LIMIT”](replication-features-limit.html "16.4.1.17 Replication and LIMIT")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 5.8.4.1.12, "Provas de declaração"](dba-dtrace-mysqld-ref.html#dba-dtrace-ref-statement)
+[Section 5.8.4.1.12, “Statement Probes”](dba-dtrace-mysqld-ref.html#dba-dtrace-ref-statement "5.8.4.1.12 Statement Probes")
 
-[Seção 5.4.4, “O Log Binário”](binary-log.html)
+[Section 5.4.4, “The Binary Log”](binary-log.html "5.4.4 The Binary Log")
 
 ### INSERT ... SELECT ON DUPLICATE KEY UPDATE
 
-[Seção 13.2.5.2, "Instrução INSERT ... ON DUPLICATE KEY UPDATE"](insert-on-duplicate.html)
+[Section 13.2.5.2, “INSERT ... ON DUPLICATE KEY UPDATE Statement”](insert-on-duplicate.html "13.2.5.2 INSERT ... ON DUPLICATE KEY UPDATE Statement")
 
-[Seção 13.2.5.1, "INSERIR ... Instrução SELECT"](insert-select.html)
+[Section 13.2.5.1, “INSERT ... SELECT Statement”](insert-select.html "13.2.5.1 INSERT ... SELECT Statement")
 
-### INSERIR ... DEFINIR
+### INSERT ... SET
 
-[Seção 13.2.5, “Instrução INSERT”](insert.html)
+[Section 13.2.5, “INSERT Statement”](insert.html "13.2.5 INSERT Statement")
 
-### INSERIR ... VALORES
+### INSERT ... VALUES
 
-[Seção 13.2.5, “Instrução INSERT”](insert.html)
+[Section 13.2.5, “INSERT Statement”](insert.html "13.2.5 INSERT Statement")
 
-### INSERTA COM RETARDO
+### INSERT DELAYED
 
-[Seção 13.2.5.3, "Instrução INSERT com Retardo"](insert-delayed.html)
+[Section 13.2.5.3, “INSERT DELAYED Statement”](insert-delayed.html "13.2.5.3 INSERT DELAYED Statement")
 
-[Seção 13.2.5, “Instrução INSERT”](insert.html)
+[Section 13.2.5, “INSERT Statement”](insert.html "13.2.5 INSERT Statement")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
 ### INSERT IGNORE
 
-[Seção 1.6.3.3, “Restrições para Dados Inválidos”](constraint-invalid-data.html)
+[Section 1.6.3.3, “Constraints on Invalid Data”](constraint-invalid-data.html "1.6.3.3 Constraints on Invalid Data")
 
-[Seção 1.6.3.4, “Restrições de ENUM e SET”](constraint-enum.html)
+[Section 1.6.3.4, “ENUM and SET Constraints”](constraint-enum.html "1.6.3.4 ENUM and SET Constraints")
 
-[Seção 12.15, “Funções de Informação”](information-functions.html)
+[Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions")
 
-[Seção 13.2.5, “Instrução INSERT”](insert.html)
+[Section 13.2.5, “INSERT Statement”](insert.html "13.2.5 INSERT Statement")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
+[Section 4.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "4.5.6 mysqlpump — A Database Backup Program")
 
-[Seção 5.1.10, "Modos SQL do Servidor"](sql-mode.html)
+[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
 
 ### INSERT IGNORE ... SELECT
 
-[Seção 13.2.5.1, "INSERIR ... Instrução SELECT"](insert-select.html)
+[Section 13.2.5.1, “INSERT ... SELECT Statement”](insert-select.html "13.2.5.1 INSERT ... SELECT Statement")
 
 ### INSERT INTO ... SELECT
 
-[Seção 6.2.6, “Controle de Acesso, Etapa 2: Solicitação de Verificação”](request-access.html)
+[Section 6.2.6, “Access Control, Stage 2: Request Verification”](request-access.html "6.2.6 Access Control, Stage 2: Request Verification")
 
-[Seção 14.7.2.3, “Leitura Consistente sem Bloqueio”](innodb-consistent-read.html)
+[Section 14.7.2.3, “Consistent Nonlocking Reads”](innodb-consistent-read.html "14.7.2.3 Consistent Nonlocking Reads")
 
-[Seção 1.6.3.3, “Restrições para Dados Inválidos”](constraint-invalid-data.html)
+[Section 1.6.3.3, “Constraints on Invalid Data”](constraint-invalid-data.html "1.6.3.3 Constraints on Invalid Data")
 
-[Seção 13.1.12, "Declaração CREATE EVENT"](create-event.html)
+[Section 13.1.12, “CREATE EVENT Statement”](create-event.html "13.1.12 CREATE EVENT Statement")
 
-[Seção 13.2.5, “Instrução INSERT”](insert.html)
+[Section 13.2.5, “INSERT Statement”](insert.html "13.2.5 INSERT Statement")
 
-[Seção 1.6.2.1, “Diferenças para Selecionar em Tabela”](ansi-diff-select-into-table.html)
+[Section 1.6.2.1, “SELECT INTO TABLE Differences”](ansi-diff-select-into-table.html "1.6.2.1 SELECT INTO TABLE Differences")
 
-[Seção 15.3, “O Motor de Armazenamento de MEMORY”](memory-storage-engine.html)
+[Section 15.3, “The MEMORY Storage Engine”](memory-storage-engine.html "15.3 The MEMORY Storage Engine")
 
-[Seção 6.4.5.8, “Definições de filtro de registro de auditoria”](audit-log-filter-definitions.html)
+[Section 6.4.5.8, “Writing Audit Log Filter Definitions”](audit-log-filter-definitions.html "6.4.5.8 Writing Audit Log Filter Definitions")
 
 ### INSERT INTO ... SELECT FROM memory_table
 
-[Seção 16.4.1.20, “Replicação e Tabelas de MEMORY”](replication-features-memory.html)
+[Section 16.4.1.20, “Replication and MEMORY Tables”](replication-features-memory.html "16.4.1.20 Replication and MEMORY Tables")
 
 ### INSERT INTO...SELECT
 
-[Seção 8.2.1, “Otimização de instruções SELECT”](select-optimization.html)
+[Section 8.2.1, “Optimizing SELECT Statements”](select-optimization.html "8.2.1 Optimizing SELECT Statements")
 
-### INSTALE O PLUGIN
+### INSTALL PLUGIN
 
-[Seção 6.4.5.7, “Filtragem do Log de Auditoria”](audit-log-filtering.html)
+[Section 6.4.5.7, “Audit Log Filtering”](audit-log-filtering.html "6.4.5.7 Audit Log Filtering")
 
-[Seção 6.4.5.11, “Referência do Log de Auditoria”](audit-log-reference.html)
+[Section 6.4.5.11, “Audit Log Reference”](audit-log-reference.html "6.4.5.11 Audit Log Reference")
 
-[Seção 6.4.2.1, “Instalação do Plugin de Controle de Conexão”](connection-control-plugin-installation.html)
+[Section 6.4.2.1, “Connection Control Plugin Installation”](connection-control-plugin-installation.html "6.4.2.1 Connection Control Plugin Installation")
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
-[Seção 6.4.4.8, “Funções de Gerenciamento de Chave do Pendrive de Uso Geral”](keyring-functions-general-purpose.html)
+[Section 6.4.4.8, “General-Purpose Keyring Key-Management Functions”](keyring-functions-general-purpose.html "6.4.4.8 General-Purpose Keyring Key-Management Functions")
 
-[Seção 8.12.4.1, “Como o MySQL Usa a Memória”](memory-use.html)
+[Section 8.12.4.1, “How MySQL Uses Memory”](memory-use.html "8.12.4.1 How MySQL Uses Memory")
 
-[Seção 13.7.3.3, "Declaração de INSTALAÇÃO DO PLUGIN"](install-plugin.html)
+[Section 13.7.3.3, “INSTALL PLUGIN Statement”](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement")
 
-[Seção 5.5.1, “Instalando e Desinstalando Plugins”](plugin-loading.html)
+[Section 5.5.1, “Installing and Uninstalling Plugins”](plugin-loading.html "5.5.1 Installing and Uninstalling Plugins")
 
-[Seção 6.4.5.2, “Instalando ou Desinstalando o Auditoria do MySQL Enterprise”](audit-log-installation.html)
+[Section 6.4.5.2, “Installing or Uninstalling MySQL Enterprise Audit”](audit-log-installation.html "6.4.5.2 Installing or Uninstalling MySQL Enterprise Audit")
 
-[Seção 6.5.2, “Instalando ou Desinstalando o Máscara de Dados e a Desidentificação do MySQL Enterprise”](data-masking-installation.html)
+[Section 6.5.2, “Installing or Uninstalling MySQL Enterprise Data Masking and De-Identification”](data-masking-installation.html "6.5.2 Installing or Uninstalling MySQL Enterprise Data Masking and De-Identification")
 
-[Seção 6.4.6.2, “Instalando ou Desinstalando o Firewall do MySQL Enterprise”](firewall-installation.html)
+[Section 6.4.6.2, “Installing or Uninstalling MySQL Enterprise Firewall”](firewall-installation.html "6.4.6.2 Installing or Uninstalling MySQL Enterprise Firewall")
 
-[Seção 5.5.5.2, “Instalando ou Desinstalando Tokens de Versão”](version-tokens-installation.html)
+[Section 5.5.5.2, “Installing or Uninstalling Version Tokens”](version-tokens-installation.html "5.5.5.2 Installing or Uninstalling Version Tokens")
 
-[Seção 6.4.4.1, “Instalação do Plugin do Carteira de Chaves”](keyring-plugin-installation.html)
+[Section 6.4.4.1, “Keyring Plugin Installation”](keyring-plugin-installation.html "6.4.4.1 Keyring Plugin Installation")
 
-[Seção 6.4.1.9, “Autenticação Conectada a LDAP”](ldap-pluggable-authentication.html)
+[Section 6.4.1.9, “LDAP Pluggable Authentication”](ldap-pluggable-authentication.html "6.4.1.9 LDAP Pluggable Authentication")
 
-[Seção 12.9.9, “Plugin do Analizador de Texto Completo MeCab”](fulltext-search-mecab.html)
+[Section 12.9.9, “MeCab Full-Text Parser Plugin”](fulltext-search-mecab.html "12.9.9 MeCab Full-Text Parser Plugin")
 
-[Seção 2.8.7, “Opções de Configuração de Fonte do MySQL”](source-configuration-options.html)
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
 
-[Seção 4.4.3, “mysql_plugin — Configurar plugins do servidor MySQL”](mysql-plugin.html)
+[Section 4.4.3, “mysql_plugin — Configure MySQL Server Plugins”](mysql-plugin.html "4.4.3 mysql_plugin — Configure MySQL Server Plugins")
 
-[Seção 6.4.1.10, “Autenticação Pluggable sem Login”](no-login-pluggable-authentication.html)
+[Section 6.4.1.10, “No-Login Pluggable Authentication”](no-login-pluggable-authentication.html "6.4.1.10 No-Login Pluggable Authentication")
 
-[Seção 5.5.2, “Obtendo Informações do Plugin do Servidor”](obtaining-plugin-information.html)
+[Section 5.5.2, “Obtaining Server Plugin Information”](obtaining-plugin-information.html "5.5.2 Obtaining Server Plugin Information")
 
-[Seção 6.4.1.7, “Autenticação Conectada (PAM)](pam-pluggable-authentication.html)
+[Section 6.4.1.7, “PAM Pluggable Authentication”](pam-pluggable-authentication.html "6.4.1.7 PAM Pluggable Authentication")
 
-[Seção 6.4.3.1, “Instalação do Plugin de Validação de Senha”](validate-password-installation.html)
+[Section 6.4.3.1, “Password Validation Plugin Installation”](validate-password-installation.html "6.4.3.1 Password Validation Plugin Installation")
 
-[Seção 6.4.3.2, “Opções e variáveis do plugin de validação de senha”](validate-password-options-variables.html)
+[Section 6.4.3.2, “Password Validation Plugin Options and Variables”](validate-password-options-variables.html "6.4.3.2 Password Validation Plugin Options and Variables")
 
-[Seção 15.11.1, “Arquitetura de Motor de Armazenamento Desmontável”](pluggable-storage.html)
+[Section 15.11.1, “Pluggable Storage Engine Architecture”](pluggable-storage.html "15.11.1 Pluggable Storage Engine Architecture")
 
-[Seção 16.3.9.1, “Interface Administrativa de Replicação Semisincronizada”](replication-semisync-interface.html)
+[Section 16.3.9.1, “Semisynchronous Replication Administrative Interface”](replication-semisync-interface.html "16.3.9.1 Semisynchronous Replication Administrative Interface")
 
-[Seção 16.3.9.2, “Instalação e Configuração de Replicação Semisíncrona”](replication-semisync-installation.html)
+[Section 16.3.9.2, “Semisynchronous Replication Installation and Configuration”](replication-semisync-installation.html "16.3.9.2 Semisynchronous Replication Installation and Configuration")
 
-[Seção 5.1.6, “Opções de comando do servidor”](server-options.html)
+[Section 5.1.6, “Server Command Options”](server-options.html "5.1.6 Server Command Options")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 14.21.3, “Configurando o Plugin InnoDB memcached”](innodb-memcached-setup.html)
+[Section 14.21.3, “Setting Up the InnoDB memcached Plugin”](innodb-memcached-setup.html "14.21.3 Setting Up the InnoDB memcached Plugin")
 
-[Seção 13.7.5.25, "Declaração de PLUGINS"](show-plugins.html)
+[Section 13.7.5.25, “SHOW PLUGINS Statement”](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement")
 
-[Seção 6.4.1.11, “Autenticação Pluggable de Credenciais de Peer de Soquete”](socket-pluggable-authentication.html)
+[Section 6.4.1.11, “Socket Peer-Credential Pluggable Authentication”](socket-pluggable-authentication.html "6.4.1.11 Socket Peer-Credential Pluggable Authentication")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 6.4.1.12, “Teste de Autenticação Pluggable”](test-pluggable-authentication.html)
+[Section 6.4.1.12, “Test Pluggable Authentication”](test-pluggable-authentication.html "6.4.1.12 Test Pluggable Authentication")
 
-[Seção 24.3.17, “A Tabela INFORMATION_SCHEMA PLUGINS”](information-schema-plugins-table.html)
+[Section 24.3.17, “The INFORMATION_SCHEMA PLUGINS Table”](information-schema-plugins-table.html "24.3.17 The INFORMATION_SCHEMA PLUGINS Table")
 
-[Seção 5.3, “O banco de dados do sistema mysql”](system-schema.html)
+[Section 5.3, “The mysql System Database”](system-schema.html "5.3 The mysql System Database")
 
-[Seção 14.21.8, “Solução de problemas do plugin InnoDB memcached”](innodb-memcached-troubleshoot.html)
+[Section 14.21.8, “Troubleshooting the InnoDB memcached Plugin”](innodb-memcached-troubleshoot.html "14.21.8 Troubleshooting the InnoDB memcached Plugin")
 
-[Seção 13.7.3.4, "Declaração de DESINSTALAR PLUGIN"](uninstall-plugin.html)
+[Section 13.7.3.4, “UNINSTALL PLUGIN Statement”](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement")
 
-[Seção 6.4.4.5, “Usando o plugin Amazon Web Services Keyring keyring_aws”](keyring-aws-plugin.html)
+[Section 6.4.4.5, “Using the keyring_aws Amazon Web Services Keyring Plugin”](keyring-aws-plugin.html "6.4.4.5 Using the keyring_aws Amazon Web Services Keyring Plugin")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
-[Seção 6.4.1.8, “Autenticação Conectada a Janelas”](windows-pluggable-authentication.html)
+[Section 6.4.1.8, “Windows Pluggable Authentication”](windows-pluggable-authentication.html "6.4.1.8 Windows Pluggable Authentication")
 
-[Seção 19.4.2.2, “Opções do Plugin X e Variáveis do Sistema”](x-plugin-options-system-variables.html)
+[Section 19.4.2.2, “X Plugin Options and System Variables”](x-plugin-options-system-variables.html "19.4.2.2 X Plugin Options and System Variables")
 
-### ITERAR
+### ITERATE
 
-[Seção 13.6.7.2, "DECLARAR ... Declaração de Manipulador"](declare-handler.html)
+[Section 13.6.7.2, “DECLARE ... HANDLER Statement”](declare-handler.html "13.6.7.2 DECLARE ... HANDLER Statement")
 
-[Seção 13.6.5, “Instruções de controle de fluxo”](flow-control-statements.html)
+[Section 13.6.5, “Flow Control Statements”](flow-control-statements.html "13.6.5 Flow Control Statements")
 
-[Seção 13.6.5.3, "Declaração ITERATE"](iterate.html)
+[Section 13.6.5.3, “ITERATE Statement”](iterate.html "13.6.5.3 ITERATE Statement")
 
-[Seção 13.6.2, "Rotulagem de declarações"](statement-labels.html)
+[Section 13.6.2, “Statement Labels”](statement-labels.html "13.6.2 Statement Labels")
 
 ### K
 
-index topo](dynindex-statement.html#stmt-index-topo)]
+index top](dynindex-statement.html#stmt-index-top)]
 
-### MATAR
+### KILL
 
-[Seção 8.14, “Examinando informações de thread (processo) do servidor”](thread-information.html)
+[Section 8.14, “Examining Server Thread (Process) Information”](thread-information.html "8.14 Examining Server Thread (Process) Information")
 
-[Seção 8.14.3, “Estados gerais de fios”](general-thread-states.html)
+[Section 8.14.3, “General Thread States”](general-thread-states.html "8.14.3 General Thread States")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 16.1.3.2, “Ciclo de Vida do GTID”](replication-gtids-lifecycle.html)
+[Section 16.1.3.2, “GTID Life Cycle”](replication-gtids-lifecycle.html "16.1.3.2 GTID Life Cycle")
 
-[Seção 13.7.6.4, "Declaração de KILL"](kill.html)
+[Section 13.7.6.4, “KILL Statement”](kill.html "13.7.6.4 KILL Statement")
 
-[Seção 13.3.5, “Instruções LOCK TABLES e UNLOCK TABLES”](lock-tables.html)
+[Section 13.3.5, “LOCK TABLES and UNLOCK TABLES Statements”](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements")
 
-[Seção B.3.2.7, “O servidor MySQL desapareceu”](gone-away.html)
+[Section B.3.2.7, “MySQL server has gone away”](gone-away.html "B.3.2.7 MySQL server has gone away")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 16.4.1.32, "Inconsistências de Replicação e Transação"](replication-features-transaction-inconsistencies.html)
+[Section 16.4.1.32, “Replication and Transaction Inconsistencies”](replication-features-transaction-inconsistencies.html "16.4.1.32 Replication and Transaction Inconsistencies")
 
-[Seção 13.7.5.29, "Declaração SHOW PROCESSLIST"](show-processlist.html)
+[Section 13.7.5.29, “SHOW PROCESSLIST Statement”](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement")
 
-[Seção 13.4.2.6, "Declaração STOP SLAVE"](stop-slave.html)
+[Section 13.4.2.6, “STOP SLAVE Statement”](stop-slave.html "13.4.2.6 STOP SLAVE Statement")
 
-[Seção 26.4.3.9, “As vistas innodb_lock_waits e x$innodb_lock_waits”](sys-innodb-lock-waits.html)
+[Section 26.4.3.9, “The innodb_lock_waits and x$innodb_lock_waits Views”](sys-innodb-lock-waits.html "26.4.3.9 The innodb_lock_waits and x$innodb_lock_waits Views")
 
-[Seção 26.4.3.28, “As visualizações schema_table_lock_waits e x$schema_table_lock_waits”](sys-schema-table-lock-waits.html)
+[Section 26.4.3.28, “The schema_table_lock_waits and x$schema_table_lock_waits Views”](sys-schema-table-lock-waits.html "26.4.3.28 The schema_table_lock_waits and x$schema_table_lock_waits Views")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
-### INTERRUPA A CONEXÃO
+### KILL CONNECTION
 
-[Seção 13.7.6.4, "Declaração de KILL"](kill.html)
+[Section 13.7.6.4, “KILL Statement”](kill.html "13.7.6.4 KILL Statement")
 
-[Seção 13.4.2.6, "Declaração STOP SLAVE"](stop-slave.html)
+[Section 13.4.2.6, “STOP SLAVE Statement”](stop-slave.html "13.4.2.6 STOP SLAVE Statement")
 
-[Seção 5.1.16, “O processo de desligamento do servidor”](server-shutdown.html)
+[Section 5.1.16, “The Server Shutdown Process”](server-shutdown.html "5.1.16 The Server Shutdown Process")
 
 ### KILL QUERY
 
-[Seção 13.7.6.4, "Declaração de KILL"](kill.html)
+[Section 13.7.6.4, “KILL Statement”](kill.html "13.7.6.4 KILL Statement")
 
-[Seção 12.20, “Funções Diversas”](funcoes-diversas.html)
+[Section 12.20, “Miscellaneous Functions”](miscellaneous-functions.html "12.20 Miscellaneous Functions")
 
-[Seção 13.4.2.6, "Declaração STOP SLAVE"](stop-slave.html)
+[Section 13.4.2.6, “STOP SLAVE Statement”](stop-slave.html "13.4.2.6 STOP SLAVE Statement")
 
-[Seção 5.1.16, “O processo de desligamento do servidor”](server-shutdown.html)
+[Section 5.1.16, “The Server Shutdown Process”](server-shutdown.html "5.1.16 The Server Shutdown Process")
 
 ### L
 
-index topo](dynindex-statement.html#stmt-index-topo)]
+index top](dynindex-statement.html#stmt-index-top)]
 
-### SAÍDA
+### LEAVE
 
-[Seção 13.6.7.2, "DECLARAR ... Declaração de Manipulador"](declare-handler.html)
+[Section 13.6.7.2, “DECLARE ... HANDLER Statement”](declare-handler.html "13.6.7.2 DECLARE ... HANDLER Statement")
 
-[Seção 13.6.5, “Instruções de controle de fluxo”](flow-control-statements.html)
+[Section 13.6.5, “Flow Control Statements”](flow-control-statements.html "13.6.5 Flow Control Statements")
 
-[Seção 13.6.5.4, "Declaração LEAVE"](leave.html)
+[Section 13.6.5.4, “LEAVE Statement”](leave.html "13.6.5.4 LEAVE Statement")
 
-[Seção 13.6.5.5, "Declaração LOOP"](loop.html)
+[Section 13.6.5.5, “LOOP Statement”](loop.html "13.6.5.5 LOOP Statement")
 
-[Seção 23.8, “Restrições aos Programas Armazenados”](stored-program-restrictions.html)
+[Section 23.8, “Restrictions on Stored Programs”](stored-program-restrictions.html "23.8 Restrictions on Stored Programs")
 
-[Seção 13.6.5.7, "Instrução RETURN"](return.html)
+[Section 13.6.5.7, “RETURN Statement”](return.html "13.6.5.7 RETURN Statement")
 
-[Seção 13.6.2, "Rotulagem de declarações"](statement-labels.html)
+[Section 13.6.2, “Statement Labels”](statement-labels.html "13.6.2 Statement Labels")
 
-### CARREGAR DADOS
+### LOAD DATA
 
-[Seção 6.4.5.4, "Formatos de arquivo de registro de auditoria"](audit-log-file-formats.html)
+[Section 6.4.5.4, “Audit Log File Formats”](audit-log-file-formats.html "6.4.5.4 Audit Log File Formats")
 
-[Seção 6.4.5.12, “Restrições do Log de Auditoria”](audit-log-restrictions.html)
+[Section 6.4.5.12, “Audit Log Restrictions”](audit-log-restrictions.html "6.4.5.12 Audit Log Restrictions")
 
-[Seção 14.6.1.6, “Tratamento de AUTO_INCREMENT no InnoDB”](innodb-auto-increment-handling.html)
+[Section 14.6.1.6, “AUTO_INCREMENT Handling in InnoDB”](innodb-auto-increment-handling.html "14.6.1.6 AUTO_INCREMENT Handling in InnoDB")
 
-[Seção 16.3.1.2, "Fazer backup de dados brutos de uma réplica"](replication-solutions-backups-rawdata.html)
+[Section 16.3.1.2, “Backing Up Raw Data from a Replica”](replication-solutions-backups-rawdata.html "16.3.1.2 Backing Up Raw Data from a Replica")
 
-[Seção 7.1, “Tipos de Backup e Recuperação”](backup-types.html)
+[Section 7.1, “Backup and Recovery Types”](backup-types.html "7.1 Backup and Recovery Types")
 
-[Seção 8.6.2, “Carregamento de dados em massa para tabelas MyISAM”](optimizando-myisam-carregamento-de-dados-em-massa.html)
+[Section 8.6.2, “Bulk Data Loading for MyISAM Tables”](optimizing-myisam-bulk-data-loading.html "8.6.2 Bulk Data Loading for MyISAM Tables")
 
-[Seção 8.11.3, “Inserções Concorrentes”](concurrent-inserts.html)
+[Section 8.11.3, “Concurrent Inserts”](concurrent-inserts.html "8.11.3 Concurrent Inserts")
 
-[Seção 13.1.20, "Instrução CREATE TRIGGER"](create-trigger.html)
+[Section 13.1.20, “CREATE TRIGGER Statement”](create-trigger.html "13.1.20 CREATE TRIGGER Statement")
 
-[Seção 7.2, “Métodos de backup de banco de dados”](backup-methods.html)
+[Section 7.2, “Database Backup Methods”](backup-methods.html "7.2 Database Backup Methods")
 
-[Seção 10.3.3, "Conjunto de caracteres e classificação de banco de dados"](charset-database.html)
+[Section 10.3.3, “Database Character Set and Collation”](charset-database.html "10.3.3 Database Character Set and Collation")
 
-[Seção 16.2.1.3, “Determinação de declarações seguras e inseguras no registro binário”](replication-rbr-safe-unsafe.html)
+[Section 16.2.1.3, “Determination of Safe and Unsafe Statements in Binary Logging”](replication-rbr-safe-unsafe.html "16.2.1.3 Determination of Safe and Unsafe Statements in Binary Logging")
 
-[Seção 13.1.18.5, “Restrições de Chave Estrangeira”](create-table-foreign-keys.html)
+[Section 13.1.18.5, “FOREIGN KEY Constraints”](create-table-foreign-keys.html "13.1.18.5 FOREIGN KEY Constraints")
 
-[Seção B.3.3.4, “Como o MySQL lida com um disco completo”](full-disk.html)
+[Section B.3.3.4, “How MySQL Handles a Full Disk”](full-disk.html "B.3.3.4 How MySQL Handles a Full Disk")
 
-[Seção 12.15, “Funções de Informação”](information-functions.html)
+[Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions")
 
-[Seção B.3.7, “Problemas Conhecidos no MySQL”](known-issues.html)
+[Section B.3.7, “Known Issues in MySQL”](known-issues.html "B.3.7 Known Issues in MySQL")
 
-[Seção 21.2.7.3, “Limitações relacionadas ao processamento de transações no NDB Cluster”](mysql-cluster-limitations-transactions.html)
+[Section 21.2.7.3, “Limits Relating to Transaction Handling in NDB Cluster”](mysql-cluster-limitations-transactions.html "21.2.7.3 Limits Relating to Transaction Handling in NDB Cluster")
 
-[Seção 13.2.6, “Instrução LOAD DATA”](load-data.html)
+[Section 13.2.6, “LOAD DATA Statement”](load-data.html "13.2.6 LOAD DATA Statement")
 
-[Seção 13.2.7, “Declaração de Carregamento XML”](load-xml.html)
+[Section 13.2.7, “LOAD XML Statement”](load-xml.html "13.2.7 LOAD XML Statement")
 
-[Seção 3.3.3, “Carregando dados em uma tabela”](loading-tables.html)
+[Section 3.3.3, “Loading Data into a Table”](loading-tables.html "3.3.3 Loading Data into a Table")
 
-[Seção 5.4.4.4, "Formato de registro para alterações nas tabelas do banco de dados mysql"](binary-log-mysql-database.html)
+[Section 5.4.4.4, “Logging Format for Changes to mysql Database Tables”](binary-log-mysql-database.html "5.4.4.4 Logging Format for Changes to mysql Database Tables")
 
-[Seção 6.1.3, “Tornar o MySQL seguro contra atacantes”](security-against-attack.html)
+[Section 6.1.3, “Making MySQL Secure Against Attackers”](security-against-attack.html "6.1.3 Making MySQL Secure Against Attackers")
 
-[Seção 15.2.1, “Opções de inicialização do MyISAM”](myisam-start.html)
+[Section 15.2.1, “MyISAM Startup Options”](myisam-start.html "15.2.1 MyISAM Startup Options")
 
-[Seção 4.5.1.1, “Opções do cliente do MySQL”](mysql-command-options.html)
+[Section 4.5.1.1, “mysql Client Options”](mysql-command-options.html "4.5.1.1 mysql Client Options")
 
-[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html)
+[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
 
-[Seção 4.6.7, “mysqlbinlog — Ferramenta para processamento de arquivos de log binário”](mysqlbinlog.html)
+[Section 4.6.7, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "4.6.7 mysqlbinlog — Utility for Processing Binary Log Files")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 4.5.5, “mysqlimport — Um programa de importação de dados”](mysqlimport.html)
+[Section 4.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "4.5.5 mysqlimport — A Data Import Program")
 
-[Seção 21.5.14, “ndb_import — Importar dados CSV no NDB”](mysql-cluster-programs-ndb-import.html)
+[Section 21.5.14, “ndb_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "21.5.14 ndb_import — Import CSV Data Into NDB")
 
-[Seção 21.5.27, “ndb_show_tables — Exibir Lista de Tabelas NDB”](mysql-cluster-programs-ndb-show-tables.html)
+[Section 21.5.27, “ndb_show_tables — Display List of NDB Tables”](mysql-cluster-programs-ndb-show-tables.html "21.5.27 ndb_show_tables — Display List of NDB Tables")
 
-[Seção 9.1.7, “Valores NULOS”](null-values.html)
+[Section 9.1.7, “NULL Values”](null-values.html "9.1.7 NULL Values")
 
-[Seção 8.2.4.1, “Otimização de instruções INSERT”](insert-optimization.html)
+[Section 8.2.4.1, “Optimizing INSERT Statements”](insert-optimization.html "8.2.4.1 Optimizing INSERT Statements")
 
-[Seção 11.1.7, “Tratamento de Saída de Faixa e Excesso de Dados”](out-of-range-and-overflow.html)
+[Section 11.1.7, “Out-of-Range and Overflow Handling”](out-of-range-and-overflow.html "11.1.7 Out-of-Range and Overflow Handling")
 
-[Seção 4.1, “Visão geral dos programas MySQL”](programs-overview.html)
+[Section 4.1, “Overview of MySQL Programs”](programs-overview.html "4.1 Overview of MySQL Programs")
 
-[Seção 22.1, “Visão geral da partição no MySQL”](partitioning-overview.html)
+[Section 22.1, “Overview of Partitioning in MySQL”](partitioning-overview.html "22.1 Overview of Partitioning in MySQL")
 
-[Seção 22.5, “Seleção de Partição”](partitioning-selection.html)
+[Section 22.5, “Partition Selection”](partitioning-selection.html "22.5 Partition Selection")
 
-[Seção 22.6.4, “Partição e Bloqueio”](partitioning-limitations-locking.html)
+[Section 22.6.4, “Partitioning and Locking”](partitioning-limitations-locking.html "22.6.4 Partitioning and Locking")
 
-[Seção 21.6.5, “Realizar um Reinício Rotativo de um NDB Cluster”](mysql-cluster-rolling-restart.html)
+[Section 21.6.5, “Performing a Rolling Restart of an NDB Cluster”](mysql-cluster-rolling-restart.html "21.6.5 Performing a Rolling Restart of an NDB Cluster")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção B.3.4.3, “Problemas com valores NULL”](problemas-com-null.html)
+[Section B.3.4.3, “Problems with NULL Values”](problems-with-null.html "B.3.4.3 Problems with NULL Values")
 
-[Seção 7.4.4, “Recarga de backups no formato de texto delimitado”](reloading-delimited-text-dumps.html)
+[Section 7.4.4, “Reloading Delimited-Text Format Backups”](reloading-delimited-text-dumps.html "7.4.4 Reloading Delimited-Text Format Backups")
 
-[Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
+[Section 16.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "16.1.6.3 Replica Server Options and Variables")
 
-[Seção 16.4.1.18, “Replicação e LOAD DATA”](replication-features-load-data.html)
+[Section 16.4.1.18, “Replication and LOAD DATA”](replication-features-load-data.html "16.4.1.18 Replication and LOAD DATA")
 
-[Seção 8.14.7, “Estados de Solução de Conflitos do SQL Thread”](replica-sql-thread-states.html)
+[Section 8.14.7, “Replication Replica SQL Thread States”](replica-sql-thread-states.html "8.14.7 Replication Replica SQL Thread States")
 
-[Seção 22.6, “Restrições e Limitações sobre Partição”](partitioning-limitations.html)
+[Section 22.6, “Restrictions and Limitations on Partitioning”](partitioning-limitations.html "22.6 Restrictions and Limitations on Partitioning")
 
-[Seção 10.11, “Restrições aos Conjuntos de Caracteres”](charset-restrictions.html)
+[Section 10.11, “Restrictions on Character Sets”](charset-restrictions.html "10.11 Restrictions on Character Sets")
 
-[Seção 23.8, “Restrições aos Programas Armazenados”](stored-program-restrictions.html)
+[Section 23.8, “Restrictions on Stored Programs”](stored-program-restrictions.html "23.8 Restrictions on Stored Programs")
 
-[Seção 6.1.6, “Considerações de segurança para LOAD DATA LOCAL”](load-data-local-security.html)
+[Section 6.1.6, “Security Considerations for LOAD DATA LOCAL”](load-data-local-security.html "6.1.6 Security Considerations for LOAD DATA LOCAL")
 
-[Seção 13.2.9.1, "Instrução SELECT ... INTO"](select-into.html)
+[Section 13.2.9.1, “SELECT ... INTO Statement”](select-into.html "13.2.9.1 SELECT ... INTO Statement")
 
-[Seção 3.3.4.1, “Selecionar todos os dados”](selecionando-todos.html)
+[Section 3.3.4.1, “Selecting All Data”](selecting-all.html "3.3.4.1 Selecting All Data")
 
-[Seção 5.1.6, “Opções de comando do servidor”](server-options.html)
+[Section 5.1.6, “Server Command Options”](server-options.html "5.1.6 Server Command Options")
 
-[Seção 5.1.10, "Modos SQL do Servidor"](sql-mode.html)
+[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 13.7.5.40, "Declaração de avisos"](show-warnings.html)
+[Section 13.7.5.40, “SHOW WARNINGS Statement”](show-warnings.html "13.7.5.40 SHOW WARNINGS Statement")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 13.2.10, "Subconsultas"](subqueries.html)
+[Section 13.2.10, “Subqueries”](subqueries.html "13.2.10 Subqueries")
 
-[Seção 11.3.5, “O Tipo ENUM”](enum.html)
+[Section 11.3.5, “The ENUM Type”](enum.html "11.3.5 The ENUM Type")
 
-[Seção 15.3, “O Motor de Armazenamento de MEMORY”](memory-storage-engine.html)
+[Section 15.3, “The MEMORY Storage Engine”](memory-storage-engine.html "15.3 The MEMORY Storage Engine")
 
-[Seção 13.2.10.1, “A subconsulta como operando escalar”](scalar-subqueries.html)
+[Section 13.2.10.1, “The Subquery as Scalar Operand”](scalar-subqueries.html "13.2.10.1 The Subquery as Scalar Operand")
 
-[Seção 6.2.17, “Soluções para problemas de conexão com o MySQL”](problemas-conectando.html)
+[Section 6.2.17, “Troubleshooting Problems Connecting to MySQL”](problems-connecting.html "6.2.17 Troubleshooting Problems Connecting to MySQL")
 
-[Seção 9.4, “Variáveis Definidas pelo Usuário”](user-variables.html)
+[Section 9.4, “User-Defined Variables”](user-variables.html "9.4 User-Defined Variables")
 
-[Seção 23.3, “Usando gatilhos”](triggers.html)
+[Section 23.3, “Using Triggers”](triggers.html "23.3 Using Triggers")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
-[Seção 21.2.4.2, “O que há de novo no NDB Cluster 7.6”](mysql-cluster-what-is-new-7-6.html)
+[Section 21.2.4.2, “What is New in NDB Cluster 7.6”](mysql-cluster-what-is-new-7-6.html "21.2.4.2 What is New in NDB Cluster 7.6")
 
-[Seção B.3.3.5, “Onde o MySQL Armazena Arquivos Temporários”](temporary-files.html)
+[Section B.3.3.5, “Where MySQL Stores Temporary Files”](temporary-files.html "B.3.3.5 Where MySQL Stores Temporary Files")
 
-[Seção 2.3.7, “Restrições da Plataforma Windows”](windows-restrictions.html)
+[Section 2.3.7, “Windows Platform Restrictions”](windows-restrictions.html "2.3.7 Windows Platform Restrictions")
 
-### CARREGAR DADOS ... SUBSTITUIR
+### LOAD DATA ... REPLACE
 
-[Seção 13.2.8, “Instrução REPLACE”](replace.html)
+[Section 13.2.8, “REPLACE Statement”](replace.html "13.2.8 REPLACE Statement")
 
-### CARREGAR DADOS LOCAL
+### LOAD DATA LOCAL
 
-[Seção 13.2.6, “Instrução LOAD DATA”](load-data.html)
+[Section 13.2.6, “LOAD DATA Statement”](load-data.html "13.2.6 LOAD DATA Statement")
 
-[Seção 2.8.7, “Opções de Configuração de Fonte do MySQL”](source-configuration-options.html)
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
 
-[Seção 4.6.7, “mysqlbinlog — Ferramenta para processamento de arquivos de log binário”](mysqlbinlog.html)
+[Section 4.6.7, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "4.6.7 mysqlbinlog — Utility for Processing Binary Log Files")
 
-[Seção 6.1.6, “Considerações de segurança para LOAD DATA LOCAL”](load-data-local-security.html)
+[Section 6.1.6, “Security Considerations for LOAD DATA LOCAL”](load-data-local-security.html "6.1.6 Security Considerations for LOAD DATA LOCAL")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-### CARREGAR DADOS LOCAL INFILE
+### LOAD DATA LOCAL INFILE
 
-[Seção 6.1.6, “Considerações de segurança para LOAD DATA LOCAL”](load-data-local-security.html)
+[Section 6.1.6, “Security Considerations for LOAD DATA LOCAL”](load-data-local-security.html "6.1.6 Security Considerations for LOAD DATA LOCAL")
 
-### CARREGAR ÍNDICE NA CACHE
+### LOAD INDEX INTO CACHE
 
-[Seção 13.7.6.2, “Declaração de ÍNDICE DE CACHE”](cache-index.html)
+[Section 13.7.6.2, “CACHE INDEX Statement”](cache-index.html "13.7.6.2 CACHE INDEX Statement")
 
-[Seção 16.1.6.5, “Variáveis do Sistema de ID de Transação Global”](replication-options-gtids.html)
+[Section 16.1.6.5, “Global Transaction ID System Variables”](replication-options-gtids.html "16.1.6.5 Global Transaction ID System Variables")
 
-[Seção 8.10.2.4, "Pré-carregamento do índice"](index-preloading.html)
+[Section 8.10.2.4, “Index Preloading”](index-preloading.html "8.10.2.4 Index Preloading")
 
-[Seção 13.7.6.5, "Instrução de carregamento de índice na memória cache"](load-index.html)
+[Section 13.7.6.5, “LOAD INDEX INTO CACHE Statement”](load-index.html "13.7.6.5 LOAD INDEX INTO CACHE Statement")
 
-[Seção 22.6, “Restrições e Limitações sobre Partição”](partitioning-limitations.html)
+[Section 22.6, “Restrictions and Limitations on Partitioning”](partitioning-limitations.html "22.6 Restrictions and Limitations on Partitioning")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-### CARREGAR ÍNDICE NA CACHE ... IGNORAR FOLHAS
+### LOAD INDEX INTO CACHE ... IGNORE LEAVES
 
-[Seção 13.7.6.5, "Instrução de carregamento de índice na memória cache"](load-index.html)
+[Section 13.7.6.5, “LOAD INDEX INTO CACHE Statement”](load-index.html "13.7.6.5 LOAD INDEX INTO CACHE Statement")
 
-### CARREGAR XML
+### LOAD XML
 
-[Seção 13.2.7, “Declaração de Carregamento XML”](load-xml.html)
+[Section 13.2.7, “LOAD XML Statement”](load-xml.html "13.2.7 LOAD XML Statement")
 
-[Seção 22.1, “Visão geral da partição no MySQL”](partitioning-overview.html)
+[Section 22.1, “Overview of Partitioning in MySQL”](partitioning-overview.html "22.1 Overview of Partitioning in MySQL")
 
-[Seção 22.5, “Seleção de Partição”](partitioning-selection.html)
+[Section 22.5, “Partition Selection”](partitioning-selection.html "22.5 Partition Selection")
 
-[Seção 23.8, “Restrições aos Programas Armazenados”](stored-program-restrictions.html)
+[Section 23.8, “Restrictions on Stored Programs”](stored-program-restrictions.html "23.8 Restrictions on Stored Programs")
 
-[Seção 5.1.10, "Modos SQL do Servidor"](sql-mode.html)
+[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
 
-### CARREGAR XML LOCAL
+### LOAD XML LOCAL
 
-[Seção 13.2.7, “Declaração de Carregamento XML”](load-xml.html)
+[Section 13.2.7, “LOAD XML Statement”](load-xml.html "13.2.7 LOAD XML Statement")
 
-### LÂMINAR TÁBUA
+### LOCK TABLE
 
-[Seção 8.11.3, “Inserções Concorrentes”](concurrent-inserts.html)
+[Section 8.11.3, “Concurrent Inserts”](concurrent-inserts.html "8.11.3 Concurrent Inserts")
 
-[Seção 8.14.3, “Estados gerais de fios”](general-thread-states.html)
+[Section 8.14.3, “General Thread States”](general-thread-states.html "8.14.3 General Thread States")
 
-[Seção B.3.6.1, “Problemas com ALTER TABLE”](alter-table-problems.html)
+[Section B.3.6.1, “Problems with ALTER TABLE”](alter-table-problems.html "B.3.6.1 Problems with ALTER TABLE")
 
-### LÂMINAR TÁBUAS
+### LOCK TABLES
 
-[Seção 14.1.2, “Melhores Práticas para Tabelas InnoDB”](innodb-best-practices.html)
+[Section 14.1.2, “Best Practices for InnoDB Tables”](innodb-best-practices.html "14.1.2 Best Practices for InnoDB Tables")
 
-[Seção 8.6.2, “Carregamento de dados em massa para tabelas MyISAM”](optimizando-myisam-carregamento-de-dados-em-massa.html)
+[Section 8.6.2, “Bulk Data Loading for MyISAM Tables”](optimizing-myisam-bulk-data-loading.html "8.6.2 Bulk Data Loading for MyISAM Tables")
 
-[Seção 13.1.11, "Instrução CREATE DATABASE"](create-database.html)
+[Section 13.1.11, “CREATE DATABASE Statement”](create-database.html "13.1.11 CREATE DATABASE Statement")
 
-[Seção 13.1.18.3, "Instrução CREATE TABLE ... LIKE"](create-table-like.html)
+[Section 13.1.18.3, “CREATE TABLE ... LIKE Statement”](create-table-like.html "13.1.18.3 CREATE TABLE ... LIKE Statement")
 
-[Seção 13.1.20, "Instrução CREATE TRIGGER"](create-trigger.html)
+[Section 13.1.20, “CREATE TRIGGER Statement”](create-trigger.html "13.1.20 CREATE TRIGGER Statement")
 
-[Seção 14.7.5.2, "Detecção de Congestionamento](innodb-deadlock-detection.html)
+[Section 14.7.5.2, “Deadlock Detection”](innodb-deadlock-detection.html "14.7.5.2 Deadlock Detection")
 
-[Seção 14.7.5, "Bloqueios em InnoDB"](innodb-deadlocks.html)
+[Section 14.7.5, “Deadlocks in InnoDB”](innodb-deadlocks.html "14.7.5 Deadlocks in InnoDB")
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
-[Seção 8.14.3, “Estados gerais de fios”](general-thread-states.html)
+[Section 8.14.3, “General Thread States”](general-thread-states.html "8.14.3 General Thread States")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 14.7.5.3, “Como minimizar e lidar com deadlocks”](innodb-deadlocks-handling.html)
+[Section 14.7.5.3, “How to Minimize and Handle Deadlocks”](innodb-deadlocks-handling.html "14.7.5.3 How to Minimize and Handle Deadlocks")
 
-[Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
+[Section 14.15, “InnoDB Startup Options and System Variables”](innodb-parameters.html "14.15 InnoDB Startup Options and System Variables")
 
-[Seção 8.11.1, “Métodos de bloqueio interno”](internal-locking.html)
+[Section 8.11.1, “Internal Locking Methods”](internal-locking.html "8.11.1 Internal Locking Methods")
 
-[Seção 21.2.7.10, “Limitações relacionadas a múltiplos nós do cluster NDB”](mysql-cluster-limitations-multiple-nodes.html)
+[Section 21.2.7.10, “Limitations Relating to Multiple NDB Cluster Nodes”](mysql-cluster-limitations-multiple-nodes.html "21.2.7.10 Limitations Relating to Multiple NDB Cluster Nodes")
 
-[Seção 13.3.5, “Instruções LOCK TABLES e UNLOCK TABLES”](lock-tables.html)
+[Section 13.3.5, “LOCK TABLES and UNLOCK TABLES Statements”](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements")
 
-[Seção 14.7.3, "Bloqueios Definidos por Diferentes Instruções SQL no InnoDB"](innodb-locks-set.html)
+[Section 14.7.3, “Locks Set by Different SQL Statements in InnoDB”](innodb-locks-set.html "14.7.3 Locks Set by Different SQL Statements in InnoDB")
 
-[Seção 15.7.2, “Problemas da Tabela MERGE”](merge-table-problems.html)
+[Section 15.7.2, “MERGE Table Problems”](merge-table-problems.html "15.7.2 MERGE Table Problems")
 
-[Seção 8.11.4, "Bloqueio de Metadados"](metadata-locking.html)
+[Section 8.11.4, “Metadata Locking”](metadata-locking.html "8.11.4 Metadata Locking")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
+[Section 4.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "4.5.6 mysqlpump — A Database Backup Program")
 
-[Seção 22.6.4, “Partição e Bloqueio”](partitioning-limitations-locking.html)
+[Section 22.6.4, “Partitioning and Locking”](partitioning-limitations-locking.html "22.6.4 Partitioning and Locking")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 15.2.4.2, “Problemas com tabelas que não são fechadas corretamente”](myisam-table-close.html)
+[Section 15.2.4.2, “Problems from Tables Not Being Closed Properly”](myisam-table-close.html "15.2.4.2 Problems from Tables Not Being Closed Properly")
 
-[Seção 23.8, “Restrições aos Programas Armazenados”](stored-program-restrictions.html)
+[Section 23.8, “Restrictions on Stored Programs”](stored-program-restrictions.html "23.8 Restrictions on Stored Programs")
 
-[Seção 5.4.1, “Selecionando destinos de saída do Log de consulta geral e do Log de consulta lenta”](log-destinations.html)
+[Section 5.4.1, “Selecting General Query Log and Slow Query Log Output Destinations”](log-destinations.html "5.4.1 Selecting General Query Log and Slow Query Log Output Destinations")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 13.3.1, "Instruções START TRANSACTION, COMMIT e ROLLBACK"](commit.html)
+[Section 13.3.1, “START TRANSACTION, COMMIT, and ROLLBACK Statements”](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 8.12.1, “Fatores do Sistema”](system-optimization.html)
+[Section 8.12.1, “System Factors”](system-optimization.html "8.12.1 System Factors")
 
-[Seção 8.11.2, “Problemas de bloqueio de tabelas”](table-locking.html)
+[Section 8.11.2, “Table Locking Issues”](table-locking.html "8.11.2 Table Locking Issues")
 
-### LÂMINAR TÁBUAS ... LEITURA
+### LOCK TABLES ... READ
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
-[Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
+[Section 14.15, “InnoDB Startup Options and System Variables”](innodb-parameters.html "14.15 InnoDB Startup Options and System Variables")
 
-[Seção 14.7.3, "Bloqueios Definidos por Diferentes Instruções SQL no InnoDB"](innodb-locks-set.html)
+[Section 14.7.3, “Locks Set by Different SQL Statements in InnoDB”](innodb-locks-set.html "14.7.3 Locks Set by Different SQL Statements in InnoDB")
 
-[Seção 8.11.4, "Bloqueio de Metadados"](metadata-locking.html)
+[Section 8.11.4, “Metadata Locking”](metadata-locking.html "8.11.4 Metadata Locking")
 
-### LÂMINAR TÁBUAS ... ESCREVER
+### LOCK TABLES ... WRITE
 
-[Seção 14.7.1, "Bloqueio InnoDB"](innodb-locking.html)
+[Section 14.7.1, “InnoDB Locking”](innodb-locking.html "14.7.1 InnoDB Locking")
 
-[Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
+[Section 14.15, “InnoDB Startup Options and System Variables”](innodb-parameters.html "14.15 InnoDB Startup Options and System Variables")
 
-[Seção 14.7.3, "Bloqueios Definidos por Diferentes Instruções SQL no InnoDB"](innodb-locks-set.html)
+[Section 14.7.3, “Locks Set by Different SQL Statements in InnoDB”](innodb-locks-set.html "14.7.3 Locks Set by Different SQL Statements in InnoDB")
 
 ### LOOP
 
-[Seção 13.6.5, “Instruções de controle de fluxo”](flow-control-statements.html)
+[Section 13.6.5, “Flow Control Statements”](flow-control-statements.html "13.6.5 Flow Control Statements")
 
-[Seção 13.6.5.3, "Declaração ITERATE"](iterate.html)
+[Section 13.6.5.3, “ITERATE Statement”](iterate.html "13.6.5.3 ITERATE Statement")
 
-[Seção 13.6.5.4, "Declaração LEAVE"](leave.html)
+[Section 13.6.5.4, “LEAVE Statement”](leave.html "13.6.5.4 LEAVE Statement")
 
-[Seção 13.6.5.5, "Declaração LOOP"](loop.html)
+[Section 13.6.5.5, “LOOP Statement”](loop.html "13.6.5.5 LOOP Statement")
 
-[Seção 13.6.2, "Rotulagem de declarações"](statement-labels.html)
+[Section 13.6.2, “Statement Labels”](statement-labels.html "13.6.2 Statement Labels")
 
 ### O
 
-index topo](dynindex-statement.html#stmt-index-topo)]
+index top](dynindex-statement.html#stmt-index-top)]
 
-### OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO: OBRIGATÓRIO
+### OPTIMIZE PARTITION
 
-[Seção 14.13.1, “Operações DDL Online”](innodb-online-ddl-operations.html)
+[Section 14.13.1, “Online DDL Operations”](innodb-online-ddl-operations.html "14.13.1 Online DDL Operations")
 
-### OTIMIZE TÁBLIA
+### OPTIMIZE TABLE
 
-[Seção 21.6.7.2, “Adicionar nós de dados do NDB Cluster Online: procedimento básico”](mysql-cluster-online-add-node-basics.html)
+[Section 21.6.7.2, “Adding NDB Cluster Data Nodes Online: Basic procedure”](mysql-cluster-online-add-node-basics.html "21.6.7.2 Adding NDB Cluster Data Nodes Online: Basic procedure")
 
-[Seção 21.6.7.3, “Adicionar nós de dados do NDB Cluster Online: Exemplo detalhado”](mysql-cluster-online-add-node-example.html)
+[Section 21.6.7.3, “Adding NDB Cluster Data Nodes Online: Detailed Example”](mysql-cluster-online-add-node-example.html "21.6.7.3 Adding NDB Cluster Data Nodes Online: Detailed Example")
 
-[Seção 5.8.1, “Depuração de um servidor MySQL”](debugging-server.html)
+[Section 5.8.1, “Debugging a MySQL Server”](debugging-server.html "5.8.1 Debugging a MySQL Server")
 
-[Seção 13.2.2, “Instrução DELETE”](delete.html)
+[Section 13.2.2, “DELETE Statement”](delete.html "13.2.2 DELETE Statement")
 
-[Seção 2.11.3, “Notas de Downgrade”](downgrading-to-previous-series.html)
+[Section 2.11.3, “Downgrade Notes”](downgrading-to-previous-series.html "2.11.3 Downgrade Notes")
 
-[Seção 15.2.3.2, “Características dinâmicas da tabela”](dynamic-format.html)
+[Section 15.2.3.2, “Dynamic Table Characteristics”](dynamic-format.html "15.2.3.2 Dynamic Table Characteristics")
 
-[Seção 12.9.6, “Ajuste fino da pesquisa full-text do MySQL”](fulltext-fine-tuning.html)
+[Section 12.9.6, “Fine-Tuning MySQL Full-Text Search”](fulltext-fine-tuning.html "12.9.6 Fine-Tuning MySQL Full-Text Search")
 
-[Seção 8.14.3, “Estados gerais de fios”](general-thread-states.html)
+[Section 8.14.3, “General Thread States”](general-thread-states.html "8.14.3 General Thread States")
 
-[Seção 16.1.6.5, “Variáveis do Sistema de ID de Transação Global”](replication-options-gtids.html)
+[Section 16.1.6.5, “Global Transaction ID System Variables”](replication-options-gtids.html "16.1.6.5 Global Transaction ID System Variables")
 
-[Seção B.3.3.4, “Como o MySQL lida com um disco completo”](full-disk.html)
+[Section B.3.3.4, “How MySQL Handles a Full Disk”](full-disk.html "B.3.3.4 How MySQL Handles a Full Disk")
 
-[Seção 14.6.1.3, “Importando tabelas InnoDB”](innodb-table-import.html)
+[Section 14.6.1.3, “Importing InnoDB Tables”](innodb-table-import.html "14.6.1.3 Importing InnoDB Tables")
 
-[Seção 14.16.4, “Tabelas de Índices FULLTEXT do Schema de Informações InnoDB”](innodb-information-schema-fulltext_index-tables.html)
+[Section 14.16.4, “InnoDB INFORMATION_SCHEMA FULLTEXT Index Tables”](innodb-information-schema-fulltext_index-tables.html "14.16.4 InnoDB INFORMATION_SCHEMA FULLTEXT Index Tables")
 
-[Seção 14.9.2, “Compressão de Páginas InnoDB”](innodb-page-compression.html)
+[Section 14.9.2, “InnoDB Page Compression”](innodb-page-compression.html "14.9.2 InnoDB Page Compression")
 
-[Seção 14.11, "Formatos de Linhas InnoDB"](innodb-row-format.html)
+[Section 14.11, “InnoDB Row Formats”](innodb-row-format.html "14.11 InnoDB Row Formats")
 
-[Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
+[Section 14.15, “InnoDB Startup Options and System Variables”](innodb-parameters.html "14.15 InnoDB Startup Options and System Variables")
 
-[Seção 13.7.6.4, "Declaração de KILL"](kill.html)
+[Section 13.7.6.4, “KILL Statement”](kill.html "13.7.6.4 KILL Statement")
 
-[Seção 21.2.7.2, “Limites e Diferenças do NDB Cluster em Relação aos Limites Padrão do MySQL”](mysql-cluster-limitations-limits.html)
+[Section 21.2.7.2, “Limits and Differences of NDB Cluster from Standard MySQL Limits”](mysql-cluster-limitations-limits.html "21.2.7.2 Limits and Differences of NDB Cluster from Standard MySQL Limits")
 
-[Seção 22.3.4, “Manutenção de Partições”](partitioning-maintenance.html)
+[Section 22.3.4, “Maintenance of Partitions”](partitioning-maintenance.html "22.3.4 Maintenance of Partitions")
 
-[Seção 15.7.2, “Problemas da Tabela MERGE”](merge-table-problems.html)
+[Section 15.7.2, “MERGE Table Problems”](merge-table-problems.html "15.7.2 MERGE Table Problems")
 
-[Seção 7.6, “Manutenção de tabelas MyISAM e recuperação em caso de falha”](myisam-table-maintenance.html)
+[Section 7.6, “MyISAM Table Maintenance and Crash Recovery”](myisam-table-maintenance.html "7.6 MyISAM Table Maintenance and Crash Recovery")
 
-[Seção 7.6.4, “Otimização de Tabelas MyISAM”](myisam-optimization.html)
+[Section 7.6.4, “MyISAM Table Optimization”](myisam-optimization.html "7.6.4 MyISAM Table Optimization")
 
-[Seção 4.6.3.1, “Opções Gerais do myisamchk”](myisamchk-general-options.html)
+[Section 4.6.3.1, “myisamchk General Options”](myisamchk-general-options.html "4.6.3.1 myisamchk General Options")
 
-[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html)
+[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
 
-[Seção 21.4.3.9.1, “Opções do Servidor MySQL para NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld)
+[Section 21.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "21.4.3.9.1 MySQL Server Options for NDB Cluster")
 
-[Seção 4.5.3, “mysqlcheck — Um programa de manutenção de tabelas”](mysqlcheck.html)
+[Section 4.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "4.5.3 mysqlcheck — A Table Maintenance Program")
 
-[Seção 21.6.11.3, “Requisitos de Armazenamento de Dados de Disco do NDB Cluster”](mysql-cluster-disk-data-storage-requirements.html)
+[Section 21.6.11.3, “NDB Cluster Disk Data Storage Requirements”](mysql-cluster-disk-data-storage-requirements.html "21.6.11.3 NDB Cluster Disk Data Storage Requirements")
 
-[Seção 14.13.6, “Limitações do DDL Online”](innodb-online-ddl-limitations.html)
+[Section 14.13.6, “Online DDL Limitations”](innodb-online-ddl-limitations.html "14.13.6 Online DDL Limitations")
 
-[Seção 21.6.12, "Operações online com ALTER TABLE no NDB Cluster"](mysql-cluster-online-operations.html)
+[Section 21.6.12, “Online Operations with ALTER TABLE in NDB Cluster”](mysql-cluster-online-operations.html "21.6.12 Online Operations with ALTER TABLE in NDB Cluster")
 
-[Seção 13.7.2.4, "Instrução OPTIMIZE TABLE"](optimize-table.html)
+[Section 13.7.2.4, “OPTIMIZE TABLE Statement”](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement")
 
-[Seção 8.6.1, “Otimizando consultas MyISAM”](optimizando-consultas-myisam.html)
+[Section 8.6.1, “Optimizing MyISAM Queries”](optimizing-queries-myisam.html "8.6.1 Optimizing MyISAM Queries")
 
-[Seção 8.2.4.2, “Otimização das declarações UPDATE”](update-optimization.html)
+[Section 8.2.4.2, “Optimizing UPDATE Statements”](update-optimization.html "8.2.4.2 Optimizing UPDATE Statements")
 
-[Seção 8.2.6, “Outras dicas de otimização”](misc-optimization-tips.html)
+[Section 8.2.6, “Other Optimization Tips”](miscellaneous-optimization-tips.html "8.2.6 Other Optimization Tips")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 16.4.1.14, “Replicação e FLUSH”](replication-features-flush.html)
+[Section 16.4.1.14, “Replication and FLUSH”](replication-features-flush.html "16.4.1.14 Replication and FLUSH")
 
-[Seção 22.6, “Restrições e Limitações sobre Partição”](partitioning-limitations.html)
+[Section 22.6, “Restrictions and Limitations on Partitioning”](partitioning-limitations.html "22.6 Restrictions and Limitations on Partitioning")
 
-[Seção 5.1.6, “Opções de comando do servidor”](server-options.html)
+[Section 5.1.6, “Server Command Options”](server-options.html "5.1.6 Server Command Options")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 7.6.5, “Configurando um cronograma de manutenção de tabela MyISAM”](myisam-maintenance-schedule.html)
+[Section 7.6.5, “Setting Up a MyISAM Table Maintenance Schedule”](myisam-maintenance-schedule.html "7.6.5 Setting Up a MyISAM Table Maintenance Schedule")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 15.2.3.1, “Características da Tabela Estática (Com Tamanho Fixo)](static-format.html)
+[Section 15.2.3.1, “Static (Fixed-Length) Table Characteristics”](static-format.html "15.2.3.1 Static (Fixed-Length) Table Characteristics")
 
-[Seção 15.5, “O Motor de Armazenamento ARCHIVE”](archive-storage-engine.html)
+[Section 15.5, “The ARCHIVE Storage Engine”](archive-storage-engine.html "15.5 The ARCHIVE Storage Engine")
 
-[Seção 24.4.8, “A tabela INFORMATION_SCHEMA INNODB_FT_BEING_DELETED”](information-schema-innodb-ft-being-deleted-table.html)
+[Section 24.4.8, “The INFORMATION_SCHEMA INNODB_FT_BEING_DELETED Table”](information-schema-innodb-ft-being-deleted-table.html "24.4.8 The INFORMATION_SCHEMA INNODB_FT_BEING_DELETED Table")
 
-[Seção 24.4.9, “A tabela INFORMATION_SCHEMA INNODB_FT_CONFIG”](information-schema-innodb-ft-config-table.html)
+[Section 24.4.9, “The INFORMATION_SCHEMA INNODB_FT_CONFIG Table”](information-schema-innodb-ft-config-table.html "24.4.9 The INFORMATION_SCHEMA INNODB_FT_CONFIG Table")
 
-[Seção 24.4.11, “A tabela INFORMATION_SCHEMA INNODB_FT_DELETED”](information-schema-innodb-ft-deleted-table.html)
+[Section 24.4.11, “The INFORMATION_SCHEMA INNODB_FT_DELETED Table”](information-schema-innodb-ft-deleted-table.html "24.4.11 The INFORMATION_SCHEMA INNODB_FT_DELETED Table")
 
-[Seção 24.4.12, “A tabela INFORMATION_SCHEMA INNODB_FT_INDEX_CACHE”](information-schema-innodb-ft-index-cache-table.html)
+[Section 24.4.12, “The INFORMATION_SCHEMA INNODB_FT_INDEX_CACHE Table”](information-schema-innodb-ft-index-cache-table.html "24.4.12 The INFORMATION_SCHEMA INNODB_FT_INDEX_CACHE Table")
 
-[Seção 24.4.13, “A tabela INFORMATION_SCHEMA INNODB_FT_INDEX_TABLE”](information-schema-innodb-ft-index-table-table.html)
+[Section 24.4.13, “The INFORMATION_SCHEMA INNODB_FT_INDEX_TABLE Table”](information-schema-innodb-ft-index-table-table.html "24.4.13 The INFORMATION_SCHEMA INNODB_FT_INDEX_TABLE Table")
 
-[Seção 21.6.15.27, “Tabela ndbinfo memory_per_fragment”](mysql-cluster-ndbinfo-memory-per-fragment.html)
+[Section 21.6.15.27, “The ndbinfo memory_per_fragment Table”](mysql-cluster-ndbinfo-memory-per-fragment.html "21.6.15.27 The ndbinfo memory_per_fragment Table")
 
-[Seção 5.1.16, “O processo de desligamento do servidor”](server-shutdown.html)
+[Section 5.1.16, “The Server Shutdown Process”](server-shutdown.html "5.1.16 The Server Shutdown Process")
 
-[Seção 5.4.5, “O Log de Consultas Lentas”](slow-query-log.html)
+[Section 5.4.5, “The Slow Query Log”](slow-query-log.html "5.4.5 The Slow Query Log")
 
-[Seção 8.12.3.2, “Usando Links Simbólicos para Tabelas MyISAM no Unix”](symbolic-links-to-tables.html)
+[Section 8.12.3.2, “Using Symbolic Links for MyISAM Tables on Unix”](symbolic-links-to-tables.html "8.12.3.2 Using Symbolic Links for MyISAM Tables on Unix")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
-### ORDEM POR
+### ORDER BY
 
-[Seção 14.1.1, “Benefícios de usar tabelas InnoDB”](innodb-benefits.html)
+[Section 14.1.1, “Benefits of Using InnoDB Tables”](innodb-benefits.html "14.1.1 Benefits of Using InnoDB Tables")
 
 ### P
 
-index topo](dynindex-statement.html#stmt-index-topo)]
+index top](dynindex-statement.html#stmt-index-top)]
 
-### DIVISÃO POR
+### PARTITION BY
 
-[Seção 14.13.1, “Operações DDL Online”](innodb-online-ddl-operations.html)
+[Section 14.13.1, “Online DDL Operations”](innodb-online-ddl-operations.html "14.13.1 Online DDL Operations")
 
 ### PREPARE
 
-[Seção 8.10.4, “Cache de Declarações Preparadas e Programas Armazenados”](statement-caching.html)
+[Section 8.10.4, “Caching of Prepared Statements and Stored Programs”](statement-caching.html "8.10.4 Caching of Prepared Statements and Stored Programs")
 
-[Seção 13.2.1, “Instrução CALL”](call.html)
+[Section 13.2.1, “CALL Statement”](call.html "13.2.1 CALL Statement")
 
-[Seção 13.5.3, “Instrução DEALLOCATE PREPARE”](deallocate-prepare.html)
+[Section 13.5.3, “DEALLOCATE PREPARE Statement”](deallocate-prepare.html "13.5.3 DEALLOCATE PREPARE Statement")
 
-[Seção 13.5.2, “Instrução EXECUTE”](execute.html)
+[Section 13.5.2, “EXECUTE Statement”](execute.html "13.5.2 EXECUTE Statement")
 
-[Seção 9.2.3, “Sensibilidade do identificador”](identifier-case-sensitivity.html)
+[Section 9.2.3, “Identifier Case Sensitivity”](identifier-case-sensitivity.html "9.2.3 Identifier Case Sensitivity")
 
-[Seção 8.11.4, "Bloqueio de Metadados"](metadata-locking.html)
+[Section 8.11.4, “Metadata Locking”](metadata-locking.html "8.11.4 Metadata Locking")
 
-[Seção 13.5.1, “Declaração PREPARE”](prepare.html)
+[Section 13.5.1, “PREPARE Statement”](prepare.html "13.5.1 PREPARE Statement")
 
-[Seção 13.5, "Declarações Preparadas"](sql-prepared-statements.html)
+[Section 13.5, “Prepared Statements”](sql-prepared-statements.html "13.5 Prepared Statements")
 
-[Seção 23.8, “Restrições aos Programas Armazenados”](stored-program-restrictions.html)
+[Section 23.8, “Restrictions on Stored Programs”](stored-program-restrictions.html "23.8 Restrictions on Stored Programs")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 25.12.6.4, “Tabela prepared_statements_instances”](performance-schema-prepared-statements-instances-table.html)
+[Section 25.12.6.4, “The prepared_statements_instances Table”](performance-schema-prepared-statements-instances-table.html "25.12.6.4 The prepared_statements_instances Table")
 
-### LIMPE OS LOGS BINÁRIOS
+### PURGE BINARY LOGS
 
-[Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
+[Section 16.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "16.1.6.4 Binary Logging Options and Variables")
 
-[Seção 7.3.1, “Estabelecimento de uma Política de Backup”](backup-policy.html)
+[Section 7.3.1, “Establishing a Backup Policy”](backup-policy.html "7.3.1 Establishing a Backup Policy")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 13.4.1.1, "Declaração de PURGE BINARY LOGS"](purge-binary-logs.html)
+[Section 13.4.1.1, “PURGE BINARY LOGS Statement”](purge-binary-logs.html "13.4.1.1 PURGE BINARY LOGS Statement")
 
-[Seção 13.4.1.2, “Declaração de RESET MASTER”](reset-master.html)
+[Section 13.4.1.2, “RESET MASTER Statement”](reset-master.html "13.4.1.2 RESET MASTER Statement")
 
-[Seção 5.4.7, “Manutenção do Log do Servidor”](log-file-maintenance.html)
+[Section 5.4.7, “Server Log Maintenance”](log-file-maintenance.html "5.4.7 Server Log Maintenance")
 
-[Seção 5.4.4, “O Log Binário”](binary-log.html)
+[Section 5.4.4, “The Binary Log”](binary-log.html "5.4.4 The Binary Log")
 
-[Seção 16.1.3.5, “Uso de GTIDs para Failover e Scaleout”](replication-gtids-failover.html)
+[Section 16.1.3.5, “Using GTIDs for Failover and Scaleout”](replication-gtids-failover.html "16.1.3.5 Using GTIDs for Failover and Scaleout")
 
 ### R
 
-index topo](dynindex-statement.html#stmt-index-topo)]
+index top](dynindex-statement.html#stmt-index-top)]
 
-### REBUILD PARTIÇÃO
+### REBUILD PARTITION
 
-[Seção 14.13.1, “Operações DDL Online”](innodb-online-ddl-operations.html)
+[Section 14.13.1, “Online DDL Operations”](innodb-online-ddl-operations.html "14.13.1 Online DDL Operations")
 
-### RELANCAR SAVEPOINT
+### RELEASE SAVEPOINT
 
-[Seção 25.12.7, "Tabelas de Transações do Schema de Desempenho"](performance-schema-transaction-tables.html)
+[Section 25.12.7, “Performance Schema Transaction Tables”](performance-schema-transaction-tables.html "25.12.7 Performance Schema Transaction Tables")
 
-[Seção 13.3.4, "Instruções SAVEPOINT, ROLLBACK TO SAVEPOINT e RELEASE SAVEPOINT"](savepoint.html)
+[Section 13.3.4, “SAVEPOINT, ROLLBACK TO SAVEPOINT, and RELEASE SAVEPOINT Statements”](savepoint.html "13.3.4 SAVEPOINT, ROLLBACK TO SAVEPOINT, and RELEASE SAVEPOINT Statements")
 
-[Seção 25.12.7.1, “A tabela events_transactions_current”](performance-schema-events-transactions-current-table.html)
+[Section 25.12.7.1, “The events_transactions_current Table”](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table")
 
-### REMOÇÃO DA PARTIÇÃO
+### REMOVE PARTITIONING
 
-[Seção 14.13.1, “Operações DDL Online”](innodb-online-ddl-operations.html)
+[Section 14.13.1, “Online DDL Operations”](innodb-online-ddl-operations.html "14.13.1 Online DDL Operations")
 
-### RENOMEAR TABELA
+### RENAME TABLE
 
-[Seção 13.1.8, "Instrução ALTER TABLE"](alter-table.html)
+[Section 13.1.8, “ALTER TABLE Statement”](alter-table.html "13.1.8 ALTER TABLE Statement")
 
-[Seção 13.2.2, “Instrução DELETE”](delete.html)
+[Section 13.2.2, “DELETE Statement”](delete.html "13.2.2 DELETE Statement")
 
-[Seção 8.14.3, “Estados gerais de fios”](general-thread-states.html)
+[Section 8.14.3, “General Thread States”](general-thread-states.html "8.14.3 General Thread States")
 
-[Seção 9.2.3, “Sensibilidade do identificador”](identifier-case-sensitivity.html)
+[Section 9.2.3, “Identifier Case Sensitivity”](identifier-case-sensitivity.html "9.2.3 Identifier Case Sensitivity")
 
-[Seção 8.11.4, "Bloqueio de Metadados"](metadata-locking.html)
+[Section 8.11.4, “Metadata Locking”](metadata-locking.html "8.11.4 Metadata Locking")
 
-[Seção 14.6.1.4, “Mover ou Copiar Tabelas InnoDB”](innodb-migration.html)
+[Section 14.6.1.4, “Moving or Copying InnoDB Tables”](innodb-migration.html "14.6.1.4 Moving or Copying InnoDB Tables")
 
-[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html)
+[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
+[Section 4.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "4.5.6 mysqlpump — A Database Backup Program")
 
-[Seção 14.13.1, “Operações DDL Online”](innodb-online-ddl-operations.html)
+[Section 14.13.1, “Online DDL Operations”](innodb-online-ddl-operations.html "14.13.1 Online DDL Operations")
 
-[Seção 13.1.33, "Instrução RENAME TABLE"](rename-table.html)
+[Section 13.1.33, “RENAME TABLE Statement”](rename-table.html "13.1.33 RENAME TABLE Statement")
 
-[Seção 5.4.1, “Selecionando destinos de saída do Log de consulta geral e do Log de consulta lenta”](log-destinations.html)
+[Section 5.4.1, “Selecting General Query Log and Slow Query Log Output Destinations”](log-destinations.html "5.4.1 Selecting General Query Log and Slow Query Log Output Destinations")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 8.12.3.2, “Usando Links Simbólicos para Tabelas MyISAM no Unix”](symbolic-links-to-tables.html)
+[Section 8.12.3.2, “Using Symbolic Links for MyISAM Tables on Unix”](symbolic-links-to-tables.html "8.12.3.2 Using Symbolic Links for MyISAM Tables on Unix")
 
-### RENOMEAR USUÁRIO
+### RENAME USER
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 12.15, “Funções de Informação”](information-functions.html)
+[Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions")
 
-[Seção 5.4.4.4, "Formato de registro para alterações nas tabelas do banco de dados mysql"](binary-log-mysql-database.html)
+[Section 5.4.4.4, “Logging Format for Changes to mysql Database Tables”](binary-log-mysql-database.html "5.4.4.4 Logging Format for Changes to mysql Database Tables")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 13.7.1.5, "Declaração de RENOMEAR USUÁRIO"](rename-user.html)
+[Section 13.7.1.5, “RENAME USER Statement”](rename-user.html "13.7.1.5 RENAME USER Statement")
 
-[Seção 16.4.1.8, “Replicação de CURRENT_USER()”](replication-features-current-user.html)
+[Section 16.4.1.8, “Replication of CURRENT_USER()”](replication-features-current-user.html "16.4.1.8 Replication of CURRENT_USER()")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 23.6, “Controle de Acesso a Objetos Armazenados”](stored-objects-security.html)
+[Section 23.6, “Stored Object Access Control”](stored-objects-security.html "23.6 Stored Object Access Control")
 
-[Seção 23.4.6, “O Agendamento de Eventos e Permissões do MySQL”](events-privileges.html)
+[Section 23.4.6, “The Event Scheduler and MySQL Privileges”](events-privileges.html "23.4.6 The Event Scheduler and MySQL Privileges")
 
-[Seção 6.2.9, “Quando as Alterações de Privilegios Se Tornam Efetivas”](privilege-changes.html)
+[Section 6.2.9, “When Privilege Changes Take Effect”](privilege-changes.html "6.2.9 When Privilege Changes Take Effect")
 
-### REORGANIZAR PARTIÇÃO
+### REORGANIZE PARTITION
 
-[Seção 14.13.1, “Operações DDL Online”](innodb-online-ddl-operations.html)
+[Section 14.13.1, “Online DDL Operations”](innodb-online-ddl-operations.html "14.13.1 Online DDL Operations")
 
-### REPARAR PARTIÇÃO
+### REPAIR PARTITION
 
-[Seção 14.13.1, “Operações DDL Online”](innodb-online-ddl-operations.html)
+[Section 14.13.1, “Online DDL Operations”](innodb-online-ddl-operations.html "14.13.1 Online DDL Operations")
 
-### REPARAR TÁVEL
+### REPAIR TABLE
 
-[Seção 11.2.5, “Limitações do ANO(2) de 2 dígitos e migração para o ANO de 4 dígitos”](migrando-de-ano2.html)
+[Section 11.2.5, “2-Digit YEAR(2) Limitations and Migrating to 4-Digit YEAR”](migrating-from-year2.html "11.2.5 2-Digit YEAR(2) Limitations and Migrating to 4-Digit YEAR")
 
-[Seção 13.1.8.1, “Operações de Partição de Tabela”](alter-table-partition-operations.html)
+[Section 13.1.8.1, “ALTER TABLE Partition Operations”](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations")
 
-[Seção 13.1.8, "Instrução ALTER TABLE"](alter-table.html)
+[Section 13.1.8, “ALTER TABLE Statement”](alter-table.html "13.1.8 ALTER TABLE Statement")
 
-[Seção 2.10.3, “Alterações no MySQL 5.7”](upgrading-from-previous-series.html)
+[Section 2.10.3, “Changes in MySQL 5.7”](upgrading-from-previous-series.html "2.10.3 Changes in MySQL 5.7")
 
-[Seção 13.7.2.2, "Instrução CHECK TABLE"](check-table.html)
+[Section 13.7.2.2, “CHECK TABLE Statement”](check-table.html "13.7.2.2 CHECK TABLE Statement")
 
-[Seção 15.2.4.1, “Tabelas MyISAM corrompidas”](corrompidas-myisam-tables.html)
+[Section 15.2.4.1, “Corrupted MyISAM Tables”](corrupted-myisam-tables.html "15.2.4.1 Corrupted MyISAM Tables")
 
-[Seção 7.2, “Métodos de backup de banco de dados”](backup-methods.html)
+[Section 7.2, “Database Backup Methods”](backup-methods.html "7.2 Database Backup Methods")
 
-[Seção 22.3.3, “Troca de Partições e Subpartições com Tabelas”](partitioning-management-exchange.html)
+[Section 22.3.3, “Exchanging Partitions and Subpartitions with Tables”](partitioning-management-exchange.html "22.3.3 Exchanging Partitions and Subpartitions with Tables")
 
-[Seção 8.11.5, “Bloqueio Externo”](external-locking.html)
+[Section 8.11.5, “External Locking”](external-locking.html "8.11.5 External Locking")
 
-[Seção 12.9.6, “Ajuste fino da pesquisa full-text do MySQL”](fulltext-fine-tuning.html)
+[Section 12.9.6, “Fine-Tuning MySQL Full-Text Search”](fulltext-fine-tuning.html "12.9.6 Fine-Tuning MySQL Full-Text Search")
 
-[Seção 8.14.3, “Estados gerais de fios”](general-thread-states.html)
+[Section 8.14.3, “General Thread States”](general-thread-states.html "8.14.3 General Thread States")
 
-[Seção 16.1.6.5, “Variáveis do Sistema de ID de Transação Global”](replication-options-gtids.html)
+[Section 16.1.6.5, “Global Transaction ID System Variables”](replication-options-gtids.html "16.1.6.5 Global Transaction ID System Variables")
 
-[Seção B.3.3.4, “Como o MySQL lida com um disco completo”](full-disk.html)
+[Section B.3.3.4, “How MySQL Handles a Full Disk”](full-disk.html "B.3.3.4 How MySQL Handles a Full Disk")
 
-[Seção 7.6.3, “Como reparar as tabelas MyISAM”](myisam-repair.html)
+[Section 7.6.3, “How to Repair MyISAM Tables”](myisam-repair.html "7.6.3 How to Repair MyISAM Tables")
 
-[Seção 1.5, “Como relatar bugs ou problemas”](bug-reports.html)
+[Section 1.5, “How to Report Bugs or Problems”](bug-reports.html "1.5 How to Report Bugs or Problems")
 
-[Seção 13.7.6.4, "Declaração de KILL"](kill.html)
+[Section 13.7.6.4, “KILL Statement”](kill.html "13.7.6.4 KILL Statement")
 
-[Seção 13.2.6, “Instrução LOAD DATA”](load-data.html)
+[Section 13.2.6, “LOAD DATA Statement”](load-data.html "13.2.6 LOAD DATA Statement")
 
-[Seção 22.3.4, “Manutenção de Partições”](partitioning-maintenance.html)
+[Section 22.3.4, “Maintenance of Partitions”](partitioning-maintenance.html "22.3.4 Maintenance of Partitions")
 
-[Seção 15.7.2, “Problemas da Tabela MERGE”](merge-table-problems.html)
+[Section 15.7.2, “MERGE Table Problems”](merge-table-problems.html "15.7.2 MERGE Table Problems")
 
-[Seção 15.2.1, “Opções de inicialização do MyISAM”](myisam-start.html)
+[Section 15.2.1, “MyISAM Startup Options”](myisam-start.html "15.2.1 MyISAM Startup Options")
 
-[Seção 7.6, “Manutenção de tabelas MyISAM e recuperação em caso de falha”](myisam-table-maintenance.html)
+[Section 7.6, “MyISAM Table Maintenance and Crash Recovery”](myisam-table-maintenance.html "7.6 MyISAM Table Maintenance and Crash Recovery")
 
-[Seção 4.6.3.1, “Opções Gerais do myisamchk”](myisamchk-general-options.html)
+[Section 4.6.3.1, “myisamchk General Options”](myisamchk-general-options.html "4.6.3.1 myisamchk General Options")
 
-[Seção 4.6.3, “myisamchk — Ferramenta de manutenção de tabelas MyISAM”](myisamchk.html)
+[Section 4.6.3, “myisamchk — MyISAM Table-Maintenance Utility”](myisamchk.html "4.6.3 myisamchk — MyISAM Table-Maintenance Utility")
 
-[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html)
+[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
 
-[Seção 4.5.3, “mysqlcheck — Um programa de manutenção de tabelas”](mysqlcheck.html)
+[Section 4.5.3, “mysqlcheck — A Table Maintenance Program”](mysqlcheck.html "4.5.3 mysqlcheck — A Table Maintenance Program")
 
-[Seção 8.6.3, “Otimização das declarações da tabela REPAIR”](repair-table-optimization.html)
+[Section 8.6.3, “Optimizing REPAIR TABLE Statements”](repair-table-optimization.html "8.6.3 Optimizing REPAIR TABLE Statements")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 15.2.4.2, “Problemas com tabelas que não são fechadas corretamente”](myisam-table-close.html)
+[Section 15.2.4.2, “Problems from Tables Not Being Closed Properly”](myisam-table-close.html "15.2.4.2 Problems from Tables Not Being Closed Properly")
 
-[Seção B.3.6.1, “Problemas com ALTER TABLE”](alter-table-problems.html)
+[Section B.3.6.1, “Problems with ALTER TABLE”](alter-table-problems.html "B.3.6.1 Problems with ALTER TABLE")
 
-[Seção 2.10.12, “Reestruturação ou reparo de tabelas ou índices”](rebuilding-tables.html)
+[Section 2.10.12, “Rebuilding or Repairing Tables or Indexes”](rebuilding-tables.html "2.10.12 Rebuilding or Repairing Tables or Indexes")
 
-[Seção 13.7.2.5, “Declaração de REPAIR TABLE”](repair-table.html)
+[Section 13.7.2.5, “REPAIR TABLE Statement”](repair-table.html "13.7.2.5 REPAIR TABLE Statement")
 
-[Seção 15.4.1, “Reparando e verificando tabelas CSV”](se-csv-repair.html)
+[Section 15.4.1, “Repairing and Checking CSV Tables”](se-csv-repair.html "15.4.1 Repairing and Checking CSV Tables")
 
-[Seção 16.4.1.14, “Replicação e FLUSH”](replication-features-flush.html)
+[Section 16.4.1.14, “Replication and FLUSH”](replication-features-flush.html "16.4.1.14 Replication and FLUSH")
 
-[Seção 16.4.1.24, “Replicação e REPARAR TÁBLIA”](replication-features-repair-table.html)
+[Section 16.4.1.24, “Replication and REPAIR TABLE”](replication-features-repair-table.html "16.4.1.24 Replication and REPAIR TABLE")
 
-[Seção 21.5.24.1.2, “Restauração de um backup do NDB para uma versão posterior do NDB Cluster”](ndb-restore-to-different-version.html#ndb-restore-to-later-version)
+[Section 21.5.24.1.2, “Restoring an NDB backup to a later version of NDB Cluster”](ndb-restore-to-different-version.html#ndb-restore-to-later-version "21.5.24.1.2 Restoring an NDB backup to a later version of NDB Cluster")
 
-[Seção 22.6, “Restrições e Limitações sobre Partição”](partitioning-limitations.html)
+[Section 22.6, “Restrictions and Limitations on Partitioning”](partitioning-limitations.html "22.6 Restrictions and Limitations on Partitioning")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 7.6.5, “Configurando um cronograma de manutenção de tabela MyISAM”](myisam-maintenance-schedule.html)
+[Section 7.6.5, “Setting Up a MyISAM Table Maintenance Schedule”](myisam-maintenance-schedule.html "7.6.5 Setting Up a MyISAM Table Maintenance Schedule")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 15.5, “O Motor de Armazenamento ARCHIVE”](archive-storage-engine.html)
+[Section 15.5, “The ARCHIVE Storage Engine”](archive-storage-engine.html "15.5 The ARCHIVE Storage Engine")
 
-[Seção 5.1.16, “O processo de desligamento do servidor”](server-shutdown.html)
+[Section 5.1.16, “The Server Shutdown Process”](server-shutdown.html "5.1.16 The Server Shutdown Process")
 
-[Seção 5.4.5, “O Log de Consultas Lentas”](slow-query-log.html)
+[Section 5.4.5, “The Slow Query Log”](slow-query-log.html "5.4.5 The Slow Query Log")
 
-[Seção 8.12.3.2, “Usando Links Simbólicos para Tabelas MyISAM no Unix”](symbolic-links-to-tables.html)
+[Section 8.12.3.2, “Using Symbolic Links for MyISAM Tables on Unix”](symbolic-links-to-tables.html "8.12.3.2 Using Symbolic Links for MyISAM Tables on Unix")
 
-### REPETIR
+### REPEAT
 
-[Seção 13.6.7.2, "DECLARAR ... Declaração de Manipulador"](declare-handler.html)
+[Section 13.6.7.2, “DECLARE ... HANDLER Statement”](declare-handler.html "13.6.7.2 DECLARE ... HANDLER Statement")
 
-[Seção 23.1, “Definindo Programas Armazenados”](stored-programs-defining.html)
+[Section 23.1, “Defining Stored Programs”](stored-programs-defining.html "23.1 Defining Stored Programs")
 
-[Seção 13.6.5, “Instruções de controle de fluxo”](flow-control-statements.html)
+[Section 13.6.5, “Flow Control Statements”](flow-control-statements.html "13.6.5 Flow Control Statements")
 
-[Seção 13.6.5.3, "Declaração ITERATE"](iterate.html)
+[Section 13.6.5.3, “ITERATE Statement”](iterate.html "13.6.5.3 ITERATE Statement")
 
-[Seção 13.6.5.4, "Declaração LEAVE"](leave.html)
+[Section 13.6.5.4, “LEAVE Statement”](leave.html "13.6.5.4 LEAVE Statement")
 
-[Seção 13.6.5.6, "Instrução REPEAT"](repeat.html)
+[Section 13.6.5.6, “REPEAT Statement”](repeat.html "13.6.5.6 REPEAT Statement")
 
-[Seção 13.6.2, "Rotulagem de declarações"](statement-labels.html)
+[Section 13.6.2, “Statement Labels”](statement-labels.html "13.6.2 Statement Labels")
 
-### REPLACAR
+### REPLACE
 
-[Seção 16.2.1.1, “Vantagens e desvantagens da replicação baseada em declarações e baseada em linhas”](replication-sbr-rbr.html)
+[Section 16.2.1.1, “Advantages and Disadvantages of Statement-Based and Row-Based Replication”](replication-sbr-rbr.html "16.2.1.1 Advantages and Disadvantages of Statement-Based and Row-Based Replication")
 
-[Seção 14.6.1.6, “Tratamento de AUTO_INCREMENT no InnoDB”](innodb-auto-increment-handling.html)
+[Section 14.6.1.6, “AUTO_INCREMENT Handling in InnoDB”](innodb-auto-increment-handling.html "14.6.1.6 AUTO_INCREMENT Handling in InnoDB")
 
-[Seção 13.1.18.7, “Criar Tabela e Colunas Geradas”](create-table-generated-columns.html)
+[Section 13.1.18.7, “CREATE TABLE and Generated Columns”](create-table-generated-columns.html "13.1.18.7 CREATE TABLE and Generated Columns")
 
-[Seção 13.1.20, "Instrução CREATE TRIGGER"](create-trigger.html)
+[Section 13.1.20, “CREATE TRIGGER Statement”](create-trigger.html "13.1.20 CREATE TRIGGER Statement")
 
-[Seção 11.6, “Valores padrão de tipo de dados”](data-type-defaults.html)
+[Section 11.6, “Data Type Default Values”](data-type-defaults.html "11.6 Data Type Default Values")
 
-[Seção 8.8.2, “Formato de Saída EXPLAIN”](explain-output.html)
+[Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
 
-[Seção 13.8.2, “Instrução EXPLAIN”](explain.html)
+[Section 13.8.2, “EXPLAIN Statement”](explain.html "13.8.2 EXPLAIN Statement")
 
-[Seção 8.8.3, “Formato de saída EXPLAIN estendido”](explain-extended.html)
+[Section 8.8.3, “Extended EXPLAIN Output Format”](explain-extended.html "8.8.3 Extended EXPLAIN Output Format")
 
-[Seção 12.15, “Funções de Informação”](information-functions.html)
+[Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions")
 
-[Seção 13.2.5, “Instrução INSERT”](insert.html)
+[Section 13.2.5, “INSERT Statement”](insert.html "13.2.5 INSERT Statement")
 
-[Seção B.3.7, “Problemas Conhecidos no MySQL”](known-issues.html)
+[Section B.3.7, “Known Issues in MySQL”](known-issues.html "B.3.7 Known Issues in MySQL")
 
-[Seção 14.7.3, "Bloqueios Definidos por Diferentes Instruções SQL no InnoDB"](innodb-locks-set.html)
+[Section 14.7.3, “Locks Set by Different SQL Statements in InnoDB”](innodb-locks-set.html "14.7.3 Locks Set by Different SQL Statements in InnoDB")
 
-[Seção 5.4.4.4, "Formato de registro para alterações nas tabelas do banco de dados mysql"](binary-log-mysql-database.html)
+[Section 5.4.4.4, “Logging Format for Changes to mysql Database Tables”](binary-log-mysql-database.html "5.4.4.4 Logging Format for Changes to mysql Database Tables")
 
-[Seção 15.7.2, “Problemas da Tabela MERGE”](merge-table-problems.html)
+[Section 15.7.2, “MERGE Table Problems”](merge-table-problems.html "15.7.2 MERGE Table Problems")
 
-[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html)
+[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
 
-[Seção B.3.2.7, “O servidor MySQL desapareceu”](gone-away.html)
+[Section B.3.2.7, “MySQL server has gone away”](gone-away.html "B.3.2.7 MySQL server has gone away")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
+[Section 4.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "4.5.6 mysqlpump — A Database Backup Program")
 
-[Seção 8.8.4, “Obtendo informações do plano de execução para uma conexão nomeada”](explain-for-connection.html)
+[Section 8.8.4, “Obtaining Execution Plan Information for a Named Connection”](explain-for-connection.html "8.8.4 Obtaining Execution Plan Information for a Named Connection")
 
-[Seção 8.9.3, “Dicas do otimizador”](optimizer-hints.html)
+[Section 8.9.3, “Optimizer Hints”](optimizer-hints.html "8.9.3 Optimizer Hints")
 
-[Seção 8.8.1, “Otimizando consultas com EXPLAIN”](using-explain.html)
+[Section 8.8.1, “Optimizing Queries with EXPLAIN”](using-explain.html "8.8.1 Optimizing Queries with EXPLAIN")
 
-[Seção 22.1, “Visão geral da partição no MySQL”](partitioning-overview.html)
+[Section 22.1, “Overview of Partitioning in MySQL”](partitioning-overview.html "22.1 Overview of Partitioning in MySQL")
 
-[Seção 22.5, “Seleção de Partição”](partitioning-selection.html)
+[Section 22.5, “Partition Selection”](partitioning-selection.html "22.5 Partition Selection")
 
-[Seção 22.6.4, “Partição e Bloqueio”](partitioning-limitations-locking.html)
+[Section 22.6.4, “Partitioning and Locking”](partitioning-limitations-locking.html "22.6.4 Partitioning and Locking")
 
-[Seção 13.2.8, “Instrução REPLACE”](replace.html)
+[Section 13.2.8, “REPLACE Statement”](replace.html "13.2.8 REPLACE Statement")
 
-[Seção 22.6, “Restrições e Limitações sobre Partição”](partitioning-limitations.html)
+[Section 22.6, “Restrictions and Limitations on Partitioning”](partitioning-limitations.html "22.6 Restrictions and Limitations on Partitioning")
 
-[Seção 13.2.10, "Subconsultas"](subqueries.html)
+[Section 13.2.10, “Subqueries”](subqueries.html "13.2.10 Subqueries")
 
-[Seção 15.5, “O Motor de Armazenamento ARCHIVE”](archive-storage-engine.html)
+[Section 15.5, “The ARCHIVE Storage Engine”](archive-storage-engine.html "15.5 The ARCHIVE Storage Engine")
 
-[Seção 1.2.2, “Principais características do MySQL”](features.html)
+[Section 1.2.2, “The Main Features of MySQL”](features.html "1.2.2 The Main Features of MySQL")
 
-[Seção 21.6.15.29, “Tabela ndbinfo operations_per_fragment”](mysql-cluster-ndbinfo-operations-per-fragment.html)
+[Section 21.6.15.29, “The ndbinfo operations_per_fragment Table”](mysql-cluster-ndbinfo-operations-per-fragment.html "21.6.15.29 The ndbinfo operations_per_fragment Table")
 
-[Seção 8.15.3, “Declarações rastreáveis”](traceable-statements.html)
+[Section 8.15.3, “Traceable Statements”](traceable-statements.html "8.15.3 Traceable Statements")
 
-[Seção 13.2.11, "Declaração de Atualização"](update.html)
+[Section 13.2.11, “UPDATE Statement”](update.html "13.2.11 UPDATE Statement")
 
-[Seção 6.4.5.8, “Definições de filtro de registro de auditoria”](audit-log-filter-definitions.html)
+[Section 6.4.5.8, “Writing Audit Log Filter Definitions”](audit-log-filter-definitions.html "6.4.5.8 Writing Audit Log Filter Definitions")
 
-### REPLACAR ... SELECIONE
+### REPLACE ... SELECT
 
-[Seção 14.6.1.6, “Tratamento de AUTO_INCREMENT no InnoDB”](innodb-auto-increment-handling.html)
+[Section 14.6.1.6, “AUTO_INCREMENT Handling in InnoDB”](innodb-auto-increment-handling.html "14.6.1.6 AUTO_INCREMENT Handling in InnoDB")
 
-[Seção B.3.7, “Problemas Conhecidos no MySQL”](known-issues.html)
+[Section B.3.7, “Known Issues in MySQL”](known-issues.html "B.3.7 Known Issues in MySQL")
 
-### REPLACAR ATÉ O TEMPO ALCANCEU
+### REPLACE DELAYED
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
-### REESTABELECER
+### RESET
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
-[Seção 16.1.6.5, “Variáveis do Sistema de ID de Transação Global”](replication-options-gtids.html)
+[Section 16.1.6.5, “Global Transaction ID System Variables”](replication-options-gtids.html "16.1.6.5 Global Transaction ID System Variables")
 
-[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html)
+[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 13.7.6.6, "Declaração de RESET"](reset.html)
+[Section 13.7.6.6, “RESET Statement”](reset.html "13.7.6.6 RESET Statement")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
 ### RESET MASTER
 
-[Seção 16.1.6.5, “Variáveis do Sistema de ID de Transação Global”](replication-options-gtids.html)
+[Section 16.1.6.5, “Global Transaction ID System Variables”](replication-options-gtids.html "16.1.6.5 Global Transaction ID System Variables")
 
-[Seção 16.1.3.1, "Formato e Armazenamento do GTID"](replication-gtids-concepts.html)
+[Section 16.1.3.1, “GTID Format and Storage”](replication-gtids-concepts.html "16.1.3.1 GTID Format and Storage")
 
-[Seção 16.1.3.2, “Ciclo de Vida do GTID”](replication-gtids-lifecycle.html)
+[Section 16.1.3.2, “GTID Life Cycle”](replication-gtids-lifecycle.html "16.1.3.2 GTID Life Cycle")
 
-[Seção 21.7.3, “Problemas Conhecidos na Replicação de NDB Cluster”](mysql-cluster-replication-issues.html)
+[Section 21.7.3, “Known Issues in NDB Cluster Replication”](mysql-cluster-replication-issues.html "21.7.3 Known Issues in NDB Cluster Replication")
 
-[Seção 16.1.5.2, “Configuração de uma Replicação de Multi-Fonte para Replicação Baseada em GTID”](replication-multi-source-provision-replica.html)
+[Section 16.1.5.2, “Provisioning a Multi-Source Replica for GTID-Based Replication”](replication-multi-source-provision-replica.html "16.1.5.2 Provisioning a Multi-Source Replica for GTID-Based Replication")
 
-[Seção 13.4.1.2, “Declaração de RESET MASTER”](reset-master.html)
+[Section 13.4.1.2, “RESET MASTER Statement”](reset-master.html "13.4.1.2 RESET MASTER Statement")
 
-[Seção 13.4.2.3, "Declaração de RESET SLAVE"](reset-slave.html)
+[Section 13.4.2.3, “RESET SLAVE Statement”](reset-slave.html "13.4.2.3 RESET SLAVE Statement")
 
-[Seção 16.1.5.7, “Reinicialização de Replicas de Múltiplas Fontes”](replication-multi-source-reset-replica.html)
+[Section 16.1.5.7, “Resetting Multi-Source Replicas”](replication-multi-source-reset-replica.html "16.1.5.7 Resetting Multi-Source Replicas")
 
-[Seção 13.7.5.34, "Declaração de Status de Escravo"](show-slave-status.html)
+[Section 13.7.5.34, “SHOW SLAVE STATUS Statement”](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement")
 
-[Seção 16.3.7, “Alteração de fontes durante o failover”](replication-solutions-switch.html)
+[Section 16.3.7, “Switching Sources During Failover”](replication-solutions-switch.html "16.3.7 Switching Sources During Failover")
 
-[Seção 5.4.4, “O Log Binário”](binary-log.html)
+[Section 5.4.4, “The Binary Log”](binary-log.html "5.4.4 The Binary Log")
 
-[Seção 25.12.11.5, “A tabela replication_applier_status_by_coordinator”](performance-schema-replication-applier-status-by-coordinator-table.html)
+[Section 25.12.11.5, “The replication_applier_status_by_coordinator Table”](performance-schema-replication-applier-status-by-coordinator-table.html "25.12.11.5 The replication_applier_status_by_coordinator Table")
 
-[Seção 25.12.11.6, “A tabela replication_applier_status_by_worker”](performance-schema-replication-applier-status-by-worker-table.html)
+[Section 25.12.11.6, “The replication_applier_status_by_worker Table”](performance-schema-replication-applier-status-by-worker-table.html "25.12.11.6 The replication_applier_status_by_worker Table")
 
-[Seção 25.12.11.2, “A tabela replication_connection_status”](performance-schema-replication-connection-status-table.html)
+[Section 25.12.11.2, “The replication_connection_status Table”](performance-schema-replication-connection-status-table.html "25.12.11.2 The replication_connection_status Table")
 
-### REESTABELECER CACHE DA PESQUISA
+### RESET QUERY CACHE
 
-[Seção 8.14.4, “Estados de Cache de Consulta de Fila”](query-cache-thread-states.html)
+[Section 8.14.4, “Query Cache Thread States”](query-cache-thread-states.html "8.14.4 Query Cache Thread States")
 
-[Seção 13.7.6.6, "Declaração de RESET"](reset.html)
+[Section 13.7.6.6, “RESET Statement”](reset.html "13.7.6.6 RESET Statement")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
 ### RESET SLAVE
 
-[Seção 13.4.2.1, “Mudar o mestre para declaração”](change-master-to.html)
+[Section 13.4.2.1, “CHANGE MASTER TO Statement”](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement")
 
-[Seção 16.2.2.1, “Comandos para operações em um único canal”](channels-commands-single-channel.html)
+[Section 16.2.2.1, “Commands for Operations on a Single Channel”](channels-commands-single-channel.html "16.2.2.1 Commands for Operations on a Single Channel")
 
-[Seção 16.2.2.2, “Compatibilidade com Declarações de Replicação Prévias”](channels-with-prev-replication.html)
+[Section 16.2.2.2, “Compatibility with Previous Replication Statements”](channels-with-prev-replication.html "16.2.2.2 Compatibility with Previous Replication Statements")
 
-[Seção 16.3.10, “Replicação Atrasa”](replication-delayed.html)
+[Section 16.3.10, “Delayed Replication”](replication-delayed.html "16.3.10 Delayed Replication")
 
-[Seção 16.1.3.2, “Ciclo de Vida do GTID”](replication-gtids-lifecycle.html)
+[Section 16.1.3.2, “GTID Life Cycle”](replication-gtids-lifecycle.html "16.1.3.2 GTID Life Cycle")
 
-[Seção 21.7.3, “Problemas Conhecidos na Replicação de NDB Cluster”](mysql-cluster-replication-issues.html)
+[Section 21.7.3, “Known Issues in NDB Cluster Replication”](mysql-cluster-replication-issues.html "21.7.3 Known Issues in NDB Cluster Replication")
 
-[Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
+[Section 21.4.3.9.2, “NDB Cluster System Variables”](mysql-cluster-options-variables.html#mysql-cluster-system-variables "21.4.3.9.2 NDB Cluster System Variables")
 
-[Seção 16.1.6, “Opções e variáveis de registro binário e replicação”](replication-options.html)
+[Section 16.1.6, “Replication and Binary Logging Options and Variables”](replication-options.html "16.1.6 Replication and Binary Logging Options and Variables")
 
-[Seção 16.4.1.32, "Inconsistências de Replicação e Transação"](replication-features-transaction-inconsistencies.html)
+[Section 16.4.1.32, “Replication and Transaction Inconsistencies”](replication-features-transaction-inconsistencies.html "16.4.1.32 Replication and Transaction Inconsistencies")
 
-[Seção 16.2.4.2, "Repositórios de Metadados de Replicação"](replica-logs-status.html)
+[Section 16.2.4.2, “Replication Metadata Repositories”](replica-logs-status.html "16.2.4.2 Replication Metadata Repositories")
 
-[Seção 13.4.1.2, “Declaração de RESET MASTER”](reset-master.html)
+[Section 13.4.1.2, “RESET MASTER Statement”](reset-master.html "13.4.1.2 RESET MASTER Statement")
 
-[Seção 13.4.2.3, "Declaração de RESET SLAVE"](reset-slave.html)
+[Section 13.4.2.3, “RESET SLAVE Statement”](reset-slave.html "13.4.2.3 RESET SLAVE Statement")
 
-[Seção 16.1.5.7, “Reinicialização de Replicas de Múltiplas Fontes”](replication-multi-source-reset-replica.html)
+[Section 16.1.5.7, “Resetting Multi-Source Replicas”](replication-multi-source-reset-replica.html "16.1.5.7 Resetting Multi-Source Replicas")
 
-[Seção 13.7.5.34, "Declaração de Status de Escravo"](show-slave-status.html)
+[Section 13.7.5.34, “SHOW SLAVE STATUS Statement”](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 25.12.11.5, “A tabela replication_applier_status_by_coordinator”](performance-schema-replication-applier-status-by-coordinator-table.html)
+[Section 25.12.11.5, “The replication_applier_status_by_coordinator Table”](performance-schema-replication-applier-status-by-coordinator-table.html "25.12.11.5 The replication_applier_status_by_coordinator Table")
 
-[Seção 25.12.11.6, “A tabela replication_applier_status_by_worker”](performance-schema-replication-applier-status-by-worker-table.html)
+[Section 25.12.11.6, “The replication_applier_status_by_worker Table”](performance-schema-replication-applier-status-by-worker-table.html "25.12.11.6 The replication_applier_status_by_worker Table")
 
-[Seção 25.12.11.2, “A tabela replication_connection_status”](performance-schema-replication-connection-status-table.html)
+[Section 25.12.11.2, “The replication_connection_status Table”](performance-schema-replication-connection-status-table.html "25.12.11.2 The replication_connection_status Table")
 
 ### RESET SLAVE ALL
 
-[Seção 13.4.2.1, “Mudar o mestre para declaração”](change-master-to.html)
+[Section 13.4.2.1, “CHANGE MASTER TO Statement”](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement")
 
-[Seção 13.4.2.3, "Declaração de RESET SLAVE"](reset-slave.html)
+[Section 13.4.2.3, “RESET SLAVE Statement”](reset-slave.html "13.4.2.3 RESET SLAVE Statement")
 
 ### RESIGNAL
 
-[Seção 13.6.7, “Tratamento de Condições”](condition-handling.html)
+[Section 13.6.7, “Condition Handling”](condition-handling.html "13.6.7 Condition Handling")
 
-[Seção 13.6.7.8, “Manipulação de Condições e Parâmetros OUT ou INOUT”](conditions-and-parameters.html)
+[Section 13.6.7.8, “Condition Handling and OUT or INOUT Parameters”](conditions-and-parameters.html "13.6.7.8 Condition Handling and OUT or INOUT Parameters")
 
-[Seção 13.6.7.1, "Declaração de condição ... DECLARE"](declare-condition.html)
+[Section 13.6.7.1, “DECLARE ... CONDITION Statement”](declare-condition.html "13.6.7.1 DECLARE ... CONDITION Statement")
 
-[Seção 13.6.7.2, "DECLARAR ... Declaração de Manipulador"](declare-handler.html)
+[Section 13.6.7.2, “DECLARE ... HANDLER Statement”](declare-handler.html "13.6.7.2 DECLARE ... HANDLER Statement")
 
-[Seção 13.6.7.3, "Declaração de DIAGNÓSTICOS"](get-diagnostics.html)
+[Section 13.6.7.3, “GET DIAGNOSTICS Statement”](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement")
 
-[Seção 13.6.7.4, "Declaração RESIGNAL"](resignal.html)
+[Section 13.6.7.4, “RESIGNAL Statement”](resignal.html "13.6.7.4 RESIGNAL Statement")
 
-[Seção 13.6.7.9, “Restrições para o manuseio de condições”](condition-handling-restrictions.html)
+[Section 13.6.7.9, “Restrictions on Condition Handling”](condition-handling-restrictions.html "13.6.7.9 Restrictions on Condition Handling")
 
-[Seção 23.8, “Restrições aos Programas Armazenados”](stored-program-restrictions.html)
+[Section 23.8, “Restrictions on Stored Programs”](stored-program-restrictions.html "23.8 Restrictions on Stored Programs")
 
-[Seção 13.6.7.6, “Regras de escopo para manipuladores”](handler-scope.html)
+[Section 13.6.7.6, “Scope Rules for Handlers”](handler-scope.html "13.6.7.6 Scope Rules for Handlers")
 
-[Seção 13.6.7.5, “Declaração de Sinal”](signal.html)
+[Section 13.6.7.5, “SIGNAL Statement”](signal.html "13.6.7.5 SIGNAL Statement")
 
-[Seção 13.6.7.7, “A Área de Diagnóstico do MySQL”](diagnostics-area.html)
+[Section 13.6.7.7, “The MySQL Diagnostics Area”](diagnostics-area.html "13.6.7.7 The MySQL Diagnostics Area")
 
-### VOLTAR
+### RETURN
 
-[Seção 8.10.4, “Cache de Declarações Preparadas e Programas Armazenados”](statement-caching.html)
+[Section 8.10.4, “Caching of Prepared Statements and Stored Programs”](statement-caching.html "8.10.4 Caching of Prepared Statements and Stored Programs")
 
-[Seção 13.1.16, "Instruções CREATE PROCEDURE e CREATE FUNCTION"](create-procedure.html)
+[Section 13.1.16, “CREATE PROCEDURE and CREATE FUNCTION Statements”](create-procedure.html "13.1.16 CREATE PROCEDURE and CREATE FUNCTION Statements")
 
-[Seção 13.6.5, “Instruções de controle de fluxo”](flow-control-statements.html)
+[Section 13.6.5, “Flow Control Statements”](flow-control-statements.html "13.6.5 Flow Control Statements")
 
-[Seção 13.6.5.5, "Declaração LOOP"](loop.html)
+[Section 13.6.5.5, “LOOP Statement”](loop.html "13.6.5.5 LOOP Statement")
 
-[Seção 23.8, “Restrições aos Programas Armazenados”](stored-program-restrictions.html)
+[Section 23.8, “Restrictions on Stored Programs”](stored-program-restrictions.html "23.8 Restrictions on Stored Programs")
 
-[Seção 13.6.5.7, "Instrução RETURN"](return.html)
+[Section 13.6.5.7, “RETURN Statement”](return.html "13.6.5.7 RETURN Statement")
 
-[Seção 13.6.7.5, “Declaração de Sinal”](signal.html)
+[Section 13.6.7.5, “SIGNAL Statement”](signal.html "13.6.7.5 SIGNAL Statement")
 
-[Seção 13.6.7.7, “A Área de Diagnóstico do MySQL”](diagnostics-area.html)
+[Section 13.6.7.7, “The MySQL Diagnostics Area”](diagnostics-area.html "13.6.7.7 The MySQL Diagnostics Area")
 
-[Seção 8.15.3, “Declarações rastreáveis”](traceable-statements.html)
+[Section 8.15.3, “Traceable Statements”](traceable-statements.html "8.15.3 Traceable Statements")
 
-### REVOGAR
+### REVOKE
 
-[Seção 6.2, “Controle de Acesso e Gerenciamento de Contas”](access-control.html)
+[Section 6.2, “Access Control and Account Management”](access-control.html "6.2 Access Control and Account Management")
 
-[Seção 6.2.1, “Nomes de Usuários e Senhas de Conta”](user-names.html)
+[Section 6.2.1, “Account User Names and Passwords”](user-names.html "6.2.1 Account User Names and Passwords")
 
-[Seção 6.2.7, “Adicionar contas, atribuir privilégios e excluir contas”](creating-accounts.html)
+[Section 6.2.7, “Adding Accounts, Assigning Privileges, and Dropping Accounts”](creating-accounts.html "6.2.7 Adding Accounts, Assigning Privileges, and Dropping Accounts")
 
-[Seção 16.2.1.1, “Vantagens e desvantagens da replicação baseada em declarações e baseada em linhas”](replication-sbr-rbr.html)
+[Section 16.2.1.1, “Advantages and Disadvantages of Statement-Based and Row-Based Replication”](replication-sbr-rbr.html "16.2.1.1 Advantages and Disadvantages of Statement-Based and Row-Based Replication")
 
-[Seção 14.8.2, “Configurando a InnoDB para operação apenas de leitura”](innodb-read-only-instance.html)
+[Section 14.8.2, “Configuring InnoDB for Read-Only Operation”](innodb-read-only-instance.html "14.8.2 Configuring InnoDB for Read-Only Operation")
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 6.2.3, “Tabelas de subsídios”](grant-tables.html)
+[Section 6.2.3, “Grant Tables”](grant-tables.html "6.2.3 Grant Tables")
 
-[Seção 8.12.4.1, “Como o MySQL Usa a Memória”](memory-use.html)
+[Section 8.12.4.1, “How MySQL Uses Memory”](memory-use.html "8.12.4.1 How MySQL Uses Memory")
 
-[Seção 12.15, “Funções de Informação”](information-functions.html)
+[Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions")
 
-[Seção 5.1.12, “Suporte ao IPv6”](ipv6-support.html)
+[Section 5.1.12, “IPv6 Support”](ipv6-support.html "5.1.12 IPv6 Support")
 
-[Seção 5.4.4.4, "Formato de registro para alterações nas tabelas do banco de dados mysql"](binary-log-mysql-database.html)
+[Section 5.4.4.4, “Logging Format for Changes to mysql Database Tables”](binary-log-mysql-database.html "5.4.4.4 Logging Format for Changes to mysql Database Tables")
 
-[Seção A.14, “Perguntas frequentes sobre o MySQL 5.7: Replicação”](faqs-replication.html)
+[Section A.14, “MySQL 5.7 FAQ: Replication”](faqs-replication.html "A.14 MySQL 5.7 FAQ: Replication")
 
-[Seção 1.6.2, “Diferenças do MySQL em relação ao SQL Padrão”](diferenças-em-relação-ao-ansi.html)
+[Section 1.6.2, “MySQL Differences from Standard SQL”](differences-from-ansi.html "1.6.2 MySQL Differences from Standard SQL")
 
-[Glossário do MySQL](glossary.html)
+[MySQL Glossary](glossary.html "MySQL Glossary")
 
-[Seção 21.6.18.2, "Nível de privilégio do NDB Cluster e MySQL"](mysql-cluster-security-mysql-privileges.html)
+[Section 21.6.18.2, “NDB Cluster and MySQL Privileges”](mysql-cluster-security-mysql-privileges.html "21.6.18.2 NDB Cluster and MySQL Privileges")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 6.2.14, “Usuários de Proxy”](proxy-users.html)
+[Section 6.2.14, “Proxy Users”](proxy-users.html "6.2.14 Proxy Users")
 
-[Seção 16.4.1.8, “Replicação de CURRENT_USER()”](replication-features-current-user.html)
+[Section 16.4.1.8, “Replication of CURRENT_USER()”](replication-features-current-user.html "16.4.1.8 Replication of CURRENT_USER()")
 
-[Seção 16.4.1.21, “Replicação do banco de dados do sistema mysql”](replication-features-mysqldb.html)
+[Section 16.4.1.21, “Replication of the mysql System Database”](replication-features-mysqldb.html "16.4.1.21 Replication of the mysql System Database")
 
-[Seção 13.7.1.6, "Declaração de Revogação"](revoke.html)
+[Section 13.7.1.6, “REVOKE Statement”](revoke.html "13.7.1.6 REVOKE Statement")
 
-[Seção 6.1.1, “Diretrizes de Segurança”](security-guidelines.html)
+[Section 6.1.1, “Security Guidelines”](security-guidelines.html "6.1.1 Security Guidelines")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 23.4.6, “O Agendamento de Eventos e Permissões do MySQL”](events-privileges.html)
+[Section 23.4.6, “The Event Scheduler and MySQL Privileges”](events-privileges.html "23.4.6 The Event Scheduler and MySQL Privileges")
 
-[Seção 6.2.9, “Quando as Alterações de Privilegios Se Tornam Efetivas”](privilege-changes.html)
+[Section 6.2.9, “When Privilege Changes Take Effect”](privilege-changes.html "6.2.9 When Privilege Changes Take Effect")
 
-### REVOGAR TODOS OS DIREITOS
+### REVOKE ALL PRIVILEGES
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-### RETRATE
+### ROLLBACK
 
-[Seção 14.7.2.2, "autocommit, Commit e Rollback"](innodb-autocommit-commit-rollback.html)
+[Section 14.7.2.2, “autocommit, Commit, and Rollback”](innodb-autocommit-commit-rollback.html "14.7.2.2 autocommit, Commit, and Rollback")
 
-[Seção 14.6.1.5, “Conversão de tabelas de MyISAM para InnoDB”](converting-tables-to-innodb.html)
+[Section 14.6.1.5, “Converting Tables from MyISAM to InnoDB”](converting-tables-to-innodb.html "14.6.1.5 Converting Tables from MyISAM to InnoDB")
 
-[Seção 12.15, “Funções de Informação”](information-functions.html)
+[Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions")
 
-[Seção 14.2, “InnoDB e o Modelo ACID”](mysql-acid.html)
+[Section 14.2, “InnoDB and the ACID Model”](mysql-acid.html "14.2 InnoDB and the ACID Model")
 
-[Seção 14.22.4, “Tratamento de Erros do InnoDB”](innodb-error-handling.html)
+[Section 14.22.4, “InnoDB Error Handling”](innodb-error-handling.html "14.22.4 InnoDB Error Handling")
 
-[Seção 13.3.5, “Instruções LOCK TABLES e UNLOCK TABLES”](lock-tables.html)
+[Section 13.3.5, “LOCK TABLES and UNLOCK TABLES Statements”](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements")
 
-[Seção 25.12.7, "Tabelas de Transações do Schema de Desempenho"](performance-schema-transaction-tables.html)
+[Section 25.12.7, “Performance Schema Transaction Tables”](performance-schema-transaction-tables.html "25.12.7 Performance Schema Transaction Tables")
 
-[Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
+[Section 16.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "16.1.6.3 Replica Server Options and Variables")
 
-[Seção 16.4.1.33, “Replicação e Transações”](replication-features-transactions.html)
+[Section 16.4.1.33, “Replication and Transactions”](replication-features-transactions.html "16.4.1.33 Replication and Transactions")
 
-[Seção B.3.4.5, “Falha no retorno para tabelas não transacionais”](nontransactional-tables.html)
+[Section B.3.4.5, “Rollback Failure for Nontransactional Tables”](nontransactional-tables.html "B.3.4.5 Rollback Failure for Nontransactional Tables")
 
-[Seção 13.3.4, "Instruções SAVEPOINT, ROLLBACK TO SAVEPOINT e RELEASE SAVEPOINT"](savepoint.html)
+[Section 13.3.4, “SAVEPOINT, ROLLBACK TO SAVEPOINT, and RELEASE SAVEPOINT Statements”](savepoint.html "13.3.4 SAVEPOINT, ROLLBACK TO SAVEPOINT, and RELEASE SAVEPOINT Statements")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 13.3.1, "Instruções START TRANSACTION, COMMIT e ROLLBACK"](commit.html)
+[Section 13.3.1, “START TRANSACTION, COMMIT, and ROLLBACK Statements”](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements")
 
-[Seção 13.3.2, “Declarações que Não Podem Ser Revertidas”](cannot-roll-back.html)
+[Section 13.3.2, “Statements That Cannot Be Rolled Back”](cannot-roll-back.html "13.3.2 Statements That Cannot Be Rolled Back")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 23.7, "Registro de Log de Binário de Programa Armazenado"](stored-programs-logging.html)
+[Section 23.7, “Stored Program Binary Logging”](stored-programs-logging.html "23.7 Stored Program Binary Logging")
 
-[Seção 5.4.4, “O Log Binário”](binary-log.html)
+[Section 5.4.4, “The Binary Log”](binary-log.html "5.4.4 The Binary Log")
 
-[Seção 25.12.7.1, “A tabela events_transactions_current”](performance-schema-events-transactions-current-table.html)
+[Section 25.12.7.1, “The events_transactions_current Table”](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table")
 
-[Seção 13.3, "Instruções Transacionais e de Bloqueio"](sql-transactional-statements.html)
+[Section 13.3, “Transactional and Locking Statements”](sql-transactional-statements.html "13.3 Transactional and Locking Statements")
 
-[Seção 23.3.1, "Sintaxe de gatilho e exemplos"](trigger-syntax.html)
+[Section 23.3.1, “Trigger Syntax and Examples”](trigger-syntax.html "23.3.1 Trigger Syntax and Examples")
 
-### REVERT PARA SALVAMENTO DE PONTE
+### ROLLBACK TO SAVEPOINT
 
-[Seção 25.12.7, "Tabelas de Transações do Schema de Desempenho"](performance-schema-transaction-tables.html)
+[Section 25.12.7, “Performance Schema Transaction Tables”](performance-schema-transaction-tables.html "25.12.7 Performance Schema Transaction Tables")
 
-[Seção 13.3.4, "Instruções SAVEPOINT, ROLLBACK TO SAVEPOINT e RELEASE SAVEPOINT"](savepoint.html)
+[Section 13.3.4, “SAVEPOINT, ROLLBACK TO SAVEPOINT, and RELEASE SAVEPOINT Statements”](savepoint.html "13.3.4 SAVEPOINT, ROLLBACK TO SAVEPOINT, and RELEASE SAVEPOINT Statements")
 
-[Seção 25.12.7.1, “A tabela events_transactions_current”](performance-schema-events-transactions-current-table.html)
+[Section 25.12.7.1, “The events_transactions_current Table”](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table")
 
-### REDESCARTE para SAVEPOINT
+### ROLLBACK to SAVEPOINT
 
-[Seção 23.3.1, "Sintaxe de gatilho e exemplos"](trigger-syntax.html)
+[Section 23.3.1, “Trigger Syntax and Examples”](trigger-syntax.html "23.3.1 Trigger Syntax and Examples")
 
 ### S
 
-index topo](dynindex-statement.html#stmt-index-topo)]
+index top](dynindex-statement.html#stmt-index-top)]
 
 ### SAVEPOINT
 
-[Seção 25.12.7, "Tabelas de Transações do Schema de Desempenho"](performance-schema-transaction-tables.html)
+[Section 25.12.7, “Performance Schema Transaction Tables”](performance-schema-transaction-tables.html "25.12.7 Performance Schema Transaction Tables")
 
-[Seção 13.3.4, "Instruções SAVEPOINT, ROLLBACK TO SAVEPOINT e RELEASE SAVEPOINT"](savepoint.html)
+[Section 13.3.4, “SAVEPOINT, ROLLBACK TO SAVEPOINT, and RELEASE SAVEPOINT Statements”](savepoint.html "13.3.4 SAVEPOINT, ROLLBACK TO SAVEPOINT, and RELEASE SAVEPOINT Statements")
 
-[Seção 25.12.7.1, “A tabela events_transactions_current”](performance-schema-events-transactions-current-table.html)
+[Section 25.12.7.1, “The events_transactions_current Table”](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table")
 
-### SELECIONE
+### SELECT
 
-[Seção 1.1, “Sobre este manual”](manual-info.html)
+[Section 1.1, “About This Manual”](manual-info.html "1.1 About This Manual")
 
-[Seção 6.2, “Controle de Acesso e Gerenciamento de Contas”](access-control.html)
+[Section 6.2, “Access Control and Account Management”](access-control.html "6.2 Access Control and Account Management")
 
-[Seção 12.19.1, “Descrição de Funções Agregadas”](aggregate-functions.html)
+[Section 12.19.1, “Aggregate Function Descriptions”](aggregate-functions.html "12.19.1 Aggregate Function Descriptions")
 
-[Seção 13.1.8, "Instrução ALTER TABLE"](alter-table.html)
+[Section 13.1.8, “ALTER TABLE Statement”](alter-table.html "13.1.8 ALTER TABLE Statement")
 
-[Seção 13.1.10, "Instrução ALTER VIEW"](alter-view.html)
+[Section 13.1.10, “ALTER VIEW Statement”](alter-view.html "13.1.10 ALTER VIEW Statement")
 
-[Seção 12.4.4, "Operadores de atribuição"](assignment-operators.html)
+[Section 12.4.4, “Assignment Operators”](assignment-operators.html "12.4.4 Assignment Operators")
 
-[Seção 6.4.5.4, "Formatos de arquivo de registro de auditoria"](audit-log-file-formats.html)
+[Section 6.4.5.4, “Audit Log File Formats”](audit-log-file-formats.html "6.4.5.4 Audit Log File Formats")
 
-[Seção 14.6.1.6, “Tratamento de AUTO_INCREMENT no InnoDB”](innodb-auto-increment-handling.html)
+[Section 14.6.1.6, “AUTO_INCREMENT Handling in InnoDB”](innodb-auto-increment-handling.html "14.6.1.6 AUTO_INCREMENT Handling in InnoDB")
 
-[Seção 14.7.2.2, "autocommit, Commit e Rollback"](innodb-autocommit-commit-rollback.html)
+[Section 14.7.2.2, “autocommit, Commit, and Rollback”](innodb-autocommit-commit-rollback.html "14.7.2.2 autocommit, Commit, and Rollback")
 
-[Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
+[Section 16.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "16.1.6.4 Binary Logging Options and Variables")
 
-[Seção 8.6.2, “Carregamento de dados em massa para tabelas MyISAM”](optimizando-myisam-carregamento-de-dados-em-massa.html)
+[Section 8.6.2, “Bulk Data Loading for MyISAM Tables”](optimizing-myisam-bulk-data-loading.html "8.6.2 Bulk Data Loading for MyISAM Tables")
 
-[Seção 8.10.4, “Cache de Declarações Preparadas e Programas Armazenados”](statement-caching.html)
+[Section 8.10.4, “Caching of Prepared Statements and Stored Programs”](statement-caching.html "8.10.4 Caching of Prepared Statements and Stored Programs")
 
-[Seção 2.10.3, “Alterações no MySQL 5.7”](upgrading-from-previous-series.html)
+[Section 2.10.3, “Changes in MySQL 5.7”](upgrading-from-previous-series.html "2.10.3 Changes in MySQL 5.7")
 
-[Seção 6.1.7, “Diretrizes de Segurança para Programação de Clientes”](secure-client-programming.html)
+[Section 6.1.7, “Client Programming Security Guidelines”](secure-client-programming.html "6.1.7 Client Programming Security Guidelines")
 
-[Seção 12.4.2, "Funções e Operadores de Comparação"](comparison-operators.html)
+[Section 12.4.2, “Comparison Functions and Operators”](comparison-operators.html "12.4.2 Comparison Functions and Operators")
 
-[Seção 8.3.8, “Comparação de Índices B-Tree e Hash”](index-btree-hash.html)
+[Section 8.3.8, “Comparison of B-Tree and Hash Indexes”](index-btree-hash.html "8.3.8 Comparison of B-Tree and Hash Indexes")
 
-[Seção 8.11.3, “Inserções Concorrentes”](concurrent-inserts.html)
+[Section 8.11.3, “Concurrent Inserts”](concurrent-inserts.html "8.11.3 Concurrent Inserts")
 
-[Seção 10.4, "Conjunto de caracteres de conexão e codificações"](charset-connection.html)
+[Section 10.4, “Connection Character Sets and Collations”](charset-connection.html "10.4 Connection Character Sets and Collations")
 
-[Seção 14.7.2.3, “Leitura Consistente sem Bloqueio”](innodb-consistent-read.html)
+[Section 14.7.2.3, “Consistent Nonlocking Reads”](innodb-consistent-read.html "14.7.2.3 Consistent Nonlocking Reads")
 
-[Seção 14.6.1.5, “Conversão de tabelas de MyISAM para InnoDB”](converting-tables-to-innodb.html)
+[Section 14.6.1.5, “Converting Tables from MyISAM to InnoDB”](converting-tables-to-innodb.html "14.6.1.5 Converting Tables from MyISAM to InnoDB")
 
-[Seção 13.1.12, "Declaração CREATE EVENT"](create-event.html)
+[Section 13.1.12, “CREATE EVENT Statement”](create-event.html "13.1.12 CREATE EVENT Statement")
 
-[Seção 13.1.14, "Instrução CREATE INDEX"](create-index.html)
+[Section 13.1.14, “CREATE INDEX Statement”](create-index.html "13.1.14 CREATE INDEX Statement")
 
-[Seção 13.1.16, "Instruções CREATE PROCEDURE e CREATE FUNCTION"](create-procedure.html)
+[Section 13.1.16, “CREATE PROCEDURE and CREATE FUNCTION Statements”](create-procedure.html "13.1.16 CREATE PROCEDURE and CREATE FUNCTION Statements")
 
-[Seção 13.1.18.4, "Instrução CREATE TABLE ... SELECT"](create-table-select.html)
+[Section 13.1.18.4, “CREATE TABLE ... SELECT Statement”](create-table-select.html "13.1.18.4 CREATE TABLE ... SELECT Statement")
 
-[Seção 13.1.18.7, “Criar Tabela e Colunas Geradas”](create-table-generated-columns.html)
+[Section 13.1.18.7, “CREATE TABLE and Generated Columns”](create-table-generated-columns.html "13.1.18.7 CREATE TABLE and Generated Columns")
 
-[Seção 13.1.18, "Instrução CREATE TABLE"](create-table.html)
+[Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement")
 
-[Seção 13.1.18.2, "Instrução CREATE TEMPORARY TABLE"](create-temporary-table.html)
+[Section 13.1.18.2, “CREATE TEMPORARY TABLE Statement”](create-temporary-table.html "13.1.18.2 CREATE TEMPORARY TABLE Statement")
 
-[Seção 13.1.21, "Instrução CREATE VIEW"](create-view.html)
+[Section 13.1.21, “CREATE VIEW Statement”](create-view.html "13.1.21 CREATE VIEW Statement")
 
-[Seção 15.8.2.1, “Criando uma Tabela FEDERATED Usando CONEXÃO”](federated-create-connection.html)
+[Section 15.8.2.1, “Creating a FEDERATED Table Using CONNECTION”](federated-create-connection.html "15.8.2.1 Creating a FEDERATED Table Using CONNECTION")
 
-[Seção 3.3.1, “Criando e selecionando um banco de dados”](creating-database.html)
+[Section 3.3.1, “Creating and Selecting a Database”](creating-database.html "3.3.1 Creating and Selecting a Database")
 
-[Seção 13.6.6.2, "Declaração Cursor DECLARE"](declare-cursor.html)
+[Section 13.6.6.2, “Cursor DECLARE Statement”](declare-cursor.html "13.6.6.2 Cursor DECLARE Statement")
 
-[Seção 13.6.6.3, "Instrução FETCH do cursor"](fetch.html)
+[Section 13.6.6.3, “Cursor FETCH Statement”](fetch.html "13.6.6.3 Cursor FETCH Statement")
 
-[Seção 13.2.2, “Instrução DELETE”](delete.html)
+[Section 13.2.2, “DELETE Statement”](delete.html "13.2.2 DELETE Statement")
 
-[Seção 13.2.10.8, “Tabelas Derivadas”](derived-tables.html)
+[Section 13.2.10.8, “Derived Tables”](derived-tables.html "13.2.10.8 Derived Tables")
 
-[Seção 8.4.3.2, “Desvantagens de Criar Muitas Tabelas na Mesma Base de Dados”](criando-muitas-tabelas.html)
+[Section 8.4.3.2, “Disadvantages of Creating Many Tables in the Same Database”](creating-many-tables.html "8.4.3.2 Disadvantages of Creating Many Tables in the Same Database")
 
-[Seção 5.1.11.2, "Consultas DNS e Cache de Anfitriões"](host-cache.html)
+[Section 5.1.11.2, “DNS Lookups and the Host Cache”](host-cache.html "5.1.11.2 DNS Lookups and the Host Cache")
 
-[Seção 13.2.3, “Declaração do DO”](do.html)
+[Section 13.2.3, “DO Statement”](do.html "13.2.3 DO Statement")
 
-[Seção 3.2, “Inserindo Consultas”](inserindo-consultas.html)
+[Section 3.2, “Entering Queries”](entering-queries.html "3.2 Entering Queries")
 
-[Seção 23.4.2, “Configuração do Agendador de Eventos”](events-configuration.html)
+[Section 23.4.2, “Event Scheduler Configuration”](events-configuration.html "23.4.2 Event Scheduler Configuration")
 
-[Seção 10.8.6, “Exemplos do Efeito da Colagem”](charset-collation-effect.html)
+[Section 10.8.6, “Examples of the Effect of Collation”](charset-collation-effect.html "10.8.6 Examples of the Effect of Collation")
 
-[Seção 8.8.2, “Formato de Saída EXPLAIN”](explain-output.html)
+[Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
 
-[Seção 13.8.2, “Instrução EXPLAIN”](explain.html)
+[Section 13.8.2, “EXPLAIN Statement”](explain.html "13.8.2 EXPLAIN Statement")
 
-[Seção 8.8.3, “Formato de saída EXPLAIN estendido”](explain-extended.html)
+[Section 8.8.3, “Extended EXPLAIN Output Format”](explain-extended.html "8.8.3 Extended EXPLAIN Output Format")
 
-[Seção 15.8.3, “Notas e dicas do mecanismo de armazenamento federado”](federated-usagenotes.html)
+[Section 15.8.3, “FEDERATED Storage Engine Notes and Tips”](federated-usagenotes.html "15.8.3 FEDERATED Storage Engine Notes and Tips")
 
-[Seção 14.22.2, “Forçar a recuperação do InnoDB”](forcing-innodb-recovery.html)
+[Section 14.22.2, “Forcing InnoDB Recovery”](forcing-innodb-recovery.html "14.22.2 Forcing InnoDB Recovery")
 
-[Seção 8.2.1.18, "Otimização de Chamadas de Função"](function-optimization.html)
+[Section 8.2.1.18, “Function Call Optimization”](function-optimization.html "8.2.1.18 Function Call Optimization")
 
-[Capítulo 12, *Funções e Operadores*] (functions.html)
+[Chapter 12, *Functions and Operators*](functions.html "Chapter 12 Functions and Operators")
 
-[Seção 12.17.3, “Funções que buscam valores JSON”](json-search-functions.html)
+[Section 12.17.3, “Functions That Search JSON Values”](json-search-functions.html "12.17.3 Functions That Search JSON Values")
 
-[Seção 8.14.3, “Estados gerais de fios”](general-thread-states.html)
+[Section 8.14.3, “General Thread States”](general-thread-states.html "8.14.3 General Thread States")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 13.2.4, “Declaração do Gestor”](handler.html)
+[Section 13.2.4, “HANDLER Statement”](handler.html "13.2.4 HANDLER Statement")
 
-[Seção 22.2.7, “Como o Partição do MySQL lida com NULLs”](partitioning-handling-nulls.html)
+[Section 22.2.7, “How MySQL Partitioning Handles NULL”](partitioning-handling-nulls.html "22.2.7 How MySQL Partitioning Handles NULL")
 
-[Seção 8.10.3.1, “Como o Cache de Consultas Funciona”](query-cache-operation.html)
+[Section 8.10.3.1, “How the Query Cache Operates”](query-cache-operation.html "8.10.3.1 How the Query Cache Operates")
 
-[Seção 14.7.5.3, “Como minimizar e lidar com deadlocks”](innodb-deadlocks-handling.html)
+[Section 14.7.5.3, “How to Minimize and Handle Deadlocks”](innodb-deadlocks-handling.html "14.7.5.3 How to Minimize and Handle Deadlocks")
 
-[Seção 1.5, “Como relatar bugs ou problemas”](bug-reports.html)
+[Section 1.5, “How to Report Bugs or Problems”](bug-reports.html "1.5 How to Report Bugs or Problems")
 
-[Seção 8.9.4, “Dicas de índice”](index-hints.html)
+[Section 8.9.4, “Index Hints”](index-hints.html "8.9.4 Index Hints")
 
-[Seção 12.15, “Funções de Informação”](information-functions.html)
+[Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions")
 
-[Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
+[Section 14.15, “InnoDB Startup Options and System Variables”](innodb-parameters.html "14.15 InnoDB Startup Options and System Variables")
 
-[Seção 13.2.5.2, "Instrução INSERT ... ON DUPLICATE KEY UPDATE"](insert-on-duplicate.html)
+[Section 13.2.5.2, “INSERT ... ON DUPLICATE KEY UPDATE Statement”](insert-on-duplicate.html "13.2.5.2 INSERT ... ON DUPLICATE KEY UPDATE Statement")
 
-[Seção 13.2.5.1, "INSERIR ... Instrução SELECT"](insert-select.html)
+[Section 13.2.5.1, “INSERT ... SELECT Statement”](insert-select.html "13.2.5.1 INSERT ... SELECT Statement")
 
-[Seção 13.2.5, “Instrução INSERT”](insert.html)
+[Section 13.2.5, “INSERT Statement”](insert.html "13.2.5 INSERT Statement")
 
-[Seção 8.11.1, “Métodos de bloqueio interno”](internal-locking.html)
+[Section 8.11.1, “Internal Locking Methods”](internal-locking.html "8.11.1 Internal Locking Methods")
 
-[Seção 8.4.4, “Uso de Tabelas Temporárias Internas no MySQL”](internal-temporary-tables.html)
+[Section 8.4.4, “Internal Temporary Table Use in MySQL”](internal-temporary-tables.html "8.4.4 Internal Temporary Table Use in MySQL")
 
-[Seção 24.1, “Introdução”](information-schema-introduction.html)
+[Section 24.1, “Introduction”](information-schema-introduction.html "24.1 Introduction")
 
-[Seção 13.2.9.2, "Cláusula JOIN"](join.html)
+[Section 13.2.9.2, “JOIN Clause”](join.html "13.2.9.2 JOIN Clause")
 
-[Seção 9.3, “Palavras-chave e Palavras Reservadas”](keywords.html)
+[Section 9.3, “Keywords and Reserved Words”](keywords.html "9.3 Keywords and Reserved Words")
 
-[Seção 13.7.6.4, "Declaração de KILL"](kill.html)
+[Section 13.7.6.4, “KILL Statement”](kill.html "13.7.6.4 KILL Statement")
 
-[Seção B.3.7, “Problemas Conhecidos no MySQL”](known-issues.html)
+[Section B.3.7, “Known Issues in MySQL”](known-issues.html "B.3.7 Known Issues in MySQL")
 
-[Seção 6.4.5.10, "Filtragem do Log de Auditoria no Modo Legado"](audit-log-legacy-filtering.html)
+[Section 6.4.5.10, “Legacy Mode Audit Log Filtering”](audit-log-legacy-filtering.html "6.4.5.10 Legacy Mode Audit Log Filtering")
 
-[Seção 21.2.7.3, “Limitações relacionadas ao processamento de transações no NDB Cluster”](mysql-cluster-limitations-transactions.html)
+[Section 21.2.7.3, “Limits Relating to Transaction Handling in NDB Cluster”](mysql-cluster-limitations-transactions.html "21.2.7.3 Limits Relating to Transaction Handling in NDB Cluster")
 
-[Seção 13.2.7, “Declaração de Carregamento XML”](load-xml.html)
+[Section 13.2.7, “LOAD XML Statement”](load-xml.html "13.2.7 LOAD XML Statement")
 
-[Seção 13.6.4.2, "Âmbito e resolução de variáveis locais"](local-variable-scope.html)
+[Section 13.6.4.2, “Local Variable Scope and Resolution”](local-variable-scope.html "13.6.4.2 Local Variable Scope and Resolution")
 
-[Seção 13.3.5, “Instruções LOCK TABLES e UNLOCK TABLES”](lock-tables.html)
+[Section 13.3.5, “LOCK TABLES and UNLOCK TABLES Statements”](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements")
 
-[Seção 14.7.2.4, “Leitura de bloqueio”](innodb-locking-reads.html)
+[Section 14.7.2.4, “Locking Reads”](innodb-locking-reads.html "14.7.2.4 Locking Reads")
 
-[Seção 14.7.3, "Bloqueios Definidos por Diferentes Instruções SQL no InnoDB"](innodb-locks-set.html)
+[Section 14.7.3, “Locks Set by Different SQL Statements in InnoDB”](innodb-locks-set.html "14.7.3 Locks Set by Different SQL Statements in InnoDB")
 
-[Seção 5.4.4.4, "Formato de registro para alterações nas tabelas do banco de dados mysql"](binary-log-mysql-database.html)
+[Section 5.4.4.4, “Logging Format for Changes to mysql Database Tables”](binary-log-mysql-database.html "5.4.4.4 Logging Format for Changes to mysql Database Tables")
 
-[Seção 6.1.3, “Tornar o MySQL seguro contra atacantes”](security-against-attack.html)
+[Section 6.1.3, “Making MySQL Secure Against Attackers”](security-against-attack.html "6.1.3 Making MySQL Secure Against Attackers")
 
-[Seção 22.3.1, “Gestão de Partições RANGE e LIST”](partitioning-management-range-list.html)
+[Section 22.3.1, “Management of RANGE and LIST Partitions”](partitioning-management-range-list.html "22.3.1 Management of RANGE and LIST Partitions")
 
-[Seção 15.7.2, “Problemas da Tabela MERGE”](merge-table-problems.html)
+[Section 15.7.2, “MERGE Table Problems”](merge-table-problems.html "15.7.2 MERGE Table Problems")
 
-[Seção 8.3.5, “Indekses de Colunas Múltiplas”](multiple-column-indexes.html)
+[Section 8.3.5, “Multiple-Column Indexes”](multiple-column-indexes.html "8.3.5 Multiple-Column Indexes")
 
-[Seção 7.6.4, “Otimização de Tabelas MyISAM”](myisam-optimization.html)
+[Section 7.6.4, “MyISAM Table Optimization”](myisam-optimization.html "7.6.4 MyISAM Table Optimization")
 
-[Seção A.11, “Perguntas frequentes sobre o MySQL 5.7: conjuntos de caracteres chineses, japoneses e coreanos do MySQL”](faqs-cjk.html)
+[Section A.11, “MySQL 5.7 FAQ: MySQL Chinese, Japanese, and Korean Character Sets”](faqs-cjk.html "A.11 MySQL 5.7 FAQ: MySQL Chinese, Japanese, and Korean Character Sets")
 
-[Seção A.14, “Perguntas frequentes sobre o MySQL 5.7: Replicação”](faqs-replication.html)
+[Section A.14, “MySQL 5.7 FAQ: Replication”](faqs-replication.html "A.14 MySQL 5.7 FAQ: Replication")
 
-[Seção A.4, “Perguntas frequentes sobre o MySQL 5.7: Procedimentos e funções armazenadas”](faqs-stored-procs.html)
+[Section A.4, “MySQL 5.7 FAQ: Stored Procedures and Functions”](faqs-stored-procs.html "A.4 MySQL 5.7 FAQ: Stored Procedures and Functions")
 
-[Seção 4.5.1.1, “Opções do cliente do MySQL”](mysql-command-options.html)
+[Section 4.5.1.1, “mysql Client Options”](mysql-command-options.html "4.5.1.1 mysql Client Options")
 
-[Seção 4.5.1.6, “Dicas do cliente do MySQL”](mysql-tips.html)
+[Section 4.5.1.6, “mysql Client Tips”](mysql-tips.html "4.5.1.6 mysql Client Tips")
 
-[Seção 6.6.2, “Uso e exemplos de criptografia empresarial do MySQL”](enterprise-encryption-usage.html)
+[Section 6.6.2, “MySQL Enterprise Encryption Usage and Examples”](enterprise-encryption-usage.html "6.6.2 MySQL Enterprise Encryption Usage and Examples")
 
-[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html)
+[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
 
-[Glossário do MySQL](glossary.html)
+[MySQL Glossary](glossary.html "MySQL Glossary")
 
-[Seção 12.19.3, “Tratamento do GROUP BY pelo MySQL”](group-by-handling.html)
+[Section 12.19.3, “MySQL Handling of GROUP BY”](group-by-handling.html "12.19.3 MySQL Handling of GROUP BY")
 
-[Capítulo 25, *MySQL Performance Schema*](performance-schema.html)
+[Chapter 25, *MySQL Performance Schema*](performance-schema.html "Chapter 25 MySQL Performance Schema")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
+[Section 4.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "4.5.6 mysqlpump — A Database Backup Program")
 
-[Seção 4.5.8, “mysqlslap — Um cliente de emulação de carga”](mysqlslap.html)
+[Section 4.5.8, “mysqlslap — A Load Emulation Client”](mysqlslap.html "4.5.8 mysqlslap — A Load Emulation Client")
 
-[Seção 12.9.1, “Pesquisas de Texto Completo em Linguagem Natural”](fulltext-natural-language.html)
+[Section 12.9.1, “Natural Language Full-Text Searches”](fulltext-natural-language.html "12.9.1 Natural Language Full-Text Searches")
 
-[Seção 21.6.11.1, “Objetos de dados de disco do cluster NDB”](mysql-cluster-disk-data-objects.html)
+[Section 21.6.11.1, “NDB Cluster Disk Data Objects”](mysql-cluster-disk-data-objects.html "21.6.11.1 NDB Cluster Disk Data Objects")
 
-[Seção 21.3.5, “Exemplo de Cluster NDB com Tabelas e Dados”](mysql-cluster-install-example-data.html)
+[Section 21.3.5, “NDB Cluster Example with Tables and Data”](mysql-cluster-install-example-data.html "21.3.5 NDB Cluster Example with Tables and Data")
 
-[Seção 21.7.11, "Resolução de conflitos de replicação de cluster do NDB"](mysql-cluster-replication-conflict-resolution.html)
+[Section 21.7.11, “NDB Cluster Replication Conflict Resolution”](mysql-cluster-replication-conflict-resolution.html "21.7.11 NDB Cluster Replication Conflict Resolution")
 
-[Seção 21.7.4, “Esquema e tabelas de replicação de cluster NDB”](mysql-cluster-replication-schema.html)
+[Section 21.7.4, “NDB Cluster Replication Schema and Tables”](mysql-cluster-replication-schema.html "21.7.4 NDB Cluster Replication Schema and Tables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
-[Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
+[Section 21.4.3.9.2, “NDB Cluster System Variables”](mysql-cluster-options-variables.html#mysql-cluster-system-variables "21.4.3.9.2 NDB Cluster System Variables")
 
-[Seção 21.5.25, “ndb_select_all — Imprimir linhas de uma tabela NDB”](mysql-cluster-programs-ndb-select-all.html)
+[Section 21.5.25, “ndb_select_all — Print Rows from an NDB Table”](mysql-cluster-programs-ndb-select-all.html "21.5.25 ndb_select_all — Print Rows from an NDB Table")
 
-[Seção 21.6.15, “ndbinfo: Banco de Dados de Informações do NDB Cluster”](mysql-cluster-ndbinfo.html)
+[Section 21.6.15, “ndbinfo: The NDB Cluster Information Database”](mysql-cluster-ndbinfo.html "21.6.15 ndbinfo: The NDB Cluster Information Database")
 
-[Seção 8.8.4, “Obtendo informações do plano de execução para uma conexão nomeada”](explain-for-connection.html)
+[Section 8.8.4, “Obtaining Execution Plan Information for a Named Connection”](explain-for-connection.html "8.8.4 Obtaining Execution Plan Information for a Named Connection")
 
-[Seção 22.3.5, “Obtendo Informações sobre Partições”](partitioning-info.html)
+[Section 22.3.5, “Obtaining Information About Partitions”](partitioning-info.html "22.3.5 Obtaining Information About Partitions")
 
-[Seção 14.13.2, “Desempenho e Concorrência do DDL Online”](innodb-online-ddl-performance.html)
+[Section 14.13.2, “Online DDL Performance and Concurrency”](innodb-online-ddl-performance.html "14.13.2 Online DDL Performance and Concurrency")
 
-[Seção 8.3, “Otimização e Índices”](optimization-indexes.html)
+[Section 8.3, “Optimization and Indexes”](optimization-indexes.html "8.3 Optimization and Indexes")
 
-[Seção 8.9.3, “Dicas do otimizador”](optimizer-hints.html)
+[Section 8.9.3, “Optimizer Hints”](optimizer-hints.html "8.9.3 Optimizer Hints")
 
-[Seção B.3.5, “Problemas relacionados ao otimizador”](optimizer-issues.html)
+[Section B.3.5, “Optimizer-Related Issues”](optimizer-issues.html "B.3.5 Optimizer-Related Issues")
 
-[Seção 8.2.2.4, “Otimização de tabelas derivadas e referências de visualização com fusão ou materialização”](derived-table-optimization.html)
+[Section 8.2.2.4, “Optimizing Derived Tables and View References with Merging or Materialization”](derived-table-optimization.html "8.2.2.4 Optimizing Derived Tables and View References with Merging or Materialization")
 
-[Seção 8.5.3, “Otimização de Transações de Leitura Apenas de Leitura InnoDB”](innodb-performance-ro-txn.html)
+[Section 8.5.3, “Optimizing InnoDB Read-Only Transactions”](innodb-performance-ro-txn.html "8.5.3 Optimizing InnoDB Read-Only Transactions")
 
-[Seção 8.5.2, “Otimização da Gestão de Transações InnoDB”](optimizing-innodb-transaction-management.html)
+[Section 8.5.2, “Optimizing InnoDB Transaction Management”](optimizing-innodb-transaction-management.html "8.5.2 Optimizing InnoDB Transaction Management")
 
-[Seção 8.6.1, “Otimizando consultas MyISAM”](optimizando-consultas-myisam.html)
+[Section 8.6.1, “Optimizing MyISAM Queries”](optimizing-queries-myisam.html "8.6.1 Optimizing MyISAM Queries")
 
-[Seção 8.8.1, “Otimizando consultas com EXPLAIN”](using-explain.html)
+[Section 8.8.1, “Optimizing Queries with EXPLAIN”](using-explain.html "8.8.1 Optimizing Queries with EXPLAIN")
 
-[Seção 8.2.1, “Otimização de instruções SELECT”](select-optimization.html)
+[Section 8.2.1, “Optimizing SELECT Statements”](select-optimization.html "8.2.1 Optimizing SELECT Statements")
 
-[Seção 8.2.2.3, “Otimização de subconsultas com a estratégia EXISTS”](subquery-optimization-with-exists.html)
+[Section 8.2.2.3, “Optimizing Subqueries with the EXISTS Strategy”](subquery-optimization-with-exists.html "8.2.2.3 Optimizing Subqueries with the EXISTS Strategy")
 
-[Seção 8.2.2.1, “Otimização de subconsultas, tabelas derivadas e referências de visualizações com transformações de semijoin”](semijoins.html)
+[Section 8.2.2.1, “Optimizing Subqueries, Derived Tables, and View References with Semijoin Transformations”](semijoins.html "8.2.2.1 Optimizing Subqueries, Derived Tables, and View References with Semijoin Transformations")
 
-[Seção 8.2.4.2, “Otimização das declarações UPDATE”](update-optimization.html)
+[Section 8.2.4.2, “Optimizing UPDATE Statements”](update-optimization.html "8.2.4.2 Optimizing UPDATE Statements")
 
-[Seção 4.6.3.4, “Outras opções do myisamchk”](myisamchk-other-options.html)
+[Section 4.6.3.4, “Other myisamchk Options”](myisamchk-other-options.html "4.6.3.4 Other myisamchk Options")
 
-[Seção 22.4, “Rimação de Partições”](partitioning-pruning.html)
+[Section 22.4, “Partition Pruning”](partitioning-pruning.html "22.4 Partition Pruning")
 
-[Seção 22.5, “Seleção de Partição”](partitioning-selection.html)
+[Section 22.5, “Partition Selection”](partitioning-selection.html "22.5 Partition Selection")
 
-[Seção 22.6.4, “Partição e Bloqueio”](partitioning-limitations-locking.html)
+[Section 22.6.4, “Partitioning and Locking”](partitioning-limitations-locking.html "22.6.4 Partitioning and Locking")
 
-[Seção 25.6, “Convenções de Nomenclatura de Instrumentos do Schema de Desempenho”](performance-schema-instrument-naming.html)
+[Section 25.6, “Performance Schema Instrument Naming Conventions”](performance-schema-instrument-naming.html "25.6 Performance Schema Instrument Naming Conventions")
 
-[Seção 25.12.11, "Tabelas de Replicação do Schema de Desempenho"](performance-schema-replication-tables.html)
+[Section 25.12.11, “Performance Schema Replication Tables”](performance-schema-replication-tables.html "25.12.11 Performance Schema Replication Tables")
 
-[Seção 14.7.4, "Linhas Fantoma"](innodb-next-key-locking.html)
+[Section 14.7.4, “Phantom Rows”](innodb-next-key-locking.html "14.7.4 Phantom Rows")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção B.3.4.2, “Problemas ao usar colunas DATE”](using-date.html)
+[Section B.3.4.2, “Problems Using DATE Columns”](using-date.html "B.3.4.2 Problems Using DATE Columns")
 
-[Seção B.3.4.8, “Problemas com valores de ponto flutuante”](problemas-com-float.html)
+[Section B.3.4.8, “Problems with Floating-Point Values”](problems-with-float.html "B.3.4.8 Problems with Floating-Point Values")
 
-[Seção 14.8.10, “Configuração de Purga”](innodb-purge-configuration.html)
+[Section 14.8.10, “Purge Configuration”](innodb-purge-configuration.html "14.8.10 Purge Configuration")
 
-[Seção 8.10.3.2, “Opções de Cache de Consulta SELECT”](query-cache-in-select.html)
+[Section 8.10.3.2, “Query Cache SELECT Options”](query-cache-in-select.html "8.10.3.2 Query Cache SELECT Options")
 
-[Seção 8.10.3.4, “Consultar o estado e a manutenção do cache de consultas”](query-cache-status-and-maintenance.html)
+[Section 8.10.3.4, “Query Cache Status and Maintenance”](query-cache-status-and-maintenance.html "8.10.3.4 Query Cache Status and Maintenance")
 
-[Seção 8.14.4, “Estados de Cache de Consulta de Fila”](query-cache-thread-states.html)
+[Section 8.14.4, “Query Cache Thread States”](query-cache-thread-states.html "8.14.4 Query Cache Thread States")
 
-[Seção 21.6.17, “Referência Rápida: Declarações SQL do NDB Cluster”](mysql-cluster-sql-statements.html)
+[Section 21.6.17, “Quick Reference: NDB Cluster SQL Statements”](mysql-cluster-sql-statements.html "21.6.17 Quick Reference: NDB Cluster SQL Statements")
 
-[Seção 22.2.3.1, "Divisão de colunas de intervalo"](partitioning-columns-range.html)
+[Section 22.2.3.1, “RANGE COLUMNS partitioning”](partitioning-columns-range.html "22.2.3.1 RANGE COLUMNS partitioning")
 
-[Seção 8.2.1.2, “Otimização de alcance”](range-optimization.html)
+[Section 8.2.1.2, “Range Optimization”](range-optimization.html "8.2.1.2 Range Optimization")
 
-[Seção 13.2.8, “Instrução REPLACE”](replace.html)
+[Section 13.2.8, “REPLACE Statement”](replace.html "13.2.8 REPLACE Statement")
 
-[Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
+[Section 16.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "16.1.6.3 Replica Server Options and Variables")
 
-[Seção 16.2, “Implementação da Replicação”](replication-implementation.html)
+[Section 16.2, “Replication Implementation”](replication-implementation.html "16.2 Replication Implementation")
 
-[Seção 16.4.1.5, “Replicação de declarações CREATE ... IF NOT EXISTS”](replication-features-create-if-not-exists.html)
+[Section 16.4.1.5, “Replication of CREATE ... IF NOT EXISTS Statements”](replication-features-create-if-not-exists.html "16.4.1.5 Replication of CREATE ... IF NOT EXISTS Statements")
 
-[Seção 16.4.1.16, “Replicação de Recursos Ativados”](replication-features-invoked.html)
+[Section 16.4.1.16, “Replication of Invoked Features”](replication-features-invoked.html "16.4.1.16 Replication of Invoked Features")
 
-[Seção 16.1.6.2, “Opções e variáveis de fonte de replicação”](replication-options-source.html)
+[Section 16.1.6.2, “Replication Source Options and Variables”](replication-options-source.html "16.1.6.2 Replication Source Options and Variables")
 
-[Seção 23.8, “Restrições aos Programas Armazenados”](stored-program-restrictions.html)
+[Section 23.8, “Restrictions on Stored Programs”](stored-program-restrictions.html "23.8 Restrictions on Stored Programs")
 
-[Seção 3.3.4, “Recuperação de Informações de uma Tabela”](retrieving-data.html)
+[Section 3.3.4, “Retrieving Information from a Table”](retrieving-data.html "3.3.4 Retrieving Information from a Table")
 
-[Seção 3.6.7, “Pesquisar em duas chaves”](searching-on-two-keys.html)
+[Section 3.6.7, “Searching on Two Keys”](searching-on-two-keys.html "3.6.7 Searching on Two Keys")
 
-[Seção 13.1.18.8, “Índices Secundários e Colunas Geradas”](create-table-secondary-indexes.html)
+[Section 13.1.18.8, “Secondary Indexes and Generated Columns”](create-table-secondary-indexes.html "13.1.18.8 Secondary Indexes and Generated Columns")
 
-[Seção 13.2.9.1, "Instrução SELECT ... INTO"](select-into.html)
+[Section 13.2.9.1, “SELECT ... INTO Statement”](select-into.html "13.2.9.1 SELECT ... INTO Statement")
 
-[Seção 13.2.9, "Instrução SELECT"](select.html)
+[Section 13.2.9, “SELECT Statement”](select.html "13.2.9 SELECT Statement")
 
-[Seção 3.3.4.1, “Selecionar todos os dados”](selecionando-todos.html)
+[Section 3.3.4.1, “Selecting All Data”](selecting-all.html "3.3.4.1 Selecting All Data")
 
-[Seção 3.3.4.2, “Selecionando Linhas Específicas”](selecionando-linhas.html)
+[Section 3.3.4.2, “Selecting Particular Rows”](selecting-rows.html "3.3.4.2 Selecting Particular Rows")
 
-[Seção 5.1.10, "Modos SQL do Servidor"](sql-mode.html)
+[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 13.7.4.1, "Sintaxe SET para Atribuição de Variáveis"](set-variable.html)
+[Section 13.7.4.1, “SET Syntax for Variable Assignment”](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment")
 
-[Seção 13.7.5.2, “Declaração de MOSTRAR EVENTOS BINLOG”](show-binlog-events.html)
+[Section 13.7.5.2, “SHOW BINLOG EVENTS Statement”](show-binlog-events.html "13.7.5.2 SHOW BINLOG EVENTS Statement")
 
-[Seção 13.7.5.9, "Declaração SHOW CREATE PROCEDURE"](show-create-procedure.html)
+[Section 13.7.5.9, “SHOW CREATE PROCEDURE Statement”](show-create-procedure.html "13.7.5.9 SHOW CREATE PROCEDURE Statement")
 
-[Seção 13.7.5.13, "Mostrar declaração CREATE VIEW"](show-create-view.html)
+[Section 13.7.5.13, “SHOW CREATE VIEW Statement”](show-create-view.html "13.7.5.13 SHOW CREATE VIEW Statement")
 
-[Seção 13.7.5.17, "Declaração de Mostrar Erros"](show-errors.html)
+[Section 13.7.5.17, “SHOW ERRORS Statement”](show-errors.html "13.7.5.17 SHOW ERRORS Statement")
 
-[Seção 13.7.5.27, "Declaração de CÓDIGO DO PROCEDIMENTO"] (show-procedure-code.html)
+[Section 13.7.5.27, “SHOW PROCEDURE CODE Statement”](show-procedure-code.html "13.7.5.27 SHOW PROCEDURE CODE Statement")
 
-[Seção 13.7.5.28, "Declaração de Status do Procedimento"](show-procedure-status.html)
+[Section 13.7.5.28, “SHOW PROCEDURE STATUS Statement”](show-procedure-status.html "13.7.5.28 SHOW PROCEDURE STATUS Statement")
 
-[Seção 13.7.5.29, "Declaração SHOW PROCESSLIST"](show-processlist.html)
+[Section 13.7.5.29, “SHOW PROCESSLIST Statement”](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement")
 
-[Seção 13.7.5.32, "Declaração de RELAYLOG EVENTS"](show-relaylog-events.html)
+[Section 13.7.5.32, “SHOW RELAYLOG EVENTS Statement”](show-relaylog-events.html "13.7.5.32 SHOW RELAYLOG EVENTS Statement")
 
-[Seção 13.7.5, "Declarações SHOW"](show.html)
+[Section 13.7.5, “SHOW Statements”](show.html "13.7.5 SHOW Statements")
 
-[Seção 13.7.5.39, "Declaração SHOW VARIABLES"](show-variables.html)
+[Section 13.7.5.39, “SHOW VARIABLES Statement”](show-variables.html "13.7.5.39 SHOW VARIABLES Statement")
 
-[Seção 13.7.5.40, "Declaração de avisos"](show-warnings.html)
+[Section 13.7.5.40, “SHOW WARNINGS Statement”](show-warnings.html "13.7.5.40 SHOW WARNINGS Statement")
 
-[Seção B.3.4.7, “Resolvendo Problemas sem Linhas Correspondentes”](no-matching-rows.html)
+[Section B.3.4.7, “Solving Problems with No Matching Rows”](no-matching-rows.html "B.3.4.7 Solving Problems with No Matching Rows")
 
-[Seção 13.3.1, "Instruções START TRANSACTION, COMMIT e ROLLBACK"](commit.html)
+[Section 13.3.1, “START TRANSACTION, COMMIT, and ROLLBACK Statements”](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements")
 
-[Seção 5.8.4.1.12, "Provas de declaração"](dba-dtrace-mysqld-ref.html#dba-dtrace-ref-statement)
+[Section 5.8.4.1.12, “Statement Probes”](dba-dtrace-mysqld-ref.html#dba-dtrace-ref-statement "5.8.4.1.12 Statement Probes")
 
-[Seção 23.7, "Registro de Log de Binário de Programa Armazenado"](stored-programs-logging.html)
+[Section 23.7, “Stored Program Binary Logging”](stored-programs-logging.html "23.7 Stored Program Binary Logging")
 
-[Seção 23.2.1, "Sintaxe de Rotinas Armazenadas"](stored-routines-syntax.html)
+[Section 23.2.1, “Stored Routine Syntax”](stored-routines-syntax.html "23.2.1 Stored Routine Syntax")
 
-[Seção 9.1.1, "Literais de String"](string-literals.html)
+[Section 9.1.1, “String Literals”](string-literals.html "9.1.1 String Literals")
 
-[Seção 13.2.10, "Subconsultas"](subqueries.html)
+[Section 13.2.10, “Subqueries”](subqueries.html "13.2.10 Subqueries")
 
-[Seção 13.2.10.6, "Subconsultas com EXISTS ou NOT EXISTS"](exists-and-not-exists-subqueries.html)
+[Section 13.2.10.6, “Subqueries with EXISTS or NOT EXISTS”](exists-and-not-exists-subqueries.html "13.2.10.6 Subqueries with EXISTS or NOT EXISTS")
 
-[Seção 13.2.10.9, “Erros de subconsultas”](subquery-errors.html)
+[Section 13.2.10.9, “Subquery Errors”](subquery-errors.html "13.2.10.9 Subquery Errors")
 
-[Seção 8.11.2, “Problemas de bloqueio de tabelas”](table-locking.html)
+[Section 8.11.2, “Table Locking Issues”](table-locking.html "8.11.2 Table Locking Issues")
 
-[Seção 15.5, “O Motor de Armazenamento ARCHIVE”](archive-storage-engine.html)
+[Section 15.5, “The ARCHIVE Storage Engine”](archive-storage-engine.html "15.5 The ARCHIVE Storage Engine")
 
-[Seção 5.4.4, “O Log Binário”](binary-log.html)
+[Section 5.4.4, “The Binary Log”](binary-log.html "5.4.4 The Binary Log")
 
-[Seção 11.3.5, “O Tipo ENUM”](enum.html)
+[Section 11.3.5, “The ENUM Type”](enum.html "11.3.5 The ENUM Type")
 
-[Seção 25.12.16.1, “A tabela host_cache”](performance-schema-host-cache-table.html)
+[Section 25.12.16.1, “The host_cache Table”](performance-schema-host-cache-table.html "25.12.16.1 The host_cache Table")
 
-[Seção 24.3.5, “A tabela INFORMATION_SCHEMA COLUMNS”](information-schema-columns-table.html)
+[Section 24.3.5, “The INFORMATION_SCHEMA COLUMNS Table”](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table")
 
-[Seção 24.3.8, “A tabela INFORMATION_SCHEMA EVENTS”](information-schema-events-table.html)
+[Section 24.3.8, “The INFORMATION_SCHEMA EVENTS Table”](information-schema-events-table.html "24.3.8 The INFORMATION_SCHEMA EVENTS Table")
 
-[Seção 24.3.11, “Tabelas INFORMATION_SCHEMA GLOBAL_VARIABLES e SESSION_VARIABLES”](information-schema-variables-table.html)
+[Section 24.3.11, “The INFORMATION_SCHEMA GLOBAL_VARIABLES and SESSION_VARIABLES Tables”](information-schema-variables-table.html "24.3.11 The INFORMATION_SCHEMA GLOBAL_VARIABLES and SESSION_VARIABLES Tables")
 
-[Seção 24.4.28, “A tabela INFORMATION_SCHEMA INNODB_TRX”](information-schema-innodb-trx-table.html)
+[Section 24.4.28, “The INFORMATION_SCHEMA INNODB_TRX Table”](information-schema-innodb-trx-table.html "24.4.28 The INFORMATION_SCHEMA INNODB_TRX Table")
 
-[Seção 24.3.18, “A tabela INFORMATION_SCHEMA PROCESSLIST”](information-schema-processlist-table.html)
+[Section 24.3.18, “The INFORMATION_SCHEMA PROCESSLIST Table”](information-schema-processlist-table.html "24.3.18 The INFORMATION_SCHEMA PROCESSLIST Table")
 
-[Seção 24.3.21, “A tabela INFORMATION_SCHEMA ROUTINES”](information-schema-routines-table.html)
+[Section 24.3.21, “The INFORMATION_SCHEMA ROUTINES Table”](information-schema-routines-table.html "24.3.21 The INFORMATION_SCHEMA ROUTINES Table")
 
-[Seção 24.3.31, “A Tabela INFORMATION_SCHEMA VIEWS”](information-schema-views-table.html)
+[Section 24.3.31, “The INFORMATION_SCHEMA VIEWS Table”](information-schema-views-table.html "24.3.31 The INFORMATION_SCHEMA VIEWS Table")
 
-[Seção 11.5, “O tipo de dados JSON”](json.html)
+[Section 11.5, “The JSON Data Type”](json.html "11.5 The JSON Data Type")
 
-[Seção 1.2.2, “Principais características do MySQL”](features.html)
+[Section 1.2.2, “The Main Features of MySQL”](features.html "1.2.2 The Main Features of MySQL")
 
-[Seção 15.7, “O Motor de Armazenamento MERGE”](merge-storage-engine.html)
+[Section 15.7, “The MERGE Storage Engine”](merge-storage-engine.html "15.7 The MERGE Storage Engine")
 
-[Seção 8.10.3, “O Cache de Consultas MySQL”](query-cache.html)
+[Section 8.10.3, “The MySQL Query Cache”](query-cache.html "8.10.3 The MySQL Query Cache")
 
-[Seção 21.6.15.28, “Tabela de nós ndbinfo”](mysql-cluster-ndbinfo-nodes.html)
+[Section 21.6.15.28, “The ndbinfo nodes Table”](mysql-cluster-ndbinfo-nodes.html "21.6.15.28 The ndbinfo nodes Table")
 
-[Seção 25.12.16.3, “Tabela Processlist”](performance-schema-processlist-table.html)
+[Section 25.12.16.3, “The processlist Table”](performance-schema-processlist-table.html "25.12.16.3 The processlist Table")
 
-[Seção 5.5.4, “O Plugin de Reescrita de Consultas de Reescritor”](rewriter-query-rewrite-plugin.html)
+[Section 5.5.4, “The Rewriter Query Rewrite Plugin”](rewriter-query-rewrite-plugin.html "5.5.4 The Rewriter Query Rewrite Plugin")
 
-[Seção 13.2.10.1, “A subconsulta como operando escalar”](scalar-subqueries.html)
+[Section 13.2.10.1, “The Subquery as Scalar Operand”](scalar-subqueries.html "13.2.10.1 The Subquery as Scalar Operand")
 
-[Seção 25.12.16.4, “Tabela de threads”](performance-schema-threads-table.html)
+[Section 25.12.16.4, “The threads Table”](performance-schema-threads-table.html "25.12.16.4 The threads Table")
 
-[Seção 8.15.3, “Declarações rastreáveis”](traceable-statements.html)
+[Section 8.15.3, “Traceable Statements”](traceable-statements.html "8.15.3 Traceable Statements")
 
-[Seção 14.7.2.1, “Níveis de Isolamento de Transações”](innodb-transaction-isolation-levels.html)
+[Section 14.7.2.1, “Transaction Isolation Levels”](innodb-transaction-isolation-levels.html "14.7.2.1 Transaction Isolation Levels")
 
-[Seção 23.3.1, "Sintaxe de gatilho e exemplos"](trigger-syntax.html)
+[Section 23.3.1, “Trigger Syntax and Examples”](trigger-syntax.html "23.3.1 Trigger Syntax and Examples")
 
-[Seção 8.15.4, "Limpeza de Rastros de Ajuste"](tuning-trace-purging.html)
+[Section 8.15.4, “Tuning Trace Purging”](tuning-trace-purging.html "8.15.4 Tuning Trace Purging")
 
-[Seção 12.3, “Conversão de Tipo na Avaliação de Expressões”](type-conversion.html)
+[Section 12.3, “Type Conversion in Expression Evaluation”](type-conversion.html "12.3 Type Conversion in Expression Evaluation")
 
-[Seção 13.2.9.3, "Cláusula de UNIÃO"](union.html)
+[Section 13.2.9.3, “UNION Clause”](union.html "13.2.9.3 UNION Clause")
 
-[Seção 13.2.11, "Declaração de Atualização"](update.html)
+[Section 13.2.11, “UPDATE Statement”](update.html "13.2.11 UPDATE Statement")
 
-[Seção 9.4, “Variáveis Definidas pelo Usuário”](user-variables.html)
+[Section 9.4, “User-Defined Variables”](user-variables.html "9.4 User-Defined Variables")
 
-[Seção 14.16.2.1, “Usando informações de transação e bloqueio do InnoDB”](innodb-information-schema-examples.html)
+[Section 14.16.2.1, “Using InnoDB Transaction and Locking Information”](innodb-information-schema-examples.html "14.16.2.1 Using InnoDB Transaction and Locking Information")
 
-[Seção 4.2.2.1, “Usando Opções na Linha de Comando”](command-line-options.html)
+[Section 4.2.2.1, “Using Options on the Command Line”](command-line-options.html "4.2.2.1 Using Options on the Command Line")
 
-[Seção 8.4.2.4, “Usando a ANÁLISE DE PROCEDIMENTOS”](procedure-analyse.html)
+[Section 8.4.2.4, “Using PROCEDURE ANALYSE”](procedure-analyse.html "8.4.2.4 Using PROCEDURE ANALYSE")
 
-[Seção 5.8.1.6, “Usando logs do servidor para encontrar causas de erros no mysqld”](using-log-files.html)
+[Section 5.8.1.6, “Using Server Logs to Find Causes of Errors in mysqld”](using-log-files.html "5.8.1.6 Using Server Logs to Find Causes of Errors in mysqld")
 
-[Seção 11.4.10, “Usando índices espaciais”](using-spatial-indexes.html)
+[Section 11.4.10, “Using Spatial Indexes”](using-spatial-indexes.html "11.4.10 Using Spatial Indexes")
 
-[Seção 5.5.4.2, “Usando o Plugin de Reescrita de Consultas de Reescritor”](rewriter-query-rewrite-plugin-usage.html)
+[Section 5.5.4.2, “Using the Rewriter Query Rewrite Plugin”](rewriter-query-rewrite-plugin-usage.html "5.5.4.2 Using the Rewriter Query Rewrite Plugin")
 
-[Seção 10.2.2, “UTF-8 para Metadados”](charset-metadata.html)
+[Section 10.2.2, “UTF-8 for Metadata”](charset-metadata.html "10.2.2 UTF-8 for Metadata")
 
-[Seção 5.5.5.4, “Referência de Tokens de Versão”](version-tokens-reference.html)
+[Section 5.5.5.4, “Version Tokens Reference”](version-tokens-reference.html "5.5.5.4 Version Tokens Reference")
 
-[Seção 23.5.1, "Sintaxe de visualização"](view-syntax.html)
+[Section 23.5.1, “View Syntax”](view-syntax.html "23.5.1 View Syntax")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
-[Seção 8.2.1.1, "Otimização da cláusula WHERE"](where-optimization.html)
+[Section 8.2.1.1, “WHERE Clause Optimization”](where-optimization.html "8.2.1.1 WHERE Clause Optimization")
 
-[Seção B.3.3.5, “Onde o MySQL Armazena Arquivos Temporários”](temporary-files.html)
+[Section B.3.3.5, “Where MySQL Stores Temporary Files”](temporary-files.html "B.3.3.5 Where MySQL Stores Temporary Files")
 
-[Seção 6.4.5.8, “Definições de filtro de registro de auditoria”](audit-log-filter-definitions.html)
+[Section 6.4.5.8, “Writing Audit Log Filter Definitions”](audit-log-filter-definitions.html "6.4.5.8 Writing Audit Log Filter Definitions")
 
 ### SELECT \*
 
-[Seção 11.3.4, “Os tipos BLOB e TEXT”](blob.html)
+[Section 11.3.4, “The BLOB and TEXT Types”](blob.html "11.3.4 The BLOB and TEXT Types")
 
 ### SELECT \* FROM t PARTITION ()
 
-[Seção 22.1, “Visão geral da partição no MySQL”](partitioning-overview.html)
+[Section 22.1, “Overview of Partitioning in MySQL”](partitioning-overview.html "22.1 Overview of Partitioning in MySQL")
 
-### SELECT \* INTO OUTFILE 'nome_arquivo' FROM tbl_name
+### SELECT \* INTO OUTFILE 'file_name' FROM tbl_name
 
-[Seção 7.2, “Métodos de backup de banco de dados”](backup-methods.html)
+[Section 7.2, “Database Backup Methods”](backup-methods.html "7.2 Database Backup Methods")
 
 ### SELECT ... FOR UPDATE
 
-[Seção 14.1.2, “Melhores Práticas para Tabelas InnoDB”](innodb-best-practices.html)
+[Section 14.1.2, “Best Practices for InnoDB Tables”](innodb-best-practices.html "14.1.2 Best Practices for InnoDB Tables")
 
-[Seção 14.7.5, "Bloqueios em InnoDB"](innodb-deadlocks.html)
+[Section 14.7.5, “Deadlocks in InnoDB”](innodb-deadlocks.html "14.7.5 Deadlocks in InnoDB")
 
-[Seção 14.7.5.3, “Como minimizar e lidar com deadlocks”](innodb-deadlocks-handling.html)
+[Section 14.7.5.3, “How to Minimize and Handle Deadlocks”](innodb-deadlocks-handling.html "14.7.5.3 How to Minimize and Handle Deadlocks")
 
-[Seção 14.7.1, "Bloqueio InnoDB"](innodb-locking.html)
+[Section 14.7.1, “InnoDB Locking”](innodb-locking.html "14.7.1 InnoDB Locking")
 
-[Seção 14.7.2.4, “Leitura de bloqueio”](innodb-locking-reads.html)
+[Section 14.7.2.4, “Locking Reads”](innodb-locking-reads.html "14.7.2.4 Locking Reads")
 
-[Seção 14.7.3, "Bloqueios Definidos por Diferentes Instruções SQL no InnoDB"](innodb-locks-set.html)
+[Section 14.7.3, “Locks Set by Different SQL Statements in InnoDB”](innodb-locks-set.html "14.7.3 Locks Set by Different SQL Statements in InnoDB")
 
-### SELECIONE ... DE
+### SELECT ... FROM
 
-[Seção 14.7.3, "Bloqueios Definidos por Diferentes Instruções SQL no InnoDB"](innodb-locks-set.html)
+[Section 14.7.3, “Locks Set by Different SQL Statements in InnoDB”](innodb-locks-set.html "14.7.3 Locks Set by Different SQL Statements in InnoDB")
 
-### SELECIONE ... PARA
+### SELECT ... INTO
 
-[Seção 13.1.12, "Declaração CREATE EVENT"](create-event.html)
+[Section 13.1.12, “CREATE EVENT Statement”](create-event.html "13.1.12 CREATE EVENT Statement")
 
-[Seção 13.6.4.2, "Âmbito e resolução de variáveis locais"](local-variable-scope.html)
+[Section 13.6.4.2, “Local Variable Scope and Resolution”](local-variable-scope.html "13.6.4.2 Local Variable Scope and Resolution")
 
-[Seção 16.4.1.15, “Replicação e Funções do Sistema”](replication-features-functions.html)
+[Section 16.4.1.15, “Replication and System Functions”](replication-features-functions.html "16.4.1.15 Replication and System Functions")
 
-[Seção 13.2.9.1, "Instrução SELECT ... INTO"](select-into.html)
+[Section 13.2.9.1, “SELECT ... INTO Statement”](select-into.html "13.2.9.1 SELECT ... INTO Statement")
 
-[Seção 1.6.2.1, “Diferenças para Selecionar em Tabela”](ansi-diff-select-into-table.html)
+[Section 1.6.2.1, “SELECT INTO TABLE Differences”](ansi-diff-select-into-table.html "1.6.2.1 SELECT INTO TABLE Differences")
 
-[Seção 13.2.9, "Instrução SELECT"](select.html)
+[Section 13.2.9, “SELECT Statement”](select.html "13.2.9 SELECT Statement")
 
 ### SELECT ... INTO DUMPFILE
 
-[Seção 6.1.3, “Tornar o MySQL seguro contra atacantes”](security-against-attack.html)
+[Section 6.1.3, “Making MySQL Secure Against Attackers”](security-against-attack.html "6.1.3 Making MySQL Secure Against Attackers")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
 ### SELECT ... INTO OUTFILE
 
-[Seção 1.1, “Sobre este manual”](manual-info.html)
+[Section 1.1, “About This Manual”](manual-info.html "1.1 About This Manual")
 
-[Seção 7.1, “Tipos de Backup e Recuperação”](backup-types.html)
+[Section 7.1, “Backup and Recovery Types”](backup-types.html "7.1 Backup and Recovery Types")
 
-[Seção 7.4.3, “Exportação de dados no formato de texto delimitado com mysqldump”](mysqldump-delimited-text.html)
+[Section 7.4.3, “Dumping Data in Delimited-Text Format with mysqldump”](mysqldump-delimited-text.html "7.4.3 Dumping Data in Delimited-Text Format with mysqldump")
 
-[Seção 14.22.2, “Forçar a recuperação do InnoDB”](forcing-innodb-recovery.html)
+[Section 14.22.2, “Forcing InnoDB Recovery”](forcing-innodb-recovery.html "14.22.2 Forcing InnoDB Recovery")
 
-[Seção 13.2.6, “Instrução LOAD DATA”](load-data.html)
+[Section 13.2.6, “LOAD DATA Statement”](load-data.html "13.2.6 LOAD DATA Statement")
 
-[Seção 6.1.3, “Tornar o MySQL seguro contra atacantes”](security-against-attack.html)
+[Section 6.1.3, “Making MySQL Secure Against Attackers”](security-against-attack.html "6.1.3 Making MySQL Secure Against Attackers")
 
-[Seção 9.1.7, “Valores NULOS”](null-values.html)
+[Section 9.1.7, “NULL Values”](null-values.html "9.1.7 NULL Values")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 13.2.9.1, "Instrução SELECT ... INTO"](select-into.html)
+[Section 13.2.9.1, “SELECT ... INTO Statement”](select-into.html "13.2.9.1 SELECT ... INTO Statement")
 
-[Seção 1.6.2.1, “Diferenças para Selecionar em Tabela”](ansi-diff-select-into-table.html)
+[Section 1.6.2.1, “SELECT INTO TABLE Differences”](ansi-diff-select-into-table.html "1.6.2.1 SELECT INTO TABLE Differences")
 
-[Seção 5.1.6, “Opções de comando do servidor”](server-options.html)
+[Section 5.1.6, “Server Command Options”](server-options.html "5.1.6 Server Command Options")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 6.2.17, “Soluções para problemas de conexão com o MySQL”](problemas-conectando.html)
+[Section 6.2.17, “Troubleshooting Problems Connecting to MySQL”](problems-connecting.html "6.2.17 Troubleshooting Problems Connecting to MySQL")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
-[Seção 2.3.7, “Restrições da Plataforma Windows”](windows-restrictions.html)
+[Section 2.3.7, “Windows Platform Restrictions”](windows-restrictions.html "2.3.7 Windows Platform Restrictions")
 
-### SELECT ... INTO OUTFILE 'nome_arquivo'
+### SELECT ... INTO OUTFILE 'file_name'
 
-[Seção 13.2.9.1, "Instrução SELECT ... INTO"](select-into.html)
+[Section 13.2.9.1, “SELECT ... INTO Statement”](select-into.html "13.2.9.1 SELECT ... INTO Statement")
 
 ### SELECT ... INTO var_list
 
-[Seção 23.8, “Restrições aos Programas Armazenados”](stored-program-restrictions.html)
+[Section 23.8, “Restrictions on Stored Programs”](stored-program-restrictions.html "23.8 Restrictions on Stored Programs")
 
-[Seção 13.6.4, “Variáveis em Programas Armazenados”](stored-program-variables.html)
+[Section 13.6.4, “Variables in Stored Programs”](stored-program-variables.html "13.6.4 Variables in Stored Programs")
 
-### SELECIONE ... LOCK IN MODO DE COMPARTILHAMENTO
+### SELECT ... LOCK IN SHARE MODE
 
-[Seção 14.7.5.3, “Como minimizar e lidar com deadlocks”](innodb-deadlocks-handling.html)
+[Section 14.7.5.3, “How to Minimize and Handle Deadlocks”](innodb-deadlocks-handling.html "14.7.5.3 How to Minimize and Handle Deadlocks")
 
-[Seção 14.7.1, "Bloqueio InnoDB"](innodb-locking.html)
+[Section 14.7.1, “InnoDB Locking”](innodb-locking.html "14.7.1 InnoDB Locking")
 
-[Seção 21.2.7.3, “Limitações relacionadas ao processamento de transações no NDB Cluster”](mysql-cluster-limitations-transactions.html)
+[Section 21.2.7.3, “Limits Relating to Transaction Handling in NDB Cluster”](mysql-cluster-limitations-transactions.html "21.2.7.3 Limits Relating to Transaction Handling in NDB Cluster")
 
-[Seção 14.7.2.4, “Leitura de bloqueio”](innodb-locking-reads.html)
+[Section 14.7.2.4, “Locking Reads”](innodb-locking-reads.html "14.7.2.4 Locking Reads")
 
-[Seção 14.7.3, "Bloqueios Definidos por Diferentes Instruções SQL no InnoDB"](innodb-locks-set.html)
+[Section 14.7.3, “Locks Set by Different SQL Statements in InnoDB”](innodb-locks-set.html "14.7.3 Locks Set by Different SQL Statements in InnoDB")
 
-[Seção 14.7.2.1, “Níveis de Isolamento de Transações”](innodb-transaction-isolation-levels.html)
+[Section 14.7.2.1, “Transaction Isolation Levels”](innodb-transaction-isolation-levels.html "14.7.2.1 Transaction Isolation Levels")
 
-### DISTINCT
+### SELECT DISTINCT
 
-[Seção 14.8.11.1.3, “Configurando o Número de Páginas Amostradas para Estatísticas do Otimizador InnoDB”](innodb-persistent-stats.html#innodb-persistent-stats-pages-sampled)
+[Section 14.8.11.1.3, “Configuring the Number of Sampled Pages for InnoDB Optimizer Statistics”](innodb-persistent-stats.html#innodb-persistent-stats-pages-sampled "14.8.11.1.3 Configuring the Number of Sampled Pages for InnoDB Optimizer Statistics")
 
-[Seção 8.14.3, “Estados gerais de fios”](general-thread-states.html)
+[Section 8.14.3, “General Thread States”](general-thread-states.html "8.14.3 General Thread States")
 
-[Seção 8.2.2.1, “Otimização de subconsultas, tabelas derivadas e referências de visualizações com transformações de semijoin”](semijoins.html)
+[Section 8.2.2.1, “Optimizing Subqueries, Derived Tables, and View References with Semijoin Transformations”](semijoins.html "8.2.2.1 Optimizing Subqueries, Derived Tables, and View References with Semijoin Transformations")
 
 ### SELECT INTO ... OUTFILE
 
-[Seção 21.5.14, “ndb_import — Importar dados CSV no NDB”](mysql-cluster-programs-ndb-import.html)
+[Section 21.5.14, “ndb_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "21.5.14 ndb_import — Import CSV Data Into NDB")
 
 ### SELECT INTO OUTFILE
 
-[Seção 21.5.14, “ndb_import — Importar dados CSV no NDB”](mysql-cluster-programs-ndb-import.html)
+[Section 21.5.14, “ndb_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "21.5.14 ndb_import — Import CSV Data Into NDB")
 
-### Selecione SLEEP()
+### SELECT SLEEP()
 
-[Seção 5.1.10, "Modos SQL do Servidor"](sql-mode.html)
+[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
 
 ### SET
 
-[Seção 12.4.4, "Operadores de atribuição"](assignment-operators.html)
+[Section 12.4.4, “Assignment Operators”](assignment-operators.html "12.4.4 Assignment Operators")
 
-[Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
+[Section 16.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "16.1.6.4 Binary Logging Options and Variables")
 
-[Seção 12.1, “Referência de Função e Operador Inbuilt”](built-in-function-reference.html)
+[Section 12.1, “Built-In Function and Operator Reference”](built-in-function-reference.html "12.1 Built-In Function and Operator Reference")
 
-[Seção 14.8.3.1, “Configurando o tamanho do pool de buffers InnoDB”](innodb-buffer-pool-resize.html)
+[Section 14.8.3.1, “Configuring InnoDB Buffer Pool Size”](innodb-buffer-pool-resize.html "14.8.3.1 Configuring InnoDB Buffer Pool Size")
 
-[Seção 14.8.8, “Configurando a Capacidade de E/S do InnoDB”](innodb-configuring-io-capacity.html)
+[Section 14.8.8, “Configuring InnoDB I/O Capacity”](innodb-configuring-io-capacity.html "14.8.8 Configuring InnoDB I/O Capacity")
 
-[Seção 14.8.11.2, “Configurando Parâmetros de Estatísticas de Otimizador Não Persistente”](innodb-statistics-estimation.html)
+[Section 14.8.11.2, “Configuring Non-Persistent Optimizer Statistics Parameters”](innodb-statistics-estimation.html "14.8.11.2 Configuring Non-Persistent Optimizer Statistics Parameters")
 
-[Seção 10.4, "Conjunto de caracteres de conexão e codificações"](charset-connection.html)
+[Section 10.4, “Connection Character Sets and Collations”](charset-connection.html "10.4 Connection Character Sets and Collations")
 
-[Seção 14.9.1.2, “Criando tabelas compactadas”](innodb-compression-usage.html)
+[Section 14.9.1.2, “Creating Compressed Tables”](innodb-compression-usage.html "14.9.1.2 Creating Compressed Tables")
 
-[Seção 23.1, “Definindo Programas Armazenados”](stored-programs-defining.html)
+[Section 23.1, “Defining Stored Programs”](stored-programs-defining.html "23.1 Defining Stored Programs")
 
-[Seção 6.4.5.9, “Desativando o Registro de Auditoria”](audit-log-disabling.html)
+[Section 6.4.5.9, “Disabling Audit Logging”](audit-log-disabling.html "6.4.5.9 Disabling Audit Logging")
 
-[Seção 23.4.2, “Configuração do Agendador de Eventos”](events-configuration.html)
+[Section 23.4.2, “Event Scheduler Configuration”](events-configuration.html "23.4.2 Event Scheduler Configuration")
 
-[Capítulo 12, *Funções e Operadores*] (functions.html)
+[Chapter 12, *Functions and Operators*](functions.html "Chapter 12 Functions and Operators")
 
-[Seção 16.1.6.5, “Variáveis do Sistema de ID de Transação Global”](replication-options-gtids.html)
+[Section 16.1.6.5, “Global Transaction ID System Variables”](replication-options-gtids.html "16.1.6.5 Global Transaction ID System Variables")
 
-[Seção 21.6.9, “Importando dados no MySQL Cluster”](mysql-cluster-importing-data.html)
+[Section 21.6.9, “Importing Data Into MySQL Cluster”](mysql-cluster-importing-data.html "21.6.9 Importing Data Into MySQL Cluster")
 
-[Seção 12.15, “Funções de Informação”](information-functions.html)
+[Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions")
 
-[Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
+[Section 14.15, “InnoDB Startup Options and System Variables”](innodb-parameters.html "14.15 InnoDB Startup Options and System Variables")
 
-[Seção 4.5.1.6, “Dicas do cliente do MySQL”](mysql-tips.html)
+[Section 4.5.1.6, “mysql Client Tips”](mysql-tips.html "4.5.1.6 mysql Client Tips")
 
-[Seção 6.6.2, “Uso e exemplos de criptografia empresarial do MySQL”](enterprise-encryption-usage.html)
+[Section 6.6.2, “MySQL Enterprise Encryption Usage and Examples”](enterprise-encryption-usage.html "6.6.2 MySQL Enterprise Encryption Usage and Examples")
 
-[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html)
+[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
 
-[Seção 21.7.11, "Resolução de conflitos de replicação de cluster do NDB"](mysql-cluster-replication-conflict-resolution.html)
+[Section 21.7.11, “NDB Cluster Replication Conflict Resolution”](mysql-cluster-replication-conflict-resolution.html "21.7.11 NDB Cluster Replication Conflict Resolution")
 
-[Seção 12.4, “Operadores”](non-typed-operators.html)
+[Section 12.4, “Operators”](non-typed-operators.html "12.4 Operators")
 
-[Seção 22.6.4, “Partição e Bloqueio”](partitioning-limitations-locking.html)
+[Section 22.6.4, “Partitioning and Locking”](partitioning-limitations-locking.html "22.6.4 Partitioning and Locking")
 
-[Seção 6.2.11, “Gestão de Senhas”](password-management.html)
+[Section 6.2.11, “Password Management”](password-management.html "6.2.11 Password Management")
 
-[Seção 8.10.3.3, “Configuração do Cache de Consulta”](query-cache-configuration.html)
+[Section 8.10.3.3, “Query Cache Configuration”](query-cache-configuration.html "8.10.3.3 Query Cache Configuration")
 
-[Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
+[Section 16.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "16.1.6.3 Replica Server Options and Variables")
 
-[Seção 16.1.6.2, “Opções e variáveis de fonte de replicação”](replication-options-source.html)
+[Section 16.1.6.2, “Replication Source Options and Variables”](replication-options-source.html "16.1.6.2 Replication Source Options and Variables")
 
-[Seção 13.4.2.3, "Declaração de RESET SLAVE"](reset-slave.html)
+[Section 13.4.2.3, “RESET SLAVE Statement”](reset-slave.html "13.4.2.3 RESET SLAVE Statement")
 
-[Seção 5.1.6, “Opções de comando do servidor”](server-options.html)
+[Section 5.1.6, “Server Command Options”](server-options.html "5.1.6 Server Command Options")
 
-[Seção 6.2.12, “Tratamento de Senhas Expirantes pelo Servidor”](expired-password-handling.html)
+[Section 6.2.12, “Server Handling of Expired Passwords”](expired-password-handling.html "6.2.12 Server Handling of Expired Passwords")
 
-[Seção 5.1.10, "Modos SQL do Servidor"](sql-mode.html)
+[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 13.7.4, "Declarações SET"](set-statement.html)
+[Section 13.7.4, “SET Statements”](set-statement.html "13.7.4 SET Statements")
 
-[Seção 13.7.4.1, "Sintaxe SET para Atribuição de Variáveis"](set-variable.html)
+[Section 13.7.4.1, “SET Syntax for Variable Assignment”](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment")
 
-[Seção 13.3.6, “Instrução SET TRANSACTION”](set-transaction.html)
+[Section 13.3.6, “SET TRANSACTION Statement”](set-transaction.html "13.3.6 SET TRANSACTION Statement")
 
-[Seção 13.7.5.39, "Declaração SHOW VARIABLES"](show-variables.html)
+[Section 13.7.5.39, “SHOW VARIABLES Statement”](show-variables.html "13.7.5.39 SHOW VARIABLES Statement")
 
-[Seção 23.7, "Registro de Log de Binário de Programa Armazenado"](stored-programs-logging.html)
+[Section 23.7, “Stored Program Binary Logging”](stored-programs-logging.html "23.7 Stored Program Binary Logging")
 
-[Seção 13.2.10, "Subconsultas"](subqueries.html)
+[Section 13.2.10, “Subqueries”](subqueries.html "13.2.10 Subqueries")
 
-[Seção 5.1.8.1, “Privilégios de variáveis do sistema”](system-variable-privileges.html)
+[Section 5.1.8.1, “System Variable Privileges”](system-variable-privileges.html "5.1.8.1 System Variable Privileges")
 
-[Seção 13.6.7.7, “A Área de Diagnóstico do MySQL”](diagnostics-area.html)
+[Section 13.6.7.7, “The MySQL Diagnostics Area”](diagnostics-area.html "13.6.7.7 The MySQL Diagnostics Area")
 
-[Seção 5.4.5, “O Log de Consultas Lentas”](slow-query-log.html)
+[Section 5.4.5, “The Slow Query Log”](slow-query-log.html "5.4.5 The Slow Query Log")
 
-[Seção 8.15.3, “Declarações rastreáveis”](traceable-statements.html)
+[Section 8.15.3, “Traceable Statements”](traceable-statements.html "8.15.3 Traceable Statements")
 
-[Seção 23.3.1, "Sintaxe de gatilho e exemplos"](trigger-syntax.html)
+[Section 23.3.1, “Trigger Syntax and Examples”](trigger-syntax.html "23.3.1 Trigger Syntax and Examples")
 
-[Seção 8.15.4, "Limpeza de Rastros de Ajuste"](tuning-trace-purging.html)
+[Section 8.15.4, “Tuning Trace Purging”](tuning-trace-purging.html "8.15.4 Tuning Trace Purging")
 
-[Seção 8.15.1, “Uso típico”](optimizer-tracing-typical-usage.html)
+[Section 8.15.1, “Typical Usage”](optimizer-tracing-typical-usage.html "8.15.1 Typical Usage")
 
-[Seção 9.4, “Variáveis Definidas pelo Usuário”](user-variables.html)
+[Section 9.4, “User-Defined Variables”](user-variables.html "9.4 User-Defined Variables")
 
-[Seção 4.2.2.1, “Usando Opções na Linha de Comando”](command-line-options.html)
+[Section 4.2.2.1, “Using Options on the Command Line”](command-line-options.html "4.2.2.1 Using Options on the Command Line")
 
-[Seção 4.2.2.5, “Usando Opções para Definir Variáveis de Programa”](program-variables.html)
+[Section 4.2.2.5, “Using Options to Set Program Variables”](program-variables.html "4.2.2.5 Using Options to Set Program Variables")
 
-[Seção 5.1.8, “Usando Variáveis do Sistema”](using-system-variables.html)
+[Section 5.1.8, “Using System Variables”](using-system-variables.html "5.1.8 Using System Variables")
 
-[Seção 13.6.4, “Variáveis em Programas Armazenados”](stored-program-variables.html)
+[Section 13.6.4, “Variables in Stored Programs”](stored-program-variables.html "13.6.4 Variables in Stored Programs")
 
 ### SET @@GLOBAL.gtid_purged
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
+[Section 4.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "4.5.6 mysqlpump — A Database Backup Program")
 
-### SET @@GLOBAL.ndb_slave_conflict_role = 'NENHUMA'
+### SET @@GLOBAL.ndb_slave_conflict_role = 'NONE'
 
-[Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
+[Section 21.4.3.9.2, “NDB Cluster System Variables”](mysql-cluster-options-variables.html#mysql-cluster-system-variables "21.4.3.9.2 NDB Cluster System Variables")
 
 ### SET autocommit
 
-[Seção 8.5.5, “Carregamento de Dados em Massa para Tabelas InnoDB”](optimizando-innodb-bulk-data-loading.html)
+[Section 8.5.5, “Bulk Data Loading for InnoDB Tables”](optimizing-innodb-bulk-data-loading.html "8.5.5 Bulk Data Loading for InnoDB Tables")
 
-[Seção 13.3, "Instruções Transacionais e de Bloqueio"](sql-transactional-statements.html)
+[Section 13.3, “Transactional and Locking Statements”](sql-transactional-statements.html "13.3 Transactional and Locking Statements")
 
 ### SET autocommit = 0
 
-[Seção 16.3.9, “Replicação Semisincronizada”](replication-semisync.html)
+[Section 16.3.9, “Semisynchronous Replication”](replication-semisync.html "16.3.9 Semisynchronous Replication")
 
-### DEFINIR SET DE CARACTERES
+### SET CHARACTER SET
 
-[Seção 10.4, "Conjunto de caracteres de conexão e codificações"](charset-connection.html)
+[Section 10.4, “Connection Character Sets and Collations”](charset-connection.html "10.4 Connection Character Sets and Collations")
 
-[Seção 13.7.4.2, “Declaração de Conjunto de Caracteres SET”](set-character-set.html)
+[Section 13.7.4.2, “SET CHARACTER SET Statement”](set-character-set.html "13.7.4.2 SET CHARACTER SET Statement")
 
-[Seção 13.7.4, "Declarações SET"](set-statement.html)
+[Section 13.7.4, “SET Statements”](set-statement.html "13.7.4 SET Statements")
 
-[Seção 10.9, “Suporte a Unicode”](charset-unicode.html)
+[Section 10.9, “Unicode Support”](charset-unicode.html "10.9 Unicode Support")
 
-### DEFINA O SET DE CARACTERES 'charset_name'
+### SET CHARACTER SET 'charset_name'
 
-[Seção 10.4, "Conjunto de caracteres de conexão e codificações"](charset-connection.html)
+[Section 10.4, “Connection Character Sets and Collations”](charset-connection.html "10.4 Connection Character Sets and Collations")
 
 ### SET CHARACTER SET charset_name
 
-[Seção 10.4, "Conjunto de caracteres de conexão e codificações"](charset-connection.html)
+[Section 10.4, “Connection Character Sets and Collations”](charset-connection.html "10.4 Connection Character Sets and Collations")
 
 ### SET GLOBAL
 
-[Seção 14.5.2, “Buffer de Mudança”](innodb-change-buffer.html)
+[Section 14.5.2, “Change Buffer”](innodb-change-buffer.html "14.5.2 Change Buffer")
 
-[Seção 14.8.3.4, “Configurando a pré-visualização do pool de buffers InnoDB (leitura antecipada)](innodb-performance-read_ahead.html)
+[Section 14.8.3.4, “Configuring InnoDB Buffer Pool Prefetching (Read-Ahead)”](innodb-performance-read_ahead.html "14.8.3.4 Configuring InnoDB Buffer Pool Prefetching (Read-Ahead)")
 
-[Seção 14.8.8, “Configurando a Capacidade de E/S do InnoDB”](innodb-configuring-io-capacity.html)
+[Section 14.8.8, “Configuring InnoDB I/O Capacity”](innodb-configuring-io-capacity.html "14.8.8 Configuring InnoDB I/O Capacity")
 
-[Seção 14.8.9, “Configurando a Pesquisa de Bloqueio de Rotação”](innodb-performance-spin_lock_polling.html)
+[Section 14.8.9, “Configuring Spin Lock Polling”](innodb-performance-spin_lock_polling.html "14.8.9 Configuring Spin Lock Polling")
 
-[Seção 6.4.2.1, “Instalação do Plugin de Controle de Conexão”](connection-control-plugin-installation.html)
+[Section 6.4.2.1, “Connection Control Plugin Installation”](connection-control-plugin-installation.html "6.4.2.1 Connection Control Plugin Installation")
 
-[Seção 14.6.3.2, “Tablespaces por arquivo para tabelas”](innodb-file-per-table-tablespaces.html)
+[Section 14.6.3.2, “File-Per-Table Tablespaces”](innodb-file-per-table-tablespaces.html "14.6.3.2 File-Per-Table Tablespaces")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
+[Section 14.15, “InnoDB Startup Options and System Variables”](innodb-parameters.html "14.15 InnoDB Startup Options and System Variables")
 
-[Seção 14.8.3.3, “Tornar a varredura do pool de tampão resistente”](innodb-performance-midpoint_insertion.html)
+[Section 14.8.3.3, “Making the Buffer Pool Scan Resistant”](innodb-performance-midpoint_insertion.html "14.8.3.3 Making the Buffer Pool Scan Resistant")
 
-[Seção 8.10.2.2, "Caches de Chave Múltiplos"](multiple-key-caches.html)
+[Section 8.10.2.2, “Multiple Key Caches”](multiple-key-caches.html "8.10.2.2 Multiple Key Caches")
 
-[Seção 16.3.9.2, “Instalação e Configuração de Replicação Semisíncrona”](replication-semisync-installation.html)
+[Section 16.3.9.2, “Semisynchronous Replication Installation and Configuration”](replication-semisync-installation.html "16.3.9.2 Semisynchronous Replication Installation and Configuration")
 
-[Seção 6.4.4.5, “Usando o plugin Amazon Web Services Keyring keyring_aws”](keyring-aws-plugin.html)
+[Section 6.4.4.5, “Using the keyring_aws Amazon Web Services Keyring Plugin”](keyring-aws-plugin.html "6.4.4.5 Using the keyring_aws Amazon Web Services Keyring Plugin")
 
 ### SET GLOBAL SQL_LOG_BIN
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
 ### SET GLOBAL sql_slave_skip_counter
 
-[Seção 13.4.2.4, “Sintaxe de SET GLOBAL sql_slave_skip_counter”](set-global-sql-slave-skip-counter.html)
+[Section 13.4.2.4, “SET GLOBAL sql_slave_skip_counter Syntax”](set-global-sql-slave-skip-counter.html "13.4.2.4 SET GLOBAL sql_slave_skip_counter Syntax")
 
 ### SET GLOBAL TRANSACTION READ ONLY
 
-[Seção B.3.7, “Problemas Conhecidos no MySQL”](known-issues.html)
+[Section B.3.7, “Known Issues in MySQL”](known-issues.html "B.3.7 Known Issues in MySQL")
 
-### SET NOMES
+### SET NAMES
 
-[Seção 10.3.6, "Conjunto de caracteres de literal de string de caracteres e cotação"](charset-literal.html)
+[Section 10.3.6, “Character String Literal Character Set and Collation”](charset-literal.html "10.3.6 Character String Literal Character Set and Collation")
 
-[Seção 10.5, “Configurando o Conjunto de Caracteres e a Cotação da Aplicação”](charset-applications.html)
+[Section 10.5, “Configuring Application Character Set and Collation”](charset-applications.html "10.5 Configuring Application Character Set and Collation")
 
-[Seção 10.4, "Conjunto de caracteres de conexão e codificações"](charset-connection.html)
+[Section 10.4, “Connection Character Sets and Collations”](charset-connection.html "10.4 Connection Character Sets and Collations")
 
-[Seção 10.6, “Conjunto de caracteres do Mensagem de Erro”](charset-errors.html)
+[Section 10.6, “Error Message Character Set”](charset-errors.html "10.6 Error Message Character Set")
 
-[Seção 13.2.6, “Instrução LOAD DATA”](load-data.html)
+[Section 13.2.6, “LOAD DATA Statement”](load-data.html "13.2.6 LOAD DATA Statement")
 
-[Seção A.11, “Perguntas frequentes sobre o MySQL 5.7: conjuntos de caracteres chineses, japoneses e coreanos do MySQL”](faqs-cjk.html)
+[Section A.11, “MySQL 5.7 FAQ: MySQL Chinese, Japanese, and Korean Character Sets”](faqs-cjk.html "A.11 MySQL 5.7 FAQ: MySQL Chinese, Japanese, and Korean Character Sets")
 
-[Seção 4.5.1.2, “Comandos do cliente do MySQL”](mysql-commands.html)
+[Section 4.5.1.2, “mysql Client Commands”](mysql-commands.html "4.5.1.2 mysql Client Commands")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
+[Section 4.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "4.5.6 mysqlpump — A Database Backup Program")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 13.7.4.3, "Declaração de Nomes de Conjunto"](set-names.html)
+[Section 13.7.4.3, “SET NAMES Statement”](set-names.html "13.7.4.3 SET NAMES Statement")
 
-[Seção 13.7.4, "Declarações SET"](set-statement.html)
+[Section 13.7.4, “SET Statements”](set-statement.html "13.7.4 SET Statements")
 
-[Seção 10.10.7.2, “O conjunto de caracteres gb18030”](charset-gb18030.html)
+[Section 10.10.7.2, “The gb18030 Character Set”](charset-gb18030.html "10.10.7.2 The gb18030 Character Set")
 
-[Seção 12.3, “Conversão de Tipo na Avaliação de Expressões”](type-conversion.html)
+[Section 12.3, “Type Conversion in Expression Evaluation”](type-conversion.html "12.3 Type Conversion in Expression Evaluation")
 
-[Seção 10.9, “Suporte a Unicode”](charset-unicode.html)
+[Section 10.9, “Unicode Support”](charset-unicode.html "10.9 Unicode Support")
 
-[Seção 10.2.2, “UTF-8 para Metadados”](charset-metadata.html)
+[Section 10.2.2, “UTF-8 for Metadata”](charset-metadata.html "10.2.2 UTF-8 for Metadata")
 
 ### SET NAMES 'charset_name'
 
-[Seção 10.4, "Conjunto de caracteres de conexão e codificações"](charset-connection.html)
+[Section 10.4, “Connection Character Sets and Collations”](charset-connection.html "10.4 Connection Character Sets and Collations")
 
 ### SET NAMES 'cp1251'
 
-[Seção 10.4, "Conjunto de caracteres de conexão e codificações"](charset-connection.html)
+[Section 10.4, “Connection Character Sets and Collations”](charset-connection.html "10.4 Connection Character Sets and Collations")
 
 ### SET NAMES charset_name
 
-[Seção 4.6.7, “mysqlbinlog — Ferramenta para processamento de arquivos de log binário”](mysqlbinlog.html)
+[Section 4.6.7, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "4.6.7 mysqlbinlog — Utility for Processing Binary Log Files")
 
 ### SET NAMES default_character_set
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
+[Section 4.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "4.5.6 mysqlpump — A Database Backup Program")
 
-### DEFINIR SENHA
+### SET PASSWORD
 
-[Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
+[Section 16.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "16.1.6.4 Binary Logging Options and Variables")
 
-[Seção 6.2.3, “Tabelas de subsídios”](grant-tables.html)
+[Section 6.2.3, “Grant Tables”](grant-tables.html "6.2.3 Grant Tables")
 
-[Seção 12.15, “Funções de Informação”](information-functions.html)
+[Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions")
 
-[Seção 5.4.4.4, "Formato de registro para alterações nas tabelas do banco de dados mysql"](binary-log-mysql-database.html)
+[Section 5.4.4.4, “Logging Format for Changes to mysql Database Tables”](binary-log-mysql-database.html "5.4.4.4 Logging Format for Changes to mysql Database Tables")
 
-[Seção 4.4.2, “mysql_install_db — Inicializar o diretório de dados do MySQL”](mysql-install-db.html)
+[Section 4.4.2, “mysql_install_db — Initialize MySQL Data Directory”](mysql-install-db.html "4.4.2 mysql_install_db — Initialize MySQL Data Directory")
 
-[Seção 6.1.2.4, “Hashing de Senhas no MySQL”](password-hashing.html)
+[Section 6.1.2.4, “Password Hashing in MySQL”](password-hashing.html "6.1.2.4 Password Hashing in MySQL")
 
-[Seção 6.2.11, “Gestão de Senhas”](password-management.html)
+[Section 6.2.11, “Password Management”](password-management.html "6.2.11 Password Management")
 
-[Seção 6.4.3.2, “Opções e variáveis do plugin de validação de senha”](validate-password-options-variables.html)
+[Section 6.4.3.2, “Password Validation Plugin Options and Variables”](validate-password-options-variables.html "6.4.3.2 Password Validation Plugin Options and Variables")
 
-[Seção 6.1.2.3, “Senhas e Registro de Ações”](password-logging.html)
+[Section 6.1.2.3, “Passwords and Logging”](password-logging.html "6.1.2.3 Passwords and Logging")
 
-[Seção 16.4.1.37, “Replicação e Variáveis”](replication-features-variables.html)
+[Section 16.4.1.37, “Replication and Variables”](replication-features-variables.html "16.4.1.37 Replication and Variables")
 
-[Seção 16.4.1.8, “Replicação de CURRENT_USER()”](replication-features-current-user.html)
+[Section 16.4.1.8, “Replication of CURRENT_USER()”](replication-features-current-user.html "16.4.1.8 Replication of CURRENT_USER()")
 
-[Seção B.3.3.2.3, “Redefinindo a Senha de Root: Instruções Gerais”](resetting-permissions.html#resetting-permissions-generic)
+[Section B.3.3.2.3, “Resetting the Root Password: Generic Instructions”](resetting-permissions.html#resetting-permissions-generic "B.3.3.2.3 Resetting the Root Password: Generic Instructions")
 
-[Seção 6.2.12, “Tratamento de Senhas Expirantes pelo Servidor”](expired-password-handling.html)
+[Section 6.2.12, “Server Handling of Expired Passwords”](expired-password-handling.html "6.2.12 Server Handling of Expired Passwords")
 
-[Seção 13.7.1.7, "Declaração de Definir Senha"](set-password.html)
+[Section 13.7.1.7, “SET PASSWORD Statement”](set-password.html "13.7.1.7 SET PASSWORD Statement")
 
-[Seção 13.7.4, "Declarações SET"](set-statement.html)
+[Section 13.7.4, “SET Statements”](set-statement.html "13.7.4 SET Statements")
 
-[Seção 6.2.4, “Especificação de Nomes de Conta”](account-names.html)
+[Section 6.2.4, “Specifying Account Names”](account-names.html "6.2.4 Specifying Account Names")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 6.4.3, “O Plugin de Validação de Senha”](validate-password.html)
+[Section 6.4.3, “The Password Validation Plugin”](validate-password.html "6.4.3 The Password Validation Plugin")
 
-[Seção 6.2.9, “Quando as Alterações de Privilegios Se Tornam Efetivas”](privilege-changes.html)
+[Section 6.2.9, “When Privilege Changes Take Effect”](privilege-changes.html "6.2.9 When Privilege Changes Take Effect")
 
-### DEFINIR SENHA ... = 'auth_string'
+### SET PASSWORD ... = 'auth_string'
 
-[Seção 13.7.1.7, "Declaração de Definir Senha"](set-password.html)
+[Section 13.7.1.7, “SET PASSWORD Statement”](set-password.html "13.7.1.7 SET PASSWORD Statement")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
-### DEFINIR SENHA ... = SENHA()
+### SET PASSWORD ... = PASSWORD()
 
-[Seção 13.7.1.7, "Declaração de Definir Senha"](set-password.html)
+[Section 13.7.1.7, “SET PASSWORD Statement”](set-password.html "13.7.1.7 SET PASSWORD Statement")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
 ### SET PERSIST
 
-[Seção A.9, “Perguntas frequentes sobre o MySQL 5.7: Segurança”](faqs-security.html)
+[Section A.9, “MySQL 5.7 FAQ: Security”](faqs-security.html "A.9 MySQL 5.7 FAQ: Security")
 
 ### SET SESSION
 
-[Seção 5.1.8.1, “Privilégios de variáveis do sistema”](system-variable-privileges.html)
+[Section 5.1.8.1, “System Variable Privileges”](system-variable-privileges.html "5.1.8.1 System Variable Privileges")
 
-### CONFIGURAR NÍVEL DE ISOLAMENTO DE TRANSAÇÕES DE SESSÃO
+### SET SESSION TRANSACTION ISOLATION LEVEL
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
 ### SET SESSION TRANSACTION {READ WRITE | READ ONLY}
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
 ### SET sql_log_bin = 0
 
-[Seção 4.6.7, “mysqlbinlog — Ferramenta para processamento de arquivos de log binário”](mysqlbinlog.html)
+[Section 4.6.7, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "4.6.7 mysqlbinlog — Utility for Processing Binary Log Files")
 
 ### SET sql_log_bin=OFF
 
-[Seção 5.4.4, “O Log Binário”](binary-log.html)
+[Section 5.4.4, “The Binary Log”](binary-log.html "5.4.4 The Binary Log")
 
 ### SET sql_mode='modes'
 
-[Seção A.3, “Perguntas frequentes sobre o MySQL 5.7: Modo SQL do servidor”](faqs-sql-modes.html)
+[Section A.3, “MySQL 5.7 FAQ: Server SQL Mode”](faqs-sql-modes.html "A.3 MySQL 5.7 FAQ: Server SQL Mode")
 
-### SET TIMESTAMP = valor
+### SET TIMESTAMP = value
 
-[Seção 8.14.1, “Acesse a Lista de Processos”](processlist-access.html)
+[Section 8.14.1, “Accessing the Process List”](processlist-access.html "8.14.1 Accessing the Process List")
 
 ### SET TRANSACTION
 
-[Seção 14.2, “InnoDB e o Modelo ACID”](mysql-acid.html)
+[Section 14.2, “InnoDB and the ACID Model”](mysql-acid.html "14.2 InnoDB and the ACID Model")
 
-[Seção 5.1.6, “Opções de comando do servidor”](server-options.html)
+[Section 5.1.6, “Server Command Options”](server-options.html "5.1.6 Server Command Options")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 5.1.15, “Rastreamento do Estado da Sessão do Cliente no Servidor”](session-state-tracking.html)
+[Section 5.1.15, “Server Tracking of Client Session State”](session-state-tracking.html "5.1.15 Server Tracking of Client Session State")
 
-[Seção 13.3.6, “Instrução SET TRANSACTION”](set-transaction.html)
+[Section 13.3.6, “SET TRANSACTION Statement”](set-transaction.html "13.3.6 SET TRANSACTION Statement")
 
-[Seção 13.3.1, "Instruções START TRANSACTION, COMMIT e ROLLBACK"](commit.html)
+[Section 13.3.1, “START TRANSACTION, COMMIT, and ROLLBACK Statements”](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements")
 
-[Seção 14.7.2.1, “Níveis de Isolamento de Transações”](innodb-transaction-isolation-levels.html)
+[Section 14.7.2.1, “Transaction Isolation Levels”](innodb-transaction-isolation-levels.html "14.7.2.1 Transaction Isolation Levels")
 
-### Nível de Isolamento de Transação SET
+### SET TRANSACTION ISOLATION LEVEL
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 13.7.4, "Declarações SET"](set-statement.html)
+[Section 13.7.4, “SET Statements”](set-statement.html "13.7.4 SET Statements")
 
-[Seção 13.3.1, "Instruções START TRANSACTION, COMMIT e ROLLBACK"](commit.html)
+[Section 13.3.1, “START TRANSACTION, COMMIT, and ROLLBACK Statements”](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements")
 
-### Nível de isolamento de transação SET READ UNCOMMITTED
+### SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
 
-[Seção 14.21.6, “O Plugin InnoDB memcached e Replicação”](innodb-memcached-replication.html)
+[Section 14.21.6, “The InnoDB memcached Plugin and Replication”](innodb-memcached-replication.html "14.21.6 The InnoDB memcached Plugin and Replication")
 
-### SET TRANSACTION {LEITURA | ESCRITA | LEITURA SOMENTE]
+### SET TRANSACTION {READ WRITE | READ ONLY}
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-### SET var_name = valor
+### SET var_name = value
 
-[Seção 13.7.4, "Declarações SET"](set-statement.html)
+[Section 13.7.4, “SET Statements”](set-statement.html "13.7.4 SET Statements")
 
-### MOSTRAR
+### SHOW
 
-[Seção 13.1.12, "Declaração CREATE EVENT"](create-event.html)
+[Section 13.1.12, “CREATE EVENT Statement”](create-event.html "13.1.12 CREATE EVENT Statement")
 
-[Seção 13.1.16, "Instruções CREATE PROCEDURE e CREATE FUNCTION"](create-procedure.html)
+[Section 13.1.16, “CREATE PROCEDURE and CREATE FUNCTION Statements”](create-procedure.html "13.1.16 CREATE PROCEDURE and CREATE FUNCTION Statements")
 
-[Seção 3.3, “Criando e Usando um Banco de Dados”](database-use.html)
+[Section 3.3, “Creating and Using a Database”](database-use.html "3.3 Creating and Using a Database")
 
-[Seção 13.6.6.2, "Declaração Cursor DECLARE"](declare-cursor.html)
+[Section 13.6.6.2, “Cursor DECLARE Statement”](declare-cursor.html "13.6.6.2 Cursor DECLARE Statement")
 
-[Seção 24.8, “Extensões para declarações SHOW”](extended-show.html)
+[Section 24.8, “Extensions to SHOW Statements”](extended-show.html "24.8 Extensions to SHOW Statements")
 
-[Seção 24.1, “Introdução”](information-schema-introduction.html)
+[Section 24.1, “Introduction”](information-schema-introduction.html "24.1 Introduction")
 
-[Seção 9.2.4, “Mapeamento de Identificadores para Nomes de Arquivos”](identifier-mapping.html)
+[Section 9.2.4, “Mapping of Identifiers to File Names”](identifier-mapping.html "9.2.4 Mapping of Identifiers to File Names")
 
-[Seção A.14, “Perguntas frequentes sobre o MySQL 5.7: Replicação”](faqs-replication.html)
+[Section A.14, “MySQL 5.7 FAQ: Replication”](faqs-replication.html "A.14 MySQL 5.7 FAQ: Replication")
 
-[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html)
+[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
 
-[Seção 4.5.7, “mysqlshow — Exibir informações da base de dados, tabela e coluna”](mysqlshow.html)
+[Section 4.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "4.5.7 mysqlshow — Display Database, Table, and Column Information")
 
-[Seção 25.1, “Início Rápido do Schema de Desempenho”](performance-schema-quick-start.html)
+[Section 25.1, “Performance Schema Quick Start”](performance-schema-quick-start.html "25.1 Performance Schema Quick Start")
 
-[Seção 23.8, “Restrições aos Programas Armazenados”](stored-program-restrictions.html)
+[Section 23.8, “Restrictions on Stored Programs”](stored-program-restrictions.html "23.8 Restrictions on Stored Programs")
 
-[Seção 13.7.5.5, "Declaração SHOW COLUMNS"](show-columns.html)
+[Section 13.7.5.5, “SHOW COLUMNS Statement”](show-columns.html "13.7.5.5 SHOW COLUMNS Statement")
 
-[Seção 13.7.5, "Declarações SHOW"](show.html)
+[Section 13.7.5, “SHOW Statements”](show.html "13.7.5 SHOW Statements")
 
-[Seção 13.7.5.37, "Instrução SHOW TABLES"](show-tables.html)
+[Section 13.7.5.37, “SHOW TABLES Statement”](show-tables.html "13.7.5.37 SHOW TABLES Statement")
 
-[Seção 13.4.1, "Instruções SQL para controlar servidores de origem de replicação"](replication-statements-master.html)
+[Section 13.4.1, “SQL Statements for Controlling Replication Source Servers”](replication-statements-master.html "13.4.1 SQL Statements for Controlling Replication Source Servers")
 
-[Seção 5.4.4, “O Log Binário”](binary-log.html)
+[Section 5.4.4, “The Binary Log”](binary-log.html "5.4.4 The Binary Log")
 
-[Seção 1.2.2, “Principais características do MySQL”](features.html)
+[Section 1.2.2, “The Main Features of MySQL”](features.html "1.2.2 The Main Features of MySQL")
 
-[Seção 26.2, “Usando o esquema sys”](sys-schema-usage.html)
+[Section 26.2, “Using the sys Schema”](sys-schema-usage.html "26.2 Using the sys Schema")
 
-[Seção 10.2.2, “UTF-8 para Metadados”](charset-metadata.html)
+[Section 10.2.2, “UTF-8 for Metadata”](charset-metadata.html "10.2.2 UTF-8 for Metadata")
 
-### EXIBIR LOGS BINÁRIOS
+### SHOW BINARY LOGS
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 13.4.1.1, "Declaração de PURGE BINARY LOGS"](purge-binary-logs.html)
+[Section 13.4.1.1, “PURGE BINARY LOGS Statement”](purge-binary-logs.html "13.4.1.1 PURGE BINARY LOGS Statement")
 
-[Seção 13.7.5.1, “Declaração SHOW BINARY LOGS”](show-binary-logs.html)
+[Section 13.7.5.1, “SHOW BINARY LOGS Statement”](show-binary-logs.html "13.7.5.1 SHOW BINARY LOGS Statement")
 
-[Seção 13.4.1, "Instruções SQL para controlar servidores de origem de replicação"](replication-statements-master.html)
+[Section 13.4.1, “SQL Statements for Controlling Replication Source Servers”](replication-statements-master.html "13.4.1 SQL Statements for Controlling Replication Source Servers")
 
-[Seção 4.6.7.3, “Usando mysqlbinlog para fazer backup de arquivos de log binário”](mysqlbinlog-backup.html)
+[Section 4.6.7.3, “Using mysqlbinlog to Back Up Binary Log Files”](mysqlbinlog-backup.html "4.6.7.3 Using mysqlbinlog to Back Up Binary Log Files")
 
-### Mostrar eventos do BINLOG
+### SHOW BINLOG EVENTS
 
-[Seção 21.7.4, “Esquema e tabelas de replicação de cluster NDB”](mysql-cluster-replication-schema.html)
+[Section 21.7.4, “NDB Cluster Replication Schema and Tables”](mysql-cluster-replication-schema.html "21.7.4 NDB Cluster Replication Schema and Tables")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 13.6.6.5, “Restrições aos cursors no lado do servidor”](cursor-restrictions.html)
+[Section 13.6.6.5, “Restrictions on Server-Side Cursors”](cursor-restrictions.html "13.6.6.5 Restrictions on Server-Side Cursors")
 
-[Seção 13.7.5.2, “Declaração de MOSTRAR EVENTOS BINLOG”](show-binlog-events.html)
+[Section 13.7.5.2, “SHOW BINLOG EVENTS Statement”](show-binlog-events.html "13.7.5.2 SHOW BINLOG EVENTS Statement")
 
-[Seção 16.1.7.3, “Saltar Transações”](replication-administration-skip.html)
+[Section 16.1.7.3, “Skipping Transactions”](replication-administration-skip.html "16.1.7.3 Skipping Transactions")
 
-[Seção 16.1.7.3.1, “Saltar Transações com GTIDs”](replication-administration-skip.html#replication-administration-skip-gtid)
+[Section 16.1.7.3.1, “Skipping Transactions With GTIDs”](replication-administration-skip.html#replication-administration-skip-gtid "16.1.7.3.1 Skipping Transactions With GTIDs")
 
-[Seção 13.4.1, "Instruções SQL para controlar servidores de origem de replicação"](replication-statements-master.html)
+[Section 13.4.1, “SQL Statements for Controlling Replication Source Servers”](replication-statements-master.html "13.4.1 SQL Statements for Controlling Replication Source Servers")
 
-[Seção 13.4.2.5, "Declaração START SLAVE"](start-slave.html)
+[Section 13.4.2.5, “START SLAVE Statement”](start-slave.html "13.4.2.5 START SLAVE Statement")
 
-### MOSTRE O SET DE CARACTERES
+### SHOW CHARACTER SET
 
-[Seção 13.1.1, "Instrução ALTER DATABASE"](alter-database.html)
+[Section 13.1.1, “ALTER DATABASE Statement”](alter-database.html "13.1.1 ALTER DATABASE Statement")
 
-[Seção 10.3.8, “Introdutores de Conjunto de Caracteres”](charset-introducer.html)
+[Section 10.3.8, “Character Set Introducers”](charset-introducer.html "10.3.8 Character Set Introducers")
 
-[Seção 10.2, "Conjunto de caracteres e collation em MySQL"](charset-mysql.html)
+[Section 10.2, “Character Sets and Collations in MySQL”](charset-mysql.html "10.2 Character Sets and Collations in MySQL")
 
-[Seção 10.3.6, "Conjunto de caracteres de literal de string de caracteres e cotação"](charset-literal.html)
+[Section 10.3.6, “Character String Literal Character Set and Collation”](charset-literal.html "10.3.6 Character String Literal Character Set and Collation")
 
-[Seção 10.3.5, "Conjunto de caracteres da coluna e cotação"](charset-column.html)
+[Section 10.3.5, “Column Character Set and Collation”](charset-column.html "10.3.5 Column Character Set and Collation")
 
-[Seção 13.1.11, "Instrução CREATE DATABASE"](create-database.html)
+[Section 13.1.11, “CREATE DATABASE Statement”](create-database.html "13.1.11 CREATE DATABASE Statement")
 
-[Seção 10.3.3, "Conjunto de caracteres e classificação de banco de dados"](charset-database.html)
+[Section 10.3.3, “Database Character Set and Collation”](charset-database.html "10.3.3 Database Character Set and Collation")
 
-[Seção 24.8, “Extensões para declarações SHOW”](extended-show.html)
+[Section 24.8, “Extensions to SHOW Statements”](extended-show.html "24.8 Extensions to SHOW Statements")
 
-[Seção A.11, “Perguntas frequentes sobre o MySQL 5.7: conjuntos de caracteres chineses, japoneses e coreanos do MySQL”](faqs-cjk.html)
+[Section A.11, “MySQL 5.7 FAQ: MySQL Chinese, Japanese, and Korean Character Sets”](faqs-cjk.html "A.11 MySQL 5.7 FAQ: MySQL Chinese, Japanese, and Korean Character Sets")
 
-[Seção 13.7.5.3, “Declaração de Conjunto de Caracteres”](show-character-set.html)
+[Section 13.7.5.3, “SHOW CHARACTER SET Statement”](show-character-set.html "13.7.5.3 SHOW CHARACTER SET Statement")
 
-[Seção 10.10, "Conjunto de caracteres e codificações suportadas"](charset-charsets.html)
+[Section 10.10, “Supported Character Sets and Collations”](charset-charsets.html "10.10 Supported Character Sets and Collations")
 
-[Seção 10.3.4, "Conjunto de caracteres da tabela e cotação"](charset-table.html)
+[Section 10.3.4, “Table Character Set and Collation”](charset-table.html "10.3.4 Table Character Set and Collation")
 
-[Seção 24.3.2, “A tabela INFORMATION_SCHEMA CHARACTER_SETS”](information-schema-character-sets-table.html)
+[Section 24.3.2, “The INFORMATION_SCHEMA CHARACTER_SETS Table”](information-schema-character-sets-table.html "24.3.2 The INFORMATION_SCHEMA CHARACTER_SETS Table")
 
-### EXIBIR COLETÂO
+### SHOW COLLATION
 
-[Seção 13.1.1, "Instrução ALTER DATABASE"](alter-database.html)
+[Section 13.1.1, “ALTER DATABASE Statement”](alter-database.html "13.1.1 ALTER DATABASE Statement")
 
-[Seção 10.15, “Configuração do Conjunto de Caracteres”](charset-configuration.html)
+[Section 10.15, “Character Set Configuration”](charset-configuration.html "10.15 Character Set Configuration")
 
-[Seção 10.2, "Conjunto de caracteres e collation em MySQL"](charset-mysql.html)
+[Section 10.2, “Character Sets and Collations in MySQL”](charset-mysql.html "10.2 Character Sets and Collations in MySQL")
 
-[Seção 10.14.2, “Escolher um ID de collation”](adding-collation-choosing-id.html)
+[Section 10.14.2, “Choosing a Collation ID”](adding-collation-choosing-id.html "10.14.2 Choosing a Collation ID")
 
-[Seção 13.1.11, "Instrução CREATE DATABASE"](create-database.html)
+[Section 13.1.11, “CREATE DATABASE Statement”](create-database.html "13.1.11 CREATE DATABASE Statement")
 
-[Seção 2.8.7, “Opções de Configuração de Fonte do MySQL”](source-configuration-options.html)
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
 
-[Seção 13.7.5.4, "Declaração de COLAÇÃO"](show-collation.html)
+[Section 13.7.5.4, “SHOW COLLATION Statement”](show-collation.html "13.7.5.4 SHOW COLLATION Statement")
 
-[Seção 24.3.4, “A tabela INFORMATION_SCHEMA COLLATION_CHARACTER_SET_APPLICABILITY”](information-schema-collation-character-set-applicability-table.html)
+[Section 24.3.4, “The INFORMATION_SCHEMA COLLATION_CHARACTER_SET_APPLICABILITY Table”](information-schema-collation-character-set-applicability-table.html "24.3.4 The INFORMATION_SCHEMA COLLATION_CHARACTER_SET_APPLICABILITY Table")
 
-[Seção 24.3.3, “A tabela INFORMATION_SCHEMA COLLATIONS”](information-schema-collations-table.html)
+[Section 24.3.3, “The INFORMATION_SCHEMA COLLATIONS Table”](information-schema-collations-table.html "24.3.3 The INFORMATION_SCHEMA COLLATIONS Table")
 
-### Mostrar Colunas
+### SHOW COLUMNS
 
-[Seção 13.8.2, “Instrução EXPLAIN”](explain.html)
+[Section 13.8.2, “EXPLAIN Statement”](explain.html "13.8.2 EXPLAIN Statement")
 
-[Seção 24.8, “Extensões para declarações SHOW”](extended-show.html)
+[Section 24.8, “Extensions to SHOW Statements”](extended-show.html "24.8 Extensions to SHOW Statements")
 
-[Seção 8.4.4, “Uso de Tabelas Temporárias Internas no MySQL”](internal-temporary-tables.html)
+[Section 8.4.4, “Internal Temporary Table Use in MySQL”](internal-temporary-tables.html "8.4.4 Internal Temporary Table Use in MySQL")
 
-[Seção 25.1, “Início Rápido do Schema de Desempenho”](performance-schema-quick-start.html)
+[Section 25.1, “Performance Schema Quick Start”](performance-schema-quick-start.html "25.1 Performance Schema Quick Start")
 
-[Seção 13.7.5.5, "Declaração SHOW COLUMNS"](show-columns.html)
+[Section 13.7.5.5, “SHOW COLUMNS Statement”](show-columns.html "13.7.5.5 SHOW COLUMNS Statement")
 
-[Seção 24.3.5, “A tabela INFORMATION_SCHEMA COLUMNS”](information-schema-columns-table.html)
+[Section 24.3.5, “The INFORMATION_SCHEMA COLUMNS Table”](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table")
 
-[Seção 24.4.2, “A tabela INFORMATION_SCHEMA INNODB_BUFFER_PAGE”](information-schema-innodb-buffer-page-table.html)
+[Section 24.4.2, “The INFORMATION_SCHEMA INNODB_BUFFER_PAGE Table”](information-schema-innodb-buffer-page-table.html "24.4.2 The INFORMATION_SCHEMA INNODB_BUFFER_PAGE Table")
 
-[Seção 24.4.3, “A tabela INFORMATION_SCHEMA INNODB_BUFFER_PAGE_LRU”](information-schema-innodb-buffer-page-lru-table.html)
+[Section 24.4.3, “The INFORMATION_SCHEMA INNODB_BUFFER_PAGE_LRU Table”](information-schema-innodb-buffer-page-lru-table.html "24.4.3 The INFORMATION_SCHEMA INNODB_BUFFER_PAGE_LRU Table")
 
-[Seção 24.4.4, “A tabela INFORMATION_SCHEMA INNODB_BUFFER_POOL_STATS”](information-schema-innodb-buffer-pool-stats-table.html)
+[Section 24.4.4, “The INFORMATION_SCHEMA INNODB_BUFFER_POOL_STATS Table”](information-schema-innodb-buffer-pool-stats-table.html "24.4.4 The INFORMATION_SCHEMA INNODB_BUFFER_POOL_STATS Table")
 
-[Seção 24.4.5, “As tabelas INFORMATION_SCHEMA INNODB_CMP e INNODB_CMP_RESET”](information-schema-innodb-cmp-table.html)
+[Section 24.4.5, “The INFORMATION_SCHEMA INNODB_CMP and INNODB_CMP_RESET Tables”](information-schema-innodb-cmp-table.html "24.4.5 The INFORMATION_SCHEMA INNODB_CMP and INNODB_CMP_RESET Tables")
 
-[Seção 24.4.7, “As tabelas INFORMATION_SCHEMA INNODB_CMP_PER_INDEX e INNODB_CMP_PER_INDEX_RESET”](information-schema-innodb-cmp-per-index-table.html)
+[Section 24.4.7, “The INFORMATION_SCHEMA INNODB_CMP_PER_INDEX and INNODB_CMP_PER_INDEX_RESET Tables”](information-schema-innodb-cmp-per-index-table.html "24.4.7 The INFORMATION_SCHEMA INNODB_CMP_PER_INDEX and INNODB_CMP_PER_INDEX_RESET Tables")
 
-[Seção 24.4.6, “Tabelas INFORMATION_SCHEMA INNODB_CMPMEM e INNODB_CMPMEM_RESET”](information-schema-innodb-cmpmem-table.html)
+[Section 24.4.6, “The INFORMATION_SCHEMA INNODB_CMPMEM and INNODB_CMPMEM_RESET Tables”](information-schema-innodb-cmpmem-table.html "24.4.6 The INFORMATION_SCHEMA INNODB_CMPMEM and INNODB_CMPMEM_RESET Tables")
 
-[Seção 24.4.8, “A tabela INFORMATION_SCHEMA INNODB_FT_BEING_DELETED”](information-schema-innodb-ft-being-deleted-table.html)
+[Section 24.4.8, “The INFORMATION_SCHEMA INNODB_FT_BEING_DELETED Table”](information-schema-innodb-ft-being-deleted-table.html "24.4.8 The INFORMATION_SCHEMA INNODB_FT_BEING_DELETED Table")
 
-[Seção 24.4.9, “A tabela INFORMATION_SCHEMA INNODB_FT_CONFIG”](information-schema-innodb-ft-config-table.html)
+[Section 24.4.9, “The INFORMATION_SCHEMA INNODB_FT_CONFIG Table”](information-schema-innodb-ft-config-table.html "24.4.9 The INFORMATION_SCHEMA INNODB_FT_CONFIG Table")
 
-[Seção 24.4.10, “A tabela INFORMATION_SCHEMA INNODB_FT_DEFAULT_STOPWORD”](information-schema-innodb-ft-default-stopword-table.html)
+[Section 24.4.10, “The INFORMATION_SCHEMA INNODB_FT_DEFAULT_STOPWORD Table”](information-schema-innodb-ft-default-stopword-table.html "24.4.10 The INFORMATION_SCHEMA INNODB_FT_DEFAULT_STOPWORD Table")
 
-[Seção 24.4.11, “A tabela INFORMATION_SCHEMA INNODB_FT_DELETED”](information-schema-innodb-ft-deleted-table.html)
+[Section 24.4.11, “The INFORMATION_SCHEMA INNODB_FT_DELETED Table”](information-schema-innodb-ft-deleted-table.html "24.4.11 The INFORMATION_SCHEMA INNODB_FT_DELETED Table")
 
-[Seção 24.4.12, “A tabela INFORMATION_SCHEMA INNODB_FT_INDEX_CACHE”](information-schema-innodb-ft-index-cache-table.html)
+[Section 24.4.12, “The INFORMATION_SCHEMA INNODB_FT_INDEX_CACHE Table”](information-schema-innodb-ft-index-cache-table.html "24.4.12 The INFORMATION_SCHEMA INNODB_FT_INDEX_CACHE Table")
 
-[Seção 24.4.13, “A tabela INFORMATION_SCHEMA INNODB_FT_INDEX_TABLE”](information-schema-innodb-ft-index-table-table.html)
+[Section 24.4.13, “The INFORMATION_SCHEMA INNODB_FT_INDEX_TABLE Table”](information-schema-innodb-ft-index-table-table.html "24.4.13 The INFORMATION_SCHEMA INNODB_FT_INDEX_TABLE Table")
 
-[Seção 24.4.15, “A tabela INFORMATION_SCHEMA INNODB_LOCK_WAITS”](information-schema-innodb-lock-waits-table.html)
+[Section 24.4.15, “The INFORMATION_SCHEMA INNODB_LOCK_WAITS Table”](information-schema-innodb-lock-waits-table.html "24.4.15 The INFORMATION_SCHEMA INNODB_LOCK_WAITS Table")
 
-[Seção 24.4.14, “A tabela INFORMATION_SCHEMA INNODB_LOCKS”](information-schema-innodb-locks-table.html)
+[Section 24.4.14, “The INFORMATION_SCHEMA INNODB_LOCKS Table”](information-schema-innodb-locks-table.html "24.4.14 The INFORMATION_SCHEMA INNODB_LOCKS Table")
 
-[Seção 24.4.16, “A tabela INFORMATION_SCHEMA INNODB_METRICS”](information-schema-innodb-metrics-table.html)
+[Section 24.4.16, “The INFORMATION_SCHEMA INNODB_METRICS Table”](information-schema-innodb-metrics-table.html "24.4.16 The INFORMATION_SCHEMA INNODB_METRICS Table")
 
-[Seção 24.4.17, “A tabela INFORMATION_SCHEMA INNODB_SYS_COLUMNS”](information-schema-innodb-sys-columns-table.html)
+[Section 24.4.17, “The INFORMATION_SCHEMA INNODB_SYS_COLUMNS Table”](information-schema-innodb-sys-columns-table.html "24.4.17 The INFORMATION_SCHEMA INNODB_SYS_COLUMNS Table")
 
-[Seção 24.4.18, “A tabela INFORMATION_SCHEMA INNODB_SYS_DATAFILES”](information-schema-innodb-sys-datafiles-table.html)
+[Section 24.4.18, “The INFORMATION_SCHEMA INNODB_SYS_DATAFILES Table”](information-schema-innodb-sys-datafiles-table.html "24.4.18 The INFORMATION_SCHEMA INNODB_SYS_DATAFILES Table")
 
-[Seção 24.4.19, “A tabela INFORMATION_SCHEMA INNODB_SYS_FIELDS”](information-schema-innodb-sys-fields-table.html)
+[Section 24.4.19, “The INFORMATION_SCHEMA INNODB_SYS_FIELDS Table”](information-schema-innodb-sys-fields-table.html "24.4.19 The INFORMATION_SCHEMA INNODB_SYS_FIELDS Table")
 
-[Seção 24.4.20, “A tabela INFORMATION_SCHEMA INNODB_SYS_FOREIGN”](information-schema-innodb-sys-foreign-table.html)
+[Section 24.4.20, “The INFORMATION_SCHEMA INNODB_SYS_FOREIGN Table”](information-schema-innodb-sys-foreign-table.html "24.4.20 The INFORMATION_SCHEMA INNODB_SYS_FOREIGN Table")
 
-[Seção 24.4.21, “A tabela INFORMATION_SCHEMA INNODB_SYS_FOREIGN_COLS”](information-schema-innodb-sys-foreign-cols-table.html)
+[Section 24.4.21, “The INFORMATION_SCHEMA INNODB_SYS_FOREIGN_COLS Table”](information-schema-innodb-sys-foreign-cols-table.html "24.4.21 The INFORMATION_SCHEMA INNODB_SYS_FOREIGN_COLS Table")
 
-[Seção 24.4.22, “A tabela INFORMATION_SCHEMA INNODB_SYS_INDEXES”](information-schema-innodb-sys-indexes-table.html)
+[Section 24.4.22, “The INFORMATION_SCHEMA INNODB_SYS_INDEXES Table”](information-schema-innodb-sys-indexes-table.html "24.4.22 The INFORMATION_SCHEMA INNODB_SYS_INDEXES Table")
 
-[Seção 24.4.23, “A tabela INFORMATION_SCHEMA INNODB_SYS_TABLES”](information-schema-innodb-sys-tables-table.html)
+[Section 24.4.23, “The INFORMATION_SCHEMA INNODB_SYS_TABLES Table”](information-schema-innodb-sys-tables-table.html "24.4.23 The INFORMATION_SCHEMA INNODB_SYS_TABLES Table")
 
-[Seção 24.4.24, “A tabela INFORMATION_SCHEMA INNODB_SYS_TABLESPACES”](information-schema-innodb-sys-tablespaces-table.html)
+[Section 24.4.24, “The INFORMATION_SCHEMA INNODB_SYS_TABLESPACES Table”](information-schema-innodb-sys-tablespaces-table.html "24.4.24 The INFORMATION_SCHEMA INNODB_SYS_TABLESPACES Table")
 
-[Seção 24.4.25, “A visão INFORMATION_SCHEMA INNODB_SYS_TABLESTATS”](information-schema-innodb-sys-tablestats-table.html)
+[Section 24.4.25, “The INFORMATION_SCHEMA INNODB_SYS_TABLESTATS View”](information-schema-innodb-sys-tablestats-table.html "24.4.25 The INFORMATION_SCHEMA INNODB_SYS_TABLESTATS View")
 
-[Seção 24.4.26, “A tabela INFORMATION_SCHEMA INNODB_SYS_VIRTUAL”](information-schema-innodb-sys-virtual-table.html)
+[Section 24.4.26, “The INFORMATION_SCHEMA INNODB_SYS_VIRTUAL Table”](information-schema-innodb-sys-virtual-table.html "24.4.26 The INFORMATION_SCHEMA INNODB_SYS_VIRTUAL Table")
 
-[Seção 24.4.27, “A tabela INFORMATION_SCHEMA INNODB_TEMP_TABLE_INFO”](information-schema-innodb-temp-table-info-table.html)
+[Section 24.4.27, “The INFORMATION_SCHEMA INNODB_TEMP_TABLE_INFO Table”](information-schema-innodb-temp-table-info-table.html "24.4.27 The INFORMATION_SCHEMA INNODB_TEMP_TABLE_INFO Table")
 
-[Seção 24.4.28, “A tabela INFORMATION_SCHEMA INNODB_TRX”](information-schema-innodb-trx-table.html)
+[Section 24.4.28, “The INFORMATION_SCHEMA INNODB_TRX Table”](information-schema-innodb-trx-table.html "24.4.28 The INFORMATION_SCHEMA INNODB_TRX Table")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
-### MOSTRE COLUNAS DE tbl_name LIKE 'enum_col'
+### SHOW COLUMNS FROM tbl_name LIKE 'enum_col'
 
-[Seção 11.3.5, “O Tipo ENUM”](enum.html)
+[Section 11.3.5, “The ENUM Type”](enum.html "11.3.5 The ENUM Type")
 
-### Mostre COUNT()
+### SHOW COUNT()
 
-[Seção 13.7.5.17, "Declaração de Mostrar Erros"](show-errors.html)
+[Section 13.7.5.17, “SHOW ERRORS Statement”](show-errors.html "13.7.5.17 SHOW ERRORS Statement")
 
-[Seção 13.7.5.40, "Declaração de avisos"](show-warnings.html)
+[Section 13.7.5.40, “SHOW WARNINGS Statement”](show-warnings.html "13.7.5.40 SHOW WARNINGS Statement")
 
-### Mostre CREATE DATABASE
+### SHOW CREATE DATABASE
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 13.7.5.6, “Instrução SHOW CREATE DATABASE”](show-create-database.html)
+[Section 13.7.5.6, “SHOW CREATE DATABASE Statement”](show-create-database.html "13.7.5.6 SHOW CREATE DATABASE Statement")
 
-### MOSTRE CRIAR EVENTO
+### SHOW CREATE EVENT
 
-[Seção 23.4.4, “Metadados do Evento”](events-metadata.html)
+[Section 23.4.4, “Event Metadata”](events-metadata.html "23.4.4 Event Metadata")
 
-[Seção 13.7.5.18, "Declaração de Eventos de Exibição"](show-events.html)
+[Section 13.7.5.18, “SHOW EVENTS Statement”](show-events.html "13.7.5.18 SHOW EVENTS Statement")
 
-[Seção 23.4.6, “O Agendamento de Eventos e Permissões do MySQL”](events-privileges.html)
+[Section 23.4.6, “The Event Scheduler and MySQL Privileges”](events-privileges.html "23.4.6 The Event Scheduler and MySQL Privileges")
 
-### Mostrar CREATE FUNCTION
+### SHOW CREATE FUNCTION
 
-[Seção 13.1.16, "Instruções CREATE PROCEDURE e CREATE FUNCTION"](create-procedure.html)
+[Section 13.1.16, “CREATE PROCEDURE and CREATE FUNCTION Statements”](create-procedure.html "13.1.16 CREATE PROCEDURE and CREATE FUNCTION Statements")
 
-[Seção 1.5, “Como relatar bugs ou problemas”](bug-reports.html)
+[Section 1.5, “How to Report Bugs or Problems”](bug-reports.html "1.5 How to Report Bugs or Problems")
 
-[Seção A.4, “Perguntas frequentes sobre o MySQL 5.7: Procedimentos e funções armazenadas”](faqs-stored-procs.html)
+[Section A.4, “MySQL 5.7 FAQ: Stored Procedures and Functions”](faqs-stored-procs.html "A.4 MySQL 5.7 FAQ: Stored Procedures and Functions")
 
-[Seção 13.7.5.9, "Declaração SHOW CREATE PROCEDURE"](show-create-procedure.html)
+[Section 13.7.5.9, “SHOW CREATE PROCEDURE Statement”](show-create-procedure.html "13.7.5.9 SHOW CREATE PROCEDURE Statement")
 
-[Seção 23.2.3, “Metadados de Rotinas Armazenados”](stored-routines-metadata.html)
+[Section 23.2.3, “Stored Routine Metadata”](stored-routines-metadata.html "23.2.3 Stored Routine Metadata")
 
-### MOSTRE CREATE PROCEDURE
+### SHOW CREATE PROCEDURE
 
-[Seção 13.1.16, "Instruções CREATE PROCEDURE e CREATE FUNCTION"](create-procedure.html)
+[Section 13.1.16, “CREATE PROCEDURE and CREATE FUNCTION Statements”](create-procedure.html "13.1.16 CREATE PROCEDURE and CREATE FUNCTION Statements")
 
-[Seção 1.5, “Como relatar bugs ou problemas”](bug-reports.html)
+[Section 1.5, “How to Report Bugs or Problems”](bug-reports.html "1.5 How to Report Bugs or Problems")
 
-[Seção A.4, “Perguntas frequentes sobre o MySQL 5.7: Procedimentos e funções armazenadas”](faqs-stored-procs.html)
+[Section A.4, “MySQL 5.7 FAQ: Stored Procedures and Functions”](faqs-stored-procs.html "A.4 MySQL 5.7 FAQ: Stored Procedures and Functions")
 
-[Seção 13.7.5.8, "Mostrar declaração CREATE FUNCTION"](show-create-function.html)
+[Section 13.7.5.8, “SHOW CREATE FUNCTION Statement”](show-create-function.html "13.7.5.8 SHOW CREATE FUNCTION Statement")
 
-[Seção 23.2.3, “Metadados de Rotinas Armazenados”](stored-routines-metadata.html)
+[Section 23.2.3, “Stored Routine Metadata”](stored-routines-metadata.html "23.2.3 Stored Routine Metadata")
 
-### Mostrar criar esquema
+### SHOW CREATE SCHEMA
 
-[Seção 13.7.5.6, “Instrução SHOW CREATE DATABASE”](show-create-database.html)
+[Section 13.7.5.6, “SHOW CREATE DATABASE Statement”](show-create-database.html "13.7.5.6 SHOW CREATE DATABASE Statement")
 
-### Mostre CREATE TABLE
+### SHOW CREATE TABLE
 
-[Seção 13.1.8.1, “Operações de Partição de Tabela”](alter-table-partition-operations.html)
+[Section 13.1.8.1, “ALTER TABLE Partition Operations”](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations")
 
-[Seção 13.1.8, "Instrução ALTER TABLE"](alter-table.html)
+[Section 13.1.8, “ALTER TABLE Statement”](alter-table.html "13.1.8 ALTER TABLE Statement")
 
-[Seção 14.8.12, “Configurando o Limiar de Fusão para Páginas de Índice”](index-page-merge-threshold.html)
+[Section 14.8.12, “Configuring the Merge Threshold for Index Pages”](index-page-merge-threshold.html "14.8.12 Configuring the Merge Threshold for Index Pages")
 
-[Seção 13.1.18, "Instrução CREATE TABLE"](create-table.html)
+[Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement")
 
-[Seção 14.9.1.2, “Criando tabelas compactadas”](innodb-compression-usage.html)
+[Section 14.9.1.2, “Creating Compressed Tables”](innodb-compression-usage.html "14.9.1.2 Creating Compressed Tables")
 
-[Seção 11.6, “Valores padrão de tipo de dados”](data-type-defaults.html)
+[Section 11.6, “Data Type Default Values”](data-type-defaults.html "11.6 Data Type Default Values")
 
-[Seção 13.8.2, “Instrução EXPLAIN”](explain.html)
+[Section 13.8.2, “EXPLAIN Statement”](explain.html "13.8.2 EXPLAIN Statement")
 
-[Seção 1.6.2.3, “Diferenças na restrição de chave estrangeira”](ansi-diff-foreign-keys.html)
+[Section 1.6.2.3, “FOREIGN KEY Constraint Differences”](ansi-diff-foreign-keys.html "1.6.2.3 FOREIGN KEY Constraint Differences")
 
-[Seção 13.1.18.5, “Restrições de Chave Estrangeira”](create-table-foreign-keys.html)
+[Section 13.1.18.5, “FOREIGN KEY Constraints”](create-table-foreign-keys.html "13.1.18.5 FOREIGN KEY Constraints")
 
-[Seção 3.4, “Obtendo Informações sobre Bancos de Dados e Tabelas”](getting-information.html)
+[Section 3.4, “Getting Information About Databases and Tables”](getting-information.html "3.4 Getting Information About Databases and Tables")
 
-[Seção 15.8.2, “Como criar tabelas FEDERATED”](federated-create.html)
+[Section 15.8.2, “How to Create FEDERATED Tables”](federated-create.html "15.8.2 How to Create FEDERATED Tables")
 
-[Seção 7.6.3, “Como reparar as tabelas MyISAM”](myisam-repair.html)
+[Section 7.6.3, “How to Repair MyISAM Tables”](myisam-repair.html "7.6.3 How to Repair MyISAM Tables")
 
-[Seção 14.6.1.3, “Importando tabelas InnoDB”](innodb-table-import.html)
+[Section 14.6.1.3, “Importing InnoDB Tables”](innodb-table-import.html "14.6.1.3 Importing InnoDB Tables")
 
-[Seção 14.9.2, “Compressão de Páginas InnoDB”](innodb-page-compression.html)
+[Section 14.9.2, “InnoDB Page Compression”](innodb-page-compression.html "14.9.2 InnoDB Page Compression")
 
-[Seção 22.2.5, “Partição de Chave”](partitioning-key.html)
+[Section 22.2.5, “KEY Partitioning”](partitioning-key.html "22.2.5 KEY Partitioning")
 
-[Seção 22.3.1, “Gestão de Partições RANGE e LIST”](partitioning-management-range-list.html)
+[Section 22.3.1, “Management of RANGE and LIST Partitions”](partitioning-management-range-list.html "22.3.1 Management of RANGE and LIST Partitions")
 
-[Seção 21.6.11.1, “Objetos de dados de disco do cluster NDB”](mysql-cluster-disk-data-objects.html)
+[Section 21.6.11.1, “NDB Cluster Disk Data Objects”](mysql-cluster-disk-data-objects.html "21.6.11.1 NDB Cluster Disk Data Objects")
 
-[Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
+[Section 21.4.3.9.2, “NDB Cluster System Variables”](mysql-cluster-options-variables.html#mysql-cluster-system-variables "21.4.3.9.2 NDB Cluster System Variables")
 
-[Seção 21.5.10, “ndb_desc — Descrever tabelas NDB”](mysql-cluster-programs-ndb-desc.html)
+[Section 21.5.10, “ndb_desc — Describe NDB Tables”](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables")
 
-[Seção 21.5.24, “ndb_restore — Restaurar um backup de um cluster NDB”](mysql-cluster-programs-ndb-restore.html)
+[Section 21.5.24, “ndb_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup")
 
-[Seção 21.2.7.1, "Desconexão com a sintaxe SQL no NDB Cluster"](mysql-cluster-limitations-syntax.html)
+[Section 21.2.7.1, “Noncompliance with SQL Syntax in NDB Cluster”](mysql-cluster-limitations-syntax.html "21.2.7.1 Noncompliance with SQL Syntax in NDB Cluster")
 
-[Seção 22.3.5, “Obtendo Informações sobre Partições”](partitioning-info.html)
+[Section 22.3.5, “Obtaining Information About Partitions”](partitioning-info.html "22.3.5 Obtaining Information About Partitions")
 
-[Seção 25.1, “Início Rápido do Schema de Desempenho”](performance-schema-quick-start.html)
+[Section 25.1, “Performance Schema Quick Start”](performance-schema-quick-start.html "25.1 Performance Schema Quick Start")
 
-[Seção 2.10.12, “Reestruturação ou reparo de tabelas ou índices”](rebuilding-tables.html)
+[Section 2.10.12, “Rebuilding or Repairing Tables or Indexes”](rebuilding-tables.html "2.10.12 Rebuilding or Repairing Tables or Indexes")
 
-[Seção 5.1.10, "Modos SQL do Servidor"](sql-mode.html)
+[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 13.1.18.9, “Definindo opções de comentário do NDB”](create-table-ndb-comment-options.html)
+[Section 13.1.18.9, “Setting NDB Comment Options”](create-table-ndb-comment-options.html "13.1.18.9 Setting NDB Comment Options")
 
-[Seção 13.7.5.5, "Declaração SHOW COLUMNS"](show-columns.html)
+[Section 13.7.5.5, “SHOW COLUMNS Statement”](show-columns.html "13.7.5.5 SHOW COLUMNS Statement")
 
-[Seção 13.7.5.10, "Mostrar declaração CREATE TABLE"](show-create-table.html)
+[Section 13.7.5.10, “SHOW CREATE TABLE Statement”](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement")
 
-[Seção 13.1.18.6, “Alterações na Especificação da Coluna Silenciosa”](silent-column-changes.html)
+[Section 13.1.18.6, “Silent Column Specification Changes”](silent-column-changes.html "13.1.18.6 Silent Column Specification Changes")
 
-### Mostrar CREATE TRIGGER
+### SHOW CREATE TRIGGER
 
-[Seção 13.7.5.11, "Mostrar declaração CREATE TRIGGER"](show-create-trigger.html)
+[Section 13.7.5.11, “SHOW CREATE TRIGGER Statement”](show-create-trigger.html "13.7.5.11 SHOW CREATE TRIGGER Statement")
 
-[Seção 23.3.2, “Metadados do gatilho”](trigger-metadata.html)
+[Section 23.3.2, “Trigger Metadata”](trigger-metadata.html "23.3.2 Trigger Metadata")
 
-### Mostrar criar usuário
+### SHOW CREATE USER
 
-[Seção 6.2.15, “Bloqueio da Conta”](account-locking.html)
+[Section 6.2.15, “Account Locking”](account-locking.html "6.2.15 Account Locking")
 
-[Seção 6.2.7, “Adicionar contas, atribuir privilégios e excluir contas”](creating-accounts.html)
+[Section 6.2.7, “Adding Accounts, Assigning Privileges, and Dropping Accounts”](creating-accounts.html "6.2.7 Adding Accounts, Assigning Privileges, and Dropping Accounts")
 
-[Seção 6.2.3, “Tabelas de subsídios”](grant-tables.html)
+[Section 6.2.3, “Grant Tables”](grant-tables.html "6.2.3 Grant Tables")
 
-[Seção 13.7.5.21, "Declaração de GRANTS SHOW"](show-grants.html)
+[Section 13.7.5.21, “SHOW GRANTS Statement”](show-grants.html "13.7.5.21 SHOW GRANTS Statement")
 
-### Mostrar criar visualização
+### SHOW CREATE VIEW
 
-[Seção 13.1.21, "Instrução CREATE VIEW"](create-view.html)
+[Section 13.1.21, “CREATE VIEW Statement”](create-view.html "13.1.21 CREATE VIEW Statement")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 23.9, “Restrições de visualização”](view-restrictions.html)
+[Section 23.9, “Restrictions on Views”](view-restrictions.html "23.9 Restrictions on Views")
 
-[Seção 13.7.5.13, "Mostrar declaração CREATE VIEW"](show-create-view.html)
+[Section 13.7.5.13, “SHOW CREATE VIEW Statement”](show-create-view.html "13.7.5.13 SHOW CREATE VIEW Statement")
 
-[Seção 24.3.31, “A Tabela INFORMATION_SCHEMA VIEWS”](information-schema-views-table.html)
+[Section 24.3.31, “The INFORMATION_SCHEMA VIEWS Table”](information-schema-views-table.html "24.3.31 The INFORMATION_SCHEMA VIEWS Table")
 
-[Seção 23.5.5, “Visualizar metadados”](view-metadata.html)
+[Section 23.5.5, “View Metadata”](view-metadata.html "23.5.5 View Metadata")
 
-### MOSTRAR BANQUES DE DADOS
+### SHOW DATABASES
 
-[Seção 13.1.11, "Instrução CREATE DATABASE"](create-database.html)
+[Section 13.1.11, “CREATE DATABASE Statement”](create-database.html "13.1.11 CREATE DATABASE Statement")
 
-[Seção 3.3, “Criando e Usando um Banco de Dados”](database-use.html)
+[Section 3.3, “Creating and Using a Database”](database-use.html "3.3 Creating and Using a Database")
 
-[Seção 24.8, “Extensões para declarações SHOW”](extended-show.html)
+[Section 24.8, “Extensions to SHOW Statements”](extended-show.html "24.8 Extensions to SHOW Statements")
 
-[Seção 3.4, “Obtendo Informações sobre Bancos de Dados e Tabelas”](getting-information.html)
+[Section 3.4, “Getting Information About Databases and Tables”](getting-information.html "3.4 Getting Information About Databases and Tables")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 6.2.3, “Tabelas de subsídios”](grant-tables.html)
+[Section 6.2.3, “Grant Tables”](grant-tables.html "6.2.3 Grant Tables")
 
-[Seção 9.2.3, “Sensibilidade do identificador”](identifier-case-sensitivity.html)
+[Section 9.2.3, “Identifier Case Sensitivity”](identifier-case-sensitivity.html "9.2.3 Identifier Case Sensitivity")
 
-[Seção 24.1, “Introdução”](information-schema-introduction.html)
+[Section 24.1, “Introduction”](information-schema-introduction.html "24.1 Introduction")
 
-[Seção 21.6.18.2, "Nível de privilégio do NDB Cluster e MySQL"](mysql-cluster-security-mysql-privileges.html)
+[Section 21.6.18.2, “NDB Cluster and MySQL Privileges”](mysql-cluster-security-mysql-privileges.html "21.6.18.2 NDB Cluster and MySQL Privileges")
 
-[Seção 21.6.15, “ndbinfo: Banco de Dados de Informações do NDB Cluster”](mysql-cluster-ndbinfo.html)
+[Section 21.6.15, “ndbinfo: The NDB Cluster Information Database”](mysql-cluster-ndbinfo.html "21.6.15 ndbinfo: The NDB Cluster Information Database")
 
-[Seção 25.2, “Configuração de Construção do Schema de Desempenho”](performance-schema-build-configuration.html)
+[Section 25.2, “Performance Schema Build Configuration”](performance-schema-build-configuration.html "25.2 Performance Schema Build Configuration")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 5.1.6, “Opções de comando do servidor”](server-options.html)
+[Section 5.1.6, “Server Command Options”](server-options.html "5.1.6 Server Command Options")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 13.7.5.14, "Declaração SHOW DATABASES"](show-databases.html)
+[Section 13.7.5.14, “SHOW DATABASES Statement”](show-databases.html "13.7.5.14 SHOW DATABASES Statement")
 
-[Seção 24.3.22, “A tabela INFORMATION_SCHEMA SCHEMATA”](information-schema-schemata-table.html)
+[Section 24.3.22, “The INFORMATION_SCHEMA SCHEMATA Table”](information-schema-schemata-table.html "24.3.22 The INFORMATION_SCHEMA SCHEMATA Table")
 
-### MOSTRAR MOTOR
+### SHOW ENGINE
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 13.7.5.15, "Declaração do Motor de Exibição"](show-engine.html)
+[Section 13.7.5.15, “SHOW ENGINE Statement”](show-engine.html "13.7.5.15 SHOW ENGINE Statement")
 
 ### SHOW ENGINE INNODB MUTEX
 
-[Seção 14.18.3, “Saída do Monitor Padrão InnoDB e do Monitor de Bloqueio”](innodb-standard-monitor.html)
+[Section 14.18.3, “InnoDB Standard Monitor and Lock Monitor Output”](innodb-standard-monitor.html "14.18.3 InnoDB Standard Monitor and Lock Monitor Output")
 
-[Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
+[Section 14.15, “InnoDB Startup Options and System Variables”](innodb-parameters.html "14.15 InnoDB Startup Options and System Variables")
 
-[Seção 13.7.5.15, "Declaração do Motor de Exibição"](show-engine.html)
+[Section 13.7.5.15, “SHOW ENGINE Statement”](show-engine.html "13.7.5.15 SHOW ENGINE Statement")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
-### Mostrar o status do banco de dados do tipo ENGINE INNODB
+### SHOW ENGINE INNODB STATUS
 
-[Seção 14.5.3, “Índice Hash Adaptativo”](innodb-adaptive-hash.html)
+[Section 14.5.3, “Adaptive Hash Index”](innodb-adaptive-hash.html "14.5.3 Adaptive Hash Index")
 
-[Seção 14.5.1, "Pool de Buffer"](innodb-buffer-pool.html)
+[Section 14.5.1, “Buffer Pool”](innodb-buffer-pool.html "14.5.1 Buffer Pool")
 
-[Seção 14.8.2, “Configurando a InnoDB para operação apenas de leitura”](innodb-read-only-instance.html)
+[Section 14.8.2, “Configuring InnoDB for Read-Only Operation”](innodb-read-only-instance.html "14.8.2 Configuring InnoDB for Read-Only Operation")
 
-[Seção 14.6.1.5, “Conversão de tabelas de MyISAM para InnoDB”](converting-tables-to-innodb.html)
+[Section 14.6.1.5, “Converting Tables from MyISAM to InnoDB”](converting-tables-to-innodb.html "14.6.1.5 Converting Tables from MyISAM to InnoDB")
 
-[Seção 14.7.5, "Bloqueios em InnoDB"](innodb-deadlocks.html)
+[Section 14.7.5, “Deadlocks in InnoDB”](innodb-deadlocks.html "14.7.5 Deadlocks in InnoDB")
 
-[Seção 14.18.2, “Habilitar monitores InnoDB”](innodb-abilitando-monitores.html)
+[Section 14.18.2, “Enabling InnoDB Monitors”](innodb-enabling-monitors.html "14.18.2 Enabling InnoDB Monitors")
 
-[Seção B.2, “Interfaces de Informação de Erros”](error-interfaces.html)
+[Section B.2, “Error Information Interfaces”](error-interfaces.html "B.2 Error Information Interfaces")
 
-[Seção 13.1.18.5, “Restrições de Chave Estrangeira”](create-table-foreign-keys.html)
+[Section 13.1.18.5, “FOREIGN KEY Constraints”](create-table-foreign-keys.html "13.1.18.5 FOREIGN KEY Constraints")
 
-[Seção 14.7.5.3, “Como minimizar e lidar com deadlocks”](innodb-deadlocks-handling.html)
+[Section 14.7.5.3, “How to Minimize and Handle Deadlocks”](innodb-deadlocks-handling.html "14.7.5.3 How to Minimize and Handle Deadlocks")
 
-[Seção 14.16.5, “Tabelas do Banco de Armazenamento de Buffer do Schema de Informações InnoDB”](innodb-information-schema-buffer-pool-tables.html)
+[Section 14.16.5, “InnoDB INFORMATION_SCHEMA Buffer Pool Tables”](innodb-information-schema-buffer-pool-tables.html "14.16.5 InnoDB INFORMATION_SCHEMA Buffer Pool Tables")
 
-[Seção 14.16.6, “Tabela de métricas do InnoDB INFORMATION_SCHEMA”](innodb-information-schema-metrics-table.html)
+[Section 14.16.6, “InnoDB INFORMATION_SCHEMA Metrics Table”](innodb-information-schema-metrics-table.html "14.16.6 InnoDB INFORMATION_SCHEMA Metrics Table")
 
-[Seção 14.16.3, “Tabelas do Sistema InnoDB INFORMATION_SCHEMA”](innodb-information-schema-system-tables.html)
+[Section 14.16.3, “InnoDB INFORMATION_SCHEMA System Tables”](innodb-information-schema-system-tables.html "14.16.3 InnoDB INFORMATION_SCHEMA System Tables")
 
-[Seção 14.7.1, "Bloqueio InnoDB"](innodb-locking.html)
+[Section 14.7.1, “InnoDB Locking”](innodb-locking.html "14.7.1 InnoDB Locking")
 
-[Seção 14.18.3, “Saída do Monitor Padrão InnoDB e do Monitor de Bloqueio”](innodb-standard-monitor.html)
+[Section 14.18.3, “InnoDB Standard Monitor and Lock Monitor Output”](innodb-standard-monitor.html "14.18.3 InnoDB Standard Monitor and Lock Monitor Output")
 
-[Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
+[Section 14.15, “InnoDB Startup Options and System Variables”](innodb-parameters.html "14.15 InnoDB Startup Options and System Variables")
 
-[Seção 14.6.1.4, “Mover ou Copiar Tabelas InnoDB”](innodb-migration.html)
+[Section 14.6.1.4, “Moving or Copying InnoDB Tables”](innodb-migration.html "14.6.1.4 Moving or Copying InnoDB Tables")
 
-[Glossário do MySQL](glossary.html)
+[MySQL Glossary](glossary.html "MySQL Glossary")
 
-[Seção 8.5.8, “Otimização do I/O de disco InnoDB”](optimizing-innodb-diskio.html)
+[Section 8.5.8, “Optimizing InnoDB Disk I/O”](optimizing-innodb-diskio.html "8.5.8 Optimizing InnoDB Disk I/O")
 
-[Seção 8.5.3, “Otimização de Transações de Leitura Apenas de Leitura InnoDB”](innodb-performance-ro-txn.html)
+[Section 8.5.3, “Optimizing InnoDB Read-Only Transactions”](innodb-performance-ro-txn.html "8.5.3 Optimizing InnoDB Read-Only Transactions")
 
-[Seção 14.8.10, “Configuração de Purga”](innodb-purge-configuration.html)
+[Section 14.8.10, “Purge Configuration”](innodb-purge-configuration.html "14.8.10 Purge Configuration")
 
-[Seção 13.7.5.15, "Declaração do Motor de Exibição"](show-engine.html)
+[Section 13.7.5.15, “SHOW ENGINE Statement”](show-engine.html "13.7.5.15 SHOW ENGINE Statement")
 
-[Seção 24.4.4, “A tabela INFORMATION_SCHEMA INNODB_BUFFER_POOL_STATS”](information-schema-innodb-buffer-pool-stats-table.html)
+[Section 24.4.4, “The INFORMATION_SCHEMA INNODB_BUFFER_POOL_STATS Table”](information-schema-innodb-buffer-pool-stats-table.html "24.4.4 The INFORMATION_SCHEMA INNODB_BUFFER_POOL_STATS Table")
 
-### Mostrar o status do motor NDB
+### SHOW ENGINE NDB STATUS
 
-[Seção 21.3.2.3, “Inicialização do NDB Cluster no Windows”](mysql-cluster-install-windows-initial-start.html)
+[Section 21.3.2.3, “Initial Startup of NDB Cluster on Windows”](mysql-cluster-install-windows-initial-start.html "21.3.2.3 Initial Startup of NDB Cluster on Windows")
 
-[Seção 21.6, “Gestão do NDB Cluster”](mysql-cluster-management.html)
+[Section 21.6, “Management of NDB Cluster”](mysql-cluster-management.html "21.6 Management of NDB Cluster")
 
-[Seção 21.7.4, “Esquema e tabelas de replicação de cluster NDB”](mysql-cluster-replication-schema.html)
+[Section 21.7.4, “NDB Cluster Replication Schema and Tables”](mysql-cluster-replication-schema.html "21.7.4 NDB Cluster Replication Schema and Tables")
 
-[Seção 21.6.17, “Referência Rápida: Declarações SQL do NDB Cluster”](mysql-cluster-sql-statements.html)
+[Section 21.6.17, “Quick Reference: NDB Cluster SQL Statements”](mysql-cluster-sql-statements.html "21.6.17 Quick Reference: NDB Cluster SQL Statements")
 
-### EXIBIR STATUS DO MOTOR NDBCLUSTER
+### SHOW ENGINE NDBCLUSTER STATUS
 
-[Seção 21.4.3.9.1, “Opções do Servidor MySQL para NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld)
+[Section 21.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "21.4.3.9.1 MySQL Server Options for NDB Cluster")
 
-[Seção 21.6.17, “Referência Rápida: Declarações SQL do NDB Cluster”](mysql-cluster-sql-statements.html)
+[Section 21.6.17, “Quick Reference: NDB Cluster SQL Statements”](mysql-cluster-sql-statements.html "21.6.17 Quick Reference: NDB Cluster SQL Statements")
 
-### EXIBIR STATUS DO ESCALON DE DESEMPENHO DO MOTOR
+### SHOW ENGINE PERFORMANCE_SCHEMA STATUS
 
-[Seção 25.10, “Resumo dos registros do esquema de desempenho”](performance-schema-statement-digests.html)
+[Section 25.10, “Performance Schema Statement Digests”](performance-schema-statement-digests.html "25.10 Performance Schema Statement Digests")
 
-[Seção 25.7, “Monitoramento do estado do esquema de desempenho”](performance-schema-status-monitoring.html)
+[Section 25.7, “Performance Schema Status Monitoring”](performance-schema-status-monitoring.html "25.7 Performance Schema Status Monitoring")
 
-[Seção 13.7.5.15, "Declaração do Motor de Exibição"](show-engine.html)
+[Section 13.7.5.15, “SHOW ENGINE Statement”](show-engine.html "13.7.5.15 SHOW ENGINE Statement")
 
-### MOTORES DE EXIBIÇÃO
+### SHOW ENGINES
 
-[Capítulo 15, *Motores de Armazenamento Alternativos*](storage-engines.html)
+[Chapter 15, *Alternative Storage Engines*](storage-engines.html "Chapter 15 Alternative Storage Engines")
 
-[Seção A.10, “Perguntas frequentes sobre o MySQL 5.7: NDB Cluster”](faqs-mysql-cluster.html)
+[Section A.10, “MySQL 5.7 FAQ: NDB Cluster”](faqs-mysql-cluster.html "A.10 MySQL 5.7 FAQ: NDB Cluster")
 
-[Seção 21.6.10, “Uso do Servidor MySQL para NDB Cluster”](mysql-cluster-mysqld.html)
+[Section 21.6.10, “MySQL Server Usage for NDB Cluster”](mysql-cluster-mysqld.html "21.6.10 MySQL Server Usage for NDB Cluster")
 
-[Seção 21.6.15, “ndbinfo: Banco de Dados de Informações do NDB Cluster”](mysql-cluster-ndbinfo.html)
+[Section 21.6.15, “ndbinfo: The NDB Cluster Information Database”](mysql-cluster-ndbinfo.html "21.6.15 ndbinfo: The NDB Cluster Information Database")
 
-[Seção 25.2, “Configuração de Construção do Schema de Desempenho”](performance-schema-build-configuration.html)
+[Section 25.2, “Performance Schema Build Configuration”](performance-schema-build-configuration.html "25.2 Performance Schema Build Configuration")
 
-[Seção 25.1, “Início Rápido do Schema de Desempenho”](performance-schema-quick-start.html)
+[Section 25.1, “Performance Schema Quick Start”](performance-schema-quick-start.html "25.1 Performance Schema Quick Start")
 
-[Seção 21.6.17, “Referência Rápida: Declarações SQL do NDB Cluster”](mysql-cluster-sql-statements.html)
+[Section 21.6.17, “Quick Reference: NDB Cluster SQL Statements”](mysql-cluster-sql-statements.html "21.6.17 Quick Reference: NDB Cluster SQL Statements")
 
-[Seção 2.3.4.3, “Selecionando um tipo de servidor MySQL”](windows-select-server.html)
+[Section 2.3.4.3, “Selecting a MySQL Server Type”](windows-select-server.html "2.3.4.3 Selecting a MySQL Server Type")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 13.7.5.16, "Declaração de MOTORES DE EXIBIÇÃO"](show-engines.html)
+[Section 13.7.5.16, “SHOW ENGINES Statement”](show-engines.html "13.7.5.16 SHOW ENGINES Statement")
 
-[Seção 15.5, “O Motor de Armazenamento ARCHIVE”](archive-storage-engine.html)
+[Section 15.5, “The ARCHIVE Storage Engine”](archive-storage-engine.html "15.5 The ARCHIVE Storage Engine")
 
-[Seção 15.6, “O Motor de Armazenamento BLACKHOLE”](blackhole-storage-engine.html)
+[Section 15.6, “The BLACKHOLE Storage Engine”](blackhole-storage-engine.html "15.6 The BLACKHOLE Storage Engine")
 
-[Seção 24.3.7, “A Tabela INFORMATION_SCHEMA ENGINES”](information-schema-engines-table.html)
+[Section 24.3.7, “The INFORMATION_SCHEMA ENGINES Table”](information-schema-engines-table.html "24.3.7 The INFORMATION_SCHEMA ENGINES Table")
 
-[Seção 14.1.3, “Verificar se o InnoDB é o motor de armazenamento padrão”](innodb-check-availability.html)
+[Section 14.1.3, “Verifying that InnoDB is the Default Storage Engine”](innodb-check-availability.html "14.1.3 Verifying that InnoDB is the Default Storage Engine")
 
-### EXIBIR ERROS
+### SHOW ERRORS
 
-[Seção B.2, “Interfaces de Informação de Erros”](error-interfaces.html)
+[Section B.2, “Error Information Interfaces”](error-interfaces.html "B.2 Error Information Interfaces")
 
-[Seção 13.6.7.3, "Declaração de DIAGNÓSTICOS"](get-diagnostics.html)
+[Section 13.6.7.3, “GET DIAGNOSTICS Statement”](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement")
 
-[Seção 13.6.7.4, "Declaração RESIGNAL"](resignal.html)
+[Section 13.6.7.4, “RESIGNAL Statement”](resignal.html "13.6.7.4 RESIGNAL Statement")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 13.7.5.17, "Declaração de Mostrar Erros"](show-errors.html)
+[Section 13.7.5.17, “SHOW ERRORS Statement”](show-errors.html "13.7.5.17 SHOW ERRORS Statement")
 
-[Seção 13.7.5.40, "Declaração de avisos"](show-warnings.html)
+[Section 13.7.5.40, “SHOW WARNINGS Statement”](show-warnings.html "13.7.5.40 SHOW WARNINGS Statement")
 
-[Seção 13.6.7.5, “Declaração de Sinal”](signal.html)
+[Section 13.6.7.5, “SIGNAL Statement”](signal.html "13.6.7.5 SIGNAL Statement")
 
-[Seção 13.6.7.7, “A Área de Diagnóstico do MySQL”](diagnostics-area.html)
+[Section 13.6.7.7, “The MySQL Diagnostics Area”](diagnostics-area.html "13.6.7.7 The MySQL Diagnostics Area")
 
-### MOSTRE VÍDEOS
+### SHOW EVENTS
 
-[Seção 23.4.4, “Metadados do Evento”](events-metadata.html)
+[Section 23.4.4, “Event Metadata”](events-metadata.html "23.4.4 Event Metadata")
 
-[Seção 16.4.1.16, “Replicação de Recursos Ativados”](replication-features-invoked.html)
+[Section 16.4.1.16, “Replication of Invoked Features”](replication-features-invoked.html "16.4.1.16 Replication of Invoked Features")
 
-[Seção 13.7.5.18, "Declaração de Eventos de Exibição"](show-events.html)
+[Section 13.7.5.18, “SHOW EVENTS Statement”](show-events.html "13.7.5.18 SHOW EVENTS Statement")
 
-[Seção 23.4.6, “O Agendamento de Eventos e Permissões do MySQL”](events-privileges.html)
+[Section 23.4.6, “The Event Scheduler and MySQL Privileges”](events-privileges.html "23.4.6 The Event Scheduler and MySQL Privileges")
 
-[Seção 24.3.8, “A tabela INFORMATION_SCHEMA EVENTS”](information-schema-events-table.html)
+[Section 24.3.8, “The INFORMATION_SCHEMA EVENTS Table”](information-schema-events-table.html "24.3.8 The INFORMATION_SCHEMA EVENTS Table")
 
-### EXIBIR COLUNAS INTEGRAS
+### SHOW FULL COLUMNS
 
-[Seção 13.1.18, "Instrução CREATE TABLE"](create-table.html)
+[Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement")
 
-[Seção 24.3.6, “A tabela INFORMATION_SCHEMA COLUMN_PRIVILEGES”](information-schema-column-privileges-table.html)
+[Section 24.3.6, “The INFORMATION_SCHEMA COLUMN_PRIVILEGES Table”](information-schema-column-privileges-table.html "24.3.6 The INFORMATION_SCHEMA COLUMN_PRIVILEGES Table")
 
-### MOSTRE A LISTA COMPLETA DO PROCESSO
+### SHOW FULL PROCESSLIST
 
-[Seção 8.14.1, “Acesse a Lista de Processos”](processlist-access.html)
+[Section 8.14.1, “Accessing the Process List”](processlist-access.html "8.14.1 Accessing the Process List")
 
-[Seção 4.5.2, “mysqladmin — Um programa de administração do servidor MySQL”](mysqladmin.html)
+[Section 4.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program")
 
-[Seção 14.13.2, “Desempenho e Concorrência do DDL Online”](innodb-online-ddl-performance.html)
+[Section 14.13.2, “Online DDL Performance and Concurrency”](innodb-online-ddl-performance.html "14.13.2 Online DDL Performance and Concurrency")
 
-### MOSTRAR TODAS AS TABELAS
+### SHOW FULL TABLES
 
-[Seção 4.5.7, “mysqlshow — Exibir informações da base de dados, tabela e coluna”](mysqlshow.html)
+[Section 4.5.7, “mysqlshow — Display Database, Table, and Column Information”](mysqlshow.html "4.5.7 mysqlshow — Display Database, Table, and Column Information")
 
-### Mostre o código da função
+### SHOW FUNCTION CODE
 
-[Seção 13.7.5.27, "Declaração de CÓDIGO DO PROCEDIMENTO"] (show-procedure-code.html)
+[Section 13.7.5.27, “SHOW PROCEDURE CODE Statement”](show-procedure-code.html "13.7.5.27 SHOW PROCEDURE CODE Statement")
 
-[Seção 23.2.3, “Metadados de Rotinas Armazenados”](stored-routines-metadata.html)
+[Section 23.2.3, “Stored Routine Metadata”](stored-routines-metadata.html "23.2.3 Stored Routine Metadata")
 
-### Mostrar o status da função
+### SHOW FUNCTION STATUS
 
-[Seção 13.7.5.28, "Declaração de Status do Procedimento"](show-procedure-status.html)
+[Section 13.7.5.28, “SHOW PROCEDURE STATUS Statement”](show-procedure-status.html "13.7.5.28 SHOW PROCEDURE STATUS Statement")
 
-[Seção 23.2.3, “Metadados de Rotinas Armazenados”](stored-routines-metadata.html)
+[Section 23.2.3, “Stored Routine Metadata”](stored-routines-metadata.html "23.2.3 Stored Routine Metadata")
 
-### Mostrar status global
+### SHOW GLOBAL STATUS
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 24.3.10, “Tabelas INFORMATION_SCHEMA GLOBAL_STATUS e SESSION_STATUS”](information-schema-status-table.html)
+[Section 24.3.10, “The INFORMATION_SCHEMA GLOBAL_STATUS and SESSION_STATUS Tables”](information-schema-status-table.html "24.3.10 The INFORMATION_SCHEMA GLOBAL_STATUS and SESSION_STATUS Tables")
 
-### Mostrar variáveis globais
+### SHOW GLOBAL VARIABLES
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 24.3.11, “Tabelas INFORMATION_SCHEMA GLOBAL_VARIABLES e SESSION_VARIABLES”](information-schema-variables-table.html)
+[Section 24.3.11, “The INFORMATION_SCHEMA GLOBAL_VARIABLES and SESSION_VARIABLES Tables”](information-schema-variables-table.html "24.3.11 The INFORMATION_SCHEMA GLOBAL_VARIABLES and SESSION_VARIABLES Tables")
 
-### MOSTRE GRANTS
+### SHOW GRANTS
 
-[Seção 6.2, “Controle de Acesso e Gerenciamento de Contas”](access-control.html)
+[Section 6.2, “Access Control and Account Management”](access-control.html "6.2 Access Control and Account Management")
 
-[Seção 6.2.7, “Adicionar contas, atribuir privilégios e excluir contas”](creating-accounts.html)
+[Section 6.2.7, “Adding Accounts, Assigning Privileges, and Dropping Accounts”](creating-accounts.html "6.2.7 Adding Accounts, Assigning Privileges, and Dropping Accounts")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 6.2.3, “Tabelas de subsídios”](grant-tables.html)
+[Section 6.2.3, “Grant Tables”](grant-tables.html "6.2.3 Grant Tables")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 13.7.1.6, "Declaração de Revogação"](revoke.html)
+[Section 13.7.1.6, “REVOKE Statement”](revoke.html "13.7.1.6 REVOKE Statement")
 
-[Seção 6.1.1, “Diretrizes de Segurança”](security-guidelines.html)
+[Section 6.1.1, “Security Guidelines”](security-guidelines.html "6.1.1 Security Guidelines")
 
-[Seção 13.7.5.12, "Instrução SHOW CREATE USER"](show-create-user.html)
+[Section 13.7.5.12, “SHOW CREATE USER Statement”](show-create-user.html "13.7.5.12 SHOW CREATE USER Statement")
 
-[Seção 13.7.5.21, "Declaração de GRANTS SHOW"](show-grants.html)
+[Section 13.7.5.21, “SHOW GRANTS Statement”](show-grants.html "13.7.5.21 SHOW GRANTS Statement")
 
-[Seção 13.7.5.26, "Declaração de PRIVILEGIOS DE EXIBIÇÃO"](show-privileges.html)
+[Section 13.7.5.26, “SHOW PRIVILEGES Statement”](show-privileges.html "13.7.5.26 SHOW PRIVILEGES Statement")
 
-[Seção 6.2.17, “Soluções para problemas de conexão com o MySQL”](problemas-conectando.html)
+[Section 6.2.17, “Troubleshooting Problems Connecting to MySQL”](problems-connecting.html "6.2.17 Troubleshooting Problems Connecting to MySQL")
 
-### EXIBIR ÍNDICE
+### SHOW INDEX
 
-[Seção 13.7.2.1, "Declaração de Tabela de Análise"](analyze-table.html)
+[Section 13.7.2.1, “ANALYZE TABLE Statement”](analyze-table.html "13.7.2.1 ANALYZE TABLE Statement")
 
-[Seção 14.8.11.2, “Configurando Parâmetros de Estatísticas de Otimizador Não Persistente”](innodb-statistics-estimation.html)
+[Section 14.8.11.2, “Configuring Non-Persistent Optimizer Statistics Parameters”](innodb-statistics-estimation.html "14.8.11.2 Configuring Non-Persistent Optimizer Statistics Parameters")
 
-[Seção 14.8.12, “Configurando o Limiar de Fusão para Páginas de Índice”](index-page-merge-threshold.html)
+[Section 14.8.12, “Configuring the Merge Threshold for Index Pages”](index-page-merge-threshold.html "14.8.12 Configuring the Merge Threshold for Index Pages")
 
-[Seção 8.8.2, “Formato de Saída EXPLAIN”](explain-output.html)
+[Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
 
-[Seção 13.8.2, “Instrução EXPLAIN”](explain.html)
+[Section 13.8.2, “EXPLAIN Statement”](explain.html "13.8.2 EXPLAIN Statement")
 
-[Seção 8.9.4, “Dicas de índice”](index-hints.html)
+[Section 8.9.4, “Index Hints”](index-hints.html "8.9.4 Index Hints")
 
-[Seção 8.3.7, “Coleta de estatísticas de índices InnoDB e MyISAM”](index-statistics.html)
+[Section 8.3.7, “InnoDB and MyISAM Index Statistics Collection”](index-statistics.html "8.3.7 InnoDB and MyISAM Index Statistics Collection")
 
-[Seção 21.5.15, “ndb_index_stat — Ferramenta de estatísticas de índice NDB”](mysql-cluster-programs-ndb-index-stat.html)
+[Section 21.5.15, “ndb_index_stat — NDB Index Statistics Utility”](mysql-cluster-programs-ndb-index-stat.html "21.5.15 ndb_index_stat — NDB Index Statistics Utility")
 
-[Seção 8.9.3, “Dicas do otimizador”](optimizer-hints.html)
+[Section 8.9.3, “Optimizer Hints”](optimizer-hints.html "8.9.3 Optimizer Hints")
 
-[Seção 4.6.3.4, “Outras opções do myisamchk”](myisamchk-other-options.html)
+[Section 4.6.3.4, “Other myisamchk Options”](myisamchk-other-options.html "4.6.3.4 Other myisamchk Options")
 
-[Seção 13.7.5.5, "Declaração SHOW COLUMNS"](show-columns.html)
+[Section 13.7.5.5, “SHOW COLUMNS Statement”](show-columns.html "13.7.5.5 SHOW COLUMNS Statement")
 
-[Seção 13.7.5.22, "Declaração SHOW INDEX"](show-index.html)
+[Section 13.7.5.22, “SHOW INDEX Statement”](show-index.html "13.7.5.22 SHOW INDEX Statement")
 
-[Seção 24.3.24, “A Tabela INFORMATION_SCHEMA STATISTICS”](information-schema-statistics-table.html)
+[Section 24.3.24, “The INFORMATION_SCHEMA STATISTICS Table”](information-schema-statistics-table.html "24.3.24 The INFORMATION_SCHEMA STATISTICS Table")
 
-[Seção 24.3.27, “Tabela INFORMATION_SCHEMA TABLE_CONSTRAINTS”](information-schema-table-constraints-table.html)
+[Section 24.3.27, “The INFORMATION_SCHEMA TABLE_CONSTRAINTS Table”](information-schema-table-constraints-table.html "24.3.27 The INFORMATION_SCHEMA TABLE_CONSTRAINTS Table")
 
-[Seção 21.2.4.1, “O que há de novo no NDB Cluster 7.5”](mysql-cluster-what-is-new-7-5.html)
+[Section 21.2.4.1, “What is New in NDB Cluster 7.5”](mysql-cluster-what-is-new-7-5.html "21.2.4.1 What is New in NDB Cluster 7.5")
 
-### EXIBIR LOGS DO MESTRE
+### SHOW MASTER LOGS
 
-[Seção 13.7.5.1, “Declaração SHOW BINARY LOGS”](show-binary-logs.html)
+[Section 13.7.5.1, “SHOW BINARY LOGS Statement”](show-binary-logs.html "13.7.5.1 SHOW BINARY LOGS Statement")
 
-### MOSTRE ESTADO DE MAESTRO
+### SHOW MASTER STATUS
 
-[Seção 16.1.6.5, “Variáveis do Sistema de ID de Transação Global”](replication-options-gtids.html)
+[Section 16.1.6.5, “Global Transaction ID System Variables”](replication-options-gtids.html "16.1.6.5 Global Transaction ID System Variables")
 
-[Seção 16.4.5, “Como relatar erros ou problemas de replicação”](replication-bugs.html)
+[Section 16.4.5, “How to Report Replication Bugs or Problems”](replication-bugs.html "16.4.5 How to Report Replication Bugs or Problems")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 21.7.9, "Backup do NDB Cluster com Replicação do NDB Cluster"](mysql-cluster-replication-backups.html)
+[Section 21.7.9, “NDB Cluster Backups With NDB Cluster Replication”](mysql-cluster-replication-backups.html "21.7.9 NDB Cluster Backups With NDB Cluster Replication")
 
-[Seção 16.1.2.3, “Obtendo as coordenadas do log binário da fonte de replicação”](replication-howto-masterstatus.html)
+[Section 16.1.2.3, “Obtaining the Replication Source's Binary Log Coordinates”](replication-howto-masterstatus.html "16.1.2.3 Obtaining the Replication Source's Binary Log Coordinates")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 13.7.5.34, "Declaração de Status de Escravo"](show-slave-status.html)
+[Section 13.7.5.34, “SHOW SLAVE STATUS Statement”](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement")
 
-[Seção 13.4.1, "Instruções SQL para controlar servidores de origem de replicação"](replication-statements-master.html)
+[Section 13.4.1, “SQL Statements for Controlling Replication Source Servers”](replication-statements-master.html "13.4.1 SQL Statements for Controlling Replication Source Servers")
 
-[Seção 14.21.6, “O Plugin InnoDB memcached e Replicação”](innodb-memcached-replication.html)
+[Section 14.21.6, “The InnoDB memcached Plugin and Replication”](innodb-memcached-replication.html "14.21.6 The InnoDB memcached Plugin and Replication")
 
-[Seção 16.4.4, “Solução de problemas de replicação”](replication-problems.html)
+[Section 16.4.4, “Troubleshooting Replication”](replication-problems.html "16.4.4 Troubleshooting Replication")
 
-### MOSTRE MESAS LIVRES
+### SHOW OPEN TABLES
 
-[Seção 13.7.5.24, "Declaração SHOW OPEN TABLES"](show-open-tables.html)
+[Section 13.7.5.24, “SHOW OPEN TABLES Statement”](show-open-tables.html "13.7.5.24 SHOW OPEN TABLES Statement")
 
-### Mostrar plugins
+### SHOW PLUGINS
 
-[Seção 6.4.2.1, “Instalação do Plugin de Controle de Conexão”](connection-control-plugin-installation.html)
+[Section 6.4.2.1, “Connection Control Plugin Installation”](connection-control-plugin-installation.html "6.4.2.1 Connection Control Plugin Installation")
 
-[Seção 14.14, “Criptografia de Dados em Repouso do InnoDB”](innodb-data-encryption.html)
+[Section 14.14, “InnoDB Data-at-Rest Encryption”](innodb-data-encryption.html "14.14 InnoDB Data-at-Rest Encryption")
 
-[Seção 13.7.3.3, "Declaração de INSTALAÇÃO DO PLUGIN"](install-plugin.html)
+[Section 13.7.3.3, “INSTALL PLUGIN Statement”](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement")
 
-[Seção 5.5.1, “Instalando e Desinstalando Plugins”](plugin-loading.html)
+[Section 5.5.1, “Installing and Uninstalling Plugins”](plugin-loading.html "5.5.1 Installing and Uninstalling Plugins")
 
-[Seção 6.4.5.2, “Instalando ou Desinstalando o Auditoria do MySQL Enterprise”](audit-log-installation.html)
+[Section 6.4.5.2, “Installing or Uninstalling MySQL Enterprise Audit”](audit-log-installation.html "6.4.5.2 Installing or Uninstalling MySQL Enterprise Audit")
 
-[Seção 6.4.4.10, “Metadados do cartela de identificação”] (keyring-metadata.html)
+[Section 6.4.4.10, “Keyring Metadata”](keyring-metadata.html "6.4.4.10 Keyring Metadata")
 
-[Seção 6.4.4.1, “Instalação do Plugin do Carteira de Chaves”](keyring-plugin-installation.html)
+[Section 6.4.4.1, “Keyring Plugin Installation”](keyring-plugin-installation.html "6.4.4.1 Keyring Plugin Installation")
 
-[Seção 6.4.1.9, “Autenticação Conectada a LDAP”](ldap-pluggable-authentication.html)
+[Section 6.4.1.9, “LDAP Pluggable Authentication”](ldap-pluggable-authentication.html "6.4.1.9 LDAP Pluggable Authentication")
 
-[Seção 12.9.9, “Plugin do Analizador de Texto Completo MeCab”](fulltext-search-mecab.html)
+[Section 12.9.9, “MeCab Full-Text Parser Plugin”](fulltext-search-mecab.html "12.9.9 MeCab Full-Text Parser Plugin")
 
-[Seção A.10, “Perguntas frequentes sobre o MySQL 5.7: NDB Cluster”](faqs-mysql-cluster.html)
+[Section A.10, “MySQL 5.7 FAQ: NDB Cluster”](faqs-mysql-cluster.html "A.10 MySQL 5.7 FAQ: NDB Cluster")
 
-[Seção 21.4.3.9.1, “Opções do Servidor MySQL para NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld)
+[Section 21.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "21.4.3.9.1 MySQL Server Options for NDB Cluster")
 
-[Seção 21.6.15, “ndbinfo: Banco de Dados de Informações do NDB Cluster”](mysql-cluster-ndbinfo.html)
+[Section 21.6.15, “ndbinfo: The NDB Cluster Information Database”](mysql-cluster-ndbinfo.html "21.6.15 ndbinfo: The NDB Cluster Information Database")
 
-[Seção 6.4.1.10, “Autenticação Pluggable sem Login”](no-login-pluggable-authentication.html)
+[Section 6.4.1.10, “No-Login Pluggable Authentication”](no-login-pluggable-authentication.html "6.4.1.10 No-Login Pluggable Authentication")
 
-[Seção 5.5.2, “Obtendo Informações do Plugin do Servidor”](obtaining-plugin-information.html)
+[Section 5.5.2, “Obtaining Server Plugin Information”](obtaining-plugin-information.html "5.5.2 Obtaining Server Plugin Information")
 
-[Seção 6.4.1.7, “Autenticação Conectada (PAM)](pam-pluggable-authentication.html)
+[Section 6.4.1.7, “PAM Pluggable Authentication”](pam-pluggable-authentication.html "6.4.1.7 PAM Pluggable Authentication")
 
-[Capítulo 22, *Partitioning*] (partitioning.html)
+[Chapter 22, *Partitioning*](partitioning.html "Chapter 22 Partitioning")
 
-[Seção 6.4.3.1, “Instalação do Plugin de Validação de Senha”](validate-password-installation.html)
+[Section 6.4.3.1, “Password Validation Plugin Installation”](validate-password-installation.html "6.4.3.1 Password Validation Plugin Installation")
 
-[Seção 21.6.17, “Referência Rápida: Declarações SQL do NDB Cluster”](mysql-cluster-sql-statements.html)
+[Section 21.6.17, “Quick Reference: NDB Cluster SQL Statements”](mysql-cluster-sql-statements.html "21.6.17 Quick Reference: NDB Cluster SQL Statements")
 
-[Seção 16.3.9.2, “Instalação e Configuração de Replicação Semisíncrona”](replication-semisync-installation.html)
+[Section 16.3.9.2, “Semisynchronous Replication Installation and Configuration”](replication-semisync-installation.html "16.3.9.2 Semisynchronous Replication Installation and Configuration")
 
-[Seção 5.1.6, “Opções de comando do servidor”](server-options.html)
+[Section 5.1.6, “Server Command Options”](server-options.html "5.1.6 Server Command Options")
 
-[Seção 13.7.5.25, "Declaração de PLUGINS"](show-plugins.html)
+[Section 13.7.5.25, “SHOW PLUGINS Statement”](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement")
 
-[Seção 6.4.1.11, “Autenticação Pluggable de Credenciais de Peer de Soquete”](socket-pluggable-authentication.html)
+[Section 6.4.1.11, “Socket Peer-Credential Pluggable Authentication”](socket-pluggable-authentication.html "6.4.1.11 Socket Peer-Credential Pluggable Authentication")
 
-[Seção 6.4.1.12, “Teste de Autenticação Pluggable”](test-pluggable-authentication.html)
+[Section 6.4.1.12, “Test Pluggable Authentication”](test-pluggable-authentication.html "6.4.1.12 Test Pluggable Authentication")
 
-[Seção 24.3.13, “A tabela INFORMATION_SCHEMA ndb_transid_mysql_connection_map”](information-schema-ndb-transid-mysql-connection-map-table.html)
+[Section 24.3.13, “The INFORMATION_SCHEMA ndb_transid_mysql_connection_map Table”](information-schema-ndb-transid-mysql-connection-map-table.html "24.3.13 The INFORMATION_SCHEMA ndb_transid_mysql_connection_map Table")
 
-[Seção 24.3.17, “A Tabela INFORMATION_SCHEMA PLUGINS”](information-schema-plugins-table.html)
+[Section 24.3.17, “The INFORMATION_SCHEMA PLUGINS Table”](information-schema-plugins-table.html "24.3.17 The INFORMATION_SCHEMA PLUGINS Table")
 
-[Seção 5.5.3.2, “Instalação do Pool de Threads”](thread-pool-installation.html)
+[Section 5.5.3.2, “Thread Pool Installation”](thread-pool-installation.html "5.5.3.2 Thread Pool Installation")
 
-[Seção 6.4.1.8, “Autenticação Conectada a Janelas”](windows-pluggable-authentication.html)
+[Section 6.4.1.8, “Windows Pluggable Authentication”](windows-pluggable-authentication.html "6.4.1.8 Windows Pluggable Authentication")
 
-### Mostre privilégios
+### SHOW PRIVILEGES
 
-[Seção 13.7.5.26, "Declaração de PRIVILEGIOS DE EXIBIÇÃO"](show-privileges.html)
+[Section 13.7.5.26, “SHOW PRIVILEGES Statement”](show-privileges.html "13.7.5.26 SHOW PRIVILEGES Statement")
 
-### Mostre o código do procedimento
+### SHOW PROCEDURE CODE
 
-[Seção 13.7.5.19, "Declaração SHOW FUNCTION CODE"](show-function-code.html)
+[Section 13.7.5.19, “SHOW FUNCTION CODE Statement”](show-function-code.html "13.7.5.19 SHOW FUNCTION CODE Statement")
 
-[Seção 23.2.3, “Metadados de Rotinas Armazenados”](stored-routines-metadata.html)
+[Section 23.2.3, “Stored Routine Metadata”](stored-routines-metadata.html "23.2.3 Stored Routine Metadata")
 
-### Mostrar o status do procedimento
+### SHOW PROCEDURE STATUS
 
-[Seção 13.7.5.20, "Declaração de Status da Função"](show-function-status.html)
+[Section 13.7.5.20, “SHOW FUNCTION STATUS Statement”](show-function-status.html "13.7.5.20 SHOW FUNCTION STATUS Statement")
 
-[Seção 23.2.3, “Metadados de Rotinas Armazenados”](stored-routines-metadata.html)
+[Section 23.2.3, “Stored Routine Metadata”](stored-routines-metadata.html "23.2.3 Stored Routine Metadata")
 
-### EXIBIR LISTA DE PROCESSOS
+### SHOW PROCESSLIST
 
-[Seção 8.14.1, “Acesse a Lista de Processos”](processlist-access.html)
+[Section 8.14.1, “Accessing the Process List”](processlist-access.html "8.14.1 Accessing the Process List")
 
-[Seção 13.4.2.1, “Mudar o mestre para declaração”](change-master-to.html)
+[Section 13.4.2.1, “CHANGE MASTER TO Statement”](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement")
 
-[Seção 16.1.7.1, “Verificar o status da replicação”](replication-administration-status.html)
+[Section 16.1.7.1, “Checking Replication Status”](replication-administration-status.html "16.1.7.1 Checking Replication Status")
 
-[Seção 5.8.4.1.2, "Provas de comando"](dba-dtrace-mysqld-ref.html#dba-dtrace-ref-command)
+[Section 5.8.4.1.2, “Command Probes”](dba-dtrace-mysqld-ref.html#dba-dtrace-ref-command "5.8.4.1.2 Command Probes")
 
-[Seção 5.1.11.1, “Interfaces de Conexão”](connection-interfaces.html)
+[Section 5.1.11.1, “Connection Interfaces”](connection-interfaces.html "5.1.11.1 Connection Interfaces")
 
-[Seção 5.8.4.1.1, "Provas de Conexão"](dba-dtrace-mysqld-ref.html#dba-dtrace-ref-connection)
+[Section 5.8.4.1.1, “Connection Probes”](dba-dtrace-mysqld-ref.html#dba-dtrace-ref-connection "5.8.4.1.1 Connection Probes")
 
-[Seção 16.3.10, “Replicação Atrasa”](replication-delayed.html)
+[Section 16.3.10, “Delayed Replication”](replication-delayed.html "16.3.10 Delayed Replication")
 
-[Seção 23.4.2, “Configuração do Agendador de Eventos”](events-configuration.html)
+[Section 23.4.2, “Event Scheduler Configuration”](events-configuration.html "23.4.2 Event Scheduler Configuration")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 16.1.3.1, "Formato e Armazenamento do GTID"](replication-gtids-concepts.html)
+[Section 16.1.3.1, “GTID Format and Storage”](replication-gtids-concepts.html "16.1.3.1 GTID Format and Storage")
 
-[Seção 12.15, “Funções de Informação”](information-functions.html)
+[Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions")
 
-[Seção 14.22.4, “Tratamento de Erros do InnoDB”](innodb-error-handling.html)
+[Section 14.22.4, “InnoDB Error Handling”](innodb-error-handling.html "14.22.4 InnoDB Error Handling")
 
-[Seção 13.7.6.4, "Declaração de KILL"](kill.html)
+[Section 13.7.6.4, “KILL Statement”](kill.html "13.7.6.4 KILL Statement")
 
-[Seção 6.1.3, “Tornar o MySQL seguro contra atacantes”](security-against-attack.html)
+[Section 6.1.3, “Making MySQL Secure Against Attackers”](security-against-attack.html "6.1.3 Making MySQL Secure Against Attackers")
 
-[Seção 16.2.3.1, “Monitoramento das principais threads de replicação”](replication-threads-monitor-main.html)
+[Section 16.2.3.1, “Monitoring Replication Main Threads”](replication-threads-monitor-main.html "16.2.3.1 Monitoring Replication Main Threads")
 
-[Seção A.14, “Perguntas frequentes sobre o MySQL 5.7: Replicação”](faqs-replication.html)
+[Section A.14, “MySQL 5.7 FAQ: Replication”](faqs-replication.html "A.14 MySQL 5.7 FAQ: Replication")
 
-[Seção 21.6.10, “Uso do Servidor MySQL para NDB Cluster”](mysql-cluster-mysqld.html)
+[Section 21.6.10, “MySQL Server Usage for NDB Cluster”](mysql-cluster-mysqld.html "21.6.10 MySQL Server Usage for NDB Cluster")
 
-[Seção 4.5.2, “mysqladmin — Um programa de administração do servidor MySQL”](mysqladmin.html)
+[Section 4.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program")
 
-[Seção 8.8.4, “Obtendo informações do plano de execução para uma conexão nomeada”](explain-for-connection.html)
+[Section 8.8.4, “Obtaining Execution Plan Information for a Named Connection”](explain-for-connection.html "8.8.4 Obtaining Execution Plan Information for a Named Connection")
 
-[Seção 25.6, “Convenções de Nomenclatura de Instrumentos do Schema de Desempenho”](performance-schema-instrument-naming.html)
+[Section 25.6, “Performance Schema Instrument Naming Conventions”](performance-schema-instrument-naming.html "25.6 Performance Schema Instrument Naming Conventions")
 
-[Seção 25.12.5, "Tabelas de Eventos de Estágio do Schema de Desempenho"](performance-schema-stage-tables.html)
+[Section 25.12.5, “Performance Schema Stage Event Tables”](performance-schema-stage-tables.html "25.12.5 Performance Schema Stage Event Tables")
 
-[Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
+[Section 25.15, “Performance Schema System Variables”](performance-schema-system-variables.html "25.15 Performance Schema System Variables")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 5.8.4.1.6, "Provas de execução de consultas"](dba-dtrace-mysqld-ref.html#dba-dtrace-ref-queryexec)
+[Section 5.8.4.1.6, “Query Execution Probes”](dba-dtrace-mysqld-ref.html#dba-dtrace-ref-queryexec "5.8.4.1.6 Query Execution Probes")
 
-[Seção 5.8.4.1.3, "Probes de consulta"](dba-dtrace-mysqld-ref.html#dba-dtrace-ref-query)
+[Section 5.8.4.1.3, “Query Probes”](dba-dtrace-mysqld-ref.html#dba-dtrace-ref-query "5.8.4.1.3 Query Probes")
 
-[Seção 16.2.3, “Ferramentas de replicação”](replication-threads.html)
+[Section 16.2.3, “Replication Threads”](replication-threads.html "16.2.3 Replication Threads")
 
-[Seção 13.7.5.29, "Declaração SHOW PROCESSLIST"](show-processlist.html)
+[Section 13.7.5.29, “SHOW PROCESSLIST Statement”](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement")
 
-[Seção 13.7.5.30, "Declaração de PROJETO VISUAL"](show-profile.html)
+[Section 13.7.5.30, “SHOW PROFILE Statement”](show-profile.html "13.7.5.30 SHOW PROFILE Statement")
 
-[Seção 13.7.5.34, "Declaração de Status de Escravo"](show-slave-status.html)
+[Section 13.7.5.34, “SHOW SLAVE STATUS Statement”](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement")
 
-[Seção 13.4.2.5, "Declaração START SLAVE"](start-slave.html)
+[Section 13.4.2.5, “START SLAVE Statement”](start-slave.html "13.4.2.5 START SLAVE Statement")
 
-[Seção 13.3.1, "Instruções START TRANSACTION, COMMIT e ROLLBACK"](commit.html)
+[Section 13.3.1, “START TRANSACTION, COMMIT, and ROLLBACK Statements”](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements")
 
-[Seção 16.3.7, “Alteração de fontes durante o failover”](replication-solutions-switch.html)
+[Section 16.3.7, “Switching Sources During Failover”](replication-solutions-switch.html "16.3.7 Switching Sources During Failover")
 
-[Seção 24.3.13, “A tabela INFORMATION_SCHEMA ndb_transid_mysql_connection_map”](information-schema-ndb-transid-mysql-connection-map-table.html)
+[Section 24.3.13, “The INFORMATION_SCHEMA ndb_transid_mysql_connection_map Table”](information-schema-ndb-transid-mysql-connection-map-table.html "24.3.13 The INFORMATION_SCHEMA ndb_transid_mysql_connection_map Table")
 
-[Seção 24.3.18, “A tabela INFORMATION_SCHEMA PROCESSLIST”](information-schema-processlist-table.html)
+[Section 24.3.18, “The INFORMATION_SCHEMA PROCESSLIST Table”](information-schema-processlist-table.html "24.3.18 The INFORMATION_SCHEMA PROCESSLIST Table")
 
-[Seção 21.6.15.33, “Tabela server_locks do ndbinfo server”](mysql-cluster-ndbinfo-server-locks.html)
+[Section 21.6.15.33, “The ndbinfo server_locks Table”](mysql-cluster-ndbinfo-server-locks.html "21.6.15.33 The ndbinfo server_locks Table")
 
-[Seção 21.6.15.34, “Tabela server_operations do ndbinfo server”](mysql-cluster-ndbinfo-server-operations.html)
+[Section 21.6.15.34, “The ndbinfo server_operations Table”](mysql-cluster-ndbinfo-server-operations.html "21.6.15.34 The ndbinfo server_operations Table")
 
-[Seção 21.6.15.35, “Tabela server_transactions do ndbinfo server”](mysql-cluster-ndbinfo-server-transactions.html)
+[Section 21.6.15.35, “The ndbinfo server_transactions Table”](mysql-cluster-ndbinfo-server-transactions.html "21.6.15.35 The ndbinfo server_transactions Table")
 
-[Seção 26.4.3.22, “Processlist e visualizações x$processlist”](sys-processlist.html)
+[Section 26.4.3.22, “The processlist and x$processlist Views”](sys-processlist.html "26.4.3.22 The processlist and x$processlist Views")
 
-[Seção 25.12.16.3, “Tabela Processlist”](performance-schema-processlist-table.html)
+[Section 25.12.16.3, “The processlist Table”](performance-schema-processlist-table.html "25.12.16.3 The processlist Table")
 
-[Seção 26.4.5.13, “A função ps_is_thread_instrumented()”](sys-ps-is-thread-instrumented.html)
+[Section 26.4.5.13, “The ps_is_thread_instrumented() Function”](sys-ps-is-thread-instrumented.html "26.4.5.13 The ps_is_thread_instrumented() Function")
 
-[Seção 26.4.4.7, “O procedimento ps_setup_disable_thread()”](sys-ps-setup-disable-thread.html)
+[Section 26.4.4.7, “The ps_setup_disable_thread() Procedure”](sys-ps-setup-disable-thread.html "26.4.4.7 The ps_setup_disable_thread() Procedure")
 
-[Seção 26.4.4.11, “O procedimento ps_setup_enable_thread()”](sys-ps-setup-enable-thread.html)
+[Section 26.4.4.11, “The ps_setup_enable_thread() Procedure”](sys-ps-setup-enable-thread.html "26.4.4.11 The ps_setup_enable_thread() Procedure")
 
-[Seção 26.4.5.15, “A função ps_thread_id()”](sys-ps-thread-id.html)
+[Section 26.4.5.15, “The ps_thread_id() Function”](sys-ps-thread-id.html "26.4.5.15 The ps_thread_id() Function")
 
-[Seção 25.12.16.4, “Tabela de threads”](performance-schema-threads-table.html)
+[Section 25.12.16.4, “The threads Table”](performance-schema-threads-table.html "25.12.16.4 The threads Table")
 
-[Seção B.3.2.5, “Muitas conexões”](too-many-connections.html)
+[Section B.3.2.5, “Too many connections”](too-many-connections.html "B.3.2.5 Too many connections")
 
-[Seção 16.4.4, “Solução de problemas de replicação”](replication-problems.html)
+[Section 16.4.4, “Troubleshooting Replication”](replication-problems.html "16.4.4 Troubleshooting Replication")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
-### MOSTRE O PERFIL
+### SHOW PROFILE
 
-[Seção 8.14.3, “Estados gerais de fios”](general-thread-states.html)
+[Section 8.14.3, “General Thread States”](general-thread-states.html "8.14.3 General Thread States")
 
-[Seção 2.8.7, “Opções de Configuração de Fonte do MySQL”](source-configuration-options.html)
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
 
-[Seção 25.19.1, “Profilagem de consultas usando o Gerenciamento de desempenho”](performance-schema-query-profiling.html)
+[Section 25.19.1, “Query Profiling Using Performance Schema”](performance-schema-query-profiling.html "25.19.1 Query Profiling Using Performance Schema")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 13.7.5.30, "Declaração de PROJETO VISUAL"](show-profile.html)
+[Section 13.7.5.30, “SHOW PROFILE Statement”](show-profile.html "13.7.5.30 SHOW PROFILE Statement")
 
-[Seção 13.7.5.31, "Declaração de PROFILES SHOW"](show-profiles.html)
+[Section 13.7.5.31, “SHOW PROFILES Statement”](show-profiles.html "13.7.5.31 SHOW PROFILES Statement")
 
-[Seção 24.3.19, “A tabela INFORMATION_SCHEMA PROFILING”](information-schema-profiling-table.html)
+[Section 24.3.19, “The INFORMATION_SCHEMA PROFILING Table”](information-schema-profiling-table.html "24.3.19 The INFORMATION_SCHEMA PROFILING Table")
 
-### MOSTRE PERFIS
+### SHOW PROFILES
 
-[Seção 2.8.7, “Opções de Configuração de Fonte do MySQL”](source-configuration-options.html)
+[Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options")
 
-[Seção 25.19.1, “Profilagem de consultas usando o Gerenciamento de desempenho”](performance-schema-query-profiling.html)
+[Section 25.19.1, “Query Profiling Using Performance Schema”](performance-schema-query-profiling.html "25.19.1 Query Profiling Using Performance Schema")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 13.7.5.30, "Declaração de PROJETO VISUAL"](show-profile.html)
+[Section 13.7.5.30, “SHOW PROFILE Statement”](show-profile.html "13.7.5.30 SHOW PROFILE Statement")
 
-[Seção 13.7.5.31, "Declaração de PROFILES SHOW"](show-profiles.html)
+[Section 13.7.5.31, “SHOW PROFILES Statement”](show-profiles.html "13.7.5.31 SHOW PROFILES Statement")
 
-[Seção 24.3.19, “A tabela INFORMATION_SCHEMA PROFILING”](information-schema-profiling-table.html)
+[Section 24.3.19, “The INFORMATION_SCHEMA PROFILING Table”](information-schema-profiling-table.html "24.3.19 The INFORMATION_SCHEMA PROFILING Table")
 
-### MOSTRE EVENTOS RELAYLOG
+### SHOW RELAYLOG EVENTS
 
-[Seção 16.2.2.1, “Comandos para operações em um único canal”](channels-commands-single-channel.html)
+[Section 16.2.2.1, “Commands for Operations on a Single Channel”](channels-commands-single-channel.html "16.2.2.1 Commands for Operations on a Single Channel")
 
-[Seção 16.2.2.2, “Compatibilidade com Declarações de Replicação Prévias”](channels-with-prev-replication.html)
+[Section 16.2.2.2, “Compatibility with Previous Replication Statements”](channels-with-prev-replication.html "16.2.2.2 Compatibility with Previous Replication Statements")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 13.7.5.2, “Declaração de MOSTRAR EVENTOS BINLOG”](show-binlog-events.html)
+[Section 13.7.5.2, “SHOW BINLOG EVENTS Statement”](show-binlog-events.html "13.7.5.2 SHOW BINLOG EVENTS Statement")
 
-[Seção 13.7.5.32, "Declaração de RELAYLOG EVENTS"](show-relaylog-events.html)
+[Section 13.7.5.32, “SHOW RELAYLOG EVENTS Statement”](show-relaylog-events.html "13.7.5.32 SHOW RELAYLOG EVENTS Statement")
 
-[Seção 16.1.7.3, “Saltar Transações”](replication-administration-skip.html)
+[Section 16.1.7.3, “Skipping Transactions”](replication-administration-skip.html "16.1.7.3 Skipping Transactions")
 
-[Seção 16.1.7.3.1, “Saltar Transações com GTIDs”](replication-administration-skip.html#replication-administration-skip-gtid)
+[Section 16.1.7.3.1, “Skipping Transactions With GTIDs”](replication-administration-skip.html#replication-administration-skip-gtid "16.1.7.3.1 Skipping Transactions With GTIDs")
 
-[Seção 13.4.2, "Instruções SQL para controle de servidores replicados"](replication-statements-replica.html)
+[Section 13.4.2, “SQL Statements for Controlling Replica Servers”](replication-statements-replica.html "13.4.2 SQL Statements for Controlling Replica Servers")
 
-### MOSTRE REPLICA | ESTADO DE ESCRAVO
+### SHOW REPLICA | SLAVE STATUS
 
-[Seção A.14, “Perguntas frequentes sobre o MySQL 5.7: Replicação”](faqs-replication.html)
+[Section A.14, “MySQL 5.7 FAQ: Replication”](faqs-replication.html "A.14 MySQL 5.7 FAQ: Replication")
 
-### ESCOLHA SCHEMAS
+### SHOW SCHEMAS
 
-[Seção 13.7.5.14, "Declaração SHOW DATABASES"](show-databases.html)
+[Section 13.7.5.14, “SHOW DATABASES Statement”](show-databases.html "13.7.5.14 SHOW DATABASES Statement")
 
-### EXIBIR STATUS DA SESSÃO
+### SHOW SESSION STATUS
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
-[Seção 24.3.10, “Tabelas INFORMATION_SCHEMA GLOBAL_STATUS e SESSION_STATUS”](information-schema-status-table.html)
+[Section 24.3.10, “The INFORMATION_SCHEMA GLOBAL_STATUS and SESSION_STATUS Tables”](information-schema-status-table.html "24.3.10 The INFORMATION_SCHEMA GLOBAL_STATUS and SESSION_STATUS Tables")
 
-### EXIBIR VARIÁVEIS DE SESSÃO
+### SHOW SESSION VARIABLES
 
-[Seção 24.3.11, “Tabelas INFORMATION_SCHEMA GLOBAL_VARIABLES e SESSION_VARIABLES”](information-schema-variables-table.html)
+[Section 24.3.11, “The INFORMATION_SCHEMA GLOBAL_VARIABLES and SESSION_VARIABLES Tables”](information-schema-variables-table.html "24.3.11 The INFORMATION_SCHEMA GLOBAL_VARIABLES and SESSION_VARIABLES Tables")
 
-### MOSTRE ANfitriões de escravos
+### SHOW SLAVE HOSTS
 
-[Seção 16.1.7.1, “Verificar o status da replicação”](replication-administration-status.html)
+[Section 16.1.7.1, “Checking Replication Status”](replication-administration-status.html "16.1.7.1 Checking Replication Status")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
+[Section 16.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "16.1.6.3 Replica Server Options and Variables")
 
-[Seção 16.1.6, “Opções e variáveis de registro binário e replicação”](replication-options.html)
+[Section 16.1.6, “Replication and Binary Logging Options and Variables”](replication-options.html "16.1.6 Replication and Binary Logging Options and Variables")
 
-[Seção 16.1.6.2, “Opções e variáveis de fonte de replicação”](replication-options-source.html)
+[Section 16.1.6.2, “Replication Source Options and Variables”](replication-options-source.html "16.1.6.2 Replication Source Options and Variables")
 
-[Seção 13.4.1, "Instruções SQL para controlar servidores de origem de replicação"](replication-statements-master.html)
+[Section 13.4.1, “SQL Statements for Controlling Replication Source Servers”](replication-statements-master.html "13.4.1 SQL Statements for Controlling Replication Source Servers")
 
-### Mostrar status de escravo
+### SHOW SLAVE STATUS
 
-[Seção 16.1.2.6, “Adicionar réplicas a uma topologia de replicação”](replication-howto-additionalslaves.html)
+[Section 16.1.2.6, “Adding Replicas to a Replication Topology”](replication-howto-additionalslaves.html "16.1.2.6 Adding Replicas to a Replication Topology")
 
-[Seção 13.4.2.1, “Mudar o mestre para declaração”](change-master-to.html)
+[Section 13.4.2.1, “CHANGE MASTER TO Statement”](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement")
 
-[Seção 16.1.7.1, “Verificar o status da replicação”](replication-administration-status.html)
+[Section 16.1.7.1, “Checking Replication Status”](replication-administration-status.html "16.1.7.1 Checking Replication Status")
 
-[Seção 16.2.2.1, “Comandos para operações em um único canal”](channels-commands-single-channel.html)
+[Section 16.2.2.1, “Commands for Operations on a Single Channel”](channels-commands-single-channel.html "16.2.2.1 Commands for Operations on a Single Channel")
 
-[Seção 16.2.2.2, “Compatibilidade com Declarações de Replicação Prévias”](channels-with-prev-replication.html)
+[Section 16.2.2.2, “Compatibility with Previous Replication Statements”](channels-with-prev-replication.html "16.2.2.2 Compatibility with Previous Replication Statements")
 
-[Seção 16.3.10, “Replicação Atrasa”](replication-delayed.html)
+[Section 16.3.10, “Delayed Replication”](replication-delayed.html "16.3.10 Delayed Replication")
 
-[Seção B.2, “Interfaces de Informação de Erros”](error-interfaces.html)
+[Section B.2, “Error Information Interfaces”](error-interfaces.html "B.2 Error Information Interfaces")
 
-[Seção 16.1.6.5, “Variáveis do Sistema de ID de Transação Global”](replication-options-gtids.html)
+[Section 16.1.6.5, “Global Transaction ID System Variables”](replication-options-gtids.html "16.1.6.5 Global Transaction ID System Variables")
 
-[Seção 16.4.5, “Como relatar erros ou problemas de replicação”](replication-bugs.html)
+[Section 16.4.5, “How to Report Replication Bugs or Problems”](replication-bugs.html "16.4.5 How to Report Replication Bugs or Problems")
 
-[Seção 21.7.8, “Implementando Failover com Replicação de NDB Cluster”](mysql-cluster-replication-failover.html)
+[Section 21.7.8, “Implementing Failover with NDB Cluster Replication”](mysql-cluster-replication-failover.html "21.7.8 Implementing Failover with NDB Cluster Replication")
 
-[Seção 21.7.3, “Problemas Conhecidos na Replicação de NDB Cluster”](mysql-cluster-replication-issues.html)
+[Section 21.7.3, “Known Issues in NDB Cluster Replication”](mysql-cluster-replication-issues.html "21.7.3 Known Issues in NDB Cluster Replication")
 
-[Seção 16.2.3.1, “Monitoramento das principais threads de replicação”](replication-threads-monitor-main.html)
+[Section 16.2.3.1, “Monitoring Replication Main Threads”](replication-threads-monitor-main.html "16.2.3.1 Monitoring Replication Main Threads")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 25.12.11, "Tabelas de Replicação do Schema de Desempenho"](performance-schema-replication-tables.html)
+[Section 25.12.11, “Performance Schema Replication Tables”](performance-schema-replication-tables.html "25.12.11 Performance Schema Replication Tables")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 13.4.1.1, "Declaração de PURGE BINARY LOGS"](purge-binary-logs.html)
+[Section 13.4.1.1, “PURGE BINARY LOGS Statement”](purge-binary-logs.html "13.4.1.1 PURGE BINARY LOGS Statement")
 
-[Seção 16.4.1.27, “Erros de replicação durante a replicação”](replication-features-errors.html)
+[Section 16.4.1.27, “Replica Errors During Replication”](replication-features-errors.html "16.4.1.27 Replica Errors During Replication")
 
-[Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
+[Section 16.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "16.1.6.3 Replica Server Options and Variables")
 
-[Seção 16.1.6, “Opções e variáveis de registro binário e replicação”](replication-options.html)
+[Section 16.1.6, “Replication and Binary Logging Options and Variables”](replication-options.html "16.1.6 Replication and Binary Logging Options and Variables")
 
-[Seção 16.4.1.32, "Inconsistências de Replicação e Transação"](replication-features-transaction-inconsistencies.html)
+[Section 16.4.1.32, “Replication and Transaction Inconsistencies”](replication-features-transaction-inconsistencies.html "16.4.1.32 Replication and Transaction Inconsistencies")
 
-[Seção 16.2.4.2, "Repositórios de Metadados de Replicação"](replica-logs-status.html)
+[Section 16.2.4.2, “Replication Metadata Repositories”](replica-logs-status.html "16.2.4.2 Replication Metadata Repositories")
 
-[Seção 16.1.4.1, “Conceitos do Modo de Replicação”](replication-mode-change-online-concepts.html)
+[Section 16.1.4.1, “Replication Mode Concepts”](replication-mode-change-online-concepts.html "16.1.4.1 Replication Mode Concepts")
 
-[Seção 8.14.6, “Estados de E/S de Fila de Replicação Replica”](replica-io-thread-states.html)
+[Section 8.14.6, “Replication Replica I/O Thread States”](replica-io-thread-states.html "8.14.6 Replication Replica I/O Thread States")
 
-[Seção 16.2.3, “Ferramentas de replicação”](replication-threads.html)
+[Section 16.2.3, “Replication Threads”](replication-threads.html "16.2.3 Replication Threads")
 
-[Seção 16.1.3.6, “Restrições à Replicação com GTIDs”](replication-gtids-restrictions.html)
+[Section 16.1.3.6, “Restrictions on Replication with GTIDs”](replication-gtids-restrictions.html "16.1.3.6 Restrictions on Replication with GTIDs")
 
-[Seção 16.3.8, “Configurando a replicação para usar conexões criptografadas”](replication-encrypted-connections.html)
+[Section 16.3.8, “Setting Up Replication to Use Encrypted Connections”](replication-encrypted-connections.html "16.3.8 Setting Up Replication to Use Encrypted Connections")
 
-[Seção 13.7.5.23, "Declaração de Status do Mestre"](show-master-status.html)
+[Section 13.7.5.23, “SHOW MASTER STATUS Statement”](show-master-status.html "13.7.5.23 SHOW MASTER STATUS Statement")
 
-[Seção 13.7.5.34, "Declaração de Status de Escravo"](show-slave-status.html)
+[Section 13.7.5.34, “SHOW SLAVE STATUS Statement”](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement")
 
-[Seção 13.4.2, "Instruções SQL para controle de servidores replicados"](replication-statements-replica.html)
+[Section 13.4.2, “SQL Statements for Controlling Replica Servers”](replication-statements-replica.html "13.4.2 SQL Statements for Controlling Replica Servers")
 
-[Seção 13.4.2.5, "Declaração START SLAVE"](start-slave.html)
+[Section 13.4.2.5, “START SLAVE Statement”](start-slave.html "13.4.2.5 START SLAVE Statement")
 
-[Seção 16.1.5.5, “Iniciando Replicas de Múltiplos Fontes”](replication-multi-source-start-replica.html)
+[Section 16.1.5.5, “Starting Multi-Source Replicas”](replication-multi-source-start-replica.html "16.1.5.5 Starting Multi-Source Replicas")
 
-[Seção 25.12.11.3, “Tabela replication_applier_configuration”](performance-schema-replication-applier-configuration-table.html)
+[Section 25.12.11.3, “The replication_applier_configuration Table”](performance-schema-replication-applier-configuration-table.html "25.12.11.3 The replication_applier_configuration Table")
 
-[Seção 25.12.11.4, “Tabela replication_applier_status”](performance-schema-replication-applier-status-table.html)
+[Section 25.12.11.4, “The replication_applier_status Table”](performance-schema-replication-applier-status-table.html "25.12.11.4 The replication_applier_status Table")
 
-[Seção 25.12.11.5, “A tabela replication_applier_status_by_coordinator”](performance-schema-replication-applier-status-by-coordinator-table.html)
+[Section 25.12.11.5, “The replication_applier_status_by_coordinator Table”](performance-schema-replication-applier-status-by-coordinator-table.html "25.12.11.5 The replication_applier_status_by_coordinator Table")
 
-[Seção 25.12.11.6, “A tabela replication_applier_status_by_worker”](performance-schema-replication-applier-status-by-worker-table.html)
+[Section 25.12.11.6, “The replication_applier_status_by_worker Table”](performance-schema-replication-applier-status-by-worker-table.html "25.12.11.6 The replication_applier_status_by_worker Table")
 
-[Seção 25.12.11.1, “Tabela de configuração de conexão de replicação”](performance-schema-replication-connection-configuration-table.html)
+[Section 25.12.11.1, “The replication_connection_configuration Table”](performance-schema-replication-connection-configuration-table.html "25.12.11.1 The replication_connection_configuration Table")
 
-[Seção 25.12.11.2, “A tabela replication_connection_status”](performance-schema-replication-connection-status-table.html)
+[Section 25.12.11.2, “The replication_connection_status Table”](performance-schema-replication-connection-status-table.html "25.12.11.2 The replication_connection_status Table")
 
-[Seção 16.4.4, “Solução de problemas de replicação”](replication-problems.html)
+[Section 16.4.4, “Troubleshooting Replication”](replication-problems.html "16.4.4 Troubleshooting Replication")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
-### Mostre o status
+### SHOW STATUS
 
-[Seção 2.10.3, “Alterações no MySQL 5.7”](upgrading-from-previous-series.html)
+[Section 2.10.3, “Changes in MySQL 5.7”](upgrading-from-previous-series.html "2.10.3 Changes in MySQL 5.7")
 
-[Seção 16.1.7.1, “Verificar o status da replicação”](replication-administration-status.html)
+[Section 16.1.7.1, “Checking Replication Status”](replication-administration-status.html "16.1.7.1 Checking Replication Status")
 
-[Seção 21.4.3.7, “Definindo SQL e Outros Nodos de API em um NDB Cluster”](mysql-cluster-api-definition.html)
+[Section 21.4.3.7, “Defining SQL and Other API Nodes in an NDB Cluster”](mysql-cluster-api-definition.html "21.4.3.7 Defining SQL and Other API Nodes in an NDB Cluster")
 
-[Seção 21.6, “Gestão do NDB Cluster”](mysql-cluster-management.html)
+[Section 21.6, “Management of NDB Cluster”](mysql-cluster-management.html "21.6 Management of NDB Cluster")
 
-[Seção 25.20, “Migração para o Sistema de Schema de Desempenho e Tabelas de Variáveis de Status”](performance-schema-variable-table-migration.html)
+[Section 25.20, “Migrating to Performance Schema System and Status Variable Tables”](performance-schema-variable-table-migration.html "25.20 Migrating to Performance Schema System and Status Variable Tables")
 
-[Seção 21.4.3.9.1, “Opções do Servidor MySQL para NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld)
+[Section 21.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "21.4.3.9.1 MySQL Server Options for NDB Cluster")
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.7, “Replicação de aglomerado do NDB”](mysql-cluster-replication.html)
+[Section 21.7, “NDB Cluster Replication”](mysql-cluster-replication.html "21.7 NDB Cluster Replication")
 
-[Seção 25.12.11, "Tabelas de Replicação do Schema de Desempenho"](performance-schema-replication-tables.html)
+[Section 25.12.11, “Performance Schema Replication Tables”](performance-schema-replication-tables.html "25.12.11 Performance Schema Replication Tables")
 
-[Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
+[Section 25.15, “Performance Schema System Variables”](performance-schema-system-variables.html "25.15 Performance Schema System Variables")
 
-[Seção 8.10.3.4, “Consultar o estado e a manutenção do cache de consultas”](query-cache-status-and-maintenance.html)
+[Section 8.10.3.4, “Query Cache Status and Maintenance”](query-cache-status-and-maintenance.html "8.10.3.4 Query Cache Status and Maintenance")
 
-[Seção 21.6.17, “Referência Rápida: Declarações SQL do NDB Cluster”](mysql-cluster-sql-statements.html)
+[Section 21.6.17, “Quick Reference: NDB Cluster SQL Statements”](mysql-cluster-sql-statements.html "21.6.17 Quick Reference: NDB Cluster SQL Statements")
 
-[Seção 16.4.1.29, “Replicação e Tabelas Temporárias”](replication-features-temptables.html)
+[Section 16.4.1.29, “Replication and Temporary Tables”](replication-features-temptables.html "16.4.1.29 Replication and Temporary Tables")
 
-[Seção 16.4.1.30, "Tentativas de replicação e tempos de espera"](replication-features-timeout.html)
+[Section 16.4.1.30, “Replication Retries and Timeouts”](replication-features-timeout.html "16.4.1.30 Replication Retries and Timeouts")
 
-[Seção 23.8, “Restrições aos Programas Armazenados”](stored-program-restrictions.html)
+[Section 23.8, “Restrictions on Stored Programs”](stored-program-restrictions.html "23.8 Restrictions on Stored Programs")
 
-[Seção 16.3.9.3, “Monitoramento da Replicação Semisincronizada”](replication-semisync-monitoring.html)
+[Section 16.3.9.3, “Semisynchronous Replication Monitoring”](replication-semisync-monitoring.html "16.3.9.3 Semisynchronous Replication Monitoring")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 13.7.5.35, "Declaração de Status"] (show-status.html)
+[Section 13.7.5.35, “SHOW STATUS Statement”](show-status.html "13.7.5.35 SHOW STATUS Statement")
 
-[Seção 8.3.9, “Uso de Extensões de Índice”](index-extensions.html)
+[Section 8.3.9, “Use of Index Extensions”](index-extensions.html "8.3.9 Use of Index Extensions")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
-### Mostre o status como 'perf%'
+### SHOW STATUS LIKE 'perf%'
 
-[Seção 25.7, “Monitoramento do estado do esquema de desempenho”](performance-schema-status-monitoring.html)
+[Section 25.7, “Performance Schema Status Monitoring”](performance-schema-status-monitoring.html "25.7 Performance Schema Status Monitoring")
 
-### Mostrar o status da tabela
+### SHOW TABLE STATUS
 
-[Seção 12.19.1, “Descrição de Funções Agregadas”](aggregate-functions.html)
+[Section 12.19.1, “Aggregate Function Descriptions”](aggregate-functions.html "12.19.1 Aggregate Function Descriptions")
 
-[Seção 14.6.1.6, “Tratamento de AUTO_INCREMENT no InnoDB”](innodb-auto-increment-handling.html)
+[Section 14.6.1.6, “AUTO_INCREMENT Handling in InnoDB”](innodb-auto-increment-handling.html "14.6.1.6 AUTO_INCREMENT Handling in InnoDB")
 
-[Seção 14.8.11.2, “Configurando Parâmetros de Estatísticas de Otimizador Não Persistente”](innodb-statistics-estimation.html)
+[Section 14.8.11.2, “Configuring Non-Persistent Optimizer Statistics Parameters”](innodb-statistics-estimation.html "14.8.11.2 Configuring Non-Persistent Optimizer Statistics Parameters")
 
-[Seção 13.1.18, "Instrução CREATE TABLE"](create-table.html)
+[Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement")
 
-[Seção 14.6.1.1, “Criando tabelas InnoDB”](using-innodb-tables.html)
+[Section 14.6.1.1, “Creating InnoDB Tables”](using-innodb-tables.html "14.6.1.1 Creating InnoDB Tables")
 
-[Seção 13.8.2, “Instrução EXPLAIN”](explain.html)
+[Section 13.8.2, “EXPLAIN Statement”](explain.html "13.8.2 EXPLAIN Statement")
 
-[Seção 14.12.2, “Gestão do Espaço de Arquivo”](innodb-file-space.html)
+[Section 14.12.2, “File Space Management”](innodb-file-space.html "14.12.2 File Space Management")
 
-[Seção 14.24, “Restrições e Limitações do InnoDB”](innodb-restrictions-limitations.html)
+[Section 14.24, “InnoDB Restrictions and Limitations”](innodb-restrictions-limitations.html "14.24 InnoDB Restrictions and Limitations")
 
-[Seção 14.11, "Formatos de Linhas InnoDB"](innodb-row-format.html)
+[Section 14.11, “InnoDB Row Formats”](innodb-row-format.html "14.11 InnoDB Row Formats")
 
-[Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
+[Section 14.15, “InnoDB Startup Options and System Variables”](innodb-parameters.html "14.15 InnoDB Startup Options and System Variables")
 
-[Glossário do MySQL](glossary.html)
+[MySQL Glossary](glossary.html "MySQL Glossary")
 
-[Seção 22.3.5, “Obtendo Informações sobre Partições”](partitioning-info.html)
+[Section 22.3.5, “Obtaining Information About Partitions”](partitioning-info.html "22.3.5 Obtaining Information About Partitions")
 
-[Seção 13.7.5.5, "Declaração SHOW COLUMNS"](show-columns.html)
+[Section 13.7.5.5, “SHOW COLUMNS Statement”](show-columns.html "13.7.5.5 SHOW COLUMNS Statement")
 
-[Seção 13.7.5.10, "Mostrar declaração CREATE TABLE"](show-create-table.html)
+[Section 13.7.5.10, “SHOW CREATE TABLE Statement”](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement")
 
-[Seção 13.7.5.36, "Declaração de Status da Tabela"](show-table-status.html)
+[Section 13.7.5.36, “SHOW TABLE STATUS Statement”](show-table-status.html "13.7.5.36 SHOW TABLE STATUS Statement")
 
-[Seção 15.5, “O Motor de Armazenamento ARCHIVE”](archive-storage-engine.html)
+[Section 15.5, “The ARCHIVE Storage Engine”](archive-storage-engine.html "15.5 The ARCHIVE Storage Engine")
 
-[Seção 24.3.25, “A tabela INFORMATION_SCHEMA TABLES”](information-schema-tables-table.html)
+[Section 24.3.25, “The INFORMATION_SCHEMA TABLES Table”](information-schema-tables-table.html "24.3.25 The INFORMATION_SCHEMA TABLES Table")
 
-### Mostrar Tabelas
+### SHOW TABLES
 
-[Seção 3.3.2, “Criando uma Tabela”](criando-tabelas.html)
+[Section 3.3.2, “Creating a Table”](creating-tables.html "3.3.2 Creating a Table")
 
-[Seção 24.8, “Extensões para declarações SHOW”](extended-show.html)
+[Section 24.8, “Extensions to SHOW Statements”](extended-show.html "24.8 Extensions to SHOW Statements")
 
-[Seção 9.2.3, “Sensibilidade do identificador”](identifier-case-sensitivity.html)
+[Section 9.2.3, “Identifier Case Sensitivity”](identifier-case-sensitivity.html "9.2.3 Identifier Case Sensitivity")
 
-[Seção 14.16, “Tabelas do esquema de informações InnoDB”](innodb-information-schema.html)
+[Section 14.16, “InnoDB INFORMATION_SCHEMA Tables”](innodb-information-schema.html "14.16 InnoDB INFORMATION_SCHEMA Tables")
 
-[Seção 24.1, “Introdução”](information-schema-introduction.html)
+[Section 24.1, “Introduction”](information-schema-introduction.html "24.1 Introduction")
 
-[Seção 9.2.4, “Mapeamento de Identificadores para Nomes de Arquivos”](identifier-mapping.html)
+[Section 9.2.4, “Mapping of Identifiers to File Names”](identifier-mapping.html "9.2.4 Mapping of Identifiers to File Names")
 
-[Glossário do MySQL](glossary.html)
+[MySQL Glossary](glossary.html "MySQL Glossary")
 
-[Seção 21.7.10, “Replicação em Nuvem do NDB: Replicação Bidirecional e Circular”](mysql-cluster-replication-multi-source.html)
+[Section 21.7.10, “NDB Cluster Replication: Bidirectional and Circular Replication”](mysql-cluster-replication-multi-source.html "21.7.10 NDB Cluster Replication: Bidirectional and Circular Replication")
 
-[Seção 21.5.24, “ndb_restore — Restaurar um backup de um cluster NDB”](mysql-cluster-programs-ndb-restore.html)
+[Section 21.5.24, “ndb_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup")
 
-[Seção 21.6.15, “ndbinfo: Banco de Dados de Informações do NDB Cluster”](mysql-cluster-ndbinfo.html)
+[Section 21.6.15, “ndbinfo: The NDB Cluster Information Database”](mysql-cluster-ndbinfo.html "21.6.15 ndbinfo: The NDB Cluster Information Database")
 
-[Seção 5.1.6, “Opções de comando do servidor”](server-options.html)
+[Section 5.1.6, “Server Command Options”](server-options.html "5.1.6 Server Command Options")
 
-[Seção 13.7.5.36, "Declaração de Status da Tabela"](show-table-status.html)
+[Section 13.7.5.36, “SHOW TABLE STATUS Statement”](show-table-status.html "13.7.5.36 SHOW TABLE STATUS Statement")
 
-[Seção 13.7.5.37, "Instrução SHOW TABLES"](show-tables.html)
+[Section 13.7.5.37, “SHOW TABLES Statement”](show-tables.html "13.7.5.37 SHOW TABLES Statement")
 
-[Seção B.3.2.14, “A tabela ‘tbl_name’ não existe”](não-consegue-encontrar-tabela.html)
+[Section B.3.2.14, “Table 'tbl_name' doesn't exist”](cannot-find-table.html "B.3.2.14 Table 'tbl_name' doesn't exist")
 
-[Seção B.3.6.2, “Problemas com tabelas temporárias”](temporary-table-problems.html)
+[Section B.3.6.2, “TEMPORARY Table Problems”](temporary-table-problems.html "B.3.6.2 TEMPORARY Table Problems")
 
-[Seção 24.3.25, “A tabela INFORMATION_SCHEMA TABLES”](information-schema-tables-table.html)
+[Section 24.3.25, “The INFORMATION_SCHEMA TABLES Table”](information-schema-tables-table.html "24.3.25 The INFORMATION_SCHEMA TABLES Table")
 
-[Seção 6.4.6.3, “Uso do Firewall da MySQL Enterprise”](firewall-usage.html)
+[Section 6.4.6.3, “Using MySQL Enterprise Firewall”](firewall-usage.html "6.4.6.3 Using MySQL Enterprise Firewall")
 
-### MOSTRE TABELAS DE algum_ndb_database
+### SHOW TABLES FROM some_ndb_database
 
-[Seção 21.6.18.2, "Nível de privilégio do NDB Cluster e MySQL"](mysql-cluster-security-mysql-privileges.html)
+[Section 21.6.18.2, “NDB Cluster and MySQL Privileges”](mysql-cluster-security-mysql-privileges.html "21.6.18.2 NDB Cluster and MySQL Privileges")
 
-### Mostrar gatilhos
+### SHOW TRIGGERS
 
-[Seção A.5, “Perguntas frequentes sobre o MySQL 5.7: gatilhos”](faqs-triggers.html)
+[Section A.5, “MySQL 5.7 FAQ: Triggers”](faqs-triggers.html "A.5 MySQL 5.7 FAQ: Triggers")
 
-[Seção 13.7.5.38, "Declaração de TRIGGERS SHOW"](show-triggers.html)
+[Section 13.7.5.38, “SHOW TRIGGERS Statement”](show-triggers.html "13.7.5.38 SHOW TRIGGERS Statement")
 
-[Seção 24.3.29, “A tabela TRIGGERS do INFORMATION_SCHEMA”](information-schema-triggers-table.html)
+[Section 24.3.29, “The INFORMATION_SCHEMA TRIGGERS Table”](information-schema-triggers-table.html "24.3.29 The INFORMATION_SCHEMA TRIGGERS Table")
 
-[Seção 23.3.2, “Metadados do gatilho”](trigger-metadata.html)
+[Section 23.3.2, “Trigger Metadata”](trigger-metadata.html "23.3.2 Trigger Metadata")
 
-### Mostrar variáveis
+### SHOW VARIABLES
 
-[Seção 2.10.3, “Alterações no MySQL 5.7”](upgrading-from-previous-series.html)
+[Section 2.10.3, “Changes in MySQL 5.7”](upgrading-from-previous-series.html "2.10.3 Changes in MySQL 5.7")
 
-[Seção 23.4.2, “Configuração do Agendador de Eventos”](events-configuration.html)
+[Section 23.4.2, “Event Scheduler Configuration”](events-configuration.html "23.4.2 Event Scheduler Configuration")
 
-[Seção 14.6.1.3, “Importando tabelas InnoDB”](innodb-table-import.html)
+[Section 14.6.1.3, “Importing InnoDB Tables”](innodb-table-import.html "14.6.1.3 Importing InnoDB Tables")
 
-[Seção 6.4.4.12, “Variáveis do Sistema de Carteira de Chave”](keyring-system-variables.html)
+[Section 6.4.4.12, “Keyring System Variables”](keyring-system-variables.html "6.4.4.12 Keyring System Variables")
 
-[Seção 6.4.5.10, "Filtragem do Log de Auditoria no Modo Legado"](audit-log-legacy-filtering.html)
+[Section 6.4.5.10, “Legacy Mode Audit Log Filtering”](audit-log-legacy-filtering.html "6.4.5.10 Legacy Mode Audit Log Filtering")
 
-[Seção 25.20, “Migração para o Sistema de Schema de Desempenho e Tabelas de Variáveis de Status”](performance-schema-variable-table-migration.html)
+[Section 25.20, “Migrating to Performance Schema System and Status Variable Tables”](performance-schema-variable-table-migration.html "25.20 Migrating to Performance Schema System and Status Variable Tables")
 
-[Seção 16.1.5.8, “Monitoramento da Replicação de Múltiplos Fontes”](replication-multi-source-monitoring.html)
+[Section 16.1.5.8, “Multi-Source Replication Monitoring”](replication-multi-source-monitoring.html "16.1.5.8 Multi-Source Replication Monitoring")
 
-[Seção A.11, “Perguntas frequentes sobre o MySQL 5.7: conjuntos de caracteres chineses, japoneses e coreanos do MySQL”](faqs-cjk.html)
+[Section A.11, “MySQL 5.7 FAQ: MySQL Chinese, Japanese, and Korean Character Sets”](faqs-cjk.html "A.11 MySQL 5.7 FAQ: MySQL Chinese, Japanese, and Korean Character Sets")
 
-[Seção 25.3, “Configuração de Inicialização do Schema de Desempenho”](performance-schema-startup-configuration.html)
+[Section 25.3, “Performance Schema Startup Configuration”](performance-schema-startup-configuration.html "25.3 Performance Schema Startup Configuration")
 
-[Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
+[Section 25.15, “Performance Schema System Variables”](performance-schema-system-variables.html "25.15 Performance Schema System Variables")
 
-[Seção 21.6.17, “Referência Rápida: Declarações SQL do NDB Cluster”](mysql-cluster-sql-statements.html)
+[Section 21.6.17, “Quick Reference: NDB Cluster SQL Statements”](mysql-cluster-sql-statements.html "21.6.17 Quick Reference: NDB Cluster SQL Statements")
 
-[Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
+[Section 16.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "16.1.6.3 Replica Server Options and Variables")
 
-[Seção 5.7, “Executando múltiplas instâncias do MySQL em uma única máquina”](multiple-servers.html)
+[Section 5.7, “Running Multiple MySQL Instances on One Machine”](multiple-servers.html "5.7 Running Multiple MySQL Instances on One Machine")
 
-[Seção 16.3.9.3, “Monitoramento da Replicação Semisincronizada”](replication-semisync-monitoring.html)
+[Section 16.3.9.3, “Semisynchronous Replication Monitoring”](replication-semisync-monitoring.html "16.3.9.3 Semisynchronous Replication Monitoring")
 
-[Seção 5.1.6, “Opções de comando do servidor”](server-options.html)
+[Section 5.1.6, “Server Command Options”](server-options.html "5.1.6 Server Command Options")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 13.7.4.1, "Sintaxe SET para Atribuição de Variáveis"](set-variable.html)
+[Section 13.7.4.1, “SET Syntax for Variable Assignment”](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment")
 
-[Seção 13.7.5.39, "Declaração SHOW VARIABLES"](show-variables.html)
+[Section 13.7.5.39, “SHOW VARIABLES Statement”](show-variables.html "13.7.5.39 SHOW VARIABLES Statement")
 
-[Seção 21.7.6, “Começando a replicação de um cluster NDB (canal de replicação único]"]\(mysql-cluster-replication-starting.html)
+[Section 21.7.6, “Starting NDB Cluster Replication (Single Replication Channel)”](mysql-cluster-replication-starting.html "21.7.6 Starting NDB Cluster Replication (Single Replication Channel)")
 
-[Seção 5.1.8, “Usando Variáveis do Sistema”](using-system-variables.html)
+[Section 5.1.8, “Using System Variables”](using-system-variables.html "5.1.8 Using System Variables")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
-[Seção 6.4.5.8, “Definições de filtro de registro de auditoria”](audit-log-filter-definitions.html)
+[Section 6.4.5.8, “Writing Audit Log Filter Definitions”](audit-log-filter-definitions.html "6.4.5.8 Writing Audit Log Filter Definitions")
 
-### MOSTRE ALARMES
+### SHOW WARNINGS
 
-[Seção 16.2.1.1, “Vantagens e desvantagens da replicação baseada em declarações e baseada em linhas”](replication-sbr-rbr.html)
+[Section 16.2.1.1, “Advantages and Disadvantages of Statement-Based and Row-Based Replication”](replication-sbr-rbr.html "16.2.1.1 Advantages and Disadvantages of Statement-Based and Row-Based Replication")
 
-[Seção 13.1.8, "Instrução ALTER TABLE"](alter-table.html)
+[Section 13.1.8, “ALTER TABLE Statement”](alter-table.html "13.1.8 ALTER TABLE Statement")
 
-[Seção 10.14.4.3, “Diagnóstico durante a análise do Index.xml”](collation-diagnostics.html)
+[Section 10.14.4.3, “Diagnostics During Index.xml Parsing”](collation-diagnostics.html "10.14.4.3 Diagnostics During Index.xml Parsing")
 
-[Seção 13.1.27, "Instruções DROP PROCEDURE e DROP FUNCTION"](drop-procedure.html)
+[Section 13.1.27, “DROP PROCEDURE and DROP FUNCTION Statements”](drop-procedure.html "13.1.27 DROP PROCEDURE and DROP FUNCTION Statements")
 
-[Seção 13.1.29, "Instrução DROP TABLE"](drop-table.html)
+[Section 13.1.29, “DROP TABLE Statement”](drop-table.html "13.1.29 DROP TABLE Statement")
 
-[Seção B.2, “Interfaces de Informação de Erros”](error-interfaces.html)
+[Section B.2, “Error Information Interfaces”](error-interfaces.html "B.2 Error Information Interfaces")
 
-[Seção 8.8.2, “Formato de Saída EXPLAIN”](explain-output.html)
+[Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
 
-[Seção 13.8.2, “Instrução EXPLAIN”](explain.html)
+[Section 13.8.2, “EXPLAIN Statement”](explain.html "13.8.2 EXPLAIN Statement")
 
-[Seção 8.8.3, “Formato de saída EXPLAIN estendido”](explain-extended.html)
+[Section 8.8.3, “Extended EXPLAIN Output Format”](explain-extended.html "8.8.3 Extended EXPLAIN Output Format")
 
-[Seção 9.2.5, "Análise e resolução de nomes de funções"](function-resolution.html)
+[Section 9.2.5, “Function Name Parsing and Resolution”](function-resolution.html "9.2.5 Function Name Parsing and Resolution")
 
-[Seção 13.6.7.3, "Declaração de DIAGNÓSTICOS"](get-diagnostics.html)
+[Section 13.6.7.3, “GET DIAGNOSTICS Statement”](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement")
 
-[Seção 13.2.6, “Instrução LOAD DATA”](load-data.html)
+[Section 13.2.6, “LOAD DATA Statement”](load-data.html "13.2.6 LOAD DATA Statement")
 
-[Seção 5.4.4.3, "Formato de registro binário misto"](binary-log-mixed.html)
+[Section 5.4.4.3, “Mixed Binary Logging Format”](binary-log-mixed.html "5.4.4.3 Mixed Binary Logging Format")
 
-[Seção 4.5.1.6, “Dicas do cliente do MySQL”](mysql-tips.html)
+[Section 4.5.1.6, “mysql Client Tips”](mysql-tips.html "4.5.1.6 mysql Client Tips")
 
-[Seção 8.9.3, “Dicas do otimizador”](optimizer-hints.html)
+[Section 8.9.3, “Optimizer Hints”](optimizer-hints.html "8.9.3 Optimizer Hints")
 
-[Seção 8.3.10, “Uso do otimizador de índices de colunas geradas”](generated-column-index-optimizations.html)
+[Section 8.3.10, “Optimizer Use of Generated Column Indexes”](generated-column-index-optimizations.html "8.3.10 Optimizer Use of Generated Column Indexes")
 
-[Seção 8.8.1, “Otimizando consultas com EXPLAIN”](using-explain.html)
+[Section 8.8.1, “Optimizing Queries with EXPLAIN”](using-explain.html "8.8.1 Optimizing Queries with EXPLAIN")
 
-[Seção 8.2.2.2, “Otimização de subconsultas com materialização”](subquery-materialization.html)
+[Section 8.2.2.2, “Optimizing Subqueries with Materialization”](subquery-materialization.html "8.2.2.2 Optimizing Subqueries with Materialization")
 
-[Seção 8.2.2.3, “Otimização de subconsultas com a estratégia EXISTS”](subquery-optimization-with-exists.html)
+[Section 8.2.2.3, “Optimizing Subqueries with the EXISTS Strategy”](subquery-optimization-with-exists.html "8.2.2.3 Optimizing Subqueries with the EXISTS Strategy")
 
-[Seção 8.2.2.1, “Otimização de subconsultas, tabelas derivadas e referências de visualizações com transformações de semijoin”](semijoins.html)
+[Section 8.2.2.1, “Optimizing Subqueries, Derived Tables, and View References with Semijoin Transformations”](semijoins.html "8.2.2.1 Optimizing Subqueries, Derived Tables, and View References with Semijoin Transformations")
 
-[Seção 1.6.3.1, “Constrangimentos de Índices Primario e Único”](constraint-primary-key.html)
+[Section 1.6.3.1, “PRIMARY KEY and UNIQUE Index Constraints”](constraint-primary-key.html "1.6.3.1 PRIMARY KEY and UNIQUE Index Constraints")
 
-[Seção 12.21.4, “Comportamento de arredondamento”](precision-math-rounding.html)
+[Section 12.21.4, “Rounding Behavior”](precision-math-rounding.html "12.21.4 Rounding Behavior")
 
-[Seção 13.1.18.8, “Índices Secundários e Colunas Geradas”](create-table-secondary-indexes.html)
+[Section 13.1.18.8, “Secondary Indexes and Generated Columns”](create-table-secondary-indexes.html "13.1.18.8 Secondary Indexes and Generated Columns")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 13.7.5.17, "Declaração de Mostrar Erros"](show-errors.html)
+[Section 13.7.5.17, “SHOW ERRORS Statement”](show-errors.html "13.7.5.17 SHOW ERRORS Statement")
 
-[Seção 13.7.5.40, "Declaração de avisos"](show-warnings.html)
+[Section 13.7.5.40, “SHOW WARNINGS Statement”](show-warnings.html "13.7.5.40 SHOW WARNINGS Statement")
 
-[Seção 13.6.7.5, “Declaração de Sinal”](signal.html)
+[Section 13.6.7.5, “SIGNAL Statement”](signal.html "13.6.7.5 SIGNAL Statement")
 
-[Seção 13.6.7.7, “A Área de Diagnóstico do MySQL”](diagnostics-area.html)
+[Section 13.6.7.7, “The MySQL Diagnostics Area”](diagnostics-area.html "13.6.7.7 The MySQL Diagnostics Area")
 
-[Seção 5.5.4.2, “Usando o Plugin de Reescrita de Consultas de Reescritor”](rewriter-query-rewrite-plugin-usage.html)
+[Section 5.5.4.2, “Using the Rewriter Query Rewrite Plugin”](rewriter-query-rewrite-plugin-usage.html "5.5.4.2 Using the Rewriter Query Rewrite Plugin")
 
-### FECHAR
+### SHUTDOWN
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 13.7.6.7, "Declaração de DESATIVAÇÃO"](shutdown.html)
+[Section 13.7.6.7, “SHUTDOWN Statement”](shutdown.html "13.7.6.7 SHUTDOWN Statement")
 
-[Seção 4.10, "Tratamento de Sinais Unix no MySQL"](unix-signal-response.html)
+[Section 4.10, “Unix Signal Handling in MySQL”](unix-signal-response.html "4.10 Unix Signal Handling in MySQL")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
-### SINAL
+### SIGNAL
 
-[Seção 13.6.7, “Tratamento de Condições”](condition-handling.html)
+[Section 13.6.7, “Condition Handling”](condition-handling.html "13.6.7 Condition Handling")
 
-[Seção 13.6.7.1, "Declaração de condição ... DECLARE"](declare-condition.html)
+[Section 13.6.7.1, “DECLARE ... CONDITION Statement”](declare-condition.html "13.6.7.1 DECLARE ... CONDITION Statement")
 
-[Seção 13.6.7.2, "DECLARAR ... Declaração de Manipulador"](declare-handler.html)
+[Section 13.6.7.2, “DECLARE ... HANDLER Statement”](declare-handler.html "13.6.7.2 DECLARE ... HANDLER Statement")
 
-[Seção 12.15, “Funções de Informação”](information-functions.html)
+[Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions")
 
-[Seção 13.6.7.4, "Declaração RESIGNAL"](resignal.html)
+[Section 13.6.7.4, “RESIGNAL Statement”](resignal.html "13.6.7.4 RESIGNAL Statement")
 
-[Seção 13.6.7.9, “Restrições para o manuseio de condições”](condition-handling-restrictions.html)
+[Section 13.6.7.9, “Restrictions on Condition Handling”](condition-handling-restrictions.html "13.6.7.9 Restrictions on Condition Handling")
 
-[Seção 23.8, “Restrições aos Programas Armazenados”](stored-program-restrictions.html)
+[Section 23.8, “Restrictions on Stored Programs”](stored-program-restrictions.html "23.8 Restrictions on Stored Programs")
 
-[Seção 13.6.7.6, “Regras de escopo para manipuladores”](handler-scope.html)
+[Section 13.6.7.6, “Scope Rules for Handlers”](handler-scope.html "13.6.7.6 Scope Rules for Handlers")
 
-[Seção 13.6.7.5, “Declaração de Sinal”](signal.html)
+[Section 13.6.7.5, “SIGNAL Statement”](signal.html "13.6.7.5 SIGNAL Statement")
 
-[Seção 13.6.7.7, “A Área de Diagnóstico do MySQL”](diagnostics-area.html)
+[Section 13.6.7.7, “The MySQL Diagnostics Area”](diagnostics-area.html "13.6.7.7 The MySQL Diagnostics Area")
 
 ### SQL_AFTER_MTS_GAPS
 
-[Seção 13.7.5.34, "Declaração de Status de Escravo"](show-slave-status.html)
+[Section 13.7.5.34, “SHOW SLAVE STATUS Statement”](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement")
 
-### INICIAR REPLICAÇÃO DE GRUPO
+### START GROUP_REPLICATION
 
-[Seção 17.2.1.5, “Bootstrap do Grupo”](group-replication-bootstrap.html)
+[Section 17.2.1.5, “Bootstrapping the Group”](group-replication-bootstrap.html "17.2.1.5 Bootstrapping the Group")
 
-[Seção 17.8, “Perguntas Frequentes”](group-replication-frequently-asked-questions.html)
+[Section 17.8, “Frequently Asked Questions”](group-replication-frequently-asked-questions.html "17.8 Frequently Asked Questions")
 
-[Seção 17.6.1, “Permissão de listagem de endereços IP de replicação de grupo”](group-replication-ip-address-permissions.html)
+[Section 17.6.1, “Group Replication IP Address Allowlisting”](group-replication-ip-address-permissions.html "17.6.1 Group Replication IP Address Allowlisting")
 
-[Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
+[Section 17.7.1, “Group Replication System Variables”](group-replication-system-variables.html "17.7.1 Group Replication System Variables")
 
-[Seção 17.5.3, “Divisão de Rede”](group-replication-network-partitioning.html)
+[Section 17.5.3, “Network Partitioning”](group-replication-network-partitioning.html "17.5.3 Network Partitioning")
 
-[Seção 17.5.4, “Reiniciar um grupo”](group-replication-restarting-group.html)
+[Section 17.5.4, “Restarting a Group”](group-replication-restarting-group.html "17.5.4 Restarting a Group")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
-### COMECE A REPLICAR
+### START REPLICA
 
-[Seção 16.4.3, “Atualização de uma topologia de replicação”](replication-upgrade.html)
+[Section 16.4.3, “Upgrading a Replication Topology”](replication-upgrade.html "16.4.3 Upgrading a Replication Topology")
 
-### COMEÇAR ESCRAVO
+### START SLAVE
 
-[Seção 16.1.2.6, “Adicionar réplicas a uma topologia de replicação”](replication-howto-additionalslaves.html)
+[Section 16.1.2.6, “Adding Replicas to a Replication Topology”](replication-howto-additionalslaves.html "16.1.2.6 Adding Replicas to a Replication Topology")
 
-[Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
+[Section 16.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "16.1.6.4 Binary Logging Options and Variables")
 
-[Seção 13.4.2.1, “Mudar o mestre para declaração”](change-master-to.html)
+[Section 13.4.2.1, “CHANGE MASTER TO Statement”](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement")
 
-[Seção 16.2.2.1, “Comandos para operações em um único canal”](channels-commands-single-channel.html)
+[Section 16.2.2.1, “Commands for Operations on a Single Channel”](channels-commands-single-channel.html "16.2.2.1 Commands for Operations on a Single Channel")
 
-[Seção 16.2.2.2, “Compatibilidade com Declarações de Replicação Prévias”](channels-with-prev-replication.html)
+[Section 16.2.2.2, “Compatibility with Previous Replication Statements”](channels-with-prev-replication.html "16.2.2.2 Compatibility with Previous Replication Statements")
 
-[Seção 16.3.10, “Replicação Atrasa”](replication-delayed.html)
+[Section 16.3.10, “Delayed Replication”](replication-delayed.html "16.3.10 Delayed Replication")
 
-[Seção 16.1.6.5, “Variáveis do Sistema de ID de Transação Global”](replication-options-gtids.html)
+[Section 16.1.6.5, “Global Transaction ID System Variables”](replication-options-gtids.html "16.1.6.5 Global Transaction ID System Variables")
 
-[Seção 16.1.3.1, "Formato e Armazenamento do GTID"](replication-gtids-concepts.html)
+[Section 16.1.3.1, “GTID Format and Storage”](replication-gtids-concepts.html "16.1.3.1 GTID Format and Storage")
 
-[Seção 21.7.8, “Implementando Failover com Replicação de NDB Cluster”](mysql-cluster-replication-failover.html)
+[Section 21.7.8, “Implementing Failover with NDB Cluster Replication”](mysql-cluster-replication-failover.html "21.7.8 Implementing Failover with NDB Cluster Replication")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 21.7.10, “Replicação em Nuvem do NDB: Replicação Bidirecional e Circular”](mysql-cluster-replication-multi-source.html)
+[Section 21.7.10, “NDB Cluster Replication: Bidirectional and Circular Replication”](mysql-cluster-replication-multi-source.html "21.7.10 NDB Cluster Replication: Bidirectional and Circular Replication")
 
-[Seção 21.5.24, “ndb_restore — Restaurar um backup de um cluster NDB”](mysql-cluster-programs-ndb-restore.html)
+[Section 21.5.24, “ndb_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup")
 
-[Seção 6.1.2.3, “Senhas e Registro de Ações”](password-logging.html)
+[Section 6.1.2.3, “Passwords and Logging”](password-logging.html "6.1.2.3 Passwords and Logging")
 
-[Seção 16.1.7.2, “Pausar a replicação na réplica”](replication-administration-pausing.html)
+[Section 16.1.7.2, “Pausing Replication on the Replica”](replication-administration-pausing.html "16.1.7.2 Pausing Replication on the Replica")
 
-[Seção 25.12.11, "Tabelas de Replicação do Schema de Desempenho"](performance-schema-replication-tables.html)
+[Section 25.12.11, “Performance Schema Replication Tables”](performance-schema-replication-tables.html "25.12.11 Performance Schema Replication Tables")
 
-[Seção 16.4.1.27, “Erros de replicação durante a replicação”](replication-features-errors.html)
+[Section 16.4.1.27, “Replica Errors During Replication”](replication-features-errors.html "16.4.1.27 Replica Errors During Replication")
 
-[Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
+[Section 16.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "16.1.6.3 Replica Server Options and Variables")
 
-[Seção 16.3.5, “Replicação de diferentes bancos de dados para diferentes réplicas”](replication-solutions-partitioning.html)
+[Section 16.3.5, “Replicating Different Databases to Different Replicas”](replication-solutions-partitioning.html "16.3.5 Replicating Different Databases to Different Replicas")
 
-[Seção 16.1.6, “Opções e variáveis de registro binário e replicação”](replication-options.html)
+[Section 16.1.6, “Replication and Binary Logging Options and Variables”](replication-options.html "16.1.6 Replication and Binary Logging Options and Variables")
 
-[Seção 16.4.1.32, "Inconsistências de Replicação e Transação"](replication-features-transaction-inconsistencies.html)
+[Section 16.4.1.32, “Replication and Transaction Inconsistencies”](replication-features-transaction-inconsistencies.html "16.4.1.32 Replication and Transaction Inconsistencies")
 
-[Seção 16.2.3, “Ferramentas de replicação”](replication-threads.html)
+[Section 16.2.3, “Replication Threads”](replication-threads.html "16.2.3 Replication Threads")
 
-[Seção 13.4.2.3, "Declaração de RESET SLAVE"](reset-slave.html)
+[Section 13.4.2.3, “RESET SLAVE Statement”](reset-slave.html "13.4.2.3 RESET SLAVE Statement")
 
-[Seção 16.3.9.2, “Instalação e Configuração de Replicação Semisíncrona”](replication-semisync-installation.html)
+[Section 16.3.9.2, “Semisynchronous Replication Installation and Configuration”](replication-semisync-installation.html "16.3.9.2 Semisynchronous Replication Installation and Configuration")
 
-[Seção 13.7.5.34, "Declaração de Status de Escravo"](show-slave-status.html)
+[Section 13.7.5.34, “SHOW SLAVE STATUS Statement”](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement")
 
-[Seção 16.1.7.3, “Saltar Transações”](replication-administration-skip.html)
+[Section 16.1.7.3, “Skipping Transactions”](replication-administration-skip.html "16.1.7.3 Skipping Transactions")
 
-[Seção 16.1.7.3.1, “Saltar Transações com GTIDs”](replication-administration-skip.html#replication-administration-skip-gtid)
+[Section 16.1.7.3.1, “Skipping Transactions With GTIDs”](replication-administration-skip.html#replication-administration-skip-gtid "16.1.7.3.1 Skipping Transactions With GTIDs")
 
-[Seção 16.1.7.3.2.1, “Saltar Transações com `SET GLOBAL sql_slave_skip_counter`”](replication-administration-skip.html#set-global-replica-sql-skip-counter)
+[Section 16.1.7.3.2.1, “Skipping Transactions With `SET GLOBAL sql_slave_skip_counter`”](replication-administration-skip.html#set-global-replica-sql-skip-counter "16.1.7.3.2.1 Skipping Transactions With SET GLOBAL sql_slave_skip_counter")
 
-[Seção 16.1.5.5, “Iniciando Replicas de Múltiplos Fontes”](replication-multi-source-start-replica.html)
+[Section 16.1.5.5, “Starting Multi-Source Replicas”](replication-multi-source-start-replica.html "16.1.5.5 Starting Multi-Source Replicas")
 
-[Seção 21.7.6, “Começando a replicação de um cluster NDB (canal de replicação único]"]\(mysql-cluster-replication-starting.html)
+[Section 21.7.6, “Starting NDB Cluster Replication (Single Replication Channel)”](mysql-cluster-replication-starting.html "21.7.6 Starting NDB Cluster Replication (Single Replication Channel)")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 13.4.2.6, "Declaração STOP SLAVE"](stop-slave.html)
+[Section 13.4.2.6, “STOP SLAVE Statement”](stop-slave.html "13.4.2.6 STOP SLAVE Statement")
 
-[Seção 16.3.7, “Alteração de fontes durante o failover”](replication-solutions-switch.html)
+[Section 16.3.7, “Switching Sources During Failover”](replication-solutions-switch.html "16.3.7 Switching Sources During Failover")
 
-[Seção 16.4.4, “Solução de problemas de replicação”](replication-problems.html)
+[Section 16.4.4, “Troubleshooting Replication”](replication-problems.html "16.4.4 Troubleshooting Replication")
 
-[Seção 16.4.3, “Atualização de uma topologia de replicação”](replication-upgrade.html)
+[Section 16.4.3, “Upgrading a Replication Topology”](replication-upgrade.html "16.4.3 Upgrading a Replication Topology")
 
-[Seção 21.7.7, “Usando dois canais de replicação para replicação de clusters NDB”](mysql-cluster-replication-two-channels.html)
+[Section 21.7.7, “Using Two Replication Channels for NDB Cluster Replication”](mysql-cluster-replication-two-channels.html "21.7.7 Using Two Replication Channels for NDB Cluster Replication")
 
-### COMEÇAR SLAVE SQL_THREAD
+### START SLAVE SQL_THREAD
 
-[Seção 13.4.2.2, “Declaração de Filtro de Replicação de Mudança”](change-replication-filter.html)
+[Section 13.4.2.2, “CHANGE REPLICATION FILTER Statement”](change-replication-filter.html "13.4.2.2 CHANGE REPLICATION FILTER Statement")
 
-### COMEÇAR ESCRAVO ATÉ
+### START SLAVE UNTIL
 
-[Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
+[Section 16.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "16.1.6.3 Replica Server Options and Variables")
 
-### COMEÇAR ESCRAVO ATÉ SQL_AFTER_MTS_GAPS
+### START SLAVE UNTIL SQL_AFTER_MTS_GAPS
 
-[Seção 13.4.2.1, “Mudar o mestre para declaração”](change-master-to.html)
+[Section 13.4.2.1, “CHANGE MASTER TO Statement”](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement")
 
-[Seção 16.3.2, “Tratamento de um Parada Inesperada de uma Replicação”](replication-solutions-unexpected-replica-halt.html)
+[Section 16.3.2, “Handling an Unexpected Halt of a Replica”](replication-solutions-unexpected-replica-halt.html "16.3.2 Handling an Unexpected Halt of a Replica")
 
-[Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
+[Section 16.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "16.1.6.3 Replica Server Options and Variables")
 
-[Seção 16.4.1.32, "Inconsistências de Replicação e Transação"](replication-features-transaction-inconsistencies.html)
+[Section 16.4.1.32, “Replication and Transaction Inconsistencies”](replication-features-transaction-inconsistencies.html "16.4.1.32 Replication and Transaction Inconsistencies")
 
-[Seção 13.7.5.34, "Declaração de Status de Escravo"](show-slave-status.html)
+[Section 13.7.5.34, “SHOW SLAVE STATUS Statement”](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement")
 
-### Comece a transação
+### START TRANSACTION
 
-[Seção 14.7.2.2, "autocommit, Commit e Rollback"](innodb-autocommit-commit-rollback.html)
+[Section 14.7.2.2, “autocommit, Commit, and Rollback”](innodb-autocommit-commit-rollback.html "14.7.2.2 autocommit, Commit, and Rollback")
 
-[Seção 13.6.1, “INÍCIO ... FIM de uma declaração composta”](begin-end.html)
+[Section 13.6.1, “BEGIN ... END Compound Statement”](begin-end.html "13.6.1 BEGIN ... END Compound Statement")
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
-[Seção 14.7.5.3, “Como minimizar e lidar com deadlocks”](innodb-deadlocks-handling.html)
+[Section 14.7.5.3, “How to Minimize and Handle Deadlocks”](innodb-deadlocks-handling.html "14.7.5.3 How to Minimize and Handle Deadlocks")
 
-[Seção 13.3.5, “Instruções LOCK TABLES e UNLOCK TABLES”](lock-tables.html)
+[Section 13.3.5, “LOCK TABLES and UNLOCK TABLES Statements”](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements")
 
-[Seção 14.7.2.4, “Leitura de bloqueio”](innodb-locking-reads.html)
+[Section 14.7.2.4, “Locking Reads”](innodb-locking-reads.html "14.7.2.4 Locking Reads")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
+[Section 4.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "4.5.6 mysqlpump — A Database Backup Program")
 
-[Seção 8.5.3, “Otimização de Transações de Leitura Apenas de Leitura InnoDB”](innodb-performance-ro-txn.html)
+[Section 8.5.3, “Optimizing InnoDB Read-Only Transactions”](innodb-performance-ro-txn.html "8.5.3 Optimizing InnoDB Read-Only Transactions")
 
-[Seção 25.12.7, "Tabelas de Transações do Schema de Desempenho"](performance-schema-transaction-tables.html)
+[Section 25.12.7, “Performance Schema Transaction Tables”](performance-schema-transaction-tables.html "25.12.7 Performance Schema Transaction Tables")
 
-[Seção 23.8, “Restrições aos Programas Armazenados”](stored-program-restrictions.html)
+[Section 23.8, “Restrictions on Stored Programs”](stored-program-restrictions.html "23.8 Restrictions on Stored Programs")
 
-[Seção 16.3.9, “Replicação Semisincronizada”](replication-semisync.html)
+[Section 16.3.9, “Semisynchronous Replication”](replication-semisync.html "16.3.9 Semisynchronous Replication")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 5.1.15, “Rastreamento do Estado da Sessão do Cliente no Servidor”](session-state-tracking.html)
+[Section 5.1.15, “Server Tracking of Client Session State”](session-state-tracking.html "5.1.15 Server Tracking of Client Session State")
 
-[Seção 13.3.6, “Instrução SET TRANSACTION”](set-transaction.html)
+[Section 13.3.6, “SET TRANSACTION Statement”](set-transaction.html "13.3.6 SET TRANSACTION Statement")
 
-[Seção 13.3.1, "Instruções START TRANSACTION, COMMIT e ROLLBACK"](commit.html)
+[Section 13.3.1, “START TRANSACTION, COMMIT, and ROLLBACK Statements”](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 25.12.7.1, “A tabela events_transactions_current”](performance-schema-events-transactions-current-table.html)
+[Section 25.12.7.1, “The events_transactions_current Table”](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table")
 
-[Seção 13.3, "Instruções Transacionais e de Bloqueio"](sql-transactional-statements.html)
+[Section 13.3, “Transactional and Locking Statements”](sql-transactional-statements.html "13.3 Transactional and Locking Statements")
 
-[Seção 23.3.1, "Sintaxe de gatilho e exemplos"](trigger-syntax.html)
+[Section 23.3.1, “Trigger Syntax and Examples”](trigger-syntax.html "23.3.1 Trigger Syntax and Examples")
 
-[Seção 13.3.7.2, “Estados de Transação XA”](xa-states.html)
+[Section 13.3.7.2, “XA Transaction States”](xa-states.html "13.3.7.2 XA Transaction States")
 
-### COMEÇAR TRANSAÇÃO LEITURA-SELEÇÃO
+### START TRANSACTION READ ONLY
 
-[Glossário do MySQL](glossary.html)
+[MySQL Glossary](glossary.html "MySQL Glossary")
 
-[Seção 8.5.3, “Otimização de Transações de Leitura Apenas de Leitura InnoDB”](innodb-performance-ro-txn.html)
+[Section 8.5.3, “Optimizing InnoDB Read-Only Transactions”](innodb-performance-ro-txn.html "8.5.3 Optimizing InnoDB Read-Only Transactions")
 
-### COMEÇAR A TRANSACÇÃO COM SNAPSHOT CONSISTENTE
+### START TRANSACTION WITH CONSISTENT SNAPSHOT
 
-[Seção 14.7.2.3, “Leitura Consistente sem Bloqueio”](innodb-consistent-read.html)
+[Section 14.7.2.3, “Consistent Nonlocking Reads”](innodb-consistent-read.html "14.7.2.3 Consistent Nonlocking Reads")
 
 ### STATS_PERSISTENT=0
 
-[Seção 14.8.11.2, “Configurando Parâmetros de Estatísticas de Otimizador Não Persistente”](innodb-statistics-estimation.html)
+[Section 14.8.11.2, “Configuring Non-Persistent Optimizer Statistics Parameters”](innodb-statistics-estimation.html "14.8.11.2 Configuring Non-Persistent Optimizer Statistics Parameters")
 
 ### STATS_PERSISTENT=1
 
-[Seção 14.8.11.1, “Configurando Parâmetros de Estatísticas do Optimizer Persistente”](innodb-persistent-stats.html)
+[Section 14.8.11.1, “Configuring Persistent Optimizer Statistics Parameters”](innodb-persistent-stats.html "14.8.11.1 Configuring Persistent Optimizer Statistics Parameters")
 
-### PARAR A REPRODUÇÃO EM GRUPO
+### STOP GROUP REPLICATION
 
-[Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
+[Section 17.7.1, “Group Replication System Variables”](group-replication-system-variables.html "17.7.1 Group Replication System Variables")
 
-[Seção 13.4.2.3, "Declaração de RESET SLAVE"](reset-slave.html)
+[Section 13.4.2.3, “RESET SLAVE Statement”](reset-slave.html "13.4.2.3 RESET SLAVE Statement")
 
-### PARAR REPLICAÇÃO POR GRUPO
+### STOP GROUP_REPLICATION
 
-[Seção 17.8, “Perguntas Frequentes”](group-replication-frequently-asked-questions.html)
+[Section 17.8, “Frequently Asked Questions”](group-replication-frequently-asked-questions.html "17.8 Frequently Asked Questions")
 
-[Seção 17.6.1, “Permissão de listagem de endereços IP de replicação de grupo”](group-replication-ip-address-permissions.html)
+[Section 17.6.1, “Group Replication IP Address Allowlisting”](group-replication-ip-address-permissions.html "17.6.1 Group Replication IP Address Allowlisting")
 
-[Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html)
+[Section 17.7.1, “Group Replication System Variables”](group-replication-system-variables.html "17.7.1 Group Replication System Variables")
 
-[Seção 17.5.4, “Reiniciar um grupo”](group-replication-restarting-group.html)
+[Section 17.5.4, “Restarting a Group”](group-replication-restarting-group.html "17.5.4 Restarting a Group")
 
-[Seção 13.4.3.2, "Instrução STOP GROUP_REPLICATION"](stop-group-replication.html)
+[Section 13.4.3.2, “STOP GROUP_REPLICATION Statement”](stop-group-replication.html "13.4.3.2 STOP GROUP_REPLICATION Statement")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
-### PARE COM A ESCRAVIDÃO
+### STOP SLAVE
 
-[Seção 16.1.2.6, “Adicionar réplicas a uma topologia de replicação”](replication-howto-additionalslaves.html)
+[Section 16.1.2.6, “Adding Replicas to a Replication Topology”](replication-howto-additionalslaves.html "16.1.2.6 Adding Replicas to a Replication Topology")
 
-[Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
+[Section 16.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "16.1.6.4 Binary Logging Options and Variables")
 
-[Seção 13.4.2.1, “Mudar o mestre para declaração”](change-master-to.html)
+[Section 13.4.2.1, “CHANGE MASTER TO Statement”](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement")
 
-[Seção 16.1.7.1, “Verificar o status da replicação”](replication-administration-status.html)
+[Section 16.1.7.1, “Checking Replication Status”](replication-administration-status.html "16.1.7.1 Checking Replication Status")
 
-[Seção 16.2.2.1, “Comandos para operações em um único canal”](channels-commands-single-channel.html)
+[Section 16.2.2.1, “Commands for Operations on a Single Channel”](channels-commands-single-channel.html "16.2.2.1 Commands for Operations on a Single Channel")
 
-[Seção 16.2.2.2, “Compatibilidade com Declarações de Replicação Prévias”](channels-with-prev-replication.html)
+[Section 16.2.2.2, “Compatibility with Previous Replication Statements”](channels-with-prev-replication.html "16.2.2.2 Compatibility with Previous Replication Statements")
 
-[Seção 16.3.10, “Replicação Atrasa”](replication-delayed.html)
+[Section 16.3.10, “Delayed Replication”](replication-delayed.html "16.3.10 Delayed Replication")
 
-[Seção 16.1.6.5, “Variáveis do Sistema de ID de Transação Global”](replication-options-gtids.html)
+[Section 16.1.6.5, “Global Transaction ID System Variables”](replication-options-gtids.html "16.1.6.5 Global Transaction ID System Variables")
 
-[Seção 16.1.3.2, “Ciclo de Vida do GTID”](replication-gtids-lifecycle.html)
+[Section 16.1.3.2, “GTID Life Cycle”](replication-gtids-lifecycle.html "16.1.3.2 GTID Life Cycle")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 16.1.7.2, “Pausar a replicação na réplica”](replication-administration-pausing.html)
+[Section 16.1.7.2, “Pausing Replication on the Replica”](replication-administration-pausing.html "16.1.7.2 Pausing Replication on the Replica")
 
-[Seção 25.12.11, "Tabelas de Replicação do Schema de Desempenho"](performance-schema-replication-tables.html)
+[Section 25.12.11, “Performance Schema Replication Tables”](performance-schema-replication-tables.html "25.12.11 Performance Schema Replication Tables")
 
-[Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
+[Section 16.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "16.1.6.3 Replica Server Options and Variables")
 
-[Seção 16.1.6, “Opções e variáveis de registro binário e replicação”](replication-options.html)
+[Section 16.1.6, “Replication and Binary Logging Options and Variables”](replication-options.html "16.1.6 Replication and Binary Logging Options and Variables")
 
-[Seção 16.4.1.32, "Inconsistências de Replicação e Transação"](replication-features-transaction-inconsistencies.html)
+[Section 16.4.1.32, “Replication and Transaction Inconsistencies”](replication-features-transaction-inconsistencies.html "16.4.1.32 Replication and Transaction Inconsistencies")
 
-[Seção 13.4.1.2, “Declaração de RESET MASTER”](reset-master.html)
+[Section 13.4.1.2, “RESET MASTER Statement”](reset-master.html "13.4.1.2 RESET MASTER Statement")
 
-[Seção 13.4.2.3, "Declaração de RESET SLAVE"](reset-slave.html)
+[Section 13.4.2.3, “RESET SLAVE Statement”](reset-slave.html "13.4.2.3 RESET SLAVE Statement")
 
-[Seção 16.3.9.2, “Instalação e Configuração de Replicação Semisíncrona”](replication-semisync-installation.html)
+[Section 16.3.9.2, “Semisynchronous Replication Installation and Configuration”](replication-semisync-installation.html "16.3.9.2 Semisynchronous Replication Installation and Configuration")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 13.4.2.6, "Declaração STOP SLAVE"](stop-slave.html)
+[Section 13.4.2.6, “STOP SLAVE Statement”](stop-slave.html "13.4.2.6 STOP SLAVE Statement")
 
-[Seção 16.1.5.6, “Parar Replicas de Múltiplas Fontes”](replication-multi-source-stop-replica.html)
+[Section 16.1.5.6, “Stopping Multi-Source Replicas”](replication-multi-source-stop-replica.html "16.1.5.6 Stopping Multi-Source Replicas")
 
-[Seção 16.3.7, “Alteração de fontes durante o failover”](replication-solutions-switch.html)
+[Section 16.3.7, “Switching Sources During Failover”](replication-solutions-switch.html "16.3.7 Switching Sources During Failover")
 
-[Seção 25.12.11.6, “A tabela replication_applier_status_by_worker”](performance-schema-replication-applier-status-by-worker-table.html)
+[Section 25.12.11.6, “The replication_applier_status_by_worker Table”](performance-schema-replication-applier-status-by-worker-table.html "25.12.11.6 The replication_applier_status_by_worker Table")
 
-[Seção 16.2.1.2, “Uso de Registro e Replicação Baseados em Linhas”](replication-rbr-usage.html)
+[Section 16.2.1.2, “Usage of Row-Based Logging and Replication”](replication-rbr-usage.html "16.2.1.2 Usage of Row-Based Logging and Replication")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
-### PARE SLAVE SQL_THREAD
+### STOP SLAVE SQL_THREAD
 
-[Seção 13.4.2.2, “Declaração de Filtro de Replicação de Mudança”](change-replication-filter.html)
+[Section 13.4.2.2, “CHANGE REPLICATION FILTER Statement”](change-replication-filter.html "13.4.2.2 CHANGE REPLICATION FILTER Statement")
 
-[Seção 16.2.1.2, “Uso de Registro e Replicação Baseados em Linhas”](replication-rbr-usage.html)
+[Section 16.2.1.2, “Usage of Row-Based Logging and Replication”](replication-rbr-usage.html "16.2.1.2 Usage of Row-Based Logging and Replication")
 
 ### T
 
-index topo](dynindex-statement.html#stmt-index-topo)]
+index top](dynindex-statement.html#stmt-index-top)]
 
-### TABELA
+### TABLE
 
-[Seção 22.2.2, “Divisão de Lista”](partitioning-list.html)
+[Section 22.2.2, “LIST Partitioning”](partitioning-list.html "22.2.2 LIST Partitioning")
 
-[Seção 21.6.15.27, “Tabela ndbinfo memory_per_fragment”](mysql-cluster-ndbinfo-memory-per-fragment.html)
+[Section 21.6.15.27, “The ndbinfo memory_per_fragment Table”](mysql-cluster-ndbinfo-memory-per-fragment.html "21.6.15.27 The ndbinfo memory_per_fragment Table")
 
-### TRUNCAR PARTIÇÃO
+### TRUNCATE PARTITION
 
-[Seção 14.13.1, “Operações DDL Online”](innodb-online-ddl-operations.html)
+[Section 14.13.1, “Online DDL Operations”](innodb-online-ddl-operations.html "14.13.1 Online DDL Operations")
 
-### TRUNCAR TÁBUA
+### TRUNCATE TABLE
 
-[Seção 14.21.5.5, “Adaptando declarações DML para operações memcached”](innodb-memcached-dml.html)
+[Section 14.21.5.5, “Adapting DML Statements to memcached Operations”](innodb-memcached-dml.html "14.21.5.5 Adapting DML Statements to memcached Operations")
 
-[Seção 21.6.7.1, “Adicionar nós de dados do NDB Cluster Online: Problemas gerais”](mysql-cluster-online-add-node-remarks.html)
+[Section 21.6.7.1, “Adding NDB Cluster Data Nodes Online: General Issues”](mysql-cluster-online-add-node-remarks.html "21.6.7.1 Adding NDB Cluster Data Nodes Online: General Issues")
 
-[Seção 21.6.1, “Comandos no Cliente de Gerenciamento de NDB Cluster”](mysql-cluster-mgm-client-commands.html)
+[Section 21.6.1, “Commands in the NDB Cluster Management Client”](mysql-cluster-mgm-client-commands.html "21.6.1 Commands in the NDB Cluster Management Client")
 
-[Seção 15.2.3.3, “Características da Tabela Compactada”](compressed-format.html)
+[Section 15.2.3.3, “Compressed Table Characteristics”](compressed-format.html "15.2.3.3 Compressed Table Characteristics")
 
-[Seção 14.6.1.5, “Conversão de tabelas de MyISAM para InnoDB”](converting-tables-to-innodb.html)
+[Section 14.6.1.5, “Converting Tables from MyISAM to InnoDB”](converting-tables-to-innodb.html "14.6.1.5 Converting Tables from MyISAM to InnoDB")
 
-[Seção 13.1.20, "Instrução CREATE TRIGGER"](create-trigger.html)
+[Section 13.1.20, “CREATE TRIGGER Statement”](create-trigger.html "13.1.20 CREATE TRIGGER Statement")
 
-[Seção 13.2.2, “Instrução DELETE”](delete.html)
+[Section 13.2.2, “DELETE Statement”](delete.html "13.2.2 DELETE Statement")
 
-[Seção 5.1.11.2, "Consultas DNS e Cache de Anfitriões"](host-cache.html)
+[Section 5.1.11.2, “DNS Lookups and the Host Cache”](host-cache.html "5.1.11.2 DNS Lookups and the Host Cache")
 
-[Seção 25.4.3, “Pré-filtragem de eventos”](performance-schema-pre-filtering.html)
+[Section 25.4.3, “Event Pre-Filtering”](performance-schema-pre-filtering.html "25.4.3 Event Pre-Filtering")
 
-[Seção 15.8.3, “Notas e dicas do mecanismo de armazenamento federado”](federated-usagenotes.html)
+[Section 15.8.3, “FEDERATED Storage Engine Notes and Tips”](federated-usagenotes.html "15.8.3 FEDERATED Storage Engine Notes and Tips")
 
-[Seção 25.12.15.6, “Tabelas de Resumo de Entrada/Saída de Arquivos”](performance-schema-file-summary-tables.html)
+[Section 25.12.15.6, “File I/O Summary Tables”](performance-schema-file-summary-tables.html "25.12.15.6 File I/O Summary Tables")
 
-[Seção 14.6.3.2, “Tablespaces por arquivo para tabelas”](innodb-file-per-table-tablespaces.html)
+[Section 14.6.3.2, “File-Per-Table Tablespaces”](innodb-file-per-table-tablespaces.html "14.6.3.2 File-Per-Table Tablespaces")
 
-[Seção 13.2.4, “Declaração do Gestor”](handler.html)
+[Section 13.2.4, “HANDLER Statement”](handler.html "13.2.4 HANDLER Statement")
 
-[Seção 8.10.3.1, “Como o Cache de Consultas Funciona”](query-cache-operation.html)
+[Section 8.10.3.1, “How the Query Cache Operates”](query-cache-operation.html "8.10.3.1 How the Query Cache Operates")
 
-[Seção 14.21.7, “Interna do Plugin InnoDB memcached”](innodb-memcached-internals.html)
+[Section 14.21.7, “InnoDB memcached Plugin Internals”](innodb-memcached-internals.html "14.21.7 InnoDB memcached Plugin Internals")
 
-[Seção 21.2.7.2, “Limites e Diferenças do NDB Cluster em Relação aos Limites Padrão do MySQL”](mysql-cluster-limitations-limits.html)
+[Section 21.2.7.2, “Limits and Differences of NDB Cluster from Standard MySQL Limits”](mysql-cluster-limitations-limits.html "21.2.7.2 Limits and Differences of NDB Cluster from Standard MySQL Limits")
 
-[Seção 21.2.7.3, “Limitações relacionadas ao processamento de transações no NDB Cluster”](mysql-cluster-limitations-transactions.html)
+[Section 21.2.7.3, “Limits Relating to Transaction Handling in NDB Cluster”](mysql-cluster-limitations-transactions.html "21.2.7.3 Limits Relating to Transaction Handling in NDB Cluster")
 
-[Seção 13.3.5, “Instruções LOCK TABLES e UNLOCK TABLES”](lock-tables.html)
+[Section 13.3.5, “LOCK TABLES and UNLOCK TABLES Statements”](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements")
 
-[Seção 5.4.4.4, "Formato de registro para alterações nas tabelas do banco de dados mysql"](binary-log-mysql-database.html)
+[Section 5.4.4.4, “Logging Format for Changes to mysql Database Tables”](binary-log-mysql-database.html "5.4.4.4 Logging Format for Changes to mysql Database Tables")
 
-[Seção 22.3.4, “Manutenção de Partições”](partitioning-maintenance.html)
+[Section 22.3.4, “Maintenance of Partitions”](partitioning-maintenance.html "22.3.4 Maintenance of Partitions")
 
-[Seção 22.3.1, “Gestão de Partições RANGE e LIST”](partitioning-management-range-list.html)
+[Section 22.3.1, “Management of RANGE and LIST Partitions”](partitioning-management-range-list.html "22.3.1 Management of RANGE and LIST Partitions")
 
-[Seção 25.12.15.9, “Tabelas de Resumo de Memória”](performance-schema-memory-summary-tables.html)
+[Section 25.12.15.9, “Memory Summary Tables”](performance-schema-memory-summary-tables.html "25.12.15.9 Memory Summary Tables")
 
-[Seção 15.7.2, “Problemas da Tabela MERGE”](merge-table-problems.html)
+[Section 15.7.2, “MERGE Table Problems”](merge-table-problems.html "15.7.2 MERGE Table Problems")
 
-[Glossário do MySQL](glossary.html)
+[MySQL Glossary](glossary.html "MySQL Glossary")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
+[Section 4.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "4.5.6 mysqlpump — A Database Backup Program")
 
-[Seção 21.5.9, “ndb_delete_all — Deletar todas as linhas de uma tabela NDB”](mysql-cluster-programs-ndb-delete-all.html)
+[Section 21.5.9, “ndb_delete_all — Delete All Rows from an NDB Table”](mysql-cluster-programs-ndb-delete-all.html "21.5.9 ndb_delete_all — Delete All Rows from an NDB Table")
 
-[Seção 25.12.15.5, “Resumo da Tabela de Objetos em Espera”](performance-schema-objects-summary-global-by-type-table.html)
+[Section 25.12.15.5, “Object Wait Summary Table”](performance-schema-objects-summary-global-by-type-table.html "25.12.15.5 Object Wait Summary Table")
 
-[Seção 8.5.7, “Otimização das operações de DDL do InnoDB”](optimizing-innodb-ddl-operations.html)
+[Section 8.5.7, “Optimizing InnoDB DDL Operations”](optimizing-innodb-ddl-operations.html "8.5.7 Optimizing InnoDB DDL Operations")
 
-[Seção 25.12.8, “Tabelas de Conexão do Schema de Desempenho”](performance-schema-connection-tables.html)
+[Section 25.12.8, “Performance Schema Connection Tables”](performance-schema-connection-tables.html "25.12.8 Performance Schema Connection Tables")
 
-[Seção 25.4.1, “Tempo de Ocorrência de Eventos do Schema de Desempenho”](performance-schema-timing.html)
+[Section 25.4.1, “Performance Schema Event Timing”](performance-schema-timing.html "25.4.1 Performance Schema Event Timing")
 
-[Seção 25.11, “Características Gerais da Tabela do Schema de Desempenho”](performance-schema-table-characteristics.html)
+[Section 25.11, “Performance Schema General Table Characteristics”](performance-schema-table-characteristics.html "25.11 Performance Schema General Table Characteristics")
 
-[Seção 25.12.14, "Tabelas de Variáveis de Status do Schema de Desempenho"](performance-schema-status-variable-tables.html)
+[Section 25.12.14, “Performance Schema Status Variable Tables”](performance-schema-status-variable-tables.html "25.12.14 Performance Schema Status Variable Tables")
 
-[Seção 25.12.15, “Tabelas de Resumo do Schema de Desempenho”](performance-schema-summary-tables.html)
+[Section 25.12.15, “Performance Schema Summary Tables”](performance-schema-summary-tables.html "25.12.15 Performance Schema Summary Tables")
 
-[Seção 25.12.13, "Tabelas de Variáveis de Sistema do Schema de Desempenho"](performance-schema-system-variable-tables.html)
+[Section 25.12.13, “Performance Schema System Variable Tables”](performance-schema-system-variable-tables.html "25.12.13 Performance Schema System Variable Tables")
 
-[Seção 25.12.10, "Tabelas de Variáveis Definidas pelo Usuário do Schema de Desempenho"](performance-schema-user-variable-tables.html)
+[Section 25.12.10, “Performance Schema User-Defined Variable Tables”](performance-schema-user-variable-tables.html "25.12.10 Performance Schema User-Defined Variable Tables")
 
-[Seção 21.7.9.2, "Recuperação em Ponto de Tempo Usando a Replicação do NDB Cluster"](mysql-cluster-replication-pitr.html)
+[Section 21.7.9.2, “Point-In-Time Recovery Using NDB Cluster Replication”](mysql-cluster-replication-pitr.html "21.7.9.2 Point-In-Time Recovery Using NDB Cluster Replication")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 16.4.1.20, “Replicação e Tabelas de MEMORY”](replication-features-memory.html)
+[Section 16.4.1.20, “Replication and MEMORY Tables”](replication-features-memory.html "16.4.1.20 Replication and MEMORY Tables")
 
-[Seção 16.4.1.35, “Replicação e TRUNCATE TABLE”](replication-features-truncate.html)
+[Section 16.4.1.35, “Replication and TRUNCATE TABLE”](replication-features-truncate.html "16.4.1.35 Replication and TRUNCATE TABLE")
 
-[Seção 5.4.1, “Selecionando destinos de saída do Log de consulta geral e do Log de consulta lenta”](log-destinations.html)
+[Section 5.4.1, “Selecting General Query Log and Slow Query Log Output Destinations”](log-destinations.html "5.4.1 Selecting General Query Log and Slow Query Log Output Destinations")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 25.12.15.8, “Tabelas de Resumo de Sockets”](performance-schema-socket-summary-tables.html)
+[Section 25.12.15.8, “Socket Summary Tables”](performance-schema-socket-summary-tables.html "25.12.15.8 Socket Summary Tables")
 
-[Seção 25.12.15.2, “Tabelas de Resumo de Etapas”](performance-schema-stage-summary-tables.html)
+[Section 25.12.15.2, “Stage Summary Tables”](performance-schema-stage-summary-tables.html "25.12.15.2 Stage Summary Tables")
 
-[Seção 25.12.15.3, “Tabelas de Resumo de Declarações”](performance-schema-statement-summary-tables.html)
+[Section 25.12.15.3, “Statement Summary Tables”](performance-schema-statement-summary-tables.html "25.12.15.3 Statement Summary Tables")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 25.12.15.10, “Tabelas de Resumo de Variáveis de Status”](performance-schema-status-variable-summary-tables.html)
+[Section 25.12.15.10, “Status Variable Summary Tables”](performance-schema-status-variable-summary-tables.html "25.12.15.10 Status Variable Summary Tables")
 
-[Seção 25.12.8.1, “Tabela de contas”](performance-schema-accounts-table.html)
+[Section 25.12.8.1, “The accounts Table”](performance-schema-accounts-table.html "25.12.8.1 The accounts Table")
 
-[Seção 25.12.3.1, “A tabela cond_instances”](performance-schema-cond-instances-table.html)
+[Section 25.12.3.1, “The cond_instances Table”](performance-schema-cond-instances-table.html "25.12.3.1 The cond_instances Table")
 
-[Seção 25.12.5.1, “A tabela events_stages_current”](performance-schema-events-stages-current-table.html)
+[Section 25.12.5.1, “The events_stages_current Table”](performance-schema-events-stages-current-table.html "25.12.5.1 The events_stages_current Table")
 
-[Seção 25.12.5.2, “A tabela events_stages_history”](performance-schema-events-stages-history-table.html)
+[Section 25.12.5.2, “The events_stages_history Table”](performance-schema-events-stages-history-table.html "25.12.5.2 The events_stages_history Table")
 
-[Seção 25.12.5.3, “A tabela events_stages_history_long”](performance-schema-events-stages-history-long-table.html)
+[Section 25.12.5.3, “The events_stages_history_long Table”](performance-schema-events-stages-history-long-table.html "25.12.5.3 The events_stages_history_long Table")
 
-[Seção 25.12.6.1, “A tabela events_statements_current”](performance-schema-events-statements-current-table.html)
+[Section 25.12.6.1, “The events_statements_current Table”](performance-schema-events-statements-current-table.html "25.12.6.1 The events_statements_current Table")
 
-[Seção 25.12.6.2, “Tabela events_statements_history”](performance-schema-events-statements-history-table.html)
+[Section 25.12.6.2, “The events_statements_history Table”](performance-schema-events-statements-history-table.html "25.12.6.2 The events_statements_history Table")
 
-[Seção 25.12.6.3, “A tabela history_long_events_statements”](performance-schema-events-statements-history-long-table.html)
+[Section 25.12.6.3, “The events_statements_history_long Table”](performance-schema-events-statements-history-long-table.html "25.12.6.3 The events_statements_history_long Table")
 
-[Seção 25.12.7.1, “A tabela events_transactions_current”](performance-schema-events-transactions-current-table.html)
+[Section 25.12.7.1, “The events_transactions_current Table”](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table")
 
-[Seção 25.12.7.2, “Tabela events_transactions_history”](performance-schema-events-transactions-history-table.html)
+[Section 25.12.7.2, “The events_transactions_history Table”](performance-schema-events-transactions-history-table.html "25.12.7.2 The events_transactions_history Table")
 
-[Seção 25.12.7.3, “A tabela events_transactions_history_long”](performance-schema-events-transactions-history-long-table.html)
+[Section 25.12.7.3, “The events_transactions_history_long Table”](performance-schema-events-transactions-history-long-table.html "25.12.7.3 The events_transactions_history_long Table")
 
-[Seção 25.12.4.1, "A tabela events_waits_current"](performance-schema-events-waits-current-table.html)
+[Section 25.12.4.1, “The events_waits_current Table”](performance-schema-events-waits-current-table.html "25.12.4.1 The events_waits_current Table")
 
-[Seção 25.12.4.2, “Tabela events_waits_history”](performance-schema-events-waits-history-table.html)
+[Section 25.12.4.2, “The events_waits_history Table”](performance-schema-events-waits-history-table.html "25.12.4.2 The events_waits_history Table")
 
-[Seção 25.12.4.3, “A tabela history_long_events_waits”](performance-schema-events-waits-history-long-table.html)
+[Section 25.12.4.3, “The events_waits_history_long Table”](performance-schema-events-waits-history-long-table.html "25.12.4.3 The events_waits_history_long Table")
 
-[Seção 25.12.3.2, “A tabela file_instances”](performance-schema-file-instances-table.html)
+[Section 25.12.3.2, “The file_instances Table”](performance-schema-file-instances-table.html "25.12.3.2 The file_instances Table")
 
-[Seção 25.12.16.1, “A tabela host_cache”](performance-schema-host-cache-table.html)
+[Section 25.12.16.1, “The host_cache Table”](performance-schema-host-cache-table.html "25.12.16.1 The host_cache Table")
 
-[Seção 25.12.8.2, “A tabela de hosts”](performance-schema-hosts-table.html)
+[Section 25.12.8.2, “The hosts Table”](performance-schema-hosts-table.html "25.12.8.2 The hosts Table")
 
-[Seção 24.4.22, “A tabela INFORMATION_SCHEMA INNODB_SYS_INDEXES”](information-schema-innodb-sys-indexes-table.html)
+[Section 24.4.22, “The INFORMATION_SCHEMA INNODB_SYS_INDEXES Table”](information-schema-innodb-sys-indexes-table.html "24.4.22 The INFORMATION_SCHEMA INNODB_SYS_INDEXES Table")
 
-[Seção 24.4.23, “A tabela INFORMATION_SCHEMA INNODB_SYS_TABLES”](information-schema-innodb-sys-tables-table.html)
+[Section 24.4.23, “The INFORMATION_SCHEMA INNODB_SYS_TABLES Table”](information-schema-innodb-sys-tables-table.html "24.4.23 The INFORMATION_SCHEMA INNODB_SYS_TABLES Table")
 
-[Seção 14.21.6, “O Plugin InnoDB memcached e Replicação”](innodb-memcached-replication.html)
+[Section 14.21.6, “The InnoDB memcached Plugin and Replication”](innodb-memcached-replication.html "14.21.6 The InnoDB memcached Plugin and Replication")
 
-[Seção 15.3, “O Motor de Armazenamento de MEMORY”](memory-storage-engine.html)
+[Section 15.3, “The MEMORY Storage Engine”](memory-storage-engine.html "15.3 The MEMORY Storage Engine")
 
-[Seção 25.12.12.1, “A tabela metadata_locks”](performance-schema-metadata-locks-table.html)
+[Section 25.12.12.1, “The metadata_locks Table”](performance-schema-metadata-locks-table.html "25.12.12.1 The metadata_locks Table")
 
-[Seção 25.12.3.3, “A tabela mutex_instances”](performance-schema-mutex-instances-table.html)
+[Section 25.12.3.3, “The mutex_instances Table”](performance-schema-mutex-instances-table.html "25.12.3.3 The mutex_instances Table")
 
-[Seção 25.12.16.2, “A tabela performance_timers”](performance-schema-performance-timers-table.html)
+[Section 25.12.16.2, “The performance_timers Table”](performance-schema-performance-timers-table.html "25.12.16.2 The performance_timers Table")
 
-[Seção 25.12.6.4, “Tabela prepared_statements_instances”](performance-schema-prepared-statements-instances-table.html)
+[Section 25.12.6.4, “The prepared_statements_instances Table”](performance-schema-prepared-statements-instances-table.html "25.12.6.4 The prepared_statements_instances Table")
 
-[Seção 25.12.16.3, “Tabela Processlist”](performance-schema-processlist-table.html)
+[Section 25.12.16.3, “The processlist Table”](performance-schema-processlist-table.html "25.12.16.3 The processlist Table")
 
-[Seção 26.4.4.24, “O procedimento ps_truncate_all_tables()”](sys-ps-truncate-all-tables.html)
+[Section 26.4.4.24, “The ps_truncate_all_tables() Procedure”](sys-ps-truncate-all-tables.html "26.4.4.24 The ps_truncate_all_tables() Procedure")
 
-[Seção 25.12.11.3, “Tabela replication_applier_configuration”](performance-schema-replication-applier-configuration-table.html)
+[Section 25.12.11.3, “The replication_applier_configuration Table”](performance-schema-replication-applier-configuration-table.html "25.12.11.3 The replication_applier_configuration Table")
 
-[Seção 25.12.11.4, “Tabela replication_applier_status”](performance-schema-replication-applier-status-table.html)
+[Section 25.12.11.4, “The replication_applier_status Table”](performance-schema-replication-applier-status-table.html "25.12.11.4 The replication_applier_status Table")
 
-[Seção 25.12.11.5, “A tabela replication_applier_status_by_coordinator”](performance-schema-replication-applier-status-by-coordinator-table.html)
+[Section 25.12.11.5, “The replication_applier_status_by_coordinator Table”](performance-schema-replication-applier-status-by-coordinator-table.html "25.12.11.5 The replication_applier_status_by_coordinator Table")
 
-[Seção 25.12.11.6, “A tabela replication_applier_status_by_worker”](performance-schema-replication-applier-status-by-worker-table.html)
+[Section 25.12.11.6, “The replication_applier_status_by_worker Table”](performance-schema-replication-applier-status-by-worker-table.html "25.12.11.6 The replication_applier_status_by_worker Table")
 
-[Seção 25.12.11.1, “Tabela de configuração de conexão de replicação”](performance-schema-replication-connection-configuration-table.html)
+[Section 25.12.11.1, “The replication_connection_configuration Table”](performance-schema-replication-connection-configuration-table.html "25.12.11.1 The replication_connection_configuration Table")
 
-[Seção 25.12.11.2, “A tabela replication_connection_status”](performance-schema-replication-connection-status-table.html)
+[Section 25.12.11.2, “The replication_connection_status Table”](performance-schema-replication-connection-status-table.html "25.12.11.2 The replication_connection_status Table")
 
-[Seção 25.12.11.7, “Tabela replication_group_member_stats”](performance-schema-replication-group-member-stats-table.html)
+[Section 25.12.11.7, “The replication_group_member_stats Table”](performance-schema-replication-group-member-stats-table.html "25.12.11.7 The replication_group_member_stats Table")
 
-[Seção 25.12.11.8, “Tabela replication_group_members”](performance-schema-replication-group-members-table.html)
+[Section 25.12.11.8, “The replication_group_members Table”](performance-schema-replication-group-members-table.html "25.12.11.8 The replication_group_members Table")
 
-[Seção 25.12.3.4, “A tabela rwlock_instances”](performance-schema-rwlock-instances-table.html)
+[Section 25.12.3.4, “The rwlock_instances Table”](performance-schema-rwlock-instances-table.html "25.12.3.4 The rwlock_instances Table")
 
-[Seção 25.12.9.1, “Tabela session_account_connect_attrs”](performance-schema-session-account-connect-attrs-table.html)
+[Section 25.12.9.1, “The session_account_connect_attrs Table”](performance-schema-session-account-connect-attrs-table.html "25.12.9.1 The session_account_connect_attrs Table")
 
-[Seção 25.12.9.2, “Tabela session_connect_attrs”](performance-schema-session-connect-attrs-table.html)
+[Section 25.12.9.2, “The session_connect_attrs Table”](performance-schema-session-connect-attrs-table.html "25.12.9.2 The session_connect_attrs Table")
 
-[Seção 25.12.2.1, “A tabela setup_actors”](performance-schema-setup-actors-table.html)
+[Section 25.12.2.1, “The setup_actors Table”](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table")
 
-[Seção 25.12.2.2, “A tabela setup_consumers”](performance-schema-setup-consumers-table.html)
+[Section 25.12.2.2, “The setup_consumers Table”](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table")
 
-[Seção 25.12.2.3, “Tabela setup_instruments”](performance-schema-setup-instruments-table.html)
+[Section 25.12.2.3, “The setup_instruments Table”](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table")
 
-[Seção 25.12.2.4, “Tabela setup_objects”](performance-schema-setup-objects-table.html)
+[Section 25.12.2.4, “The setup_objects Table”](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table")
 
-[Seção 25.12.2.5, “Tabela setup_timers”](performance-schema-setup-timers-table.html)
+[Section 25.12.2.5, “The setup_timers Table”](performance-schema-setup-timers-table.html "25.12.2.5 The setup_timers Table")
 
-[Seção 25.12.3.5, “A tabela socket_instances”](performance-schema-socket-instances-table.html)
+[Section 25.12.3.5, “The socket_instances Table”](performance-schema-socket-instances-table.html "25.12.3.5 The socket_instances Table")
 
-[Seção 25.12.12.2, “Tabela_handles”](performance-schema-table-handles-table.html)
+[Section 25.12.12.2, “The table_handles Table”](performance-schema-table-handles-table.html "25.12.12.2 The table_handles Table")
 
-[Seção 25.12.15.7.2, “A tabela _io_waits_summary_by_index_usage”](performance-schema-table-wait-summary-tables.html#performance-schema-table-io-waits-summary-by-index-usage-table)
+[Section 25.12.15.7.2, “The table_io_waits_summary_by_index_usage Table”](performance-schema-table-wait-summary-tables.html#performance-schema-table-io-waits-summary-by-index-usage-table "25.12.15.7.2 The table_io_waits_summary_by_index_usage Table")
 
-[Seção 25.12.15.7.1, “A tabela table_io_waits_summary_by_table”](performance-schema-table-wait-summary-tables.html#performance-schema-table-io-waits-summary-by-table-table)
+[Section 25.12.15.7.1, “The table_io_waits_summary_by_table Table”](performance-schema-table-wait-summary-tables.html#performance-schema-table-io-waits-summary-by-table-table "25.12.15.7.1 The table_io_waits_summary_by_table Table")
 
-[Seção 25.12.15.7.3, “A tabela_lock_waits_summary_by_table”](performance-schema-table-wait-summary-tables.html#performance-schema-table-lock-waits-summary-by-table)
+[Section 25.12.15.7.3, “The table_lock_waits_summary_by_table Table”](performance-schema-table-wait-summary-tables.html#performance-schema-table-lock-waits-summary-by-table-table "25.12.15.7.3 The table_lock_waits_summary_by_table Table")
 
-[Seção 25.12.16.4, “Tabela de threads”](performance-schema-threads-table.html)
+[Section 25.12.16.4, “The threads Table”](performance-schema-threads-table.html "25.12.16.4 The threads Table")
 
-[Seção 25.12.8.3, “Tabela de usuários”](performance-schema-users-table.html)
+[Section 25.12.8.3, “The users Table”](performance-schema-users-table.html "25.12.8.3 The users Table")
 
-[Seção 25.12.15.4, “Tabelas de Resumo de Transações”](performance-schema-transaction-summary-tables.html)
+[Section 25.12.15.4, “Transaction Summary Tables”](performance-schema-transaction-summary-tables.html "25.12.15.4 Transaction Summary Tables")
 
-[Seção 13.1.34, "Instrução TRUNCATE TABLE"](truncate-table.html)
+[Section 13.1.34, “TRUNCATE TABLE Statement”](truncate-table.html "13.1.34 TRUNCATE TABLE Statement")
 
-[Seção 25.12.15.1, "Tabelas de Resumo de Eventos de Aguardar"](performance-schema-wait-summary-tables.html)
+[Section 25.12.15.1, “Wait Event Summary Tables”](performance-schema-wait-summary-tables.html "25.12.15.1 Wait Event Summary Tables")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
-[Seção 6.4.5.8, “Definições de filtro de registro de auditoria”](audit-log-filter-definitions.html)
+[Section 6.4.5.8, “Writing Audit Log Filter Definitions”](audit-log-filter-definitions.html "6.4.5.8 Writing Audit Log Filter Definitions")
 
 ### TRUNCATE TABLE performance_schema.host_cache
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
 ### U
 
-index topo](dynindex-statement.html#stmt-index-topo)]
+index top](dynindex-statement.html#stmt-index-top)]
 
-### DESINSTALE O PLUGIN
+### UNINSTALL PLUGIN
 
-[Seção 6.4.5.7, “Filtragem do Log de Auditoria”](audit-log-filtering.html)
+[Section 6.4.5.7, “Audit Log Filtering”](audit-log-filtering.html "6.4.5.7 Audit Log Filtering")
 
-[Seção 6.4.5.11, “Referência do Log de Auditoria”](audit-log-reference.html)
+[Section 6.4.5.11, “Audit Log Reference”](audit-log-reference.html "6.4.5.11 Audit Log Reference")
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
-[Seção 6.4.4.8, “Funções de Gerenciamento de Chave do Pendrive de Uso Geral”](keyring-functions-general-purpose.html)
+[Section 6.4.4.8, “General-Purpose Keyring Key-Management Functions”](keyring-functions-general-purpose.html "6.4.4.8 General-Purpose Keyring Key-Management Functions")
 
-[Seção 8.12.4.1, “Como o MySQL Usa a Memória”](memory-use.html)
+[Section 8.12.4.1, “How MySQL Uses Memory”](memory-use.html "8.12.4.1 How MySQL Uses Memory")
 
-[Seção 13.7.3.3, "Declaração de INSTALAÇÃO DO PLUGIN"](install-plugin.html)
+[Section 13.7.3.3, “INSTALL PLUGIN Statement”](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement")
 
-[Seção 5.5.1, “Instalando e Desinstalando Plugins”](plugin-loading.html)
+[Section 5.5.1, “Installing and Uninstalling Plugins”](plugin-loading.html "5.5.1 Installing and Uninstalling Plugins")
 
-[Seção 6.5.2, “Instalando ou Desinstalando o Máscara de Dados e a Desidentificação do MySQL Enterprise”](data-masking-installation.html)
+[Section 6.5.2, “Installing or Uninstalling MySQL Enterprise Data Masking and De-Identification”](data-masking-installation.html "6.5.2 Installing or Uninstalling MySQL Enterprise Data Masking and De-Identification")
 
-[Seção 5.5.5.2, “Instalando ou Desinstalando Tokens de Versão”](version-tokens-installation.html)
+[Section 5.5.5.2, “Installing or Uninstalling Version Tokens”](version-tokens-installation.html "5.5.5.2 Installing or Uninstalling Version Tokens")
 
-[Seção 6.4.1.9, “Autenticação Conectada a LDAP”](ldap-pluggable-authentication.html)
+[Section 6.4.1.9, “LDAP Pluggable Authentication”](ldap-pluggable-authentication.html "6.4.1.9 LDAP Pluggable Authentication")
 
-[Seção 4.4.3, “mysql_plugin — Configurar plugins do servidor MySQL”](mysql-plugin.html)
+[Section 4.4.3, “mysql_plugin — Configure MySQL Server Plugins”](mysql-plugin.html "4.4.3 mysql_plugin — Configure MySQL Server Plugins")
 
-[Seção 6.4.1.10, “Autenticação Pluggable sem Login”](no-login-pluggable-authentication.html)
+[Section 6.4.1.10, “No-Login Pluggable Authentication”](no-login-pluggable-authentication.html "6.4.1.10 No-Login Pluggable Authentication")
 
-[Seção 6.4.1.7, “Autenticação Conectada (PAM)](pam-pluggable-authentication.html)
+[Section 6.4.1.7, “PAM Pluggable Authentication”](pam-pluggable-authentication.html "6.4.1.7 PAM Pluggable Authentication")
 
-[Seção 25.18, "Schema de Desempenho e Plugins"](performance-schema-and-plugins.html)
+[Section 25.18, “Performance Schema and Plugins”](performance-schema-and-plugins.html "25.18 Performance Schema and Plugins")
 
-[Seção 15.11.1, “Arquitetura de Motor de Armazenamento Desmontável”](pluggable-storage.html)
+[Section 15.11.1, “Pluggable Storage Engine Architecture”](pluggable-storage.html "15.11.1 Pluggable Storage Engine Architecture")
 
-[Seção 13.7.5.25, "Declaração de PLUGINS"](show-plugins.html)
+[Section 13.7.5.25, “SHOW PLUGINS Statement”](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement")
 
-[Seção 6.4.1.11, “Autenticação Pluggable de Credenciais de Peer de Soquete”](socket-pluggable-authentication.html)
+[Section 6.4.1.11, “Socket Peer-Credential Pluggable Authentication”](socket-pluggable-authentication.html "6.4.1.11 Socket Peer-Credential Pluggable Authentication")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 6.4.1.12, “Teste de Autenticação Pluggable”](test-pluggable-authentication.html)
+[Section 6.4.1.12, “Test Pluggable Authentication”](test-pluggable-authentication.html "6.4.1.12 Test Pluggable Authentication")
 
-[Seção 24.3.17, “A Tabela INFORMATION_SCHEMA PLUGINS”](information-schema-plugins-table.html)
+[Section 24.3.17, “The INFORMATION_SCHEMA PLUGINS Table”](information-schema-plugins-table.html "24.3.17 The INFORMATION_SCHEMA PLUGINS Table")
 
-[Seção 13.7.3.4, "Declaração de DESINSTALAR PLUGIN"](uninstall-plugin.html)
+[Section 13.7.3.4, “UNINSTALL PLUGIN Statement”](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement")
 
-[Seção 6.4.4.5, “Usando o plugin Amazon Web Services Keyring keyring_aws”](keyring-aws-plugin.html)
+[Section 6.4.4.5, “Using the keyring_aws Amazon Web Services Keyring Plugin”](keyring-aws-plugin.html "6.4.4.5 Using the keyring_aws Amazon Web Services Keyring Plugin")
 
-[Seção 6.4.1.8, “Autenticação Conectada a Janelas”](windows-pluggable-authentication.html)
+[Section 6.4.1.8, “Windows Pluggable Authentication”](windows-pluggable-authentication.html "6.4.1.8 Windows Pluggable Authentication")
 
-### UNIÃO
+### UNION
 
-[Seção 2.10.3, “Alterações no MySQL 5.7”](upgrading-from-previous-series.html)
+[Section 2.10.3, “Changes in MySQL 5.7”](upgrading-from-previous-series.html "2.10.3 Changes in MySQL 5.7")
 
-[Seção 12.8.3, “Conjunto de caracteres e cotação dos resultados das funções”](string-functions-charset.html)
+[Section 12.8.3, “Character Set and Collation of Function Results”](string-functions-charset.html "12.8.3 Character Set and Collation of Function Results")
 
-[Seção 13.1.18, "Instrução CREATE TABLE"](create-table.html)
+[Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement")
 
-[Seção 13.1.21, "Instrução CREATE VIEW"](create-view.html)
+[Section 13.1.21, “CREATE VIEW Statement”](create-view.html "13.1.21 CREATE VIEW Statement")
 
-[Seção 8.8.2, “Formato de Saída EXPLAIN”](explain-output.html)
+[Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
 
-[Seção 12.15, “Funções de Informação”](information-functions.html)
+[Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions")
 
-[Seção 13.2.5.2, "Instrução INSERT ... ON DUPLICATE KEY UPDATE"](insert-on-duplicate.html)
+[Section 13.2.5.2, “INSERT ... ON DUPLICATE KEY UPDATE Statement”](insert-on-duplicate.html "13.2.5.2 INSERT ... ON DUPLICATE KEY UPDATE Statement")
 
-[Seção 8.4.4, “Uso de Tabelas Temporárias Internas no MySQL”](internal-temporary-tables.html)
+[Section 8.4.4, “Internal Temporary Table Use in MySQL”](internal-temporary-tables.html "8.4.4 Internal Temporary Table Use in MySQL")
 
-[Seção 14.7.3, "Bloqueios Definidos por Diferentes Instruções SQL no InnoDB"](innodb-locks-set.html)
+[Section 14.7.3, “Locks Set by Different SQL Statements in InnoDB”](innodb-locks-set.html "14.7.3 Locks Set by Different SQL Statements in InnoDB")
 
-[Seção 11.1.6, “Atributos de Tipo Numérico”](numeric-type-attributes.html)
+[Section 11.1.6, “Numeric Type Attributes”](numeric-type-attributes.html "11.1.6 Numeric Type Attributes")
 
-[Seção 8.2.2.4, “Otimização de tabelas derivadas e referências de visualização com fusão ou materialização”](derived-table-optimization.html)
+[Section 8.2.2.4, “Optimizing Derived Tables and View References with Merging or Materialization”](derived-table-optimization.html "8.2.2.4 Optimizing Derived Tables and View References with Merging or Materialization")
 
-[Seção 8.2.2.1, “Otimização de subconsultas, tabelas derivadas e referências de visualizações com transformações de semijoin”](semijoins.html)
+[Section 8.2.2.1, “Optimizing Subqueries, Derived Tables, and View References with Semijoin Transformations”](semijoins.html "8.2.2.1 Optimizing Subqueries, Derived Tables, and View References with Semijoin Transformations")
 
-[Seção 8.2.1.2, “Otimização de alcance”](range-optimization.html)
+[Section 8.2.1.2, “Range Optimization”](range-optimization.html "8.2.1.2 Range Optimization")
 
-[Seção 3.6.7, “Pesquisar em duas chaves”](searching-on-two-keys.html)
+[Section 3.6.7, “Searching on Two Keys”](searching-on-two-keys.html "3.6.7 Searching on Two Keys")
 
-[Seção 13.2.9.1, "Instrução SELECT ... INTO"](select-into.html)
+[Section 13.2.9.1, “SELECT ... INTO Statement”](select-into.html "13.2.9.1 SELECT ... INTO Statement")
 
-[Seção 13.2.9, "Instrução SELECT"](select.html)
+[Section 13.2.9, “SELECT Statement”](select.html "13.2.9 SELECT Statement")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 13.2.10, "Subconsultas"](subqueries.html)
+[Section 13.2.10, “Subqueries”](subqueries.html "13.2.10 Subqueries")
 
-[Seção 15.7, “O Motor de Armazenamento MERGE”](merge-storage-engine.html)
+[Section 15.7, “The MERGE Storage Engine”](merge-storage-engine.html "15.7 The MERGE Storage Engine")
 
-[Seção 13.2.9.3, "Cláusula de UNIÃO"](union.html)
+[Section 13.2.9.3, “UNION Clause”](union.html "13.2.9.3 UNION Clause")
 
-[Seção 23.5.3, “Visões Atualizáveis e Inseríveis”](view-updatability.html)
+[Section 23.5.3, “Updatable and Insertable Views”](view-updatability.html "23.5.3 Updatable and Insertable Views")
 
-[Seção 8.4.2.4, “Usando a ANÁLISE DE PROCEDIMENTOS”](procedure-analyse.html)
+[Section 8.4.2.4, “Using PROCEDURE ANALYSE”](procedure-analyse.html "8.4.2.4 Using PROCEDURE ANALYSE")
 
-[Seção 23.5.1, "Sintaxe de visualização"](view-syntax.html)
+[Section 23.5.1, “View Syntax”](view-syntax.html "23.5.1 View Syntax")
 
-[Seção 12.11, “Funções XML”](xml-functions.html)
+[Section 12.11, “XML Functions”](xml-functions.html "12.11 XML Functions")
 
 ### UNION ALL
 
-[Seção 12.15, “Funções de Informação”](information-functions.html)
+[Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions")
 
-[Seção 8.4.4, “Uso de Tabelas Temporárias Internas no MySQL”](internal-temporary-tables.html)
+[Section 8.4.4, “Internal Temporary Table Use in MySQL”](internal-temporary-tables.html "8.4.4 Internal Temporary Table Use in MySQL")
 
-[Seção 8.2.2.4, “Otimização de tabelas derivadas e referências de visualização com fusão ou materialização”](derived-table-optimization.html)
+[Section 8.2.2.4, “Optimizing Derived Tables and View References with Merging or Materialization”](derived-table-optimization.html "8.2.2.4 Optimizing Derived Tables and View References with Merging or Materialization")
 
-[Seção 13.2.9.3, "Cláusula de UNIÃO"](union.html)
+[Section 13.2.9.3, “UNION Clause”](union.html "13.2.9.3 UNION Clause")
 
-[Seção 23.5.3, “Visões Atualizáveis e Inseríveis”](view-updatability.html)
+[Section 23.5.3, “Updatable and Insertable Views”](view-updatability.html "23.5.3 Updatable and Insertable Views")
 
-### UNION DISTINTA
+### UNION DISTINCT
 
-[Seção 13.2.9.3, "Cláusula de UNIÃO"](union.html)
+[Section 13.2.9.3, “UNION Clause”](union.html "13.2.9.3 UNION Clause")
 
-### DESBLOQUEIE AS TÁBUAS
+### UNLOCK TABLES
 
-[Seção 8.6.2, “Carregamento de dados em massa para tabelas MyISAM”](optimizando-myisam-carregamento-de-dados-em-massa.html)
+[Section 8.6.2, “Bulk Data Loading for MyISAM Tables”](optimizing-myisam-bulk-data-loading.html "8.6.2 Bulk Data Loading for MyISAM Tables")
 
-[Seção 7.2, “Métodos de backup de banco de dados”](backup-methods.html)
+[Section 7.2, “Database Backup Methods”](backup-methods.html "7.2 Database Backup Methods")
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
-[Seção 14.7.5.3, “Como minimizar e lidar com deadlocks”](innodb-deadlocks-handling.html)
+[Section 14.7.5.3, “How to Minimize and Handle Deadlocks”](innodb-deadlocks-handling.html "14.7.5.3 How to Minimize and Handle Deadlocks")
 
-[Seção 14.6.1.3, “Importando tabelas InnoDB”](innodb-table-import.html)
+[Section 14.6.1.3, “Importing InnoDB Tables”](innodb-table-import.html "14.6.1.3 Importing InnoDB Tables")
 
-[Seção 13.3.5, “Instruções LOCK TABLES e UNLOCK TABLES”](lock-tables.html)
+[Section 13.3.5, “LOCK TABLES and UNLOCK TABLES Statements”](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements")
 
-[Seção 14.7.3, "Bloqueios Definidos por Diferentes Instruções SQL no InnoDB"](innodb-locks-set.html)
+[Section 14.7.3, “Locks Set by Different SQL Statements in InnoDB”](innodb-locks-set.html "14.7.3 Locks Set by Different SQL Statements in InnoDB")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
+[Section 4.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "4.5.6 mysqlpump — A Database Backup Program")
 
-[Seção 23.8, “Restrições aos Programas Armazenados”](stored-program-restrictions.html)
+[Section 23.8, “Restrictions on Stored Programs”](stored-program-restrictions.html "23.8 Restrictions on Stored Programs")
 
-[Seção 13.3.1, "Instruções START TRANSACTION, COMMIT e ROLLBACK"](commit.html)
+[Section 13.3.1, “START TRANSACTION, COMMIT, and ROLLBACK Statements”](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements")
 
-[Seção 13.3.3, “Declarações que Causam um Compromisso Implícito”](implicit-commit.html)
+[Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")
 
-[Seção 8.12.1, “Fatores do Sistema”](system-optimization.html)
+[Section 8.12.1, “System Factors”](system-optimization.html "8.12.1 System Factors")
 
-### ATUALIZAÇÃO
+### UPDATE
 
-[Seção 6.2, “Controle de Acesso e Gerenciamento de Contas”](access-control.html)
+[Section 6.2, “Access Control and Account Management”](access-control.html "6.2 Access Control and Account Management")
 
-[Seção 6.2.6, “Controle de Acesso, Etapa 2: Solicitação de Verificação”](request-access.html)
+[Section 6.2.6, “Access Control, Stage 2: Request Verification”](request-access.html "6.2.6 Access Control, Stage 2: Request Verification")
 
-[Seção 6.2.7, “Adicionar contas, atribuir privilégios e excluir contas”](creating-accounts.html)
+[Section 6.2.7, “Adding Accounts, Assigning Privileges, and Dropping Accounts”](creating-accounts.html "6.2.7 Adding Accounts, Assigning Privileges, and Dropping Accounts")
 
-[Seção 16.2.1.1, “Vantagens e desvantagens da replicação baseada em declarações e baseada em linhas”](replication-sbr-rbr.html)
+[Section 16.2.1.1, “Advantages and Disadvantages of Statement-Based and Row-Based Replication”](replication-sbr-rbr.html "16.2.1.1 Advantages and Disadvantages of Statement-Based and Row-Based Replication")
 
-[Seção 12.4.4, "Operadores de atribuição"](assignment-operators.html)
+[Section 12.4.4, “Assignment Operators”](assignment-operators.html "12.4.4 Assignment Operators")
 
-[Seção 6.4.5.7, “Filtragem do Log de Auditoria”](audit-log-filtering.html)
+[Section 6.4.5.7, “Audit Log Filtering”](audit-log-filtering.html "6.4.5.7 Audit Log Filtering")
 
-[Seção 6.4.5.11, “Referência do Log de Auditoria”](audit-log-reference.html)
+[Section 6.4.5.11, “Audit Log Reference”](audit-log-reference.html "6.4.5.11 Audit Log Reference")
 
-[Seção 14.6.1.6, “Tratamento de AUTO_INCREMENT no InnoDB”](innodb-auto-increment-handling.html)
+[Section 14.6.1.6, “AUTO_INCREMENT Handling in InnoDB”](innodb-auto-increment-handling.html "14.6.1.6 AUTO_INCREMENT Handling in InnoDB")
 
-[Seção 14.1.2, “Melhores Práticas para Tabelas InnoDB”](innodb-best-practices.html)
+[Section 14.1.2, “Best Practices for InnoDB Tables”](innodb-best-practices.html "14.1.2 Best Practices for InnoDB Tables")
 
-[Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
+[Section 16.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "16.1.6.4 Binary Logging Options and Variables")
 
-[Seção 12.1, “Referência de Função e Operador Inbuilt”](built-in-function-reference.html)
+[Section 12.1, “Built-In Function and Operator Reference”](built-in-function-reference.html "12.1 Built-In Function and Operator Reference")
 
-[Seção 8.5.5, “Carregamento de Dados em Massa para Tabelas InnoDB”](optimizando-innodb-bulk-data-loading.html)
+[Section 8.5.5, “Bulk Data Loading for InnoDB Tables”](optimizing-innodb-bulk-data-loading.html "8.5.5 Bulk Data Loading for InnoDB Tables")
 
-[Seção 8.6.2, “Carregamento de dados em massa para tabelas MyISAM”](optimizando-myisam-carregamento-de-dados-em-massa.html)
+[Section 8.6.2, “Bulk Data Loading for MyISAM Tables”](optimizing-myisam-bulk-data-loading.html "8.6.2 Bulk Data Loading for MyISAM Tables")
 
-[Seção 8.10.4, “Cache de Declarações Preparadas e Programas Armazenados”](statement-caching.html)
+[Section 8.10.4, “Caching of Prepared Statements and Stored Programs”](statement-caching.html "8.10.4 Caching of Prepared Statements and Stored Programs")
 
-[Seção 14.5.2, “Buffer de Mudança”](innodb-change-buffer.html)
+[Section 14.5.2, “Change Buffer”](innodb-change-buffer.html "14.5.2 Change Buffer")
 
-[Seção 2.10.3, “Alterações no MySQL 5.7”](upgrading-from-previous-series.html)
+[Section 2.10.3, “Changes in MySQL 5.7”](upgrading-from-previous-series.html "2.10.3 Changes in MySQL 5.7")
 
-[Seção 13.7.2.2, "Instrução CHECK TABLE"](check-table.html)
+[Section 13.7.2.2, “CHECK TABLE Statement”](check-table.html "13.7.2.2 CHECK TABLE Statement")
 
-[Seção 10.7, “Conversão do Conjunto de Caracteres da Coluna”](charset-conversion.html)
+[Section 10.7, “Column Character Set Conversion”](charset-conversion.html "10.7 Column Character Set Conversion")
 
-[Seção 14.9.1.6, "Compressão para cargas de trabalho OLTP"](innodb-performance-compression-oltp.html)
+[Section 14.9.1.6, “Compression for OLTP Workloads”](innodb-performance-compression-oltp.html "14.9.1.6 Compression for OLTP Workloads")
 
-[Seção 14.8.12, “Configurando o Limiar de Fusão para Páginas de Índice”](index-page-merge-threshold.html)
+[Section 14.8.12, “Configuring the Merge Threshold for Index Pages”](index-page-merge-threshold.html "14.8.12 Configuring the Merge Threshold for Index Pages")
 
-[Seção 14.7.2.3, “Leitura Consistente sem Bloqueio”](innodb-consistent-read.html)
+[Section 14.7.2.3, “Consistent Nonlocking Reads”](innodb-consistent-read.html "14.7.2.3 Consistent Nonlocking Reads")
 
-[Seção 1.6.3.3, “Restrições para Dados Inválidos”](constraint-invalid-data.html)
+[Section 1.6.3.3, “Constraints on Invalid Data”](constraint-invalid-data.html "1.6.3.3 Constraints on Invalid Data")
 
-[Seção 14.6.1.5, “Conversão de tabelas de MyISAM para InnoDB”](converting-tables-to-innodb.html)
+[Section 14.6.1.5, “Converting Tables from MyISAM to InnoDB”](converting-tables-to-innodb.html "14.6.1.5 Converting Tables from MyISAM to InnoDB")
 
-[Seção 13.1.18.7, “Criar Tabela e Colunas Geradas”](create-table-generated-columns.html)
+[Section 13.1.18.7, “CREATE TABLE and Generated Columns”](create-table-generated-columns.html "13.1.18.7 CREATE TABLE and Generated Columns")
 
-[Seção 13.1.18.2, "Instrução CREATE TEMPORARY TABLE"](create-temporary-table.html)
+[Section 13.1.18.2, “CREATE TEMPORARY TABLE Statement”](create-temporary-table.html "13.1.18.2 CREATE TEMPORARY TABLE Statement")
 
-[Seção 13.1.20, "Instrução CREATE TRIGGER"](create-trigger.html)
+[Section 13.1.20, “CREATE TRIGGER Statement”](create-trigger.html "13.1.20 CREATE TRIGGER Statement")
 
-[Seção 13.1.21, "Instrução CREATE VIEW"](create-view.html)
+[Section 13.1.21, “CREATE VIEW Statement”](create-view.html "13.1.21 CREATE VIEW Statement")
 
-[Seção 15.8.2.1, “Criando uma Tabela FEDERATED Usando CONEXÃO”](federated-create-connection.html)
+[Section 15.8.2.1, “Creating a FEDERATED Table Using CONNECTION”](federated-create-connection.html "15.8.2.1 Creating a FEDERATED Table Using CONNECTION")
 
-[Seção 11.6, “Valores padrão de tipo de dados”](data-type-defaults.html)
+[Section 11.6, “Data Type Default Values”](data-type-defaults.html "11.6 Data Type Default Values")
 
-[Seção 11.2.1, "Sintaxe do tipo de dados de data e hora"](date-and-time-type-syntax.html)
+[Section 11.2.1, “Date and Time Data Type Syntax”](date-and-time-type-syntax.html "11.2.1 Date and Time Data Type Syntax")
 
-[Seção 14.7.5, "Bloqueios em InnoDB"](innodb-deadlocks.html)
+[Section 14.7.5, “Deadlocks in InnoDB”](innodb-deadlocks.html "14.7.5 Deadlocks in InnoDB")
 
-[Seção 2.11.3, “Notas de Downgrade”](downgrading-to-previous-series.html)
+[Section 2.11.3, “Downgrade Notes”](downgrading-to-previous-series.html "2.11.3 Downgrade Notes")
 
-[Seção 8.8.2, “Formato de Saída EXPLAIN”](explain-output.html)
+[Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
 
-[Seção 13.8.2, “Instrução EXPLAIN”](explain.html)
+[Section 13.8.2, “EXPLAIN Statement”](explain.html "13.8.2 EXPLAIN Statement")
 
-[Seção 8.8.3, “Formato de saída EXPLAIN estendido”](explain-extended.html)
+[Section 8.8.3, “Extended EXPLAIN Output Format”](explain-extended.html "8.8.3 Extended EXPLAIN Output Format")
 
-[Seção 15.8.3, “Notas e dicas do mecanismo de armazenamento federado”](federated-usagenotes.html)
+[Section 15.8.3, “FEDERATED Storage Engine Notes and Tips”](federated-usagenotes.html "15.8.3 FEDERATED Storage Engine Notes and Tips")
 
-[Seção 14.22.2, “Forçar a recuperação do InnoDB”](forcing-innodb-recovery.html)
+[Section 14.22.2, “Forcing InnoDB Recovery”](forcing-innodb-recovery.html "14.22.2 Forcing InnoDB Recovery")
 
-[Seção 1.6.2.3, “Diferenças na restrição de chave estrangeira”](ansi-diff-foreign-keys.html)
+[Section 1.6.2.3, “FOREIGN KEY Constraint Differences”](ansi-diff-foreign-keys.html "1.6.2.3 FOREIGN KEY Constraint Differences")
 
-[Seção 13.1.18.5, “Restrições de Chave Estrangeira”](create-table-foreign-keys.html)
+[Section 13.1.18.5, “FOREIGN KEY Constraints”](create-table-foreign-keys.html "13.1.18.5 FOREIGN KEY Constraints")
 
-[Seção 12.9.5, “Restrições de texto completo”](fulltext-restrictions.html)
+[Section 12.9.5, “Full-Text Restrictions”](fulltext-restrictions.html "12.9.5 Full-Text Restrictions")
 
-[Seção 8.2.1.18, "Otimização de Chamadas de Função"](function-optimization.html)
+[Section 8.2.1.18, “Function Call Optimization”](function-optimization.html "8.2.1.18 Function Call Optimization")
 
-[Capítulo 12, *Funções e Operadores*] (functions.html)
+[Chapter 12, *Functions and Operators*](functions.html "Chapter 12 Functions and Operators")
 
-[Seção 8.14.3, “Estados gerais de fios”](general-thread-states.html)
+[Section 8.14.3, “General Thread States”](general-thread-states.html "8.14.3 General Thread States")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 6.2.3, “Tabelas de subsídios”](grant-tables.html)
+[Section 6.2.3, “Grant Tables”](grant-tables.html "6.2.3 Grant Tables")
 
-[Seção 8.10.3.1, “Como o Cache de Consultas Funciona”](query-cache-operation.html)
+[Section 8.10.3.1, “How the Query Cache Operates”](query-cache-operation.html "8.10.3.1 How the Query Cache Operates")
 
-[Seção 21.6.9, “Importando dados no MySQL Cluster”](mysql-cluster-importing-data.html)
+[Section 21.6.9, “Importing Data Into MySQL Cluster”](mysql-cluster-importing-data.html "21.6.9 Importing Data Into MySQL Cluster")
 
-[Seção 8.9.4, “Dicas de índice”](index-hints.html)
+[Section 8.9.4, “Index Hints”](index-hints.html "8.9.4 Index Hints")
 
-[Seção 12.15, “Funções de Informação”](information-functions.html)
+[Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions")
 
-[Seção 14.7.1, "Bloqueio InnoDB"](innodb-locking.html)
+[Section 14.7.1, “InnoDB Locking”](innodb-locking.html "14.7.1 InnoDB Locking")
 
-[Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
+[Section 14.15, “InnoDB Startup Options and System Variables”](innodb-parameters.html "14.15 InnoDB Startup Options and System Variables")
 
-[Seção 13.2.5.2, "Instrução INSERT ... ON DUPLICATE KEY UPDATE"](insert-on-duplicate.html)
+[Section 13.2.5.2, “INSERT ... ON DUPLICATE KEY UPDATE Statement”](insert-on-duplicate.html "13.2.5.2 INSERT ... ON DUPLICATE KEY UPDATE Statement")
 
-[Seção 13.2.5, “Instrução INSERT”](insert.html)
+[Section 13.2.5, “INSERT Statement”](insert.html "13.2.5 INSERT Statement")
 
-[Seção 16.2.5.3, “Interações entre as Opções de Filtragem de Replicação”](replication-rules-examples.html)
+[Section 16.2.5.3, “Interactions Between Replication Filtering Options”](replication-rules-examples.html "16.2.5.3 Interactions Between Replication Filtering Options")
 
-[Seção 8.11.1, “Métodos de bloqueio interno”](internal-locking.html)
+[Section 8.11.1, “Internal Locking Methods”](internal-locking.html "8.11.1 Internal Locking Methods")
 
-[Seção 8.4.4, “Uso de Tabelas Temporárias Internas no MySQL”](internal-temporary-tables.html)
+[Section 8.4.4, “Internal Temporary Table Use in MySQL”](internal-temporary-tables.html "8.4.4 Internal Temporary Table Use in MySQL")
 
-[Seção 24.1, “Introdução”](information-schema-introduction.html)
+[Section 24.1, “Introduction”](information-schema-introduction.html "24.1 Introduction")
 
-[Seção 13.2.9.2, "Cláusula JOIN"](join.html)
+[Section 13.2.9.2, “JOIN Clause”](join.html "13.2.9.2 JOIN Clause")
 
-[Seção 13.7.6.4, "Declaração de KILL"](kill.html)
+[Section 13.7.6.4, “KILL Statement”](kill.html "13.7.6.4 KILL Statement")
 
-[Seção B.3.7, “Problemas Conhecidos no MySQL”](known-issues.html)
+[Section B.3.7, “Known Issues in MySQL”](known-issues.html "B.3.7 Known Issues in MySQL")
 
-[Seção 21.7.3, “Problemas Conhecidos na Replicação de NDB Cluster”](mysql-cluster-replication-issues.html)
+[Section 21.7.3, “Known Issues in NDB Cluster Replication”](mysql-cluster-replication-issues.html "21.7.3 Known Issues in NDB Cluster Replication")
 
-[Seção 13.2.6, “Instrução LOAD DATA”](load-data.html)
+[Section 13.2.6, “LOAD DATA Statement”](load-data.html "13.2.6 LOAD DATA Statement")
 
-[Seção 13.3.5, “Instruções LOCK TABLES e UNLOCK TABLES”](lock-tables.html)
+[Section 13.3.5, “LOCK TABLES and UNLOCK TABLES Statements”](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements")
 
-[Seção 14.7.2.4, “Leitura de bloqueio”](innodb-locking-reads.html)
+[Section 14.7.2.4, “Locking Reads”](innodb-locking-reads.html "14.7.2.4 Locking Reads")
 
-[Seção 14.7.3, "Bloqueios Definidos por Diferentes Instruções SQL no InnoDB"](innodb-locks-set.html)
+[Section 14.7.3, “Locks Set by Different SQL Statements in InnoDB”](innodb-locks-set.html "14.7.3 Locks Set by Different SQL Statements in InnoDB")
 
-[Seção 5.4.4.4, "Formato de registro para alterações nas tabelas do banco de dados mysql"](binary-log-mysql-database.html)
+[Section 5.4.4.4, “Logging Format for Changes to mysql Database Tables”](binary-log-mysql-database.html "5.4.4.4 Logging Format for Changes to mysql Database Tables")
 
-[Seção 12.20, “Funções Diversas”](funcoes-diversas.html)
+[Section 12.20, “Miscellaneous Functions”](miscellaneous-functions.html "12.20 Miscellaneous Functions")
 
-[Seção A.4, “Perguntas frequentes sobre o MySQL 5.7: Procedimentos e funções armazenadas”](faqs-stored-procs.html)
+[Section A.4, “MySQL 5.7 FAQ: Stored Procedures and Functions”](faqs-stored-procs.html "A.4 MySQL 5.7 FAQ: Stored Procedures and Functions")
 
-[Seção 4.5.1.1, “Opções do cliente do MySQL”](mysql-command-options.html)
+[Section 4.5.1.1, “mysql Client Options”](mysql-command-options.html "4.5.1.1 mysql Client Options")
 
-[Seção 4.5.1.6, “Dicas do cliente do MySQL”](mysql-tips.html)
+[Section 4.5.1.6, “mysql Client Tips”](mysql-tips.html "4.5.1.6 mysql Client Tips")
 
-[Seção 1.6.1, “Extensões MySQL para SQL Padrão”](extensions-to-ansi.html)
+[Section 1.6.1, “MySQL Extensions to Standard SQL”](extensions-to-ansi.html "1.6.1 MySQL Extensions to Standard SQL")
 
-[Glossário do MySQL](glossary.html)
+[MySQL Glossary](glossary.html "MySQL Glossary")
 
-[Seção 4.6.7.2, “Exibição de eventos de linha do mysqlbinlog”](mysqlbinlog-row-events.html)
+[Section 4.6.7.2, “mysqlbinlog Row Event Display”](mysqlbinlog-row-events.html "4.6.7.2 mysqlbinlog Row Event Display")
 
-[Seção 21.6.11.1, “Objetos de dados de disco do cluster NDB”](mysql-cluster-disk-data-objects.html)
+[Section 21.6.11.1, “NDB Cluster Disk Data Objects”](mysql-cluster-disk-data-objects.html "21.6.11.1 NDB Cluster Disk Data Objects")
 
-[Seção 21.7.11, "Resolução de conflitos de replicação de cluster do NDB"](mysql-cluster-replication-conflict-resolution.html)
+[Section 21.7.11, “NDB Cluster Replication Conflict Resolution”](mysql-cluster-replication-conflict-resolution.html "21.7.11 NDB Cluster Replication Conflict Resolution")
 
-[Seção 8.8.4, “Obtendo informações do plano de execução para uma conexão nomeada”](explain-for-connection.html)
+[Section 8.8.4, “Obtaining Execution Plan Information for a Named Connection”](explain-for-connection.html "8.8.4 Obtaining Execution Plan Information for a Named Connection")
 
-[Seção 14.13.1, “Operações DDL Online”](innodb-online-ddl-operations.html)
+[Section 14.13.1, “Online DDL Operations”](innodb-online-ddl-operations.html "14.13.1 Online DDL Operations")
 
-[Seção 12.4, “Operadores”](non-typed-operators.html)
+[Section 12.4, “Operators”](non-typed-operators.html "12.4 Operators")
 
-[Seção 8.9.3, “Dicas do otimizador”](optimizer-hints.html)
+[Section 8.9.3, “Optimizer Hints”](optimizer-hints.html "8.9.3 Optimizer Hints")
 
-[Seção 8.2.4, “Otimização das declarações de alteração de dados”](data-change-optimization.html)
+[Section 8.2.4, “Optimizing Data Change Statements”](data-change-optimization.html "8.2.4 Optimizing Data Change Statements")
 
-[Seção 8.8.1, “Otimizando consultas com EXPLAIN”](using-explain.html)
+[Section 8.8.1, “Optimizing Queries with EXPLAIN”](using-explain.html "8.8.1 Optimizing Queries with EXPLAIN")
 
-[Seção 8.2.2, “Otimização de Subconsultas, Tabelas Derivadas e Referências de Visualização”](subquery-optimization.html)
+[Section 8.2.2, “Optimizing Subqueries, Derived Tables, and View References”](subquery-optimization.html "8.2.2 Optimizing Subqueries, Derived Tables, and View References")
 
-[Seção 11.1.7, “Tratamento de Saída de Faixa e Excesso de Dados”](out-of-range-and-overflow.html)
+[Section 11.1.7, “Out-of-Range and Overflow Handling”](out-of-range-and-overflow.html "11.1.7 Out-of-Range and Overflow Handling")
 
-[Seção 22.1, “Visão geral da partição no MySQL”](partitioning-overview.html)
+[Section 22.1, “Overview of Partitioning in MySQL”](partitioning-overview.html "22.1 Overview of Partitioning in MySQL")
 
-[Seção 22.4, “Rimação de Partições”](partitioning-pruning.html)
+[Section 22.4, “Partition Pruning”](partitioning-pruning.html "22.4 Partition Pruning")
 
-[Seção 22.5, “Seleção de Partição”](partitioning-selection.html)
+[Section 22.5, “Partition Selection”](partitioning-selection.html "22.5 Partition Selection")
 
-[Seção 22.6.4, “Partição e Bloqueio”](partitioning-limitations-locking.html)
+[Section 22.6.4, “Partitioning and Locking”](partitioning-limitations-locking.html "22.6.4 Partitioning and Locking")
 
-[Seção 6.1.2.3, “Senhas e Registro de Ações”](password-logging.html)
+[Section 6.1.2.3, “Passwords and Logging”](password-logging.html "6.1.2.3 Passwords and Logging")
 
-[Seção 25.4.6, “Pré-filtragem por Fio”](performance-schema-thread-filtering.html)
+[Section 25.4.6, “Pre-Filtering by Thread”](performance-schema-thread-filtering.html "25.4.6 Pre-Filtering by Thread")
 
-[Seção 1.6.3.1, “Constrangimentos de Índices Primario e Único”](constraint-primary-key.html)
+[Section 1.6.3.1, “PRIMARY KEY and UNIQUE Index Constraints”](constraint-primary-key.html "1.6.3.1 PRIMARY KEY and UNIQUE Index Constraints")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção B.3.4.2, “Problemas ao usar colunas DATE”](using-date.html)
+[Section B.3.4.2, “Problems Using DATE Columns”](using-date.html "B.3.4.2 Problems Using DATE Columns")
 
-[Seção 14.8.10, “Configuração de Purga”](innodb-purge-configuration.html)
+[Section 14.8.10, “Purge Configuration”](innodb-purge-configuration.html "14.8.10 Purge Configuration")
 
-[Seção 8.2.1.2, “Otimização de alcance”](range-optimization.html)
+[Section 8.2.1.2, “Range Optimization”](range-optimization.html "8.2.1.2 Range Optimization")
 
-[Seção 16.4.1.27, “Erros de replicação durante a replicação”](replication-features-errors.html)
+[Section 16.4.1.27, “Replica Errors During Replication”](replication-features-errors.html "16.4.1.27 Replica Errors During Replication")
 
-[Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
+[Section 16.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "16.1.6.3 Replica Server Options and Variables")
 
-[Seção 16.4.1.17, “Replicação e LIMIT”](replication-features-limit.html)
+[Section 16.4.1.17, “Replication and LIMIT”](replication-features-limit.html "16.4.1.17 Replication and LIMIT")
 
-[Seção 16.4.1.22, "Replicação e o otimizador de consultas"](replication-features-optimizer.html)
+[Section 16.4.1.22, “Replication and the Query Optimizer”](replication-features-optimizer.html "16.4.1.22 Replication and the Query Optimizer")
 
-[Seção 16.4.1.34, “Replicação e gatilhos”](replication-features-triggers.html)
+[Section 16.4.1.34, “Replication and Triggers”](replication-features-triggers.html "16.4.1.34 Replication and Triggers")
 
-[Seção 22.6, “Restrições e Limitações sobre Partição”](partitioning-limitations.html)
+[Section 22.6, “Restrictions and Limitations on Partitioning”](partitioning-limitations.html "22.6 Restrictions and Limitations on Partitioning")
 
-[Seção 13.2.10.11, “Reescrita de subconsultas como junções”](rewriting-subqueries.html)
+[Section 13.2.10.11, “Rewriting Subqueries as Joins”](rewriting-subqueries.html "13.2.10.11 Rewriting Subqueries as Joins")
 
-[Seção 13.1.18.8, “Índices Secundários e Colunas Geradas”](create-table-secondary-indexes.html)
+[Section 13.1.18.8, “Secondary Indexes and Generated Columns”](create-table-secondary-indexes.html "13.1.18.8 Secondary Indexes and Generated Columns")
 
-[Seção 3.3.4.1, “Selecionar todos os dados”](selecionando-todos.html)
+[Section 3.3.4.1, “Selecting All Data”](selecting-all.html "3.3.4.1 Selecting All Data")
 
-[Seção 5.4.1, “Selecionando destinos de saída do Log de consulta geral e do Log de consulta lenta”](log-destinations.html)
+[Section 5.4.1, “Selecting General Query Log and Slow Query Log Output Destinations”](log-destinations.html "5.4.1 Selecting General Query Log and Slow Query Log Output Destinations")
 
-[Seção 5.1.10, "Modos SQL do Servidor"](sql-mode.html)
+[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 13.7.5.36, "Declaração de Status da Tabela"](show-table-status.html)
+[Section 13.7.5.36, “SHOW TABLE STATUS Statement”](show-table-status.html "13.7.5.36 SHOW TABLE STATUS Statement")
 
-[Seção 13.7.5.40, "Declaração de avisos"](show-warnings.html)
+[Section 13.7.5.40, “SHOW WARNINGS Statement”](show-warnings.html "13.7.5.40 SHOW WARNINGS Statement")
 
-[Seção 5.8.4.1.12, "Provas de declaração"](dba-dtrace-mysqld-ref.html#dba-dtrace-ref-statement)
+[Section 5.8.4.1.12, “Statement Probes”](dba-dtrace-mysqld-ref.html#dba-dtrace-ref-statement "5.8.4.1.12 Statement Probes")
 
-[Seção 13.2.10, "Subconsultas"](subqueries.html)
+[Section 13.2.10, “Subqueries”](subqueries.html "13.2.10 Subqueries")
 
-[Seção 13.2.10.9, “Erros de subconsultas”](subquery-errors.html)
+[Section 13.2.10.9, “Subquery Errors”](subquery-errors.html "13.2.10.9 Subquery Errors")
 
-[Seção 8.11.2, “Problemas de bloqueio de tabelas”](table-locking.html)
+[Section 8.11.2, “Table Locking Issues”](table-locking.html "8.11.2 Table Locking Issues")
 
-[Seção 15.5, “O Motor de Armazenamento ARCHIVE”](archive-storage-engine.html)
+[Section 15.5, “The ARCHIVE Storage Engine”](archive-storage-engine.html "15.5 The ARCHIVE Storage Engine")
 
-[Seção 10.8.5, “A Colagem Binária Comparada às Colagens _bin”](charset-binary-collations.html)
+[Section 10.8.5, “The binary Collation Compared to _bin Collations”](charset-binary-collations.html "10.8.5 The binary Collation Compared to _bin Collations")
 
-[Seção 5.4.4, “O Log Binário”](binary-log.html)
+[Section 5.4.4, “The Binary Log”](binary-log.html "5.4.4 The Binary Log")
 
-[Seção 15.6, “O Motor de Armazenamento BLACKHOLE”](blackhole-storage-engine.html)
+[Section 15.6, “The BLACKHOLE Storage Engine”](blackhole-storage-engine.html "15.6 The BLACKHOLE Storage Engine")
 
-[Seção 24.4.25, “A visão INFORMATION_SCHEMA INNODB_SYS_TABLESTATS”](information-schema-innodb-sys-tablestats-table.html)
+[Section 24.4.25, “The INFORMATION_SCHEMA INNODB_SYS_TABLESTATS View”](information-schema-innodb-sys-tablestats-table.html "24.4.25 The INFORMATION_SCHEMA INNODB_SYS_TABLESTATS View")
 
-[Seção 24.3.25, “A tabela INFORMATION_SCHEMA TABLES”](information-schema-tables-table.html)
+[Section 24.3.25, “The INFORMATION_SCHEMA TABLES Table”](information-schema-tables-table.html "24.3.25 The INFORMATION_SCHEMA TABLES Table")
 
-[Seção 24.3.31, “A Tabela INFORMATION_SCHEMA VIEWS”](information-schema-views-table.html)
+[Section 24.3.31, “The INFORMATION_SCHEMA VIEWS Table”](information-schema-views-table.html "24.3.31 The INFORMATION_SCHEMA VIEWS Table")
 
-[Seção 1.2.2, “Principais características do MySQL”](features.html)
+[Section 1.2.2, “The Main Features of MySQL”](features.html "1.2.2 The Main Features of MySQL")
 
-[Seção 15.7, “O Motor de Armazenamento MERGE”](merge-storage-engine.html)
+[Section 15.7, “The MERGE Storage Engine”](merge-storage-engine.html "15.7 The MERGE Storage Engine")
 
-[Seção 15.2, “O Motor de Armazenamento MyISAM”](myisam-storage-engine.html)
+[Section 15.2, “The MyISAM Storage Engine”](myisam-storage-engine.html "15.2 The MyISAM Storage Engine")
 
-[Seção 5.1.16, “O processo de desligamento do servidor”](server-shutdown.html)
+[Section 5.1.16, “The Server Shutdown Process”](server-shutdown.html "5.1.16 The Server Shutdown Process")
 
-[Seção 26.4.2.3, “O gatilho sys_config_update_set_user”](sys-sys-config-update-set-user.html)
+[Section 26.4.2.3, “The sys_config_update_set_user Trigger”](sys-sys-config-update-set-user.html "26.4.2.3 The sys_config_update_set_user Trigger")
 
-[Seção 8.15.3, “Declarações rastreáveis”](traceable-statements.html)
+[Section 8.15.3, “Traceable Statements”](traceable-statements.html "8.15.3 Traceable Statements")
 
-[Seção 14.7.2.1, “Níveis de Isolamento de Transações”](innodb-transaction-isolation-levels.html)
+[Section 14.7.2.1, “Transaction Isolation Levels”](innodb-transaction-isolation-levels.html "14.7.2.1 Transaction Isolation Levels")
 
-[Seção 23.3.1, "Sintaxe de gatilho e exemplos"](trigger-syntax.html)
+[Section 23.3.1, “Trigger Syntax and Examples”](trigger-syntax.html "23.3.1 Trigger Syntax and Examples")
 
-[Seção 6.2.17, “Soluções para problemas de conexão com o MySQL”](problemas-conectando.html)
+[Section 6.2.17, “Troubleshooting Problems Connecting to MySQL”](problems-connecting.html "6.2.17 Troubleshooting Problems Connecting to MySQL")
 
-[Seção 14.6.7, "Desfazer Logs"](innodb-undo-logs.html)
+[Section 14.6.7, “Undo Logs”](innodb-undo-logs.html "14.6.7 Undo Logs")
 
-[Seção 23.5.3, “Visões Atualizáveis e Inseríveis”](view-updatability.html)
+[Section 23.5.3, “Updatable and Insertable Views”](view-updatability.html "23.5.3 Updatable and Insertable Views")
 
-[Seção 1.6.2.2, “Diferenças de atualização”](ansi-diff-update.html)
+[Section 1.6.2.2, “UPDATE Differences”](ansi-diff-update.html "1.6.2.2 UPDATE Differences")
 
-[Seção 13.2.11, "Declaração de Atualização"](update.html)
+[Section 13.2.11, “UPDATE Statement”](update.html "13.2.11 UPDATE Statement")
 
-[Seção 16.2.1.2, “Uso de Registro e Replicação Baseados em Linhas”](replication-rbr-usage.html)
+[Section 16.2.1.2, “Usage of Row-Based Logging and Replication”](replication-rbr-usage.html "16.2.1.2 Usage of Row-Based Logging and Replication")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
-[Seção 6.2.9, “Quando as Alterações de Privilegios Se Tornam Efetivas”](privilege-changes.html)
+[Section 6.2.9, “When Privilege Changes Take Effect”](privilege-changes.html "6.2.9 When Privilege Changes Take Effect")
 
-[Seção 8.2.1.1, "Otimização da cláusula WHERE"](where-optimization.html)
+[Section 8.2.1.1, “WHERE Clause Optimization”](where-optimization.html "8.2.1.1 WHERE Clause Optimization")
 
-[Seção 6.4.5.8, “Definições de filtro de registro de auditoria”](audit-log-filter-definitions.html)
+[Section 6.4.5.8, “Writing Audit Log Filter Definitions”](audit-log-filter-definitions.html "6.4.5.8 Writing Audit Log Filter Definitions")
 
-### ATUALIZAÇÃO... ()
+### UPDATE ... ()
 
-[Seção 14.7.2.3, “Leitura Consistente sem Bloqueio”](innodb-consistent-read.html)
+[Section 14.7.2.3, “Consistent Nonlocking Reads”](innodb-consistent-read.html "14.7.2.3 Consistent Nonlocking Reads")
 
-### ATUALIZAÇÃO... QUANDO
+### UPDATE ... WHERE
 
-[Seção 14.7.5, "Bloqueios em InnoDB"](innodb-deadlocks.html)
+[Section 14.7.5, “Deadlocks in InnoDB”](innodb-deadlocks.html "14.7.5 Deadlocks in InnoDB")
 
-### ATUALIZAÇÃO... WHERE...
+### UPDATE ... WHERE ...
 
-[Seção 14.7.3, "Bloqueios Definidos por Diferentes Instruções SQL no InnoDB"](innodb-locks-set.html)
+[Section 14.7.3, “Locks Set by Different SQL Statements in InnoDB”](innodb-locks-set.html "14.7.3 Locks Set by Different SQL Statements in InnoDB")
 
-### ATUALIZAR IGNORAR
+### UPDATE IGNORE
 
-[Seção 5.1.10, "Modos SQL do Servidor"](sql-mode.html)
+[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
 
-[Seção 13.2.11, "Declaração de Atualização"](update.html)
+[Section 13.2.11, “UPDATE Statement”](update.html "13.2.11 UPDATE Statement")
 
-### ATUALIZAR t1, t2 ...
+### UPDATE t1,t2 ...
 
-[Seção 5.8.4.1.12, "Provas de declaração"](dba-dtrace-mysqld-ref.html#dba-dtrace-ref-statement)
+[Section 5.8.4.1.12, “Statement Probes”](dba-dtrace-mysqld-ref.html#dba-dtrace-ref-statement "5.8.4.1.12 Statement Probes")
 
-### USO
+### USE
 
-[Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
+[Section 16.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "16.1.6.4 Binary Logging Options and Variables")
 
-[Seção 7.4.5.2, “Copiar um banco de dados de um servidor para outro”](mysqldump-copying-to-other-server.html)
+[Section 7.4.5.2, “Copy a Database from one Server to Another”](mysqldump-copying-to-other-server.html "7.4.5.2 Copy a Database from one Server to Another")
 
-[Seção 13.1.16, "Instruções CREATE PROCEDURE e CREATE FUNCTION"](create-procedure.html)
+[Section 13.1.16, “CREATE PROCEDURE and CREATE FUNCTION Statements”](create-procedure.html "13.1.16 CREATE PROCEDURE and CREATE FUNCTION Statements")
 
-[Seção 3.3.1, “Criando e selecionando um banco de dados”](creating-database.html)
+[Section 3.3.1, “Creating and Selecting a Database”](creating-database.html "3.3.1 Creating and Selecting a Database")
 
-[Seção 3.3, “Criando e Usando um Banco de Dados”](database-use.html)
+[Section 3.3, “Creating and Using a Database”](database-use.html "3.3 Creating and Using a Database")
 
-[Seção 7.4.1, “Exportação de dados no formato SQL com mysqldump”](mysqldump-sql-format.html)
+[Section 7.4.1, “Dumping Data in SQL Format with mysqldump”](mysqldump-sql-format.html "7.4.1 Dumping Data in SQL Format with mysqldump")
 
-[Seção 16.2.5.1, “Avaliação das opções de replicação de nível de banco de dados e registro binário”](replication-rules-db-options.html)
+[Section 16.2.5.1, “Evaluation of Database-Level Replication and Binary Logging Options”](replication-rules-db-options.html "16.2.5.1 Evaluation of Database-Level Replication and Binary Logging Options")
 
-[Seção 16.2.5.3, “Interações entre as Opções de Filtragem de Replicação”](replication-rules-examples.html)
+[Section 16.2.5.3, “Interactions Between Replication Filtering Options”](replication-rules-examples.html "16.2.5.3 Interactions Between Replication Filtering Options")
 
-[Seção 24.1, “Introdução”](information-schema-introduction.html)
+[Section 24.1, “Introduction”](information-schema-introduction.html "24.1 Introduction")
 
-[Seção 4.5.1.1, “Opções do cliente do MySQL”](mysql-command-options.html)
+[Section 4.5.1.1, “mysql Client Options”](mysql-command-options.html "4.5.1.1 mysql Client Options")
 
-[Seção 4.6.7, “mysqlbinlog — Ferramenta para processamento de arquivos de log binário”](mysqlbinlog.html)
+[Section 4.6.7, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "4.6.7 mysqlbinlog — Utility for Processing Binary Log Files")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
+[Section 4.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "4.5.6 mysqlpump — A Database Backup Program")
 
-[Seção 21.6.15, “ndbinfo: Banco de Dados de Informações do NDB Cluster”](mysql-cluster-ndbinfo.html)
+[Section 21.6.15, “ndbinfo: The NDB Cluster Information Database”](mysql-cluster-ndbinfo.html "21.6.15 ndbinfo: The NDB Cluster Information Database")
 
-[Seção 7.4.2, “Recarga de backups no formato SQL”](reloading-sql-format-dumps.html)
+[Section 7.4.2, “Reloading SQL-Format Backups”](reloading-sql-format-dumps.html "7.4.2 Reloading SQL-Format Backups")
 
-[Seção 16.1.6.3, “Opções e variáveis do servidor de replicação”](replication-options-replica.html)
+[Section 16.1.6.3, “Replica Server Options and Variables”](replication-options-replica.html "16.1.6.3 Replica Server Options and Variables")
 
-[Seção 23.2.1, "Sintaxe de Rotinas Armazenadas"](stored-routines-syntax.html)
+[Section 23.2.1, “Stored Routine Syntax”](stored-routines-syntax.html "23.2.1 Stored Routine Syntax")
 
-[Seção 13.8.4, “Declaração de Uso”](use.html)
+[Section 13.8.4, “USE Statement”](use.html "13.8.4 USE Statement")
 
 ### USE db2
 
-[Seção 4.6.7, “mysqlbinlog — Ferramenta para processamento de arquivos de log binário”](mysqlbinlog.html)
+[Section 4.6.7, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "4.6.7 mysqlbinlog — Utility for Processing Binary Log Files")
 
 ### USE db_name
 
-[Seção 4.5.1.1, “Opções do cliente do MySQL”](mysql-command-options.html)
+[Section 4.5.1.1, “mysql Client Options”](mysql-command-options.html "4.5.1.1 mysql Client Options")
 
-### Teste de uso
+### USE test
 
-[Seção 4.6.7, “mysqlbinlog — Ferramenta para processamento de arquivos de log binário”](mysqlbinlog.html)
+[Section 4.6.7, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "4.6.7 mysqlbinlog — Utility for Processing Binary Log Files")
 
 ### W
 
-index topo](dynindex-statement.html#stmt-index-topo)]
+index top](dynindex-statement.html#stmt-index-top)]
 
-### QUANDO
+### WHERE
 
-[Seção 14.1.1, “Benefícios de usar tabelas InnoDB”](innodb-benefits.html)
+[Section 14.1.1, “Benefits of Using InnoDB Tables”](innodb-benefits.html "14.1.1 Benefits of Using InnoDB Tables")
 
-### ENQUANTO
+### WHILE
 
-[Seção 13.6.5, “Instruções de controle de fluxo”](flow-control-statements.html)
+[Section 13.6.5, “Flow Control Statements”](flow-control-statements.html "13.6.5 Flow Control Statements")
 
-[Seção 13.6.5.3, "Declaração ITERATE"](iterate.html)
+[Section 13.6.5.3, “ITERATE Statement”](iterate.html "13.6.5.3 ITERATE Statement")
 
-[Seção 13.6.5.4, "Declaração LEAVE"](leave.html)
+[Section 13.6.5.4, “LEAVE Statement”](leave.html "13.6.5.4 LEAVE Statement")
 
-[Seção 13.6.2, "Rotulagem de declarações"](statement-labels.html)
+[Section 13.6.2, “Statement Labels”](statement-labels.html "13.6.2 Statement Labels")
 
-[Seção 13.6.5.8, "Instrução while"](while.html)
+[Section 13.6.5.8, “WHILE Statement”](while.html "13.6.5.8 WHILE Statement")
 
 ### X
 
-index topo](dynindex-statement.html#stmt-index-topo)]
+index top](dynindex-statement.html#stmt-index-top)]
 
-### XA COMEÇAR
+### XA BEGIN
 
-[Seção 25.12.7, "Tabelas de Transações do Schema de Desempenho"](performance-schema-transaction-tables.html)
+[Section 25.12.7, “Performance Schema Transaction Tables”](performance-schema-transaction-tables.html "25.12.7 Performance Schema Transaction Tables")
 
-### XA COMPROMETIDO
+### XA COMMIT
 
-[Seção 2.11.4, “Desinstalação de Instalações Binárias e Baseadas em Pacotes no Unix/Linux”](downgrade-binary-package.html)
+[Section 2.11.4, “Downgrading Binary and Package-based Installations on Unix/Linux”](downgrade-binary-package.html "2.11.4 Downgrading Binary and Package-based Installations on Unix/Linux")
 
-[Seção 25.12.7, "Tabelas de Transações do Schema de Desempenho"](performance-schema-transaction-tables.html)
+[Section 25.12.7, “Performance Schema Transaction Tables”](performance-schema-transaction-tables.html "25.12.7 Performance Schema Transaction Tables")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 25.12.7.1, “A tabela events_transactions_current”](performance-schema-events-transactions-current-table.html)
+[Section 25.12.7.1, “The events_transactions_current Table”](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table")
 
-[Seção 2.10.4, “Atualização de Instalações Binárias ou Baseadas em Pacotes do MySQL no Unix/Linux”](upgrade-binary-package.html)
+[Section 2.10.4, “Upgrading MySQL Binary or Package-based Installations on Unix/Linux”](upgrade-binary-package.html "2.10.4 Upgrading MySQL Binary or Package-based Installations on Unix/Linux")
 
-[Seção 13.3.7.2, “Estados de Transação XA”](xa-states.html)
+[Section 13.3.7.2, “XA Transaction States”](xa-states.html "13.3.7.2 XA Transaction States")
 
-### XA FINAL
+### XA END
 
-[Seção 13.3.7.3, “Restrições às Transações XA”](xa-restrições.html)
+[Section 13.3.7.3, “Restrictions on XA Transactions”](xa-restrictions.html "13.3.7.3 Restrictions on XA Transactions")
 
-[Seção 25.12.7.1, “A tabela events_transactions_current”](performance-schema-events-transactions-current-table.html)
+[Section 25.12.7.1, “The events_transactions_current Table”](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table")
 
-[Seção 13.3.7.1, "Instruções SQL de Transação XA"](xa-statements.html)
+[Section 13.3.7.1, “XA Transaction SQL Statements”](xa-statements.html "13.3.7.1 XA Transaction SQL Statements")
 
-[Seção 13.3.7.2, “Estados de Transação XA”](xa-states.html)
+[Section 13.3.7.2, “XA Transaction States”](xa-states.html "13.3.7.2 XA Transaction States")
 
 ### XA PREPARE
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 25.12.7.1, “A tabela events_transactions_current”](performance-schema-events-transactions-current-table.html)
+[Section 25.12.7.1, “The events_transactions_current Table”](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table")
 
-[Seção 13.3.7.2, “Estados de Transação XA”](xa-states.html)
+[Section 13.3.7.2, “XA Transaction States”](xa-states.html "13.3.7.2 XA Transaction States")
 
 ### XA RECOVER
 
-[Seção 2.11.4, “Desinstalação de Instalações Binárias e Baseadas em Pacotes no Unix/Linux”](downgrade-binary-package.html)
+[Section 2.11.4, “Downgrading Binary and Package-based Installations on Unix/Linux”](downgrade-binary-package.html "2.11.4 Downgrading Binary and Package-based Installations on Unix/Linux")
 
-[Seção 13.3.7.3, “Restrições às Transações XA”](xa-restrições.html)
+[Section 13.3.7.3, “Restrictions on XA Transactions”](xa-restrictions.html "13.3.7.3 Restrictions on XA Transactions")
 
-[Seção 25.12.7.1, “A tabela events_transactions_current”](performance-schema-events-transactions-current-table.html)
+[Section 25.12.7.1, “The events_transactions_current Table”](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table")
 
-[Seção 2.10.4, “Atualização de Instalações Binárias ou Baseadas em Pacotes do MySQL no Unix/Linux”](upgrade-binary-package.html)
+[Section 2.10.4, “Upgrading MySQL Binary or Package-based Installations on Unix/Linux”](upgrade-binary-package.html "2.10.4 Upgrading MySQL Binary or Package-based Installations on Unix/Linux")
 
-[Seção 13.3.7.1, "Instruções SQL de Transação XA"](xa-statements.html)
+[Section 13.3.7.1, “XA Transaction SQL Statements”](xa-statements.html "13.3.7.1 XA Transaction SQL Statements")
 
-[Seção 13.3.7.2, “Estados de Transação XA”](xa-states.html)
+[Section 13.3.7.2, “XA Transaction States”](xa-states.html "13.3.7.2 XA Transaction States")
 
 ### XA ROLLBACK
 
-[Seção 2.11.4, “Desinstalação de Instalações Binárias e Baseadas em Pacotes no Unix/Linux”](downgrade-binary-package.html)
+[Section 2.11.4, “Downgrading Binary and Package-based Installations on Unix/Linux”](downgrade-binary-package.html "2.11.4 Downgrading Binary and Package-based Installations on Unix/Linux")
 
-[Seção 25.12.7, "Tabelas de Transações do Schema de Desempenho"](performance-schema-transaction-tables.html)
+[Section 25.12.7, “Performance Schema Transaction Tables”](performance-schema-transaction-tables.html "25.12.7 Performance Schema Transaction Tables")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 25.12.7.1, “A tabela events_transactions_current”](performance-schema-events-transactions-current-table.html)
+[Section 25.12.7.1, “The events_transactions_current Table”](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table")
 
-[Seção 2.10.4, “Atualização de Instalações Binárias ou Baseadas em Pacotes do MySQL no Unix/Linux”](upgrade-binary-package.html)
+[Section 2.10.4, “Upgrading MySQL Binary or Package-based Installations on Unix/Linux”](upgrade-binary-package.html "2.10.4 Upgrading MySQL Binary or Package-based Installations on Unix/Linux")
 
-[Seção 13.3.7.2, “Estados de Transação XA”](xa-states.html)
+[Section 13.3.7.2, “XA Transaction States”](xa-states.html "13.3.7.2 XA Transaction States")
 
-### XA COMEÇAR
+### XA START
 
-[Seção 25.12.7, "Tabelas de Transações do Schema de Desempenho"](performance-schema-transaction-tables.html)
+[Section 25.12.7, “Performance Schema Transaction Tables”](performance-schema-transaction-tables.html "25.12.7 Performance Schema Transaction Tables")
 
-[Seção 13.3.7.3, “Restrições às Transações XA”](xa-restrições.html)
+[Section 13.3.7.3, “Restrictions on XA Transactions”](xa-restrictions.html "13.3.7.3 Restrictions on XA Transactions")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 25.12.7.1, “A tabela events_transactions_current”](performance-schema-events-transactions-current-table.html)
+[Section 25.12.7.1, “The events_transactions_current Table”](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table")
 
-[Seção 13.3.7.1, "Instruções SQL de Transação XA"](xa-statements.html)
+[Section 13.3.7.1, “XA Transaction SQL Statements”](xa-statements.html "13.3.7.1 XA Transaction SQL Statements")
 
-[Seção 13.3.7.2, “Estados de Transação XA”](xa-states.html)
+[Section 13.3.7.2, “XA Transaction States”](xa-states.html "13.3.7.2 XA Transaction States")
 
 ### XA START xid
 
-[Seção 13.3.7.1, "Instruções SQL de Transação XA"](xa-statements.html)
+[Section 13.3.7.1, “XA Transaction SQL Statements”](xa-statements.html "13.3.7.1 XA Transaction SQL Statements")

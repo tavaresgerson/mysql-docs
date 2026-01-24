@@ -1,5 +1,5 @@
-#### 16.4.1.9 Replicação de declarações DROP ... IF EXISTS
+#### 16.4.1.9 Replication of DROP ... IF EXISTS Statements
 
-As instruções `DROP DATABASE IF EXISTS`, `DROP TABLE IF EXISTS` e `DROP VIEW IF EXISTS` são sempre replicadas, mesmo que o banco de dados, a tabela ou a visualização a serem excluídos não existam na fonte. Isso garante que o objeto a ser excluído não exista mais na fonte ou na replica, uma vez que a replica tenha alcançado a fonte.
+The [`DROP DATABASE IF EXISTS`](drop-database.html "13.1.22 DROP DATABASE Statement"), [`DROP TABLE IF EXISTS`](drop-table.html "13.1.29 DROP TABLE Statement"), and [`DROP VIEW IF EXISTS`](drop-view.html "13.1.32 DROP VIEW Statement") statements are always replicated, even if the database, table, or view to be dropped does not exist on the source. This is to ensure that the object to be dropped no longer exists on either the source or the replica, once the replica has caught up with the source.
 
-As instruções `DROP ... IF EXISTS` para programas armazenados (procedimentos e funções armazenados, gatilhos e eventos) também são replicadas, mesmo que o programa armazenado a ser excluído não exista na origem.
+`DROP ... IF EXISTS` statements for stored programs (stored procedures and functions, triggers, and events) are also replicated, even if the stored program to be dropped does not exist on the source.

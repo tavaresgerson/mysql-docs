@@ -1,20 +1,20 @@
-#### 13.6.7.9 Restrições para o manuseio de condições
+#### 13.6.7.9 Restrictions on Condition Handling
 
-``SIGNAL`, ``RESIGNAL` e `[`GET DIAGNOSTICS\`]\(get-diagnostics.html) não são permitidos como instruções preparadas. Por exemplo, esta instrução é inválida:
+[`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement"), [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement"), and [`GET DIAGNOSTICS`](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement") are not permissible as prepared statements. For example, this statement is invalid:
 
 ```sql
 PREPARE stmt1 FROM 'SIGNAL SQLSTATE "02000"';
 ```
 
-Os valores `SQLSTATE` na classe `'04'` não são tratados de forma especial. Eles são tratados da mesma forma que outras exceções.
+`SQLSTATE` values in class `'04'` are not treated specially. They are handled the same as other exceptions.
 
-No SQL padrão, a primeira condição está relacionada ao valor `SQLSTATE` retornado para a instrução SQL anterior. No MySQL, isso não é garantido, então para obter o erro principal, você não pode fazer isso:
+In standard SQL, the first condition relates to the `SQLSTATE` value returned for the previous SQL statement. In MySQL, this is not guaranteed, so to get the main error, you cannot do this:
 
 ```sql
 GET DIAGNOSTICS CONDITION 1 @errno = MYSQL_ERRNO;
 ```
 
-Em vez disso, faça isso:
+Instead, do this:
 
 ```sql
 GET DIAGNOSTICS @cno = NUMBER;

@@ -1,36 +1,36 @@
-### 24.4.17 A tabela INFORMATION_SCHEMA INNODB_SYS_COLUMNS
+### 24.4.17 The INFORMATION_SCHEMA INNODB_SYS_COLUMNS Table
 
-A tabela `[INNODB_SYS_COLUMNS]` (information-schema-innodb-sys-columns-table.html) fornece metadados sobre as colunas das tabelas `InnoDB`, equivalentes às informações da tabela `SYS_COLUMNS` no dicionário de dados `InnoDB`.
+The [`INNODB_SYS_COLUMNS`](information-schema-innodb-sys-columns-table.html "24.4.17 The INFORMATION_SCHEMA INNODB_SYS_COLUMNS Table") table provides metadata about `InnoDB` table columns, equivalent to the information from the `SYS_COLUMNS` table in the `InnoDB` data dictionary.
 
-Para informações de uso relacionadas e exemplos, consulte Seção 14.16.3, “Tabelas do Sistema InnoDB INFORMATION_SCHEMA”.
+For related usage information and examples, see [Section 14.16.3, “InnoDB INFORMATION_SCHEMA System Tables”](innodb-information-schema-system-tables.html "14.16.3 InnoDB INFORMATION_SCHEMA System Tables").
 
-A tabela [`INNODB_SYS_COLUMNS`](https://pt.wikipedia.org/wiki/Tabela_information-schema-innodb-sys-columns) possui as seguintes colunas:
+The [`INNODB_SYS_COLUMNS`](information-schema-innodb-sys-columns-table.html "24.4.17 The INFORMATION_SCHEMA INNODB_SYS_COLUMNS Table") table has these columns:
 
-- `TABLE_ID`
+* `TABLE_ID`
 
-  Um identificador que representa a tabela associada à coluna; o mesmo valor que `INNODB_SYS_TABLES.TABLE_ID`.
+  An identifier representing the table associated with the column; the same value as `INNODB_SYS_TABLES.TABLE_ID`.
 
-- `NOME`
+* `NAME`
 
-  O nome da coluna. Esses nomes podem ser maiúsculos ou minúsculos, dependendo da configuração de `lower_case_table_names`. Não há nomes especiais reservados pelo sistema para colunas.
+  The name of the column. These names can be uppercase or lowercase depending on the [`lower_case_table_names`](server-system-variables.html#sysvar_lower_case_table_names) setting. There are no special system-reserved names for columns.
 
-- `POS`
+* `POS`
 
-  A posição ordinal da coluna na tabela, começando de 0 e incrementando sequencialmente. Quando uma coluna é removida, as colunas restantes são reordenadas para que a sequência não tenha lacunas. O valor `POS` para uma coluna gerada virtualmente codifica o número de sequência da coluna e a posição ordinal da coluna. Para mais informações, consulte a descrição da coluna `POS` em Seção 24.4.26, “A Tabela INFORMATION_SCHEMA INNODB_SYS_VIRTUAL”.
+  The ordinal position of the column within the table, starting from 0 and incrementing sequentially. When a column is dropped, the remaining columns are reordered so that the sequence has no gaps. The `POS` value for a virtual generated column encodes the column sequence number and ordinal position of the column. For more information, see the `POS` column description in [Section 24.4.26, “The INFORMATION_SCHEMA INNODB_SYS_VIRTUAL Table”](information-schema-innodb-sys-virtual-table.html "24.4.26 The INFORMATION_SCHEMA INNODB_SYS_VIRTUAL Table").
 
-- `MTYPE`
+* `MTYPE`
 
-  Representa “tipo principal”. Um identificador numérico para o tipo de coluna. 1 = `VARCHAR`, 2 = `CHAR`, 3 = `FIXBINARY`, 4 = `BINARY`, 5 = `BLOB`, 6 = `INT`, 7 = `SYS_CHILD`, 8 = `SYS`, 9 = `FLOAT`, 10 = `DOUBLE`, 11 = `DECIMAL`, 12 = `VARMYSQL`, 13 = `MYSQL`, 14 = `GEOMETRY`.
+  Stands for “main type”. A numeric identifier for the column type. 1 = `VARCHAR`, 2 = `CHAR`, 3 = `FIXBINARY`, 4 = `BINARY`, 5 = `BLOB`, 6 = `INT`, 7 = `SYS_CHILD`, 8 = `SYS`, 9 = `FLOAT`, 10 = `DOUBLE`, 11 = `DECIMAL`, 12 = `VARMYSQL`, 13 = `MYSQL`, 14 = `GEOMETRY`.
 
-- `PRTYPE`
+* `PRTYPE`
 
-  O tipo "preciso" do `InnoDB`, um valor binário com bits que representam o tipo de dados MySQL, o código do conjunto de caracteres e a nulidade.
+  The `InnoDB` “precise type”, a binary value with bits representing MySQL data type, character set code, and nullability.
 
-- `LEN`
+* `LEN`
 
-  O comprimento da coluna, por exemplo, 4 para `INT` e 8 para `BIGINT`. Para colunas de caracteres em conjuntos de caracteres multibyte, esse valor de comprimento é o comprimento máximo em bytes necessário para representar uma definição como `VARCHAR(N)`; ou seja, pode ser `2*N`, `3*N`, e assim por diante, dependendo da codificação de caracteres.
+  The column length, for example 4 for `INT` and 8 for `BIGINT`. For character columns in multibyte character sets, this length value is the maximum length in bytes needed to represent a definition such as `VARCHAR(N)`; that is, it might be `2*N`, `3*N`, and so on depending on the character encoding.
 
-#### Exemplo
+#### Example
 
 ```sql
 mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_SYS_COLUMNS where TABLE_ID = 71\G
@@ -57,8 +57,8 @@ TABLE_ID: 71
      LEN: 10
 ```
 
-#### Notas
+#### Notes
 
-- Você deve ter o privilégio `PROCESSO` para consultar esta tabela.
+* You must have the [`PROCESS`](privileges-provided.html#priv_process) privilege to query this table.
 
-- Use a tabela `INFORMATION_SCHEMA` `COLUMNS` ou a instrução `SHOW COLUMNS` para visualizar informações adicionais sobre as colunas desta tabela, incluindo tipos de dados e valores padrão.
+* Use the `INFORMATION_SCHEMA` [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") table or the [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") statement to view additional information about the columns of this table, including data types and default values.

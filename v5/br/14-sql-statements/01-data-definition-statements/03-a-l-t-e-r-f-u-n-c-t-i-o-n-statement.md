@@ -1,4 +1,4 @@
-### 13.1.3 Declaração ALTER FUNCTION
+### 13.1.3 ALTER FUNCTION Statement
 
 ```sql
 ALTER FUNCTION func_name [characteristic ...]
@@ -11,6 +11,6 @@ characteristic: {
 }
 ```
 
-Essa declaração pode ser usada para alterar as características de uma função armazenada. Mais de uma alteração pode ser especificada em uma declaração de `ALTER FUNCTION`. No entanto, você não pode alterar os parâmetros ou o corpo de uma função armazenada usando essa declaração; para fazer essas alterações, você deve descartar e recriar a função usando `DROP FUNCTION` e `CREATE FUNCTION`.
+This statement can be used to change the characteristics of a stored function. More than one change may be specified in an [`ALTER FUNCTION`](alter-function.html "13.1.3 ALTER FUNCTION Statement") statement. However, you cannot change the parameters or body of a stored function using this statement; to make such changes, you must drop and re-create the function using [`DROP FUNCTION`](drop-function.html "13.1.24 DROP FUNCTION Statement") and [`CREATE FUNCTION`](create-function.html "13.1.13 CREATE FUNCTION Statement").
 
-Você deve ter o privilégio `ALTER ROUTINE` para a função. (Esse privilégio é concedido automaticamente ao criador da função). Se o registro binário estiver habilitado, a instrução `ALTER FUNCTION` também pode exigir o privilégio `SUPER`, conforme descrito na Seção 23.7, “Registro Binário de Programas Armazenados”.
+You must have the [`ALTER ROUTINE`](privileges-provided.html#priv_alter-routine) privilege for the function. (That privilege is granted automatically to the function creator.) If binary logging is enabled, the [`ALTER FUNCTION`](alter-function.html "13.1.3 ALTER FUNCTION Statement") statement might also require the [`SUPER`](privileges-provided.html#priv_super) privilege, as described in [Section 23.7, “Stored Program Binary Logging”](stored-programs-logging.html "23.7 Stored Program Binary Logging").

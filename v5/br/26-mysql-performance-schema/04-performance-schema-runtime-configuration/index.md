@@ -1,28 +1,28 @@
-## 25.4 Configuração de execução do esquema de desempenho
+## 25.4 Performance Schema Runtime Configuration
 
-25.4.1 Cronometragem de eventos do esquema de desempenho
+[25.4.1 Performance Schema Event Timing](performance-schema-timing.html)
 
-25.4.2 Filtragem de Eventos do Schema de Desempenho
+[25.4.2 Performance Schema Event Filtering](performance-schema-filtering.html)
 
-25.4.3 Pré-filtragem de eventos
+[25.4.3 Event Pre-Filtering](performance-schema-pre-filtering.html)
 
-25.4.4 Pré-filtragem por Instrumento
+[25.4.4 Pre-Filtering by Instrument](performance-schema-instrument-filtering.html)
 
-25.4.5 Pré-filtragem por Objeto
+[25.4.5 Pre-Filtering by Object](performance-schema-object-filtering.html)
 
-25.4.6 Pré-filtragem por Fio
+[25.4.6 Pre-Filtering by Thread](performance-schema-thread-filtering.html)
 
-25.4.7 Pré-filtragem pelo Consumidor
+[25.4.7 Pre-Filtering by Consumer](performance-schema-consumer-filtering.html)
 
-25.4.8 Exemplo de configurações de consumidores
+[25.4.8 Example Consumer Configurations](performance-schema-consumer-configurations.html)
 
-25.4.9 Nomeação de Instrumentos ou Consumidores para Operações de Filtragem
+[25.4.9 Naming Instruments or Consumers for Filtering Operations](performance-schema-filtering-names.html)
 
-25.4.10 Determinando o que é Instrumentado
+[25.4.10 Determining What Is Instrumented](performance-schema-instrumentation-checking.html)
 
-Os recursos do esquema de desempenho específico podem ser ativados em tempo de execução para controlar quais tipos de coleta de eventos ocorrem.
+Specific Performance Schema features can be enabled at runtime to control which types of event collection occur.
 
-As tabelas de configuração do esquema de desempenho contêm informações sobre a configuração de monitoramento:
+Performance Schema setup tables contain information about monitoring configuration:
 
 ```sql
 mysql> SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES
@@ -39,9 +39,9 @@ mysql> SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES
 +-------------------+
 ```
 
-Você pode examinar o conteúdo dessas tabelas para obter informações sobre as características de monitoramento do Schema de Desempenho. Se você tiver o privilégio `UPDATE`, você pode alterar a operação do Schema de Desempenho modificando as tabelas de configuração para afetar como o monitoramento ocorre. Para obter detalhes adicionais sobre essas tabelas, consulte Seção 25.12.2, “Tabelas de Configuração do Schema de Desempenho”.
+You can examine the contents of these tables to obtain information about Performance Schema monitoring characteristics. If you have the [`UPDATE`](privileges-provided.html#priv_update) privilege, you can change Performance Schema operation by modifying setup tables to affect how monitoring occurs. For additional details about these tables, see [Section 25.12.2, “Performance Schema Setup Tables”](performance-schema-setup-tables.html "25.12.2 Performance Schema Setup Tables").
 
-Para ver quais temporizadores de evento estão selecionados, consulte as tabelas `setup_timers`:
+To see which event timers are selected, query the [`setup_timers`](performance-schema-setup-timers-table.html "25.12.2.5 The setup_timers Table") tables:
 
 ```sql
 mysql> SELECT * FROM performance_schema.setup_timers;
@@ -56,9 +56,9 @@ mysql> SELECT * FROM performance_schema.setup_timers;
 +-------------+-------------+
 ```
 
-O valor `NOME` indica o tipo de instrumento ao qual o temporizador se aplica, e `NOME_TIMER` indica qual temporizador se aplica a esses instrumentos. O temporizador se aplica a instrumentos cujo nome começa com um elemento que corresponda ao valor `NOME`.
+The `NAME` value indicates the type of instrument to which the timer applies, and `TIMER_NAME` indicates which timer applies to those instruments. The timer applies to instruments where their name begins with an element matching the `NAME` value.
 
-Para alterar o temporizador, atualize o valor `NAME`. Por exemplo, para usar o temporizador `NANOSECOND` para o temporizador `wait`:
+To change the timer, update the `NAME` value. For example, to use the `NANOSECOND` timer for the `wait` timer:
 
 ```sql
 mysql> UPDATE performance_schema.setup_timers
@@ -76,8 +76,8 @@ mysql> SELECT * FROM performance_schema.setup_timers;
 +-------------+-------------+
 ```
 
-Para discussão sobre temporizadores, consulte Seção 25.4.1, “Cronometragem de Eventos do Schema de Desempenho”.
+For discussion of timers, see [Section 25.4.1, “Performance Schema Event Timing”](performance-schema-timing.html "25.4.1 Performance Schema Event Timing").
 
-As tabelas `setup_instruments` e `setup_consumers` listam os instrumentos para os quais eventos podem ser coletados e os tipos de consumidores para os quais as informações dos eventos são realmente coletadas, respectivamente. Outras tabelas de configuração permitem a modificação adicional da configuração de monitoramento. Seção 25.4.2, “Filtragem de Eventos do Schema de Desempenho”, discute como você pode modificar essas tabelas para afetar a coleta de eventos.
+The [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") and [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") tables list the instruments for which events can be collected and the types of consumers for which event information actually is collected, respectively. Other setup tables enable further modification of the monitoring configuration. [Section 25.4.2, “Performance Schema Event Filtering”](performance-schema-filtering.html "25.4.2 Performance Schema Event Filtering"), discusses how you can modify these tables to affect event collection.
 
-Se houver alterações na configuração do Schema de Desempenho que precisem ser feitas em tempo de execução usando instruções SQL e você deseja que essas alterações sejam aplicadas sempre que o servidor for iniciado, coloque as instruções em um arquivo e inicie o servidor com a variável de sistema `init_file` definida para nomear o arquivo. Essa estratégia também pode ser útil se você tiver várias configurações de monitoramento, cada uma adaptada para produzir um tipo diferente de monitoramento, como monitoramento casual da saúde do servidor, investigação de incidentes, solução de problemas de comportamento de aplicativos, e assim por diante. Coloque as instruções para cada configuração de monitoramento em seu próprio arquivo e especifique o arquivo apropriado como o valor da variável de sistema `init_file` ao iniciar o servidor.
+If there are Performance Schema configuration changes that must be made at runtime using SQL statements and you would like these changes to take effect each time the server starts, put the statements in a file and start the server with the [`init_file`](server-system-variables.html#sysvar_init_file) system variable set to name the file. This strategy can also be useful if you have multiple monitoring configurations, each tailored to produce a different kind of monitoring, such as casual server health monitoring, incident investigation, application behavior troubleshooting, and so forth. Put the statements for each monitoring configuration into their own file and specify the appropriate file as the [`init_file`](server-system-variables.html#sysvar_init_file) value when you start the server.

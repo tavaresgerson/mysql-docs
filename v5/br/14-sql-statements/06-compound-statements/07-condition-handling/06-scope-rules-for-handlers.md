@@ -1,8 +1,8 @@
-#### 13.6.7.6 Regras de escopo para manipuladores
+#### 13.6.7.6 Scope Rules for Handlers
 
-Um programa armazenado pode incluir manipuladores a serem invocados quando certas condições ocorrem dentro do programa. A aplicabilidade de cada manipulador depende de sua localização dentro da definição do programa e das condições ou condições que ele trata:
+A stored program may include handlers to be invoked when certain conditions occur within the program. The applicability of each handler depends on its location within the program definition and on the condition or conditions that it handles:
 
-- Um manipulador declarado em um bloco ``BEGIN ... END` está em escopo apenas para as instruções SQL que seguem as declarações do manipulador no bloco. Se o próprio manipulador levantar uma condição, ele não pode lidar com essa condição, nem qualquer outro manipulador declarado no bloco. No exemplo a seguir, os manipuladores `H1`e`H2` estão em escopo para condições levantadas pelas instruções *`stmt1`* e *`stmt2`*. Mas nem `H1`nem`H2`estão em escopo para condições levantadas no corpo de`H1`ou`H2\`.
+* A handler declared in a [`BEGIN ... END`](begin-end.html "13.6.1 BEGIN ... END Compound Statement") block is in scope only for the SQL statements following the handler declarations in the block. If the handler itself raises a condition, it cannot handle that condition, nor can any other handlers declared in the block. In the following example, handlers `H1` and `H2` are in scope for conditions raised by statements *`stmt1`* and *`stmt2`*. But neither `H1` nor `H2` are in scope for conditions raised in the body of `H1` or `H2`.
 
   ```sql
   BEGIN -- outer block
@@ -13,7 +13,7 @@ Um programa armazenado pode incluir manipuladores a serem invocados quando certa
   END;
   ```
 
-- Um manipulador está em escopo apenas para o bloco em que é declarado e não pode ser ativado para condições que ocorrem fora desse bloco. No exemplo a seguir, o manipulador `H1` está em escopo para *`stmt1`* no bloco interno, mas não para *`stmt2`* no bloco externo:
+* A handler is in scope only for the block in which it is declared, and cannot be activated for conditions occurring outside that block. In the following example, handler `H1` is in scope for *`stmt1`* in the inner block, but not for *`stmt2`* in the outer block:
 
   ```sql
   BEGIN -- outer block
@@ -25,33 +25,33 @@ Um programa armazenado pode incluir manipuladores a serem invocados quando certa
   END;
   ```
 
-- Um manipulador pode ser específico ou geral. Um manipulador específico é para um código de erro do MySQL, valor `SQLSTATE` ou nome de condição. Um manipulador geral é para uma condição na classe `SQLWARNING`, `SQLEXCEPTION` ou `NOT FOUND`. A especificidade da condição está relacionada à precedência da condição, conforme descrito mais adiante.
+* A handler can be specific or general. A specific handler is for a MySQL error code, `SQLSTATE` value, or condition name. A general handler is for a condition in the `SQLWARNING`, `SQLEXCEPTION`, or `NOT FOUND` class. Condition specificity is related to condition precedence, as described later.
 
-Vários manipuladores podem ser declarados em diferentes escopos e com especificidades diferentes. Por exemplo, pode haver um manipulador específico para um código de erro MySQL em um bloco externo e um manipulador geral de `SQLWARNING` em um bloco interno. Ou pode haver manipuladores para um código de erro MySQL específico e a classe `SQLWARNING` geral no mesmo bloco.
+Multiple handlers can be declared in different scopes and with different specificities. For example, there might be a specific MySQL error code handler in an outer block, and a general `SQLWARNING` handler in an inner block. Or there might be handlers for a specific MySQL error code and the general `SQLWARNING` class in the same block.
 
-Se um manipulador é ativado, isso depende não apenas do seu escopo e do valor da condição, mas também dos manipuladores presentes. Quando uma condição ocorre em um programa armazenado, o servidor busca por manipuladores aplicáveis no escopo atual (bloco atual `BEGIN ... END`). Se não houver manipuladores aplicáveis, a busca continua para fora, com os manipuladores em cada escopo contendo sucessivamente (bloco). Quando o servidor encontrar um ou mais manipuladores aplicáveis em um escopo dado, ele escolhe entre eles com base na precedência da condição:
+Whether a handler is activated depends not only on its own scope and condition value, but on what other handlers are present. When a condition occurs in a stored program, the server searches for applicable handlers in the current scope (current [`BEGIN ... END`](begin-end.html "13.6.1 BEGIN ... END Compound Statement") block). If there are no applicable handlers, the search continues outward with the handlers in each successive containing scope (block). When the server finds one or more applicable handlers at a given scope, it chooses among them based on condition precedence:
 
-- Um manipulador de código de erro do MySQL tem precedência sobre um manipulador de valor `SQLSTATE`.
+* A MySQL error code handler takes precedence over an `SQLSTATE` value handler.
 
-- Um manipulador de `SQLSTATE` tem precedência sobre os manipuladores gerais `SQLWARNING`, `SQLEXCEPTION` ou `NOT FOUND`.
+* An `SQLSTATE` value handler takes precedence over general `SQLWARNING`, `SQLEXCEPTION`, or `NOT FOUND` handlers.
 
-- Um manipulador `SQLEXCEPTION` tem precedência sobre um manipulador `SQLWARNING`.
+* An `SQLEXCEPTION` handler takes precedence over an `SQLWARNING` handler.
 
-- É possível ter vários manipuladores aplicáveis com a mesma precedência. Por exemplo, uma instrução pode gerar múltiplos avisos com diferentes códigos de erro, para cada um dos quais existe um manipulador específico para erros. Neste caso, a escolha de qual manipulador o servidor ativa é não determinístico e pode mudar dependendo das circunstâncias em que a condição ocorre.
+* It is possible to have several applicable handlers with the same precedence. For example, a statement could generate multiple warnings with different error codes, for each of which an error-specific handler exists. In this case, the choice of which handler the server activates is nondeterministic, and may change depending on the circumstances under which the condition occurs.
 
-Uma implicação das regras de seleção de manipuladores é que, se houver vários manipuladores aplicáveis em escopos diferentes, os manipuladores com o escopo mais local têm precedência sobre os manipuladores em escopos externos, mesmo sobre aqueles para condições mais específicas.
+One implication of the handler selection rules is that if multiple applicable handlers occur in different scopes, handlers with the most local scope take precedence over handlers in outer scopes, even over those for more specific conditions.
 
-Se não houver um manipulador apropriado quando uma condição ocorrer, a ação tomada depende da classe da condição:
+If there is no appropriate handler when a condition occurs, the action taken depends on the class of the condition:
 
-- Para as condições `SQLEXCEPTION`, o programa armazenado termina na instrução que gerou a condição, como se houvesse um manipulador `EXIT`. Se o programa foi chamado por outro programa armazenado, o programa que o chamou lida com a condição usando as regras de seleção de manipulador aplicadas aos seus próprios manipuladores.
+* For `SQLEXCEPTION` conditions, the stored program terminates at the statement that raised the condition, as if there were an `EXIT` handler. If the program was called by another stored program, the calling program handles the condition using the handler selection rules applied to its own handlers.
 
-- Para as condições `SQLWARNING`, o programa continua executando, como se houvesse um manipulador `CONTINUE`.
+* For `SQLWARNING` conditions, the program continues executing, as if there were a `CONTINUE` handler.
 
-- Para condições de `NOT FOUND`, se a condição foi levantada normalmente, a ação é `CONTINUE`. Se foi levantada por `SIGNAL` ou `RESIGNAL`, a ação é `EXIT`.
+* For `NOT FOUND` conditions, if the condition was raised normally, the action is `CONTINUE`. If it was raised by [`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement") or [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement"), the action is `EXIT`.
 
-Os exemplos a seguir demonstram como o MySQL aplica as regras de seleção de manipulador.
+The following examples demonstrate how MySQL applies the handler selection rules.
 
-Este procedimento contém dois manipuladores, um para o valor específico `SQLSTATE` (`'42S02'`) que ocorre em tentativas de excluir uma tabela inexistente, e outro para a classe geral `SQLEXCEPTION`:
+This procedure contains two handlers, one for the specific `SQLSTATE` value (`'42S02'`) that occurs for attempts to drop a nonexistent table, and one for the general `SQLEXCEPTION` class:
 
 ```sql
 CREATE PROCEDURE p1()
@@ -65,7 +65,7 @@ BEGIN
 END;
 ```
 
-Ambos os manipuladores são declarados no mesmo bloco e têm o mesmo escopo. No entanto, os manipuladores `SQLSTATE` têm precedência sobre os manipuladores `SQLEXCEPTION`, portanto, se a tabela `t` não existir, a instrução `DROP TABLE` gera uma condição que ativa o manipulador `SQLSTATE`:
+Both handlers are declared in the same block and have the same scope. However, `SQLSTATE` handlers take precedence over `SQLEXCEPTION` handlers, so if the table `t` is nonexistent, the [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement") statement raises a condition that activates the `SQLSTATE` handler:
 
 ```sql
 mysql> CALL p1();
@@ -76,7 +76,7 @@ mysql> CALL p1();
 +--------------------------------+
 ```
 
-Este procedimento contém os mesmos dois manipuladores. Mas desta vez, a instrução `DROP TABLE` e o manipulador `SQLEXCEPTION` estão em um bloco interno em relação ao manipulador `SQLSTATE`:
+This procedure contains the same two handlers. But this time, the [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement") statement and `SQLEXCEPTION` handler are in an inner block relative to the `SQLSTATE` handler:
 
 ```sql
 CREATE PROCEDURE p2()
@@ -92,7 +92,7 @@ BEGIN -- outer block
 END;
 ```
 
-Nesse caso, o manipulador que está mais próximo da condição em questão tem precedência. O manipulador `SQLEXCEPTION` é ativado, mesmo que seja mais geral do que o manipulador `SQLSTATE`:
+In this case, the handler that is more local to where the condition occurs takes precedence. The `SQLEXCEPTION` handler activates, even though it is more general than the `SQLSTATE` handler:
 
 ```sql
 mysql> CALL p2();
@@ -103,7 +103,7 @@ mysql> CALL p2();
 +------------------------------------+
 ```
 
-Neste procedimento, um dos manipuladores é declarado dentro de um bloco que está dentro do escopo da instrução `DROP TABLE`:
+In this procedure, one of the handlers is declared in a block inner to the scope of the [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement") statement:
 
 ```sql
 CREATE PROCEDURE p3()
@@ -119,7 +119,7 @@ BEGIN -- outer block
 END;
 ```
 
-Apenas o manipulador `SQLEXCEPTION` é aplicado porque o outro não está no escopo da condição levantada pelo `DROP TABLE`:
+Only the `SQLEXCEPTION` handler applies because the other one is not in scope for the condition raised by the [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement"):
 
 ```sql
 mysql> CALL p3();
@@ -130,7 +130,7 @@ mysql> CALL p3();
 +------------------------------------+
 ```
 
-Neste procedimento, ambos os manipuladores são declarados dentro de um bloco que está dentro do escopo da instrução `DROP TABLE`:
+In this procedure, both handlers are declared in a block inner to the scope of the [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement") statement:
 
 ```sql
 CREATE PROCEDURE p4()
@@ -146,7 +146,7 @@ BEGIN -- outer block
 END;
 ```
 
-Nenhum dos manipuladores é aplicado porque eles não estão abrangidos pelo `DROP TABLE`. A condição levantada pela declaração não é tratada e termina o procedimento com um erro:
+Neither handler applies because they are not in scope for the [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement"). The condition raised by the statement goes unhandled and terminates the procedure with an error:
 
 ```sql
 mysql> CALL p4();

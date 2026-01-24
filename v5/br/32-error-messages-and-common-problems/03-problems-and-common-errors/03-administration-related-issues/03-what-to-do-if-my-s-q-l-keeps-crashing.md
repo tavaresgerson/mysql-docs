@@ -1,54 +1,53 @@
-#### B.3.3.3 O que fazer se o MySQL continuar a falhar
+#### B.3.3.3 What to Do If MySQL Keeps Crashing
 
-Cada versão do MySQL é testada em muitas plataformas antes de ser lançada. Isso não significa que não haja bugs no MySQL, mas se houver, eles devem ser muito poucos e difíceis de encontrar. Se você tiver um problema, sempre ajuda se você tentar descobrir exatamente o que faz seu sistema falhar, porque você tem uma chance muito maior de resolver o problema rapidamente.
+Each MySQL version is tested on many platforms before it is released. This does not mean that there are no bugs in MySQL, but if there are bugs, they should be very few and can be hard to find. If you have a problem, it always helps if you try to find out exactly what crashes your system, because you have a much better chance of getting the problem fixed quickly.
 
-Primeiro, você deve tentar descobrir se o problema é que o servidor [**mysqld**](mysqld.html) está morrendo ou se o seu problema tem a ver com o seu cliente. Você pode verificar quanto tempo o seu servidor [**mysqld**](mysqld.html) está ativo executando [**mysqladmin versão**](mysqladmin.html). Se o [**mysqld**](mysqld.html) morreu e reiniciou, você pode encontrar a razão olhando no log de erro do servidor. Veja [Seção 5.4.2, “O Log de Erro”](error-log.html).
+First, you should try to find out whether the problem is that the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") server dies or whether your problem has to do with your client. You can check how long your [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") server has been up by executing [**mysqladmin version**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program"). If [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") has died and restarted, you may find the reason by looking in the server's error log. See [Section 5.4.2, “The Error Log”](error-log.html "5.4.2 The Error Log").
 
-Em alguns sistemas, você pode encontrar no log de erro uma traça de pilha de onde o [**mysqld**](mysqld.html) morreu, que você pode resolver com o programa `resolve_stack_dump`. Veja [Seção 5.8, “Depuração do MySQL”](debugging-mysql.html). Observe que os valores das variáveis escritos no log de erro nem sempre serão 100% corretos.
+On some systems, you can find in the error log a stack trace of where [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") died that you can resolve with the `resolve_stack_dump` program. See [Section 5.8, “Debugging MySQL”](debugging-mysql.html "5.8 Debugging MySQL"). Note that the variable values written in the error log may not always be 100% correct.
 
-Muitas saídas inesperadas do servidor são causadas por arquivos de dados ou arquivos de índice corrompidos. O MySQL atualiza os arquivos no disco com a chamada de sistema `write()` após cada instrução SQL e antes que o cliente seja notificado sobre o resultado. (Isso não é verdade se você estiver executando com a variável de sistema [`delay_key_write`](server-system-variables.html#sysvar_delay_key_write) habilitada, caso em que os arquivos de dados são escritos, mas não os arquivos de índice.) Isso significa que o conteúdo dos arquivos de dados está seguro mesmo se o [**mysqld**](mysqld.html) falhar, porque o sistema operacional garante que os dados não descarregados sejam escritos no disco. Você pode forçar o MySQL a descarregar tudo no disco após cada instrução SQL iniciando o [**mysqld**](mysqld.html) com a opção [`--flush`](server-options.html#option_mysqld_flush).
+Many unexpected server exits are caused by corrupted data files or index files. MySQL updates the files on disk with the `write()` system call after every SQL statement and before the client is notified about the result. (This is not true if you are running with the [`delay_key_write`](server-system-variables.html#sysvar_delay_key_write) system variable enabled, in which case data files are written but not index files.) This means that data file contents are safe even if [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") crashes, because the operating system ensures that the unflushed data is written to disk. You can force MySQL to flush everything to disk after every SQL statement by starting [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") with the [`--flush`](server-options.html#option_mysqld_flush) option.
 
-O que precede significa que, normalmente, você não deve obter tabelas corrompidas, a menos que uma das seguintes situações ocorra:
+The preceding means that normally you should not get corrupted tables unless one of the following happens:
 
-- O servidor MySQL ou o host do servidor foi interrompido durante uma atualização.
+* The MySQL server or the server host was killed in the middle of an update.
 
-- Você encontrou um erro em [**mysqld**](mysqld.html) que fez com que ele morresse no meio de uma atualização.
+* You have found a bug in [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") that caused it to die in the middle of an update.
 
-- Alguns programas externos estão manipulando arquivos de dados ou arquivos de índice ao mesmo tempo que o [**mysqld**](mysqld.html) sem bloquear a tabela corretamente.
+* Some external program is manipulating data files or index files at the same time as [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") without locking the table properly.
 
-- Você está executando muitos servidores [**mysqld**](mysqld.html) usando o mesmo diretório de dados em um sistema que não suporta bons bloqueios de sistema de arquivos (normalmente gerenciados pelo gerenciador de bloqueios `lockd`), ou você está executando vários servidores com bloqueio externo desativado.
+* You are running many [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") servers using the same data directory on a system that does not support good file system locks (normally handled by the `lockd` lock manager), or you are running multiple servers with external locking disabled.
 
-- Você tem um arquivo de dados ou arquivo de índice que contém dados muito corrompidos que confundiram [**mysqld**](mysqld.html).
+* You have a crashed data file or index file that contains very corrupt data that confused [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server").
 
-- Você encontrou um erro no código de armazenamento de dados. Isso não é provável, mas é pelo menos possível. Nesse caso, você pode tentar alterar o mecanismo de armazenamento para outro mecanismo usando [`ALTER TABLE`](alter-table.html) em uma cópia reparada da tabela.
+* You have found a bug in the data storage code. This is not likely, but it is at least possible. In this case, you can try to change the storage engine to another engine by using [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") on a repaired copy of the table.
 
-Porque é muito difícil saber por que algo está travando, tente primeiro verificar se as coisas que funcionam para outras pessoas resultam em uma saída inesperada para você. Experimente as seguintes coisas:
+Because it is very difficult to know why something is crashing, first try to check whether things that work for others result in an unexpected exit for you. Try the following things:
 
-- Pare o servidor [**mysqld**](mysqld.html) com [**mysqladmin shutdown**](mysqladmin.html), execute [**myisamchk --silent --force */*.MYI**](myisamchk.html) no diretório de dados para verificar todas as tabelas `MyISAM` e reinicie [**mysqld**](mysqld.html). Isso garante que você esteja executando em um estado limpo. Veja [Capítulo 5, *Administração do Servidor MySQL*](server-administration.html).
+* Stop the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") server with [**mysqladmin shutdown**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program"), run [**myisamchk --silent --force \*/\*.MYI**](myisamchk.html "4.6.3 myisamchk — MyISAM Table-Maintenance Utility") from the data directory to check all `MyISAM` tables, and restart [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"). This ensures that you are running from a clean state. See [Chapter 5, *MySQL Server Administration*](server-administration.html "Chapter 5 MySQL Server Administration").
 
-- Inicie o [**mysqld**](mysqld.html) com o log de consultas gerais habilitado (consulte [Seção 5.4.3, “O Log de Consultas Gerais”](query-log.html)). Em seguida, tente determinar, com base nas informações escritas no log, se alguma consulta específica está causando o desligamento do servidor. Cerca de 95% de todos os erros estão relacionados a uma consulta específica. Normalmente, essa é uma das últimas consultas no arquivo de log logo antes do servidor ser reiniciado. Consulte [Seção 5.4.3, “O Log de Consultas Gerais”](query-log.html). Se você conseguir interromper o MySQL repetidamente com uma consulta específica, mesmo depois de ter verificado todas as tabelas antes de executá-la, então você isolou o erro e deve enviar um relatório de erro para ele. Consulte [Seção 1.5, “Como Relatar Erros ou Problemas”](bug-reports.html).
+* Start [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") with the general query log enabled (see [Section 5.4.3, “The General Query Log”](query-log.html "5.4.3 The General Query Log")). Then try to determine from the information written to the log whether some specific query kills the server. About 95% of all bugs are related to a particular query. Normally, this is one of the last queries in the log file just before the server restarts. See [Section 5.4.3, “The General Query Log”](query-log.html "5.4.3 The General Query Log"). If you can repeatedly kill MySQL with a specific query, even when you have checked all tables just before issuing it, then you have isolated the bug and should submit a bug report for it. See [Section 1.5, “How to Report Bugs or Problems”](bug-reports.html "1.5 How to Report Bugs or Problems").
 
-- Tente criar um caso de teste que possamos usar para repetir o problema. Veja [Seção 5.8, “Depuração do MySQL”](debugging-mysql.html).
+* Try to make a test case that we can use to repeat the problem. See [Section 5.8, “Debugging MySQL”](debugging-mysql.html "5.8 Debugging MySQL").
 
-- Experimente o script `fork_big.pl`. (Ele está localizado no diretório `tests` das distribuições de código-fonte.)
+* Try the `fork_big.pl` script. (It is located in the `tests` directory of source distributions.)
 
-- Configurar o MySQL para depuração facilita muito a coleta de informações sobre possíveis erros caso algo dê errado. Reconfigure o MySQL com a opção [`-DWITH_DEBUG=1`](source-configuration-options.html#option_cmake_with_debug) para o **CMake** e, em seguida, recompile-o. Veja a [Seção 5.8, “Depuração do MySQL”](debugging-mysql.html).
+* Configuring MySQL for debugging makes it much easier to gather information about possible errors if something goes wrong. Reconfigure MySQL with the [`-DWITH_DEBUG=1`](source-configuration-options.html#option_cmake_with_debug) option to **CMake** and then recompile. See [Section 5.8, “Debugging MySQL”](debugging-mysql.html "5.8 Debugging MySQL").
 
-- Certifique-se de que você aplicou os últimos patches do seu sistema operacional.
+* Make sure that you have applied the latest patches for your operating system.
 
-- Use a opção [`--skip-external-locking`](server-options.html#option_mysqld_external-locking) para o [**mysqld**](mysqld.html). Em alguns sistemas, o gerenciador de bloqueio `lockd` não funciona corretamente; a opção [`--skip-external-locking`](server-options.html#option_mysqld_external-locking) informa ao [**mysqld**](mysqld.html) para não usar bloqueio externo. (Isso significa que você não pode executar dois servidores [**mysqld**](mysqld.html) no mesmo diretório de dados e que você deve ter cuidado se usar [**myisamchk**](myisamchk.html). No entanto, pode ser instrutivo tentar a opção como um teste.)
+* Use the [`--skip-external-locking`](server-options.html#option_mysqld_external-locking) option to [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"). On some systems, the `lockd` lock manager does not work properly; the [`--skip-external-locking`](server-options.html#option_mysqld_external-locking) option tells [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") not to use external locking. (This means that you cannot run two [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") servers on the same data directory and that you must be careful if you use [**myisamchk**](myisamchk.html "4.6.3 myisamchk — MyISAM Table-Maintenance Utility"). Nevertheless, it may be instructive to try the option as a test.)
 
-- Se o [**mysqld**](mysqld.html) parecer estar rodando, mas não respondendo, tente [**mysqladmin -u root processlist**](mysqladmin.html). Às vezes, o [**mysqld**](mysqld.html) não fica parado, mesmo que pareça não responder. O problema pode ser que todas as conexões estejam sendo usadas ou que haja algum problema de bloqueio interno. O [**mysqladmin -u root processlist**](mysqladmin.html) geralmente consegue fazer uma conexão mesmo nesses casos e pode fornecer informações úteis sobre o número atual de conexões e seu status.
+* If [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") appears to be running but not responding, try [**mysqladmin -u root processlist**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program"). Sometimes [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") is not hung even though it seems unresponsive. The problem may be that all connections are in use, or there may be some internal lock problem. [**mysqladmin -u root processlist**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") usually is able to make a connection even in these cases, and can provide useful information about the current number of connections and their status.
 
-- Execute o comando [**mysqladmin -i 5 status**](mysqladmin.html) ou [**mysqladmin -i 5 -r status**](mysqladmin.html) em uma janela separada para obter estatísticas enquanto executa outras consultas.
+* Run the command [**mysqladmin -i 5 status**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") or [**mysqladmin -i 5 -r status**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") in a separate window to produce statistics while running other queries.
 
-- Experimente o seguinte:
+* Try the following:
 
-  1. Comece [**mysqld**](mysqld.html) a partir do **gdb** (ou outro depurador). Veja [Seção 5.8, “Depuração do MySQL”](debugging-mysql.html).
+  1. Start [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") from **gdb** (or another debugger). See [Section 5.8, “Debugging MySQL”](debugging-mysql.html "5.8 Debugging MySQL").
 
-  2. Execute seus scripts de teste.
-
-  3. Imprima o backtrace e as variáveis locais nos três níveis mais baixos. No **gdb**, você pode fazer isso com os seguintes comandos quando o [**mysqld**](mysqld.html) caiu dentro do **gdb**:
+  2. Run your test scripts.
+  3. Print the backtrace and the local variables at the three lowest levels. In **gdb**, you can do this with the following commands when [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") has crashed inside **gdb**:
 
      ```sql
      backtrace
@@ -59,14 +58,14 @@ Porque é muito difícil saber por que algo está travando, tente primeiro verif
      info local
      ```
 
-     Com o **gdb**, você também pode verificar quais threads existem com `info threads` e alternar para uma thread específica com `thread N`, onde *`N`* é o ID da thread.
+     With **gdb**, you can also examine which threads exist with `info threads` and switch to a specific thread with `thread N`, where *`N`* is the thread ID.
 
-- Tente simular sua aplicação com um script Perl para forçar o MySQL a sair ou a se comportar de forma inadequada.
+* Try to simulate your application with a Perl script to force MySQL to exit or misbehave.
 
-- Envie um relatório de erro normal. Veja [Seção 1.5, “Como relatar erros ou problemas”](bug-reports.html). Seja ainda mais detalhado do que o habitual. Como o MySQL funciona para muitas pessoas, o travamento pode resultar de algo que existe apenas no seu computador (por exemplo, um erro relacionado às suas bibliotecas de sistema específicas).
+* Send a normal bug report. See [Section 1.5, “How to Report Bugs or Problems”](bug-reports.html "1.5 How to Report Bugs or Problems"). Be even more detailed than usual. Because MySQL works for many people, the crash might result from something that exists only on your computer (for example, an error that is related to your particular system libraries).
 
-- Se você tem um problema com tabelas que contêm linhas de comprimento dinâmico e está usando apenas colunas de tipo [`VARCHAR`](char.html) (não colunas de tipo [`BLOB`](blob.html) ou [`TEXT`](blob.html)), você pode tentar alterar todas as colunas de tipo [`VARCHAR`](char.html) para colunas de tipo [`CHAR`](char.html) com [`ALTER TABLE`](alter-table.html). Isso obriga o MySQL a usar linhas de tamanho fixo. Linhas de tamanho fixo ocupam um pouco mais de espaço, mas são muito mais tolerantes à corrupção.
+* If you have a problem with tables containing dynamic-length rows and you are using only [`VARCHAR`](char.html "11.3.2 The CHAR and VARCHAR Types") columns (not [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") or [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") columns), you can try to change all [`VARCHAR`](char.html "11.3.2 The CHAR and VARCHAR Types") to [`CHAR`](char.html "11.3.2 The CHAR and VARCHAR Types") with [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement"). This forces MySQL to use fixed-size rows. Fixed-size rows take a little extra space, but are much more tolerant to corruption.
 
-  O código de linha dinâmico atual tem sido usado por vários anos com poucos problemas, mas as linhas de comprimento dinâmico são, por natureza, mais propensas a erros, então pode ser uma boa ideia tentar essa estratégia para ver se ajuda.
+  The current dynamic row code has been in use for several years with very few problems, but dynamic-length rows are by nature more prone to errors, so it may be a good idea to try this strategy to see whether it helps.
 
-- Considere a possibilidade de falhas de hardware ao diagnosticar problemas. O hardware defeituoso pode ser a causa da corrupção de dados. Preste atenção especial aos seus subsistemas de memória e disco ao solucionar problemas de hardware.
+* Consider the possibility of hardware faults when diagnosing problems. Defective hardware can be the cause of data corruption. Pay particular attention to your memory and disk subsystems when troubleshooting hardware.

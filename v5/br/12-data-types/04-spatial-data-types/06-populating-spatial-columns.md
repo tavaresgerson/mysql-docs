@@ -1,10 +1,10 @@
-### 11.4.6 Populando Colunas Espaciais
+### 11.4.6 Populating Spatial Columns
 
-Depois de criar as colunas espaciais, você pode preenchê-las com dados espaciais.
+After you have created spatial columns, you can populate them with spatial data.
 
-Os valores devem ser armazenados no formato de geometria interna, mas você pode convertê-los para esse formato a partir do formato de Texto Conhecido (WKT) ou Binário Conhecido (WKB). Os seguintes exemplos demonstram como inserir valores de geometria em uma tabela convertendo valores WKT para o formato de geometria interna:
+Values should be stored in internal geometry format, but you can convert them to that format from either Well-Known Text (WKT) or Well-Known Binary (WKB) format. The following examples demonstrate how to insert geometry values into a table by converting WKT values to internal geometry format:
 
-- Realize a conversão diretamente na instrução `INSERT`:
+* Perform the conversion directly in the `INSERT` statement:
 
   ```sql
   INSERT INTO geom VALUES (ST_GeomFromText('POINT(1 1)'));
@@ -13,14 +13,14 @@ Os valores devem ser armazenados no formato de geometria interna, mas você pode
   INSERT INTO geom VALUES (ST_GeomFromText(@g));
   ```
 
-- Realize a conversão antes do `INSERT`:
+* Perform the conversion prior to the `INSERT`:
 
   ```sql
   SET @g = ST_GeomFromText('POINT(1 1)');
   INSERT INTO geom VALUES (@g);
   ```
 
-Os exemplos a seguir inserem geometrias mais complexas na tabela:
+The following examples insert more complex geometries into the table:
 
 ```sql
 SET @g = 'LINESTRING(0 0,1 1,2 2)';
@@ -34,7 +34,7 @@ SET @g =
 INSERT INTO geom VALUES (ST_GeomFromText(@g));
 ```
 
-Os exemplos anteriores usam `ST_GeomFromText()` para criar valores de geometria. Você também pode usar funções específicas do tipo:
+The preceding examples use `ST_GeomFromText()` to create geometry values. You can also use type-specific functions:
 
 ```sql
 SET @g = 'POINT(1 1)';
@@ -51,21 +51,21 @@ SET @g =
 INSERT INTO geom VALUES (ST_GeomCollFromText(@g));
 ```
 
-Um programa de aplicativo cliente que deseja usar representações WKB de valores de geometria é responsável por enviar WKB corretamente formados nas consultas ao servidor. Existem várias maneiras de atender a essa exigência. Por exemplo:
+A client application program that wants to use WKB representations of geometry values is responsible for sending correctly formed WKB in queries to the server. There are several ways to satisfy this requirement. For example:
 
-- Inserindo um valor `POINT(1 1)` com sintaxe literal hexadecimal:
+* Inserting a `POINT(1 1)` value with hex literal syntax:
 
   ```sql
   INSERT INTO geom VALUES
   (ST_GeomFromWKB(X'0101000000000000000000F03F000000000000F03F'));
   ```
 
-- Um aplicativo ODBC pode enviar uma representação WKB, vinculando-a a um marcador de posição usando um argumento do tipo `BLOB`:
+* An ODBC application can send a WKB representation, binding it to a placeholder using an argument of `BLOB` type:
 
   ```sql
   INSERT INTO geom VALUES (ST_GeomFromWKB(?))
   ```
 
-  Outras interfaces de programação podem suportar um mecanismo de marcador de posição semelhante.
+  Other programming interfaces may support a similar placeholder mechanism.
 
-- Em um programa C, você pode escapar um valor binário usando `mysql_real_escape_string_quote()` e incluir o resultado em uma string de consulta enviada ao servidor. Veja mysql_real_escape_string_quote().
+* In a C program, you can escape a binary value using `mysql_real_escape_string_quote()` and include the result in a query string that is sent to the server. See mysql_real_escape_string_quote().

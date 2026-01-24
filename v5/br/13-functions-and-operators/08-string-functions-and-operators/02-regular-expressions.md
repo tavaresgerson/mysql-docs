@@ -1,35 +1,35 @@
-### 12.8.2 Expressões Regulares
+### 12.8.2 Regular Expressions
 
-**Tabela 12.14 Funções e operadores de expressão regular**
+**Table 12.14 Regular Expression Functions and Operators**
 
-<table frame="box" rules="all" summary="Uma referência que lista funções e operadores de expressão regular."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>NOT REGEXP</code></td> <td>Negação de REGEXP</td> </tr><tr><td><code>REGEXP</code></td> <td>Se a cadeia corresponde à expressão regular</td> </tr><tr><td><code>RLIKE</code></td> <td>Se a cadeia corresponde à expressão regular</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists regular expression functions and operators."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>NOT REGEXP</code></td> <td> Negation of REGEXP </td> </tr><tr><td><code>REGEXP</code></td> <td> Whether string matches regular expression </td> </tr><tr><td><code>RLIKE</code></td> <td> Whether string matches regular expression </td> </tr></tbody></table>
 
-Uma expressão regular é uma maneira poderosa de especificar um padrão para uma busca complexa. Esta seção discute os operadores disponíveis para a correspondência com expressões regulares e ilustra, com exemplos, alguns dos caracteres especiais e construções que podem ser usados para operações com expressões regulares. Veja também a Seção 3.3.4.7, “Correspondência de Padrões”.
+A regular expression is a powerful way of specifying a pattern for a complex search. This section discusses the operators available for regular expression matching and illustrates, with examples, some of the special characters and constructs that can be used for regular expression operations. See also Section 3.3.4.7, “Pattern Matching”.
 
-O MySQL utiliza a implementação de expressões regulares de Henry Spencer, que visa a conformidade com o POSIX 1003.2. O MySQL utiliza a versão estendida para suportar operações de correspondência de padrões de expressões regulares em instruções SQL. Esta seção não contém todos os detalhes que podem ser encontrados na página de manual `regex(7)` de Henry Spencer. Essa página de manual está incluída nas distribuições de código-fonte do MySQL, no arquivo `regex.7` sob o diretório `regex`.
+MySQL uses Henry Spencer's implementation of regular expressions, which is aimed at conformance with POSIX 1003.2. MySQL uses the extended version to support regular expression pattern-matching operations in SQL statements. This section does not contain all the details that can be found in Henry Spencer's `regex(7)` manual page. That manual page is included in MySQL source distributions, in the `regex.7` file under the `regex` directory.
 
-- Funções e descrições dos operadores de expressão regular
-- Sintaxe de Expressões Regulares
+* Regular Expression Function and Operator Descriptions
+* Regular Expression Syntax
 
-#### Funções e descrições dos operadores de expressão regular
+#### Regular Expression Function and Operator Descriptions
 
-- `expr NOT REGEXP pat`, `expr NOT RLIKE pat`
+* `expr NOT REGEXP pat`, `expr NOT RLIKE pat`
 
-  Isso é o mesmo que `NOT (expr REGEXP pat)`.
+  This is the same as `NOT (expr REGEXP pat)`.
 
-- `expr REGEXP pat`, `expr RLIKE pat`
+* `expr REGEXP pat`, `expr RLIKE pat`
 
-  Retorna 1 se a string *`expr`* corresponder à expressão regular especificada pelo padrão *`pat`*, caso contrário, retorna 0. Se qualquer um de *`expr`* ou *`pat`* for `NULL`, o valor de retorno será `NULL`.
+  Returns 1 if the string *`expr`* matches the regular expression specified by the pattern *`pat`*, 0 otherwise. If either *`expr`* or *`pat`* is `NULL`, the return value is `NULL`.
 
-  `RLIKE` é um sinônimo de `REGEXP`.
+  `RLIKE` is a synonym for `REGEXP`.
 
-  O padrão pode ser uma expressão regular estendida, cuja sintaxe é discutida na Sintaxe de Expressões Regulares. O padrão não precisa ser uma string literal. Por exemplo, ele pode ser especificado como uma expressão de string ou coluna de tabela.
+  The pattern can be an extended regular expression, the syntax for which is discussed in Regular Expression Syntax. The pattern need not be a literal string. For example, it can be specified as a string expression or table column.
 
-  Nota
+  Note
 
-  O MySQL usa a sintaxe de escape C em strings (por exemplo, `\n` para representar o caractere de nova linha). Se você deseja que o argumento *`expr`* ou *`pat`* contenha um `\` literal, você deve duplicá-lo. (A menos que o modo SQL `NO_BACKSLASH_ESCAPES` esteja habilitado, caso em que nenhum caractere de escape é usado.)
+  MySQL uses C escape syntax in strings (for example, `\n` to represent the newline character). If you want your *`expr`* or *`pat`* argument to contain a literal `\`, you must double it. (Unless the `NO_BACKSLASH_ESCAPES` SQL mode is enabled, in which case no escape character is used.)
 
-  As operações de expressão regular usam o conjunto de caracteres e a ordenação da expressão e do padrão da string como argumentos para decidir o tipo de um caractere e realizar a comparação. Se os argumentos tiverem conjuntos de caracteres ou ordenações diferentes, as regras de coercibilidade se aplicam conforme descrito na Seção 10.8.4, “Coercibilidade de Ordenação em Expressões”. Se qualquer argumento for uma string binária, os argumentos são tratados de forma sensível a maiúsculas e minúsculas como strings binárias.
+  Regular expression operations use the character set and collation of the string expression and pattern arguments when deciding the type of a character and performing the comparison. If the arguments have different character sets or collations, coercibility rules apply as described in Section 10.8.4, “Collation Coercibility in Expressions”. If either argument is a binary string, the arguments are handled in case-sensitive fashion as binary strings.
 
   ```sql
   mysql> SELECT 'Michael!' REGEXP '.*';
@@ -52,50 +52,50 @@ O MySQL utiliza a implementação de expressões regulares de Henry Spencer, que
   +---------------------+
   ```
 
-  Aviso
+  Warning
 
-  Os operadores `REGEXP` e `RLIKE` funcionam de forma de byte, portanto, não são seguros para multibytes e podem produzir resultados inesperados com conjuntos de caracteres multibytes. Além disso, esses operadores comparam caracteres por seus valores de byte e caracteres acentuados podem não ser considerados iguais, mesmo que uma determinada ordenação os trate como iguais.
+  The `REGEXP` and `RLIKE` operators work in byte-wise fashion, so they are not multibyte safe and may produce unexpected results with multibyte character sets. In addition, these operators compare characters by their byte values and accented characters may not compare as equal even if a given collation treats them as equal.
 
-#### Sintaxe de Expressões Regulares
+#### Regular Expression Syntax
 
-Uma expressão regular descreve um conjunto de cadeias de caracteres. A expressão regular mais simples é aquela que não contém caracteres especiais. Por exemplo, a expressão regular `hello` corresponde a `hello` e nada mais.
+A regular expression describes a set of strings. The simplest regular expression is one that has no special characters in it. For example, the regular expression `hello` matches `hello` and nothing else.
 
-Expressões regulares não triviais usam certas construções especiais para que possam corresponder a mais de uma string. Por exemplo, a expressão regular `hello|world` contém o operador de alternância `|` e corresponde ao `hello` ou ao `world`.
+Nontrivial regular expressions use certain special constructs so that they can match more than one string. For example, the regular expression `hello|world` contains the `|` alternation operator and matches either the `hello` or `world`.
 
-Como exemplo mais complexo, a expressão regular `B[an]*s` corresponde a qualquer uma das cadeias `Bananas`, `Baaaaas`, `Bs` e qualquer outra cadeia que comece com um `B`, termine com um `s` e contenha qualquer número de caracteres `a` ou `n` entre eles.
+As a more complex example, the regular expression `B[an]*s` matches any of the strings `Bananas`, `Baaaaas`, `Bs`, and any other string starting with a `B`, ending with an `s`, and containing any number of `a` or `n` characters in between.
 
-Uma expressão regular para o operador `REGEXP` pode usar qualquer um dos seguintes caracteres e construções especiais:
+A regular expression for the `REGEXP` operator may use any of the following special characters and constructs:
 
-- `^`
+* `^`
 
-  Conjuntar o início de uma string.
+  Match the beginning of a string.
 
   ```sql
   mysql> SELECT 'fo\nfo' REGEXP '^fo$';                   -> 0
   mysql> SELECT 'fofo' REGEXP '^fo';                      -> 1
   ```
 
-- `$`
+* `$`
 
-  Conecte as extremidades de uma corda.
+  Match the end of a string.
 
   ```sql
   mysql> SELECT 'fo\no' REGEXP '^fo\no$';                 -> 1
   mysql> SELECT 'fo\no' REGEXP '^fo$';                    -> 0
   ```
 
-- `.`
+* `.`
 
-  Corresponda a qualquer caractere (incluindo retorno de carro e nova linha).
+  Match any character (including carriage return and newline).
 
   ```sql
   mysql> SELECT 'fofo' REGEXP '^f.*$';                    -> 1
   mysql> SELECT 'fo\r\nfo' REGEXP '^f.*$';                -> 1
   ```
 
-- `a*`
+* `a*`
 
-  Conforme qualquer sequência de zero ou mais caracteres `a`.
+  Match any sequence of zero or more `a` characters.
 
   ```sql
   mysql> SELECT 'Ban' REGEXP '^Ba*n';                     -> 1
@@ -103,18 +103,18 @@ Uma expressão regular para o operador `REGEXP` pode usar qualquer um dos seguin
   mysql> SELECT 'Bn' REGEXP '^Ba*n';                      -> 1
   ```
 
-- `a+`
+* `a+`
 
-  Conjuntamente com qualquer sequência de um ou mais caracteres `a`.
+  Match any sequence of one or more `a` characters.
 
   ```sql
   mysql> SELECT 'Ban' REGEXP '^Ba+n';                     -> 1
   mysql> SELECT 'Bn' REGEXP '^Ba+n';                      -> 0
   ```
 
-- `a?`
+* `a?`
 
-  Corresponda a zero ou um caractere `a`.
+  Match either zero or one `a` character.
 
   ```sql
   mysql> SELECT 'Bn' REGEXP '^Ba?n';                      -> 1
@@ -122,9 +122,9 @@ Uma expressão regular para o operador `REGEXP` pode usar qualquer um dos seguin
   mysql> SELECT 'Baan' REGEXP '^Ba?n';                    -> 0
   ```
 
-- `de|abc`
+* `de|abc`
 
-  Alternância; corresponda a qualquer uma das sequências `de` ou `abc`.
+  Alternation; match either of the sequences `de` or `abc`.
 
   ```sql
   mysql> SELECT 'pi' REGEXP 'pi|apa';                     -> 1
@@ -135,9 +135,9 @@ Uma expressão regular para o operador `REGEXP` pode usar qualquer um dos seguin
   mysql> SELECT 'pix' REGEXP '^(pi|apa)$';                -> 0
   ```
 
-- `(abc)*`
+* `(abc)*`
 
-  Corresponda a zero ou mais instâncias da sequência `abc`.
+  Match zero or more instances of the sequence `abc`.
 
   ```sql
   mysql> SELECT 'pi' REGEXP '^(pi)*$';                    -> 1
@@ -145,25 +145,25 @@ Uma expressão regular para o operador `REGEXP` pode usar qualquer um dos seguin
   mysql> SELECT 'pipi' REGEXP '^(pi)*$';                  -> 1
   ```
 
-- `{1}`, `{2,3}`
+* `{1}`, `{2,3}`
 
-  Repetição; a notação `{n}` e `{m,n}` oferece uma maneira mais geral de escrever expressões regulares que correspondem a muitas ocorrências do átomo anterior (ou “pedaço”) do padrão. *`m`* e *`n`* são inteiros.
+  Repetition; `{n}` and `{m,n}` notation provide a more general way of writing regular expressions that match many occurrences of the previous atom (or “piece”) of the pattern. *`m`* and *`n`* are integers.
 
-  - `a*`
+  + `a*`
 
-    Pode ser escrito como `a{0,}`.
+    Can be written as `a{0,}`.
 
-  - `a+`
+  + `a+`
 
-    Pode ser escrito como `a{1,}`.
+    Can be written as `a{1,}`.
 
-  - `a?`
+  + `a?`
 
-    Pode ser escrito como `a{0,1}`.
+    Can be written as `a{0,1}`.
 
-  Para ser mais preciso, `a{n}` corresponde exatamente a *`n`* instâncias de `a`. `a{n,}` corresponde a *`n`* ou mais instâncias de `a`. `a{m,n}` corresponde a *`m`* até *`n`* instâncias de `a`, inclusive. Se ambos *`m`* e *`n`* forem fornecidos, *`m`* deve ser menor ou igual a *`n`*.
+  To be more precise, `a{n}` matches exactly *`n`* instances of `a`. `a{n,}` matches *`n`* or more instances of `a`. `a{m,n}` matches *`m`* through *`n`* instances of `a`, inclusive. If both *`m`* and *`n`* are given, *`m`* must be less than or equal to *`n`*.
 
-  - `m` \* e \* `n` \* devem estar no intervalo de `0` a `RE_DUP_MAX` (padrão 255), inclusive.
+  *`m`* and *`n`* must be in the range from `0` to `RE_DUP_MAX` (default 255), inclusive.
 
   ```sql
   mysql> SELECT 'abcde' REGEXP 'a[bcd]{2}e';              -> 0
@@ -171,9 +171,9 @@ Uma expressão regular para o operador `REGEXP` pode usar qualquer um dos seguin
   mysql> SELECT 'abcde' REGEXP 'a[bcd]{1,10}e';           -> 1
   ```
 
-- `[a-dX]`, `[^a-dX]`
+* `[a-dX]`, `[^a-dX]`
 
-  Converte qualquer caractere que seja (ou não seja, se `^` for usado) `a`, `b`, `c`, `d` ou `X`. Um caractere `-` entre dois outros caracteres forma uma faixa que corresponde a todos os caracteres do primeiro caractere ao segundo. Por exemplo, `[0-9]` corresponde a qualquer dígito decimal. Para incluir um caractere literal `]` literal, ele deve seguir imediatamente o parêntese de abertura `[`. Para incluir um caractere literal `-`, ele deve ser escrito primeiro ou último. Qualquer caractere que não tenha um significado especial definido dentro de um par `[]` corresponde apenas a si mesmo.
+  Matches any character that is (or is not, if `^` is used) either `a`, `b`, `c`, `d` or `X`. A `-` character between two other characters forms a range that matches all characters from the first character to the second. For example, `[0-9]` matches any decimal digit. To include a literal `]` character, it must immediately follow the opening bracket `[`. To include a literal `-` character, it must be written first or last. Any character that does not have a defined special meaning inside a `[]` pair matches only itself.
 
   ```sql
   mysql> SELECT 'aXbc' REGEXP '[a-dXYZ]';                 -> 1
@@ -184,44 +184,44 @@ Uma expressão regular para o operador `REGEXP` pode usar qualquer um dos seguin
   mysql> SELECT 'gheisa' REGEXP '^[^a-dXYZ]+$';           -> 0
   ```
 
-- `[.caracteres.]`
+* `[.characters.]`
 
-  Dentro de uma expressão entre colchetes (escrita usando `[` e `]`), corresponde à sequência de caracteres desse elemento de comparação. `characters` é um único caractere ou um nome de caractere como `newline`. A tabela a seguir lista os nomes de caracteres permitidos.
+  Within a bracket expression (written using `[` and `]`), matches the sequence of characters of that collating element. `characters` is either a single character or a character name like `newline`. The following table lists the permissible character names.
 
-  A tabela a seguir mostra os nomes de caracteres permitidos e os caracteres que eles correspondem. Para caracteres fornecidos como valores numéricos, os valores são representados em octal.
+  The following table shows the permissible character names and the characters that they match. For characters given as numeric values, the values are represented in octal.
 
-  <table summary="Nomes de caracteres permitidos e caracteres que correspondem a eles. Para economizar espaço, a combinação da coluna Nome e Caractere é apresentada em um formato de tabela de quatro colunas, na seguinte ordem: Nome, Caractere, Nome, Caractere. Para caracteres fornecidos como valores numéricos, os valores são representados em octal."><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><thead><tr> <th>Nome</th> <th>Personagem</th> <th>Nome</th> <th>Personagem</th> </tr></thead><tbody><tr> <th>PH_HTML_CODE_<code>apostrophe</code>]</th> <td>PH_HTML_CODE_<code>apostrophe</code>]</td> <td>PH_HTML_CODE_<code>left-parenthesis</code>]</td> <td>PH_HTML_CODE_<code>'('</code>]</td> </tr><tr> <th>PH_HTML_CODE_<code>right-parenthesis</code>]</th> <td>PH_HTML_CODE_<code>')'</code>]</td> <td>PH_HTML_CODE_<code>asterisk</code>]</td> <td>PH_HTML_CODE_<code>'*'</code>]</td> </tr><tr> <th>PH_HTML_CODE_<code>plus-sign</code>]</th> <td>PH_HTML_CODE_<code>'+'</code>]</td> <td><code>0</code><code>apostrophe</code>]</td> <td><code>0</code><code>apostrophe</code>]</td> </tr><tr> <th><code>0</code><code>left-parenthesis</code>]</th> <td><code>0</code><code>'('</code>]</td> <td><code>0</code><code>right-parenthesis</code>]</td> <td><code>0</code><code>')'</code>]</td> </tr><tr> <th><code>0</code><code>asterisk</code>]</th> <td><code>0</code><code>'*'</code>]</td> <td><code>0</code><code>plus-sign</code>]</td> <td><code>0</code><code>'+'</code>]</td> </tr><tr> <th><code>SOH</code><code>apostrophe</code>]</th> <td><code>SOH</code><code>apostrophe</code>]</td> <td><code>SOH</code><code>left-parenthesis</code>]</td> <td><code>SOH</code><code>'('</code>]</td> </tr><tr> <th><code>SOH</code><code>right-parenthesis</code>]</th> <td><code>SOH</code><code>')'</code>]</td> <td><code>SOH</code><code>asterisk</code>]</td> <td><code>SOH</code><code>'*'</code>]</td> </tr><tr> <th><code>SOH</code><code>plus-sign</code>]</th> <td><code>SOH</code><code>'+'</code>]</td> <td><code>001</code><code>apostrophe</code>]</td> <td><code>001</code><code>apostrophe</code>]</td> </tr><tr> <th><code>001</code><code>left-parenthesis</code>]</th> <td><code>001</code><code>'('</code>]</td> <td><code>001</code><code>right-parenthesis</code>]</td> <td><code>001</code><code>')'</code>]</td> </tr><tr> <th><code>001</code><code>asterisk</code>]</th> <td><code>001</code><code>'*'</code>]</td> <td><code>001</code><code>plus-sign</code>]</td> <td><code>001</code><code>'+'</code>]</td> </tr><tr> <th><code>STX</code><code>apostrophe</code>]</th> <td><code>STX</code><code>apostrophe</code>]</td> <td><code>STX</code><code>left-parenthesis</code>]</td> <td><code>STX</code><code>'('</code>]</td> </tr><tr> <th><code>STX</code><code>right-parenthesis</code>]</th> <td><code>STX</code><code>')'</code>]</td> <td><code>STX</code><code>asterisk</code>]</td> <td><code>STX</code><code>'*'</code>]</td> </tr><tr> <th><code>STX</code><code>plus-sign</code>]</th> <td><code>STX</code><code>'+'</code>]</td> <td><code>002</code><code>apostrophe</code>]</td> <td><code>002</code><code>apostrophe</code>]</td> </tr><tr> <th><code>002</code><code>left-parenthesis</code>]</th> <td><code>002</code><code>'('</code>]</td> <td><code>002</code><code>right-parenthesis</code>]</td> <td><code>002</code><code>')'</code>]</td> </tr><tr> <th><code>002</code><code>asterisk</code>]</th> <td><code>002</code><code>'*'</code>]</td> <td><code>002</code><code>plus-sign</code>]</td> <td><code>002</code><code>'+'</code>]</td> </tr><tr> <th><code>ETX</code><code>apostrophe</code>]</th> <td><code>ETX</code><code>apostrophe</code>]</td> <td><code>ETX</code><code>left-parenthesis</code>]</td> <td><code>ETX</code><code>'('</code>]</td> </tr><tr> <th><code>ETX</code><code>right-parenthesis</code>]</th> <td><code>ETX</code><code>')'</code>]</td> <td><code>ETX</code><code>asterisk</code>]</td> <td><code>ETX</code><code>'*'</code>]</td> </tr><tr> <th><code>ETX</code><code>plus-sign</code>]</th> <td><code>ETX</code><code>'+'</code>]</td> <td><code>003</code><code>apostrophe</code>]</td> <td><code>003</code><code>apostrophe</code>]</td> </tr><tr> <th><code>003</code><code>left-parenthesis</code>]</th> <td><code>003</code><code>'('</code>]</td> <td><code>003</code><code>right-parenthesis</code>]</td> <td><code>003</code><code>')'</code>]</td> </tr><tr> <th><code>003</code><code>asterisk</code>]</th> <td><code>003</code><code>'*'</code>]</td> <td><code>003</code><code>plus-sign</code>]</td> <td><code>003</code><code>'+'</code>]</td> </tr><tr> <th><code>EOT</code><code>apostrophe</code>]</th> <td><code>EOT</code><code>apostrophe</code>]</td> <td><code>EOT</code><code>left-parenthesis</code>]</td> <td><code>EOT</code><code>'('</code>]</td> </tr><tr> <th><code>EOT</code><code>right-parenthesis</code>]</th> <td><code>EOT</code><code>')'</code>]</td> <td><code>EOT</code><code>asterisk</code>]</td> <td><code>EOT</code><code>'*'</code>]</td> </tr><tr> <th><code>EOT</code><code>plus-sign</code>]</th> <td><code>EOT</code><code>'+'</code>]</td> <td><code>004</code><code>apostrophe</code>]</td> <td><code>004</code><code>apostrophe</code>]</td> </tr><tr> <th><code>004</code><code>left-parenthesis</code>]</th> <td><code>004</code><code>'('</code>]</td> <td><code>004</code><code>right-parenthesis</code>]</td> <td><code>004</code><code>')'</code>]</td> </tr><tr> <th><code>004</code><code>asterisk</code>]</th> <td><code>004</code><code>'*'</code>]</td> <td><code>004</code><code>plus-sign</code>]</td> <td><code>004</code><code>'+'</code>]</td> </tr><tr> <th><code>apostrophe</code></th> <td><code>ENQ</code><code>apostrophe</code>]</td> <td><code>left-parenthesis</code></td> <td><code>'('</code></td> </tr><tr> <th><code>right-parenthesis</code></th> <td><code>')'</code></td> <td><code>asterisk</code></td> <td><code>'*'</code></td> </tr><tr> <th><code>plus-sign</code></th> <td><code>'+'</code></td> <td><code>005</code><code>apostrophe</code>]</td> <td><code>005</code><code>apostrophe</code>]</td> </tr><tr> <th><code>005</code><code>left-parenthesis</code>]</th> <td><code>005</code><code>'('</code>]</td> <td><code>005</code><code>right-parenthesis</code>]</td> <td><code>005</code><code>')'</code>]</td> </tr><tr> <th><code>005</code><code>asterisk</code>]</th> <td><code>005</code><code>'*'</code>]</td> <td><code>005</code><code>plus-sign</code>]</td> <td><code>005</code><code>'+'</code>]</td> </tr><tr> <th><code>ACK</code><code>apostrophe</code>]</th> <td><code>ACK</code><code>apostrophe</code>]</td> <td><code>ACK</code><code>left-parenthesis</code>]</td> <td><code>ACK</code><code>'('</code>]</td> </tr><tr> <th><code>ACK</code><code>right-parenthesis</code>]</th> <td><code>ACK</code><code>')'</code>]</td> <td><code>ACK</code><code>asterisk</code>]</td> <td><code>ACK</code><code>'*'</code>]</td> </tr><tr> <th><code>ACK</code><code>plus-sign</code>]</th> <td><code>ACK</code><code>'+'</code>]</td> <td><code>006</code><code>apostrophe</code>]</td> <td><code>006</code><code>apostrophe</code>]</td> </tr><tr> <th><code>006</code><code>left-parenthesis</code>]</th> <td><code>006</code><code>'('</code>]</td> <td><code>006</code><code>right-parenthesis</code>]</td> <td><code>006</code><code>')'</code>]</td> </tr><tr> <th><code>006</code><code>asterisk</code>]</th> <td><code>006</code><code>'*'</code>]</td> <td><code>006</code><code>plus-sign</code>]</td> <td><code>006</code><code>'+'</code>]</td> </tr><tr> <th><code>BEL</code><code>apostrophe</code>]</th> <td><code>BEL</code><code>apostrophe</code>]</td> <td><code>BEL</code><code>left-parenthesis</code>]</td> <td><code>BEL</code><code>'('</code>]</td> </tr><tr> <th><code>BEL</code><code>right-parenthesis</code>]</th> <td><code>BEL</code><code>')'</code>]</td> <td><code>BEL</code><code>asterisk</code>]</td> <td><code>BEL</code><code>'*'</code>]</td> </tr><tr> <th><code>BEL</code><code>plus-sign</code>]</th> <td><code>BEL</code><code>'+'</code>]</td> <td><code>007</code><code>apostrophe</code>]</td> <td><code>007</code><code>apostrophe</code>]</td> </tr><tr> <th><code>007</code><code>left-parenthesis</code>]</th> <td><code>007</code><code>'('</code>]</td> <td><code>007</code><code>right-parenthesis</code>]</td> <td><code>007</code><code>')'</code>]</td> </tr><tr> <th><code>007</code><code>asterisk</code>]</th> <td><code>007</code><code>'*'</code>]</td> <td><code>007</code><code>plus-sign</code>]</td> <td><code>007</code><code>'+'</code>]</td> </tr><tr> <th><code>alert</code><code>apostrophe</code>]</th> <td><code>alert</code><code>apostrophe</code>]</td> <td><code>alert</code><code>left-parenthesis</code>]</td> <td><code>alert</code><code>'('</code>]</td> </tr><tr> <th><code>alert</code><code>right-parenthesis</code>]</th> <td><code>alert</code><code>')'</code>]</td> <td><code>alert</code><code>asterisk</code>]</td> <td><code>alert</code><code>'*'</code>]</td> </tr><tr> <th><code>alert</code><code>plus-sign</code>]</th> <td><code>alert</code><code>'+'</code>]</td> <td><code>007</code><code>apostrophe</code>]</td> <td><code>007</code><code>apostrophe</code>]</td> </tr><tr> <th><code>007</code><code>left-parenthesis</code>]</th> <td><code>007</code><code>'('</code>]</td> <td><code>007</code><code>right-parenthesis</code>]</td> <td><code>007</code><code>')'</code>]</td> </tr><tr> <th><code>007</code><code>asterisk</code>]</th> <td><code>007</code><code>'*'</code>]</td> <td><code>007</code><code>plus-sign</code>]</td> <td><code>007</code><code>'+'</code>]</td> </tr><tr> <th><code>BS</code><code>apostrophe</code>]</th> <td><code>BS</code><code>apostrophe</code>]</td> <td><code>BS</code><code>left-parenthesis</code>]</td> <td><code>BS</code><code>'('</code>]</td> </tr><tr> <th><code>BS</code><code>right-parenthesis</code>]</th> <td><code>BS</code><code>')'</code>]</td> <td><code>BS</code><code>asterisk</code>]</td> <td><code>BS</code><code>'*'</code>]</td> </tr><tr> <th><code>BS</code><code>plus-sign</code>]</th> <td><code>BS</code><code>'+'</code>]</td> <td></td> <td></td> </tr></tbody></table>
+  <table summary="Permissible character names and characters they match. To save space, the column pairing of Name and Character are presented in a four column table format in this order: Name, Character, Name, Character. For characters given as numeric values, the values are represented in octal."><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><thead><tr> <th>Name</th> <th>Character</th> <th>Name</th> <th>Character</th> </tr></thead><tbody><tr> <th><code>NUL</code></th> <td><code>0</code></td> <td><code>SOH</code></td> <td><code>001</code></td> </tr><tr> <th><code>STX</code></th> <td><code>002</code></td> <td><code>ETX</code></td> <td><code>003</code></td> </tr><tr> <th><code>EOT</code></th> <td><code>004</code></td> <td><code>ENQ</code></td> <td><code>005</code></td> </tr><tr> <th><code>ACK</code></th> <td><code>006</code></td> <td><code>BEL</code></td> <td><code>007</code></td> </tr><tr> <th><code>alert</code></th> <td><code>007</code></td> <td><code>BS</code></td> <td><code>010</code></td> </tr><tr> <th><code>backspace</code></th> <td><code>'\b'</code></td> <td><code>HT</code></td> <td><code>011</code></td> </tr><tr> <th><code>tab</code></th> <td><code>'\t'</code></td> <td><code>LF</code></td> <td><code>012</code></td> </tr><tr> <th><code>newline</code></th> <td><code>'\n'</code></td> <td><code>VT</code></td> <td><code>013</code></td> </tr><tr> <th><code>vertical-tab</code></th> <td><code>'\v'</code></td> <td><code>FF</code></td> <td><code>014</code></td> </tr><tr> <th><code>form-feed</code></th> <td><code>'\f'</code></td> <td><code>CR</code></td> <td><code>015</code></td> </tr><tr> <th><code>carriage-return</code></th> <td><code>'\r'</code></td> <td><code>SO</code></td> <td><code>016</code></td> </tr><tr> <th><code>SI</code></th> <td><code>017</code></td> <td><code>DLE</code></td> <td><code>020</code></td> </tr><tr> <th><code>DC1</code></th> <td><code>021</code></td> <td><code>DC2</code></td> <td><code>022</code></td> </tr><tr> <th><code>DC3</code></th> <td><code>023</code></td> <td><code>DC4</code></td> <td><code>024</code></td> </tr><tr> <th><code>NAK</code></th> <td><code>025</code></td> <td><code>SYN</code></td> <td><code>026</code></td> </tr><tr> <th><code>ETB</code></th> <td><code>027</code></td> <td><code>CAN</code></td> <td><code>030</code></td> </tr><tr> <th><code>EM</code></th> <td><code>031</code></td> <td><code>SUB</code></td> <td><code>032</code></td> </tr><tr> <th><code>ESC</code></th> <td><code>033</code></td> <td><code>IS4</code></td> <td><code>034</code></td> </tr><tr> <th><code>FS</code></th> <td><code>034</code></td> <td><code>IS3</code></td> <td><code>035</code></td> </tr><tr> <th><code>GS</code></th> <td><code>035</code></td> <td><code>IS2</code></td> <td><code>036</code></td> </tr><tr> <th><code>RS</code></th> <td><code>036</code></td> <td><code>IS1</code></td> <td><code>037</code></td> </tr><tr> <th><code>US</code></th> <td><code>037</code></td> <td><code>space</code></td> <td><code>' '</code></td> </tr><tr> <th><code>exclamation-mark</code></th> <td><code>'!'</code></td> <td><code>quotation-mark</code></td> <td><code>'"'</code></td> </tr><tr> <th><code>number-sign</code></th> <td><code>'#'</code></td> <td><code>dollar-sign</code></td> <td><code>'$'</code></td> </tr><tr> <th><code>percent-sign</code></th> <td><code>'%'</code></td> <td><code>ampersand</code></td> <td><code>'&amp;'</code></td> </tr><tr> <th><code>apostrophe</code></th> <td><code>'\''</code></td> <td><code>left-parenthesis</code></td> <td><code>'('</code></td> </tr><tr> <th><code>right-parenthesis</code></th> <td><code>')'</code></td> <td><code>asterisk</code></td> <td><code>'*'</code></td> </tr><tr> <th><code>plus-sign</code></th> <td><code>'+'</code></td> <td><code>comma</code></td> <td><code>','</code></td> </tr><tr> <th><code>hyphen</code></th> <td><code>'-'</code></td> <td><code>hyphen-minus</code></td> <td><code>'-'</code></td> </tr><tr> <th><code>period</code></th> <td><code>'.'</code></td> <td><code>full-stop</code></td> <td><code>'.'</code></td> </tr><tr> <th><code>slash</code></th> <td><code>'/'</code></td> <td><code>solidus</code></td> <td><code>'/'</code></td> </tr><tr> <th><code>zero</code></th> <td><code>'0'</code></td> <td><code>one</code></td> <td><code>'1'</code></td> </tr><tr> <th><code>two</code></th> <td><code>'2'</code></td> <td><code>three</code></td> <td><code>'3'</code></td> </tr><tr> <th><code>four</code></th> <td><code>'4'</code></td> <td><code>five</code></td> <td><code>'5'</code></td> </tr><tr> <th><code>six</code></th> <td><code>'6'</code></td> <td><code>seven</code></td> <td><code>'7'</code></td> </tr><tr> <th><code>eight</code></th> <td><code>'8'</code></td> <td><code>nine</code></td> <td><code>'9'</code></td> </tr><tr> <th><code>colon</code></th> <td><code>':'</code></td> <td><code>semicolon</code></td> <td><code>';'</code></td> </tr><tr> <th><code>less-than-sign</code></th> <td><code>'&lt;'</code></td> <td><code>equals-sign</code></td> <td><code>'='</code></td> </tr><tr> <th><code>greater-than-sign</code></th> <td><code>'&gt;'</code></td> <td><code>question-mark</code></td> <td><code>'?'</code></td> </tr><tr> <th><code>commercial-at</code></th> <td><code>'@'</code></td> <td><code>left-square-bracket</code></td> <td><code>'['</code></td> </tr><tr> <th><code>backslash</code></th> <td><code>'\\'</code></td> <td><code>reverse-solidus</code></td> <td><code>'\\'</code></td> </tr><tr> <th><code>right-square-bracket</code></th> <td><code>']'</code></td> <td><code>circumflex</code></td> <td><code>'^'</code></td> </tr><tr> <th><code>circumflex-accent</code></th> <td><code>'^'</code></td> <td><code>underscore</code></td> <td><code>'_'</code></td> </tr><tr> <th><code>low-line</code></th> <td><code>'_'</code></td> <td><code>grave-accent</code></td> <td><code>'`'</code></td> </tr><tr> <th><code>left-brace</code></th> <td><code>'{'</code></td> <td><code>left-curly-bracket</code></td> <td><code>'{'</code></td> </tr><tr> <th><code>vertical-line</code></th> <td><code>'|'</code></td> <td><code>right-brace</code></td> <td><code>'}'</code></td> </tr><tr> <th><code>right-curly-bracket</code></th> <td><code>'}'</code></td> <td><code>tilde</code></td> <td><code>'~'</code></td> </tr><tr> <th><code>DEL</code></th> <td><code>177</code></td> <td></td> <td></td> </tr></tbody></table>
 
   ```sql
   mysql> SELECT '~' REGEXP '.~.';                     -> 1
   mysql> SELECT '~' REGEXP '.tilde.';                 -> 1
   ```
 
-- `[=classe_de_personagem=]`
+* `[=character_class=]`
 
-  Dentro de uma expressão de conjunto (escrita usando `[` e `]`), `[=character_class=]` representa uma classe de equivalência. Ela corresponde a todos os caracteres com o mesmo valor de ordenação, incluindo o próprio caractere. Por exemplo, se `o` e `(+)` são os membros de uma classe de equivalência, `=o=`, `=(+)=` e `[o(+)]` são todos sinônimos. Uma classe de equivalência não pode ser usada como um ponto final de uma faixa.
+  Within a bracket expression (written using `[` and `]`), `[=character_class=]` represents an equivalence class. It matches all characters with the same collation value, including itself. For example, if `o` and `(+)` are the members of an equivalence class, `=o=`, `=(+)=`, and `[o(+)]` are all synonymous. An equivalence class may not be used as an endpoint of a range.
 
-- `[:classe_caracteres:]`
+* `[:character_class:]`
 
-  Dentro de uma expressão entre colchetes (escrita usando `[` e `]`), `[:character_class:]` representa uma classe de caracteres que corresponde a todos os caracteres pertencentes a essa classe. A tabela a seguir lista os nomes padrão das classes. Esses nomes representam as classes de caracteres definidas na página do manual `ctype(3)`. Um determinado local pode fornecer outros nomes de classes. Uma classe de caracteres não pode ser usada como um ponto final de uma faixa.
+  Within a bracket expression (written using `[` and `]`), `[:character_class:]` represents a character class that matches all characters belonging to that class. The following table lists the standard class names. These names stand for the character classes defined in the `ctype(3)` manual page. A particular locale may provide other class names. A character class may not be used as an endpoint of a range.
 
-  <table summary="Nomes das classes de personagens e o significado de cada classe."><col style="width: 20%"/><col style="width: 80%"/><thead><tr> <th>Nome da Classe de Personagem</th> <th>Significado</th> </tr></thead><tbody><tr> <td>PH_HTML_CODE_<code>upper</code>]</td> <td>Caracteres alfanuméricos</td> </tr><tr> <td>PH_HTML_CODE_<code>upper</code>]</td> <td>Caracteres alfabéticos</td> </tr><tr> <td><code>blank</code></td> <td>Caracteres de espaço em branco</td> </tr><tr> <td><code>cntrl</code></td> <td>Caracteres de controle</td> </tr><tr> <td><code>digit</code></td> <td>Caracteres digitais</td> </tr><tr> <td><code>graph</code></td> <td>Personagens gráficos</td> </tr><tr> <td><code>lower</code></td> <td>Letras minúsculas</td> </tr><tr> <td><code>print</code></td> <td>Caracteres gráficos ou espaciais</td> </tr><tr> <td><code>punct</code></td> <td>Caracteres de pontuação</td> </tr><tr> <td><code>space</code></td> <td>Espaço, tabulação, nova linha e retorno de carroceria</td> </tr><tr> <td><code>upper</code></td> <td>Letras maiúsculas</td> </tr><tr> <td><code>alpha</code><code>upper</code>]</td> <td>Caracteres de dígitos hexadecimais</td> </tr></tbody></table>
+  <table summary="Character class names and the meaning of each class."><col style="width: 20%"/><col style="width: 80%"/><thead><tr> <th>Character Class Name</th> <th>Meaning</th> </tr></thead><tbody><tr> <td><code>alnum</code></td> <td>Alphanumeric characters</td> </tr><tr> <td><code>alpha</code></td> <td>Alphabetic characters</td> </tr><tr> <td><code>blank</code></td> <td>Whitespace characters</td> </tr><tr> <td><code>cntrl</code></td> <td>Control characters</td> </tr><tr> <td><code>digit</code></td> <td>Digit characters</td> </tr><tr> <td><code>graph</code></td> <td>Graphic characters</td> </tr><tr> <td><code>lower</code></td> <td>Lowercase alphabetic characters</td> </tr><tr> <td><code>print</code></td> <td>Graphic or space characters</td> </tr><tr> <td><code>punct</code></td> <td>Punctuation characters</td> </tr><tr> <td><code>space</code></td> <td>Space, tab, newline, and carriage return</td> </tr><tr> <td><code>upper</code></td> <td>Uppercase alphabetic characters</td> </tr><tr> <td><code>xdigit</code></td> <td>Hexadecimal digit characters</td> </tr></tbody></table>
 
   ```sql
   mysql> SELECT 'justalnums' REGEXP ':alnum:+';       -> 1
   mysql> SELECT '!!' REGEXP ':alnum:+';               -> 0
   ```
 
-- `:<:`, `:>:`
+* `:<:`, `:>:`
 
-  Esses marcadores representam os limites das palavras. Eles correspondem ao início e ao fim das palavras, respectivamente. Uma palavra é uma sequência de caracteres de palavra que não é precedida ou seguida por caracteres de palavra. Um caractere de palavra é um caractere alfanumérico da classe `alnum` ou um sublinhado (`_`).
+  These markers stand for word boundaries. They match the beginning and end of words, respectively. A word is a sequence of word characters that is not preceded by or followed by word characters. A word character is an alphanumeric character in the `alnum` class or an underscore (`_`).
 
   ```sql
   mysql> SELECT 'a word a' REGEXP ':<:word:>:';   -> 1
   mysql> SELECT 'a xword a' REGEXP ':<:word:>:';  -> 0
   ```
 
-Para usar uma instância literal de um caractere especial em uma expressão regular, anteceda-o com dois caracteres barra invertida (\\). O analisador do MySQL interpreta um dos barra invertidas, e a biblioteca de expressões regulares interpreta o outro. Por exemplo, para corresponder à string `1+2` que contém o caractere especial `+`, apenas a seguinte expressão regular é a correta:
+To use a literal instance of a special character in a regular expression, precede it by two backslash (\) characters. The MySQL parser interprets one of the backslashes, and the regular expression library interprets the other. For example, to match the string `1+2` that contains the special `+` character, only the last of the following regular expressions is the correct one:
 
 ```sql
 mysql> SELECT '1+2' REGEXP '1+2';                       -> 0

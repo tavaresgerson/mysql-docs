@@ -1,5 +1,5 @@
-### 27.11.1 API Ruby/MySQL
+### 27.11.2 The Ruby/MySQL API
 
-O módulo Ruby/MySQL fornece acesso a bancos de dados MySQL usando Ruby através de uma interface de driver nativo que utiliza o protocolo de rede MySQL.
+The Ruby/MySQL module provides access to MySQL databases using Ruby through a native driver interface using the MySQL network protocol.
 
-Para obter informações sobre a instalação do módulo e as funções expostas, consulte Ruby/MySQL.
+For information on installing the module, and the functions exposed, see [Ruby/MySQL](http://tmtm.org/en/ruby/mysql/README_en.html).

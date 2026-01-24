@@ -1,55 +1,55 @@
-#### 21.6.15.13 Tabela ndbinfo cpustat_1sec
+#### 21.6.15.13 The ndbinfo cpustat_1sec Table
 
-A tabela `cpustat-1sec` fornece dados brutos de CPU por thread obtidos a cada segundo para cada thread que está rodando no kernel `NDB`.
+The `cpustat-1sec` table provides raw, per-thread CPU data obtained each second for each thread running in the `NDB` kernel.
 
-Assim como `cpustat_50ms` e `cpustat_20sec`, esta tabela mostra 20 conjuntos de medição por thread, cada um referenciando um período da duração nomeada. Assim, `cpsustat_1sec` fornece 20 segundos de histórico.
+Like [`cpustat_50ms`](mysql-cluster-ndbinfo-cpustat-50ms.html "21.6.15.12 The ndbinfo cpustat_50ms Table") and [`cpustat_20sec`](mysql-cluster-ndbinfo-cpustat-20sec.html "21.6.15.14 The ndbinfo cpustat_20sec Table"), this table shows 20 measurement sets per thread, each referencing a period of the named duration. Thus, `cpsustat_1sec` provides 20 seconds of history.
 
-A tabela `cpustat_1sec` contém as seguintes colunas:
+The `cpustat_1sec` table contains the following columns:
 
-- `node_id`
+* `node_id`
 
-  ID do nó onde o thread está sendo executado
+  ID of the node where the thread is running
 
-- `thr_no`
+* `thr_no`
 
-  ID do thread (específico para este nó)
+  Thread ID (specific to this node)
 
-- `OS_user_time`
+* `OS_user_time`
 
-  Tempo de uso do sistema operacional
+  OS user time
 
-- `OS_system_time`
+* `OS_system_time`
 
-  Horário do sistema do OS
+  OS system time
 
-- `OS_idle_time`
+* `OS_idle_time`
 
-  Tempo de inatividade
+  OS idle time
 
-- `exec_time`
+* `exec_time`
 
-  Tempo de execução do thread
+  Thread execution time
 
-- `sleep_time`
+* `sleep_time`
 
-  Tempo de sono do thread
+  Thread sleep time
 
-- `spin_time`
+* `spin_time`
 
-  Tempo de rotação do thread
+  Thread spin time
 
-- `send_time`
+* `send_time`
 
-  Tempo de envio do thread
+  Thread send time
 
-- `buffer_full_time`
+* `buffer_full_time`
 
-  Buffer de thread em tempo integral
+  Thread buffer full time
 
-- `tempo_transcorrido`
+* `elapsed_time`
 
-  Tempo decorrido
+  Elapsed time
 
-##### Notas
+##### Notes
 
-Esta tabela foi adicionada no NDB 7.5.2.
+This table was added in NDB 7.5.2.

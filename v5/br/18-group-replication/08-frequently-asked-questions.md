@@ -1,111 +1,111 @@
-## 17.8 Perguntas Frequentes
+## 17.8 Frequently Asked Questions
 
-Esta seção fornece respostas para perguntas frequentes.
+This section provides answers to frequently asked questions.
 
-### Qual é o número máximo de servidores MySQL em um grupo?
+### What is the maximum number of MySQL servers in a group?
 
-Um grupo pode conter no máximo 9 servidores. Se tentar adicionar outro servidor a um grupo com 9 membros, o pedido de adição será recusado. Esse limite foi identificado por meio de testes e comparações, como um limite seguro em que o grupo funciona de forma confiável em uma rede local estável.
+A group can consist of maximum 9 servers. Attempting to add another server to a group with 9 members causes the request to join to be refused. This limit has been identified from testing and benchmarking as a safe boundary where the group performs reliably on a stable local area network.
 
-### Como os servidores de um grupo estão conectados?
+### How are servers in a group connected?
 
-Os servidores de um grupo se conectam aos outros servidores do grupo abrindo uma conexão TCP ponto a ponto. Essas conexões são usadas apenas para comunicação interna e transmissão de mensagens entre os servidores do grupo. Esse endereço é configurado pela variável `group_replication_local_address`.
+Servers in a group connect to the other servers in the group by opening a peer-to-peer TCP connection. These connections are only used for internal communication and message passing between servers in the group. This address is configured by the [`group_replication_local_address`](group-replication-system-variables.html#sysvar_group_replication_local_address) variable.
 
-### Para que serve a opção group_replication_bootstrap_group?
+### What is the group_replication_bootstrap_group option used for?
 
-A bandeira de bootstrap instrui um membro a *criar* um grupo e a atuar como o servidor inicial de semente. O segundo membro que se junta ao grupo precisa pedir ao membro que iniciou o grupo para alterar dinamicamente a configuração para que ele seja adicionado ao grupo.
+The bootstrap flag instructs a member to *create* a group and act as the initial seed server. The second member joining the group needs to ask the member that bootstrapped the group to dynamically change the configuration in order for it to be added to the group.
 
-Um membro precisa inicializar o grupo em dois cenários. Quando o grupo é criado originalmente ou quando ele é encerrado e reiniciado.
+A member needs to bootstrap the group in two scenarios. When the group is originally created, or when shutting down and restarting the entire group.
 
-### Como definir as credenciais para o procedimento de recuperação?
+### How do I set credentials for the recovery procedure?
 
-Você pré-configura as credenciais do canal de recuperação da replicação em grupo usando a instrução `CHANGE MASTER TO`.
+You pre-configure the Group Replication recovery channel credentials using the [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") statement.
 
-### Posso escalar minha carga de escrita usando a Replicação por Grupo?
+### Can I scale-out my write-load using Group Replication?
 
-Não diretamente, mas a replicação do MySQL Group é uma solução de replicação completa sem compartilhamento, onde todos os servidores do grupo replicam a mesma quantidade de dados. Portanto, se um membro do grupo escrever N bytes no armazenamento como resultado de uma operação de commit de transação, então aproximadamente N bytes são escritos no armazenamento em outros membros também, porque a transação é replicada em todos os lugares.
+Not directly, but MySQL Group replication is a shared nothing full replication solution, where all servers in the group replicate the same amount of data. Therefore if one member in the group writes N bytes to storage as the result of a transaction commit operation, then roughly N bytes are written to storage on other members as well, because the transaction is replicated everywhere.
 
-No entanto, dado que outros membros não precisam realizar a mesma quantidade de processamento que o membro original precisava quando executou a transação originalmente, eles aplicam as alterações mais rapidamente. As transações são replicadas em um formato que é usado apenas para aplicar transformações de linha, sem precisar reexecutar as transações novamente (formato baseado em linha).
+However, given that other members do not have to do the same amount of processing that the original member had to do when it originally executed the transaction, they apply the changes faster. Transactions are replicated in a format that is used to apply row transformations only, without having to re-execute transactions again (row-based format).
 
-Além disso, dado que as alterações são propagadas e aplicadas em formato de linha, isso significa que elas são recebidas em um formato otimizado e compacto, e provavelmente reduzem o número de operações de E/S necessárias em comparação com o membro de origem.
+Furthermore, given that changes are propagated and applied in row-based format, this means that they are received in an optimized and compact format, and likely reducing the number of IO operations required when compared to the originating member.
 
-Para resumir, você pode escalar o processamento, espalhando transações livres de conflitos por diferentes membros do grupo. E você provavelmente pode escalar uma pequena fração de suas operações de E/S, pois os servidores remotos recebem apenas as alterações necessárias para as alterações de leitura, modificação e escrita no armazenamento estável.
+To summarize, you can scale-out processing, by spreading conflict free transactions throughout different members in the group. And you can likely scale-out a small fraction of your IO operations, since remote servers receive only the necessary changes to read-modify-write changes to stable storage.
 
-### A replicação em grupo exige mais largura de banda de rede e CPU em comparação com a replicação simples e sob a mesma carga de trabalho?
+### Does Group Replication require more network bandwidth and CPU, when compared to simple replication and under the same workload?
 
-Espera-se uma carga adicional porque os servidores precisam estar constantemente interagindo entre si para fins de sincronização. É difícil quantificar quanto mais dados. Isso também depende do tamanho do grupo (três servidores colocam menos estresse nos requisitos de largura de banda do que nove servidores no grupo).
+Some additional load is expected because servers need to be constantly interacting with each other for synchronization purposes. It is difficult to quantify how much more data. It also depends on the size of the group (three servers puts less stress on the bandwidth requirements than nine servers in the group).
 
-Além disso, a memória e a pegada de CPU são maiores, porque mais trabalho complexo é realizado para a parte de sincronização do servidor e para a mensagem de grupo.
+Also the memory and CPU footprint are larger, because more complex work is done for the server synchronization part and for the group messaging.
 
-### Posso implementar a Replicação em Grupo em redes de longa distância?
+### Can I deploy Group Replication across wide-area networks?
 
-Sim, mas a conexão de rede entre cada membro *deve* ser confiável e ter um desempenho adequado. Conexões de rede com baixa latência e alta largura de banda são um requisito para um desempenho ótimo.
+Yes, but the network connection between each member *must* be reliable and have suitable perfomance. Low latency, high bandwidth network connections are a requirement for optimal performance.
 
-Se o problema for apenas a largura de banda da rede, então seção 17.9.7.2, “Compressão de Mensagens” pode ser usada para reduzir a largura de banda necessária. No entanto, se a rede perder pacotes, levando a retransmissões e maior latência de ponta a ponta, o desempenho e a latência são afetados negativamente.
+If network bandwidth alone is an issue, then [Section 17.9.7.2, “Message Compression”](group-replication-message-compression.html "17.9.7.2 Message Compression") can be used to lower the bandwidth required. However, if the network drops packets, leading to re-transmissions and higher end-to-end latency, throughput and latency are both negatively affected.
 
-Aviso
+Warning
 
-Quando o tempo de ida e volta da rede (RTT) entre qualquer membro do grupo for de 5 segundos ou mais, você pode encontrar problemas, pois o mecanismo de detecção de falhas integrado pode ser acionado incorretamente.
+When the network round-trip time (RTT) between any group members is 5 seconds or more you could encounter problems as the built-in failure detection mechanism could be incorrectly triggered.
 
-### Os membros retornam automaticamente a um grupo em caso de problemas temporários de conectividade?
+### Do members automatically rejoin a group in case of temporary connectivity problems?
 
-Isso depende da razão do problema de conectividade. Se o problema de conectividade for transitório e a reconexão for rápida o suficiente para que o detector de falhas não perceba, então o servidor pode não ser removido do grupo. Se for um problema de conectividade "longo", o detector de falhas eventualmente suspeitará de um problema e o servidor será removido do grupo.
+This depends on the reason for the connectivity problem. If the connectivity problem is transient and the reconnection is quick enough that the failure detector is not aware of it, then the server may not be removed from the group. If it is a "long" connectivity problem, then the failure detector eventually suspects a problem and the server is removed from the group.
 
-Quando um servidor é removido do grupo, você precisa adicioná-lo novamente. Em outras palavras, após um servidor ser removido explicitamente do grupo, você precisa adicioná-lo manualmente (ou ter um script fazendo isso automaticamente).
+Once a server is removed from the group, you need to join it back again. In other words, after a server is removed explicitly from the group you need to rejoin it manually (or have a script doing it automatically).
 
-### Quando um membro é excluído de um grupo?
+### When is a member excluded from a group?
 
-Se o membro ficar silencioso, os outros membros o removerão da configuração do grupo. Na prática, isso pode acontecer quando o membro falhar ou houver uma desconexão da rede.
+If the member becomes silent, the other members remove it from the group configuration. In practice this may happen when the member has crashed or there is a network disconnection.
 
-O erro é detectado após o tempo limite especificado para um membro específico expirar e uma nova configuração sem o membro silencioso ser criada.
+The failure is detected after a given timeout elapses for a given member and a new configuration without the silent member in it is created.
 
-### O que acontece quando um nó está significativamente atrasado?
+### What happens when one node is significantly lagging behind?
 
-Não há um método para definir políticas sobre quando expulsar automaticamente os membros do grupo. Você precisa descobrir por que um membro está atrasado e resolver isso ou remover o membro do grupo. Caso contrário, se o servidor for tão lento que acionar o controle de fluxo, então todo o grupo também desacelera. O controle de fluxo pode ser configurado de acordo com suas necessidades.
+There is no method for defining policies for when to expel members automatically from the group. You need to find out why a member is lagging behind and fix that or remove the member from the group. Otherwise, if the server is so slow that it triggers the flow control, then the entire group slows down as well. The flow control can be configured according to the your needs.
 
-### Em caso de suspeita de um problema no grupo, há um membro especial responsável por desencadear uma reconfiguração?
+### Upon suspicion of a problem in the group, is there a special member responsible for triggering a reconfiguration?
 
-Não, não há um membro especial no grupo responsável por desencadear uma reconfiguração.
+No, there is no special member in the group in charge of triggering a reconfiguration.
 
-Qualquer membro pode suspeitar que há um problema. Todos os membros precisam concordar (automaticamente) que um determinado membro falhou. Um membro é responsável por expulsá-lo do grupo, acionando uma reconfiguração. Qual membro é responsável por expulsar o membro não é algo que você pode controlar ou definir.
+Any member can suspect that there is a problem. All members need to (automatically) agree that a given member has failed. One member is in charge of expelling it from the group, by triggering a reconfiguration. Which member is responsible for expelling the member is not something you can control or set.
 
-### Posso usar a Replicação em Grupo para particionamento?
+### Can I use Group Replication for sharding?
 
-A Replicação em Grupo é projetada para fornecer conjuntos de replicação altamente disponíveis; os dados e as escritas são duplicados em cada membro do grupo. Para escalar além do que um único sistema pode fornecer, você precisa de uma estrutura de orquestração e fragmentação construída em torno de vários conjuntos de Replicação em Grupo, onde cada conjunto de replicação mantém e gerencia um fragmento ou partição específica do seu conjunto de dados total. Esse tipo de configuração, frequentemente chamado de "clúster fragmentado", permite que você escale leituras e escritas linearmente e sem limite.
+Group Replication is designed to provide highly available replica sets; data and writes are duplicated on each member in the group. For scaling beyond what a single system can provide, you need an orchestration and sharding framework built around a number of Group Replication sets, where each replica set maintains and manages a given shard or partition of your total dataset. This type of setup, often called a “sharded cluster”, allows you to scale reads and writes linearly and without limit.
 
-### Como usar a replicação em grupo com o SELinux?
+### How do I use Group Replication with SELinux?
 
-Se o SELinux estiver ativado, o que você pode verificar usando **sestatus -v**, então você precisa habilitar o uso da porta de comunicação da Replicação de Grupo. Veja Definindo o contexto da porta TCP para a Replicação de Grupo.
+If SELinux is enabled, which you can verify using **sestatus -v**, then you need to enable the use of the Group Replication communication port. See [Setting the TCP Port Context for Group Replication](selinux-context-mysql-feature-ports.html#selinux-context-group-replication-port "Setting the TCP Port Context for Group Replication").
 
-### Como usar a replicação em grupo com o iptables?
+### How do I use Group Replication with iptables?
 
-Se o **iptables** estiver habilitado, você precisará abrir a porta de Replicação de Grupo para a comunicação entre as máquinas. Para ver as regras atuais em cada máquina, execute **iptables -L**. Supondo que a porta configurada seja 33061, habilite a comunicação na porta necessária, emitindo **iptables -A INPUT -p tcp --dport 33061 -j ACCEPT**.
+If **iptables** is enabled, then you need to open up the Group Replication port for communication between the machines. To see the current rules in place on each machine, issue **iptables -L**. Assuming the port configured is 33061, enable communication over the necessary port by issuing **iptables -A INPUT -p tcp --dport 33061 -j ACCEPT**.
 
-### Como posso recuperar o registro do retransmissor para um canal de replicação usado por um membro do grupo?
+### How do I recover the relay log for a replication channel used by a group member?
 
-Os canais de replicação usados pelo Grupo de Replicação se comportam da mesma maneira que os canais de replicação usados na fonte para replicar a replicação, e, como tal, dependem do log de relevo. Em caso de alteração da variável `relay_log`, ou quando a opção não estiver definida e o nome do host mudar, há a possibilidade de erros. Consulte Seção 16.2.4.1, “O Log de Relevo” para um procedimento de recuperação nesta situação. Alternativamente, outra maneira de corrigir o problema especificamente no Grupo de Replicação é emitir uma declaração `STOP GROUP_REPLICATION` e, em seguida, uma declaração `START GROUP_REPLICATION` para reiniciar a instância. O plugin de Grupo de Replicação cria novamente o canal `group_replication_applier`.
+The replication channels used by Group Replication behave in the same way as replication channels used in source to replica replication, and as such rely on the relay log. In the event of a change of the [`relay_log`](replication-options-replica.html#sysvar_relay_log) variable, or when the option is not set and the host name changes, there is a chance of errors. See [Section 16.2.4.1, “The Relay Log”](replica-logs-relaylog.html "16.2.4.1 The Relay Log") for a recovery procedure in this situation. Alternatively, another way of fixing the issue specifically in Group Replication is to issue a [`STOP GROUP_REPLICATION`](stop-group-replication.html "13.4.3.2 STOP GROUP_REPLICATION Statement") statement and then a [`START GROUP_REPLICATION`](start-group-replication.html "13.4.3.1 START GROUP_REPLICATION Statement") statement to restart the instance. The Group Replication plugin creates the `group_replication_applier` channel again.
 
-### Por que o Grupo de Replicação usa duas endereços de conexão?
+### Why does Group Replication use two bind addresses?
 
-A replicação em grupo usa duas endereços de conexão para dividir o tráfego de rede entre o endereço SQL, usado pelos clientes para se comunicarem com o membro, e o `group_replication_local_address`, usado internamente pelos membros do grupo para se comunicarem. Por exemplo, suponha que um servidor tenha duas interfaces de rede atribuídas aos endereços de rede `203.0.113.1` e `198.51.100.179`. Nessa situação, você poderia usar `203.0.113.1:33061` para o endereço de rede interno do grupo, configurando `group_replication_local_address=203.0.113.1:33061`. Então, você poderia usar `198.51.100.179` para o `hostname` e `3306` para o `port`. As aplicações SQL dos clientes então se conectariam ao membro em `198.51.100.179:3306`. Isso permite que você configure regras diferentes nas diferentes redes. Da mesma forma, a comunicação interna do grupo pode ser separada da conexão de rede usada para aplicações de clientes, para aumentar a segurança.
+Group Replication uses two bind addresses in order to split network traffic between the SQL address, used by clients to communicate with the member, and the [`group_replication_local_address`](group-replication-system-variables.html#sysvar_group_replication_local_address), used internally by the group members to communicate. For example, assume a server with two network interfaces assigned to the network addresses `203.0.113.1` and `198.51.100.179`. In such a situation you could use `203.0.113.1:33061` for the internal group network address by setting [`group_replication_local_address=203.0.113.1:33061`](group-replication-system-variables.html#sysvar_group_replication_local_address). Then you could use `198.51.100.179` for [`hostname`](server-system-variables.html#sysvar_hostname) and `3306` for the [`port`](server-system-variables.html#sysvar_port). Client SQL applications would then connect to the member at `198.51.100.179:3306`. This enables you to configure different rules on the different networks. Similarly, the internal group communication can be separated from the network connection used for client applications, for increased security.
 
-### Como o Grupo de Replicação usa endereços de rede e nomes de host?
+### How does Group Replication use network addresses and hostnames?
 
-A replicação em grupo usa conexões de rede entre os membros, e, portanto, sua funcionalidade é diretamente afetada pela forma como você configura os nomes de host e portas. Por exemplo, o procedimento de recuperação da replicação em grupo é baseado em replicação assíncrona, que usa o nome de host e a porta do servidor. Quando um membro se junta a um grupo, ele recebe as informações de filiação ao grupo, usando as informações de endereço de rede listadas em `performance_schema.replication_group_members`. Um dos membros listados naquela tabela é selecionado como o doador dos dados faltantes do grupo para o novo membro.
+Group Replication uses network connections between members and therefore its functionality is directly impacted by how you configure hostnames and ports. For example, the Group Replication recovery procedure is based on asynchronous replication which uses the server's hostname and port. When a member joins a group it receives the group membership information, using the network address information that is listed at [`performance_schema.replication_group_members`](performance-schema-replication-group-members-table.html "25.12.11.8 The replication_group_members Table"). One of the members listed in that table is selected as the donor of the missing data from the group to the new member.
 
-Isso significa que qualquer valor que você configure usando um nome de host, como o endereço de rede SQL ou o endereço de sementes do grupo, deve ser um nome totalmente qualificado e resolvível por cada membro do grupo. Você pode garantir isso, por exemplo, por meio do DNS, ou arquivos `/etc/hosts` configurados corretamente, ou outros processos locais. Se você quiser configurar o valor `MEMBER_HOST` em um servidor, especifique-o usando a opção [`--report-host`](https://replication-options-replica.html#sysvar_report_host) no servidor antes de conectá-lo ao grupo.
+This means that any value you configure using a hostname, such as the SQL network address or the group seeds address, must be a fully qualified name and resolvable by each member of the group. You can ensure this for example through DNS, or correctly configured `/etc/hosts` files, or other local processes. If a you want to configure the `MEMBER_HOST` value on a server, specify it using the [`--report-host`](replication-options-replica.html#sysvar_report_host) option on the server before joining it to the group.
 
-Importante
+Important
 
-O valor atribuído é usado diretamente e não é afetado pela variável de sistema `skip_name_resolve`.
+The assigned value is used directly and is not affected by the [`skip_name_resolve`](server-system-variables.html#sysvar_skip_name_resolve) system variable.
 
-Para configurar `MEMBER_PORT` em um servidor, especifique-o usando a variável de sistema [`report_port`](https://docs.mariadb.org/en/stable/replication-options-replica.html#sysvar_report_port).
+To configure `MEMBER_PORT` on a server, specify it using the [`report_port`](replication-options-replica.html#sysvar_report_port) system variable.
 
-### Por que o ajuste de incremento automático no servidor mudou?
+### Why did the auto increment setting on the server change?
 
-Quando a Replicação em Grupo é iniciada em um servidor, o valor de `auto_increment_increment` é alterado para o valor de `group_replication_auto_increment_increment`, que tem o valor padrão de 7, e o valor de `auto_increment_offset` é alterado para o ID do servidor. As alterações são revertidas quando a Replicação em Grupo é parada. Essas configurações evitam a seleção de valores duplicados de autoincremento para escritas nos membros do grupo, o que causa o rollback das transações. O valor padrão de autoincremento de 7 para a Replicação em Grupo representa um equilíbrio entre o número de valores utilizáveis e o tamanho máximo permitido de um grupo de replicação (9 membros).
+When Group Replication is started on a server, the value of [`auto_increment_increment`](replication-options-source.html#sysvar_auto_increment_increment) is changed to the value of [`group_replication_auto_increment_increment`](group-replication-system-variables.html#sysvar_group_replication_auto_increment_increment), which defaults to 7, and the value of [`auto_increment_offset`](replication-options-source.html#sysvar_auto_increment_offset) is changed to the server ID. The changes are reverted when Group Replication is stopped. These settings avoid the selection of duplicate auto-increment values for writes on group members, which causes rollback of transactions. The default auto increment value of 7 for Group Replication represents a balance between the number of usable values and the permitted maximum size of a replication group (9 members).
 
-As alterações só são feitas e revertidas se `auto_increment_increment` e `auto_increment_offset` tiverem seus valores padrão de 1. Se seus valores já tiverem sido modificados do padrão, o Grupo de Replicação não os altera.
+The changes are only made and reverted if [`auto_increment_increment`](replication-options-source.html#sysvar_auto_increment_increment) and [`auto_increment_offset`](replication-options-source.html#sysvar_auto_increment_offset) each have their default value of 1. If their values have already been modified from the default, Group Replication does not alter them.
 
-### Como encontro o principal?
+### How do I find the primary?
 
-Se o grupo estiver operando no modo de primário único, pode ser útil descobrir qual membro é o primário. Consulte Seção 17.5.1.3, “Encontrando o Primário”
+If the group is operating in single-primary mode, it can be useful to find out which member is the primary. See [Section 17.5.1.3, “Finding the Primary”](group-replication-find-primary.html "17.5.1.3 Finding the Primary")

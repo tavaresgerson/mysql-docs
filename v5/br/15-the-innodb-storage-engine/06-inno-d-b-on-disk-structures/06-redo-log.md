@@ -1,27 +1,27 @@
-### 14.6.6 Registro de Refazer
+### 14.6.6 Redo Log
 
-O log de refazer é uma estrutura de dados baseada em disco usada durante a recuperação em caso de falha para corrigir dados escritos por transações incompletas. Durante operações normais, o log de refazer codifica solicitações para alterar dados de tabelas que resultam de instruções SQL ou chamadas de API de nível baixo. As modificações que não terminaram de atualizar os arquivos de dados antes de um desligamento inesperado são regravadas automaticamente durante a inicialização e antes que as conexões sejam aceitas. Para obter informações sobre o papel do log de refazer na recuperação em caso de falha, consulte a Seção 14.19.2, “Recuperação do InnoDB”.
+The redo log is a disk-based data structure used during crash recovery to correct data written by incomplete transactions. During normal operations, the redo log encodes requests to change table data that result from SQL statements or low-level API calls. Modifications that did not finish updating the data files before an unexpected shutdown are replayed automatically during initialization, and before connections are accepted. For information about the role of the redo log in crash recovery, see Section 14.19.2, “InnoDB Recovery”.
 
-Por padrão, o log de reversão é representado fisicamente no disco por dois arquivos chamados `ib_logfile0` e `ib_logfile1`. O MySQL escreve nos arquivos de log de reversão de forma circular. Os dados no log de reversão são codificados em termos de registros afetados; esses dados são coletivamente chamados de reversão. A passagem dos dados pelo log de reversão é representada por um valor de LSN (Local Sequence Number) sempre crescente.
+By default, the redo log is physically represented on disk by two files named `ib_logfile0` and `ib_logfile1`. MySQL writes to the redo log files in a circular fashion. Data in the redo log is encoded in terms of records affected; this data is collectively referred to as redo. The passage of data through the redo log is represented by an ever-increasing LSN value.
 
-As informações e os procedimentos relacionados aos registros de revisão são descritos nos seguintes tópicos na seção:
+Information and procedures related to redo logs are described under the following topics in the section:
 
-- Alterar o número ou o tamanho dos arquivos de registro de reinicialização do InnoDB
-- Tópicos relacionados
+* Changing the Number or Size of InnoDB Redo Log Files
+* Related Topics
 
-#### Alterar o número ou o tamanho dos arquivos de registro de reinicialização do InnoDB
+#### Changing the Number or Size of InnoDB Redo Log Files
 
-Para alterar o número ou o tamanho dos arquivos de registro de reverso do `InnoDB`, siga os passos abaixo:
+To change the number or the size of your `InnoDB` redo log files, perform the following steps:
 
-1. Pare o servidor MySQL e certifique-se de que ele seja desligado sem erros.
+1. Stop the MySQL server and make sure that it shuts down without errors.
 
-2. Editar `my.cnf` para alterar a configuração do arquivo de log. Para alterar o tamanho do arquivo de log, configure `innodb_log_file_size`. Para aumentar o número de arquivos de log, configure `innodb_log_files_in_group`.
+2. Edit `my.cnf` to change the log file configuration. To change the log file size, configure `innodb_log_file_size`. To increase the number of log files, configure `innodb_log_files_in_group`.
 
-3. Reinicie o servidor MySQL.
+3. Start the MySQL server again.
 
-Se o `InnoDB` detectar que o tamanho do arquivo de log `innodb_log_file_size` difere do tamanho do arquivo de log de refazer, ele escreve um ponto de verificação de log, fecha e remove os arquivos de log antigos, cria novos arquivos de log no tamanho solicitado e abre os novos arquivos de log.
+If `InnoDB` detects that the `innodb_log_file_size` differs from the redo log file size, it writes a log checkpoint, closes and removes the old log files, creates new log files at the requested size, and opens the new log files.
 
-#### Tópicos relacionados
+#### Related Topics
 
-- Configuração do arquivo de registro novamente
-- Seção 8.5.4, “Otimizando o registro de reinicialização do InnoDB”
+* Redo Log File Configuration
+* Section 8.5.4, “Optimizing InnoDB Redo Logging”

@@ -1,34 +1,34 @@
-#### 21.2.7.3 Limitações relacionadas ao processamento de transações no NDB Cluster
+#### 21.2.7.3 Limits Relating to Transaction Handling in NDB Cluster
 
-Existem várias limitações no NDB Cluster em relação ao tratamento de transações, incluindo as seguintes:
+A number of limitations exist in NDB Cluster with regard to the handling of transactions. These include the following:
 
-- **Nível de isolamento de transação.**
+* **Transaction isolation level.**
 
-  O mecanismo de armazenamento `NDBCLUSTER` suporta apenas o nível de isolamento de transação `READ COMMITTED`. (`InnoDB`, por exemplo, suporta `READ COMMITTED`, `READ UNCOMMITTED`, `REPEATABLE READ` e `SERIALIZABLE`. Você deve ter em mente que o `NDB` implementa `READ COMMITTED` em uma base por linha; quando um pedido de leitura chega ao nó de dados que armazena a linha, o que é retornado é a última versão comprometida da linha naquela época.
+  The [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine supports only the [`READ COMMITTED`](innodb-transaction-isolation-levels.html#isolevel_read-committed) transaction isolation level. (`InnoDB`, for example, supports [`READ COMMITTED`](innodb-transaction-isolation-levels.html#isolevel_read-committed), [`READ UNCOMMITTED`](innodb-transaction-isolation-levels.html#isolevel_read-uncommitted), [`REPEATABLE READ`](innodb-transaction-isolation-levels.html#isolevel_repeatable-read), and [`SERIALIZABLE`](innodb-transaction-isolation-levels.html#isolevel_serializable).) You should keep in mind that `NDB` implements `READ COMMITTED` on a per-row basis; when a read request arrives at the data node storing the row, what is returned is the last committed version of the row at that time.
 
-  Os dados não comprometidos nunca são devolvidos, mas quando uma transação que modifica várias linhas é comprometida simultaneamente com uma transação que lê as mesmas linhas, a transação que realiza a leitura pode observar valores “antes” e “depois” ou ambos para diferentes linhas, devido ao fato de que um pedido de leitura de uma linha específica pode ser processado antes ou depois do comprometimento da outra transação.
+  Uncommitted data is never returned, but when a transaction modifying a number of rows commits concurrently with a transaction reading the same rows, the transaction performing the read can observe “before” values, “after” values, or both, for different rows among these, due to the fact that a given row read request can be processed either before or after the commit of the other transaction.
 
-  Para garantir que uma transação específica leia apenas valores antes ou depois, você pode impor bloqueios de linha usando `SELECT ... LOCK IN SHARE MODE`. Nesse caso, o bloqueio é mantido até que a transação proprietária seja confirmada. O uso de bloqueios de linha também pode causar os seguintes problemas:
+  To ensure that a given transaction reads only before or after values, you can impose row locks using [`SELECT ... LOCK IN SHARE MODE`](select.html "13.2.9 SELECT Statement"). In such cases, the lock is held until the owning transaction is committed. Using row locks can also cause the following issues:
 
-  - Aumento da frequência de erros de tempo de espera de bloqueio e redução da concorrência
+  + Increased frequency of lock wait timeout errors, and reduced concurrency
 
-  - Aumento do overhead de processamento de transações devido a leituras que exigem uma fase de commit
+  + Increased transaction processing overhead due to reads requiring a commit phase
 
-  - Possibilidade de esgotar o número disponível de bloqueios concorrentes, que é limitado por `MaxNoOfConcurrentOperations`
+  + Possibility of exhausting the available number of concurrent locks, which is limited by [`MaxNoOfConcurrentOperations`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnoofconcurrentoperations)
 
-  O `NDB` usa `READ COMMITTED` para todas as leituras, a menos que um modificador como `LOCK IN SHARE MODE` ou `FOR UPDATE` seja usado. `LOCK IN SHARE MODE` faz com que os bloqueios de linha compartilhados sejam usados; `FOR UPDATE` faz com que os bloqueios de linha exclusivos sejam usados. As leituras de chave única têm seus bloqueios atualizados automaticamente pelo `NDB` para garantir uma leitura autoconsistente; as leituras de `BLOB` também empregam bloqueios extras para garantir a consistência.
+  `NDB` uses `READ COMMITTED` for all reads unless a modifier such as `LOCK IN SHARE MODE` or `FOR UPDATE` is used. `LOCK IN SHARE MODE` causes shared row locks to be used; `FOR UPDATE` causes exclusive row locks to be used. Unique key reads have their locks upgraded automatically by `NDB` to ensure a self-consistent read; `BLOB` reads also employ extra locking for consistency.
 
-  Consulte Seção 21.6.8.4, "Solução de problemas de backup do NDB Cluster" para obter informações sobre como a implementação do nível de isolamento de transação do NDB Cluster pode afetar o backup e a restauração de bancos de dados `NDB`.
+  See [Section 21.6.8.4, “NDB Cluster Backup Troubleshooting”](mysql-cluster-backup-troubleshooting.html "21.6.8.4 NDB Cluster Backup Troubleshooting"), for information on how NDB Cluster's implementation of transaction isolation level can affect backup and restoration of `NDB` databases.
 
-- **Transações e colunas BLOB ou TEXT.** `NDBCLUSTER` armazena apenas parte do valor de uma coluna que utiliza qualquer um dos tipos de dados `BLOB` ou `TEXT` do MySQL na tabela visível ao MySQL; o restante do `BLOB` ou `TEXT` é armazenado em uma tabela interna separada que não é acessível ao MySQL. Isso gera dois problemas relacionados dos quais você deve estar ciente sempre que executar instruções `SELECT` em tabelas que contêm colunas desses tipos:
+* **Transactions and BLOB or TEXT columns.** [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") stores only part of a column value that uses any of MySQL's [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") or [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") data types in the table visible to MySQL; the remainder of the [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") or [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") is stored in a separate internal table that is not accessible to MySQL. This gives rise to two related issues of which you should be aware whenever executing [`SELECT`](select.html "13.2.9 SELECT Statement") statements on tables that contain columns of these types:
 
-  1. Para qualquer `SELECT` de uma tabela do NDB Cluster: Se o `SELECT` incluir uma coluna `BLOB` ou `TEXT`, o nível de isolamento de transação `READ COMMITTED` é convertido para uma leitura com bloqueio de leitura. Isso é feito para garantir a consistência.
+  1. For any [`SELECT`](select.html "13.2.9 SELECT Statement") from an NDB Cluster table: If the [`SELECT`](select.html "13.2.9 SELECT Statement") includes a [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") or [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") column, the [`READ COMMITTED`](innodb-transaction-isolation-levels.html#isolevel_read-committed) transaction isolation level is converted to a read with read lock. This is done to guarantee consistency.
 
-  2. Para qualquer `SELECT` que utilize uma pesquisa por chave única para recuperar quaisquer colunas que utilizem algum dos tipos de dados `BLOB` ou `TEXT` e que seja executado dentro de uma transação, um bloqueio de leitura compartilhado é mantido na tabela durante a duração da transação — ou seja, até que a transação seja confirmada ou abortada.
+  2. For any [`SELECT`](select.html "13.2.9 SELECT Statement") which uses a unique key lookup to retrieve any columns that use any of the [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") or [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") data types and that is executed within a transaction, a shared read lock is held on the table for the duration of the transaction—that is, until the transaction is either committed or aborted.
 
-     Este problema não ocorre para consultas que utilizam varreduras de índice ou de tabela, mesmo contra tabelas de `NDB` que possuem colunas de `BLOB` ou `TEXT`.
+     This issue does not occur for queries that use index or table scans, even against [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables having [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") or [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") columns.
 
-     Por exemplo, considere a tabela `t` definida pela seguinte instrução `CREATE TABLE`:
+     For example, consider the table `t` defined by the following [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement:
 
      ```sql
      CREATE TABLE t (
@@ -41,13 +41,13 @@ Existem várias limitações no NDB Cluster em relação ao tratamento de transa
      ) ENGINE = NDB,
      ```
 
-     A consulta a seguir sobre `t` causa um bloqueio de leitura compartilhado, porque usa uma pesquisa de chave única:
+     The following query on `t` causes a shared read lock, because it uses a unique key lookup:
 
      ```sql
      SELECT * FROM t WHERE c = 1;
      ```
 
-     No entanto, nenhuma das quatro consultas mostradas aqui causa um bloqueio de leitura compartilhado:
+     However, none of the four queries shown here causes a shared read lock:
 
      ```sql
      SELECT * FROM t WHERE b = 1;
@@ -59,35 +59,35 @@ Existem várias limitações no NDB Cluster em relação ao tratamento de transa
      SELECT b,c WHERE a = 1;
      ```
 
-     Isso ocorre porque, dessas quatro consultas, a primeira usa uma varredura de índice, a segunda e a terceira usam varreduras de tabela, e a quarta, embora use uma pesquisa de chave primária, não recupera o valor de nenhuma coluna de tipo `BLOB` ou `TEXT`.
+     This is because, of these four queries, the first uses an index scan, the second and third use table scans, and the fourth, while using a primary key lookup, does not retrieve the value of any [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") or [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") columns.
 
-     Você pode ajudar a minimizar problemas com bloqueios de leitura compartilhada evitando consultas que utilizam consultas de busca de chave única que recuperam colunas `BLOB` ou `TEXT`, ou, nos casos em que tais consultas não possam ser evitadas, ao realizar transações o mais rápido possível depois.
+     You can help minimize issues with shared read locks by avoiding queries that use unique key lookups that retrieve [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") or [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") columns, or, in cases where such queries are not avoidable, by committing transactions as soon as possible afterward.
 
-- Consultas de chave única e isolamento de transações. Índices únicos são implementados no `NDB` usando uma tabela de índice oculta que é mantida internamente. Quando uma tabela `NDB` criada pelo usuário é acessada usando um índice único, a tabela de índice oculta é lida primeiro para encontrar a chave primária que é então usada para ler a tabela criada pelo usuário. Para evitar a modificação do índice durante essa operação de leitura dupla, a linha encontrada na tabela de índice oculta é bloqueada. Quando uma linha referenciada por um índice único na tabela `NDB` criada pelo usuário é atualizada, a tabela de índice oculta está sujeita a um bloqueio exclusivo pela transação na qual a atualização é realizada. Isso significa que qualquer operação de leitura na mesma tabela `NDB` (criada pelo usuário) deve esperar que a atualização seja concluída. Isso é verdade mesmo quando o nível de transação da operação de leitura é `READ COMMITTED`.
+* **Unique key lookups and transaction isolation.** Unique indexes are implemented in `NDB` using a hidden index table which is maintained internally. When a user-created `NDB` table is accessed using a unique index, the hidden index table is first read to find the primary key that is then used to read the user-created table. To avoid modification of the index during this double-read operation, the row found in the hidden index table is locked. When a row referenced by a unique index in the user-created `NDB` table is updated, the hidden index table is subject to an exclusive lock by the transaction in which the update is performed. This means that any read operation on the same (user-created) `NDB` table must wait for the update to complete. This is true even when the transaction level of the read operation is [`READ COMMITTED`](innodb-transaction-isolation-levels.html#isolevel_read-committed).
 
-  Uma solução alternativa que pode ser usada para contornar leituras potencialmente bloqueadas é forçar o nó SQL a ignorar o índice único ao realizar a leitura. Isso pode ser feito usando a dica de índice `IGNORE INDEX` como parte da instrução `SELECT` que lê a tabela (veja Seção 8.9.4, “Dicas de Índices”). Como o servidor MySQL cria um índice ordenado de sombreamento para cada índice único criado no `NDB`, isso permite que o índice ordenado seja lido em vez disso, evitando o bloqueio do acesso ao índice único. A leitura resultante é tão consistente quanto uma leitura confirmada pela chave primária, retornando o último valor confirmado no momento em que a linha é lida.
+  One workaround which can be used to bypass potentially blocking reads is to force the SQL node to ignore the unique index when performing the read. This can be done by using the `IGNORE INDEX` index hint as part of the [`SELECT`](select.html "13.2.9 SELECT Statement") statement reading the table (see [Section 8.9.4, “Index Hints”](index-hints.html "8.9.4 Index Hints")). Because the MySQL server creates a shadowing ordered index for every unique index created in `NDB`, this lets the ordered index be read instead, and avoids unique index access locking. The resulting read is as consistent as a committed read by primary key, returning the last committed value at the time the row is read.
 
-  A leitura por meio de um índice ordenado utiliza menos recursos no cluster e pode ter maior latência.
+  Reading via an ordered index makes less efficient use of resources in the cluster, and may have higher latency.
 
-  Também é possível evitar o uso do índice único para acesso, realizando consultas por intervalos em vez de por valores únicos.
+  It is also possible to avoid using the unique index for access by querying for ranges rather than for unique values.
 
-- **Reversões.** Não há transações parciais e não há reversões parciais de transações. Um erro de chave duplicada ou semelhante faz com que toda a transação seja revertida.
+* **Rollbacks.** There are no partial transactions, and no partial rollbacks of transactions. A duplicate key or similar error causes the entire transaction to be rolled back.
 
-  Esse comportamento difere do de outros motores de armazenamento transacional, como o `InnoDB`, que podem reverter instruções individuais.
+  This behavior differs from that of other transactional storage engines such as [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") that may roll back individual statements.
 
-- **Transações e uso da memória.** Como mencionado em outros lugares deste capítulo, o NDB Cluster não lida bem com grandes transações; é melhor realizar várias pequenas transações com poucas operações cada vez do que tentar uma única grande transação que contenha muitas operações. Entre outras considerações, grandes transações exigem quantidades muito grandes de memória. Por isso, o comportamento transacional de várias instruções do MySQL é afetado, conforme descrito na lista a seguir:
+* **Transactions and memory usage.** As noted elsewhere in this chapter, NDB Cluster does not handle large transactions well; it is better to perform a number of small transactions with a few operations each than to attempt a single large transaction containing a great many operations. Among other considerations, large transactions require very large amounts of memory. Because of this, the transactional behavior of a number of MySQL statements is affected as described in the following list:
 
-  - A instrução `TRUNCATE TABLE` não é transacional quando usada em tabelas de `NDB`. Se uma instrução `TRUNCATE TABLE` não conseguir esvaziar a tabela, ela deve ser executada novamente até que seja bem-sucedida.
+  + [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is not transactional when used on [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables. If a [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") fails to empty the table, then it must be re-run until it is successful.
 
-  - `DELETE FROM` (mesmo sem cláusula `WHERE`) *é* transacional. Para tabelas que contêm muitas linhas, você pode notar que o desempenho é melhorado ao usar várias declarações `DELETE FROM ... LIMIT ...` para "dividir" a operação de exclusão. Se o seu objetivo é esvaziar a tabela, então você pode querer usar `TRUNCATE TABLE` em vez disso.
+  + `DELETE FROM` (even with no `WHERE` clause) *is* transactional. For tables containing a great many rows, you may find that performance is improved by using several `DELETE FROM ... LIMIT ...` statements to “chunk” the delete operation. If your objective is to empty the table, then you may wish to use [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") instead.
 
-  - **Instruções de carregamento de dados.** `LOAD DATA` não é transacional quando usado em tabelas de `NDB`.
+  + **LOAD DATA statements.** [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") is not transactional when used on [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables.
 
-    Importante
+    Important
 
-    Ao executar uma instrução `LOAD DATA`, o motor `NDB` realiza commits em intervalos irregulares que permitem uma melhor utilização da rede de comunicação. Não é possível saber com antecedência quando esses commits ocorrem.
+    When executing a [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") statement, the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") engine performs commits at irregular intervals that enable better utilization of the communication network. It is not possible to know ahead of time when such commits take place.
 
-  - **ALTER TABLE e transações.** Ao copiar uma tabela `NDB` como parte de uma operação de `ALTER TABLE`, a criação da cópia é não-transacional. (Em qualquer caso, essa operação é revertida quando a cópia é excluída.)
+  + **ALTER TABLE and transactions.** When copying an [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table as part of an [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement"), the creation of the copy is nontransactional. (In any case, this operation is rolled back when the copy is deleted.)
 
-- **Transações e a função COUNT()**. Ao usar a Replicação em NDB Cluster, não é possível garantir a consistência transacional da função `COUNT()` na replica. Em outras palavras, ao executar em uma única transação uma série de instruções (`INSERT`, `DELETE` ou ambas) que alteram o número de linhas em uma tabela, a execução de consultas `SELECT COUNT(*) FROM table` na replica pode gerar resultados intermediários. Isso ocorre porque o `SELECT COUNT(...)` pode realizar leituras sujas e não é um erro no mecanismo de armazenamento `NDB`. (Consulte o bug
-  \#31321 para mais informações.)
+* **Transactions and the COUNT() function.** When using NDB Cluster Replication, it is not possible to guarantee the transactional consistency of the [`COUNT()`](aggregate-functions.html#function_count) function on the replica. In other words, when performing on the source a series of statements ([`INSERT`](insert.html "13.2.5 INSERT Statement"), [`DELETE`](delete.html "13.2.2 DELETE Statement"), or both) that changes the number of rows in a table within a single transaction, executing `SELECT COUNT(*) FROM table` queries on the replica may yield intermediate results. This is due to the fact that `SELECT COUNT(...)` may perform dirty reads, and is not a bug in the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine. (See Bug
+  #31321 for more information.)

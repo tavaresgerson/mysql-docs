@@ -1,165 +1,165 @@
-## Acesse o Índice de Tipos
+## Join Types Index
 
-[A](dynindex-jointype.html#jointype-index-A) | [C](dynindex-jointype.html#jointype-index-C) | [E](dynindex-jointype.html#jointype-index-E) | [F](dynindex-jointype.html#jointype-index-F) | [I](dynindex-jointype.html#jointype-index-I) | [R](dynindex-jointype.html#jointype-index-R) | [S](dynindex-jointype.html#jointype-index-S) | [U](dynindex-jointype.html#jointype-index-U)
+[A](dynindex-jointype.html#jointype-index-A "A") | [C](dynindex-jointype.html#jointype-index-C "C") | [E](dynindex-jointype.html#jointype-index-E "E") | [F](dynindex-jointype.html#jointype-index-F "F") | [I](dynindex-jointype.html#jointype-index-I "I") | [R](dynindex-jointype.html#jointype-index-R "R") | [S](dynindex-jointype.html#jointype-index-S "S") | [U](dynindex-jointype.html#jointype-index-U "U")
 
 ### A
 
-index superior](dynindex-jointype.html#jointype-index-superior)]
+index top](dynindex-jointype.html#jointype-index-top)]
 
-### TODOS
+### ALL
 
-[Seção 8.2.1.20, “Evitar varreduras completas da tabela”](table-scan-avoidance.html)
+[Section 8.2.1.20, “Avoiding Full Table Scans”](table-scan-avoidance.html "8.2.1.20 Avoiding Full Table Scans")
 
-[Seção 8.2.1.11, "Conjuntos de junção de laço aninhado e acesso a chave em lote"](bnl-bka-optimization.html)
+[Section 8.2.1.11, “Block Nested-Loop and Batched Key Access Joins”](bnl-bka-optimization.html "8.2.1.11 Block Nested-Loop and Batched Key Access Joins")
 
-[Seção 8.8.2, “Formato de Saída EXPLAIN”](explain-output.html)
+[Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
 
-[Seção 8.2.1.6, “Algoritmos de Conexão de Loop Aninhado”](nested-loop-joins.html)
+[Section 8.2.1.6, “Nested-Loop Join Algorithms”](nested-loop-joins.html "8.2.1.6 Nested-Loop Join Algorithms")
 
 ### C
 
-index superior](dynindex-jointype.html#jointype-index-superior)]
+index top](dynindex-jointype.html#jointype-index-top)]
 
 ### const
 
-[Seção 8.8.2, “Formato de Saída EXPLAIN”](explain-output.html)
+[Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
 
-[Seção 8.8.3, “Formato de saída EXPLAIN estendido”](explain-extended.html)
+[Section 8.8.3, “Extended EXPLAIN Output Format”](explain-extended.html "8.8.3 Extended EXPLAIN Output Format")
 
-[Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
+[Section 21.4.3.9.2, “NDB Cluster System Variables”](mysql-cluster-options-variables.html#mysql-cluster-system-variables "21.4.3.9.2 NDB Cluster System Variables")
 
-[Seção 8.2.1.14, “Otimização de ORDEM”](order-by-optimization.html)
+[Section 8.2.1.14, “ORDER BY Optimization”](order-by-optimization.html "8.2.1.14 ORDER BY Optimization")
 
-[Seção 8.2.1.2, “Otimização de alcance”](range-optimization.html)
+[Section 8.2.1.2, “Range Optimization”](range-optimization.html "8.2.1.2 Range Optimization")
 
-[Seção 13.2.9, "Instrução SELECT"](select.html)
+[Section 13.2.9, “SELECT Statement”](select.html "13.2.9 SELECT Statement")
 
 ### E
 
-index superior](dynindex-jointype.html#jointype-index-superior)]
+index top](dynindex-jointype.html#jointype-index-top)]
 
 ### eq_ref
 
-[Seção 8.2.1.11, "Conjuntos de junção de laço aninhado e acesso a chave em lote"](bnl-bka-optimization.html)
+[Section 8.2.1.11, “Block Nested-Loop and Batched Key Access Joins”](bnl-bka-optimization.html "8.2.1.11 Block Nested-Loop and Batched Key Access Joins")
 
-[Seção 8.8.2, “Formato de Saída EXPLAIN”](explain-output.html)
+[Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
 
-[Seção 8.2.1.5, “Otimização de empilhamento de condições de índice”](index-condition-pushdown-optimization.html)
+[Section 8.2.1.5, “Index Condition Pushdown Optimization”](index-condition-pushdown-optimization.html "8.2.1.5 Index Condition Pushdown Optimization")
 
-[Seção 15.7.1, “Vantagens e desvantagens da tabela MERGE”](merge-table-advantages.html)
+[Section 15.7.1, “MERGE Table Advantages and Disadvantages”](merge-table-advantages.html "15.7.1 MERGE Table Advantages and Disadvantages")
 
-[Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
+[Section 21.4.3.9.2, “NDB Cluster System Variables”](mysql-cluster-options-variables.html#mysql-cluster-system-variables "21.4.3.9.2 NDB Cluster System Variables")
 
-[Seção 8.2.2.3, “Otimização de subconsultas com a estratégia EXISTS”](subquery-optimization-with-exists.html)
+[Section 8.2.2.3, “Optimizing Subqueries with the EXISTS Strategy”](subquery-optimization-with-exists.html "8.2.2.3 Optimizing Subqueries with the EXISTS Strategy")
 
-[Seção 25.12.4.1, "A tabela events_waits_current"](performance-schema-events-waits-current-table.html)
+[Section 25.12.4.1, “The events_waits_current Table”](performance-schema-events-waits-current-table.html "25.12.4.1 The events_waits_current Table")
 
 ### F
 
-index superior](dynindex-jointype.html#jointype-index-superior)]
+index top](dynindex-jointype.html#jointype-index-top)]
 
 ### fulltext
 
-[Seção 8.8.2, “Formato de Saída EXPLAIN”](explain-output.html)
+[Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
 
-### Eu
+### I
 
-index superior](dynindex-jointype.html#jointype-index-superior)]
+index top](dynindex-jointype.html#jointype-index-top)]
 
-### índice
+### index
 
-[Seção 8.2.1.11, "Conjuntos de junção de laço aninhado e acesso a chave em lote"](bnl-bka-optimization.html)
+[Section 8.2.1.11, “Block Nested-Loop and Batched Key Access Joins”](bnl-bka-optimization.html "8.2.1.11 Block Nested-Loop and Batched Key Access Joins")
 
-[Seção 8.8.2, “Formato de Saída EXPLAIN”](explain-output.html)
+[Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
 
-[Seção 8.2.1.6, “Algoritmos de Conexão de Loop Aninhado”](nested-loop-joins.html)
+[Section 8.2.1.6, “Nested-Loop Join Algorithms”](nested-loop-joins.html "8.2.1.6 Nested-Loop Join Algorithms")
 
-### índice_merge
+### index_merge
 
-[Seção 8.8.2, “Formato de Saída EXPLAIN”](explain-output.html)
+[Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
 
-[Seção 8.2.1.3, “Otimização da Fusão de Índices”](index-merge-optimization.html)
+[Section 8.2.1.3, “Index Merge Optimization”](index-merge-optimization.html "8.2.1.3 Index Merge Optimization")
 
-### índice_subquery
+### index_subquery
 
-[Seção 8.8.2, “Formato de Saída EXPLAIN”](explain-output.html)
+[Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
 
-[Seção 13.2.10.10, “Otimização de Subconsultas”](optimizing-subqueries.html)
+[Section 13.2.10.10, “Optimizing Subqueries”](optimizing-subqueries.html "13.2.10.10 Optimizing Subqueries")
 
-[Seção 8.2.2.3, “Otimização de subconsultas com a estratégia EXISTS”](subquery-optimization-with-exists.html)
+[Section 8.2.2.3, “Optimizing Subqueries with the EXISTS Strategy”](subquery-optimization-with-exists.html "8.2.2.3 Optimizing Subqueries with the EXISTS Strategy")
 
 ### R
 
-index superior](dynindex-jointype.html#jointype-index-superior)]
+index top](dynindex-jointype.html#jointype-index-top)]
 
-### alcance
+### range
 
-[Seção 8.2.1.11, "Conjuntos de junção de laço aninhado e acesso a chave em lote"](bnl-bka-optimization.html)
+[Section 8.2.1.11, “Block Nested-Loop and Batched Key Access Joins”](bnl-bka-optimization.html "8.2.1.11 Block Nested-Loop and Batched Key Access Joins")
 
-[Seção 8.8.2, “Formato de Saída EXPLAIN”](explain-output.html)
+[Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
 
-[Seção 8.2.1.15, "Otimização por GRUPO"](group-by-optimization.html)
+[Section 8.2.1.15, “GROUP BY Optimization”](group-by-optimization.html "8.2.1.15 GROUP BY Optimization")
 
-[Seção 8.2.1.5, “Otimização de empilhamento de condições de índice”](index-condition-pushdown-optimization.html)
+[Section 8.2.1.5, “Index Condition Pushdown Optimization”](index-condition-pushdown-optimization.html "8.2.1.5 Index Condition Pushdown Optimization")
 
-[Seção 8.2.1.3, “Otimização da Fusão de Índices”](index-merge-optimization.html)
+[Section 8.2.1.3, “Index Merge Optimization”](index-merge-optimization.html "8.2.1.3 Index Merge Optimization")
 
-[Seção 8.2.1.6, “Algoritmos de Conexão de Loop Aninhado”](nested-loop-joins.html)
+[Section 8.2.1.6, “Nested-Loop Join Algorithms”](nested-loop-joins.html "8.2.1.6 Nested-Loop Join Algorithms")
 
-[Seção 8.2.1.2, “Otimização de alcance”](range-optimization.html)
+[Section 8.2.1.2, “Range Optimization”](range-optimization.html "8.2.1.2 Range Optimization")
 
 ### ref
 
-[Seção 8.2.1.11, "Conjuntos de junção de laço aninhado e acesso a chave em lote"](bnl-bka-optimization.html)
+[Section 8.2.1.11, “Block Nested-Loop and Batched Key Access Joins”](bnl-bka-optimization.html "8.2.1.11 Block Nested-Loop and Batched Key Access Joins")
 
-[Seção 8.8.2, “Formato de Saída EXPLAIN”](explain-output.html)
+[Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
 
-[Seção 8.8.3, “Formato de saída EXPLAIN estendido”](explain-extended.html)
+[Section 8.8.3, “Extended EXPLAIN Output Format”](explain-extended.html "8.8.3 Extended EXPLAIN Output Format")
 
-[Seção 8.2.1.5, “Otimização de empilhamento de condições de índice”](index-condition-pushdown-optimization.html)
+[Section 8.2.1.5, “Index Condition Pushdown Optimization”](index-condition-pushdown-optimization.html "8.2.1.5 Index Condition Pushdown Optimization")
 
-[Seção 8.3.7, “Coleta de estatísticas de índices InnoDB e MyISAM”](index-statistics.html)
+[Section 8.3.7, “InnoDB and MyISAM Index Statistics Collection”](index-statistics.html "8.3.7 InnoDB and MyISAM Index Statistics Collection")
 
-[Seção 15.7.1, “Vantagens e desvantagens da tabela MERGE”](merge-table-advantages.html)
+[Section 15.7.1, “MERGE Table Advantages and Disadvantages”](merge-table-advantages.html "15.7.1 MERGE Table Advantages and Disadvantages")
 
-[Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
+[Section 21.4.3.9.2, “NDB Cluster System Variables”](mysql-cluster-options-variables.html#mysql-cluster-system-variables "21.4.3.9.2 NDB Cluster System Variables")
 
-[Seção 8.2.2.4, “Otimização de tabelas derivadas e referências de visualização com fusão ou materialização”](derived-table-optimization.html)
+[Section 8.2.2.4, “Optimizing Derived Tables and View References with Merging or Materialization”](derived-table-optimization.html "8.2.2.4 Optimizing Derived Tables and View References with Merging or Materialization")
 
-[Seção 8.2.2.3, “Otimização de subconsultas com a estratégia EXISTS”](subquery-optimization-with-exists.html)
+[Section 8.2.2.3, “Optimizing Subqueries with the EXISTS Strategy”](subquery-optimization-with-exists.html "8.2.2.3 Optimizing Subqueries with the EXISTS Strategy")
 
 ### ref_or_null
 
-[Seção 8.8.2, “Formato de Saída EXPLAIN”](explain-output.html)
+[Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
 
-[Seção 8.2.1.5, “Otimização de empilhamento de condições de índice”](index-condition-pushdown-optimization.html)
+[Section 8.2.1.5, “Index Condition Pushdown Optimization”](index-condition-pushdown-optimization.html "8.2.1.5 Index Condition Pushdown Optimization")
 
-[Seção 8.2.1.13, “Otimização IS NULL”](is-null-optimization.html)
+[Section 8.2.1.13, “IS NULL Optimization”](is-null-optimization.html "8.2.1.13 IS NULL Optimization")
 
-[Seção 8.2.2.3, “Otimização de subconsultas com a estratégia EXISTS”](subquery-optimization-with-exists.html)
+[Section 8.2.2.3, “Optimizing Subqueries with the EXISTS Strategy”](subquery-optimization-with-exists.html "8.2.2.3 Optimizing Subqueries with the EXISTS Strategy")
 
 ### S
 
-index superior](dynindex-jointype.html#jointype-index-superior)]
+index top](dynindex-jointype.html#jointype-index-top)]
 
-### sistema
+### system
 
-[Seção 8.8.2, “Formato de Saída EXPLAIN”](explain-output.html)
+[Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
 
-[Seção 8.8.3, “Formato de saída EXPLAIN estendido”](explain-extended.html)
+[Section 8.8.3, “Extended EXPLAIN Output Format”](explain-extended.html "8.8.3 Extended EXPLAIN Output Format")
 
-[Seção 8.2.1.2, “Otimização de alcance”](range-optimization.html)
+[Section 8.2.1.2, “Range Optimization”](range-optimization.html "8.2.1.2 Range Optimization")
 
-[Seção 13.2.9, "Instrução SELECT"](select.html)
+[Section 13.2.9, “SELECT Statement”](select.html "13.2.9 SELECT Statement")
 
 ### U
 
-index superior](dynindex-jointype.html#jointype-index-superior)]
+index top](dynindex-jointype.html#jointype-index-top)]
 
-### subconsulta_única
+### unique_subquery
 
-[Seção 8.8.2, “Formato de Saída EXPLAIN”](explain-output.html)
+[Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format")
 
-[Seção 13.2.10.10, “Otimização de Subconsultas”](optimizing-subqueries.html)
+[Section 13.2.10.10, “Optimizing Subqueries”](optimizing-subqueries.html "13.2.10.10 Optimizing Subqueries")
 
-[Seção 8.2.2.3, “Otimização de subconsultas com a estratégia EXISTS”](subquery-optimization-with-exists.html)
+[Section 8.2.2.3, “Optimizing Subqueries with the EXISTS Strategy”](subquery-optimization-with-exists.html "8.2.2.3 Optimizing Subqueries with the EXISTS Strategy")

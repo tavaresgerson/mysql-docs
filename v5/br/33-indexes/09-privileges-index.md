@@ -1,971 +1,971 @@
-## Índice de privilégios
+## Privileges Index
 
-[A](dynindex-priv.html#priv-index-A) | [B](dynindex-priv.html#priv-index-B) | [C](dynindex-priv.html#priv-index-C) | [D](dynindex-priv.html#priv-index-D) | [E](dynindex-priv.html#priv-index-E) | [F](dynindex-priv.html#priv-index-F) | [G](dynindex-priv.html#priv-index-G) | [I](dynindex-priv.html#priv-index-I) | [L](dynindex-priv.html#priv-index-L) | [N](dynindex-priv.html#priv-index-N) | [P](dynindex-priv.html#priv-index-P) | [R](dynindex-priv.html#priv-index-R) | [S](dynindex-priv.html#priv-index-S) | [T](dynindex-priv.html#priv-index-T) | [U](dynindex-priv.html#priv-index-U) | [X](dynindex-priv.html#priv-index-X)
+[A](dynindex-priv.html#priv-index-A "A") | [B](dynindex-priv.html#priv-index-B "B") | [C](dynindex-priv.html#priv-index-C "C") | [D](dynindex-priv.html#priv-index-D "D") | [E](dynindex-priv.html#priv-index-E "E") | [F](dynindex-priv.html#priv-index-F "F") | [G](dynindex-priv.html#priv-index-G "G") | [I](dynindex-priv.html#priv-index-I "I") | [L](dynindex-priv.html#priv-index-L "L") | [N](dynindex-priv.html#priv-index-N "N") | [P](dynindex-priv.html#priv-index-P "P") | [R](dynindex-priv.html#priv-index-R "R") | [S](dynindex-priv.html#priv-index-S "S") | [T](dynindex-priv.html#priv-index-T "T") | [U](dynindex-priv.html#priv-index-U "U") | [X](dynindex-priv.html#priv-index-X "X")
 
 ### A
 
-index superior](dynindex-priv.html#priv-index-superior)]
+index top](dynindex-priv.html#priv-index-top)]
 
-### TODOS
+### ALL
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-### TODOS OS DIREITOS
+### ALL PRIVILEGES
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-### ALTERAR
+### ALTER
 
-[Seção 13.1.1, "Instrução ALTER DATABASE"](alter-database.html)
+[Section 13.1.1, “ALTER DATABASE Statement”](alter-database.html "13.1.1 ALTER DATABASE Statement")
 
-[Seção 13.1.8, "Instrução ALTER TABLE"](alter-table.html)
+[Section 13.1.8, “ALTER TABLE Statement”](alter-table.html "13.1.8 ALTER TABLE Statement")
 
-[Seção 22.3.3, “Troca de Partições e Subpartições com Tabelas”](partitioning-management-exchange.html)
+[Section 22.3.3, “Exchanging Partitions and Subpartitions with Tables”](partitioning-management-exchange.html "22.3.3 Exchanging Partitions and Subpartitions with Tables")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 13.1.33, "Instrução RENAME TABLE"](rename-table.html)
+[Section 13.1.33, “RENAME TABLE Statement”](rename-table.html "13.1.33 RENAME TABLE Statement")
 
-### ALTERE A ROTINA
+### ALTER ROUTINE
 
-[Seção 13.1.3, "Instrução ALTER FUNCTION"](alter-function.html)
+[Section 13.1.3, “ALTER FUNCTION Statement”](alter-function.html "13.1.3 ALTER FUNCTION Statement")
 
-[Seção 13.1.6, "Instrução ALTER PROCEDURE"](alter-procedure.html)
+[Section 13.1.6, “ALTER PROCEDURE Statement”](alter-procedure.html "13.1.6 ALTER PROCEDURE Statement")
 
-[Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
+[Section 16.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "16.1.6.4 Binary Logging Options and Variables")
 
-[Seção 13.1.16, "Instruções CREATE PROCEDURE e CREATE FUNCTION"](create-procedure.html)
+[Section 13.1.16, “CREATE PROCEDURE and CREATE FUNCTION Statements”](create-procedure.html "13.1.16 CREATE PROCEDURE and CREATE FUNCTION Statements")
 
-[Seção 13.1.27, "Instruções DROP PROCEDURE e DROP FUNCTION"](drop-procedure.html)
+[Section 13.1.27, “DROP PROCEDURE and DROP FUNCTION Statements”](drop-procedure.html "13.1.27 DROP PROCEDURE and DROP FUNCTION Statements")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 23.7, "Registro de Log de Binário de Programa Armazenado"](stored-programs-logging.html)
+[Section 23.7, “Stored Program Binary Logging”](stored-programs-logging.html "23.7 Stored Program Binary Logging")
 
-[Seção 23.2.2, “Rotinas Armazenadas e Privilégios do MySQL”](stored-routines-privileges.html)
+[Section 23.2.2, “Stored Routines and MySQL Privileges”](stored-routines-privileges.html "23.2.2 Stored Routines and MySQL Privileges")
 
 ### B
 
-index superior](dynindex-priv.html#priv-index-superior)]
+index top](dynindex-priv.html#priv-index-top)]
 
 ### BINLOG_ADMIN
 
-[Seção 13.4.1.1, "Declaração de PURGE BINARY LOGS"](purge-binary-logs.html)
+[Section 13.4.1.1, “PURGE BINARY LOGS Statement”](purge-binary-logs.html "13.4.1.1 PURGE BINARY LOGS Statement")
 
 ### C
 
-index superior](dynindex-priv.html#priv-index-superior)]
+index top](dynindex-priv.html#priv-index-top)]
 
-### Crie
+### CREATE
 
-[Seção 13.1.8, "Instrução ALTER TABLE"](alter-table.html)
+[Section 13.1.8, “ALTER TABLE Statement”](alter-table.html "13.1.8 ALTER TABLE Statement")
 
-[Seção 13.1.11, "Instrução CREATE DATABASE"](create-database.html)
+[Section 13.1.11, “CREATE DATABASE Statement”](create-database.html "13.1.11 CREATE DATABASE Statement")
 
-[Seção 13.1.18, "Instrução CREATE TABLE"](create-table.html)
+[Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement")
 
-[Seção 22.3.3, “Troca de Partições e Subpartições com Tabelas”](partitioning-management-exchange.html)
+[Section 22.3.3, “Exchanging Partitions and Subpartitions with Tables”](partitioning-management-exchange.html "22.3.3 Exchanging Partitions and Subpartitions with Tables")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 13.1.33, "Instrução RENAME TABLE"](rename-table.html)
+[Section 13.1.33, “RENAME TABLE Statement”](rename-table.html "13.1.33 RENAME TABLE Statement")
 
-### Crie uma rotina
+### CREATE ROUTINE
 
-[Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
+[Section 16.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "16.1.6.4 Binary Logging Options and Variables")
 
-[Seção 13.1.16, "Instruções CREATE PROCEDURE e CREATE FUNCTION"](create-procedure.html)
+[Section 13.1.16, “CREATE PROCEDURE and CREATE FUNCTION Statements”](create-procedure.html "13.1.16 CREATE PROCEDURE and CREATE FUNCTION Statements")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção A.4, “Perguntas frequentes sobre o MySQL 5.7: Procedimentos e funções armazenadas”](faqs-stored-procs.html)
+[Section A.4, “MySQL 5.7 FAQ: Stored Procedures and Functions”](faqs-stored-procs.html "A.4 MySQL 5.7 FAQ: Stored Procedures and Functions")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 23.7, "Registro de Log de Binário de Programa Armazenado"](stored-programs-logging.html)
+[Section 23.7, “Stored Program Binary Logging”](stored-programs-logging.html "23.7 Stored Program Binary Logging")
 
-[Seção 23.2.2, “Rotinas Armazenadas e Privilégios do MySQL”](stored-routines-privileges.html)
+[Section 23.2.2, “Stored Routines and MySQL Privileges”](stored-routines-privileges.html "23.2.2 Stored Routines and MySQL Privileges")
 
-### Crie TABLESPACE
+### CREATE TABLESPACE
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-### Crie tabelas temporárias
+### CREATE TEMPORARY TABLES
 
-[Seção 13.1.18.2, "Instrução CREATE TEMPORARY TABLE"](create-temporary-table.html)
+[Section 13.1.18.2, “CREATE TEMPORARY TABLE Statement”](create-temporary-table.html "13.1.18.2 CREATE TEMPORARY TABLE Statement")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-### Crie usuário
+### CREATE USER
 
-[Seção 6.2.7, “Adicionar contas, atribuir privilégios e excluir contas”](creating-accounts.html)
+[Section 6.2.7, “Adding Accounts, Assigning Privileges, and Dropping Accounts”](creating-accounts.html "6.2.7 Adding Accounts, Assigning Privileges, and Dropping Accounts")
 
-[Seção 13.7.1.1, "Instrução ALTER USER"](alter-user.html)
+[Section 13.7.1.1, “ALTER USER Statement”](alter-user.html "13.7.1.1 ALTER USER Statement")
 
-[Seção 6.2.10, “Atribuição de Senhas de Conta”](atribuição-de-senhas.html)
+[Section 6.2.10, “Assigning Account Passwords”](assigning-passwords.html "6.2.10 Assigning Account Passwords")
 
-[Seção 13.7.1.2, "Instrução CREATE USER"](create-user.html)
+[Section 13.7.1.2, “CREATE USER Statement”](create-user.html "13.7.1.2 CREATE USER Statement")
 
-[Seção 13.7.1.3, Declaração DROP USER](drop-user.html)
+[Section 13.7.1.3, “DROP USER Statement”](drop-user.html "13.7.1.3 DROP USER Statement")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 13.7.1.5, "Declaração de RENOMEAR USUÁRIO"](rename-user.html)
+[Section 13.7.1.5, “RENAME USER Statement”](rename-user.html "13.7.1.5 RENAME USER Statement")
 
-[Seção 13.7.1.6, "Declaração de Revogação"](revoke.html)
+[Section 13.7.1.6, “REVOKE Statement”](revoke.html "13.7.1.6 REVOKE Statement")
 
-### Crie a visualização
+### CREATE VIEW
 
-[Seção 13.1.10, "Instrução ALTER VIEW"](alter-view.html)
+[Section 13.1.10, “ALTER VIEW Statement”](alter-view.html "13.1.10 ALTER VIEW Statement")
 
-[Seção 13.1.21, "Instrução CREATE VIEW"](create-view.html)
+[Section 13.1.21, “CREATE VIEW Statement”](create-view.html "13.1.21 CREATE VIEW Statement")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 23.9, “Restrições de visualização”](view-restrictions.html)
+[Section 23.9, “Restrictions on Views”](view-restrictions.html "23.9 Restrictions on Views")
 
 ### D
 
-index superior](dynindex-priv.html#priv-index-superior)]
+index top](dynindex-priv.html#priv-index-top)]
 
-### DELETA
+### DELETE
 
-[Seção 6.2.6, “Controle de Acesso, Etapa 2: Solicitação de Verificação”](request-access.html)
+[Section 6.2.6, “Access Control, Stage 2: Request Verification”](request-access.html "6.2.6 Access Control, Stage 2: Request Verification")
 
-[Seção 2.10.3, “Alterações no MySQL 5.7”](upgrading-from-previous-series.html)
+[Section 2.10.3, “Changes in MySQL 5.7”](upgrading-from-previous-series.html "2.10.3 Changes in MySQL 5.7")
 
-[Seção 13.1.18, "Instrução CREATE TABLE"](create-table.html)
+[Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement")
 
-[Seção 13.2.2, “Instrução DELETE”](delete.html)
+[Section 13.2.2, “DELETE Statement”](delete.html "13.2.2 DELETE Statement")
 
-[Seção 13.7.3.2, "Instrução DROP FUNCTION para Funções Carregáveis"](drop-function-loadable.html)
+[Section 13.7.3.2, “DROP FUNCTION Statement for Loadable Functions”](drop-function-loadable.html "13.7.3.2 DROP FUNCTION Statement for Loadable Functions")
 
-[Seção 13.7.1.3, Declaração DROP USER](drop-user.html)
+[Section 13.7.1.3, “DROP USER Statement”](drop-user.html "13.7.1.3 DROP USER Statement")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 5.6.1, “Instalando e Desinstalando Funções Carregáveis”](function-loading.html)
+[Section 5.6.1, “Installing and Uninstalling Loadable Functions”](function-loading.html "5.6.1 Installing and Uninstalling Loadable Functions")
 
-[Seção 5.5.1, “Instalando e Desinstalando Plugins”](plugin-loading.html)
+[Section 5.5.1, “Installing and Uninstalling Plugins”](plugin-loading.html "5.5.1 Installing and Uninstalling Plugins")
 
-[Seção 21.6.18.2, "Nível de privilégio do NDB Cluster e MySQL"](mysql-cluster-security-mysql-privileges.html)
+[Section 21.6.18.2, “NDB Cluster and MySQL Privileges”](mysql-cluster-security-mysql-privileges.html "21.6.18.2 NDB Cluster and MySQL Privileges")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 13.2.8, “Instrução REPLACE”](replace.html)
+[Section 13.2.8, “REPLACE Statement”](replace.html "13.2.8 REPLACE Statement")
 
-[Seção 15.7, “O Motor de Armazenamento MERGE”](merge-storage-engine.html)
+[Section 15.7, “The MERGE Storage Engine”](merge-storage-engine.html "15.7 The MERGE Storage Engine")
 
-[Seção 25.12.2.4, “Tabela setup_objects”](performance-schema-setup-objects-table.html)
+[Section 25.12.2.4, “The setup_objects Table”](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table")
 
-[Seção 13.7.3.4, "Declaração de DESINSTALAR PLUGIN"](uninstall-plugin.html)
+[Section 13.7.3.4, “UNINSTALL PLUGIN Statement”](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement")
 
 ### DROP
 
-[Seção 6.2, “Controle de Acesso e Gerenciamento de Contas”](access-control.html)
+[Section 6.2, “Access Control and Account Management”](access-control.html "6.2 Access Control and Account Management")
 
-[Seção 13.1.8, "Instrução ALTER TABLE"](alter-table.html)
+[Section 13.1.8, “ALTER TABLE Statement”](alter-table.html "13.1.8 ALTER TABLE Statement")
 
-[Seção 13.1.10, "Instrução ALTER VIEW"](alter-view.html)
+[Section 13.1.10, “ALTER VIEW Statement”](alter-view.html "13.1.10 ALTER VIEW Statement")
 
-[Seção 13.1.21, "Instrução CREATE VIEW"](create-view.html)
+[Section 13.1.21, “CREATE VIEW Statement”](create-view.html "13.1.21 CREATE VIEW Statement")
 
-[Seção 5.1.11.2, "Consultas DNS e Cache de Anfitriões"](host-cache.html)
+[Section 5.1.11.2, “DNS Lookups and the Host Cache”](host-cache.html "5.1.11.2 DNS Lookups and the Host Cache")
 
-[Seção 13.1.22, "Instrução DROP DATABASE"](drop-database.html)
+[Section 13.1.22, “DROP DATABASE Statement”](drop-database.html "13.1.22 DROP DATABASE Statement")
 
-[Seção 13.1.29, "Instrução DROP TABLE"](drop-table.html)
+[Section 13.1.29, “DROP TABLE Statement”](drop-table.html "13.1.29 DROP TABLE Statement")
 
-[Seção 13.1.32, "Instrução DROP VIEW"](drop-view.html)
+[Section 13.1.32, “DROP VIEW Statement”](drop-view.html "13.1.32 DROP VIEW Statement")
 
-[Seção 22.3.3, “Troca de Partições e Subpartições com Tabelas”](partitioning-management-exchange.html)
+[Section 22.3.3, “Exchanging Partitions and Subpartitions with Tables”](partitioning-management-exchange.html "22.3.3 Exchanging Partitions and Subpartitions with Tables")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 22.3.1, “Gestão de Partições RANGE e LIST”](partitioning-management-range-list.html)
+[Section 22.3.1, “Management of RANGE and LIST Partitions”](partitioning-management-range-list.html "22.3.1 Management of RANGE and LIST Partitions")
 
-[Seção 6.6.1, “Instalação de Encriptação Empresarial do MySQL”](enterprise-encryption-installation.html)
+[Section 6.6.1, “MySQL Enterprise Encryption Installation”](enterprise-encryption-installation.html "6.6.1 MySQL Enterprise Encryption Installation")
 
-[Seção 25.11, “Características Gerais da Tabela do Schema de Desempenho”](performance-schema-table-characteristics.html)
+[Section 25.11, “Performance Schema General Table Characteristics”](performance-schema-table-characteristics.html "25.11 Performance Schema General Table Characteristics")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 13.1.33, "Instrução RENAME TABLE"](rename-table.html)
+[Section 13.1.33, “RENAME TABLE Statement”](rename-table.html "13.1.33 RENAME TABLE Statement")
 
-[Seção 25.12.16.1, “A tabela host_cache”](performance-schema-host-cache-table.html)
+[Section 25.12.16.1, “The host_cache Table”](performance-schema-host-cache-table.html "25.12.16.1 The host_cache Table")
 
-[Seção 13.1.34, "Instrução TRUNCATE TABLE"](truncate-table.html)
+[Section 13.1.34, “TRUNCATE TABLE Statement”](truncate-table.html "13.1.34 TRUNCATE TABLE Statement")
 
 ### E
 
-index superior](dynindex-priv.html#priv-index-superior)]
+index top](dynindex-priv.html#priv-index-top)]
 
-### Evento
+### EVENT
 
-[Seção 13.1.2, "Declaração de Alteração de Evento"](alter-event.html)
+[Section 13.1.2, “ALTER EVENT Statement”](alter-event.html "13.1.2 ALTER EVENT Statement")
 
-[Seção 13.1.12, "Declaração CREATE EVENT"](create-event.html)
+[Section 13.1.12, “CREATE EVENT Statement”](create-event.html "13.1.12 CREATE EVENT Statement")
 
-[Seção 13.1.23, "Declaração de Evento de Remoção"](drop-event.html)
+[Section 13.1.23, “DROP EVENT Statement”](drop-event.html "13.1.23 DROP EVENT Statement")
 
-[Seção 23.4.1, “Visão geral do Agendamento de Eventos”](events-overview.html)
+[Section 23.4.1, “Event Scheduler Overview”](events-overview.html "23.4.1 Event Scheduler Overview")
 
-[Seção 23.4.3, "Sintaxe de Eventos"](events-syntax.html)
+[Section 23.4.3, “Event Syntax”](events-syntax.html "23.4.3 Event Syntax")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
+[Section 4.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "4.5.6 mysqlpump — A Database Backup Program")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 13.7.5.7, "Declaração SHOW CREATE EVENT"](show-create-event.html)
+[Section 13.7.5.7, “SHOW CREATE EVENT Statement”](show-create-event.html "13.7.5.7 SHOW CREATE EVENT Statement")
 
-[Seção 13.7.5.18, "Declaração de Eventos de Exibição"](show-events.html)
+[Section 13.7.5.18, “SHOW EVENTS Statement”](show-events.html "13.7.5.18 SHOW EVENTS Statement")
 
-[Seção 23.4.6, “O Agendamento de Eventos e Permissões do MySQL”](events-privileges.html)
+[Section 23.4.6, “The Event Scheduler and MySQL Privileges”](events-privileges.html "23.4.6 The Event Scheduler and MySQL Privileges")
 
-### EXECUTAR
+### EXECUTE
 
-[Seção 13.1.16, "Instruções CREATE PROCEDURE e CREATE FUNCTION"](create-procedure.html)
+[Section 13.1.16, “CREATE PROCEDURE and CREATE FUNCTION Statements”](create-procedure.html "13.1.16 CREATE PROCEDURE and CREATE FUNCTION Statements")
 
-[Seção 13.1.27, "Instruções DROP PROCEDURE e DROP FUNCTION"](drop-procedure.html)
+[Section 13.1.27, “DROP PROCEDURE and DROP FUNCTION Statements”](drop-procedure.html "13.1.27 DROP PROCEDURE and DROP FUNCTION Statements")
 
-[Seção 6.4.4.8, “Funções de Gerenciamento de Chave do Pendrive de Uso Geral”](keyring-functions-general-purpose.html)
+[Section 6.4.4.8, “General-Purpose Keyring Key-Management Functions”](keyring-functions-general-purpose.html "6.4.4.8 General-Purpose Keyring Key-Management Functions")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 26.1, “Pré-requisitos para usar o esquema sys”](sys-schema-prerequisites.html)
+[Section 26.1, “Prerequisites for Using the sys Schema”](sys-schema-prerequisites.html "26.1 Prerequisites for Using the sys Schema")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 23.6, “Controle de Acesso a Objetos Armazenados”](stored-objects-security.html)
+[Section 23.6, “Stored Object Access Control”](stored-objects-security.html "23.6 Stored Object Access Control")
 
-[Seção 23.2.2, “Rotinas Armazenadas e Privilégios do MySQL”](stored-routines-privileges.html)
+[Section 23.2.2, “Stored Routines and MySQL Privileges”](stored-routines-privileges.html "23.2.2 Stored Routines and MySQL Privileges")
 
-[Seção 6.4.6.3, “Uso do Firewall da MySQL Enterprise”](firewall-usage.html)
+[Section 6.4.6.3, “Using MySQL Enterprise Firewall”](firewall-usage.html "6.4.6.3 Using MySQL Enterprise Firewall")
 
 ### F
 
-index superior](dynindex-priv.html#priv-index-superior)]
+index top](dynindex-priv.html#priv-index-top)]
 
-### ARQUIVO
+### FILE
 
-[Seção 13.1.18, "Instrução CREATE TABLE"](create-table.html)
+[Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement")
 
-[Seção 7.4.3, “Exportação de dados no formato de texto delimitado com mysqldump”](mysqldump-delimited-text.html)
+[Section 7.4.3, “Dumping Data in Delimited-Text Format with mysqldump”](mysqldump-delimited-text.html "7.4.3 Dumping Data in Delimited-Text Format with mysqldump")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 6.2.3, “Tabelas de subsídios”](grant-tables.html)
+[Section 6.2.3, “Grant Tables”](grant-tables.html "6.2.3 Grant Tables")
 
-[Seção 13.2.6, “Instrução LOAD DATA”](load-data.html)
+[Section 13.2.6, “LOAD DATA Statement”](load-data.html "13.2.6 LOAD DATA Statement")
 
-[Seção 13.2.7, “Declaração de Carregamento XML”](load-xml.html)
+[Section 13.2.7, “LOAD XML Statement”](load-xml.html "13.2.7 LOAD XML Statement")
 
-[Seção 6.1.3, “Tornar o MySQL seguro contra atacantes”](security-against-attack.html)
+[Section 6.1.3, “Making MySQL Secure Against Attackers”](security-against-attack.html "6.1.3 Making MySQL Secure Against Attackers")
 
-[Seção 6.6.2, “Uso e exemplos de criptografia empresarial do MySQL”](enterprise-encryption-usage.html)
+[Section 6.6.2, “MySQL Enterprise Encryption Usage and Examples”](enterprise-encryption-usage.html "6.6.2 MySQL Enterprise Encryption Usage and Examples")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 13.2.9.1, "Instrução SELECT ... INTO"](select-into.html)
+[Section 13.2.9.1, “SELECT ... INTO Statement”](select-into.html "13.2.9.1 SELECT ... INTO Statement")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 12.8, "Funções e Operadores de Cadeia de Caracteres"](string-functions.html)
+[Section 12.8, “String Functions and Operators”](string-functions.html "12.8 String Functions and Operators")
 
-[Seção 11.3.4, “Os tipos BLOB e TEXT”](blob.html)
+[Section 11.3.4, “The BLOB and TEXT Types”](blob.html "11.3.4 The BLOB and TEXT Types")
 
-[Seção 6.2.17, “Soluções para problemas de conexão com o MySQL”](problemas-conectando.html)
+[Section 6.2.17, “Troubleshooting Problems Connecting to MySQL”](problems-connecting.html "6.2.17 Troubleshooting Problems Connecting to MySQL")
 
 ### G
 
-index superior](dynindex-priv.html#priv-index-superior)]
+index top](dynindex-priv.html#priv-index-top)]
 
-### CONCEDA A OPÇÃO
+### GRANT OPTION
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 13.7.1.6, "Declaração de Revogação"](revoke.html)
+[Section 13.7.1.6, “REVOKE Statement”](revoke.html "13.7.1.6 REVOKE Statement")
 
-[Seção 24.3.6, “A tabela INFORMATION_SCHEMA COLUMN_PRIVILEGES”](information-schema-column-privileges-table.html)
+[Section 24.3.6, “The INFORMATION_SCHEMA COLUMN_PRIVILEGES Table”](information-schema-column-privileges-table.html "24.3.6 The INFORMATION_SCHEMA COLUMN_PRIVILEGES Table")
 
-[Seção 24.3.23, “A tabela INFORMATION_SCHEMA SCHEMA_PRIVILEGES”](information-schema-schema-privileges-table.html)
+[Section 24.3.23, “The INFORMATION_SCHEMA SCHEMA_PRIVILEGES Table”](information-schema-schema-privileges-table.html "24.3.23 The INFORMATION_SCHEMA SCHEMA_PRIVILEGES Table")
 
-[Seção 24.3.28, “Tabela de PRIVILEGIOS da Tabela INFORMATION_SCHEMA”](information-schema-table-privileges-table.html)
+[Section 24.3.28, “The INFORMATION_SCHEMA TABLE_PRIVILEGES Table”](information-schema-table-privileges-table.html "24.3.28 The INFORMATION_SCHEMA TABLE_PRIVILEGES Table")
 
-[Seção 24.3.30, “A Tabela INFORMATION_SCHEMA USER_PRIVILEGES”](information-schema-user-privileges-table.html)
+[Section 24.3.30, “The INFORMATION_SCHEMA USER_PRIVILEGES Table”](information-schema-user-privileges-table.html "24.3.30 The INFORMATION_SCHEMA USER_PRIVILEGES Table")
 
-### GRUPO_REPLICAÇÃO_ADMIN
+### GROUP_REPLICATION_ADMIN
 
-[Seção 13.4.3.2, "Instrução STOP GROUP_REPLICATION"](stop-group-replication.html)
+[Section 13.4.3.2, “STOP GROUP_REPLICATION Statement”](stop-group-replication.html "13.4.3.2 STOP GROUP_REPLICATION Statement")
 
-### Eu
+### I
 
-index superior](dynindex-priv.html#priv-index-superior)]
+index top](dynindex-priv.html#priv-index-top)]
 
-### ÍNDICE
+### INDEX
 
-[Seção 13.1.8, "Instrução ALTER TABLE"](alter-table.html)
+[Section 13.1.8, “ALTER TABLE Statement”](alter-table.html "13.1.8 ALTER TABLE Statement")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-### INSERIR
+### INSERT
 
-[Seção 6.2.6, “Controle de Acesso, Etapa 2: Solicitação de Verificação”](request-access.html)
+[Section 6.2.6, “Access Control, Stage 2: Request Verification”](request-access.html "6.2.6 Access Control, Stage 2: Request Verification")
 
-[Seção 13.1.8, "Instrução ALTER TABLE"](alter-table.html)
+[Section 13.1.8, “ALTER TABLE Statement”](alter-table.html "13.1.8 ALTER TABLE Statement")
 
-[Seção 13.7.2.1, "Declaração de Tabela de Análise"](analyze-table.html)
+[Section 13.7.2.1, “ANALYZE TABLE Statement”](analyze-table.html "13.7.2.1 ANALYZE TABLE Statement")
 
-[Seção 6.2.10, “Atribuição de Senhas de Conta”](atribuição-de-senhas.html)
+[Section 6.2.10, “Assigning Account Passwords”](assigning-passwords.html "6.2.10 Assigning Account Passwords")
 
-[Seção 2.10.3, “Alterações no MySQL 5.7”](upgrading-from-previous-series.html)
+[Section 2.10.3, “Changes in MySQL 5.7”](upgrading-from-previous-series.html "2.10.3 Changes in MySQL 5.7")
 
-[Seção 13.7.3.1, "Instrução CREATE FUNCTION para Funções Carregáveis"](create-function-loadable.html)
+[Section 13.7.3.1, “CREATE FUNCTION Statement for Loadable Functions”](create-function-loadable.html "13.7.3.1 CREATE FUNCTION Statement for Loadable Functions")
 
-[Seção 13.7.1.2, "Instrução CREATE USER"](create-user.html)
+[Section 13.7.1.2, “CREATE USER Statement”](create-user.html "13.7.1.2 CREATE USER Statement")
 
-[Seção 13.1.21, "Instrução CREATE VIEW"](create-view.html)
+[Section 13.1.21, “CREATE VIEW Statement”](create-view.html "13.1.21 CREATE VIEW Statement")
 
-[Seção 22.3.3, “Troca de Partições e Subpartições com Tabelas”](partitioning-management-exchange.html)
+[Section 22.3.3, “Exchanging Partitions and Subpartitions with Tables”](partitioning-management-exchange.html "22.3.3 Exchanging Partitions and Subpartitions with Tables")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 13.2.5, “Instrução INSERT”](insert.html)
+[Section 13.2.5, “INSERT Statement”](insert.html "13.2.5 INSERT Statement")
 
-[Seção 13.7.3.3, "Declaração de INSTALAÇÃO DO PLUGIN"](install-plugin.html)
+[Section 13.7.3.3, “INSTALL PLUGIN Statement”](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement")
 
-[Seção 5.6.1, “Instalando e Desinstalando Funções Carregáveis”](function-loading.html)
+[Section 5.6.1, “Installing and Uninstalling Loadable Functions”](function-loading.html "5.6.1 Installing and Uninstalling Loadable Functions")
 
-[Seção 5.5.1, “Instalando e Desinstalando Plugins”](plugin-loading.html)
+[Section 5.5.1, “Installing and Uninstalling Plugins”](plugin-loading.html "5.5.1 Installing and Uninstalling Plugins")
 
-[Seção 6.6.1, “Instalação de Encriptação Empresarial do MySQL”](enterprise-encryption-installation.html)
+[Section 6.6.1, “MySQL Enterprise Encryption Installation”](enterprise-encryption-installation.html "6.6.1 MySQL Enterprise Encryption Installation")
 
-[Seção 13.7.2.4, "Instrução OPTIMIZE TABLE"](optimize-table.html)
+[Section 13.7.2.4, “OPTIMIZE TABLE Statement”](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement")
 
-[Seção 15.11.1, “Arquitetura de Motor de Armazenamento Desmontável”](pluggable-storage.html)
+[Section 15.11.1, “Pluggable Storage Engine Architecture”](pluggable-storage.html "15.11.1 Pluggable Storage Engine Architecture")
 
-[Seção 26.1, “Pré-requisitos para usar o esquema sys”](sys-schema-prerequisites.html)
+[Section 26.1, “Prerequisites for Using the sys Schema”](sys-schema-prerequisites.html "26.1 Prerequisites for Using the sys Schema")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 13.1.33, "Instrução RENAME TABLE"](rename-table.html)
+[Section 13.1.33, “RENAME TABLE Statement”](rename-table.html "13.1.33 RENAME TABLE Statement")
 
-[Seção 13.7.2.5, “Declaração de REPAIR TABLE”](repair-table.html)
+[Section 13.7.2.5, “REPAIR TABLE Statement”](repair-table.html "13.7.2.5 REPAIR TABLE Statement")
 
-[Seção 13.2.8, “Instrução REPLACE”](replace.html)
+[Section 13.2.8, “REPLACE Statement”](replace.html "13.2.8 REPLACE Statement")
 
-[Seção 5.1.6, “Opções de comando do servidor”](server-options.html)
+[Section 5.1.6, “Server Command Options”](server-options.html "5.1.6 Server Command Options")
 
-[Seção 19.2, “Configurando o MySQL como uma Armazenamento de Documentos”](document-store-setting-up.html)
+[Section 19.2, “Setting Up MySQL as a Document Store”](document-store-setting-up.html "19.2 Setting Up MySQL as a Document Store")
 
-[Seção 23.6, “Controle de Acesso a Objetos Armazenados”](stored-objects-security.html)
+[Section 23.6, “Stored Object Access Control”](stored-objects-security.html "23.6 Stored Object Access Control")
 
-[Seção 23.4.6, “O Agendamento de Eventos e Permissões do MySQL”](events-privileges.html)
+[Section 23.4.6, “The Event Scheduler and MySQL Privileges”](events-privileges.html "23.4.6 The Event Scheduler and MySQL Privileges")
 
-[Seção 25.12.2.4, “Tabela setup_objects”](performance-schema-setup-objects-table.html)
+[Section 25.12.2.4, “The setup_objects Table”](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table")
 
 ### L
 
-index superior](dynindex-priv.html#priv-index-superior)]
+index top](dynindex-priv.html#priv-index-top)]
 
-### LÂMINAR TÁBUAS
+### LOCK TABLES
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 13.3.5, “Instruções LOCK TABLES e UNLOCK TABLES”](lock-tables.html)
+[Section 13.3.5, “LOCK TABLES and UNLOCK TABLES Statements”](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
+[Section 4.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "4.5.6 mysqlpump — A Database Backup Program")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
 ### N
 
-index superior](dynindex-priv.html#priv-index-superior)]
+index top](dynindex-priv.html#priv-index-top)]
 
 ### NDB_STORED_USER
 
-[Seção 21.5.24.1.1, “Restauração de um backup do NDB para uma versão anterior do NDB Cluster”](ndb-restore-to-different-version.html#ndb-restore-to-previous-version)
+[Section 21.5.24.1.1, “Restoring an NDB backup to a previous version of NDB Cluster”](ndb-restore-to-different-version.html#ndb-restore-to-previous-version "21.5.24.1.1 Restoring an NDB backup to a previous version of NDB Cluster")
 
 ### P
 
-index superior](dynindex-priv.html#priv-index-superior)]
+index top](dynindex-priv.html#priv-index-top)]
 
-### PROCESSO
+### PROCESS
 
-[Seção 8.14.1, “Acesse a Lista de Processos”](processlist-access.html)
+[Section 8.14.1, “Accessing the Process List”](processlist-access.html "8.14.1 Accessing the Process List")
 
-[Seção 6.2.7, “Adicionar contas, atribuir privilégios e excluir contas”](creating-accounts.html)
+[Section 6.2.7, “Adding Accounts, Assigning Privileges, and Dropping Accounts”](creating-accounts.html "6.2.7 Adding Accounts, Assigning Privileges, and Dropping Accounts")
 
-[Seção 5.1.11.1, “Interfaces de Conexão”](connection-interfaces.html)
+[Section 5.1.11.1, “Connection Interfaces”](connection-interfaces.html "5.1.11.1 Connection Interfaces")
 
-[Seção 14.18.2, “Habilitar monitores InnoDB”](innodb-abilitando-monitores.html)
+[Section 14.18.2, “Enabling InnoDB Monitors”](innodb-enabling-monitors.html "14.18.2 Enabling InnoDB Monitors")
 
-[Seção 23.4.2, “Configuração do Agendador de Eventos”](events-configuration.html)
+[Section 23.4.2, “Event Scheduler Configuration”](events-configuration.html "23.4.2 Event Scheduler Configuration")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 24.1, “Introdução”](information-schema-introduction.html)
+[Section 24.1, “Introduction”](information-schema-introduction.html "24.1 Introduction")
 
-[Seção 13.7.6.4, "Declaração de KILL"](kill.html)
+[Section 13.7.6.4, “KILL Statement”](kill.html "13.7.6.4 KILL Statement")
 
-[Seção 6.1.3, “Tornar o MySQL seguro contra atacantes”](security-against-attack.html)
+[Section 6.1.3, “Making MySQL Secure Against Attackers”](security-against-attack.html "6.1.3 Making MySQL Secure Against Attackers")
 
-[Seção 21.6.10, “Uso do Servidor MySQL para NDB Cluster”](mysql-cluster-mysqld.html)
+[Section 21.6.10, “MySQL Server Usage for NDB Cluster”](mysql-cluster-mysqld.html "21.6.10 MySQL Server Usage for NDB Cluster")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 8.8.4, “Obtendo informações do plano de execução para uma conexão nomeada”](explain-for-connection.html)
+[Section 8.8.4, “Obtaining Execution Plan Information for a Named Connection”](explain-for-connection.html "8.8.4 Obtaining Execution Plan Information for a Named Connection")
 
-[Seção 26.1, “Pré-requisitos para usar o esquema sys”](sys-schema-prerequisites.html)
+[Section 26.1, “Prerequisites for Using the sys Schema”](sys-schema-prerequisites.html "26.1 Prerequisites for Using the sys Schema")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 13.7.5.15, "Declaração do Motor de Exibição"](show-engine.html)
+[Section 13.7.5.15, “SHOW ENGINE Statement”](show-engine.html "13.7.5.15 SHOW ENGINE Statement")
 
-[Seção 13.7.5.29, "Declaração SHOW PROCESSLIST"](show-processlist.html)
+[Section 13.7.5.29, “SHOW PROCESSLIST Statement”](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement")
 
-[Seção 24.3.9, “A tabela INFORMATION_SCHEMA FILES”](information-schema-files-table.html)
+[Section 24.3.9, “The INFORMATION_SCHEMA FILES Table”](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table")
 
-[Seção 24.4.2, “A tabela INFORMATION_SCHEMA INNODB_BUFFER_PAGE”](information-schema-innodb-buffer-page-table.html)
+[Section 24.4.2, “The INFORMATION_SCHEMA INNODB_BUFFER_PAGE Table”](information-schema-innodb-buffer-page-table.html "24.4.2 The INFORMATION_SCHEMA INNODB_BUFFER_PAGE Table")
 
-[Seção 24.4.3, “A tabela INFORMATION_SCHEMA INNODB_BUFFER_PAGE_LRU”](information-schema-innodb-buffer-page-lru-table.html)
+[Section 24.4.3, “The INFORMATION_SCHEMA INNODB_BUFFER_PAGE_LRU Table”](information-schema-innodb-buffer-page-lru-table.html "24.4.3 The INFORMATION_SCHEMA INNODB_BUFFER_PAGE_LRU Table")
 
-[Seção 24.4.4, “A tabela INFORMATION_SCHEMA INNODB_BUFFER_POOL_STATS”](information-schema-innodb-buffer-pool-stats-table.html)
+[Section 24.4.4, “The INFORMATION_SCHEMA INNODB_BUFFER_POOL_STATS Table”](information-schema-innodb-buffer-pool-stats-table.html "24.4.4 The INFORMATION_SCHEMA INNODB_BUFFER_POOL_STATS Table")
 
-[Seção 24.4.5, “As tabelas INFORMATION_SCHEMA INNODB_CMP e INNODB_CMP_RESET”](information-schema-innodb-cmp-table.html)
+[Section 24.4.5, “The INFORMATION_SCHEMA INNODB_CMP and INNODB_CMP_RESET Tables”](information-schema-innodb-cmp-table.html "24.4.5 The INFORMATION_SCHEMA INNODB_CMP and INNODB_CMP_RESET Tables")
 
-[Seção 24.4.7, “As tabelas INFORMATION_SCHEMA INNODB_CMP_PER_INDEX e INNODB_CMP_PER_INDEX_RESET”](information-schema-innodb-cmp-per-index-table.html)
+[Section 24.4.7, “The INFORMATION_SCHEMA INNODB_CMP_PER_INDEX and INNODB_CMP_PER_INDEX_RESET Tables”](information-schema-innodb-cmp-per-index-table.html "24.4.7 The INFORMATION_SCHEMA INNODB_CMP_PER_INDEX and INNODB_CMP_PER_INDEX_RESET Tables")
 
-[Seção 24.4.6, “Tabelas INFORMATION_SCHEMA INNODB_CMPMEM e INNODB_CMPMEM_RESET”](information-schema-innodb-cmpmem-table.html)
+[Section 24.4.6, “The INFORMATION_SCHEMA INNODB_CMPMEM and INNODB_CMPMEM_RESET Tables”](information-schema-innodb-cmpmem-table.html "24.4.6 The INFORMATION_SCHEMA INNODB_CMPMEM and INNODB_CMPMEM_RESET Tables")
 
-[Seção 24.4.8, “A tabela INFORMATION_SCHEMA INNODB_FT_BEING_DELETED”](information-schema-innodb-ft-being-deleted-table.html)
+[Section 24.4.8, “The INFORMATION_SCHEMA INNODB_FT_BEING_DELETED Table”](information-schema-innodb-ft-being-deleted-table.html "24.4.8 The INFORMATION_SCHEMA INNODB_FT_BEING_DELETED Table")
 
-[Seção 24.4.9, “A tabela INFORMATION_SCHEMA INNODB_FT_CONFIG”](information-schema-innodb-ft-config-table.html)
+[Section 24.4.9, “The INFORMATION_SCHEMA INNODB_FT_CONFIG Table”](information-schema-innodb-ft-config-table.html "24.4.9 The INFORMATION_SCHEMA INNODB_FT_CONFIG Table")
 
-[Seção 24.4.10, “A tabela INFORMATION_SCHEMA INNODB_FT_DEFAULT_STOPWORD”](information-schema-innodb-ft-default-stopword-table.html)
+[Section 24.4.10, “The INFORMATION_SCHEMA INNODB_FT_DEFAULT_STOPWORD Table”](information-schema-innodb-ft-default-stopword-table.html "24.4.10 The INFORMATION_SCHEMA INNODB_FT_DEFAULT_STOPWORD Table")
 
-[Seção 24.4.11, “A tabela INFORMATION_SCHEMA INNODB_FT_DELETED”](information-schema-innodb-ft-deleted-table.html)
+[Section 24.4.11, “The INFORMATION_SCHEMA INNODB_FT_DELETED Table”](information-schema-innodb-ft-deleted-table.html "24.4.11 The INFORMATION_SCHEMA INNODB_FT_DELETED Table")
 
-[Seção 24.4.12, “A tabela INFORMATION_SCHEMA INNODB_FT_INDEX_CACHE”](information-schema-innodb-ft-index-cache-table.html)
+[Section 24.4.12, “The INFORMATION_SCHEMA INNODB_FT_INDEX_CACHE Table”](information-schema-innodb-ft-index-cache-table.html "24.4.12 The INFORMATION_SCHEMA INNODB_FT_INDEX_CACHE Table")
 
-[Seção 24.4.13, “A tabela INFORMATION_SCHEMA INNODB_FT_INDEX_TABLE”](information-schema-innodb-ft-index-table-table.html)
+[Section 24.4.13, “The INFORMATION_SCHEMA INNODB_FT_INDEX_TABLE Table”](information-schema-innodb-ft-index-table-table.html "24.4.13 The INFORMATION_SCHEMA INNODB_FT_INDEX_TABLE Table")
 
-[Seção 24.4.15, “A tabela INFORMATION_SCHEMA INNODB_LOCK_WAITS”](information-schema-innodb-lock-waits-table.html)
+[Section 24.4.15, “The INFORMATION_SCHEMA INNODB_LOCK_WAITS Table”](information-schema-innodb-lock-waits-table.html "24.4.15 The INFORMATION_SCHEMA INNODB_LOCK_WAITS Table")
 
-[Seção 24.4.14, “A tabela INFORMATION_SCHEMA INNODB_LOCKS”](information-schema-innodb-locks-table.html)
+[Section 24.4.14, “The INFORMATION_SCHEMA INNODB_LOCKS Table”](information-schema-innodb-locks-table.html "24.4.14 The INFORMATION_SCHEMA INNODB_LOCKS Table")
 
-[Seção 24.4.16, “A tabela INFORMATION_SCHEMA INNODB_METRICS”](information-schema-innodb-metrics-table.html)
+[Section 24.4.16, “The INFORMATION_SCHEMA INNODB_METRICS Table”](information-schema-innodb-metrics-table.html "24.4.16 The INFORMATION_SCHEMA INNODB_METRICS Table")
 
-[Seção 24.4.17, “A tabela INFORMATION_SCHEMA INNODB_SYS_COLUMNS”](information-schema-innodb-sys-columns-table.html)
+[Section 24.4.17, “The INFORMATION_SCHEMA INNODB_SYS_COLUMNS Table”](information-schema-innodb-sys-columns-table.html "24.4.17 The INFORMATION_SCHEMA INNODB_SYS_COLUMNS Table")
 
-[Seção 24.4.18, “A tabela INFORMATION_SCHEMA INNODB_SYS_DATAFILES”](information-schema-innodb-sys-datafiles-table.html)
+[Section 24.4.18, “The INFORMATION_SCHEMA INNODB_SYS_DATAFILES Table”](information-schema-innodb-sys-datafiles-table.html "24.4.18 The INFORMATION_SCHEMA INNODB_SYS_DATAFILES Table")
 
-[Seção 24.4.19, “A tabela INFORMATION_SCHEMA INNODB_SYS_FIELDS”](information-schema-innodb-sys-fields-table.html)
+[Section 24.4.19, “The INFORMATION_SCHEMA INNODB_SYS_FIELDS Table”](information-schema-innodb-sys-fields-table.html "24.4.19 The INFORMATION_SCHEMA INNODB_SYS_FIELDS Table")
 
-[Seção 24.4.20, “A tabela INFORMATION_SCHEMA INNODB_SYS_FOREIGN”](information-schema-innodb-sys-foreign-table.html)
+[Section 24.4.20, “The INFORMATION_SCHEMA INNODB_SYS_FOREIGN Table”](information-schema-innodb-sys-foreign-table.html "24.4.20 The INFORMATION_SCHEMA INNODB_SYS_FOREIGN Table")
 
-[Seção 24.4.21, “A tabela INFORMATION_SCHEMA INNODB_SYS_FOREIGN_COLS”](information-schema-innodb-sys-foreign-cols-table.html)
+[Section 24.4.21, “The INFORMATION_SCHEMA INNODB_SYS_FOREIGN_COLS Table”](information-schema-innodb-sys-foreign-cols-table.html "24.4.21 The INFORMATION_SCHEMA INNODB_SYS_FOREIGN_COLS Table")
 
-[Seção 24.4.22, “A tabela INFORMATION_SCHEMA INNODB_SYS_INDEXES”](information-schema-innodb-sys-indexes-table.html)
+[Section 24.4.22, “The INFORMATION_SCHEMA INNODB_SYS_INDEXES Table”](information-schema-innodb-sys-indexes-table.html "24.4.22 The INFORMATION_SCHEMA INNODB_SYS_INDEXES Table")
 
-[Seção 24.4.23, “A tabela INFORMATION_SCHEMA INNODB_SYS_TABLES”](information-schema-innodb-sys-tables-table.html)
+[Section 24.4.23, “The INFORMATION_SCHEMA INNODB_SYS_TABLES Table”](information-schema-innodb-sys-tables-table.html "24.4.23 The INFORMATION_SCHEMA INNODB_SYS_TABLES Table")
 
-[Seção 24.4.24, “A tabela INFORMATION_SCHEMA INNODB_SYS_TABLESPACES”](information-schema-innodb-sys-tablespaces-table.html)
+[Section 24.4.24, “The INFORMATION_SCHEMA INNODB_SYS_TABLESPACES Table”](information-schema-innodb-sys-tablespaces-table.html "24.4.24 The INFORMATION_SCHEMA INNODB_SYS_TABLESPACES Table")
 
-[Seção 24.4.25, “A visão INFORMATION_SCHEMA INNODB_SYS_TABLESTATS”](information-schema-innodb-sys-tablestats-table.html)
+[Section 24.4.25, “The INFORMATION_SCHEMA INNODB_SYS_TABLESTATS View”](information-schema-innodb-sys-tablestats-table.html "24.4.25 The INFORMATION_SCHEMA INNODB_SYS_TABLESTATS View")
 
-[Seção 24.4.26, “A tabela INFORMATION_SCHEMA INNODB_SYS_VIRTUAL”](information-schema-innodb-sys-virtual-table.html)
+[Section 24.4.26, “The INFORMATION_SCHEMA INNODB_SYS_VIRTUAL Table”](information-schema-innodb-sys-virtual-table.html "24.4.26 The INFORMATION_SCHEMA INNODB_SYS_VIRTUAL Table")
 
-[Seção 24.4.27, “A tabela INFORMATION_SCHEMA INNODB_TEMP_TABLE_INFO”](information-schema-innodb-temp-table-info-table.html)
+[Section 24.4.27, “The INFORMATION_SCHEMA INNODB_TEMP_TABLE_INFO Table”](information-schema-innodb-temp-table-info-table.html "24.4.27 The INFORMATION_SCHEMA INNODB_TEMP_TABLE_INFO Table")
 
-[Seção 24.4.28, “A tabela INFORMATION_SCHEMA INNODB_TRX”](information-schema-innodb-trx-table.html)
+[Section 24.4.28, “The INFORMATION_SCHEMA INNODB_TRX Table”](information-schema-innodb-trx-table.html "24.4.28 The INFORMATION_SCHEMA INNODB_TRX Table")
 
-[Seção 24.3.18, “A tabela INFORMATION_SCHEMA PROCESSLIST”](information-schema-processlist-table.html)
+[Section 24.3.18, “The INFORMATION_SCHEMA PROCESSLIST Table”](information-schema-processlist-table.html "24.3.18 The INFORMATION_SCHEMA PROCESSLIST Table")
 
-[Seção 25.12.16.3, “Tabela Processlist”](performance-schema-processlist-table.html)
+[Section 25.12.16.3, “The processlist Table”](performance-schema-processlist-table.html "25.12.16.3 The processlist Table")
 
-[Seção 25.12.16.4, “Tabela de threads”](performance-schema-threads-table.html)
+[Section 25.12.16.4, “The threads Table”](performance-schema-threads-table.html "25.12.16.4 The threads Table")
 
-[Seção B.3.2.5, “Muitas conexões”](too-many-connections.html)
+[Section B.3.2.5, “Too many connections”](too-many-connections.html "B.3.2.5 Too many connections")
 
 ### PROXY
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 6.2.3, “Tabelas de subsídios”](grant-tables.html)
+[Section 6.2.3, “Grant Tables”](grant-tables.html "6.2.3 Grant Tables")
 
-[Seção 6.4.1.9, “Autenticação Conectada a LDAP”](ldap-pluggable-authentication.html)
+[Section 6.4.1.9, “LDAP Pluggable Authentication”](ldap-pluggable-authentication.html "6.4.1.9 LDAP Pluggable Authentication")
 
-[Seção 6.4.1.7, “Autenticação Conectada (PAM)](pam-pluggable-authentication.html)
+[Section 6.4.1.7, “PAM Pluggable Authentication”](pam-pluggable-authentication.html "6.4.1.7 PAM Pluggable Authentication")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 6.2.14, “Usuários de Proxy”](proxy-users.html)
+[Section 6.2.14, “Proxy Users”](proxy-users.html "6.2.14 Proxy Users")
 
-[Seção 2.9.4, “Segurança da Conta Inicial do MySQL”](default-privileges.html)
+[Section 2.9.4, “Securing the Initial MySQL Account”](default-privileges.html "2.9.4 Securing the Initial MySQL Account")
 
-[Seção 25.12.16.1, “A tabela host_cache”](performance-schema-host-cache-table.html)
+[Section 25.12.16.1, “The host_cache Table”](performance-schema-host-cache-table.html "25.12.16.1 The host_cache Table")
 
-[Seção 6.4.1.8, “Autenticação Conectada a Janelas”](windows-pluggable-authentication.html)
+[Section 6.4.1.8, “Windows Pluggable Authentication”](windows-pluggable-authentication.html "6.4.1.8 Windows Pluggable Authentication")
 
-### PROXY ... COM OPÇÃO DE CONCEDIMENTO
+### PROXY ... WITH GRANT OPTION
 
-[Seção 6.2.14, “Usuários de Proxy”](proxy-users.html)
+[Section 6.2.14, “Proxy Users”](proxy-users.html "6.2.14 Proxy Users")
 
 ### R
 
-index superior](dynindex-priv.html#priv-index-superior)]
+index top](dynindex-priv.html#priv-index-top)]
 
-### REFERÊNCIAS
+### REFERENCES
 
-[Seção 2.10.3, “Alterações no MySQL 5.7”](upgrading-from-previous-series.html)
+[Section 2.10.3, “Changes in MySQL 5.7”](upgrading-from-previous-series.html "2.10.3 Changes in MySQL 5.7")
 
-[Seção 13.1.18.5, “Restrições de Chave Estrangeira”](create-table-foreign-keys.html)
+[Section 13.1.18.5, “FOREIGN KEY Constraints”](create-table-foreign-keys.html "13.1.18.5 FOREIGN KEY Constraints")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
 ### RELOAD
 
-[Seção 6.2.6, “Controle de Acesso, Etapa 2: Solicitação de Verificação”](request-access.html)
+[Section 6.2.6, “Access Control, Stage 2: Request Verification”](request-access.html "6.2.6 Access Control, Stage 2: Request Verification")
 
-[Seção 6.2.7, “Adicionar contas, atribuir privilégios e excluir contas”](creating-accounts.html)
+[Section 6.2.7, “Adding Accounts, Assigning Privileges, and Dropping Accounts”](creating-accounts.html "6.2.7 Adding Accounts, Assigning Privileges, and Dropping Accounts")
 
-[Seção 5.1.11.2, "Consultas DNS e Cache de Anfitriões"](host-cache.html)
+[Section 5.1.11.2, “DNS Lookups and the Host Cache”](host-cache.html "5.1.11.2 DNS Lookups and the Host Cache")
 
-[Seção 12.13, “Funções de Criptografia e Compressão”](encryption-functions.html)
+[Section 12.13, “Encryption and Compression Functions”](encryption-functions.html "12.13 Encryption and Compression Functions")
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 6.2.3, “Tabelas de subsídios”](grant-tables.html)
+[Section 6.2.3, “Grant Tables”](grant-tables.html "6.2.3 Grant Tables")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 13.4.1.2, “Declaração de RESET MASTER”](reset-master.html)
+[Section 13.4.1.2, “RESET MASTER Statement”](reset-master.html "13.4.1.2 RESET MASTER Statement")
 
-[Seção 13.4.2.3, "Declaração de RESET SLAVE"](reset-slave.html)
+[Section 13.4.2.3, “RESET SLAVE Statement”](reset-slave.html "13.4.2.3 RESET SLAVE Statement")
 
-[Seção 13.7.6.6, "Declaração de RESET"](reset.html)
+[Section 13.7.6.6, “RESET Statement”](reset.html "13.7.6.6 RESET Statement")
 
-[Seção 5.4.7, “Manutenção do Log do Servidor”](log-file-maintenance.html)
+[Section 5.4.7, “Server Log Maintenance”](log-file-maintenance.html "5.4.7 Server Log Maintenance")
 
-### CLIENTE DE REPRODUÇÃO
+### REPLICATION CLIENT
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 13.7.5.1, “Declaração SHOW BINARY LOGS”](show-binary-logs.html)
+[Section 13.7.5.1, “SHOW BINARY LOGS Statement”](show-binary-logs.html "13.7.5.1 SHOW BINARY LOGS Statement")
 
-[Seção 13.7.5.23, "Declaração de Status do Mestre"](show-master-status.html)
+[Section 13.7.5.23, “SHOW MASTER STATUS Statement”](show-master-status.html "13.7.5.23 SHOW MASTER STATUS Statement")
 
-[Seção 13.7.5.34, "Declaração de Status de Escravo"](show-slave-status.html)
+[Section 13.7.5.34, “SHOW SLAVE STATUS Statement”](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement")
 
-### ESCRAVO DE REPRODUÇÃO
+### REPLICATION SLAVE
 
-[Seção 16.1.5.1, “Configurando a Replicação de Múltiplas Fontes”](replication-multi-source-configuration.html)
+[Section 16.1.5.1, “Configuring Multi-Source Replication”](replication-multi-source-configuration.html "16.1.5.1 Configuring Multi-Source Replication")
 
-[Seção 16.1.2.2, “Criando um Usuário para Replicação”](replication-howto-repuser.html)
+[Section 16.1.2.2, “Creating a User for Replication”](replication-howto-repuser.html "16.1.2.2 Creating a User for Replication")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 4.6.7, “mysqlbinlog — Ferramenta para processamento de arquivos de log binário”](mysqlbinlog.html)
+[Section 4.6.7, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "4.6.7 mysqlbinlog — Utility for Processing Binary Log Files")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 16.3.8, “Configurando a replicação para usar conexões criptografadas”](replication-encrypted-connections.html)
+[Section 16.3.8, “Setting Up Replication to Use Encrypted Connections”](replication-encrypted-connections.html "16.3.8 Setting Up Replication to Use Encrypted Connections")
 
-[Seção 13.7.5.2, “Declaração de MOSTRAR EVENTOS BINLOG”](show-binlog-events.html)
+[Section 13.7.5.2, “SHOW BINLOG EVENTS Statement”](show-binlog-events.html "13.7.5.2 SHOW BINLOG EVENTS Statement")
 
-[Seção 13.7.5.32, "Declaração de RELAYLOG EVENTS"](show-relaylog-events.html)
+[Section 13.7.5.32, “SHOW RELAYLOG EVENTS Statement”](show-relaylog-events.html "13.7.5.32 SHOW RELAYLOG EVENTS Statement")
 
-[Seção 13.7.5.33, "Declaração de SLAVE HOSTS"](show-slave-hosts.html)
+[Section 13.7.5.33, “SHOW SLAVE HOSTS Statement”](show-slave-hosts.html "13.7.5.33 SHOW SLAVE HOSTS Statement")
 
-[Seção 17.2.1.3, “Credenciais do Usuário”](group-replication-user-credentials.html)
+[Section 17.2.1.3, “User Credentials”](group-replication-user-credentials.html "17.2.1.3 User Credentials")
 
 ### S
 
-index superior](dynindex-priv.html#priv-index-superior)]
+index top](dynindex-priv.html#priv-index-top)]
 
-### SELECIONE
+### SELECT
 
-[Seção 6.2, “Controle de Acesso e Gerenciamento de Contas”](access-control.html)
+[Section 6.2, “Access Control and Account Management”](access-control.html "6.2 Access Control and Account Management")
 
-[Seção 6.2.6, “Controle de Acesso, Etapa 2: Solicitação de Verificação”](request-access.html)
+[Section 6.2.6, “Access Control, Stage 2: Request Verification”](request-access.html "6.2.6 Access Control, Stage 2: Request Verification")
 
-[Seção 13.7.2.1, "Declaração de Tabela de Análise"](analyze-table.html)
+[Section 13.7.2.1, “ANALYZE TABLE Statement”](analyze-table.html "13.7.2.1 ANALYZE TABLE Statement")
 
-[Seção 2.10.3, “Alterações no MySQL 5.7”](upgrading-from-previous-series.html)
+[Section 2.10.3, “Changes in MySQL 5.7”](upgrading-from-previous-series.html "2.10.3 Changes in MySQL 5.7")
 
-[Seção 13.7.2.3, "Declaração de Tabela CHECKSUM"](checksum-table.html)
+[Section 13.7.2.3, “CHECKSUM TABLE Statement”](checksum-table.html "13.7.2.3 CHECKSUM TABLE Statement")
 
-[Seção 13.1.16, "Instruções CREATE PROCEDURE e CREATE FUNCTION"](create-procedure.html)
+[Section 13.1.16, “CREATE PROCEDURE and CREATE FUNCTION Statements”](create-procedure.html "13.1.16 CREATE PROCEDURE and CREATE FUNCTION Statements")
 
-[Seção 13.1.18.3, "Instrução CREATE TABLE ... LIKE"](create-table-like.html)
+[Section 13.1.18.3, “CREATE TABLE ... LIKE Statement”](create-table-like.html "13.1.18.3 CREATE TABLE ... LIKE Statement")
 
-[Seção 13.1.18, "Instrução CREATE TABLE"](create-table.html)
+[Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement")
 
-[Seção 13.1.20, "Instrução CREATE TRIGGER"](create-trigger.html)
+[Section 13.1.20, “CREATE TRIGGER Statement”](create-trigger.html "13.1.20 CREATE TRIGGER Statement")
 
-[Seção 13.1.21, "Instrução CREATE VIEW"](create-view.html)
+[Section 13.1.21, “CREATE VIEW Statement”](create-view.html "13.1.21 CREATE VIEW Statement")
 
-[Seção 13.2.2, “Instrução DELETE”](delete.html)
+[Section 13.2.2, “DELETE Statement”](delete.html "13.2.2 DELETE Statement")
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 13.2.5, “Instrução INSERT”](insert.html)
+[Section 13.2.5, “INSERT Statement”](insert.html "13.2.5 INSERT Statement")
 
-[Seção 13.3.5, “Instruções LOCK TABLES e UNLOCK TABLES”](lock-tables.html)
+[Section 13.3.5, “LOCK TABLES and UNLOCK TABLES Statements”](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements")
 
-[Seção 25.20, “Migração para o Sistema de Schema de Desempenho e Tabelas de Variáveis de Status”](performance-schema-variable-table-migration.html)
+[Section 25.20, “Migrating to Performance Schema System and Status Variable Tables”](performance-schema-variable-table-migration.html "25.20 Migrating to Performance Schema System and Status Variable Tables")
 
-[Seção 6.4.6.4, “Referência do Firewall Empresarial MySQL”](firewall-reference.html)
+[Section 6.4.6.4, “MySQL Enterprise Firewall Reference”](firewall-reference.html "6.4.6.4 MySQL Enterprise Firewall Reference")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
+[Section 4.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "4.5.6 mysqlpump — A Database Backup Program")
 
-[Seção 21.6.18.2, "Nível de privilégio do NDB Cluster e MySQL"](mysql-cluster-security-mysql-privileges.html)
+[Section 21.6.18.2, “NDB Cluster and MySQL Privileges”](mysql-cluster-security-mysql-privileges.html "21.6.18.2 NDB Cluster and MySQL Privileges")
 
-[Seção 13.7.2.4, "Instrução OPTIMIZE TABLE"](optimize-table.html)
+[Section 13.7.2.4, “OPTIMIZE TABLE Statement”](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement")
 
-[Seção 25.11, “Características Gerais da Tabela do Schema de Desempenho”](performance-schema-table-characteristics.html)
+[Section 25.11, “Performance Schema General Table Characteristics”](performance-schema-table-characteristics.html "25.11 Performance Schema General Table Characteristics")
 
-[Seção 26.1, “Pré-requisitos para usar o esquema sys”](sys-schema-prerequisites.html)
+[Section 26.1, “Prerequisites for Using the sys Schema”](sys-schema-prerequisites.html "26.1 Prerequisites for Using the sys Schema")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 13.7.2.5, “Declaração de REPAIR TABLE”](repair-table.html)
+[Section 13.7.2.5, “REPAIR TABLE Statement”](repair-table.html "13.7.2.5 REPAIR TABLE Statement")
 
-[Seção 23.9, “Restrições de visualização”](view-restrictions.html)
+[Section 23.9, “Restrictions on Views”](view-restrictions.html "23.9 Restrictions on Views")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 13.7.5.12, "Instrução SHOW CREATE USER"](show-create-user.html)
+[Section 13.7.5.12, “SHOW CREATE USER Statement”](show-create-user.html "13.7.5.12 SHOW CREATE USER Statement")
 
-[Seção 13.7.5.13, "Mostrar declaração CREATE VIEW"](show-create-view.html)
+[Section 13.7.5.13, “SHOW CREATE VIEW Statement”](show-create-view.html "13.7.5.13 SHOW CREATE VIEW Statement")
 
-[Seção 13.7.5.21, "Declaração de GRANTS SHOW"](show-grants.html)
+[Section 13.7.5.21, “SHOW GRANTS Statement”](show-grants.html "13.7.5.21 SHOW GRANTS Statement")
 
-[Seção 23.6, “Controle de Acesso a Objetos Armazenados”](stored-objects-security.html)
+[Section 23.6, “Stored Object Access Control”](stored-objects-security.html "23.6 Stored Object Access Control")
 
-[Seção 23.4.6, “O Agendamento de Eventos e Permissões do MySQL”](events-privileges.html)
+[Section 23.4.6, “The Event Scheduler and MySQL Privileges”](events-privileges.html "23.4.6 The Event Scheduler and MySQL Privileges")
 
-[Seção 15.7, “O Motor de Armazenamento MERGE”](merge-storage-engine.html)
+[Section 15.7, “The MERGE Storage Engine”](merge-storage-engine.html "15.7 The MERGE Storage Engine")
 
-[Seção 25.12.16.4, “Tabela de threads”](performance-schema-threads-table.html)
+[Section 25.12.16.4, “The threads Table”](performance-schema-threads-table.html "25.12.16.4 The threads Table")
 
-[Seção 23.3.1, "Sintaxe de gatilho e exemplos"](trigger-syntax.html)
+[Section 23.3.1, “Trigger Syntax and Examples”](trigger-syntax.html "23.3.1 Trigger Syntax and Examples")
 
-[Seção 13.2.11, "Declaração de Atualização"](update.html)
+[Section 13.2.11, “UPDATE Statement”](update.html "13.2.11 UPDATE Statement")
 
-[Seção 21.2.4.2, “O que há de novo no NDB Cluster 7.6”](mysql-cluster-what-is-new-7-6.html)
+[Section 21.2.4.2, “What is New in NDB Cluster 7.6”](mysql-cluster-what-is-new-7-6.html "21.2.4.2 What is New in NDB Cluster 7.6")
 
-### MOSTRAR BANQUES DE DADOS
+### SHOW DATABASES
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 13.7.5.14, "Declaração SHOW DATABASES"](show-databases.html)
+[Section 13.7.5.14, “SHOW DATABASES Statement”](show-databases.html "13.7.5.14 SHOW DATABASES Statement")
 
-### EXIBIR VISUALIZAÇÃO
+### SHOW VIEW
 
-[Seção 13.8.2, “Instrução EXPLAIN”](explain.html)
+[Section 13.8.2, “EXPLAIN Statement”](explain.html "13.8.2 EXPLAIN Statement")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
+[Section 4.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "4.5.6 mysqlpump — A Database Backup Program")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 23.9, “Restrições de visualização”](view-restrictions.html)
+[Section 23.9, “Restrictions on Views”](view-restrictions.html "23.9 Restrictions on Views")
 
-[Seção 13.7.5.13, "Mostrar declaração CREATE VIEW"](show-create-view.html)
+[Section 13.7.5.13, “SHOW CREATE VIEW Statement”](show-create-view.html "13.7.5.13 SHOW CREATE VIEW Statement")
 
-[Seção 24.3.31, “A Tabela INFORMATION_SCHEMA VIEWS”](information-schema-views-table.html)
+[Section 24.3.31, “The INFORMATION_SCHEMA VIEWS Table”](information-schema-views-table.html "24.3.31 The INFORMATION_SCHEMA VIEWS Table")
 
-### FECHAR
+### SHUTDOWN
 
-[Seção 6.2.6, “Controle de Acesso, Etapa 2: Solicitação de Verificação”](request-access.html)
+[Section 6.2.6, “Access Control, Stage 2: Request Verification”](request-access.html "6.2.6 Access Control, Stage 2: Request Verification")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 6.2.3, “Tabelas de subsídios”](grant-tables.html)
+[Section 6.2.3, “Grant Tables”](grant-tables.html "6.2.3 Grant Tables")
 
-[Seção 4.3.4, “mysqld_multi — Gerenciar múltiplos servidores MySQL”](mysqld-multi.html)
+[Section 4.3.4, “mysqld_multi — Manage Multiple MySQL Servers”](mysqld-multi.html "4.3.4 mysqld_multi — Manage Multiple MySQL Servers")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 16.1.3.4, “Configurando a replicação usando GTIDs”](replication-gtids-howto.html)
+[Section 16.1.3.4, “Setting Up Replication Using GTIDs”](replication-gtids-howto.html "16.1.3.4 Setting Up Replication Using GTIDs")
 
-[Seção 13.7.6.7, "Declaração de DESATIVAÇÃO"](shutdown.html)
+[Section 13.7.6.7, “SHUTDOWN Statement”](shutdown.html "13.7.6.7 SHUTDOWN Statement")
 
-[Seção 5.1.16, “O processo de desligamento do servidor”](server-shutdown.html)
+[Section 5.1.16, “The Server Shutdown Process”](server-shutdown.html "5.1.16 The Server Shutdown Process")
 
-[Seção 4.10, "Tratamento de Sinais Unix no MySQL"](unix-signal-response.html)
+[Section 4.10, “Unix Signal Handling in MySQL”](unix-signal-response.html "4.10 Unix Signal Handling in MySQL")
 
 ### SUPER
 
-[Seção 13.7.1, “Declarações de Gerenciamento de Conta”](account-management-statements.html)
+[Section 13.7.1, “Account Management Statements”](account-management-statements.html "13.7.1 Account Management Statements")
 
-[Seção 13.1.3, "Instrução ALTER FUNCTION"](alter-function.html)
+[Section 13.1.3, “ALTER FUNCTION Statement”](alter-function.html "13.1.3 ALTER FUNCTION Statement")
 
-[Seção 13.1.4, "Declaração ALTER INSTANCE"](alter-instance.html)
+[Section 13.1.4, “ALTER INSTANCE Statement”](alter-instance.html "13.1.4 ALTER INSTANCE Statement")
 
-[Seção 13.1.7, "Instrução ALTER SERVER"](alter-server.html)
+[Section 13.1.7, “ALTER SERVER Statement”](alter-server.html "13.1.7 ALTER SERVER Statement")
 
-[Seção 13.7.1.1, "Instrução ALTER USER"](alter-user.html)
+[Section 13.7.1.1, “ALTER USER Statement”](alter-user.html "13.7.1.1 ALTER USER Statement")
 
-[Seção 13.1.10, "Instrução ALTER VIEW"](alter-view.html)
+[Section 13.1.10, “ALTER VIEW Statement”](alter-view.html "13.1.10 ALTER VIEW Statement")
 
-[Seção 6.2.10, “Atribuição de Senhas de Conta”](atribuição-de-senhas.html)
+[Section 6.2.10, “Assigning Account Passwords”](assigning-passwords.html "6.2.10 Assigning Account Passwords")
 
-[Seção 6.4.5.7, “Filtragem do Log de Auditoria”](audit-log-filtering.html)
+[Section 6.4.5.7, “Audit Log Filtering”](audit-log-filtering.html "6.4.5.7 Audit Log Filtering")
 
-[Seção 6.4.5.11, “Referência do Log de Auditoria”](audit-log-reference.html)
+[Section 6.4.5.11, “Audit Log Reference”](audit-log-reference.html "6.4.5.11 Audit Log Reference")
 
-[Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
+[Section 16.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "16.1.6.4 Binary Logging Options and Variables")
 
-[Seção 13.7.6.1, "Declaração BINLOG"](binlog.html)
+[Section 13.7.6.1, “BINLOG Statement”](binlog.html "13.7.6.1 BINLOG Statement")
 
-[Seção 13.4.2.1, “Mudar o mestre para declaração”](change-master-to.html)
+[Section 13.4.2.1, “CHANGE MASTER TO Statement”](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement")
 
-[Seção 13.4.2.2, “Declaração de Filtro de Replicação de Mudança”](change-replication-filter.html)
+[Section 13.4.2.2, “CHANGE REPLICATION FILTER Statement”](change-replication-filter.html "13.4.2.2 CHANGE REPLICATION FILTER Statement")
 
-[Seção 10.5, “Configurando o Conjunto de Caracteres e a Cotação da Aplicação”](charset-applications.html)
+[Section 10.5, “Configuring Application Character Set and Collation”](charset-applications.html "10.5 Configuring Application Character Set and Collation")
 
-[Seção 5.1.11.1, “Interfaces de Conexão”](connection-interfaces.html)
+[Section 5.1.11.1, “Connection Interfaces”](connection-interfaces.html "5.1.11.1 Connection Interfaces")
 
-[Seção 13.1.16, "Instruções CREATE PROCEDURE e CREATE FUNCTION"](create-procedure.html)
+[Section 13.1.16, “CREATE PROCEDURE and CREATE FUNCTION Statements”](create-procedure.html "13.1.16 CREATE PROCEDURE and CREATE FUNCTION Statements")
 
-[Seção 13.1.17, "Instrução CREATE SERVER"](create-server.html)
+[Section 13.1.17, “CREATE SERVER Statement”](create-server.html "13.1.17 CREATE SERVER Statement")
 
-[Seção 13.1.20, "Instrução CREATE TRIGGER"](create-trigger.html)
+[Section 13.1.20, “CREATE TRIGGER Statement”](create-trigger.html "13.1.20 CREATE TRIGGER Statement")
 
-[Seção 13.7.1.2, "Instrução CREATE USER"](create-user.html)
+[Section 13.7.1.2, “CREATE USER Statement”](create-user.html "13.7.1.2 CREATE USER Statement")
 
-[Seção 6.4.5.9, “Desativando o Registro de Auditoria”](audit-log-disabling.html)
+[Section 6.4.5.9, “Disabling Audit Logging”](audit-log-disabling.html "6.4.5.9 Disabling Audit Logging")
 
-[Seção 5.1.11.2, "Consultas DNS e Cache de Anfitriões"](host-cache.html)
+[Section 5.1.11.2, “DNS Lookups and the Host Cache”](host-cache.html "5.1.11.2 DNS Lookups and the Host Cache")
 
-[Seção 13.1.28, "Declaração DROP SERVER"](drop-server.html)
+[Section 13.1.28, “DROP SERVER Statement”](drop-server.html "13.1.28 DROP SERVER Statement")
 
-[Seção 13.7.1.3, Declaração DROP USER](drop-user.html)
+[Section 13.7.1.3, “DROP USER Statement”](drop-user.html "13.7.1.3 DROP USER Statement")
 
-[Seção 12.13, “Funções de Criptografia e Compressão”](encryption-functions.html)
+[Section 12.13, “Encryption and Compression Functions”](encryption-functions.html "12.13 Encryption and Compression Functions")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 14.14, “Criptografia de Dados em Repouso do InnoDB”](innodb-data-encryption.html)
+[Section 14.14, “InnoDB Data-at-Rest Encryption”](innodb-data-encryption.html "14.14 InnoDB Data-at-Rest Encryption")
 
-[Seção 13.7.6.4, "Declaração de KILL"](kill.html)
+[Section 13.7.6.4, “KILL Statement”](kill.html "13.7.6.4 KILL Statement")
 
-[Seção 6.1.3, “Tornar o MySQL seguro contra atacantes”](security-against-attack.html)
+[Section 6.1.3, “Making MySQL Secure Against Attackers”](security-against-attack.html "6.1.3 Making MySQL Secure Against Attackers")
 
-[Seção 6.4.4.7, “Migração de Chaves entre Keystores do Keyring”](keyring-key-migration.html)
+[Section 6.4.4.7, “Migrating Keys Between Keyring Keystores”](keyring-key-migration.html "6.4.4.7 Migrating Keys Between Keyring Keystores")
 
-[Seção A.4, “Perguntas frequentes sobre o MySQL 5.7: Procedimentos e funções armazenadas”](faqs-stored-procs.html)
+[Section A.4, “MySQL 5.7 FAQ: Stored Procedures and Functions”](faqs-stored-procs.html "A.4 MySQL 5.7 FAQ: Stored Procedures and Functions")
 
-[Seção 6.5.1, “Elementos de Máscara de Dados e Desidentificação da Empresa MySQL”](data-masking-elements.html)
+[Section 6.5.1, “MySQL Enterprise Data Masking and De-Identification Elements”](data-masking-elements.html "6.5.1 MySQL Enterprise Data Masking and De-Identification Elements")
 
-[Seção 6.5.5, “Descrição das Funções de Máscara de Dados e Desidentificação do MySQL Enterprise”](data-masking-functions.html)
+[Section 6.5.5, “MySQL Enterprise Data Masking and De-Identification Function Descriptions”](data-masking-functions.html "6.5.5 MySQL Enterprise Data Masking and De-Identification Function Descriptions")
 
-[Seção 6.4.6.4, “Referência do Firewall Empresarial MySQL”](firewall-reference.html)
+[Section 6.4.6.4, “MySQL Enterprise Firewall Reference”](firewall-reference.html "6.4.6.4 MySQL Enterprise Firewall Reference")
 
-[Seção 5.1.13, “Suporte de Fuso Horário do MySQL Server”](time-zone-support.html)
+[Section 5.1.13, “MySQL Server Time Zone Support”](time-zone-support.html "5.1.13 MySQL Server Time Zone Support")
 
-[Seção 4.5.2, “mysqladmin — Um programa de administração do servidor MySQL”](mysqladmin.html)
+[Section 4.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program")
 
-[Seção 6.4.4.9, “Funções de Gerenciamento de Chaves do Carteiro de Plugins”](keyring-functions-plugin-specific.html)
+[Section 6.4.4.9, “Plugin-Specific Keyring Key-Management Functions”](keyring-functions-plugin-specific.html "6.4.4.9 Plugin-Specific Keyring Key-Management Functions")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 13.7.1.5, "Declaração de RENOMEAR USUÁRIO"](rename-user.html)
+[Section 13.7.1.5, “RENAME USER Statement”](rename-user.html "13.7.1.5 RENAME USER Statement")
 
-[Seção 13.7.1.6, "Declaração de Revogação"](revoke.html)
+[Section 13.7.1.6, “REVOKE Statement”](revoke.html "13.7.1.6 REVOKE Statement")
 
-[Seção 16.3.9.2, “Instalação e Configuração de Replicação Semisíncrona”](replication-semisync-installation.html)
+[Section 16.3.9.2, “Semisynchronous Replication Installation and Configuration”](replication-semisync-installation.html "16.3.9.2 Semisynchronous Replication Installation and Configuration")
 
-[Seção 5.1.10, "Modos SQL do Servidor"](sql-mode.html)
+[Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 13.7.1.7, "Declaração de Definir Senha"](set-password.html)
+[Section 13.7.1.7, “SET PASSWORD Statement”](set-password.html "13.7.1.7 SET PASSWORD Statement")
 
-[Seção 13.3.6, “Instrução SET TRANSACTION”](set-transaction.html)
+[Section 13.3.6, “SET TRANSACTION Statement”](set-transaction.html "13.3.6 SET TRANSACTION Statement")
 
-[Seção 16.1.2, “Configuração da replicação com base na posição do arquivo de registro binário”](replication-howto.html)
+[Section 16.1.2, “Setting Up Binary Log File Position Based Replication”](replication-howto.html "16.1.2 Setting Up Binary Log File Position Based Replication")
 
-[Seção 16.1.3.4, “Configurando a replicação usando GTIDs”](replication-gtids-howto.html)
+[Section 16.1.3.4, “Setting Up Replication Using GTIDs”](replication-gtids-howto.html "16.1.3.4 Setting Up Replication Using GTIDs")
 
-[Seção 13.7.5.1, “Declaração SHOW BINARY LOGS”](show-binary-logs.html)
+[Section 13.7.5.1, “SHOW BINARY LOGS Statement”](show-binary-logs.html "13.7.5.1 SHOW BINARY LOGS Statement")
 
-[Seção 13.7.5.23, "Declaração de Status do Mestre"](show-master-status.html)
+[Section 13.7.5.23, “SHOW MASTER STATUS Statement”](show-master-status.html "13.7.5.23 SHOW MASTER STATUS Statement")
 
-[Seção 13.7.5.29, "Declaração SHOW PROCESSLIST"](show-processlist.html)
+[Section 13.7.5.29, “SHOW PROCESSLIST Statement”](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement")
 
-[Seção 13.7.5.34, "Declaração de Status de Escravo"](show-slave-status.html)
+[Section 13.7.5.34, “SHOW SLAVE STATUS Statement”](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement")
 
-[Seção 13.4.3.1, "Instrução START GROUP_REPLICATION"](start-group-replication.html)
+[Section 13.4.3.1, “START GROUP_REPLICATION Statement”](start-group-replication.html "13.4.3.1 START GROUP_REPLICATION Statement")
 
-[Seção 13.4.2.5, "Declaração START SLAVE"](start-slave.html)
+[Section 13.4.2.5, “START SLAVE Statement”](start-slave.html "13.4.2.5 START SLAVE Statement")
 
-[Seção 13.3.1, "Instruções START TRANSACTION, COMMIT e ROLLBACK"](commit.html)
+[Section 13.3.1, “START TRANSACTION, COMMIT, and ROLLBACK Statements”](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements")
 
-[Seção 13.4.3.2, "Instrução STOP GROUP_REPLICATION"](stop-group-replication.html)
+[Section 13.4.3.2, “STOP GROUP_REPLICATION Statement”](stop-group-replication.html "13.4.3.2 STOP GROUP_REPLICATION Statement")
 
-[Seção 13.4.2.6, "Declaração STOP SLAVE"](stop-slave.html)
+[Section 13.4.2.6, “STOP SLAVE Statement”](stop-slave.html "13.4.2.6 STOP SLAVE Statement")
 
-[Seção 23.6, “Controle de Acesso a Objetos Armazenados”](stored-objects-security.html)
+[Section 23.6, “Stored Object Access Control”](stored-objects-security.html "23.6 Stored Object Access Control")
 
-[Seção 23.7, "Registro de Log de Binário de Programa Armazenado"](stored-programs-logging.html)
+[Section 23.7, “Stored Program Binary Logging”](stored-programs-logging.html "23.7 Stored Program Binary Logging")
 
-[Seção 5.1.8.1, “Privilégios de variáveis do sistema”](system-variable-privileges.html)
+[Section 5.1.8.1, “System Variable Privileges”](system-variable-privileges.html "5.1.8.1 System Variable Privileges")
 
-[Seção 26.4.4.2, "O procedimento diagnostics()"](sys-diagnostics.html)
+[Section 26.4.4.2, “The diagnostics() Procedure”](sys-diagnostics.html "26.4.4.2 The diagnostics() Procedure")
 
-[Seção B.3.2.5, “Muitas conexões”](too-many-connections.html)
+[Section B.3.2.5, “Too many connections”](too-many-connections.html "B.3.2.5 Too many connections")
 
-[Seção 6.4.6.3, “Uso do Firewall da MySQL Enterprise”](firewall-usage.html)
+[Section 6.4.6.3, “Using MySQL Enterprise Firewall”](firewall-usage.html "6.4.6.3 Using MySQL Enterprise Firewall")
 
-[Seção 5.5.5.3, “Uso de Tokens de Versão”](version-tokens-usage.html)
+[Section 5.5.5.3, “Using Version Tokens”](version-tokens-usage.html "5.5.5.3 Using Version Tokens")
 
-[Seção 5.5.5.1, “Elementos dos Tokens de Versão”](version-tokens-elements.html)
+[Section 5.5.5.1, “Version Tokens Elements”](version-tokens-elements.html "5.5.5.1 Version Tokens Elements")
 
-[Seção 5.5.5.4, “Referência de Tokens de Versão”](version-tokens-reference.html)
+[Section 5.5.5.4, “Version Tokens Reference”](version-tokens-reference.html "5.5.5.4 Version Tokens Reference")
 
-### SISTEMA_USER
+### SYSTEM_USER
 
-[Seção 25.12.16.3, “Tabela Processlist”](performance-schema-processlist-table.html)
+[Section 25.12.16.3, “The processlist Table”](performance-schema-processlist-table.html "25.12.16.3 The processlist Table")
 
 ### T
 
-index superior](dynindex-priv.html#priv-index-superior)]
+index top](dynindex-priv.html#priv-index-top)]
 
 ### TRIGGER
 
-[Seção 13.1.20, "Instrução CREATE TRIGGER"](create-trigger.html)
+[Section 13.1.20, “CREATE TRIGGER Statement”](create-trigger.html "13.1.20 CREATE TRIGGER Statement")
 
-[Seção 13.1.31, "Declaração DROP TRIGGER"](drop-trigger.html)
+[Section 13.1.31, “DROP TRIGGER Statement”](drop-trigger.html "13.1.31 DROP TRIGGER Statement")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
+[Section 4.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "4.5.6 mysqlpump — A Database Backup Program")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 13.7.5.11, "Mostrar declaração CREATE TRIGGER"](show-create-trigger.html)
+[Section 13.7.5.11, “SHOW CREATE TRIGGER Statement”](show-create-trigger.html "13.7.5.11 SHOW CREATE TRIGGER Statement")
 
-[Seção 13.7.5.38, "Declaração de TRIGGERS SHOW"](show-triggers.html)
+[Section 13.7.5.38, “SHOW TRIGGERS Statement”](show-triggers.html "13.7.5.38 SHOW TRIGGERS Statement")
 
-[Seção 24.3.29, “A tabela TRIGGERS do INFORMATION_SCHEMA”](information-schema-triggers-table.html)
+[Section 24.3.29, “The INFORMATION_SCHEMA TRIGGERS Table”](information-schema-triggers-table.html "24.3.29 The INFORMATION_SCHEMA TRIGGERS Table")
 
 ### U
 
-index superior](dynindex-priv.html#priv-index-superior)]
+index top](dynindex-priv.html#priv-index-top)]
 
-### ATUALIZAÇÃO
+### UPDATE
 
-[Seção 13.7.1.1, "Instrução ALTER USER"](alter-user.html)
+[Section 13.7.1.1, “ALTER USER Statement”](alter-user.html "13.7.1.1 ALTER USER Statement")
 
-[Seção 6.2.10, “Atribuição de Senhas de Conta”](atribuição-de-senhas.html)
+[Section 6.2.10, “Assigning Account Passwords”](assigning-passwords.html "6.2.10 Assigning Account Passwords")
 
-[Seção 2.10.3, “Alterações no MySQL 5.7”](upgrading-from-previous-series.html)
+[Section 2.10.3, “Changes in MySQL 5.7”](upgrading-from-previous-series.html "2.10.3 Changes in MySQL 5.7")
 
-[Seção 13.1.18, "Instrução CREATE TABLE"](create-table.html)
+[Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement")
 
-[Seção 13.1.20, "Instrução CREATE TRIGGER"](create-trigger.html)
+[Section 13.1.20, “CREATE TRIGGER Statement”](create-trigger.html "13.1.20 CREATE TRIGGER Statement")
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 13.2.5, “Instrução INSERT”](insert.html)
+[Section 13.2.5, “INSERT Statement”](insert.html "13.2.5 INSERT Statement")
 
-[Seção 21.6.18.2, "Nível de privilégio do NDB Cluster e MySQL"](mysql-cluster-security-mysql-privileges.html)
+[Section 21.6.18.2, “NDB Cluster and MySQL Privileges”](mysql-cluster-security-mysql-privileges.html "21.6.18.2 NDB Cluster and MySQL Privileges")
 
-[Seção 25.11, “Características Gerais da Tabela do Schema de Desempenho”](performance-schema-table-characteristics.html)
+[Section 25.11, “Performance Schema General Table Characteristics”](performance-schema-table-characteristics.html "25.11 Performance Schema General Table Characteristics")
 
-[Seção 25.4, “Configuração de Execução do Schema de Desempenho”](performance-schema-runtime-configuration.html)
+[Section 25.4, “Performance Schema Runtime Configuration”](performance-schema-runtime-configuration.html "25.4 Performance Schema Runtime Configuration")
 
-[Seção 25.12.2, “Tabelas de Configuração do Schema de Desempenho”](performance-schema-setup-tables.html)
+[Section 25.12.2, “Performance Schema Setup Tables”](performance-schema-setup-tables.html "25.12.2 Performance Schema Setup Tables")
 
-[Seção 26.1, “Pré-requisitos para usar o esquema sys”](sys-schema-prerequisites.html)
+[Section 26.1, “Prerequisites for Using the sys Schema”](sys-schema-prerequisites.html "26.1 Prerequisites for Using the sys Schema")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 13.7.1.5, "Declaração de RENOMEAR USUÁRIO"](rename-user.html)
+[Section 13.7.1.5, “RENAME USER Statement”](rename-user.html "13.7.1.5 RENAME USER Statement")
 
-[Seção 13.7.1.6, "Declaração de Revogação"](revoke.html)
+[Section 13.7.1.6, “REVOKE Statement”](revoke.html "13.7.1.6 REVOKE Statement")
 
-[Seção 13.7.1.7, "Declaração de Definir Senha"](set-password.html)
+[Section 13.7.1.7, “SET PASSWORD Statement”](set-password.html "13.7.1.7 SET PASSWORD Statement")
 
-[Seção 23.6, “Controle de Acesso a Objetos Armazenados”](stored-objects-security.html)
+[Section 23.6, “Stored Object Access Control”](stored-objects-security.html "23.6 Stored Object Access Control")
 
-[Seção 15.7, “O Motor de Armazenamento MERGE”](merge-storage-engine.html)
+[Section 15.7, “The MERGE Storage Engine”](merge-storage-engine.html "15.7 The MERGE Storage Engine")
 
-[Seção 25.12.2.4, “Tabela setup_objects”](performance-schema-setup-objects-table.html)
+[Section 25.12.2.4, “The setup_objects Table”](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table")
 
-[Seção 23.3.1, "Sintaxe de gatilho e exemplos"](trigger-syntax.html)
+[Section 23.3.1, “Trigger Syntax and Examples”](trigger-syntax.html "23.3.1 Trigger Syntax and Examples")
 
-[Seção 13.2.11, "Declaração de Atualização"](update.html)
+[Section 13.2.11, “UPDATE Statement”](update.html "13.2.11 UPDATE Statement")
 
-### USO
+### USAGE
 
-[Seção 13.7.1.4, "Declaração GRANT"](grant.html)
+[Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement")
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
 ### X
 
-index superior](dynindex-priv.html#priv-index-superior)]
+index top](dynindex-priv.html#priv-index-top)]
 
 ### XA_RECOVER_ADMIN
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")

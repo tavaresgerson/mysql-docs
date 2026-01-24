@@ -1,11 +1,11 @@
-## 12.19 Funções agregadas
+## 12.19 Aggregate Functions
 
-12.19.1 Descrições de Funções Agregadas
+12.19.1 Aggregate Function Descriptions
 
-12.19.2 Modificadores de GROUP BY
+12.19.2 GROUP BY Modifiers
 
-12.19.3 MySQL Gerenciamento do GROUP BY
+12.19.3 MySQL Handling of GROUP BY
 
-12.19.4 Detecção de Dependência Funcional
+12.19.4 Detection of Functional Dependence
 
-As funções agregadas operam em conjuntos de valores. Elas são frequentemente usadas com uma cláusula `GROUP BY` para agrupar os valores em subconjuntos.
+Aggregate functions operate on sets of values. They are often used with a `GROUP BY` clause to group values into subsets.

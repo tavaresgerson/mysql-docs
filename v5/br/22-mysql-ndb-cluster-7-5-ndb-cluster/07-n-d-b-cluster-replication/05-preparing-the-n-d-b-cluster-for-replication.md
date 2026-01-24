@@ -1,10 +1,10 @@
-### 21.7.5 Preparando o NDB Cluster para Replicação
+### 21.7.5 Preparing the NDB Cluster for Replication
 
-Preparar o cluster do NDB para a replicação consiste nas seguintes etapas:
+Preparing the NDB Cluster for replication consists of the following steps:
 
-1. Verifique a compatibilidade de versão de todos os servidores MySQL (consulte Seção 21.7.2, “Requisitos Gerais para a Replicação do NDB Cluster”).
+1. Check all MySQL servers for version compatibility (see [Section 21.7.2, “General Requirements for NDB Cluster Replication”](mysql-cluster-replication-general.html "21.7.2 General Requirements for NDB Cluster Replication")).
 
-2. Crie uma conta de replicação no cluster de origem com os privilégios apropriados, usando as seguintes duas instruções SQL:
+2. Create a replication account on the source Cluster with the appropriate privileges, using the following two SQL statements:
 
    ```sql
    mysqlS> CREATE USER 'replica_user'@'replica_host'
@@ -14,9 +14,9 @@ Preparar o cluster do NDB para a replicação consiste nas seguintes etapas:
         -> TO 'replica_user'@'replica_host';
    ```
 
-   Na declaração anterior, *`replica_user`* é o nome do usuário da conta de replicação, *`replica_host`* é o nome do host ou endereço IP da replica, e *`replica_password`* é a senha a ser atribuída a essa conta.
+   In the previous statement, *`replica_user`* is the replication account user name, *`replica_host`* is the host name or IP address of the replica, and *`replica_password`* is the password to assign to this account.
 
-   Por exemplo, para criar uma conta de usuário replica com o nome `myreplica`, faça login no host chamado `replica-host` e use a senha `53cr37`, use as seguintes instruções `CREATE USER` e `GRANT`:
+   For example, to create a replica user account with the name `myreplica`, logging in from the host named `replica-host`, and using the password `53cr37`, use the following [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") and [`GRANT`](grant.html "13.7.1.4 GRANT Statement") statements:
 
    ```sql
    mysqlS> CREATE USER 'myreplica'@'replica-host'
@@ -26,9 +26,9 @@ Preparar o cluster do NDB para a replicação consiste nas seguintes etapas:
         -> TO 'myreplica'@'replica-host';
    ```
 
-   Por razões de segurança, é preferível usar uma conta de usuário única — que não seja usada para nenhum outro propósito — para a conta de replicação.
+   For security reasons, it is preferable to use a unique user account—not employed for any other purpose—for the replication account.
 
-3. Configure a replica para usar a fonte. Usando o cliente **mysql**, isso pode ser feito com a seguinte instrução `CHANGE MASTER TO`:
+3. Set up the replica to use the source. Using the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client, this can be accomplished with the following [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") statement:
 
    ```sql
    mysqlR> CHANGE MASTER TO
@@ -38,9 +38,9 @@ Preparar o cluster do NDB para a replicação consiste nas seguintes etapas:
         -> MASTER_PASSWORD='replica_password';
    ```
 
-   Na declaração anterior, *`source_host`* é o nome do host ou o endereço IP da fonte de replicação, *`source_port`* é a porta que a replica deve usar ao se conectar à fonte, *`replica_user`* é o nome de usuário configurado para a replica na fonte e *`replica_password`* é a senha configurada para essa conta de usuário na etapa anterior.
+   In the previous statement, *`source_host`* is the host name or IP address of the replication source, *`source_port`* is the port for the replica to use when connecting to the source, *`replica_user`* is the user name set up for the replica on the source, and *`replica_password`* is the password set for that user account in the previous step.
 
-   Por exemplo, para dizer à replica que use o servidor MySQL cujo nome de host é `rep-source` com a conta de replicação criada na etapa anterior, use a seguinte declaração:
+   For example, to tell the replica to use the MySQL server whose host name is `rep-source` with the replication account created in the previous step, use the following statement:
 
    ```sql
    mysqlR> CHANGE MASTER TO
@@ -50,34 +50,34 @@ Preparar o cluster do NDB para a replicação consiste nas seguintes etapas:
         -> MASTER_PASSWORD='53cr37';
    ```
 
-   Para uma lista completa das opções que podem ser usadas com essa declaração, consulte Seção 13.4.2.1, "ALTERAR MASTER PARA Declaração".
+   For a complete list of options that can be used with this statement, see [Section 13.4.2.1, “CHANGE MASTER TO Statement”](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement").
 
-   Para fornecer a capacidade de backup de replicação, você também precisa adicionar uma opção `--ndb-connectstring` ao arquivo `my.cnf` da replica antes de iniciar o processo de replicação. Consulte Seção 21.7.9, “Backup de NDB Cluster com Replicação de NDB Cluster” para obter detalhes.
+   To provide replication backup capability, you also need to add an [`--ndb-connectstring`](mysql-cluster-options-variables.html#option_mysqld_ndb-connectstring) option to the replica's `my.cnf` file prior to starting the replication process. See [Section 21.7.9, “NDB Cluster Backups With NDB Cluster Replication”](mysql-cluster-replication-backups.html "21.7.9 NDB Cluster Backups With NDB Cluster Replication"), for details.
 
-   Para obter opções adicionais que podem ser definidas em `my.cnf` para réplicas, consulte Seção 16.1.6, “Opções e variáveis de replicação e registro binário”.
+   For additional options that can be set in `my.cnf` for replicas, see [Section 16.1.6, “Replication and Binary Logging Options and Variables”](replication-options.html "16.1.6 Replication and Binary Logging Options and Variables").
 
-4. Se o cluster de origem já estiver em uso, você pode criar um backup do cluster de origem e carregá-lo na replica para reduzir o tempo necessário para que a replica se sincronize com o cluster de origem. Se a replica também estiver executando o NDB Cluster, isso pode ser feito usando o procedimento de backup e restauração descrito em Seção 21.7.9, “Backup e restauração do NDB Cluster com replicação do NDB Cluster”.
+4. If the source cluster is already in use, you can create a backup of the source and load this onto the replica to cut down on the amount of time required for the replica to synchronize itself with the source. If the replica is also running NDB Cluster, this can be accomplished using the backup and restore procedure described in [Section 21.7.9, “NDB Cluster Backups With NDB Cluster Replication”](mysql-cluster-replication-backups.html "21.7.9 NDB Cluster Backups With NDB Cluster Replication").
 
    ```sql
    ndb-connectstring=management_host[:port]
    ```
 
-   Caso você não esteja usando o NDB Cluster na replica, você pode criar um backup com este comando na fonte:
+   In the event that you are *not* using NDB Cluster on the replica, you can create a backup with this command on the source:
 
    ```sql
    shellS> mysqldump --master-data=1
    ```
 
-   Em seguida, importe o dump de dados resultante na replica copiando o arquivo de dump para ela. Depois disso, você pode usar o cliente **mysql** para importar os dados do arquivo de dump para o banco de dados da replica, conforme mostrado aqui, onde *`dump_file`* é o nome do arquivo gerado usando **mysqldump** na fonte, e *`db_name`* é o nome do banco de dados a ser replicado:
+   Then import the resulting data dump onto the replica by copying the dump file over to it. After this, you can use the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client to import the data from the dumpfile into the replica database as shown here, where *`dump_file`* is the name of the file that was generated using [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") on the source, and *`db_name`* is the name of the database to be replicated:
 
    ```sql
    shellR> mysql -u root -p db_name < dump_file
    ```
 
-   Para uma lista completa das opções que podem ser usadas com **mysqldump**, consulte Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”.
+   For a complete list of options to use with [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program"), see [Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program").
 
-   Nota
+   Note
 
-   Se você copiar os dados para a replica dessa maneira, certifique-se de que a replica seja iniciada com a opção `--skip-slave-start` na linha de comando, caso contrário, inclua `skip-slave-start` no arquivo `my.cnf` da replica para evitar que ela tente se conectar à fonte para começar a replicar antes que todos os dados sejam carregados. Uma vez que o carregamento de dados seja concluído, siga as etapas adicionais descritas nas duas seções seguintes.
+   If you copy the data to the replica in this fashion, you should make sure that the replica is started with the [`--skip-slave-start`](replication-options-replica.html#option_mysqld_skip-slave-start) option on the command line, or else include `skip-slave-start` in the replica's `my.cnf` file to keep it from trying to connect to the source to begin replicating before all the data has been loaded. Once the data loading has completed, follow the additional steps outlined in the next two sections.
 
-5. Certifique-se de que cada servidor MySQL que atua como fonte de replicação tenha um ID de servidor exclusivo e que o registro binário esteja habilitado, usando o formato baseado em linhas. (Veja Seção 16.2.1, “Formatos de Replicação”). Além disso, recomendamos habilitar a variável de sistema `slave_allow_batching`; a partir do NDB 7.6.23, uma mensagem de aviso é emitida se essa variável estiver definida como `OFF`. Você também deve considerar aumentar os valores usados com as opções `--ndb-batch-size` e `--ndb-blob-write-batch-bytes`. Todas essas opções podem ser definidas no arquivo `my.cnf` do servidor fonte ou na linha de comando ao iniciar o processo do **mysqld** fonte. Consulte Seção 21.7.6, “Iniciando a Replicação do NDB Cluster (Canal de Replicação Único)” para obter mais informações.
+5. Ensure that each MySQL server acting as a replication source is assigned a unique server ID, and has binary logging enabled, using the row-based format. (See [Section 16.2.1, “Replication Formats”](replication-formats.html "16.2.1 Replication Formats").) In addition, we recommend enabling the [`slave_allow_batching`](mysql-cluster-options-variables.html#sysvar_slave_allow_batching) system variable; beginning with NDB 7.6.23, a warning is issued if this variable is set to `OFF`. You should also consider increasing the values used with the [`--ndb-batch-size`](mysql-cluster-options-variables.html#option_mysqld_ndb-batch-size) and [`--ndb-blob-write-batch-bytes`](mysql-cluster-options-variables.html#option_mysqld_ndb-blob-write-batch-bytes) options as well. All of these options can be set either in the source server's `my.cnf` file, or on the command line when starting the source [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") process. See [Section 21.7.6, “Starting NDB Cluster Replication (Single Replication Channel)”](mysql-cluster-replication-starting.html "21.7.6 Starting NDB Cluster Replication (Single Replication Channel)"), for more information.

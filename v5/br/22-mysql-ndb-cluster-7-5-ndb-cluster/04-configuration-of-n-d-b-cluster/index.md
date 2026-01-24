@@ -1,19 +1,19 @@
-## 21.4 Configuração do NDB Cluster
+## 21.4 Configuration of NDB Cluster
 
-21.4.1 Configuração rápida do teste do cluster NDB
+[21.4.1 Quick Test Setup of NDB Cluster](mysql-cluster-quick.html)
 
-21.4.2 Visão geral dos parâmetros, opções e variáveis de configuração do NDB Cluster
+[21.4.2 Overview of NDB Cluster Configuration Parameters, Options, and Variables](mysql-cluster-configuration-overview.html)
 
-21.4.3 Arquivos de configuração do cluster NDB
+[21.4.3 NDB Cluster Configuration Files](mysql-cluster-config-file.html)
 
-21.4.4 Uso de interconexões de alta velocidade com o NDB Cluster
+[21.4.4 Using High-Speed Interconnects with NDB Cluster](mysql-cluster-interconnects.html)
 
-Um servidor MySQL que faz parte de um NDB Cluster difere de um servidor MySQL normal (não agrupado) em um aspecto principal: ele utiliza o mecanismo de armazenamento `NDB`. Esse mecanismo também é às vezes chamado de `NDBCLUSTER`, embora `NDB` seja preferível.
+A MySQL server that is part of an NDB Cluster differs in one chief respect from a normal (nonclustered) MySQL server, in that it employs the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine. This engine is also referred to sometimes as [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6"), although `NDB` is preferred.
 
-Para evitar a alocação desnecessária de recursos, o servidor é configurado por padrão com o mecanismo de armazenamento `NDB` desativado. Para habilitar o `NDB`, você deve modificar o arquivo de configuração `my.cnf` do servidor ou iniciar o servidor com a opção `--ndbcluster`.
+To avoid unnecessary allocation of resources, the server is configured by default with the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine disabled. To enable [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6"), you must modify the server's `my.cnf` configuration file, or start the server with the [`--ndbcluster`](mysql-cluster-options-variables.html#option_mysqld_ndbcluster) option.
 
-Esse servidor MySQL faz parte do clúster, então ele também deve saber como acessar um nó de gerenciamento para obter os dados da configuração do clúster. O comportamento padrão é procurar o nó de gerenciamento em `localhost`. No entanto, se você precisar especificar que sua localização é em outro lugar, isso pode ser feito em `my.cnf` ou com o cliente **mysql**. Antes que o mecanismo de armazenamento `NDB` possa ser usado, pelo menos um nó de gerenciamento deve estar operacional, assim como quaisquer nós de dados desejados.
+This MySQL server is a part of the cluster, so it also must know how to access a management node to obtain the cluster configuration data. The default behavior is to look for the management node on `localhost`. However, should you need to specify that its location is elsewhere, this can be done in `my.cnf`, or with the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client. Before the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine can be used, at least one management node must be operational, as well as any desired data nodes.
 
-Para obter mais informações sobre `--ndbcluster` e outras opções do **mysqld** específicas para o NDB Cluster, consulte Seção 21.4.3.9.1, “Opções do Servidor MySQL para NDB Cluster”.
+For more information about [`--ndbcluster`](mysql-cluster-options-variables.html#option_mysqld_ndbcluster) and other [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") options specific to NDB Cluster, see [Section 21.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "21.4.3.9.1 MySQL Server Options for NDB Cluster").
 
-Para obter informações gerais sobre a instalação do NDB Cluster, consulte Seção 21.3, “Instalação do NDB Cluster”.
+For general information about installing NDB Cluster, see [Section 21.3, “NDB Cluster Installation”](mysql-cluster-installation.html "21.3 NDB Cluster Installation").

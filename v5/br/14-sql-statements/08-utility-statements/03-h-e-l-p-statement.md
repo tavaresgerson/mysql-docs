@@ -1,66 +1,65 @@
-### 13.8.3 Declaração de Ajuda
+### 13.8.3 HELP Statement
 
 ```sql
 HELP 'search_string'
 ```
 
-A declaração `HELP` retorna informações online do Manual de Referência do MySQL. Seu funcionamento adequado requer que as tabelas de ajuda no banco de dados `mysql` sejam inicializadas com informações sobre os tópicos de ajuda (veja Seção 5.1.14, “Suporte de Ajuda no Servidor”).
+The [`HELP`](help.html "13.8.3 HELP Statement") statement returns online information from the MySQL Reference Manual. Its proper operation requires that the help tables in the `mysql` database be initialized with help topic information (see [Section 5.1.14, “Server-Side Help Support”](server-side-help-support.html "5.1.14 Server-Side Help Support")).
 
-A declaração `HELP` pesquisa as tabelas de ajuda pelo string de busca fornecido e exibe o resultado da pesquisa. O string de busca não é case-sensitive.
+The [`HELP`](help.html "13.8.3 HELP Statement") statement searches the help tables for the given search string and displays the result of the search. The search string is not case-sensitive.
 
-A cadeia de busca pode conter os caracteres curinga `%` e `_`. Esses têm o mesmo significado que as operações de correspondência de padrões realizadas com o operador `LIKE`. Por exemplo, `HELP 'rep%'` retorna uma lista de tópicos que começam com `rep`.
+The search string can contain the wildcard characters `%` and `_`. These have the same meaning as for pattern-matching operations performed with the [`LIKE`](string-comparison-functions.html#operator_like) operator. For example, `HELP 'rep%'` returns a list of topics that begin with `rep`.
 
-A declaração `HELP` não requer um delimitador, como `;` ou `\G`.
+The `HELP` statement does not require a terminator such as `;` or `\G`.
 
-O comando HELP entende vários tipos de strings de pesquisa:
+The HELP statement understands several types of search strings:
 
-- No nível mais geral, use `contents` para recuperar uma lista das categorias de ajuda de nível superior:
+* At the most general level, use `contents` to retrieve a list of the top-level help categories:
 
   ```sql
   HELP 'contents'
   ```
 
-- Para obter uma lista de tópicos em uma categoria de ajuda específica, como `Tipos de dados`, use o nome da categoria:
+* For a list of topics in a given help category, such as `Data Types`, use the category name:
 
   ```sql
   HELP 'data types'
   ```
 
-- Para obter ajuda sobre um tópico específico, como a função `ASCII()` (string-functions.html#function_ascii) ou a instrução `CREATE TABLE` (create-table.html), use a(s) palavra(s)-chave(s) associada(s):
+* For help on a specific help topic, such as the [`ASCII()`](string-functions.html#function_ascii) function or the [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement, use the associated keyword or keywords:
 
   ```sql
   HELP 'ascii'
   HELP 'create table'
   ```
 
-Em outras palavras, a string de busca corresponde a uma categoria, muitos tópicos ou um único tópico. As descrições a seguir indicam as formas que o conjunto de resultados pode assumir.
+In other words, the search string matches a category, many topics, or a single topic. The following descriptions indicate the forms that the result set can take.
 
-- Resultado vazio
+* Empty result
 
-  Não foi encontrado nenhum jogo para a string de busca.
+  No match could be found for the search string.
 
-  Exemplo: `HELP 'fake'`
+  Example: `HELP 'fake'`
 
-  Rendimentos:
+  Yields:
 
   ```sql
   Nothing found
   Please try to run 'help contents' for a list of all accessible topics
   ```
 
-- Conjunto de resultados contendo uma única linha
+* Result set containing a single row
 
-  Isso significa que a string de busca retornou um resultado para o tópico de ajuda. O resultado inclui os seguintes itens:
+  This means that the search string yielded a hit for the help topic. The result includes the following items:
 
-  - `name`: O nome do tópico.
+  + `name`: The topic name.
+  + `description`: Descriptive help text for the topic.
 
-  - `description`: Texto de ajuda descritiva para o tópico.
+  + `example`: One or more usage examples. (May be empty.)
 
-  - `example`: Um ou mais exemplos de uso. (Pode estar vazio.)
+  Example: `HELP 'log'`
 
-  Exemplo: `HELP 'log'`
-
-  Rendimentos:
+  Yields:
 
   ```sql
   Name: 'LOG'
@@ -85,13 +84,13 @@ Em outras palavras, a string de busca corresponde a uma categoria, muitos tópic
           -> NULL
   ```
 
-- Lista de tópicos.
+* List of topics.
 
-  Isso significa que a string de busca correspondeu a vários tópicos de ajuda.
+  This means that the search string matched multiple help topics.
 
-  Exemplo: `HELP 'status'`
+  Example: `HELP 'status'`
 
-  Rendimentos:
+  Yields:
 
   ```sql
   Many help items for your request exist.
@@ -108,13 +107,13 @@ Em outras palavras, a string de busca corresponde a uma categoria, muitos tópic
      SHOW TABLE STATUS
   ```
 
-- Lista de tópicos.
+* List of topics.
 
-  Uma lista também é exibida se a string de busca corresponder a uma categoria.
+  A list is also displayed if the search string matches a category.
 
-  Exemplo: `Ajuda 'funções'`.
+  Example: `HELP 'functions'`
 
-  Rendimentos:
+  Yields:
 
   ```sql
   You asked for help about help category: "Functions"

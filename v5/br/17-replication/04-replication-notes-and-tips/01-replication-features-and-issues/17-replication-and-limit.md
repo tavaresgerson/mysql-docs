@@ -1,9 +1,9 @@
-#### 16.4.1.17 Replicação e LIMITE
+#### 16.4.1.17 Replication and LIMIT
 
-A replicação baseada em declarações de cláusulas `LIMIT` em instruções `DELETE` (delete.html), `UPDATE` (update.html) e `INSERT ... SELECT` (insert-select.html) não é segura, pois a ordem das linhas afetadas não é definida. (Tais instruções podem ser replicadas corretamente com replicação baseada em declarações apenas se elas também contiverem uma cláusula `ORDER BY`.) Quando essa instrução é encontrada:
+Statement-based replication of `LIMIT` clauses in [`DELETE`](delete.html "13.2.2 DELETE Statement"), [`UPDATE`](update.html "13.2.11 UPDATE Statement"), and [`INSERT ... SELECT`](insert-select.html "13.2.5.1 INSERT ... SELECT Statement") statements is unsafe since the order of the rows affected is not defined. (Such statements can be replicated correctly with statement-based replication only if they also contain an `ORDER BY` clause.) When such a statement is encountered:
 
-- Ao usar o modo `STATEMENT`, agora é emitido um aviso de que a declaração não é segura para a replicação baseada em declarações.
+* When using `STATEMENT` mode, a warning that the statement is not safe for statement-based replication is now issued.
 
-  Ao usar o modo `STATEMENT`, os avisos são emitidos para instruções DML que contêm `LIMIT`, mesmo quando elas também têm uma cláusula `ORDER BY` (e, portanto, tornam-se determinísticas). Esse é um problema conhecido. (Bug #42851)
+  When using `STATEMENT` mode, warnings are issued for DML statements containing `LIMIT` even when they also have an `ORDER BY` clause (and so are made deterministic). This is a known issue. (Bug #42851)
 
-- Ao usar o modo `MIXED`, a declaração agora é replicada automaticamente usando o modo baseado em linhas.
+* When using `MIXED` mode, the statement is now automatically replicated using row-based mode.

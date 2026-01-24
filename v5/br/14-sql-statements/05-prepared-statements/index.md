@@ -1,61 +1,61 @@
-## 13.5 Declarações Preparadas
+## 13.5 Prepared Statements
 
-13.5.1 Declaração PREPARE
+[13.5.1 PREPARE Statement](prepare.html)
 
-13.5.2 Declaração EXECUTE
+[13.5.2 EXECUTE Statement](execute.html)
 
-13.5.3 Declaração de PREPARO PARA REDISTRIBUIÇÃO
+[13.5.3 DEALLOCATE PREPARE Statement](deallocate-prepare.html)
 
-O MySQL 5.7 oferece suporte a instruções preparadas no lado do servidor. Esse suporte aproveita o protocolo binário eficiente cliente/servidor. O uso de instruções preparadas com marcadores para valores de parâmetros oferece os seguintes benefícios:
+MySQL 5.7 provides support for server-side prepared statements. This support takes advantage of the efficient client/server binary protocol. Using prepared statements with placeholders for parameter values has the following benefits:
 
-- Menos overhead para a análise da declaração cada vez que ela é executada. Tipicamente, as aplicações de banco de dados processam grandes volumes de declarações quase idênticas, com apenas alterações nos valores literais ou variáveis em cláusulas como `WHERE` para consultas e exclusões, `SET` para atualizações e `VALUES` para inserções.
+* Less overhead for parsing the statement each time it is executed. Typically, database applications process large volumes of almost-identical statements, with only changes to literal or variable values in clauses such as `WHERE` for queries and deletes, `SET` for updates, and `VALUES` for inserts.
 
-- Proteção contra ataques de injeção SQL. Os valores dos parâmetros podem conter caracteres de delimitador e citação SQL não escapados.
+* Protection against SQL injection attacks. The parameter values can contain unescaped SQL quote and delimiter characters.
 
-As seções a seguir fornecem uma visão geral das características das declarações preparadas:
+The following sections provide an overview of the characteristics of prepared statements:
 
-- Declarações preparadas em programas de aplicação
-- Declarações preparadas em scripts SQL
-- Instruções PREPARE, EXECUTE e DEALLOCATE
-- Sintaxe SQL permitida em declarações preparadas
+* [Prepared Statements in Application Programs](sql-prepared-statements.html#prepared-statements-in-applications "Prepared Statements in Application Programs")
+* [Prepared Statements in SQL Scripts](sql-prepared-statements.html#prepared-statements-in-scripts "Prepared Statements in SQL Scripts")
+* [PREPARE, EXECUTE, and DEALLOCATE PREPARE Statements](sql-prepared-statements.html#prepared-statement-types "PREPARE, EXECUTE, and DEALLOCATE PREPARE Statements")
+* [SQL Syntax Permitted in Prepared Statements](sql-prepared-statements.html#prepared-statements-permitted "SQL Syntax Permitted in Prepared Statements")
 
-### Declarações preparadas em programas de aplicação
+### Prepared Statements in Application Programs
 
-Você pode usar instruções preparadas do lado do servidor por meio de interfaces de programação do cliente, incluindo a biblioteca de clientes da API C MySQL para programas em C, MySQL Connector/J para programas em Java e MySQL Connector/NET para programas que utilizam tecnologias .NET. Por exemplo, a API C fornece um conjunto de chamadas de função que compõem sua API de instruções preparadas. Veja Interface de Instrução Preparada da API C. Outras interfaces de linguagem podem fornecer suporte para instruções preparadas que utilizam o protocolo binário, vinculando a biblioteca de clientes C, um exemplo sendo a extensão `mysqli`, disponível no PHP 5.0 e superior.
+You can use server-side prepared statements through client programming interfaces, including the [MySQL C API client library](/doc/c-api/5.7/en/) for C programs, [MySQL Connector/J](/doc/connector-j/en/) for Java programs, and [MySQL Connector/NET](/doc/connector-net/en/) for programs using .NET technologies. For example, the C API provides a set of function calls that make up its prepared statement API. See [C API Prepared Statement Interface](/doc/c-api/5.7/en/c-api-prepared-statement-interface.html). Other language interfaces can provide support for prepared statements that use the binary protocol by linking in the C client library, one example being the [`mysqli` extension](http://php.net/mysqli), available in PHP 5.0 and higher.
 
-### Declarações preparadas em scripts SQL
+### Prepared Statements in SQL Scripts
 
-Uma interface alternativa para SQL de instruções preparadas está disponível. Essa interface não é tão eficiente quanto o uso do protocolo binário através de uma API de instruções preparadas, mas não requer programação, pois está disponível diretamente no nível SQL:
+An alternative SQL interface to prepared statements is available. This interface is not as efficient as using the binary protocol through a prepared statement API, but requires no programming because it is available directly at the SQL level:
 
-- Você pode usá-lo quando não houver uma interface de programação disponível para você.
+* You can use it when no programming interface is available to you.
 
-- Você pode usá-lo a partir de qualquer programa que possa enviar instruções SQL para o servidor a ser executado, como o programa cliente **mysql**.
+* You can use it from any program that can send SQL statements to the server to be executed, such as the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client program.
 
-- Você pode usá-lo mesmo se o cliente estiver usando uma versão antiga da biblioteca do cliente.
+* You can use it even if the client is using an old version of the client library.
 
-A sintaxe SQL para instruções preparadas é destinada a ser usada em situações como essas:
+SQL syntax for prepared statements is intended to be used for situations such as these:
 
-- Para testar como as declarações preparadas funcionam em sua aplicação antes de codificá-las.
+* To test how prepared statements work in your application before coding it.
 
-- Para usar declarações preparadas quando você não tem acesso a uma API de programação que as suporte.
+* To use prepared statements when you do not have access to a programming API that supports them.
 
-- Para solucionar problemas de aplicativo de forma interativa com instruções preparadas.
+* To interactively troubleshoot application issues with prepared statements.
 
-- Para criar um caso de teste que reproduza um problema com declarações preparadas, para que você possa enviar um relatório de erro.
+* To create a test case that reproduces a problem with prepared statements, so that you can file a bug report.
 
-### PREPARAR, EXECUTAR e DESLOCAR DADOS PREPARAR DADOS Statement&#xA;Portuguese (Brazilian): DADOS Statement
+### PREPARE, EXECUTE, and DEALLOCATE PREPARE Statements
 
-A sintaxe SQL para instruções preparadas é baseada em três instruções SQL:
+SQL syntax for prepared statements is based on three SQL statements:
 
-- `PREPARE` prepara uma declaração para execução (consulte Seção 13.5.1, “Declaração PREPARE”).
+* [`PREPARE`](prepare.html "13.5.1 PREPARE Statement") prepares a statement for execution (see [Section 13.5.1, “PREPARE Statement”](prepare.html "13.5.1 PREPARE Statement")).
 
-- `EXECUTE` executa uma instrução preparada (consulte Seção 13.5.2, “Instrução EXECUTE”).
+* [`EXECUTE`](execute.html "13.5.2 EXECUTE Statement") executes a prepared statement (see [Section 13.5.2, “EXECUTE Statement”](execute.html "13.5.2 EXECUTE Statement")).
 
-- `DEALLOCATE PREPARE` libera uma declaração preparada (consulte Seção 13.5.3, “DEALLOCATE PREPARE Statement”).
+* [`DEALLOCATE PREPARE`](deallocate-prepare.html "13.5.3 DEALLOCATE PREPARE Statement") releases a prepared statement (see [Section 13.5.3, “DEALLOCATE PREPARE Statement”](deallocate-prepare.html "13.5.3 DEALLOCATE PREPARE Statement")).
 
-Os exemplos a seguir mostram duas maneiras equivalentes de preparar uma declaração que calcula a hipotenusa de um triângulo, dados os comprimentos dos dois lados.
+The following examples show two equivalent ways of preparing a statement that computes the hypotenuse of a triangle given the lengths of the two sides.
 
-O primeiro exemplo mostra como criar uma declaração preparada usando uma literal de string para fornecer o texto da declaração:
+The first example shows how to create a prepared statement by using a string literal to supply the text of the statement:
 
 ```sql
 mysql> PREPARE stmt1 FROM 'SELECT SQRT(POW(?,2) + POW(?,2)) AS hypotenuse';
@@ -70,7 +70,7 @@ mysql> EXECUTE stmt1 USING @a, @b;
 mysql> DEALLOCATE PREPARE stmt1;
 ```
 
-O segundo exemplo é semelhante, mas fornece o texto da declaração como uma variável do usuário:
+The second example is similar, but supplies the text of the statement as a user variable:
 
 ```sql
 mysql> SET @s = 'SELECT SQRT(POW(?,2) + POW(?,2)) AS hypotenuse';
@@ -86,7 +86,7 @@ mysql> EXECUTE stmt2 USING @a, @b;
 mysql> DEALLOCATE PREPARE stmt2;
 ```
 
-Aqui está um exemplo adicional que demonstra como escolher a tabela em que realizar uma consulta em tempo de execução, armazenando o nome da tabela como uma variável de usuário:
+Here is an additional example that demonstrates how to choose the table on which to perform a query at runtime, by storing the name of the table as a user variable:
 
 ```sql
 mysql> USE test;
@@ -111,15 +111,15 @@ mysql> EXECUTE stmt3;
 mysql> DEALLOCATE PREPARE stmt3;
 ```
 
-Uma declaração preparada é específica para a sessão em que foi criada. Se você encerrar uma sessão sem liberar uma declaração preparada anteriormente, o servidor a libera automaticamente.
+A prepared statement is specific to the session in which it was created. If you terminate a session without deallocating a previously prepared statement, the server deallocates it automatically.
 
-Uma declaração preparada também é global para a sessão. Se você criar uma declaração preparada dentro de uma rotina armazenada, ela não é realocada quando a rotina armazenada termina.
+A prepared statement is also global to the session. If you create a prepared statement within a stored routine, it is not deallocated when the stored routine ends.
 
-Para evitar que muitas declarações preparadas sejam criadas simultaneamente, defina a variável de sistema `max_prepared_stmt_count`. Para impedir o uso de declarações preparadas, defina o valor para 0.
+To guard against too many prepared statements being created simultaneously, set the [`max_prepared_stmt_count`](server-system-variables.html#sysvar_max_prepared_stmt_count) system variable. To prevent the use of prepared statements, set the value to 0.
 
-### Sintaxe SQL permitida em declarações preparadas
+### SQL Syntax Permitted in Prepared Statements
 
-As seguintes instruções SQL podem ser usadas como instruções preparadas:
+The following SQL statements can be used as prepared statements:
 
 ```sql
 ALTER TABLE
@@ -162,34 +162,34 @@ UNINSTALL PLUGIN
 UPDATE
 ```
 
-Outras declarações não são apoiadas.
+Other statements are not supported.
 
-Para conformidade com o padrão SQL, que afirma que as declarações de diagnóstico não podem ser preparadas, o MySQL não suporta o seguinte como declarações preparadas:
+For compliance with the SQL standard, which states that diagnostics statements are not preparable, MySQL does not support the following as prepared statements:
 
-- `MOSTAR ALARMES`, `MOSTAR CONTA(*) ALARMES`
+* `SHOW WARNINGS`, `SHOW COUNT(*) WARNINGS`
 
-- `SHOW ERRORS`, `SHOW COUNT(*) ERRORS`
+* `SHOW ERRORS`, `SHOW COUNT(*) ERRORS`
 
-- Declarações que contenham qualquer referência à variável de sistema `warning_count` ou à variável de erro `error_count`.
+* Statements containing any reference to the [`warning_count`](server-system-variables.html#sysvar_warning_count) or [`error_count`](server-system-variables.html#sysvar_error_count) system variable.
 
-De modo geral, as declarações que não são permitidas em instruções preparadas do SQL também não são permitidas em programas armazenados. Exceções são mencionadas em Seção 23.8, “Restrições em Programas Armazenados”.
+Generally, statements not permitted in SQL prepared statements are also not permitted in stored programs. Exceptions are noted in [Section 23.8, “Restrictions on Stored Programs”](stored-program-restrictions.html "23.8 Restrictions on Stored Programs").
 
-Alterações nos metadados das tabelas ou visualizações referenciadas por declarações preparadas são detectadas e causam a reparação automática da declaração quando ela for executada novamente. Para mais informações, consulte Seção 8.10.4, “Cache de Declarações Preparadas e Programas Armazenados”.
+Metadata changes to tables or views referred to by prepared statements are detected and cause automatic repreparation of the statement when it is next executed. For more information, see [Section 8.10.4, “Caching of Prepared Statements and Stored Programs”](statement-caching.html "8.10.4 Caching of Prepared Statements and Stored Programs").
 
-Os marcadores podem ser usados para os argumentos da cláusula `LIMIT` ao usar instruções preparadas. Veja Seção 13.2.9, “Instrução SELECT”.
+Placeholders can be used for the arguments of the `LIMIT` clause when using prepared statements. See [Section 13.2.9, “SELECT Statement”](select.html "13.2.9 SELECT Statement").
 
-Em declarações `CALL` preparadas (call.html) usadas com `PREPARE` (prepare.html) e `EXECUTE` (execute.html), o suporte a marcadores para os parâmetros `OUT` e `INOUT` está disponível a partir do MySQL 5.7. Consulte a Seção 13.2.1, “Declaração CALL”, para um exemplo e uma solução alternativa para versões anteriores. Os marcadores podem ser usados para parâmetros `IN`, independentemente da versão.
+In prepared [`CALL`](call.html "13.2.1 CALL Statement") statements used with [`PREPARE`](prepare.html "13.5.1 PREPARE Statement") and [`EXECUTE`](execute.html "13.5.2 EXECUTE Statement"), placeholder support for `OUT` and `INOUT` parameters is available beginning with MySQL 5.7. See [Section 13.2.1, “CALL Statement”](call.html "13.2.1 CALL Statement"), for an example and a workaround for earlier versions. Placeholders can be used for `IN` parameters regardless of version.
 
-A sintaxe SQL para instruções preparadas não pode ser usada de forma aninhada. Ou seja, uma instrução passada para `PREPARE` não pode ser uma instrução `PREPARE`, `EXECUTE` ou `DEALLOCATE PREPARE` por si só.
+SQL syntax for prepared statements cannot be used in nested fashion. That is, a statement passed to [`PREPARE`](prepare.html "13.5.1 PREPARE Statement") cannot itself be a [`PREPARE`](prepare.html "13.5.1 PREPARE Statement"), [`EXECUTE`](execute.html "13.5.2 EXECUTE Statement"), or [`DEALLOCATE PREPARE`](deallocate-prepare.html "13.5.3 DEALLOCATE PREPARE Statement") statement.
 
-A sintaxe SQL para declarações preparadas é distinta do uso de chamadas de API de declarações preparadas. Por exemplo, você não pode usar a função C API `mysql_stmt_prepare()` para preparar uma declaração de `PREPARE`, `EXECUTE` ou `DEALLOCATE PREPARE`.
+SQL syntax for prepared statements is distinct from using prepared statement API calls. For example, you cannot use the [`mysql_stmt_prepare()`](/doc/c-api/5.7/en/mysql-stmt-prepare.html) C API function to prepare a [`PREPARE`](prepare.html "13.5.1 PREPARE Statement"), [`EXECUTE`](execute.html "13.5.2 EXECUTE Statement"), or [`DEALLOCATE PREPARE`](deallocate-prepare.html "13.5.3 DEALLOCATE PREPARE Statement") statement.
 
-A sintaxe SQL para declarações preparadas pode ser usada dentro de procedimentos armazenados, mas não em funções armazenadas ou gatilhos. No entanto, um cursor não pode ser usado para uma declaração dinâmica que é preparada e executada com `PREPARE` e `EXECUTE`. A declaração para um cursor é verificada no momento da criação do cursor, então a declaração não pode ser dinâmica.
+SQL syntax for prepared statements can be used within stored procedures, but not in stored functions or triggers. However, a cursor cannot be used for a dynamic statement that is prepared and executed with [`PREPARE`](prepare.html "13.5.1 PREPARE Statement") and [`EXECUTE`](execute.html "13.5.2 EXECUTE Statement"). The statement for a cursor is checked at cursor creation time, so the statement cannot be dynamic.
 
-A sintaxe SQL para instruções preparadas não suporta múltiplas instruções (ou seja, várias instruções dentro de uma única string separadas por caracteres `;`).
+SQL syntax for prepared statements does not support multi-statements (that is, multiple statements within a single string separated by `;` characters).
 
-As declarações preparadas utilizam o cache de consultas nas condições descritas em Seção 8.10.3.1, “Como o Cache de Consultas Funciona”.
+Prepared statements use the query cache under the conditions described in [Section 8.10.3.1, “How the Query Cache Operates”](query-cache-operation.html "8.10.3.1 How the Query Cache Operates").
 
-Para escrever programas em C que utilizam a instrução SQL `CALL` para executar procedimentos armazenados que contêm instruções preparadas, a bandeira `CLIENT_MULTI_RESULTS` deve ser habilitada. Isso ocorre porque cada `CALL` retorna um resultado para indicar o status da chamada, além de quaisquer conjuntos de resultados que possam ser retornados por instruções executadas dentro do procedimento.
+To write C programs that use the [`CALL`](call.html "13.2.1 CALL Statement") SQL statement to execute stored procedures that contain prepared statements, the `CLIENT_MULTI_RESULTS` flag must be enabled. This is because each [`CALL`](call.html "13.2.1 CALL Statement") returns a result to indicate the call status, in addition to any result sets that might be returned by statements executed within the procedure.
 
-`CLIENT_MULTI_RESULTS` pode ser habilitado quando você chama `mysql_real_connect()`, explicitamente passando a própria bandeira `CLIENT_MULTI_RESULTS`, ou implicitamente passando `CLIENT_MULTI_STATEMENTS` (que também habilita `CLIENT_MULTI_RESULTS`). Para informações adicionais, consulte Seção 13.2.1, “Instrução CALL”.
+`CLIENT_MULTI_RESULTS` can be enabled when you call [`mysql_real_connect()`](/doc/c-api/5.7/en/mysql-real-connect.html), either explicitly by passing the `CLIENT_MULTI_RESULTS` flag itself, or implicitly by passing `CLIENT_MULTI_STATEMENTS` (which also enables `CLIENT_MULTI_RESULTS`). For additional information, see [Section 13.2.1, “CALL Statement”](call.html "13.2.1 CALL Statement").

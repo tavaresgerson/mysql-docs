@@ -1,41 +1,41 @@
-### 14.10.1 Verificar a compatibilidade com o formato de arquivo
+### 14.10.2 Verifying File Format Compatibility
 
-14.10.2.1 Verificação de compatibilidade quando o InnoDB é iniciado
+14.10.2.1 Compatibility Check When InnoDB Is Started
 
-14.10.2.2 Verificação de compatibilidade ao abrir uma tabela
+14.10.2.2 Compatibility Check When a Table Is Opened
 
-O InnoDB incorpora vários mecanismos de verificação para evitar possíveis falhas e corrupções de dados que podem ocorrer se você executar uma versão antiga do servidor MySQL em arquivos de dados do InnoDB que utilizam um formato de arquivo mais recente. Esses mecanismos de verificação ocorrem quando o servidor é iniciado e quando você acessa uma tabela pela primeira vez. Esta seção descreve esses mecanismos de verificação, como você pode controlá-los e as condições de erro e aviso que podem surgir.
+InnoDB incorporates several checks to guard against the possible crashes and data corruptions that might occur if you run an old release of the MySQL server on InnoDB data files that use a newer file format. These checks take place when the server is started, and when you first access a table. This section describes these checks, how you can control them, and error and warning conditions that might arise.
 
-#### Compatibilidade Retroativa
+#### Backward Compatibility
 
-Você só precisa considerar a compatibilidade com o formato de arquivo antigo ao usar uma versão recente do InnoDB (MySQL 5.5 e superior com InnoDB) ao lado de uma versão mais antiga (MySQL 5.1 ou anterior, com o InnoDB embutido em vez do Plugin InnoDB). Para minimizar a chance de problemas de compatibilidade, você pode padronizar o Plugin InnoDB para todos os servidores de banco de dados MySQL 5.1 e anteriores.
+You only need to consider backward file format compatibility when using a recent version of InnoDB (MySQL 5.5 and higher with InnoDB) alongside an older version (MySQL 5.1 or earlier, with the built-in InnoDB rather than the InnoDB Plugin). To minimize the chance of compatibility issues, you can standardize on the InnoDB Plugin for all your MySQL 5.1 and earlier database servers.
 
-Em geral, uma versão mais recente do InnoDB pode criar uma tabela ou índice que não pode ser lida ou escrita com segurança com uma versão mais antiga do InnoDB sem o risco de falhas, travamentos, resultados errados ou corrupções. O InnoDB inclui um mecanismo para proteger contra essas condições e ajudar a preservar a compatibilidade entre arquivos de banco de dados e versões do InnoDB. Esse mecanismo permite que você aproveite algumas novas funcionalidades de uma versão do InnoDB (como melhorias de desempenho e correções de bugs) e ainda preserve a opção de usar seu banco de dados com uma versão antiga do InnoDB, impedindo o uso acidental de novas funcionalidades que criam arquivos de disco incompatíveis para versões anteriores.
+In general, a newer version of InnoDB may create a table or index that cannot safely be read or written with an older version of InnoDB without risk of crashes, hangs, wrong results or corruptions. InnoDB includes a mechanism to guard against these conditions, and to help preserve compatibility among database files and versions of InnoDB. This mechanism lets you take advantage of some new features of an InnoDB release (such as performance improvements and bug fixes), and still preserve the option of using your database with an old version of InnoDB, by preventing accidental use of new features that create downward-incompatible disk files.
 
-Se uma versão do InnoDB suportar um determinado formato de arquivo (independentemente de esse formato ser o padrão ou não), você pode consultar e atualizar qualquer tabela que exija esse formato ou um formato anterior. Apenas a criação de novas tabelas usando novas funcionalidades é limitada com base no formato de arquivo específico habilitado. Por outro lado, se um espaço de tabelas contiver uma tabela ou índice que use um formato de arquivo que não é suportado, ele não poderá ser acessado, mesmo para acesso de leitura.
+If a version of InnoDB supports a particular file format (whether or not that format is the default), you can query and update any table that requires that format or an earlier format. Only the creation of new tables using new features is limited based on the particular file format enabled. Conversely, if a tablespace contains a table or index that uses a file format that is not supported, it cannot be accessed at all, even for read access.
 
-A única maneira de "baixar" o espaço de tabela InnoDB para o formato de arquivo Antelope anterior é copiar os dados para uma nova tabela, em um espaço de tabela que use o formato anterior.
+The only way to “downgrade” an InnoDB tablespace to the earlier Antelope file format is to copy the data to a new table, in a tablespace that uses the earlier format.
 
-A maneira mais fácil de determinar o formato de arquivo de um espaço de tabelas existente do InnoDB é examinar as propriedades da tabela que ele contém, usando o comando `SHOW TABLE STATUS` ou consultando a tabela `INFORMATION_SCHEMA.TABLES`. Se o `Row_format` da tabela for relatado como `'Compressed'` ou `'Dynamic'`, o espaço de tabelas que contém a tabela suporta o formato Barracuda.
+The easiest way to determine the file format of an existing InnoDB tablespace is to examine the properties of the table it contains, using the `SHOW TABLE STATUS` command or querying the table `INFORMATION_SCHEMA.TABLES`. If the `Row_format` of the table is reported as `'Compressed'` or `'Dynamic'`, the tablespace containing the table supports the Barracuda format.
 
-#### Detalhes internos
+#### Internal Details
 
-Cada espaço de tabela InnoDB por arquivo (representado por um arquivo `*.ibd`) é rotulado com um identificador de formato de arquivo. O espaço de tabela do sistema (representado pelos arquivos `ibdata`) é marcado com o formato de arquivo “mais alto” em uso em um grupo de arquivos de banco de dados InnoDB, e essa marcação é verificada quando os arquivos são abertos.
+Every InnoDB file-per-table tablespace (represented by a `*.ibd` file) file is labeled with a file format identifier. The system tablespace (represented by the `ibdata` files) is tagged with the “highest” file format in use in a group of InnoDB database files, and this tag is checked when the files are opened.
 
-Ao criar uma tabela compactada ou uma tabela com `ROW_FORMAT=DYNAMIC`, você atualiza o cabeçalho do arquivo do arquivo `.ibd` correspondente por tabela e o tipo de tabela no dicionário de dados do InnoDB com o identificador do formato de arquivo Barracuda. A partir desse ponto, a tabela não pode ser usada com uma versão do InnoDB que não suporte o formato de arquivo Barracuda. Para proteger contra comportamento anômalo, o InnoDB realiza uma verificação de compatibilidade quando a tabela é aberta. (Em muitos casos, a instrução `ALTER TABLE` recria uma tabela e, portanto, altera suas propriedades. O caso especial de adicionar ou excluir índices sem reconstruir a tabela é descrito na Seção 14.13.1, “Operações DDL Online”.)
+Creating a compressed table, or a table with `ROW_FORMAT=DYNAMIC`, updates the file header of the corresponding file-per-table `.ibd` file and the table type in the InnoDB data dictionary with the identifier for the Barracuda file format. From that point forward, the table cannot be used with a version of InnoDB that does not support the Barracuda file format. To protect against anomalous behavior, InnoDB performs a compatibility check when the table is opened. (In many cases, the `ALTER TABLE` statement recreates a table and thus changes its properties. The special case of adding or dropping indexes without rebuilding the table is described in Section 14.13.1, “Online DDL Operations”.)
 
-Os espaços de tabelas gerais, que também são representados por um arquivo `*.ibd`, suportam tanto o formato de arquivo Antelope quanto o formato de arquivo Barracuda. Para obter mais informações sobre espaços de tabelas gerais, consulte a Seção 14.6.3.3, “Espaços de tabelas gerais”.
+General tablespaces, which are also represented by a `*.ibd` file, support both Antelope and Barracuda file formats. For more information about general tablespaces, see Section 14.6.3.3, “General Tablespaces”.
 
-#### Definição do conjunto de arquivos ib
+#### Definition of ib-file set
 
-Para evitar confusões, para os fins desta discussão, definimos o termo "conjunto de arquivos ib" como o conjunto de arquivos do sistema operacional que o InnoDB gerencia como uma unidade. O conjunto de arquivos ib inclui os seguintes arquivos:
+To avoid confusion, for the purposes of this discussion we define the term “ib-file set” to mean the set of operating system files that InnoDB manages as a unit. The ib-file set includes the following files:
 
-- O espaço de tabela do sistema (um ou mais arquivos `ibdata`) que contêm informações internas do sistema (incluindo catálogos internos e informações de desfazer) e podem incluir dados de usuário e índices.
+* The system tablespace (one or more `ibdata` files) that contain internal system information (including internal catalogs and undo information) and may include user data and indexes.
 
-- Espaços de tabelas de uma única tabela (também chamados de "arquivos por tabela", com nomes de arquivos `*.ibd`).
+* Zero or more single-table tablespaces (also called “file per table” files, named `*.ibd` files).
 
-- Arquivos de log do InnoDB; geralmente dois, `ib_logfile0` e `ib_logfile1`. Usados para recuperação em caso de falha e em backups.
+* InnoDB log files; usually two, `ib_logfile0` and `ib_logfile1`. Used for crash recovery and in backups.
 
-Um conjunto de arquivos `ib` não inclui os arquivos `.frm` correspondentes que contêm metadados sobre as tabelas do InnoDB. Os arquivos `.frm` são criados e gerenciados pelo MySQL e, às vezes, podem ficar desatualizados em relação aos metadados internos do InnoDB.
+An “ib-file set” does not include the corresponding `.frm` files that contain metadata about InnoDB tables. The `.frm` files are created and managed by MySQL, and can sometimes get out of sync with the internal metadata in InnoDB.
 
-Várias tabelas, mesmo de mais de um banco de dados, podem ser armazenadas em um único conjunto de arquivos ib. (No MySQL, um "banco de dados" é uma coleção lógica de tabelas, o que outros sistemas referem como um "esquema" ou "catálogo").
+Multiple tables, even from more than one database, can be stored in a single “ib-file set”. (In MySQL, a “database” is a logical collection of tables, what other systems refer to as a “schema” or “catalog”.)

@@ -1,28 +1,28 @@
-#### B.3.4.5 Falha no rollback para tabelas não transacionais
+#### B.3.4.5 Rollback Failure for Nontransactional Tables
 
-Se você receber a seguinte mensagem ao tentar realizar um [`ROLLBACK`](commit.html), isso significa que uma ou mais das tabelas que você usou na transação não suportam transações:
+If you receive the following message when trying to perform a [`ROLLBACK`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements"), it means that one or more of the tables you used in the transaction do not support transactions:
 
 ```sql
 Warning: Some non-transactional changed tables couldn't be rolled back
 ```
 
-Essas tabelas não transacionais não são afetadas pela instrução [`ROLLBACK`](commit.html).
+These nontransactional tables are not affected by the [`ROLLBACK`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") statement.
 
-Se você não estivesse deliberadamente misturando tabelas transacionais e não transacionais dentro da transação, a causa mais provável dessa mensagem é que uma tabela que você pensava ser transacional na verdade não é. Isso pode acontecer se você tentar criar uma tabela usando um motor de armazenamento transacional que não é suportado pelo seu servidor [**mysqld**](mysqld.html) (ou que foi desativado com uma opção de inicialização). Se o [**mysqld**](mysqld.html) não suportar um motor de armazenamento, ele cria a tabela como uma tabela `MyISAM`, que é não transacional.
+If you were not deliberately mixing transactional and nontransactional tables within the transaction, the most likely cause for this message is that a table you thought was transactional actually is not. This can happen if you try to create a table using a transactional storage engine that is not supported by your [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") server (or that was disabled with a startup option). If [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") does not support a storage engine, it instead creates the table as a `MyISAM` table, which is nontransactional.
 
-Você pode verificar o mecanismo de armazenamento de uma tabela usando uma das seguintes declarações:
+You can check the storage engine for a table by using either of these statements:
 
 ```sql
 SHOW TABLE STATUS LIKE 'tbl_name';
 SHOW CREATE TABLE tbl_name;
 ```
 
-Veja [Seção 13.7.5.36, “Instrução SHOW TABLE STATUS”](show-table-status.html) e [Seção 13.7.5.10, “Instrução SHOW CREATE TABLE”](show-create-table.html).
+See [Section 13.7.5.36, “SHOW TABLE STATUS Statement”](show-table-status.html "13.7.5.36 SHOW TABLE STATUS Statement"), and [Section 13.7.5.10, “SHOW CREATE TABLE Statement”](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement").
 
-Para verificar quais motores de armazenamento seu servidor [**mysqld**](mysqld.html) suporta, use esta declaração:
+To check which storage engines your [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") server supports, use this statement:
 
 ```sql
 SHOW ENGINES;
 ```
 
-Consulte [Seção 13.7.5.16, “Declaração de MOTORES DE EXIBIÇÃO”](show-engines.html) para obter detalhes completos.
+See [Section 13.7.5.16, “SHOW ENGINES Statement”](show-engines.html "13.7.5.16 SHOW ENGINES Statement") for full details.

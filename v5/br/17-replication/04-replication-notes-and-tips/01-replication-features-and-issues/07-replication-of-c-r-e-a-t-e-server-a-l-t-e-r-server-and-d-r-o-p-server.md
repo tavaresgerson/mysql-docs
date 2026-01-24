@@ -1,3 +1,3 @@
-#### 16.4.1.7 Replicação de CREATE SERVER, ALTER SERVER e DROP SERVER
+#### 16.4.1.7 Replication of CREATE SERVER, ALTER SERVER, and DROP SERVER
 
-As declarações `CREATE SERVER`, `ALTER SERVER` e `DROP SERVER` não são escritas no log binário, independentemente do formato de registro binário que estiver em uso.
+The statements [`CREATE SERVER`](create-server.html "13.1.17 CREATE SERVER Statement"), [`ALTER SERVER`](alter-server.html "13.1.7 ALTER SERVER Statement"), and [`DROP SERVER`](drop-server.html "13.1.28 DROP SERVER Statement") are not written to the binary log, regardless of the binary logging format that is in use.

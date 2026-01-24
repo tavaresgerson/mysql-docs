@@ -1,8 +1,8 @@
-#### 25.12.15.5 Resumo da tabela de espera do objeto
+#### 25.12.15.5 Object Wait Summary Table
 
-O Schema de Desempenho mantém a tabela `objects_summary_global_by_type` para agregação de eventos de espera de objetos.
+The Performance Schema maintains the [`objects_summary_global_by_type`](performance-schema-objects-summary-global-by-type-table.html "25.12.15.5 Object Wait Summary Table") table for aggregating object wait events.
 
-Resumo das informações do evento de espera do objeto exemplo:
+Example object wait event summary information:
 
 ```sql
 mysql> SELECT * FROM performance_schema.objects_summary_global_by_type\G
@@ -29,8 +29,8 @@ MAX_TIMER_WAIT: 334783032
 ...
 ```
 
-A tabela `objects_summary_global_by_type` possui essas colunas de agrupamento para indicar como a tabela agrega eventos: `OBJECT_TYPE`, `OBJECT_SCHEMA` e `OBJECT_NAME`. Cada linha resume os eventos para o objeto especificado.
+The [`objects_summary_global_by_type`](performance-schema-objects-summary-global-by-type-table.html "25.12.15.5 Object Wait Summary Table") table has these grouping columns to indicate how the table aggregates events: `OBJECT_TYPE`, `OBJECT_SCHEMA`, and `OBJECT_NAME`. Each row summarizes events for the given object.
 
-`objetos_resumo_global_por_tipo` tem as mesmas colunas de resumo das tabelas `eventos_waits_summary_by_xxx`. Veja Seção 25.12.15.1, “Tabelas de Resumo de Eventos de Espera”.
+[`objects_summary_global_by_type`](performance-schema-objects-summary-global-by-type-table.html "25.12.15.5 Object Wait Summary Table") has the same summary columns as the `events_waits_summary_by_xxx` tables. See [Section 25.12.15.1, “Wait Event Summary Tables”](performance-schema-wait-summary-tables.html "25.12.15.1 Wait Event Summary Tables").
 
-A opção `TRUNCATE TABLE` é permitida para a tabela de resumo do objeto. Ela redefini o número de colunas de resumo para zero, em vez de remover linhas.
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is permitted for the object summary table. It resets the summary columns to zero rather than removing rows.

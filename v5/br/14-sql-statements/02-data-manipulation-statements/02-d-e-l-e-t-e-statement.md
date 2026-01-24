@@ -1,8 +1,8 @@
-### 13.2.2 Declaração DELETE
+### 13.2.2 DELETE Statement
 
-`DELETE` é uma instrução DML que remove linhas de uma tabela.
+[`DELETE`](delete.html "13.2.2 DELETE Statement") is a DML statement that removes rows from a table.
 
-#### Sintaxe de tabela única
+#### Single-Table Syntax
 
 ```sql
 DELETE [LOW_PRIORITY] [QUICK] [IGNORE] FROM tbl_name
@@ -12,17 +12,17 @@ DELETE [LOW_PRIORITY] [QUICK] [IGNORE] FROM tbl_name
     [LIMIT row_count]
 ```
 
-A instrução `DELETE` exclui linhas de *`tbl_name`* e retorna o número de linhas excluídas. Para verificar o número de linhas excluídas, chame a função `ROW_COUNT()` descrita em Seção 12.15, "Funções de Informação".
+The `DELETE` statement deletes rows from *`tbl_name`* and returns the number of deleted rows. To check the number of deleted rows, call the [`ROW_COUNT()`](information-functions.html#function_row-count) function described in [Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions").
 
-#### Cláusulas Principais
+#### Main Clauses
 
-As condições na cláusula `WHERE` opcional identificam quais linhas serão excluídas. Sem a cláusula `WHERE`, todas as linhas serão excluídas.
+The conditions in the optional `WHERE` clause identify which rows to delete. With no `WHERE` clause, all rows are deleted.
 
-*`where_condition`* é uma expressão que avalia como verdadeira para cada linha a ser excluída. É especificada conforme descrito na Seção 13.2.9, “Instrução SELECT”.
+*`where_condition`* is an expression that evaluates to true for each row to be deleted. It is specified as described in [Section 13.2.9, “SELECT Statement”](select.html "13.2.9 SELECT Statement").
 
-Se a cláusula `ORDER BY` for especificada, as linhas serão excluídas na ordem especificada. A cláusula `LIMIT` define um limite para o número de linhas que podem ser excluídas. Essas cláusulas se aplicam a excluições de uma única tabela, mas não a excluições de múltiplas tabelas.
+If the `ORDER BY` clause is specified, the rows are deleted in the order that is specified. The `LIMIT` clause places a limit on the number of rows that can be deleted. These clauses apply to single-table deletes, but not multi-table deletes.
 
-#### Sintaxe de múltiplas tabelas
+#### Multiple-Table Syntax
 
 ```sql
 DELETE [LOW_PRIORITY] [QUICK] [IGNORE]
@@ -36,142 +36,142 @@ DELETE [LOW_PRIORITY] [QUICK] [IGNORE]
     [WHERE where_condition]
 ```
 
-#### Privilegios
+#### Privileges
 
-Você precisa do privilégio `DELETE` em uma tabela para excluí-la. Você precisa apenas do privilégio `SELECT` para quaisquer colunas que sejam apenas de leitura, como as nomeadas na cláusula `WHERE`.
+You need the [`DELETE`](privileges-provided.html#priv_delete) privilege on a table to delete rows from it. You need only the [`SELECT`](privileges-provided.html#priv_select) privilege for any columns that are only read, such as those named in the `WHERE` clause.
 
-#### Desempenho
+#### Performance
 
-Quando você não precisa saber o número de linhas excluídas, a instrução `TRUNCATE TABLE` é uma maneira mais rápida de esvaziar uma tabela do que uma instrução `DELETE` sem a cláusula `WHERE`. Ao contrário de `DELETE`, `TRUNCATE TABLE` não pode ser usada dentro de uma transação ou se você tiver um bloqueio na tabela. Veja Seção 13.1.34, “Instrução `TRUNCATE TABLE`” e Seção 13.3.5, “Instruções `LOCK TABLES` e `UNLOCK TABLES`”.
+When you do not need to know the number of deleted rows, the [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") statement is a faster way to empty a table than a [`DELETE`](delete.html "13.2.2 DELETE Statement") statement with no `WHERE` clause. Unlike [`DELETE`](delete.html "13.2.2 DELETE Statement"), [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") cannot be used within a transaction or if you have a lock on the table. See [Section 13.1.34, “TRUNCATE TABLE Statement”](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") and [Section 13.3.5, “LOCK TABLES and UNLOCK TABLES Statements”](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements").
 
-A velocidade das operações de exclusão também pode ser afetada por fatores discutidos em Seção 8.2.4.3, “Otimização de Declarações DELETE”.
+The speed of delete operations may also be affected by factors discussed in [Section 8.2.4.3, “Optimizing DELETE Statements”](delete-optimization.html "8.2.4.3 Optimizing DELETE Statements").
 
-Para garantir que uma determinada instrução `DELETE` (delete.html) não demore muito tempo, a cláusula específica do MySQL `LIMIT row_count` para `DELETE` especifica o número máximo de linhas a serem excluídas. Se o número de linhas a serem excluídas for maior que o limite, repita a instrução `DELETE` até que o número de linhas afetadas seja menor que o valor do `LIMIT`.
+To ensure that a given [`DELETE`](delete.html "13.2.2 DELETE Statement") statement does not take too much time, the MySQL-specific `LIMIT row_count` clause for [`DELETE`](delete.html "13.2.2 DELETE Statement") specifies the maximum number of rows to be deleted. If the number of rows to delete is larger than the limit, repeat the `DELETE` statement until the number of affected rows is less than the `LIMIT` value.
 
-#### Subconsultas
+#### Subqueries
 
-Você não pode excluir de uma tabela e selecionar da mesma tabela em uma subconsulta.
+You cannot delete from a table and select from the same table in a subquery.
 
-#### Suporte para Tabelas Partidas
+#### Partitioned Table Support
 
-O comando `DELETE` suporta a seleção explícita de partições usando a cláusula `PARTITION`, que aceita uma lista de nomes separados por vírgula de uma ou mais partições ou subpartições (ou ambas) a partir das quais as linhas a serem excluídas serão selecionadas. Partições não incluídas na lista são ignoradas. Dado uma tabela particionada `t` com uma partição chamada `p0`, a execução do comando `DELETE FROM t PARTITION (p0)` tem o mesmo efeito na tabela que a execução de \`ALTER TABLE t TRUNCATE PARTITION (p0); em ambos os casos, todas as linhas da partição `p0\` são excluídas.
+`DELETE` supports explicit partition selection using the `PARTITION` clause, which takes a list of the comma-separated names of one or more partitions or subpartitions (or both) from which to select rows to be dropped. Partitions not included in the list are ignored. Given a partitioned table `t` with a partition named `p0`, executing the statement `DELETE FROM t PARTITION (p0)` has the same effect on the table as executing [`ALTER TABLE t TRUNCATE PARTITION (p0)`](alter-table.html "13.1.8 ALTER TABLE Statement"); in both cases, all rows in partition `p0` are dropped.
 
-`PARTITION` pode ser usado junto com uma condição `WHERE`, nesse caso, a condição é testada apenas nas linhas das partições listadas. Por exemplo, `DELETE FROM t PARTITION (p0) WHERE c < 5` exclui linhas apenas da partição `p0` para a qual a condição `c < 5` é verdadeira; as linhas de quaisquer outras partições não são verificadas e, portanto, não são afetadas pelo `DELETE`.
+`PARTITION` can be used along with a `WHERE` condition, in which case the condition is tested only on rows in the listed partitions. For example, `DELETE FROM t PARTITION (p0) WHERE c < 5` deletes rows only from partition `p0` for which the condition `c < 5` is true; rows in any other partitions are not checked and thus not affected by the `DELETE`.
 
-A cláusula `PARTITION` também pode ser usada em declarações `DELETE` de múltiplas tabelas. Você pode usar até uma dessas opções por tabela nomeada na opção `FROM`.
+The `PARTITION` clause can also be used in multiple-table `DELETE` statements. You can use up to one such option per table named in the `FROM` option.
 
-Para mais informações e exemplos, consulte Seção 22.5, “Seleção de Partição”.
+For more information and examples, see [Section 22.5, “Partition Selection”](partitioning-selection.html "22.5 Partition Selection").
 
-#### Colunas de Autoincremento
+#### Auto-Increment Columns
 
-Se você excluir a linha que contém o valor máximo para uma coluna `AUTO_INCREMENT`, o valor não será reutilizado para uma tabela `MyISAM` ou `InnoDB`. Se você excluir todas as linhas da tabela com `DELETE FROM tbl_name` (sem uma cláusula `WHERE` no modo `autocommit`, a sequência será reiniciada para todos os motores de armazenamento, exceto `InnoDB` e `MyISAM`. Existem algumas exceções a esse comportamento para tabelas `InnoDB`, conforme discutido em Seção 14.6.1.6, “Tratamento de AUTO_INCREMENT em InnoDB”.
+If you delete the row containing the maximum value for an `AUTO_INCREMENT` column, the value is not reused for a `MyISAM` or `InnoDB` table. If you delete all rows in the table with `DELETE FROM tbl_name` (without a `WHERE` clause) in [`autocommit`](server-system-variables.html#sysvar_autocommit) mode, the sequence starts over for all storage engines except `InnoDB` and `MyISAM`. There are some exceptions to this behavior for `InnoDB` tables, as discussed in [Section 14.6.1.6, “AUTO_INCREMENT Handling in InnoDB”](innodb-auto-increment-handling.html "14.6.1.6 AUTO_INCREMENT Handling in InnoDB").
 
-Para tabelas `MyISAM`, você pode especificar uma coluna secundária `AUTO_INCREMENT` em uma chave de múltiplos campos. Nesse caso, a reutilização de valores excluídos do topo da sequência ocorre mesmo para tabelas `MyISAM`. Veja Seção 3.6.9, “Usando AUTO_INCREMENT”.
+For `MyISAM` tables, you can specify an `AUTO_INCREMENT` secondary column in a multiple-column key. In this case, reuse of values deleted from the top of the sequence occurs even for `MyISAM` tables. See [Section 3.6.9, “Using AUTO_INCREMENT”](example-auto-increment.html "3.6.9 Using AUTO_INCREMENT").
 
-#### Modificadores
+#### Modifiers
 
-A instrução `DELETE` suporta os seguintes modificadores:
+The [`DELETE`](delete.html "13.2.2 DELETE Statement") statement supports the following modifiers:
 
-- Se você especificar o modificador `LOW_PRIORITY`, o servidor adiará a execução da operação `DELETE` até que nenhum outro cliente esteja lendo a tabela. Isso afeta apenas os motores de armazenamento que usam apenas bloqueio de nível de tabela (como `MyISAM`, `MEMORY` e `MERGE`).
+* If you specify the `LOW_PRIORITY` modifier, the server delays execution of the [`DELETE`](delete.html "13.2.2 DELETE Statement") until no other clients are reading from the table. This affects only storage engines that use only table-level locking (such as `MyISAM`, `MEMORY`, and `MERGE`).
 
-- Para as tabelas `MyISAM`, se você usar o modificador `QUICK`, o mecanismo de armazenamento não mescla as folhas do índice durante a exclusão, o que pode acelerar alguns tipos de operações de exclusão.
+* For `MyISAM` tables, if you use the `QUICK` modifier, the storage engine does not merge index leaves during delete, which may speed up some kinds of delete operations.
 
-- O modificador `IGNORE` faz com que o MySQL ignore erros ignoráveis durante o processo de exclusão de linhas. (Os erros encontrados durante a fase de análise são processados da maneira usual.) Erros ignorados devido ao uso de `IGNORE` são retornados como avisos. Para mais informações, consulte O efeito de IGNORE na execução da declaração.
+* The `IGNORE` modifier causes MySQL to ignore ignorable errors during the process of deleting rows. (Errors encountered during the parsing stage are processed in the usual manner.) Errors that are ignored due to the use of `IGNORE` are returned as warnings. For more information, see [The Effect of IGNORE on Statement Execution](sql-mode.html#ignore-effect-on-execution "The Effect of IGNORE on Statement Execution").
 
-#### Ordem de Exclusão
+#### Order of Deletion
 
-Se a instrução `DELETE` incluir uma cláusula `ORDER BY`, as linhas são excluídas na ordem especificada pela cláusula. Isso é útil principalmente em conjunto com `LIMIT`. Por exemplo, a seguinte instrução encontra linhas que correspondem à cláusula `WHERE`, as ordena pelo `timestamp_column` e exclui a primeira (mais antiga):
+If the [`DELETE`](delete.html "13.2.2 DELETE Statement") statement includes an `ORDER BY` clause, rows are deleted in the order specified by the clause. This is useful primarily in conjunction with `LIMIT`. For example, the following statement finds rows matching the `WHERE` clause, sorts them by `timestamp_column`, and deletes the first (oldest) one:
 
 ```sql
 DELETE FROM somelog WHERE user = 'jcole'
 ORDER BY timestamp_column LIMIT 1;
 ```
 
-A cláusula `ORDER BY` também ajuda a excluir linhas em uma ordem necessária para evitar violações de integridade referencial.
+`ORDER BY` also helps to delete rows in an order required to avoid referential integrity violations.
 
-#### Tabelas InnoDB
+#### InnoDB Tables
 
-Se você estiver excluindo muitas linhas de uma tabela grande, pode exceder o tamanho de bloqueio de uma tabela `InnoDB`. Para evitar esse problema ou simplesmente para minimizar o tempo em que a tabela permanece bloqueada, a seguinte estratégia (que não usa `DELETE` de forma alguma) pode ser útil:
+If you are deleting many rows from a large table, you may exceed the lock table size for an `InnoDB` table. To avoid this problem, or simply to minimize the time that the table remains locked, the following strategy (which does not use [`DELETE`](delete.html "13.2.2 DELETE Statement") at all) might be helpful:
 
-1. Selecione as linhas *não* a serem excluídas em uma tabela vazia que tenha a mesma estrutura da tabela original:
+1. Select the rows *not* to be deleted into an empty table that has the same structure as the original table:
 
    ```sql
    INSERT INTO t_copy SELECT * FROM t WHERE ... ;
    ```
 
-2. Use `RENAME TABLE` para mover a tabela original de forma atômica para longe e renomear a cópia para o nome original:
+2. Use [`RENAME TABLE`](rename-table.html "13.1.33 RENAME TABLE Statement") to atomically move the original table out of the way and rename the copy to the original name:
 
    ```sql
    RENAME TABLE t TO t_old, t_copy TO t;
    ```
 
-3. Descarte a tabela original:
+3. Drop the original table:
 
    ```sql
    DROP TABLE t_old;
    ```
 
-Nenhuma outra sessão pode acessar as tabelas envolvidas enquanto o comando `RENAME TABLE` estiver sendo executado, portanto, a operação de renomeação não está sujeita a problemas de concorrência. Veja Seção 13.1.33, “Instrução RENAME TABLE”.
+No other sessions can access the tables involved while [`RENAME TABLE`](rename-table.html "13.1.33 RENAME TABLE Statement") executes, so the rename operation is not subject to concurrency problems. See [Section 13.1.33, “RENAME TABLE Statement”](rename-table.html "13.1.33 RENAME TABLE Statement").
 
-#### Tabelas MyISAM
+#### MyISAM Tables
 
-Em tabelas `MyISAM`, as linhas excluídas são mantidas em uma lista enlaçada e operações subsequentes de `INSERT` reutilizam as posições das linhas antigas. Para recuperar espaço não utilizado e reduzir os tamanhos dos arquivos, use a instrução `OPTIMIZE TABLE` ou o utilitário **myisamchk** para reorganizar as tabelas. `OPTIMIZE TABLE` é mais fácil de usar, mas **myisamchk** é mais rápido. Veja Seção 13.7.2.4, “Instrução OPTIMIZE TABLE” e Seção 4.6.3, “myisamchk — Utilitário de Manutenção de Tabelas MyISAM”.
+In `MyISAM` tables, deleted rows are maintained in a linked list and subsequent [`INSERT`](insert.html "13.2.5 INSERT Statement") operations reuse old row positions. To reclaim unused space and reduce file sizes, use the [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") statement or the [**myisamchk**](myisamchk.html "4.6.3 myisamchk — MyISAM Table-Maintenance Utility") utility to reorganize tables. [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") is easier to use, but [**myisamchk**](myisamchk.html "4.6.3 myisamchk — MyISAM Table-Maintenance Utility") is faster. See [Section 13.7.2.4, “OPTIMIZE TABLE Statement”](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement"), and [Section 4.6.3, “myisamchk — MyISAM Table-Maintenance Utility”](myisamchk.html "4.6.3 myisamchk — MyISAM Table-Maintenance Utility").
 
-O modificador `QUICK` afeta se as folhas do índice são unidas para operações de exclusão. `DELETE QUICK` é mais útil para aplicações em que os valores do índice de linhas excluídas são substituídos por valores de índice semelhantes de linhas inseridas posteriormente. Nesse caso, os buracos deixados pelos valores excluídos são reutilizados.
+The `QUICK` modifier affects whether index leaves are merged for delete operations. `DELETE QUICK` is most useful for applications where index values for deleted rows are replaced by similar index values from rows inserted later. In this case, the holes left by deleted values are reused.
 
-`DELETE QUICK` não é útil quando os valores excluídos resultam em blocos de índice com valores incompletos que abrangem uma faixa de valores de índice para os quais novas inserções ocorrem novamente. Nesse caso, o uso de `QUICK` pode levar ao desperdício de espaço no índice que permanece não recuperado. Aqui está um exemplo de tal cenário:
+`DELETE QUICK` is not useful when deleted values lead to underfilled index blocks spanning a range of index values for which new inserts occur again. In this case, use of `QUICK` can lead to wasted space in the index that remains unreclaimed. Here is an example of such a scenario:
 
-1. Crie uma tabela que contenha uma coluna `AUTO_INCREMENT` indexada.
+1. Create a table that contains an indexed `AUTO_INCREMENT` column.
 
-2. Insira muitas linhas na tabela. Cada inserção resulta em um valor de índice que é adicionado ao extremo superior do índice.
+2. Insert many rows into the table. Each insert results in an index value that is added to the high end of the index.
 
-3. Exclua um bloco de linhas na extremidade inferior da faixa de colunas usando `DELETE QUICK`.
+3. Delete a block of rows at the low end of the column range using `DELETE QUICK`.
 
-Nesse cenário, os blocos de índice associados aos valores de índice excluídos ficam subcheios, mas não são mesclados com outros blocos de índice devido ao uso de `QUICK`. Eles permanecem subcheios quando ocorrem novas inserções, porque as novas linhas não têm valores de índice no intervalo excluído. Além disso, eles permanecem subcheios mesmo se você usar ``DELETE` posteriormente sem `QUICK`, a menos que alguns dos valores de índice excluídos estejam em blocos de índice dentro ou adjacentes aos blocos subcheios. Para recuperar o espaço de índice não utilizado nessas circunstâncias, use ``OPTIMIZE TABLE`.
+In this scenario, the index blocks associated with the deleted index values become underfilled but are not merged with other index blocks due to the use of `QUICK`. They remain underfilled when new inserts occur, because new rows do not have index values in the deleted range. Furthermore, they remain underfilled even if you later use [`DELETE`](delete.html "13.2.2 DELETE Statement") without `QUICK`, unless some of the deleted index values happen to lie in index blocks within or adjacent to the underfilled blocks. To reclaim unused index space under these circumstances, use [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement").
 
-Se você vai excluir muitas linhas de uma tabela, pode ser mais rápido usar `DELETE QUICK` seguido de `OPTIMIZE TABLE`. Isso reconstrui o índice em vez de realizar muitas operações de fusão de blocos de índice.
+If you are going to delete many rows from a table, it might be faster to use `DELETE QUICK` followed by [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement"). This rebuilds the index rather than performing many index block merge operations.
 
-#### Exclui de mesa múltipla
+#### Multi-Table Deletes
 
-Você pode especificar várias tabelas em uma instrução `DELETE` para excluir linhas de uma ou mais tabelas, dependendo da condição na cláusula `WHERE`. Você não pode usar `ORDER BY` ou `LIMIT` em uma `DELETE` de várias tabelas. A cláusula *`table_references`* lista as tabelas envolvidas na junção, conforme descrito na Seção 13.2.9.2, “Cláusula JOIN”.
+You can specify multiple tables in a [`DELETE`](delete.html "13.2.2 DELETE Statement") statement to delete rows from one or more tables depending on the condition in the `WHERE` clause. You cannot use `ORDER BY` or `LIMIT` in a multiple-table `DELETE`. The *`table_references`* clause lists the tables involved in the join, as described in [Section 13.2.9.2, “JOIN Clause”](join.html "13.2.9.2 JOIN Clause").
 
-Para a primeira sintaxe de múltiplas tabelas, apenas as linhas que correspondem às tabelas listadas antes da cláusula `FROM` são excluídas. Para a segunda sintaxe de múltiplas tabelas, apenas as linhas que correspondem às tabelas listadas na cláusula `FROM` (antes da cláusula `USING`) são excluídas. O efeito é que você pode excluir linhas de muitas tabelas ao mesmo tempo e ter tabelas adicionais que são usadas apenas para pesquisa:
+For the first multiple-table syntax, only matching rows from the tables listed before the `FROM` clause are deleted. For the second multiple-table syntax, only matching rows from the tables listed in the `FROM` clause (before the `USING` clause) are deleted. The effect is that you can delete rows from many tables at the same time and have additional tables that are used only for searching:
 
 ```sql
 DELETE t1, t2 FROM t1 INNER JOIN t2 INNER JOIN t3
 WHERE t1.id=t2.id AND t2.id=t3.id;
 ```
 
-Ou:
+Or:
 
 ```sql
 DELETE FROM t1, t2 USING t1 INNER JOIN t2 INNER JOIN t3
 WHERE t1.id=t2.id AND t2.id=t3.id;
 ```
 
-Essas declarações usam todas as três tabelas ao procurar linhas para excluir, mas excluem apenas as linhas correspondentes das tabelas `t1` e `t2`.
+These statements use all three tables when searching for rows to delete, but delete matching rows only from tables `t1` and `t2`.
 
-Os exemplos anteriores usam `INNER JOIN`, mas as instruções de `DELETE` em múltiplas tabelas podem usar outros tipos de junção permitidos em instruções `SELECT`, como `LEFT JOIN`. Por exemplo, para excluir linhas que existem em `t1` e que não têm correspondência em `t2`, use uma `LEFT JOIN`:
+The preceding examples use `INNER JOIN`, but multiple-table [`DELETE`](delete.html "13.2.2 DELETE Statement") statements can use other types of join permitted in [`SELECT`](select.html "13.2.9 SELECT Statement") statements, such as `LEFT JOIN`. For example, to delete rows that exist in `t1` that have no match in `t2`, use a `LEFT JOIN`:
 
 ```sql
 DELETE t1 FROM t1 LEFT JOIN t2 ON t1.id=t2.id WHERE t2.id IS NULL;
 ```
 
-A sintaxe permite `.*` após cada `tbl_name` para compatibilidade com o **Access**.
+The syntax permits `.*` after each *`tbl_name`* for compatibility with **Access**.
 
-Se você usar uma instrução `DELETE` de múltiplas tabelas que envolve tabelas `InnoDB` para as quais existem restrições de chave estrangeira, o otimizador do MySQL pode processar as tabelas em uma ordem diferente daquela de sua relação pai/filho. Nesse caso, a instrução falha e é revertida. Em vez disso, você deve excluir de uma única tabela e confiar nas capacidades `ON DELETE` que o `InnoDB` fornece para modificar as outras tabelas conforme necessário.
+If you use a multiple-table [`DELETE`](delete.html "13.2.2 DELETE Statement") statement involving `InnoDB` tables for which there are foreign key constraints, the MySQL optimizer might process tables in an order that differs from that of their parent/child relationship. In this case, the statement fails and rolls back. Instead, you should delete from a single table and rely on the `ON DELETE` capabilities that `InnoDB` provides to cause the other tables to be modified accordingly.
 
-Nota
+Note
 
-Se você declarar um alias para uma tabela, você deve usar o alias ao se referir à tabela:
+If you declare an alias for a table, you must use the alias when referring to the table:
 
 ```sql
 DELETE t1 FROM test AS t1, test2 WHERE ...
 ```
 
-Os aliases de tabela em uma tabela múltipla `DELETE` devem ser declarados apenas na parte *`table_references`* da instrução. Em outros lugares, as referências de alias são permitidas, mas não as declarações de alias.
+Table aliases in a multiple-table [`DELETE`](delete.html "13.2.2 DELETE Statement") should be declared only in the *`table_references`* part of the statement. Elsewhere, alias references are permitted but not alias declarations.
 
-Correto:
+Correct:
 
 ```sql
 DELETE a1, a2 FROM t1 AS a1 INNER JOIN t2 AS a2
@@ -181,8 +181,7 @@ DELETE FROM a1, a2 USING t1 AS a1 INNER JOIN t2 AS a2
 WHERE a1.id=a2.id;
 ```
 
-Incorreto:
-Português (brasileiro):
+Incorrect:
 
 ```sql
 DELETE t1 AS a1, t2 AS a2 FROM t1 INNER JOIN t2

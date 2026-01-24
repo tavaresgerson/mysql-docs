@@ -1,23 +1,23 @@
-### 23.4.4 Metadados do evento
+### 23.4.4 Event Metadata
 
-Para obter metadados sobre eventos:
+To obtain metadata about events:
 
-- Interrogue a tabela `event` do banco de dados `mysql`.
+* Query the `event` table of the `mysql` database.
 
-- Interrogue a tabela `EVENTS` do banco de dados `INFORMATION_SCHEMA`. Veja a Seção 24.3.8, “A Tabela INFORMATION_SCHEMA EVENTS”.
+* Query the `EVENTS` table of the `INFORMATION_SCHEMA` database. See Section 24.3.8, “The INFORMATION_SCHEMA EVENTS Table”.
 
-- Use a instrução `SHOW CREATE EVENT`. Veja a Seção 13.7.5.7, “Instrução SHOW CREATE EVENT”.
+* Use the `SHOW CREATE EVENT` statement. See Section 13.7.5.7, “SHOW CREATE EVENT Statement”.
 
-- Use a instrução `SHOW EVENTS`. Veja a Seção 13.7.5.18, “Instrução SHOW EVENTS”.
+* Use the `SHOW EVENTS` statement. See Section 13.7.5.18, “SHOW EVENTS Statement”.
 
-**Representação de Tempo no Agendamento de Eventos**
+**Event Scheduler Time Representation**
 
-Cada sessão no MySQL tem um fuso horário de sessão (STZ). Esse é o valor da sessão `time_zone` que é inicializado a partir do valor global `time_zone` do servidor quando a sessão começa, mas pode ser alterado durante a sessão.
+Each session in MySQL has a session time zone (STZ). This is the session `time_zone` value that is initialized from the server's global `time_zone` value when the session begins but may be changed during the session.
 
-O fuso horário da sessão que está em vigor quando uma instrução `CREATE EVENT` ou `ALTER EVENT` é executada é usado para interpretar os horários especificados na definição do evento. Isso se torna o fuso horário do evento (ETZ); ou seja, o fuso horário usado para a programação do evento e que está em vigor dentro do evento conforme ele é executado.
+The session time zone that is current when a `CREATE EVENT` or `ALTER EVENT` statement executes is used to interpret times specified in the event definition. This becomes the event time zone (ETZ); that is, the time zone that is used for event scheduling and is in effect within the event as it executes.
 
-Para a representação das informações do evento na tabela `mysql.event`, os tempos `execute_at`, `starts` e `ends` são convertidos para UTC e armazenados juntamente com o fuso horário do evento. Isso permite que a execução do evento prossiga conforme definido, independentemente de quaisquer alterações subsequentes no fuso horário do servidor ou efeitos do horário de verão. O tempo `last_executed` também é armazenado em UTC.
+For representation of event information in the `mysql.event` table, the `execute_at`, `starts`, and `ends` times are converted to UTC and stored along with the event time zone. This enables event execution to proceed as defined regardless of any subsequent changes to the server time zone or daylight saving time effects. The `last_executed` time is also stored in UTC.
 
-Se você selecionar informações do `mysql.event`, os tempos mencionados acima são recuperados como valores em UTC. Esses tempos também podem ser obtidos selecionando a tabela `EVENTS` do Schema de Informações ou do `SHOW EVENTS`, mas são relatados como valores em ETZ. Outros tempos disponíveis nessas fontes indicam quando um evento foi criado ou alterado pela última vez; esses são exibidos como valores em STZ. A tabela a seguir resume a representação dos tempos dos eventos.
+If you select information from `mysql.event`, the times just mentioned are retrieved as UTC values. These times can also be obtained by selecting from the Information Schema `EVENTS` table or from `SHOW EVENTS`, but they are reported as ETZ values. Other times available from these sources indicate when an event was created or last altered; these are displayed as STZ values. The following table summarizes representation of event times.
 
-<table summary="Resumo da representação do tempo do evento (como valores em UTC, EZT ou STZ) a partir de mysql.event, INFORMATION_SCHEMA.EVENTS e SHOW EVENTS."><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><thead><tr> <th>Valor</th> <th><code>mysql.event</code></th> <th><code>EVENTS</code>Tabela</th> <th><code>SHOW EVENTS</code></th> </tr></thead><tbody><tr> <th>Execute em</th> <td>UTC</td> <td>ETZ</td> <td>ETZ</td> </tr><tr> <th>Começa</th> <td>UTC</td> <td>ETZ</td> <td>ETZ</td> </tr><tr> <th>Termina</th> <td>UTC</td> <td>ETZ</td> <td>ETZ</td> </tr><tr> <th>Última execução</th> <td>UTC</td> <td>ETZ</td> <td>n/a</td> </tr><tr> <th>Criado</th> <td>STZ</td> <td>STZ</td> <td>n/a</td> </tr><tr> <th>Última alteração</th> <td>STZ</td> <td>STZ</td> <td>n/a</td> </tr></tbody></table>
+<table summary="Summary of event time representation (as UTC, EZT, or STZ values) from mysql.event, INFORMATION_SCHEMA.EVENTS, and SHOW EVENTS."><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><thead><tr> <th>Value</th> <th><code>mysql.event</code></th> <th><code>EVENTS</code> Table</th> <th><code>SHOW EVENTS</code></th> </tr></thead><tbody><tr> <th>Execute at</th> <td>UTC</td> <td>ETZ</td> <td>ETZ</td> </tr><tr> <th>Starts</th> <td>UTC</td> <td>ETZ</td> <td>ETZ</td> </tr><tr> <th>Ends</th> <td>UTC</td> <td>ETZ</td> <td>ETZ</td> </tr><tr> <th>Last executed</th> <td>UTC</td> <td>ETZ</td> <td>n/a</td> </tr><tr> <th>Created</th> <td>STZ</td> <td>STZ</td> <td>n/a</td> </tr><tr> <th>Last altered</th> <td>STZ</td> <td>STZ</td> <td>n/a</td> </tr></tbody></table>

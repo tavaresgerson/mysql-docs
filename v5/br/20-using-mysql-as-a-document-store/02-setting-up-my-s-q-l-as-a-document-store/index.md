@@ -1,102 +1,102 @@
-## 19.2 Configurando o MySQL como uma Armazenadora de Documentos
+## 19.2 Setting Up MySQL as a Document Store
 
-19.2.1 Instalação do MySQL Shell
+19.2.1 Installing MySQL Shell
 
-19.2.2 Iniciar o MySQL Shell
+19.2.2 Starting MySQL Shell
 
-Para usar o MySQL 5.7 como uma loja de documentos, o Plugin X precisa ser instalado. Em seguida, você pode usar o Protocolo X para se comunicar com o servidor. Sem o Plugin X rodando, os clientes do Protocolo X não podem se conectar ao servidor. O Plugin X vem com o MySQL (5.7.12 ou superior) — instalá-lo não envolve um download separado. Esta seção descreve como instalar o Plugin X.
+To use MySQL 5.7 as a document store, the X Plugin needs to be installed. Then you can use X Protocol to communicate with the server. Without the X Plugin running, X Protocol clients cannot connect to the server. The X Plugin is supplied with MySQL (5.7.12 or higher) — installing it does not involve a separate download. This section describes how to install X Plugin.
 
-Siga os passos descritos aqui:
+Follow the steps outlined here:
 
-1. **Instale ou atualize para o MySQL 5.7.12 ou superior.**
+1. **Install or upgrade to MySQL 5.7.12 or higher.**
 
-   Quando a instalação ou atualização estiver concluída, inicie o servidor. Para obter instruções sobre a inicialização do servidor, consulte a Seção 2.9.2, “Inicializando o Servidor”.
+   When the installation or upgrade is done, start the server. For server startup instructions, see Section 2.9.2, “Starting the Server”.
 
-   Nota
+   Note
 
-   O Instalador do MySQL permite que você realize essa e a próxima etapa (Instale o Plugin X) ao mesmo tempo para novas instalações no Microsoft Windows. Na tela Plugin e Extensões, marque a caixa de seleção Habilitar X Protocol/MySQL como uma Armazenamento de Documentos. Após a instalação, verifique se o Plugin X foi instalado.
+   MySQL Installer enables you to perform this and the next step (Install the X Plugin) at the same time for new installations on Microsoft Windows. In the Plugin and Extensions screen, check mark the Enable X Protocol/MySQL as a Document Store check box. After the installation, verify that the X Plugin has been installed.
 
-2. **Instale o Plugin X.** Uma conta não root pode ser usada para instalar o plugin, desde que a conta tenha o privilégio de `INSERT` para a tabela `mysql.plugin`.
+2. **Install the X Plugin.** A non-root account can be used to install the plugin as long as the account has `INSERT` privilege for the `mysql.plugin` table.
 
-   Sempre salve suas configurações existentes antes de reconfigurar o servidor.
+   Always save your existing configuration settings before reconfiguring the server.
 
-   Para instalar o plugin X embutido, faça um dos seguintes:
+   To install the built-in X Plugin, do one of the following:
 
-   - Usando o Instalador do MySQL para Windows:
+   * Using MySQL Installer for Windows:
 
-     1. Inicie o Instalador do MySQL para Windows. O painel do Instalador do MySQL é aberto.
+     1. Launch MySQL Installer for Windows. MySQL Installer dashboard opens.
 
-     2. Clique na ação rápida Reconfigurar para o Servidor MySQL. Use Próximo e Voltar para configurar os seguintes itens:
+     2. Click the Reconfigure quick action for MySQL Server. Use Next and Back to configure the following items:
 
-        - Em Contas e papéis, confirme a senha da conta `root` atual.
+        + In Accounts and Roles, confirm the current `root` account password.
 
-        - Em Plugin e extensões, marque a caixa de seleção Habilitar X Protocol/MySQL como uma loja de documentos. O instalador do MySQL fornece um número de porta padrão e abre a porta do firewall para acesso à rede.
+        + In Plugin and Extensions, check mark the Enable X Protocol/MySQL as a Document Store check box. MySQL Installer provides a default port number and opens the firewall port for network access.
 
-        - Na opção Aplicar configuração do servidor, clique em Executar.
+        + In Apply Server Configuration, click Execute.
 
-        - Clique em Concluir para fechar o Instalador do MySQL.
+        + Click Finish to close MySQL Installer.
 
-     3. Instale o MySQL Shell.
+     3. Install MySQL Shell.
 
-   - Usando o MySQL Shell:
+   * Using MySQL Shell:
 
-     1. Instale o MySQL Shell.
+     1. Install MySQL Shell.
 
-     2. Abra uma janela de terminal (prompt de comando no Windows) e navegue até o local dos binários do MySQL (por exemplo, `/usr/bin/` no Linux).
+     2. Open a terminal window (command prompt on Windows) and navigate to the MySQL binaries location (for example, `/usr/bin/` on Linux).
 
-     3. Execute o seguinte comando:
+     3. Run the following command:
 
         ```sql
         mysqlsh -u user -h localhost --classic --dba enableXProtocol
         ```
 
-   - Usando o programa MySQL Client:
+   * Using the MySQL Client program:
 
-     1. Abra uma janela de terminal (prompt de comando no Windows) e navegue até o local dos binários do MySQL (por exemplo, `/usr/bin/` no Linux).
+     1. Open a terminal window (command prompt on Windows) and navigate to the MySQL binaries location (for example, `/usr/bin/` on Linux).
 
-     2. Invoque o cliente de linha de comando **mysql**:
+     2. Invoke the **mysql** command-line client:
 
         ```sql
         mysql -u user -p
         ```
 
-     3. Emita a seguinte declaração:
+     3. Issue the following statement:
 
         ```sql
         mysql> INSTALL PLUGIN mysqlx SONAME 'mysqlx.so';
         ```
 
-        Substitua `mysqlx.so` por `mysqlx.dll` para Windows.
+        Replace `mysqlx.so` with `mysqlx.dll` for Windows.
 
-        Importante
+        Important
 
-        O usuário `mysql.session` deve existir antes que você possa carregar o X Plugin. `mysql.session` foi adicionado na versão 5.7.19 do MySQL. Se seu dicionário de dados foi inicializado usando uma versão anterior, você deve executar o procedimento **mysql_upgrade**. Se o upgrade não for executado, o X Plugin não conseguirá iniciar com a mensagem de erro Houve um erro ao tentar acessar o servidor com o usuário: mysql.session\@localhost. Certifique-se de que o usuário está presente no servidor e que o mysql_upgrade foi executado após uma atualização do servidor.
+        The `mysql.session` user must exist before you can load X Plugin. `mysql.session` was added in MySQL version 5.7.19. If your data dictionary was initialized using an earlier version you must run the **mysql_upgrade** procedure. If the upgrade is not run, X Plugin fails to start with the error message There was an error when trying to access the server with user: mysql.session@localhost. Make sure the user is present in the server and that mysql_upgrade was ran after a server update..
 
-     4. Instale o MySQL Shell.
+     4. Install MySQL Shell.
 
-3. **Verifique se o X Plugin foi instalado.**
+3. **Verify that the X Plugin has been installed.**
 
-   Quando o X Plugin é instalado corretamente, ele aparece na lista quando você consulta os plugins ativos no servidor com um dos seguintes comandos:
+   When the X Plugin is installed properly, it shows up in the list when you query for active plugins on the server with one of the following commands:
 
-   - Comando do MySQL Shell:
+   * MySQL Shell command:
 
      ```sql
      mysqlsh -u user --sqlc -e "show plugins"
      ```
 
-   - Programa de cliente MySQL:
+   * MySQL Client program command:
 
      ```sql
      mysql -u user -p -e "show plugins"
      ```
 
-   Se você encontrar problemas com a instalação do X Plugin ou se quiser saber sobre maneiras alternativas de instalar, configurar ou desinstalar plugins do servidor, consulte a Seção 5.5.1, “Instalando e Desinstalando Plugins”.
+   If you encounter problems with the X Plugin installation, or if you want to learn about alternative ways of installing, configuring, or uninstalling server plugins, see Section 5.5.1, “Installing and Uninstalling Plugins”.
 
-### Conta de usuário `mysqlxsys@localhost`
+### `mysqlxsys@localhost` User Account
 
-A instalação do X Plugin cria uma conta de usuário `mysqlxsys@localhost`. Se, por algum motivo, a criação da conta de usuário falhar, a instalação do X Plugin também falhará. Aqui está uma explicação sobre para que serve a conta de usuário `mysqlxsys@localhost` e o que fazer quando sua criação falhar.
+Installing the X Plugin creates a `mysqlxsys@localhost` user account. If, for some reason, creating the user account fails, the X Plugin installation fails, too. Here is an explanation on what the `mysqlxsys@localhost` user account is for and what to do when its creation fails.
 
-O processo de instalação do X Plugin usa o usuário `root` do MySQL para criar uma conta interna para o usuário `mysqlxsys@localhost`. A conta `mysqlxsys@localhost` é usada pelo X Plugin para autenticação de usuários externos contra o sistema de contas do MySQL e para matar sessões quando solicitado por um usuário privilegiado. A conta `mysqlxsys@localhost` é criada como bloqueada, portanto, não pode ser usada para fazer login por usuários externos. Se, por algum motivo, a conta `root` do MySQL não estiver disponível, antes de iniciar a instalação do X Plugin, você deve criar manualmente o usuário `mysqlxsys@localhost` emitindo as seguintes instruções no cliente de linha de comando **mysql**:
+The X Plugin installation process uses the MySQL `root` user to create an internal account for the `mysqlxsys@localhost` user. The `mysqlxsys@localhost` account is used by the X Plugin for authentication of external users against the MySQL account system and for killing sessions when requested by a privileged user. The `mysqlxsys@localhost` account is created as locked, so it cannot be used to log in by external users. If for some reason the MySQL `root` account is not available, before you start the X Plugin installation you must manually create the `mysqlxsys@localhost` user by issuing the following statements in the **mysql** command-line client:
 
 ```sql
 CREATE USER IF NOT EXISTS mysqlxsys@localhost IDENTIFIED WITH
@@ -105,12 +105,12 @@ GRANT SELECT ON mysql.user TO mysqlxsys@localhost;
 GRANT SUPER ON *.* TO mysqlxsys@localhost;
 ```
 
-### Desinstalação do Plugin X
+### Uninstalling the X Plugin
 
-Se você quiser desinstalar (desativar) o X Plugin, execute a seguinte instrução no cliente de linha de comando **mysql**:
+If you ever want to uninstall (deactivate) the X Plugin, issue the following statement in the **mysql** command-line client:
 
 ```sql
 UNINSTALL PLUGIN mysqlx;
 ```
 
-Não use o MySQL Shell para emitir a declaração anterior. Ele funciona a partir do MySQL Shell, mas você receberá um erro (código 1130). Além disso, a desinstalação do plugin remove o usuário mysqlxsys.
+Do not use MySQL Shell to issue the previous statement. It works from MySQL Shell, but you get an error (code 1130). Also, uninstalling the plugin removes the mysqlxsys user.

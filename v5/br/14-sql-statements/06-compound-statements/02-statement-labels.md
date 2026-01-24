@@ -1,4 +1,4 @@
-### 13.6.2 Etiquetas de declaração
+### 13.6.2 Statement Labels
 
 ```sql
 [begin_label:] BEGIN
@@ -19,19 +19,18 @@ END REPEAT [end_label]
 END WHILE [end_label]
 ```
 
-Os rótulos são permitidos para blocos ``BEGIN ... END` e para as instruções ``LOOP`, ``REPEAT` e ``WHILE`. O uso de rótulos para essas instruções segue estas regras:
+Labels are permitted for [`BEGIN ... END`](begin-end.html "13.6.1 BEGIN ... END Compound Statement") blocks and for the [`LOOP`](loop.html "13.6.5.5 LOOP Statement"), [`REPEAT`](repeat.html "13.6.5.6 REPEAT Statement"), and [`WHILE`](while.html "13.6.5.8 WHILE Statement") statements. Label use for those statements follows these rules:
 
-- *`begin_label`* deve ser seguido por um ponto e vírgula.
+* *`begin_label`* must be followed by a colon.
 
-- *`begin_label`* pode ser fornecido sem *`end_label`*. Se *`end_label`* estiver presente, ele deve ser o mesmo que *`begin_label`*.
+* *`begin_label`* can be given without *`end_label`*. If *`end_label`* is present, it must be the same as *`begin_label`*.
 
-- *`end_label`* não pode ser dado sem *`begin_label`*.
+* *`end_label`* cannot be given without *`begin_label`*.
 
-- Os rótulos no mesmo nível de nidificação devem ser distintos.
+* Labels at the same nesting level must be distinct.
+* Labels can be up to 16 characters long.
 
-- Os rótulos podem ter até 16 caracteres.
-
-Para referenciar uma etiqueta dentro do construtor etiquetado, use uma declaração de `ITERATE` ou `LEAVE`. O exemplo a seguir usa essas declarações para continuar a iterar ou encerrar o loop:
+To refer to a label within the labeled construct, use an [`ITERATE`](iterate.html "13.6.5.3 ITERATE Statement") or [`LEAVE`](leave.html "13.6.5.4 LEAVE Statement") statement. The following example uses those statements to continue iterating or terminate the loop:
 
 ```sql
 CREATE PROCEDURE doiterate(p1 INT)
@@ -44,4 +43,4 @@ BEGIN
 END;
 ```
 
-O escopo de uma etiqueta de bloco não inclui o código para manipuladores declarados dentro do bloco. Para obter detalhes, consulte Seção 13.6.7.2, “Instrução DECLARE ... HANDLER”.
+The scope of a block label does not include the code for handlers declared within the block. For details, see [Section 13.6.7.2, “DECLARE ... HANDLER Statement”](declare-handler.html "13.6.7.2 DECLARE ... HANDLER Statement").

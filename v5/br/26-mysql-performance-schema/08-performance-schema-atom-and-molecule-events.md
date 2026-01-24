@@ -1,6 +1,6 @@
-## 25.8 Eventos de Átomo e Molécula do Schema de Desempenho
+## 25.8 Performance Schema Atom and Molecule Events
 
-Para um evento de I/O de tabela, geralmente há duas linhas na tabela `events_waits_current`, e não uma. Por exemplo, uma linha de busca pode resultar em linhas como esta:
+For a table I/O event, there are usually two rows in [`events_waits_current`](performance-schema-events-waits-current-table.html "25.12.4.1 The events_waits_current Table"), not one. For example, a row fetch might result in rows like this:
 
 ```sql
 Row# EVENT_NAME                 TIMER_START TIMER_END
@@ -9,11 +9,11 @@ Row# EVENT_NAME                 TIMER_START TIMER_END
    2 wait/io/table/sql/handler        10000 NULL
 ```
 
-A consulta de linha causa uma leitura de arquivo. No exemplo, o evento de leitura de I/O de tabela foi iniciado antes do evento de leitura de I/O de arquivo, mas ainda não foi concluído (seu valor `TIMER_END` é `NULL`). O evento de leitura de I/O de arquivo está "aninhado" dentro do evento de leitura de I/O de tabela.
+The row fetch causes a file read. In the example, the table I/O fetch event started before the file I/O event but has not finished (its `TIMER_END` value is `NULL`). The file I/O event is “nested” within the table I/O event.
 
-Isso ocorre porque, ao contrário de outros eventos de espera "atômicos", como para mútuos ou E/S de arquivos, os eventos de E/S de tabelas são "moleculares" e incluem (sobrepõem-se com) outros eventos. Na tabela `events_waits_current`, o evento de E/S de tabela geralmente tem duas linhas:
+This occurs because, unlike other “atomic” wait events such as for mutexes or file I/O, table I/O events are “molecular” and include (overlap with) other events. In [`events_waits_current`](performance-schema-events-waits-current-table.html "25.12.4.1 The events_waits_current Table"), the table I/O event usually has two rows:
 
-- Uma linha para o evento de espera de I/O da tabela mais recente
-- Uma linha para o evento de espera mais recente de qualquer tipo
+* One row for the most recent table I/O wait event
+* One row for the most recent wait event of any kind
 
-Normalmente, mas nem sempre, o evento de espera de "qualquer tipo" difere do evento de espera de I/O da tabela. À medida que cada evento subsidiário é concluído, ele desaparece de `events_waits_current`. Neste ponto, e até que o próximo evento subsidiário comece, a espera de I/O da tabela também é a espera mais recente de qualquer tipo.
+Usually, but not always, the “of any kind” wait event differs from the table I/O event. As each subsidiary event completes, it disappears from [`events_waits_current`](performance-schema-events-waits-current-table.html "25.12.4.1 The events_waits_current Table"). At this point, and until the next subsidiary event begins, the table I/O wait is also the most recent wait of any kind.

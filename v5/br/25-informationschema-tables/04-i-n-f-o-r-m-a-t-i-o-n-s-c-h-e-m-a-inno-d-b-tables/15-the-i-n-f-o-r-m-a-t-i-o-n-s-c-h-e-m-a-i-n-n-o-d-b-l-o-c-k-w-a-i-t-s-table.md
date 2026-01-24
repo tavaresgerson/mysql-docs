@@ -1,30 +1,30 @@
-### 24.4.15 A tabela INFORMATION_SCHEMA INNODB_LOCK_WAITS
+### 24.4.15 The INFORMATION_SCHEMA INNODB_LOCK_WAITS Table
 
-A tabela [`INNODB_LOCK_WAITS`](https://pt.wikipedia.org/wiki/Tabela_de_esperas_de_bloqueio_InnoDB) contém uma ou mais linhas para cada transação `InnoDB` bloqueada, indicando o bloqueio que ela solicitou e quaisquer bloqueios que estejam bloqueando essa solicitação.
+The [`INNODB_LOCK_WAITS`](information-schema-innodb-lock-waits-table.html "24.4.15 The INFORMATION_SCHEMA INNODB_LOCK_WAITS Table") table contains one or more rows for each blocked `InnoDB` transaction, indicating the lock it has requested and any locks that are blocking that request.
 
-Nota
+Note
 
-Esta tabela é desaconselhada a partir do MySQL 5.7.14 e será removida no MySQL 8.0.
+This table is deprecated as of MySQL 5.7.14 and is removed in MySQL 8.0.
 
-A tabela [`INNODB_LOCK_WAITS`](https://pt.wikipedia.org/wiki/Tabela_innodb_lock_waits) tem as seguintes colunas:
+The [`INNODB_LOCK_WAITS`](information-schema-innodb-lock-waits-table.html "24.4.15 The INFORMATION_SCHEMA INNODB_LOCK_WAITS Table") table has these columns:
 
-- `REQUESTING_TRX_ID`
+* `REQUESTING_TRX_ID`
 
-  O ID da transação solicitada (bloqueada).
+  The ID of the requesting (blocked) transaction.
 
-- `REQUESTED_LOCK_ID`
+* `REQUESTED_LOCK_ID`
 
-  O ID do bloqueio para o qual uma transação está aguardando. Para obter detalhes sobre o bloqueio, combine esta coluna com a coluna `LOCK_ID` da tabela `[INNODB_LOCKS](https://pt.wikipedia.org/wiki/Tabela_INNODB_LOCKS)`.
+  The ID of the lock for which a transaction is waiting. To obtain details about the lock, join this column with the `LOCK_ID` column of the [`INNODB_LOCKS`](information-schema-innodb-locks-table.html "24.4.14 The INFORMATION_SCHEMA INNODB_LOCKS Table") table.
 
-- `BLOCKING_TRX_ID`
+* `BLOCKING_TRX_ID`
 
-  O ID da transação que está sendo bloqueada.
+  The ID of the blocking transaction.
 
-- `BLOCKING_LOCK_ID`
+* `BLOCKING_LOCK_ID`
 
-  O ID de um bloqueio que impede outra transação de prosseguir. Para obter detalhes sobre o bloqueio, combine esta coluna com a coluna `LOCK_ID` da tabela `[INNODB_LOCKS]` (tabela `information-schema-innodb-locks`).
+  The ID of a lock held by a transaction blocking another transaction from proceeding. To obtain details about the lock, join this column with the `LOCK_ID` column of the [`INNODB_LOCKS`](information-schema-innodb-locks-table.html "24.4.14 The INFORMATION_SCHEMA INNODB_LOCKS Table") table.
 
-#### Exemplo
+#### Example
 
 ```sql
 mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_LOCK_WAITS\G
@@ -35,12 +35,12 @@ requested_lock_id: 3396:91:3:2
  blocking_lock_id: 3395:91:3:2
 ```
 
-#### Notas
+#### Notes
 
-- Use esta tabela para ajudar a diagnosticar problemas de desempenho que ocorrem durante períodos de alta carga concorrente. Seu conteúdo é atualizado conforme descrito em Seção 14.16.2.3, “Persistência e Consistência das Informações de Transação e Bloqueio do InnoDB”.
+* Use this table to help diagnose performance problems that occur during times of heavy concurrent load. Its contents are updated as described in [Section 14.16.2.3, “Persistence and Consistency of InnoDB Transaction and Locking Information”](innodb-information-schema-internal-data.html "14.16.2.3 Persistence and Consistency of InnoDB Transaction and Locking Information").
 
-- Você deve ter o privilégio `PROCESSO` para consultar esta tabela.
+* You must have the [`PROCESS`](privileges-provided.html#priv_process) privilege to query this table.
 
-- Use a tabela `INFORMATION_SCHEMA` `COLUMNS` ou a instrução `SHOW COLUMNS` para visualizar informações adicionais sobre as colunas desta tabela, incluindo tipos de dados e valores padrão.
+* Use the `INFORMATION_SCHEMA` [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") table or the [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") statement to view additional information about the columns of this table, including data types and default values.
 
-- Para informações sobre o uso, consulte Seção 14.16.2.1, “Usando informações de transação e bloqueio do InnoDB”.
+* For usage information, see [Section 14.16.2.1, “Using InnoDB Transaction and Locking Information”](innodb-information-schema-examples.html "14.16.2.1 Using InnoDB Transaction and Locking Information").

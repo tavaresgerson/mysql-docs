@@ -1,93 +1,93 @@
-### 24.5.3 A tabela INFORMATION_SCHEMA TP_THREAD_GROUP_STATS
+### 24.5.3 The INFORMATION_SCHEMA TP_THREAD_GROUP_STATS Table
 
-A tabela [`TP_THREAD_GROUP_STATS`](https://docs.oracle.com/en/database/oracle12/SQL/sqlserver.12012.html#sql.server.dbms.sql.schema.tp-thread-group-stats) relata estatísticas por grupo de threads. Há uma linha por grupo.
+The [`TP_THREAD_GROUP_STATS`](information-schema-tp-thread-group-stats-table.html "24.5.3 The INFORMATION_SCHEMA TP_THREAD_GROUP_STATS Table") table reports statistics per thread group. There is one row per group.
 
-A tabela [`TP_THREAD_GROUP_STATS`](https://docs.oracle.com/en/database/oracle12/SPARC/SQL/information-schema-tp-thread-group-stats-table.html) possui as seguintes colunas:
+The [`TP_THREAD_GROUP_STATS`](information-schema-tp-thread-group-stats-table.html "24.5.3 The INFORMATION_SCHEMA TP_THREAD_GROUP_STATS Table") table has these columns:
 
-- `TP_GROUP_ID`
+* `TP_GROUP_ID`
 
-  O ID do grupo de fios. Este é uma chave única dentro da tabela.
+  The thread group ID. This is a unique key within the table.
 
-- `CONNECTIONS_STARTED`
+* `CONNECTIONS_STARTED`
 
-  O número de conexões começou.
+  The number of connections started.
 
-- `CONNECTIONS_CLOSED`
+* `CONNECTIONS_CLOSED`
 
-  Número de conexões fechadas.
+  The number of connections closed.
 
-- `QUERIES_EXECUTADAS`
+* `QUERIES_EXECUTED`
 
-  O número de declarações executadas. Esse número é incrementado quando uma declaração começa a ser executada, não quando ela termina.
+  The number of statements executed. This number is incremented when a statement starts executing, not when it finishes.
 
-- `QUERIES_QUEUADAS`
+* `QUERIES_QUEUED`
 
-  Número de declarações recebidas que estavam em fila para execução. Isso não conta as declarações que o grupo de threads conseguiu começar a executar imediatamente sem colocar em fila, o que pode acontecer nas condições descritas na Seção 5.5.3.3, "Operação do Pool de Threads".
+  The number of statements received that were queued for execution. This does not count statements that the thread group was able to begin executing immediately without queuing, which can happen under the conditions described in [Section 5.5.3.3, “Thread Pool Operation”](thread-pool-operation.html "5.5.3.3 Thread Pool Operation").
 
-- `THREADS_STARTED`
+* `THREADS_STARTED`
 
-  Número de threads iniciadas.
+  The number of threads started.
 
-- `PRIO_KICKUPS`
+* `PRIO_KICKUPS`
 
-  O número de declarações que foram movidas da fila de baixa prioridade para a fila de alta prioridade com base no valor da variável de sistema `thread_pool_prio_kickup_timer`. Se esse número aumentar rapidamente, considere aumentar o valor dessa variável. Um contador que aumenta rapidamente indica que o sistema de priorização não está impedindo que as transações comecem muito cedo. Para o `InnoDB`, isso provavelmente significa um desempenho degradado devido ao número excessivo de transações concorrentes.
+  The number of statements that have been moved from low-priority queue to high-priority queue based on the value of the [`thread_pool_prio_kickup_timer`](server-system-variables.html#sysvar_thread_pool_prio_kickup_timer) system variable. If this number increases quickly, consider increasing the value of that variable. A quickly increasing counter means that the priority system is not keeping transactions from starting too early. For [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine"), this most likely means deteriorating performance due to too many concurrent transactions..
 
-- `STALLED_QUERIES_EXECUTED`
+* `STALLED_QUERIES_EXECUTED`
 
-  O número de declarações que foram definidas como paralisadas devido à execução por mais tempo do que o valor da variável de sistema `thread_pool_stall_limit`.
+  The number of statements that have become defined as stalled due to executing for longer than the value of the [`thread_pool_stall_limit`](server-system-variables.html#sysvar_thread_pool_stall_limit) system variable.
 
-- `BECOME_CONSUMER_THREAD`
+* `BECOME_CONSUMER_THREAD`
 
-  O número de vezes que o thread foi atribuído ao papel de thread consumidor.
+  The number of times thread have been assigned the consumer thread role.
 
-- `BECOME_RESERVE_THREAD`
+* `BECOME_RESERVE_THREAD`
 
-  O número de vezes que os threads foram atribuídos ao papel de thread de reserva.
+  The number of times threads have been assigned the reserve thread role.
 
-- `BECOME_WAITING_THREAD`
+* `BECOME_WAITING_THREAD`
 
-  O número de vezes que os threads receberam o papel de thread de servidor. Quando as instruções são colocadas em fila, isso acontece com muita frequência, mesmo em operação normal, então aumentos rápidos nesse valor são normais no caso de um sistema altamente carregado, onde as instruções estão em fila.
+  The number of times threads have been assigned the waiter thread role. When statements are queued, this happens very often, even in normal operation, so rapid increases in this value are normal in the case of a highly loaded system where statements are queued up.
 
-- `WAKE_THREAD_STALL_CHECKER`
+* `WAKE_THREAD_STALL_CHECKER`
 
-  O número de vezes que o thread de verificação da barraca decidiu acordar ou criar um thread para possivelmente lidar com algumas declarações ou cuidar do papel do thread do garçom.
+  The number of times the stall check thread decided to wake or create a thread to possibly handle some statements or take care of the waiter thread role.
 
-- `SLEEP_WAITS`
+* `SLEEP_WAITS`
 
-  O número de espera `THD_WAIT_SLEEP`. Essas ocorrem quando os threads entram em modo de espera; por exemplo, ao chamar a função `SLEEP()`.
+  The number of `THD_WAIT_SLEEP` waits. These occur when threads go to sleep; for example, by calling the [`SLEEP()`](miscellaneous-functions.html#function_sleep) function.
 
-- `DISK_IO_WAITS`
+* `DISK_IO_WAITS`
 
-  Número de espera `THD_WAIT_DISKIO`. Essas ocorrem quando os threads realizam operações de E/S de disco que provavelmente não atingem o cache do sistema de arquivos. Essas espera ocorrem quando o pool de buffers lê e escreve dados no disco, e não para leituras normais de e escritas em arquivos.
+  The number of `THD_WAIT_DISKIO` waits. These occur when threads perform disk I/O that is likely to not hit the file system cache. Such waits occur when the buffer pool reads and writes data to disk, not for normal reads from and writes to files.
 
-- `ROW_LOCK_WAITS`
+* `ROW_LOCK_WAITS`
 
-  O número de espera `THD_WAIT_ROW_LOCK` para a liberação de um bloqueio de linha por outra transação.
+  The number of `THD_WAIT_ROW_LOCK` waits for release of a row lock by another transaction.
 
-- `GLOBAL_LOCK_WAITS`
+* `GLOBAL_LOCK_WAITS`
 
-  O número de espera `THD_WAIT_GLOBAL_LOCK` para que uma trava global seja liberada.
+  The number of `THD_WAIT_GLOBAL_LOCK` waits for a global lock to be released.
 
-- `META_DATA_LOCK_WAITS`
+* `META_DATA_LOCK_WAITS`
 
-  O número de `THD_WAIT_META_DATA_LOCK` aguarda a liberação de um bloqueio de metadados.
+  The number of `THD_WAIT_META_DATA_LOCK` waits for a metadata lock to be released.
 
-- `TABLE_LOCK_WAITS`
+* `TABLE_LOCK_WAITS`
 
-  O número de espera `THD_WAIT_TABLE_LOCK` para que uma tabela seja desbloqueada, que a instrução precisa acessar.
+  The number of `THD_WAIT_TABLE_LOCK` waits for a table to be unlocked that the statement needs to access.
 
-- `USER_LOCK_WAITS`
+* `USER_LOCK_WAITS`
 
-  O número de `THD_WAIT_USER_LOCK` aguarda por um bloqueio especial construído pelo thread do usuário.
+  The number of `THD_WAIT_USER_LOCK` waits for a special lock constructed by the user thread.
 
-- `BINLOG_WAITS`
+* `BINLOG_WAITS`
 
-  O número de `THD_WAIT_BINLOG_WAITS` aguarda que o log binário fique livre.
+  The number of `THD_WAIT_BINLOG_WAITS` waits for the binary log to become free.
 
-- `GROUP_COMMIT_WAITS`
+* `GROUP_COMMIT_WAITS`
 
-  Número de espera `THD_WAIT_GROUP_COMMIT`. Essas ocorrem quando um grupo de commit deve esperar que as outras partes completem sua parte de uma transação.
+  The number of `THD_WAIT_GROUP_COMMIT` waits. These occur when a group commit must wait for the other parties to complete their part of a transaction.
 
-- `FSYNC_WAITS`
+* `FSYNC_WAITS`
 
-  O número de `THD_WAIT_SYNC` espera por uma operação de sincronização de arquivo.
+  The number of `THD_WAIT_SYNC` waits for a file sync operation.

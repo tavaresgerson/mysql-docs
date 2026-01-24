@@ -1,44 +1,44 @@
-### 24.3.6 A tabela INFORMATION_SCHEMA COLUMN_PRIVILEGES
+### 24.3.6 The INFORMATION_SCHEMA COLUMN_PRIVILEGES Table
 
-A tabela [`COLUMN_PRIVILEGES`](https://docs.mysql.com/en/information-schema/columns/column_privileges_table.html) fornece informações sobre os privilégios das colunas. Ela obtém seus valores da tabela `mysql.columns_priv` do sistema.
+The [`COLUMN_PRIVILEGES`](information-schema-column-privileges-table.html "24.3.6 The INFORMATION_SCHEMA COLUMN_PRIVILEGES Table") table provides information about column privileges. It takes its values from the `mysql.columns_priv` system table.
 
-A tabela `COLUMN_PRIVILEGES` possui as seguintes colunas:
+The [`COLUMN_PRIVILEGES`](information-schema-column-privileges-table.html "24.3.6 The INFORMATION_SCHEMA COLUMN_PRIVILEGES Table") table has these columns:
 
-- `GARANTE`
+* `GRANTEE`
 
-  O nome da conta a qual o privilégio é concedido, no formato `'user_name'@'host_name'`.
+  The name of the account to which the privilege is granted, in `'user_name'@'host_name'` format.
 
-- `TABLE_CATALOG`
+* `TABLE_CATALOG`
 
-  O nome do catálogo ao qual a tabela que contém a coluna pertence. Esse valor é sempre `def`.
+  The name of the catalog to which the table containing the column belongs. This value is always `def`.
 
-- `TABLE_SCHEMA`
+* `TABLE_SCHEMA`
 
-  O nome do esquema (banco de dados) ao qual a tabela que contém a coluna pertence.
+  The name of the schema (database) to which the table containing the column belongs.
 
-- `NOME_TABELA`
+* `TABLE_NAME`
 
-  O nome da tabela que contém a coluna.
+  The name of the table containing the column.
 
-- `NOME_COLUNA`
+* `COLUMN_NAME`
 
-  O nome da coluna.
+  The name of the column.
 
-- `PRIVILEGE_TYPE`
+* `PRIVILEGE_TYPE`
 
-  O privilégio concedido. O valor pode ser qualquer privilégio que possa ser concedido no nível da coluna; veja Seção 13.7.1.4, "Instrução GRANT". Cada linha lista um único privilégio, portanto, há uma linha por privilégio da coluna detido pelo beneficiário.
+  The privilege granted. The value can be any privilege that can be granted at the column level; see [Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement"). Each row lists a single privilege, so there is one row per column privilege held by the grantee.
 
-  No resultado da consulta `SHOW FULL COLUMNS`, os privilégios estão todos em uma única coluna e em minúsculas, por exemplo, `select,insert,update,references`. Na tabela `COLUMN_PRIVILEGES` (tabela de informações de privilégios de coluna), há um privilégio por linha, em maiúsculas.
+  In the output from [`SHOW FULL COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement"), the privileges are all in one column and in lowercase, for example, `select,insert,update,references`. In [`COLUMN_PRIVILEGES`](information-schema-column-privileges-table.html "24.3.6 The INFORMATION_SCHEMA COLUMN_PRIVILEGES Table"), there is one privilege per row, in uppercase.
 
-- `IS_GRANTABLE`
+* `IS_GRANTABLE`
 
-  `SIM` se o usuário tiver o privilégio `GRANT OPTION`, `NÃO` caso contrário. A saída não lista `GRANT OPTION` como uma linha separada com `PRIVILEGE_TYPE='GRANT OPTION'`.
+  `YES` if the user has the [`GRANT OPTION`](privileges-provided.html#priv_grant-option) privilege, `NO` otherwise. The output does not list [`GRANT OPTION`](privileges-provided.html#priv_grant-option) as a separate row with `PRIVILEGE_TYPE='GRANT OPTION'`.
 
-#### Notas
+#### Notes
 
-- `COLUMN_PRIVILEGES` é uma tabela `INFORMATION_SCHEMA` não padrão.
+* [`COLUMN_PRIVILEGES`](information-schema-column-privileges-table.html "24.3.6 The INFORMATION_SCHEMA COLUMN_PRIVILEGES Table") is a nonstandard `INFORMATION_SCHEMA` table.
 
-As seguintes afirmações *não* são equivalentes:
+The following statements are *not* equivalent:
 
 ```sql
 SELECT ... FROM INFORMATION_SCHEMA.COLUMN_PRIVILEGES

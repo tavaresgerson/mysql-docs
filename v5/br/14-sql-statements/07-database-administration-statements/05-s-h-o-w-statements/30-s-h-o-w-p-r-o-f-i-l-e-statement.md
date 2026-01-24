@@ -1,4 +1,4 @@
-#### 13.7.5.30 Mostrar perfil de declaração
+#### 13.7.5.30 SHOW PROFILE Statement
 
 ```sql
 SHOW PROFILE [type [, type] ... ]
@@ -18,51 +18,49 @@ type: {
 }
 ```
 
-As instruções `SHOW PROFILE` e `SHOW PROFILES` exibem informações de perfilamento que indicam o uso de recursos para instruções executadas durante o curso da sessão atual.
+The [`SHOW PROFILE`](show-profile.html "13.7.5.30 SHOW PROFILE Statement") and [`SHOW PROFILES`](show-profiles.html "13.7.5.31 SHOW PROFILES Statement") statements display profiling information that indicates resource usage for statements executed during the course of the current session.
 
-Nota
+Note
 
-As declarações `SHOW PROFILE` e `SHOW PROFILES` estão desatualizadas; espere que elas sejam removidas em uma futura versão do MySQL. Use o Schema de Desempenho em vez disso; veja Seção 25.19.1, “Profilagem de Consulta Usando o Schema de Desempenho”.
+The [`SHOW PROFILE`](show-profile.html "13.7.5.30 SHOW PROFILE Statement") and [`SHOW PROFILES`](show-profiles.html "13.7.5.31 SHOW PROFILES Statement") statements are deprecated; expect them to be removed in a future MySQL release. Use the [Performance Schema](performance-schema.html "Chapter 25 MySQL Performance Schema") instead; see [Section 25.19.1, “Query Profiling Using Performance Schema”](performance-schema-query-profiling.html "25.19.1 Query Profiling Using Performance Schema").
 
-Para controlar o perfil, use a variável de sessão `profiling`, que tem um valor padrão de 0 (`OFF`). Ative o perfil definindo `profiling` para 1 ou `ON`:
+To control profiling, use the [`profiling`](server-system-variables.html#sysvar_profiling) session variable, which has a default value of 0 (`OFF`). Enable profiling by setting [`profiling`](server-system-variables.html#sysvar_profiling) to 1 or `ON`:
 
 ```sql
 mysql> SET profiling = 1;
 ```
 
-`SHOW PROFILES` exibe uma lista das declarações mais recentes enviadas ao servidor. O tamanho da lista é controlado pela variável de sessão `profiling_history_size`, que tem um valor padrão de 15. O valor máximo é
+[`SHOW PROFILES`](show-profiles.html "13.7.5.31 SHOW PROFILES Statement") displays a list of the most recent statements sent to the server. The size of the list is controlled by the [`profiling_history_size`](server-system-variables.html#sysvar_profiling_history_size) session variable, which has a default value of 15. The maximum value is
 
-100. Definir o valor para 0 tem o efeito prático de desativar o perfil.
+100. Setting the value to 0 has the practical effect of disabling profiling.
 
-Todas as declarações são analisadas, exceto `SHOW PROFILE` e `SHOW PROFILES`, portanto, nenhuma dessas declarações aparece na lista de perfis. Declarações malformadas são analisadas. Por exemplo, `SHOW PROFILING` é uma declaração ilegal e um erro de sintaxe ocorre se você tentar executá-la, mas ela aparece na lista de análise.
+All statements are profiled except [`SHOW PROFILE`](show-profile.html "13.7.5.30 SHOW PROFILE Statement") and [`SHOW PROFILES`](show-profiles.html "13.7.5.31 SHOW PROFILES Statement"), so neither of those statements appears in the profile list. Malformed statements are profiled. For example, `SHOW PROFILING` is an illegal statement, and a syntax error occurs if you try to execute it, but it shows up in the profiling list.
 
-`SHOW PROFILE` exibe informações detalhadas sobre uma única declaração. Sem a cláusula `FOR QUERY n`, a saída diz respeito à declaração executada mais recentemente. Se `FOR QUERY n` for incluído, `SHOW PROFILE` exibe informações para a declaração *`n`*. Os valores de *`n`* correspondem aos valores de `Query_ID` exibidos por `SHOW PROFILES`.
+[`SHOW PROFILE`](show-profile.html "13.7.5.30 SHOW PROFILE Statement") displays detailed information about a single statement. Without the `FOR QUERY n` clause, the output pertains to the most recently executed statement. If `FOR QUERY n` is included, [`SHOW PROFILE`](show-profile.html "13.7.5.30 SHOW PROFILE Statement") displays information for statement *`n`*. The values of *`n`* correspond to the `Query_ID` values displayed by [`SHOW PROFILES`](show-profiles.html "13.7.5.31 SHOW PROFILES Statement").
 
-A cláusula `LIMIT row_count` pode ser usada para limitar a saída a *`row_count`* linhas. Se `LIMIT` for fornecido, `OFFSET offset` pode ser adicionado para começar a saída das *`offset`* linhas no conjunto completo de linhas.
+The `LIMIT row_count` clause may be given to limit the output to *`row_count`* rows. If `LIMIT` is given, `OFFSET offset` may be added to begin the output *`offset`* rows into the full set of rows.
 
-Por padrão, `SHOW PROFILE` exibe as colunas `Status` e `Duração`. Os valores de `Status` são semelhantes aos valores de `State` exibidos por `SHOW PROCESSLIST`, embora possa haver algumas diferenças menores na interpretação das duas declarações para alguns valores de status (consulte Seção 8.14, “Examinando Informações de Fuso (Processo”)”).
+By default, [`SHOW PROFILE`](show-profile.html "13.7.5.30 SHOW PROFILE Statement") displays `Status` and `Duration` columns. The `Status` values are like the `State` values displayed by [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement"), although there might be some minor differences in interpretion for the two statements for some status values (see [Section 8.14, “Examining Server Thread (Process) Information”](thread-information.html "8.14 Examining Server Thread (Process) Information")).
 
-Valores opcionais *`type`* podem ser especificados para exibir tipos específicos de informações adicionais:
+Optional *`type`* values may be specified to display specific additional types of information:
 
-- `TODOS` exibe todas as informações
+* `ALL` displays all information
+* `BLOCK IO` displays counts for block input and output operations
 
-- `BLOCK IO` exibe contagens para operações de entrada e saída de blocos
+* `CONTEXT SWITCHES` displays counts for voluntary and involuntary context switches
 
-- `CONTEXT SWITCHES` exibe contagens para as trocas de contexto voluntárias e involuntárias
+* `CPU` displays user and system CPU usage times
 
-- `CPU` exibe os tempos de uso do CPU do usuário e do sistema
+* `IPC` displays counts for messages sent and received
 
-- O `IPC` exibe contagens de mensagens enviadas e recebidas
+* `MEMORY` is not currently implemented
+* `PAGE FAULTS` displays counts for major and minor page faults
 
-- A função `MEMORY` não está sendo implementada atualmente
+* `SOURCE` displays the names of functions from the source code, together with the name and line number of the file in which the function occurs
 
-- `PAGE FAULTS` exibe contagens de falhas de página principais e secundárias
+* `SWAPS` displays swap counts
 
-- `FONTE` exibe os nomes das funções do código-fonte, juntamente com o nome e o número da linha do arquivo em que a função ocorre
-
-- `SWAPS` exibe contagens de trocas
-
-O perfil é ativado por sessão. Quando uma sessão termina, suas informações de perfil são perdidas.
+Profiling is enabled per session. When a session ends, its profiling information is lost.
 
 ```sql
 mysql> SELECT @@profiling;
@@ -132,11 +130,11 @@ mysql> SHOW PROFILE CPU FOR QUERY 2;
 7 rows in set (0.00 sec)
 ```
 
-Nota
+Note
 
-O perfilamento só funciona parcialmente em algumas arquiteturas. Para valores que dependem da chamada de sistema `getrusage()`, o valor `NULL` é retornado em sistemas como o Windows, que não suportam a chamada. Além disso, o perfilamento é por processo e não por thread. Isso significa que a atividade em threads dentro do servidor, além da sua, pode afetar as informações de temporização que você vê.
+Profiling is only partially functional on some architectures. For values that depend on the `getrusage()` system call, `NULL` is returned on systems such as Windows that do not support the call. In addition, profiling is per process and not per thread. This means that activity on threads within the server other than your own may affect the timing information that you see.
 
-As informações de perfilamento também estão disponíveis na tabela `INFORMATION_SCHEMA` `PROFILING`. Veja Seção 24.3.19, “A Tabela INFORMATION_SCHEMA PROFILING”. Por exemplo, as seguintes consultas são equivalentes:
+Profiling information is also available from the `INFORMATION_SCHEMA` [`PROFILING`](information-schema-profiling-table.html "24.3.19 The INFORMATION_SCHEMA PROFILING Table") table. See [Section 24.3.19, “The INFORMATION_SCHEMA PROFILING Table”](information-schema-profiling-table.html "24.3.19 The INFORMATION_SCHEMA PROFILING Table"). For example, the following queries are equivalent:
 
 ```sql
 SHOW PROFILE FOR QUERY 2;

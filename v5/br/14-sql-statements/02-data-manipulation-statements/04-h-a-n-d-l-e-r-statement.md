@@ -1,4 +1,4 @@
-### 13.2.4 Declaração do Gestor
+### 13.2.4 HANDLER Statement
 
 ```sql
 HANDLER tbl_name OPEN [ [AS] alias]
@@ -13,13 +13,13 @@ HANDLER tbl_name READ { FIRST | NEXT }
 HANDLER tbl_name CLOSE
 ```
 
-A declaração `HANDLER` fornece acesso direto às interfaces do motor de armazenamento de tabelas. Está disponível para tabelas `InnoDB` e `MyISAM`.
+The `HANDLER` statement provides direct access to table storage engine interfaces. It is available for `InnoDB` and `MyISAM` tables.
 
-A declaração `HANDLER ... OPEN` abre uma tabela, tornando-a acessível usando as declarações `HANDLER ... READ` subsequentes. Esse objeto de tabela não é compartilhado por outras sessões e não é fechado até que a sessão chame `HANDLER ... CLOSE` ou a sessão termine.
+The `HANDLER ... OPEN` statement opens a table, making it accessible using subsequent `HANDLER ... READ` statements. This table object is not shared by other sessions and is not closed until the session calls `HANDLER ... CLOSE` or the session terminates.
 
-Se você abrir a tabela usando um alias, referências adicionais à tabela aberta com outras declarações `HANDLER` devem usar o alias em vez do nome da tabela. Se você não usar um alias, mas abrir a tabela usando o nome da tabela qualificado pelo nome do banco de dados, referências adicionais devem usar o nome da tabela não qualificado. Por exemplo, para uma tabela aberta usando `mydb.mytable`, referências adicionais devem usar `mytable`.
+If you open the table using an alias, further references to the open table with other `HANDLER` statements must use the alias rather than the table name. If you do not use an alias, but open the table using a table name qualified by the database name, further references must use the unqualified table name. For example, for a table opened using `mydb.mytable`, further references must use `mytable`.
 
-A sintaxe `HANDLER ... READ` recupera uma linha onde o índice especificado satisfaz os valores fornecidos e a condição `WHERE` é atendida. Se você tiver um índice de múltiplas colunas, especifique os valores da coluna do índice como uma lista separada por vírgula. Especifique valores para todas as colunas do índice ou para um prefixo da esquerda das colunas do índice. Suponha que um índice `my_idx` inclua três colunas chamadas `col_a`, `col_b` e `col_c`, nessa ordem. A instrução `HANDLER` pode especificar valores para todas as três colunas do índice ou para as colunas em um prefixo da esquerda. Por exemplo:
+The first `HANDLER ... READ` syntax fetches a row where the index specified satisfies the given values and the `WHERE` condition is met. If you have a multiple-column index, specify the index column values as a comma-separated list. Either specify values for all the columns in the index, or specify values for a leftmost prefix of the index columns. Suppose that an index `my_idx` includes three columns named `col_a`, `col_b`, and `col_c`, in that order. The `HANDLER` statement can specify values for all three columns in the index, or for the columns in a leftmost prefix. For example:
 
 ```sql
 HANDLER ... READ my_idx = (col_a_val,col_b_val,col_c_val) ...
@@ -27,44 +27,42 @@ HANDLER ... READ my_idx = (col_a_val,col_b_val) ...
 HANDLER ... READ my_idx = (col_a_val) ...
 ```
 
-Para utilizar a interface `HANDLER` para referenciar a `PRIMARY KEY` de uma tabela, use o identificador citado `PRIMARY`:
+To employ the `HANDLER` interface to refer to a table's `PRIMARY KEY`, use the quoted identifier `` `PRIMARY` ``:
 
 ```sql
 HANDLER tbl_name READ `PRIMARY` ...
 ```
 
-A segunda sintaxe `HANDLER ... READ` recupera uma linha da tabela na ordem de índice que corresponde à condição `WHERE`.
+The second `HANDLER ... READ` syntax fetches a row from the table in index order that matches the `WHERE` condition.
 
-A sintaxe `HANDLER ... READ` do terceiro tipo recupera uma linha da tabela na ordem natural de linhas que corresponde à condição `WHERE`. Ela é mais rápida do que `HANDLER tbl_name READ index_name` quando se deseja uma varredura completa da tabela. A ordem natural de linhas é a ordem em que as linhas são armazenadas em um arquivo de dados de tabela `MyISAM`. Esta declaração também funciona para tabelas `InnoDB`, mas não há tal conceito porque não há um arquivo de dados separado.
+The third `HANDLER ... READ` syntax fetches a row from the table in natural row order that matches the `WHERE` condition. It is faster than `HANDLER tbl_name READ index_name` when a full table scan is desired. Natural row order is the order in which rows are stored in a `MyISAM` table data file. This statement works for `InnoDB` tables as well, but there is no such concept because there is no separate data file.
 
-Sem uma cláusula `LIMIT`, todas as formas de `HANDLER ... READ` obtêm uma única linha se estiver disponível. Para retornar um número específico de linhas, inclua uma cláusula `LIMIT`. Ela tem a mesma sintaxe que a instrução `SELECT`. Veja Seção 13.2.9, “Instrução SELECT”.
+Without a `LIMIT` clause, all forms of `HANDLER ... READ` fetch a single row if one is available. To return a specific number of rows, include a `LIMIT` clause. It has the same syntax as for the [`SELECT`](select.html "13.2.9 SELECT Statement") statement. See [Section 13.2.9, “SELECT Statement”](select.html "13.2.9 SELECT Statement").
 
-`HANDLER ... CLOSE` fecha uma tabela que foi aberta com `HANDLER ... OPEN`.
+`HANDLER ... CLOSE` closes a table that was opened with `HANDLER ... OPEN`.
 
-Há várias razões para usar a interface `HANDLER` em vez das instruções normais de `SELECT` (select.html):
+There are several reasons to use the `HANDLER` interface instead of normal [`SELECT`](select.html "13.2.9 SELECT Statement") statements:
 
-- `HANDLER` é mais rápido que `SELECT`:
+* `HANDLER` is faster than [`SELECT`](select.html "13.2.9 SELECT Statement"):
 
-  - Um objeto de manipulador de motor de armazenamento designado é alocado para o `HANDLER ... OPEN`. O objeto é reutilizado para as declarações `HANDLER` subsequentes para essa tabela; ele não precisa ser reiniciado para cada uma.
+  + A designated storage engine handler object is allocated for the `HANDLER ... OPEN`. The object is reused for subsequent `HANDLER` statements for that table; it need not be reinitialized for each one.
 
-  - Há menos análise envolvida.
+  + There is less parsing involved.
+  + There is no optimizer or query-checking overhead.
+  + The handler interface does not have to provide a consistent look of the data (for example, [dirty reads](glossary.html#glos_dirty_read "dirty read") are permitted), so the storage engine can use optimizations that [`SELECT`](select.html "13.2.9 SELECT Statement") does not normally permit.
 
-  - Não há sobrecarga de otimização ou verificação de consultas.
+* `HANDLER` makes it easier to port to MySQL applications that use a low-level `ISAM`-like interface. (See [Section 14.21, “InnoDB memcached Plugin”](innodb-memcached.html "14.21 InnoDB memcached Plugin") for an alternative way to adapt applications that use the key-value store paradigm.)
 
-  - A interface de manipulação não precisa fornecer uma aparência consistente dos dados (por exemplo, leitura suja é permitida), então o mecanismo de armazenamento pode usar otimizações que o `SELECT` normalmente não permite.
+* `HANDLER` enables you to traverse a database in a manner that is difficult (or even impossible) to accomplish with [`SELECT`](select.html "13.2.9 SELECT Statement"). The `HANDLER` interface is a more natural way to look at data when working with applications that provide an interactive user interface to the database.
 
-- O `HANDLER` facilita a migração para aplicações do MySQL que utilizam uma interface semelhante à `ISAM` de nível baixo. (Consulte Seção 14.21, “Plugin memcached InnoDB” para uma maneira alternativa de adaptar aplicações que utilizam o paradigma de armazenamento de chaves e valores.)
+`HANDLER` is a somewhat low-level statement. For example, it does not provide consistency. That is, `HANDLER ... OPEN` does *not* take a snapshot of the table, and does *not* lock the table. This means that after a `HANDLER ... OPEN` statement is issued, table data can be modified (by the current session or other sessions) and these modifications might be only partially visible to `HANDLER ... NEXT` or `HANDLER ... PREV` scans.
 
-- O `HANDLER` permite que você navegue por um banco de dados de uma maneira que é difícil (ou até impossível) de realizar com `[SELECT]` (select.html). A interface `HANDLER` é uma maneira mais natural de visualizar os dados ao trabalhar com aplicativos que fornecem uma interface de usuário interativa para o banco de dados.
+An open handler can be closed and marked for reopen, in which case the handler loses its position in the table. This occurs when both of the following circumstances are true:
 
-`HANDLER` é uma declaração de nível um pouco baixo. Por exemplo, ela não oferece consistência. Ou seja, `HANDLER ... OPEN` *não* captura uma instantânea da tabela e *não* bloqueia a tabela. Isso significa que, após a emissão de uma declaração `HANDLER ... OPEN`, os dados da tabela podem ser modificados (pela sessão atual ou por outras sessões) e essas modificações podem ser visíveis apenas parcialmente em varreduras `HANDLER ... NEXT` ou `HANDLER ... PREV`.
+* Any session executes [`FLUSH TABLES`](flush.html#flush-tables) or DDL statements on the handler's table.
 
-Um manipulador aberto pode ser fechado e marcado para ser reaberto, nesse caso, o manipulador perde sua posição na tabela. Isso ocorre quando ambas as seguintes circunstâncias forem verdadeiras:
+* The session in which the handler is open executes non-`HANDLER` statements that use tables.
 
-- Qualquer sessão executa instruções `FLUSH TABLES` ou DDL na tabela do manipulador.
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") for a table closes all handlers for the table that were opened with [`HANDLER OPEN`](handler.html "13.2.4 HANDLER Statement").
 
-- A sessão em que o manipulador está aberto executa instruções que não são `HANDLER` e que utilizam tabelas.
-
-A instrução `TRUNCATE TABLE` para uma tabela fecha todos os manipuladores da tabela que foram abertos com `HANDLER OPEN`.
-
-Se uma tabela foi esvaziada com `FLUSH TABLES tbl_name WITH READ LOCK` aberta com `HANDLER`, o manipulador é esvaziado implicitamente e perde sua posição.
+If a table is flushed with [`FLUSH TABLES tbl_name WITH READ LOCK`](flush.html#flush-tables-with-read-lock-with-list) was opened with `HANDLER`, the handler is implicitly flushed and loses its position.

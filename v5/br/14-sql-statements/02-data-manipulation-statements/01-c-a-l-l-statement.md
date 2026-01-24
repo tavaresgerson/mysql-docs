@@ -1,19 +1,19 @@
-### 13.2.1 Declaração CALL
+### 13.2.1 CALL Statement
 
 ```sql
 CALL sp_name([parameter[,...)
 CALL sp_name[()]
 ```
 
-A instrução `CALL` invoca um procedimento armazenado que foi definido anteriormente com `CREATE PROCEDURE`.
+The [`CALL`](call.html "13.2.1 CALL Statement") statement invokes a stored procedure that was defined previously with [`CREATE PROCEDURE`](create-procedure.html "13.1.16 CREATE PROCEDURE and CREATE FUNCTION Statements").
 
-Os procedimentos armazenados que não aceitam argumentos podem ser invocados sem parênteses. Ou seja, `CALL p()` e `CALL p` são equivalentes.
+Stored procedures that take no arguments can be invoked without parentheses. That is, `CALL p()` and `CALL p` are equivalent.
 
-`CALL` pode retornar valores para o chamador usando parâmetros declarados como `OUT` ou `INOUT`. Quando o procedimento retornar, um programa cliente também pode obter o número de linhas afetadas pela instrução final executada dentro da rotina: No nível SQL, chame a função `ROW_COUNT`; a partir da API C, chame a função `mysql_affected_rows`.
+[`CALL`](call.html "13.2.1 CALL Statement") can pass back values to its caller using parameters that are declared as `OUT` or `INOUT` parameters. When the procedure returns, a client program can also obtain the number of rows affected for the final statement executed within the routine: At the SQL level, call the [`ROW_COUNT()`](information-functions.html#function_row-count) function; from the C API, call the [`mysql_affected_rows()`](/doc/c-api/5.7/en/mysql-affected-rows.html) function.
 
-Para obter informações sobre o efeito das condições não tratadas nos parâmetros do procedimento, consulte Seção 13.6.7.8, “Tratamento de Condições e Parâmetros OUT ou INOUT”.
+For information about the effect of unhandled conditions on procedure parameters, see [Section 13.6.7.8, “Condition Handling and OUT or INOUT Parameters”](conditions-and-parameters.html "13.6.7.8 Condition Handling and OUT or INOUT Parameters").
 
-Para recuperar um valor de um procedimento usando um parâmetro `OUT` ou `INOUT`, passe o parâmetro por meio de uma variável de usuário e, em seguida, verifique o valor da variável após o procedimento retornar. (Se você estiver chamando o procedimento a partir de outro procedimento armazenado ou função, também pode passar um parâmetro de rotina ou uma variável de rotina local como um parâmetro `IN` ou `INOUT`.) Para um parâmetro `INOUT`, inicie seu valor antes de passá-lo ao procedimento. O seguinte procedimento tem um parâmetro `OUT` que o procedimento define para a versão atual do servidor e um valor `INOUT` que o procedimento incrementa em um de seu valor atual:
+To get back a value from a procedure using an `OUT` or `INOUT` parameter, pass the parameter by means of a user variable, and then check the value of the variable after the procedure returns. (If you are calling the procedure from within another stored procedure or function, you can also pass a routine parameter or local routine variable as an `IN` or `INOUT` parameter.) For an `INOUT` parameter, initialize its value before passing it to the procedure. The following procedure has an `OUT` parameter that the procedure sets to the current server version, and an `INOUT` value that the procedure increments by one from its current value:
 
 ```sql
 DELIMITER //
@@ -29,7 +29,7 @@ END //
 DELIMITER ;
 ```
 
-Antes de chamar o procedimento, inicialize a variável que será passada como parâmetro `INOUT`. Após chamar o procedimento, os valores das duas variáveis foram definidos ou modificados:
+Before calling the procedure, initialize the variable to be passed as the `INOUT` parameter. After calling the procedure, the values of the two variables have been set or modified:
 
 ```sql
 mysql> SET @increment = 10;
@@ -42,7 +42,7 @@ mysql> SELECT @version, @increment;
 +----------+------------+
 ```
 
-Em declarações `CALL` preparadas (call.html) usadas com `PREPARE` (prepare.html) e `EXECUTE` (execute.html), podem ser usados marcadores para os parâmetros `IN`, `OUT` e `INOUT`. Esses tipos de parâmetros podem ser usados da seguinte forma:
+In prepared [`CALL`](call.html "13.2.1 CALL Statement") statements used with [`PREPARE`](prepare.html "13.5.1 PREPARE Statement") and [`EXECUTE`](execute.html "13.5.2 EXECUTE Statement"), placeholders can be used for `IN` parameters, `OUT`, and `INOUT` parameters. These types of parameters can be used as follows:
 
 ```sql
 mysql> SET @increment = 10;
@@ -56,12 +56,12 @@ mysql> SELECT @version, @increment;
 +----------+------------+
 ```
 
-Para escrever programas em C que utilizam a instrução SQL `CALL` para executar procedimentos armazenados que produzem conjuntos de resultados, a bandeira `CLIENT_MULTI_RESULTS` deve estar habilitada. Isso ocorre porque cada `CALL` retorna um resultado para indicar o status da chamada, além de quaisquer conjuntos de resultados que possam ser retornados por instruções executadas dentro do procedimento. `CLIENT_MULTI_RESULTS` também deve ser habilitado se `CALL` for usado para executar qualquer procedimento armazenado que contenha instruções preparadas. Não é possível determinar quando tal procedimento é carregado se essas instruções produzem conjuntos de resultados, então é necessário assumir que elas o fazem.
+To write C programs that use the [`CALL`](call.html "13.2.1 CALL Statement") SQL statement to execute stored procedures that produce result sets, the `CLIENT_MULTI_RESULTS` flag must be enabled. This is because each [`CALL`](call.html "13.2.1 CALL Statement") returns a result to indicate the call status, in addition to any result sets that might be returned by statements executed within the procedure. `CLIENT_MULTI_RESULTS` must also be enabled if [`CALL`](call.html "13.2.1 CALL Statement") is used to execute any stored procedure that contains prepared statements. It cannot be determined when such a procedure is loaded whether those statements produce result sets, so it is necessary to assume that they do so.
 
-`CLIENT_MULTI_RESULTS` pode ser habilitado quando você chama `mysql_real_connect()`, explicitamente passando a própria bandeira `CLIENT_MULTI_RESULTS`, ou implicitamente passando `CLIENT_MULTI_STATEMENTS` (que também habilita `CLIENT_MULTI_RESULTS`). `CLIENT_MULTI_RESULTS` é habilitado por padrão.
+`CLIENT_MULTI_RESULTS` can be enabled when you call [`mysql_real_connect()`](/doc/c-api/5.7/en/mysql-real-connect.html), either explicitly by passing the `CLIENT_MULTI_RESULTS` flag itself, or implicitly by passing `CLIENT_MULTI_STATEMENTS` (which also enables `CLIENT_MULTI_RESULTS`). `CLIENT_MULTI_RESULTS` is enabled by default.
 
-Para processar o resultado de uma instrução `CALL` executada usando `mysql_query()` ou `mysql_real_query()`, use um loop que chame `mysql_next_result()` para determinar se há mais resultados. Para um exemplo, veja Suporte para Execução de Múltiplas Instruções.
+To process the result of a [`CALL`](call.html "13.2.1 CALL Statement") statement executed using [`mysql_query()`](/doc/c-api/5.7/en/mysql-query.html) or [`mysql_real_query()`](/doc/c-api/5.7/en/mysql-real-query.html), use a loop that calls [`mysql_next_result()`](/doc/c-api/5.7/en/mysql-next-result.html) to determine whether there are more results. For an example, see [Multiple Statement Execution Support](/doc/c-api/5.7/en/c-api-multiple-queries.html).
 
-Os programas em C podem usar a interface de declaração preparada para executar instruções `CALL` e acessar os parâmetros `OUT` e `INOUT`. Isso é feito processando o resultado de uma instrução `CALL` usando um loop que chama `mysql_stmt_next_result()` para determinar se há mais resultados. Para um exemplo, veja Suporte a Declarações CALL Preparadas. Linguagens que fornecem uma interface MySQL podem usar declarações `CALL` preparadas para recuperar diretamente os parâmetros de procedimento `OUT` e `INOUT`.
+C programs can use the prepared-statement interface to execute [`CALL`](call.html "13.2.1 CALL Statement") statements and access `OUT` and `INOUT` parameters. This is done by processing the result of a [`CALL`](call.html "13.2.1 CALL Statement") statement using a loop that calls [`mysql_stmt_next_result()`](/doc/c-api/5.7/en/mysql-stmt-next-result.html) to determine whether there are more results. For an example, see [Prepared CALL Statement Support](/doc/c-api/5.7/en/c-api-prepared-call-statements.html). Languages that provide a MySQL interface can use prepared [`CALL`](call.html "13.2.1 CALL Statement") statements to directly retrieve `OUT` and `INOUT` procedure parameters.
 
-Alterações nos metadados dos objetos referenciados por programas armazenados são detectadas e causam a reinterpretação automática das declarações afetadas quando o programa é executado novamente. Para mais informações, consulte Seção 8.10.4, “Cache de Declarações Preparadas e Programas Armazenados”.
+Metadata changes to objects referred to by stored programs are detected and cause automatic reparsing of the affected statements when the program is next executed. For more information, see [Section 8.10.4, “Caching of Prepared Statements and Stored Programs”](statement-caching.html "8.10.4 Caching of Prepared Statements and Stored Programs").

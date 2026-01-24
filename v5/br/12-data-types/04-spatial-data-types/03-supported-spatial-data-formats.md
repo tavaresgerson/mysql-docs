@@ -1,33 +1,33 @@
-### 11.4.3 Formas de dados espaciais suportadas
+### 11.4.3 Supported Spatial Data Formats
 
-Dois formatos de dados espaciais padrão são usados para representar objetos de geometria em consultas:
+Two standard spatial data formats are used to represent geometry objects in queries:
 
-- Formato WKT (Well-Known Text)
-- Formato Binário Conhecido (WKB)
+* Well-Known Text (WKT) format
+* Well-Known Binary (WKB) format
 
-Internamente, o MySQL armazena os valores de geometria em um formato que não é idêntico ao formato WKT ou WKB. (O formato interno é semelhante ao WKB, mas com 4 bytes iniciais para indicar o SRID.)
+Internally, MySQL stores geometry values in a format that is not identical to either WKT or WKB format. (Internal format is like WKB but with an initial 4 bytes to indicate the SRID.)
 
-Existem funções disponíveis para converter entre diferentes formatos de dados; consulte a Seção 12.16.6, “Funções de conversão de formatos de geometria”.
+There are functions available to convert between different data formats; see Section 12.16.6, “Geometry Format Conversion Functions”.
 
-As seções a seguir descrevem os formatos de dados espaciais que o MySQL utiliza:
+The following sections describe the spatial data formats MySQL uses:
 
-- Formato de Texto Conhecido (WKT) ("Formato")
-- Formato Binário Conhecido (WKB) ("Formato")
-- Formato de Armazenamento de Geometria Interna
+* Well-Known Text (WKT) Format Format")
+* Well-Known Binary (WKB) Format Format")
+* Internal Geometry Storage Format
 
-#### Formato de Texto Bem Conhecido (WKT)
+#### Well-Known Text (WKT) Format
 
-A representação do texto bem conhecido (WKT) dos valores de geometria é projetada para a troca de dados de geometria em formato ASCII. A especificação OpenGIS fornece uma gramática Backus-Naur que especifica as regras de produção formal para a escrita de valores WKT (veja a Seção 11.4, “Tipos de Dados Espaciais”).
+The Well-Known Text (WKT) representation of geometry values is designed for exchanging geometry data in ASCII form. The OpenGIS specification provides a Backus-Naur grammar that specifies the formal production rules for writing WKT values (see Section 11.4, “Spatial Data Types”).
 
-Exemplos de representações WKT de objetos geométricos:
+Examples of WKT representations of geometry objects:
 
-- Um `Ponto`:
+* A `Point`:
 
   ```sql
   POINT(15 20)
   ```
 
-  As coordenadas do ponto são especificadas sem vírgula de separação. Isso difere da sintaxe da função SQL `Point()`, que requer uma vírgula entre as coordenadas. Tenha cuidado para usar a sintaxe apropriada para o contexto de uma operação espacial dada. Por exemplo, as seguintes declarações usam `ST_X()` para extrair a coordenada X de um objeto `Point`. A primeira produz o objeto diretamente usando a função `Point()`. A segunda usa uma representação WKT convertida em um `Point` com `ST_GeomFromText()`.
+  The point coordinates are specified with no separating comma. This differs from the syntax for the SQL `Point()` function, which requires a comma between the coordinates. Take care to use the syntax appropriate to the context of a given spatial operation. For example, the following statements both use `ST_X()` to extract the X-coordinate from a `Point` object. The first produces the object directly using the `Point()` function. The second uses a WKT representation converted to a `Point` with `ST_GeomFromText()`.
 
   ```sql
   mysql> SELECT ST_X(Point(15, 20));
@@ -45,34 +45,34 @@ Exemplos de representações WKT de objetos geométricos:
   +---------------------------------------+
   ```
 
-- Uma `LineString` com quatro pontos:
+* A `LineString` with four points:
 
   ```sql
   LINESTRING(0 0, 10 10, 20 25, 50 60)
   ```
 
-  Os pares de coordenadas de ponto são separados por vírgulas.
+  The point coordinate pairs are separated by commas.
 
-- Um `Poligono` com um anel externo e um anel interno:
+* A `Polygon` with one exterior ring and one interior ring:
 
   ```sql
   POLYGON((0 0,10 0,10 10,0 10,0 0),(5 5,7 5,7 7,5 7, 5 5))
   ```
 
-- Um `MultiPonto` com três valores `Ponto`:
+* A `MultiPoint` with three `Point` values:
 
   ```sql
   MULTIPOINT(0 0, 20 20, 60 60)
   ```
 
-  A partir do MySQL 5.7.9, as funções espaciais, como `ST_MPointFromText()` e `ST_GeomFromText()`, que aceitam representações no formato WKT de valores `MultiPoint`, permitem que os pontos individuais dentro dos valores sejam envolvidos por parênteses. Por exemplo, ambas as chamadas de função a seguir são válidas, enquanto que antes do MySQL 5.7.9, a segunda produz um erro:
+  As of MySQL 5.7.9, spatial functions such as `ST_MPointFromText()` and `ST_GeomFromText()` that accept WKT-format representations of `MultiPoint` values permit individual points within values to be surrounded by parentheses. For example, both of the following function calls are valid, whereas before MySQL 5.7.9 the second one produces an error:
 
   ```sql
   ST_MPointFromText('MULTIPOINT (1 1, 2 2, 3 3)')
   ST_MPointFromText('MULTIPOINT ((1 1), (2 2), (3 3))')
   ```
 
-  A partir do MySQL 5.7.9, a saída para os valores `MultiPoint` inclui parênteses ao redor de cada ponto. Por exemplo:
+  As of MySQL 5.7.9, output for `MultiPoint` values includes parentheses around each point. For example:
 
   ```sql
   mysql> SET @mp = 'MULTIPOINT(1 1, 2 2, 3 3)';
@@ -84,7 +84,7 @@ Exemplos de representações WKT de objetos geométricos:
   +---------------------------------+
   ```
 
-  Antes do MySQL 5.7.9, a saída para o mesmo valor não inclui parênteses ao redor de cada ponto:
+  Before MySQL 5.7.9, output for the same value does not include parentheses around each point:
 
   ```sql
   mysql> SET @mp = 'MULTIPOINT(1 1, 2 2, 3 3)';
@@ -96,63 +96,63 @@ Exemplos de representações WKT de objetos geométricos:
   +---------------------------------+
   ```
 
-- Uma `MultiLineString` com dois valores `LineString`:
+* A `MultiLineString` with two `LineString` values:
 
   ```sql
   MULTILINESTRING((10 10, 20 20), (15 15, 30 15))
   ```
 
-- Um `MultiPolygon` com dois valores `Polygon`:
+* A `MultiPolygon` with two `Polygon` values:
 
   ```sql
   MULTIPOLYGON(((0 0,10 0,10 10,0 10,0 0)),((5 5,7 5,7 7,5 7, 5 5)))
   ```
 
-- Uma `GeometryCollection` composta por dois valores `Point` e uma `LineString`:
+* A `GeometryCollection` consisting of two `Point` values and one `LineString`:
 
   ```sql
   GEOMETRYCOLLECTION(POINT(10 10), POINT(30 30), LINESTRING(15 15, 20 20))
   ```
 
-#### Formato Binário Conhecido (WKB)
+#### Well-Known Binary (WKB) Format
 
-A representação binária conhecida (WKB) de valores geométricos é usada para a troca de dados geométricos como fluxos binários representados por valores `BLOB` que contêm informações WKB geométricas. Esse formato é definido pela especificação OpenGIS (veja a Seção 11.4, “Tipos de Dados Espaciais”). Também é definido no padrão ISO *SQL/MM Parte 3: Espacial*.
+The Well-Known Binary (WKB) representation of geometric values is used for exchanging geometry data as binary streams represented by `BLOB` values containing geometric WKB information. This format is defined by the OpenGIS specification (see Section 11.4, “Spatial Data Types”). It is also defined in the ISO *SQL/MM Part 3: Spatial* standard.
 
-O WKB utiliza inteiros sem sinal de 1 byte, inteiros sem sinal de 4 bytes e números de dupla precisão de 8 bytes (formato IEEE 754). Um byte é composto por oito bits.
+WKB uses 1-byte unsigned integers, 4-byte unsigned integers, and 8-byte double-precision numbers (IEEE 754 format). A byte is eight bits.
 
-Por exemplo, um valor WKB que corresponde a `POINT(1 -1)` consiste nesta sequência de 21 bytes, cada um representado por dois algarismos hexadecimais:
+For example, a WKB value that corresponds to `POINT(1 -1)` consists of this sequence of 21 bytes, each represented by two hexadecimal digits:
 
 ```sql
 0101000000000000000000F03F000000000000F0BF
 ```
 
-A sequência é composta pelos componentes mostrados na tabela a seguir.
+The sequence consists of the components shown in the following table.
 
-**Tabela 11.2 Exemplo de Componentes WKB**
+**Table 11.2 WKB Components Example**
 
-<table summary="Exemplo mostrando o componente nos valores WKB."><col style="width: 30%"/><col style="width: 30%"/><col style="width: 40%"/><thead><tr> <th>Componente</th> <th>Tamanho</th> <th>Valor</th> </tr></thead><tbody><tr> <th>Ordem dos bytes</th> <td>1 byte</td> <td><code>01</code></td> </tr><tr> <th>Tipo WKB</th> <td>4 bytes</td> <td><code>01000000</code></td> </tr><tr> <th>Coordenada X</th> <td>8 bytes</td> <td><code>000000000000F03F</code></td> </tr><tr> <th>Coordenada Y</th> <td>8 bytes</td> <td><code>000000000000F0BF</code></td> </tr></tbody></table>
+<table summary="Example showing component in WKB values."><col style="width: 30%"/><col style="width: 30%"/><col style="width: 40%"/><thead><tr> <th>Component</th> <th>Size</th> <th>Value</th> </tr></thead><tbody><tr> <th>Byte order</th> <td>1 byte</td> <td><code>01</code></td> </tr><tr> <th>WKB type</th> <td>4 bytes</td> <td><code>01000000</code></td> </tr><tr> <th>X coordinate</th> <td>8 bytes</td> <td><code>000000000000F03F</code></td> </tr><tr> <th>Y coordinate</th> <td>8 bytes</td> <td><code>000000000000F0BF</code></td> </tr></tbody></table>
 
-A representação dos componentes é a seguinte:
+Component representation is as follows:
 
-- O indicador de ordem de byte é 1 ou 0 para indicar o armazenamento em ordem de byte little-endian ou big-endian. As ordens de byte little-endian e big-endian também são conhecidas como Representação de Dados de Rede (NDR) e Representação de Dados Externos (XDR), respectivamente.
+* The byte order indicator is either 1 or 0 to signify little-endian or big-endian storage. The little-endian and big-endian byte orders are also known as Network Data Representation (NDR) and External Data Representation (XDR), respectively.
 
-- O tipo WKB é um código que indica o tipo de geometria. O MySQL usa valores de 1 a 7 para indicar `Ponto`, `LinhaString`, `Poligono`, `MultiPonto`, `MultiLinhaString`, `MultiPoligono` e `Coleção de Geometria`.
+* The WKB type is a code that indicates the geometry type. MySQL uses values from 1 through 7 to indicate `Point`, `LineString`, `Polygon`, `MultiPoint`, `MultiLineString`, `MultiPolygon`, and `GeometryCollection`.
 
-- Um valor de `Ponto` tem coordenadas X e Y, cada uma representada como um valor de ponto dupla.
+* A `Point` value has X and Y coordinates, each represented as a double-precision value.
 
-Os valores WKB para valores de geometria mais complexos têm estruturas de dados mais complexas, conforme detalhado na especificação OpenGIS.
+WKB values for more complex geometry values have more complex data structures, as detailed in the OpenGIS specification.
 
-#### Formato de Armazenamento de Geometria Interna
+#### Internal Geometry Storage Format
 
-O MySQL armazena valores de geometria usando 4 bytes para indicar o SRID seguido da representação WKB do valor. Para uma descrição do formato WKB, consulte "Formato de Formato Binário Bem Conhecido (WKB)".
+MySQL stores geometry values using 4 bytes to indicate the SRID followed by the WKB representation of the value. For a description of WKB format, see Well-Known Binary (WKB) Format Format").
 
-Para a parte WKB, essas considerações específicas do MySQL se aplicam:
+For the WKB part, these MySQL-specific considerations apply:
 
-- O byte de indicador de ordem de bytes é 1 porque o MySQL armazena as geometrias como valores little-endian.
+* The byte-order indicator byte is 1 because MySQL stores geometries as little-endian values.
 
-- O MySQL suporta tipos de geometria `Point`, `LineString`, `Polygon`, `MultiPoint`, `MultiLineString`, `MultiPolygon` e `GeometryCollection`. Outros tipos de geometria não são suportados.
+* MySQL supports geometry types of `Point`, `LineString`, `Polygon`, `MultiPoint`, `MultiLineString`, `MultiPolygon`, and `GeometryCollection`. Other geometry types are not supported.
 
-A função `LENGTH()` retorna o espaço em bytes necessário para o armazenamento do valor. Exemplo:
+The `LENGTH()` function returns the space in bytes required for value storage. Example:
 
 ```sql
 mysql> SET @g = ST_GeomFromText('POINT(1 -1)');
@@ -170,14 +170,11 @@ mysql> SELECT HEX(@g);
 +----------------------------------------------------+
 ```
 
-O comprimento do valor é de 25 bytes, composto por esses componentes (como pode ser visto pelo valor hexadecimal):
+The value length is 25 bytes, made up of these components (as can be seen from the hexadecimal value):
 
-- 4 bytes para o SRID inteiro (0)
+* 4 bytes for integer SRID (0)
+* 1 byte for integer byte order (1 = little-endian)
+* 4 bytes for integer type information (1 = `Point`)
 
-- 1 byte para a ordem de bytes inteira (1 = little-endian)
-
-- 4 bytes para informações do tipo inteiro (1 = `Ponto`)
-
-- 8 bytes para a coordenada X de dupla precisão (1)
-
-- 8 bytes para a coordenada Y de dupla precisão (−1)
+* 8 bytes for double-precision X coordinate (1)
+* 8 bytes for double-precision Y coordinate (−1)

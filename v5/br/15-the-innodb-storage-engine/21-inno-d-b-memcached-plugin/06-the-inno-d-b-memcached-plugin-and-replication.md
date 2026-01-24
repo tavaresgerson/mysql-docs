@@ -1,35 +1,35 @@
-### 14.21.6 O Plugin e a Replicação do memcached do InnoDB
+### 14.21.6 The InnoDB memcached Plugin and Replication
 
-Como o plugin `daemon_memcached` suporta o log binário do MySQL, as atualizações feitas em um servidor fonte através da interface **memcached** podem ser replicadas para backup, equilíbrio de cargas de trabalho de leitura intensivas e alta disponibilidade. Todos os comandos **memcached** são suportados com registro binário.
+Because the `daemon_memcached` plugin supports the MySQL binary log, updates made on a source server through the **memcached** interface can be replicated for backup, balancing intensive read workloads, and high availability. All **memcached** commands are supported with binary logging.
 
-Você não precisa configurar o plugin `daemon_memcached` nos servidores replicados. A principal vantagem dessa configuração é o aumento do desempenho de escrita na fonte. A velocidade do mecanismo de replicação não é afetada.
+You do not need to set up the `daemon_memcached` plugin on replica servers. The primary advantage of this configuration is increased write throughput on the source. The speed of the replication mechanism is not affected.
 
-As seções a seguir mostram como usar a capacidade de registro binário ao usar o plugin `daemon_memcached` com a replicação do MySQL. Assume-se que você completou a configuração descrita na Seção 14.21.3, “Configurando o Plugin InnoDB memcached”.
+The following sections show how to use the binary log capability when using the `daemon_memcached` plugin with MySQL replication. It is assumed that you have completed the setup described in Section 14.21.3, “Setting Up the InnoDB memcached Plugin”.
 
-#### Habilitar o log binário InnoDB memcached
+#### Enabling the InnoDB memcached Binary Log
 
-1. Para usar o plugin `daemon_memcached` com o log binário do MySQL, habilite a opção de configuração `innodb_api_enable_binlog` no servidor de origem. Esta opção só pode ser definida durante o início do servidor. Você também deve habilitar o log binário do MySQL no servidor de origem usando a opção `--log-bin`. Você pode adicionar essas opções ao arquivo de configuração do MySQL ou na linha de comando do **mysqld**.
+1. To use the `daemon_memcached` plugin with the MySQL binary log, enable the `innodb_api_enable_binlog` configuration option on the source server. This option can only be set at server startup. You must also enable the MySQL binary log on the source server using the `--log-bin` option. You can add these options to the MySQL configuration file, or on the **mysqld** command line.
 
    ```sql
    mysqld ... --log-bin -–innodb_api_enable_binlog=1
    ```
 
-2. Configure o servidor de origem e o servidor de replicação, conforme descrito na Seção 16.1.2, “Configuração da replicação com base na posição do arquivo de log binário”.
+2. Configure the source and replica server, as described in Section 16.1.2, “Setting Up Binary Log File Position Based Replication”.
 
-3. Use o **mysqldump** para criar um instantâneo de dados de origem e sincronize o instantâneo com o servidor replica.
+3. Use **mysqldump** to create a source data snapshot, and sync the snapshot to the replica server.
 
    ```sql
    source $> mysqldump --all-databases --lock-all-tables > dbdump.db
    replica $> mysql < dbdump.db
    ```
 
-4. No servidor de origem, execute `SHOW MASTER STATUS` para obter as coordenadas do log binário de origem.
+4. On the source server, issue `SHOW MASTER STATUS` to obtain the source binary log coordinates.
 
    ```sql
    mysql> SHOW MASTER STATUS;
    ```
 
-5. No servidor de replicação, use a instrução `CHANGE MASTER TO` para configurar um servidor de replicação usando as coordenadas do log binário de origem.
+5. On the replica server, use a `CHANGE MASTER TO` statement to set up a replica server using the source binary log coordinates.
 
    ```sql
    mysql> CHANGE MASTER TO
@@ -41,13 +41,13 @@ As seções a seguir mostram como usar a capacidade de registro binário ao usar
           MASTER_LOG_POS=114;
    ```
 
-6. Comece a replica.
+6. Start the replica.
 
    ```sql
    mysql> START SLAVE;
    ```
 
-   Se o log de erros imprimir uma saída semelhante à seguinte, a replica está pronta para a replicação.
+   If the error log prints output similar to the following, the replica is ready for replication.
 
    ```sql
    2013-09-24T13:04:38.639684Z 49 [Note] Slave I/O thread: connected to
@@ -55,13 +55,13 @@ As seções a seguir mostram como usar a capacidade de registro binário ao usar
    at position 114
    ```
 
-#### Testando a configuração de replicação do InnoDB memcached
+#### Testing the InnoDB memcached Replication Configuration
 
-Este exemplo demonstra como testar a configuração de replicação do **memcached** do **InnoDB** usando o **memcached** e o telnet para inserir, atualizar e excluir dados. Um cliente MySQL é usado para verificar os resultados nos servidores fonte e replica.
+This example demonstrates how to test the `InnoDB` **memcached** replication configuration using the **memcached** and telnet to insert, update, and delete data. A MySQL client is used to verify results on the source and replica servers.
 
-O exemplo utiliza a tabela `demo_test`, que foi criada pelo script de configuração `innodb_memcached_config.sql` durante a configuração inicial do plugin `daemon_memcached`. A tabela `demo_test` contém um único registro de exemplo.
+The example uses the `demo_test` table, which was created by the `innodb_memcached_config.sql` configuration script during the initial setup of the `daemon_memcached` plugin. The `demo_test` table contains a single example record.
 
-1. Use o comando `set` para inserir um registro com uma chave de `test1`, um valor de bandeira de `10`, um valor de expiração de `0`, um valor de cas de 1 e um valor de `t1`.
+1. Use the `set` command to insert a record with a key of `test1`, a flag value of `10`, an expiration value of `0`, a cas value of 1, and a value of `t1`.
 
    ```sql
    telnet 127.0.0.1 11211
@@ -73,7 +73,7 @@ O exemplo utiliza a tabela `demo_test`, que foi criada pelo script de configura�
    STORED
    ```
 
-2. No servidor de origem, verifique se o registro foi inserido na tabela `demo_test`. Supondo que a tabela `demo_test` não tenha sido modificada anteriormente, deve haver dois registros. O registro de exemplo com uma chave de `AA` e o registro que você acabou de inserir, com uma chave de `test1`. A coluna `c1` corresponde à chave, a coluna `c2` ao valor, a coluna `c3` ao valor da bandeira, a coluna `c4` ao valor do cas e a coluna `c5` ao tempo de expiração. O tempo de expiração foi definido como 0, pois não é usado.
+2. On the source server, check that the record was inserted into the `demo_test` table. Assuming the `demo_test` table was not previously modified, there should be two records. The example record with a key of `AA`, and the record you just inserted, with a key of `test1`. The `c1` column maps to the key, the `c2` column to the value, the `c3` column to the flag value, the `c4` column to the cas value, and the `c5` column to the expiration time. The expiration time was set to 0, since it is unused.
 
    ```sql
    mysql> SELECT * FROM test.demo_test;
@@ -85,7 +85,7 @@ O exemplo utiliza a tabela `demo_test`, que foi criada pelo script de configura�
    +-------+--------------+------+------+------+
    ```
 
-3. Verifique para verificar se o mesmo registro foi replicado para o servidor de replicação.
+3. Check to verify that the same record was replicated to the replica server.
 
    ```sql
    mysql> SELECT * FROM test.demo_test;
@@ -97,7 +97,7 @@ O exemplo utiliza a tabela `demo_test`, que foi criada pelo script de configura�
    +-------+--------------+------+------+------+
    ```
 
-4. Use o comando `set` para atualizar a chave para um valor de `new`.
+4. Use the `set` command to update the key to a value of `new`.
 
    ```sql
    telnet 127.0.0.1 11211
@@ -109,7 +109,7 @@ O exemplo utiliza a tabela `demo_test`, que foi criada pelo script de configura�
    STORED
    ```
 
-   A atualização é replicada para o servidor de replicação (observe que o valor `cas` também é atualizado).
+   The update is replicated to the replica server (notice that the `cas` value is also updated).
 
    ```sql
    mysql> SELECT * FROM test.demo_test;
@@ -121,7 +121,7 @@ O exemplo utiliza a tabela `demo_test`, que foi criada pelo script de configura�
    +-------+--------------+------+------+------+
    ```
 
-5. Exclua o registro `test1` usando um comando `delete`.
+5. Delete the `test1` record using a `delete` command.
 
    ```sql
    telnet 127.0.0.1 11211
@@ -132,7 +132,7 @@ O exemplo utiliza a tabela `demo_test`, que foi criada pelo script de configura�
    DELETED
    ```
 
-   Quando a operação `delete` é replicada para a replica, o registro `test1` na replica também é excluído.
+   When the `delete` operation is replicated to the replica, the `test1` record on the replica is also deleted.
 
    ```sql
    mysql> SELECT * FROM test.demo_test;
@@ -143,7 +143,7 @@ O exemplo utiliza a tabela `demo_test`, que foi criada pelo script de configura�
    +----+--------------+------+------+------+
    ```
 
-6. Remova todas as linhas da tabela usando o comando `flush_all`.
+6. Remove all rows from the table using the `flush_all` command.
 
    ```sql
    telnet 127.0.0.1 11211
@@ -159,7 +159,7 @@ O exemplo utiliza a tabela `demo_test`, que foi criada pelo script de configura�
    Empty set (0.00 sec)
    ```
 
-7. Conecte-se ao servidor de origem pelo Telnet e insira dois novos registros.
+7. Telnet to the source server and enter two new records.
 
    ```sql
    telnet 127.0.0.1 11211
@@ -174,7 +174,7 @@ O exemplo utiliza a tabela `demo_test`, que foi criada pelo script de configura�
    STORED
    ```
 
-8. Confirme que os dois registros foram replicados para o servidor de replicação.
+8. Confirm that the two records were replicated to the replica server.
 
    ```sql
    mysql> SELECT * FROM test.demo_test;
@@ -186,7 +186,7 @@ O exemplo utiliza a tabela `demo_test`, que foi criada pelo script de configura�
    +-------+--------------+------+------+------+
    ```
 
-9. Remova todas as linhas da tabela usando o comando `flush_all`.
+9. Remove all rows from the table using the `flush_all` command.
 
    ```sql
    telnet 127.0.0.1 11211
@@ -197,23 +197,23 @@ O exemplo utiliza a tabela `demo_test`, que foi criada pelo script de configura�
    OK
    ```
 
-10. Verifique se a operação `flush_all` foi replicada no servidor replica.
+10. Check to ensure that the `flush_all` operation was replicated on the replica server.
 
     ```sql
     mysql> SELECT * FROM test.demo_test;
     Empty set (0.00 sec)
     ```
 
-#### Notas do log binário do InnoDB memcached
+#### InnoDB memcached Binary Log Notes
 
-Formato do log binário:
+Binary Log Format:
 
-- A maioria das operações do **memcached** é mapeada a instruções DML (análogo a inserir, excluir, atualizar). Como não há uma instrução SQL real sendo processada pelo servidor MySQL, todos os comandos do **memcached** (exceto o `flush_all`) usam o registro de Replicação Baseada em Linhas (RBR), que é independente de qualquer configuração do `binlog_format` do servidor.
+* Most **memcached** operations are mapped to DML statements (analogous to insert, delete, update). Since there is no actual SQL statement being processed by the MySQL server, all **memcached** commands (except for `flush_all`) use Row-Based Replication (RBR) logging, which is independent of any server `binlog_format` setting.
 
-- O comando **memcached** `flush_all` é mapeado para o comando `TRUNCATE TABLE`. Como os comandos DDL só podem usar o registro baseado em instruções, o comando `flush_all` é replicado enviando uma instrução `TRUNCATE TABLE`.
+* The **memcached** `flush_all` command is mapped to the `TRUNCATE TABLE` command. Since DDL commands can only use statement-based logging, the `flush_all` command is replicated by sending a `TRUNCATE TABLE` statement.
 
-Transações:
+Transactions:
 
-- O conceito de transações não costumava fazer parte das aplicações do **memcached**. Por questões de desempenho, `daemon_memcached_r_batch_size` e `daemon_memcached_w_batch_size` são usados para controlar o tamanho do lote para transações de leitura e escrita. Esses ajustes não afetam a replicação. Cada operação SQL na tabela subjacente `InnoDB` é replicada após a conclusão bem-sucedida.
+* The concept of transactions has not typically been part of **memcached** applications. For performance considerations, `daemon_memcached_r_batch_size` and `daemon_memcached_w_batch_size` are used to control the batch size for read and write transactions. These settings do not affect replication. Each SQL operation on the underlying `InnoDB` table is replicated after successful completion.
 
-- O valor padrão de `daemon_memcached_w_batch_size` é `1`, o que significa que cada operação de escrita no **memcached** é confirmada imediatamente. Esta configuração padrão gera uma certa sobrecarga de desempenho para evitar inconsistências nos dados visíveis nos servidores de origem e replicação. Os registros replicados estão sempre disponíveis imediatamente no servidor replicador. Se você definir `daemon_memcached_w_batch_size` para um valor maior que `1`, os registros inseridos ou atualizados através do **memcached** não serão imediatamente visíveis no servidor de origem; para visualizar os registros no servidor de origem antes de serem confirmados, execute `SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED`.
+* The default value of `daemon_memcached_w_batch_size` is `1`, which means that each **memcached** write operation is committed immediately. This default setting incurs a certain amount of performance overhead to avoid inconsistencies in the data that is visible on the source and replica servers. The replicated records are always available immediately on the replica server. If you set `daemon_memcached_w_batch_size` to a value greater than `1`, records inserted or updated through **memcached** are not immediately visible on the source server; to view the records on the source server before they are committed, issue `SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED`.

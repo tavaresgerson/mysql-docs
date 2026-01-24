@@ -1,7 +1,7 @@
-### 14.5.4 Buffer de registro
+### 14.5.4 Log Buffer
 
-O buffer de log é a área de memória que armazena os dados a serem escritos nos arquivos de log no disco. O tamanho do buffer de log é definido pela variável `innodb_log_buffer_size`. O tamanho padrão é de 16 MB. O conteúdo do buffer de log é periodicamente descarregado no disco. Um buffer de log grande permite que transações grandes sejam executadas sem a necessidade de escrever dados do log de refazer no disco antes do commit das transações. Assim, se você tiver transações que atualizam, inserem ou excluem muitas linhas, aumentar o tamanho do buffer de log economiza o I/O do disco.
+The log buffer is the memory area that holds data to be written to the log files on disk. Log buffer size is defined by the `innodb_log_buffer_size` variable. The default size is 16MB. The contents of the log buffer are periodically flushed to disk. A large log buffer enables large transactions to run without the need to write redo log data to disk before the transactions commit. Thus, if you have transactions that update, insert, or delete many rows, increasing the size of the log buffer saves disk I/O.
 
-A variável `innodb_flush_log_at_trx_commit` controla como o conteúdo do buffer de log é escrito e descarregado no disco. A variável `innodb_flush_log_at_timeout` controla a frequência de descarregamento do log.
+The `innodb_flush_log_at_trx_commit` variable controls how the contents of the log buffer are written and flushed to disk. The `innodb_flush_log_at_timeout` variable controls log flushing frequency.
 
-Para informações relacionadas, consulte Configuração de Memória e Seção 8.5.4, “Otimização do Registro de Redo do InnoDB”.
+For related information, see Memory Configuration, and Section 8.5.4, “Optimizing InnoDB Redo Logging”.

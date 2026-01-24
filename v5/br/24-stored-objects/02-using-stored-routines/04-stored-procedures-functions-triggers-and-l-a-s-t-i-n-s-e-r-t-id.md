@@ -1,7 +1,7 @@
-### 23.2.4 Procedimentos armazenados, funções, gatilhos e LAST_INSERT_ID()
+### 23.2.4 Stored Procedures, Functions, Triggers, and LAST_INSERT_ID()
 
-Dentro do corpo de uma rotina armazenada (procedimento ou função) ou de um gatilho, o valor de `LAST_INSERT_ID()` muda da mesma maneira que para instruções executadas fora do corpo desses tipos de objetos (veja a Seção 12.15, “Funções de Informação”). O efeito de uma rotina armazenada ou de um gatilho sobre o valor de `LAST_INSERT_ID()` que é observado ao seguir instruções depende do tipo de rotina:
+Within the body of a stored routine (procedure or function) or a trigger, the value of `LAST_INSERT_ID()` changes the same way as for statements executed outside the body of these kinds of objects (see Section 12.15, “Information Functions”). The effect of a stored routine or trigger upon the value of `LAST_INSERT_ID()` that is seen by following statements depends on the kind of routine:
 
-- Se um procedimento armazenado executar instruções que alterem o valor de `LAST_INSERT_ID()`, o valor alterado será visto por instruções que seguem a chamada do procedimento.
+* If a stored procedure executes statements that change the value of `LAST_INSERT_ID()`, the changed value is seen by statements that follow the procedure call.
 
-- Para funções e gatilhos armazenados que alteram o valor, o valor é restaurado quando a função ou o gatilho termina, então as instruções seguintes não veem um valor alterado.
+* For stored functions and triggers that change the value, the value is restored when the function or trigger ends, so following statements do not see a changed value.

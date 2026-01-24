@@ -1,12 +1,12 @@
-#### 13.7.5.25. EXIBIR PLUGINS Declaração
+#### 13.7.5.25 SHOW PLUGINS Statement
 
 ```sql
 SHOW PLUGINS
 ```
 
-`SHOW PLUGINS` exibe informações sobre os plugins do servidor.
+[`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement") displays information about server plugins.
 
-Exemplo da saída do `SHOW PLUGINS`:
+Example of [`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement") output:
 
 ```sql
 mysql> SHOW PLUGINS\G
@@ -37,30 +37,30 @@ License: GPL
 ...
 ```
 
-A saída `SHOW PLUGINS` tem essas colunas:
+[`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement") output has these columns:
 
-- `Nome`
+* `Name`
 
-  O nome usado para se referir ao plugin em declarações como `INSTALL PLUGIN` e `UNINSTALL PLUGIN`.
+  The name used to refer to the plugin in statements such as [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") and [`UNINSTALL PLUGIN`](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement").
 
-- `Status`
+* `Status`
 
-  O status do plugin, que pode ser um dos valores `ATIVO`, `INATIVO`, `DESATIVADO` ou `DELETADO`.
+  The plugin status, one of `ACTIVE`, `INACTIVE`, `DISABLED`, or `DELETED`.
 
-- `Tipo`
+* `Type`
 
-  O tipo de plugin, como `STORAGE ENGINE`, `INFORMATION_SCHEMA` ou `AUTHENTICATION`.
+  The type of plugin, such as `STORAGE ENGINE`, `INFORMATION_SCHEMA`, or `AUTHENTICATION`.
 
-- Biblioteca
+* `Library`
 
-  O nome do arquivo de biblioteca compartilhada do plugin. Este é o nome usado para referenciar o arquivo do plugin em declarações como `INSTALL PLUGIN` e `UNINSTALL PLUGIN`. Este arquivo está localizado no diretório nomeado pela variável de sistema `plugin_dir`. Se o nome da biblioteca for `NULL`, o plugin será compilado e não poderá ser desinstalado com `UNINSTALL PLUGIN`.
+  The name of the plugin shared library file. This is the name used to refer to the plugin file in statements such as [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") and [`UNINSTALL PLUGIN`](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement"). This file is located in the directory named by the [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) system variable. If the library name is `NULL`, the plugin is compiled in and cannot be uninstalled with [`UNINSTALL PLUGIN`](uninstall-plugin.html "13.7.3.4 UNINSTALL PLUGIN Statement").
 
-- "Licença"
+* `License`
 
-  Como o plugin é licenciado (por exemplo, `GPL`).
+  How the plugin is licensed (for example, `GPL`).
 
-Para os plugins instalados com `INSTALL PLUGIN`, os valores `Name` e `Library` também são registrados na tabela do sistema `mysql.plugin`.
+For plugins installed with [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement"), the `Name` and `Library` values are also registered in the `mysql.plugin` system table.
 
-Para obter informações sobre as estruturas de dados dos plugins que formam a base das informações exibidas pelo `SHOW PLUGINS`, consulte A API do Plugin MySQL.
+For information about plugin data structures that form the basis of the information displayed by [`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement"), see [The MySQL Plugin API](/doc/extending-mysql/5.7/en/plugin-api.html).
 
-As informações dos plugins também estão disponíveis na tabela `INFORMATION_SCHEMA`. PLUGINS. Consulte Seção 24.3.17, “A tabela INFORMATION_SCHEMA.PLUGINS”.
+Plugin information is also available from the `INFORMATION_SCHEMA` `.PLUGINS` table. See [Section 24.3.17, “The INFORMATION_SCHEMA PLUGINS Table”](information-schema-plugins-table.html "24.3.17 The INFORMATION_SCHEMA PLUGINS Table").

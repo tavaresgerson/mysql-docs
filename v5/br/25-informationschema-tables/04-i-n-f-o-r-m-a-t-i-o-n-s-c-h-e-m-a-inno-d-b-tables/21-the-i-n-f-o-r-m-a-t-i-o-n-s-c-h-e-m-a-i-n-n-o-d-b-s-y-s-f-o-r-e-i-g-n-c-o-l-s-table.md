@@ -1,28 +1,28 @@
-### 24.4.21 A tabela INFORMATION_SCHEMA INNODB_SYS_FOREIGN_COLS
+### 24.4.21 The INFORMATION_SCHEMA INNODB_SYS_FOREIGN_COLS Table
 
-A tabela [`INNODB_SYS_FOREIGN_COLS`](https://pt.wikipedia.org/wiki/Tabela_innodb_sys_foreign_cols) fornece informações de status sobre as colunas das chaves estrangeiras do `InnoDB`, equivalentes às informações da tabela `SYS_FOREIGN_COLS` no dicionário de dados do `InnoDB`.
+The [`INNODB_SYS_FOREIGN_COLS`](information-schema-innodb-sys-foreign-cols-table.html "24.4.21 The INFORMATION_SCHEMA INNODB_SYS_FOREIGN_COLS Table") table provides status information about the columns of `InnoDB` foreign keys, equivalent to the information from the `SYS_FOREIGN_COLS` table in the `InnoDB` data dictionary.
 
-Para informações de uso relacionadas e exemplos, consulte Seção 14.16.3, “Tabelas do Sistema InnoDB INFORMATION_SCHEMA”.
+For related usage information and examples, see [Section 14.16.3, “InnoDB INFORMATION_SCHEMA System Tables”](innodb-information-schema-system-tables.html "14.16.3 InnoDB INFORMATION_SCHEMA System Tables").
 
-A tabela [`INNODB_SYS_FOREIGN_COLS`](https://pt.wikipedia.org/wiki/Tabela_information-schema-innodb-sys-foreign-cols) possui as seguintes colunas:
+The [`INNODB_SYS_FOREIGN_COLS`](information-schema-innodb-sys-foreign-cols-table.html "24.4.21 The INFORMATION_SCHEMA INNODB_SYS_FOREIGN_COLS Table") table has these columns:
 
-- `ID`
+* `ID`
 
-  O índice de chave estrangeira associado a este campo de chave de índice, usando o mesmo valor que `INNODB_SYS_FOREIGN.ID`.
+  The foreign key index associated with this index key field, using the same value as `INNODB_SYS_FOREIGN.ID`.
 
-- `FOR_COL_NAME`
+* `FOR_COL_NAME`
 
-  O nome da coluna associada na tabela filha.
+  The name of the associated column in the child table.
 
-- `REF_COL_NAME`
+* `REF_COL_NAME`
 
-  O nome da coluna associada à tabela principal.
+  The name of the associated column in the parent table.
 
-- `POS`
+* `POS`
 
-  A posição ordinal deste campo chave dentro do índice de chave estrangeira, a partir de 0.
+  The ordinal position of this key field within the foreign key index, starting from 0.
 
-#### Exemplo
+#### Example
 
 ```sql
 mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_SYS_FOREIGN_COLS WHERE ID = 'test/fk1'\G
@@ -33,8 +33,8 @@ REF_COL_NAME: id
          POS: 0
 ```
 
-#### Notas
+#### Notes
 
-- Você deve ter o privilégio `PROCESSO` para consultar esta tabela.
+* You must have the [`PROCESS`](privileges-provided.html#priv_process) privilege to query this table.
 
-- Use a tabela `INFORMATION_SCHEMA` `COLUMNS` ou a instrução `SHOW COLUMNS` para visualizar informações adicionais sobre as colunas desta tabela, incluindo tipos de dados e valores padrão.
+* Use the `INFORMATION_SCHEMA` [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") table or the [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") statement to view additional information about the columns of this table, including data types and default values.

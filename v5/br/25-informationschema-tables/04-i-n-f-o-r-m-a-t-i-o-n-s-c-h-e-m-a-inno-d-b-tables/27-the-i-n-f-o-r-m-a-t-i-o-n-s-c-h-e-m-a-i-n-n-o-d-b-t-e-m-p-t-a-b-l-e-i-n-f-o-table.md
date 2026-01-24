@@ -1,36 +1,36 @@
-### 24.4.27 A tabela INFORMATION_SCHEMA INNODB_TEMP_TABLE_INFO
+### 24.4.27 The INFORMATION_SCHEMA INNODB_TEMP_TABLE_INFO Table
 
-A tabela [`INNODB_TEMP_TABLE_INFO`](https://pt.wikipedia.org/wiki/Tabela_de_informa%C3%A7%C3%A3o_InnoDB_tempor%C3%A1ria) fornece informações sobre as tabelas temporárias `InnoDB` criadas pelo usuário que estão ativas em uma instância `InnoDB`. Ela não fornece informações sobre as tabelas temporárias `InnoDB` internas usadas pelo otimizador. A tabela [`INNODB_TEMP_TABLE_INFO`](https://pt.wikipedia.org/wiki/Tabela_de_informa%C3%A7%C3%A3o_InnoDB_tempor%C3%A1ria) é criada quando consultada pela primeira vez, existe apenas na memória e não é persistida no disco.
+The [`INNODB_TEMP_TABLE_INFO`](information-schema-innodb-temp-table-info-table.html "24.4.27 The INFORMATION_SCHEMA INNODB_TEMP_TABLE_INFO Table") table provides information about user-created `InnoDB` temporary tables that are active in an `InnoDB` instance. It does not provide information about internal `InnoDB` temporary tables used by the optimizer. The [`INNODB_TEMP_TABLE_INFO`](information-schema-innodb-temp-table-info-table.html "24.4.27 The INFORMATION_SCHEMA INNODB_TEMP_TABLE_INFO Table") table is created when first queried, exists only in memory, and is not persisted to disk.
 
-Para informações de uso e exemplos, consulte Seção 14.16.7, “Tabela de informações temporárias do InnoDB INFORMATION_SCHEMA”.
+For usage information and examples, see [Section 14.16.7, “InnoDB INFORMATION_SCHEMA Temporary Table Info Table”](innodb-information-schema-temp-table-info.html "14.16.7 InnoDB INFORMATION_SCHEMA Temporary Table Info Table").
 
-A tabela [`INNODB_TEMP_TABLE_INFO`](https://docs.oracle.com/en/database/sql/information-schema/innodb/innodb-temp-table-info-table.html) possui as seguintes colunas:
+The [`INNODB_TEMP_TABLE_INFO`](information-schema-innodb-temp-table-info-table.html "24.4.27 The INFORMATION_SCHEMA INNODB_TEMP_TABLE_INFO Table") table has these columns:
 
-- `TABLE_ID`
+* `TABLE_ID`
 
-  O ID da tabela temporária.
+  The table ID of the temporary table.
 
-- `NOME`
+* `NAME`
 
-  O nome da tabela temporária.
+  The name of the temporary table.
 
-- `N_COLS`
+* `N_COLS`
 
-  O número de colunas na tabela temporária. O número inclui três colunas ocultas criadas pelo `InnoDB` (`DB_ROW_ID`, `DB_TRX_ID` e `DB_ROLL_PTR`).
+  The number of columns in the temporary table. The number includes three hidden columns created by `InnoDB` (`DB_ROW_ID`, `DB_TRX_ID`, and `DB_ROLL_PTR`).
 
-- `ESPACO`
+* `SPACE`
 
-  O ID do espaço de tabelas temporário onde a tabela temporária reside. Em 5.7, as tabelas temporárias não compactadas do `InnoDB` residem em um espaço de tabelas temporárias compartilhado. O arquivo de dados para o espaço de tabelas temporárias compartilhado é definido pela variável de sistema `innodb_temp_data_file_path`. Por padrão, há um único arquivo de dados para o espaço de tabelas temporárias compartilhado, denominado `ibtmp1`, que está localizado no diretório de dados. As tabelas temporárias compactadas residem em espaços de tabelas separados por arquivo localizados no diretório de arquivos temporários definido por `tmpdir`. O ID do espaço de tabelas temporárias é um valor não nulo que é gerado dinamicamente ao reiniciar o servidor.
+  The ID of the temporary tablespace where the temporary table resides. In 5.7, non-compressed `InnoDB` temporary tables reside in a shared temporary tablespace. The data file for the shared temporary tablespace is defined by the [`innodb_temp_data_file_path`](innodb-parameters.html#sysvar_innodb_temp_data_file_path) system variable. By default, there is a single data file for the shared temporary tablespace named `ibtmp1`, which is located in the data directory. Compressed temporary tables reside in separate file-per-table tablespaces located in the temporary file directory defined by [`tmpdir`](server-system-variables.html#sysvar_tmpdir). The temporary tablespace ID is a nonzero value that is dynamically generated on server restart.
 
-- `PER_TABLE_TABLESPACE`
+* `PER_TABLE_TABLESPACE`
 
-  Um valor de `TRUE` indica que a tabela temporária reside em um espaço de tabelas separado por arquivo. Um valor de `FALSE` indica que a tabela temporária reside no espaço de tabelas temporárias compartilhado.
+  A value of `TRUE` indicates that the temporary table resides in a separate file-per-table tablespace. A value of `FALSE` indicates that the temporary table resides in the shared temporary tablespace.
 
-- `IS_COMPRESSED`
+* `IS_COMPRESSED`
 
-  Um valor de `TRUE` indica que a tabela temporária está comprimida.
+  A value of `TRUE` indicates that the temporary table is compressed.
 
-#### Exemplo
+#### Example
 
 ```sql
 mysql> CREATE TEMPORARY TABLE t1 (c1 INT PRIMARY KEY) ENGINE=INNODB;
@@ -45,10 +45,9 @@ PER_TABLE_TABLESPACE: FALSE
        IS_COMPRESSED: FALSE
 ```
 
-#### Notas
+#### Notes
 
-- Esta tabela é útil principalmente para monitoramento de nível de especialista.
+* This table is useful primarily for expert-level monitoring.
+* You must have the [`PROCESS`](privileges-provided.html#priv_process) privilege to query this table.
 
-- Você deve ter o privilégio `PROCESSO` para consultar esta tabela.
-
-- Use a tabela `INFORMATION_SCHEMA` `COLUMNS` ou a instrução `SHOW COLUMNS` para visualizar informações adicionais sobre as colunas desta tabela, incluindo tipos de dados e valores padrão.
+* Use the `INFORMATION_SCHEMA` [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") table or the [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") statement to view additional information about the columns of this table, including data types and default values.

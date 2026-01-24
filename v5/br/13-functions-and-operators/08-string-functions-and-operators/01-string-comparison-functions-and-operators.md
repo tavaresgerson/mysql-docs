@@ -1,22 +1,22 @@
-### 12.8.1 Funções e operadores de comparação de strings
+### 12.8.1 String Comparison Functions and Operators
 
-**Tabela 12.13 Funções e operadores de comparação de strings**
+**Table 12.13 String Comparison Functions and Operators**
 
-<table frame="box" rules="all" summary="Uma referência que lista funções e operadores de comparação de strings."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>LIKE</code></td> <td>Encontre padrões simples</td> </tr><tr><td><code>NOT LIKE</code></td> <td>Negação de correspondência de padrão simples</td> </tr><tr><td><code>STRCMP()</code></td> <td>Compare duas strings</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists string comparison functions and operators."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>LIKE</code></td> <td> Simple pattern matching </td> </tr><tr><td><code>NOT LIKE</code></td> <td> Negation of simple pattern matching </td> </tr><tr><td><code>STRCMP()</code></td> <td> Compare two strings </td> </tr></tbody></table>
 
-Se uma função de string receber uma string binária como argumento, a string resultante também será uma string binária. Um número convertido em string é tratado como uma string binária. Isso afeta apenas as comparações.
+If a string function is given a binary string as an argument, the resulting string is also a binary string. A number converted to a string is treated as a binary string. This affects only comparisons.
 
-Normalmente, se alguma expressão em uma comparação de strings for sensível ao caso, a comparação será realizada de forma sensível ao caso.
+Normally, if any expression in a string comparison is case-sensitive, the comparison is performed in case-sensitive fashion.
 
-Se uma função de string for invocada dentro do cliente **mysql**, as strings binárias são exibidas usando notação hexadecimal, dependendo do valor da opção `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O Cliente de Linha de Comando MySQL”.
+If a string function is invoked from within the **mysql** client, binary strings display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see Section 4.5.1, “mysql — The MySQL Command-Line Client”.
 
-- `expr LIKE pat [ESCAPE 'caractere_de_escape']`
+* `expr LIKE pat [ESCAPE 'escape_char']`
 
-  Contagem de padrões usando um padrão SQL. Retorna `1` (`TRUE`) ou `0` (`FALSE`). Se qualquer um de *`expr`* ou *`pat`* for `NULL`, o resultado será `NULL`.
+  Pattern matching using an SQL pattern. Returns `1` (`TRUE`) or `0` (`FALSE`). If either *`expr`* or *`pat`* is `NULL`, the result is `NULL`.
 
-  O padrão não precisa ser uma string literal. Por exemplo, ele pode ser especificado como uma expressão de string ou coluna de tabela. Neste último caso, a coluna deve ser definida como um dos tipos de dados de string do MySQL (consulte a Seção 11.3, “Tipos de Dados de String”).
+  The pattern need not be a literal string. For example, it can be specified as a string expression or table column. In the latter case, the column must be defined as one of the MySQL string types (see Section 11.3, “String Data Types”).
 
-  De acordo com o padrão SQL, `LIKE` realiza a comparação caracter a caractere, podendo, portanto, produzir resultados diferentes do operador de comparação `=`:
+  Per the SQL standard, `LIKE` performs matching on a per-character basis, thus it can produce results different from the `=` comparison operator:
 
   ```sql
   mysql> SELECT 'ä' LIKE 'ae' COLLATE latin1_german2_ci;
@@ -33,7 +33,7 @@ Se uma função de string for invocada dentro do cliente **mysql**, as strings b
   +--------------------------------------+
   ```
 
-  Em particular, os espaços em branco finais são significativos, o que não é verdade para comparações de strings não binárias (`CHAR`, `VARCHAR` e `TEXT` valores) realizadas com o operador `=`:
+  In particular, trailing spaces are significant, which is not true for comparisons of nonbinary strings (`CHAR`, `VARCHAR`, and `TEXT` values) performed with the `=` operator:
 
   ```sql
   mysql> SELECT 'a' = 'a ', 'a' LIKE 'a ';
@@ -45,11 +45,11 @@ Se uma função de string for invocada dentro do cliente **mysql**, as strings b
   1 row in set (0.00 sec)
   ```
 
-  Com `LIKE`, você pode usar os seguintes dois caracteres de caractere curinga no padrão:
+  With `LIKE` you can use the following two wildcard characters in the pattern:
 
-  - `%` corresponde a qualquer número de caracteres, mesmo zero caracteres.
+  + `%` matches any number of characters, even zero characters.
 
-  - `_` corresponde exatamente a um caractere.
+  + `_` matches exactly one character.
 
   ```sql
   mysql> SELECT 'David!' LIKE 'David_';
@@ -58,11 +58,11 @@ Se uma função de string for invocada dentro do cliente **mysql**, as strings b
           -> 1
   ```
 
-  Para testar instâncias literais de um caractere de comodinho, anteceda-o pelo caractere de escape. Se você não especificar o caractere `ESCAPE`, `\` é assumido, a menos que o modo SQL `NO_BACKSLASH_ESCAPES` esteja habilitado. Nesse caso, nenhum caractere de escape é usado.
+  To test for literal instances of a wildcard character, precede it by the escape character. If you do not specify the `ESCAPE` character, `\` is assumed, unless the `NO_BACKSLASH_ESCAPES` SQL mode is enabled. In that case, no escape character is used.
 
-  - `\%` corresponde a um caractere `%`.
+  + `\%` matches one `%` character.
 
-  - `_` corresponde a um caractere `_`.
+  + `_` matches one `_` character.
 
   ```sql
   mysql> SELECT 'David!' LIKE 'David_';
@@ -71,16 +71,16 @@ Se uma função de string for invocada dentro do cliente **mysql**, as strings b
           -> 1
   ```
 
-  Para especificar um caractere de escape diferente, use a cláusula `ESCAPE`:
+  To specify a different escape character, use the `ESCAPE` clause:
 
   ```sql
   mysql> SELECT 'David_' LIKE 'David|_' ESCAPE '|';
           -> 1
   ```
 
-  A sequência de escape deve ter uma única caractere para especificar o caractere de escape ou ser vazia para especificar que nenhum caractere de escape é usado. A expressão deve ser avaliada como uma constante no momento da execução. Se o modo SQL `NO_BACKSLASH_ESCAPES` estiver habilitado, a sequência não pode ser vazia.
+  The escape sequence should be one character long to specify the escape character, or empty to specify that no escape character is used. The expression must evaluate as a constant at execution time. If the `NO_BACKSLASH_ESCAPES` SQL mode is enabled, the sequence cannot be empty.
 
-  As seguintes declarações ilustram que as comparações de cadeias não são sensíveis ao caso, a menos que um dos operandos seja sensível ao caso (utilize uma ordenação sensível ao caso ou seja uma string binária):
+  The following statements illustrate that string comparisons are not case-sensitive unless one of the operands is case-sensitive (uses a case-sensitive collation or is a binary string):
 
   ```sql
   mysql> SELECT 'abc' LIKE 'ABC';
@@ -93,20 +93,20 @@ Se uma função de string for invocada dentro do cliente **mysql**, as strings b
           -> 0
   ```
 
-  Como uma extensão do SQL padrão, o MySQL permite o uso do operador `LIKE` em expressões numéricas.
+  As an extension to standard SQL, MySQL permits `LIKE` on numeric expressions.
 
   ```sql
   mysql> SELECT 10 LIKE '1%';
           -> 1
   ```
 
-  No caso de expressões que contenham tipos de dados que não sejam compatíveis, o MySQL tenta realizar uma conversão implícita da expressão para uma string. Consulte a Seção 12.3, “Conversão de Tipo na Avaliação da Expressão”.
+  MySQL attempts in such cases to perform implicit conversion of the expression to a string. See Section 12.3, “Type Conversion in Expression Evaluation”.
 
-  Nota
+  Note
 
-  O MySQL usa a sintaxe de escape C em strings (por exemplo, `\n` para representar o caractere de nova linha). Se você deseja que uma string `LIKE` contenha um `\`, você deve duplicá-lo. (A menos que o modo SQL `NO_BACKSLASH_ESCAPES` esteja habilitado, nesse caso, nenhum caractere de escape é usado.) Por exemplo, para buscar `\n`, especifique-o como `\\n`. Para buscar `\`, especifique-o como `\\\\`; isso ocorre porque os backslashes são removidos uma vez pelo analisador e novamente quando a correspondência do padrão é feita, deixando apenas uma barra invertida para ser correspondida.
+  MySQL uses C escape syntax in strings (for example, `\n` to represent the newline character). If you want a `LIKE` string to contain a literal `\`, you must double it. (Unless the `NO_BACKSLASH_ESCAPES` SQL mode is enabled, in which case no escape character is used.) For example, to search for `\n`, specify it as `\\n`. To search for `\`, specify it as `\\\\`; this is because the backslashes are stripped once by the parser and again when the pattern match is made, leaving a single backslash to be matched against.
 
-  Exceção: No final da string de padrão, o backslash pode ser especificado como `\\`. No final da string, o backslash representa a si mesmo porque não há nada a seguir para escapar. Suponha que uma tabela contenha os seguintes valores:
+  Exception: At the end of the pattern string, backslash can be specified as `\\`. At the end of the string, backslash stands for itself because there is nothing following to escape. Suppose that a table contains the following values:
 
   ```sql
   mysql> SELECT filename FROM t1;
@@ -120,7 +120,7 @@ Se uma função de string for invocada dentro do cliente **mysql**, as strings b
   +--------------+
   ```
 
-  Para testar valores que terminam com barra invertida, você pode corresponder os valores usando qualquer um dos seguintes padrões:
+  To test for values that end with backslash, you can match the values using either of the following patterns:
 
   ```sql
   mysql> SELECT filename, filename LIKE '%\\' FROM t1;
@@ -144,13 +144,13 @@ Se uma função de string for invocada dentro do cliente **mysql**, as strings b
   +--------------+-----------------------+
   ```
 
-- `expr NOT LIKE pat [ESCAPE 'caractere_de_escape']`
+* `expr NOT LIKE pat [ESCAPE 'escape_char']`
 
-  Isso é o mesmo que `NOT (expr LIKE pat [ESCAPE 'escape_char'])`.
+  This is the same as `NOT (expr LIKE pat [ESCAPE 'escape_char'])`.
 
-  Nota
+  Note
 
-  Consultas agregadas que envolvem comparações `NOT LIKE` com colunas que contêm `NULL` podem gerar resultados inesperados. Por exemplo, considere a tabela e os dados a seguir:
+  Aggregate queries involving `NOT LIKE` comparisons with columns containing `NULL` may yield unexpected results. For example, consider the following table and data:
 
   ```sql
   CREATE TABLE foo (bar VARCHAR(10));
@@ -158,15 +158,15 @@ Se uma função de string for invocada dentro do cliente **mysql**, as strings b
   INSERT INTO foo VALUES (NULL), (NULL);
   ```
 
-  A consulta `SELECT COUNT(*) FROM foo WHERE bar LIKE '%baz%';` retorna `0`. Você pode supor que `SELECT COUNT(*) FROM foo WHERE bar NOT LIKE '%baz%';` retornaria `2`. No entanto, isso não é o caso: a segunda consulta retorna `0`. Isso ocorre porque `NULL NOT LIKE expr` sempre retorna `NULL`, independentemente do valor de *`expr`*. O mesmo vale para consultas agregadas que envolvem `NULL` e comparações usando `NOT RLIKE` ou `NOT REGEXP`. Nesses casos, você deve testar explicitamente por `NOT NULL` usando `OR` (e não `AND`), como mostrado aqui:
+  The query `SELECT COUNT(*) FROM foo WHERE bar LIKE '%baz%';` returns `0`. You might assume that `SELECT COUNT(*) FROM foo WHERE bar NOT LIKE '%baz%';` would return `2`. However, this is not the case: The second query returns `0`. This is because `NULL NOT LIKE expr` always returns `NULL`, regardless of the value of *`expr`*. The same is true for aggregate queries involving `NULL` and comparisons using `NOT RLIKE` or `NOT REGEXP`. In such cases, you must test explicitly for `NOT NULL` using `OR` (and not `AND`), as shown here:
 
   ```sql
   SELECT COUNT(*) FROM foo WHERE bar NOT LIKE '%baz%' OR bar IS NULL;
   ```
 
-- `STRCMP(expr1, expr2)`
+* `STRCMP(expr1,expr2)`
 
-  `STRCMP()` retorna `0` se as cadeias forem iguais, `-1` se o primeiro argumento for menor que o segundo de acordo com a ordem de classificação atual e `1` caso contrário.
+  `STRCMP()` returns `0` if the strings are the same, `-1` if the first argument is smaller than the second according to the current sort order, and `1` otherwise.
 
   ```sql
   mysql> SELECT STRCMP('text', 'text2');
@@ -177,7 +177,7 @@ Se uma função de string for invocada dentro do cliente **mysql**, as strings b
           -> 0
   ```
 
-  `STRCMP()` realiza a comparação usando a ordenação dos argumentos.
+  `STRCMP()` performs the comparison using the collation of the arguments.
 
   ```sql
   mysql> SET @s1 = _latin1 'x' COLLATE latin1_general_ci;
@@ -192,7 +192,7 @@ Se uma função de string for invocada dentro do cliente **mysql**, as strings b
   +------------------+------------------+
   ```
 
-  Se as collation estiverem incompatíveis, um dos argumentos deve ser convertido para ser compatível com o outro. Veja a Seção 10.8.4, “Coercitividade da Collation em Expressões”.
+  If the collations are incompatible, one of the arguments must be converted to be compatible with the other. See Section 10.8.4, “Collation Coercibility in Expressions”.
 
   ```sql
   mysql> SELECT STRCMP(@s1, @s3);

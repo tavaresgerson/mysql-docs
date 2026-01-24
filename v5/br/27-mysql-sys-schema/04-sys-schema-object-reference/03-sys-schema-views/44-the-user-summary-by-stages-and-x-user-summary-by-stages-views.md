@@ -1,25 +1,25 @@
-#### 26.4.3.44 As visualizações user_summary_by_stages e x$user_summary_by_stages
+#### 26.4.3.44 The user_summary_by_stages and x$user_summary_by_stages Views
 
-Essas visualizações resumem as etapas, agrupadas por usuário. Por padrão, as linhas são ordenadas por usuário e pela latência total da etapa em ordem decrescente.
+These views summarize stages, grouped by user. By default, rows are sorted by user and descending total stage latency.
 
-As views `user_summary_by_stages` e `x$user_summary_by_stages` possuem essas colunas:
+The `user_summary_by_stages` and `x$user_summary_by_stages` views have these columns:
 
-- `usuário`
+* `user`
 
-  O nome de usuário do cliente. As linhas para as quais a coluna `USER` na tabela subjacente do Schema de Desempenho é `NULL` são assumidas como pertencentes a threads de segundo plano e são relatadas com o nome do host `background`.
+  The client user name. Rows for which the `USER` column in the underlying Performance Schema table is `NULL` are assumed to be for background threads and are reported with a host name of `background`.
 
-- `nome_do_evento`
+* `event_name`
 
-  O nome do evento em palco.
+  The stage event name.
 
-- `total`
+* `total`
 
-  O número total de ocorrências do evento de estágio para o usuário.
+  The total number of occurrences of the stage event for the user.
 
-- `total_latency`
+* `total_latency`
 
-  O tempo total de espera de eventos cronometrados do evento em andamento para o usuário.
+  The total wait time of timed occurrences of the stage event for the user.
 
-- `avg_latency`
+* `avg_latency`
 
-  O tempo médio de espera por ocorrência cronometrada do evento em fase para o usuário.
+  The average wait time per timed occurrence of the stage event for the user.

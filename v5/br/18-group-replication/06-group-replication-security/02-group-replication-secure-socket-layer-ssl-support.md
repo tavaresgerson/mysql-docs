@@ -1,12 +1,12 @@
-### 17.6.2 Suporte à Replicação em Grupo com Secure Socket Layer (SSL)
+### 17.6.2 Group Replication Secure Socket Layer (SSL) Support
 
-As conexões de comunicação em grupo, bem como as conexões de recuperação, são protegidas usando SSL. As seções a seguir explicam como configurar as conexões.
+Group communication connections as well as recovery connections, are secured using SSL. The following sections explain how to configure connections.
 
-#### Configurando SSL para Recuperação de Replicação de Grupo
+#### Configuring SSL for Group Replication Recovery
 
-A recuperação é realizada por meio de uma conexão de replicação assíncrona regular. Uma vez que o doador é selecionado, o servidor que está se juntando ao grupo estabelece uma conexão de replicação assíncrona. Tudo isso é automático.
+Recovery is performed through a regular asynchronous replication connection. Once the donor is selected, the server joining the group establishes an asynchronous replication connection. This is all automatic.
 
-No entanto, um usuário que exige uma conexão SSL deve ter sido criado antes de o servidor que se junta ao grupo se conectar ao doador. Normalmente, isso é configurado quando um servidor é provisionado para se juntar ao grupo.
+However, a user that requires an SSL connection must have been created before the server joining the group connects to the donor. Typically, this is set up at the time one is provisioning a server to join the group.
 
 ```sql
 donor> SET SQL_LOG_BIN=0;
@@ -15,7 +15,7 @@ donor> GRANT replication slave ON *.* TO 'rec_ssl_user'@'%';
 donor> SET SQL_LOG_BIN=1;
 ```
 
-Supondo que todos os servidores já no grupo tenham um conjunto de usuários de replicação configurado para usar SSL, você configura o servidor que está se juntando ao grupo para usar essas credenciais ao se conectar ao doador. Isso é feito de acordo com os valores das opções SSL fornecidas para o plugin de replicação de grupo.
+Assuming that all servers already in the group have a replication user set up to use SSL, you configure the server joining the group to use those credentials when connecting to the donor. That is done according to the values of the SSL options provided for the Group Replication plugin.
 
 ```sql
 new_member> SET GLOBAL group_replication_recovery_use_ssl=1;
@@ -24,31 +24,31 @@ new_member> SET GLOBAL group_replication_recovery_ssl_cert= '.../client-cert.pem
 new_member> SET GLOBAL group_replication_recovery_ssl_key= '.../client-key.pem';
 ```
 
-E, ao configurar o canal de recuperação para usar as credenciais do usuário que requer uma conexão SSL.
+And by configuring the recovery channel to use the credentials of the user that requires an SSL connection.
 
 ```sql
 new_member> CHANGE MASTER TO MASTER_USER="rec_ssl_user" FOR CHANNEL "group_replication_recovery";
 new_member> START GROUP_REPLICATION;
 ```
 
-#### Configurando SSL para comunicação em grupo
+#### Configuring SSL for Group Communication
 
-Ferramentas de conexões seguras podem ser usadas para estabelecer comunicação entre os membros de um grupo. A configuração para isso depende da configuração SSL do servidor. Assim, se o servidor tiver SSL configurado, o plugin de Replicação de Grupo também terá SSL configurado. Para mais informações sobre as opções de configuração do SSL do servidor, consulte [Opções de Comando para Conexões Encriptadas](connection-options.html#encrypted-connection-options). As opções que configuram a Replicação de Grupo estão mostradas na tabela a seguir.
+Secure sockets can be used to establish communication between members in a group. The configuration for this depends on the server's SSL configuration. As such, if the server has SSL configured, the Group Replication plugin also has SSL configured. For more information on the options for configuring the server SSL, see [Command Options for Encrypted Connections](connection-options.html#encrypted-connection-options "Command Options for Encrypted Connections"). The options which configure Group Replication are shown in the following table.
 
-**Tabela 17.2 Opções SSL**
+**Table 17.2 SSL Options**
 
-<table summary="Lista as opções de configuração do servidor para SSL e descreve seu efeito na configuração do plugin de replicação de grupo para SSL."><col style="width: 43%"/><col style="width: 57%"/><thead><tr> <th><p>Configuração do servidor</p></th> <th><p>Descrição da Configuração do Plugin</p></th> </tr></thead><tbody><tr> <td><p>ssl_key</p></td> <td><p>Caminho do arquivo de chave. Para ser usado como certificado do cliente e do servidor.</p></td> </tr><tr> <td><p>ssl_cert</p></td> <td><p>Caminho do arquivo de certificado. Para ser usado como certificado de cliente e servidor.</p></td> </tr><tr> <td><p>ssl_ca</p></td> <td><p>Caminho do arquivo com as Autoridades de Certificação SSL que são confiáveis.</p></td> </tr><tr> <td><p>ssl_capath</p></td> <td><p>Caminho do diretório que contém certificados para Autoridades de Certificação SSL que são confiáveis.</p></td> </tr><tr> <td><p>ssl_crl</p></td> <td><p>Caminho do arquivo que contém as listas de revogação de certificados.</p></td> </tr><tr> <td><p>ssl_crlpath</p></td> <td><p>Caminho do diretório que contém listas de certificados revogados.</p></td> </tr><tr> <td><p>ssl_cipher</p></td> <td><p>Cifras permitidas para uso durante a criptografia de dados na conexão.</p></td> </tr><tr> <td><p>tls_version</p></td> <td><p>A comunicação segura utiliza esta versão e seus protocolos.</p></td> </tr></tbody></table>
+<table summary="Lists the server configuration options for SSL and describes their effect on the configuration of the Group Replication plugin for SSL."><col style="width: 43%"/><col style="width: 57%"/><thead><tr> <th><p> Server Configuration </p></th> <th><p> Plugin Configuration Description </p></th> </tr></thead><tbody><tr> <td><p> ssl_key </p></td> <td><p> Path of key file. To be used as client and server certificate. </p></td> </tr><tr> <td><p> ssl_cert </p></td> <td><p> Path of certificate file. To be used as client and server certificate. </p></td> </tr><tr> <td><p> ssl_ca </p></td> <td><p> Path of file with SSL Certificate Authorities that are trusted. </p></td> </tr><tr> <td><p> ssl_capath </p></td> <td><p> Path of directory containing certificates for SSL Certificate Authorities that are trusted. </p></td> </tr><tr> <td><p> ssl_crl </p></td> <td><p> Path of file containing the certificate revocation lists. </p></td> </tr><tr> <td><p> ssl_crlpath </p></td> <td><p> Path of directory containing revoked certificate lists. </p></td> </tr><tr> <td><p> ssl_cipher </p></td> <td><p> Permitted ciphers to use while encrypting data over the connection. </p></td> </tr><tr> <td><p> tls_version </p></td> <td><p> Secure communication uses this version and its protocols. </p></td> </tr></tbody></table>
 
-Essas opções são configurações do MySQL Server, nas quais a Replicação em Grupo se baseia para sua configuração. Além disso, há a seguinte opção específica da Replicação em Grupo para configurar o SSL no próprio plugin.
+These options are MySQL Server configuration options which Group Replication relies on for its configuration. In addition there is the following Group Replication specific option to configure SSL on the plugin itself.
 
-- [`grupo_replication_ssl_mode`](group-replication-system-variables.html#sysvar_grupo_replication_ssl_mode)
-  - especifica o estado de segurança da conexão entre os membros da replicação em grupo.
+* [`group_replication_ssl_mode`](group-replication-system-variables.html#sysvar_group_replication_ssl_mode)
+  - specifies the security state of the connection between Group Replication members.
 
-**Tabela 17.3 valores de configuração do modo grupo_replication_ssl**
+**Table 17.3 group_replication_ssl_mode configuration values**
 
-<table summary="Lista os possíveis valores para o grupo_replication_ssl_mode e descreve seu efeito sobre a forma como os membros do grupo de replicação se conectam entre si."><col style="width: 43%"/><col style="width: 57%"/><thead><tr> <th><p>Valor</p></th> <th><p>Descrição</p></th> </tr></thead><tbody><tr> <td><p> <span><em>INÁBIL</em></span> </p></td> <td><p>Estabeleça uma conexão não criptografada (<span><em>padrão</em></span>).</p></td> </tr><tr> <td><p>REQUERIDO</p></td> <td><p>Estabeleça uma conexão segura, se o servidor suportar conexões seguras.</p></td> </tr><tr> <td><p>VERIFICAR_CA</p></td> <td><p>Como REQUERIDO, mas, adicionalmente, verifique o certificado TLS do servidor contra os certificados da Autoridade de Certificação (CA) configurados.</p></td> </tr><tr> <td><p>VERIFICAR_IDENTIDADE</p></td> <td><p>Como VERIFY_CA, mas, além disso, verifique se o certificado do servidor corresponde ao hospedeiro ao qual a conexão é tentada.</p></td> </tr></tbody></table>
+<table summary="Lists the possible values for group_replication_ssl_mode and describes their effect on how replication group members connect to each other."><col style="width: 43%"/><col style="width: 57%"/><thead><tr> <th><p> Value </p></th> <th><p> Description </p></th> </tr></thead><tbody><tr> <td><p> <span><em>DISABLED</em></span> </p></td> <td><p> Establish an unencrypted connection (<span><em>default</em></span>). </p></td> </tr><tr> <td><p> REQUIRED </p></td> <td><p> Establish a secure connection if the server supports secure connections. </p></td> </tr><tr> <td><p> VERIFY_CA </p></td> <td><p> Like REQUIRED, but additionally verify the server TLS certificate against the configured Certificate Authority (CA) certificates. </p></td> </tr><tr> <td><p> VERIFY_IDENTITY </p></td> <td><p> Like VERIFY_CA, but additionally verify that the server certificate matches the host to which the connection is attempted. </p></td> </tr></tbody></table>
 
-O exemplo a seguir mostra uma seção do arquivo my.cnf usada para configurar o SSL em um servidor e como ativá-lo para a Replicação por Grupo.
+The following example shows an example my.cnf file section used to configure SSL on a server and how activate it for Group Replication.
 
 ```sql
 [mysqld]
@@ -62,4 +62,4 @@ ssl_key = "server-key.pem"
 group_replication_ssl_mode= REQUIRED
 ```
 
-A única opção de configuração específica do plugin que está listada é [`group_replication_ssl_mode`](group-replication-system-variables.html#sysvar_group_replication_ssl_mode). Esta opção ativa a comunicação SSL entre os membros do grupo, configurando o framework SSL com os parâmetros `ssl_*` fornecidos ao servidor.
+The only plugin specific configuration option that is listed is [`group_replication_ssl_mode`](group-replication-system-variables.html#sysvar_group_replication_ssl_mode). This option activates the SSL communication between members of the group, by configuring the SSL framework with the `ssl_*` parameters that are provided to the server.

@@ -1,4 +1,4 @@
-#### 13.6.5.1 Declaração CASE
+#### 13.6.5.1 CASE Statement
 
 ```sql
 CASE case_value
@@ -8,7 +8,7 @@ CASE case_value
 END CASE
 ```
 
-Ou:
+Or:
 
 ```sql
 CASE
@@ -18,23 +18,23 @@ CASE
 END CASE
 ```
 
-A instrução `CASE` para programas armazenados implementa uma construção condicional complexa.
+The [`CASE`](case.html "13.6.5.1 CASE Statement") statement for stored programs implements a complex conditional construct.
 
-Nota
+Note
 
-Existe também um operador *CASE* (funções de controle de fluxo.html#operador_case\*), que difere da declaração *CASE* (case.html) descrita aqui. Veja Seção 12.5, “Funções de Controle de Fluxo”. A declaração *CASE* (case.html) não pode ter uma cláusula *ELSE NULL* e é encerrada com *END CASE* em vez de *END*.
+There is also a [`CASE`](flow-control-functions.html#operator_case) *operator*, which differs from the [`CASE`](case.html "13.6.5.1 CASE Statement") *statement* described here. See [Section 12.5, “Flow Control Functions”](flow-control-functions.html "12.5 Flow Control Functions"). The [`CASE`](case.html "13.6.5.1 CASE Statement") statement cannot have an `ELSE NULL` clause, and it is terminated with `END CASE` instead of `END`.
 
-Para a primeira sintaxe, *`case_value`* é uma expressão. Esse valor é comparado com a expressão *`when_value`* em cada cláusula `WHEN` até que uma delas seja igual. Quando uma *`when_value`* igual é encontrada, a cláusula `THEN` correspondente *`statement_list`* é executada. Se nenhuma *`when_value`* for igual, a cláusula `ELSE` *`statement_list`* é executada, se houver uma.
+For the first syntax, *`case_value`* is an expression. This value is compared to the *`when_value`* expression in each `WHEN` clause until one of them is equal. When an equal *`when_value`* is found, the corresponding `THEN` clause *`statement_list`* executes. If no *`when_value`* is equal, the `ELSE` clause *`statement_list`* executes, if there is one.
 
-Essa sintaxe não pode ser usada para testar a igualdade com `NULL`, porque `NULL = NULL` é falso. Veja Seção 3.3.4.6, “Trabalhando com Valores NULL”.
+This syntax cannot be used to test for equality with `NULL` because `NULL = NULL` is false. See [Section 3.3.4.6, “Working with NULL Values”](working-with-null.html "3.3.4.6 Working with NULL Values").
 
-Para a segunda sintaxe, cada expressão da cláusula `WHEN *` `search_condition`\* é avaliada até que uma seja verdadeira, momento em que sua cláusula correspondente `THEN *` `statement_list`\* é executada. Se nenhuma *`search_condition`* for igual, a cláusula `ELSE *` `statement_list`\* é executada, se houver uma.
+For the second syntax, each `WHEN` clause *`search_condition`* expression is evaluated until one is true, at which point its corresponding `THEN` clause *`statement_list`* executes. If no *`search_condition`* is equal, the `ELSE` clause *`statement_list`* executes, if there is one.
 
-Se nenhum valor de *`when_value`* ou *`search_condition`* corresponder ao valor testado e a instrução `CASE` (case.html) não contiver nenhuma cláusula `ELSE`, será gerado um erro de não encontrar o caso para a instrução `CASE`.
+If no *`when_value`* or *`search_condition`* matches the value tested and the [`CASE`](case.html "13.6.5.1 CASE Statement") statement contains no `ELSE` clause, a Case not found for CASE statement error results.
 
-Cada *`statement_list`* consiste em uma ou mais instruções SQL; uma *`statement_list`* vazia não é permitida.
+Each *`statement_list`* consists of one or more SQL statements; an empty *`statement_list`* is not permitted.
 
-Para lidar com situações em que nenhum valor é correspondido por nenhuma cláusula `WHEN`, use um `ELSE` contendo um bloco vazio de `[BEGIN ... END]` (begin-end.html), como mostrado neste exemplo. (A indentação usada aqui na cláusula `ELSE` é apenas para fins de clareza e não tem importância adicional.)
+To handle situations where no value is matched by any `WHEN` clause, use an `ELSE` containing an empty [`BEGIN ... END`](begin-end.html "13.6.1 BEGIN ... END Compound Statement") block, as shown in this example. (The indentation used here in the `ELSE` clause is for purposes of clarity only, and is not otherwise significant.)
 
 ```sql
 DELIMITER |

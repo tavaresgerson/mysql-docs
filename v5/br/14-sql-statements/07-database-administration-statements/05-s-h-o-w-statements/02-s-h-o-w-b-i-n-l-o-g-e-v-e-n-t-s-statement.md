@@ -1,4 +1,4 @@
-#### 13.7.5.2. Mostrar eventos do BINLOG Statement
+#### 13.7.5.2 SHOW BINLOG EVENTS Statement
 
 ```sql
 SHOW BINLOG EVENTS
@@ -7,44 +7,44 @@ SHOW BINLOG EVENTS
    [LIMIT [offset,] row_count]
 ```
 
-Mostra os eventos no log binário. Se você não especificar `'log_name'`, o primeiro log binário será exibido. `SHOW BINLOG EVENTS` requer o privilégio `REPLICATION SLAVE`.
+Shows the events in the binary log. If you do not specify `'log_name'`, the first binary log is displayed. [`SHOW BINLOG EVENTS`](show-binlog-events.html "13.7.5.2 SHOW BINLOG EVENTS Statement") requires the [`REPLICATION SLAVE`](privileges-provided.html#priv_replication-slave) privilege.
 
-A cláusula `LIMIT` tem a mesma sintaxe que a cláusula `SELECT`. Consulte Seção 13.2.9, “Instrução SELECT”.
+The `LIMIT` clause has the same syntax as for the [`SELECT`](select.html "13.2.9 SELECT Statement") statement. See [Section 13.2.9, “SELECT Statement”](select.html "13.2.9 SELECT Statement").
 
-Nota
+Note
 
-Emitir um `SHOW BINLOG EVENTS` sem a cláusula `LIMIT` pode iniciar um processo que consome muito tempo e recursos, pois o servidor retorna ao cliente o conteúdo completo do log binário (que inclui todas as instruções executadas pelo servidor que modificam dados). Como alternativa ao `SHOW BINLOG EVENTS`, use o **mysqlbinlog** para salvar o log binário em um arquivo de texto para exame e análise posteriores. Veja Seção 4.6.7, “mysqlbinlog — Ferramenta para Processamento de Arquivos de Log Binário”.
+Issuing a [`SHOW BINLOG EVENTS`](show-binlog-events.html "13.7.5.2 SHOW BINLOG EVENTS Statement") with no `LIMIT` clause could start a very time- and resource-consuming process because the server returns to the client the complete contents of the binary log (which includes all statements executed by the server that modify data). As an alternative to [`SHOW BINLOG EVENTS`](show-binlog-events.html "13.7.5.2 SHOW BINLOG EVENTS Statement"), use the [**mysqlbinlog**](mysqlbinlog.html "4.6.7 mysqlbinlog — Utility for Processing Binary Log Files") utility to save the binary log to a text file for later examination and analysis. See [Section 4.6.7, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "4.6.7 mysqlbinlog — Utility for Processing Binary Log Files").
 
-`SHOW BINLOG EVENTS` exibe os seguintes campos para cada evento no log binário:
+[`SHOW BINLOG EVENTS`](show-binlog-events.html "13.7.5.2 SHOW BINLOG EVENTS Statement") displays the following fields for each event in the binary log:
 
-- `Log_name`
+* `Log_name`
 
-  O nome do arquivo que está sendo listado.
+  The name of the file that is being listed.
 
-- `Pos`
+* `Pos`
 
-  A posição em que o evento ocorre.
+  The position at which the event occurs.
 
-- `Tipo de evento`
+* `Event_type`
 
-  Um identificador que descreve o tipo de evento.
+  An identifier that describes the event type.
 
-- `Server_id`
+* `Server_id`
 
-  O ID do servidor do servidor em que o evento se originou.
+  The server ID of the server on which the event originated.
 
-- `End_log_pos`
+* `End_log_pos`
 
-  A posição em que o próximo evento começa, que é igual a `Pos` mais o tamanho do evento.
+  The position at which the next event begins, which is equal to `Pos` plus the size of the event.
 
-- `Info`
+* `Info`
 
-  Informações mais detalhadas sobre o tipo de evento. O formato dessas informações depende do tipo de evento.
+  More detailed information about the event type. The format of this information depends on the event type.
 
-Nota
+Note
 
-Alguns eventos relacionados à definição de variáveis de usuário e sistema não estão incluídos na saída do `SHOW BINLOG EVENTS`. Para obter uma cobertura completa dos eventos dentro de um log binário, use **mysqlbinlog**.
+Some events relating to the setting of user and system variables are not included in the output from [`SHOW BINLOG EVENTS`](show-binlog-events.html "13.7.5.2 SHOW BINLOG EVENTS Statement"). To get complete coverage of events within a binary log, use [**mysqlbinlog**](mysqlbinlog.html "4.6.7 mysqlbinlog — Utility for Processing Binary Log Files").
 
-Nota
+Note
 
-O comando `SHOW BINLOG EVENTS` *não* funciona com arquivos de log de retransmissão. Você pode usar o comando `SHOW RELAYLOG EVENTS` para esse propósito.
+[`SHOW BINLOG EVENTS`](show-binlog-events.html "13.7.5.2 SHOW BINLOG EVENTS Statement") does *not* work with relay log files. You can use [`SHOW RELAYLOG EVENTS`](show-relaylog-events.html "13.7.5.32 SHOW RELAYLOG EVENTS Statement") for this purpose.

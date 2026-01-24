@@ -1,60 +1,60 @@
-### 24.3.12 A tabela INFORMATION_SCHEMA KEY_COLUMN_USAGE
+### 24.3.12 The INFORMATION_SCHEMA KEY_COLUMN_USAGE Table
 
-A tabela `[KEY_COLUMN_USAGE]` (information-schema-key-column-usage-table.html) descreve quais colunas-chave têm restrições.
+The [`KEY_COLUMN_USAGE`](information-schema-key-column-usage-table.html "24.3.12 The INFORMATION_SCHEMA KEY_COLUMN_USAGE Table") table describes which key columns have constraints.
 
-A tabela [`KEY_COLUMN_USAGE`](https://pt.wikipedia.org/wiki/KEY_COLUMN_USAGE) tem as seguintes colunas:
+The [`KEY_COLUMN_USAGE`](information-schema-key-column-usage-table.html "24.3.12 The INFORMATION_SCHEMA KEY_COLUMN_USAGE Table") table has these columns:
 
-- `CONSTRAINT_CATALOG`
+* `CONSTRAINT_CATALOG`
 
-  O nome do catálogo ao qual a restrição pertence. Esse valor é sempre `def`.
+  The name of the catalog to which the constraint belongs. This value is always `def`.
 
-- `CONSTRAINT_SCHEMA`
+* `CONSTRAINT_SCHEMA`
 
-  O nome do esquema (banco de dados) ao qual a restrição pertence.
+  The name of the schema (database) to which the constraint belongs.
 
-- `CONSTRAINT_NAME`
+* `CONSTRAINT_NAME`
 
-  O nome da restrição.
+  The name of the constraint.
 
-- `TABLE_CATALOG`
+* `TABLE_CATALOG`
 
-  O nome do catálogo ao qual a tabela pertence. Esse valor é sempre `def`.
+  The name of the catalog to which the table belongs. This value is always `def`.
 
-- `TABLE_SCHEMA`
+* `TABLE_SCHEMA`
 
-  O nome do esquema (banco de dados) ao qual a tabela pertence.
+  The name of the schema (database) to which the table belongs.
 
-- `NOME_TABELA`
+* `TABLE_NAME`
 
-  O nome da tabela que possui a restrição.
+  The name of the table that has the constraint.
 
-- `NOME_COLUNA`
+* `COLUMN_NAME`
 
-  O nome da coluna que possui a restrição.
+  The name of the column that has the constraint.
 
-  Se a restrição for uma chave estrangeira, então esta é a coluna da chave estrangeira, e não a coluna que a chave estrangeira referencia.
+  If the constraint is a foreign key, then this is the column of the foreign key, not the column that the foreign key references.
 
-- `ORDINAL_POSITION`
+* `ORDINAL_POSITION`
 
-  A posição da coluna dentro da restrição, e não a posição da coluna dentro da tabela. As posições das colunas são numeradas a partir do número 1.
+  The column's position within the constraint, not the column's position within the table. Column positions are numbered beginning with 1.
 
-- `POSIÇÃO_EM_CONSTRAÇÃO_ÚNICA`
+* `POSITION_IN_UNIQUE_CONSTRAINT`
 
-  `NULL` para restrições de chave primária e únicas. Para restrições de chave estrangeira, esta coluna é a posição ordinal na chave da tabela que está sendo referenciada.
+  `NULL` for unique and primary-key constraints. For foreign-key constraints, this column is the ordinal position in key of the table that is being referenced.
 
-- `REFERENCED_TABLE_SCHEMA`
+* `REFERENCED_TABLE_SCHEMA`
 
-  O nome do esquema (banco de dados) referenciado pela restrição.
+  The name of the schema (database) referenced by the constraint.
 
-- `REFERENCIADA_NOME_TABELA`
+* `REFERENCED_TABLE_NAME`
 
-  O nome da tabela referenciada pela restrição.
+  The name of the table referenced by the constraint.
 
-- `REFERENCIADO_NOME_COLUNA`
+* `REFERENCED_COLUMN_NAME`
 
-  O nome da coluna referenciada pela restrição.
+  The name of the column referenced by the constraint.
 
-Suponha que existam duas tabelas chamadas `t1` e `t3` que têm as seguintes definições:
+Suppose that there are two tables name `t1` and `t3` that have the following definitions:
 
 ```sql
 CREATE TABLE t1
@@ -75,8 +75,8 @@ CREATE TABLE t3
 ) ENGINE=InnoDB;
 ```
 
-Para essas duas tabelas, a tabela `KEY_COLUMN_USAGE` tem duas linhas:
+For those two tables, the [`KEY_COLUMN_USAGE`](information-schema-key-column-usage-table.html "24.3.12 The INFORMATION_SCHEMA KEY_COLUMN_USAGE Table") table has two rows:
 
-- Uma linha com `CONSTRAINT_NAME` = `'PRIMARY'`, `TABLE_NAME` = `'t1'`, `COLUMN_NAME` = `'s3'`, `ORDINAL_POSITION` = `1`, `POSITION_IN_UNIQUE_CONSTRAINT` = `NULL`.
+* One row with `CONSTRAINT_NAME` = `'PRIMARY'`, `TABLE_NAME` = `'t1'`, `COLUMN_NAME` = `'s3'`, `ORDINAL_POSITION` = `1`, `POSITION_IN_UNIQUE_CONSTRAINT` = `NULL`.
 
-- Uma linha com `CONSTRAINT_NAME` = `'CO'`, `TABLE_NAME` = `'t3'`, `COLUMN_NAME` = `'s2'`, `ORDINAL_POSITION` = `1`, `POSITION_IN_UNIQUE_CONSTRAINT` = `1`.
+* One row with `CONSTRAINT_NAME` = `'CO'`, `TABLE_NAME` = `'t3'`, `COLUMN_NAME` = `'s2'`, `ORDINAL_POSITION` = `1`, `POSITION_IN_UNIQUE_CONSTRAINT` = `1`.

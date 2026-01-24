@@ -1,166 +1,166 @@
-#### 21.2.4.2 O que há de novo no NDB Cluster 7.6
+#### 21.2.4.2 What is New in NDB Cluster 7.6
 
-Novas funcionalidades e outras mudanças importantes no NDB Cluster 7.6 que provavelmente serão de interesse estão listadas a seguir:
+New features and other important changes in NDB Cluster 7.6 which are likely to be of interest are shown in the following list:
 
-- **Novo formato de arquivo de tabela de Dados de disco.** Um novo formato de arquivo é usado no NDB 7.6 para tabelas de Dados de disco, o que permite que cada tabela de Dados de disco seja identificada de forma única sem reutilizar quaisquer IDs de tabela. Isso deve ajudar a resolver problemas com o gerenciamento de páginas e extensões que eram visíveis para o usuário como problemas com a criação e remoção rápidas de tabelas de Dados de disco, e para os quais o formato antigo não fornecia uma maneira pronta de corrigir.
+* **New Disk Data table file format.** A new file format is used in NDB 7.6 for NDB Disk Data tables, which makes it possible for each Disk Data table to be uniquely identified without reusing any table IDs. This should help resolve issues with page and extent handling that were visible to the user as problems with rapid creating and dropping of Disk Data tables, and for which the old format did not provide a ready means to fix.
 
-  O novo formato é agora usado sempre que novos grupos de arquivos de registro de desfazer e arquivos de dados de espaço de disco são criados. Os arquivos relacionados aos espaços de disco e aos arquivos de registro de desfazer das tabelas existentes continuam a usar o formato antigo até que seus espaços de disco e grupos de arquivos de registro de desfazer sejam recriados.
+  The new format is now used whenever new undo log file groups and tablespace data files are created. Files relating to existing Disk Data tables continue to use the old format until their tablespaces and undo log file groups are re-created.
 
-  Importante
+  Important
 
-  Os formatos antigo e novo não são compatíveis; arquivos de dados diferentes ou arquivos de registro de desfazer que são usados pela mesma tabela ou espaço de dados do disco não podem usar uma mistura de formatos.
+  The old and new formats are not compatible; different data files or undo log files that are used by the same Disk Data table or tablespace cannot use a mix of formats.
 
-  Para evitar problemas relacionados às mudanças no formato, você deve recriar quaisquer espaços de tabela existentes e desfazer grupos de arquivos de log quando atualizar para o NDB 7.6. Você pode fazer isso realizando um reinício inicial de cada nó de dados (ou seja, usando a opção `--initial` como parte do processo de atualização). Você pode esperar que essa etapa seja torna obrigatória como parte da atualização de NDB 7.5 ou uma série de versões anteriores para NDB 7.6 ou versões posteriores.
+  To avoid problems relating to the changes in format, you should re-create any existing tablespaces and undo log file groups when upgrading to NDB 7.6. You can do this by performing an initial restart of each data node (that is, using the [`--initial`](mysql-cluster-programs-ndbd.html#option_ndbd_initial) option) as part of the upgrade process. You can expect this step to be made mandatory as part of upgrading from NDB 7.5 or an earlier release series to NDB 7.6 or later.
 
-  Se você estiver usando tabelas de Dados de disco, uma atualização para qualquer versão do NDB 7.6 — independentemente do status da versão — requer que você reinicie todos os nós de dados com `--initial` como parte do processo de atualização. Isso ocorre porque as séries de versões do NDB 7.5 e anteriores não conseguem ler o novo formato de arquivo de Dados de disco.
+  If you are using Disk Data tables, a downgrade from *any* NDB 7.6 release—without regard to release status—to any NDB 7.5 or earlier release requires that you restart all data nodes with [`--initial`](mysql-cluster-programs-ndbd.html#option_ndbd_initial) as part of the downgrade process. This is because NDB 7.5 and earlier release series are not able to read the new Disk Data file format.
 
-  Para obter mais informações, consulte Seção 21.3.7, “Atualização e Downgrade do NDB Cluster”.
+  For more information, see [Section 21.3.7, “Upgrading and Downgrading NDB Cluster”](mysql-cluster-upgrade-downgrade.html "21.3.7 Upgrading and Downgrading NDB Cluster").
 
-- **Pool de memória de dados e memória de índice dinâmica.** A memória necessária para os índices nas colunas da tabela `NDB` agora é alocada dinamicamente a partir da alocada para `DataMemory`. Por essa razão, o parâmetro de configuração `IndexMemory` é agora desatualizado e está sujeito à remoção em uma futura série de lançamentos.
+* **Data memory pooling and dynamic index memory.** Memory required for indexes on `NDB` table columns is now allocated dynamically from that allocated for [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory). For this reason, the [`IndexMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexmemory) configuration parameter is now deprecated, and subject to removal in a future release series.
 
-  Importante
+  Important
 
-  No NDB 7.6, se o `IndexMemory` estiver definido no arquivo `config.ini`, o servidor de gerenciamento emite o aviso "IndexMemory é desatualizado; use o número de bytes em cada nó ndbd(DB) alocado para armazenar índices em vez disso na inicialização" e qualquer memória atribuída a este parâmetro é automaticamente adicionada ao `DataMemory`.
+  In NDB 7.6, if `IndexMemory` is set in the `config.ini` file, the management server issues the warning IndexMemory is deprecated, use Number bytes on each ndbd(DB) node allocated for storing indexes instead on startup, and any memory assigned to this parameter is automatically added to `DataMemory`.
 
-  Além disso, o valor padrão para `DataMemory` foi aumentado para 98M; o padrão para `IndexMemory` foi reduzido para 0.
+  In addition, the default value for `DataMemory` has been increased to 98M; the default for `IndexMemory` has been decreased to 0.
 
-  A combinação da memória de índice com a memória de dados simplifica a configuração do `NDB`; um benefício adicional dessas mudanças é que a expansão aumentando o número de threads do LDM não é mais limitada por ter definido um valor insuficientemente grande para `IndexMemory`. Isso ocorre porque a memória de índice não é mais uma quantidade estática que é alocada apenas uma vez (quando o clúster começa), mas agora pode ser alocada e realocada conforme necessário. Anteriormente, às vezes acontecia que aumentar o número de threads do LDM poderia levar ao esgotamento da memória de índice enquanto grandes quantidades de `DataMemory` permaneciam disponíveis.
+  The pooling together of index memory with data memory simplifies the configuration of `NDB`; a further benefit of these changes is that scaling up by increasing the number of LDM threads is no longer limited by having set an insufficiently large value for `IndexMemory`.This is because index memory is no longer a static quantity which is allocated only once (when the cluster starts), but can now be allocated and deallocated as required. Previously, it was sometimes the case that increasing the number of LDM threads could lead to index memory exhaustion while large amounts of `DataMemory` remained available.
 
-  Como parte desse trabalho, vários casos de uso de `DataMemory` que não estavam diretamente relacionados ao armazenamento de dados de tabelas agora usam a memória de transação.
+  As part of this work, a number of instances of [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory) usage not directly related to storage of table data now use transaction memory instead.
 
-  Por essa razão, em alguns sistemas, pode ser necessário aumentar `SharedGlobalMemory` para permitir que a memória de transação aumente quando necessário, como ao usar a Replicação em NDB Cluster, que requer uma grande quantidade de buffer nos nós de dados. Em sistemas que realizam cargas iniciais em massa de dados, pode ser necessário dividir transações muito grandes em partes menores.
+  For this reason, it may be necessary on some systems to increase [`SharedGlobalMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-sharedglobalmemory) to allow transaction memory to increase when needed, such as when using NDB Cluster Replication, which requires a great deal of buffering on the data nodes. On systems performing initial bulk loads of data, it may be necessary to break up very large transactions into smaller parts.
 
-  Além disso, os nós de dados agora geram eventos de `MemoryUsage` (veja Seção 21.6.3.2, “Eventos de Log do NDB Cluster”) e escrevem mensagens apropriadas no log do cluster quando o uso de recursos atinge 99%, assim como quando atinge 80%, 90% ou 100%, como antes.
+  In addition, data nodes now generate `MemoryUsage` events (see [Section 21.6.3.2, “NDB Cluster Log Events”](mysql-cluster-log-events.html "21.6.3.2 NDB Cluster Log Events")) and write appropriate messages in the cluster log when resource usage reaches 99%, as well as when it reaches 80%, 90%, or 100%, as before.
 
-  Outras alterações relacionadas estão listadas aqui:
+  Other related changes are listed here:
 
-  - `IndexMemory` não está mais entre os valores exibidos na coluna `memory_type` da tabela `ndbinfo.memoryusage`; também não está mais exibido na saída do **ndb_config**.
+  + `IndexMemory` is no longer one of the values displayed in the [`ndbinfo.memoryusage`](mysql-cluster-ndbinfo-memoryusage.html "21.6.15.26 The ndbinfo memoryusage Table") table's `memory_type` column; is also no longer displayed in the output of [**ndb_config**](mysql-cluster-programs-ndb-config.html "21.5.7 ndb_config — Extract NDB Cluster Configuration Information").
 
-  - O comando `REPORT MEMORYUSAGE` e outros comandos que exibem o consumo de memória agora mostram o consumo de memória do índice usando páginas de 32K (anteriormente eram páginas de 8K).
+  + [`REPORT MEMORYUSAGE`](mysql-cluster-mgm-client-commands.html#ndbclient-report) and other commands which expose memory consumption now shows index memory consumption using 32K pages (previously these were 8K pages).
 
-  - A tabela \`ndbinfo.resources agora mostra o recurso `DISK_OPERATIONS`como`TRANSACTION_MEMORY`, e o recurso `RESERVED\` foi removido.
+  + The [`ndbinfo.resources`](mysql-cluster-ndbinfo-resources.html "21.6.15.31 The ndbinfo resources Table") table now shows the `DISK_OPERATIONS` resource as `TRANSACTION_MEMORY`, and the `RESERVED` resource has been removed.
 
-- O **ndbinfo processa e configura as tabelas _config_nodes.** O NDB 7.6 adiciona duas tabelas ao banco de dados de informações `ndbinfo` (mysql-cluster-ndbinfo.html) para fornecer informações sobre os nós do cluster; essas tabelas estão listadas aqui:
+* **ndbinfo processes and config_nodes tables.** NDB 7.6 adds two tables to the [`ndbinfo`](mysql-cluster-ndbinfo.html "21.6.15 ndbinfo: The NDB Cluster Information Database") information database to provide information about cluster nodes; these tables are listed here:
 
-  - `config_nodes`: Esta tabela contém o ID do nó, o tipo de processo e o nome do host para cada nó listado no arquivo de configuração de um cluster NDB.
+  + [`config_nodes`](mysql-cluster-ndbinfo-config-nodes.html "21.6.15.7 The ndbinfo config_nodes Table"): This table the node ID, process type, and host name for each node listed in an NDB cluster's configuration file.
 
-  - O `processes` mostra informações sobre os nós atualmente conectados ao clúster; essas informações incluem o nome do processo e o ID do processo do sistema; para cada nó de dados e nó SQL, também mostra o ID do processo do processo anjo do nó. Além disso, a tabela mostra um endereço de serviço para cada nó conectado; esse endereço pode ser definido em aplicativos da API NDB usando o método `Ndb_cluster_connection::set_service_uri()`, que também foi adicionado no NDB 7.6.
+  + The [`processes`](mysql-cluster-ndbinfo-processes.html "21.6.15.30 The ndbinfo processes Table") shows information about nodes currently connected to the cluster; this information includes the process name and system process ID; for each data node and SQL node, it also shows the process ID of the node's angel process. In addition, the table shows a service address for each connected node; this address can be set in NDB API applications using the [`Ndb_cluster_connection::set_service_uri()`](/doc/ndbapi/en/ndb-ndb-cluster-connection.html#ndb-ndb-cluster-connection-set-service-uri) method, which is also added in NDB 7.6.
 
-- **Nome do sistema.** O nome do sistema de um clúster NDB pode ser usado para identificar um clúster específico. No NDB 7.6, o MySQL Server exibe esse nome como o valor da variável de status `Ndb_system_name`; os aplicativos da API NDB podem usar o método `Ndb_cluster_connection::get_system_name()` que é adicionado na mesma versão.
+* **System name.** The system name of an NDB cluster can be used to identify a specific cluster. In NDB 7.6, the MySQL Server shows this name as the value of the [`Ndb_system_name`](mysql-cluster-options-variables.html#statvar_Ndb_system_name) status variable; NDB API applications can use the [`Ndb_cluster_connection::get_system_name()`](/doc/ndbapi/en/ndb-ndb-cluster-connection.html#ndb-ndb-cluster-connection-get-system-name) method which is added in the same release.
 
-  Um nome do sistema baseado no horário em que o servidor de gerenciamento foi iniciado é gerado automaticamente. Você pode substituir esse valor adicionando uma seção `[system]` ao arquivo de configuração do cluster e definindo o parâmetro `Name` com um valor de sua escolha nessa seção, antes de iniciar o servidor de gerenciamento.
+  A system name based on the time the management server was started is generated automatically>; you can override this value by adding a `[system]` section to the cluster's configuration file and setting the `Name` parameter to a value of your choice in this section, prior to starting the management server.
 
-- \*\* Ferramenta de importação CSV ndb_import.\*\* **ndb_import**, adicionada no NDB Cluster 7.6, carrega dados formatados em CSV diretamente em uma tabela de `NDB` usando a API NDB (é necessário um servidor MySQL apenas para criar a tabela e o banco de dados em que ela está localizada). **ndb_import** pode ser considerado um análogo de **mysqlimport** ou da instrução SQL `LOAD DATA`, e suporta muitas das mesmas ou opções semelhantes para formatação dos dados.
+* **ndb_import CSV import tool.** [**ndb_import**](mysql-cluster-programs-ndb-import.html "21.5.14 ndb_import — Import CSV Data Into NDB"), added in NDB Cluster 7.6, loads CSV-formatted data directly into an [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table using the NDB API (a MySQL server is needed only to create the table and database in which it is located). [**ndb_import**](mysql-cluster-programs-ndb-import.html "21.5.14 ndb_import — Import CSV Data Into NDB") can be regarded as an analog of [**mysqlimport**](mysqlimport.html "4.5.5 mysqlimport — A Data Import Program") or the [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") SQL statement, and supports many of the same or similar options for formatting of the data.
 
-  Supondo que o banco de dados e a tabela `NDB` de destino existam, o **ndb_import** precisa apenas de uma conexão com o servidor de gerenciamento do cluster (**ndb_mgmd**) para realizar a importação; por essa razão, deve haver um slot `[api]` disponível para a ferramenta no arquivo `config.ini` do cluster.
+  Assuming that the database and target `NDB` table exist, [**ndb_import**](mysql-cluster-programs-ndb-import.html "21.5.14 ndb_import — Import CSV Data Into NDB") needs only a connection to the cluster's management server ([**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")) to perform the importation; for this reason, there must be an `[api]` slot available to the tool in the cluster's `config.ini` file purpose.
 
-  Para mais informações, consulte Seção 21.5.14, “ndb_import — Importar dados CSV no NDB”.
+  See [Section 21.5.14, “ndb_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "21.5.14 ndb_import — Import CSV Data Into NDB"), for more information.
 
-- **Ferramenta de monitoramento ndb_top.** Foi adicionado o utilitário **ndb_top**, que mostra informações de carga e uso da CPU para um nó de dados `NDB` em tempo real. Essas informações podem ser exibidas em formato de texto, como um gráfico ASCII ou ambos. O gráfico pode ser exibido em cores ou usando escala de cinza.
+* **ndb_top monitoring tool.** Added the [**ndb_top**](mysql-cluster-programs-ndb-top.html "21.5.29 ndb_top — View CPU usage information for NDB threads") utility, which shows CPU load and usage information for an `NDB` data node in real time. This information can be displayed in text format, as an ASCII graph, or both. The graph can be shown in color, or using grayscale.
 
-  **ndb_top** conecta-se a um nó SQL do NDB Cluster (ou seja, a um servidor MySQL). Por essa razão, o programa deve ser capaz de se conectar como um usuário MySQL com o privilégio `SELECT` em tabelas no banco de dados `ndbinfo`.
+  [**ndb_top**](mysql-cluster-programs-ndb-top.html "21.5.29 ndb_top — View CPU usage information for NDB threads") connects to an NDB Cluster SQL node (that is, a MySQL Server). For this reason, the program must be able to connect as a MySQL user having the [`SELECT`](privileges-provided.html#priv_select) privilege on tables in the [`ndbinfo`](mysql-cluster-ndbinfo.html "21.6.15 ndbinfo: The NDB Cluster Information Database") database.
 
-  **ndb_top** está disponível para as plataformas Linux, Solaris e macOS, mas atualmente não está disponível para plataformas Windows.
+  [**ndb_top**](mysql-cluster-programs-ndb-top.html "21.5.29 ndb_top — View CPU usage information for NDB threads") is available for Linux, Solaris, and macOS platforms, but is not currently available for Windows platforms.
 
-  Para obter mais informações, consulte Seção 21.5.29, “ndb_top — Visualizar informações de uso da CPU para threads NDB”.
+  For more information, see [Section 21.5.29, “ndb_top — View CPU usage information for NDB threads”](mysql-cluster-programs-ndb-top.html "21.5.29 ndb_top — View CPU usage information for NDB threads").
 
-- **Limpeza do código.** Um número significativo de instruções de depuração e impressões não necessárias para operações normais foram movidas para o código usado apenas durante testes ou depuração do `NDB`, ou dispensadas completamente. Essa remoção do overhead deve resultar em uma melhoria notável no desempenho dos threads LDM e TC na ordem de 10% em muitos casos.
+* **Code cleanup.** A significant number of debugging statements and printouts not necessary for normal operations have been moved into code used only when testing or debugging `NDB`, or dispensed with altogether. This removal of overhead should result in a noticeable improvement in the performance of LDM and TC threads on the order of 10% in many cases.
 
-- Melhorias no thread LDM e no LCP. Anteriormente, quando um thread de gerenciamento de dados local sofria com atraso de I/O, ele escrevia para pontos de verificação locais mais lentamente. Isso poderia acontecer, por exemplo, durante uma condição de sobrecarga de disco. Problemas poderiam ocorrer porque outros fios LDM nem sempre observavam esse estado, ou não faziam o mesmo. Agora, o `NDB` rastreia o modo de atraso de I/O globalmente, de modo que esse estado é relatado assim que pelo menos um thread estiver escrevendo no modo de atraso de I/O; ele então garante que a velocidade de escrita reduzida para esse LCP seja aplicada a todos os fios LDM durante a duração da condição de desaceleração. Como a redução na velocidade de escrita agora é observada por outras instâncias LDM, a capacidade geral é aumentada; isso permite que a sobrecarga de disco (ou outra condição que induz o atraso de I/O) seja superada mais rapidamente nesses casos do que era anteriormente.
+* **LDM thread and LCP improvements.** Previously, when a local data management thread experienced I/O lag, it wrote to local checkpoints more slowly. This could happen, for example, during a disk overload condition. Problems could occur because other LDM threads did not always observe this state, or do likewise. `NDB` now tracks I/O lag mode globally, so that this state is reported as soon as at least one thread is writing in I/O lag mode; it then makes sure that the reduced write speed for this LCP is enforced for all LDM threads for the duration of the slowdown condition. Because the reduction in write speed is now observed by other LDM instances, overall capacity is increased; this enables the disk overload (or other condition inducing I/O lag) to be overcome more quickly in such cases than it was previously.
 
-- **Identificação de erros do NDB.** Mensagens de erro e informações podem ser obtidas usando o cliente **mysql** no NDB 7.6 a partir de uma nova tabela `error_messages` no banco de dados de informações `ndbinfo`. Além disso, o NDB 7.6 introduz um novo cliente de linha de comando **ndb_perror** para obter informações dos códigos de erro do NDB; isso substitui o uso de **perror** com `--ndb`, que agora está desatualizado e sujeito à remoção em uma futura versão.
+* **NDB error identification.** Error messages and information can be obtained using the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client in NDB 7.6 from a new [`error_messages`](mysql-cluster-ndbinfo-error-messages.html "21.6.15.21 The ndbinfo error_messages Table") table in the [`ndbinfo`](mysql-cluster-ndbinfo.html "21.6.15 ndbinfo: The NDB Cluster Information Database") information database. In addition, NDB 7.6 introduces a new command-line client [**ndb_perror**](mysql-cluster-programs-ndb-perror.html "21.5.17 ndb_perror — Obtain NDB Error Message Information") for obtaining information from NDB error codes; this replaces using [**perror**](perror.html "4.8.2 perror — Display MySQL Error Message Information") with [`--ndb`](perror.html#option_perror_ndb), which is now deprecated and subject to removal in a future release.
 
-  Para obter mais informações, consulte Seção 21.6.15.21, “Tabela ndbinfo error_messages” e Seção 21.5.17, “ndb_perror — Obter informações de mensagens de erro NDB”.
+  For more information, see [Section 21.6.15.21, “The ndbinfo error_messages Table”](mysql-cluster-ndbinfo-error-messages.html "21.6.15.21 The ndbinfo error_messages Table"), and [Section 21.5.17, “ndb_perror — Obtain NDB Error Message Information”](mysql-cluster-programs-ndb-perror.html "21.5.17 ndb_perror — Obtain NDB Error Message Information").
 
-- Melhorias no SPJ. Ao executar um varredura como uma junção empurrada (ou seja, a raiz da consulta é uma varredura), o bloco `DBTC` envia um pedido SPJ para uma instância `DBSPJ` no mesmo nó do fragmento a ser varrido. Anteriormente, um pedido desse tipo era enviado para cada fragmento do nó. Como o número de instâncias `DBTC` e `DBSPJ` normalmente é menor que o número de instâncias LDM, isso significa que todas as instâncias SPJ estavam envolvidas na execução de uma única consulta, e, de fato, algumas instâncias SPJ podiam (e fizeram) receber múltiplos pedidos da mesma consulta. O NDB 7.6 permite que um único pedido SPJ lide com um conjunto de fragmentos raiz a serem varridos, de modo que apenas um único pedido SPJ (`SCAN_FRAGREQ`) precisa ser enviado para qualquer instância SPJ (`DBSPJ` bloco) em cada nó.
+* **SPJ improvements.** When executing a scan as a pushed join (that is, the root of the query is a scan), the [`DBTC`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbtc.html) block sends an SPJ request to a [`DBSPJ`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbspj.html) instance on the same node as the fragment to be scanned. Formerly, one such request was sent for each of the node's fragments. As the number of `DBTC` and `DBSPJ` instances is normally set less than the number of LDM instances, this means that all SPJ instances were involved in the execution of a single query, and, in fact, some SPJ instances could (and did) receive multiple requests from the same query. NDB 7.6 makes it possible for a single SPJ request to handle a set of root fragments to be scanned, so that only a single SPJ request (`SCAN_FRAGREQ`) needs to be sent to any given SPJ instance (`DBSPJ` block) on each node.
 
-  Como o `DBSPJ` consome uma quantidade relativamente pequena da CPU total usada ao avaliar uma junção empurrada, diferentemente do bloco LDM (que é responsável pela maioria do uso da CPU), a introdução de vários blocos SPJ adiciona algum paralelismo, mas o custo adicional também aumenta. Ao permitir que um único pedido SPJ lide com um conjunto de fragmentos raiz a serem escaneados, de modo que apenas um único pedido SPJ seja enviado para cada instância `DBSPJ` em cada nó e tamanhos de lote sejam alocados por fragmento, a varredura de múltiplos fragmentos pode obter um tamanho total de lote maior, permitindo que algumas otimizações de agendamento sejam feitas dentro do bloco SPJ, que pode escanear um único fragmento de cada vez (dando-lhe a alocação total do tamanho do lote), escanear todos os fragmentos em paralelo usando sub-lote menores ou uma combinação dos dois.
+  Since `DBSPJ` consumes a relatively small amount of the total CPU used when evaluating a pushed join, unlike the LDM block (which is repsonsible for the majority of the CPU usage), introducing multiple SPJ blocks adds some parallelism, but the additional overhead also increases. By enabling a single SPJ request to handle a set of root fragments to be scanned, such that only a single SPJ request is sent to each `DBSPJ` instance on each node and batch sizes are allocated per fragment, the multi-fragment scan can obtain a larger total batch size, allowing for some scheduling optimizations to be done within the SPJ block, which can scan a single fragment at a time (giving it the total batch size allocation), scan all fragments in parallel using smaller sub-batches, or some combination of the two.
 
-  Espera-se que este trabalho aumente o desempenho das junções empurradas para as seguintes razões:
+  This work is expected to increase performance of pushed-down joins for the following reasons:
 
-  - Como vários fragmentos de raiz podem ser verificados para cada solicitação SPJ, é necessário solicitar menos instâncias SPJ ao executar uma junção empurrada.
+  + Since multiple root fragments can be scanned for each SPJ request, it is necessary to request fewer SPJ instances when executing a pushed join
 
-  - A alocação de tamanho de lote disponível aumentada, e para cada fragmento, também deve resultar, na maioria dos casos, em menos solicitações necessárias para completar uma junção.
+  + Increased available batch size allocation, and for each fragment, should also in most cases result in fewer requests being needed to complete a join
 
-- Melhoria no tratamento do O_DIRECT para logs de rollback. O NDB 7.6 oferece um novo parâmetro de configuração do nó de dados `ODirectSyncFlag`, que faz com que as gravações de logs de rollback concluídas usando `O_DIRECT` sejam tratadas como chamadas `fsync`. O `ODirectSyncFlag` está desativado por padrão; para ativá-lo, defina-o para `true`.
+* **Improved O_DIRECT handling for redo logs.** NDB 7.6 provides a new data node configuration parameter [`ODirectSyncFlag`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-odirectsyncflag) which causes completed redo log writes using `O_DIRECT` to be handled as `fsync` calls. `ODirectSyncFlag` is disabled by default; to enable it, set it to `true`.
 
-  Você deve ter em mente que o valor definido para este parâmetro é ignorado quando pelo menos uma das seguintes condições for verdadeira:
+  You should bear in mind that the setting for this parameter is ignored when at least one of the following conditions is true:
 
-  - `ODirect` não está habilitado.
+  + [`ODirect`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-odirect) is not enabled.
 
-  - `InitFragmentLogFiles` está definido como `SPARSE`.
+  + `InitFragmentLogFiles` is set to `SPARSE`.
 
-- **Bloqueio de CPUs para construções de índices offline.** No NDB 7.6, as construções de índices offline usam, por padrão, todas as cores disponíveis para **ndbmtd**, em vez de serem limitadas ao único núcleo reservado para o thread de E/S. Também é possível especificar um conjunto desejado de núcleos a serem usados para os threads de E/S que realizam construções multithread de índices ordenados offline. Isso pode melhorar os tempos de reinício e restauração, bem como o desempenho e a disponibilidade.
+* **Locking of CPUs to offline index build threads.** In NDB 7.6, offline index builds by default use all cores available to [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)"), instead of being limited to the single core reserved for the I/O thread. It also becomes possible to specify a desired set of cores to be used for I/O threads performing offline multithreaded builds of ordered indexes. This can improve restart and restore times and performance, as well as availability.
 
-  Nota
+  Note
 
-  “Offline”, no sentido aqui utilizado, refere-se a uma construção de índice realizada enquanto uma determinada tabela não está sendo escrita. Essas construções de índice ocorrem durante o reinício de um nó ou sistema ou ao restaurar um clúster a partir de um backup usando **ndb_restore** `--rebuild-indexes`.
+  “Offline” as used here refers to an ordered index build that takes place while a given table is not being written to. Such index builds occur during a node or system restart, or when restoring a cluster from backup using [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") [`--rebuild-indexes`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_rebuild-indexes).
 
-  Essa melhoria envolve várias mudanças relacionadas. A primeira delas é alterar o valor padrão do parâmetro de configuração `BuildIndexThreads` (de 0 para 128), o que significa que as construções de índices ordenados offline agora são multitramadas por padrão. O valor padrão do parâmetro de configuração `TwoPassInitialNodeRestartCopy` também foi alterado (de `false` para `true`), de modo que um reinício inicial do nó primeiro copia todos os dados sem a criação de índices de um nó "vivo" para o nó que está sendo iniciado, constrói os índices ordenados offline após a cópia dos dados, e depois sincroniza novamente com o nó "vivo"; isso pode reduzir significativamente o tempo necessário para a construção de índices. Além disso, para facilitar o bloqueio explícito dos threads de construção de índices offline para CPUs específicas, um novo tipo de thread (`idxbld`) é definido para o parâmetro de configuração `ThreadConfig`.
+  This improvement involves several related changes. The first of these is to change the default value for the [`BuildIndexThreads`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-buildindexthreads) configuration parameter (from 0 to 128), means that offline ordered index builds are now multithreaded by default. The default value for the [`TwoPassInitialNodeRestartCopy`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-twopassinitialnoderestartcopy) is also changed (from `false` to `true`), so that an initial node restart first copies all data without any creation of indexes from a “live” node to the node which is being started, builds the ordered indexes offline after the data has been copied, then again synchronizes with the live node; this can significantly reduce the time required for building indexes. In addition, to facilitate explicit locking of offline index build threads to specific CPUs, a new thread type (`idxbld`) is defined for the [`ThreadConfig`](mysql-cluster-ndbd-definition.html#ndbparam-ndbmtd-threadconfig) configuration parameter.
 
-  Como parte desse trabalho, o `NDB` agora pode distinguir entre os tipos de threads de execução e outros tipos de threads, e entre os tipos de threads que são atribuídos permanentemente a tarefas específicas e aqueles cujas atribuições são meramente temporárias.
+  As part of this work, `NDB` can now distinguish between execution thread types and other types of threads, and between types of threads which are permanently assigned to specific tasks, and those whose assignments are merely temporary.
 
-  O NDB 7.6 também introduz o parâmetro `nosend` para `ThreadCOnfig`. Ao definir esse parâmetro para 1, você pode impedir que um thread `main`, `ldm`, `rep` ou `tc` ajude os threads de envio. Esse parâmetro é 0 por padrão e não pode ser usado com threads de E/S, threads de envio, threads de construção de índices ou threads de vigilância.
+  NDB 7.6 also introduces the `nosend` parameter for [`ThreadCOnfig`](mysql-cluster-ndbd-definition.html#ndbparam-ndbmtd-threadconfig). By setting this to 1, you can keep a `main`, `ldm`, `rep`, or `tc` thread from assisting the send threads. This parameter is 0 by default, and cannot be used with I/O threads, send threads, index build threads, or watchdog threads.
 
-  Para obter informações adicionais, consulte as descrições dos parâmetros.
+  For additonal information, see the descriptions of the parameters.
 
-- **Tamanhos de lote variáveis para operações de dados em lote DDL.** Como parte do trabalho em andamento para otimizar o desempenho de DDL em lote por **ndbmtd**, agora é possível obter melhorias de desempenho aumentando o tamanho do lote para as partes de dados em lote das operações DDL que processam dados usando varreduras. Os tamanhos de lote agora são configuráveis para construções de índices únicos, construções de chaves estrangeiras e reorganização online, definindo os parâmetros de configuração do nó de dados respectivos listados aqui:
+* **Variable batch sizes for DDL bulk data operations.** As part of work ongoing to optimize bulk DDL performance by [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)"), it is now possible to obtain performance improvements by increasing the batch size for the bulk data parts of DDL operations processing data using scans. Batch sizes are now made configurable for unique index builds, foreign key builds, and online reorganization, by setting the respective data node configuration parameters listed here:
 
-  - `MaxUIBuildBatchSize`: Tamanho máximo do lote de varredura usado para a construção de chaves únicas.
+  + [`MaxUIBuildBatchSize`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxuibuildbatchsize): Maximum scan batch size used for building unique keys.
 
-  - `MaxFKBuildBatchSize`: Tamanho máximo do lote de varredura usado para a construção de chaves estrangeiras.
+  + [`MaxFKBuildBatchSize`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxfkbuildbatchsize): Maximum scan batch size used for building foreign keys.
 
-  - `MaxReorgBuildBatchSize`: Tamanho máximo do lote de varredura usado para reorganização de partições de tabelas.
+  + [`MaxReorgBuildBatchSize`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxreorgbuildbatchsize): Maximum scan batch size used for reorganization of table partitions.
 
-  Para cada um dos parâmetros listados acima, o valor padrão é 64, o mínimo é 16 e o máximo é 512.
+  For each of the parameters just listed, the default value is 64, the minimum is 16, and the maximum is 512.
 
-  Aumentar o tamanho ou os tamanhos apropriados do lote pode ajudar a amortizar as latências entre os threads e entre os nós e a utilizar mais recursos paralelos (locais e remotos) para ajudar a escalar o desempenho do DDL. Em cada caso, pode haver um compromisso com o tráfego contínuo.
+  Increasing the appropriate batch size or sizes can help amortize inter-thread and inter-node latencies and make use of more parallel resources (local and remote) to help scale DDL performance. In each case there can be a tradeoff with ongoing traffic.
 
-- **LCPs parciais.** O NDB 7.6 implementa pontos de verificação locais parciais. Anteriormente, um LCP sempre fazia uma cópia de todo o banco de dados. Ao trabalhar com terabytes de dados, esse processo poderia exigir muito tempo, com um impacto negativo, especialmente, nos reinícios de nós e clusters, além de mais espaço para os logs de refazer. Agora, não é mais estritamente necessário que os LCPs façam isso — em vez disso, um LCP agora, por padrão, salva apenas um número de registros baseado na quantidade de dados alterados desde o LCP anterior. Isso pode variar entre um ponto de verificação completo e um ponto de verificação que não altera nada. No caso de o ponto de verificação refletir quaisquer alterações, o mínimo é escrever uma parte dos 2048 que compõem um LCP local.
+* **Partial LCPs.** NDB 7.6 implements partial local checkpoints. Formerly, an LCP always made a copy of the entire database. When working with terabytes of data this process could require a great deal of time, with an adverse impact on node and cluster restarts especially, as well as more space for the redo logs. It is now no longer strictly necessary for LCPs to do this—instead, an LCP now by default saves only a number of records that is based on the quantity of data changed since the previous LCP. This can vary between a full checkpoint and a checkpoint that changes nothing at all. In the event that the checkpoint reflects any changes, the minimum is to write one part of the 2048 making up a local LCP.
 
-  Como parte dessa mudança, dois novos parâmetros de configuração de nós de dados são introduzidos nesta versão: `EnablePartialLcp` (padrão `true`, ou ativado) habilita LCPs parciais. `RecoveryWork` controla a porcentagem de espaço dada aos LCPs; ele aumenta com a quantidade de trabalho que deve ser realizado nos LCPs durante reinicializações, em oposição ao que é realizado durante operações normais. Aumentar esse valor faz com que os LCPs durante operações normais precisem escrever menos registros e, assim, diminui a carga de trabalho usual. Aumentar esse valor também significa que as reinicializações podem levar mais tempo.
+  As part of this change, two new data node configuration parameters are inroduced in this release: [`EnablePartialLcp`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-enablepartiallcp) (default `true`, or enabled) enables partial LCPs. [`RecoveryWork`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-recoverywork) controls the percentage of space given over to LCPs; it increases with the amount of work which must be performed on LCPs during restarts as opposed to that performed during normal operations. Raising this value causes LCPs during normal operations to require writing fewer records and so decreases the usual workload. Raising this value also means that restarts can take longer.
 
-  Você deve desabilitar os LCPs parciais explicitamente, definindo `EnablePartialLcp=false`. Isso usa a menor quantidade de disco, mas também tende a maximizar a carga de escrita para os LCPs. Para otimizar a menor carga de trabalho nos LCPs durante o funcionamento normal, use `EnablePartialLcp=true` e `RecoveryWork=100`. Para usar o menor espaço de disco para LCPs parciais, mas com escritas limitadas, use `EnablePartialLcp=true` e `RecoveryWork=25`, que é o mínimo para `RecoveryWork`. O padrão é `EnablePartialLcp=true` com `RecoveryWork=50`, o que significa que os arquivos LCP exigem aproximadamente 1,5 vezes `DataMemory`; usando `CompressedLcp=1`, isso pode ser reduzido pela metade. Os tempos de recuperação com as configurações padrão também devem ser muito mais rápidos do que quando `EnablePartialLcp` é definido como `false`.
+  You must disable partial LCPs explicitly by setting `EnablePartialLcp=false`. This uses the least amount of disk, but also tends to maximize the write load for LCPs. To optimize for the lowest workload on LCPs during normal operation, use `EnablePartialLcp=true` and `RecoveryWork=100`. To use the least disk space for partial LCPs, but with bounded writes, use `EnablePartialLcp=true` and `RecoveryWork=25`, which is the minimum for `RecoveryWork`. The default is `EnablePartialLcp=true` with `RecoveryWork=50`, which means LCP files require approximately 1.5 times [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory); using [`CompressedLcp=1`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-compressedlcp), this can be further reduced by half. Recovery times using the default settings should also be much faster than when `EnablePartialLcp` is set to `false`.
 
-  Nota
+  Note
 
-  O valor padrão para `RecoveryWork` foi aumentado de 50 para 60.
+  The default value for `RecoveryWork` was increased from 50 to 60.
 
-  Além disso, os parâmetros de configuração do nó de dados `BackupDataBufferSize`, `BackupWriteSize` e `BackupMaxWriteSize` estão todos obsoletos e estarão sujeitos à remoção em uma futura versão do MySQL NDB Cluster.
+  In addition the data node configuration parameters [`BackupDataBufferSize`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-backupdatabuffersize), [`BackupWriteSize`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-backupwritesize), and [`BackupMaxWriteSize`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-backupmaxwritesize) are all now deprecated, and subject to removal in a future release of MySQL NDB Cluster.
 
-  Como parte dessa melhoria, foram feitos trabalhos para corrigir vários problemas com reinicializações de nós, em que era possível ficar sem o registro de desfazer em várias situações, geralmente quando se estava restaurando um nó que havia parado por um longo tempo durante um período de atividade de escrita intensa.
+  As part of this enhancement, work has been done to correct several issues with node restarts wherein it was possible to run out of undo log in various situations, most often when restoring a node that had been down for a long time during a period of intensive write activity.
 
-  Foram realizados trabalhos adicionais para melhorar a sobrevivência dos nós de dados durante longos períodos de sincronização sem expiração de tempo, atualizando o mecanismo de vigilância LCP durante esse processo e mantendo um melhor acompanhamento do progresso da sincronização de dados do disco. Anteriormente, havia a possibilidade de avisos falsos ou até mesmo falhas nos nós se a sincronização demorar mais do que o tempo de expiração do mecanismo de vigilância LCP.
+  Additional work was done to improve data node survival of long periods of synchronization without timing out, by updating the LCP watchdog during this process, and keeping better track of the progress of disk data synchronization. Previously, there was the possibility of spurious warnings or even node failures if synchronization took longer than the LCP watchdog timeout.
 
-  Importante
+  Important
 
-  Ao atualizar um NDB Cluster que usa tabelas de dados em disco para a versão NDB 7.6 ou ao fazer uma atualização para uma versão anterior da NDB 7.6, é necessário reiniciar todos os nós de dados com `--initial`.
+  When upgrading an NDB Cluster that uses disk data tables to NDB 7.6 or downgrading it from NDB 7.6, it is necessary to restart all data nodes with [`--initial`](mysql-cluster-programs-ndbd.html#option_ndbd_initial).
 
-- **Processamento em lote de registros do log de desfazer em paralelo.** Anteriormente, o bloco do kernel do nó de dados `LGMAN` processava os registros do log de desfazer sequencialmente; agora, isso é feito em paralelo. O thread rep, que entrega os registros de desfazer para os threads LDM, aguardava que um LDM terminasse de aplicar um registro antes de buscar o próximo; agora, o thread rep não aguarda mais, mas passa imediatamente para o próximo registro e LDM.
+* **Parallel undo log record processing.** Formerly, the data node [`LGMAN`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-lgman.html) kernel block processed undo log records serially; now this is done in parallel. The rep thread, which hands off undo records to LDM threads, waited for an LDM to finish applying a record before fetching the next one; now the rep thread no longer waits, but proceeds immediately to the next record and LDM.
 
-  Um contador do número de registros de log pendentes para cada LDM no `LGMAN` é mantido e decrementado sempre que um LDM conclui a execução de um registro. Todos os registros pertencentes a uma página são enviados para o mesmo thread do LDM, mas não há garantia de que sejam processados em ordem, portanto, um mapa de hash de páginas que têm registros pendentes mantém uma fila para cada uma dessas páginas. Quando a página está disponível no cache de páginas, todos os registros pendentes na fila são aplicados em ordem.
+  A count of the number of outstanding log records for each LDM in `LGMAN` is kept, and decremented whenever an LDM has completed the execution of a record. All the records belonging to a page are sent to the same LDM thread but are not guaranteed to be processed in order, so a hash map of pages that have outstanding records maintains a queue for each of these pages. When the page is available in the page cache, all records pending in the queue are applied in order.
 
-  Alguns tipos de registros continuam a ser processados em série: `UNDO_LCP`, `UNDO_LCP_FIRST`, `UNDO_LOCAL_LCP`, `UNDO_LOCAL_LCP_FIRST`, `UNDO_DROP` e `UNDO_END`.
+  A few types of records continue to be processed serially: `UNDO_LCP`, `UNDO_LCP_FIRST`, `UNDO_LOCAL_LCP`, `UNDO_LOCAL_LCP_FIRST`, `UNDO_DROP`, and `UNDO_END`.
 
-  Não há alterações visíveis aos usuários na funcionalidade diretamente associadas a essa melhoria de desempenho; faz parte do trabalho realizado para melhorar o recurso de desfazer longas manipulações em suporte a pontos de verificação locais parciais no NDB Cluster 7.6.
+  There are no user-visible changes in functionality directly associated with this performance enhancement; it is part of work done to improve undo long handling in support of partial local checkpoints in NDB Cluster 7.6.
 
-- **Leitura de tabelas e IDs de fragmentos a partir do ID de extensão para o aplicativo de registro de desfazer.** Ao aplicar um registro de desfazer, é necessário obter o ID da tabela e o ID do fragmento a partir do ID da página. Isso era feito anteriormente lendo a página do bloco do kernel `PGMAN` usando um thread adicional de trabalho `PGMAN`, mas ao aplicar o registro de desfazer, era necessário ler a página novamente.
+* **Reading table and fragment IDs from extent for undo log applier.** When applying an undo log, it is necessary to obtain the table ID and fragment ID from the page ID. This was done previously by reading the page from the [`PGMAN`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-pgman.html) kernel block using an extra `PGMAN` worker thread, but when applying the undo log it was necessary to read the page again.
 
-  Ao usar `O_DIRECT`, isso era muito ineficiente, pois a página não estava cacheada no kernel do sistema operacional. Para corrigir esse problema, a mapeamento de ID de página para ID de tabela e ID de fragmento agora é feito usando informações do cabeçalho de extensão, os IDs de tabela e IDs de fragmento para as páginas usadas dentro de uma determinada extensão. As páginas de extensão estão sempre presentes no cache de páginas, então não são necessárias leituras extras do disco para realizar o mapeamento. Além disso, as informações já podem ser lidas, usando as estruturas de dados de blocos do kernel existentes `TSMAN`.
+  when using `O_DIRECT` this was very inefficient since the page was not cached in the OS kernel. To correct this issue, mapping from page ID to table ID and fragment ID is now done using information from the extent header the table IDs and fragment IDs for the pages used within a given extent. The extent pages are always present in the page cache, so no extra reads from disk are required for performing the mapping. In addition, the information can already be read, using existing [`TSMAN`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-tsman.html) kernel block data structures.
 
-  Consulte a descrição do parâmetro de configuração do nó de dados `ODirect` para obter mais informações.
+  See the description of the [`ODirect`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-odirect) data node configuration parameter, for more information.
 
-- **Transportador de memória compartilhada.** As conexões de memória compartilhada (SHM) definidas pelo usuário entre um nó de dados e um nó de API no mesmo computador host são totalmente suportadas no NDB 7.6 e não são mais consideradas experimentais. Você pode habilitar uma conexão explícita de memória compartilhada definindo o parâmetro de configuração `UseShm` para `1` para o nó de dados relevante. Ao definir explicitamente a memória compartilhada como o método de conexão, também é necessário que tanto o nó de dados quanto o nó de API sejam identificados por `HostName`.
+* **Shared memory transporter.** User-defined shared memory (SHM) connections between a data node and an API node on the same host computer are fully supported in NDB 7.6, and are no longer considered experimental. You can enable an explicit shared memory connection by setting the [`UseShm`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-useshm) configuration parameter to `1` for the relevant data node. When explicitly defining shared memory as the connection method, it is also necessary that both the data node and the API node are identified by `HostName`.
 
-  O desempenho das conexões SHM pode ser aprimorado definindo parâmetros como `ShmSize`, `ShmSpintime` e `SendBufferMemory` em uma seção `[shm]` ou `[shm default]` do arquivo de configuração do cluster (`config.ini`). A configuração do SHM é, de outra forma, semelhante à do transportador TCP.
+  Performance of SHM connections can be enhanced through setting parameters such as [`ShmSize`](mysql-cluster-shm-definition.html#ndbparam-shm-shmsize), [`ShmSpintime`](mysql-cluster-shm-definition.html#ndbparam-shm-shmspintime), and [`SendBufferMemory`](mysql-cluster-shm-definition.html#ndbparam-shm-sendbuffermemory) in an `[shm]` or `[shm default]` section of the cluster configuration file (`config.ini`). Configuration of SHM is otherwise similar to that of the TCP transporter.
 
-  O parâmetro `SigNum` não é utilizado na nova implementação de SHM, e quaisquer configurações feitas para ele agora são ignoradas. Seção 21.4.3.12, “Conexões de Memória Compartilhada do NDB Cluster”, fornece mais informações sobre esses parâmetros. Além disso, como parte deste trabalho, o código `NDB` relacionado ao antigo transportador SCI foi removido.
+  The [`SigNum`](mysql-cluster-shm-definition.html#ndbparam-shm-signum) parameter is not used in the new SHM implementation, and any settings made for it are now ignored. [Section 21.4.3.12, “NDB Cluster Shared Memory Connections”](mysql-cluster-shm-definition.html "21.4.3.12 NDB Cluster Shared Memory Connections"), provides more information about these parameters. In addition, as part of this work, `NDB` code relating to the old SCI transporter has been removed.
 
-  Para obter mais informações, consulte Seção 21.4.3.12, "Conexões de Memória Compartilhada do NDB Cluster".
+  For more information, see [Section 21.4.3.12, “NDB Cluster Shared Memory Connections”](mysql-cluster-shm-definition.html "21.4.3.12 NDB Cluster Shared Memory Connections").
 
-- **Otimização da junção interna do bloco SPJ.** No NDB 7.6, o bloco de kernel `SPJ` pode levar em consideração quando está avaliando uma solicitação de junção na qual pelo menos algumas das tabelas estão UNTER-juntas. Isso significa que ele pode eliminar solicitações para linhas, faixas ou ambas assim que se souber que uma ou mais das solicitações anteriores não retornaram nenhum resultado para uma linha pai. Isso economiza tanto os nós de dados quanto o bloco `SPJ` de terem que lidar com solicitações e linhas de resultado que nunca participam de uma linha de resultado UNTER-junta.
+* **SPJ block inner join optimization.** In NDB 7.6, the [`SPJ`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbspj.html) kernel block can take into account when it is evaluating a join request in which at least some of the tables are INNER-joined. This means that it can eliminate requests for row, ranges, or both as soon as it becomes known that one or more of the preceding requests did not return any results for a parent row. This saves both the data nodes and the `SPJ` block from having to handle requests and result rows which never take part in an INNER-joined result row.
 
-  Considere esta consulta de junção, onde `pk` é a chave primária nas tabelas t2, t3 e t4, e as colunas x, y e z são colunas não indexadas:
+  Consider this join query, where `pk` is the primary key on tables t2, t3, and t4, and columns x, y, and z are nonindexed columns:
 
   ```sql
   SELECT * FROM t1
@@ -169,121 +169,121 @@ Novas funcionalidades e outras mudanças importantes no NDB Cluster 7.6 que prov
     JOIN t4 ON t4.pk = t1.z;
   ```
 
-  Anteriormente, isso resultava em um pedido `SPJ` que incluía uma varredura na tabela `t1` e consultas em cada uma das tabelas `t2`, `t3` e `t4`; essas eram avaliadas para cada linha retornada de `t1`. Para essas, o `SPJ` criava pedidos `LQHKEYREQ` para as tabelas `t2`, `t3` e `t4`. Agora, o `SPJ` leva em consideração a exigência de que, para produzir quaisquer linhas de resultado, uma junção interna deve encontrar uma correspondência em todas as tabelas unidas; assim que não forem encontradas correspondências para uma das tabelas, quaisquer pedidos adicionais para tabelas que tenham o mesmo pai ou tabelas são ignorados.
+  Previously, this resulted in an `SPJ` request including a scan on table `t1`, and lookups on each of the tables `t2`, `t3`, and `t4`; these were evaluated for every row returned from `t1`. For these, `SPJ` created `LQHKEYREQ` requests for tables `t2`, `t3`, and `t4`. Now `SPJ` takes into consideration the requirement that, to produce any result rows, an inner join must find a match in all tables joined; as soon as no matches are found for one of the tables, any further requests to tables having the same parent or tables are now skipped.
 
-  Nota
+  Note
 
-  Essa otimização não pode ser aplicada até que todos os nós de dados e todos os nós de API no clúster tenham sido atualizados para o NDB 7.6.
+  This optimization cannot be applied until all of the data nodes and all of the API nodes in the cluster have been upgraded to NDB 7.6.
 
-- **Ferramenta de acordamento do NDB.** O `NDB` usa um receptor de pesquisa para ler dos soquetes, executar mensagens dos soquetes e acordar outros threads. Ao usar apenas o uso intermitente de um thread de recebimento, a propriedade de pesquisa é liberada antes de começar a acordar outros threads, o que proporciona algum grau de paralelismo no thread de recebimento, mas, ao usar constantemente o thread de recebimento, o thread pode ser sobrecarregado por tarefas, incluindo o acordamento de outros threads.
+* **NDB wakeup thread.** `NDB` uses a poll receiver to read from sockets, to execute messages from the sockets, and to wake up other threads. When making only intermittent use of a receive thread, poll ownership is given up before starting to wake up other threads, which provides some degree of parallelism in the receive thread, but, when making constant use of the receive thread, the thread can be overburdened by tasks including wakeup of other threads.
 
-  O NDB 7.6 suporta a transferência de tarefas de acordar outros threads para um novo thread pelo thread receptor, que acorda outros threads a pedido (e, de outra forma, simplesmente dorme), permitindo melhorar a capacidade de uma única conexão de cluster em cerca de 10 a 20%.
+  NDB 7.6 supports offloading by the receiver thread of the task of waking up other threads to a new thread that wakes up other threads on request (and otherwise simply sleeps), making it possible to improve the capacity of a single cluster connection by roughly ten to twenty percent.
 
-- Controle adaptativo do LCP.
+* **Adaptive LCP control.**
 
-  O NDB 7.6.7 implementa um mecanismo de controle LCP adaptativo que atua em resposta a mudanças no uso do espaço do log de reverso. Ao controlar a velocidade de escrita no disco do LCP, você pode ajudar a proteger contra vários problemas relacionados aos recursos, incluindo os seguintes:
+  NDB 7.6.7 implements an adaptive LCP control mechanism which acts in response to changes in redo log space usage. By controlling LCP disk write speed, you can help protect against a number of resource-related issues, including the following:
 
-  - Recursos insuficientes de CPU para aplicações de tráfego
-  - Sobrecarga de disco
-  - Buffer insuficiente do log de refazer
-  - Condições de parada do GCP
-  - Espaço insuficiente no log de refazer
-  - Espaço insuficiente no registro de desfazer
+  + Insufficient CPU resources for traffic applications
+  + Disk overload
+  + Insufficient redo log buffer
+  + GCP Stop conditions
+  + Insufficient redo log space
+  + Insufficient undo log space
 
-  Este trabalho inclui as seguintes alterações relacionadas aos parâmetros de configuração de `NDB`:
+  This work includes the following changes relating to [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") configuration parameters:
 
-  - O valor padrão do parâmetro de nó de dados `RecoveryWork` é aumentado de 50 para 60; ou seja, o `NDB` agora usa 1,6 vezes o tamanho dos dados para o armazenamento dos LCPs.
+  + The default value of the [`RecoveryWork`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-recoverywork) data node parameter is increased from 50 to 60; that is, `NDB` now uses 1.6 times the size of the data for storage of LCPs.
 
-  - Um novo parâmetro de configuração de nó de dados `InsertRecoveryWork` oferece capacidades de ajuste adicionais ao controlar a porcentagem de `RecoveryWork` reservada para operações de inserção. O valor padrão é 40 (ou seja, 40% do espaço de armazenamento já reservado por `RecoveryWork`); o mínimo e o máximo são 0 e 70, respectivamente. Aumentar esse valor permite que mais escritas sejam realizadas durante um LCP, enquanto limita o tamanho total do LCP. Diminuir `InsertRecoveryWork` limita o número de escritas usadas durante um LCP, mas resulta em mais espaço sendo usado para o LCP, o que significa que a recuperação leva mais tempo.
+  + A new data node configuration parameter [`InsertRecoveryWork`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-insertrecoverywork) provides additional tuning capabilities through controlling the percentage of `RecoveryWork` that is reserved for insert operations. The default value is 40 (that is, 40% of the storage space already reserved by `RecoveryWork`); the minimum and maximum are 0 and 70, respectively. Increasing this value allows for more writes to be performed during an LCP, while limiting the total size of the LCP. Decreasing `InsertRecoveryWork` limits the number of writes used during an LCP, but results in more space being used for the LCP, which means that recovery takes longer.
 
-  Este trabalho implementa o controle da velocidade do LCP principalmente para minimizar o risco de esgotamento do log de redo. Isso é feito de forma adaptativa, com base na quantidade de espaço do log de redo utilizado, usando os níveis de alerta, com as respostas tomadas quando esses níveis são atingidos, mostrados aqui:
+  This work implements control of LCP speed chiefly to minimize the risk of running out of redo log. This is done in adapative fashion, based on the amount of redo log space used, using the alert levels, with the responses taken when these levels are attained, shown here:
 
-  - **Baixo**: O uso do espaço do log de refazer é maior que 25%, ou o uso estimado mostra espaço insuficiente para o log de refazer em uma taxa de transações muito alta. Em resposta, o uso dos buffers de dados do LCP é aumentado durante as varreduras do LCP, a prioridade das varreduras do LCP é aumentada e a quantidade de dados que pode ser escrita por interrupção em tempo real durante uma varredura do LCP também é aumentada.
+  + **Low**: Redo log space usage is greater than 25%, or estimated usage shows insufficient redo log space at a very high transaction rate. In response, use of LCP data buffers is increased during LCP scans, priority of LCP scans is increased, and the amount of data that can be written per real-time break in an LCP scan is also increased.
 
-  - **Alto**: O uso do espaço do log de refazer é maior que 40%, ou a estimativa é que o espaço do log de refazer acabe em uma taxa de transações alta. Quando esse nível de uso é atingido, o valor de `MaxDiskWriteSpeed` é aumentado para o valor de `MaxDiskWriteSpeedOtherNodeRestart`. Além disso, a velocidade mínima é duplicada e a prioridade das varreduras do LCP e do que pode ser escrito por quebra em tempo real também são aumentadas ainda mais.
+  + **High**: Redo log space usage is greater than 40%, or estimate to run out of redo log space at a high transaction rate. When this level of usage is reached, [`MaxDiskWriteSpeed`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxdiskwritespeed) is increased to the value of [`MaxDiskWriteSpeedOtherNodeRestart`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxdiskwritespeedothernoderestart). In addition, the minimum speed is doubled, and priority of LCP scans and what can be written per real-time break are both increased further.
 
-  - **Crítica**: O uso do espaço do log de refazer é maior que 60%, ou o uso estimado mostra espaço insuficiente para o log de refazer em uma taxa de transação normal. Neste nível, o `MaxDiskWriteSpeed` é aumentado para o valor de `MaxDiskWriteSpeedOwnRestart`; o `MinDiskWriteSpeed` também é definido para este valor. A prioridade das varreduras do LCP e a quantidade de dados que podem ser escritos por pausa em tempo real são aumentadas ainda mais, e o buffer de dados do LCP está completamente disponível durante a varredura do LCP.
+  + **Critical**: Redo log space usage is greater than 60%, or estimated usage shows insufficient redo log space at a normal transaction rate. At this level, `MaxDiskWriteSpeed` is increased to the value of [`MaxDiskWriteSpeedOwnRestart`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxdiskwritespeedownrestart); [`MinDiskWriteSpeed`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-mindiskwritespeed) is also set to this value. Priority of LCP scans and the amount of data that can be written per real-time break are increased further, and the LCP data buffer is completely available during the LCP scan.
 
-  Aumentar o nível também tem o efeito de aumentar a velocidade calculada do ponto de verificação.
+  Raising the level also has the effect of increasing the calculated target checkpoint speed.
 
-  O controle LCP oferece os seguintes benefícios para as instalações `NDB`:
+  LCP control has the following benefits for `NDB` installations:
 
-  - Os clusters devem agora suportar cargas muito pesadas com configurações padrão muito melhor do que antes.
+  + Clusters should now survive very heavy loads using default configurations much better than previously.
 
-  - Agora, deve ser possível que o `NDB` funcione de forma confiável em sistemas onde o espaço disponível no disco é (como um mínimo aproximado) 2,1 vezes a quantidade de memória alocada para ele (`DataMemory`). Você deve notar que esse número *não* inclui o espaço em disco usado para as tabelas de Dados do Disco.
+  + It should now be possible for `NDB` to run reliably on systems where the available disk space is (at a rough minimum) 2.1 times the amount of memory allocated to it ([`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory)). You should note that this figure does *not* include any disk space used for Disk Data tables.
 
-- **Opções de ndb_restore.** A partir do NDB 7.6.9, as opções `--nodeid` (mysql-cluster-programs-ndb-restore.html#option_ndb_restore_nodeid) e `--backupid` (mysql-cluster-programs-ndb-restore.html#option_ndb_restore_backupid) são obrigatórias ao invocar o **ndb_restore**.
+* **ndb_restore options.** Beginning with NDB 7.6.9, the [`--nodeid`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_nodeid) and [`--backupid`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_backupid) options are both required when invoking [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup").
 
-- **Restauração por fatias.** A partir da versão NDB 7.6.13, é possível dividir um backup em porções aproximadamente iguais (fatias) e restaurar essas fatias em paralelo usando duas novas opções implementadas para **ndb_restore**:
+* **Restoring by slices.** Beginning with NDB 7.6.13, it is possible to divide a backup into roughly equal portions (slices) and to restore these slices in parallel using two new options implemented for [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup"):
 
-  - `--num-slices` determina o número de fatias em que o backup deve ser dividido.
+  + [`--num-slices`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_num-slices) determines the number of slices into which the backup should be divided.
 
-  - `--slice-id` fornece o ID do slice a ser restaurado pela instância atual do **ndb_restore**.
+  + [`--slice-id`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_slice-id) provides the ID of the slice to be restored by the current instance of [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup").
 
-  Isso permite que múltiplas instâncias do **ndb_restore** sejam usadas para restaurar subconjuntos do backup em paralelo, reduzindo potencialmente o tempo necessário para realizar a operação de restauração.
+  This makes it possible to employ multiple instances of [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") to restore subsets of the backup in parallel, potentially reducing the amount of time required to perform the restore operation.
 
-  Para obter mais informações, consulte a descrição da opção `--num-slices` do **ndb_restore** **ndb_restore**.
+  For more information, see the description of the [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") [`--num-slices`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_num-slices) option.
 
-- **ndb_restore: alterações no esquema da chave primária.** O NDB 7.6.14 (e versões posteriores) suporta diferentes definições de chave primária para tabelas de origem e destino ao restaurar um backup nativo `NDB` com **ndb_restore** quando executado com a opção `--allow-pk-changes`. Ambos os casos de aumento e diminuição do número de colunas que compõem a chave primária original são suportados.
+* **ndb_restore: primary key schema changes.** NDB 7.6.14 (and later) supports different primary key definitions for source and target tables when restoring an `NDB` native backup with [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") when it is run with the [`--allow-pk-changes`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_allow-pk-changes) option. Both increasing and decreasing the number of columns making up the original primary key are supported.
 
-  Quando a chave primária é estendida com uma coluna ou colunas adicionais, todas as colunas adicionadas devem ser definidas como `NOT NULL`, e nenhum valor em nenhuma dessas colunas pode ser alterado durante o tempo em que o backup está sendo feito. Como algumas aplicações definem todos os valores das colunas em uma linha ao atualizá-la, independentemente de todos os valores realmente terem sido alterados, isso pode fazer com que uma operação de restauração falhe, mesmo que nenhum valor na coluna que será adicionada à chave primária tenha sido alterado. Você pode sobrepor esse comportamento usando a opção `--ignore-extended-pk-updates` também adicionada no NDB 7.6.14; nesse caso, você deve garantir que nenhum desses valores seja alterado.
+  When the primary key is extended with an additional column or columns, any columns added must be defined as `NOT NULL`, and no values in any such columns may be changed during the time that the backup is being taken. Because some applications set all column values in a row when updating it, whether or not all values are actually changed, this can cause a restore operation to fail even if no values in the column to be added to the primary key have changed. You can override this behavior using the [`--ignore-extended-pk-updates`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_ignore-extended-pk-updates) option also added in NDB 7.6.14; in this case, you must ensure that no such values are changed.
 
-  Uma coluna pode ser removida da chave primária da tabela, independentemente de essa coluna permanecer ou não como parte da tabela.
+  A column can be removed from the table's primary key whether or not this column remains part of the table.
 
-  Para obter mais informações, consulte a descrição da opção `--allow-pk-changes` para **ndb_restore**.
+  For more information, see the description of the [`--allow-pk-changes`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_allow-pk-changes) option for [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup").
 
-- Melhorias no **ndb_blob_tool**. A partir do NDB 7.6.14, o utilitário **ndb_blob_tool** pode detectar partes de blob ausentes para as quais existem partes em linha e substituí-las por partes de blob de espaço (com caracteres de espaço) do comprimento correto. Para verificar se há partes de blob ausentes, use a opção `--check-missing` com este programa. Para substituir quaisquer partes de blob ausentes por marcadores, use a opção `--add-missing`.
+* **ndb_blob_tool enhancements.** Beginning with NDB 7.6.14, the [**ndb_blob_tool**](mysql-cluster-programs-ndb-blob-tool.html "21.5.6 ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables") utility can detect missing blob parts for which inline parts exist and replace these with placeholder blob parts (consisting of space characters) of the correct length. To check whether there are missing blob parts, use the [`--check-missing`](mysql-cluster-programs-ndb-blob-tool.html#option_ndb_blob_tool_check-missing) option with this program. To replace any missing blob parts with placeholders, use the [`--add-missing`](mysql-cluster-programs-ndb-blob-tool.html#option_ndb_blob_tool_add-missing) option.
 
-  Para obter mais informações, consulte Seção 21.5.6, “ndb_blob_tool — Verificar e reparar colunas BLOB e TEXT de tabelas de NDB Cluster”.
+  For more information, see [Section 21.5.6, “ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables”](mysql-cluster-programs-ndb-blob-tool.html "21.5.6 ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables").
 
-- **Mesclando backups com ndb_restore.** Em alguns casos, pode ser desejável consolidar os dados originalmente armazenados em diferentes instâncias do NDB Cluster (todos usando o mesmo esquema) em um único NDB Cluster de destino. Isso agora é suportado ao usar backups criados no cliente **ndb_mgm** (veja Seção 21.6.8.2, “Usando o Cliente de Gerenciamento do NDB Cluster para Criar um Backup”) e restaurá-los com **ndb_restore**, usando a opção `--remap-column` adicionada no NDB 7.6.14, juntamente com `--restore-data` (e possivelmente opções compatíveis adicionais conforme necessário ou desejado). `--remap-column` pode ser empregado para lidar com casos em que os valores de chave primária e exclusiva estão sobrepostos entre os clusters de origem e é necessário que eles não se sobreponham no cluster de destino, além de preservar outras relações entre tabelas, como chaves estrangeiras.
+* **Merging backups with ndb_restore.** In some cases, it may be desirable to consolidate data originally stored in different instances of NDB Cluster (all using the same schema) into a single target NDB Cluster. This is now supported when using backups created in the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") client (see [Section 21.6.8.2, “Using The NDB Cluster Management Client to Create a Backup”](mysql-cluster-backup-using-management-client.html "21.6.8.2 Using The NDB Cluster Management Client to Create a Backup")) and restoring them with [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup"), using the [`--remap-column`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_remap-column) option added in NDB 7.6.14 along with [`--restore-data`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_restore-data) (and possibly additional compatible options as needed or desired). `--remap-column` can be employed to handle cases in which primary and unique key values are overlapping between source clusters, and it is necessary that they do not overlap in the target cluster, as well as to preserve other relationships between tables such as foreign keys.
 
-  `--remap-column` aceita como argumento uma string no formato `db.tbl.col:fn:args`, onde *`db`*, *`tbl`* e *`col`* são, respectivamente, os nomes do banco de dados, tabela e coluna, *`fn`* é o nome de uma função de remapeamento e *`args`* é um ou mais argumentos para *`fn`*. Não há valor padrão. Apenas `offset` é suportado como o nome da função, com *`args`* como o deslocamento inteiro a ser aplicado ao valor da coluna ao inseri-la na tabela de destino a partir do backup. Esta coluna deve ser uma das tipos `INT` ou `BIGINT`; o intervalo permitido do valor do deslocamento é o mesmo que a versão assíncrona desse tipo (isso permite que o deslocamento seja negativo, se desejado).
+  [`--remap-column`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_remap-column) takes as its argument a string having the format `db.tbl.col:fn:args`, where *`db`*, *`tbl`*, and *`col`* are, respectively, the names of the database, table, and column, *`fn`* is the name of a remapping function, and *`args`* is one or more arguments to *`fn`*. There is no default value. Only `offset` is supported as the function name, with *`args`* as the integer offset to be applied to the value of the column when inserting it into the target table from the backup. This column must be one of [`INT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") or [`BIGINT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"); the allowed range of the offset value is the same as the signed version of that type (this allows the offset to be negative if desired).
 
-  A nova opção pode ser usada várias vezes na mesma invocação de **ndb_restore**, para que você possa remappear para novos valores várias colunas da mesma tabela, de tabelas diferentes ou de ambas. O valor de deslocamento não precisa ser o mesmo para todas as instâncias da opção.
+  The new option can be used multiple times in the same invocation of [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup"), so that you can remap to new values multiple columns of the same table, different tables, or both. The offset value does not have to be the same for all instances of the option.
 
-  Além disso, duas novas opções são fornecidas para **ndb_desc**, também a partir do NDB 7.6.14:
+  In addition, two new options are provided for [**ndb_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables"), also beginning in NDB 7.6.14:
 
-  - `--auto-inc` (forma abreviada `-a`): Inclui o próximo valor de autoincremento na saída, se a tabela tiver uma coluna `AUTO_INCREMENT`.
+  + [`--auto-inc`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_auto-inc) (short form `-a`): Includes the next auto-increment value in the output, if the table has an `AUTO_INCREMENT` column.
 
-  - `--context` (forma abreviada `-x`): Fornece informações adicionais sobre a tabela, incluindo o esquema, o nome do banco de dados, o nome da tabela e o ID interno.
+  + [`--context`](mysql-cluster-programs-ndb-desc.html#option_ndb_desc_context) (short form `-x`): Provides extra information about the table, including the schema, database name, table name, and internal ID.
 
-  Para obter mais informações e exemplos, consulte a descrição da opção `--remap-column`.
+  For more information and examples, see the description of the [`--remap-column`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_remap-column) option.
 
-- **Opção `--ndb-log-fail-terminate`.** A partir do NDB 7.6.14, você pode fazer com que o nó SQL termine sempre que não conseguir registrar todos os eventos de linha completamente. Isso pode ser feito iniciando o **mysqld** com a opção `--ndb-log-fail-terminate` (mysql-cluster-options-variables.html#option_mysqld_ndb-log-fail-terminate).
+* **--ndb-log-fail-terminate option.** Beginning with NDB 7.6.14, you can cause the SQL node to terminate whenever it is unable to log all row events fully. This can be done by starting [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") with the [`--ndb-log-fail-terminate`](mysql-cluster-options-variables.html#option_mysqld_ndb-log-fail-terminate) option.
 
-- **Programas do NDB — Remoção da dependência do NDBT.** A dependência de vários programas de utilitários do NDB na biblioteca NDBT foi removida. Essa biblioteca é usada internamente para desenvolvimento e não é necessária para uso normal; sua inclusão nesses programas poderia causar problemas indesejados durante os testes.
+* **NDB programs—NDBT dependency removal.** The dependency of a number of `NDB` utility programs on the `NDBT` library has been removed. This library is used internally for development, and is not required for normal use; its inclusion in these programs could lead to unwanted issues when testing.
 
-  Os programas afetados estão listados aqui, juntamente com as versões do `NDB` nas quais a dependência foi removida:
+  Affected programs are listed here, along with the `NDB` versions in which the dependency was removed:
 
-  - **ndb_restore**, em NDB 7.6.11
-  - **ndb_show_tables**, em NDB 7.6.14
-  - **ndb_waiter**, em NDB 7.6.14
+  + [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup"), in NDB 7.6.11
+  + [**ndb_show_tables**](mysql-cluster-programs-ndb-show-tables.html "21.5.27 ndb_show_tables — Display List of NDB Tables"), in NDB 7.6.14
+  + [**ndb_waiter**](mysql-cluster-programs-ndb-waiter.html "21.5.30 ndb_waiter — Wait for NDB Cluster to Reach a Given Status"), in NDB 7.6.14
 
-  O principal efeito dessa mudança para os usuários é que esses programas não imprimem mais `NDBT_ProgramExit - status` após a conclusão de uma execução. As aplicações que dependem desse comportamento devem ser atualizadas para refletir a mudança ao serem atualizadas para as versões indicadas.
+  The principal effect of this change for users is that these programs no longer print `NDBT_ProgramExit - status` following completion of a run. Applications that depend upon such behavior should be updated to reflect the change when upgrading to the indicated versions.
 
-- **Depreciação e remoção do Auto-Instalador.** A ferramenta de instalação baseada na web do Auto-Instalador do MySQL NDB Cluster (**ndb_setup.py**) é descontinuada no NDB 7.6.16 e removida no NDB 7.6.17 e versões posteriores. Ela não é mais suportada.
+* **Auto-Installer deprecation and removal.** The MySQL NDB Cluster Auto-Installer web-based installation tool (**ndb_setup.py**) is deprecated in NDB 7.6.16, and is removed in NDB 7.6.17 and later. It is no longer supported.
 
-- **Descontinuidade e remoção do ndbmemcache.** O `ndbmemcache` não é mais suportado. O `ndbmemcache` foi descontinuado no NDB 7.6.16 e removido no NDB 7.6.17.
+* **ndbmemcache deprecation and removal.** `ndbmemcache` is no longer supported. `ndbmemcache` was deprecated in NDB 7.6.16, and removed in NDB 7.6.17.
 
-- **Suporte ao Node.js removido.** A partir da versão NDB Cluster 7.6.16, o suporte ao Node.js pela NDB 7.6 foi removido.
+* **Node.js support removed.** Beginning with the NDB Cluster 7.6.16 release, support for Node.js by NDB 7.6 has been removed.
 
-  O suporte para Node.js pelo NDB Cluster é mantido apenas no NDB 8.0.
+  Support for Node.js by NDB Cluster is maintained in NDB 8.0 only.
 
-- **Conversão entre NULL e NOT NULL durante operações de restauração.** A partir do NDB 7.6.19, o **ndb_restore** pode suportar a restauração de colunas `NULL` como `NOT NULL` e vice-versa, usando as opções listadas aqui:
+* **Conversion between NULL and NOT NULL during restore operations.** Beginning with NDB 7.6.19, [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") can support restoring of `NULL` columns as `NOT NULL` and the reverse, using the options listed here:
 
-  - Para restaurar uma coluna `NULL` como `NOT NULL`, use a opção `--lossy-conversions`.
+  + To restore a `NULL` column as `NOT NULL`, use the [`--lossy-conversions`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_lossy-conversions) option.
 
-    A coluna originalmente declarada como `NULL` não deve conter nenhuma linha `NULL`; se contiver, o **ndb_restore** sai com um erro.
+    The column originally declared as `NULL` must not contain any `NULL` rows; if it does, [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") exits with an error.
 
-  - Para restaurar uma coluna `NOT NULL` como `NULL`, use a opção `--promote-attributes`.
+  + To restore a `NOT NULL` column as `NULL`, use the [`--promote-attributes`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_promote-attributes) option.
 
-  Para obter mais informações, consulte as descrições das opções indicadas **ndb_restore**.
+  For more information, see the descriptions of the indicated [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") options.
 
-- **Suporte ao OpenSSL 3.0.** A partir do NDB 7.6.27, todos os binários do servidor e do cliente MySQL incluídos na distribuição `NDB` são compilados com suporte ao OpenSSL 3.0
+* **OpenSSL 3.0 support.** Beginning with NDB 7.6.27, all MySQL server and client binaries included in the `NDB` distribution are compiled with support for Open SSL 3.0
 
-- **Opção `mysql client --commands`.** A opção **mysql** `--commands` (mysql-command-options.html#option_mysql_commands), adicionada no NDB 7.6.35, habilita ou desabilita a maioria dos comandos do cliente **mysql**.
+* **mysql client --commands option.** The [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client [`--commands`](mysql-command-options.html#option_mysql_commands) option, added in NDB 7.6.35, enables or disables most [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client commands.
 
-  Esta opção está habilitada por padrão. Para desabilitá-la, inicie o cliente **mysql** com `--commands=OFF` ou `--skip-commands`.
+  This option is enabled by default. To disable it, start the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client with [`--commands=OFF`](mysql-command-options.html#option_mysql_commands) or [`--skip-commands`](mysql-command-options.html#option_mysql_commands).
 
-  Para obter mais informações, consulte Seção 4.5.1.1, “Opções do cliente do MySQL”.
+  For more information, see [Section 4.5.1.1, “mysql Client Options”](mysql-command-options.html "4.5.1.1 mysql Client Options").

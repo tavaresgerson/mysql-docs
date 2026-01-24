@@ -1,6 +1,6 @@
-#### 16.4.1.35 Replicação e TRUNCATE TABLE
+#### 16.4.1.35 Replication and TRUNCATE TABLE
 
-`TRUNCATE TABLE` é normalmente considerada uma instrução DML, e, portanto, seria esperado que fosse registrada e replicada usando o formato baseado em linha quando o modo de registro binário é `ROW` ou `MIXED`. No entanto, isso causou problemas ao registrar ou replicar, no modo `STATEMENT` ou `MIXED`, tabelas que usavam motores de armazenamento transacional, como `InnoDB` quando o nível de isolamento de transação era `READ COMMITTED` ou `READ UNCOMMITTED`, o que exclui o registro baseado em declarações.
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is normally regarded as a DML statement, and so would be expected to be logged and replicated using row-based format when the binary logging mode is `ROW` or `MIXED`. However this caused issues when logging or replicating, in `STATEMENT` or `MIXED` mode, tables that used transactional storage engines such as [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") when the transaction isolation level was `READ COMMITTED` or `READ UNCOMMITTED`, which precludes statement-based logging.
 
-`TRUNCATE TABLE` é tratado para fins de registro e replicação como DDL em vez de DML, para que possa ser registrado e replicado como uma instrução. No entanto, os efeitos da instrução, conforme aplicável a `InnoDB` e outras tabelas transacionais em réplicas, seguem ainda as regras descritas em Seção 13.1.34, “Instrução `TRUNCATE TABLE`”. (Bug
-\#36763)
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is treated for purposes of logging and replication as DDL rather than DML so that it can be logged and replicated as a statement. However, the effects of the statement as applicable to [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") and other transactional tables on replicas still follow the rules described in [Section 13.1.34, “TRUNCATE TABLE Statement”](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") governing such tables. (Bug
+#36763)

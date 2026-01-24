@@ -1,21 +1,21 @@
-#### 11.4.2.7 Classe Polygon
+#### 11.4.2.7 Polygon Class
 
-Um `Poligono` é uma `Superfície` plana que representa uma geometria de várias faces. Ele é definido por uma única borda externa e zero ou mais bordas internas, onde cada borda interna define um buraco no `Poligono`.
+A `Polygon` is a planar `Surface` representing a multisided geometry. It is defined by a single exterior boundary and zero or more interior boundaries, where each interior boundary defines a hole in the `Polygon`.
 
-**Exemplos de `Polygon`**
+**`Polygon` Examples**
 
-- Em um mapa regional, os objetos `Polygon` poderiam representar florestas, distritos, e assim por diante.
+* On a region map, `Polygon` objects could represent forests, districts, and so on.
 
-**Afirmações `Polygon`**
+**`Polygon` Assertions**
 
-- A borda de um `Polygon` é composta por um conjunto de objetos `LinearRing` (ou seja, objetos `LineString` que são simples e fechados), que compõem suas bordas externas e internas.
+* The boundary of a `Polygon` consists of a set of `LinearRing` objects (that is, `LineString` objects that are both simple and closed) that make up its exterior and interior boundaries.
 
-- Um `Polygon` não tem anéis que se cruzam. Os anéis na borda de um `Polygon` podem se cruzar em um `Ponto`, mas apenas como tangente.
+* A `Polygon` has no rings that cross. The rings in the boundary of a `Polygon` may intersect at a `Point`, but only as a tangent.
 
-- Um `Poligono` não tem linhas, espinhos ou perfurações.
+* A `Polygon` has no lines, spikes, or punctures.
 
-- Um `Poligono` tem um interior que é um conjunto de pontos conectados.
+* A `Polygon` has an interior that is a connected point set.
 
-- Um `Polygon` pode ter buracos. O exterior de um `Polygon` com buracos não está conectado. Cada buraco define um componente conectado do exterior.
+* A `Polygon` may have holes. The exterior of a `Polygon` with holes is not connected. Each hole defines a connected component of the exterior.
 
-As afirmações anteriores fazem de um `Polygon` uma geometria simples.
+The preceding assertions make a `Polygon` a simple geometry.

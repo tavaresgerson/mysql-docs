@@ -1,23 +1,23 @@
-### 22.2.3 COLUNAS Partição
+### 22.2.3 COLUMNS Partitioning
 
-22.2.3.1 Partição de COLUNAS DE ÁREA
+[22.2.3.1 RANGE COLUMNS partitioning](partitioning-columns-range.html)
 
-22.2.3.2 Partição de COLUNAS DA LISTA
+[22.2.3.2 LIST COLUMNS partitioning](partitioning-columns-list.html)
 
-As duas seções seguintes discutem a partição `COLUMNS`, que são variantes da partição `RANGE` e `LIST`. A partição `COLUMNS` permite o uso de múltiplas colunas nas chaves de partição. Todas essas colunas são levadas em consideração tanto para o propósito de colocar as linhas em partições quanto para determinar quais partições devem ser verificadas em busca de linhas correspondentes na poda de partições.
+The next two sections discuss `COLUMNS` partitioning, which are variants on `RANGE` and `LIST` partitioning. `COLUMNS` partitioning enables the use of multiple columns in partitioning keys. All of these columns are taken into account both for the purpose of placing rows in partitions and for the determination of which partitions are to be checked for matching rows in partition pruning.
 
-Além disso, tanto a partição `RANGE COLUMNS` quanto a partição `LIST COLUMNS` suportam o uso de colunas não inteiras para definir faixas de valores ou membros de listas. Os tipos de dados permitidos estão listados na seguinte tabela:
+In addition, both `RANGE COLUMNS` partitioning and `LIST COLUMNS` partitioning support the use of non-integer columns for defining value ranges or list members. The permitted data types are shown in the following list:
 
-- Todos os tipos inteiros: `TINYINT`, `SMALLINT`, `MEDIUMINT`, `INT` (`INTEGER`) e `BIGINT`. (Isso é o mesmo que com a partição por `RANGE` e `LIST`.)
+* All integer types: [`TINYINT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), [`SMALLINT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), [`MEDIUMINT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), [`INT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") ([`INTEGER`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT")), and [`BIGINT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"). (This is the same as with partitioning by `RANGE` and `LIST`.)
 
-  Outros tipos de dados numéricos (como `DECIMAL` ou `FLOAT`) não são suportados como colunas de partição.
+  Other numeric data types (such as [`DECIMAL`](fixed-point-types.html "11.1.3 Fixed-Point Types (Exact Value) - DECIMAL, NUMERIC") or [`FLOAT`](floating-point-types.html "11.1.4 Floating-Point Types (Approximate Value) - FLOAT, DOUBLE")) are not supported as partitioning columns.
 
-- `DATA` e `DATA E HORA`.
+* [`DATE`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") and [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types").
 
-  Colunas que utilizam outros tipos de dados relacionados a datas ou horários não são suportadas como colunas de particionamento.
+  Columns using other data types relating to dates or times are not supported as partitioning columns.
 
-- Os seguintes tipos de cadeia: `CHAR`, `VARCHAR`, `BINARY` e `VARBINARY`.
+* The following string types: [`CHAR`](char.html "11.3.2 The CHAR and VARCHAR Types"), [`VARCHAR`](char.html "11.3.2 The CHAR and VARCHAR Types"), [`BINARY`](binary-varbinary.html "11.3.3 The BINARY and VARBINARY Types"), and [`VARBINARY`](binary-varbinary.html "11.3.3 The BINARY and VARBINARY Types").
 
-  As colunas `TEXT` e `BLOB` não são suportadas como colunas de particionamento.
+  [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") and [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") columns are not supported as partitioning columns.
 
-As discussões sobre a partição de `COLUNAS DE ÁREA` e `COLUNAS DE LISTA` nas próximas duas seções pressupõem que você já esteja familiarizado com a partição baseada em intervalos e listas, conforme suportado no MySQL 5.1 e versões posteriores; para mais informações sobre isso, consulte Seção 22.2.1, “Partição de Intervalo” e Seção 22.2.2, “Partição de Lista”, respectivamente.
+The discussions of `RANGE COLUMNS` and `LIST COLUMNS` partitioning in the next two sections assume that you are already familiar with partitioning based on ranges and lists as supported in MySQL 5.1 and later; for more information about these, see [Section 22.2.1, “RANGE Partitioning”](partitioning-range.html "22.2.1 RANGE Partitioning"), and [Section 22.2.2, “LIST Partitioning”](partitioning-list.html "22.2.2 LIST Partitioning"), respectively.

@@ -1,34 +1,34 @@
-## 22.2 Tipos de Partição
+## 22.2 Partitioning Types
 
-22.2.1 Partição de intervalo
+[22.2.1 RANGE Partitioning](partitioning-range.html)
 
-22.2.2 LIST Partitionamento
+[22.2.2 LIST Partitioning](partitioning-list.html)
 
-22.2.3 COLUMNS Partição de colunas
+[22.2.3 COLUMNS Partitioning](partitioning-columns.html)
 
-22.2.4 Partição HASH
+[22.2.4 HASH Partitioning](partitioning-hash.html)
 
-22.2.5 Partição de Chave
+[22.2.5 KEY Partitioning](partitioning-key.html)
 
-22.2.6 Subpartição
+[22.2.6 Subpartitioning](partitioning-subpartitions.html)
 
-22.2.7 Como o Partição do MySQL lida com NULLs
+[22.2.7 How MySQL Partitioning Handles NULL](partitioning-handling-nulls.html)
 
-Esta seção discute os tipos de particionamento disponíveis no MySQL 5.7. Estes incluem os tipos listados aqui:
+This section discusses the types of partitioning which are available in MySQL 5.7. These include the types listed here:
 
-- **Partição por intervalo.** Esse tipo de partição atribui linhas a partições com base nos valores de coluna que caem dentro de um intervalo específico. Consulte Seção 22.2.1, “Partição por intervalo”. Para informações sobre uma extensão deste tipo, `RANGE COLUMNS`, consulte Seção 22.2.3.1, “Partição por intervalo de COLUNAS”.
+* **RANGE partitioning.** This type of partitioning assigns rows to partitions based on column values falling within a given range. See [Section 22.2.1, “RANGE Partitioning”](partitioning-range.html "22.2.1 RANGE Partitioning"). For information about an extension to this type, `RANGE COLUMNS`, see [Section 22.2.3.1, “RANGE COLUMNS partitioning”](partitioning-columns-range.html "22.2.3.1 RANGE COLUMNS partitioning").
 
-- **Partição por LISTA.** Semelhante à partição por `RANGE`, exceto que a partição é selecionada com base em colunas que correspondem a um conjunto de valores discretos. Consulte Seção 22.2.2, “Partição por LISTA”. Para informações sobre uma extensão deste tipo, `LIST COLUMNS`, consulte Seção 22.2.3.2, “Partição por LIST COLUMNS”.
+* **LIST partitioning.** Similar to partitioning by `RANGE`, except that the partition is selected based on columns matching one of a set of discrete values. See [Section 22.2.2, “LIST Partitioning”](partitioning-list.html "22.2.2 LIST Partitioning"). For information about an extension to this type, `LIST COLUMNS`, see [Section 22.2.3.2, “LIST COLUMNS partitioning”](partitioning-columns-list.html "22.2.3.2 LIST COLUMNS partitioning").
 
-- **Partição HASH.** Com este tipo de partição, uma partição é selecionada com base no valor retornado por uma expressão definida pelo usuário que opera nos valores das colunas nas linhas a serem inseridas na tabela. A função pode consistir em qualquer expressão válida no MySQL que produza um valor inteiro. Veja Seção 22.2.4, “Partição HASH”.
+* **HASH partitioning.** With this type of partitioning, a partition is selected based on the value returned by a user-defined expression that operates on column values in rows to be inserted into the table. The function may consist of any expression valid in MySQL that yields an integer value. See [Section 22.2.4, “HASH Partitioning”](partitioning-hash.html "22.2.4 HASH Partitioning").
 
-  Uma extensão deste tipo, `LINEAR HASH`, também está disponível, veja Seção 22.2.4.1, “LINEAR HASH Partitioning”.
+  An extension to this type, `LINEAR HASH`, is also available, see [Section 22.2.4.1, “LINEAR HASH Partitioning”](partitioning-linear-hash.html "22.2.4.1 LINEAR HASH Partitioning").
 
-- **Partição de chave.** Este tipo de partição é semelhante à partição por `HASH`, exceto que apenas uma ou mais colunas a serem avaliadas são fornecidas, e o servidor MySQL fornece sua própria função de hashing. Essas colunas podem conter valores que não sejam inteiros, pois a função de hashing fornecida pelo MySQL garante um resultado inteiro, independentemente do tipo de dado da coluna. Uma extensão deste tipo, `LINEAR KEY`, também está disponível. Veja Seção 22.2.5, “Partição de Chave”.
+* **KEY partitioning.** This type of partitioning is similar to partitioning by `HASH`, except that only one or more columns to be evaluated are supplied, and the MySQL server provides its own hashing function. These columns can contain other than integer values, since the hashing function supplied by MySQL guarantees an integer result regardless of the column data type. An extension to this type, `LINEAR KEY`, is also available. See [Section 22.2.5, “KEY Partitioning”](partitioning-key.html "22.2.5 KEY Partitioning").
 
-Um uso muito comum da partição de banco de dados é a segregação de dados por data. Alguns sistemas de banco de dados suportam partição explícita de data, o que o MySQL não implementa no 5.7. No entanto, não é difícil no MySQL criar esquemas de partição com base nas colunas `DATE`, `TIME` ou `DATETIME`, ou com base em expressões que utilizam essas colunas.
+A very common use of database partitioning is to segregate data by date. Some database systems support explicit date partitioning, which MySQL does not implement in 5.7. However, it is not difficult in MySQL to create partitioning schemes based on [`DATE`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types"), [`TIME`](time.html "11.2.3 The TIME Type"), or [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") columns, or based on expressions making use of such columns.
 
-Ao particionar por `KEY` ou `LINEAR KEY`, você pode usar uma coluna de `DATA`, `HORÁRIO` ou `DATA/HORÁRIO` como a coluna de particionamento sem realizar nenhuma modificação no valor da coluna. Por exemplo, essa declaração de criação de tabela é perfeitamente válida no MySQL:
+When partitioning by `KEY` or `LINEAR KEY`, you can use a [`DATE`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types"), [`TIME`](time.html "11.2.3 The TIME Type"), or [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") column as the partitioning column without performing any modification of the column value. For example, this table creation statement is perfectly valid in MySQL:
 
 ```sql
 CREATE TABLE members (
@@ -42,9 +42,9 @@ PARTITION BY KEY(joined)
 PARTITIONS 6;
 ```
 
-No MySQL 5.7, também é possível usar uma coluna `DATE` ou `DATETIME` como coluna de particionamento usando o particionamento `RANGE COLUMNS` e `LIST COLUMNS`.
+In MySQL 5.7, it is also possible to use a [`DATE`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") or [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") column as the partitioning column using `RANGE COLUMNS` and `LIST COLUMNS` partitioning.
 
-No entanto, os outros tipos de particionamento do MySQL exigem uma expressão de particionamento que produza um valor inteiro ou `NULL`. Se você deseja usar particionamento baseado em data por `RANGE`, `LIST`, `HASH` ou `LINEAR HASH`, você pode simplesmente usar uma função que opere em uma coluna de `DATE`, `TIME` ou `DATETIME` e retorne esse valor, como mostrado aqui:
+MySQL's other partitioning types, however, require a partitioning expression that yields an integer value or `NULL`. If you wish to use date-based partitioning by `RANGE`, `LIST`, `HASH`, or `LINEAR HASH`, you can simply employ a function that operates on a [`DATE`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types"), [`TIME`](time.html "11.2.3 The TIME Type"), or [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") column and returns such a value, as shown here:
 
 ```sql
 CREATE TABLE members (
@@ -63,22 +63,22 @@ PARTITION BY RANGE( YEAR(joined) ) (
 );
 ```
 
-Exemplos adicionais de particionamento usando datas podem ser encontrados nas seções seguintes deste capítulo:
+Additional examples of partitioning using dates may be found in the following sections of this chapter:
 
-- Seção 22.2.1, “Divisão de Faixa”
-- Seção 22.2.4, “Divisão de HASH”
-- Seção 22.2.4.1, "Divisão por Hash Linear"
+* [Section 22.2.1, “RANGE Partitioning”](partitioning-range.html "22.2.1 RANGE Partitioning")
+* [Section 22.2.4, “HASH Partitioning”](partitioning-hash.html "22.2.4 HASH Partitioning")
+* [Section 22.2.4.1, “LINEAR HASH Partitioning”](partitioning-linear-hash.html "22.2.4.1 LINEAR HASH Partitioning")
 
-Para exemplos mais complexos de partição baseada em data, consulte as seções a seguir:
+For more complex examples of date-based partitioning, see the following sections:
 
-- Seção 22.4, “Rimação de Partições”
-- Seção 22.2.6, “Subpartição”
+* [Section 22.4, “Partition Pruning”](partitioning-pruning.html "22.4 Partition Pruning")
+* [Section 22.2.6, “Subpartitioning”](partitioning-subpartitions.html "22.2.6 Subpartitioning")
 
-A partição do MySQL é otimizada para uso com as funções `TO_DAYS()`, `YEAR()` e `TO_SECONDS()`. No entanto, você pode usar outras funções de data e hora que retornam um inteiro ou `NULL`, como `WEEKDAY()`, `DAYOFYEAR()` ou `MONTH()`. Consulte Seção 12.7, “Funções de Data e Hora” para obter mais informações sobre essas funções.
+MySQL partitioning is optimized for use with the [`TO_DAYS()`](date-and-time-functions.html#function_to-days), [`YEAR()`](date-and-time-functions.html#function_year), and [`TO_SECONDS()`](date-and-time-functions.html#function_to-seconds) functions. However, you can use other date and time functions that return an integer or `NULL`, such as [`WEEKDAY()`](date-and-time-functions.html#function_weekday), [`DAYOFYEAR()`](date-and-time-functions.html#function_dayofyear), or [`MONTH()`](date-and-time-functions.html#function_month). See [Section 12.7, “Date and Time Functions”](date-and-time-functions.html "12.7 Date and Time Functions"), for more information about such functions.
 
-É importante lembrar — independentemente do tipo de particionamento que você usar — que as partições são numeradas automaticamente e em sequência quando criadas, começando com `0`. Quando uma nova linha é inserida em uma tabela particionada, são esses números de partição que são usados para identificar a partição correta. Por exemplo, se sua tabela usa 4 partições, essas partições são numeradas `0`, `1`, `2` e `3`. Para os tipos de particionamento `RANGE` e `LIST`, é necessário garantir que haja uma partição definida para cada número de partição. Para o particionamento `HASH`, a expressão fornecida pelo usuário deve avaliar a um valor inteiro. Para o particionamento `KEY`, essa questão é cuidada automaticamente pela função de hashing que o servidor MySQL emprega internamente.
+It is important to remember—regardless of the type of partitioning that you use—that partitions are always numbered automatically and in sequence when created, starting with `0`. When a new row is inserted into a partitioned table, it is these partition numbers that are used in identifying the correct partition. For example, if your table uses 4 partitions, these partitions are numbered `0`, `1`, `2`, and `3`. For the `RANGE` and `LIST` partitioning types, it is necessary to ensure that there is a partition defined for each partition number. For `HASH` partitioning, the user-supplied expression must evaluate to an integer value. For `KEY` partitioning, this issue is taken care of automatically by the hashing function which the MySQL server employs internally.
 
-Os nomes das partições geralmente seguem as regras que regem outros identificadores do MySQL, como os de tabelas e bancos de dados. No entanto, você deve notar que os nomes das partições não são sensíveis ao caso. Por exemplo, a seguinte instrução `CREATE TABLE` falha, conforme mostrado:
+Names of partitions generally follow the rules governing other MySQL identifiers, such as those for tables and databases. However, you should note that partition names are not case-sensitive. For example, the following [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement fails as shown:
 
 ```sql
 mysql> CREATE TABLE t2 (val INT)
@@ -89,8 +89,8 @@ mysql> CREATE TABLE t2 (val INT)
 ERROR 1488 (HY000): Duplicate partition name mypart
 ```
 
-O erro ocorre porque o MySQL não vê nenhuma diferença entre os nomes de partição `mypart` e `MyPart`.
+Failure occurs because MySQL sees no difference between the partition names `mypart` and `MyPart`.
 
-Quando você especificar o número de partições para a tabela, ele deve ser expresso como um literal inteiro positivo e não nulo, sem zeros no início, e não pode ser uma expressão como `0.8E+01` ou `6-2`, mesmo que ele seja avaliado como um valor inteiro. Frações decimais não são permitidas.
+When you specify the number of partitions for the table, this must be expressed as a positive, nonzero integer literal with no leading zeros, and may not be an expression such as `0.8E+01` or `6-2`, even if it evaluates to an integer value. Decimal fractions are not permitted.
 
-Nas seções que se seguem, não fornecemos necessariamente todas as formas possíveis para a sintaxe que pode ser usada para criar cada tipo de partição; essa informação pode ser encontrada em Seção 13.1.18, “Instrução CREATE TABLE”.
+In the sections that follow, we do not necessarily provide all possible forms for the syntax that can be used for creating each partition type; this information may be found in [Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement").

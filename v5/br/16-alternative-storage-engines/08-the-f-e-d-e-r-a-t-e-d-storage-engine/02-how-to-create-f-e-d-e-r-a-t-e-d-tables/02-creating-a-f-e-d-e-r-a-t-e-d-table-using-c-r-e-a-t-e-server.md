@@ -1,8 +1,8 @@
-#### 15.8.2.2 Criando uma Tabela FEDERATED Usando CREATE SERVER
+#### 15.8.2.2 Creating a FEDERATED Table Using CREATE SERVER
 
-Se você estiver criando várias tabelas `FEDERATED` no mesmo servidor ou se deseja simplificar o processo de criação de tabelas `FEDERATED`, você pode usar a instrução `CREATE SERVER` para definir os parâmetros de conexão do servidor, da mesma forma que faria com a string `CONNECTION`.
+If you are creating a number of `FEDERATED` tables on the same server, or if you want to simplify the process of creating `FEDERATED` tables, you can use the `CREATE SERVER` statement to define the server connection parameters, just as you would with the `CONNECTION` string.
 
-O formato da instrução `CREATE SERVER` é:
+The format of the `CREATE SERVER` statement is:
 
 ```sql
 CREATE SERVER
@@ -11,15 +11,15 @@ FOREIGN DATA WRAPPER wrapper_name
 OPTIONS (option [, option] ...)
 ```
 
-O `server_name` é usado na cadeia de conexão ao criar uma nova tabela `FEDERATED`.
+The *`server_name`* is used in the connection string when creating a new `FEDERATED` table.
 
-Por exemplo, para criar uma conexão de servidor idêntica à string `CONNECTION`:
+For example, to create a server connection identical to the `CONNECTION` string:
 
 ```sql
 CONNECTION='mysql://fed_user@remote_host:9306/federated/test_table';
 ```
 
-Você usaria a seguinte declaração:
+You would use the following statement:
 
 ```sql
 CREATE SERVER fedlink
@@ -27,7 +27,7 @@ FOREIGN DATA WRAPPER mysql
 OPTIONS (USER 'fed_user', HOST 'remote_host', PORT 9306, DATABASE 'federated');
 ```
 
-Para criar uma tabela `FEDERATED` que utilize essa conexão, você ainda usa a palavra-chave `CONNECTION`, mas especifique o nome que você usou na instrução `CREATE SERVER`.
+To create a `FEDERATED` table that uses this connection, you still use the `CONNECTION` keyword, but specify the name you used in the `CREATE SERVER` statement.
 
 ```sql
 CREATE TABLE test_table (
@@ -43,14 +43,14 @@ DEFAULT CHARSET=latin1
 CONNECTION='fedlink/test_table';
 ```
 
-O nome da conexão neste exemplo contém o nome da conexão (`fedlink`) e o nome da tabela (`test_table`) a ser vinculada, separados por uma barra. Se você especificar apenas o nome da conexão sem um nome de tabela, o nome da tabela da tabela local será usado.
+The connection name in this example contains the name of the connection (`fedlink`) and the name of the table (`test_table`) to link to, separated by a slash. If you specify only the connection name without a table name, the table name of the local table is used instead.
 
-Para obter mais informações sobre `CREATE SERVER`, consulte a Seção 13.1.17, “Instrução CREATE SERVER”.
+For more information on `CREATE SERVER`, see Section 13.1.17, “CREATE SERVER Statement”.
 
-A instrução `CREATE SERVER` aceita os mesmos argumentos que a string `CONNECTION`. A instrução `CREATE SERVER` atualiza as linhas na tabela `mysql.servers`. Consulte a tabela a seguir para obter informações sobre a correspondência entre os parâmetros em uma string de conexão, as opções na instrução `CREATE SERVER` e as colunas na tabela `mysql.servers`. Para referência, o formato da string `CONNECTION` é o seguinte:
+The `CREATE SERVER` statement accepts the same arguments as the `CONNECTION` string. The `CREATE SERVER` statement updates the rows in the `mysql.servers` table. See the following table for information on the correspondence between parameters in a connection string, options in the `CREATE SERVER` statement, and the columns in the `mysql.servers` table. For reference, the format of the `CONNECTION` string is as follows:
 
 ```sql
 scheme://user_name[:password]@host_name[:port_num]/db_name/tbl_name
 ```
 
-<table summary="A correspondência entre os parâmetros em uma cadeia de conexão, as opções na instrução CREATE SERVER e as colunas na tabela mysql.servers."><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><thead><tr> <th>Descrição</th> <th>PH_HTML_CODE_<code>PASSWORD</code>] string</th> <th>PH_HTML_CODE_<code>PASSWORD</code>]opção</th> <th>coluna PH_HTML_CODE_<code>host_name</code>]</th> </tr></thead><tbody><tr> <th>Esquema de conexão</th> <td><em>PH_HTML_CODE_<code>HOST</code>]</em></td> <td>PH_HTML_CODE_<code>Host</code>]</td> <td>PH_HTML_CODE_<code>port_num</code>]</td> </tr><tr> <th>Usuário remoto</th> <td><em>PH_HTML_CODE_<code>PORT</code>]</em></td> <td>PH_HTML_CODE_<code>Port</code>]</td> <td>PH_HTML_CODE_<code>db_name</code>]</td> </tr><tr> <th>Senha remota</th> <td><em>PH_HTML_CODE_<code>DATABASE</code>]</em></td> <td><code>PASSWORD</code></td> <td><code>CREATE SERVER</code><code>PASSWORD</code>]</td> </tr><tr> <th>Anfitrião remoto</th> <td><em><code>host_name</code></em></td> <td><code>HOST</code></td> <td><code>Host</code></td> </tr><tr> <th>Porto remoto</th> <td><em><code>port_num</code></em></td> <td><code>PORT</code></td> <td><code>Port</code></td> </tr><tr> <th>Banco de dados remoto</th> <td><em><code>db_name</code></em></td> <td><code>DATABASE</code></td> <td><code>mysql.servers</code><code>PASSWORD</code>]</td> </tr></tbody></table>
+<table summary="The correspondence between parameters in a connection string, options in the CREATE SERVER statement, and the columns in the mysql.servers table."><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><thead><tr> <th>Description</th> <th><code>CONNECTION</code> string</th> <th><code>CREATE SERVER</code> option</th> <th><code>mysql.servers</code> column</th> </tr></thead><tbody><tr> <th>Connection scheme</th> <td><em><code>scheme</code></em></td> <td><code>wrapper_name</code></td> <td><code>Wrapper</code></td> </tr><tr> <th>Remote user</th> <td><em><code>user_name</code></em></td> <td><code>USER</code></td> <td><code>Username</code></td> </tr><tr> <th>Remote password</th> <td><em><code>password</code></em></td> <td><code>PASSWORD</code></td> <td><code>Password</code></td> </tr><tr> <th>Remote host</th> <td><em><code>host_name</code></em></td> <td><code>HOST</code></td> <td><code>Host</code></td> </tr><tr> <th>Remote port</th> <td><em><code>port_num</code></em></td> <td><code>PORT</code></td> <td><code>Port</code></td> </tr><tr> <th>Remote database</th> <td><em><code>db_name</code></em></td> <td><code>DATABASE</code></td> <td><code>Db</code></td> </tr></tbody></table>

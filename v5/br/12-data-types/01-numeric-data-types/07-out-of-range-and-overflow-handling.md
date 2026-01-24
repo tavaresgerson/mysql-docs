@@ -1,22 +1,22 @@
-### 11.1.7 Gerenciamento de Saída Fora do Alcance e Transbordamento
+### 11.1.7 Out-of-Range and Overflow Handling
 
-Quando o MySQL armazena um valor em uma coluna numérica que está fora da faixa permitida do tipo de dados da coluna, o resultado depende do modo SQL em vigor no momento:
+When MySQL stores a value in a numeric column that is outside the permissible range of the column data type, the result depends on the SQL mode in effect at the time:
 
-- Se o modo SQL rigoroso estiver ativado, o MySQL rejeita o valor fora do intervalo com um erro e a inserção falha, de acordo com o padrão SQL.
+* If strict SQL mode is enabled, MySQL rejects the out-of-range value with an error, and the insert fails, in accordance with the SQL standard.
 
-- Se nenhum modo restritivo estiver habilitado, o MySQL corta o valor para o ponto final apropriado do intervalo do tipo de dados da coluna e armazena o valor resultante.
+* If no restrictive modes are enabled, MySQL clips the value to the appropriate endpoint of the column data type range and stores the resulting value instead.
 
-  Quando um valor fora do intervalo é atribuído a uma coluna inteira, o MySQL armazena o valor que representa o ponto final correspondente ao intervalo do tipo de dados da coluna.
+  When an out-of-range value is assigned to an integer column, MySQL stores the value representing the corresponding endpoint of the column data type range.
 
-  Quando uma coluna de ponto flutuante ou ponto fixo recebe um valor que excede o intervalo implícito pela precisão e escala especificadas (ou padrão), o MySQL armazena o valor que representa o ponto final correspondente a esse intervalo.
+  When a floating-point or fixed-point column is assigned a value that exceeds the range implied by the specified (or default) precision and scale, MySQL stores the value representing the corresponding endpoint of that range.
 
-Suponha que uma tabela `t1` tenha esta definição:
+Suppose that a table `t1` has this definition:
 
 ```sql
 CREATE TABLE t1 (i1 TINYINT, i2 TINYINT UNSIGNED);
 ```
 
-Com o modo SQL rigoroso ativado, ocorre um erro fora do intervalo:
+With strict SQL mode enabled, an out of range error occurs:
 
 ```sql
 mysql> SET sql_mode = 'TRADITIONAL';
@@ -26,7 +26,7 @@ mysql> SELECT * FROM t1;
 Empty set (0.00 sec)
 ```
 
-Com o modo SQL rigoroso desativado, o corte com avisos ocorre:
+With strict SQL mode not enabled, clipping with warnings occurs:
 
 ```sql
 mysql> SET sql_mode = '';
@@ -46,16 +46,16 @@ mysql> SELECT * FROM t1;
 +------+------+
 ```
 
-Quando o modo SQL rigoroso não está habilitado, as conversões de atribuição de colunas que ocorrem devido ao corte são relatadas como avisos para as instruções `ALTER TABLE`, `LOAD DATA`, `UPDATE` e `INSERT` de múltiplas linhas. No modo rigoroso, essas instruções falham e alguns ou todos os valores não são inseridos ou alterados, dependendo se a tabela é uma tabela transacional e outros fatores. Para obter detalhes, consulte a Seção 5.1.10, “Modos SQL do servidor”.
+When strict SQL mode is not enabled, column-assignment conversions that occur due to clipping are reported as warnings for `ALTER TABLE`, `LOAD DATA`, `UPDATE`, and multiple-row `INSERT` statements. In strict mode, these statements fail, and some or all the values are not inserted or changed, depending on whether the table is a transactional table and other factors. For details, see Section 5.1.10, “Server SQL Modes”.
 
-O excesso durante a avaliação de expressões numéricas resulta em um erro. Por exemplo, o maior valor assinado de `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") é 9223372036854775807, então a seguinte expressão produz um erro:
+Overflow during numeric expression evaluation results in an error. For example, the largest signed `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") value is 9223372036854775807, so the following expression produces an error:
 
 ```sql
 mysql> SELECT 9223372036854775807 + 1;
 ERROR 1690 (22003): BIGINT value is out of range in '(9223372036854775807 + 1)'
 ```
 
-Para permitir que a operação seja bem-sucedida neste caso, converta o valor para não assinado;
+To enable the operation to succeed in this case, convert the value to unsigned;
 
 ```sql
 mysql> SELECT CAST(9223372036854775807 AS UNSIGNED) + 1;
@@ -66,7 +66,7 @@ mysql> SELECT CAST(9223372036854775807 AS UNSIGNED) + 1;
 +-------------------------------------------+
 ```
 
-Se ocorrer overflow, isso depende da faixa dos operandos, então outra maneira de lidar com a expressão anterior é usar aritmética de valor exato, porque os valores `DECIMAL` - `DECIMAL`, \`NUMERIC") têm uma faixa maior do que os inteiros:
+Whether overflow occurs depends on the range of the operands, so another way to handle the preceding expression is to use exact-value arithmetic because `DECIMAL` - DECIMAL, NUMERIC") values have a larger range than integers:
 
 ```sql
 mysql> SELECT 9223372036854775807.0 + 1;
@@ -77,7 +77,7 @@ mysql> SELECT 9223372036854775807.0 + 1;
 +---------------------------+
 ```
 
-A subtração entre valores inteiros, onde um é do tipo `UNSIGNED`, produz um resultado não assinado por padrão. Se o resultado, de outra forma, fosse negativo, ocorreria um erro:
+Subtraction between integer values, where one is of type `UNSIGNED`, produces an unsigned result by default. If the result would otherwise have been negative, an error results:
 
 ```sql
 mysql> SET sql_mode = '';
@@ -87,7 +87,7 @@ mysql> SELECT CAST(0 AS UNSIGNED) - 1;
 ERROR 1690 (22003): BIGINT UNSIGNED value is out of range in '(cast(0 as unsigned) - 1)'
 ```
 
-Se o modo SQL `NO_UNSIGNED_SUBTRACTION` estiver ativado, o resultado será negativo:
+If the `NO_UNSIGNED_SUBTRACTION` SQL mode is enabled, the result is negative:
 
 ```sql
 mysql> SET sql_mode = 'NO_UNSIGNED_SUBTRACTION';
@@ -99,4 +99,4 @@ mysql> SELECT CAST(0 AS UNSIGNED) - 1;
 +-------------------------+
 ```
 
-Se o resultado de uma operação desse tipo for usado para atualizar uma coluna de inteiro `UNSIGNED`, o resultado é limitado ao valor máximo do tipo da coluna ou limitado a 0 se o modo SQL rigoroso estiver ativado. Se o modo SQL rigoroso estiver ativado, um erro ocorre e a coluna permanece inalterada.
+If the result of such an operation is used to update an `UNSIGNED` integer column, the result is clipped to the maximum value for the column type, or clipped to 0 if `NO_UNSIGNED_SUBTRACTION` is enabled. If strict SQL mode is enabled, an error occurs and the column remains unchanged.

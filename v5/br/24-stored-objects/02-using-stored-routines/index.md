@@ -1,35 +1,35 @@
-## 23.2 Uso de Rotinas Armazenadas
+## 23.2 Using Stored Routines
 
-23.2.1 Sintaxe de rotina armazenada
+23.2.1 Stored Routine Syntax
 
-23.2.2 Rotinas Armazenadas e Privilégios do MySQL
+23.2.2 Stored Routines and MySQL Privileges
 
-23.2.3 Metadados de rotina armazenados
+23.2.3 Stored Routine Metadata
 
-23.2.4 Procedimentos Armazenados, Funções, Descodificadores e LAST_INSERT_ID()
+23.2.4 Stored Procedures, Functions, Triggers, and LAST_INSERT_ID()
 
-O MySQL suporta rotinas armazenadas (procedimentos e funções). Uma rotina armazenada é um conjunto de instruções SQL que podem ser armazenadas no servidor. Uma vez feito isso, os clientes não precisam emitir as instruções individuais novamente, mas podem se referir à rotina armazenada.
+MySQL supports stored routines (procedures and functions). A stored routine is a set of SQL statements that can be stored in the server. Once this has been done, clients don't need to keep reissuing the individual statements but can refer to the stored routine instead.
 
-Rotinas armazenadas exigem a tabela `proc` no banco de dados `mysql`. Essa tabela é criada durante o procedimento de instalação do MySQL. Se você estiver atualizando para o MySQL 5.7 a partir de uma versão anterior, certifique-se de atualizar suas tabelas de concessão para garantir que a tabela `proc` exista. Veja a Seção 4.4.7, “mysql_upgrade — Verificar e atualizar tabelas do MySQL”.
+Stored routines require the `proc` table in the `mysql` database. This table is created during the MySQL installation procedure. If you are upgrading to MySQL 5.7 from an earlier version, be sure to update your grant tables to make sure that the `proc` table exists. See Section 4.4.7, “mysql_upgrade — Check and Upgrade MySQL Tables”.
 
-As rotinas armazenadas podem ser particularmente úteis em certas situações:
+Stored routines can be particularly useful in certain situations:
 
-- Quando várias aplicações de clientes são escritas em diferentes idiomas ou funcionam em diferentes plataformas, mas precisam realizar as mesmas operações de banco de dados.
+* When multiple client applications are written in different languages or work on different platforms, but need to perform the same database operations.
 
-- Quando a segurança é primordial. Os bancos, por exemplo, usam procedimentos e funções armazenadas para todas as operações comuns. Isso proporciona um ambiente consistente e seguro, e as rotinas podem garantir que cada operação seja corretamente registrada. Nesse tipo de configuração, os aplicativos e os usuários não teriam acesso direto às tabelas do banco de dados, mas apenas poderiam executar rotinas armazenadas específicas.
+* When security is paramount. Banks, for example, use stored procedures and functions for all common operations. This provides a consistent and secure environment, and routines can ensure that each operation is properly logged. In such a setup, applications and users would have no access to the database tables directly, but can only execute specific stored routines.
 
-As rotinas armazenadas podem proporcionar um desempenho melhor, pois é necessário enviar menos informações entre o servidor e o cliente. O desvantagem é que isso aumenta a carga no servidor de banco de dados, pois mais trabalho é feito no lado do servidor e menos é feito no lado do cliente (aplicativo). Considere isso se muitas máquinas cliente (como servidores Web) forem atendidas por apenas um ou alguns servidores de banco de dados.
+Stored routines can provide improved performance because less information needs to be sent between the server and the client. The tradeoff is that this does increase the load on the database server because more of the work is done on the server side and less is done on the client (application) side. Consider this if many client machines (such as Web servers) are serviced by only one or a few database servers.
 
-As rotinas armazenadas também permitem que você tenha bibliotecas de funções no servidor de banco de dados. Essa é uma característica compartilhada por linguagens de aplicativos modernas que permitem esse design internamente (por exemplo, usando classes). Usar essas características da linguagem do aplicativo cliente é benéfico para o programador, mesmo fora do escopo do uso do banco de dados.
+Stored routines also enable you to have libraries of functions in the database server. This is a feature shared by modern application languages that enable such design internally (for example, by using classes). Using these client application language features is beneficial for the programmer even outside the scope of database use.
 
-O MySQL segue a sintaxe SQL:2003 para rotinas armazenadas, que também é usada pelo DB2 da IBM. Todas as sintaxes descritas aqui são suportadas e quaisquer limitações e extensões são documentadas quando apropriado.
+MySQL follows the SQL:2003 syntax for stored routines, which is also used by IBM's DB2. All syntax described here is supported and any limitations and extensions are documented where appropriate.
 
-### Recursos adicionais
+### Additional Resources
 
-- Você pode achar útil o [Fórum de Usuários de Procedimentos Armazenados](https://forums.mysql.com/list.php?98) ao trabalhar com procedimentos e funções armazenadas.
+* You may find the [Stored Procedures User Forum](https://forums.mysql.com/list.php?98) of use when working with stored procedures and functions.
 
-- Para respostas a algumas perguntas frequentes sobre rotinas armazenadas no MySQL, consulte a Seção A.4, “Perguntas Frequentes do MySQL 5.7: Procedimentos e Funções Armazenadas”.
+* For answers to some commonly asked questions regarding stored routines in MySQL, see Section A.4, “MySQL 5.7 FAQ: Stored Procedures and Functions”.
 
-- Há algumas restrições sobre o uso de rotinas armazenadas. Veja a Seção 23.8, “Restrições sobre Programas Armazenados”.
+* There are some restrictions on the use of stored routines. See Section 23.8, “Restrictions on Stored Programs”.
 
-- O registro binário para rotinas armazenadas ocorre conforme descrito na Seção 23.7, “Registro Binário de Programas Armazenados”.
+* Binary logging for stored routines takes place as described in Section 23.7, “Stored Program Binary Logging”.

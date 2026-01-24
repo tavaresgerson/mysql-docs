@@ -1,7 +1,7 @@
-### 24.5.1 Informações_Schema Referência da Tabela do Conjunto de Filas Thread
+### 24.5.1 INFORMATION_SCHEMA Thread Pool Table Reference
 
-A tabela a seguir resume as tabelas do pool de threads `INFORMATION_SCHEMA`. Para obter mais detalhes, consulte as descrições individuais das tabelas.
+The following table summarizes `INFORMATION_SCHEMA` thread pool tables. For greater detail, see the individual table descriptions.
 
-**Tabela 24.7 Tabelas do Pool de Fios do Schema de Informações**
+**Table 24.7 INFORMATION_SCHEMA Thread Pool Tables**
 
-<table frame="box" rules="all" summary="Uma referência que lista as tabelas do pool de threads do INFORMATION_SCHEMA."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome da tabela</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>TP_THREAD_GROUP_STATE</code></td> <td>Estados do grupo de threads do pool de threads</td> </tr><tr><td><code>TP_THREAD_GROUP_STATS</code></td> <td>Estatísticas do grupo de threads do pool de threads</td> </tr><tr><td><code>TP_THREAD_STATE</code></td> <td>Informações sobre o thread do pool de threads</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists INFORMATION_SCHEMA thread pool tables."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Table Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>TP_THREAD_GROUP_STATE</code></td> <td>Thread pool thread group states</td> </tr><tr><td><code>TP_THREAD_GROUP_STATS</code></td> <td>Thread pool thread group statistics</td> </tr><tr><td><code>TP_THREAD_STATE</code></td> <td>Thread pool thread information</td> </tr></tbody></table>

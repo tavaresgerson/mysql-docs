@@ -1,9 +1,9 @@
-#### 17.5.1.2 Modo Multi-Primario
+#### 17.5.1.2 Multi-Primary Mode
 
-No modo multi-primario, não há a noção de um único primário. Não há necessidade de envolver um procedimento eleitoral, pois não há nenhum servidor desempenhando um papel especial.
+In multi-primary mode, there is no notion of a single primary. There is no need to engage an election procedure because there is no server playing any special role.
 
-**Figura 17.6 Failover do cliente**
+**Figure 17.6 Client Failover**
 
-![Cinco instâncias de servidor, S1, S2, S3, S4 e S5, são implantadas como um grupo interconectado. Todos os servidores são primárias. Os clientes de escrita estão se comunicando com os servidores S1 e S2, e um cliente de leitura está se comunicando com o servidor S4. O servidor S1 então falha, interrompendo a comunicação com seu cliente de escrita. Esse cliente se reconecta ao servidor S3.](images/multi-primary.png)
+![Five server instances, S1, S2, S3, S4, and S5, are deployed as an interconnected group. All of the servers are primaries. Write clients are communicating with servers S1 and S2, and a read client is communicating with server S4. Server S1 then fails, breaking communication with its write client. This client reconnects to server S3.](images/multi-primary.png)
 
-Todos os servidores estão configurados no modo de leitura e escrita ao se juntarem ao grupo.
+All servers are set to read-write mode when joining the group.

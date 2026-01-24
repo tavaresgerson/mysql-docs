@@ -1,9 +1,9 @@
-### 16.1.7 Tarefas comuns de administração de replicação
+### 16.1.7 Common Replication Administration Tasks
 
-16.1.7.1 Verificar o status da replicação
+[16.1.7.1 Checking Replication Status](replication-administration-status.html)
 
-16.1.7.2 Pausar a replicação na réplica
+[16.1.7.2 Pausing Replication on the Replica](replication-administration-pausing.html)
 
-16.1.7.3 Ignorar Transações
+[16.1.7.3 Skipping Transactions](replication-administration-skip.html)
 
-Uma vez que a replicação tenha sido iniciada, ela é executada sem exigir muita administração regular. Esta seção descreve como verificar o status da replicação e como pausar uma réplica.
+Once replication has been started it executes without requiring much regular administration. This section describes how to check the status of replication and how to pause a replica.

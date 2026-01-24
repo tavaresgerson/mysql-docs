@@ -1,12 +1,12 @@
-#### 13.7.5.33 Mostrar anfitriões escravos Declaração
+#### 13.7.5.33 SHOW SLAVE HOSTS Statement
 
 ```sql
 SHOW SLAVE HOSTS
 ```
 
-Exibe uma lista de réplicas atualmente registradas com a fonte.
+Displays a list of replicas currently registered with the source.
 
-A execução da instrução `SHOW SLAVE HOSTS` deve ser realizada em um servidor que atua como fonte de replicação. A instrução `SHOW SLAVE HOSTS` requer o privilégio `REPLICATION SLAVE`. A declaração exibe informações sobre os servidores que estão ou estiveram conectados como réplicas, com cada linha do resultado correspondendo a um servidor de réplica, conforme mostrado aqui:
+`SHOW SLAVE HOSTS` should be executed on a server that acts as a replication source. `SHOW SLAVE HOSTS` requires the [`REPLICATION SLAVE`](privileges-provided.html#priv_replication-slave) privilege. The statement displays information about servers that are or have been connected as replicas, with each row of the result corresponding to one replica server, as shown here:
 
 ```sql
 mysql> SHOW SLAVE HOSTS;
@@ -18,18 +18,18 @@ mysql> SHOW SLAVE HOSTS;
 +------------+-----------+------+-----------+--------------------------------------+
 ```
 
-- `Server_id`: O ID único do servidor da replica, conforme configurado no arquivo de opções do servidor de replicação ou na linha de comando com `--server-id=valor`.
+* `Server_id`: The unique server ID of the replica server, as configured in the replica server's option file, or on the command line with [`--server-id=value`](replication-options.html#sysvar_server_id).
 
-- `Host`: O nome do host do servidor replica conforme especificado na replica com a opção `--report-host`. Isso pode diferir do nome da máquina conforme configurado no sistema operacional.
+* `Host`: The host name of the replica server as specified on the replica with the [`--report-host`](replication-options-replica.html#sysvar_report_host) option. This can differ from the machine name as configured in the operating system.
 
-- `Usuário`: O nome do usuário do servidor de replicação, conforme especificado na replicação com a opção `--report-user`. A saída da declaração inclui esta coluna apenas se o servidor de origem for iniciado com a opção `--show-slave-auth-info`.
+* `User`: The replica server user name as, specified on the replica with the [`--report-user`](replication-options-replica.html#sysvar_report_user) option. Statement output includes this column only if the source server is started with the [`--show-slave-auth-info`](replication-options-source.html#option_mysqld_show-slave-auth-info) option.
 
-- `Senha`: A senha do servidor replicador, conforme especificado no replicador com a opção `--report-password`. A saída da declaração inclui esta coluna apenas se o servidor de origem for iniciado com a opção `--show-slave-auth-info`.
+* `Password`: The replica server password as, specified on the replica with the [`--report-password`](replication-options-replica.html#sysvar_report_password) option. Statement output includes this column only if the source server is started with the [`--show-slave-auth-info`](replication-options-source.html#option_mysqld_show-slave-auth-info) option.
 
-- `Port`: O porto na fonte para o qual o servidor de replicação está ouvindo, conforme especificado na replicação com a opção `--report-port`.
+* `Port`: The port on the source to which the replica server is listening, as specified on the replica with the [`--report-port`](replication-options-replica.html#sysvar_report_port) option.
 
-  Um zero nesta coluna significa que o porta de replicação (`--report-port`) não foi definido.
+  A zero in this column means that the replica port ([`--report-port`](replication-options-replica.html#sysvar_report_port)) was not set.
 
-- `Master_id`: O ID único do servidor da fonte do qual o servidor de replicação está replicando. Este é o ID do servidor no qual o comando `SHOW SLAVE HOSTS` é executado, portanto, este mesmo valor é listado para cada linha no resultado.
+* `Master_id`: The unique server ID of the source server that the replica server is replicating from. This is the server ID of the server on which `SHOW SLAVE HOSTS` is executed, so this same value is listed for each row in the result.
 
-- `Slave_UUID`: O ID único global desta replica, conforme gerado na replica e encontrado no arquivo `auto.cnf` da replica.
+* `Slave_UUID`: The globally unique ID of this replica, as generated on the replica and found in the replica's `auto.cnf` file.

@@ -1,4 +1,4 @@
-#### 13.7.5.32 Mostrar eventos do RELAYLOG Declaração
+#### 13.7.5.32 SHOW RELAYLOG EVENTS Statement
 
 ```sql
 SHOW RELAYLOG EVENTS
@@ -11,44 +11,44 @@ channel_option:
     FOR CHANNEL channel
 ```
 
-Mostra os eventos no log de retransmissão de uma réplica. Se você não especificar `'log_name'`, o primeiro log de retransmissão será exibido. Esta declaração não tem efeito na fonte. `SHOW RELAYLOG EVENTS` requer o privilégio `REPLICATION SLAVE`.
+Shows the events in the relay log of a replica. If you do not specify `'log_name'`, the first relay log is displayed. This statement has no effect on the source. [`SHOW RELAYLOG EVENTS`](show-relaylog-events.html "13.7.5.32 SHOW RELAYLOG EVENTS Statement") requires the [`REPLICATION SLAVE`](privileges-provided.html#priv_replication-slave) privilege.
 
-A cláusula `LIMIT` tem a mesma sintaxe que a cláusula `SELECT`. Consulte Seção 13.2.9, “Instrução SELECT”.
+The `LIMIT` clause has the same syntax as for the [`SELECT`](select.html "13.2.9 SELECT Statement") statement. See [Section 13.2.9, “SELECT Statement”](select.html "13.2.9 SELECT Statement").
 
-Nota
+Note
 
-Emitir um `SHOW RELAYLOG EVENTS` sem a cláusula `LIMIT` pode iniciar um processo que consome muito tempo e recursos, pois o servidor retorna ao cliente o conteúdo completo do log de retransmissão (incluindo todas as declarações que modificam dados recebidos pela replica).
+Issuing a [`SHOW RELAYLOG EVENTS`](show-relaylog-events.html "13.7.5.32 SHOW RELAYLOG EVENTS Statement") with no `LIMIT` clause could start a very time- and resource-consuming process because the server returns to the client the complete contents of the relay log (including all statements modifying data that have been received by the replica).
 
-A cláusula `FOR CHANNEL channel` opcional permite que você nomeie qual canal de replicação a declaração se aplica. Ao fornecer uma cláusula `FOR CHANNEL channel`, a declaração é aplicada a um canal de replicação específico. Se nenhum canal estiver nomeado e não houver canais extras, a declaração será aplicada ao canal padrão.
+The optional `FOR CHANNEL channel` clause enables you to name which replication channel the statement applies to. Providing a `FOR CHANNEL channel` clause applies the statement to a specific replication channel. If no channel is named and no extra channels exist, the statement applies to the default channel.
 
-Ao usar múltiplos canais de replicação, se uma declaração `SHOW RELAYLOG EVENTS` não tiver um canal definido usando uma cláusula `FOR CHANNEL channel`, um erro será gerado. Consulte Seção 16.2.2, “Canais de Replicação” para obter mais informações.
+When using multiple replication channels, if a [`SHOW RELAYLOG EVENTS`](show-relaylog-events.html "13.7.5.32 SHOW RELAYLOG EVENTS Statement") statement does not have a channel defined using a `FOR CHANNEL channel` clause an error is generated. See [Section 16.2.2, “Replication Channels”](replication-channels.html "16.2.2 Replication Channels") for more information.
 
-`SHOW RELAYLOG EVENTS` exibe os seguintes campos para cada evento no log de retransmissão:
+[`SHOW RELAYLOG EVENTS`](show-relaylog-events.html "13.7.5.32 SHOW RELAYLOG EVENTS Statement") displays the following fields for each event in the relay log:
 
-- `Log_name`
+* `Log_name`
 
-  O nome do arquivo que está sendo listado.
+  The name of the file that is being listed.
 
-- `Pos`
+* `Pos`
 
-  A posição em que o evento ocorre.
+  The position at which the event occurs.
 
-- `Tipo de evento`
+* `Event_type`
 
-  Um identificador que descreve o tipo de evento.
+  An identifier that describes the event type.
 
-- `Server_id`
+* `Server_id`
 
-  O ID do servidor do servidor em que o evento se originou.
+  The server ID of the server on which the event originated.
 
-- `End_log_pos`
+* `End_log_pos`
 
-  O valor de `End_log_pos` para este evento no log binário da fonte.
+  The value of `End_log_pos` for this event in the source's binary log.
 
-- `Info`
+* `Info`
 
-  Informações mais detalhadas sobre o tipo de evento. O formato dessas informações depende do tipo de evento.
+  More detailed information about the event type. The format of this information depends on the event type.
 
-Nota
+Note
 
-Alguns eventos relacionados à definição de variáveis de usuário e sistema não estão incluídos na saída do `SHOW RELAYLOG EVENTS`. Para obter uma cobertura completa dos eventos dentro de um log de retransmissão, use **mysqlbinlog**.
+Some events relating to the setting of user and system variables are not included in the output from [`SHOW RELAYLOG EVENTS`](show-relaylog-events.html "13.7.5.32 SHOW RELAYLOG EVENTS Statement"). To get complete coverage of events within a relay log, use [**mysqlbinlog**](mysqlbinlog.html "4.6.7 mysqlbinlog — Utility for Processing Binary Log Files").

@@ -1,38 +1,38 @@
-### 13.1.34 Declaração `TRUNCATE TABLE`
+### 13.1.34 TRUNCATE TABLE Statement
 
 ```sql
 TRUNCATE [TABLE] tbl_name
 ```
 
-A opção `TRUNCATE TABLE` esvazia uma tabela completamente. Ela requer o privilégio `DROP`.
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") empties a table completely. It requires the [`DROP`](privileges-provided.html#priv_drop) privilege.
 
-Logicamente, `TRUNCATE TABLE` é semelhante a uma instrução `DELETE` que exclui todas as linhas ou a sequência de instruções `DROP TABLE` e `CREATE TABLE`. Para alcançar um alto desempenho, ele ignora o método DML de exclusão de dados. Assim, ele não pode ser desfeito, não aciona gatilhos `ON DELETE` e não pode ser executado para tabelas `InnoDB` com relações de chave estrangeira pai-filho.
+Logically, [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is similar to a [`DELETE`](delete.html "13.2.2 DELETE Statement") statement that deletes all rows, or a sequence of [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement") and [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statements. To achieve high performance, it bypasses the DML method of deleting data. Thus, it cannot be rolled back, it does not cause `ON DELETE` triggers to fire, and it cannot be performed for `InnoDB` tables with parent-child foreign key relationships.
 
-Embora `TRUNCATE TABLE` seja semelhante a `DELETE`, ele é classificado como uma instrução DDL (Data Definition Language) e não como uma instrução DML (Data Manipulation Language). Ele difere de `DELETE` da seguinte maneira:
+Although [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is similar to [`DELETE`](delete.html "13.2.2 DELETE Statement"), it is classified as a DDL statement rather than a DML statement. It differs from [`DELETE`](delete.html "13.2.2 DELETE Statement") in the following ways:
 
-- As operações de truncar e recriar a tabela são muito mais rápidas do que excluir linhas uma a uma, especialmente para tabelas grandes.
+* Truncate operations drop and re-create the table, which is much faster than deleting rows one by one, particularly for large tables.
 
-- As operações de truncação causam um commit implícito e, portanto, não podem ser desfeitas. Veja Seção 13.3.3, “Instruções que causam um commit implícito”.
+* Truncate operations cause an implicit commit, and so cannot be rolled back. See [Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit").
 
-- As operações de truncação não podem ser realizadas se a sessão tiver um bloqueio de tabela ativo.
+* Truncation operations cannot be performed if the session holds an active table lock.
 
-- A instrução `TRUNCATE TABLE` falha para uma tabela `InnoDB` ou tabela `NDB` se houver quaisquer restrições `FOREIGN KEY` de outras tabelas que façam referência à tabela. Restrições de chave estrangeira entre colunas da mesma tabela são permitidas.
+* [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") fails for an `InnoDB` table or [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table if there are any `FOREIGN KEY` constraints from other tables that reference the table. Foreign key constraints between columns of the same table are permitted.
 
-- As operações de truncação não retornam um valor significativo para o número de linhas excluídas. O resultado usual é “0 linhas afetadas”, que deve ser interpretado como “nenhuma informação”.
+* Truncation operations do not return a meaningful value for the number of deleted rows. The usual result is “0 rows affected,” which should be interpreted as “no information.”
 
-- Enquanto o arquivo de formato de tabela `tbl_name.frm` estiver válido, a tabela pode ser recriada como uma tabela vazia com `TRUNCATE TABLE`, mesmo que os arquivos de dados ou índice tenham sido corrompidos.
+* As long as the table format file `tbl_name.frm` is valid, the table can be re-created as an empty table with [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement"), even if the data or index files have become corrupted.
 
-- Qualquer valor `AUTO_INCREMENT` é redefinido para seu valor inicial. Isso é verdadeiro mesmo para `MyISAM` e `InnoDB`, que normalmente não reutilizam os valores da sequência.
+* Any `AUTO_INCREMENT` value is reset to its start value. This is true even for `MyISAM` and `InnoDB`, which normally do not reuse sequence values.
 
-- Quando usado com tabelas particionadas, `TRUNCATE TABLE` preserva a partição; ou seja, os arquivos de dados e índice são excluídos e recriados, enquanto o arquivo de definição de partição (`.par`) não é afetado.
+* When used with partitioned tables, [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") preserves the partitioning; that is, the data and index files are dropped and re-created, while the partition definitions (`.par`) file is unaffected.
 
-- A instrução `TRUNCATE TABLE` não invoca gatilhos `ON DELETE`.
+* The [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") statement does not invoke `ON DELETE` triggers.
 
-A instrução `TRUNCATE TABLE` é tratada para fins de registro binário e replicação como DDL (Linguagem de Definição de Dados) e não como DML (Linguagem de Manipulação de Dados), e é sempre registrada como uma declaração.
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is treated for purposes of binary logging and replication as DDL rather than DML, and is always logged as a statement.
 
-A instrução `TRUNCATE TABLE` para uma tabela fecha todos os manipuladores da tabela que foram abertos com `HANDLER OPEN`.
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") for a table closes all handlers for the table that were opened with [`HANDLER OPEN`](handler.html "13.2.4 HANDLER Statement").
 
-Em um sistema com um grande pool de buffers `InnoDB` e o `innodb_adaptive_hash_index` habilitado, as operações de `TRUNCATE TABLE` podem causar uma queda temporária no desempenho do sistema devido a uma varredura LRU que ocorre ao remover entradas do índice hash adaptativo de uma tabela `InnoDB`. O problema foi resolvido para `DROP TABLE` no MySQL 5.5.23 (Bug
-\#13704145, Bug #64284), mas permanece um problema conhecido para `TRUNCATE TABLE` (Bug #68184).
+On a system with a large `InnoDB` buffer pool and [`innodb_adaptive_hash_index`](innodb-parameters.html#sysvar_innodb_adaptive_hash_index) enabled, `TRUNCATE TABLE` operations may cause a temporary drop in system performance due to an LRU scan that occurs when removing an `InnoDB` table's adaptive hash index entries. The problem was addressed for [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement") in MySQL 5.5.23 (Bug
+#13704145, Bug #64284) but remains a known issue for `TRUNCATE TABLE` (Bug #68184).
 
-O comando `TRUNCATE TABLE` pode ser usado com as tabelas de resumo do Gerenciamento de Desempenho, mas o efeito é redefinir as colunas de resumo para 0 ou `NULL`, e não remover linhas. Veja Seção 25.12.15, “Tabelas de Resumo do Gerenciamento de Desempenho”.
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") can be used with Performance Schema summary tables, but the effect is to reset the summary columns to 0 or `NULL`, not to remove rows. See [Section 25.12.15, “Performance Schema Summary Tables”](performance-schema-summary-tables.html "25.12.15 Performance Schema Summary Tables").

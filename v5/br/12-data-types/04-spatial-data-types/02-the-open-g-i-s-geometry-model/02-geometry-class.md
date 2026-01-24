@@ -1,45 +1,45 @@
-#### 11.4.2.2 Classe de Geometria
+#### 11.4.2.2 Geometry Class
 
-`Geometry` é a classe raiz da hierarquia. É uma classe não instanciável, mas possui uma série de propriedades, descritas na lista a seguir, que são comuns a todos os valores de geometria criados a partir de qualquer uma das subclasses de `Geometry`. Subclasses específicas têm suas próprias propriedades específicas, descritas mais adiante.
+`Geometry` is the root class of the hierarchy. It is a noninstantiable class but has a number of properties, described in the following list, that are common to all geometry values created from any of the `Geometry` subclasses. Particular subclasses have their own specific properties, described later.
 
-**Propriedades da Geometria**
+**Geometry Properties**
 
-Um valor de geometria tem as seguintes propriedades:
+A geometry value has the following properties:
 
-- Seu **tipo**. Cada geometria pertence a uma das classes instanciáveis na hierarquia.
+* Its **type**. Each geometry belongs to one of the instantiable classes in the hierarchy.
 
-- Seu **SRID**, ou identificador de referência espacial. Esse valor identifica o sistema de referência espacial associado à geometria, que descreve o espaço de coordenadas no qual o objeto de geometria é definido.
+* Its **SRID**, or spatial reference identifier. This value identifies the geometry's associated spatial reference system that describes the coordinate space in which the geometry object is defined.
 
-  No MySQL, o valor SRID é um inteiro associado ao valor de geometria. O valor máximo utilizável do SRID é 232−1. Se for fornecido um valor maior, apenas os 32 bits inferiores são usados. Todos os cálculos são feitos assumindo SRID 0, independentemente do valor real do SRID. O SRID 0 representa um plano cartesiano plano infinito sem unidades atribuídas aos seus eixos.
+  In MySQL, the SRID value is an integer associated with the geometry value. The maximum usable SRID value is 232−1. If a larger value is given, only the lower 32 bits are used. All computations are done assuming SRID 0, regardless of the actual SRID value. SRID 0 represents an infinite flat Cartesian plane with no units assigned to its axes.
 
-- Suas **coordenadas** em seu sistema de referência espacial, representadas como números de dupla precisão (8 bytes). Todas as geometrias não vazias incluem pelo menos um par de coordenadas (X, Y). Geometrias vazias não contêm coordenadas.
+* Its **coordinates** in its spatial reference system, represented as double-precision (8-byte) numbers. All nonempty geometries include at least one pair of (X,Y) coordinates. Empty geometries contain no coordinates.
 
-  As coordenadas estão relacionadas ao SRID. Por exemplo, em diferentes sistemas de coordenadas, a distância entre dois objetos pode variar mesmo quando os objetos têm as mesmas coordenadas, porque a distância no sistema de coordenadas **plana** e a distância no sistema **geodésico** (coordenadas na superfície da Terra) são coisas diferentes.
+  Coordinates are related to the SRID. For example, in different coordinate systems, the distance between two objects may differ even when objects have the same coordinates, because the distance on the **planar** coordinate system and the distance on the **geodetic** system (coordinates on the Earth's surface) are different things.
 
-- Seu **interior**, **fronteira** e **exterior**.
+* Its **interior**, **boundary**, and **exterior**.
 
-  Cada geometria ocupa uma posição no espaço. O exterior de uma geometria é todo o espaço que não é ocupado pela geometria. O interior é o espaço ocupado pela geometria. A borda é a interface entre o interior e o exterior da geometria.
+  Every geometry occupies some position in space. The exterior of a geometry is all space not occupied by the geometry. The interior is the space occupied by the geometry. The boundary is the interface between the geometry's interior and exterior.
 
-- Seu **MBR** (retângulo mínimo de delimitação) ou envelope. Esta é a geometria de delimitação, formada pelas coordenadas mínimas e máximas (X, Y):
+* Its **MBR** (minimum bounding rectangle), or envelope. This is the bounding geometry, formed by the minimum and maximum (X,Y) coordinates:
 
   ```sql
   ((MINX MINY, MAXX MINY, MAXX MAXY, MINX MAXY, MINX MINY))
   ```
 
-- Se o valor for **simples** ou **não simples**. Os valores de geometria dos tipos (`LineString`, `MultiPoint`, `MultiLineString`) são simples ou não simples. Cada tipo determina suas próprias asserções para ser simples ou não simples.
+* Whether the value is **simple** or **nonsimple**. Geometry values of types (`LineString`, `MultiPoint`, `MultiLineString`) are either simple or nonsimple. Each type determines its own assertions for being simple or nonsimple.
 
-- Se o valor for **fechado** ou **não fechado**. Os valores de geometria dos tipos (`LineString`, `MultiString`) são fechados ou não fechados. Cada tipo determina suas próprias asserções para ser fechado ou não fechado.
+* Whether the value is **closed** or **not closed**. Geometry values of types (`LineString`, `MultiString`) are either closed or not closed. Each type determines its own assertions for being closed or not closed.
 
-- Se o valor for **vazio** ou **não vazio** Uma geometria é vazia se não tiver nenhum ponto. O exterior, interior e limite de uma geometria vazia não são definidos (ou seja, são representados por um valor `NULL`). Uma geometria vazia é definida como sempre simples e tem uma área de 0.
+* Whether the value is **empty** or **nonempty** A geometry is empty if it does not have any points. Exterior, interior, and boundary of an empty geometry are not defined (that is, they are represented by a `NULL` value). An empty geometry is defined to be always simple and has an area of 0.
 
-- Sua **dimenso**ão. Uma geometria pode ter uma dimensão de -1, 0, 1 ou 2:
+* Its **dimension**. A geometry can have a dimension of −1, 0, 1, or 2:
 
-  - −1 para uma geometria vazia.
-  - 0 para uma geometria sem comprimento e sem área.
-  - 1 para uma geometria com comprimento não nulo e área zero.
-  - 2 para uma geometria com área não nula.
+  + −1 for an empty geometry.
+  + 0 for a geometry with no length and no area.
+  + 1 for a geometry with nonzero length and zero area.
+  + 2 for a geometry with nonzero area.
 
-  Os objetos `Ponto` têm uma dimensão de zero. Os objetos `Linha de String` têm uma dimensão de
+  `Point` objects have a dimension of zero. `LineString` objects have a dimension of
 
-  1. Os objetos `Polygon` têm uma dimensão de
-  2. As dimensões dos objetos `MultiPoint`, `MultiLineString` e `MultiPolygon` são as mesmas das dimensões dos elementos que eles compõem.
+  1. `Polygon` objects have a dimension of
+  2. The dimensions of `MultiPoint`, `MultiLineString`, and `MultiPolygon` objects are the same as the dimensions of the elements they consist of.

@@ -1,16 +1,16 @@
-### 11.2.7 Segundos fracionários em valores de tempo
+### 11.2.7 Fractional Seconds in Time Values
 
-O MySQL oferece suporte a segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP`, com precisão de até microsegundos (6 dígitos):
+MySQL has fractional seconds support for `TIME`, `DATETIME`, and `TIMESTAMP` values, with up to microseconds (6 digits) precision:
 
-- Para definir uma coluna que inclua uma parte de segundos fracionários, use a sintaxe `type_name(fsp)`, onde *`type_name`* é `TIME`, `DATETIME` ou `TIMESTAMP`, e *`fsp`* é a precisão de segundos fracionários. Por exemplo:
+* To define a column that includes a fractional seconds part, use the syntax `type_name(fsp)`, where *`type_name`* is `TIME`, `DATETIME`, or `TIMESTAMP`, and *`fsp`* is the fractional seconds precision. For example:
 
   ```sql
   CREATE TABLE t1 (t TIME(3), dt DATETIME(6));
   ```
 
-  O valor *`fsp`*, se fornecido, deve estar no intervalo de 0 a 6. Um valor de 0 significa que não há parte fracionária. Se omitido, a precisão padrão é 0. (Isso difere do padrão padrão do SQL padrão de 6, para compatibilidade com versões anteriores do MySQL.)
+  The *`fsp`* value, if given, must be in the range 0 to 6. A value of 0 signifies that there is no fractional part. If omitted, the default precision is 0. (This differs from the standard SQL default of 6, for compatibility with previous MySQL versions.)
 
-- Ao inserir um valor de `TIME`, `DATE` ou `TIMESTAMP` com uma parte de segundos fracionários em uma coluna do mesmo tipo, mas com menos dígitos fracionários, ocorre arredondamento. Considere uma tabela criada e preenchida da seguinte forma:
+* Inserting a `TIME`, `DATE`, or `TIMESTAMP` value with a fractional seconds part into a column of the same type but having fewer fractional digits results in rounding. Consider a table created and populated as follows:
 
   ```sql
   CREATE TABLE fractest( c1 TIME(2), c2 DATETIME(2), c3 TIMESTAMP(2) );
@@ -18,7 +18,7 @@ O MySQL oferece suporte a segundos fracionários para os valores `TIME`, `DATETI
   ('17:51:04.777', '2018-09-08 17:51:04.777', '2018-09-08 17:51:04.777');
   ```
 
-  Os valores temporais são inseridos na tabela com arredondamento:
+  The temporal values are inserted into the table with rounding:
 
   ```sql
   mysql> SELECT * FROM fractest;
@@ -29,8 +29,8 @@ O MySQL oferece suporte a segundos fracionários para os valores `TIME`, `DATETI
   +-------------+------------------------+------------------------+
   ```
 
-  Não há aviso ou erro quando essa arredondagem ocorre. Esse comportamento segue o padrão do SQL e não é afetado pela configuração do servidor `sql_mode`.
+  No warning or error is given when such rounding occurs. This behavior follows the SQL standard, and is not affected by the server `sql_mode` setting.
 
-- Funções que aceitam argumentos temporais aceitam valores com frações de segundo. Os valores retornados por funções temporais incluem frações de segundo conforme apropriado. Por exemplo, `NOW()` sem argumento retorna a data e hora atuais sem parte fracionária, mas aceita um argumento opcional de 0 a 6 para especificar que o valor de retorno inclui uma parte de frações de segundo com tantos dígitos.
+* Functions that take temporal arguments accept values with fractional seconds. Return values from temporal functions include fractional seconds as appropriate. For example, `NOW()` with no argument returns the current date and time with no fractional part, but takes an optional argument from 0 to 6 to specify that the return value includes a fractional seconds part of that many digits.
 
-- A sintaxe para literais temporais produz valores temporais: `DATE 'str'`, `TIME 'str'` e `TIMESTAMP 'str'`, e os equivalentes da sintaxe ODBC. O valor resultante inclui uma parte fracionária de segundos no final, se especificada. Anteriormente, a palavra-chave do tipo temporal era ignorada e essas construções produziam o valor de string. Veja Standard SQL e literais de data e hora ODBC
+* Syntax for temporal literals produces temporal values: `DATE 'str'`, `TIME 'str'`, and `TIMESTAMP 'str'`, and the ODBC-syntax equivalents. The resulting value includes a trailing fractional seconds part if specified. Previously, the temporal type keyword was ignored and these constructs produced the string value. See Standard SQL and ODBC Date and Time Literals

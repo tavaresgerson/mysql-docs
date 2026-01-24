@@ -1,71 +1,71 @@
-## 21.5 Programas de Agrupamento do BND
+## 21.5 NDB Cluster Programs
 
-21.5.1 ndbd — O daemon do nó de dados do clúster NDB
+[21.5.1 ndbd — The NDB Cluster Data Node Daemon](mysql-cluster-programs-ndbd.html)
 
-21.5.2 ndbinfo_select_all — Selecionar de tabelas ndbinfo
+[21.5.2 ndbinfo_select_all — Select From ndbinfo Tables](mysql-cluster-programs-ndbinfo-select-all.html)
 
-21.5.3 ndbmtd — O Daemon de Nó de Dados do NDB Cluster (Multi-Thread)
+[21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)](mysql-cluster-programs-ndbmtd.html)
 
-21.5.4 ndb_mgmd — O Daemon do Servidor de Gerenciamento do NDB Cluster
+[21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon](mysql-cluster-programs-ndb-mgmd.html)
 
-21.5.5 ndb_mgm — O cliente de gerenciamento de cluster NDB
+[21.5.5 ndb_mgm — The NDB Cluster Management Client](mysql-cluster-programs-ndb-mgm.html)
 
-21.5.6 ndb_blob_tool — Verificar e reparar colunas BLOB e TEXT de tabelas de NDB Cluster
+[21.5.6 ndb_blob_tool — Check and Repair BLOB and TEXT columns of NDB Cluster Tables](mysql-cluster-programs-ndb-blob-tool.html)
 
-21.5.7 ndb_config — Extrair informações de configuração do NDB Cluster
+[21.5.7 ndb_config — Extract NDB Cluster Configuration Information](mysql-cluster-programs-ndb-config.html)
 
-21.5.8 ndb_cpcd — Automatizar testes para o desenvolvimento do NDB
+[21.5.8 ndb_cpcd — Automate Testing for NDB Development](mysql-cluster-programs-ndb-cpcd.html)
 
-21.5.9 ndb_delete_all — Excluir todas as linhas de uma tabela NDB
+[21.5.9 ndb_delete_all — Delete All Rows from an NDB Table](mysql-cluster-programs-ndb-delete-all.html)
 
-21.5.10 ndb_desc — Descreva as tabelas NDB
+[21.5.10 ndb_desc — Describe NDB Tables](mysql-cluster-programs-ndb-desc.html)
 
-21.5.11 ndb_drop_index — Remover índice de uma tabela NDB
+[21.5.11 ndb_drop_index — Drop Index from an NDB Table](mysql-cluster-programs-ndb-drop-index.html)
 
-21.5.12 ndb_drop_table — Remover uma tabela NDB
+[21.5.12 ndb_drop_table — Drop an NDB Table](mysql-cluster-programs-ndb-drop-table.html)
 
-21.5.13 ndb_error_reporter — Ferramenta de Relatório de Erros do NDB
+[21.5.13 ndb_error_reporter — NDB Error-Reporting Utility](mysql-cluster-programs-ndb-error-reporter.html)
 
-21.5.14 ndb_import — Importar dados CSV no NDB
+[21.5.14 ndb_import — Import CSV Data Into NDB](mysql-cluster-programs-ndb-import.html)
 
-21.5.15 ndb_index_stat — Ferramenta de estatísticas do índice NDB
+[21.5.15 ndb_index_stat — NDB Index Statistics Utility](mysql-cluster-programs-ndb-index-stat.html)
 
-21.5.16 ndb_move_data — Ferramenta de cópia de dados NDB
+[21.5.16 ndb_move_data — NDB Data Copy Utility](mysql-cluster-programs-ndb-move-data.html)
 
-21.5.17 ndb_perror — Obter informações da mensagem de erro do NDB
+[21.5.17 ndb_perror — Obtain NDB Error Message Information](mysql-cluster-programs-ndb-perror.html)
 
-21.5.18 ndb_print_backup_file — Imprimir conteúdo do arquivo de backup do NDB
+[21.5.18 ndb_print_backup_file — Print NDB Backup File Contents](mysql-cluster-programs-ndb-print-backup-file.html)
 
-21.5.19 ndb_print_file — Imprimir conteúdo do arquivo de dados do disco NDB
+[21.5.19 ndb_print_file — Print NDB Disk Data File Contents](mysql-cluster-programs-ndb-print-file.html)
 
-21.5.20 ndb_print_frag_file — Imprimir o conteúdo do arquivo de lista de fragmentos do NDB
+[21.5.20 ndb_print_frag_file — Print NDB Fragment List File Contents](mysql-cluster-programs-ndb-print-frag-file.html)
 
-21.5.21 ndb_print_schema_file — Imprimir o conteúdo do arquivo de esquema NDB
+[21.5.21 ndb_print_schema_file — Print NDB Schema File Contents](mysql-cluster-programs-ndb-print-schema-file.html)
 
-21.5.22 ndb_print_sys_file — Imprimir conteúdos do arquivo do sistema NDB
+[21.5.22 ndb_print_sys_file — Print NDB System File Contents](mysql-cluster-programs-ndb-print-sys-file.html)
 
-21.5.23 ndb_redo_log_reader — Verificar e imprimir o conteúdo do log de refazer do cluster
+[21.5.23 ndb_redo_log_reader — Check and Print Content of Cluster Redo Log](mysql-cluster-programs-ndb-redo-log-reader.html)
 
-21.5.24 ndb_restore — Restaurar um backup de um cluster NDB
+[21.5.24 ndb_restore — Restore an NDB Cluster Backup](mysql-cluster-programs-ndb-restore.html)
 
-21.5.25 ndb_select_all — Imprimir linhas de uma tabela NDB
+[21.5.25 ndb_select_all — Print Rows from an NDB Table](mysql-cluster-programs-ndb-select-all.html)
 
-21.5.26 ndb_select_count — Imprimir contagem de linhas para tabelas NDB
+[21.5.26 ndb_select_count — Print Row Counts for NDB Tables](mysql-cluster-programs-ndb-select-count.html)
 
-21.5.27 ndb_show_tables — Exibir Lista de Tabelas NDB
+[21.5.27 ndb_show_tables — Display List of NDB Tables](mysql-cluster-programs-ndb-show-tables.html)
 
-21.5.28 ndb_size.pl — Estimator de Requisitos de Tamanho do NDBCLUSTER
+[21.5.28 ndb_size.pl — NDBCLUSTER Size Requirement Estimator](mysql-cluster-programs-ndb-size-pl.html)
 
-21.5.29 ndb_top — Ver informações de uso da CPU para threads NDB
+[21.5.29 ndb_top — View CPU usage information for NDB threads](mysql-cluster-programs-ndb-top.html)
 
-21.5.30 ndb_waiter — Aguarde o NDB Cluster atingir um status específico
+[21.5.30 ndb_waiter — Wait for NDB Cluster to Reach a Given Status](mysql-cluster-programs-ndb-waiter.html)
 
-Usar e gerenciar um NDB Cluster requer vários programas especializados, que descrevemos neste capítulo. Discutimos os propósitos desses programas em um NDB Cluster, como usar os programas e quais são as opções de inicialização disponíveis para cada um deles.
+Using and managing an NDB Cluster requires several specialized programs, which we describe in this chapter. We discuss the purposes of these programs in an NDB Cluster, how to use the programs, and what startup options are available for each of them.
 
-Esses programas incluem os processos de dados, gerenciamento e nó SQL do NDB Cluster (**ndbd**, **ndbmtd**, **ndb_mgmd** e **mysqld**) e o cliente de gerenciamento (**ndb_mgm**).
+These programs include the NDB Cluster data, management, and SQL node processes ([**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon"), [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)"), [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon"), and [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server")) and the management client ([**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client")).
 
-Para obter informações sobre o uso do **mysqld** como um processo do NDB Cluster, consulte Seção 21.6.10, “Uso do MySQL Server para NDB Cluster”.
+For information about using [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") as an NDB Cluster process, see [Section 21.6.10, “MySQL Server Usage for NDB Cluster”](mysql-cluster-mysqld.html "21.6.10 MySQL Server Usage for NDB Cluster").
 
-Outros programas de utilidade, diagnóstico e exemplos do NDB Cluster estão incluídos na distribuição do NDB Cluster. Estes incluem **ndb_restore**, **ndb_show_tables** e **ndb_config**. Estes programas também estão cobertos nesta seção.
+Other [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") utility, diagnostic, and example programs are included with the NDB Cluster distribution. These include [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup"), [**ndb_show_tables**](mysql-cluster-programs-ndb-show-tables.html "21.5.27 ndb_show_tables — Display List of NDB Tables"), and [**ndb_config**](mysql-cluster-programs-ndb-config.html "21.5.7 ndb_config — Extract NDB Cluster Configuration Information"). These programs are also covered in this section.
 
-A parte final desta seção contém tabelas de opções que são comuns a todos os vários programas do NDB Cluster.
+The final portion of this section contains tables of options that are common to all the various NDB Cluster programs.

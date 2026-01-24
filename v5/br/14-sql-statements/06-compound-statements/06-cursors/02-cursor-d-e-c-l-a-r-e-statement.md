@@ -1,15 +1,15 @@
-#### 13.6.6.2 Declaração `Cursor DECLARE`
+#### 13.6.6.2 Cursor DECLARE Statement
 
 ```sql
 DECLARE cursor_name CURSOR FOR select_statement
 ```
 
-Esta declaração declara um cursor e o associa a uma instrução `SELECT` que recupera as linhas a serem percorridas pelo cursor. Para recuperar as linhas mais tarde, use uma instrução `FETCH`. O número de colunas recuperadas pela instrução `SELECT` deve corresponder ao número de variáveis de saída especificadas na instrução `FETCH`.
+This statement declares a cursor and associates it with a [`SELECT`](select.html "13.2.9 SELECT Statement") statement that retrieves the rows to be traversed by the cursor. To fetch the rows later, use a [`FETCH`](fetch.html "13.6.6.3 Cursor FETCH Statement") statement. The number of columns retrieved by the [`SELECT`](select.html "13.2.9 SELECT Statement") statement must match the number of output variables specified in the [`FETCH`](fetch.html "13.6.6.3 Cursor FETCH Statement") statement.
 
-A instrução `SELECT` não pode ter uma cláusula `INTO`.
+The [`SELECT`](select.html "13.2.9 SELECT Statement") statement cannot have an `INTO` clause.
 
-As declarações de cursor devem aparecer antes das declarações de manipulador e após as declarações de variáveis e condições.
+Cursor declarations must appear before handler declarations and after variable and condition declarations.
 
-Um programa armazenado pode conter várias declarações de cursor, mas cada cursor declarado em um bloco específico deve ter um nome único. Para um exemplo, consulte Seção 13.6.6, "Cursors".
+A stored program may contain multiple cursor declarations, but each cursor declared in a given block must have a unique name. For an example, see [Section 13.6.6, “Cursors”](cursors.html "13.6.6 Cursors").
 
-Para obter informações disponíveis por meio das declarações `SHOW`, é possível, em muitos casos, obter informações equivalentes usando um cursor com uma tabela `INFORMATION_SCHEMA`.
+For information available through [`SHOW`](show.html "13.7.5 SHOW Statements") statements, it is possible in many cases to obtain equivalent information by using a cursor with an `INFORMATION_SCHEMA` table.

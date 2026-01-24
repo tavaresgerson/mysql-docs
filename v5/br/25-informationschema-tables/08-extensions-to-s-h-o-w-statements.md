@@ -1,14 +1,14 @@
-## 24.8 Extensões para declarações SHOW
+## 24.8 Extensions to SHOW Statements
 
-Algumas extensões das declarações `SHOW` (show\.html) acompanham a implementação do `INFORMATION_SCHEMA`:
+Some extensions to [`SHOW`](show.html "13.7.5 SHOW Statements") statements accompany the implementation of `INFORMATION_SCHEMA`:
 
-- `SHOW` pode ser usado para obter informações sobre a estrutura da própria `INFORMATION_SCHEMA`.
+* [`SHOW`](show.html "13.7.5 SHOW Statements") can be used to get information about the structure of `INFORMATION_SCHEMA` itself.
 
-- Várias instruções `SHOW` aceitam uma cláusula `WHERE` que oferece mais flexibilidade na especificação de quais linhas serão exibidas.
+* Several [`SHOW`](show.html "13.7.5 SHOW Statements") statements accept a `WHERE` clause that provides more flexibility in specifying which rows to display.
 
-  A bandeira `IS_UPDATABLE` pode não ser confiável se uma visualização depender de uma ou mais outras visualizações e uma dessas visualizações subjacentes for atualizada. Independentemente do valor `IS_UPDATABLE`, o servidor mantém o controle da atualizabilidade de uma visualização e rejeita corretamente as operações de alteração de dados para visualizações que não são atualizáveis. Se o valor `IS_UPDATABLE` para uma visualização se tornar impreciso devido a alterações em visualizações subjacentes, o valor pode ser atualizado excluindo e recriando a visualização.
+  The `IS_UPDATABLE` flag may be unreliable if a view depends on one or more other views, and one of these underlying views is updated. Regardless of the `IS_UPDATABLE` value, the server keeps track of the updatability of a view and correctly rejects data change operations to views that are not updatable. If the `IS_UPDATABLE` value for a view has become inaccurate to due to changes to underlying views, the value can be updated by deleting and recreating the view.
 
-`INFORMATION_SCHEMA` é um banco de dados de informações, então seu nome está incluído na saída de `SHOW DATABASES`. Da mesma forma, `SHOW TABLES` (exibir tabelas) pode ser usado com `INFORMATION_SCHEMA` para obter uma lista de suas tabelas:
+`INFORMATION_SCHEMA` is an information database, so its name is included in the output from [`SHOW DATABASES`](show-databases.html "13.7.5.14 SHOW DATABASES Statement"). Similarly, [`SHOW TABLES`](show-tables.html "13.7.5.37 SHOW TABLES Statement") can be used with `INFORMATION_SCHEMA` to obtain a list of its tables:
 
 ```sql
 mysql> SHOW TABLES FROM INFORMATION_SCHEMA;
@@ -45,9 +45,9 @@ mysql> SHOW TABLES FROM INFORMATION_SCHEMA;
 +---------------------------------------+
 ```
 
-``SHOW COLUMNS` e ``DESCRIBE` podem exibir informações sobre as colunas em tabelas individuais do `INFORMATION_SCHEMA`.
+[`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") and [`DESCRIBE`](describe.html "13.8.1 DESCRIBE Statement") can display information about the columns in individual `INFORMATION_SCHEMA` tables.
 
-As instruções `SHOW` que aceitam uma cláusula de comparação de strings `LIKE` para limitar as linhas exibidas também permitem uma cláusula `WHERE` que especifica condições mais gerais que as linhas selecionadas devem satisfazer:
+[`SHOW`](show.html "13.7.5 SHOW Statements") statements that accept a [`LIKE`](string-comparison-functions.html#operator_like) clause to limit the rows displayed also permit a `WHERE` clause that specifies more general conditions that selected rows must satisfy:
 
 ```sql
 SHOW CHARACTER SET
@@ -65,7 +65,7 @@ SHOW TRIGGERS
 SHOW VARIABLES
 ```
 
-A cláusula `WHERE`, se presente, é avaliada em relação aos nomes das colunas exibidos pela instrução `SHOW`. Por exemplo, a instrução `SHOW CHARACTER SET` produz essas colunas de saída:
+The `WHERE` clause, if present, is evaluated against the column names displayed by the [`SHOW`](show.html "13.7.5 SHOW Statements") statement. For example, the [`SHOW CHARACTER SET`](show-character-set.html "13.7.5.3 SHOW CHARACTER SET Statement") statement produces these output columns:
 
 ```sql
 mysql> SHOW CHARACTER SET;
@@ -82,7 +82,7 @@ mysql> SHOW CHARACTER SET;
 ...
 ```
 
-Para usar uma cláusula `WHERE` com `SHOW CHARACTER SET`, você deve referenciar esses nomes de colunas. Como exemplo, a seguinte declaração exibe informações sobre os conjuntos de caracteres para os quais a collation padrão contém a string `'japanese'`:
+To use a `WHERE` clause with [`SHOW CHARACTER SET`](show-character-set.html "13.7.5.3 SHOW CHARACTER SET Statement"), you would refer to those column names. As an example, the following statement displays information about character sets for which the default collation contains the string `'japanese'`:
 
 ```sql
 mysql> SHOW CHARACTER SET WHERE `Default collation` LIKE '%japanese%';
@@ -96,7 +96,7 @@ mysql> SHOW CHARACTER SET WHERE `Default collation` LIKE '%japanese%';
 +---------+---------------------------+---------------------+--------+
 ```
 
-Esta declaração exibe os conjuntos de caracteres multibyte:
+This statement displays the multibyte character sets:
 
 ```sql
 mysql> SHOW CHARACTER SET WHERE Maxlen > 1;

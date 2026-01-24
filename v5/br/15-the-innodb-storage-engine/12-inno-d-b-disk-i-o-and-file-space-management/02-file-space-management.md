@@ -1,39 +1,39 @@
-### 14.12.1 Gerenciamento de Espaço de Arquivo
+### 14.12.2 File Space Management
 
-Os arquivos de dados que você define no arquivo de configuração usando a opção de configuração `innodb_data_file_path` formam o espaço de tabela do sistema `InnoDB`. Os arquivos são concatenados logicamente para formar o espaço de tabela do sistema. Não há striping em uso. Você não pode definir onde dentro do espaço de tabela do sistema suas tabelas serão alocadas. Em um espaço de tabela do sistema recém-criado, o `InnoDB` aloca espaço a partir do primeiro arquivo de dados.
+The data files that you define in the configuration file using the `innodb_data_file_path` configuration option form the `InnoDB` system tablespace. The files are logically concatenated to form the system tablespace. There is no striping in use. You cannot define where within the system tablespace your tables are allocated. In a newly created system tablespace, `InnoDB` allocates space starting from the first data file.
 
-Para evitar os problemas que surgem ao armazenar todas as tabelas e índices dentro do espaço de tabelas do sistema, você pode habilitar a opção de configuração `innodb_file_per_table` (a opção padrão), que armazena cada tabela recém-criada em um arquivo de espaço de tabela separado (com a extensão `.ibd`). Para tabelas armazenadas dessa maneira, há menos fragmentação no arquivo do disco e, quando a tabela é truncada, o espaço é devolvido ao sistema operacional em vez de ainda ser reservado pelo InnoDB dentro do espaço de tabelas do sistema. Para mais informações, consulte a Seção 14.6.3.2, “Espaços de Tabelas por Arquivo”.
+To avoid the issues that come with storing all tables and indexes inside the system tablespace, you can enable the `innodb_file_per_table` configuration option (the default), which stores each newly created table in a separate tablespace file (with extension `.ibd`). For tables stored this way, there is less fragmentation within the disk file, and when the table is truncated, the space is returned to the operating system rather than still being reserved by InnoDB within the system tablespace. For more information, see Section 14.6.3.2, “File-Per-Table Tablespaces”.
 
-Você também pode armazenar tabelas em espaços de tabelas gerais. Os espaços de tabelas gerais são espaços de tabelas compartilhados criados usando a sintaxe `CREATE TABLESPACE`. Eles podem ser criados fora do diretório de dados do MySQL, podem armazenar múltiplas tabelas e suportar tabelas de todos os formatos de linha. Para mais informações, consulte a Seção 14.6.3.3, “Espaços de Tabelas Gerais”.
+You can also store tables in general tablespaces. General tablespaces are shared tablespaces created using `CREATE TABLESPACE` syntax. They can be created outside of the MySQL data directory, are capable of holding multiple tables, and support tables of all row formats. For more information, see Section 14.6.3.3, “General Tablespaces”.
 
-#### Páginas, Extensões, Segmentos e Espaços de Tabelas
+#### Pages, Extents, Segments, and Tablespaces
 
-Cada espaço de tabela é composto por páginas de banco de dados. Todos os espaços de tabela de uma instância do MySQL têm o mesmo tamanho de página. Por padrão, todos os espaços de tabela têm um tamanho de página de 16 KB; você pode reduzir o tamanho de página para 8 KB ou 4 KB, especificando a opção `innodb_page_size` ao criar a instância do MySQL. Você também pode aumentar o tamanho de página para 32 KB ou 64 KB. Para mais informações, consulte a documentação do `innodb_page_size`.
+Each tablespace consists of database pages. Every tablespace in a MySQL instance has the same page size. By default, all tablespaces have a page size of 16KB; you can reduce the page size to 8KB or 4KB by specifying the `innodb_page_size` option when you create the MySQL instance. You can also increase the page size to 32KB or 64KB. For more information, refer to the `innodb_page_size` documentation.
 
-As páginas são agrupadas em extensões de tamanho 1 MB para páginas de até 16 KB (64 páginas consecutivas de 16 KB, ou 128 páginas de 8 KB, ou 256 páginas de 4 KB). Para um tamanho de página de 32 KB, o tamanho da extensão é de 2 MB. Para um tamanho de página de 64 KB, o tamanho da extensão é de 4 MB. Os "arquivos" dentro de um tablespace são chamados de segmentos em `InnoDB`. (Esses segmentos são diferentes do segmento de rollback, que na verdade contém muitos segmentos de tablespace.)
+The pages are grouped into extents of size 1MB for pages up to 16KB in size (64 consecutive 16KB pages, or 128 8KB pages, or 256 4KB pages). For a page size of 32KB, extent size is 2MB. For page size of 64KB, extent size is 4MB. The “files” inside a tablespace are called segments in `InnoDB`. (These segments are different from the rollback segment, which actually contains many tablespace segments.)
 
-Quando um segmento cresce dentro do espaço de tabelas, o `InnoDB` aloca as primeiras 32 páginas para ele, uma de cada vez. Depois disso, o `InnoDB` começa a alocar extensões inteiras para o segmento. O `InnoDB` pode adicionar até 4 extensões de cada vez a um segmento grande para garantir uma boa sequencialidade dos dados.
+When a segment grows inside the tablespace, `InnoDB` allocates the first 32 pages to it one at a time. After that, `InnoDB` starts to allocate whole extents to the segment. `InnoDB` can add up to 4 extents at a time to a large segment to ensure good sequentiality of data.
 
-Em `InnoDB`, dois segmentos são alocados para cada índice. Um deles é para os nós não-folhas da árvore B, e o outro é para os nós folhas. Manter os nós folhas contiguos no disco permite operações de E/S sequenciais melhores, pois esses nós folhas contêm os dados reais da tabela.
+Two segments are allocated for each index in `InnoDB`. One is for nonleaf nodes of the B-tree, the other is for the leaf nodes. Keeping the leaf nodes contiguous on disk enables better sequential I/O operations, because these leaf nodes contain the actual table data.
 
-Algumas páginas no espaço de tabelas contêm mapas de bits de outras páginas, e, portanto, alguns extensões em um espaço de tabelas `InnoDB` não podem ser alocadas para segmentos como um todo, mas apenas como páginas individuais.
+Some pages in the tablespace contain bitmaps of other pages, and therefore a few extents in an `InnoDB` tablespace cannot be allocated to segments as a whole, but only as individual pages.
 
-Quando você solicita espaço livre disponível no espaço de tabelas emitindo uma declaração `SHOW TABLE STATUS`, o `InnoDB` relata os extensões que estão definitivamente livres no espaço de tabelas. O `InnoDB` reserva sempre alguns extensões para limpeza e outros fins internos; essas extensões reservadas não estão incluídas no espaço livre.
+When you ask for available free space in the tablespace by issuing a `SHOW TABLE STATUS` statement, `InnoDB` reports the extents that are definitely free in the tablespace. `InnoDB` always reserves some extents for cleanup and other internal purposes; these reserved extents are not included in the free space.
 
-Quando você exclui dados de uma tabela, o `InnoDB` contrai os índices B-tree correspondentes. Se o espaço liberado ficar disponível para outros usuários, isso depende se o padrão de exclusões libera páginas individuais ou se estende ao espaço de tabelas. A remoção de uma tabela ou a exclusão de todas as linhas dela garante a liberação do espaço para outros usuários, mas lembre-se de que as linhas excluídas são removidas fisicamente apenas pela operação de purga, que acontece automaticamente algum tempo depois de não serem mais necessárias para recuos de transações ou leituras consistentes. (Veja a Seção 14.3, “InnoDB Multiversão”.)
+When you delete data from a table, `InnoDB` contracts the corresponding B-tree indexes. Whether the freed space becomes available for other users depends on whether the pattern of deletes frees individual pages or extents to the tablespace. Dropping a table or deleting all rows from it is guaranteed to release the space to other users, but remember that deleted rows are physically removed only by the purge operation, which happens automatically some time after they are no longer needed for transaction rollbacks or consistent reads. (See Section 14.3, “InnoDB Multi-Versioning”.)
 
-#### Como as Páginas se Relacionam com as Linhas da Tabela
+#### How Pages Relate to Table Rows
 
-O comprimento máximo da linha é ligeiramente inferior a metade de uma página de banco de dados para as configurações `innodb_page_size` de 4KB, 8KB, 16KB e 32KB. Por exemplo, o comprimento máximo da linha é ligeiramente inferior a 8KB para o tamanho de página padrão de 16KB do `InnoDB`. Para páginas de 64KB, o comprimento máximo da linha é ligeiramente inferior a 16KB.
+The maximum row length is slightly less than half a database page for 4KB, 8KB, 16KB, and 32KB `innodb_page_size` settings. For example, the maximum row length is slightly less than 8KB for the default 16KB `InnoDB` page size. For 64KB pages, the maximum row length is slightly less than 16KB.
 
-Se uma linha não ultrapassar o comprimento máximo da linha, toda ela é armazenada localmente dentro da página. Se uma linha ultrapassar o comprimento máximo da linha, colunas de comprimento variável são escolhidas para armazenamento externo fora da página até que a linha se encaixe no limite máximo de comprimento da linha. O armazenamento externo fora da página para colunas de comprimento variável difere pelo formato da linha:
+If a row does not exceed the maximum row length, all of it is stored locally within the page. If a row exceeds the maximum row length, variable-length columns are chosen for external off-page storage until the row fits within the maximum row length limit. External off-page storage for variable-length columns differs by row format:
 
-- *Formulários de linhas COMPACT e REDUNDANTES*
+* *COMPACT and REDUNDANT Row Formats*
 
-  Quando uma coluna de comprimento variável é escolhida para armazenamento externo fora da página, o `InnoDB` armazena os primeiros 768 bytes localmente na linha e o restante externamente em páginas de excedente. Cada coluna tem sua própria lista de páginas de excedente. O prefixo de 768 bytes é acompanhado por um valor de 20 bytes que armazena o comprimento real da coluna e aponta para a lista de excedente onde o restante do valor é armazenado. Veja a Seção 14.11, “Formatos de Linhas do InnoDB”.
+  When a variable-length column is chosen for external off-page storage, `InnoDB` stores the first 768 bytes locally in the row, and the rest externally into overflow pages. Each such column has its own list of overflow pages. The 768-byte prefix is accompanied by a 20-byte value that stores the true length of the column and points into the overflow list where the rest of the value is stored. See Section 14.11, “InnoDB Row Formats”.
 
-- *Formulários de linhas dinâmicos e compactados*
+* *DYNAMIC and COMPRESSED Row Formats*
 
-  Quando uma coluna de comprimento variável é escolhida para armazenamento externo fora da página, o `InnoDB` armazena um ponteiro de 20 bytes localmente na linha e o restante externamente em páginas de excedente. Veja a Seção 14.11, “Formatos de Linhas do InnoDB”.
+  When a variable-length column is chosen for external off-page storage, `InnoDB` stores a 20-byte pointer locally in the row, and the rest externally into overflow pages. See Section 14.11, “InnoDB Row Formats”.
 
-As colunas `LONGBLOB` e `LONGTEXT` devem ter menos de 4 GB, e o comprimento total da linha, incluindo as colunas `BLOB` e `TEXT`, deve ser menor que 4 GB.
+`LONGBLOB` and `LONGTEXT` columns must be less than 4GB, and the total row length, including `BLOB` and `TEXT` columns, must be less than 4GB.

@@ -1,12 +1,12 @@
-## 15.9 O Motor de Armazenamento EXAMPLE
+## 15.9 The EXAMPLE Storage Engine
 
-O mecanismo de armazenamento `EXAMPLE` é um mecanismo de stub que não faz nada. Seu propósito é servir como um exemplo no código-fonte do MySQL que ilustra como começar a escrever novos mecanismos de armazenamento. Como tal, ele é de interesse principalmente para desenvolvedores.
+The `EXAMPLE` storage engine is a stub engine that does nothing. Its purpose is to serve as an example in the MySQL source code that illustrates how to begin writing new storage engines. As such, it is primarily of interest to developers.
 
-Para habilitar o mecanismo de armazenamento `EXAMPLE` ao construir o MySQL a partir do código-fonte, invocando o **CMake** com a opção `-DWITH_EXAMPLE_STORAGE_ENGINE`.
+To enable the `EXAMPLE` storage engine if you build MySQL from source, invoke **CMake** with the `-DWITH_EXAMPLE_STORAGE_ENGINE` option.
 
-Para examinar a fonte do motor `EXAMPLE`, procure no diretório `storage/example` de uma distribuição de fonte MySQL.
+To examine the source for the `EXAMPLE` engine, look in the `storage/example` directory of a MySQL source distribution.
 
-Quando você cria uma tabela `Exemplo`, o servidor cria um arquivo de formato de tabela no diretório do banco de dados. O arquivo começa com o nome da tabela e tem a extensão `.frm`. Não são criados outros arquivos. Não é possível armazenar dados na tabela. Os resultados dos acessos retornam um resultado vazio.
+When you create an `EXAMPLE` table, the server creates a table format file in the database directory. The file begins with the table name and has an `.frm` extension. No other files are created. No data can be stored into the table. Retrievals return an empty result.
 
 ```sql
 mysql> CREATE TABLE test (i INT) ENGINE = EXAMPLE;
@@ -20,4 +20,4 @@ mysql> SELECT * FROM test;
 Empty set (0.31 sec)
 ```
 
-O mecanismo de armazenamento `EXAMPLE` não suporta indexação.
+The `EXAMPLE` storage engine does not support indexing.

@@ -1,45 +1,45 @@
-#### 26.4.3.46 As visualizações user_summary_by_statement_type e x$user_summary_by_statement_type
+#### 26.4.3.46 The user_summary_by_statement_type and x$user_summary_by_statement_type Views
 
-Essas visualizações resumem informações sobre declarações executadas, agrupadas por usuário e tipo de declaração. Por padrão, as linhas são ordenadas por usuário e latência total decrescente.
+These views summarize informaion about statements executed, grouped by user and statement type. By default, rows are sorted by user and descending total latency.
 
-As views `user_summary_by_statement_type` e `x$user_summary_by_statement_type` possuem essas colunas:
+The `user_summary_by_statement_type` and `x$user_summary_by_statement_type` views have these columns:
 
-- `usuário`
+* `user`
 
-  O nome de usuário do cliente. As linhas para as quais a coluna `USER` na tabela subjacente do Schema de Desempenho é `NULL` são assumidas como pertencentes a threads de segundo plano e são relatadas com o nome do host `background`.
+  The client user name. Rows for which the `USER` column in the underlying Performance Schema table is `NULL` are assumed to be for background threads and are reported with a host name of `background`.
 
-- `declaração`
+* `statement`
 
-  O componente final do nome do evento da declaração.
+  The final component of the statement event name.
 
-- `total`
+* `total`
 
-  O número total de ocorrências do evento de declaração para o usuário.
+  The total number of occurrences of the statement event for the user.
 
-- `total_latency`
+* `total_latency`
 
-  O tempo total de espera de ocorrências temporizadas do evento de declaração para o usuário.
+  The total wait time of timed occurrences of the statement event for the user.
 
-- `max_latency`
+* `max_latency`
 
-  O tempo de espera máximo de uma única ocorrência temporizada do evento de declaração para o usuário.
+  The maximum single wait time of timed occurrences of the statement event for the user.
 
-- `lock_latency`
+* `lock_latency`
 
-  O tempo total de espera por bloqueios por ocorrências temporizadas do evento de declaração para o usuário.
+  The total time waiting for locks by timed occurrences of the statement event for the user.
 
-- `rows_sent`
+* `rows_sent`
 
-  O número total de linhas retornadas por ocorrências do evento de declaração para o usuário.
+  The total number of rows returned by occurrences of the statement event for the user.
 
-- `rows_examined`
+* `rows_examined`
 
-  O número total de linhas lidas dos motores de armazenamento por ocorrências do evento de declaração para o usuário.
+  The total number of rows read from storage engines by occurrences of the statement event for the user.
 
-- `rows_affected`
+* `rows_affected`
 
-  O número total de linhas afetadas por ocorrências do evento de declaração para o usuário.
+  The total number of rows affected by occurrences of the statement event for the user.
 
-- `full_scans`
+* `full_scans`
 
-  O número total de varreduras completas da tabela por ocorrências do evento de declaração para o usuário.
+  The total number of full table scans by occurrences of the statement event for the user.

@@ -1,49 +1,47 @@
-#### 14.8.11.2 Configurando Parâmetros de Estatísticas do Otimizador Não Persistente
+#### 14.8.11.2 Configuring Non-Persistent Optimizer Statistics Parameters
 
-Esta seção descreve como configurar estatísticas de otimizador não persistentes. As estatísticas de otimizador não são armazenadas em disco quando `innodb_stats_persistent=OFF` ou quando tabelas individuais são criadas ou alteradas com `STATS_PERSISTENT=0`. Em vez disso, as estatísticas são armazenadas na memória e são perdidas quando o servidor é desligado. As estatísticas também são atualizadas periodicamente por certas operações e sob certas condições.
+This section describes how to configure non-persistent optimizer statistics. Optimizer statistics are not persisted to disk when `innodb_stats_persistent=OFF` or when individual tables are created or altered with `STATS_PERSISTENT=0`. Instead, statistics are stored in memory, and are lost when the server is shut down. Statistics are also updated periodically by certain operations and under certain conditions.
 
-A partir do MySQL 5.6.6, as estatísticas do otimizador são persistidas no disco por padrão, habilitadas pela opção de configuração `innodb_stats_persistent`. Para obter informações sobre estatísticas de otimizador persistidas, consulte a Seção 14.8.11.1, “Configurando Parâmetros de Estatísticas de Otimizador Persistidas”.
+As of MySQL 5.6.6, optimizer statistics are persisted to disk by default, enabled by the `innodb_stats_persistent` configuration option. For information about persistent optimizer statistics, see Section 14.8.11.1, “Configuring Persistent Optimizer Statistics Parameters”.
 
-##### Atualizações de estatísticas do otimizador
+##### Optimizer Statistics Updates
 
-As estatísticas do otimizador não persistentes são atualizadas quando:
+Non-persistent optimizer statistics are updated when:
 
-- Executar `ANALYSE TABELA`.
+* Running `ANALYZE TABLE`.
+* Running `SHOW TABLE STATUS`, `SHOW INDEX`, or querying the Information Schema `TABLES` or `STATISTICS` tables with the `innodb_stats_on_metadata` option enabled.
 
-- Executando `SHOW TABLE STATUS`, `SHOW INDEX` ou fazendo consultas nas tabelas do esquema de informações `TABLES` ou `STATISTICS` com a opção `innodb_stats_on_metadata` habilitada.
-
-  A configuração padrão para `innodb_stats_on_metadata` foi alterada para `OFF` quando as estatísticas do otimizador persistentes foram habilitadas como padrão no MySQL 5.6.6. Habilitar `innodb_stats_on_metadata` pode reduzir a velocidade de acesso para esquemas que têm um grande número de tabelas ou índices e reduzir a estabilidade dos planos de execução para consultas que envolvem tabelas `InnoDB`. `innodb_stats_on_metadata` é configurado globalmente usando uma declaração `SET`.
+  The default setting for `innodb_stats_on_metadata` was changed to `OFF` when persistent optimizer statistics were enabled by default in MySQL 5.6.6. Enabling `innodb_stats_on_metadata` may reduce access speed for schemas that have a large number of tables or indexes, and reduce stability of execution plans for queries that involve `InnoDB` tables. `innodb_stats_on_metadata` is configured globally using a `SET` statement.
 
   ```sql
   SET GLOBAL innodb_stats_on_metadata=ON
   ```
 
-  Nota
+  Note
 
-  `innodb_stats_on_metadata` só se aplica quando as estatísticas do otimizador são configuradas para não serem persistentes (quando `innodb_stats_persistent` está desativado).
+  `innodb_stats_on_metadata` only applies when optimizer statistics are configured to be non-persistent (when `innodb_stats_persistent` is disabled).
 
-- Iniciar um cliente **mysql** com a opção `--auto-rehash` habilitada, que é a opção padrão. A opção `auto-rehash` faz com que todas as tabelas do **InnoDB** sejam abertas e as operações de abertura de tabelas fazem com que as estatísticas sejam recalculadas.
+* Starting a **mysql** client with the `--auto-rehash` option enabled, which is the default. The `auto-rehash` option causes all `InnoDB` tables to be opened, and the open table operations cause statistics to be recalculated.
 
-  Para melhorar o tempo de inicialização do cliente **mysql** e atualizar as estatísticas, você pode desativar o `auto-rehash` usando a opção `--disable-auto-rehash`. O recurso `auto-rehash` habilita a conclusão automática de nomes de banco de dados, tabelas e colunas para usuários interativos.
+  To improve the start up time of the **mysql** client and to updating statistics, you can turn off `auto-rehash` using the `--disable-auto-rehash` option. The `auto-rehash` feature enables automatic name completion of database, table, and column names for interactive users.
 
-- Primeiro, uma tabela é aberta.
+* A table is first opened.
+* `InnoDB` detects that 1 / 16 of table has been modified since the last time statistics were updated.
 
-- O `InnoDB` detecta que 1/16 da tabela foi modificada desde a última atualização das estatísticas.
+##### Configuring the Number of Sampled Pages
 
-##### Configurar o número de páginas amostradas
+The MySQL query optimizer uses estimated statistics about key distributions to choose the indexes for an execution plan, based on the relative selectivity of the index. When `InnoDB` updates optimizer statistics, it samples random pages from each index on a table to estimate the cardinality of the index. (This technique is known as random dives.)
 
-O otimizador de consultas do MySQL usa estatísticas estimadas sobre as distribuições de chaves para escolher os índices para um plano de execução, com base na seletividade relativa do índice. Quando o otimizador do `InnoDB` atualiza as estatísticas, ele amostra páginas aleatórias de cada índice em uma tabela para estimar a cardinalidade do índice. (Essa técnica é conhecida como mergulhos aleatórios.)
+To give you control over the quality of the statistics estimate (and thus better information for the query optimizer), you can change the number of sampled pages using the parameter `innodb_stats_transient_sample_pages`. The default number of sampled pages is 8, which could be insufficient to produce an accurate estimate, leading to poor index choices by the query optimizer. This technique is especially important for large tables and tables used in joins. Unnecessary full table scans for such tables can be a substantial performance issue. See Section 8.2.1.20, “Avoiding Full Table Scans” for tips on tuning such queries. `innodb_stats_transient_sample_pages` is a global parameter that can be set at runtime.
 
-Para lhe dar controle sobre a qualidade da estimativa estatística (e, assim, melhores informações para o otimizador de consultas), você pode alterar o número de páginas amostradas usando o parâmetro `innodb_stats_transient_sample_pages`. O número padrão de páginas amostradas é 8, o que pode ser insuficiente para produzir uma estimativa precisa, levando a escolhas de índices ruins pelo otimizador de consultas. Essa técnica é especialmente importante para tabelas grandes e tabelas usadas em junções. Escaneamentos completos de tabelas desnecessários para essas tabelas podem ser um problema de desempenho substancial. Consulte a Seção 8.2.1.20, “Evitar Escaneamentos Completos de Tabelas”, para dicas sobre o ajuste dessas consultas. `innodb_stats_transient_sample_pages` é um parâmetro global que pode ser definido em tempo de execução.
+The value of `innodb_stats_transient_sample_pages` affects the index sampling for all `InnoDB` tables and indexes when `innodb_stats_persistent=0`. Be aware of the following potentially significant impacts when you change the index sample size:
 
-O valor de `innodb_stats_transient_sample_pages` afeta a amostragem de índices para todas as tabelas e índices `InnoDB` quando `innodb_stats_persistent=0`. Esteja ciente dos seguintes impactos potencialmente significativos ao alterar o tamanho da amostra de índice:
+* Small values like 1 or 2 can result in inaccurate estimates of cardinality.
 
-- Valores pequenos, como 1 ou 2, podem resultar em estimativas imprecisas de cardinalidade.
+* Increasing the `innodb_stats_transient_sample_pages` value might require more disk reads. Values much larger than 8 (say, 100), can cause a significant slowdown in the time it takes to open a table or execute `SHOW TABLE STATUS`.
 
-- Aumentar o valor de `innodb_stats_transient_sample_pages` pode exigir mais leituras de disco. Valores muito maiores que 8 (por exemplo, 100) podem causar um atraso significativo no tempo necessário para abrir uma tabela ou executar `SHOW TABLE STATUS`.
+* The optimizer might choose very different query plans based on different estimates of index selectivity.
 
-- O otimizador pode escolher planos de consulta muito diferentes com base em diferentes estimativas de seletividade do índice.
+Whatever value of `innodb_stats_transient_sample_pages` works best for a system, set the option and leave it at that value. Choose a value that results in reasonably accurate estimates for all tables in your database without requiring excessive I/O. Because the statistics are automatically recalculated at various times other than on execution of `ANALYZE TABLE`, it does not make sense to increase the index sample size, run `ANALYZE TABLE`, then decrease sample size again.
 
-Qualquer valor de `innodb_stats_transient_sample_pages` que funcione melhor para um sistema, defina a opção e deixe-a nesse valor. Escolha um valor que resulte em estimativas razoavelmente precisas para todas as tabelas do seu banco de dados sem exigir um I/O excessivo. Como as estatísticas são recalculadas automaticamente em vários momentos, além da execução da `ANALYZE TABLE`, não faz sentido aumentar o tamanho da amostra do índice, executar `ANALYZE TABLE` e, em seguida, diminuir o tamanho da amostra novamente.
-
-Tabelas menores geralmente exigem menos amostras de índice do que tabelas maiores. Se o seu banco de dados tiver muitas tabelas grandes, considere usar um valor maior para `innodb_stats_transient_sample_pages` do que se você tiver principalmente tabelas menores.
+Smaller tables generally require fewer index samples than larger tables. If your database has many large tables, consider using a higher value for `innodb_stats_transient_sample_pages` than if you have mostly smaller tables.

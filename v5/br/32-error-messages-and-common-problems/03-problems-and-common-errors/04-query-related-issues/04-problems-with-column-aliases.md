@@ -1,6 +1,6 @@
-#### B.3.4.4 Problemas com aliases de colunas
+#### B.3.4.4 Problems with Column Aliases
 
-Um alias pode ser usado em uma lista de seleção de consulta para dar a uma coluna um nome diferente. Você pode usar o alias nas cláusulas `GROUP BY`, `ORDER BY` ou `HAVING` para referenciar a coluna:
+An alias can be used in a query select list to give a column a different name. You can use the alias in `GROUP BY`, `ORDER BY`, or `HAVING` clauses to refer to the column:
 
 ```sql
 SELECT SQRT(a*b) AS root FROM tbl_name
@@ -10,29 +10,29 @@ SELECT id, COUNT(*) AS cnt FROM tbl_name
 SELECT id AS 'Customer identity' FROM tbl_name;
 ```
 
-O SQL padrão não permite referências a aliases de coluna em uma cláusula `WHERE`. Essa restrição é imposta porque, quando a cláusula `WHERE` é avaliada, o valor da coluna ainda pode não ter sido determinado. Por exemplo, a seguinte consulta é ilegal:
+Standard SQL disallows references to column aliases in a `WHERE` clause. This restriction is imposed because when the `WHERE` clause is evaluated, the column value may not yet have been determined. For example, the following query is illegal:
 
 ```sql
 SELECT id, COUNT(*) AS cnt FROM tbl_name
   WHERE cnt > 0 GROUP BY id;
 ```
 
-A cláusula `WHERE` determina quais linhas devem ser incluídas na cláusula `GROUP BY`, mas ela se refere ao alias de um valor de coluna que só é conhecido após as linhas terem sido selecionadas e agrupadas pelo `GROUP BY`.
+The `WHERE` clause determines which rows should be included in the `GROUP BY` clause, but it refers to the alias of a column value that is not known until after the rows have been selected, and grouped by the `GROUP BY`.
 
-Na lista selecionada de uma consulta, um alias de coluna com aspas pode ser especificado usando caracteres de aspas para identificadores ou strings:
+In the select list of a query, a quoted column alias can be specified using identifier or string quoting characters:
 
 ```sql
 SELECT 1 AS `one`, 2 AS 'two';
 ```
 
-Em outras partes da declaração, as referências a alias devem usar aspas de identificador ou a referência é tratada como um literal de string. Por exemplo, esta declaração agrupa por os valores na coluna `id`, referenciados usando o alias `a`:
+Elsewhere in the statement, quoted references to the alias must use identifier quoting or the reference is treated as a string literal. For example, this statement groups by the values in column `id`, referenced using the alias `` `a` ``:
 
 ```sql
 SELECT id AS 'a', COUNT(*) AS cnt FROM tbl_name
   GROUP BY `a`;
 ```
 
-Essa declaração agrupa por uma cadeia literal `'a'` e não funciona conforme o esperado:
+This statement groups by the literal string `'a'` and does not work as expected:
 
 ```sql
 SELECT id AS 'a', COUNT(*) AS cnt FROM tbl_name

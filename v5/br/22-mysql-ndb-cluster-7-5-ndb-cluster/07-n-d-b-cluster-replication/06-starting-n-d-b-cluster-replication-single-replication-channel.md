@@ -1,33 +1,33 @@
-### 21.7.6 Início da replicação do cluster NDB (canal de replicação único)
+### 21.7.6 Starting NDB Cluster Replication (Single Replication Channel)
 
-Esta seção descreve o procedimento para iniciar a replicação do NDB Cluster usando um único canal de replicação.
+This section outlines the procedure for starting NDB Cluster replication using a single replication channel.
 
-1. Inicie o servidor de origem de replicação do MySQL executando este comando, onde *`id`* é o ID único deste servidor (consulte Seção 21.7.2, “Requisitos Gerais para a Replicação do NDB Cluster”):
+1. Start the MySQL replication source server by issuing this command, where *`id`* is this server's unique ID (see [Section 21.7.2, “General Requirements for NDB Cluster Replication”](mysql-cluster-replication-general.html "21.7.2 General Requirements for NDB Cluster Replication")):
 
    ```sql
    shellS> mysqld --ndbcluster --server-id=id \
            --log-bin --ndb-log-bin &
    ```
 
-   Isso inicia o processo do servidor **mysqld** com registro binário habilitado, usando o formato de registro adequado.
+   This starts the server's [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") process with binary logging enabled using the proper logging format.
 
-   Nota
+   Note
 
-   Você também pode iniciar a fonte com [`--binlog-format=MIXED`](https://pt.replication-options-binary-log.html#sysvar_binlog_format), caso em que a replicação baseada em linhas é usada automaticamente ao replicar entre clusters. O registro binário baseado em declarações não é suportado para a replicação de NDB Cluster (consulte [Seção 21.7.2, “Requisitos Gerais para a Replicação de NDB Cluster”](https://pt.mysql-cluster-replication-general.html)).
+   You can also start the source with [`--binlog-format=MIXED`](replication-options-binary-log.html#sysvar_binlog_format), in which case row-based replication is used automatically when replicating between clusters. Statement-based binary logging is not supported for NDB Cluster Replication (see [Section 21.7.2, “General Requirements for NDB Cluster Replication”](mysql-cluster-replication-general.html "21.7.2 General Requirements for NDB Cluster Replication")).
 
-2. Inicie o servidor de réplica do MySQL conforme mostrado aqui:
+2. Start the MySQL replica server as shown here:
 
    ```sql
    shellR> mysqld --ndbcluster --server-id=id &
    ```
 
-   No comando mostrado acima, *`id`* é o ID único do servidor replica. Não é necessário habilitar o registro no replica.
+   In the command just shown, *`id`* is the replica server's unique ID. It is not necessary to enable logging on the replica.
 
-   Nota
+   Note
 
-   Você deve usar a opção [`--skip-slave-start`](https://pt.wikipedia.org/wiki/Replicação_\(database\)#Op%C3%A9rnia_de_replicac%C3%A3o.3Coption.3E.22skip-slave-start.3D) com este comando, ou então você deve incluir `skip-slave-start` no arquivo `my.cnf` do servidor replica, a menos que você queira que a replicação comece imediatamente. Com o uso desta opção, o início da replicação é adiado até que a declaração apropriada `START SLAVE` (<https://pt.wikipedia.org/wiki/Replicação_(database)#Instru%C3%A7%C3%A3o_START_SLAVE>) tenha sido emitida, conforme explicado no Passo 4 abaixo.
+   You should use the [`--skip-slave-start`](replication-options-replica.html#option_mysqld_skip-slave-start) option with this command or else you should include `skip-slave-start` in the replica server's `my.cnf` file, unless you want replication to begin immediately. With the use of this option, the start of replication is delayed until the appropriate [`START SLAVE`](start-slave.html "13.4.2.5 START SLAVE Statement") statement has been issued, as explained in Step 4 below.
 
-3. É necessário sincronizar o servidor de replicação com o log de replicação binário do servidor de origem. Se o registro binário não estiver sendo executado anteriormente no origem, execute a seguinte instrução no replica:
+3. It is necessary to synchronize the replica server with the source server's replication binary log. If binary logging has not previously been running on the source, run the following statement on the replica:
 
    ```sql
    mysqlR> CHANGE MASTER TO
@@ -35,41 +35,41 @@ Esta seção descreve o procedimento para iniciar a replicação do NDB Cluster 
         -> MASTER_LOG_POS=4;
    ```
 
-   Isso instrui a replica a começar a ler o log binário do servidor de origem a partir do ponto de início do log. Caso contrário, ou seja, se você estiver carregando dados da origem usando um backup, consulte Seção 21.7.8, “Implementando Failover com Replicação de NDB Cluster” para obter informações sobre como obter os valores corretos para usar em tais casos.
+   This instructs the replica to begin reading the source server's binary log from the log's starting point. Otherwise—that is, if you are loading data from the source using a backup—see [Section 21.7.8, “Implementing Failover with NDB Cluster Replication”](mysql-cluster-replication-failover.html "21.7.8 Implementing Failover with NDB Cluster Replication"), for information on how to obtain the correct values to use for `MASTER_LOG_FILE` and `MASTER_LOG_POS` in such cases.
 
-4. Por fim, instrua a réplica a começar a aplicar a replicação emitindo este comando a partir do cliente **mysql** na réplica:
+4. Finally, instruct the replica to begin applying replication by issuing this command from the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client on the replica:
 
    ```sql
    mysqlR> START SLAVE;
    ```
 
-   Isso também inicia a transmissão de dados e alterações da fonte para a replica.
+   This also initiates the transmission of data and changes from the source to the replica.
 
-Também é possível usar dois canais de replicação, de maneira semelhante ao procedimento descrito na próxima seção; as diferenças entre isso e o uso de um único canal de replicação são abordadas em Seção 21.7.7, “Usando Dois Canais de Replicação para a Replicação de NDB Cluster”.
+It is also possible to use two replication channels, in a manner similar to the procedure described in the next section; the differences between this and using a single replication channel are covered in [Section 21.7.7, “Using Two Replication Channels for NDB Cluster Replication”](mysql-cluster-replication-two-channels.html "21.7.7 Using Two Replication Channels for NDB Cluster Replication").
 
-É também possível melhorar o desempenho da replicação de clusters ao habilitar atualizações em lote. Isso pode ser feito configurando a variável de sistema `slave_allow_batching` nos processos do **mysqld** das réplicas. Normalmente, as atualizações são aplicadas assim que são recebidas. No entanto, o uso de atualizações em lote faz com que as atualizações sejam aplicadas em lotes de 32 KB cada; isso pode resultar em maior capacidade de processamento e menor uso da CPU, especialmente quando as atualizações individuais são relativamente pequenas.
+It is also possible to improve cluster replication performance by enabling batched updates. This can be accomplished by setting the [`slave_allow_batching`](mysql-cluster-options-variables.html#sysvar_slave_allow_batching) system variable on the replicas' [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") processes. Normally, updates are applied as soon as they are received. However, the use of batching causes updates to be applied in batches of 32 KB each; this can result in higher throughput and less CPU usage, particularly where individual updates are relatively small.
 
-Nota
+Note
 
-O agrupamento funciona em uma base por período; as atualizações que pertencem a mais de uma transação podem ser enviadas como parte do mesmo grupo.
+Batching works on a per-epoch basis; updates belonging to more than one transaction can be sent as part of the same batch.
 
-Todas as atualizações pendentes são aplicadas quando o fim de uma época é alcançado, mesmo que as atualizações totalizem menos de 32 KB.
+All outstanding updates are applied when the end of an epoch is reached, even if the updates total less than 32 KB.
 
-A opção de loteamento pode ser ativada ou desativada durante a execução. Para ativá-la durante a execução, você pode usar uma das duas seguintes instruções:
+Batching can be turned on and off at runtime. To activate it at runtime, you can use either of these two statements:
 
 ```sql
 SET GLOBAL slave_allow_batching = 1;
 SET GLOBAL slave_allow_batching = ON;
 ```
 
-Se um lote específico causar problemas (como uma declaração cujos efeitos não parecem ser replicados corretamente), o lote pode ser desativado usando uma das seguintes declarações:
+If a particular batch causes problems (such as a statement whose effects do not appear to be replicated correctly), batching can be deactivated using either of the following statements:
 
 ```sql
 SET GLOBAL slave_allow_batching = 0;
 SET GLOBAL slave_allow_batching = OFF;
 ```
 
-Você pode verificar se o agrupamento está sendo usado atualmente por meio de uma declaração apropriada `SHOW VARIABLES`, como esta:
+You can check whether batching is currently being used by means of an appropriate [`SHOW VARIABLES`](show-variables.html "13.7.5.39 SHOW VARIABLES Statement") statement, like this one:
 
 ```sql
 mysql> SHOW VARIABLES LIKE 'slave%';

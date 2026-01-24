@@ -1,16 +1,16 @@
-### 22.3.5 Obter informações sobre partições
+### 22.3.5 Obtaining Information About Partitions
 
-Esta seção discute a obtenção de informações sobre partições existentes, o que pode ser feito de várias maneiras. Os métodos de obtenção dessas informações incluem os seguintes:
+This section discusses obtaining information about existing partitions, which can be done in a number of ways. Methods of obtaining such information include the following:
 
-- Use a instrução `SHOW CREATE TABLE` para visualizar as cláusulas de particionamento usadas na criação de uma tabela particionada.
+* Using the [`SHOW CREATE TABLE`](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement") statement to view the partitioning clauses used in creating a partitioned table.
 
-- Use a instrução `SHOW TABLE STATUS` para determinar se uma tabela está particionada.
+* Using the [`SHOW TABLE STATUS`](show-table-status.html "13.7.5.36 SHOW TABLE STATUS Statement") statement to determine whether a table is partitioned.
 
-- Consultando a tabela do esquema de informações `PARTITIONS`.
+* Querying the Information Schema [`PARTITIONS`](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table") table.
 
-- Use a instrução `EXPLAIN SELECT` (explain.html) para ver quais partições são usadas por um `SELECT` (select.html) específico.
+* Using the statement [`EXPLAIN SELECT`](explain.html "13.8.2 EXPLAIN Statement") to see which partitions are used by a given [`SELECT`](select.html "13.2.9 SELECT Statement").
 
-Como discutido em outro lugar neste capítulo, `SHOW CREATE TABLE` inclui na sua saída a cláusula `PARTITION BY` usada para criar uma tabela particionada. Por exemplo:
+As discussed elsewhere in this chapter, [`SHOW CREATE TABLE`](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement") includes in its output the `PARTITION BY` clause used to create a partitioned table. For example:
 
 ```sql
 mysql> SHOW CREATE TABLE trb3\G
@@ -30,13 +30,13 @@ PARTITION BY RANGE (YEAR(purchased)) (
 1 row in set (0.00 sec)
 ```
 
-A saída do comando `SHOW TABLE STATUS` para tabelas particionadas é a mesma da saída para tabelas não particionadas, exceto que a coluna `Create_options` contém a string `partitioned`. A coluna `Engine` contém o nome do motor de armazenamento usado por todas as partições da tabela. (Consulte Seção 13.7.5.36, “Instrução SHOW TABLE STATUS” para obter mais informações sobre essa instrução.)
+The output from [`SHOW TABLE STATUS`](show-table-status.html "13.7.5.36 SHOW TABLE STATUS Statement") for partitioned tables is the same as that for nonpartitioned tables, except that the `Create_options` column contains the string `partitioned`. The `Engine` column contains the name of the storage engine used by all partitions of the table. (See [Section 13.7.5.36, “SHOW TABLE STATUS Statement”](show-table-status.html "13.7.5.36 SHOW TABLE STATUS Statement"), for more information about this statement.)
 
-Você também pode obter informações sobre partições do `INFORMATION_SCHEMA`, que contém uma tabela `PARTITIONS`. Veja Seção 24.3.16, “A Tabela INFORMATION_SCHEMA PARTITIONS”.
+You can also obtain information about partitions from `INFORMATION_SCHEMA`, which contains a [`PARTITIONS`](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table") table. See [Section 24.3.16, “The INFORMATION_SCHEMA PARTITIONS Table”](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table").
 
-É possível determinar quais partições de uma tabela particionada estão envolvidas em uma consulta específica do `SELECT` usando o `EXPLAIN`. A coluna `partitions` no resultado do `EXPLAIN` lista as partições das quais os registros seriam correspondidos pela consulta.
+It is possible to determine which partitions of a partitioned table are involved in a given [`SELECT`](select.html "13.2.9 SELECT Statement") query using [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement"). The `partitions` column in the [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") output lists the partitions from which records would be matched by the query.
 
-Suponha que você tenha uma tabela `trb1` criada e preenchida da seguinte forma:
+Suppose that you have a table `trb1` created and populated as follows:
 
 ```sql
 CREATE TABLE trb1 (id INT, name VARCHAR(50), purchased DATE)
@@ -61,7 +61,7 @@ INSERT INTO trb1 VALUES
     (10, 'lava lamp', '1998-12-25');
 ```
 
-Você pode ver quais partições estão sendo usadas em uma consulta como `SELECT * FROM trb1;`, como mostrado aqui:
+You can see which partitions are used in a query such as `SELECT * FROM trb1;`, as shown here:
 
 ```sql
 mysql> EXPLAIN SELECT * FROM trb1\G
@@ -79,7 +79,7 @@ possible_keys: NULL
         Extra: Using filesort
 ```
 
-Neste caso, todas as quatro partições são pesquisadas. No entanto, quando uma condição limitante que faz uso da chave de partição é adicionada à consulta, você pode ver que apenas aquelas partições que contêm valores correspondentes são analisadas, como mostrado aqui:
+In this case, all four partitions are searched. However, when a limiting condition making use of the partitioning key is added to the query, you can see that only those partitions containing matching values are scanned, as shown here:
 
 ```sql
 mysql> EXPLAIN SELECT * FROM trb1 WHERE id < 5\G
@@ -97,7 +97,7 @@ possible_keys: NULL
         Extra: Using where
 ```
 
-`EXPLAIN` também fornece informações sobre as chaves usadas e as possíveis chaves:
+[`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement")  also provides information about keys used and possible keys:
 
 ```sql
 mysql> ALTER TABLE trb1 ADD PRIMARY KEY (id);
@@ -119,8 +119,8 @@ possible_keys: PRIMARY
         Extra: Using where
 ```
 
-Se o comando `EXPLAIN PARTITIONS` for usado para examinar uma consulta em uma tabela não particionada, não será gerado nenhum erro, mas o valor da coluna `partitions` será sempre `NULL`.
+If [`EXPLAIN PARTITIONS`](explain.html "13.8.2 EXPLAIN Statement") is used to examine a query against a nonpartitioned table, no error is produced, but the value of the `partitions` column is always `NULL`.
 
-A coluna `rows` da saída do `EXPLAIN` (explain.html) exibe o número total de linhas na tabela.
+The `rows` column of [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") output displays the total number of rows in the table.
 
-Veja também Seção 13.8.2, “Instrução EXPLAIN”.
+See also [Section 13.8.2, “EXPLAIN Statement”](explain.html "13.8.2 EXPLAIN Statement").

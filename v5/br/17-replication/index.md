@@ -1,95 +1,87 @@
-# Capítulo 16 Replicação
+# Chapter 16 Replication
 
-**Índice**
+**Table of Contents**
 
-16.1 Configurando a replicação:   16.1.1 Configuração de replicação baseada na posição do arquivo de log binário
+[16.1 Configuring Replication](replication-configuration.html) :   [16.1.1 Binary Log File Position Based Replication Configuration Overview](binlog-replication-configuration-overview.html)
 
-```
-16.1.2 Setting Up Binary Log File Position Based Replication
+    [16.1.2 Setting Up Binary Log File Position Based Replication](replication-howto.html)
 
-16.1.3 Replication with Global Transaction Identifiers
+    [16.1.3 Replication with Global Transaction Identifiers](replication-gtids.html)
 
-16.1.4 Changing Replication Modes on Online Servers
+    [16.1.4 Changing Replication Modes on Online Servers](replication-mode-change-online.html)
 
-16.1.5 MySQL Multi-Source Replication
+    [16.1.5 MySQL Multi-Source Replication](replication-multi-source.html)
 
-16.1.6 Replication and Binary Logging Options and Variables
+    [16.1.6 Replication and Binary Logging Options and Variables](replication-options.html)
 
-16.1.7 Common Replication Administration Tasks
-```
+    [16.1.7 Common Replication Administration Tasks](replication-administration.html)
 
-16.2 Implementação da replicação:   16.2.1 Formatos de replicação
+[16.2 Replication Implementation](replication-implementation.html) :   [16.2.1 Replication Formats](replication-formats.html)
 
-```
-16.2.2 Replication Channels
+    [16.2.2 Replication Channels](replication-channels.html)
 
-16.2.3 Replication Threads
+    [16.2.3 Replication Threads](replication-threads.html)
 
-16.2.4 Relay Log and Replication Metadata Repositories
+    [16.2.4 Relay Log and Replication Metadata Repositories](replica-logs.html)
 
-16.2.5 How Servers Evaluate Replication Filtering Rules
-```
+    [16.2.5 How Servers Evaluate Replication Filtering Rules](replication-rules.html)
 
-16.3 Soluções de Replicação:   16.3.1 Uso da Replicação para Backup
+[16.3 Replication Solutions](replication-solutions.html) :   [16.3.1 Using Replication for Backups](replication-solutions-backups.html)
 
-```
-16.3.2 Handling an Unexpected Halt of a Replica
+    [16.3.2 Handling an Unexpected Halt of a Replica](replication-solutions-unexpected-replica-halt.html)
 
-16.3.3 Using Replication with Different Source and Replica Storage Engines
+    [16.3.3 Using Replication with Different Source and Replica Storage Engines](replication-solutions-diffengines.html)
 
-16.3.4 Using Replication for Scale-Out
+    [16.3.4 Using Replication for Scale-Out](replication-solutions-scaleout.html)
 
-16.3.5 Replicating Different Databases to Different Replicas
+    [16.3.5 Replicating Different Databases to Different Replicas](replication-solutions-partitioning.html)
 
-16.3.6 Improving Replication Performance
+    [16.3.6 Improving Replication Performance](replication-solutions-performance.html)
 
-16.3.7 Switching Sources During Failover
+    [16.3.7 Switching Sources During Failover](replication-solutions-switch.html)
 
-16.3.8 Setting Up Replication to Use Encrypted Connections
+    [16.3.8 Setting Up Replication to Use Encrypted Connections](replication-encrypted-connections.html)
 
-16.3.9 Semisynchronous Replication
+    [16.3.9 Semisynchronous Replication](replication-semisync.html)
 
-16.3.10 Delayed Replication
-```
+    [16.3.10 Delayed Replication](replication-delayed.html)
 
-16.4 Notas e Dicas de Replicação:   16.4.1 Recursos e Problemas de Replicação
+[16.4 Replication Notes and Tips](replication-notes.html) :   [16.4.1 Replication Features and Issues](replication-features.html)
 
-```
-16.4.2 Replication Compatibility Between MySQL Versions
+    [16.4.2 Replication Compatibility Between MySQL Versions](replication-compatibility.html)
 
-16.4.3 Upgrading a Replication Topology
+    [16.4.3 Upgrading a Replication Topology](replication-upgrade.html)
 
-16.4.4 Troubleshooting Replication
+    [16.4.4 Troubleshooting Replication](replication-problems.html)
 
-16.4.5 How to Report Replication Bugs or Problems
-```
+    [16.4.5 How to Report Replication Bugs or Problems](replication-bugs.html)
 
-A replicação permite que os dados de um servidor de banco de dados MySQL (a fonte) sejam copiados para um ou mais servidores de banco de dados MySQL (as réplicas). A replicação é assíncrona por padrão; as réplicas não precisam estar permanentemente conectadas para receber atualizações da fonte. Dependendo da configuração, você pode replicar todos os bancos de dados, bancos de dados selecionados ou até mesmo tabelas selecionadas dentro de um banco de dados.
+Replication enables data from one MySQL database server (the source) to be copied to one or more MySQL database servers (the replicas). Replication is asynchronous by default; replicas do not need to be connected permanently to receive updates from the source. Depending on the configuration, you can replicate all databases, selected databases, or even selected tables within a database.
 
-As vantagens da replicação no MySQL incluem:
+Advantages of replication in MySQL include:
 
-- Soluções escaláveis - distribuindo a carga entre múltiplas réplicas para melhorar o desempenho. Nesse ambiente, todas as gravações e atualizações devem ocorrer no servidor de origem da replicação. As leituras, no entanto, podem ocorrer em uma ou mais réplicas. Esse modelo pode melhorar o desempenho das gravações (já que a fonte é dedicada às atualizações), ao mesmo tempo em que aumenta drasticamente a velocidade de leitura em um número crescente de réplicas.
+* Scale-out solutions - spreading the load among multiple replicas to improve performance. In this environment, all writes and updates must take place on the replication source server. Reads, however, may take place on one or more replicas. This model can improve the performance of writes (since the source is dedicated to updates), while dramatically increasing read speed across an increasing number of replicas.
 
-- Segurança de dados - como os dados são replicados para a replica, e a replica pode pausar o processo de replicação, é possível executar serviços de backup na replica sem corromper os dados de origem correspondentes.
+* Data security - because data is replicated to the replica, and the replica can pause the replication process, it is possible to run backup services on the replica without corrupting the corresponding source data.
 
-- Análise - dados em tempo real podem ser criados na fonte, enquanto a análise das informações pode ocorrer na replica sem afetar o desempenho da fonte.
+* Analytics - live data can be created on the source, while the analysis of the information can take place on the replica without affecting the performance of the source.
 
-- Distribuição de dados de longa distância: você pode usar a replicação para criar uma cópia local dos dados para que um site remoto possa usar, sem acesso permanente à fonte.
+* Long-distance data distribution - you can use replication to create a local copy of data for a remote site to use, without permanent access to the source.
 
-Para obter informações sobre como usar a replicação nesses cenários, consulte Seção 16.3, “Soluções de replicação”.
+For information on how to use replication in such scenarios, see [Section 16.3, “Replication Solutions”](replication-solutions.html "16.3 Replication Solutions").
 
-O MySQL 5.7 suporta diferentes métodos de replicação. O método tradicional é baseado na replicação de eventos do log binário da fonte e requer que os arquivos de log e suas posições sejam sincronizados entre a fonte e a replica. O método mais recente, baseado em identificadores de transações globais (GTIDs), é transacional e, portanto, não requer o trabalho com arquivos de log ou suas posições dentro desses arquivos, o que simplifica muito muitas tarefas comuns de replicação. A replicação usando GTIDs garante consistência entre a fonte e a replica, desde que todas as transações comprometidas na fonte também tenham sido aplicadas na replica. Para mais informações sobre GTIDs e replicação baseada em GTIDs no MySQL, consulte Seção 16.1.3, “Replicação com Identificadores de Transações Globais”. Para informações sobre o uso da replicação baseada na posição do arquivo de log binário, consulte Seção 16.1, “Configuração da Replicação”.
+MySQL 5.7 supports different methods of replication. The traditional method is based on replicating events from the source's binary log, and requires the log files and positions in them to be synchronized between source and replica. The newer method based on global transaction identifiers (GTIDs) is transactional and therefore does not require working with log files or positions within these files, which greatly simplifies many common replication tasks. Replication using GTIDs guarantees consistency between source and replica as long as all transactions committed on the source have also been applied on the replica. For more information about GTIDs and GTID-based replication in MySQL, see [Section 16.1.3, “Replication with Global Transaction Identifiers”](replication-gtids.html "16.1.3 Replication with Global Transaction Identifiers"). For information on using binary log file position based replication, see [Section 16.1, “Configuring Replication”](replication-configuration.html "16.1 Configuring Replication").
 
-A replicação no MySQL suporta diferentes tipos de sincronização. O tipo original de sincronização é a replicação bidirecional, assíncrona, na qual um servidor atua como a fonte, enquanto um ou mais outros servidores atuam como réplicas. Isso contrasta com a replicação *síncrona*, que é uma característica do NDB Cluster (veja Capítulo 21, *MySQL NDB Cluster 7.5 e NDB Cluster 7.6*). No MySQL 5.7, a replicação semiesincrônica é suportada, além da replicação assíncrona integrada. Com a replicação semiesincrônica, um commit realizado na fonte bloqueia antes de retornar à sessão que realizou a transação até que pelo menos uma réplica reconheça que recebeu e registrou os eventos da transação; veja Seção 16.3.9, “Replicação Semiesincrônica”. O MySQL 5.7 também suporta replicação atrasada, de modo que uma réplica fica deliberadamente atrasada em relação à fonte por pelo menos um período de tempo especificado; veja Seção 16.3.10, “Replicação Atrasada”. Para cenários em que a replicação *síncrona* é necessária, use o NDB Cluster (veja Capítulo 21, *MySQL NDB Cluster 7.5 e NDB Cluster 7.6*).
+Replication in MySQL supports different types of synchronization. The original type of synchronization is one-way, asynchronous replication, in which one server acts as the source, while one or more other servers act as replicas. This is in contrast to the *synchronous* replication which is a characteristic of NDB Cluster (see [Chapter 21, *MySQL NDB Cluster 7.5 and NDB Cluster 7.6*](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6")). In MySQL 5.7, semisynchronous replication is supported in addition to the built-in asynchronous replication. With semisynchronous replication, a commit performed on the source blocks before returning to the session that performed the transaction until at least one replica acknowledges that it has received and logged the events for the transaction; see [Section 16.3.9, “Semisynchronous Replication”](replication-semisync.html "16.3.9 Semisynchronous Replication"). MySQL 5.7 also supports delayed replication such that a replica deliberately lags behind the source by at least a specified amount of time; see [Section 16.3.10, “Delayed Replication”](replication-delayed.html "16.3.10 Delayed Replication"). For scenarios where *synchronous* replication is required, use NDB Cluster (see [Chapter 21, *MySQL NDB Cluster 7.5 and NDB Cluster 7.6*](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6")).
 
-Existem várias soluções disponíveis para configurar a replicação entre servidores, e o melhor método a ser utilizado depende da presença dos dados e dos tipos de motor que você está usando. Para obter mais informações sobre as opções disponíveis, consulte Seção 16.1.2, “Configuração da replicação com base na posição do arquivo de log binário”.
+There are a number of solutions available for setting up replication between servers, and the best method to use depends on the presence of data and the engine types you are using. For more information on the available options, see [Section 16.1.2, “Setting Up Binary Log File Position Based Replication”](replication-howto.html "16.1.2 Setting Up Binary Log File Position Based Replication").
 
-Existem dois tipos principais de formato de replicação: a Replicação Baseada em Declarações (SBR), que replica todas as declarações SQL, e a Replicação Baseada em Linhas (RBR), que replica apenas as linhas alteradas. Você também pode usar uma terceira variedade, a Replicação Baseada em Mistura (MBR). Para obter mais informações sobre os diferentes formatos de replicação, consulte Seção 16.2.1, “Formatos de Replicação”.
+There are two core types of replication format, Statement Based Replication (SBR), which replicates entire SQL statements, and Row Based Replication (RBR), which replicates only the changed rows. You can also use a third variety, Mixed Based Replication (MBR). For more information on the different replication formats, see [Section 16.2.1, “Replication Formats”](replication-formats.html "16.2.1 Replication Formats").
 
-A replicação é controlada por várias opções e variáveis diferentes. Para mais informações, consulte Seção 16.1.6, “Opções e variáveis de replicação e registro binário”.
+Replication is controlled through a number of different options and variables. For more information, see [Section 16.1.6, “Replication and Binary Logging Options and Variables”](replication-options.html "16.1.6 Replication and Binary Logging Options and Variables").
 
-Você pode usar a replicação para resolver uma série de problemas diferentes, incluindo desempenho, suporte ao backup de diferentes bancos de dados e como parte de uma solução maior para aliviar falhas no sistema. Para obter informações sobre como resolver esses problemas, consulte Seção 16.3, “Soluções de Replicação”.
+You can use replication to solve a number of different problems, including performance, supporting the backup of different databases, and as part of a larger solution to alleviate system failures. For information on how to address these issues, see [Section 16.3, “Replication Solutions”](replication-solutions.html "16.3 Replication Solutions").
 
-Para notas e dicas sobre como diferentes tipos de dados e declarações são tratados durante a replicação, incluindo detalhes sobre recursos de replicação, compatibilidade de versões, atualizações e problemas potenciais e suas resoluções, consulte Seção 16.4, “Notas e Dicas de Replicação”. Para respostas a algumas perguntas frequentemente feitas por aqueles que são novos no MySQL Replication, consulte Seção A.14, “Perguntas Frequentes do MySQL 5.7: Replicação”.
+For notes and tips on how different data types and statements are treated during replication, including details of replication features, version compatibility, upgrades, and potential problems and their resolution, see [Section 16.4, “Replication Notes and Tips”](replication-notes.html "16.4 Replication Notes and Tips"). For answers to some questions often asked by those who are new to MySQL Replication, see [Section A.14, “MySQL 5.7 FAQ: Replication”](faqs-replication.html "A.14 MySQL 5.7 FAQ: Replication").
 
-Para informações detalhadas sobre a implementação da replicação, como a replicação funciona, o processo e o conteúdo do log binário, os threads de segundo plano e as regras usadas para decidir como as instruções são registradas e replicadas, consulte Seção 16.2, “Implementação da Replicação”.
+For detailed information on the implementation of replication, how replication works, the process and contents of the binary log, background threads and the rules used to decide how statements are recorded and replicated, see [Section 16.2, “Replication Implementation”](replication-implementation.html "16.2 Replication Implementation").

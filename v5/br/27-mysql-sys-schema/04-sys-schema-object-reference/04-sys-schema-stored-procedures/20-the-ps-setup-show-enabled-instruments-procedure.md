@@ -1,12 +1,12 @@
-#### 26.4.4.20 O procedimento ps_setup_show_enabled_instruments()
+#### 26.4.4.20 The ps_setup_show_enabled_instruments() Procedure
 
-Exibe todos os instrumentos do Schema de Desempenho atualmente habilitados. Isso pode ser uma lista longa.
+Displays all currently enabled Performance Schema instruments. This might be a long list.
 
-##### Parâmetros
+##### Parameters
 
-Nenhum.
+None.
 
-##### Exemplo
+##### Example
 
 ```sql
 mysql> CALL sys.ps_setup_show_enabled_instruments()\G

@@ -1,41 +1,41 @@
-#### 26.4.3.11 As visualizações io_global_by_file_by_bytes e x$io_global_by_file_by_bytes
+#### 26.4.3.11 The io_global_by_file_by_bytes and x$io_global_by_file_by_bytes Views
 
-Esses pontos de vista resumem os consumidores globais de E/S para exibir a quantidade de E/S, agrupada por arquivo. Por padrão, as linhas são ordenadas em ordem decrescente de total de E/S (bytes lidos e escritos).
+These views summarize global I/O consumers to display amount of I/O, grouped by file. By default, rows are sorted by descending total I/O (bytes read and written).
 
-As vistas `io_global_by_file_by_bytes` e `x$io_global_by_file_by_bytes` possuem essas colunas:
+The `io_global_by_file_by_bytes` and `x$io_global_by_file_by_bytes` views have these columns:
 
-- `arquivo`
+* `file`
 
-  O nome do caminho do arquivo.
+  The file path name.
 
-- `count_read`
+* `count_read`
 
-  O número total de eventos de leitura do arquivo.
+  The total number of read events for the file.
 
-- `total_read`
+* `total_read`
 
-  O número total de bytes lidos do arquivo.
+  The total number of bytes read from the file.
 
-- `avg_read`
+* `avg_read`
 
-  O número médio de bytes por leitura do arquivo.
+  The average number of bytes per read from the file.
 
-- `count_write`
+* `count_write`
 
-  O número total de eventos de escrita para o arquivo.
+  The total number of write events for the file.
 
-- `total_escrito`
+* `total_written`
 
-  O número total de bytes escritos no arquivo.
+  The total number of bytes written to the file.
 
-- `avg_write`
+* `avg_write`
 
-  O número médio de bytes por escrita no arquivo.
+  The average number of bytes per write to the file.
 
-- `total`
+* `total`
 
-  O número total de bytes lidos e escritos para o arquivo.
+  The total number of bytes read and written for the file.
 
-- `write_pct`
+* `write_pct`
 
-  A porcentagem dos bytes totais de E/S que foram escritos.
+  The percentage of total bytes of I/O that were writes.

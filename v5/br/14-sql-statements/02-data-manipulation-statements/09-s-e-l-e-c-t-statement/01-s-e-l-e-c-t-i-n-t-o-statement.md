@@ -1,68 +1,67 @@
-#### 13.2.9.1 Instrução SELECT ... INTO
+#### 13.2.9.1 SELECT ... INTO Statement
 
-O formulário `SELECT ... INTO` do comando `SELECT` permite que o resultado de uma consulta seja armazenado em variáveis ou escrito em um arquivo:
+The [`SELECT ... INTO`](select-into.html "13.2.9.1 SELECT ... INTO Statement") form of [`SELECT`](select.html "13.2.9 SELECT Statement") enables a query result to be stored in variables or written to a file:
 
-- `SELECT ... INTO var_list` seleciona os valores das colunas e os armazena em variáveis.
+* `SELECT ... INTO var_list` selects column values and stores them into variables.
 
-- `SELECT ... INTO OUTFILE` escreve as linhas selecionadas em um arquivo. Os terminadores de coluna e linha podem ser especificados para produzir um formato de saída específico.
+* `SELECT ... INTO OUTFILE` writes the selected rows to a file. Column and line terminators can be specified to produce a specific output format.
 
-- `SELECT ... INTO DUMPFILE` escreve uma única linha em um arquivo sem qualquer formatação.
+* `SELECT ... INTO DUMPFILE` writes a single row to a file without any formatting.
 
-Uma instrução `[SELECT]` (select.html) pode conter no máximo uma cláusula `INTO`, embora, conforme demonstrado na descrição da sintaxe da instrução `[SELECT]` (ver Seção 13.2.9, “Instrução SELECT”), a cláusula `INTO` possa aparecer em diferentes posições:
+A given [`SELECT`](select.html "13.2.9 SELECT Statement") statement can contain at most one `INTO` clause, although as shown by the [`SELECT`](select.html "13.2.9 SELECT Statement") syntax description (see [Section 13.2.9, “SELECT Statement”](select.html "13.2.9 SELECT Statement")), the `INTO` can appear in different positions:
 
-- Antes de `FROM`. Exemplo:
+* Before `FROM`. Example:
 
   ```sql
   SELECT * INTO @myvar FROM t1;
   ```
 
-- Antes de uma cláusula de retenção. Exemplo:
+* Before a trailing locking clause. Example:
 
   ```sql
   SELECT * FROM t1 INTO @myvar FOR UPDATE;
   ```
 
-Uma cláusula `INTO` não deve ser usada em uma cláusula `SELECT` aninhada porque essa `SELECT` deve retornar seu resultado ao contexto externo. Há também restrições sobre o uso de `INTO` dentro das instruções `UNION`; veja Seção 13.2.9.3, “Cláusula UNION”.
+An `INTO` clause should not be used in a nested [`SELECT`](select.html "13.2.9 SELECT Statement") because such a [`SELECT`](select.html "13.2.9 SELECT Statement") must return its result to the outer context. There are also constraints on the use of `INTO` within [`UNION`](union.html "13.2.9.3 UNION Clause") statements; see [Section 13.2.9.3, “UNION Clause”](union.html "13.2.9.3 UNION Clause").
 
-Para a variante `INTO var_list`:
+For the `INTO var_list` variant:
 
-- *`var_list`* nomeia uma lista de uma ou mais variáveis, cada uma das quais pode ser uma variável definida pelo usuário, parâmetro de procedimento ou função armazenado, ou variável local de programa armazenado. (Dentro de uma instrução `SELECT ... INTO var_list` preparada, apenas variáveis definidas pelo usuário são permitidas; veja Seção 13.6.4.2, “Âmbito e Resolução de Variáveis Locais”.)
+* *`var_list`* names a list of one or more variables, each of which can be a user-defined variable, stored procedure or function parameter, or stored program local variable. (Within a prepared `SELECT ... INTO var_list` statement, only user-defined variables are permitted; see [Section 13.6.4.2, “Local Variable Scope and Resolution”](local-variable-scope.html "13.6.4.2 Local Variable Scope and Resolution").)
 
-- Os valores selecionados são atribuídos às variáveis. O número de variáveis deve corresponder ao número de colunas. A consulta deve retornar uma única linha. Se a consulta não retornar nenhuma linha, um aviso com o código de erro 1329 ocorrerá (`Sem dados`) e os valores das variáveis permanecerão inalterados. Se a consulta retornar várias linhas, o erro 1172 ocorrerá (`Resultado consistiu em mais de uma linha`). Se for possível que a instrução possa recuperar várias linhas, você pode usar `LIMIT 1` para limitar o conjunto de resultados a uma única linha.
+* The selected values are assigned to the variables. The number of variables must match the number of columns. The query should return a single row. If the query returns no rows, a warning with error code 1329 occurs (`No data`), and the variable values remain unchanged. If the query returns multiple rows, error 1172 occurs (`Result consisted of more than one row`). If it is possible that the statement may retrieve multiple rows, you can use `LIMIT 1` to limit the result set to a single row.
 
   ```sql
   SELECT id, data INTO @x, @y FROM test.t1 LIMIT 1;
   ```
 
-Os nomes das variáveis do usuário não são sensíveis ao maiúsculas e minúsculas. Consulte Seção 9.4, “Variáveis Definidas pelo Usuário”.
+User variable names are not case-sensitive. See [Section 9.4, “User-Defined Variables”](user-variables.html "9.4 User-Defined Variables").
 
-O formulário `SELECT ... INTO OUTFILE 'nome_arquivo'` do comando `SELECT` escreve as linhas selecionadas em um arquivo. O arquivo é criado no host do servidor, portanto, você deve ter o privilégio `FILE` para usar essa sintaxe. *`nome_arquivo`* não pode ser um arquivo existente, o que, entre outras coisas, impede que arquivos como `/etc/passwd` e tabelas de banco de dados sejam modificados. A variável de sistema `character_set_filesystem` controla a interpretação do nome do arquivo.
+The [`SELECT ... INTO OUTFILE 'file_name'`](select-into.html "13.2.9.1 SELECT ... INTO Statement") form of [`SELECT`](select.html "13.2.9 SELECT Statement") writes the selected rows to a file. The file is created on the server host, so you must have the [`FILE`](privileges-provided.html#priv_file) privilege to use this syntax. *`file_name`* cannot be an existing file, which among other things prevents files such as `/etc/passwd` and database tables from being modified. The [`character_set_filesystem`](server-system-variables.html#sysvar_character_set_filesystem) system variable controls the interpretation of the file name.
 
-A instrução `SELECT ... INTO OUTFILE` é destinada a permitir o descarte de uma tabela em um arquivo de texto no host do servidor. Para criar o arquivo resultante em outro host, `SELECT ... INTO OUTFILE` normalmente é inadequado porque não há como escrever um caminho para o arquivo em relação ao sistema de arquivos do host do servidor, a menos que a localização do arquivo no host remoto possa ser acessada usando um caminho mapeado pela rede no sistema de arquivos do host do servidor.
+The [`SELECT ... INTO OUTFILE`](select-into.html "13.2.9.1 SELECT ... INTO Statement") statement is intended to enable dumping a table to a text file on the server host. To create the resulting file on some other host, [`SELECT ... INTO OUTFILE`](select-into.html "13.2.9.1 SELECT ... INTO Statement") normally is unsuitable because there is no way to write a path to the file relative to the server host file system, unless the location of the file on the remote host can be accessed using a network-mapped path on the server host file system.
 
-Alternativamente, se o software cliente MySQL estiver instalado no host remoto, você pode usar um comando do cliente, como `mysql -e "SELECT ..." > nome_do_arquivo`, para gerar o arquivo nesse host.
+Alternatively, if the MySQL client software is installed on the remote host, you can use a client command such as `mysql -e "SELECT ..." > file_name` to generate the file on that host.
 
-`SELECT ... INTO OUTFILE` é o complemento de `LOAD DATA`. Os valores das colunas são escritos convertidos para o conjunto de caracteres especificado na cláusula `CHARACTER SET`. Se tal cláusula não estiver presente, os valores são descarregados usando o conjunto de caracteres `binary`. Na prática, não há conversão de conjunto de caracteres. Se um conjunto de resultados contiver colunas em vários conjuntos de caracteres, o mesmo acontece com o arquivo de dados de saída e pode não ser possível recarregar o arquivo corretamente.
+[`SELECT ... INTO OUTFILE`](select-into.html "13.2.9.1 SELECT ... INTO Statement") is the complement of [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement"). Column values are written converted to the character set specified in the `CHARACTER SET` clause. If no such clause is present, values are dumped using the `binary` character set. In effect, there is no character set conversion. If a result set contains columns in several character sets, so does the output data file and it may not be possible to reload the file correctly.
 
-A sintaxe para a parte *`export_options`* da declaração consiste nas mesmas cláusulas `FIELDS` e `LINES` que são usadas com a declaração `LOAD DATA`. Para obter informações mais detalhadas sobre as cláusulas `FIELDS` e `LINES`, incluindo seus valores padrão e valores permitidos, consulte Seção 13.2.6, “Instrução LOAD DATA”.
+The syntax for the *`export_options`* part of the statement consists of the same `FIELDS` and `LINES` clauses that are used with the [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") statement. For more detailed information about the `FIELDS` and `LINES` clauses, including their default values and permissible values, see [Section 13.2.6, “LOAD DATA Statement”](load-data.html "13.2.6 LOAD DATA Statement").
 
-`FIELDS ESCAPED BY` controla como os caracteres especiais são escritos. Se o caractere `FIELDS ESCAPED BY` não estiver vazio, ele é usado quando necessário para evitar ambiguidade como um prefixo que precede os caracteres seguintes na saída:
+`FIELDS ESCAPED BY` controls how to write special characters. If the `FIELDS ESCAPED BY` character is not empty, it is used when necessary to avoid ambiguity as a prefix that precedes following characters on output:
 
-- O caractere `FIELDS ESCAPED BY`
+* The `FIELDS ESCAPED BY` character
+* The `FIELDS [OPTIONALLY] ENCLOSED BY` character
 
-- O caractere `FIELDS [OPÇÕES] ENCLOSED BY`
+* The first character of the `FIELDS TERMINATED BY` and `LINES TERMINATED BY` values
 
-- O primeiro caractere dos valores `FIELDS TERMINATED BY` e `LINES TERMINATED BY`
+* ASCII `NUL` (the zero-valued byte; what is actually written following the escape character is ASCII `0`, not a zero-valued byte)
 
-- ASCII `NUL` (o byte de valor zero; o que é realmente escrito após o caractere de escape é ASCII `0`, não um byte de valor zero)
+The `FIELDS TERMINATED BY`, `ENCLOSED BY`, `ESCAPED BY`, or `LINES TERMINATED BY` characters *must* be escaped so that you can read the file back in reliably. ASCII `NUL` is escaped to make it easier to view with some pagers.
 
-Os caracteres `FIELDS TERMINATED BY`, `ENCLOSED BY`, `ESCAPED BY` ou `LINES TERMINATED BY` *devem* ser escapados para que você possa ler o arquivo de volta de forma confiável. O `NUL` ASCII é escapado para facilitar a visualização com alguns pagers.
+The resulting file need not conform to SQL syntax, so nothing else need be escaped.
 
-O arquivo resultante não precisa seguir a sintaxe do SQL, então nada mais precisa ser escamado.
+If the `FIELDS ESCAPED BY` character is empty, no characters are escaped and `NULL` is output as `NULL`, not `\N`. It is probably not a good idea to specify an empty escape character, particularly if field values in your data contain any of the characters in the list just given.
 
-Se o caractere `FIELDS ESCAPED BY` estiver vazio, nenhum caractere será escavado e `NULL` será exibido como `NULL`, não como `\N`. Provavelmente não é uma boa ideia especificar um caractere de escape vazio, especialmente se os valores dos campos em seus dados contiverem algum dos caracteres da lista que acabamos de fornecer.
-
-Aqui está um exemplo que produz um arquivo no formato de valores separados por vírgula (CSV), usado por muitos programas:
+Here is an example that produces a file in the comma-separated values (CSV) format used by many programs:
 
 ```sql
 SELECT a,b,a+b INTO OUTFILE '/tmp/result.txt'
@@ -71,12 +70,12 @@ SELECT a,b,a+b INTO OUTFILE '/tmp/result.txt'
   FROM test_table;
 ```
 
-Se você usar `INTO DUMPFILE` em vez de `INTO OUTFILE`, o MySQL escreve apenas uma linha no arquivo, sem nenhuma terminação de coluna ou linha e sem realizar nenhum processamento de escape. Isso é útil para selecionar um valor de `BLOB` e armazená-lo em um arquivo.
+If you use `INTO DUMPFILE` instead of `INTO OUTFILE`, MySQL writes only one row into the file, without any column or line termination and without performing any escape processing. This is useful for selecting a [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") value and storing it in a file.
 
-Nota
+Note
 
-Qualquer arquivo criado por `INTO OUTFILE` ou `INTO DUMPFILE` é legível por todos os usuários no host do servidor. A razão para isso é que o servidor MySQL não pode criar um arquivo que seja de propriedade de qualquer usuário que não seja o usuário sob cuja conta ele está sendo executado. (Você *nunca* deve executar **mysqld** como `root` por essa e outras razões.) O arquivo, portanto, deve ser legível por todos para que você possa manipulá-lo.
+Any file created by `INTO OUTFILE` or `INTO DUMPFILE` is writable by all users on the server host. The reason for this is that the MySQL server cannot create a file that is owned by anyone other than the user under whose account it is running. (You should *never* run [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") as `root` for this and other reasons.) The file thus must be world-writable so that you can manipulate its contents.
 
-Se a variável de sistema `secure_file_priv` estiver definida como um nome de diretório não vazio, o arquivo a ser escrito deve estar localizado nesse diretório.
+If the [`secure_file_priv`](server-system-variables.html#sysvar_secure_file_priv) system variable is set to a nonempty directory name, the file to be written must be located in that directory.
 
-No contexto das instruções `SELECT ... INTO` que ocorrem como parte de eventos executados pelo Agendamento de Eventos, mensagens de diagnóstico (não apenas erros, mas também avisos) são escritas no log de erro e, no Windows, no log de eventos do aplicativo. Para obter informações adicionais, consulte Seção 23.4.5, “Status do Agendamento de Eventos”.
+In the context of [`SELECT ... INTO`](select-into.html "13.2.9.1 SELECT ... INTO Statement") statements that occur as part of events executed by the Event Scheduler, diagnostics messages (not only errors, but also warnings) are written to the error log, and, on Windows, to the application event log. For additional information, see [Section 23.4.5, “Event Scheduler Status”](events-status-info.html "23.4.5 Event Scheduler Status").

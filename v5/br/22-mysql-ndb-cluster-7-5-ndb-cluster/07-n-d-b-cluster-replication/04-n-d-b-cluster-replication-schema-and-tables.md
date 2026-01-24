@@ -1,28 +1,28 @@
-### 21.7.4 Esquema e tabelas de replicação de cluster do NDB
+### 21.7.4 NDB Cluster Replication Schema and Tables
 
-- Tabela ndb_apply_status
-- ndb_binlog_index Tabela
-- Tabela ndb_replication
+* [ndb_apply_status Table](mysql-cluster-replication-schema.html#ndb-replication-ndb-apply-status "ndb_apply_status Table")
+* [ndb_binlog_index Table](mysql-cluster-replication-schema.html#ndb-replication-ndb-binlog-index "ndb_binlog_index Table")
+* [ndb_replication Table](mysql-cluster-replication-schema.html#ndb-replication-ndb-replication "ndb_replication Table")
 
-A replicação no NDB Cluster utiliza várias tabelas dedicadas no banco de dados `mysql` em cada instância do Servidor MySQL que atua como um nó SQL tanto no cluster que está sendo replicado quanto na replica. Isso é verdade, independentemente de a replica ser um único servidor ou um cluster.
+Replication in NDB Cluster makes use of a number of dedicated tables in the `mysql` database on each MySQL Server instance acting as an SQL node in both the cluster being replicated and in the replica. This is true regardless of whether the replica is a single server or a cluster.
 
-As tabelas `ndb_binlog_index` e `ndb_apply_status` são criadas no banco de dados `mysql`. Elas não devem ser replicadas explicitamente pelo usuário. A intervenção do usuário normalmente não é necessária para criar ou manter nenhuma dessas tabelas, uma vez que ambas são mantidas pelo thread do injetor de log binário `NDB`. Isso mantém o processo **mysqld** da fonte atualizado com as alterações realizadas pelo mecanismo de armazenamento `NDB`. O thread do injetor de log binário `NDB` recebe eventos diretamente do mecanismo de armazenamento `NDB`. O injetor `NDB` é responsável por capturar todos os eventos de dados dentro do cluster e garante que todos os eventos que alteram, inserem ou excluem dados sejam registrados na tabela `ndb_binlog_index`. O thread de I/O da replica transfere os eventos do log binário da fonte para o log de retransmissão da replica.
+The `ndb_binlog_index` and `ndb_apply_status` tables are created in the `mysql` database. They should not be explicitly replicated by the user. User intervention is normally not required to create or maintain either of these tables, since both are maintained by the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") binary log (binlog) injector thread. This keeps the source [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") process updated to changes performed by the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine. The [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") binlog injector thread receives events directly from the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine. The [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") injector is responsible for capturing all the data events within the cluster, and ensures that all events which change, insert, or delete data are recorded in the `ndb_binlog_index` table. The replica I/O thread transfers the events from the source's binary log to the replica's relay log.
 
-A tabela `ndb_replication` deve ser criada manualmente. Essa tabela pode ser atualizada pelo usuário para realizar filtragem por banco de dados ou tabela. Consulte Tabela ndb_replication, para obter mais informações. `ndb_replication` também é usado na detecção e resolução de conflitos da NDB Replication para controle de resolução de conflitos; consulte Controle de Resolução de Conflitos.
+The `ndb_replication` table must be created manually. This table can be updated by the user to perform filtering by database or table. See [ndb_replication Table](mysql-cluster-replication-schema.html#ndb-replication-ndb-replication "ndb_replication Table"), for more information. `ndb_replication` is also used in NDB Replication conflict detection and resolution for conflict resolution control; see [Conflict Resolution Control](mysql-cluster-replication-conflict-resolution.html#conflict-resolution-control "Conflict Resolution Control").
 
-Embora `ndb_binlog_index` e `ndb_apply_status` sejam criados e mantidos automaticamente, é recomendável verificar a existência e a integridade dessas tabelas como um passo inicial para preparar um NDB Cluster para replicação. É possível visualizar os dados de eventos registrados no log binário consultando diretamente a tabela `mysql.ndb_binlog_index` no banco de dados de origem. Isso também pode ser feito usando a instrução `SHOW BINLOG EVENTS` no nó SQL da origem ou da replica. (Veja Seção 13.7.5.2, “Instrução SHOW BINLOG EVENTS”).
+Even though `ndb_binlog_index` and `ndb_apply_status` are created and maintained automatically, it is advisable to check for the existence and integrity of these tables as an initial step in preparing an NDB Cluster for replication. It is possible to view event data recorded in the binary log by querying the `mysql.ndb_binlog_index` table directly on the source. This can be also be accomplished using the [`SHOW BINLOG EVENTS`](show-binlog-events.html "13.7.5.2 SHOW BINLOG EVENTS Statement") statement on either the source or replica SQL node. (See [Section 13.7.5.2, “SHOW BINLOG EVENTS Statement”](show-binlog-events.html "13.7.5.2 SHOW BINLOG EVENTS Statement").)
 
-Você também pode obter informações úteis a partir da saída de `SHOW ENGINE NDB STATUS`.
+You can also obtain useful information from the output of [`SHOW ENGINE NDB STATUS`](show-engine.html "13.7.5.15 SHOW ENGINE Statement").
 
-Nota
+Note
 
-Ao realizar alterações no esquema das tabelas do `NDB`, as aplicações devem esperar até que a instrução `ALTER TABLE` tenha sido retornada na conexão do cliente MySQL que emitiu a instrução antes de tentar usar a definição atualizada da tabela.
+When performing schema changes on [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables, applications should wait until the [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statement has returned in the MySQL client connection that issued the statement before attempting to use the updated definition of the table.
 
-#### tabela ndb_apply_status
+#### ndb_apply_status Table
 
-`ndb_apply_status` é usado para manter um registro das operações que foram replicadas da fonte para a réplica. Se a tabela `ndb_apply_status` não existir na réplica, o **ndb_restore** a recria.
+`ndb_apply_status` is used to keep a record of the operations that have been replicated from the source to the replica. If the `ndb_apply_status` table does not exist on the replica, [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") re-creates it.
 
-Ao contrário do caso do `ndb_binlog_index`, os dados nesta tabela não são específicos de nenhum nó SQL do (replica) cluster, e, portanto, o `ndb_apply_status` pode usar o mecanismo de armazenamento `NDBCLUSTER`, como mostrado aqui:
+Unlike the case with `ndb_binlog_index`, the data in this table is not specific to any one SQL node in the (replica) cluster, and so `ndb_apply_status` can use the `NDBCLUSTER` storage engine, as shown here:
 
 ```sql
 CREATE TABLE `ndb_apply_status` (
@@ -35,15 +35,15 @@ CREATE TABLE `ndb_apply_status` (
 ) ENGINE=NDBCLUSTER   DEFAULT CHARSET=latin1;
 ```
 
-A tabela `ndb_apply_status` é preenchida apenas em réplicas, o que significa que, na fonte, essa tabela nunca contém nenhuma linha; portanto, não há necessidade de alocar nenhum `DataMemory` para `ndb_apply_status` lá.
+The `ndb_apply_status` table is populated only on replicas, which means that, on the source, this table never contains any rows; thus, there is no need to allot any [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory) to `ndb_apply_status` there.
 
-Como esta tabela é preenchida com base em dados originários da fonte, deve ser permitido que ela seja replicada; quaisquer regras de filtragem de replicação ou de filtragem de log binário que impeçam inadvertidamente a replicação de atualizar `ndb_apply_status`, ou que impeçam a fonte de escrever no log binário, podem impedir que a replicação entre clusters funcione corretamente. Para obter mais informações sobre problemas potenciais decorrentes dessas regras de filtragem, consulte Regras de filtragem de replicação e log binário com replicação entre NDB Clusters.
+Because this table is populated from data originating on the source, it should be allowed to replicate; any replication filtering or binary log filtering rules that inadvertently prevent the replica from updating `ndb_apply_status`, or that prevent the source from writing into the binary log may prevent replication between clusters from operating properly. For more information about potential problems arising from such filtering rules, see [Replication and binary log filtering rules with replication between NDB Clusters](mysql-cluster-replication-issues.html#mysql-cluster-replication-issues-filtering "Replication and binary log filtering rules with replication between NDB Clusters").
 
-O valor `0` na coluna `epoch` desta tabela indica uma transação proveniente de um mecanismo de armazenamento diferente do `NDB`.
+`0` in the `epoch` column of this table indicates a transaction originating from a storage engine other than `NDB`.
 
-#### tabela ndb_binlog_index
+#### ndb_binlog_index Table
 
-A replicação em cluster do NDB utiliza a tabela `ndb_binlog_index` para armazenar os dados de indexação do log binário. Como essa tabela é local a cada servidor MySQL e não participa do clúster, ela utiliza o mecanismo de armazenamento `InnoDB`. Isso significa que ela deve ser criada separadamente em cada **mysqld** participante do clúster de origem. (O próprio log binário contém as atualizações de todos os servidores MySQL no clúster.) Essa tabela é definida da seguinte forma:
+NDB Cluster Replication uses the `ndb_binlog_index` table for storing the binary log's indexing data. Since this table is local to each MySQL server and does not participate in clustering, it uses the [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") storage engine. This means that it must be created separately on each [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") participating in the source cluster. (The binary log itself contains updates from all MySQL servers in the cluster.) This table is defined as follows:
 
 ```sql
 CREATE TABLE `ndb_binlog_index` (
@@ -63,42 +63,42 @@ CREATE TABLE `ndb_binlog_index` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 ```
 
-Nota
+Note
 
-Antes da versão 7.5.2 do NDB, essa tabela sempre usava o mecanismo de armazenamento `MyISAM`. Se você estiver atualizando de uma versão anterior, pode usar **mysql_upgrade** com as opções `--force` e `--upgrade-system-tables` após iniciar o servidor. A atualização da tabela do sistema faz com que uma declaração `ALTER TABLE ... ENGINE=INNODB` seja executada para essa tabela. O uso do mecanismo de armazenamento `MyISAM` para essa tabela continua sendo suportado para compatibilidade reversa.
+Prior to NDB 7.5.2, this table always used the [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine") storage engine. If you are upgrading from an earlier release, you can use [**mysql_upgrade**](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables") with the [`--force`](mysql-upgrade.html#option_mysql_upgrade_force) and [`--upgrade-system-tables`](mysql-upgrade.html#option_mysql_upgrade_upgrade-system-tables) options after starting the server.) The system table upgrade causes an [`ALTER TABLE ... ENGINE=INNODB`](alter-table.html "13.1.8 ALTER TABLE Statement") statement to be executed for this table. Use of the `MyISAM` storage engine for this table continues to be supported for backward compatibility.
 
-`ndb_binlog_index` pode exigir espaço adicional no disco após a conversão para `InnoDB`. Se isso se tornar um problema, você pode conseguir economizar espaço usando um espaço de tabelas `InnoDB` para essa tabela, alterando sua `ROW_FORMAT` para `COMPRESSED` ou ambos. Para mais informações, consulte Seção 13.1.19, “Instrução CREATE TABLESPACE” e Seção 13.1.18, “Instrução CREATE TABLE”, além de Seção 14.6.3, “Espaços de Tabelas”.
+`ndb_binlog_index` may require additional disk space after being converted to `InnoDB`. If this becomes an issue, you may be able to conserve space by using an `InnoDB` tablespace for this table, changing its `ROW_FORMAT` to `COMPRESSED`, or both. For more information, see [Section 13.1.19, “CREATE TABLESPACE Statement”](create-tablespace.html "13.1.19 CREATE TABLESPACE Statement"), and [Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement"), as well as [Section 14.6.3, “Tablespaces”](innodb-tablespace.html "14.6.3 Tablespaces").
 
-O tamanho da tabela `ndb_binlog_index` depende do número de épocas por arquivo de log binário e do número de arquivos de log binário. O número de épocas por arquivo de log binário normalmente depende da quantidade de log binário gerado por época e do tamanho do arquivo de log binário, com épocas menores resultando em mais épocas por arquivo. Você deve estar ciente de que épocas vazias produzem inserções na tabela `ndb_binlog_index`, mesmo quando a opção `--ndb-log-empty-epochs` é `OFF`, o que significa que o número de entradas por arquivo depende do tempo em que o arquivo está em uso; essa relação pode ser representada pela fórmula mostrada aqui:
+The size of the `ndb_binlog_index` table is dependent on the number of epochs per binary log file and the number of binary log files. The number of epochs per binary log file normally depends on the amount of binary log generated per epoch and the size of the binary log file, with smaller epochs resulting in more epochs per file. You should be aware that empty epochs produce inserts to the `ndb_binlog_index` table, even when the [`--ndb-log-empty-epochs`](mysql-cluster-options-variables.html#option_mysqld_ndb-log-empty-epochs) option is `OFF`, meaning that the number of entries per file depends on the length of time that the file is in use; this relationship can be represented by the formula shown here:
 
 ```sql
 [number of epochs per file] = [time spent per file] / TimeBetweenEpochs
 ```
 
-Um NDB Cluster ocupado escreve no log binário regularmente e, presumivelmente, roda os arquivos do log binário mais rapidamente do que um tranquilo. Isso significa que um NDB Cluster "tranquilo" com `--ndb-log-empty-epochs=ON` pode, na verdade, ter um número muito maior de linhas `ndb_binlog_index` por arquivo do que um com muita atividade.
+A busy NDB Cluster writes to the binary log regularly and presumably rotates binary log files more quickly than a quiet one. This means that a “quiet” NDB Cluster with [`--ndb-log-empty-epochs=ON`](mysql-cluster-options-variables.html#option_mysqld_ndb-log-empty-epochs) can actually have a much higher number of `ndb_binlog_index` rows per file than one with a great deal of activity.
 
-Quando o **mysqld** é iniciado com a opção `--ndb-log-orig`, as colunas `orig_server_id` e `orig_epoch` armazenam, respectivamente, o ID do servidor em que o evento se originou e o epígrafe em que o evento ocorreu no servidor de origem, o que é útil em configurações de replicação do NDB Cluster que empregam múltiplas fontes. A instrução `SELECT` usada para encontrar a posição do log binário mais próxima do epígrafe mais aplicado na replica em uma configuração de múltiplas fontes (veja Seção 21.7.10, “Replicação do NDB Cluster: Replicação Bidirecional e Circular”) emprega essas duas colunas, que não são indexadas. Isso pode levar a problemas de desempenho ao tentar a falha, pois a consulta deve realizar uma varredura da tabela, especialmente quando a fonte tem sido executada com `--ndb-log-empty-epochs=ON`. Você pode melhorar os tempos de falha em múltiplas fontes adicionando um índice a essas colunas, como mostrado aqui:
+When [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") is started with the [`--ndb-log-orig`](mysql-cluster-options-variables.html#option_mysqld_ndb-log-orig) option, the `orig_server_id` and `orig_epoch` columns store, respectively, the ID of the server on which the event originated and the epoch in which the event took place on the originating server, which is useful in NDB Cluster replication setups employing multiple sources. The [`SELECT`](select.html "13.2.9 SELECT Statement") statement used to find the closest binary log position to the highest applied epoch on the replica in a multi-source setup (see [Section 21.7.10, “NDB Cluster Replication: Bidirectional and Circular Replication”](mysql-cluster-replication-multi-source.html "21.7.10 NDB Cluster Replication: Bidirectional and Circular Replication")) employs these two columns, which are not indexed. This can lead to performance issues when trying to fail over, since the query must perform a table scan, especially when the source has been running with [`--ndb-log-empty-epochs=ON`](mysql-cluster-options-variables.html#option_mysqld_ndb-log-empty-epochs). You can improve multi-source failover times by adding an index to these columns, as shown here:
 
 ```sql
 ALTER TABLE mysql.ndb_binlog_index
     ADD INDEX orig_lookup USING BTREE (orig_server_id, orig_epoch);
 ```
 
-A adição deste índice não oferece nenhum benefício ao replicar de uma única fonte para uma única réplica, uma vez que a consulta usada para obter a posição do log binário nesses casos não utiliza `orig_server_id` ou `orig_epoch`.
+Adding this index provides no benefit when replicating from a single source to a single replica, since the query used to get the binary log position in such cases makes no use of `orig_server_id` or `orig_epoch`.
 
-Consulte Seção 21.7.8, “Implementando Failover com Replicação de NDB Cluster” para obter mais informações sobre o uso das colunas `next_position` e `next_file`.
+See [Section 21.7.8, “Implementing Failover with NDB Cluster Replication”](mysql-cluster-replication-failover.html "21.7.8 Implementing Failover with NDB Cluster Replication"), for more information about using the `next_position` and `next_file` columns.
 
-A figura a seguir mostra a relação entre o servidor de origem da replicação do NDB Cluster, o thread do injetor de log binário e a tabela `mysql.ndb_binlog_index`.
+The following figure shows the relationship of the NDB Cluster replication source server, its binary log injector thread, and the `mysql.ndb_binlog_index` table.
 
-**Figura 21.16: O clúster de origem de replicação**
+**Figure 21.16 The Replication Source Cluster**
 
-![A maioria dos conceitos é descrita no texto ao redor. Esta imagem complexa tem três áreas principais. A área superior esquerda é dividida em três seções: MySQL Server (mysqld), manipulador de tabela NDBCLUSTER e mutex. Um thread de conexão conecta esses elementos, e os fios de receptor e injeção conectam o manipulador de tabela NDBCLUSTER e o mutex. A área inferior mostra quatro nós de dados (ndbd). Todos eles produzem eventos representados por setas apontando para o thread de receptor, e o thread de receptor também aponta para os fios de conexão e injeção. Um nó envia e recebe para a área do mutex. A seta representando o thread de injeção aponta para um log binário, bem como para a tabela ndb_binlog_index, que é descrita no texto ao redor.](images/cluster-replication-binlog-injector.png)
+![Most concepts are described in the surrounding text. This complex image has three main areas. The top left area is divided into three sections: MySQL Server (mysqld), NDBCLUSTER table handler, and mutex. A connection thread connects these, and receiver and injector threads connect the NDBCLUSTER table handler and mutex. The bottom area shows four data nodes (ndbd). They all produce events represented by arrows pointing to the receiver thread, and the receiver thread also points to the connection and injector threads. One node sends and receives to the mutex area. The arrow representing the injector thread points to a binary log as well as the ndb_binlog_index table, which is described in the surrounding text.](images/cluster-replication-binlog-injector.png)
 
-#### tabela ndb_replication
+#### ndb_replication Table
 
-A tabela `ndb_replication` é usada para controlar o registro binário e a resolução de conflitos, e atua em nível de tabela. Cada linha desta tabela corresponde a uma tabela que está sendo replicada, determina como registrar as alterações na tabela e, se uma função de resolução de conflitos for especificada, e determina como resolver conflitos para essa tabela.
+The `ndb_replication` table is used to control binary logging and conflict resolution, and acts on a per-table basis. Each row in this table corresponds to a table being replicated, determines how to log changes to the table and, if a conflict resolution function is specified, and determines how to resolve conflicts for that table.
 
-Ao contrário das tabelas `ndb_apply_status` e `ndb_replication`, a tabela `ndb_replication` deve ser criada manualmente, usando a instrução SQL mostrada aqui:
+Unlike the `ndb_apply_status` and `ndb_replication` tables, the `ndb_replication` table must be created manually, using the SQL statement shown here:
 
 ```sql
 CREATE TABLE mysql.ndb_replication  (
@@ -112,57 +112,57 @@ CREATE TABLE mysql.ndb_replication  (
 PARTITION BY KEY(db,table_name);
 ```
 
-As colunas desta tabela estão listadas aqui, com descrições:
+The columns of this table are listed here, with descriptions:
 
-- coluna `db`
+* `db` column
 
-  O nome do banco de dados que contém a tabela a ser replicada.
+  The name of the database containing the table to be replicated.
 
-  Você pode usar um ou ambos os caracteres curingas `_` e `%` como parte do nome do banco de dados. (Veja Correspondência com caracteres curinga, mais adiante nesta seção.)
+  You may employ either or both of the wildcards `_` and `%` as part of the database name. (See [Matching with wildcards](mysql-cluster-replication-schema.html#ndb-replication-wildcards "Matching with wildcards"), later in this section.)
 
-- coluna `nome_tabela`
+* `table_name` column
 
-  O nome da tabela a ser replicada.
+  The name of the table to be replicated.
 
-  O nome da tabela pode incluir um ou ambos os caracteres especiais `_` e `%`. Veja Conexão com caracteres especiais, mais adiante nesta seção.
+  The table name may include either or both of the wildcards `_` and `%`. See [Matching with wildcards](mysql-cluster-replication-schema.html#ndb-replication-wildcards "Matching with wildcards"), later in this section.
 
-- coluna `server_id`
+* `server_id` column
 
-  O ID único do servidor da instância do MySQL (nó SQL) onde a tabela reside.
+  The unique server ID of the MySQL instance (SQL node) where the table resides.
 
-  O `0` nesta coluna funciona como um equivalente de wildcard a `%`, e corresponde a qualquer ID de servidor. (Veja Correspondência com wildcards, mais adiante nesta seção.)
+  `0` in this column acts like a wildcard equivalent to `%`, and matches any server ID. (See [Matching with wildcards](mysql-cluster-replication-schema.html#ndb-replication-wildcards "Matching with wildcards"), later in this section.)
 
-- coluna `binlog_type`
+* `binlog_type` column
 
-  O tipo de registro binário a ser empregado. Veja o texto para valores e descrições.
+  The type of binary logging to be employed. See text for values and descriptions.
 
-- coluna `conflict_fn`
+* `conflict_fn` column
 
-  A função de resolução de conflitos a ser aplicada; uma delas é NDB$OLD(), NDB$MAX(), NDB$MAX_DELETE_WIN(), NDB$EPOCH(), NDB$EPOCH_TRANS(), NDB$EPOCH2(), NDB$EPOCH2_TRANS(); `NULL` indica que a resolução de conflitos não é usada para esta tabela.
+  The conflict resolution function to be applied; one of [NDB$OLD()](mysql-cluster-replication-conflict-resolution.html#mysql-cluster-replication-ndb-old "NDB$OLD()"), [NDB$MAX()](mysql-cluster-replication-conflict-resolution.html#mysql-cluster-replication-ndb-max "NDB$MAX()"), [NDB$MAX_DELETE_WIN()](mysql-cluster-replication-conflict-resolution.html#mysql-cluster-replication-ndb-max-delete-win "NDB$MAX_DELETE_WIN()"), [NDB$EPOCH()](mysql-cluster-replication-conflict-resolution.html#mysql-cluster-replication-ndb-epoch "NDB$EPOCH()"), [NDB$EPOCH_TRANS()](mysql-cluster-replication-conflict-resolution.html#mysql-cluster-replication-ndb-epoch-trans "NDB$EPOCH_TRANS()"), [NDB$EPOCH2()](mysql-cluster-replication-conflict-resolution.html#mysql-cluster-replication-ndb-epoch2 "NDB$EPOCH2()"), [NDB$EPOCH2_TRANS()](mysql-cluster-replication-conflict-resolution.html#mysql-cluster-replication-ndb-epoch2-trans "NDB$EPOCH2_TRANS()"); `NULL` indicates that conflict resolution is not used for this table.
 
-  Consulte Funções de Resolução de Conflitos, para obter mais informações sobre essas funções e seu uso na resolução de conflitos da replicação NDB.
+  See [Conflict Resolution Functions](mysql-cluster-replication-conflict-resolution.html#conflict-resolution-functions "Conflict Resolution Functions"), for more information about these functions and their uses in NDB Replication conflict resolution.
 
-  Algumas funções de resolução de conflitos (`NDB$OLD()`, `NDB$EPOCH()`, `NDB$EPOCH_TRANS()`) exigem o uso de uma ou mais tabelas de exceções criadas pelo usuário. Consulte Tabela de Exceções de Resolução de Conflitos.
+  Some conflict resolution functions (`NDB$OLD()`, `NDB$EPOCH()`, `NDB$EPOCH_TRANS()`) require the use of one or more user-created exceptions tables. See [Conflict Resolution Exceptions Table](mysql-cluster-replication-conflict-resolution.html#conflict-resolution-exceptions-table "Conflict Resolution Exceptions Table").
 
-Para habilitar a resolução de conflitos com a Replicação NDB, é necessário criar e preencher esta tabela com informações de controle no(s) nó(s) SQL em que o conflito deve ser resolvido. Dependendo do tipo e do método de resolução de conflitos a serem empregados, isso pode ser a fonte, a replica ou ambos os servidores. Em uma configuração simples de fonte-replica, onde os dados também podem ser alterados localmente na replica, isso geralmente é a replica. Em um esquema de replicação mais complexo, como a replicação bidirecional, isso geralmente são todas as fontes envolvidas. Consulte Seção 21.7.11, “Resolução de Conflitos de Replicação de NDB Cluster” para obter mais informações.
+To enable conflict resolution with NDB Replication, it is necessary to create and populate this table with control information on the SQL node or nodes on which the conflict should be resolved. Depending on the conflict resolution type and method to be employed, this may be the source, the replica, or both servers. In a simple source-replica setup where data can also be changed locally on the replica this is typically the replica. In a more complex replication scheme, such as bidirectional replication, this is usually all of the sources involved. See [Section 21.7.11, “NDB Cluster Replication Conflict Resolution”](mysql-cluster-replication-conflict-resolution.html "21.7.11 NDB Cluster Replication Conflict Resolution"), for more information.
 
-A tabela `ndb_replication` permite o controle de nível de tabela sobre o registro binário fora do escopo da resolução de conflitos, nesse caso, `conflict_fn` é especificado como `NULL`, enquanto os valores das colunas restantes são usados para controlar o registro binário para uma determinada tabela ou conjunto de tabelas que correspondem a uma expressão de wildcard. Ao definir o valor apropriado para a coluna `binlog_type`, você pode fazer com que o registro para uma determinada tabela ou tabelas use um formato de log binário desejado, ou desativar o registro binário completamente. Os valores possíveis para esta coluna, com valores e descrições, estão mostrados na tabela a seguir:
+The `ndb_replication` table allows table-level control over binary logging outside the scope of conflict resolution, in which case `conflict_fn` is specified as `NULL`, while the remaining column values are used to control binary logging for a given table or set of tables matching a wildcard expression. By setting the proper value for the `binlog_type` column, you can make logging for a given table or tables use a desired binary log format, or disabling binary logging altogether. Possible values for this column, with values and descriptions, are shown in the following table:
 
-**Tabela 21.64 valores de binlog_type, com valores e descrições**
+**Table 21.64 binlog_type values, with values and descriptions**
 
-<table><col width="10%"/><col width="55%"/><thead><tr> <th>Valor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>0</td> <td>Use o padrão do servidor</td> </tr><tr> <td>1</td> <td>Não registre esta tabela no log binário (mesmo efeito que<code>sql_log_bin = 0</code>, mas se aplica a uma ou mais tabelas especificadas apenas)</td> </tr><tr> <td>2</td> <td>Atualize apenas os atributos registrados; registre esses como eventos <code>WRITE_ROW</code></td> </tr><tr> <td>3</td> <td>Registre toda a linha, mesmo que não seja atualizada (comportamento padrão do servidor MySQL)</td> </tr><tr> <td>6</td> <td>Use atributos atualizados, mesmo que os valores não tenham mudado</td> </tr><tr> <td>7</td> <td>Registre toda a linha, mesmo que nenhum valor seja alterado; registre as atualizações como eventos <code>UPDATE_ROW</code></td> </tr><tr> <td>8</td> <td>Atualize o log como <code>UPDATE_ROW</code>; registre apenas as colunas da chave primária na imagem anterior e apenas as colunas atualizadas na imagem posterior (o mesmo efeito que<code>--ndb-log-update-minimal</code>, mas se aplica a uma ou mais tabelas especificadas apenas)</td> </tr><tr> <td>9</td> <td>Atualize o log como <code>UPDATE_ROW</code>; registre apenas as colunas da chave primária na imagem anterior e todas as colunas, exceto as colunas da chave primária, na imagem posterior</td> </tr></tbody></table>
+<table><col width="10%"/><col width="55%"/><thead><tr> <th>Value</th> <th>Description</th> </tr></thead><tbody><tr> <td>0</td> <td>Use server default</td> </tr><tr> <td>1</td> <td>Do not log this table in the binary log (same effect as <code>sql_log_bin = 0</code>, but applies to one or more specified tables only)</td> </tr><tr> <td>2</td> <td>Log updated attributes only; log these as <code>WRITE_ROW</code> events</td> </tr><tr> <td>3</td> <td>Log full row, even if not updated (MySQL server default behavior)</td> </tr><tr> <td>6</td> <td>Use updated attributes, even if values are unchanged</td> </tr><tr> <td>7</td> <td>Log full row, even if no values are changed; log updates as <code>UPDATE_ROW</code> events</td> </tr><tr> <td>8</td> <td>Log update as <code>UPDATE_ROW</code>; log only primary key columns in before image, and only updated columns in after image (same effect as <code>--ndb-log-update-minimal</code>, but applies to one or more specified tables only)</td> </tr><tr> <td>9</td> <td>Log update as <code>UPDATE_ROW</code>; log only primary key columns in before image, and all columns other than primary key columns in after image</td> </tr></tbody></table>
 
-Nota
+Note
 
-Os valores `binlog_type` 4 e 5 não são usados, e, portanto, são omitidos da tabela mostrada anteriormente, bem como da próxima tabela.
+`binlog_type` values 4 and 5 are not used, and so are omitted from the table just shown, as well as from the next table.
 
-Vários valores de `binlog_type` são equivalentes a várias combinações das opções de registro do **mysqld** `--ndb-log-updated-only`, `--ndb-log-update-as-write` e `--ndb-log-update-minimal`, conforme mostrado na tabela a seguir:
+Several `binlog_type` values are equivalent to various combinations of the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") logging options [`--ndb-log-updated-only`](mysql-cluster-options-variables.html#option_mysqld_ndb-log-updated-only), [`--ndb-log-update-as-write`](mysql-cluster-options-variables.html#option_mysqld_ndb-log-update-as-write), and [`--ndb-log-update-minimal`](mysql-cluster-options-variables.html#option_mysqld_ndb-log-update-minimal), as shown in the following table:
 
-**Tabela 21.65 valores de binlog_type com combinações equivalentes de opções de registro do NDB**
+**Table 21.65 binlog_type values with equivalent combinations of NDB logging options**
 
-<table><col width="10%"/><col width="30%"/><col width="30%"/><col width="30%"/><thead><tr> <th>Valor</th> <th><code>--ndb-log-updated-only</code> Valor</th> <th><code>--ndb-log-update-as-write</code> Valor</th> <th><code>--ndb-log-update-minimal</code> Valor</th> </tr></thead><tbody><tr> <td>0</td> <td>--</td> <td>--</td> <td>--</td> </tr><tr> <td>1</td> <td>--</td> <td>--</td> <td>--</td> </tr><tr> <td>2</td> <td>ON</td> <td>ON</td> <td>OFF</td> </tr><tr> <td>3</td> <td>OFF</td> <td>ON</td> <td>OFF</td> </tr><tr> <td>6</td> <td>ON</td> <td>OFF</td> <td>OFF</td> </tr><tr> <td>7</td> <td>OFF</td> <td>OFF</td> <td>OFF</td> </tr><tr> <td>8</td> <td>ON</td> <td>OFF</td> <td>ON</td> </tr><tr> <td>9</td> <td>OFF</td> <td>OFF</td> <td>ON</td> </tr></tbody></table>
+<table><col width="10%"/><col width="30%"/><col width="30%"/><col width="30%"/><thead><tr> <th>Value</th> <th><code>--ndb-log-updated-only</code> Value</th> <th><code>--ndb-log-update-as-write</code> Value</th> <th><code>--ndb-log-update-minimal</code> Value</th> </tr></thead><tbody><tr> <td>0</td> <td>--</td> <td>--</td> <td>--</td> </tr><tr> <td>1</td> <td>--</td> <td>--</td> <td>--</td> </tr><tr> <td>2</td> <td>ON</td> <td>ON</td> <td>OFF</td> </tr><tr> <td>3</td> <td>OFF</td> <td>ON</td> <td>OFF</td> </tr><tr> <td>6</td> <td>ON</td> <td>OFF</td> <td>OFF</td> </tr><tr> <td>7</td> <td>OFF</td> <td>OFF</td> <td>OFF</td> </tr><tr> <td>8</td> <td>ON</td> <td>OFF</td> <td>ON</td> </tr><tr> <td>9</td> <td>OFF</td> <td>OFF</td> <td>ON</td> </tr></tbody></table>
 
-O registro binário pode ser configurado em diferentes formatos para diferentes tabelas inserindo linhas na tabela `ndb_replication` usando os valores apropriados nas colunas `db`, `table_name` e `binlog_type`. O valor inteiro interno mostrado na tabela anterior deve ser usado ao configurar o formato de registro binário. As duas seguintes instruções configuram o registro binário para o registro de linhas completas (valor 3) para a tabela `test.a` e para o registro de atualizações apenas (valor 2) para a tabela `test.b`:
+Binary logging can be set to different formats for different tables by inserting rows into the `ndb_replication` table using the appropriate `db`, `table_name`, and `binlog_type` column values. The internal integer value shown in the preceding table should be used when setting the binary logging format. The following two statements set binary logging to logging of full rows ( value 3) for table `test.a`, and to logging of updates only ( value 2) for table `test.b`:
 
 ```sql
 # Table test.a: Log full rows
@@ -172,7 +172,7 @@ INSERT INTO mysql.ndb_replication VALUES("test", "a", 0, 3, NULL);
 INSERT INTO mysql.ndb_replication VALUES("test", "b", 0, 2, NULL);
 ```
 
-Para desabilitar o registro para uma ou mais tabelas, use 1 para `binlog_type`, conforme mostrado aqui:
+To disable logging for one or more tables, use 1 for `binlog_type`, as shown here:
 
 ```sql
 # Disable binary logging for table test.t1
@@ -182,51 +182,51 @@ INSERT INTO mysql.ndb_replication VALUES("test", "t1", 0, 1, NULL);
 INSERT INTO mysql.ndb_replication VALUES("test", "t%", 0, 1, NULL);
 ```
 
-Desativar o registro para uma determinada tabela é o equivalente a definir [`sql_log_bin = 0`](https://pt.wikipedia.org/wiki/Replicação#Op%C3%A7%C3%B5es_de_log_bin%C3%A1rio.3F), exceto que isso se aplica a uma ou mais tabelas individualmente. Se um nó SQL não estiver realizando o registro binário para uma determinada tabela, ele não receberá os eventos de alteração de linha para essas tabelas. Isso significa que ele não está recebendo todas as alterações e descartando algumas, mas sim não está se cadastrando nessas alterações.
+Disabling logging for a given table is the equivalent of setting [`sql_log_bin = 0`](replication-options-binary-log.html#sysvar_sql_log_bin), except that it applies to one or more tables individually. If an SQL node is not performing binary logging for a given table, it is not sent the row change events for those tables. This means that it is not receiving all changes and discarding some, but rather it is not subscribing to these changes.
 
-Desativar o registro pode ser útil por várias razões, incluindo as listadas aqui:
+Disabling logging can be useful for a number of reasons, including those listed here:
 
-- Não enviar alterações pela rede geralmente economiza largura de banda, buffer e recursos da CPU.
+* Not sending changes across the network generally saves bandwidth, buffering, and CPU resources.
 
-- Não registrar alterações em tabelas com atualizações muito frequentes, mas cujo valor não é grande, é adequado para dados transitórios (como dados de sessão) que podem ser relativamente irrelevantes em caso de falha completa do clúster.
+* Not logging changes to tables with very frequent updates but whose value is not great is a good fit for transient data (such as session data) that may be relatively unimportant in the event of a complete failure of the cluster.
 
-- Usando uma variável de sessão (ou `sql_log_bin`) e código de aplicação, também é possível registrar (ou não registrar) certas instruções SQL ou tipos de instruções SQL; por exemplo, pode ser desejável, em alguns casos, não registrar instruções DDL em uma ou mais tabelas.
+* Using a session variable (or `sql_log_bin`) and application code, it is also possible to log (or not to log) certain SQL statements or types of SQL statements; for example, it may be desirable in some cases not to record DDL statements on one or more tables.
 
-- A divisão dos fluxos de replicação em dois (ou mais) logs binários pode ser feita por razões de desempenho, necessidade de replicar diferentes bancos de dados para diferentes locais, uso de diferentes tipos de registro binário para diferentes bancos de dados, e assim por diante.
+* Splitting replication streams into two (or more) binary logs can be done for reasons of performance, a need to replicate different databases to different places, use of different binary logging types for different databases, and so on.
 
-**Correspondência com caracteres curingas.** Para não ser necessário inserir uma linha na tabela `ndb_replication` para cada combinação de banco de dados, tabela e nó SQL na configuração de replicação, o `NDB` suporta a correspondência com caracteres curingas nas colunas `db`, `table_name` e `server_id` dessa tabela. Os nomes de banco de dados e tabelas usados, respectivamente, em `db` e `table_name`, podem conter um ou ambos os seguintes caracteres curingas:
+**Matching with wildcards.** In order not to make it necessary to insert a row in the `ndb_replication` table for each and every combination of database, table, and SQL node in your replication setup, `NDB` supports wildcard matching on the this table's `db`, `table_name`, and `server_id` columns. Database and table names used in, respectively, `db` and `table_name` may contain either or both of the following wildcards:
 
-- `_` (caractere sublinhado): corresponde a zero ou mais caracteres
+* `_` (underscore character): matches zero or more characters
 
-- `%` (símbolo de porcentagem): corresponde a um único caractere
+* `%` (percent sign): matches a single character
 
-(Estes são os mesmos caracteres curinga suportados pelo operador MySQL `LIKE`.
+(These are the same wildcards as supported by the MySQL [`LIKE`](string-comparison-functions.html#operator_like) operator.)
 
-A coluna `server_id` suporta `0` como um equivalente de wildcard para `_` (concorda com qualquer coisa). Isso é usado nos exemplos mostrados anteriormente.
+The `server_id` column supports `0` as a wildcard equivalent to `_` (matches anything). This is used in the examples shown previously.
 
-Uma linha específica na tabela `ndb_replication` pode usar caracteres curingas para corresponder a qualquer nome de banco de dados, nome de tabela e ID do servidor em qualquer combinação. Quando há múltiplas combinações potenciais na tabela, a melhor combinação é escolhida, de acordo com a tabela mostrada aqui, onde *W* representa uma correspondência com caracteres curinga, *E* uma correspondência exata e quanto maior o valor na coluna *Qualidade*, melhor a correspondência:
+A given row in the `ndb_replication` table can use wildcards to match any of the database name, table name, and server ID in any combination. Where there are multiple potential matches in the table, the best match is chosen, according to the table shown here, where *W* represents a wildcard match, *E* an exact match, and the greater the value in the *Quality* column, the better the match:
 
-**Tabela 21.66: Pesos de diferentes combinações de correspondências com asteriscos e correspondências exatas em colunas da tabela mysql.ndb_replication**
+**Table 21.66 Weights of different combinations of wildcard and exact matches on columns in the mysql.ndb_replication table**
 
-<table><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><thead><tr> <th><code>db</code></th> <th><code>table_name</code></th> <th><code>server_id</code></th> <th>Qualidade</th> </tr></thead><tbody><tr> <td>W</td> <td>W</td> <td>W</td> <td>1</td> </tr><tr> <td>W</td> <td>W</td> <td>E</td> <td>2</td> </tr><tr> <td>W</td> <td>E</td> <td>W</td> <td>3</td> </tr><tr> <td>W</td> <td>E</td> <td>E</td> <td>4</td> </tr><tr> <td>E</td> <td>W</td> <td>W</td> <td>5</td> </tr><tr> <td>E</td> <td>W</td> <td>E</td> <td>6</td> </tr><tr> <td>E</td> <td>E</td> <td>W</td> <td>7</td> </tr><tr> <td>E</td> <td>E</td> <td>E</td> <td>8</td> </tr></tbody></table>
+<table><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><col style="width: 25%"/><thead><tr> <th><code>db</code></th> <th><code>table_name</code></th> <th><code>server_id</code></th> <th>Quality</th> </tr></thead><tbody><tr> <td>W</td> <td>W</td> <td>W</td> <td>1</td> </tr><tr> <td>W</td> <td>W</td> <td>E</td> <td>2</td> </tr><tr> <td>W</td> <td>E</td> <td>W</td> <td>3</td> </tr><tr> <td>W</td> <td>E</td> <td>E</td> <td>4</td> </tr><tr> <td>E</td> <td>W</td> <td>W</td> <td>5</td> </tr><tr> <td>E</td> <td>W</td> <td>E</td> <td>6</td> </tr><tr> <td>E</td> <td>E</td> <td>W</td> <td>7</td> </tr><tr> <td>E</td> <td>E</td> <td>E</td> <td>8</td> </tr></tbody></table>
 
-Assim, uma correspondência exata no nome do banco de dados, no nome da tabela e no ID do servidor é considerada a melhor (mais forte), enquanto a correspondência mais fraca (pior) é uma correspondência com asterisco em todas as três colunas. Apenas a força da correspondência é considerada ao escolher qual regra aplicar; a ordem em que as linhas ocorrem na tabela não tem efeito nessa determinação.
+Thus, an exact match on database name, table name, and server ID is considered best (strongest), while the weakest (worst) match is a wildcard match on all three columns. Only the strength of the match is considered when choosing which rule to apply; the order in which the rows occur in the table has no effect on this determination.
 
-**Registrando linhas completas ou parciais.**
+**Logging Full or Partial Rows.**
 
-Existem dois métodos básicos de registro de linhas, conforme determinado pela configuração da opção `--ndb-log-updated-only` para o **mysqld**:
+There are two basic methods of logging rows, as determined by the setting of the [`--ndb-log-updated-only`](mysql-cluster-options-variables.html#option_mysqld_ndb-log-updated-only) option for [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"):
 
-- Registre linhas completas (opção definida como `ON`)
-- Registre apenas os dados da coluna que foram atualizados, ou seja, os dados da coluna cujo valor foi definido, independentemente de este valor ter sido realmente alterado ou não. Este é o comportamento padrão (opção definida como `OFF`).
+* Log complete rows (option set to `ON`)
+* Log only column data that has been updated—that is, column data whose value has been set, regardless of whether or not this value was actually changed. This is the default behavior (option set to `OFF`).
 
-Geralmente, é suficiente — e mais eficiente — registrar apenas as colunas atualizadas; no entanto, se você precisar registrar linhas inteiras, pode fazê-lo configurando `--ndb-log-updated-only` para `0` ou `OFF`.
+It is usually sufficient—and more efficient—to log updated columns only; however, if you need to log full rows, you can do so by setting [`--ndb-log-updated-only`](mysql-cluster-options-variables.html#option_mysqld_ndb-log-updated-only) to `0` or `OFF`.
 
-**Registro de dados alterados como atualizações.**
+**Logging Changed Data as Updates.**
 
-O ajuste da opção `--ndb-log-update-as-write` do MySQL Server determina se o registro é realizado com ou sem a imagem “antes”.
+The setting of the MySQL Server's [`--ndb-log-update-as-write`](mysql-cluster-options-variables.html#option_mysqld_ndb-log-update-as-write) option determines whether logging is performed with or without the “before” image.
 
-Como a resolução de conflitos para operações de atualização e exclusão é realizada no manipulador de atualização do MySQL Server, é necessário controlar o registro realizado pela fonte de replicação para que as atualizações sejam atualizações e não escritas; ou seja, para que as atualizações sejam tratadas como alterações em linhas existentes, em vez da escrita de novas linhas, mesmo que estas substituam linhas existentes.
+Because conflict resolution for updates and delete operations is done in the MySQL Server's update handler, it is necessary to control the logging performed by the replication source such that updates are updates and not writes; that is, such that updates are treated as changes in existing rows rather than the writing of new rows, even though these replace existing rows.
 
-Esta opção está ativada por padrão; em outras palavras, as atualizações são tratadas como escritas. Isso significa que, por padrão, as atualizações são escritas como eventos `write_row` no log binário, em vez de eventos `update_row`.
+This option is turned on by default; in other words, updates are treated as writes. That is, updates are by default written as `write_row` events in the binary log, rather than as `update_row` events.
 
-Para desabilitar a opção, inicie a fonte **mysqld** com `--ndb-log-update-as-write=0` ou `--ndb-log-update-as-write=OFF`. Você deve fazer isso ao replicar de tabelas NDB para tabelas usando um motor de armazenamento diferente; consulte Replicação de NDB para outros motores de armazenamento e Replicação de NDB para um motor de armazenamento não transacional para obter mais informações.
+To disable the option, start the source [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") with `--ndb-log-update-as-write=0` or `--ndb-log-update-as-write=OFF`. You must do this when replicating from NDB tables to tables using a different storage engine; see [Replication from NDB to other storage engines](mysql-cluster-replication-issues.html#mysql-cluster-replication-ndb-to-non-ndb "Replication from NDB to other storage engines"), and [Replication from NDB to a nontransactional storage engine](mysql-cluster-replication-issues.html#mysql-cluster-replication-ndb-to-nontransactional "Replication from NDB to a nontransactional storage engine"), for more information.

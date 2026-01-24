@@ -1,30 +1,30 @@
-#### 21.3.2.1 Instalação do NDB Cluster no Windows a partir de uma versão binária
+#### 21.3.2.1 Installing NDB Cluster on Windows from a Binary Release
 
-Esta seção descreve uma instalação básica do NDB Cluster no Windows usando uma versão binária “sem instalação” do NDB Cluster fornecida pela Oracle, utilizando a mesma configuração de 4 nós descrita no início desta seção (consulte Seção 21.3, “Instalação do NDB Cluster”), conforme mostrado na tabela a seguir:
+This section describes a basic installation of NDB Cluster on Windows using a binary “no-install” NDB Cluster release provided by Oracle, using the same 4-node setup outlined in the beginning of this section (see [Section 21.3, “NDB Cluster Installation”](mysql-cluster-installation.html "21.3 NDB Cluster Installation")), as shown in the following table:
 
-**Tabela 21.6 Endereços de rede dos nós no cluster de exemplo**
+**Table 21.6 Network addresses of nodes in example cluster**
 
-<table><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Nó</th> <th>Endereço IP</th> </tr></thead><tbody><tr> <td>Núcleo de gestão (<span><strong>mgmd</strong></span>)</td> <td>198.51.100.10</td> </tr><tr> <td>nó SQL (<span><strong>mysqld</strong></span>)</td> <td>198.51.100.20</td> </tr><tr> <td>Núcleo de dados "A" (<span><strong>ndbd</strong></span>)</td> <td>198.51.100.30</td> </tr><tr> <td>Nodo de dados "B" (<span><strong>ndbd</strong></span>)</td> <td>198.51.100.40</td> </tr></tbody></table>
+<table><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Node</th> <th>IP Address</th> </tr></thead><tbody><tr> <td>Management node (<span><strong>mgmd</strong></span>)</td> <td>198.51.100.10</td> </tr><tr> <td>SQL node (<span><strong>mysqld</strong></span>)</td> <td>198.51.100.20</td> </tr><tr> <td>Data node "A" (<span><strong>ndbd</strong></span>)</td> <td>198.51.100.30</td> </tr><tr> <td>Data node "B" (<span><strong>ndbd</strong></span>)</td> <td>198.51.100.40</td> </tr></tbody></table>
 
-Como em outras plataformas, o computador hospedeiro do NDB Cluster que executa um nó SQL deve ter instalado nele um binário do Servidor MySQL (**mysqld.exe**). Você também deve ter o cliente MySQL (**mysql.exe**) neste host. Para os nós de gerenciamento e os nós de dados, não é necessário instalar o binário do Servidor MySQL; no entanto, cada nó de gerenciamento requer o daemon do servidor de gerenciamento (**ndb_mgmd.exe**); cada nó de dados requer o daemon de nó de dados (**ndbd.exe** ou **ndbmtd.exe**). Para este exemplo, referenciamos **ndbd.exe** como o executável do nó de dados, mas você pode instalar **ndbmtd.exe**, a versão multithread deste programa, da mesma maneira. Você também deve instalar o cliente de gerenciamento (**ndb_mgm.exe**) no host do servidor de gerenciamento. Esta seção abrange os passos necessários para instalar os binários corretos do Windows para cada tipo de nó do NDB Cluster.
+As on other platforms, the NDB Cluster host computer running an SQL node must have installed on it a MySQL Server binary ([**mysqld.exe**](mysqld.html "4.3.1 mysqld — The MySQL Server")). You should also have the MySQL client ([**mysql.exe**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client")) on this host. For management nodes and data nodes, it is not necessary to install the MySQL Server binary; however, each management node requires the management server daemon ([**ndb_mgmd.exe**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")); each data node requires the data node daemon ([**ndbd.exe**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") or [**ndbmtd.exe**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)")). For this example, we refer to [**ndbd.exe**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") as the data node executable, but you can install [**ndbmtd.exe**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)"), the multithreaded version of this program, instead, in exactly the same way. You should also install the management client ([**ndb_mgm.exe**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client")) on the management server host. This section covers the steps necessary to install the correct Windows binaries for each type of NDB Cluster node.
 
-Nota
+Note
 
-Assim como outros programas do Windows, os executáveis do NDB Cluster têm a extensão de arquivo `.exe`. No entanto, não é necessário incluir a extensão `.exe` ao invocar esses programas a partir da linha de comando. Portanto, frequentemente nos referimos a esses programas nesta documentação como **mysqld**, **mysql**, **ndb_mgmd** e assim por diante. Você deve entender que, seja qual for o nome que usamos (por exemplo, **mysqld** ou **mysqld.exe**, ambos significam a mesma coisa - o programa do Servidor MySQL).
+As with other Windows programs, NDB Cluster executables are named with the `.exe` file extension. However, it is not necessary to include the `.exe` extension when invoking these programs from the command line. Therefore, we often simply refer to these programs in this documentation as [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"), [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client"), [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon"), and so on. You should understand that, whether we refer (for example) to [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") or [**mysqld.exe**](mysqld.html "4.3.1 mysqld — The MySQL Server"), either name means the same thing (the MySQL Server program).
 
-Para configurar um NDB Cluster usando os binários `no-install` da Oracle, o primeiro passo no processo de instalação é baixar o arquivo ZIP de binário mais recente do NDB Cluster para Windows a partir de <https://dev.mysql.com/downloads/cluster/>. Este arquivo tem um nome de arquivo de `mysql-cluster-gpl-ver-winarch.zip`, onde *`ver`* é a versão do motor de armazenamento `NDB` (como `7.6.35`) e *`arch`* é a arquitetura (`32` para binários de 32 bits e `64` para binários de 64 bits). Por exemplo, o arquivo NDB Cluster 7.6.35 para sistemas Windows de 64 bits é chamado `mysql-cluster-gpl-7.6.35-win64.zip`.
+For setting up an NDB Cluster using Oracles's `no-install` binaries, the first step in the installation process is to download the latest NDB Cluster Windows ZIP binary archive from <https://dev.mysql.com/downloads/cluster/>. This archive has a filename of the `mysql-cluster-gpl-ver-winarch.zip`, where *`ver`* is the `NDB` storage engine version (such as `7.6.35`), and *`arch`* is the architecture (`32` for 32-bit binaries, and `64` for 64-bit binaries). For example, the NDB Cluster 7.6.35 archive for 64-bit Windows systems is named `mysql-cluster-gpl-7.6.35-win64.zip`.
 
-Você pode executar os binários do NDB Cluster de 32 bits em versões de 32 bits e 64 bits do Windows; no entanto, os binários do NDB Cluster de 64 bits só podem ser usados em versões de 64 bits do Windows. Se você estiver usando uma versão de 32 bits do Windows em um computador com uma CPU de 64 bits, então você deve usar os binários do NDB Cluster de 32 bits.
+You can run 32-bit NDB Cluster binaries on both 32-bit and 64-bit versions of Windows; however, 64-bit NDB Cluster binaries can be used only on 64-bit versions of Windows. If you are using a 32-bit version of Windows on a computer that has a 64-bit CPU, then you must use the 32-bit NDB Cluster binaries.
 
-Para minimizar o número de arquivos que precisam ser baixados da Internet ou copiados entre máquinas, começamos pelo computador onde você pretende executar o nó SQL.
+To minimize the number of files that need to be downloaded from the Internet or copied between machines, we start with the computer where you intend to run the SQL node.
 
-**Núcleo do SQL.** Suponhamos que você tenha colocado uma cópia do arquivo no diretório `C:\Documentos e Configurações\nome_do_usuário\Meus Documentos\Downloads` no computador com o endereço IP 198.51.100.20, onde *`nome_do_usuário`* é o nome do usuário atual. (Você pode obter esse nome usando `ECHO %USERNAME%` na linha de comando.) Para instalar e executar os executáveis do NDB Cluster como serviços do Windows, esse usuário deve ser membro do grupo `Administradores`.
+**SQL node.** We assume that you have placed a copy of the archive in the directory `C:\Documents and Settings\username\My Documents\Downloads` on the computer having the IP address 198.51.100.20, where *`username`* is the name of the current user. (You can obtain this name using `ECHO %USERNAME%` on the command line.) To install and run NDB Cluster executables as Windows services, this user should be a member of the `Administrators` group.
 
-Extraia todos os arquivos do arquivo. O Assistente de Extração integrado ao Explorador do Windows é adequado para essa tarefa. (Se você usar um programa de arquivo diferente, certifique-se de que ele extraia todos os arquivos e diretórios do arquivo e que preserve a estrutura de diretórios do arquivo.) Quando você for solicitado um diretório de destino, insira `C:\`, o que faz com que o Assistente de Extração extraia o arquivo para o diretório `C:\mysql-cluster-gpl-ver-winarch`. Renomeie esse diretório para `C:\mysql`.
+Extract all the files from the archive. The Extraction Wizard integrated with Windows Explorer is adequate for this task. (If you use a different archive program, be sure that it extracts all files and directories from the archive, and that it preserves the archive's directory structure.) When you are asked for a destination directory, enter `C:\`, which causes the Extraction Wizard to extract the archive to the directory `C:\mysql-cluster-gpl-ver-winarch`. Rename this directory to `C:\mysql`.
 
-É possível instalar os binários do NDB Cluster em diretórios diferentes de `C:\mysql\bin`; no entanto, se você fizer isso, deve modificar os caminhos mostrados neste procedimento conforme necessário. Em particular, se o binário do Servidor MySQL (nó SQL) estiver instalado em um local diferente de `C:\mysql` ou `C:\Program Files\MySQL\MySQL Server 5.7`, ou se o diretório de dados do nó SQL estiver em um local diferente de `C:\mysql\data` ou `C:\Program Files\MySQL\MySQL Server 5.7\data`, opções de configuração adicionais devem ser usadas na linha de comando ou adicionadas ao arquivo `my.ini` ou `my.cnf` ao iniciar o nó SQL. Para obter mais informações sobre como configurar um Servidor MySQL para rodar em um local não padrão, consulte Seção 2.3.4, “Instalando o MySQL no Microsoft Windows usando um arquivo ZIP `noinstall`”.
+It is possible to install the NDB Cluster binaries to directories other than `C:\mysql\bin`; however, if you do so, you must modify the paths shown in this procedure accordingly. In particular, if the MySQL Server (SQL node) binary is installed to a location other than `C:\mysql` or `C:\Program Files\MySQL\MySQL Server 5.7`, or if the SQL node's data directory is in a location other than `C:\mysql\data` or `C:\Program Files\MySQL\MySQL Server 5.7\data`, extra configuration options must be used on the command line or added to the `my.ini` or `my.cnf` file when starting the SQL node. For more information about configuring a MySQL Server to run in a nonstandard location, see [Section 2.3.4, “Installing MySQL on Microsoft Windows Using a `noinstall` ZIP Archive”](windows-install-archive.html "2.3.4 Installing MySQL on Microsoft Windows Using a noinstall ZIP Archive").
 
-Para que um servidor MySQL com suporte ao NDB Cluster funcione como parte de um NDB Cluster, ele deve ser iniciado com as opções `--ndbcluster` e `--ndb-connectstring`. Embora você possa especificar essas opções na linha de comando, geralmente é mais conveniente colocá-las em um arquivo de opções. Para fazer isso, crie um novo arquivo de texto no Bloco de Notas ou em outro editor de texto. Insira as seguintes informações de configuração neste arquivo:
+For a MySQL Server with NDB Cluster support to run as part of an NDB Cluster, it must be started with the options [`--ndbcluster`](mysql-cluster-options-variables.html#option_mysqld_ndbcluster) and [`--ndb-connectstring`](mysql-cluster-options-variables.html#option_mysqld_ndb-connectstring). While you can specify these options on the command line, it is usually more convenient to place them in an option file. To do this, create a new text file in Notepad or another text editor. Enter the following configuration information into this file:
 
 ```sql
 [mysqld]
@@ -33,11 +33,11 @@ ndbcluster                       # run NDB storage engine
 ndb-connectstring=198.51.100.10  # location of management server
 ```
 
-Você pode adicionar outras opções usadas por este servidor MySQL, se desejar (consulte Seção 2.3.4.2, “Criando um arquivo de opção”), mas o arquivo deve conter, no mínimo, as opções mostradas. Salve este arquivo como `C:\mysql\my.ini`. Isso completa a instalação e configuração do nó SQL.
+You can add other options used by this MySQL Server if desired (see [Section 2.3.4.2, “Creating an Option File”](windows-create-option-file.html "2.3.4.2 Creating an Option File")), but the file must contain the options shown, at a minimum. Save this file as `C:\mysql\my.ini`. This completes the installation and setup for the SQL node.
 
-**Nodos de dados.** Um nó de dados de um NDB Cluster em um host Windows requer apenas um único executável, sendo um dos arquivos **ndbd.exe** ou **ndbmtd.exe**. Para este exemplo, assumimos que você está usando **ndbd.exe**, mas as mesmas instruções se aplicam ao uso de **ndbmtd.exe**. Em cada computador onde você deseja executar um nó de dados (os computadores com os endereços IP 198.51.100.30 e 198.51.100.40), crie os diretórios `C:\mysql`, `C:\mysql\bin` e `C:\mysql\cluster-data`; em seguida, no computador onde você baixou e extraiu o arquivo `no-install`, localize o arquivo **ndbd.exe** no diretório `C:\mysql\bin`. Copie este arquivo para o diretório `C:\mysql\bin` em cada um dos dois hosts dos nós de dados.
+**Data nodes.** An NDB Cluster data node on a Windows host requires only a single executable, one of either [**ndbd.exe**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") or [**ndbmtd.exe**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)"). For this example, we assume that you are using [**ndbd.exe**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon"), but the same instructions apply when using [**ndbmtd.exe**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)"). On each computer where you wish to run a data node (the computers having the IP addresses 198.51.100.30 and 198.51.100.40), create the directories `C:\mysql`, `C:\mysql\bin`, and `C:\mysql\cluster-data`; then, on the computer where you downloaded and extracted the `no-install` archive, locate `ndbd.exe` in the `C:\mysql\bin` directory. Copy this file to the `C:\mysql\bin` directory on each of the two data node hosts.
 
-Para funcionar como parte de um NDB Cluster, cada nó de dados deve receber o endereço ou o nome de host do servidor de gerenciamento. Você pode fornecer essas informações na linha de comando usando a opção `--ndb-connectstring` ou a opção `-c` ao iniciar cada processo do nó de dados. No entanto, geralmente é preferível colocar essas informações em um arquivo de opção. Para fazer isso, crie um novo arquivo de texto no Bloco de Notas ou em outro editor de texto e insira o seguinte texto:
+To function as part of an NDB Cluster, each data node must be given the address or hostname of the management server. You can supply this information on the command line using the [`--ndb-connectstring`](mysql-cluster-programs-ndb-config.html#option_ndb_config_ndb-connectstring) or `-c` option when starting each data node process. However, it is usually preferable to put this information in an option file. To do this, create a new text file in Notepad or another text editor and enter the following text:
 
 ```sql
 [mysql_cluster]
@@ -45,15 +45,15 @@ Para funcionar como parte de um NDB Cluster, cada nó de dados deve receber o en
 ndb-connectstring=198.51.100.10  # location of management server
 ```
 
-Salve esse arquivo como `C:\mysql\my.ini` no host do nó de dados. Crie outro arquivo de texto contendo as mesmas informações e salve-o como `C:mysql\my.ini` no outro host do nó de dados, ou copie o arquivo my.ini do primeiro host do nó de dados para o segundo, garantindo que a cópia esteja no diretório `C:\mysql` do segundo nó de dados. Ambos os hosts dos nós de dados estão agora prontos para serem usados no NDB Cluster, o que deixa apenas o nó de gerenciamento a ser instalado e configurado.
+Save this file as `C:\mysql\my.ini` on the data node host. Create another text file containing the same information and save it on as `C:mysql\my.ini` on the other data node host, or copy the my.ini file from the first data node host to the second one, making sure to place the copy in the second data node's `C:\mysql` directory. Both data node hosts are now ready to be used in the NDB Cluster, which leaves only the management node to be installed and configured.
 
-**Núcleo de gerenciamento.** O único programa executável necessário em um computador usado para hospedar um nó de gerenciamento de NDB Cluster é o programa do servidor de gerenciamento **ndb_mgmd.exe**. No entanto, para administrar o NDB Cluster uma vez que ele tenha sido iniciado, você também deve instalar o programa cliente de gerenciamento do NDB Cluster **ndb_mgm.exe** na mesma máquina que o servidor de gerenciamento. Localize esses dois programas na máquina onde você baixou e extraiu o arquivo `no-install`; esse deve ser o diretório `C:\mysql\bin` no host do nó SQL. Crie o diretório `C:\mysql\bin` no computador com o endereço IP 198.51.100.10, depois copie os dois programas para esse diretório.
+**Management node.** The only executable program required on a computer used for hosting an NDB Cluster management node is the management server program [**ndb_mgmd.exe**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon"). However, in order to administer the NDB Cluster once it has been started, you should also install the NDB Cluster management client program [**ndb_mgm.exe**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") on the same machine as the management server. Locate these two programs on the machine where you downloaded and extracted the `no-install` archive; this should be the directory `C:\mysql\bin` on the SQL node host. Create the directory `C:\mysql\bin` on the computer having the IP address 198.51.100.10, then copy both programs to this directory.
 
-Agora, você deve criar dois arquivos de configuração para uso pelo `ndb_mgmd.exe`:
+You should now create two configuration files for use by `ndb_mgmd.exe`:
 
-1. Um arquivo de configuração local para fornecer dados de configuração específicos para o próprio nó de gerenciamento. Normalmente, esse arquivo precisa apenas fornecer a localização do arquivo de configuração global do NDB Cluster (veja o item 2).
+1. A local configuration file to supply configuration data specific to the management node itself. Typically, this file needs only to supply the location of the NDB Cluster global configuration file (see item 2).
 
-   Para criar esse arquivo, abra um novo arquivo de texto no Bloco de Notas ou em outro editor de texto e insira as seguintes informações:
+   To create this file, start a new text file in Notepad or another text editor, and enter the following information:
 
    ```sql
    [mysql_cluster]
@@ -61,19 +61,18 @@ Agora, você deve criar dois arquivos de configuração para uso pelo `ndb_mgmd.
    config-file=C:/mysql/bin/config.ini
    ```
 
-   Salve este arquivo como o arquivo de texto `C:\mysql\bin\my.ini`.
+   Save this file as the text file `C:\mysql\bin\my.ini`.
 
-2. Um arquivo de configuração global a partir do qual o nó de gerenciamento pode obter informações de configuração que regem o NDB Cluster como um todo. No mínimo, este arquivo deve conter uma seção para cada nó no NDB Cluster, e os endereços IP ou nomes de host do nó de gerenciamento e de todos os nós de dados (`parâmetro de configuração HostName`). Também é aconselhável incluir as seguintes informações adicionais:
+2. A global configuration file from which the management node can obtain configuration information governing the NDB Cluster as a whole. At a minimum, this file must contain a section for each node in the NDB Cluster, and the IP addresses or hostnames for the management node and all data nodes (`HostName` configuration parameter). It is also advisable to include the following additional information:
 
-   - O endereço IP ou o nome do host de quaisquer nós SQL
+   * The IP address or hostname of any SQL nodes
+   * The data memory and index memory allocated to each data node ([`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory) and [`IndexMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexmemory) configuration parameters)
 
-   - A memória de dados e a memória de índice alocados para cada nó de dados (`DataMemory` e `IndexMemory` parâmetros de configuração)
+   * The number of fragment replicas, using the [`NoOfReplicas`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-noofreplicas) configuration parameter (see [Section 21.2.2, “NDB Cluster Nodes, Node Groups, Fragment Replicas, and Partitions”](mysql-cluster-nodes-groups.html "21.2.2 NDB Cluster Nodes, Node Groups, Fragment Replicas, and Partitions"))
 
-   - O número de réplicas de fragmentos, usando o parâmetro de configuração `NoOfReplicas` (veja Seção 21.2.2, "Nodos do Clúster NDB, Grupos de Nó, Réplicas de Fragmentos e Partições")
+   * The directory where each data node stores it data and log file, and the directory where the management node keeps its log files (in both cases, the [`DataDir`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datadir) configuration parameter)
 
-   - O diretório onde cada nó de dados armazena seus dados e arquivos de log, e o diretório onde o nó de gerenciamento mantém seus arquivos de log (em ambos os casos, o parâmetro de configuração `DataDir`)
-
-   Crie um novo arquivo de texto usando um editor de texto como o Bloco de Notas e insira as seguintes informações:
+   Create a new text file using a text editor such as Notepad, and input the following information:
 
    ```sql
    [ndbd default]
@@ -109,17 +108,17 @@ Agora, você deve criar dois arquivos de configuração para uso pelo `ndb_mgmd.
    HostName=198.51.100.20          # Hostname or IP address
    ```
 
-   Salve esse arquivo como o arquivo de texto `C:\mysql\bin\config.ini`.
+   Save this file as the text file `C:\mysql\bin\config.ini`.
 
-Importante
+Important
 
-Um único caractere barra invertida (`\`) não pode ser usado ao especificar caminhos de diretório em opções de programas ou arquivos de configuração usados pelo NDB Cluster no Windows. Em vez disso, você deve escapar cada caractere barra invertida com uma segunda barra invertida (`\\`) ou substituir a barra invertida por um caractere barra diagonal (`/`). Por exemplo, a seguinte linha da seção `[ndb_mgmd]` de um arquivo `config.ini` do NDB Cluster não funciona:
+A single backslash character (`\`) cannot be used when specifying directory paths in program options or configuration files used by NDB Cluster on Windows. Instead, you must either escape each backslash character with a second backslash (`\\`), or replace the backslash with a forward slash character (`/`). For example, the following line from the `[ndb_mgmd]` section of an NDB Cluster `config.ini` file does not work:
 
 ```sql
 DataDir=C:\mysql\bin\cluster-logs
 ```
 
-Em vez disso, você pode usar qualquer um dos seguintes:
+Instead, you may use either of the following:
 
 ```sql
 DataDir=C:\\mysql\\bin\\cluster-logs  # Escaped backslashes
@@ -129,4 +128,4 @@ DataDir=C:\\mysql\\bin\\cluster-logs  # Escaped backslashes
 DataDir=C:/mysql/bin/cluster-logs     # Forward slashes
 ```
 
-Por razões de brevidade e legibilidade, recomendamos que você use barras inclinadas em caminhos de diretórios usados nas opções do programa NDB Cluster e em arquivos de configuração no Windows.
+For reasons of brevity and legibility, we recommend that you use forward slashes in directory paths used in NDB Cluster program options and configuration files on Windows.

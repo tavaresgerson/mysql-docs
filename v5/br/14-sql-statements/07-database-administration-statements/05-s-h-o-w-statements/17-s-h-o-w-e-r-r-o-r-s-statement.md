@@ -1,21 +1,21 @@
-#### 13.7.5.17 Declaração de exibição de erros
+#### 13.7.5.17 SHOW ERRORS Statement
 
 ```sql
 SHOW ERRORS [LIMIT [offset,] row_count]
 SHOW COUNT(*) ERRORS
 ```
 
-`SHOW ERRORS` é uma declaração de diagnóstico que é semelhante a `SHOW WARNINGS`, exceto que exibe informações apenas para erros, em vez de erros, avisos e notas.
+[`SHOW ERRORS`](show-errors.html "13.7.5.17 SHOW ERRORS Statement") is a diagnostic statement that is similar to [`SHOW WARNINGS`](show-warnings.html "13.7.5.40 SHOW WARNINGS Statement"), except that it displays information only for errors, rather than for errors, warnings, and notes.
 
-A cláusula `LIMIT` tem a mesma sintaxe que a cláusula `SELECT`. Consulte Seção 13.2.9, “Instrução SELECT”.
+The `LIMIT` clause has the same syntax as for the [`SELECT`](select.html "13.2.9 SELECT Statement") statement. See [Section 13.2.9, “SELECT Statement”](select.html "13.2.9 SELECT Statement").
 
-A instrução `SHOW COUNT(*) ERRORS` exibe o número de erros. Você também pode recuperar esse número a partir da variável `error_count`:
+The [`SHOW COUNT(*) ERRORS`](show-errors.html "13.7.5.17 SHOW ERRORS Statement") statement displays the number of errors. You can also retrieve this number from the [`error_count`](server-system-variables.html#sysvar_error_count) variable:
 
 ```sql
 SHOW COUNT(*) ERRORS;
 SELECT @@error_count;
 ```
 
-`SHOW ERRORS` e `error_count` aplicam-se apenas a erros, não a avisos ou notas. Em outros aspectos, eles são semelhantes a `SHOW WARNINGS` e `warning_count`. Em particular, `SHOW ERRORS` não pode exibir informações para mais de `max_error_count` mensagens, e `error_count` pode exceder o valor de `max_error_count` se o número de erros exceder `max_error_count`.
+[`SHOW ERRORS`](show-errors.html "13.7.5.17 SHOW ERRORS Statement") and [`error_count`](server-system-variables.html#sysvar_error_count) apply only to errors, not warnings or notes. In other respects, they are similar to [`SHOW WARNINGS`](show-warnings.html "13.7.5.40 SHOW WARNINGS Statement") and [`warning_count`](server-system-variables.html#sysvar_warning_count). In particular, [`SHOW ERRORS`](show-errors.html "13.7.5.17 SHOW ERRORS Statement") cannot display information for more than [`max_error_count`](server-system-variables.html#sysvar_max_error_count) messages, and [`error_count`](server-system-variables.html#sysvar_error_count) can exceed the value of [`max_error_count`](server-system-variables.html#sysvar_max_error_count) if the number of errors exceeds [`max_error_count`](server-system-variables.html#sysvar_max_error_count).
 
-Para mais informações, consulte Seção 13.7.5.40, “Declaração SHOW WARNINGS”.
+For more information, see [Section 13.7.5.40, “SHOW WARNINGS Statement”](show-warnings.html "13.7.5.40 SHOW WARNINGS Statement").

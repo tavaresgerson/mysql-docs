@@ -1,142 +1,142 @@
-### 24.4.4 A tabela INFORMATION_SCHEMA INNODB_BUFFER_POOL_STATS
+### 24.4.4 The INFORMATION_SCHEMA INNODB_BUFFER_POOL_STATS Table
 
-A tabela [`INNODB_BUFFER_POOL_STATS`](https://pt.wikipedia.org/wiki/Tabela_INNODB_BUFFER_POOL_STATS) fornece grande parte das mesmas informações do pool de buffers fornecidas na saída do comando [`SHOW ENGINE INNODB STATUS`](https://pt.wikipedia.org/wiki/Mostrar_estado_do_motor_INNODB). Grande parte das mesmas informações também pode ser obtida usando as variáveis de status do pool de buffers do `InnoDB` (<https://pt.wikipedia.org/wiki/Vari%C3%A1veis_de_status_do_servidor_InnoDB>).
+The [`INNODB_BUFFER_POOL_STATS`](information-schema-innodb-buffer-pool-stats-table.html "24.4.4 The INFORMATION_SCHEMA INNODB_BUFFER_POOL_STATS Table") table provides much of the same buffer pool information provided in [`SHOW ENGINE INNODB STATUS`](show-engine.html "13.7.5.15 SHOW ENGINE Statement") output. Much of the same information may also be obtained using `InnoDB` buffer pool [server status variables](server-status-variables.html "5.1.9 Server Status Variables").
 
-A ideia de tornar as páginas no pool de buffer "jovens" ou "não jovens" refere-se à transferência delas entre as [sublistas]\(glossary.html#glos_sublist] na cabeça e na cauda da estrutura de dados do pool de buffer. As páginas tornadas "jovens" demoram mais para serem eliminadas do pool de buffer, enquanto as páginas tornadas "não jovens" são movidas muito mais perto do ponto de expulsão.
+The idea of making pages in the buffer pool “young” or “not young” refers to transferring them between the [sublists](glossary.html#glos_sublist "sublist") at the head and tail of the buffer pool data structure. Pages made “young” take longer to age out of the buffer pool, while pages made “not young” are moved much closer to the point of [eviction](glossary.html#glos_eviction "eviction").
 
-Para informações de uso relacionadas e exemplos, consulte Seção 14.16.5, “Tabelas do Banco de Armazenamento do InnoDB INFORMATION_SCHEMA”.
+For related usage information and examples, see [Section 14.16.5, “InnoDB INFORMATION_SCHEMA Buffer Pool Tables”](innodb-information-schema-buffer-pool-tables.html "14.16.5 InnoDB INFORMATION_SCHEMA Buffer Pool Tables").
 
-A tabela [`INNODB_BUFFER_POOL_STATS`](https://pt.wikipedia.org/wiki/Tabela_`information-schema-innodb-buffer-pool-stats`) possui as seguintes colunas:
+The [`INNODB_BUFFER_POOL_STATS`](information-schema-innodb-buffer-pool-stats-table.html "24.4.4 The INFORMATION_SCHEMA INNODB_BUFFER_POOL_STATS Table") table has these columns:
 
-- `POOL_ID`
+* `POOL_ID`
 
-  O ID do pool de buffers. Este é um identificador para distinguir entre múltiplas instâncias do pool de buffers.
+  The buffer pool ID. This is an identifier to distinguish between multiple buffer pool instances.
 
-- `POOL_SIZE`
+* `POOL_SIZE`
 
-  O tamanho do pool de buffers `InnoDB` em páginas.
+  The `InnoDB` buffer pool size in pages.
 
-- `FREE_BUFFERS`
+* `FREE_BUFFERS`
 
-  O número de páginas livres no pool de buffer do `InnoDB`.
+  The number of free pages in the `InnoDB` buffer pool.
 
-- `DATABASE_PAGES`
+* `DATABASE_PAGES`
 
-  O número de páginas no pool de buffer do `InnoDB` que contêm dados. Esse número inclui páginas sujas e limpas.
+  The number of pages in the `InnoDB` buffer pool containing data. This number includes both dirty and clean pages.
 
-- `OLD_DATABASE_PAGES`
+* `OLD_DATABASE_PAGES`
 
-  O número de páginas no subconjunto `old` do buffer pool.
+  The number of pages in the `old` buffer pool sublist.
 
-- `MODIFICADO_DATABASE_PAGES`
+* `MODIFIED_DATABASE_PAGES`
 
-  O número de páginas de banco de dados modificadas (sujas).
+  The number of modified (dirty) database pages.
 
-- `PENDING_DECOMPRESS`
+* `PENDING_DECOMPRESS`
 
-  Número de páginas pendentes de descompactação.
+  The number of pages pending decompression.
 
-- `PENDING_READS`
+* `PENDING_READS`
 
-  O número de leituras pendentes.
+  The number of pending reads.
 
-- `PENDING_FLUSH_LRU`
+* `PENDING_FLUSH_LRU`
 
-  O número de páginas pendentes de limpeza no LRU.
+  The number of pages pending flush in the LRU.
 
-- `PENDING_FLUSH_LIST`
+* `PENDING_FLUSH_LIST`
 
-  O número de páginas pendentes de limpeza na lista de limpeza.
+  The number of pages pending flush in the flush list.
 
-- `PAGES_MADE_YOUNG`
+* `PAGES_MADE_YOUNG`
 
-  O número de páginas fez os jovens.
+  The number of pages made young.
 
-- `PAGES_NOT_MADE_YOUNG`
+* `PAGES_NOT_MADE_YOUNG`
 
-  O número de páginas que não foram feitas jovens.
+  The number of pages not made young.
 
-- `TAXA_DE_JOVENS_CUIDADOSAS`
+* `PAGES_MADE_YOUNG_RATE`
 
-  O número de páginas impressas por segundo (páginas impressas desde a última impressão / tempo decorrido).
+  The number of pages made young per second (pages made young since the last printout / time elapsed).
 
-- `TAXA DE IDADES NÃO JOVENS NAS PÁGINAS`
+* `PAGES_MADE_NOT_YOUNG_RATE`
 
-  O número de páginas não impressas por segundo (páginas não impressas desde a última impressão/tempo decorrido).
+  The number of pages not made per second (pages not made young since the last printout / time elapsed).
 
-- `NUMBER_PAGES_READ`
+* `NUMBER_PAGES_READ`
 
-  O número de páginas lidas.
+  The number of pages read.
 
-- `NUMBER_PAGES_CREATED`
+* `NUMBER_PAGES_CREATED`
 
-  O número de páginas criadas.
+  The number of pages created.
 
-- `NÚMERO_PAGINAS_ESCRITAS`
+* `NUMBER_PAGES_WRITTEN`
 
-  O número de páginas escritas.
+  The number of pages written.
 
-- `TAXA_DE_LEITURA_DE_PAGINAS`
+* `PAGES_READ_RATE`
 
-  O número de páginas lidas por segundo (páginas lidas desde a última impressão / tempo decorrido).
+  The number of pages read per second (pages read since the last printout / time elapsed).
 
-- `TAXA_DE_Criação_DE_PAGINAS`
+* `PAGES_CREATE_RATE`
 
-  O número de páginas criadas por segundo (páginas criadas desde a última impressão / tempo decorrido).
+  The number of pages created per second (pages created since the last printout / time elapsed).
 
-- `TAXA DE ESCRITA DE PÁGINAS`
+* `PAGES_WRITTEN_RATE`
 
-  O número de páginas escritas por segundo (páginas escritas desde a última impressão / tempo decorrido).
+  The number of pages written per second (pages written since the last printout / time elapsed).
 
-- `NUMBER_PAGES_GET`
+* `NUMBER_PAGES_GET`
 
-  O número de solicitações de leitura lógicas.
+  The number of logical read requests.
 
-- `HIT_RATE`
+* `HIT_RATE`
 
-  Taxa de acerto do pool de tampão.
+  The buffer pool hit rate.
 
-- `JOVENS FAZEM POR MIL HÁBITOS`
+* `YOUNG_MAKE_PER_THOUSAND_GETS`
 
-  O número de páginas produzidas por jovem por mil pessoas é obtido.
+  The number of pages made young per thousand gets.
 
-- `NOT_YOUNG_MAKE_PER_THOUSAND_GETS`
+* `NOT_YOUNG_MAKE_PER_THOUSAND_GETS`
 
-  O número de páginas não impressas por mil é o que se obtém.
+  The number of pages not made young per thousand gets.
 
-- `NUMBER_PAGES_READ_AHEAD`
+* `NUMBER_PAGES_READ_AHEAD`
 
-  O número de páginas lidas à frente.
+  The number of pages read ahead.
 
-- `NUMBER_READ_AHEAD_EVICTED`
+* `NUMBER_READ_AHEAD_EVICTED`
 
-  O número de páginas lidas no pool de buffer do `InnoDB` pela thread de sincronização de leitura que foram posteriormente removidas sem terem sido acessadas por consultas.
+  The number of pages read into the `InnoDB` buffer pool by the read-ahead background thread that were subsequently evicted without having been accessed by queries.
 
-- `READ_AHEAD_RATE`
+* `READ_AHEAD_RATE`
 
-  A taxa de leitura à frente por segundo (páginas lidas à frente desde a última impressão/tempo decorrido).
+  The read-ahead rate per second (pages read ahead since the last printout / time elapsed).
 
-- `READ_AHEAD_EVICTED_RATE`
+* `READ_AHEAD_EVICTED_RATE`
 
-  Número de páginas de pré-visualização removidas sem acesso por segundo (páginas de pré-visualização não acessadas desde a última impressão/tempo decorrido).
+  The number of read-ahead pages evicted without access per second (read-ahead pages not accessed since the last printout / time elapsed).
 
-- `LRU_IO_TOTAL`
+* `LRU_IO_TOTAL`
 
-  Total I/O LRU.
+  Total LRU I/O.
 
-- `LRU_IO_CURRENT`
+* `LRU_IO_CURRENT`
 
-  I/O LRU para o intervalo atual.
+  LRU I/O for the current interval.
 
-- `UNCOMPRESS_TOTAL`
+* `UNCOMPRESS_TOTAL`
 
-  Número total de páginas descompactadas.
+  The total number of pages decompressed.
 
-- `UNCOMPRESS_CURRENT`
+* `UNCOMPRESS_CURRENT`
 
-  O número de páginas descompactadas no intervalo atual.
+  The number of pages decompressed in the current interval.
 
-#### Exemplo
+#### Example
 
 ```sql
 mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_BUFFER_POOL_STATS\G
@@ -175,10 +175,10 @@ NOT_YOUNG_MAKE_PER_THOUSAND_GETS: 0
               UNCOMPRESS_CURRENT: 0
 ```
 
-#### Notas
+#### Notes
 
-- Esta tabela é útil principalmente para o monitoramento de desempenho em nível de especialista, ou quando se desenvolvem extensões relacionadas ao desempenho para o MySQL.
+* This table is useful primarily for expert-level performance monitoring, or when developing performance-related extensions for MySQL.
 
-- Você deve ter o privilégio `PROCESSO` para consultar esta tabela.
+* You must have the [`PROCESS`](privileges-provided.html#priv_process) privilege to query this table.
 
-- Use a tabela `INFORMATION_SCHEMA` `COLUMNS` ou a instrução `SHOW COLUMNS` para visualizar informações adicionais sobre as colunas desta tabela, incluindo tipos de dados e valores padrão.
+* Use the `INFORMATION_SCHEMA` [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") table or the [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") statement to view additional information about the columns of this table, including data types and default values.

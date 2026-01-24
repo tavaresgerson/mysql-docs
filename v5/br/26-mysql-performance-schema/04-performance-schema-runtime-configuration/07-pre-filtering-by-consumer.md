@@ -1,6 +1,6 @@
-### 25.4.7 Pré-filtragem pelo consumidor
+### 25.4.7 Pre-Filtering by Consumer
 
-A tabela `setup_consumers` lista os tipos de consumidores disponíveis e quais estão habilitados:
+The [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") table lists the available consumer types and which are enabled:
 
 ```sql
 mysql> SELECT * FROM performance_schema.setup_consumers;
@@ -25,11 +25,11 @@ mysql> SELECT * FROM performance_schema.setup_consumers;
 +----------------------------------+---------+
 ```
 
-Modifique a tabela `setup_consumers` para afetar o pré-filtro na etapa do consumidor e determinar os destinos para os quais os eventos são enviados. Para habilitar ou desabilitar um consumidor, defina o valor `ENABLED` para `YES` ou `NO`.
+Modify the [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") table to affect pre-filtering at the consumer stage and determine the destinations to which events are sent. To enable or disable a consumer, set its `ENABLED` value to `YES` or `NO`.
 
-As modificações na tabela `setup_consumers` afetam o monitoramento imediatamente.
+Modifications to the [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") table affect monitoring immediately.
 
-Se você desativar um consumidor, o servidor não gastará tempo mantendo destinos para esse consumidor. Por exemplo, se você não se importar com informações de eventos históricos, desative os consumidores de histórico:
+If you disable a consumer, the server does not spend time maintaining destinations for that consumer. For example, if you do not care about historical event information, disable the history consumers:
 
 ```sql
 UPDATE performance_schema.setup_consumers
@@ -37,75 +37,74 @@ SET ENABLED = 'NO'
 WHERE NAME LIKE '%history%';
 ```
 
-As configurações de consumidor na tabela `setup_consumers` formam uma hierarquia de níveis mais altos para níveis mais baixos. Os seguintes princípios se aplicam:
+The consumer settings in the [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") table form a hierarchy from higher levels to lower. The following principles apply:
 
-- Os destinos associados a um consumidor não recebem eventos a menos que o Schema de Desempenho verifique o consumidor e o consumidor esteja habilitado.
+* Destinations associated with a consumer receive no events unless the Performance Schema checks the consumer and the consumer is enabled.
 
-- Um consumidor só é verificado se todos os consumidores a que ele depende (se houver) estiverem habilitados.
+* A consumer is checked only if all consumers it depends on (if any) are enabled.
 
-- Se um consumidor não for verificado ou for verificado, mas desabilitado, outros consumidores que dependem dele não serão verificados.
+* If a consumer is not checked, or is checked but is disabled, other consumers that depend on it are not checked.
 
-- Os consumidores dependentes podem ter seus próprios consumidores dependentes.
+* Dependent consumers may have their own dependent consumers.
+* If an event would not be sent to any destination, the Performance Schema does not produce it.
 
-- Se um evento não for enviado para nenhum destino, o Schema de Desempenho não o produz.
+The following lists describe the available consumer values. For discussion of several representative consumer configurations and their effect on instrumentation, see [Section 25.4.8, “Example Consumer Configurations”](performance-schema-consumer-configurations.html "25.4.8 Example Consumer Configurations").
 
-As listas a seguir descrevem os valores de consumo disponíveis. Para discussão sobre várias configurações de consumo representativas e seu efeito na instrumentação, consulte Seção 25.4.8, “Configurações de Consumidor de Exemplo”.
+* [Global and Thread Consumers](performance-schema-consumer-filtering.html#performance-schema-consumer-filtering-global-thread "Global and Thread Consumers")
+* [Wait Event Consumers](performance-schema-consumer-filtering.html#performance-schema-consumer-filtering-wait-event "Wait Event Consumers")
+* [Stage Event Consumers](performance-schema-consumer-filtering.html#performance-schema-consumer-filtering-stage-event "Stage Event Consumers")
+* [Statement Event Consumers](performance-schema-consumer-filtering.html#performance-schema-consumer-filtering-statement-event "Statement Event Consumers")
+* [Transaction Event Consumers](performance-schema-consumer-filtering.html#performance-schema-consumer-filtering-transaction-event "Transaction Event Consumers")
+* [Statement Digest Consumer](performance-schema-consumer-filtering.html#performance-schema-consumer-filtering-statement-digest "Statement Digest Consumer")
 
-- Consumidores de Schema Global e de Fio
-- Consumidores de eventos de espera
-- Evento de palco Consumidores de esquema de desempenho
-- Evento de declaração de consumo de esquema de desempenho
-- Eventos de transação Consumidores
-- Resumo de declaração do consumidor do esquema de desempenho
+#### Global and Thread Consumers
 
-#### Consumidores globais e de thread
+* `global_instrumentation` is the highest level consumer. If `global_instrumentation` is `NO`, it disables global instrumentation. All other settings are lower level and are not checked; it does not matter what they are set to. No global or per thread information is maintained and no individual events are collected in the current-events or event-history tables. If `global_instrumentation` is `YES`, the Performance Schema maintains information for global states and also checks the `thread_instrumentation` consumer.
 
-- `global_instrumentation` é o consumidor de nível mais alto. Se `global_instrumentation` for `NO`, ele desativa a instrumentação global. Todos os outros ajustes são de nível inferior e não são verificados; não importa para o que eles estejam configurados. Nenhuma informação global ou por thread é mantida e nenhum evento individual é coletado nas tabelas de eventos atuais ou histórico de eventos. Se `global_instrumentation` for `YES`, o Schema de Desempenho mantém informações para estados globais e também verifica o consumidor `thread_instrumentation`.
+* `thread_instrumentation` is checked only if `global_instrumentation` is `YES`. Otherwise, if `thread_instrumentation` is `NO`, it disables thread-specific instrumentation and all lower-level settings are ignored. No information is maintained per thread and no individual events are collected in the current-events or event-history tables. If `thread_instrumentation` is `YES`, the Performance Schema maintains thread-specific information and also checks `events_xxx_current` consumers.
 
-- A `thread_instrumentation` é verificada apenas se `global_instrumentation` for `YES`. Caso contrário, se `thread_instrumentation` for `NO`, ela desativa a instrumentação específica para o thread e todas as configurações de nível mais baixo são ignoradas. Nenhuma informação é mantida por thread e nenhum evento individual é coletado nas tabelas de eventos atuais ou histórico de eventos. Se `thread_instrumentation` for `YES`, o Schema de Desempenho mantém informações específicas para o thread e também verifica os consumidores `events_xxx_current`.
+#### Wait Event Consumers
 
-#### Esperar Eventos Consumidores
+These consumers require both `global_instrumentation` and `thread_instrumentation` to be `YES` or they are not checked. If checked, they act as follows:
 
-Esses consumidores exigem que `global_instrumentation` e `thread_instrumentation` estejam configurados como `YES` ou eles não serão verificados. Se configurados, eles atuam da seguinte forma:
+* `events_waits_current`, if `NO`, disables collection of individual wait events in the [`events_waits_current`](performance-schema-events-waits-current-table.html "25.12.4.1 The events_waits_current Table") table. If `YES`, it enables wait event collection and the Performance Schema checks the `events_waits_history` and `events_waits_history_long` consumers.
 
-- `events_waits_current`, se `NO`, desabilita a coleta de eventos de espera individuais na tabela `events_waits_current`. Se `YES`, habilita a coleta de eventos de espera e o Schema de Desempenho verifica os consumidores `events_waits_history` e `events_waits_history_long`.
+* `events_waits_history` is not checked if `event_waits_current` is `NO`. Otherwise, an `events_waits_history` value of `NO` or `YES` disables or enables collection of wait events in the [`events_waits_history`](performance-schema-events-waits-history-table.html "25.12.4.2 The events_waits_history Table") table.
 
-- `events_waits_history` não é verificado se `event_waits_current` for `NO`. Caso contrário, um valor de `events_waits_history` de `NO` ou `YES` desabilita ou habilita a coleta de eventos de espera na tabela `[events_waits_history]` (performance-schema-events-waits-history-table.html).
+* `events_waits_history_long` is not checked if `event_waits_current` is `NO`. Otherwise, an `events_waits_history_long` value of `NO` or `YES` disables or enables collection of wait events in the [`events_waits_history_long`](performance-schema-events-waits-history-long-table.html "25.12.4.3 The events_waits_history_long Table") table.
 
-- `events_waits_history_long` não é verificado se `event_waits_current` for `NO`. Caso contrário, um valor de `events_waits_history_long` de `NO` ou `YES` desabilita ou habilita a coleta de eventos de espera na tabela `[events_waits_history_long]` (performance-schema-events-waits-history-long-table.html).
+#### Stage Event Consumers
 
-#### Evento em palco Consumidores
+These consumers require both `global_instrumentation` and `thread_instrumentation` to be `YES` or they are not checked. If checked, they act as follows:
 
-Esses consumidores exigem que `global_instrumentation` e `thread_instrumentation` estejam configurados como `YES` ou eles não serão verificados. Se configurados, eles atuam da seguinte forma:
+* `events_stages_current`, if `NO`, disables collection of individual stage events in the [`events_stages_current`](performance-schema-events-stages-current-table.html "25.12.5.1 The events_stages_current Table") table. If `YES`, it enables stage event collection and the Performance Schema checks the `events_stages_history` and `events_stages_history_long` consumers.
 
-- `events_stages_current`, se `NO`, desabilita a coleta de eventos individuais de estágio na tabela ``events_stages_current`. Se `YES`, habilita a coleta de eventos de estágio e o Schema de Desempenho verifica os consumidores `events_stages_history`e`events_stages_history_long\`.
+* `events_stages_history` is not checked if `event_stages_current` is `NO`. Otherwise, an `events_stages_history` value of `NO` or `YES` disables or enables collection of stage events in the [`events_stages_history`](performance-schema-events-stages-history-table.html "25.12.5.2 The events_stages_history Table") table.
 
-- `events_stages_history` não é verificado se `event_stages_current` for `NO`. Caso contrário, um valor de `events_stages_history` de `NO` ou `YES` desabilita ou habilita a coleta de eventos de estágios na tabela `[events_stages_history]` (performance-schema-events-stages-history-table.html).
+* `events_stages_history_long` is not checked if `event_stages_current` is `NO`. Otherwise, an `events_stages_history_long` value of `NO` or `YES` disables or enables collection of stage events in the [`events_stages_history_long`](performance-schema-events-stages-history-long-table.html "25.12.5.3 The events_stages_history_long Table") table.
 
-- `events_stages_history_long` não é verificado se `event_stages_current` for `NO`. Caso contrário, um valor de `events_stages_history_long` de `NO` ou `YES` desabilita ou habilita a coleta de eventos de estágios na tabela `[events_stages_history_long]` (performance-schema-events-stages-history-long-table.html).
+#### Statement Event Consumers
 
-#### Evento de declaração para consumidores
+These consumers require both `global_instrumentation` and `thread_instrumentation` to be `YES` or they are not checked. If checked, they act as follows:
 
-Esses consumidores exigem que `global_instrumentation` e `thread_instrumentation` estejam configurados como `YES` ou eles não serão verificados. Se configurados, eles atuam da seguinte forma:
+* `events_statements_current`, if `NO`, disables collection of individual statement events in the [`events_statements_current`](performance-schema-events-statements-current-table.html "25.12.6.1 The events_statements_current Table") table. If `YES`, it enables statement event collection and the Performance Schema checks the `events_statements_history` and `events_statements_history_long` consumers.
 
-- `events_statements_current`, se `NO`, desabilita a coleta de eventos de declarações individuais na tabela `events_statements_current`. Se `YES`, habilita a coleta de eventos de declarações e o Schema de Desempenho verifica os consumidores `events_statements_history` e `events_statements_history_long`.
+* `events_statements_history` is not checked if `events_statements_current` is `NO`. Otherwise, an `events_statements_history` value of `NO` or `YES` disables or enables collection of statement events in the [`events_statements_history`](performance-schema-events-statements-history-table.html "25.12.6.2 The events_statements_history Table") table.
 
-- `events_statements_history` não é verificado se `events_statements_current` for `NO`. Caso contrário, um valor de `events_statements_history` de `NO` ou `YES` desabilita ou habilita a coleta de eventos de declarações na tabela `[events_statements_history]` (performance-schema-events-statements-history-table.html).
+* `events_statements_history_long` is not checked if `events_statements_current` is `NO`. Otherwise, an `events_statements_history_long` value of `NO` or `YES` disables or enables collection of statement events in the [`events_statements_history_long`](performance-schema-events-statements-history-long-table.html "25.12.6.3 The events_statements_history_long Table") table.
 
-- `events_statements_history_long` não é verificado se `events_statements_current` for `NO`. Caso contrário, um valor de `events_statements_history_long` de `NO` ou `YES` desabilita ou habilita a coleta de eventos de declarações na tabela `[events_statements_history_long]` (performance-schema-events-statements-history-long-table.html).
+#### Transaction Event Consumers
 
-#### Evento de transação Consumidores
+These consumers require both `global_instrumentation` and `thread_instrumentation` to be `YES` or they are not checked. If checked, they act as follows:
 
-Esses consumidores exigem que `global_instrumentation` e `thread_instrumentation` estejam configurados como `YES` ou eles não serão verificados. Se configurados, eles atuam da seguinte forma:
+* `events_transactions_current`, if `NO`, disables collection of individual transaction events in the [`events_transactions_current`](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table") table. If `YES`, it enables transaction event collection and the Performance Schema checks the `events_transactions_history` and `events_transactions_history_long` consumers.
 
-- `events_transactions_current`, se `NO`, desabilita a coleta de eventos de transações individuais na tabela ``events_transactions_current`. Se `YES`, habilita a coleta de eventos de transações e o Schema de Desempenho verifica os consumidores `events_transactions_history`e`events_transactions_history_long\`.
+* `events_transactions_history` is not checked if `events_transactions_current` is `NO`. Otherwise, an `events_transactions_history` value of `NO` or `YES` disables or enables collection of transaction events in the [`events_transactions_history`](performance-schema-events-transactions-history-table.html "25.12.7.2 The events_transactions_history Table") table.
 
-- `events_transactions_history` não é verificado se `events_transactions_current` for `NO`. Caso contrário, um valor de `events_transactions_history` de `NO` ou `YES` desabilita ou habilita a coleta de eventos de transações na tabela `[events_transactions_history]` (performance-schema-events-transactions-history-table.html).
+* `events_transactions_history_long` is not checked if `events_transactions_current` is `NO`. Otherwise, an `events_transactions_history_long` value of `NO` or `YES` disables or enables collection of transaction events in the [`events_transactions_history_long`](performance-schema-events-transactions-history-long-table.html "25.12.7.3 The events_transactions_history_long Table") table.
 
-- `events_transactions_history_long` não é verificado se `events_transactions_current` for `NO`. Caso contrário, um valor de `events_transactions_history_long` de `NO` ou `YES` desabilita ou habilita a coleta de eventos de transações na tabela `[events_transactions_history_long]` (performance-schema-events-transactions-history-long-table.html).
+#### Statement Digest Consumer
 
-#### Resumo de declaração do consumidor
+The `statements_digest` consumer requires `global_instrumentation` to be `YES` or it is not checked. There is no dependency on the statement event consumers, so you can obtain statistics per digest without having to collect statistics in [`events_statements_current`](performance-schema-events-statements-current-table.html "25.12.6.1 The events_statements_current Table"), which is advantageous in terms of overhead. Conversely, you can get detailed statements in [`events_statements_current`](performance-schema-events-statements-current-table.html "25.12.6.1 The events_statements_current Table") without digests (the `DIGEST` and `DIGEST_TEXT` columns are `NULL`).
 
-O consumidor `statements_digest` exige que `global_instrumentation` seja `YES` ou ele não será verificado. Não há dependência dos consumidores de eventos de declarações, então você pode obter estatísticas por digest sem precisar coletar estatísticas em `events_statements_current`, o que é vantajoso em termos de overhead. Por outro lado, você pode obter declarações detalhadas em `events_statements_current` sem digests (as colunas `DIGEST` e `DIGEST_TEXT` são `NULL`).
-
-Para obter mais informações sobre a digestão de declarações, consulte Seção 25.10, “Digestas de declarações do Schema de Desempenho”.
+For more information about statement digesting, see [Section 25.10, “Performance Schema Statement Digests”](performance-schema-statement-digests.html "25.10 Performance Schema Statement Digests").

@@ -1,19 +1,19 @@
-### 13.7.4 Declarações SET
+### 13.7.4 SET Statements
 
-13.7.4.1 Sintaxe de definição de variáveis para atribuição
+[13.7.4.1 SET Syntax for Variable Assignment](set-variable.html)
 
-13.7.4.2 Declaração de conjunto de caracteres do personagem
+[13.7.4.2 SET CHARACTER SET Statement](set-character-set.html)
 
-13.7.4.3 Declaração de NOME_SET
+[13.7.4.3 SET NAMES Statement](set-names.html)
 
-A instrução `SET` tem várias formas. As descrições dessas formas que não estão associadas a uma capacidade específica do servidor aparecem em subseções desta seção:
+The [`SET`](set-statement.html "13.7.4 SET Statements") statement has several forms. Descriptions for those forms that are not associated with a specific server capability appear in subsections of this section:
 
-- `SET var_name = value` permite atribuir valores a variáveis que afetam o funcionamento do servidor ou dos clientes. Veja Seção 13.7.4.1, “Sintaxe SET para Atribuição de Variáveis”.
+* [`SET var_name = value`](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment") enables you to assign values to variables that affect the operation of the server or clients. See [Section 13.7.4.1, “SET Syntax for Variable Assignment”](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment").
 
-- `SET CHARACTER SET` e `SET NAMES` atribuem valores às variáveis de conjunto de caracteres e coligação associadas à conexão atual com o servidor. Veja Seção 13.7.4.2, “Instrução SET CHARACTER SET” e Seção 13.7.4.3, “Instrução SET NAMES”.
+* [`SET CHARACTER SET`](set-character-set.html "13.7.4.2 SET CHARACTER SET Statement") and [`SET NAMES`](set-names.html "13.7.4.3 SET NAMES Statement") assign values to character set and collation variables associated with the current connection to the server. See [Section 13.7.4.2, “SET CHARACTER SET Statement”](set-character-set.html "13.7.4.2 SET CHARACTER SET Statement"), and [Section 13.7.4.3, “SET NAMES Statement”](set-names.html "13.7.4.3 SET NAMES Statement").
 
-As descrições para os outros formulários aparecem em outros lugares, agrupadas com outras declarações relacionadas à capacidade que ajudam a implementar:
+Descriptions for the other forms appear elsewhere, grouped with other statements related to the capability they help implement:
 
-- `SET PASSWORD` atribui senhas de conta. Veja Seção 13.7.1.7, “Instrução SET PASSWORD”.
+* [`SET PASSWORD`](set-password.html "13.7.1.7 SET PASSWORD Statement") assigns account passwords. See [Section 13.7.1.7, “SET PASSWORD Statement”](set-password.html "13.7.1.7 SET PASSWORD Statement").
 
-- `SET TRANSACTION ISOLATION LEVEL` define o nível de isolamento para o processamento de transações. Veja Seção 13.3.6, “Instrução SET TRANSACTION”.
+* [`SET TRANSACTION ISOLATION LEVEL`](set-transaction.html "13.3.6 SET TRANSACTION Statement") sets the isolation level for transaction processing. See [Section 13.3.6, “SET TRANSACTION Statement”](set-transaction.html "13.3.6 SET TRANSACTION Statement").

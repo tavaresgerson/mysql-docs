@@ -1,31 +1,31 @@
-# Apêndice C: Índices
+# Appendix C Indexes
 
-**Índice**
+**Table of Contents**
 
-[Índice Geral](ix01.html)
+[General Index](ix01.html)
 
-[Índice de Funções C](dynindex-cfunc.html)
+[C Function Index](dynindex-cfunc.html)
 
-[Índice de comandos](dynindex-command.html)
+[Command Index](dynindex-command.html)
 
-[Índice de Funções](dynindex-function.html)
+[Function Index](dynindex-function.html)
 
-[SCHEMA DE INFORMAÇÕES Índice](dynindex-is.html)
+[INFORMATION_SCHEMA Index](dynindex-is.html)
 
-[Índice de Tipos de Articulação](dynindex-jointype.html)
+[Join Types Index](dynindex-jointype.html)
 
-[Índice de Operadores](dynindex-operator.html)
+[Operator Index](dynindex-operator.html)
 
-[Índice de Opções](dynindex-option.html)
+[Option Index](dynindex-option.html)
 
-[Índice de privilégios](dynindex-priv.html)
+[Privileges Index](dynindex-priv.html)
 
-[Índice de modos SQL](dynindex-sqlmode.html)
+[SQL Modes Index](dynindex-sqlmode.html)
 
-[Índice de Declarações/Sintaxe](dynindex-statement.html)
+[Statement/Syntax Index](dynindex-statement.html)
 
-[Índice de Variável de Status](dynindex-statvar.html)
+[Status Variable Index](dynindex-statvar.html)
 
-[Índice de Variável do Sistema](dynindex-sysvar.html)
+[System Variable Index](dynindex-sysvar.html)
 
-[Índice de Nível de Isolamento de Transação](dynindex-isolevel.html)
+[Transaction Isolation Level Index](dynindex-isolevel.html)

@@ -1,32 +1,29 @@
-#### 15.2.3.1 Características de uma tabela estática (com comprimento fixo)
+#### 15.2.3.1 Static (Fixed-Length) Table Characteristics
 
-O formato estático é o padrão para as tabelas `MyISAM`. Ele é usado quando a tabela não contém colunas de comprimento variável (`VARCHAR`, `VARBINARY`, `BLOB` ou `TEXT`). Cada linha é armazenada com um número fixo de bytes.
+Static format is the default for `MyISAM` tables. It is used when the table contains no variable-length columns (`VARCHAR`, `VARBINARY`, `BLOB`, or `TEXT`). Each row is stored using a fixed number of bytes.
 
-Dos três formatos de armazenamento `MyISAM`, o formato estático é o mais simples e seguro (menos propenso à corrupção). É também o mais rápido dos formatos em disco, devido à facilidade com que as linhas no arquivo de dados podem ser encontradas no disco: para procurar uma linha com base em um número de linha no índice, multiplique o número de linha pela extensão da linha para calcular a posição da linha. Além disso, ao digitalizar uma tabela, é muito fácil ler um número constante de linhas em cada operação de leitura em disco.
+Of the three `MyISAM` storage formats, static format is the simplest and most secure (least subject to corruption). It is also the fastest of the on-disk formats due to the ease with which rows in the data file can be found on disk: To look up a row based on a row number in the index, multiply the row number by the row length to calculate the row position. Also, when scanning a table, it is very easy to read a constant number of rows with each disk read operation.
 
-A segurança é evidenciada se o seu computador falhar enquanto o servidor MySQL está escrevendo em um arquivo `MyISAM` de formato fixo. Nesse caso, o **myisamchk** pode facilmente determinar onde cada linha começa e termina, permitindo que ele recupere todas as linhas, exceto a parcialmente escrita. Os índices das tabelas `MyISAM` sempre podem ser reconstruídos com base nas linhas de dados.
+The security is evidenced if your computer crashes while the MySQL server is writing to a fixed-format `MyISAM` file. In this case, **myisamchk** can easily determine where each row starts and ends, so it can usually reclaim all rows except the partially written one. `MyISAM` table indexes can always be reconstructed based on the data rows.
 
-Nota
+Note
 
-O formato de linha de comprimento fixo está disponível apenas para tabelas sem colunas `BLOB` ou `TEXT`. Criar uma tabela com essas colunas com uma cláusula explícita `ROW_FORMAT` não gera um erro ou aviso; a especificação do formato é ignorada.
+Fixed-length row format is only available for tables without `BLOB` or `TEXT` columns. Creating a table with these columns with an explicit `ROW_FORMAT` clause does not raise an error or warning; the format specification is ignored.
 
-As tabelas em formato estático têm essas características:
+Static-format tables have these characteristics:
 
-- As colunas `CHAR` e `VARCHAR` são preenchidas com espaços até a largura da coluna especificada, embora o tipo da coluna não seja alterado. As colunas `BINARY` e `VARBINARY` são preenchidas com bytes `0x00` até a largura da coluna.
+* `CHAR` and `VARCHAR` columns are space-padded to the specified column width, although the column type is not altered. `BINARY` and `VARBINARY` columns are padded with `0x00` bytes to the column width.
 
-- As colunas `NULL` exigem espaço adicional na linha para registrar se seus valores são `NULL`. Cada coluna `NULL` ocupa um bit extra, arredondado para o byte mais próximo.
+* `NULL` columns require additional space in the row to record whether their values are `NULL`. Each `NULL` column takes one bit extra, rounded up to the nearest byte.
 
-- Muito rápido.
+* Very quick.
+* Easy to cache.
+* Easy to reconstruct after a crash, because rows are located in fixed positions.
 
-- Fácil de armazenar em cache.
+* Reorganization is unnecessary unless you delete a huge number of rows and want to return free disk space to the operating system. To do this, use `OPTIMIZE TABLE` or **myisamchk -r**.
 
-- Fácil de reconstruir após um acidente, porque as linhas estão localizadas em posições fixas.
-
-- A reorganização não é necessária, a menos que você queira excluir um grande número de linhas e liberar espaço em disco para o sistema operacional. Para fazer isso, use `OPTIMIZE TABLE` ou **myisamchk -r**.
-
-- Geralmente exigem mais espaço em disco do que as tabelas de formato dinâmico.
-
-- O comprimento da linha esperado em bytes para linhas de tamanho estático é calculado usando a seguinte expressão:
+* Usually require more disk space than dynamic-format tables.
+* The expected row length in bytes for static-sized rows is calculated using the following expression:
 
   ```sql
   row length = 1
@@ -35,4 +32,4 @@ As tabelas em formato estático têm essas características:
                + (number of variable-length columns)
   ```
 
-  *`delete_flag`* é 1 para tabelas com formato de linha estático. As tabelas estáticas usam um bit no registro da linha para uma bandeira que indica se a linha foi excluída. *`delete_flag`* é 0 para tabelas dinâmicas, pois a bandeira é armazenada no cabeçalho dinâmico da linha.
+  *`delete_flag`* is 1 for tables with static row format. Static tables use a bit in the row record for a flag that indicates whether the row has been deleted. *`delete_flag`* is 0 for dynamic tables because the flag is stored in the dynamic row header.

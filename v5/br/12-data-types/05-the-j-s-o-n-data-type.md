@@ -1,71 +1,71 @@
-## 11.5 Tipo de dados JSON
+## 11.5 The JSON Data Type
 
-- Criando Valores JSON
-- Normalização, fusão e autoembalagem de valores JSON
-- Procurando e modificando valores JSON
-- Sintaxe de caminho JSON
-- Comparação e ordenação de valores JSON
-- Conversão entre valores JSON e não JSON
-- Agrupamento de Valores JSON
+* Creating JSON Values
+* Normalization, Merging, and Autowrapping of JSON Values
+* Searching and Modifying JSON Values
+* JSON Path Syntax
+* Comparison and Ordering of JSON Values
+* Converting between JSON and non-JSON values
+* Aggregation of JSON Values
 
-A partir do MySQL 5.7.8, o MySQL suporta um tipo de dados nativo `JSON` (JavaScript Object Notation) definido pelo [RFC 8259](https://datatracker.ietf.org/doc/html/rfc8259) que permite o acesso eficiente aos dados em documentos JSON. O tipo de dados `JSON` oferece essas vantagens em relação ao armazenamento de strings no formato JSON em uma coluna de string:
+As of MySQL 5.7.8, MySQL supports a native `JSON` (JavaScript Object Notation) data type defined by [RFC 8259](https://datatracker.ietf.org/doc/html/rfc8259) that enables efficient access to data in JSON documents. The `JSON` data type provides these advantages over storing JSON-format strings in a string column:
 
-- Validação automática de documentos JSON armazenados nas colunas `JSON`. Documentos inválidos produzem um erro.
+* Automatic validation of JSON documents stored in `JSON` columns. Invalid documents produce an error.
 
-- Formato de armazenamento otimizado. Os documentos JSON armazenados nas colunas `JSON` são convertidos para um formato interno que permite acesso rápido aos elementos do documento. Quando o servidor precisar ler um valor JSON armazenado nesse formato binário, o valor não precisa ser analisado a partir de uma representação de texto. O formato binário é estruturado para permitir que o servidor procure subobjetos ou valores aninhados diretamente por chave ou índice de array, sem precisar ler todos os valores antes ou depois deles no documento.
+* Optimized storage format. JSON documents stored in `JSON` columns are converted to an internal format that permits quick read access to document elements. When the server later must read a JSON value stored in this binary format, the value need not be parsed from a text representation. The binary format is structured to enable the server to look up subobjects or nested values directly by key or array index without reading all values before or after them in the document.
 
-Nota
+Note
 
-Essa discussão usa `JSON` em monotipo para indicar especificamente o tipo de dados JSON e “JSON” em fonte regular para indicar dados JSON de forma geral.
+This discussion uses `JSON` in monotype to indicate specifically the JSON data type and “JSON” in regular font to indicate JSON data in general.
 
-O espaço necessário para armazenar um documento `JSON` é aproximadamente o mesmo que para `LONGBLOB` ou `LONGTEXT`; consulte a Seção 11.7, “Requisitos de Armazenamento de Tipos de Dados”, para obter mais informações. É importante ter em mente que o tamanho de qualquer documento `JSON` armazenado em uma coluna `JSON` é limitado ao valor da variável de sistema `max_allowed_packet`. (Quando o servidor manipula um valor JSON internamente na memória, ele pode ser maior que este; o limite se aplica quando o servidor o armazena.)
+The space required to store a `JSON` document is roughly the same as for `LONGBLOB` or `LONGTEXT`; see Section 11.7, “Data Type Storage Requirements”, for more information. It is important to keep in mind that the size of any JSON document stored in a `JSON` column is limited to the value of the `max_allowed_packet` system variable. (When the server is manipulating a JSON value internally in memory, it can be larger than this; the limit applies when the server stores it.)
 
-Uma coluna `JSON` não pode ter um valor padrão que não seja `NULL`.
+A `JSON` column cannot have a non-`NULL` default value.
 
-Juntamente com o tipo de dados `JSON`, está disponível um conjunto de funções SQL para permitir operações em valores JSON, como criação, manipulação e busca. A discussão a seguir mostra exemplos dessas operações. Para obter detalhes sobre as funções individuais, consulte a Seção 12.17, “Funções JSON”.
+Along with the `JSON` data type, a set of SQL functions is available to enable operations on JSON values, such as creation, manipulation, and searching. The following discussion shows examples of these operations. For details about individual functions, see Section 12.17, “JSON Functions”.
 
-Também está disponível um conjunto de funções espaciais para operar com valores GeoJSON. Consulte a Seção 12.16.11, “Funções GeoJSON Espaciais”.
+A set of spatial functions for operating on GeoJSON values is also available. See Section 12.16.11, “Spatial GeoJSON Functions”.
 
-As colunas `JSON`, assim como as colunas de outros tipos binários, não são indexadas diretamente. Em vez disso, você pode criar um índice em uma coluna gerada que extrai um valor escalar da coluna `JSON`. Veja Indexando uma Coluna Gerada para Fornecer um Índice de Coluna JSON, para um exemplo detalhado.
+`JSON` columns, like columns of other binary types, are not indexed directly; instead, you can create an index on a generated column that extracts a scalar value from the `JSON` column. See Indexing a Generated Column to Provide a JSON Column Index, for a detailed example.
 
-O otimizador do MySQL também procura por índices compatíveis em colunas virtuais que correspondem a expressões JSON.
+The MySQL optimizer also looks for compatible indexes on virtual columns that match JSON expressions.
 
-O MySQL NDB Cluster 7.5 (7.5.2 e versões posteriores) suporta colunas `JSON` e funções JSON do MySQL, incluindo a criação de um índice em uma coluna gerada a partir de uma coluna `JSON`, como uma solução para a impossibilidade de indexar uma coluna `JSON`. É suportado um máximo de 3 colunas `JSON` por tabela `NDB`.
+MySQL NDB Cluster 7.5 (7.5.2 and later) supports `JSON` columns and MySQL JSON functions, including creation of an index on a column generated from a `JSON` column as a workaround for being unable to index a `JSON` column. A maximum of 3 `JSON` columns per `NDB` table is supported.
 
-As próximas seções fornecem informações básicas sobre a criação e manipulação de valores JSON.
+The next few sections provide basic information regarding the creation and manipulation of JSON values.
 
-### Criando Valores JSON
+### Creating JSON Values
 
-Um array JSON contém uma lista de valores separados por vírgulas e encerrados entre os caracteres `[` e `]`:
+A JSON array contains a list of values separated by commas and enclosed within `[` and `]` characters:
 
 ```sql
 ["abc", 10, null, true, false]
 ```
 
-Um objeto JSON contém um conjunto de pares chave-valor separados por vírgulas e encerrados entre os caracteres `{` e `}`:
+A JSON object contains a set of key-value pairs separated by commas and enclosed within `{` and `}` characters:
 
 ```sql
 {"k1": "value", "k2": 10}
 ```
 
-Como os exemplos ilustram, os arrays e objetos JSON podem conter valores escalares que são strings ou números, o literal JSON null ou os literais booleanos JSON true ou false. As chaves nos objetos JSON devem ser strings. Valores escalares temporais (data, hora ou datetime) também são permitidos:
+As the examples illustrate, JSON arrays and objects can contain scalar values that are strings or numbers, the JSON null literal, or the JSON boolean true or false literals. Keys in JSON objects must be strings. Temporal (date, time, or datetime) scalar values are also permitted:
 
 ```sql
 ["12:18:29.000000", "2015-07-29", "2015-07-29 12:18:29.000000"]
 ```
 
-A nidificação é permitida dentro dos elementos de arrays JSON e valores de chaves de objetos JSON:
+Nesting is permitted within JSON array elements and JSON object key values:
 
 ```sql
 [99, {"id": "HK500", "cost": 75.99}, ["hot", "cold"
 {"k1": "value", "k2": [10, 20]}
 ```
 
-Você também pode obter valores JSON a partir de várias funções fornecidas pelo MySQL para esse propósito (veja a Seção 12.17.2, “Funções que criam valores JSON”) e também ao converter valores de outros tipos para o tipo `JSON` usando `CAST(value AS JSON` (veja Conversão entre valores JSON e não JSON). Os próximos parágrafos descrevem como o MySQL lida com valores JSON fornecidos como entrada.
+You can also obtain JSON values from a number of functions supplied by MySQL for this purpose (see Section 12.17.2, “Functions That Create JSON Values”) as well as by casting values of other types to the `JSON` type using `CAST(value AS JSON)` (see Converting between JSON and non-JSON values). The next several paragraphs describe how MySQL handles JSON values provided as input.
 
-No MySQL, os valores JSON são escritos como strings. O MySQL analisa qualquer string usada em um contexto que requer um valor JSON e produz um erro se não for válido como JSON. Esses contextos incluem inserir um valor em uma coluna que tem o tipo de dados `JSON` e passar um argumento para uma função que espera um valor JSON (geralmente mostrado como *`json_doc`* ou *`json_val`* na documentação das funções JSON do MySQL), como os exemplos seguintes demonstram:
+In MySQL, JSON values are written as strings. MySQL parses any string used in a context that requires a JSON value, and produces an error if it is not valid as JSON. These contexts include inserting a value into a column that has the `JSON` data type and passing an argument to a function that expects a JSON value (usually shown as *`json_doc`* or *`json_val`* in the documentation for MySQL JSON functions), as the following examples demonstrate:
 
-- A tentativa de inserir um valor em uma coluna `JSON` é bem-sucedida se o valor for um valor JSON válido, mas falha se não for:
+* Attempting to insert a value into a `JSON` column succeeds if the value is a valid JSON value, but fails if it is not:
 
   ```sql
   mysql> CREATE TABLE t1 (jdoc JSON);
@@ -79,9 +79,9 @@ No MySQL, os valores JSON são escritos como strings. O MySQL analisa qualquer s
   "Invalid value." at position 6 in value (or column) '[1, 2,'.
   ```
 
-  As posições para "na posição *`N`*" nessas mensagens de erro são baseadas em 0, mas devem ser consideradas indicações gerais de onde o problema em um valor realmente ocorre.
+  Positions for “at position *`N`*” in such error messages are 0-based, but should be considered rough indications of where the problem in a value actually occurs.
 
-- A função `JSON_TYPE()` espera um argumento JSON e tenta analisá-lo em um valor JSON. Ela retorna o tipo JSON do valor se ele for válido e produz um erro caso contrário:
+* The `JSON_TYPE()` function expects a JSON argument and attempts to parse it into a JSON value. It returns the value's JSON type if it is valid and produces an error otherwise:
 
   ```sql
   mysql> SELECT JSON_TYPE('["a", "b", 1]');
@@ -103,9 +103,9 @@ No MySQL, os valores JSON são escritos como strings. O MySQL analisa qualquer s
   to function json_type; a JSON string or JSON type is required.
   ```
 
-O MySQL lida com strings usadas em contexto JSON usando o conjunto de caracteres `utf8mb4` e a collation `utf8mb4_bin`. As strings em outros conjuntos de caracteres são convertidas para `utf8mb4` conforme necessário. (Para strings em conjuntos de caracteres `ascii` ou `utf8`, nenhuma conversão é necessária, pois `ascii` e `utf8` são subconjuntos de `utf8mb4`.)
+MySQL handles strings used in JSON context using the `utf8mb4` character set and `utf8mb4_bin` collation. Strings in other character sets are converted to `utf8mb4` as necessary. (For strings in the `ascii` or `utf8` character sets, no conversion is needed because `ascii` and `utf8` are subsets of `utf8mb4`.)
 
-Como alternativa para escrever valores JSON usando strings literais, existem funções para compor valores JSON a partir de elementos componentes. `JSON_ARRAY()` recebe uma lista (possivelmente vazia) de valores e retorna um array JSON contendo esses valores:
+As an alternative to writing JSON values using literal strings, functions exist for composing JSON values from component elements. `JSON_ARRAY()` takes a (possibly empty) list of values and returns a JSON array containing those values:
 
 ```sql
 mysql> SELECT JSON_ARRAY('a', 1, NOW());
@@ -116,7 +116,7 @@ mysql> SELECT JSON_ARRAY('a', 1, NOW());
 +----------------------------------------+
 ```
 
-`JSON_OBJECT()` recebe uma lista (possívelmente vazia) de pares chave-valor e retorna um objeto JSON contendo esses pares:
+`JSON_OBJECT()` takes a (possibly empty) list of key-value pairs and returns a JSON object containing those pairs:
 
 ```sql
 mysql> SELECT JSON_OBJECT('key1', 1, 'key2', 'abc');
@@ -127,7 +127,7 @@ mysql> SELECT JSON_OBJECT('key1', 1, 'key2', 'abc');
 +---------------------------------------+
 ```
 
-`JSON_MERGE()` recebe dois ou mais documentos JSON e retorna o resultado combinado:
+`JSON_MERGE()` takes two or more JSON documents and returns the combined result:
 
 ```sql
 mysql> SELECT JSON_MERGE('["a", 1]', '{"key": "value"}');
@@ -138,9 +138,9 @@ mysql> SELECT JSON_MERGE('["a", 1]', '{"key": "value"}');
 +--------------------------------------------+
 ```
 
-Para obter informações sobre as regras de fusão, consulte Normalização, Fusão e Autoenquadramento de Valores JSON.
+For information about the merging rules, see Normalization, Merging, and Autowrapping of JSON Values.
 
-Os valores JSON podem ser atribuídos a variáveis definidas pelo usuário:
+JSON values can be assigned to user-defined variables:
 
 ```sql
 mysql> SET @j = JSON_OBJECT('key', 'value');
@@ -152,9 +152,9 @@ mysql> SELECT @j;
 +------------------+
 ```
 
-No entanto, as variáveis definidas pelo usuário não podem ser do tipo de dados `JSON`, então, embora `@j` no exemplo anterior pareça um valor JSON e tenha o mesmo conjunto de caracteres e ordenação que um valor JSON, ele *não* tem o tipo de dados `JSON`. Em vez disso, o resultado de `JSON_OBJECT()` é convertido em uma string quando atribuído à variável.
+However, user-defined variables cannot be of `JSON` data type, so although `@j` in the preceding example looks like a JSON value and has the same character set and collation as a JSON value, it does *not* have the `JSON` data type. Instead, the result from `JSON_OBJECT()` is converted to a string when assigned to the variable.
 
-As cadeias produzidas pela conversão de valores JSON têm um conjunto de caracteres de `utf8mb4` e uma ordenação de `utf8mb4_bin`:
+Strings produced by converting JSON values have a character set of `utf8mb4` and a collation of `utf8mb4_bin`:
 
 ```sql
 mysql> SELECT CHARSET(@j), COLLATION(@j);
@@ -165,7 +165,7 @@ mysql> SELECT CHARSET(@j), COLLATION(@j);
 +-------------+---------------+
 ```
 
-Como o `utf8mb4_bin` é uma codificação binária, a comparação de valores JSON é sensível ao caso.
+Because `utf8mb4_bin` is a binary collation, comparison of JSON values is case-sensitive.
 
 ```sql
 mysql> SELECT JSON_ARRAY('x') = JSON_ARRAY('X');
@@ -176,7 +176,7 @@ mysql> SELECT JSON_ARRAY('x') = JSON_ARRAY('X');
 +-----------------------------------+
 ```
 
-A sensibilidade à grafia maiúscula ou minúscula também se aplica aos literais JSON `null`, `true` e `false`, que devem ser sempre escritos em minúsculas:
+Case sensitivity also applies to the JSON `null`, `true`, and `false` literals, which always must be written in lowercase:
 
 ```sql
 mysql> SELECT JSON_VALID('null'), JSON_VALID('Null'), JSON_VALID('NULL');
@@ -199,7 +199,7 @@ ERROR 3141 (22032): Invalid JSON text in argument 1 to function cast_as_json:
 "Invalid value." at position 0 in 'NULL'.
 ```
 
-A sensibilidade à caixa das literais JSON difere da sensibilidade à caixa das literais SQL `NULL`, `TRUE` e `FALSE`, que podem ser escritas em qualquer caso de letra:
+Case sensitivity of the JSON literals differs from that of the SQL `NULL`, `TRUE`, and `FALSE` literals, which can be written in any lettercase:
 
 ```sql
 mysql> SELECT ISNULL(null), ISNULL(Null), ISNULL(NULL);
@@ -210,33 +210,33 @@ mysql> SELECT ISNULL(null), ISNULL(Null), ISNULL(NULL);
 +--------------+--------------+--------------+
 ```
 
-Às vezes, pode ser necessário ou desejável inserir caracteres de citação (`"` ou `'`) em um documento JSON. Suponha, para este exemplo, que você queira inserir alguns objetos JSON contendo strings que representam frases que afirmam alguns fatos sobre o MySQL, cada uma emparelhada com uma palavra-chave apropriada, em uma tabela criada usando a instrução SQL mostrada aqui:
+Sometimes it may be necessary or desirable to insert quote characters (`"` or `'`) into a JSON document. Assume for this example that you want to insert some JSON objects containing strings representing sentences that state some facts about MySQL, each paired with an appropriate keyword, into a table created using the SQL statement shown here:
 
 ```sql
 mysql> CREATE TABLE facts (sentence JSON);
 ```
 
-Entre esses pares de palavras-frases estão os seguintes:
+Among these keyword-sentence pairs is this one:
 
 ```sql
 mascot: The MySQL mascot is a dolphin named "Sakila".
 ```
 
-Uma maneira de inserir isso como um objeto JSON na tabela `facts` é usar a função `JSON_OBJECT()` do MySQL. Nesse caso, você deve escapar cada caractere de citação usando uma barra invertida, como mostrado aqui:
+One way to insert this as a JSON object into the `facts` table is to use the MySQL `JSON_OBJECT()` function. In this case, you must escape each quote character using a backslash, as shown here:
 
 ```sql
 mysql> INSERT INTO facts VALUES
      >   (JSON_OBJECT("mascot", "Our mascot is a dolphin named \"Sakila\"."));
 ```
 
-Isso não funciona da mesma maneira se você inserir o valor como um literal de objeto JSON, nesse caso, você deve usar a sequência de escape de barra dupla, assim:
+This does not work in the same way if you insert the value as a JSON object literal, in which case, you must use the double backslash escape sequence, like this:
 
 ```sql
 mysql> INSERT INTO facts VALUES
      >   ('{"mascot": "Our mascot is a dolphin named \\"Sakila\\"."}');
 ```
 
-Usar o backslash duplo impede que o MySQL processe sequências de escape e, em vez disso, faz com que ele passe o literal de string para o mecanismo de armazenamento para processamento. Após inserir o objeto JSON de qualquer das maneiras mostradas, você pode ver que os backslashes estão presentes no valor da coluna JSON fazendo um simples `SELECT`, assim:
+Using the double backslash keeps MySQL from performing escape sequence processing, and instead causes it to pass the string literal to the storage engine for processing. After inserting the JSON object in either of the ways just shown, you can see that the backslashes are present in the JSON column value by doing a simple `SELECT`, like this:
 
 ```sql
 mysql> SELECT sentence FROM facts;
@@ -247,7 +247,7 @@ mysql> SELECT sentence FROM facts;
 +---------------------------------------------------------+
 ```
 
-Para pesquisar essa frase específica usando `mascot` como chave, você pode usar o operador `->` para caminho da coluna, como mostrado aqui:
+To look up this particular sentence employing `mascot` as the key, you can use the column-path operator `->`, as shown here:
 
 ```sql
 mysql> SELECT col->"$.mascot" FROM qtest;
@@ -259,7 +259,7 @@ mysql> SELECT col->"$.mascot" FROM qtest;
 1 row in set (0.00 sec)
 ```
 
-Isso deixa os backslashes intactos, juntamente com as aspas ao redor. Para exibir o valor desejado usando `mascot` como chave, mas sem incluir as aspas ao redor ou quaisquer escapamentos, use o operador de caminho inline `->>`, assim:
+This leaves the backslashes intact, along with the surrounding quote marks. To display the desired value using `mascot` as the key, but without including the surrounding quote marks or any escapes, use the inline path operator `->>`, like this:
 
 ```sql
 mysql> SELECT sentence->>"$.mascot" FROM facts;
@@ -270,20 +270,20 @@ mysql> SELECT sentence->>"$.mascot" FROM facts;
 +-----------------------------------------+
 ```
 
-Nota
+Note
 
-O exemplo anterior não funciona conforme mostrado se o modo SQL do servidor `NO_BACKSLASH_ESCAPES` estiver habilitado. Se esse modo estiver configurado, uma barra invertida simples, em vez de duas barras invertidas, pode ser usada para inserir o literal do objeto JSON, e as barras invertidas são preservadas. Se você usar a função `JSON_OBJECT()` ao realizar a inserção e esse modo estiver configurado, você deve alternar entre aspas simples e duplas, assim:
+The previous example does not work as shown if the `NO_BACKSLASH_ESCAPES` server SQL mode is enabled. If this mode is set, a single backslash instead of double backslashes can be used to insert the JSON object literal, and the backslashes are preserved. If you use the `JSON_OBJECT()` function when performing the insert and this mode is set, you must alternate single and double quotes, like this:
 
 ```sql
 mysql> INSERT INTO facts VALUES
      > (JSON_OBJECT('mascot', 'Our mascot is a dolphin named "Sakila".'));
 ```
 
-Consulte a descrição da função `JSON_UNQUOTE()` para obter mais informações sobre os efeitos deste modo em caracteres escapados em valores JSON.
+See the description of the `JSON_UNQUOTE()` function for more information about the effects of this mode on escaped characters in JSON values.
 
-### Normalização, fusão e autoembalagem de valores JSON
+### Normalization, Merging, and Autowrapping of JSON Values
 
-Quando uma string é analisada e descoberta como um documento JSON válido, ela também é normalizada: os membros com chaves que duplicam uma chave encontrada anteriormente no documento são descartados (mesmo que os valores sejam diferentes). O valor do objeto produzido pelo seguinte chamado `JSON_OBJECT()` não inclui o segundo elemento `key1` porque esse nome de chave ocorre anteriormente no valor:
+When a string is parsed and found to be a valid JSON document, it is also normalized: Members with keys that duplicate a key found earlier in the document are discarded (even if the values differ). The object value produced by the following `JSON_OBJECT()` call does not include the second `key1` element because that key name occurs earlier in the value:
 
 ```sql
 mysql> SELECT JSON_OBJECT('key1', 1, 'key2', 'abc', 'key1', 'def');
@@ -294,19 +294,19 @@ mysql> SELECT JSON_OBJECT('key1', 1, 'key2', 'abc', 'key1', 'def');
 +------------------------------------------------------+
 ```
 
-Nota
+Note
 
-Esse tratamento de chaves duplicadas com "primeira chave ganha" não é consistente com [RFC 7159](https://tools.ietf.org/html/rfc7159). Esse é um problema conhecido no MySQL 5.7, que foi corrigido no MySQL 8.0. (Bug #86866, Bug #26369555)
+This “first key wins” handling of duplicate keys is not consistent with [RFC 7159](https://tools.ietf.org/html/rfc7159). This is a known issue in MySQL 5.7, which is fixed in MySQL 8.0. (Bug #86866, Bug #26369555)
 
-O MySQL também elimina espaços extras entre chaves, valores ou elementos no documento JSON original e deixa (ou insere, quando necessário) um único espaço após cada vírgula (`,`) ou dois-pontos (`:`) ao exibí-lo. Isso é feito para melhorar a legibilidade.
+MySQL also discards extra whitespace between keys, values, or elements in the original JSON document, and leaves (or inserts, when necessary) a single space following each comma (`,`) or colon (`:`) when displaying it. This is done to enhance readibility.
 
-As funções do MySQL que produzem valores JSON (consulte a Seção 12.17.2, “Funções que criam valores JSON”) sempre retornam valores normalizados.
+MySQL functions that produce JSON values (see Section 12.17.2, “Functions That Create JSON Values”) always return normalized values.
 
-Para tornar as consultas mais eficientes, ele também ordena as chaves de um objeto JSON. *Você deve estar ciente de que o resultado dessa ordenação pode mudar e não é garantido que seja consistente em todas as versões*.
+To make lookups more efficient, it also sorts the keys of a JSON object. *You should be aware that the result of this ordering is subject to change and not guaranteed to be consistent across releases*.
 
-#### Mesclando valores JSON
+#### Merging JSON Values
 
-Em contextos que combinam múltiplos arrays, os arrays são mesclados em um único array ao concatenar arrays nomeados posteriormente ao final do primeiro array. No exemplo a seguir, `JSON_MERGE()` mescla seus argumentos em um único array:
+In contexts that combine multiple arrays, the arrays are merged into a single array by concatenating arrays named later to the end of the first array. In the following example, `JSON_MERGE()` merges its arguments into a single array:
 
 ```sql
 mysql> SELECT JSON_MERGE('[1, 2]', '["a", "b"]', '[true, false]');
@@ -317,7 +317,7 @@ mysql> SELECT JSON_MERGE('[1, 2]', '["a", "b"]', '[true, false]');
 +-----------------------------------------------------+
 ```
 
-A normalização também é realizada quando os valores são inseridos nas colunas do JSON, como mostrado aqui:
+Normalization is also performed when values are inserted into JSON columns, as shown here:
 
 ```sql
 mysql> CREATE TABLE t1 (c1 JSON);
@@ -335,7 +335,7 @@ mysql> SELECT c1 FROM t1;
 +-----------+
 ```
 
-Quando vários objetos são combinados, eles formam um único objeto. Se vários objetos tiverem a mesma chave, o valor dessa chave no objeto combinado resultante será um array contendo os valores da chave:
+Multiple objects when merged produce a single object. If multiple objects have the same key, the value for that key in the resulting merged object is an array containing the key values:
 
 ```sql
 mysql> SELECT JSON_MERGE('{"a": 1, "b": 2}', '{"c": 3, "a": 4}');
@@ -346,7 +346,7 @@ mysql> SELECT JSON_MERGE('{"a": 1, "b": 2}', '{"c": 3, "a": 4}');
 +----------------------------------------------------+
 ```
 
-Valores não de array usados em um contexto que exige um valor de array são autoencapsulados: o valor é cercado por caracteres `[` e `]` para convertê-lo em um array. Na seguinte declaração, cada argumento é autoencapsulado como um array (`[1]`, `[2]`). Esses são então combinados para produzir um único array de resultado:
+Nonarray values used in a context that requires an array value are autowrapped: The value is surrounded by `[` and `]` characters to convert it to an array. In the following statement, each argument is autowrapped as an array (`[1]`, `[2]`). These are then merged to produce a single result array:
 
 ```sql
 mysql> SELECT JSON_MERGE('1', '2');
@@ -357,7 +357,7 @@ mysql> SELECT JSON_MERGE('1', '2');
 +----------------------+
 ```
 
-Os valores de arrays e objetos são combinados ao autoencapsular o objeto como um array e combinar os dois arrays:
+Array and object values are merged by autowrapping the object as an array and merging the two arrays:
 
 ```sql
 mysql> SELECT JSON_MERGE('[10, 20]', '{"a": "x", "b": "y"}');
@@ -368,11 +368,11 @@ mysql> SELECT JSON_MERGE('[10, 20]', '{"a": "x", "b": "y"}');
 +------------------------------------------------+
 ```
 
-### Procurando e modificando valores JSON
+### Searching and Modifying JSON Values
 
-Uma expressão de caminho JSON seleciona um valor dentro de um documento JSON.
+A JSON path expression selects a value within a JSON document.
 
-As expressões de caminho são úteis com funções que extraem partes de um documento JSON ou o modificam, para especificar onde dentro desse documento você deseja operar. Por exemplo, a seguinte consulta extrai do documento JSON o valor do membro com a chave `name`:
+Path expressions are useful with functions that extract parts of or modify a JSON document, to specify where within that document to operate. For example, the following query extracts from a JSON document the value of the member with the `name` key:
 
 ```sql
 mysql> SELECT JSON_EXTRACT('{"id": 14, "name": "Aztalan"}', '$.name');
@@ -383,11 +383,11 @@ mysql> SELECT JSON_EXTRACT('{"id": 14, "name": "Aztalan"}', '$.name');
 +---------------------------------------------------------+
 ```
 
-A sintaxe de caminho usa um caractere `$` no início para representar o documento JSON em questão, opcionalmente seguido por seletores que indicam partes mais específicas do documento:
+Path syntax uses a leading `$` character to represent the JSON document under consideration, optionally followed by selectors that indicate successively more specific parts of the document:
 
-- Um período seguido por um nome chave nomeia o membro em um objeto com a chave especificada. O nome da chave deve ser especificado entre aspas duplas se o nome sem aspas não for válido em expressões de caminho (por exemplo, se contiver um espaço).
+* A period followed by a key name names the member in an object with the given key. The key name must be specified within double quotation marks if the name without quotes is not legal within path expressions (for example, if it contains a space).
 
-- `[N]` anexado a um *`caminho`* que seleciona um valor de um array nomeia o valor na posição *`N`* dentro do array. As posições dos arrays são inteiros que começam com zero. Se *`caminho`* não selecionar um valor de array, *`caminho`*[0] avalia para o mesmo valor que *`caminho`*:
+* `[N]` appended to a *`path`* that selects an array names the value at position *`N`* within the array. Array positions are integers beginning with zero. If *`path`* does not select an array value, *`path`*[0] evaluates to the same value as *`path`*:
 
   ```sql
   mysql> SELECT JSON_SET('"x"', '$[0]', 'a');
@@ -399,55 +399,54 @@ A sintaxe de caminho usa um caractere `$` no início para representar o document
   1 row in set (0.00 sec)
   ```
 
-- Os caminhos podem conter caracteres curingas `*` ou `**`:
+* Paths can contain `*` or `**` wildcards:
 
-  - `.[*]` avalia os valores de todos os membros de um objeto JSON.
+  + `.[*]` evaluates to the values of all members in a JSON object.
 
-  - `[*]` avalia os valores de todos os elementos em um array JSON.
+  + `[*]` evaluates to the values of all elements in a JSON array.
 
-  - `prefix**suffix` avalia todas as caminhos que começam com o prefixo nomeado e terminam com o sufixo nomeado.
+  + `prefix**suffix` evaluates to all paths that begin with the named prefix and end with the named suffix.
 
-- Um caminho que não existe no documento (avaliado como dados inexistentes) é avaliado como `NULL`.
+* A path that does not exist in the document (evaluates to nonexistent data) evaluates to `NULL`.
 
-Vamos chamar esse array JSON de `$`, com três elementos:
+Let `$` refer to this JSON array with three elements:
 
 ```sql
 [3, {"a": [5, 6], "b": 10}, [99, 100
 ```
 
-Então:
+Then:
 
-- `$[0]` avalia como `3`.
+* `$[0]` evaluates to `3`.
+* `$[1]` evaluates to `{"a": [5, 6], "b": 10}`.
 
-- `$[1]` avalia para `{"a": [5, 6], "b": 10}`.
+* `$[2]` evaluates to `[99, 100]`.
 
-- `$[2]` avalia para `[99, 100]`.
+* `$[3]` evaluates to `NULL` (it refers to the fourth array element, which does not exist).
 
-- `$[3]` avalia como `NULL` (ela se refere ao quarto elemento do array, que não existe).
+Because `$[1]` and `$[2]` evaluate to nonscalar values, they can be used as the basis for more-specific path expressions that select nested values. Examples:
 
-Como `$[1]` e `$[2]` retornam valores não escalares, eles podem ser usados como base para expressões de caminho mais específicas que selecionam valores aninhados. Exemplos:
+* `$[1].a` evaluates to `[5, 6]`.
 
-- `$[1].a` avalia para `[5, 6]`.
+* `$[1].a[1]` evaluates to `6`.
 
-- `$[1].a[1]` avalia para `6`.
+* `$[1].b` evaluates to `10`.
 
-- `$[1].b` avalia para `10`.
+* `$[2][0]` evaluates to `99`.
 
-- `$[2][0]` avalia para `99`.
-
-Como mencionado anteriormente, os componentes de caminho que nomeiam chaves devem ser citados se o nome da chave não citado não for legal em expressões de caminho. Deixe `$` referir-se a esse valor:
+As mentioned previously, path components that name keys must be quoted if the unquoted key name is not legal in path expressions. Let `$` refer to this value:
 
 ```sql
 {"a fish": "shark", "a bird": "sparrow"}
 ```
 
-As chaves devem conter um espaço e devem ser citadas:
+The keys both contain a space and must be quoted:
 
-- `$."um peixe"` avalia-se como `tubarão`.
+* `$."a fish"` evaluates to `shark`.
 
-- `$."um pássaro"` avalia-se como `coruja`.
+* `$."a bird"` evaluates to `sparrow`.
 
-Caminhos que usam caracteres curinga são avaliados como um array que pode conter múltiplos valores:
+Paths that use wildcards evaluate to an array that can contain multiple values:
 
 ```sql
 mysql> SELECT JSON_EXTRACT('{"a": 1, "b": 2, "c": [3, 4, 5]}', '$.*');
@@ -464,7 +463,7 @@ mysql> SELECT JSON_EXTRACT('{"a": 1, "b": 2, "c": [3, 4, 5]}', '$.c[*]');
 +------------------------------------------------------------+
 ```
 
-No exemplo a seguir, o caminho `$**.b` avalia múltiplos caminhos (`$.a.b` e `$.c.b`) e produz um array dos valores do caminho correspondente:
+In the following example, the path `$**.b` evaluates to multiple paths (`$.a.b` and `$.c.b`) and produces an array of the matching path values:
 
 ```sql
 mysql> SELECT JSON_EXTRACT('{"a": {"b": 1}, "c": {"b": 2}}', '$**.b');
@@ -475,17 +474,17 @@ mysql> SELECT JSON_EXTRACT('{"a": {"b": 1}, "c": {"b": 2}}', '$**.b');
 +---------------------------------------------------------+
 ```
 
-No MySQL 5.7.9 e versões posteriores, você pode usar `column->path` com um identificador de coluna JSON e uma expressão de caminho JSON como sinônimo de `JSON_EXTRACT(column, path)`. Consulte a Seção 12.17.3, “Funções que buscam valores JSON”, para obter mais informações. Veja também “Indexação de uma coluna gerada para fornecer um índice de coluna JSON”.
+In MySQL 5.7.9 and later, you can use `column->path` with a JSON column identifier and JSON path expression as a synonym for `JSON_EXTRACT(column, path)`. See Section 12.17.3, “Functions That Search JSON Values”, for more information. See also Indexing a Generated Column to Provide a JSON Column Index.
 
-Algumas funções recebem um documento JSON existente, modificam-no de alguma forma e retornam o documento modificado resultante. As expressões de caminho indicam onde, no documento, devem ser feitas as alterações. Por exemplo, as funções `JSON_SET()`, `JSON_INSERT()` e `JSON_REPLACE()` recebem um documento JSON, além de uma ou mais pares de caminho/valor que descrevem onde modificar o documento e os valores a serem usados. As funções diferem na forma como lidam com valores existentes e não existentes dentro do documento.
+Some functions take an existing JSON document, modify it in some way, and return the resulting modified document. Path expressions indicate where in the document to make changes. For example, the `JSON_SET()`, `JSON_INSERT()`, and `JSON_REPLACE()` functions each take a JSON document, plus one or more path/value pairs that describe where to modify the document and the values to use. The functions differ in how they handle existing and nonexisting values within the document.
 
-Considere este documento:
+Consider this document:
 
 ```sql
 mysql> SET @j = '["a", {"b": [true, false]}, [10, 20';
 ```
 
-`JSON_SET()` substitui os valores para caminhos que existem e adiciona valores para caminhos que não existem.
+`JSON_SET()` replaces values for paths that exist and adds values for paths that do not exist:.
 
 ```sql
 mysql> SELECT JSON_SET(@j, '$[1].b[0]', 1, '$[2][2]', 2);
@@ -496,9 +495,9 @@ mysql> SELECT JSON_SET(@j, '$[1].b[0]', 1, '$[2][2]', 2);
 +--------------------------------------------+
 ```
 
-Neste caso, o caminho `$[1].b[0]` seleciona um valor existente (`true`), que é substituído pelo valor que segue o argumento do caminho (`1`). O caminho `$[2][2]` não existe, então o valor correspondente (`2`) é adicionado ao valor selecionado por `$[2]`.
+In this case, the path `$[1].b[0]` selects an existing value (`true`), which is replaced with the value following the path argument (`1`). The path `$[2][2]` does not exist, so the corresponding value (`2`) is added to the value selected by `$[2]`.
 
-`JSON_INSERT()` adiciona novos valores, mas não substitui os valores existentes:
+`JSON_INSERT()` adds new values but does not replace existing values:
 
 ```sql
 mysql> SELECT JSON_INSERT(@j, '$[1].b[0]', 1, '$[2][2]', 2);
@@ -509,7 +508,7 @@ mysql> SELECT JSON_INSERT(@j, '$[1].b[0]', 1, '$[2][2]', 2);
 +-----------------------------------------------+
 ```
 
-`JSON_REPLACE()` substitui os valores existentes e ignora os novos valores:
+`JSON_REPLACE()` replaces existing values and ignores new values:
 
 ```sql
 mysql> SELECT JSON_REPLACE(@j, '$[1].b[0]', 1, '$[2][2]', 2);
@@ -520,9 +519,9 @@ mysql> SELECT JSON_REPLACE(@j, '$[1].b[0]', 1, '$[2][2]', 2);
 +------------------------------------------------+
 ```
 
-Os pares de caminho/valor são avaliados da esquerda para a direita. O documento produzido ao avaliar um par se torna o novo valor contra o qual o próximo par é avaliado.
+The path/value pairs are evaluated left to right. The document produced by evaluating one pair becomes the new value against which the next pair is evaluated.
 
-`JSON_REMOVE()` recebe um documento JSON e uma ou mais caminhos que especificam os valores a serem removidos do documento. O valor de retorno é o documento original, menos os valores selecionados pelos caminhos que existem dentro do documento:
+`JSON_REMOVE()` takes a JSON document and one or more paths that specify values to be removed from the document. The return value is the original document minus the values selected by paths that exist within the document:
 
 ```sql
 mysql> SELECT JSON_REMOVE(@j, '$[2]', '$[1].b[1]', '$[1].b[1]');
@@ -533,17 +532,17 @@ mysql> SELECT JSON_REMOVE(@j, '$[2]', '$[1].b[1]', '$[1].b[1]');
 +---------------------------------------------------+
 ```
 
-Os caminhos têm esses efeitos:
+The paths have these effects:
 
-- `$[2]` corresponde a `[10, 20]` e a remove.
+* `$[2]` matches `[10, 20]` and removes it.
 
-- A primeira instância de `$[1].b[1]` corresponde a `false` no elemento `b` e a remove.
+* The first instance of `$[1].b[1]` matches `false` in the `b` element and removes it.
 
-- A segunda instância de `$[1].b[1]` não corresponde a nada: Esse elemento já foi removido, o caminho não existe mais e não tem efeito.
+* The second instance of `$[1].b[1]` matches nothing: That element has already been removed, the path no longer exists, and has no effect.
 
-### Sintaxe de caminho JSON
+### JSON Path Syntax
 
-Muitas das funções JSON suportadas pelo MySQL e descritas em outros lugares neste Manual (veja a Seção 12.17, “Funções JSON”) requerem uma expressão de caminho para identificar um elemento específico em um documento JSON. Um caminho consiste no escopo do caminho seguido por uma ou mais pernas do caminho. Para caminhos usados em funções JSON do MySQL, o escopo é sempre o documento que está sendo pesquisado ou operado, representado por um caractere `$` no início. As pernas do caminho são separadas por caracteres de ponto (`.`). As células em arrays são representadas por `[N]`, onde *`N`* é um inteiro não negativo. Os nomes das chaves devem ser cadeias de caracteres duplicadas ou identificadores válidos do ECMAScript (veja `http://www.ecma-international.org/ecma-262/5.1/#sec-7.6`). As expressões de caminho, como o texto JSON, devem ser codificadas usando o conjunto de caracteres `ascii`, `utf8` ou `utf8mb4`. Outras codificações de caracteres são coercidas implicitamente para `utf8mb4`. A sintaxe completa é mostrada aqui:
+Many of the JSON functions supported by MySQL and described elsewhere in this Manual (see Section 12.17, “JSON Functions”) require a path expression in order to identify a specific element in a JSON document. A path consists of the path's scope followed by one or more path legs. For paths used in MySQL JSON functions, the scope is always the document being searched or otherwise operated on, represented by a leading `$` character. Path legs are separated by period characters (`.`). Cells in arrays are represented by `[N]`, where *`N`* is a non-negative integer. Names of keys must be double-quoted strings or valid ECMAScript identifiers (see `http://www.ecma-international.org/ecma-262/5.1/#sec-7.6`). Path expressions, like JSON text, should be encoded using the `ascii`, `utf8`, or `utf8mb4` character set. Other character encodings are implicitly coerced to `utf8mb4`. The complete syntax is shown here:
 
 ```sql
 pathExpression:
@@ -577,40 +576,40 @@ rightBracket:
     ']'
 ```
 
-Como mencionado anteriormente, no MySQL, o escopo do caminho é sempre o documento que está sendo operado, representado como `$`. Você pode usar `'$'` como sinônimo do documento em expressões de caminho JSON.
+As noted previously, in MySQL, the scope of the path is always the document being operated on, represented as `$`. You can use `'$'` as a synonym for the document in JSON path expressions.
 
-Nota
+Note
 
-Algumas implementações suportam referências de coluna para escopos de caminhos JSON; atualmente, o MySQL não suporta essas referências.
+Some implementations support column references for scopes of JSON paths; currently, MySQL does not support these.
 
-Os tokens `*` e `**` são usados da seguinte forma:
+The wildcard `*` and `**` tokens are used as follows:
 
-- `.*` representa os valores de todos os membros do objeto.
+* `.*` represents the values of all members in the object.
 
-- `[*]` representa os valores de todas as células do array.
+* `[*]` represents the values of all cells in the array.
 
-- `[prefix]**suffix` representa todos os caminhos que começam com *`prefix`* e terminam com *`suffix`*. *`prefix`* é opcional, enquanto *`suffix`* é obrigatório; em outras palavras, um caminho não pode terminar com `**`.
+* `[prefix]**suffix` represents all paths beginning with *`prefix`* and ending with *`suffix`*. *`prefix`* is optional, while *`suffix`* is required; in other words, a path may not end in `**`.
 
-  Além disso, um caminho não pode conter a sequência `***`.
+  In addition, a path may not contain the sequence `***`.
 
-Para exemplos de sintaxe de caminho, consulte as descrições das várias funções JSON que aceitam caminhos como argumentos, como `JSON_CONTAINS_PATH()`, `JSON_SET()` e `JSON_REPLACE()`. Para exemplos que incluem o uso dos caracteres curingas `*` e `**`, consulte a descrição da função `JSON_SEARCH()`.
+For path syntax examples, see the descriptions of the various JSON functions that take paths as arguments, such as `JSON_CONTAINS_PATH()`, `JSON_SET()`, and `JSON_REPLACE()`. For examples which include the use of the `*` and `**` wildcards, see the description of the `JSON_SEARCH()` function.
 
-### Comparação e ordenação de valores JSON
+### Comparison and Ordering of JSON Values
 
-Os valores JSON podem ser comparados usando os operadores `=`, `<`, `<=`, `>`, `>=`, `<>`, `!=` e `<=>`.
+JSON values can be compared using the `=`, `<`, `<=`, `>`, `>=`, `<>`, `!=`, and `<=>` operators.
 
-Os seguintes operadores e funções de comparação ainda não são suportados com valores JSON:
+The following comparison operators and functions are not yet supported with JSON values:
 
-- `ENTRE`
-- `IN()`
-- MAIOR()
-- `MENOS MAIORES()`
+* `BETWEEN`
+* `IN()`
+* `GREATEST()`
+* `LEAST()`
 
-Uma solução para os operadores e funções de comparação listados acima é converter os valores JSON para um tipo de dados numérico ou de string nativo do MySQL, para que eles tenham um tipo escalar não JSON consistente.
+A workaround for the comparison operators and functions just listed is to cast JSON values to a native MySQL numeric or string data type so they have a consistent non-JSON scalar type.
 
-A comparação de valores JSON ocorre em dois níveis. O primeiro nível de comparação é baseado nos tipos JSON dos valores comparados. Se os tipos forem diferentes, o resultado da comparação é determinado exclusivamente pelo tipo que tem precedência maior. Se os dois valores tiverem o mesmo tipo JSON, ocorre um segundo nível de comparação usando regras específicas do tipo.
+Comparison of JSON values takes place at two levels. The first level of comparison is based on the JSON types of the compared values. If the types differ, the comparison result is determined solely by which type has higher precedence. If the two values have the same JSON type, a second level of comparison occurs using type-specific rules.
 
-A lista a seguir mostra as precedências dos tipos JSON, do mais alto para o mais baixo. (Os nomes dos tipos são os retornados pela função `JSON_TYPE()`. Os tipos mostrados juntos em uma linha têm a mesma precedência. Qualquer valor que tenha um tipo JSON listado anteriormente na lista é comparado como maior do que qualquer valor que tenha um tipo JSON listado mais tarde na lista.)
+The following list shows the precedences of JSON types, from highest precedence to the lowest. (The type names are those returned by the `JSON_TYPE()` function.) Types shown together on a line have the same precedence. Any value having a JSON type listed earlier in the list compares greater than any value having a JSON type listed later in the list.
 
 ```sql
 BLOB
@@ -627,137 +626,137 @@ INTEGER, DOUBLE
 NULL
 ```
 
-Para valores JSON de mesma precedência, as regras de comparação são específicas do tipo:
+For JSON values of the same precedence, the comparison rules are type specific:
 
-- `BLOB`
+* `BLOB`
 
-  Os primeiros `N` bytes dos dois valores são comparados, onde `N` é o número de bytes no valor mais curto. Se os primeiros `N` bytes dos dois valores forem idênticos, o valor mais curto é ordenado antes do valor mais longo.
+  The first *`N`* bytes of the two values are compared, where *`N`* is the number of bytes in the shorter value. If the first *`N`* bytes of the two values are identical, the shorter value is ordered before the longer value.
 
-- `BIT`
+* `BIT`
 
-  As mesmas regras que para `BLOB`.
+  Same rules as for `BLOB`.
 
-- `OPAQUE`
+* `OPAQUE`
 
-  As mesmas regras que para `BLOB`. Os valores `OPAQUE` são valores que não são classificados como um dos outros tipos.
+  Same rules as for `BLOB`. `OPAQUE` values are values that are not classified as one of the other types.
 
-- `DATETIME`
+* `DATETIME`
 
-  Um valor que representa um ponto de tempo anterior é ordenado antes de um valor que representa um ponto de tempo posterior. Se dois valores originalmente vierem dos tipos `DATETIME` e `TIMESTAMP` do MySQL, respectivamente, eles são iguais se representarem o mesmo ponto de tempo.
+  A value that represents an earlier point in time is ordered before a value that represents a later point in time. If two values originally come from the MySQL `DATETIME` and `TIMESTAMP` types, respectively, they are equal if they represent the same point in time.
 
-- `TIME`
+* `TIME`
 
-  O menor dos dois valores de tempo é ordenado antes do maior.
+  The smaller of two time values is ordered before the larger one.
 
-- `DATA`
+* `DATE`
 
-  A data anterior é ordenada antes da data mais recente.
+  The earlier date is ordered before the more recent date.
 
-- `ARRAY`
+* `ARRAY`
 
-  Dois arrays JSON são iguais se tiverem o mesmo comprimento e os valores nas posições correspondentes dos arrays forem iguais.
+  Two JSON arrays are equal if they have the same length and values in corresponding positions in the arrays are equal.
 
-  Se os arrays não forem iguais, sua ordem é determinada pelos elementos na primeira posição onde há uma diferença. O array com o valor menor nessa posição é ordenado primeiro. Se todos os valores do array mais curto forem iguais aos valores correspondentes no array mais longo, o array mais curto é ordenado primeiro.
+  If the arrays are not equal, their order is determined by the elements in the first position where there is a difference. The array with the smaller value in that position is ordered first. If all values of the shorter array are equal to the corresponding values in the longer array, the shorter array is ordered first.
 
-  Exemplo:
+  Example:
 
   ```sql
   [] < ["a"] < ["ab"] < ["ab", "cd", "ef"] < ["ab", "ef"]
   ```
 
-- `BOOLEAN`
+* `BOOLEAN`
 
-  O literal JSON falso é menor que o literal JSON verdadeiro.
+  The JSON false literal is less than the JSON true literal.
 
-- `OBJETO`
+* `OBJECT`
 
-  Dois objetos JSON são iguais se tiverem o mesmo conjunto de chaves e cada chave tiver o mesmo valor em ambos os objetos.
+  Two JSON objects are equal if they have the same set of keys, and each key has the same value in both objects.
 
-  Exemplo:
+  Example:
 
   ```sql
   {"a": 1, "b": 2} = {"b": 2, "a": 1}
   ```
 
-  A ordem de dois objetos que não são iguais é não especificado, mas determinada.
+  The order of two objects that are not equal is unspecified but deterministic.
 
-- `STRING`
+* `STRING`
 
-  As cadeias são ordenadas lexicograficamente nos primeiros *`N`* bytes da representação `utf8mb4` das duas cadeias que estão sendo comparadas, onde *`N`* é a comprimento da cadeia mais curta. Se os primeiros *`N`* bytes das duas cadeias forem idênticos, a cadeia mais curta é considerada menor que a cadeia mais longa.
+  Strings are ordered lexically on the first *`N`* bytes of the `utf8mb4` representation of the two strings being compared, where *`N`* is the length of the shorter string. If the first *`N`* bytes of the two strings are identical, the shorter string is considered smaller than the longer string.
 
-  Exemplo:
+  Example:
 
   ```sql
   "a" < "ab" < "b" < "bc"
   ```
 
-  Essa ordenação é equivalente à ordenação de strings SQL com a collation `utf8mb4_bin`. Como `utf8mb4_bin` é uma collation binária, a comparação de valores JSON é sensível ao caso:
+  This ordering is equivalent to the ordering of SQL strings with collation `utf8mb4_bin`. Because `utf8mb4_bin` is a binary collation, comparison of JSON values is case-sensitive:
 
   ```sql
   "A" < "a"
   ```
 
-- `INTEIRO`, `DOBLAR`
+* `INTEGER`, `DOUBLE`
 
-  Os valores JSON podem conter números de valor exato e números de valor aproximado. Para uma discussão geral sobre esses tipos de números, consulte a Seção 9.1.2, “Literais Numéricos”.
+  JSON values can contain exact-value numbers and approximate-value numbers. For a general discussion of these types of numbers, see Section 9.1.2, “Numeric Literals”.
 
-  As regras para comparar tipos numéricos nativos do MySQL são discutidas na Seção 12.3, “Conversão de Tipo na Avaliação de Expressões”, mas as regras para comparar números dentro de valores JSON diferem um pouco:
+  The rules for comparing native MySQL numeric types are discussed in Section 12.3, “Type Conversion in Expression Evaluation”, but the rules for comparing numbers within JSON values differ somewhat:
 
-  - Em uma comparação entre duas colunas que usam os tipos numéricos nativos MySQL `INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") e `DOUBLE` - FLOAT, DOUBLE"), sabe-se que todas as comparações envolvem um inteiro e um duplo, então o inteiro é convertido para duplo para todas as linhas. Ou seja, os números de valor exato são convertidos em números de valor aproximado.
+  + In a comparison between two columns that use the native MySQL `INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") and `DOUBLE` - FLOAT, DOUBLE") numeric types, respectively, it is known that all comparisons involve an integer and a double, so the integer is converted to double for all rows. That is, exact-value numbers are converted to approximate-value numbers.
 
-  - Por outro lado, se a consulta comparar duas colunas JSON que contêm números, não é possível saber antecipadamente se os números são inteiros ou decimais. Para fornecer o comportamento mais consistente em todas as linhas, o MySQL converte números de valor aproximado em números de valor exato. A ordem resultante é consistente e não perde precisão para os números de valor exato. Por exemplo, dados os escalares 9223372036854775805, 9223372036854775806, 9223372036854775807 e 9,223372036854776e18, a ordem é a seguinte:
+  + On the other hand, if the query compares two JSON columns containing numbers, it cannot be known in advance whether numbers are integer or double. To provide the most consistent behavior across all rows, MySQL converts approximate-value numbers to exact-value numbers. The resulting ordering is consistent and does not lose precision for the exact-value numbers. For example, given the scalars 9223372036854775805, 9223372036854775806, 9223372036854775807 and 9.223372036854776e18, the order is such as this:
 
     ```sql
     9223372036854775805 < 9223372036854775806 < 9223372036854775807
     < 9.223372036854776e18 = 9223372036854776000 < 9223372036854776001
     ```
 
-  Se as comparações JSON usarem as regras de comparação numérica não JSON, pode ocorrer uma ordem inconsistente. As regras de comparação padrão do MySQL para números produzem essas ordens:
+  Were JSON comparisons to use the non-JSON numeric comparison rules, inconsistent ordering could occur. The usual MySQL comparison rules for numbers yield these orderings:
 
-  - Comparações numéricas:
+  + Integer comparison:
 
     ```sql
     9223372036854775805 < 9223372036854775806 < 9223372036854775807
     ```
 
-    (não definido para 9,223372036854776e18)
+    (not defined for 9.223372036854776e18)
 
-  - Comparação dupla:
+  + Double comparison:
 
     ```sql
     9223372036854775805 = 9223372036854775806 = 9223372036854775807 = 9.223372036854776e18
     ```
 
-Para comparação de qualquer valor JSON com `NULL` no SQL, o resultado é `DESCONHECIDO`.
+For comparison of any JSON value to SQL `NULL`, the result is `UNKNOWN`.
 
-Para a comparação de valores JSON e não JSON, o valor não JSON é convertido para JSON de acordo com as regras da tabela a seguir, e os valores são então comparados conforme descrito anteriormente.
+For comparison of JSON and non-JSON values, the non-JSON value is converted to JSON according to the rules in the following table, then the values compared as described previously.
 
-### Conversão entre valores JSON e não JSON
+### Converting between JSON and non-JSON values
 
-A tabela a seguir fornece um resumo das regras que o MySQL segue ao realizar conversões entre valores JSON e valores de outros tipos:
+The following table provides a summary of the rules that MySQL follows when casting between JSON values and values of other types:
 
-**Tabela 11.3 Regras de conversão JSON**
+**Table 11.3 JSON Conversion Rules**
 
-<table summary="Regras de conversão para o tipo de dados JSON"><col style="width: 20%"/><col style="width: 40%"/><col style="width: 40%"/><thead><tr> <th>outro tipo</th> <th>CAST(outro tipo COMO JSON)</th> <th>CAST(JSON como outro tipo)</th> </tr></thead><tbody><tr> <th>JSON</th> <td>Sem alterações</td> <td>Sem alterações</td> </tr><tr> <th>tipo de caractere utf8 (PH_HTML_CODE_<code>ST_GeomFromGeoJSON()</code>], PH_HTML_CODE_<code>ST_GeomFromGeoJSON()</code>], <code>ascii</code>)</th> <td>A string é analisada em um valor JSON.</td> <td>O valor JSON é serializado em uma string <code>utf8mb4</code>.</td> </tr><tr> <th>Outros tipos de personagens</th> <td>Outras codificações de caracteres são implicitamente convertidas para <code>utf8mb4</code> e tratadas conforme descrito para o tipo de caractere utf8.</td> <td>O valor JSON é serializado em uma string <code>utf8mb4</code> e, em seguida, convertido para outra codificação de caracteres. O resultado pode não ter significado.</td> </tr><tr> <th><code>NULL</code></th> <td>O resultado é um valor <code>NULL</code> do tipo JSON.</td> <td>Não aplicável.</td> </tr><tr> <th>Tipos de geometria</th> <td>O valor da geometria é convertido em um documento JSON chamando<code>ST_AsGeoJSON()</code>.</td> <td>Operação ilegal. Solução: Passe o resultado de<code>CAST(<em><code>json_val</code></em>AS CHAR)</code>para<code>ST_GeomFromGeoJSON()</code>.</td> </tr><tr> <th>Todos os outros tipos</th> <td>O resultado é um documento JSON que consiste em um único valor escalar.</td> <td>É bem-sucedido se o documento JSON contiver um único valor escalar do tipo alvo e se esse valor escalar puder ser convertido para o tipo alvo. Caso contrário, retorna <code>utf8</code><code>ST_GeomFromGeoJSON()</code>] e gera uma mensagem de aviso.</td> </tr></tbody></table>
+<table summary="Conversion rules for the JSON data type"><col style="width: 20%"/><col style="width: 40%"/><col style="width: 40%"/><thead><tr> <th>other type</th> <th>CAST(other type AS JSON)</th> <th>CAST(JSON AS other type)</th> </tr></thead><tbody><tr> <th>JSON</th> <td>No change</td> <td>No change</td> </tr><tr> <th>utf8 character type (<code>utf8mb4</code>, <code>utf8</code>, <code>ascii</code>)</th> <td>The string is parsed into a JSON value.</td> <td>The JSON value is serialized into a <code>utf8mb4</code> string.</td> </tr><tr> <th>Other character types</th> <td>Other character encodings are implicitly converted to <code>utf8mb4</code> and treated as described for utf8 character type.</td> <td>The JSON value is serialized into a <code>utf8mb4</code> string, then cast to the other character encoding. The result may not be meaningful.</td> </tr><tr> <th><code>NULL</code></th> <td>Results in a <code>NULL</code> value of type JSON.</td> <td>Not applicable.</td> </tr><tr> <th>Geometry types</th> <td>The geometry value is converted into a JSON document by calling <code>ST_AsGeoJSON()</code>.</td> <td>Illegal operation. Workaround: Pass the result of <code>CAST(<em><code>json_val</code></em> AS CHAR)</code> to <code>ST_GeomFromGeoJSON()</code>.</td> </tr><tr> <th>All other types</th> <td>Results in a JSON document consisting of a single scalar value.</td> <td>Succeeds if the JSON document consists of a single scalar value of the target type and that scalar value can be cast to the target type. Otherwise, returns <code>NULL</code> and produces a warning.</td> </tr></tbody></table>
 
-O comando `ORDER BY` e `GROUP BY` para valores JSON funcionam de acordo com esses princípios:
+`ORDER BY` and `GROUP BY` for JSON values works according to these principles:
 
-- A ordenação de valores JSON escalares segue as mesmas regras da discussão anterior.
+* Ordering of scalar JSON values uses the same rules as in the preceding discussion.
 
-- Para ordenações ascendentes, o SQL ordena o `NULL` antes de todos os valores JSON, incluindo o literal `NULL` JSON; para ordenações descendentes, o SQL ordena o `NULL` após todos os valores JSON, incluindo o literal `NULL` JSON.
+* For ascending sorts, SQL `NULL` orders before all JSON values, including the JSON null literal; for descending sorts, SQL `NULL` orders after all JSON values, including the JSON null literal.
 
-- As chaves de classificação para os valores JSON são determinadas pelo valor da variável de sistema `max_sort_length`, portanto, as chaves que diferem apenas após os primeiros `max_sort_length` bytes são consideradas iguais.
+* Sort keys for JSON values are bound by the value of the `max_sort_length` system variable, so keys that differ only after the first `max_sort_length` bytes compare as equal.
 
-- O triagem de valores não escalares não é suportada atualmente e um aviso é exibido.
+* Sorting of nonscalar values is not currently supported and a warning occurs.
 
-Para a ordenação, pode ser benéfico converter um escalar JSON em outro tipo nativo do MySQL. Por exemplo, se uma coluna chamada `jdoc` contém objetos JSON com um membro que consiste em uma chave `id` e um valor não negativo, use esta expressão para ordenar por valores de `id`:
+For sorting, it can be beneficial to cast a JSON scalar to some other native MySQL type. For example, if a column named `jdoc` contains JSON objects having a member consisting of an `id` key and a nonnegative value, use this expression to sort by `id` values:
 
 ```sql
 ORDER BY CAST(JSON_EXTRACT(jdoc, '$.id') AS UNSIGNED)
 ```
 
-Se houver uma coluna gerada definida para usar a mesma expressão que na cláusula `ORDER BY`, o otimizador do MySQL reconhece isso e considera o uso do índice para o plano de execução da consulta. Veja a Seção 8.3.10, “Uso do Otimizador de Índices de Colunas Geradas”.
+If there happens to be a generated column defined to use the same expression as in the `ORDER BY`, the MySQL optimizer recognizes that and considers using the index for the query execution plan. See Section 8.3.10, “Optimizer Use of Generated Column Indexes”.
 
-### Agrupamento de Valores JSON
+### Aggregation of JSON Values
 
-Para a agregação de valores JSON, os valores `NULL` do SQL são ignorados, assim como outros tipos de dados. Os valores que não são `NULL` são convertidos para um tipo numérico e agregados, exceto para `MIN()`, `MAX()` e `GROUP_CONCAT()`. A conversão para número deve produzir um resultado significativo para valores JSON que são escalares numéricos, embora (dependendo dos valores) possa ocorrer truncação e perda de precisão. A conversão para número de outros valores JSON pode não produzir um resultado significativo.
+For aggregation of JSON values, SQL `NULL` values are ignored as for other data types. Non-`NULL` values are converted to a numeric type and aggregated, except for `MIN()`, `MAX()`, and `GROUP_CONCAT()`. The conversion to number should produce a meaningful result for JSON values that are numeric scalars, although (depending on the values) truncation and loss of precision may occur. Conversion to number of other JSON values may not produce a meaningful result.

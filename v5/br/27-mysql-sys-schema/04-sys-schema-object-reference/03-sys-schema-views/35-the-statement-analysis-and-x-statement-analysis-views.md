@@ -1,97 +1,97 @@
-#### 26.4.3.35 A análise da declaração e as visualizações x$statement_analysis
+#### 26.4.3.35 The statement_analysis and x$statement_analysis Views
 
-Essas visualizações listam declarações normalizadas com estatísticas agregadas. O conteúdo imita a visualização de Análise de Consulta do MySQL Enterprise Monitor. Por padrão, as linhas são ordenadas por latência total decrescente.
+These views list normalized statements with aggregated statistics. The content mimics the MySQL Enterprise Monitor Query Analysis view. By default, rows are sorted by descending total latency.
 
-As views `statement_analysis` e `x$statement_analysis` possuem essas colunas:
+The `statement_analysis` and `x$statement_analysis` views have these columns:
 
-- `consulta`
+* `query`
 
-  A string de declaração normalizada.
+  The normalized statement string.
 
-- `db`
+* `db`
 
-  O banco de dados padrão para a declaração, ou `NULL` se não houver nenhum.
+  The default database for the statement, or `NULL` if there is none.
 
-- `full_scan`
+* `full_scan`
 
-  O número total de varreduras completas da tabela realizadas por ocorrências da declaração.
+  The total number of full table scans performed by occurrences of the statement.
 
-- `exec_count`
+* `exec_count`
 
-  O número total de vezes que a declaração foi executada.
+  The total number of times the statement has executed.
 
-- `err_count`
+* `err_count`
 
-  O número total de erros produzidos por ocorrências da declaração.
+  The total number of errors produced by occurrences of the statement.
 
-- `warn_count`
+* `warn_count`
 
-  O número total de avisos gerados por ocorrências da declaração.
+  The total number of warnings produced by occurrences of the statement.
 
-- `total_latency`
+* `total_latency`
 
-  O tempo total de espera de ocorrências temporizadas da declaração.
+  The total wait time of timed occurrences of the statement.
 
-- `max_latency`
+* `max_latency`
 
-  O tempo de espera máximo de uma única ocorrência temporizada da declaração.
+  The maximum single wait time of timed occurrences of the statement.
 
-- `avg_latency`
+* `avg_latency`
 
-  O tempo médio de espera por ocorrência cronometrada da declaração.
+  The average wait time per timed occurrence of the statement.
 
-- `lock_latency`
+* `lock_latency`
 
-  O tempo total de espera por bloqueios por ocorrências temporizadas da declaração.
+  The total time waiting for locks by timed occurrences of the statement.
 
-- `rows_sent`
+* `rows_sent`
 
-  O número total de linhas devolvidas por ocorrências da declaração.
+  The total number of rows returned by occurrences of the statement.
 
-- `rows_sent_avg`
+* `rows_sent_avg`
 
-  O número médio de linhas devolvidas por ocorrência da declaração.
+  The average number of rows returned per occurrence of the statement.
 
-- `rows_examined`
+* `rows_examined`
 
-  O número total de linhas lidas dos motores de armazenamento por ocorrências da declaração.
+  The total number of rows read from storage engines by occurrences of the statement.
 
-- `rows_examined_avg`
+* `rows_examined_avg`
 
-  O número médio de linhas lidas dos motores de armazenamento por ocorrência da declaração.
+  The average number of rows read from storage engines per occurrence of the statement.
 
-- `rows_affected`
+* `rows_affected`
 
-  O número total de linhas afetadas por ocorrências da declaração.
+  The total number of rows affected by occurrences of the statement.
 
-- `rows_affected_avg`
+* `rows_affected_avg`
 
-  O número médio de linhas afetadas por cada ocorrência da declaração.
+  The average number of rows affected per occurrence of the statement.
 
-- `tmp_tables`
+* `tmp_tables`
 
-  O número total de tabelas temporárias internas de memória criadas por ocorrências da declaração.
+  The total number of internal in-memory temporary tables created by occurrences of the statement.
 
-- `tmp_disk_tables`
+* `tmp_disk_tables`
 
-  O número total de tabelas temporárias internas no disco criadas por ocorrências da declaração.
+  The total number of internal on-disk temporary tables created by occurrences of the statement.
 
-- `rows_sorted`
+* `rows_sorted`
 
-  O número total de linhas classificadas por ocorrências da declaração.
+  The total number of rows sorted by occurrences of the statement.
 
-- `sort_merge_passes`
+* `sort_merge_passes`
 
-  O número total de passes de fusão de classificação por ocorrências da declaração.
+  The total number of sort merge passes by occurrences of the statement.
 
-- `digest`
+* `digest`
 
-  O resumo da declaração.
+  The statement digest.
 
-- `primeiro_avistado`
+* `first_seen`
 
-  O momento em que a declaração foi vista pela primeira vez.
+  The time at which the statement was first seen.
 
-- `última_visualização`
+* `last_seen`
 
-  O horário em que a declaração foi vista pela última vez.
+  The time at which the statement was most recently seen.

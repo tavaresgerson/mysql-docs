@@ -1,55 +1,55 @@
-### 17.5.2 Recuperação de sintonização
+### 17.5.2 Tuning Recovery
 
-Sempre que um novo membro se junta a um grupo de replicação, ele se conecta a um doador adequado e recupera os dados que ele havia perdido até o ponto em que é declarado online. Esse componente crítico na Replicação em Grupo é tolerante a falhas e configurável. A seção a seguir explica como funciona a recuperação e como ajustar as configurações
+Whenever a new member joins a replication group, it connects to a suitable donor and fetches the data that it has missed up until the point it is declared online. This critical component in Group Replication is fault tolerant and configurable. The following section explains how recovery works and how to tune the settings
 
-#### Seleção do doador
+#### Donor Selection
 
-Um doador aleatório é selecionado entre os membros online existentes no grupo. Dessa forma, há uma boa chance de que o mesmo servidor não seja selecionado mais de uma vez quando vários membros entrarem no grupo.
+A random donor is selected from the existing online members in the group. This way there is a good chance that the same server is not selected more than once when multiple members enter the group.
 
-Se a conexão com o doador selecionado falhar, uma nova conexão será automaticamente tentada com um novo candidato doador. Quando o limite de tentativas de conexão for atingido, o procedimento de recuperação será encerrado com um erro.
+If the connection to the selected donor fails, a new connection is automatically attempted to a new candidate donor. Once the connection retry limit is reached the recovery procedure terminates with an error.
 
-Nota
+Note
 
-Um doador é escolhido aleatoriamente da lista de membros online na visualização atual.
+A donor is picked randomly from the list of online members in the current view.
 
-#### Aumento da transição automática de doadores
+#### Enhanced Automatic Donor Switchover
 
-O outro ponto principal de preocupação na recuperação como um todo é garantir que ela lidere com falhas. Portanto, o Grupo de Replicação oferece mecanismos robustos de detecção de erros. Em versões anteriores do Grupo de Replicação, ao tentar acessar um doador, a recuperação só conseguia detectar erros de conexão devido a problemas de autenticação ou algum outro problema. A reação a esses cenários problemáticos era mudar para um novo doador, fazendo uma nova tentativa de conexão com um membro diferente.
+The other main point of concern in recovery as a whole is to make sure that it copes with failures. Hence, Group Replication provides robust error detection mechanisms. In earlier versions of Group Replication, when reaching out to a donor, recovery could only detect connection errors due to authentication issues or some other problem. The reaction to such problematic scenarios was to switch over to a new donor thus a new connection attempt was made to a different member.
 
-Esse comportamento foi estendido para cobrir outros cenários de falha:
+This behavior was extended to also cover other failure scenarios:
 
-- *Cenários de dados excluídos* - Se o doador selecionado contiver alguns dados excluídos que são necessários para o processo de recuperação, ocorrerá um erro. A recuperação detecta esse erro e um novo doador é selecionado.
+* *Purged data scenarios* - If the selected donor contains some purged data that is needed for the recovery process then an error occurs. Recovery detects this error and a new donor is selected.
 
-- *Dados duplicados* - Se um servidor que está se juntando ao grupo já contém alguns dados que entram em conflito com os dados do doador selecionado durante a recuperação, então ocorre um erro. Isso pode ser causado por algumas transações errôneas presentes no servidor que está se juntando ao grupo.
+* *Duplicated data* - If a server joining the group already contains some data that conflicts with the data coming from the selected donor during recovery then an error occurs. This could be caused by some errant transactions present in the server joining the group.
 
-  Poder-se-ia argumentar que a recuperação deve falhar em vez de ser feita com outro doador, mas em grupos heterogêneos há a chance de outros membros compartilharem as transações conflitantes e outros não. Por essa razão, em caso de erro, a recuperação seleciona outro doador do grupo.
+  One could argue that recovery should fail instead of switching over to another donor, but in heterogeneous groups there is chance that other members share the conflicting transactions and others do not. For that reason, upon error, recovery selects another donor from the group.
 
-- *Outros erros* - Se algum dos fios de recuperação falhar (fios do receptor ou do aplicador falharem), um erro ocorrerá e a recuperação será transferida para um novo doador.
+* *Other errors* - If any of the recovery threads fail (receiver or applier threads fail) then an error occurs and recovery switches over to a new donor.
 
-Nota
+Note
 
-Em caso de falhas persistentes ou até mesmo transitórias, a recuperação tentará automaticamente reconectar ao mesmo ou a um novo doador.
+In case of some persistent failures or even transient failures recovery automatically retries connecting to the same or a new donor.
 
-#### Tentações de conexão do doador
+#### Donor Connection Retries
 
-A transferência de dados de recuperação depende do log binário e do framework de replicação existente do MySQL, portanto, é possível que alguns erros transitórios possam causar erros nos threads do receptor ou do aplicável. Nesses casos, o processo de transição do doador possui uma funcionalidade de tentativa novamente, semelhante à encontrada na replicação regular.
+The recovery data transfer relies on the binary log and existing MySQL replication framework, therefore it is possible that some transient errors could cause errors in the receiver or applier threads. In such cases, the donor switch over process has retry functionality, similar to that found in regular replication.
 
-#### Número de tentativas
+#### Number of Attempts
 
-O número de tentativas que um servidor faz ao tentar se conectar a um doador do pool de doadores é de 10. Isso é configurado através da variável do plugin `group_replication_recovery_retry_count`. O seguinte comando define o número máximo de tentativas para se conectar a um doador em 10.
+The number of attempts a server joining the group makes when trying to connect to a donor from the pool of donors is 10. This is configured through the [`group_replication_recovery_retry_count`](group-replication-system-variables.html#sysvar_group_replication_recovery_retry_count) plugin variable . The following command sets the maximum number of attempts to connect to a donor to 10.
 
 ```sql
 mysql> SET GLOBAL group_replication_recovery_retry_count= 10;
 ```
 
-Observe que isso representa o número global de tentativas que o servidor que está se juntando ao grupo faz para se conectar a cada um dos doadores adequados.
+Note that this accounts for the global number of attempts that the server joining the group makes connecting to each one of the suitable donors.
 
-#### Rotinas de sono
+#### Sleep Routines
 
-A variável do plugin `group_replication_recovery_reconnect_interval` define quanto tempo o processo de recuperação deve esperar entre as tentativas de conexão do doador. Essa variável tem seu valor padrão definido em 60 segundos e você pode alterar esse valor dinamicamente. O seguinte comando define o intervalo de tentativa de conexão do doador de recuperação para 120 segundos.
+The [`group_replication_recovery_reconnect_interval`](group-replication-system-variables.html#sysvar_group_replication_recovery_reconnect_interval) plugin variable defines how much time the recovery process should sleep between donor connection attempts. This variable has its default set to 60 seconds and you can change this value dynamically. The following command sets the recovery donor connection retry interval to 120 seconds.
 
 ```sql
 mysql> SET GLOBAL group_replication_recovery_reconnect_interval= 120;
 ```
 
-Observe, no entanto, que a recuperação não fica em repouso após cada tentativa de conexão com um dador. Como o servidor que está se conectando ao grupo está se conectando a servidores diferentes e não ao mesmo deles repetidamente, ele pode assumir que o problema que afeta o servidor A não afeta o servidor B. Assim, a recuperação só é suspensa quando ela passou por todos os possíveis dadores. Uma vez que o servidor que está se conectando ao grupo tentou se conectar a todos os dadores adequados no grupo e nenhum deles permanece, o processo de recuperação fica em repouso por um número de segundos configurado pela variável `group_replication_recovery_reconnect_interval`.
+Note, however, that recovery does not sleep after every donor connection attempt. As the server joining the group is connecting to different servers and not to the same one over and over again, it can assume that the problem that affects server A does not affect server B. As such, recovery suspends only when it has gone through all the possible donors. Once the server joining the group has tried to connect to all the suitable donors in the group and none remains, the recovery process sleeps for the number of seconds configured by the [`group_replication_recovery_reconnect_interval`](group-replication-system-variables.html#sysvar_group_replication_recovery_reconnect_interval) variable.

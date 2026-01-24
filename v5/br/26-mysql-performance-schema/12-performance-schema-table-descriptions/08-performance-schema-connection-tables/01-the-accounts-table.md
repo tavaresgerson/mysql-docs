@@ -1,21 +1,21 @@
-#### 25.12.8.1 A tabela de contas
+#### 25.12.8.1 The accounts Table
 
-A tabela `accounts` contém uma linha para cada conta que se conectou ao servidor MySQL. Para cada conta, a tabela conta o número atual e total de conexões. O tamanho da tabela é dimensionado automaticamente ao iniciar o servidor. Para definir explicitamente o tamanho da tabela, defina a variável de sistema `performance_schema_accounts_size` ao iniciar o servidor. Para desabilitar as estatísticas de conta, defina essa variável para 0.
+The [`accounts`](performance-schema-accounts-table.html "25.12.8.1 The accounts Table") table contains a row for each account that has connected to the MySQL server. For each account, the table counts the current and total number of connections. The table size is autosized at server startup. To set the table size explicitly, set the [`performance_schema_accounts_size`](performance-schema-system-variables.html#sysvar_performance_schema_accounts_size) system variable at server startup. To disable account statistics, set this variable to 0.
 
-A tabela `accounts` possui as seguintes colunas. Para uma descrição de como o Schema de Desempenho mantém as linhas nesta tabela, incluindo o efeito do `TRUNCATE TABLE`, consulte Seção 25.12.8, “Tabelas de Conexão do Schema de Desempenho”.
+The [`accounts`](performance-schema-accounts-table.html "25.12.8.1 The accounts Table") table has the following columns. For a description of how the Performance Schema maintains rows in this table, including the effect of [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement"), see [Section 25.12.8, “Performance Schema Connection Tables”](performance-schema-connection-tables.html "25.12.8 Performance Schema Connection Tables").
 
-- `USUARIO`
+* `USER`
 
-  O nome de usuário do cliente para a conexão. Este é `NULL` para um thread interno ou para uma sessão de usuário que não conseguiu se autenticar.
+  The client user name for the connection. This is `NULL` for an internal thread, or for a user session that failed to authenticate.
 
-- `HOST`
+* `HOST`
 
-  O host a partir do qual o cliente se conectou. Isso é `NULL` para um thread interno ou para uma sessão de usuário que não conseguiu se autenticar.
+  The host from which the client connected. This is `NULL` for an internal thread, or for a user session that failed to authenticate.
 
-- `CONEXÕES APRESENTADAS`
+* `CURRENT_CONNECTIONS`
 
-  O número atual de conexões para a conta.
+  The current number of connections for the account.
 
-- `TOTAL_CONEXÕES`
+* `TOTAL_CONNECTIONS`
 
-  O número total de conexões para a conta.
+  The total number of connections for the account.

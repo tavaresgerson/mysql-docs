@@ -1,10 +1,10 @@
-#### 16.2.2.4 Convenções de Nomenclatura de Canais de Replicação
+#### 16.2.2.4 Replication Channel Naming Conventions
 
-Esta seção descreve como as convenções de nomenclatura são afetadas pelos canais de replicação.
+This section describes how naming conventions are impacted by replication channels.
 
-Cada canal de replicação tem um nome único, que é uma string com um comprimento máximo de 64 caracteres e é case-insensitive. Como os nomes dos canais são usados em repositórios de metadados de replicação, o conjunto de caracteres usado para esses é sempre UTF-8. Embora você geralmente possa usar qualquer nome para os canais, os seguintes nomes estão reservados:
+Each replication channel has a unique name which is a string with a maximum length of 64 characters and is case-insensitive. Because channel names are used in replication metadata repositories, the character set used for these is always UTF-8. Although you are generally free to use any name for channels, the following names are reserved:
 
-- `group_replication_applier`
-- `grupo_replication_recovery`
+* `group_replication_applier`
+* `group_replication_recovery`
 
-O nome que você escolher para um canal de replicação também influencia os nomes dos arquivos usados por uma replica de várias fontes. Os arquivos de log de retransmissão e os arquivos de índice para cada canal são nomeados `relay_log_basename-channel.xxxxxx`, onde *`relay_log_basename`* é um nome base especificado usando a variável de sistema `relay_log` e *`channel`* é o nome do canal registrado neste arquivo. Se você não especificar a variável de sistema `relay_log`, um nome de arquivo padrão é usado que também inclui o nome do canal.
+The name you choose for a replication channel also influences the file names used by a multi-source replica. The relay log files and index files for each channel are named `relay_log_basename-channel.xxxxxx`, where *`relay_log_basename`* is a base name specified using the [`relay_log`](replication-options-replica.html#sysvar_relay_log) system variable, and *`channel`* is the name of the channel logged to this file. If you do not specify the [`relay_log`](replication-options-replica.html#sysvar_relay_log) system variable, a default file name is used that also includes the name of the channel.

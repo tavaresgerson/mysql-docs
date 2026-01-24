@@ -1,66 +1,66 @@
-#### 25.12.6.4 A tabela prepared_statements_instances
+#### 25.12.6.4 The prepared_statements_instances Table
 
-O Schema de Desempenho oferece instrumentação para instruções preparadas, para as quais existem dois protocolos:
+The Performance Schema provides instrumentation for prepared statements, for which there are two protocols:
 
-- O protocolo binário. Ele é acessado através da API C do MySQL e é mapeado para comandos de servidor subjacentes, conforme mostrado na tabela a seguir.
+* The binary protocol. This is accessed through the MySQL C API and maps onto underlying server commands as shown in the following table.
 
-  <table summary="Como o protocolo binário acessado através da API C do MySQL se relaciona com os comandos do servidor subjacente."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Função da API C</th> <th>Comando do servidor correspondente</th> </tr></thead><tbody><tr> <td><code>mysql_stmt_prepare()</code></td> <td><code>COM_STMT_PREPARE</code></td> </tr><tr> <td><code>mysql_stmt_execute()</code></td> <td><code>COM_STMT_EXECUTE</code></td> </tr><tr> <td><code>mysql_stmt_close()</code></td> <td><code>COM_STMT_CLOSE</code></td> </tr></tbody></table>
+  <table summary="How the binary protocol accessed through the MySQL C API maps onto underlying server commands."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>C API Function</th> <th>Corresponding Server Command</th> </tr></thead><tbody><tr> <td><code>mysql_stmt_prepare()</code></td> <td><code>COM_STMT_PREPARE</code></td> </tr><tr> <td><code>mysql_stmt_execute()</code></td> <td><code>COM_STMT_EXECUTE</code></td> </tr><tr> <td><code>mysql_stmt_close()</code></td> <td><code>COM_STMT_CLOSE</code></td> </tr></tbody></table>
 
-- O protocolo de texto. Ele é acessado usando instruções SQL e é mapeado para comandos do servidor subjacente, conforme mostrado na tabela a seguir.
+* The text protocol. This is accessed using SQL statements and maps onto underlying server commands as shown in the following table.
 
-  <table summary="Como o protocolo de texto acessado por meio de instruções SQL se relaciona com os comandos do servidor subjacente."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Instrução SQL</th> <th>Comando do servidor correspondente</th> </tr></thead><tbody><tr> <td><code>PREPARE</code></td> <td><code>SQLCOM_PREPARE</code></td> </tr><tr> <td><code>EXECUTE</code></td> <td><code>SQLCOM_EXECUTE</code></td> </tr><tr> <td><code>DEALLOCATE PREPARE</code>,<code>DROP PREPARE</code></td> <td><code>SQLCOM_DEALLOCATE PREPARE</code></td> </tr></tbody></table>
+  <table summary="How the text protocol accessed using SQL statements maps onto underlying server commands."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>SQL Statement</th> <th>Corresponding Server Command</th> </tr></thead><tbody><tr> <td><code>PREPARE</code></td> <td><code>SQLCOM_PREPARE</code></td> </tr><tr> <td><code>EXECUTE</code></td> <td><code>SQLCOM_EXECUTE</code></td> </tr><tr> <td><code>DEALLOCATE PREPARE</code>, <code>DROP PREPARE</code></td> <td><code>SQLCOM_DEALLOCATE PREPARE</code></td> </tr></tbody></table>
 
-A instrumentação de declaração preparada do Schema de desempenho abrange ambos os protocolos. A discussão a seguir se refere aos comandos do servidor, e não às funções da API C ou às declarações SQL.
+Performance Schema prepared statement instrumentation covers both protocols. The following discussion refers to the server commands rather than the C API functions or SQL statements.
 
-Informações sobre declarações preparadas estão disponíveis na tabela `prepared_statements_instances`. Essa tabela permite a inspeção de declarações preparadas usadas no servidor e fornece estatísticas agregadas sobre elas. Para controlar o tamanho dessa tabela, defina a variável de sistema `performance_schema_max_prepared_statements_instances` na inicialização do servidor.
+Information about prepared statements is available in the [`prepared_statements_instances`](performance-schema-prepared-statements-instances-table.html "25.12.6.4 The prepared_statements_instances Table") table. This table enables inspection of prepared statements used in the server and provides aggregated statistics about them. To control the size of this table, set the [`performance_schema_max_prepared_statements_instances`](performance-schema-system-variables.html#sysvar_performance_schema_max_prepared_statements_instances) system variable at server startup.
 
-A coleta de informações de declarações preparadas depende dos instrumentos de declaração mostrados na tabela a seguir. Esses instrumentos são habilitados por padrão. Para modificá-los, atualize a tabela `setup_instruments`.
+Collection of prepared statement information depends on the statement instruments shown in the following table. These instruments are enabled by default. To modify them, update the [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table.
 
-<table summary="A coleta de informações de declarações preparadas depende dos instrumentos de declaração mostrados nesta tabela."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Instrumento</th> <th>Comando do servidor</th> </tr></thead><tbody><tr> <td><code>statement/com/Prepare</code></td> <td><code>COM_STMT_PREPARE</code></td> </tr><tr> <td><code>statement/com/Execute</code></td> <td><code>COM_STMT_EXECUTE</code></td> </tr><tr> <td><code>statement/sql/prepare_sql</code></td> <td><code>SQLCOM_PREPARE</code></td> </tr><tr> <td><code>statement/sql/execute_sql</code></td> <td><code>SQLCOM_EXECUTE</code></td> </tr></tbody></table>
+<table summary="Collection of prepared statement information depends on the statement instruments shown in this table."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Instrument</th> <th>Server Command</th> </tr></thead><tbody><tr> <td><code>statement/com/Prepare</code></td> <td><code>COM_STMT_PREPARE</code></td> </tr><tr> <td><code>statement/com/Execute</code></td> <td><code>COM_STMT_EXECUTE</code></td> </tr><tr> <td><code>statement/sql/prepare_sql</code></td> <td><code>SQLCOM_PREPARE</code></td> </tr><tr> <td><code>statement/sql/execute_sql</code></td> <td><code>SQLCOM_EXECUTE</code></td> </tr></tbody></table>
 
-O Schema de Desempenho gerencia o conteúdo da tabela `prepared_statements_instances` da seguinte forma:
+The Performance Schema manages the contents of the [`prepared_statements_instances`](performance-schema-prepared-statements-instances-table.html "25.12.6.4 The prepared_statements_instances Table") table as follows:
 
-- Preparação de declarações
+* Statement preparation
 
-  Um comando `COM_STMT_PREPARE` ou `SQLCOM_PREPARE` cria uma instrução preparada no servidor. Se a instrução for instrumentada com sucesso, uma nova linha é adicionada à tabela `prepared_statements_instances`. Se a instrução não puder ser instrumentada, a variável de status `Performance_schema_prepared_statements_lost` é incrementada.
+  A `COM_STMT_PREPARE` or `SQLCOM_PREPARE` command creates a prepared statement in the server. If the statement is successfully instrumented, a new row is added to the [`prepared_statements_instances`](performance-schema-prepared-statements-instances-table.html "25.12.6.4 The prepared_statements_instances Table") table. If the statement cannot be instrumented, [`Performance_schema_prepared_statements_lost`](performance-schema-status-variables.html#statvar_Performance_schema_prepared_statements_lost) status variable is incremented.
 
-- Execução de declarações preparadas
+* Prepared statement execution
 
-  A execução de um comando `COM_STMT_EXECUTE` ou `SQLCOM_PREPARE` para uma instância de instrução preparada instrumentada atualiza a linha correspondente da tabela `prepared_statements_instances`.
+  Execution of a `COM_STMT_EXECUTE` or `SQLCOM_PREPARE` command for an instrumented prepared statement instance updates the corresponding [`prepared_statements_instances`](performance-schema-prepared-statements-instances-table.html "25.12.6.4 The prepared_statements_instances Table") table row.
 
-- Liberação de declaração preparada
+* Prepared statement deallocation
 
-  A execução de um comando `COM_STMT_CLOSE` ou `SQLCOM_DEALLOCATE_PREPARE` para uma instância de instrução preparada instrumentada remove a linha correspondente da tabela `prepared_statements_instances`. Para evitar vazamentos de recursos, a remoção ocorre mesmo que as instruções preparadas descritas anteriormente sejam desativadas.
+  Execution of a `COM_STMT_CLOSE` or `SQLCOM_DEALLOCATE_PREPARE` command for an instrumented prepared statement instance removes the corresponding [`prepared_statements_instances`](performance-schema-prepared-statements-instances-table.html "25.12.6.4 The prepared_statements_instances Table") table row. To avoid resource leaks, removal occurs even if the prepared statement instruments described previously are disabled.
 
-A tabela `prepared_statements_instances` tem as seguintes colunas:
+The [`prepared_statements_instances`](performance-schema-prepared-statements-instances-table.html "25.12.6.4 The prepared_statements_instances Table") table has these columns:
 
-- `OBJECT_INSTANCE_BEGIN`
+* `OBJECT_INSTANCE_BEGIN`
 
-  O endereço na memória da declaração preparada instrumentada.
+  The address in memory of the instrumented prepared statement.
 
-- `ID_DECLARAÇÃO`
+* `STATEMENT_ID`
 
-  O ID de declaração interno atribuído pelo servidor. Tanto os protocolos de texto quanto os binários usam IDs de declaração.
+  The internal statement ID assigned by the server. The text and binary protocols both use statement IDs.
 
-- `NOME_DECLARAÇÃO`
+* `STATEMENT_NAME`
 
-  Para o protocolo binário, esta coluna é `NULL`. Para o protocolo de texto, esta coluna é o nome da declaração externa atribuído pelo usuário. Por exemplo, para a seguinte declaração SQL, o nome da declaração preparada é `stmt`:
+  For the binary protocol, this column is `NULL`. For the text protocol, this column is the external statement name assigned by the user. For example, for the following SQL statement, the name of the prepared statement is `stmt`:
 
   ```sql
   PREPARE stmt FROM 'SELECT 1';
   ```
 
-- `SQL_TEXT`
+* `SQL_TEXT`
 
-  O texto da declaração preparada, com marcadores de substituição `?`.
+  The prepared statement text, with `?` placeholder markers.
 
-- `OWNER_THREAD_ID`, `OWNER_EVENT_ID`
+* `OWNER_THREAD_ID`, `OWNER_EVENT_ID`
 
-  Essas colunas indicam o evento que criou a declaração preparada.
+  These columns indicate the event that created the prepared statement.
 
-- `OWNER_OBJECT_TYPE`, `OWNER_OBJECT_SCHEMA`, `OWNER_OBJECT_NAME`
+* `OWNER_OBJECT_TYPE`, `OWNER_OBJECT_SCHEMA`, `OWNER_OBJECT_NAME`
 
-  Para uma declaração preparada criada por uma sessão de cliente, essas colunas são `NULL`. Para uma declaração preparada criada por um programa armazenado, essas colunas apontam para o programa armazenado. Um erro típico do usuário é esquecer de liberar declarações preparadas. Essas colunas podem ser usadas para encontrar programas armazenados que vazam declarações preparadas:
+  For a prepared statement created by a client session, these columns are `NULL`. For a prepared statement created by a stored program, these columns point to the stored program. A typical user error is forgetting to deallocate prepared statements. These columns can be used to find stored programs that leak prepared statements:
 
   ```sql
   SELECT
@@ -70,20 +70,20 @@ A tabela `prepared_statements_instances` tem as seguintes colunas:
   WHERE OWNER_OBJECT_TYPE IS NOT NULL;
   ```
 
-- `TIMER_PREPARE`
+* `TIMER_PREPARE`
 
-  O tempo gasto na execução da preparação da declaração em si.
+  The time spent executing the statement preparation itself.
 
-- `COUNT_REPREPARE`
+* `COUNT_REPREPARE`
 
-  O número de vezes que a declaração foi preparada internamente (veja Seção 8.10.4, "Cache de Declarações Preparadas e Programas Armazenados"). As estatísticas de tempo para a preparação não estão disponíveis porque são contadas como parte da execução da declaração, e não como uma operação separada.
+  The number of times the statement was reprepared internally (see [Section 8.10.4, “Caching of Prepared Statements and Stored Programs”](statement-caching.html "8.10.4 Caching of Prepared Statements and Stored Programs")). Timing statistics for repreparation are not available because it is counted as part of statement execution, not as a separate operation.
 
-- `CONTAR_EXECUTAR`, `SOMAR_TEMPO_EXECUTAR`, `MIN_TEMPO_EXECUTAR`, `MÉDIA_TEMPO_EXECUTAR`, `MAX_TEMPO_EXECUTAR`
+* `COUNT_EXECUTE`, `SUM_TIMER_EXECUTE`, `MIN_TIMER_EXECUTE`, `AVG_TIMER_EXECUTE`, `MAX_TIMER_EXECUTE`
 
-  Estatísticas agregadas para execuções da declaração preparada.
+  Aggregated statistics for executions of the prepared statement.
 
-- `SUM_xxx`
+* `SUM_xxx`
 
-  As colunas `SUM_xxx` restantes são as mesmas das tabelas de resumo de declarações (consulte Seção 25.12.15.3, "Tabelas de Resumo de Declarações").
+  The remaining `SUM_xxx` columns are the same as for the statement summary tables (see [Section 25.12.15.3, “Statement Summary Tables”](performance-schema-statement-summary-tables.html "25.12.15.3 Statement Summary Tables")).
 
-`TRUNCATE TABLE` redefini o número de estatísticas das colunas da tabela `prepared_statements_instances`.
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") resets the statistics columns of the [`prepared_statements_instances`](performance-schema-prepared-statements-instances-table.html "25.12.6.4 The prepared_statements_instances Table") table.

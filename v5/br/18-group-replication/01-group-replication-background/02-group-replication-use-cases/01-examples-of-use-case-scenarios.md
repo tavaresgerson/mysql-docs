@@ -1,11 +1,11 @@
-#### 17.1.2.1 Exemplos de cenários de casos de uso
+#### 17.1.2.1 Examples of Use Case Scenarios
 
-Os exemplos a seguir são casos de uso típicos para a replicação em grupo.
+The following examples are typical use cases for Group Replication.
 
-- *Replicação elástica* - Ambientes que exigem uma infraestrutura de replicação muito fluida, onde o número de servidores precisa crescer ou diminuir dinamicamente e com o menor número possível de efeitos colaterais. Por exemplo, serviços de banco de dados para a nuvem.
+* *Elastic Replication* - Environments that require a very fluid replication infrastructure, where the number of servers has to grow or shrink dynamically and with as few side-effects as possible. For instance, database services for the cloud.
 
-- *Shard de Alta Disponibilidade* - O sharding é uma abordagem popular para alcançar a escalabilidade de escrita. Use a Replicação por Grupo do MySQL para implementar shards de alta disponibilidade, onde cada shard é mapeado para um grupo de replicação.
+* *Highly Available Shards* - Sharding is a popular approach to achieve write scale-out. Use MySQL Group Replication to implement highly available shards, where each shard maps to a replication group.
 
-- *Alternativa à replicação Source-Replica* - Em certas situações, usar um único servidor de origem torna-o um único ponto de conflito. Escrever para um grupo inteiro pode ser mais escalável em certas circunstâncias.
+* *Alternative to Source-Replica replication* - In certain situations, using a single source server makes it a single point of contention. Writing to an entire group may prove more scalable under certain circumstances.
 
-- - Sistemas Autônomos\* - Além disso, você pode implementar a Replicação de Grupo do MySQL apenas para a automação embutida no protocolo de replicação (já descrito neste e nos capítulos anteriores).
+* *Autonomic Systems* - Additionally, you can deploy MySQL Group Replication purely for the automation that is built into the replication protocol (described already in this and previous chapters).

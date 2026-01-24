@@ -1,55 +1,55 @@
-#### 25.12.11.2 Tabela replication_connection_status
+#### 25.12.11.2 The replication_connection_status Table
 
-Esta tabela mostra o status atual da thread de I/O de replicação que lida com a conexão da réplica com a fonte.
+This table shows the current status of the replication I/O thread that handles the replica's connection to the source.
 
-Em comparação com a tabela `replication_connection_configuration`, a tabela `replication_connection_status` muda com mais frequência. Ela contém valores que mudam durante a conexão, enquanto a tabela `replication_connection_configuration` contém valores que definem como a replica se conecta à fonte e que permanecem constantes durante a conexão.
+Compared to the [`replication_connection_configuration`](performance-schema-replication-connection-configuration-table.html "25.12.11.1 The replication_connection_configuration Table") table, [`replication_connection_status`](performance-schema-replication-connection-status-table.html "25.12.11.2 The replication_connection_status Table") changes more frequently. It contains values that change during the connection, whereas [`replication_connection_configuration`](performance-schema-replication-connection-configuration-table.html "25.12.11.1 The replication_connection_configuration Table") contains values which define how the replica connects to the source and that remain constant during the connection.
 
-A tabela `replication_connection_status` tem as seguintes colunas:
+The [`replication_connection_status`](performance-schema-replication-connection-status-table.html "25.12.11.2 The replication_connection_status Table") table has these columns:
 
-- `NOME_CANAL`
+* `CHANNEL_NAME`
 
-  O canal de replicação que esta linha está exibindo. Há sempre um canal de replicação padrão, e mais canais de replicação podem ser adicionados. Consulte Seção 16.2.2, “Canais de Replicação” para obter mais informações.
+  The replication channel which this row is displaying. There is always a default replication channel, and more replication channels can be added. See [Section 16.2.2, “Replication Channels”](replication-channels.html "16.2.2 Replication Channels") for more information.
 
-- `NOME_GRUPO`
+* `GROUP_NAME`
 
-  Se este servidor for membro de um grupo, mostra o nome do grupo ao qual o servidor pertence.
+  If this server is a member of a group, shows the name of the group the server belongs to.
 
-- `SOURCE_UUID`
+* `SOURCE_UUID`
 
-  O valor [`server_uuid`](https://pt.wikipedia.org/wiki/Replicação_de_servidor#sysvar_server_uuid) da fonte.
+  The [`server_uuid`](replication-options.html#sysvar_server_uuid) value from the source.
 
-- `THREAD_ID`
+* `THREAD_ID`
 
-  O ID da thread de E/S.
+  The I/O thread ID.
 
-- `ESTADO_SERVIÇO`
+* `SERVICE_STATE`
 
-  `ON` (o tópico existe e está ativo ou em espera), `OFF` (o tópico não existe mais) ou `CONNECTING` (o tópico existe e está se conectando à fonte).
+  `ON` (thread exists and is active or idle), `OFF` (thread no longer exists), or `CONNECTING` (thread exists and is connecting to the source).
 
-- `RECEBIDO_SET_DE_TRANSACÇÕES`
+* `RECEIVED_TRANSACTION_SET`
 
-  O conjunto de IDs de transações globais (GTIDs) correspondentes a todas as transações recebidas por esta réplica. Vazio se os GTIDs não estiverem em uso. Consulte GTID Sets para obter mais informações.
+  The set of global transaction IDs (GTIDs) corresponding to all transactions received by this replica. Empty if GTIDs are not in use. See [GTID Sets](replication-gtids-concepts.html#replication-gtids-concepts-gtid-sets "GTID Sets") for more information.
 
-- `LAST_ERROR_NUMBER`, `LAST_ERROR_MESSAGE`
+* `LAST_ERROR_NUMBER`, `LAST_ERROR_MESSAGE`
 
-  O número do erro e a mensagem de erro do erro mais recente que causou o bloqueio da thread de E/S. Um número de erro de 0 e uma mensagem de uma string vazia significam “sem erro”. Se o valor `LAST_ERROR_MESSAGE` não estiver vazio, os valores do erro também aparecem no log de erro da replica.
+  The error number and error message of the most recent error that caused the I/O thread to stop. An error number of 0 and message of the empty string mean “no error.” If the `LAST_ERROR_MESSAGE` value is not empty, the error values also appear in the replica's error log.
 
-  A emissão de `RESET MASTER` ou `RESET SLAVE` redefiniu os valores exibidos nessas colunas.
+  Issuing [`RESET MASTER`](reset-master.html "13.4.1.2 RESET MASTER Statement") or [`RESET SLAVE`](reset-slave.html "13.4.2.3 RESET SLAVE Statement") resets the values shown in these columns.
 
-- `LAST_ERROR_TIMESTAMP`
+* `LAST_ERROR_TIMESTAMP`
 
-  Um timestamp no formato *`YYMMDD hh:mm:ss`* que mostra quando ocorreu o último erro de E/S.
+  A timestamp in *`YYMMDD hh:mm:ss`* format that shows when the most recent I/O error took place.
 
-- `LAST_HEARTBEAT_TIMESTAMP`
+* `LAST_HEARTBEAT_TIMESTAMP`
 
-  Um timestamp no formato *`YYMMDD hh:mm:ss`* que indica quando o sinal de batida de coração mais recente foi recebido por uma réplica.
+  A timestamp in *`YYMMDD hh:mm:ss`* format that shows when the most recent heartbeat signal was received by a replica.
 
-- `CONTAR_BATIDAS_CARDÍACAS_RECEBIDAS`
+* `COUNT_RECEIVED_HEARTBEATS`
 
-  O número total de sinais de batimento cardíaco que uma réplica recebeu desde a última vez que foi reiniciada ou quando uma declaração `CHANGE MASTER TO` foi emitida.
+  The total number of heartbeat signals that a replica received since the last time it was restarted or reset, or a `CHANGE MASTER TO` statement was issued.
 
-A operação `TRUNCATE TABLE` não é permitida para a tabela `replication_connection_status`.
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is not permitted for the [`replication_connection_status`](performance-schema-replication-connection-status-table.html "25.12.11.2 The replication_connection_status Table") table.
 
-A tabela a seguir mostra a correspondência entre as colunas de `replication_connection_status` e as colunas de `SHOW SLAVE STATUS`.
+The following table shows the correspondence between [`replication_connection_status`](performance-schema-replication-connection-status-table.html "25.12.11.2 The replication_connection_status Table") columns and [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") columns.
 
-<table summary="Correspondência entre as colunas replication_connection_status e SHOW SLAVE STATUS"><col style="width: 60%"/><col style="width: 40%"/><thead><tr> <th>PH_HTML_CODE_<code>Last_IO_Errno</code>] Coluna</th> <th>PH_HTML_CODE_<code>Last_IO_Errno</code>] Coluna</th> </tr></thead><tbody><tr> <td>PH_HTML_CODE_<code>Last_IO_Error</code>]</td> <td>PH_HTML_CODE_<code>LAST_ERROR_TIMESTAMP</code>]</td> </tr><tr> <td>PH_HTML_CODE_<code>Last_IO_Error_Timestamp</code>]</td> <td>Nenhum</td> </tr><tr> <td><code>SERVICE_STATE</code></td> <td><code>Slave_IO_Running</code></td> </tr><tr> <td><code>RECEIVED_TRANSACTION_SET</code></td> <td><code>Retrieved_Gtid_Set</code></td> </tr><tr> <td><code>LAST_ERROR_NUMBER</code></td> <td><code>Last_IO_Errno</code></td> </tr><tr> <td><code>SHOW SLAVE STATUS</code><code>Last_IO_Errno</code>]</td> <td><code>Last_IO_Error</code></td> </tr><tr> <td><code>LAST_ERROR_TIMESTAMP</code></td> <td><code>Last_IO_Error_Timestamp</code></td> </tr></tbody></table>
+<table summary="Correspondence between replication_connection_status columns and SHOW SLAVE STATUS columns"><col style="width: 60%"/><col style="width: 40%"/><thead><tr> <th><code>replication_connection_status</code> Column</th> <th><code>SHOW SLAVE STATUS</code> Column</th> </tr></thead><tbody><tr> <td><code>SOURCE_UUID</code></td> <td><code>Master_UUID</code></td> </tr><tr> <td><code>THREAD_ID</code></td> <td>None</td> </tr><tr> <td><code>SERVICE_STATE</code></td> <td><code>Slave_IO_Running</code></td> </tr><tr> <td><code>RECEIVED_TRANSACTION_SET</code></td> <td><code>Retrieved_Gtid_Set</code></td> </tr><tr> <td><code>LAST_ERROR_NUMBER</code></td> <td><code>Last_IO_Errno</code></td> </tr><tr> <td><code>LAST_ERROR_MESSAGE</code></td> <td><code>Last_IO_Error</code></td> </tr><tr> <td><code>LAST_ERROR_TIMESTAMP</code></td> <td><code>Last_IO_Error_Timestamp</code></td> </tr></tbody></table>

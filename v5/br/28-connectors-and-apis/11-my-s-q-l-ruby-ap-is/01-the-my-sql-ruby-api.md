@@ -1,5 +1,5 @@
-### 27.11.1 API MySQL/Ruby
+### 27.11.1 The MySQL/Ruby API
 
-O módulo MySQL/Ruby fornece acesso a bancos de dados MySQL usando Ruby através do `libmysqlclient`.
+The MySQL/Ruby module provides access to MySQL databases using Ruby through `libmysqlclient`.
 
-Para obter informações sobre a instalação do módulo e as funções expostas, consulte MySQL/Ruby.
+For information on installing the module, and the functions exposed, see [MySQL/Ruby](http://tmtm.org/en/mysql/ruby/).

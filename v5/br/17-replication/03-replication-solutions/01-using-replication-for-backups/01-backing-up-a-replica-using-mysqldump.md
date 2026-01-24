@@ -1,35 +1,35 @@
-#### 16.3.1.1 Fazer backup de uma réplica usando mysqldump
+#### 16.3.1.1 Backing Up a Replica Using mysqldump
 
-Usar **mysqldump** para criar uma cópia de um banco de dados permite capturar todos os dados do banco de dados em um formato que permite que as informações sejam importadas para outra instância do MySQL Server (consulte Seção 4.5.4, “mysqldump — Um Programa de Backup de Banco de Dados”). Como o formato das informações é declarações SQL, o arquivo pode ser facilmente distribuído e aplicado a servidores em execução, caso você precise acessar os dados em uma emergência. No entanto, se o tamanho do seu conjunto de dados for muito grande, **mysqldump** pode não ser prático.
+Using [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") to create a copy of a database enables you to capture all of the data in the database in a format that enables the information to be imported into another instance of MySQL Server (see [Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")). Because the format of the information is SQL statements, the file can easily be distributed and applied to running servers in the event that you need access to the data in an emergency. However, if the size of your data set is very large, [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") may be impractical.
 
-Ao usar **mysqldump**, você deve interromper a replicação na replica antes de iniciar o processo de dump para garantir que o dump contenha um conjunto consistente de dados:
+When using [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program"), you should stop replication on the replica before starting the dump process to ensure that the dump contains a consistent set of data:
 
-1. Pare a replica de processar solicitações. Você pode parar a replicação completamente no replica usando **mysqladmin**:
+1. Stop the replica from processing requests. You can stop replication completely on the replica using [**mysqladmin**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program"):
 
    ```sql
    $> mysqladmin stop-slave
    ```
 
-   Alternativamente, você pode interromper apenas o thread de replicação SQL para pausar a execução do evento:
+   Alternatively, you can stop only the replication SQL thread to pause event execution:
 
    ```sql
    $> mysql -e 'STOP SLAVE SQL_THREAD;'
    ```
 
-   Isso permite que a replica continue a receber eventos de alteração de dados do log binário da fonte e os armazene nos logs do retransmissor usando a thread de E/S, mas impede que a replica execute esses eventos e altere seus dados. Em ambientes de replicação movimentados, permitir que a thread de E/S seja executada durante o backup pode acelerar o processo de recuperação quando você reiniciar o thread de SQL da replicação.
+   This enables the replica to continue to receive data change events from the source's binary log and store them in the relay logs using the I/O thread, but prevents the replica from executing these events and changing its data. Within busy replication environments, permitting the I/O thread to run during backup may speed up the catch-up process when you restart the replication SQL thread.
 
-2. Execute **mysqldump** para fazer o dump dos seus bancos de dados. Você pode fazer o dump de todos os bancos de dados ou selecionar os bancos de dados que deseja fazer o dump. Por exemplo, para fazer o dump de todos os bancos de dados:
+2. Run [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") to dump your databases. You may either dump all databases or select databases to be dumped. For example, to dump all databases:
 
    ```sql
    $> mysqldump --all-databases > fulldb.dump
    ```
 
-3. Depois que o descarte estiver concluído, reinicie as operações de replicação:
+3. Once the dump has completed, start replica operations again:
 
    ```sql
    $> mysqladmin start-slave
    ```
 
-No exemplo anterior, você pode querer adicionar credenciais de login (nome de usuário, senha) aos comandos e agrupar o processo em um script que você pode executar automaticamente todos os dias.
+In the preceding example, you may want to add login credentials (user name, password) to the commands, and bundle the process up into a script that you can run automatically each day.
 
-Se você usar essa abordagem, certifique-se de monitorar o processo de replicação para garantir que o tempo gasto para executar o backup não afete a capacidade da replica de acompanhar os eventos da fonte. Veja Seção 16.1.7.1, “Verificar o Status da Replicação”. Se a replica não conseguir acompanhar, você pode querer adicionar outra replica e distribuir o processo de backup. Para um exemplo de como configurar esse cenário, veja Seção 16.3.5, “Replicar Diferentes Bancos de Dados para Diferentes Replicas”.
+If you use this approach, make sure you monitor the replication process to ensure that the time taken to run the backup does not affect the replica's ability to keep up with events from the source. See [Section 16.1.7.1, “Checking Replication Status”](replication-administration-status.html "16.1.7.1 Checking Replication Status"). If the replica is unable to keep up, you may want to add another replica and distribute the backup process. For an example of how to configure this scenario, see [Section 16.3.5, “Replicating Different Databases to Different Replicas”](replication-solutions-partitioning.html "16.3.5 Replicating Different Databases to Different Replicas").

@@ -1,26 +1,26 @@
-#### 26.4.5.19 A função sys_get_config()
+#### 26.4.5.19 The sys_get_config() Function
 
-Dada uma nomeação de opção de configuração, retorna o valor da opção da tabela `sys_config`, ou o valor padrão fornecido (que pode ser `NULL`) se a opção não existir na tabela.
+Given a configuration option name, returns the option value from the `sys_config` table, or the provided default value (which may be `NULL`) if the option does not exist in the table.
 
-Se a função `sys_get_config()` retornar o valor padrão e esse valor for `NULL`, espera-se que o chamador seja capaz de lidar com `NULL` para a opção de configuração fornecida.
+If `sys_get_config()` Function") returns the default value and that value is `NULL`, it is expected that the caller is able to handle `NULL` for the given configuration option.
 
-Por convenção, as rotinas que chamam a função `sys_get_config()` primeiro verificam se a variável definida pelo usuário correspondente existe e não é `NULL`. Se sim, a rotina usa o valor da variável sem ler a tabela `sys_config`. Se a variável não existir ou for `NULL`, a rotina lê o valor da opção da tabela e define a variável definida pelo usuário com esse valor. Para mais informações sobre a relação entre as opções de configuração e suas variáveis definidas pelo usuário, consulte a Seção 26.4.2.1, “A Tabela sys_config”.
+By convention, routines that call `sys_get_config()` Function") first check whether the corresponding user-defined variable exists and is non-`NULL`. If so, the routine uses the variable value without reading the `sys_config` table. If the variable does not exist or is `NULL`, the routine reads the option value from the table and sets the user-defined variable to that value. For more information about the relationship between configuration options and their corresponding user-defined variables, see Section 26.4.2.1, “The sys_config Table”.
 
-Se você quiser verificar se a opção de configuração já foi definida e, se não for, usar o valor de retorno de `sys_get_config()`, você pode usar `IFNULL(...)` (veja o exemplo mais adiante). No entanto, isso não deve ser feito dentro de um loop (por exemplo, para cada linha em um conjunto de resultados), porque, para chamadas repetidas onde a atribuição é necessária apenas na primeira iteração, usar `IFNULL(...)` é esperado ser significativamente mais lento do que usar um bloco `IF (...) THEN ... END IF;` (veja o exemplo mais adiante).
+If you want to check whether the configuration option has already been set and, if not, use the return value of `sys_get_config()`, you can use `IFNULL(...)` (see example later). However, this should not be done inside a loop (for example, for each row in a result set) because for repeated calls where the assignment is needed only in the first iteration, using `IFNULL(...)` is expected to be significantly slower than using an `IF (...) THEN ... END IF;` block (see example later).
 
-##### Parâmetros
+##### Parameters
 
-- `in_variable_name VARCHAR(128)`: O nome da opção de configuração para a qual você deseja retornar o valor.
+* `in_variable_name VARCHAR(128)`: The name of the configuration option for which to return the value.
 
-- `in_default_value VARCHAR(128)`: O valor padrão a ser retornado se a opção de configuração não for encontrada na tabela `sys_config`.
+* `in_default_value VARCHAR(128)`: The default value to return if the configuration option is not found in the `sys_config` table.
 
-##### Valor de retorno
+##### Return Value
 
-Um valor `VARCHAR(128)`.
+A `VARCHAR(128)` value.
 
-##### Exemplo
+##### Example
 
-Obtenha um valor de configuração da tabela `sys_config`, retornando 128 como padrão se a opção não estiver presente na tabela:
+Get a configuration value from the `sys_config` table, falling back to 128 as the default if the option is not present in the table:
 
 ```sql
 mysql> SELECT sys.sys_get_config('statement_truncate_len', 128) AS Value;
@@ -31,7 +31,7 @@ mysql> SELECT sys.sys_get_config('statement_truncate_len', 128) AS Value;
 +-------+
 ```
 
-Exemplo em uma linha: Verifique se a opção já está definida; se não estiver, atribua o resultado da função `IFNULL(...)` (usando o valor da tabela `sys_config`):
+One-liner example: Check whether the option is already set; if not, assign the `IFNULL(...)` result (using the value from the `sys_config` table):
 
 ```sql
 mysql> SET @sys.statement_truncate_len =
@@ -39,7 +39,7 @@ mysql> SET @sys.statement_truncate_len =
               sys.sys_get_config('statement_truncate_len', 64));
 ```
 
-Exemplo do bloco `IF (...) ENTÃO ... FIM IF;`: Verifique se a opção já está definida; se não estiver, atribua o valor da tabela `sys_config`:
+`IF (...) THEN ... END IF;` block example: Check whether the option is already set; if not, assign the value from the `sys_config` table:
 
 ```sql
 IF (@sys.statement_truncate_len IS NULL) THEN

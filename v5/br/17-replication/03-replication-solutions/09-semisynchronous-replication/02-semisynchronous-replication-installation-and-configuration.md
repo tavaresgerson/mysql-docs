@@ -1,42 +1,42 @@
-#### 16.3.9.2 Instalação e configuração da replicação semiesincronizada
+#### 16.3.9.2 Semisynchronous Replication Installation and Configuration
 
-A replicação semiesincronizada é implementada usando plugins, então os plugins devem ser instalados no servidor para torná-los disponíveis. Após a instalação de um plugin, você controla ele por meio das variáveis de sistema associadas a ele. Essas variáveis de sistema não estão disponíveis até que o plugin associado tenha sido instalado.
+Semisynchronous replication is implemented using plugins, so the plugins must be installed into the server to make them available. After a plugin has been installed, you control it by means of the system variables associated with it. These system variables are unavailable until the associated plugin has been installed.
 
-Esta seção descreve como instalar os plugins de replicação semisoincronizada. Para informações gerais sobre como instalar plugins, consulte Seção 5.5.1, “Instalando e Desinstalando Plugins”.
+This section describes how to install the semisynchronous replication plugins. For general information about installing plugins, see [Section 5.5.1, “Installing and Uninstalling Plugins”](plugin-loading.html "5.5.1 Installing and Uninstalling Plugins").
 
-Para usar a replicação semiesincronizada, os seguintes requisitos devem ser atendidos:
+To use semisynchronous replication, the following requirements must be satisfied:
 
-- A capacidade de instalar plugins requer um servidor MySQL que suporte carregamento dinâmico. Para verificar isso, verifique se o valor da variável de sistema `have_dynamic_loading` é `YES`. As distribuições binárias devem suportar o carregamento dinâmico.
+* The capability of installing plugins requires a MySQL server that supports dynamic loading. To verify this, check that the value of the [`have_dynamic_loading`](server-system-variables.html#sysvar_have_dynamic_loading) system variable is `YES`. Binary distributions should support dynamic loading.
 
-- A replicação já deve estar funcionando, veja Seção 16.1, “Configurando a Replicação”.
+* Replication must already be working, see [Section 16.1, “Configuring Replication”](replication-configuration.html "16.1 Configuring Replication").
 
-- Não deve haver múltiplos canais de replicação configurados. A replicação semi-sincronizada é compatível apenas com o canal de replicação padrão. Consulte Seção 16.2.2, “Canais de replicação”.
+* There must not be multiple replication channels configured. Semisynchronous replication is only compatible with the default replication channel. See [Section 16.2.2, “Replication Channels”](replication-channels.html "16.2.2 Replication Channels").
 
-Para configurar a replicação semissoríncrona, use as instruções a seguir. As instruções `INSTALL PLUGIN`, `SET GLOBAL`, `STOP SLAVE` e `START SLAVE` mencionadas aqui exigem o privilégio `SUPER`.
+To set up semisynchronous replication, use the following instructions. The [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement"), [`SET GLOBAL`](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment"), [`STOP SLAVE`](stop-slave.html "13.4.2.6 STOP SLAVE Statement"), and [`START SLAVE`](start-slave.html "13.4.2.5 START SLAVE Statement") statements mentioned here require the [`SUPER`](privileges-provided.html#priv_super) privilege.
 
-As distribuições do MySQL incluem arquivos de plugins de replicação semi-sincronizados para o lado da fonte e para o lado da replica.
+MySQL distributions include semisynchronous replication plugin files for the source side and the replica side.
 
-Para que um servidor de origem ou replicação possa usá-lo, o arquivo da biblioteca de plugins apropriado deve estar localizado no diretório do plugin MySQL (o diretório nomeado pela variável de sistema `plugin_dir`). Se necessário, configure a localização do diretório do plugin definindo o valor de `plugin_dir` durante o início do servidor.
+To be usable by a source or replica server, the appropriate plugin library file must be located in the MySQL plugin directory (the directory named by the [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) system variable). If necessary, configure the plugin directory location by setting the value of [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) at server startup.
 
-Os nomes de arquivo da biblioteca de plugins são `semisync_master` e `semisync_slave`. O sufixo do nome do arquivo difere de acordo com a plataforma (por exemplo, `.so` para sistemas Unix e sistemas semelhantes ao Unix, `.dll` para Windows).
+The plugin library file base names are `semisync_master` and `semisync_slave`. The file name suffix differs per platform (for example, `.so` for Unix and Unix-like systems, `.dll` for Windows).
 
-O arquivo da biblioteca de plugins de origem deve estar presente no diretório de plugins do servidor de origem. O arquivo da biblioteca de plugins de replicação deve estar presente no diretório de plugins de cada servidor de replicação.
+The source plugin library file must be present in the plugin directory of the source server. The replica plugin library file must be present in the plugin directory of each replica server.
 
-Para carregar os plugins, use a instrução `INSTALL PLUGIN` na fonte e em cada réplica que deve ser semi-sincronizada, ajustando o sufixo `.so` para sua plataforma conforme necessário.
+To load the plugins, use the [`INSTALL PLUGIN`](install-plugin.html "13.7.3.3 INSTALL PLUGIN Statement") statement on the source and on each replica that is to be semisynchronous, adjusting the `.so` suffix for your platform as necessary.
 
-Sobre a fonte:
+On the source:
 
 ```sql
 INSTALL PLUGIN rpl_semi_sync_master SONAME 'semisync_master.so';
 ```
 
-Em cada réplica:
+On each replica:
 
 ```sql
 INSTALL PLUGIN rpl_semi_sync_slave SONAME 'semisync_slave.so';
 ```
 
-Se uma tentativa de instalar um plugin resultar em um erro no Linux semelhante ao mostrado aqui, você deve instalar o `libimf`:
+If an attempt to install a plugin results in an error on Linux similar to that shown here, you must install `libimf`:
 
 ```sql
 mysql> INSTALL PLUGIN rpl_semi_sync_master SONAME 'semisync_master.so';
@@ -46,11 +46,11 @@ ERROR 1126 (HY000): Can't open shared library
 No such file or directory)
 ```
 
-Você pode obter o `libimf` em <https://dev.mysql.com/downloads/os-linux.html>.
+You can obtain `libimf` from <https://dev.mysql.com/downloads/os-linux.html>.
 
-Para ver quais plugins estão instalados, use a instrução `SHOW PLUGINS` ou consulte a tabela do Schema de Informações `PLUGINS`.
+To see which plugins are installed, use the [`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement") statement, or query the Information Schema [`PLUGINS`](information-schema-plugins-table.html "24.3.17 The INFORMATION_SCHEMA PLUGINS Table") table.
 
-Para verificar a instalação do plugin, examine a tabela Schema de Informações `PLUGINS` ou use a declaração `SHOW PLUGINS` (consulte Seção 5.5.2, “Obtendo Informações de Plugins do Servidor”). Por exemplo:
+To verify plugin installation, examine the Information Schema [`PLUGINS`](information-schema-plugins-table.html "24.3.17 The INFORMATION_SCHEMA PLUGINS Table") table or use the [`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement") statement (see [Section 5.5.2, “Obtaining Server Plugin Information”](obtaining-plugin-information.html "5.5.2 Obtaining Server Plugin Information")). For example:
 
 ```sql
 mysql> SELECT PLUGIN_NAME, PLUGIN_STATUS
@@ -63,41 +63,41 @@ mysql> SELECT PLUGIN_NAME, PLUGIN_STATUS
 +----------------------+---------------+
 ```
 
-Se o plugin não conseguir se inicializar, verifique o log de erro do servidor para obter mensagens de diagnóstico.
+If the plugin fails to initialize, check the server error log for diagnostic messages.
 
-Após a instalação de um plugin de replicação semissíncrona, ele é desativado por padrão. Os plugins devem ser ativados tanto no lado de origem quanto no lado da replica para habilitar a replicação semissíncrona. Se apenas um lado for ativado, a replicação será assíncrona.
+After a semisynchronous replication plugin has been installed, it is disabled by default. The plugins must be enabled both on the source side and the replica side to enable semisynchronous replication. If only one side is enabled, replication is asynchronous.
 
-Para controlar se um plugin instalado está habilitado, defina as variáveis de sistema apropriadas. Você pode definir essas variáveis em tempo de execução usando `SET GLOBAL`, ou na inicialização do servidor na linha de comando ou em um arquivo de opções.
+To control whether an installed plugin is enabled, set the appropriate system variables. You can set these variables at runtime using [`SET GLOBAL`](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment"), or at server startup on the command line or in an option file.
 
-Durante a execução, essas variáveis de sistema do lado da fonte estão disponíveis:
+At runtime, these source-side system variables are available:
 
 ```sql
 SET GLOBAL rpl_semi_sync_master_enabled = {0|1};
 SET GLOBAL rpl_semi_sync_master_timeout = N;
 ```
 
-No lado da replicação, esta variável do sistema está disponível:
+On the replica side, this system variable is available:
 
 ```sql
 SET GLOBAL rpl_semi_sync_slave_enabled = {0|1};
 ```
 
-Para [`rpl_semi_sync_master_enabled`](https://docs.mariadb.org/mariadb/10.0/en/replication-options-source.html#sysvar_rpl_semi_sync_master_enabled) ou [`rpl_semi_sync_slave_enabled`](https://docs.mariadb.org/mariadb/10.0/en/replication-options-replica.html#sysvar_rpl_semi_sync_slave_enabled), o valor deve ser 1 para habilitar a replicação semi-sincronizada ou 0 para desabilitá-la. Por padrão, essas variáveis são definidas como 0.
+For [`rpl_semi_sync_master_enabled`](replication-options-source.html#sysvar_rpl_semi_sync_master_enabled) or [`rpl_semi_sync_slave_enabled`](replication-options-replica.html#sysvar_rpl_semi_sync_slave_enabled), the value should be 1 to enable semisynchronous replication or 0 to disable it. By default, these variables are set to 0.
 
-Para `rpl_semi_sync_master_timeout`, o valor *`N`* é dado em milissegundos. O valor padrão é 10000 (10 segundos).
+For [`rpl_semi_sync_master_timeout`](replication-options-source.html#sysvar_rpl_semi_sync_master_timeout), the value *`N`* is given in milliseconds. The default value is 10000 (10 seconds).
 
-Se você ativar a replicação semi-sincronizada em uma replica durante a execução, também é necessário iniciar a thread de I/O de replicação (parando-a primeiro, se ela já estiver em execução) para fazer com que a replica se conecte à fonte e se registre como uma replica semi-sincronizada:
+If you enable semisynchronous replication on a replica at runtime, you must also start the replication I/O thread (stopping it first if it is already running) to cause the replica to connect to the source and register as a semisynchronous replica:
 
 ```sql
 STOP SLAVE IO_THREAD;
 START SLAVE IO_THREAD;
 ```
 
-Se a thread de I/O de replicação já estiver em execução e você não reiniciá-la, a replica continuará usando a replicação assíncrona.
+If the replication I/O thread is already running and you do not restart it, the replica continues to use asynchronous replication.
 
-Ao iniciar o servidor, as variáveis que controlam a replicação semiesincronizada podem ser definidas como opções de linha de comando ou em um arquivo de opções. Uma configuração listada em um arquivo de opções entra em vigor sempre que o servidor é iniciado. Por exemplo, você pode definir as variáveis nos arquivos `my.cnf` dos lados de origem e replicação da seguinte forma.
+At server startup, the variables that control semisynchronous replication can be set as command-line options or in an option file. A setting listed in an option file takes effect each time the server starts. For example, you can set the variables in `my.cnf` files on the source and replica sides as follows.
 
-Sobre a fonte:
+On the source:
 
 ```sql
 [mysqld]
@@ -105,7 +105,7 @@ rpl_semi_sync_master_enabled=1
 rpl_semi_sync_master_timeout=1000 # 1 second
 ```
 
-Em cada réplica:
+On each replica:
 
 ```sql
 [mysqld]

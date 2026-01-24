@@ -1,69 +1,69 @@
-#### 21.6.15.37 A tabela ndbinfo table_fragments
+#### 21.6.15.37 The ndbinfo table_fragments Table
 
-A tabela `table_fragments` fornece informações sobre a fragmentação, particionamento, distribuição e (replicação interna) das tabelas `NDB`.
+The `table_fragments` table provides information about the fragmentation, partitioning, distribution, and (internal) replication of `NDB` tables.
 
-A tabela `table_fragments` contém as seguintes colunas:
+The `table_fragments` table contains the following columns:
 
-- `node_id`
+* `node_id`
 
-  ID do nó (`DIH` master))
+  Node ID ([`DIH`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbdih.html) master)
 
-- `table_id`
+* `table_id`
 
-  Tabela ID
+  Table ID
 
-- `partition_id`
+* `partition_id`
 
-  ID de Partição
+  Partition ID
 
-- `fragment_id`
+* `fragment_id`
 
-  ID de fragmento (o mesmo que o ID de partição, a menos que a tabela seja totalmente replicada)
+  Fragment ID (same as partition ID unless table is fully replicated)
 
-- `ordem_partição`
+* `partition_order`
 
-  Ordem do fragmento na partição
+  Order of fragment in partition
 
-- `log_part_id`
+* `log_part_id`
 
-  ID de registro da parte do fragmento
+  Log part ID of fragment
 
-- `no_of_replicas`
+* `no_of_replicas`
 
-  Número de réplicas de fragmentos
+  Number of fragment replicas
 
-- `current_primary`
+* `current_primary`
 
-  ID atual do nó primário
+  Current primary node ID
 
-- `preferido_primario`
+* `preferred_primary`
 
-  ID do nó primário preferido
+  Preferred primary node ID
 
-- `current_first_backup`
+* `current_first_backup`
 
-  ID atual do primeiro nó de backup
+  Current first backup node ID
 
-- `current_second_backup`
+* `current_second_backup`
 
-  ID do segundo nó de backup atual
+  Current second backup node ID
 
-- `atual_terceiro_backup`
+* `current_third_backup`
 
-  ID do terceiro nó de backup atual
+  Current third backup node ID
 
-- `num_alive_replicas`
+* `num_alive_replicas`
 
-  Número atual de réplicas de fragmentos ao vivo
+  Current number of live fragment replicas
 
-- `num_dead_replicas`
+* `num_dead_replicas`
 
-  Número atual de réplicas de fragmentos mortos
+  Current number of dead fragment replicas
 
-- `num_lcp_replicas`
+* `num_lcp_replicas`
 
-  Número de réplicas de fragmentos que ainda precisam ser verificadas
+  Number of fragment replicas remaining to be checkpointed
 
-##### Notas
+##### Notes
 
-A tabela `table_fragments` foi adicionada no NDB 7.5.4.
+The `table_fragments` table was added in NDB 7.5.4.

@@ -1,43 +1,43 @@
-### 16.1.2 Configuração da replicação com base na posição do arquivo de registro binário
+### 16.1.2 Setting Up Binary Log File Position Based Replication
 
-16.1.2.1 Configuração da fonte de replicação
+[16.1.2.1 Setting the Replication Source Configuration](replication-howto-masterbaseconfig.html)
 
-16.1.2.2 Criando um Usuário para Replicação
+[16.1.2.2 Creating a User for Replication](replication-howto-repuser.html)
 
-16.1.2.3 Obter as coordenadas do log binário da fonte de replicação
+[16.1.2.3 Obtaining the Replication Source's Binary Log Coordinates](replication-howto-masterstatus.html)
 
-16.1.2.4 Escolhendo um Método para Instantâneos de Dados
+[16.1.2.4 Choosing a Method for Data Snapshots](replication-snapshot-method.html)
 
-16.1.2.5 Configurando Replicas
+[16.1.2.5 Setting Up Replicas](replication-setup-replicas.html)
 
-16.1.2.6 Adicionando réplicas a uma topologia de replicação
+[16.1.2.6 Adding Replicas to a Replication Topology](replication-howto-additionalslaves.html)
 
-Esta seção descreve como configurar um servidor MySQL para usar a replicação com base na posição do arquivo de log binário. Existem vários métodos diferentes para configurar a replicação, e o método exato a ser usado depende de como você está configurando a replicação e se já tem dados no banco de dados na fonte.
+This section describes how to set up a MySQL server to use binary log file position based replication. There are a number of different methods for setting up replication, and the exact method to use depends on how you are setting up replication, and whether you already have data in the database on the source.
 
-Há algumas tarefas genéricas que são comuns a todas as configurações:
+There are some generic tasks that are common to all setups:
 
-- Na fonte, você deve habilitar o registro binário e configurar um ID de servidor único. Isso pode exigir o reinício do servidor. Consulte Seção 16.1.2.1, “Configurando a Configuração da Fonte de Replicação”.
+* On the source, you must enable binary logging and configure a unique server ID. This might require a server restart. See [Section 16.1.2.1, “Setting the Replication Source Configuration”](replication-howto-masterbaseconfig.html "16.1.2.1 Setting the Replication Source Configuration").
 
-- Em cada réplica que você deseja conectar à fonte, você deve configurar um ID de servidor único. Isso pode exigir o reinício do servidor. Consulte Seção 16.1.2.5.1, “Definindo a Configuração da Réplica”.
+* On each replica that you want to connect to the source, you must configure a unique server ID. This might require a server restart. See [Section 16.1.2.5.1, “Setting the Replica Configuration”](replication-setup-replicas.html#replication-howto-slavebaseconfig "16.1.2.5.1 Setting the Replica Configuration").
 
-- Opcionalmente, crie um usuário separado para que suas réplicas o utilizem durante a autenticação com a fonte ao ler o log binário para replicação. Veja Seção 16.1.2.2, “Criando um Usuário para Replicação”.
+* Optionally, create a separate user for your replicas to use during authentication with the source when reading the binary log for replication. See [Section 16.1.2.2, “Creating a User for Replication”](replication-howto-repuser.html "16.1.2.2 Creating a User for Replication").
 
-- Antes de criar um instantâneo de dados ou iniciar o processo de replicação, no servidor de origem, você deve registrar a posição atual no log binário. Você precisa dessa informação ao configurar a replica para que ela saiba onde, no log binário, começar a executar os eventos. Consulte Seção 16.1.2.3, “Obtenção das coordenadas do log binário da fonte de replicação”.
+* Before creating a data snapshot or starting the replication process, on the source you should record the current position in the binary log. You need this information when configuring the replica so that the replica knows where in the binary log to start executing events. See [Section 16.1.2.3, “Obtaining the Replication Source's Binary Log Coordinates”](replication-howto-masterstatus.html "16.1.2.3 Obtaining the Replication Source's Binary Log Coordinates").
 
-- Se você já tem dados na fonte e deseja usá-los para sincronizar a replica, você precisa criar um instantâneo de dados para copiar os dados para a replica. O mecanismo de armazenamento que você está usando tem um impacto sobre como você cria o instantâneo. Quando você está usando `MyISAM`, você deve parar de processar instruções na fonte para obter um bloqueio de leitura, depois obter suas coordenadas atuais do log binário e fazer o dump de seus dados, antes de permitir que a fonte continue executando instruções. Se você não parar a execução das instruções, o dump de dados e as informações de status da fonte não correspondem, resultando em bancos de dados inconsistentes ou corrompidos nas réplicas. Para mais informações sobre a replicação de uma fonte `MyISAM`, consulte Seção 16.1.2.3, “Obtenção das coordenadas do log binário da fonte de replicação”. Se você está usando `InnoDB`, você não precisa de um bloqueio de leitura e uma transação que seja longa o suficiente para transferir o instantâneo de dados é suficiente. Para mais informações, consulte Seção 14.20, “Replicação InnoDB e MySQL”.
+* If you already have data on the source and want to use it to synchronize the replica, you need to create a data snapshot to copy the data to the replica. The storage engine you are using has an impact on how you create the snapshot. When you are using [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine"), you must stop processing statements on the source to obtain a read-lock, then obtain its current binary log coordinates and dump its data, before permitting the source to continue executing statements. If you do not stop the execution of statements, the data dump and the source's status information do not match, resulting in inconsistent or corrupted databases on the replicas. For more information on replicating a [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine") source, see [Section 16.1.2.3, “Obtaining the Replication Source's Binary Log Coordinates”](replication-howto-masterstatus.html "16.1.2.3 Obtaining the Replication Source's Binary Log Coordinates"). If you are using [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine"), you do not need a read-lock and a transaction that is long enough to transfer the data snapshot is sufficient. For more information, see [Section 14.20, “InnoDB and MySQL Replication”](innodb-and-mysql-replication.html "14.20 InnoDB and MySQL Replication").
 
-- Configure a replica com as configurações para conectar-se à fonte, como o nome do host, as credenciais de login e o nome e a posição do arquivo de log binário. Consulte Seção 16.1.2.5.2, “Definindo a Configuração da Fonte na Replica”.
+* Configure the replica with settings for connecting to the source, such as the host name, login credentials, and binary log file name and position. See [Section 16.1.2.5.2, “Setting the Source Configuration on the Replica”](replication-setup-replicas.html#replication-howto-slaveinit "16.1.2.5.2 Setting the Source Configuration on the Replica").
 
-Nota
+Note
 
-Certos passos durante o processo de configuração exigem o privilégio `SUPER`. Se você não tiver esse privilégio, pode não ser possível habilitar a replicação.
+Certain steps within the setup process require the [`SUPER`](privileges-provided.html#priv_super) privilege. If you do not have this privilege, it might not be possible to enable replication.
 
-Após configurar as opções básicas, selecione seu cenário:
+After configuring the basic options, select your scenario:
 
-- Para configurar a replicação para uma instalação nova de uma fonte e réplicas que não contêm dados, consulte Seção 16.1.2.5.3, “Configurando a replicação entre uma nova fonte e réplicas”.
+* To set up replication for a fresh installation of a source and replicas that contain no data, see [Section 16.1.2.5.3, “Setting Up Replication between a New Source and Replicas”](replication-setup-replicas.html#replication-howto-newservers "16.1.2.5.3 Setting Up Replication between a New Source and Replicas").
 
-- Para configurar a replicação de uma nova fonte usando os dados de um servidor MySQL existente, consulte Seção 16.1.2.5.4, “Configurando a Replicação com Dados Existentes”.
+* To set up replication of a new source using the data from an existing MySQL server, see [Section 16.1.2.5.4, “Setting Up Replication with Existing Data”](replication-setup-replicas.html#replication-howto-existingdata "16.1.2.5.4 Setting Up Replication with Existing Data").
 
-- Para adicionar réplicas a um ambiente de replicação existente, consulte Seção 16.1.2.6, “Adicionar réplicas a uma topologia de replicação”.
+* To add replicas to an existing replication environment, see [Section 16.1.2.6, “Adding Replicas to a Replication Topology”](replication-howto-additionalslaves.html "16.1.2.6 Adding Replicas to a Replication Topology").
 
-Antes de administrar servidores de replicação do MySQL, leia todo este capítulo e tente todas as instruções mencionadas em Seção 13.4.1, “Instruções SQL para controle de servidores de origem de replicação” e Seção 13.4.2, “Instruções SQL para controle de servidores de réplica”. Além disso, familiarize-se com as opções de inicialização de replicação descritas em Seção 16.1.6, “Opções e variáveis de replicação e registro binário”.
+Before administering MySQL replication servers, read this entire chapter and try all statements mentioned in [Section 13.4.1, “SQL Statements for Controlling Replication Source Servers”](replication-statements-master.html "13.4.1 SQL Statements for Controlling Replication Source Servers"), and [Section 13.4.2, “SQL Statements for Controlling Replica Servers”](replication-statements-replica.html "13.4.2 SQL Statements for Controlling Replica Servers"). Also familiarize yourself with the replication startup options described in [Section 16.1.6, “Replication and Binary Logging Options and Variables”](replication-options.html "16.1.6 Replication and Binary Logging Options and Variables").

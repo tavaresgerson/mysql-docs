@@ -1,6 +1,6 @@
-### 25.4.9 Nomeação de Instrumentos ou Consumidores para Operações de Filtragem
+### 25.4.9 Naming Instruments or Consumers for Filtering Operations
 
-Os nomes utilizados para operações de filtragem podem ser tão específicos ou genéricos quanto necessário. Para indicar um único instrumento ou consumidor, especifique seu nome completo:
+Names given for filtering operations can be as specific or general as required. To indicate a single instrument or consumer, specify its name in full:
 
 ```sql
 UPDATE performance_schema.setup_instruments
@@ -12,7 +12,7 @@ SET ENABLED = 'NO'
 WHERE NAME = 'events_waits_current';
 ```
 
-Para especificar um grupo de instrumentos ou consumidores, use um padrão que corresponda aos membros do grupo:
+To specify a group of instruments or consumers, use a pattern that matches the group members:
 
 ```sql
 UPDATE performance_schema.setup_instruments
@@ -24,15 +24,15 @@ SET ENABLED = 'NO'
 WHERE NAME LIKE '%history%';
 ```
 
-Se você usar um padrão, ele deve ser escolhido para corresponder a todos os itens de interesse e nenhum outro. Por exemplo, para selecionar todos os instrumentos de E/S de arquivos, é melhor usar um padrão que inclua todo o prefixo do nome do instrumento:
+If you use a pattern, it should be chosen so that it matches all the items of interest and no others. For example, to select all file I/O instruments, it is better to use a pattern that includes the entire instrument name prefix:
 
 ```sql
 ... WHERE NAME LIKE 'wait/io/file/%';
 ```
 
-O padrão `'%/file/%'` corresponde a outros instrumentos que têm um elemento de `'/file/'` em qualquer lugar do nome. Ainda menos adequado é o padrão `'%file%'`, pois ele corresponde a instrumentos com `'file'` em qualquer lugar do nome, como `wait/synch/mutex/innodb/file_open_mutex`.
+The pattern `'%/file/%'` matches other instruments that have an element of `'/file/'` anywhere in the name. Even less suitable is the pattern `'%file%'` because it matches instruments with `'file'` anywhere in the name, such as `wait/synch/mutex/innodb/file_open_mutex`.
 
-Para verificar qual instrumento ou nome de consumidor um padrão corresponde, realize um teste simples:
+To check which instrument or consumer names a pattern matches, perform a simple test:
 
 ```sql
 SELECT NAME FROM performance_schema.setup_instruments
@@ -42,4 +42,4 @@ SELECT NAME FROM performance_schema.setup_consumers
 WHERE NAME LIKE 'pattern';
 ```
 
-Para obter informações sobre os tipos de nomes suportados, consulte Seção 25.6, “Convenções de Nomenclatura de Instrumentos do Schema de Desempenho”.
+For information about the types of names that are supported, see [Section 25.6, “Performance Schema Instrument Naming Conventions”](performance-schema-instrument-naming.html "25.6 Performance Schema Instrument Naming Conventions").

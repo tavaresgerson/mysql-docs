@@ -1,49 +1,49 @@
-### 21.7.7 Usar dois canais de replicação para a replicação de clusters NDB
+### 21.7.7 Using Two Replication Channels for NDB Cluster Replication
 
-Em um cenário de exemplo mais completo, imaginamos dois canais de replicação para fornecer redundância e, assim, proteger contra possíveis falhas de um único canal de replicação. Isso requer um total de quatro servidores de replicação, dois servidores de origem no clúster de origem e dois servidores de replica no clúster de replica. Para os fins da discussão a seguir, assumimos que identificadores únicos são atribuídos conforme mostrado aqui:
+In a more complete example scenario, we envision two replication channels to provide redundancy and thereby guard against possible failure of a single replication channel. This requires a total of four replication servers, two source servers on the source cluster and two replica servers on the replica cluster. For purposes of the discussion that follows, we assume that unique identifiers are assigned as shown here:
 
-**Tabela 21.67 Servidores de replicação de cluster do NDB descritos no texto**
+**Table 21.67 NDB Cluster replication servers described in the text**
 
-<table><thead><tr> <th>ID do servidor</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>1</td> <td>Fonte - canal de replicação primário (<span><em>S</em></span>)</td> </tr><tr> <td>2</td> <td>Fonte - canal de replicação secundário (<span><em>S'</em></span>)</td> </tr><tr> <td>3</td> <td>Replica - canal de replicação primário (<span><em>R</em></span>)</td> </tr><tr> <td>4</td> <td>replica - canal de replicação secundário (<span><em>R'</em></span>)</td> </tr></tbody></table>
+<table><thead><tr> <th>Server ID</th> <th>Description</th> </tr></thead><tbody><tr> <td>1</td> <td>Source - primary replication channel (<span><em>S</em></span>)</td> </tr><tr> <td>2</td> <td>Source - secondary replication channel (<span><em>S'</em></span>)</td> </tr><tr> <td>3</td> <td>Replica - primary replication channel (<span><em>R</em></span>)</td> </tr><tr> <td>4</td> <td>replica - secondary replication channel (<span><em>R'</em></span>)</td> </tr></tbody></table>
 
-Configurar a replicação com dois canais não difere radicalmente de configurar um único canal de replicação. Primeiro, os processos do **mysqld** dos servidores de origem primária e secundária de replicação devem ser iniciados, seguidos pelos processos das réplicas primária e secundária. Os processos de replicação podem ser iniciados emitindo a instrução `START SLAVE` em cada uma das réplicas. Os comandos e a ordem em que eles precisam ser emitidos estão mostrados aqui:
+Setting up replication with two channels is not radically different from setting up a single replication channel. First, the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") processes for the primary and secondary replication source servers must be started, followed by those for the primary and secondary replicas. The replication processes can be initiated by issuing the [`START SLAVE`](start-slave.html "13.4.2.5 START SLAVE Statement") statement on each of the replicas. The commands and the order in which they need to be issued are shown here:
 
-1. Comece a fonte de replicação primária:
+1. Start the primary replication source:
 
    ```sql
    shellS> mysqld --ndbcluster --server-id=1 \
                   --log-bin &
    ```
 
-2. Inicie a fonte de replicação secundária:
+2. Start the secondary replication source:
 
    ```sql
    shellS'> mysqld --ndbcluster --server-id=2 \
                   --log-bin &
    ```
 
-3. Comece o servidor de replicação primária:
+3. Start the primary replica server:
 
    ```sql
    shellR> mysqld --ndbcluster --server-id=3 \
                   --skip-slave-start &
    ```
 
-4. Comece o servidor de replica secundária:
+4. Start the secondary replica server:
 
    ```sql
    shellR'> mysqld --ndbcluster --server-id=4 \
                    --skip-slave-start &
    ```
 
-5. Por fim, inicie a replicação no canal primário executando a instrução `START SLAVE` na replica primária, conforme mostrado aqui:
+5. Finally, initiate replication on the primary channel by executing the [`START SLAVE`](start-slave.html "13.4.2.5 START SLAVE Statement") statement on the primary replica as shown here:
 
    ```sql
    mysqlR> START SLAVE;
    ```
 
-   Aviso
+   Warning
 
-   Neste ponto, apenas o canal primário deve ser iniciado. O canal de replicação secundário deve ser iniciado apenas no caso de o canal primário de replicação falhar, conforme descrito em Seção 21.7.8, “Implementando o Failover com a Replicação de NDB Cluster”. Executar múltiplos canais de replicação simultaneamente pode resultar na criação de registros duplicados indesejados nas réplicas.
+   Only the primary channel must be started at this point. The secondary replication channel needs to be started only in the event that the primary replication channel fails, as described in [Section 21.7.8, “Implementing Failover with NDB Cluster Replication”](mysql-cluster-replication-failover.html "21.7.8 Implementing Failover with NDB Cluster Replication"). Running multiple replication channels simultaneously can result in unwanted duplicate records being created on the replicas.
 
-Como mencionado anteriormente, não é necessário habilitar o registro binário nas réplicas.
+As mentioned previously, it is not necessary to enable binary logging on the replicas.

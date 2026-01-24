@@ -1,8 +1,8 @@
-### 25.4.2 Filtragem de eventos do esquema de desempenho
+### 25.4.2 Performance Schema Event Filtering
 
-Os eventos são processados de forma produtor/consumidor:
+Events are processed in a producer/consumer fashion:
 
-- O código instrumentado é a fonte dos eventos e gera eventos para serem coletados. A tabela `setup_instruments` lista os instrumentos para os quais os eventos podem ser coletados, se estão habilitados e (para instrumentos habilitados) se devem ser coletadas informações de temporização:
+* Instrumented code is the source for events and produces events to be collected. The [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table lists the instruments for which events can be collected, whether they are enabled, and (for enabled instruments) whether to collect timing information:
 
   ```sql
   mysql> SELECT * FROM performance_schema.setup_instruments;
@@ -17,9 +17,9 @@ Os eventos são processados de forma produtor/consumidor:
   ...
   ```
 
-  A tabela `setup_instruments` fornece a forma mais básica de controle sobre a produção de eventos. Para refinar ainda mais a produção de eventos com base no tipo de objeto ou thread sendo monitorado, outras tabelas podem ser usadas conforme descrito em Seção 25.4.3, “Pré-filtragem de Eventos”.
+  The [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table provides the most basic form of control over event production. To further refine event production based on the type of object or thread being monitored, other tables may be used as described in [Section 25.4.3, “Event Pre-Filtering”](performance-schema-pre-filtering.html "25.4.3 Event Pre-Filtering").
 
-- As tabelas do Schema de Desempenho são os destinos dos eventos e os consumidores que os consomem. A tabela `setup_consumers` lista os tipos de consumidores para os quais as informações dos eventos podem ser enviadas e se eles estão habilitados:
+* Performance Schema tables are the destinations for events and consume events. The [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") table lists the types of consumers to which event information can be sent and whether they are enabled:
 
   ```sql
   mysql> SELECT * FROM performance_schema.setup_consumers;
@@ -44,24 +44,24 @@ Os eventos são processados de forma produtor/consumidor:
   +----------------------------------+---------+
   ```
 
-A filtragem pode ser feita em diferentes estágios do monitoramento de desempenho:
+Filtering can be done at different stages of performance monitoring:
 
-- **Pré-filtragem.** Isso é feito modificando a configuração do Schema de Desempenho para que apenas certos tipos de eventos sejam coletados dos produtores, e os eventos coletados atualizem apenas certos consumidores. Para fazer isso, habilite ou desabilite instrumentos ou consumidores. A pré-filtragem é feita pelo Schema de Desempenho e tem um efeito global que se aplica a todos os usuários.
+* **Pre-filtering.** This is done by modifying Performance Schema configuration so that only certain types of events are collected from producers, and collected events update only certain consumers. To do this, enable or disable instruments or consumers. Pre-filtering is done by the Performance Schema and has a global effect that applies to all users.
 
-  Razões para usar o pré-filtro:
+  Reasons to use pre-filtering:
 
-  - Para reduzir os custos operacionais. O overhead do Schema de desempenho deve ser mínimo mesmo com todos os instrumentos ativados, mas talvez você queira reduzi-lo ainda mais. Ou você não se importa com o tempo dos eventos e deseja desabilitar o código de temporização para eliminar o overhead de temporização.
+  + To reduce overhead. Performance Schema overhead should be minimal even with all instruments enabled, but perhaps you want to reduce it further. Or you do not care about timing events and want to disable the timing code to eliminate timing overhead.
 
-  - Para evitar encher as tabelas de eventos atuais ou de história com eventos nos quais você não tem interesse. O pré-filtro deixa mais "espaço" nessas tabelas para instâncias de linhas para tipos de instrumentos habilitados. Se você habilitar apenas instrumentos de arquivo com pré-filtro, nenhuma linha é coletada para instrumentos não de arquivo. Com o pós-filtro, eventos não de arquivo são coletados, deixando menos linhas para eventos de arquivo.
+  + To avoid filling the current-events or history tables with events in which you have no interest. Pre-filtering leaves more “room” in these tables for instances of rows for enabled instrument types. If you enable only file instruments with pre-filtering, no rows are collected for nonfile instruments. With post-filtering, nonfile events are collected, leaving fewer rows for file events.
 
-  - Para evitar a manutenção de alguns tipos de tabelas de eventos. Se você desabilitar um consumidor, o servidor não gastará tempo mantendo destinos para esse consumidor. Por exemplo, se você não se importa com os históricos de eventos, pode desabilitar os consumidores da tabela de histórico para melhorar o desempenho.
+  + To avoid maintaining some kinds of event tables. If you disable a consumer, the server does not spend time maintaining destinations for that consumer. For example, if you do not care about event histories, you can disable the history table consumers to improve performance.
 
-- **Pós-filtragem.** Isso envolve o uso de cláusulas `WHERE` em consultas que selecionam informações das tabelas do Gerenciamento de Desempenho, para especificar quais dos eventos disponíveis você deseja ver. A pós-filtragem é realizada por usuário, pois cada usuário seleciona quais dos eventos disponíveis são de interesse.
+* **Post-filtering.** This involves the use of `WHERE` clauses in queries that select information from Performance Schema tables, to specify which of the available events you want to see. Post-filtering is performed on a per-user basis because individual users select which of the available events are of interest.
 
-  Razões para usar o pós-filtragem:
+  Reasons to use post-filtering:
 
-  - Para evitar tomar decisões sobre quais informações de eventos são de interesse para os usuários individuais.
+  + To avoid making decisions for individual users about which event information is of interest.
 
-  - Para usar o Schema de Desempenho para investigar um problema de desempenho quando as restrições para impor o uso de pré-filtragem não são conhecidas antecipadamente.
+  + To use the Performance Schema to investigate a performance issue when the restrictions to impose using pre-filtering are not known in advance.
 
-As seções a seguir fornecem mais detalhes sobre o pré-filtro e fornecem diretrizes para nomear instrumentos ou consumidores em operações de filtragem. Para obter informações sobre como escrever consultas para recuperar informações (pós-filtragem), consulte Seção 25.5, “Consultas do Schema de Desempenho”.
+The following sections provide more detail about pre-filtering and provide guidelines for naming instruments or consumers in filtering operations. For information about writing queries to retrieve information (post-filtering), see [Section 25.5, “Performance Schema Queries”](performance-schema-queries.html "25.5 Performance Schema Queries").

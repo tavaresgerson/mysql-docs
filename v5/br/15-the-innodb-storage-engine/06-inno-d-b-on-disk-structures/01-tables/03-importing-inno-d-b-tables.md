@@ -1,138 +1,136 @@
-#### 14.6.1.3 Impor tabelas InnoDB
+#### 14.6.1.3 Importing InnoDB Tables
 
-Esta seção descreve como importar tabelas usando o recurso *Transportable Tablespaces*, que permite importar tabelas, tabelas particionadas ou partições individuais de tabelas que residem em espaços de tabelas por arquivo. Existem várias razões pelas quais você pode querer importar tabelas:
+This section describes how to import tables using the *Transportable Tablespaces* feature, which permits importing tables, partitioned tables, or individual table partitions that reside in file-per-table tablespaces. There are many reasons why you might want to import tables:
 
-- Para executar relatórios em uma instância de servidor MySQL não produtiva para evitar sobrecarregar um servidor produtivo.
+* To run reports on a non-production MySQL server instance to avoid placing extra load on a production server.
 
-- Para copiar dados para um novo servidor de replicação.
+* To copy data to a new replica server.
+* To restore a table from a backed-up tablespace file.
+* As a faster way of moving data than importing a dump file, which requires reinserting data and rebuilding indexes.
 
-- Para restaurar uma tabela a partir de um arquivo de espaço de tabela protegido.
+* To move a data to a server with storage media that is better suited to your storage requirements. For example, you might move busy tables to an SSD device, or move large tables to a high-capacity HDD device.
 
-- Como uma maneira mais rápida de mover dados do que importar um arquivo de dump, que requer a reinserção de dados e a reconstrução de índices.
+The *Transportable Tablespaces* feature is described under the following topics in this section:
 
-- Para transferir dados para um servidor com um meio de armazenamento mais adequado às suas necessidades de armazenamento. Por exemplo, você pode transferir tabelas com muitas linhas para um dispositivo SSD ou transferir tabelas grandes para um dispositivo de HD de alta capacidade.
+* Prerequisites
+* Importing Tables
+* Importing Partitioned Tables
+* Importing Table Partitions
+* Limitations
+* Usage Notes
+* Internals
 
-O recurso *Tabelasespaços Transportadoras* é descrito nos seguintes tópicos desta seção:
+##### Prerequisites
 
-- Pré-requisitos
-- Importar tabelas
-- Importar tabelas particionadas
-- Impor Partições de Mesa
-- Limitações
-- Observações de uso
-- Interiores
+* The `innodb_file_per_table` variable must be enabled, which it is by default.
 
-##### Pré-requisitos
+* The page size of the tablespace must match the page size of the destination MySQL server instance. `InnoDB` page size is defined by the `innodb_page_size` variable, which is configured when initializing a MySQL server instance.
 
-- A variável `innodb_file_per_table` deve estar habilitada, o que é o caso por padrão.
+* If the table has a foreign key relationship, `foreign_key_checks` must be disabled before executing `DISCARD TABLESPACE`. Also, you should export all foreign key related tables at the same logical point in time, as `ALTER TABLE ... IMPORT TABLESPACE` does not enforce foreign key constraints on imported data. To do so, stop updating the related tables, commit all transactions, acquire shared locks on the tables, and perform the export operations.
 
-- O tamanho da página do espaço de tabelas deve corresponder ao tamanho da página da instância do servidor MySQL de destino. O tamanho da página do `InnoDB` é definido pela variável `innodb_page_size`, que é configurada ao inicializar uma instância do servidor MySQL.
+* When importing a table from another MySQL server instance, both MySQL server instances must have General Availability (GA) status and must be the same version. Otherwise, the table must be created on the same MySQL server instance into which it is being imported.
 
-- Se a tabela tiver uma relação de chave estrangeira, `foreign_key_checks` deve ser desativado antes de executar `DISCARD TABLESPACE`. Além disso, você deve exportar todas as tabelas relacionadas à chave estrangeira no mesmo ponto lógico, pois `ALTER TABLE ... IMPORT TABLESPACE` não aplica restrições de chave estrangeira aos dados importados. Para fazer isso, pare de atualizar as tabelas relacionadas, commit todas as transações, adquira bloqueios compartilhados nas tabelas e realize as operações de exportação.
+* If the table was created in an external directory by specifying the `DATA DIRECTORY` clause in the `CREATE TABLE` statement, the table that you replace on the destination instance must be defined with the same `DATA DIRECTORY` clause. A schema mismatch error is reported if the clauses do not match. To determine if the source table was defined with a `DATA DIRECTORY` clause, use `SHOW CREATE TABLE` to view the table definition. For information about using the `DATA DIRECTORY` clause, see Section 14.6.1.2, “Creating Tables Externally”.
 
-- Ao importar uma tabela de outra instância do servidor MySQL, ambas as instâncias do servidor MySQL devem ter o status de Disponibilidade Geral (GA) e devem ser da mesma versão. Caso contrário, a tabela deve ser criada na mesma instância do servidor MySQL na qual está sendo importada.
+* If a `ROW_FORMAT` option is not defined explicitly in the table definition or `ROW_FORMAT=DEFAULT` is used, the `innodb_default_row_format` setting must be the same on the source and destination instances. Otherwise, a schema mismatch error is reported when you attempt the import operation. Use `SHOW CREATE TABLE` to check the table definition. Use `SHOW VARIABLES` to check the `innodb_default_row_format` setting. For related information, see Defining the Row Format of a Table.
 
-- Se a tabela foi criada em um diretório externo especificando a cláusula `DATA DIRECTORY` na instrução `CREATE TABLE`, a tabela que você substitui na instância de destino deve ser definida com a mesma cláusula `DATA DIRECTORY`. Um erro de incompatibilidade de esquema é exibido se as cláusulas não corresponderem. Para determinar se a tabela de origem foi definida com uma cláusula `DATA DIRECTORY`, use `SHOW CREATE TABLE` para visualizar a definição da tabela. Para obter informações sobre o uso da cláusula `DATA DIRECTORY`, consulte a Seção 14.6.1.2, “Criando Tabelas Externamente”.
+##### Importing Tables
 
-- Se uma opção `ROW_FORMAT` não for definida explicitamente na definição da tabela ou se `ROW_FORMAT=DEFAULT` for usada, o ajuste `innodb_default_row_format` deve ser o mesmo nas instâncias de origem e destino. Caso contrário, um erro de incompatibilidade de esquema será relatado quando você tentar a operação de importação. Use `SHOW CREATE TABLE` para verificar a definição da tabela. Use `SHOW VARIABLES` para verificar o ajuste `innodb_default_row_format`. Para informações relacionadas, consulte Definindo o Formato de Linha de uma Tabela.
+This example demonstrates how to import a regular non-partitioned table that resides in a file-per-table tablespace.
 
-##### Importar tabelas
-
-Este exemplo demonstra como importar uma tabela comum não particionada que reside em um espaço de tabelas por arquivo.
-
-1. Na instância de destino, crie uma tabela com a mesma definição da tabela que você pretende importar. (Você pode obter a definição da tabela usando a sintaxe `SHOW CREATE TABLE`. Se a definição da tabela não corresponder, um erro de incompatibilidade de esquema será exibido quando você tentar a operação de importação.
+1. On the destination instance, create a table with the same definition as the table you intend to import. (You can obtain the table definition using `SHOW CREATE TABLE` syntax.) If the table definition does not match, a schema mismatch error is reported when you attempt the import operation.
 
    ```sql
    mysql> USE test;
    mysql> CREATE TABLE t1 (c1 INT) ENGINE=INNODB;
    ```
 
-2. Na instância de destino, descarte o tablespace da tabela que você acabou de criar. (Antes de importar, você deve descartar o tablespace da tabela receptora.)
+2. On the destination instance, discard the tablespace of the table that you just created. (Before importing, you must discard the tablespace of the receiving table.)
 
    ```sql
    mysql> ALTER TABLE t1 DISCARD TABLESPACE;
    ```
 
-3. Na instância de origem, execute `FLUSH TABLES ... FOR EXPORT` para colocar a tabela em estado de repouso, que você pretende importar. Quando uma tabela é colocada em estado de repouso, apenas transações de leitura são permitidas na tabela.
+3. On the source instance, run `FLUSH TABLES ... FOR EXPORT` to quiesce the table you intend to import. When a table is quiesced, only read-only transactions are permitted on the table.
 
    ```sql
    mysql> USE test;
    mysql> FLUSH TABLES t1 FOR EXPORT;
    ```
 
-   `FLUSH TABLES ... PARA EXPOR` garante que as alterações na tabela nomeada sejam descarregadas no disco, para que uma cópia binária da tabela possa ser feita enquanto o servidor estiver em execução. Quando `FLUSH TABLES ... PARA EXPOR` é executado, o `InnoDB` gera um arquivo de metadados `.cfg` no diretório do esquema da tabela. O arquivo `.cfg` contém metadados que são usados para verificação do esquema durante a operação de importação.
+   `FLUSH TABLES ... FOR EXPORT` ensures that changes to the named table are flushed to disk so that a binary table copy can be made while the server is running. When `FLUSH TABLES ... FOR EXPORT` is run, `InnoDB` generates a `.cfg` metadata file in the schema directory of the table. The `.cfg` file contains metadata that is used for schema verification during the import operation.
 
-   Nota
+   Note
 
-   A conexão que executa `FLUSH TABLES ... FOR EXPORT` deve permanecer aberta enquanto a operação estiver em execução; caso contrário, o arquivo `.cfg` será removido, pois os bloqueios são liberados ao fechar a conexão.
+   The connection executing `FLUSH TABLES ... FOR EXPORT` must remain open while the operation is running; otherwise, the `.cfg` file is removed as locks are released upon connection closure.
 
-4. Copie o arquivo `.ibd` e o arquivo de metadados `.cfg` da instância de origem para a instância de destino. Por exemplo:
+4. Copy the `.ibd` file and `.cfg` metadata file from the source instance to the destination instance. For example:
 
    ```sql
    $> scp /path/to/datadir/test/t1.{ibd,cfg} destination-server:/path/to/datadir/test
    ```
 
-   O arquivo `.ibd` e o arquivo `.cfg` devem ser copiados antes de liberar as bloquagens compartilhadas, conforme descrito no próximo passo.
+   The `.ibd` file and `.cfg` file must be copied before releasing the shared locks, as described in the next step.
 
-   Nota
+   Note
 
-   Se você estiver importando uma tabela de um espaço de tabelas criptografado, o `InnoDB` gera um arquivo `.cfp` além de um arquivo de metadados `.cfg`. O arquivo `.cfp` deve ser copiado para a instância de destino junto com o arquivo `.cfg`. O arquivo `.cfp` contém uma chave de transferência e uma chave de espaço de tabelas criptografada. Durante a importação, o `InnoDB` usa a chave de transferência para descriptografar a chave do espaço de tabelas. Para informações relacionadas, consulte a Seção 14.14, “Criptografia de Dados em Repouso do \`InnoDB’”.
+   If you are importing a table from an encrypted tablespace, `InnoDB` generates a `.cfp` file in addition to a `.cfg` metadata file. The `.cfp` file must be copied to the destination instance together with the `.cfg` file. The `.cfp` file contains a transfer key and an encrypted tablespace key. On import, `InnoDB` uses the transfer key to decrypt the tablespace key. For related information, see Section 14.14, “InnoDB Data-at-Rest Encryption”.
 
-5. Na instância de origem, use `UNLOCK TABLES` para liberar as bloqueadas adquiridas pela instrução `FLUSH TABLES ... FOR EXPORT`:
+5. On the source instance, use `UNLOCK TABLES` to release the locks acquired by the `FLUSH TABLES ... FOR EXPORT` statement:
 
    ```sql
    mysql> USE test;
    mysql> UNLOCK TABLES;
    ```
 
-   A operação `UNLOCK TABLES` também remove o arquivo `.cfg`.
+   The `UNLOCK TABLES` operation also removes the `.cfg` file.
 
-6. Na instância de destino, importe o espaço de tabelas:
+6. On the destination instance, import the tablespace:
 
    ```sql
    mysql> USE test;
    mysql> ALTER TABLE t1 IMPORT TABLESPACE;
    ```
 
-##### Importar tabelas particionadas
+##### Importing Partitioned Tables
 
-Este exemplo demonstra como importar uma tabela particionada, onde cada partição da tabela reside em um espaço de tabelas por arquivo.
+This example demonstrates how to import a partitioned table, where each table partition resides in a file-per-table tablespace.
 
-1. Na instância de destino, crie uma tabela particionada com a mesma definição da tabela particionada que você deseja importar. (Você pode obter a definição da tabela usando a sintaxe `SHOW CREATE TABLE`. Se a definição da tabela não corresponder, um erro de incompatibilidade de esquema será exibido quando você tentar a operação de importação.
+1. On the destination instance, create a partitioned table with the same definition as the partitioned table that you want to import. (You can obtain the table definition using `SHOW CREATE TABLE` syntax.) If the table definition does not match, a schema mismatch error is reported when you attempt the import operation.
 
    ```sql
    mysql> USE test;
    mysql> CREATE TABLE t1 (i int) ENGINE = InnoDB PARTITION BY KEY (i) PARTITIONS 3;
    ```
 
-   No diretório `/datadir/test`, há um arquivo `.ibd` de espaço de tabelas para cada uma das três partições.
+   In the `/datadir/test` directory, there is a tablespace `.ibd` file for each of the three partitions.
 
    ```sql
    mysql> \! ls /path/to/datadir/test/
    db.opt  t1.frm  t1#P#p0.ibd  t1#P#p1.ibd  t1#P#p2.ibd
    ```
 
-2. Na instância de destino, descarte o tablespace da tabela particionada. (Antes da operação de importação, você deve descartar o tablespace da tabela receptora.)
+2. On the destination instance, discard the tablespace for the partitioned table. (Before the import operation, you must discard the tablespace of the receiving table.)
 
    ```sql
    mysql> ALTER TABLE t1 DISCARD TABLESPACE;
    ```
 
-   Os três arquivos de espaço de tabela `.ibd` da tabela particionada são descartados do diretório `/datadir/test`, deixando os seguintes arquivos:
+   The three tablespace `.ibd` files of the partitioned table are discarded from the `/datadir/test` directory, leaving the following files:
 
    ```sql
    mysql> \! ls /path/to/datadir/test/
    db.opt  t1.frm
    ```
 
-3. Na instância de origem, execute `FLUSH TABLES ... FOR EXPORT` para colocar a tabela particionada que você pretende importar em estado de repouso. Quando uma tabela é colocada em repouso, apenas transações de leitura são permitidas na tabela.
+3. On the source instance, run `FLUSH TABLES ... FOR EXPORT` to quiesce the partitioned table that you intend to import. When a table is quiesced, only read-only transactions are permitted on the table.
 
    ```sql
    mysql> USE test;
    mysql> FLUSH TABLES t1 FOR EXPORT;
    ```
 
-   `FLUSH TABLES ... FOR EXPORT` garante que as alterações na tabela nomeada sejam descarregadas no disco, para que uma cópia binária do esquema possa ser feita enquanto o servidor estiver em execução. Quando `FLUSH TABLES ... FOR EXPORT` é executado, o `InnoDB` gera arquivos de metadados `.cfg` no diretório do esquema do arquivo do espaço de tabela de cada tabela.
+   `FLUSH TABLES ... FOR EXPORT` ensures that changes to the named table are flushed to disk so that binary table copy can be made while the server is running. When `FLUSH TABLES ... FOR EXPORT` is run, `InnoDB` generates `.cfg` metadata files in the schema directory of the table for each of the table's tablespace files.
 
    ```sql
    mysql> \! ls /path/to/datadir/test/
@@ -140,79 +138,79 @@ Este exemplo demonstra como importar uma tabela particionada, onde cada partiç�
    t1.frm  t1#P#p0.cfg  t1#P#p1.cfg  t1#P#p2.cfg
    ```
 
-   Os arquivos `.cfg` contêm metadados que são usados para verificação de esquema ao importar o espaço de tabelas. `FLUSH TABLES ... FOR EXPORT` só pode ser executado na tabela, não nas partições individuais da tabela.
+   The `.cfg` files contain metadata that is used for schema verification when importing the tablespace. `FLUSH TABLES ... FOR EXPORT` can only be run on the table, not on individual table partitions.
 
-4. Copie os arquivos `.ibd` e `.cfg` do diretório do esquema da instância de origem para o diretório do esquema da instância de destino. Por exemplo:
+4. Copy the `.ibd` and `.cfg` files from the source instance schema directory to the destination instance schema directory. For example:
 
    ```sql
    $>scp /path/to/datadir/test/t1*.{ibd,cfg} destination-server:/path/to/datadir/test
    ```
 
-   Os arquivos `.ibd` e `.cfg` devem ser copiados antes de liberar as bloquagens compartilhadas, conforme descrito no próximo passo.
+   The `.ibd` and `.cfg` files must be copied before releasing the shared locks, as described in the next step.
 
-   Nota
+   Note
 
-   Se você estiver importando uma tabela de um espaço de tabelas criptografado, o `InnoDB` gera arquivos `.cfp` além dos arquivos de metadados `.cfg`. Os arquivos `.cfp` devem ser copiados para a instância de destino juntamente com os arquivos `.cfg`. Os arquivos `.cfp` contêm uma chave de transferência e uma chave de espaço de tabelas criptografada. Durante a importação, o `InnoDB` usa a chave de transferência para descriptografar a chave do espaço de tabelas. Para informações relacionadas, consulte a Seção 14.14, “Criptografia de Dados em Repouso do \`InnoDB’”.
+   If you are importing a table from an encrypted tablespace, `InnoDB` generates a `.cfp` files in addition to a `.cfg` metadata files. The `.cfp` files must be copied to the destination instance together with the `.cfg` files. The `.cfp` files contain a transfer key and an encrypted tablespace key. On import, `InnoDB` uses the transfer key to decrypt the tablespace key. For related information, see Section 14.14, “InnoDB Data-at-Rest Encryption”.
 
-5. Na instância de origem, use `UNLOCK TABLES` para liberar as bloqueadas adquiridas por `FLUSH TABLES ... FOR EXPORT`:
+5. On the source instance, use `UNLOCK TABLES` to release the locks acquired by `FLUSH TABLES ... FOR EXPORT`:
 
    ```sql
    mysql> USE test;
    mysql> UNLOCK TABLES;
    ```
 
-6. Na instância de destino, importe o espaço de tabelas da tabela particionada:
+6. On the destination instance, import the tablespace of the partitioned table:
 
    ```sql
    mysql> USE test;
    mysql> ALTER TABLE t1 IMPORT TABLESPACE;
    ```
 
-##### Impor Partições de Mesa
+##### Importing Table Partitions
 
-Este exemplo demonstra como importar partições individuais de tabelas, onde cada partição reside em um arquivo de espaço de tabela por tabela.
+This example demonstrates how to import individual table partitions, where each partition resides in a file-per-table tablespace file.
 
-No exemplo a seguir, duas partições (`p2` e `p3`) de uma tabela de quatro partições são importadas.
+In the following example, two partitions (`p2` and `p3`) of a four-partition table are imported.
 
-1. Na instância de destino, crie uma tabela particionada com a mesma definição da tabela particionada da qual você deseja importar as partições. (Você pode obter a definição da tabela usando a sintaxe `SHOW CREATE TABLE`.) Se a definição da tabela não corresponder, um erro de incompatibilidade de esquema será exibido quando você tentar a operação de importação.
+1. On the destination instance, create a partitioned table with the same definition as the partitioned table that you want to import partitions from. (You can obtain the table definition using `SHOW CREATE TABLE` syntax.) If the table definition does not match, a schema mismatch error is reported when you attempt the import operation.
 
    ```sql
    mysql> USE test;
    mysql> CREATE TABLE t1 (i int) ENGINE = InnoDB PARTITION BY KEY (i) PARTITIONS 4;
    ```
 
-   No diretório `/datadir/test`, há um arquivo `.ibd` de espaço de tabelas para cada uma das quatro partições.
+   In the `/datadir/test` directory, there is a tablespace `.ibd` file for each of the four partitions.
 
    ```sql
    mysql> \! ls /path/to/datadir/test/
    db.opt  t1.frm  t1#P#p0.ibd  t1#P#p1.ibd  t1#P#p2.ibd t1#P#p3.ibd
    ```
 
-2. Na instância de destino, descarte as partições que você pretende importar da instância de origem. (Antes de importar as partições, você deve descartar as partições correspondentes da tabela particionada de destino.)
+2. On the destination instance, discard the partitions that you intend to import from the source instance. (Before importing partitions, you must discard the corresponding partitions from the receiving partitioned table.)
 
    ```sql
    mysql> ALTER TABLE t1 DISCARD PARTITION p2, p3 TABLESPACE;
    ```
 
-   Os arquivos de espaço de tabela `.ibd` das duas partições descartadas são removidos do diretório `/datadir/test` na instância de destino, deixando os seguintes arquivos:
+   The tablespace `.ibd` files for the two discarded partitions are removed from the `/datadir/test` directory on the destination instance, leaving the following files:
 
    ```sql
    mysql> \! ls /path/to/datadir/test/
    db.opt  t1.frm  t1#P#p0.ibd  t1#P#p1.ibd
    ```
 
-   Nota
+   Note
 
-   Quando a instrução `ALTER TABLE ... DISCARD PARTITION ... TABLESPACE` é executada em tabelas subpartidas, os nomes de tabelas de partição e subpartição são permitidos. Quando um nome de partição é especificado, as subpartições dessa partição são incluídas na operação.
+   When `ALTER TABLE ... DISCARD PARTITION ... TABLESPACE` is run on subpartitioned tables, both partition and subpartition table names are permitted. When a partition name is specified, subpartitions of that partition are included in the operation.
 
-3. Na instância de origem, execute `FLUSH TABLES ... FOR EXPORT` para colocar a tabela particionada em estado de repouso. Quando uma tabela é colocada em estado de repouso, apenas transações de leitura são permitidas na tabela.
+3. On the source instance, run `FLUSH TABLES ... FOR EXPORT` to quiesce the partitioned table. When a table is quiesced, only read-only transactions are permitted on the table.
 
    ```sql
    mysql> USE test;
    mysql> FLUSH TABLES t1 FOR EXPORT;
    ```
 
-   `FLUSH TABLES ... FOR EXPORT` garante que as alterações na tabela nomeada sejam descarregadas no disco, para que uma cópia binária do espaço de tabela possa ser feita enquanto a instância estiver em execução. Quando `FLUSH TABLES ... FOR EXPORT` é executado, o `InnoDB` gera um arquivo de metadados `.cfg` para cada um dos arquivos de espaço de tabela da tabela no diretório do esquema da tabela.
+   `FLUSH TABLES ... FOR EXPORT` ensures that changes to the named table are flushed to disk so that binary table copy can be made while the instance is running. When `FLUSH TABLES ... FOR EXPORT` is run, `InnoDB` generates a `.cfg` metadata file for each of the table's tablespace files in the schema directory of the table.
 
    ```sql
    mysql> \! ls /path/to/datadir/test/
@@ -220,49 +218,49 @@ No exemplo a seguir, duas partições (`p2` e `p3`) de uma tabela de quatro part
    t1.frm  t1#P#p0.cfg  t1#P#p1.cfg  t1#P#p2.cfg t1#P#p3.cfg
    ```
 
-   Os arquivos `.cfg` contêm metadados que são usados para verificação de esquema durante a operação de importação. `FLUSH TABLES ... FOR EXPORT` só pode ser executado na tabela, não nas partições individuais da tabela.
+   The `.cfg` files contain metadata that used for schema verification during the import operation. `FLUSH TABLES ... FOR EXPORT` can only be run on the table, not on individual table partitions.
 
-4. Copie os arquivos `.ibd` e `.cfg` para a partição `p2` e a partição `p3` do diretório do esquema da instância de origem para o diretório do esquema da instância de destino.
+4. Copy the `.ibd` and `.cfg` files for partition `p2` and partition `p3` from the source instance schema directory to the destination instance schema directory.
 
    ```sql
    $> scp t1#P#p2.ibd t1#P#p2.cfg t1#P#p3.ibd t1#P#p3.cfg destination-server:/path/to/datadir/test
    ```
 
-   Os arquivos `.ibd` e `.cfg` devem ser copiados antes de liberar as bloquagens compartilhadas, conforme descrito no próximo passo.
+   The `.ibd` and `.cfg` files must be copied before releasing the shared locks, as described in the next step.
 
-   Nota
+   Note
 
-   Se você estiver importando partições de um espaço de tabelas criptografado, o `InnoDB` gera arquivos `.cfp` além dos arquivos de metadados `.cfg`. Os arquivos `.cfp` devem ser copiados para a instância de destino juntamente com os arquivos `.cfg`. Os arquivos `.cfp` contêm uma chave de transferência e uma chave de espaço de tabelas criptografada. Na importação, o `InnoDB` usa a chave de transferência para descriptografar a chave do espaço de tabelas. Para informações relacionadas, consulte a Seção 14.14, “Criptografia de Dados em Repouso do \`InnoDB’”.
+   If you are importing partitions from an encrypted tablespace, `InnoDB` generates a `.cfp` files in addition to a `.cfg` metadata files. The `.cfp` files must be copied to the destination instance together with the `.cfg` files. The `.cfp` files contain a transfer key and an encrypted tablespace key. On import, `InnoDB` uses the transfer key to decrypt the tablespace key. For related information, see Section 14.14, “InnoDB Data-at-Rest Encryption”.
 
-5. Na instância de origem, use `UNLOCK TABLES` para liberar as bloqueadas adquiridas por `FLUSH TABLES ... FOR EXPORT`:
+5. On the source instance, use `UNLOCK TABLES` to release the locks acquired by `FLUSH TABLES ... FOR EXPORT`:
 
    ```sql
    mysql> USE test;
    mysql> UNLOCK TABLES;
    ```
 
-6. Na instância de destino, importe as partições da tabela `p2` e `p3`:
+6. On the destination instance, import table partitions `p2` and `p3`:
 
    ```sql
    mysql> USE test;
    mysql> ALTER TABLE t1 IMPORT PARTITION p2, p3 TABLESPACE;
    ```
 
-   Nota
+   Note
 
-   Quando a instrução `ALTER TABLE ... IMPORT PARTITION ... TABLESPACE` é executada em tabelas subpartidas, os nomes de tabelas de partição e subpartição são permitidos. Quando um nome de partição é especificado, as subpartições dessa partição são incluídas na operação.
+   When `ALTER TABLE ... IMPORT PARTITION ... TABLESPACE` is run on subpartitioned tables, both partition and subpartition table names are permitted. When a partition name is specified, subpartitions of that partition are included in the operation.
 
-##### Limitações
+##### Limitations
 
-- O recurso *Tabelas Transportadoras* só é suportado para tabelas que residem em espaços de tabelas por arquivo. Não é suportado para tabelas que residem no espaço de tabelas do sistema ou em espaços de tabelas gerais. Tabelas em espaços de tabelas compartilhados não podem ser colocadas em estado de repouso.
+* The *Transportable Tablespaces* feature is only supported for tables that reside in file-per-table tablespaces. It is not supported for the tables that reside in the system tablespace or general tablespaces. Tables in shared tablespaces cannot be quiesced.
 
-- `FLUSH TABLES ... FOR EXPORT` não é suportado em tabelas com um índice `FULLTEXT`, pois as tabelas auxiliares de pesquisa full-text não podem ser limpas. Após importar uma tabela com um índice `FULLTEXT`, execute `OPTIMIZE TABLE` para reconstruir os índices `FULLTEXT`. Como alternativa, exclua os índices `FULLTEXT` antes da operação de exportação e recree os índices após importar a tabela na instância de destino.
+* `FLUSH TABLES ... FOR EXPORT` is not supported on tables with a `FULLTEXT` index, as full-text search auxiliary tables cannot be flushed. After importing a table with a `FULLTEXT` index, run `OPTIMIZE TABLE` to rebuild the `FULLTEXT` indexes. Alternatively, drop `FULLTEXT` indexes before the export operation and recreate the indexes after importing the table on the destination instance.
 
-- Devido a uma limitação no arquivo de metadados `.cfg`, os desalinhamentos de esquema não são relatados para diferenças no tipo de partição ou na definição de partição ao importar uma tabela particionada. As diferenças de coluna são relatadas.
+* Due to a `.cfg` metadata file limitation, schema mismatches are not reported for partition type or partition definition differences when importing a partitioned table. Column differences are reported.
 
-##### Observações de uso
+##### Usage Notes
 
-- A instrução `ALTER TABLE ... IMPORT TABLESPACE` não requer um arquivo de metadados `.cfg` para importar uma tabela. No entanto, os verificações de metadados não são realizadas ao importar sem um arquivo `.cfg`, e um aviso semelhante ao seguinte é emitido:
+* `ALTER TABLE ... IMPORT TABLESPACE` does not require a `.cfg` metadata file to import a table. However, metadata checks are not performed when importing without a `.cfg` file, and a warning similar to the following is issued:
 
   ```sql
   Message: InnoDB: IO Read error: (2, No such file or directory) Error opening '.\
@@ -270,34 +268,34 @@ No exemplo a seguir, duas partições (`p2` e `p3`) de uma tabela de quatro part
   1 row in set (0.00 sec)
   ```
 
-  A importação de uma tabela sem um arquivo de metadados `.cfg` deve ser considerada apenas se não se espera nenhum desajuste no esquema. A capacidade de importar sem um arquivo `.cfg` pode ser útil em cenários de recuperação de falhas em que os metadados não estão acessíveis.
+  Importing a table without a `.cfg` metadata file should only be considered if no schema mismatches are expected. The ability to import without a `.cfg` file could be useful in crash recovery scenarios where metadata is not accessible.
 
-- No Windows, o `InnoDB` armazena os nomes de banco de dados, espaços de tabela e tabelas internamente em minúsculas. Para evitar problemas de importação em sistemas operacionais case-sensitive, como Linux e Unix, crie todos os bancos de dados, espaços de tabela e tabelas usando nomes em minúsculas. Uma maneira conveniente de realizar isso é adicionar `lower_case_table_names=1` à seção `[mysqld]` do seu arquivo `my.cnf` ou `my.ini` antes de criar bancos de dados, espaços de tabela ou tabelas:
+* On Windows, `InnoDB` stores database, tablespace, and table names internally in lowercase. To avoid import problems on case-sensitive operating systems such as Linux and Unix, create all databases, tablespaces, and tables using lowercase names. A convenient way to accomplish this is to add `lower_case_table_names=1` to the `[mysqld]` section of your `my.cnf` or `my.ini` file before creating databases, tablespaces, or tables:
 
   ```sql
   [mysqld]
   lower_case_table_names=1
   ```
 
-- Ao executar `ALTER TABLE ... DISCARD PARTITION ... TABLESPACE` e `ALTER TABLE ... IMPORT PARTITION ... TABLESPACE` em tabelas subpartidas, os nomes de tabelas de partição e subpartição são permitidos. Quando um nome de partição é especificado, as subpartições dessa partição são incluídas na operação.
+* When running `ALTER TABLE ... DISCARD PARTITION ... TABLESPACE` and `ALTER TABLE ... IMPORT PARTITION ... TABLESPACE` on subpartitioned tables, both partition and subpartition table names are permitted. When a partition name is specified, subpartitions of that partition are included in the operation.
 
-##### Interiores
+##### Internals
 
-As informações a seguir descrevem os elementos internos e as mensagens escritas no log de erro durante um procedimento de importação de tabela.
+The following information describes internals and messages written to the error log during a table import procedure.
 
-Quando a instrução `ALTER TABLE ... DISCARD TABLESPACE` é executada na instância de destino:
+When `ALTER TABLE ... DISCARD TABLESPACE` is run on the destination instance:
 
-- A tabela está bloqueada no modo X.
-- O espaço de tabela está desvinculado da tabela.
+* The table is locked in X mode.
+* The tablespace is detached from the table.
 
-Quando o comando `FLUSH TABLES ... FOR EXPORT` é executado na instância de origem:
+When `FLUSH TABLES ... FOR EXPORT` is run on the source instance:
 
-- A tabela que está sendo limpa para exportação está bloqueada no modo compartilhado.
-- O thread do coordenador da purga foi interrompido.
-- As páginas sujas são sincronizadas com o disco.
-- Os metadados da tabela são escritos no arquivo binário `.cfg`.
+* The table being flushed for export is locked in shared mode.
+* The purge coordinator thread is stopped.
+* Dirty pages are synchronized to disk.
+* Table metadata is written to the binary `.cfg` file.
 
-Mensagens esperadas de log de erro para esta operação:
+Expected error log messages for this operation:
 
 ```sql
 [Note] InnoDB: Sync to disk of '"test"."t1"' started.
@@ -306,31 +304,28 @@ Mensagens esperadas de log de erro para esta operação:
 [Note] InnoDB: Table '"test"."t1"' flushed to disk
 ```
 
-Quando o comando `UNLOCK TABLES` é executado na instância de origem:
+When `UNLOCK TABLES` is run on the source instance:
 
-- O arquivo binário `.cfg` é excluído.
-- O bloqueio compartilhado da(s) tabela(s) sendo importada(s) é liberado e o thread do coordenador de purga é reiniciado.
+* The binary `.cfg` file is deleted.
+* The shared lock on the table or tables being imported is released and the purge coordinator thread is restarted.
 
-Mensagens esperadas de log de erro para esta operação:
+Expected error log messages for this operation:
 
 ```sql
 [Note] InnoDB: Deleting the meta-data file './test/t1.cfg'
 [Note] InnoDB: Resuming purge
 ```
 
-Quando a instrução `ALTER TABLE ... IMPORT TABLESPACE` é executada na instância de destino, o algoritmo de importação realiza as seguintes operações para cada tablespace que está sendo importado:
+When `ALTER TABLE ... IMPORT TABLESPACE` is run on the destination instance, the import algorithm performs the following operations for each tablespace being imported:
 
-- Cada página do espaço de tabela é verificada quanto à corrupção.
+* Each tablespace page is checked for corruption.
+* The space ID and log sequence numbers (LSNs) on each page are updated.
 
-- Os IDs de espaço e os números de sequência de log (LSNs) em cada página são atualizados.
+* Flags are validated and LSN updated for the header page.
+* Btree pages are updated.
+* The page state is set to dirty so that it is written to disk.
 
-- As bandeiras são validadas e o LSN é atualizado para a página de cabeçalho.
-
-- As páginas Btree foram atualizadas.
-
-- O estado da página está definido como sujo para que ela seja escrita no disco.
-
-Mensagens esperadas de log de erro para esta operação:
+Expected error log messages for this operation:
 
 ```sql
 [Note] InnoDB: Importing tablespace for table 'test/t1' that was exported
@@ -342,9 +337,9 @@ from host 'host_name'
 [Note] InnoDB: Phase IV - Flush complete
 ```
 
-Nota
+Note
 
-Você também pode receber um aviso de que um espaço de tabela foi descartado (se você descartou o espaço de tabela para a tabela de destino) e uma mensagem indicando que as estatísticas não puderam ser calculadas devido ao arquivo `.ibd` ausente:
+You may also receive a warning that a tablespace is discarded (if you discarded the tablespace for the destination table) and a message stating that statistics could not be calculated due to a missing `.ibd` file:
 
 ```sql
 [Warning] InnoDB: Table "test"."t1" tablespace is set as discarded.

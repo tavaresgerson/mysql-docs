@@ -1,13 +1,13 @@
-#### 25.12.5.3 A tabela events_stages_history_long
+#### 25.12.5.3 The events_stages_history_long Table
 
-A tabela `events_stages_history_long` contém os *`N`* eventos de estágio mais recentes que terminaram globalmente, em todas as threads. Os eventos de estágio não são adicionados à tabela até que tenham terminado. Quando a tabela fica cheia, a linha mais antiga é descartada quando uma nova linha é adicionada, independentemente de qual thread tenha gerado aquela linha.
+The [`events_stages_history_long`](performance-schema-events-stages-history-long-table.html "25.12.5.3 The events_stages_history_long Table") table contains the *`N`* most recent stage events that have ended globally, across all threads. Stage events are not added to the table until they have ended. When the table becomes full, the oldest row is discarded when a new row is added, regardless of which thread generated either row.
 
-O Schema de Desempenho autodimensiona o valor de *`N`* durante o início do servidor. Para definir o tamanho da tabela explicitamente, defina a variável de sistema `performance_schema_events_stages_history_long_size` durante o início do servidor.
+The Performance Schema autosizes the value of *`N`* during server startup. To set the table size explicitly, set the [`performance_schema_events_stages_history_long_size`](performance-schema-system-variables.html#sysvar_performance_schema_events_stages_history_long_size) system variable at server startup.
 
-A tabela `events_stages_history_long` tem as mesmas colunas que a tabela `events_stages_current`. Veja Seção 25.12.5.1, “A tabela events_stages_current”.
+The [`events_stages_history_long`](performance-schema-events-stages-history-long-table.html "25.12.5.3 The events_stages_history_long Table") table has the same columns as [`events_stages_current`](performance-schema-events-stages-current-table.html "25.12.5.1 The events_stages_current Table"). See [Section 25.12.5.1, “The events_stages_current Table”](performance-schema-events-stages-current-table.html "25.12.5.1 The events_stages_current Table").
 
-A operação `TRUNCATE TABLE` é permitida para a tabela `events_stages_history_long`. Ela remove as linhas.
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is permitted for the [`events_stages_history_long`](performance-schema-events-stages-history-long-table.html "25.12.5.3 The events_stages_history_long Table") table. It removes the rows.
 
-Para obter mais informações sobre a relação entre as três tabelas de eventos em etapas, consulte Seção 25.9, "Tabelas do Schema de Desempenho para Eventos Atuais e Históricos".
+For more information about the relationship between the three stage event tables, see [Section 25.9, “Performance Schema Tables for Current and Historical Events”](performance-schema-event-tables.html "25.9 Performance Schema Tables for Current and Historical Events").
 
-Para obter informações sobre como configurar se os eventos de estágio devem ser coletados, consulte Seção 25.12.5, "Tabelas de Eventos de Estágio do Schema de Desempenho".
+For information about configuring whether to collect stage events, see [Section 25.12.5, “Performance Schema Stage Event Tables”](performance-schema-stage-tables.html "25.12.5 Performance Schema Stage Event Tables").

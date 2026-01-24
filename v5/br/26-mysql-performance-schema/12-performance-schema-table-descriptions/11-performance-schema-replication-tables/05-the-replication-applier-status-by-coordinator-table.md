@@ -1,35 +1,35 @@
-#### 25.12.11.5 Tabela replication_applier_status_by_coordinator
+#### 25.12.11.5 The replication_applier_status_by_coordinator Table
 
-Para uma replica multithreading, a replica usa vários threads de trabalhador e um thread de coordenador para gerenciá-los, e esta tabela mostra o status do thread de coordenador. Para uma replica de único thread, esta tabela está vazia. Para uma replica multithreading, a tabela `replication_applier_status_by_worker` mostra o status dos threads de trabalhador.
+For a multithreaded replica, the replica uses multiple worker threads and a coordinator thread to manage them, and this table shows the status of the coordinator thread. For a single-threaded replica, this table is empty. For a multithreaded replica, the [`replication_applier_status_by_worker`](performance-schema-replication-applier-status-by-worker-table.html "25.12.11.6 The replication_applier_status_by_worker Table") table shows the status of the worker threads.
 
-A tabela `replication_applier_status_by_coordinator` tem as seguintes colunas:
+The [`replication_applier_status_by_coordinator`](performance-schema-replication-applier-status-by-coordinator-table.html "25.12.11.5 The replication_applier_status_by_coordinator Table") table has these columns:
 
-- `NOME_CANAL`
+* `CHANNEL_NAME`
 
-  O canal de replicação que esta linha está exibindo. Há sempre um canal de replicação padrão, e mais canais de replicação podem ser adicionados. Consulte Seção 16.2.2, “Canais de Replicação” para obter mais informações.
+  The replication channel which this row is displaying. There is always a default replication channel, and more replication channels can be added. See [Section 16.2.2, “Replication Channels”](replication-channels.html "16.2.2 Replication Channels") for more information.
 
-- `THREAD_ID`
+* `THREAD_ID`
 
-  O ID do thread do coordenador SQL.
+  The SQL/coordinator thread ID.
 
-- `ESTADO_SERVIÇO`
+* `SERVICE_STATE`
 
-  `ON` (o tópico existe e está ativo ou em espera) ou `OFF` (o tópico não existe mais).
+  `ON` (thread exists and is active or idle) or `OFF` (thread no longer exists).
 
-- `LAST_ERROR_NUMBER`, `LAST_ERROR_MESSAGE`
+* `LAST_ERROR_NUMBER`, `LAST_ERROR_MESSAGE`
 
-  O número do erro e a mensagem de erro do erro mais recente que causou o término do thread SQL/coordenador. Um número de erro de 0 e uma mensagem que é uma string vazia significa “sem erro”. Se o valor `LAST_ERROR_MESSAGE` não estiver vazio, os valores do erro também aparecem no log de erro da replica.
+  The error number and error message of the most recent error that caused the SQL/coordinator thread to stop. An error number of 0 and message which is an empty string means “no error”. If the `LAST_ERROR_MESSAGE` value is not empty, the error values also appear in the replica's error log.
 
-  A emissão de `RESET MASTER` ou `RESET SLAVE` redefiniu os valores exibidos nessas colunas.
+  Issuing [`RESET MASTER`](reset-master.html "13.4.1.2 RESET MASTER Statement") or [`RESET SLAVE`](reset-slave.html "13.4.2.3 RESET SLAVE Statement") resets the values shown in these columns.
 
-  Todos os códigos de erro e mensagens exibidos nas colunas `LAST_ERROR_NUMBER` e `LAST_ERROR_MESSAGE` correspondem aos valores de erro listados em Referência de Mensagem de Erro do Servidor.
+  All error codes and messages displayed in the `LAST_ERROR_NUMBER` and `LAST_ERROR_MESSAGE` columns correspond to error values listed in [Server Error Message Reference](/doc/mysql-errors/5.7/en/server-error-reference.html).
 
-- `LAST_ERROR_TIMESTAMP`
+* `LAST_ERROR_TIMESTAMP`
 
-  Um timestamp no formato *`YYMMDD hh:mm:ss`* que mostra quando ocorreu o erro SQL/coordenador mais recente.
+  A timestamp in *`YYMMDD hh:mm:ss`* format that shows when the most recent SQL/coordinator error occurred.
 
-A operação `TRUNCATE TABLE` não é permitida para a tabela `replication_applier_status_by_coordinator`.
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is not permitted for the [`replication_applier_status_by_coordinator`](performance-schema-replication-applier-status-by-coordinator-table.html "25.12.11.5 The replication_applier_status_by_coordinator Table") table.
 
-A tabela a seguir mostra a correspondência entre as colunas de `replication_applier_status_by_coordinator` e as colunas de `SHOW SLAVE STATUS`.
+The following table shows the correspondence between [`replication_applier_status_by_coordinator`](performance-schema-replication-applier-status-by-coordinator-table.html "25.12.11.5 The replication_applier_status_by_coordinator Table") columns and [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") columns.
 
-<table summary="Correspondência entre as colunas replication_applier_status_by_coordinator e as colunas SHOW SLAVE STATUS"><col style="width: 60%"/><col style="width: 40%"/><thead><tr> <th>PH_HTML_CODE_<code>Last_SQL_Error_Timestamp</code>] Coluna</th> <th>PH_HTML_CODE_<code>Last_SQL_Error_Timestamp</code>] Coluna</th> </tr></thead><tbody><tr> <td><code>THREAD_ID</code></td> <td>Nenhum</td> </tr><tr> <td><code>SERVICE_STATE</code></td> <td><code>Slave_SQL_Running</code></td> </tr><tr> <td><code>LAST_ERROR_NUMBER</code></td> <td><code>Last_SQL_Errno</code></td> </tr><tr> <td><code>LAST_ERROR_MESSAGE</code></td> <td><code>Last_SQL_Error</code></td> </tr><tr> <td><code>LAST_ERROR_TIMESTAMP</code></td> <td><code>Last_SQL_Error_Timestamp</code></td> </tr></tbody></table>
+<table summary="Correspondence between replication_applier_status_by_coordinator columns and SHOW SLAVE STATUS columns"><col style="width: 60%"/><col style="width: 40%"/><thead><tr> <th><code>replication_applier_status_by_coordinator</code> Column</th> <th><code>SHOW SLAVE STATUS</code> Column</th> </tr></thead><tbody><tr> <td><code>THREAD_ID</code></td> <td>None</td> </tr><tr> <td><code>SERVICE_STATE</code></td> <td><code>Slave_SQL_Running</code></td> </tr><tr> <td><code>LAST_ERROR_NUMBER</code></td> <td><code>Last_SQL_Errno</code></td> </tr><tr> <td><code>LAST_ERROR_MESSAGE</code></td> <td><code>Last_SQL_Error</code></td> </tr><tr> <td><code>LAST_ERROR_TIMESTAMP</code></td> <td><code>Last_SQL_Error_Timestamp</code></td> </tr></tbody></table>

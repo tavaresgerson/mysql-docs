@@ -1,9 +1,9 @@
-#### 13.2.5.3 Declaração de adiamento INSERT
+#### 13.2.5.3 INSERT DELAYED Statement
 
 ```sql
 INSERT DELAYED ...
 ```
 
-A opção `DELAYED` para a instrução `INSERT` é uma extensão do MySQL para o SQL padrão. Em versões anteriores do MySQL, ela pode ser usada para certos tipos de tabelas (como `MyISAM`), de modo que, quando um cliente usa `INSERT DELAYED`, ele recebe uma confirmação do servidor de uma só vez e a linha é colocada em fila para ser inserida quando a tabela não estiver sendo usada por nenhum outro thread.
+The `DELAYED` option for the [`INSERT`](insert.html "13.2.5 INSERT Statement") statement is a MySQL extension to standard SQL. In previous versions of MySQL, it can be used for certain kinds of tables (such as `MyISAM`), such that when a client uses [`INSERT DELAYED`](insert-delayed.html "13.2.5.3 INSERT DELAYED Statement"), it gets an okay from the server at once, and the row is queued to be inserted when the table is not in use by any other thread.
 
-As inserções e substituições `DELAYED` foram descontinuadas no MySQL 5.6. No MySQL 5.7, o `DELAYED` não é suportado. O servidor reconhece, mas ignora, a palavra-chave `DELAYED`, trata a inserção como uma inserção não retardada e gera uma mensagem de aviso `ER_WARN_LEGACY_SYNTAX_CONVERTED`: A inserção `DELAYED` não é mais suportada. A instrução foi convertida para INSERT. A palavra-chave `DELAYED` está programada para ser removida em uma futura versão.
+`DELAYED` inserts and replaces were deprecated in MySQL 5.6. In MySQL 5.7, `DELAYED` is not supported. The server recognizes but ignores the `DELAYED` keyword, handles the insert as a nondelayed insert, and generates an `ER_WARN_LEGACY_SYNTAX_CONVERTED` warning: INSERT DELAYED is no longer supported. The statement was converted to INSERT. The `DELAYED` keyword is scheduled for removal in a future release.

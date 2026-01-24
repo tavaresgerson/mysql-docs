@@ -1,40 +1,40 @@
-### 22.6.2 Limitações de Partição Relacionadas a Motores de Armazenamento
+### 22.6.2 Partitioning Limitations Relating to Storage Engines
 
-As seguintes limitações se aplicam ao uso de motores de armazenamento com particionamento definido pelo usuário das tabelas.
+The following limitations apply to the use of storage engines with user-defined partitioning of tables.
 
-**Motor de armazenamento MERGE.** A partição definida pelo usuário e o motor de armazenamento `MERGE` não são compatíveis. Tabelas que utilizam o motor de armazenamento `MERGE` não podem ser particionadas. Tabelas particionadas não podem ser unidas.
+**MERGE storage engine.** User-defined partitioning and the `MERGE` storage engine are not compatible. Tables using the `MERGE` storage engine cannot be partitioned. Partitioned tables cannot be merged.
 
-Motor de armazenamento **FEDERATED**. A partição de tabelas `FEDERATED` não é suportada; não é possível criar tabelas `FEDERATED` particionadas.
+**FEDERATED storage engine.** Partitioning of `FEDERATED` tables is not supported; it is not possible to create partitioned `FEDERATED` tables.
 
-**Motor de armazenamento CSV.** As tabelas particionadas usando o motor de armazenamento `CSV` não são suportadas; não é possível criar tabelas `CSV` particionadas.
+**CSV storage engine.** Partitioned tables using the `CSV` storage engine are not supported; it is not possible to create partitioned `CSV` tables.
 
-**Motor de armazenamento InnoDB.** As chaves estrangeiras e a partição do MySQL no motor de armazenamento `InnoDB` não são compatíveis. As tabelas `InnoDB` particionadas não podem ter referências de chave estrangeira, nem podem ter colunas referenciadas por chaves estrangeiras. As tabelas `InnoDB` que têm ou são referenciadas por chaves estrangeiras não podem ser particionadas.
+**InnoDB storage engine.** [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") foreign keys and MySQL partitioning are not compatible. Partitioned `InnoDB` tables cannot have foreign key references, nor can they have columns referenced by foreign keys. `InnoDB` tables which have or which are referenced by foreign keys cannot be partitioned.
 
-O `InnoDB` não suporta o uso de múltiplos discos para subpartições. (Atualmente, isso é suportado apenas pelo `MyISAM`.)
+`InnoDB` does not support the use of multiple disks for subpartitions. (This is currently supported only by `MyISAM`.)
 
-Além disso, `ALTER TABLE ... OPTIMIZE PARTITION` não funciona corretamente com tabelas particionadas que utilizam o mecanismo de armazenamento `InnoDB`. Em vez disso, use `ALTER TABLE ... REBUILD PARTITION` e `ALTER TABLE ... ANALYZE PARTITION` para essas tabelas. Para mais informações, consulte Seção 13.1.8.1, “Operações de Partição ALTER TABLE”.
+In addition, [`ALTER TABLE ... OPTIMIZE PARTITION`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") does not work correctly with partitioned tables that use the `InnoDB` storage engine. Use `ALTER TABLE ... REBUILD PARTITION` and `ALTER TABLE ... ANALYZE PARTITION`, instead, for such tables. For more information, see [Section 13.1.8.1, “ALTER TABLE Partition Operations”](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations").
 
-**Partição definida pelo usuário e o motor de armazenamento NDB (NDB Cluster).** A partição por `KEY` (incluindo `LINEAR KEY`) é o único tipo de partição suportado pelo motor de armazenamento `NDB`. Não é possível, sob circunstâncias normais, criar uma tabela NDB Cluster no NDB Cluster usando qualquer tipo de partição diferente de `KEY` `LINEAR`, e tentar fazê-lo falhará com um erro.
+**User-defined partitioning and the NDB storage engine (NDB Cluster).** Partitioning by `KEY` (including `LINEAR KEY`) is the only type of partitioning supported for the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine. It is not possible under normal circumstances in NDB Cluster to create an NDB Cluster table using any partitioning type other than [`LINEAR`] `KEY`, and attempting to do so fails with an error.
 
-*Exceção (não para produção)*: É possível ignorar essa restrição configurando a variável de sistema `new` nos nós do NDB Cluster SQL para `ON`. Se optar por fazer isso, deve estar ciente de que tabelas que utilizam tipos de particionamento diferentes de `[LINEAR] KEY` não são suportados em produção. *Nesses casos, você pode criar e usar tabelas com tipos de particionamento diferentes de `KEY` ou `LINEAR KEY`, mas você faz isso totalmente por sua própria conta e risco*. Deve também estar ciente de que essa funcionalidade já está desatualizada e está sujeita à remoção sem aviso prévio em uma futura versão do NDB Cluster.
+*Exception (not for production)*: It is possible to override this restriction by setting the [`new`](server-system-variables.html#sysvar_new) system variable on NDB Cluster SQL nodes to `ON`. If you choose to do this, you should be aware that tables using partitioning types other than `[LINEAR] KEY` are not supported in production. *In such cases, you can create and use tables with partitioning types other than `KEY` or `LINEAR KEY`, but you do this entirely at your own risk*. You should also be aware that this functionality is now deprecated and subject to removal without further notice in a future release of NDB Cluster.
 
-O número máximo de partições que podem ser definidas para uma tabela `NDB` depende do número de nós de dados e grupos de nós no cluster, da versão do software NDB Cluster em uso e de outros fatores. Consulte NDB e partição definida pelo usuário para obter mais informações.
+The maximum number of partitions that can be defined for an [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table depends on the number of data nodes and node groups in the cluster, the version of the NDB Cluster software in use, and other factors. See [NDB and user-defined partitioning](mysql-cluster-nodes-groups.html#mysql-cluster-nodes-groups-user-partitioning "NDB and user-defined partitioning"), for more information.
 
-A partir do MySQL NDB Cluster 7.5.2, o valor máximo de dados de tamanho fixo que podem ser armazenados por partição em uma tabela `NDB` é de 128 TB. Anteriormente, esse valor era de 16 GB.
+As of MySQL NDB Cluster 7.5.2, the maximum amount of fixed-size data that can be stored per partition in an `NDB` table is 128 TB. Previously, this was 16 GB.
 
-As instruções `CREATE TABLE` e `ALTER TABLE` que causariam uma tabela de `NDB` com partição de usuário a não atender a um ou ambos dos seguintes requisitos não são permitidas e falharão com um erro:
+[`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") and [`ALTER TABLE`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") statements that would cause a user-partitioned [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table not to meet either or both of the following two requirements are not permitted, and fail with an error:
 
-1. A tabela deve ter uma chave primária explícita.
-2. Todas as colunas listadas na expressão de particionamento da tabela devem fazer parte da chave primária.
+1. The table must have an explicit primary key.
+2. All columns listed in the table's partitioning expression must be part of the primary key.
 
-**Exceção.** Se uma tabela com partição de usuário `NDB` for criada usando uma lista de colunas vazia (ou seja, usando `PARTITION BY KEY()` ou `PARTITION BY LINEAR KEY()`), então não é necessário uma chave primária explícita.
+**Exception.** If a user-partitioned [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table is created using an empty column-list (that is, using `PARTITION BY KEY()` or `PARTITION BY LINEAR KEY()`), then no explicit primary key is required.
 
-**Seleção de partições.** A seleção de partições não é suportada para tabelas de `NDB`. Consulte Seção 22.5, “Seleção de Partições” para obter mais informações.
+**Partition selection.** Partition selection is not supported for [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables. See [Section 22.5, “Partition Selection”](partitioning-selection.html "22.5 Partition Selection"), for more information.
 
-**Atualização de tabelas particionadas.** Ao realizar uma atualização, as tabelas que são particionadas por `KEY` e que utilizam qualquer mecanismo de armazenamento diferente de `NDB` devem ser descarregadas e recarregadas.
+**Upgrading partitioned tables.** When performing an upgrade, tables which are partitioned by `KEY` and which use any storage engine other than [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") must be dumped and reloaded.
 
-**O mesmo mecanismo de armazenamento para todas as partições.** Todas as partições de uma tabela particionada devem usar o mesmo mecanismo de armazenamento e deve ser o mesmo mecanismo de armazenamento usado pela tabela como um todo. Além disso, se não especificar um mecanismo no nível da tabela, então deve fazer uma das seguintes ações ao criar ou alterar uma tabela particionada:
+**Same storage engine for all partitions.** All partitions of a partitioned table must use the same storage engine and it must be the same storage engine used by the table as a whole. In addition, if one does not specify an engine on the table level, then one must do either of the following when creating or altering a partitioned table:
 
-- Não especifique nenhum motor para nenhuma partição ou subpartição
+* Do *not* specify any engine for *any* partition or subpartition
 
-- Especifique o motor para *todas* as partições ou subpartições
+* Specify the engine for *all* partitions or subpartitions

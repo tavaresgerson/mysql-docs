@@ -1,74 +1,74 @@
-### 14.8.1 Configuração de inicialização do InnoDB
+### 14.8.1 InnoDB Startup Configuration
 
-As primeiras decisões a serem tomadas sobre a configuração do `InnoDB` envolvem a configuração dos arquivos de dados, arquivos de log, tamanho da página e buffers de memória, que devem ser configurados antes de inicializar o `InnoDB`. A modificação da configuração após a inicialização do `InnoDB` pode envolver procedimentos não triviais.
+The first decisions to make about `InnoDB` configuration involve the configuration of data files, log files, page size, and memory buffers, which should be configured before initializing `InnoDB`. Modifying the configuration after `InnoDB` is initialized may involve non-trivial procedures.
 
-Esta seção fornece informações sobre como especificar configurações do `InnoDB` em um arquivo de configuração, visualizar informações de inicialização do `InnoDB` e considerações importantes sobre armazenamento.
+This section provides information about specifying `InnoDB` settings in a configuration file, viewing `InnoDB` initialization information, and important storage considerations.
 
-- Especificando Opções em um Arquivo de Configuração MySQL
-- Visualizar informações de inicialização do InnoDB
-- Considerações importantes sobre armazenamento
-- Configuração do arquivo de dados do espaço de tabela do sistema
-- Configuração do arquivo de registro novamente
-- Desfazer a configuração do espaço de tabelas
-- Configuração de Espaço de Memória Temporário
-- Configuração do tamanho da página
-- Configuração de Memória
+* Specifying Options in a MySQL Configuration File
+* Viewing InnoDB Initialization Information
+* Important Storage Considerations
+* System Tablespace Data File Configuration
+* Redo Log File Configuration
+* Undo Tablespace Configuration
+* Temporary Tablespace Configuration
+* Page Size Configuration
+* Memory Configuration
 
-#### Especificando Opções em um Arquivo de Configuração MySQL
+#### Specifying Options in a MySQL Configuration File
 
-Como o MySQL usa configurações de arquivo de dados, arquivo de log e tamanho de página para inicializar o `InnoDB`, recomenda-se que você defina essas configurações em um arquivo de opção que o MySQL lê ao iniciar, antes de inicializar o `InnoDB`. Normalmente, o `InnoDB` é inicializado quando o servidor MySQL é iniciado pela primeira vez.
+Because MySQL uses data file, log file, and page size settings to initialize `InnoDB`, it is recommended that you define these settings in an option file that MySQL reads at startup, prior to initializing `InnoDB`. Normally, `InnoDB` is initialized when the MySQL server is started for the first time.
 
-Você pode colocar as configurações do InnoDB no grupo `[mysqld]` de qualquer arquivo de opções que o servidor lê quando ele começa. Os locais dos arquivos de opções do MySQL são descritos na Seção 4.2.2.2, “Usando arquivos de opções”.
+You can place `InnoDB` settings in the `[mysqld]` group of any option file that your server reads when it starts. The locations of MySQL option files are described in Section 4.2.2.2, “Using Option Files”.
 
-Para garantir que o **mysqld** leia as opções apenas de um arquivo específico, use a opção `--defaults-file` como a primeira opção na linha de comando ao iniciar o servidor:
+To make sure that **mysqld** reads options only from a specific file, use the `--defaults-file` option as the first option on the command line when starting the server:
 
 ```sql
 mysqld --defaults-file=path_to_option_file
 ```
 
-#### Visualizar informações de inicialização do InnoDB
+#### Viewing InnoDB Initialization Information
 
-Para visualizar as informações de inicialização do `InnoDB` durante a inicialização, inicie o **mysqld** a partir de um prompt de comando, que imprime as informações de inicialização no console.
+To view `InnoDB` initialization information during startup, start **mysqld** from a command prompt, which prints initialization information to the console.
 
-Por exemplo, no Windows, se o **mysqld** estiver localizado em `C:\Program Files\MySQL\MySQL Server 5.7\bin`, inicie o servidor MySQL da seguinte forma:
+For example, on Windows, if **mysqld** is located in `C:\Program Files\MySQL\MySQL Server 5.7\bin`, start the MySQL server like this:
 
 ```sql
 C:\> "C:\Program Files\MySQL\MySQL Server 5.7\bin\mysqld" --console
 ```
 
-Em sistemas semelhantes ao Unix, o **mysqld** está localizado no diretório `bin` da sua instalação do MySQL:
+On Unix-like systems, **mysqld** is located in the `bin` directory of your MySQL installation:
 
 ```sql
 $> bin/mysqld --user=mysql &
 ```
 
-Se você não enviar a saída do servidor para o console, verifique o log de erro após a inicialização para ver as informações de inicialização do `InnoDB` impressas durante o processo de inicialização.
+If you do not send server output to the console, check the error log after startup to see the initialization information `InnoDB` printed during the startup process.
 
-Para obter informações sobre como iniciar o MySQL usando outros métodos, consulte a Seção 2.9.5, “Iniciar e Parar o MySQL automaticamente”.
+For information about starting MySQL using other methods, see Section 2.9.5, “Starting and Stopping MySQL Automatically”.
 
-Nota
+Note
 
-O `InnoDB` não abre todas as tabelas de usuário e os arquivos de dados associados no início. No entanto, o `InnoDB` verifica a existência dos arquivos do espaço de tabelas referenciados no dicionário de dados. Se um arquivo de espaço de tabela não for encontrado, o `InnoDB` registra um erro e continua a sequência de inicialização. Arquivos de espaço de tabela referenciados no log de redo podem ser abertos durante a recuperação de falhas para a aplicação de redo.
+`InnoDB` does not open all user tables and associated data files at startup. However, `InnoDB` does check for the existence of tablespace files referenced in the data dictionary. If a tablespace file is not found, `InnoDB` logs an error and continues the startup sequence. Tablespace files referenced in the redo log may be opened during crash recovery for redo application.
 
-#### Considerações importantes sobre armazenamento
+#### Important Storage Considerations
 
-Revise as seguintes considerações relacionadas ao armazenamento antes de prosseguir com a configuração de inicialização.
+Review the following storage-related considerations before proceeding with your startup configuration.
 
-- Em alguns casos, você pode melhorar o desempenho do banco de dados ao colocar os arquivos de dados e log em discos físicos separados. Você também pode usar partições de disco bruto (dispositivos brutos) para os arquivos de dados do `InnoDB`, o que pode acelerar o I/O. Veja Usar Partições de Disco Bruto para o Espaço de Tabela do Sistema.
+* In some cases, you can improve database performance by placing data and log files on separate physical disks. You can also use raw disk partitions (raw devices) for `InnoDB` data files, which may speed up I/O. See Using Raw Disk Partitions for the System Tablespace.
 
-- O `InnoDB` é um mecanismo de armazenamento seguro para transações (compatível com ACID) com capacidades de commit, rollback e recuperação em caso de falha para proteger os dados do usuário. **No entanto, ele não pode fazer isso** se o sistema operacional ou o hardware subjacente não funcionar conforme anunciado. Muitos sistemas operacionais ou subsistemas de disco podem atrasar ou reorganizar operações de escrita para melhorar o desempenho. Em alguns sistemas operacionais, a própria chamada de sistema `fsync()` que deveria esperar até que todos os dados não escritos de um arquivo fossem descarregados pode, na verdade, retornar antes de os dados serem descarregados para o armazenamento estável. Por isso, um travamento do sistema operacional ou uma queda de energia podem destruir dados recentemente comprometidos ou, no pior dos casos, até corromper o banco de dados porque as operações de escrita foram reorganizadas. Se a integridade dos dados é importante para você, realize testes de "desligar" antes de usar qualquer coisa em produção. No macOS, o `InnoDB` usa um método especial de esvaziamento de arquivo `fcntl()`. Sob o Linux, é aconselhável **desativar o cache de escrita de volta**.
+* `InnoDB` is a transaction-safe (ACID compliant) storage engine with commit, rollback, and crash-recovery capabilities to protect user data. **However, it cannot do so** if the underlying operating system or hardware does not work as advertised. Many operating systems or disk subsystems may delay or reorder write operations to improve performance. On some operating systems, the very `fsync()` system call that should wait until all unwritten data for a file has been flushed might actually return before the data has been flushed to stable storage. Because of this, an operating system crash or a power outage may destroy recently committed data, or in the worst case, even corrupt the database because write operation have been reordered. If data integrity is important to you, perform “pull-the-plug” tests before using anything in production. On macOS, `InnoDB` uses a special `fcntl()` file flush method. Under Linux, it is advisable to **disable the write-back cache**.
 
-  Em unidades de disco ATA/SATA, um comando como `hdparm -W0 /dev/hda` pode funcionar para desabilitar o cache de escrita reversa. **Tenha cuidado, pois algumas unidades ou controladores de disco podem não conseguir desabilitar o cache de escrita reversa.**
+  On ATA/SATA disk drives, a command such `hdparm -W0 /dev/hda` may work to disable the write-back cache. **Beware that some drives or disk controllers may be unable to disable the write-back cache.**
 
-- Em relação às capacidades de recuperação do `InnoDB` que protegem os dados do usuário, o `InnoDB` utiliza uma técnica de esvaziamento de arquivos que envolve uma estrutura chamada buffer de dupla escrita, que é ativada por padrão (`innodb_doublewrite=ON`). O buffer de dupla escrita adiciona segurança à recuperação após uma saída inesperada ou queda de energia, e melhora o desempenho na maioria das variedades de Unix, reduzindo a necessidade de operações `fsync()`. Recomenda-se que a opção `innodb_doublewrite` permaneça ativada se você estiver preocupado com a integridade dos dados ou possíveis falhas. Para obter informações sobre o buffer de dupla escrita, consulte a Seção 14.12.1, “I/O de Disco InnoDB”.
+* With regard to `InnoDB` recovery capabilities that protect user data, `InnoDB` uses a file flush technique involving a structure called the doublewrite buffer, which is enabled by default (`innodb_doublewrite=ON`). The doublewrite buffer adds safety to recovery following an unexpected exit or power outage, and improves performance on most varieties of Unix by reducing the need for `fsync()` operations. It is recommended that the `innodb_doublewrite` option remains enabled if you are concerned with data integrity or possible failures. For information about the doublewrite buffer, see Section 14.12.1, “InnoDB Disk I/O”.
 
-- Antes de usar o NFS com o `InnoDB`, revise os problemas potenciais descritos em Usar NFS com MySQL.
+* Before using NFS with `InnoDB`, review potential issues outlined in Using NFS with MySQL.
 
-- Executar o servidor MySQL em um disco rígido de setor de 4K no Windows não é suportado com `innodb_flush_method=async_unbuffered`, que é o ajuste padrão. A solução é usar `innodb_flush_method=normal`.
+* Running MySQL server on a 4K sector hard drive on Windows is not supported with `innodb_flush_method=async_unbuffered`, which is the default setting. The workaround is to use `innodb_flush_method=normal`.
 
-#### Configuração do arquivo de dados do espaço de tabela do sistema
+#### System Tablespace Data File Configuration
 
-A opção `innodb_data_file_path` define o nome, o tamanho e os atributos dos arquivos de dados do espaço de tabela do sistema `InnoDB`. Se você não configurar essa opção antes de inicializar o servidor MySQL, o comportamento padrão é criar um único arquivo de dados auto-extensível, ligeiramente maior que 12 MB, com o nome `ibdata1`:
+The `innodb_data_file_path` option defines the name, size, and attributes of `InnoDB` system tablespace data files. If you do not configure this option prior to initializing the MySQL server, the default behavior is to create a single auto-extending data file, slightly larger than 12MB, named `ibdata1`:
 
 ```sql
 mysql> SHOW VARIABLES LIKE 'innodb_data_file_path';
@@ -79,43 +79,43 @@ mysql> SHOW VARIABLES LIKE 'innodb_data_file_path';
 +-----------------------+------------------------+
 ```
 
-A sintaxe do arquivo de dados completo inclui o nome do arquivo, o tamanho do arquivo, o atributo `autoextend` e o atributo `max`:
+The full data file specification syntax includes the file name, file size, `autoextend` attribute, and `max` attribute:
 
 ```sql
 file_name:file_size[:autoextend[:max:max_file_size
 ```
 
-Os tamanhos dos arquivos são especificados em kilobytes, megabytes ou gigabytes, anexando `K`, `M` ou `G` ao valor do tamanho. Se você especificar o tamanho do arquivo de dados em kilobytes, faça isso em múltiplos de 1024. Caso contrário, os valores em kilobytes são arredondados para o limite mais próximo de megabyte (MB). A soma dos tamanhos dos arquivos deve ser, no mínimo, ligeiramente maior que 12 MB.
+File sizes are specified in kilobytes, megabytes, or gigabytes by appending `K`, `M` or `G` to the size value. If specifying the data file size in kilobytes, do so in multiples of 1024. Otherwise, kilobyte values are rounded to nearest megabyte (MB) boundary. The sum of file sizes must be, at a minimum, slightly larger than 12MB.
 
-Você pode especificar mais de um arquivo de dados usando uma lista separada por ponto e vírgula. Por exemplo:
+You can specify more than one data file using a semicolon-separated list. For example:
 
 ```sql
 [mysqld]
 innodb_data_file_path=ibdata1:50M;ibdata2:50M:autoextend
 ```
 
-Os atributos `autoextend` e `max` podem ser usados apenas para o arquivo de dados especificado por último.
+The `autoextend` and `max` attributes can be used only for the data file that is specified last.
 
-Quando o atributo `autoextend` é especificado, o arquivo de dados aumenta automaticamente em incrementos de 64 MB à medida que o espaço necessário é necessário. A variável `innodb_autoextend_increment` controla o tamanho do incremento.
+When the `autoextend` attribute is specified, the data file automatically increases in size by 64MB increments as space is required. The `innodb_autoextend_increment` variable controls the increment size.
 
-Para especificar um tamanho máximo para um arquivo de dados que se expande automaticamente, use o atributo `max` após o atributo `autoextend`. Use o atributo `max` apenas em casos em que o controle do uso do disco é de importância crítica. A configuração a seguir permite que o `ibdata1` cresça até um limite de 500 MB:
+To specify a maximum size for an auto-extending data file, use the `max` attribute following the `autoextend` attribute. Use the `max` attribute only in cases where constraining disk usage is of critical importance. The following configuration permits `ibdata1` to grow to a limit of 500MB:
 
 ```sql
 [mysqld]
 innodb_data_file_path=ibdata1:12M:autoextend:max:500M
 ```
 
-Um tamanho mínimo de arquivo é exigido para o *primeiro* arquivo de dados do espaço de tabela do sistema para garantir que haja espaço suficiente para as páginas do buffer de escrita dupla. A tabela a seguir mostra os tamanhos mínimos de arquivo para cada tamanho de página do `InnoDB`. O tamanho de página padrão do `InnoDB` é de 16384 (16 KB).
+A minimum file size is enforced for the *first* system tablespace data file to ensure that there is enough space for doublewrite buffer pages. The following table shows minimum file sizes for each `InnoDB` page size. The default `InnoDB` page size is 16384 (16KB).
 
-<table summary="O arquivo de dados mínimo das tabelas do sistema para cada tamanho de página do InnoDB."><col style="width: 30%"/><col style="width: 30%"/><thead><tr> <th>Tamanho da página (innodb_page_size)</th> <th>Tamanho mínimo do arquivo</th> </tr></thead><tbody><tr> <td>16384 (16KB) ou menos</td> <td>3 MB</td> </tr><tr> <td>32768 (32KB)</td> <td>6 MB</td> </tr><tr> <td>65536 (64KB)</td> <td>12 MB</td> </tr></tbody></table>
+<table summary="The minimum system tablespace data file for each InnoDB page size."><col style="width: 30%"/><col style="width: 30%"/><thead><tr> <th>Page Size (innodb_page_size)</th> <th>Minimum File Size</th> </tr></thead><tbody><tr> <td>16384 (16KB) or less</td> <td>3MB</td> </tr><tr> <td>32768 (32KB)</td> <td>6MB</td> </tr><tr> <td>65536 (64KB)</td> <td>12MB</td> </tr></tbody></table>
 
-Se o disco ficar cheio, você pode adicionar um arquivo de dados em outro disco. Para obter instruções, consulte Redimensionar o espaço de tabelas do sistema.
+If your disk becomes full, you can add a data file on another disk. For instructions, see Resizing the System Tablespace.
 
-O limite de tamanho para arquivos individuais é determinado pelo seu sistema operacional. Você pode definir o tamanho do arquivo para mais de 4 GB em sistemas operacionais que suportam arquivos grandes. Você também pode usar partições de disco bruto como arquivos de dados. Consulte Usar Partições de Disco Bruto para o Espaço de Tabela do Sistema.
+The size limit for individual files is determined by your operating system. You can set the file size to more than 4GB on operating systems that support large files. You can also use raw disk partitions as data files. See Using Raw Disk Partitions for the System Tablespace.
 
-O `InnoDB` não tem conhecimento do tamanho máximo do arquivo do sistema de arquivos, então tenha cuidado em sistemas de arquivos onde o tamanho máximo do arquivo é um valor pequeno, como 2 GB.
+`InnoDB` is not aware of the file system maximum file size, so be cautious on file systems where the maximum file size is a small value such as 2GB.
 
-Os arquivos de espaço de tabela do sistema são criados no diretório de dados por padrão (`datadir`). Para especificar um local alternativo, use a opção `innodb_data_home_dir`. Por exemplo, para criar um arquivo de dados de espaço de tabela do sistema em um diretório chamado `myibdata`, use esta configuração:
+System tablespace files are created in the data directory by default (`datadir`). To specify an alternate location, use the `innodb_data_home_dir` option. For example, to create a system tablespace data file in a directory named `myibdata`, use this configuration:
 
 ```sql
 [mysqld]
@@ -123,11 +123,11 @@ innodb_data_home_dir = /myibdata/
 innodb_data_file_path=ibdata1:50M:autoextend
 ```
 
-Um traço final é necessário ao especificar um valor para `innodb_data_home_dir`. O `InnoDB` não cria diretórios, então certifique-se de que o diretório especificado existe antes de iniciar o servidor. Além disso, certifique-se de que o servidor MySQL tenha os devidos direitos de acesso para criar arquivos no diretório.
+A trailing slash is required when specifying a value for `innodb_data_home_dir`. `InnoDB` does not create directories, so ensure that the specified directory exists before you start the server. Also, ensure sure that the MySQL server has the proper access rights to create files in the directory.
 
-`InnoDB` forma o caminho do diretório para cada arquivo de dados, concatenando o valor de `innodb_data_home_dir` ao nome do arquivo de dados. Se `innodb_data_home_dir` não for definido, o valor padrão é “./”, que é o diretório de dados. (O servidor MySQL muda seu diretório de trabalho atual para o diretório de dados quando começa a executar.)
+`InnoDB` forms the directory path for each data file by textually concatenating the value of `innodb_data_home_dir` to the data file name. If `innodb_data_home_dir` is not defined, the default value is “./”, which is the data directory. (The MySQL server changes its current working directory to the data directory when it begins executing.)
 
-Se você especificar `innodb_data_home_dir` como uma string vazia, você pode especificar caminhos absolutos para os arquivos de dados listados no valor `innodb_data_file_path`. A seguinte configuração é equivalente à anterior:
+If you specify `innodb_data_home_dir` as an empty string, you can specify absolute paths for data files listed in the `innodb_data_file_path` value. The following configuration is equivalent to the preceding one:
 
 ```sql
 [mysqld]
@@ -135,80 +135,80 @@ innodb_data_home_dir =
 innodb_data_file_path=/myibdata/ibdata1:50M:autoextend
 ```
 
-#### Configuração do arquivo de registro novamente
+#### Redo Log File Configuration
 
-O `InnoDB` cria dois arquivos de registro redo de 5 MB chamados `ib_logfile0` e `ib_logfile1` no diretório de dados por padrão.
+`InnoDB` creates two 5MB redo log files named `ib_logfile0` and `ib_logfile1` in the data directory by default.
 
-As seguintes opções podem ser usadas para modificar a configuração padrão:
+The following options can be used to modify the default configuration:
 
-- `innodb_log_group_home_dir` define o caminho do diretório para os arquivos de log do `InnoDB`. Se esta opção não for configurada, os arquivos de log do `InnoDB` serão criados no diretório de dados do MySQL (`datadir`).
+* `innodb_log_group_home_dir` defines directory path to the `InnoDB` log files. If this option is not configured, `InnoDB` log files are created in the MySQL data directory (`datadir`).
 
-  Você pode usar essa opção para colocar os arquivos de log do InnoDB em um local de armazenamento físico diferente dos arquivos de dados do InnoDB, para evitar potenciais conflitos de recursos de E/S. Por exemplo:
+  You might use this option to place `InnoDB` log files in a different physical storage location than `InnoDB` data files to avoid potential I/O resource conflicts. For example:
 
   ```sql
   [mysqld]
   innodb_log_group_home_dir = /dr3/iblogs
   ```
 
-  Nota
+  Note
 
-  O `InnoDB` não cria diretórios, então certifique-se de que o diretório de log existe antes de iniciar o servidor. Use o comando `mkdir` do Unix ou do DOS para criar os diretórios necessários.
+  `InnoDB` does not create directories, so make sure that the log directory exists before you start the server. Use the Unix or DOS `mkdir` command to create any necessary directories.
 
-  Certifique-se de que o servidor MySQL tenha os devidos direitos de acesso para criar arquivos no diretório de log. De forma mais geral, o servidor deve ter direitos de acesso em qualquer diretório onde ele precise criar arquivos de log.
+  Make sure that the MySQL server has the proper access rights to create files in the log directory. More generally, the server must have access rights in any directory where it needs to create log files.
 
-- `innodb_log_files_in_group` define o número de arquivos de log na grupo de log. O valor padrão e recomendado é 2.
+* `innodb_log_files_in_group` defines the number of log files in the log group. The default and recommended value is 2.
 
-- `innodb_log_file_size` define o tamanho em bytes de cada arquivo de log no grupo de logs. O tamanho combinado dos arquivos de log (`innodb_log_file_size` \* `innodb_log_files_in_group`) não pode exceder o valor máximo, que é ligeiramente inferior a 512 GB. Um par de arquivos de log de 255 GB, por exemplo, se aproxima do limite, mas não o ultrapassa. O tamanho padrão do arquivo de log é de 48 MB. Geralmente, o tamanho combinado dos arquivos de log deve ser grande o suficiente para que o servidor possa suavizar picos e vales na atividade da carga de trabalho, o que muitas vezes significa que há espaço suficiente para o log de refazer para lidar com mais de uma hora de atividade de escrita. Um tamanho de arquivo de log maior significa menos atividade de esvaziamento de verificação de ponto no pool de buffers, o que reduz o I/O no disco. Para obter informações adicionais, consulte a Seção 8.5.4, “Otimizando o Registro de Refazer InnoDB”.
+* `innodb_log_file_size` defines the size in bytes of each log file in the log group. The combined log file size (`innodb_log_file_size` \* `innodb_log_files_in_group`) cannot exceed the maximum value, which is slightly less than 512GB. A pair of 255 GB log files, for example, approaches the limit but does not exceed it. The default log file size is 48MB. Generally, the combined size of the log files should be large enough that the server can smooth out peaks and troughs in workload activity, which often means that there is enough redo log space to handle more than an hour of write activity. A larger log file size means less checkpoint flush activity in the buffer pool, which reduces disk I/O. For additional information, see Section 8.5.4, “Optimizing InnoDB Redo Logging”.
 
-#### Desfazer a configuração do espaço de tabelas
+#### Undo Tablespace Configuration
 
-Os registros de desfazer fazem parte do espaço de tabela do sistema por padrão. No entanto, você pode optar por armazenar os registros de desfazer em um ou mais espaços de tabela de desfazer separados, geralmente em um dispositivo de armazenamento diferente.
+Undo logs are part of the system tablespace by default. However, you can choose to store undo logs in one or more separate undo tablespaces, typically on a different storage device.
 
-A opção de configuração `innodb_undo_directory` define o caminho onde o `InnoDB` cria espaços de tabela separados para os registros de rollback. Essa opção é normalmente usada em conjunto com as opções `innodb_rollback_segments` e `innodb_undo_tablespaces`, que determinam o layout do disco dos registros de rollback fora do espaço de tabela do sistema.
+The `innodb_undo_directory` configuration option defines the path where `InnoDB` creates separate tablespaces for the undo logs. This option is typically used in conjunction with the `innodb_rollback_segments` and `innodb_undo_tablespaces` options, which determine the disk layout of the undo logs outside the system tablespace.
 
-Nota
+Note
 
-`innodb_undo_tablespaces` está desatualizado; espere que ele seja removido em uma futura versão.
+`innodb_undo_tablespaces` is deprecated; expect it to be removed in a future release.
 
-Para obter mais informações, consulte a Seção 14.6.3.4, “Desfazer Espaços de Tabela”.
+For more information, see Section 14.6.3.4, “Undo Tablespaces”.
 
-#### Configuração de Espaço de Memória Temporário
+#### Temporary Tablespace Configuration
 
-Por padrão, um único arquivo de dados de espaço de tabela temporário auto-extensível chamado `ibtmp1` é criado no diretório `innodb_data_home_dir`. O tamanho inicial do arquivo de dados do espaço de tabela temporário é ligeiramente maior que 12 MB. A configuração padrão do arquivo de dados do espaço de tabela temporário pode ser modificada durante a inicialização usando a opção de configuração `innodb_temp_data_file_path`.
+A single auto-extending temporary tablespace data file named `ibtmp1` is created in the `innodb_data_home_dir` directory by default. The initial file size is slightly larger than 12MB. The default temporary tablespace data file configuration can be modified at startup using the `innodb_temp_data_file_path` configuration option.
 
-A opção `innodb_temp_data_file_path` especifica o caminho, o nome do arquivo e o tamanho do arquivo dos arquivos de dados do espaço de tabelas temporários. O caminho completo do diretório é formado concatenando `innodb_data_home_dir` ao caminho especificado por `innodb_temp_data_file_path`. O tamanho do arquivo é especificado em KB, MB ou GB (1024MB) ao anexar K, M ou G ao valor do tamanho. O tamanho do arquivo ou o tamanho combinado deve ser ligeiramente maior que 12MB.
+The `innodb_temp_data_file_path` option specifies the path, file name, and file size for temporary tablespace data files. The full directory path is formed by concatenating `innodb_data_home_dir` to the path specified by `innodb_temp_data_file_path`. File size is specified in KB, MB, or GB (1024MB) by appending K, M, or G to the size value. The file size or combined file size must be slightly larger than 12MB.
 
-O valor padrão de `innodb_data_home_dir` é o diretório de dados do MySQL (`datadir`).
+The `innodb_data_home_dir` default value is the MySQL data directory (`datadir`).
 
-Um arquivo de dados de espaço de tabela temporário autoextensibile pode se tornar grande em ambientes que utilizam tabelas temporárias grandes ou que as utilizam extensivamente. Um grande arquivo de dados também pode resultar de consultas que executam por muito tempo e utilizam tabelas temporárias. Para evitar que o arquivo de dados temporário se torne muito grande, configure a opção `innodb_temp_data_file_path` para especificar o tamanho máximo do arquivo de dados. Para obter mais informações, consulte Gerenciamento do tamanho do arquivo de dados do espaço de tabela temporário.
+An autoextending temporary tablespace data file can become large in environments that use large temporary tables or that use temporary tables extensively. A large data file can also result from long running queries that use temporary tables. To prevent the temporary data file from becoming too large, configure the `innodb_temp_data_file_path` option to specify a maximum data file size. For more information see Managing Temporary Tablespace Data File Size.
 
-#### Configuração do tamanho da página
+#### Page Size Configuration
 
-A opção `innodb_page_size` especifica o tamanho da página para todos os espaços de tabela `InnoDB` em uma instância do MySQL. Esse valor é definido quando a instância é criada e permanece constante posteriormente. Os valores válidos são 64KB, 32KB, 16KB (padrão), 8KB e 4KB. Alternativamente, você pode especificar o tamanho da página em bytes (65536, 32768, 16384, 8192, 4096).
+The `innodb_page_size` option specifies the page size for all `InnoDB` tablespaces in a MySQL instance. This value is set when the instance is created and remains constant afterward. Valid values are 64KB, 32KB, 16KB (the default), 8KB, and 4KB. Alternatively, you can specify page size in bytes (65536, 32768, 16384, 8192, 4096).
 
-O tamanho padrão de página de 16 KB é apropriado para uma ampla gama de cargas de trabalho, especialmente para consultas que envolvem varreduras de tabelas e operações de manipulação de dados de massa (DML) que envolvem atualizações em massa. Tamanhos de página menores podem ser mais eficientes para cargas de trabalho OLTP que envolvem muitos pequenos registros, onde a concorrência pode ser um problema quando uma única página contém muitas linhas. Páginas menores também podem ser mais eficientes para dispositivos de armazenamento SSD, que geralmente usam tamanhos de bloco pequenos. Manter o tamanho de página do `InnoDB` próximo ao tamanho do bloco do dispositivo de armazenamento minimiza a quantidade de dados não alterados que são reescritos no disco.
+The default 16KB page size is appropriate for a wide range of workloads, particularly for queries involving table scans and DML operations involving bulk updates. Smaller page sizes might be more efficient for OLTP workloads involving many small writes, where contention can be an issue when a single page contains many rows. Smaller pages can also be more efficient for SSD storage devices, which typically use small block sizes. Keeping the `InnoDB` page size close to the storage device block size minimizes the amount of unchanged data that is rewritten to disk.
 
-Importante
+Important
 
-`innodb_page_size` pode ser definido apenas ao inicializar o diretório de dados. Consulte a descrição desta variável para obter mais informações.
+`innodb_page_size` can be set only when initializing the data directory. See the description of this variable for more information.
 
-#### Configuração de Memória
+#### Memory Configuration
 
-O MySQL aloca memória para vários caches e buffers para melhorar o desempenho das operações do banco de dados. Ao alocar memória para o `InnoDB`, sempre considere a memória necessária pelo sistema operacional, a memória alocada para outras aplicações e a memória alocada para outros buffers e caches do MySQL. Por exemplo, se você usar tabelas `MyISAM`, considere a quantidade de memória alocada para o buffer de chave (`key_buffer_size`). Para uma visão geral dos buffers e caches do MySQL, consulte a Seção 8.12.4.1, “Como o MySQL Usa a Memória”.
+MySQL allocates memory to various caches and buffers to improve performance of database operations. When allocating memory for `InnoDB`, always consider memory required by the operating system, memory allocated to other applications, and memory allocated for other MySQL buffers and caches. For example, if you use `MyISAM` tables, consider the amount of memory allocated for the key buffer (`key_buffer_size`). For an overview of MySQL buffers and caches, see Section 8.12.4.1, “How MySQL Uses Memory”.
 
-Os buffers específicos para o `InnoDB` são configurados usando os seguintes parâmetros:
+Buffers specific to `InnoDB` are configured using the following parameters:
 
-- `innodb_buffer_pool_size` define o tamanho do pool de buffers, que é a área de memória que armazena dados cacheados para as tabelas `InnoDB`, índices e outros buffers auxiliares. O tamanho do pool de buffers é importante para o desempenho do sistema, e geralmente é recomendado que `innodb_buffer_pool_size` seja configurado para 50 a 75% da memória do sistema. O tamanho padrão do pool de buffers é de 128 MB. Para obter orientações adicionais, consulte a Seção 8.12.4.1, “Como o MySQL Usa a Memória”. Para informações sobre como configurar o tamanho do pool de buffers `InnoDB`, consulte a Seção 14.8.3.1, “Configurando o Tamanho do Pool de Buffers \`InnoDB’”. O tamanho do pool de buffers pode ser configurado no início ou dinamicamente.
+* `innodb_buffer_pool_size` defines size of the buffer pool, which is the memory area that holds cached data for `InnoDB` tables, indexes, and other auxiliary buffers. The size of the buffer pool is important for system performance, and it is typically recommended that `innodb_buffer_pool_size` is configured to 50 to 75 percent of system memory. The default buffer pool size is 128MB. For additional guidance, see Section 8.12.4.1, “How MySQL Uses Memory”. For information about how to configure `InnoDB` buffer pool size, see Section 14.8.3.1, “Configuring InnoDB Buffer Pool Size”. Buffer pool size can be configured at startup or dynamically.
 
-  Em sistemas com uma grande quantidade de memória, você pode melhorar a concorrência dividindo o pool de buffers em várias instâncias do pool de buffers. O número de instâncias do pool de buffers é controlado pela opção `innodb_buffer_pool_instances`. Por padrão, o `InnoDB` cria uma única instância do pool de buffers. O número de instâncias do pool de buffers pode ser configurado durante a inicialização. Para mais informações, consulte a Seção 14.8.3.2, “Configurando Múltiplas Instâncias do Pool de Buffers”.
+  On systems with a large amount of memory, you can improve concurrency by dividing the buffer pool into multiple buffer pool instances. The number of buffer pool instances is controlled by the by `innodb_buffer_pool_instances` option. By default, `InnoDB` creates one buffer pool instance. The number of buffer pool instances can be configured at startup. For more information, see Section 14.8.3.2, “Configuring Multiple Buffer Pool Instances”.
 
-- `innodb_log_buffer_size` define o tamanho do buffer que o `InnoDB` usa para gravar nos arquivos de log no disco. O tamanho padrão é de 16 MB. Um buffer de log grande permite que transações grandes sejam executadas sem gravar o log no disco antes do commit das transações. Se você tiver transações que atualizam, inserem ou excluem muitas linhas, pode considerar aumentar o tamanho do buffer de log para economizar I/O no disco. `innodb_log_buffer_size` pode ser configurado no momento do início. Para informações relacionadas, consulte a Seção 8.5.4, “Otimizando o registro de refazer do InnoDB”.
+* `innodb_log_buffer_size` defines the size of the buffer that `InnoDB` uses to write to the log files on disk. The default size is 16MB. A large log buffer enables large transactions to run without writing the log to disk before the transactions commit. If you have transactions that update, insert, or delete many rows, you might consider increasing the size of the log buffer to save disk I/O. `innodb_log_buffer_size` can be configured at startup. For related information, see Section 8.5.4, “Optimizing InnoDB Redo Logging”.
 
-Aviso
+Warning
 
-No GNU/Linux x86 de 32 bits, se o uso de memória for configurado muito alto, o `glibc` pode permitir que o heap do processo cresça além das pilhas de threads, causando uma falha no servidor. Esse é um risco se a memória alocada para o processo **mysqld** para buffers e caches globais e por thread estiver próxima ou exceder 2 GB.
+On 32-bit GNU/Linux x86, if memory usage is set too high, `glibc` may permit the process heap to grow over the thread stacks, causing a server failure. It is a risk if the memory allocated to the **mysqld** process for global and per-thread buffers and caches is close to or exceeds 2GB.
 
-Uma fórmula semelhante à seguinte, que calcula a alocação de memória global e por thread para o MySQL, pode ser usada para estimar o uso de memória do MySQL. Você pode precisar modificar a fórmula para levar em conta os buffers e caches na sua versão e configuração do MySQL. Para uma visão geral dos buffers e caches do MySQL, consulte a Seção 8.12.4.1, “Como o MySQL Usa a Memória”.
+A formula similar to the following that calculates global and per-thread memory allocation for MySQL can be used to estimate MySQL memory usage. You may need to modify the formula to account for buffers and caches in your MySQL version and configuration. For an overview of MySQL buffers and caches, see Section 8.12.4.1, “How MySQL Uses Memory”.
 
 ```sql
 innodb_buffer_pool_size
@@ -217,6 +217,6 @@ innodb_buffer_pool_size
 + max_connections*2MB
 ```
 
-Cada thread usa uma pilha (geralmente 2 MB, mas apenas 256 KB nos binários do MySQL fornecidos pela Oracle Corporation.) e, no pior dos casos, também usa `sort_buffer_size + read_buffer_size` memória adicional.
+Each thread uses a stack (often 2MB, but only 256KB in MySQL binaries provided by Oracle Corporation.) and in the worst case also uses `sort_buffer_size + read_buffer_size` additional memory.
 
-No Linux, se o kernel estiver habilitado para suporte a páginas grandes, o `InnoDB` pode usar páginas grandes para alocar memória para seu pool de buffers. Veja a Seção 8.12.4.3, “Habilitar Suporte a Páginas Grandes”.
+On Linux, if the kernel is enabled for large page support, `InnoDB` can use large pages to allocate memory for its buffer pool. See Section 8.12.4.3, “Enabling Large Page Support”.

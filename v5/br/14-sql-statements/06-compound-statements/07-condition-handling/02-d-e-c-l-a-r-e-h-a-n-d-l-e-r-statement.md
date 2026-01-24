@@ -1,4 +1,4 @@
-#### 13.6.7.2 DECLARAR ... declaração do manipulador
+#### 13.6.7.2 DECLARE ... HANDLER Statement
 
 ```sql
 DECLARE handler_action HANDLER
@@ -21,21 +21,21 @@ condition_value: {
 }
 ```
 
-A declaração `DECLARE ... HANDLER` especifica um manipulador que lida com uma ou mais condições. Se uma dessas condições ocorrer, a *`declaração`* especificada é executada. *`declaração`* pode ser uma declaração simples, como `SET var_name = value`, ou uma declaração composta escrita usando `BEGIN` e `END` (veja Seção 13.6.1, “Declaração Composta BEGIN ... END”).
+The [`DECLARE ... HANDLER`](declare-handler.html "13.6.7.2 DECLARE ... HANDLER Statement") statement specifies a handler that deals with one or more conditions. If one of these conditions occurs, the specified *`statement`* executes. *`statement`* can be a simple statement such as `SET var_name = value`, or a compound statement written using `BEGIN` and `END` (see [Section 13.6.1, “BEGIN ... END Compound Statement”](begin-end.html "13.6.1 BEGIN ... END Compound Statement")).
 
-As declarações de manipulador devem aparecer após as declarações de variáveis ou condições.
+Handler declarations must appear after variable or condition declarations.
 
-O valor *`handler_action`* indica a ação que o manipulador executa após a execução da instrução do manipulador:
+The *`handler_action`* value indicates what action the handler takes after execution of the handler statement:
 
-- `CONTINUE`: A execução do programa atual continua.
+* `CONTINUE`: Execution of the current program continues.
 
-- `EXIT`: A execução termina para a instrução composta `BEGIN ... END` na qual o manipulador é declarado. Isso é verdadeiro mesmo que a condição ocorra em um bloco interno.
+* `EXIT`: Execution terminates for the [`BEGIN ... END`](begin-end.html "13.6.1 BEGIN ... END Compound Statement") compound statement in which the handler is declared. This is true even if the condition occurs in an inner block.
 
-- `UNDO`: Não é suportado.
+* `UNDO`: Not supported.
 
-O `valor_condição` para `DECLARE ... HANDLER` indica a condição específica ou a classe de condições que ativa o manipulador. Ele pode assumir as seguintes formas:
+The *`condition_value`* for [`DECLARE ... HANDLER`](declare-handler.html "13.6.7.2 DECLARE ... HANDLER Statement") indicates the specific condition or class of conditions that activates the handler. It can take the following forms:
 
-- *`mysql_error_code`*: Um literal inteiro que indica um código de erro MySQL, como 1051 para especificar “tabela desconhecida”:
+* *`mysql_error_code`*: An integer literal indicating a MySQL error code, such as 1051 to specify “unknown table”:
 
   ```sql
   DECLARE CONTINUE HANDLER FOR 1051
@@ -44,9 +44,9 @@ O `valor_condição` para `DECLARE ... HANDLER` indica a condição específica 
     END;
   ```
 
-  Não use o código de erro do MySQL 0, pois ele indica sucesso em vez de uma condição de erro. Para uma lista de códigos de erro do MySQL, consulte Referência de Mensagem de Erro do Servidor.
+  Do not use MySQL error code 0 because that indicates success rather than an error condition. For a list of MySQL error codes, see [Server Error Message Reference](/doc/mysql-errors/5.7/en/server-error-reference.html).
 
-- SQLSTATE [VALOR] *`sqlstate_value`*: Uma literal de cadeia de caracteres de 5 caracteres que indica um valor SQLSTATE, como `'42S01'` para especificar “tabela desconhecida”:
+* SQLSTATE [VALUE] *`sqlstate_value`*: A 5-character string literal indicating an SQLSTATE value, such as `'42S01'` to specify “unknown table”:
 
   ```sql
   DECLARE CONTINUE HANDLER FOR SQLSTATE '42S02'
@@ -55,11 +55,11 @@ O `valor_condição` para `DECLARE ... HANDLER` indica a condição específica 
     END;
   ```
 
-  Não use valores SQLSTATE que comecem com `'00'`, pois esses indicam sucesso em vez de uma condição de erro. Para uma lista de valores SQLSTATE, consulte Referência de Mensagem de Erro do Servidor.
+  Do not use SQLSTATE values that begin with `'00'` because those indicate success rather than an error condition. For a list of SQLSTATE values, see [Server Error Message Reference](/doc/mysql-errors/5.7/en/server-error-reference.html).
 
-- *`condition_name`*: Um nome de condição previamente especificado com `DECLARE ... CONDITION`. Um nome de condição pode ser associado a um código de erro MySQL ou valor SQLSTATE. Veja Seção 13.6.7.1, “Instrução ... CONDITION”.
+* *`condition_name`*: A condition name previously specified with [`DECLARE ... CONDITION`](declare-condition.html "13.6.7.1 DECLARE ... CONDITION Statement"). A condition name can be associated with a MySQL error code or SQLSTATE value. See [Section 13.6.7.1, “DECLARE ... CONDITION Statement”](declare-condition.html "13.6.7.1 DECLARE ... CONDITION Statement").
 
-- `SQLWARNING`: Abreviação para a classe de valores SQLSTATE que começam com `'01'`.
+* `SQLWARNING`: Shorthand for the class of SQLSTATE values that begin with `'01'`.
 
   ```sql
   DECLARE CONTINUE HANDLER FOR SQLWARNING
@@ -68,7 +68,7 @@ O `valor_condição` para `DECLARE ... HANDLER` indica a condição específica 
     END;
   ```
 
-- `NOT FOUND`: Abreviação para a classe de valores SQLSTATE que começam com `'02'`. Isso é relevante no contexto de cursors e é usado para controlar o que acontece quando um cursor atinge o final de um conjunto de dados. Se mais linhas não estiverem disponíveis, uma condição de Nenhum dado ocorre com o valor SQLSTATE `'02000'`. Para detectar essa condição, você pode configurar um manipulador para ela ou para uma condição `NOT FOUND`.
+* `NOT FOUND`: Shorthand for the class of SQLSTATE values that begin with `'02'`. This is relevant within the context of cursors and is used to control what happens when a cursor reaches the end of a data set. If no more rows are available, a No Data condition occurs with SQLSTATE value `'02000'`. To detect this condition, you can set up a handler for it or for a `NOT FOUND` condition.
 
   ```sql
   DECLARE CONTINUE HANDLER FOR NOT FOUND
@@ -77,9 +77,9 @@ O `valor_condição` para `DECLARE ... HANDLER` indica a condição específica 
     END;
   ```
 
-  Para outro exemplo, veja Seção 13.6.6, "Cursors". A condição `NOT FOUND` também ocorre para instruções `SELECT ... INTO var_list` que não recuperam nenhuma linha.
+  For another example, see [Section 13.6.6, “Cursors”](cursors.html "13.6.6 Cursors"). The `NOT FOUND` condition also occurs for `SELECT ... INTO var_list` statements that retrieve no rows.
 
-- `SQLEXCEPTION`: Abreviação para a classe de valores SQLSTATE que não começam com `'00'`, `'01'` ou `'02'`.
+* `SQLEXCEPTION`: Shorthand for the class of SQLSTATE values that do not begin with `'00'`, `'01'`, or `'02'`.
 
   ```sql
   DECLARE CONTINUE HANDLER FOR SQLEXCEPTION
@@ -88,17 +88,17 @@ O `valor_condição` para `DECLARE ... HANDLER` indica a condição específica 
     END;
   ```
 
-Para obter informações sobre como o servidor escolhe manipuladores quando uma condição ocorre, consulte Seção 13.6.7.6, “Regras de escopo para manipuladores”.
+For information about how the server chooses handlers when a condition occurs, see [Section 13.6.7.6, “Scope Rules for Handlers”](handler-scope.html "13.6.7.6 Scope Rules for Handlers").
 
-Se ocorrer uma condição para a qual nenhum manipulador foi declarado, a ação tomada depende da classe da condição:
+If a condition occurs for which no handler has been declared, the action taken depends on the condition class:
 
-- Para as condições `SQLEXCEPTION`, o programa armazenado termina na instrução que gerou a condição, como se houvesse um manipulador `EXIT`. Se o programa foi chamado por outro programa armazenado, o programa que o chamou lida com a condição usando as regras de seleção de manipulador aplicadas aos seus próprios manipuladores.
+* For `SQLEXCEPTION` conditions, the stored program terminates at the statement that raised the condition, as if there were an `EXIT` handler. If the program was called by another stored program, the calling program handles the condition using the handler selection rules applied to its own handlers.
 
-- Para as condições `SQLWARNING`, o programa continua executando, como se houvesse um manipulador `CONTINUE`.
+* For `SQLWARNING` conditions, the program continues executing, as if there were a `CONTINUE` handler.
 
-- Para condições de `NOT FOUND`, se a condição foi levantada normalmente, a ação é `CONTINUE`. Se foi levantada por `SIGNAL` ou `RESIGNAL`, a ação é `EXIT`.
+* For `NOT FOUND` conditions, if the condition was raised normally, the action is `CONTINUE`. If it was raised by [`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement") or [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement"), the action is `EXIT`.
 
-O exemplo a seguir utiliza um manipulador para `SQLSTATE '23000'`, que ocorre em caso de erro de chave duplicada:
+The following example uses a handler for `SQLSTATE '23000'`, which occurs for a duplicate-key error:
 
 ```sql
 mysql> CREATE TABLE test.t (s1 INT, PRIMARY KEY (s1));
@@ -130,15 +130,15 @@ mysql> SELECT @x//
     1 row in set (0.00 sec)
 ```
 
-Observe que `@x` é `3` após a execução do procedimento, o que mostra que a execução continuou até o final do procedimento após o erro ocorrer. Se a instrução `DECLARE ... HANDLER` não tivesse sido presente, o MySQL teria tomado a ação padrão (`EXIT`) após o segundo `INSERT` falhar devido à restrição `PRIMARY KEY`, e `SELECT @x` teria retornado `2`.
+Notice that `@x` is `3` after the procedure executes, which shows that execution continued to the end of the procedure after the error occurred. If the [`DECLARE ... HANDLER`](declare-handler.html "13.6.7.2 DECLARE ... HANDLER Statement") statement had not been present, MySQL would have taken the default action (`EXIT`) after the second [`INSERT`](insert.html "13.2.5 INSERT Statement") failed due to the `PRIMARY KEY` constraint, and `SELECT @x` would have returned `2`.
 
-Para ignorar uma condição, declare um manipulador `CONTINUE` para ela e associe-o a um bloco vazio. Por exemplo:
+To ignore a condition, declare a `CONTINUE` handler for it and associate it with an empty block. For example:
 
 ```sql
 DECLARE CONTINUE HANDLER FOR SQLWARNING BEGIN END;
 ```
 
-O escopo de uma etiqueta de bloco não inclui o código para manipuladores declarados dentro do bloco. Portanto, a declaração associada a um manipulador não pode usar `ITERATE` ou `LEAVE` para referir-se a etiquetas de blocos que encerram a declaração do manipulador. Considere o seguinte exemplo, onde o bloco `REPEAT` tem uma etiqueta de `retry`:
+The scope of a block label does not include the code for handlers declared within the block. Therefore, the statement associated with a handler cannot use [`ITERATE`](iterate.html "13.6.5.3 ITERATE Statement") or [`LEAVE`](leave.html "13.6.5.4 LEAVE Statement") to refer to labels for blocks that enclose the handler declaration. Consider the following example, where the [`REPEAT`](repeat.html "13.6.5.6 REPEAT Statement") block has a label of `retry`:
 
 ```sql
 CREATE PROCEDURE p ()
@@ -160,21 +160,21 @@ BEGIN
 END;
 ```
 
-A etiqueta `retry` está no escopo da instrução `IF` dentro do bloco. Não está no escopo do manipulador `CONTINUE`, então a referência lá é inválida e resulta em um erro:
+The `retry` label is in scope for the [`IF`](if.html "13.6.5.2 IF Statement") statement within the block. It is not in scope for the `CONTINUE` handler, so the reference there is invalid and results in an error:
 
 ```sql
 ERROR 1308 (42000): LEAVE with no matching label: retry
 ```
 
-Para evitar referências a rótulos externos nos manipuladores, use uma dessas estratégias:
+To avoid references to outer labels in handlers, use one of these strategies:
 
-- Para sair do bloco, use um manipulador `EXIT`. Se não for necessário limpar o bloco, o corpo do manipulador `[BEGIN ... END` (begin-end.html) pode ser vazio:
+* To leave the block, use an `EXIT` handler. If no block cleanup is required, the [`BEGIN ... END`](begin-end.html "13.6.1 BEGIN ... END Compound Statement") handler body can be empty:
 
   ```sql
   DECLARE EXIT HANDLER FOR SQLWARNING BEGIN END;
   ```
 
-  Caso contrário, coloque as declarações de limpeza no corpo do manipulador:
+  Otherwise, put the cleanup statements in the handler body:
 
   ```sql
   DECLARE EXIT HANDLER FOR SQLWARNING
@@ -183,7 +183,7 @@ Para evitar referências a rótulos externos nos manipuladores, use uma dessas e
     END;
   ```
 
-- Para continuar a execução, defina uma variável de status em um manipulador de `CONTINUE` que possa ser verificada no bloco envolvente para determinar se o manipulador foi invocado. O exemplo a seguir usa a variável `done` para esse propósito:
+* To continue execution, set a status variable in a `CONTINUE` handler that can be checked in the enclosing block to determine whether the handler was invoked. The following example uses the variable `done` for this purpose:
 
   ```sql
   CREATE PROCEDURE p ()

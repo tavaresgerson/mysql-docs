@@ -1,54 +1,54 @@
-### 24.4.25 A visão INFORMATION_SCHEMA INNODB_SYS_TABLESTATS
+### 24.4.25 The INFORMATION_SCHEMA INNODB_SYS_TABLESTATS View
 
-A tabela [`INNODB_SYS_TABLESTATS`](https://pt.wikipedia.org/wiki/Tabela_innodb_sys_tablestats) fornece uma visão de informações de status de nível baixo sobre as tabelas `InnoDB`. Esses dados são usados pelo otimizador do MySQL para calcular qual índice usar ao consultar uma tabela `InnoDB`. Essas informações são derivadas de estruturas de dados em memória, e não de dados armazenados em disco. Não existe uma tabela interna correspondente do sistema `InnoDB`.
+The [`INNODB_SYS_TABLESTATS`](information-schema-innodb-sys-tablestats-table.html "24.4.25 The INFORMATION_SCHEMA INNODB_SYS_TABLESTATS View") table provides a view of low-level status information about `InnoDB` tables. This data is used by the MySQL optimizer to calculate which index to use when querying an `InnoDB` table. This information is derived from in-memory data structures rather than data stored on disk. There is no corresponding internal `InnoDB` system table.
 
-As tabelas do `InnoDB` são representadas nesta visualização se tiverem sido abertas desde o último reinício do servidor e não tiverem sido excluídas do cache da tabela. As tabelas para as quais estão disponíveis estatísticas persistentes são sempre representadas nesta visualização.
+`InnoDB` tables are represented in this view if they have been opened since the last server restart and have not aged out of the table cache. Tables for which persistent stats are available are always represented in this view.
 
-As estatísticas da tabela são atualizadas apenas para operações de `DELETE` ou `UPDATE` que modificam colunas indexadas. As estatísticas não são atualizadas por operações que modificam apenas colunas não indexadas.
+Table statistics are updated only for [`DELETE`](delete.html "13.2.2 DELETE Statement") or [`UPDATE`](update.html "13.2.11 UPDATE Statement") operations that modify indexed columns. Statistics are not updated by operations that modify only nonindexed columns.
 
-`ANALYSE TABELA` limpa as estatísticas da tabela e define a coluna `STATS_INITIALIZED` como `Não inicializada`. As estatísticas são coletadas novamente na próxima vez que a tabela for acessada.
+[`ANALYZE TABLE`](analyze-table.html "13.7.2.1 ANALYZE TABLE Statement") clears table statistics and sets the `STATS_INITIALIZED` column to `Uninitialized`. Statistics are collected again the next time the table is accessed.
 
-Para informações de uso relacionadas e exemplos, consulte Seção 14.16.3, “Tabelas do Sistema InnoDB INFORMATION_SCHEMA”.
+For related usage information and examples, see [Section 14.16.3, “InnoDB INFORMATION_SCHEMA System Tables”](innodb-information-schema-system-tables.html "14.16.3 InnoDB INFORMATION_SCHEMA System Tables").
 
-A tabela [`INNODB_SYS_TABLESTATS`](https://docs.oracle.com/en/database/MySQL/8/dev/innodb-sys-tablestats-table.html) possui as seguintes colunas:
+The [`INNODB_SYS_TABLESTATS`](information-schema-innodb-sys-tablestats-table.html "24.4.25 The INFORMATION_SCHEMA INNODB_SYS_TABLESTATS View") table has these columns:
 
-- `TABLE_ID`
+* `TABLE_ID`
 
-  Um identificador que representa a tabela para a qual estão disponíveis estatísticas; o mesmo valor que `INNODB_SYS_TABLES.TABLE_ID`.
+  An identifier representing the table for which statistics are available; the same value as `INNODB_SYS_TABLES.TABLE_ID`.
 
-- `NOME`
+* `NAME`
 
-  O nome da tabela; o mesmo valor que `INNODB_SYS_TABLES.NAME`.
+  The name of the table; the same value as `INNODB_SYS_TABLES.NAME`.
 
-- `STATS_INITIALIZED`
+* `STATS_INITIALIZED`
 
-  O valor é `Inicializado` se as estatísticas já estiverem coletadas e `Não inicializado` se não estiverem.
+  The value is `Initialized` if the statistics are already collected, `Uninitialized` if not.
 
-- `NUM_ROWS`
+* `NUM_ROWS`
 
-  O número atual estimado de linhas na tabela. Atualizado após cada operação DML. O valor pode ser impreciso se transações não confirmadas estiverem inserindo ou excluindo da tabela.
+  The current estimated number of rows in the table. Updated after each DML operation. The value could be imprecise if uncommitted transactions are inserting into or deleting from the table.
 
-- `CLUST_INDEX_SIZE`
+* `CLUST_INDEX_SIZE`
 
-  O número de páginas no disco que armazenam o índice agrupado, que contém os dados da tabela `InnoDB` na ordem da chave primária. Esse valor pode ser nulo se ainda não tiverem sido coletadas estatísticas para a tabela.
+  The number of pages on disk that store the clustered index, which holds the `InnoDB` table data in primary key order. This value might be null if no statistics are collected yet for the table.
 
-- `OUTRO_TAMANHO_DE_ÍNDICE`
+* `OTHER_INDEX_SIZE`
 
-  O número de páginas no disco que armazenam todos os índices secundários da tabela. Esse valor pode ser nulo se ainda não tiverem sido coletadas estatísticas para a tabela.
+  The number of pages on disk that store all secondary indexes for the table. This value might be null if no statistics are collected yet for the table.
 
-- `MODIFICADO_CONTADOR`
+* `MODIFIED_COUNTER`
 
-  O número de linhas modificadas por operações de DML, como `INSERT`, `UPDATE`, `DELETE`, e também operações de cascata a partir de chaves estrangeiras. Esta coluna é redefinida sempre que as estatísticas da tabela são recalculadas.
+  The number of rows modified by DML operations, such as `INSERT`, `UPDATE`, `DELETE`, and also cascade operations from foreign keys. This column is reset each time table statistics are recalculated
 
-- `AUTOINC`
+* `AUTOINC`
 
-  O próximo número a ser emitido para qualquer operação baseada em autoincremento. A taxa em que o valor `AUTOINC` muda depende de quantas vezes os números de autoincremento foram solicitados e quantos números são concedidos por solicitação.
+  The next number to be issued for any auto-increment-based operation. The rate at which the `AUTOINC` value changes depends on how many times auto-increment numbers have been requested and how many numbers are granted per request.
 
-- `REF_COUNT`
+* `REF_COUNT`
 
-  Quando esse contador atingir zero, os metadados da tabela podem ser removidos do cache da tabela.
+  When this counter reaches zero, the table metadata can be evicted from the table cache.
 
-#### Exemplo
+#### Example
 
 ```sql
 mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_SYS_TABLESTATS where TABLE_ID = 71\G
@@ -64,10 +64,10 @@ STATS_INITIALIZED: Initialized
         REF_COUNT: 1
 ```
 
-#### Notas
+#### Notes
 
-- Esta tabela é útil principalmente para o monitoramento de desempenho em nível de especialista, ou quando se desenvolvem extensões relacionadas ao desempenho para o MySQL.
+* This table is useful primarily for expert-level performance monitoring, or when developing performance-related extensions for MySQL.
 
-- Você deve ter o privilégio `PROCESSO` para consultar esta tabela.
+* You must have the [`PROCESS`](privileges-provided.html#priv_process) privilege to query this table.
 
-- Use a tabela `INFORMATION_SCHEMA` `COLUMNS` ou a instrução `SHOW COLUMNS` para visualizar informações adicionais sobre as colunas desta tabela, incluindo tipos de dados e valores padrão.
+* Use the `INFORMATION_SCHEMA` [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") table or the [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") statement to view additional information about the columns of this table, including data types and default values.

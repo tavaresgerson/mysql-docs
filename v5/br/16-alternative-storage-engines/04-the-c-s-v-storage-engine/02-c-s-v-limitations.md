@@ -1,7 +1,7 @@
-### 15.4.2 Limitações do CSV
+### 15.4.2 CSV Limitations
 
-O mecanismo de armazenamento `CSV` não suporta indexação.
+The `CSV` storage engine does not support indexing.
 
-A partição não é suportada para tabelas que utilizam o mecanismo de armazenamento `CSV`.
+Partitioning is not supported for tables using the `CSV` storage engine.
 
-Todas as tabelas que você criar usando o mecanismo de armazenamento `CSV` devem ter o atributo `NOT NULL` em todas as colunas.
+All tables that you create using the `CSV` storage engine must have the `NOT NULL` attribute on all columns.

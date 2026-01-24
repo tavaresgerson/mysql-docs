@@ -1,27 +1,27 @@
-#### 25.12.11.4 A tabela replication_applier_status
+#### 25.12.11.4 The replication_applier_status Table
 
-Esta tabela mostra o status atual da execução da transação geral na replica. A tabela fornece informações sobre aspectos gerais do status do aplicador de transações que não são específicos de qualquer thread envolvida. Informações de status específicas para cada thread estão disponíveis na tabela `replication_applier_status_by_coordinator` (e na tabela `replication_applier_status_by_worker` se a replica for multithread).
+This table shows the current general transaction execution status on the replica. The table provides information about general aspects of transaction applier status that are not specific to any thread involved. Thread-specific status information is available in the [`replication_applier_status_by_coordinator`](performance-schema-replication-applier-status-by-coordinator-table.html "25.12.11.5 The replication_applier_status_by_coordinator Table") table (and [`replication_applier_status_by_worker`](performance-schema-replication-applier-status-by-worker-table.html "25.12.11.6 The replication_applier_status_by_worker Table") if the replica is multithreaded).
 
-A tabela `replication_applier_status` tem as seguintes colunas:
+The [`replication_applier_status`](performance-schema-replication-applier-status-table.html "25.12.11.4 The replication_applier_status Table") table has these columns:
 
-- `NOME_CANAL`
+* `CHANNEL_NAME`
 
-  O canal de replicação que esta linha está exibindo. Há sempre um canal de replicação padrão, e mais canais de replicação podem ser adicionados. Consulte Seção 16.2.2, “Canais de Replicação” para obter mais informações.
+  The replication channel which this row is displaying. There is always a default replication channel, and more replication channels can be added. See [Section 16.2.2, “Replication Channels”](replication-channels.html "16.2.2 Replication Channels") for more information.
 
-- `ESTADO_SERVIÇO`
+* `SERVICE_STATE`
 
-  Mostra `ON` quando as threads do aplicador do canal de replicação estão ativas ou em espera, `OFF` significa que as threads do aplicador não estão ativas.
+  Shows `ON` when the replication channel's applier threads are active or idle, `OFF` means that the applier threads are not active.
 
-- `REMAINING_DELAY`
+* `REMAINING_DELAY`
 
-  Se a replica estiver aguardando o passar de `DESIRED_DELAY` segundos desde que a fonte aplicou um evento, este campo contém o número de segundos de atraso restantes. Em outros momentos, este campo é `NULL`. (O valor de `DESIRED_DELAY` é armazenado na tabela `replication_applier_configuration`.
+  If the replica is waiting for `DESIRED_DELAY` seconds to pass since the source applied an event, this field contains the number of delay seconds remaining. At other times, this field is `NULL`. (The `DESIRED_DELAY` value is stored in the [`replication_applier_configuration`](performance-schema-replication-applier-configuration-table.html "25.12.11.3 The replication_applier_configuration Table") table.)
 
-- `CONTAR_REPROVAS_DE_TRANSACOES`
+* `COUNT_TRANSACTIONS_RETRIES`
 
-  Mostra o número de tentativas de reexecução que foram feitas porque o thread de replicação SQL não conseguiu aplicar uma transação. O número máximo de tentativas para uma transação específica é definido pela variável de sistema `slave_transaction_retries`.
+  Shows the number of retries that were made because the replication SQL thread failed to apply a transaction. The maximum number of retries for a given transaction is set by the [`slave_transaction_retries`](replication-options-replica.html#sysvar_slave_transaction_retries) system variable.
 
-A operação `TRUNCATE TABLE` não é permitida para a tabela `replication_applier_status`.
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is not permitted for the [`replication_applier_status`](performance-schema-replication-applier-status-table.html "25.12.11.4 The replication_applier_status Table") table.
 
-A tabela a seguir mostra a correspondência entre as colunas de `replication_applier_status` e as colunas de `SHOW SLAVE STATUS`.
+The following table shows the correspondence between [`replication_applier_status`](performance-schema-replication-applier-status-table.html "25.12.11.4 The replication_applier_status Table") columns and [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") columns.
 
-<table summary="Correspondência entre as colunas replication_applier_status e SHOW SLAVE STATUS"><col style="width: 60%"/><col style="width: 40%"/><thead><tr> <th><code>replication_applier_status</code> Coluna</th> <th><code>SHOW SLAVE STATUS</code> Coluna</th> </tr></thead><tbody><tr> <td><code>SERVICE_STATE</code></td> <td>Nenhum</td> </tr><tr> <td><code>REMAINING_DELAY</code></td> <td><code>SQL_Remaining_Delay</code></td> </tr></tbody></table>
+<table summary="Correspondence between replication_applier_status columns and SHOW SLAVE STATUS columns"><col style="width: 60%"/><col style="width: 40%"/><thead><tr> <th><code>replication_applier_status</code> Column</th> <th><code>SHOW SLAVE STATUS</code> Column</th> </tr></thead><tbody><tr> <td><code>SERVICE_STATE</code></td> <td>None</td> </tr><tr> <td><code>REMAINING_DELAY</code></td> <td><code>SQL_Remaining_Delay</code></td> </tr></tbody></table>

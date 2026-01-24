@@ -1,18 +1,18 @@
-#### 13.7.5.21 Declaração de GRANTS SHOW
+#### 13.7.5.21 SHOW GRANTS Statement
 
 ```sql
 SHOW GRANTS [FOR user]
 ```
 
-Esta declaração exibe os privilégios atribuídos a uma conta de usuário do MySQL, na forma de declarações de `GRANT` que devem ser executadas para duplicar as atribuições de privilégios.
+This statement displays the privileges that are assigned to a MySQL user account, in the form of [`GRANT`](grant.html "13.7.1.4 GRANT Statement") statements that must be executed to duplicate the privilege assignments.
 
-Nota
+Note
 
-Para exibir informações não de privilégio para contas do MySQL, use a instrução `SHOW CREATE USER`. Veja Seção 13.7.5.12, “Instrução SHOW CREATE USER”.
+To display nonprivilege information for MySQL accounts, use the [`SHOW CREATE USER`](show-create-user.html "13.7.5.12 SHOW CREATE USER Statement") statement. See [Section 13.7.5.12, “SHOW CREATE USER Statement”](show-create-user.html "13.7.5.12 SHOW CREATE USER Statement").
 
-`SHOW GRANTS` requer o privilégio `SELECT` para o banco de dados do sistema `mysql`, exceto para exibir privilégios para o usuário atual.
+[`SHOW GRANTS`](show-grants.html "13.7.5.21 SHOW GRANTS Statement") requires the [`SELECT`](privileges-provided.html#priv_select) privilege for the `mysql` system database, except to display privileges for the current user.
 
-Para nomear a conta para `SHOW GRANTS`, use o mesmo formato que para a declaração `GRANT` (por exemplo, `'jeffrey'@'localhost'`)
+To name the account for [`SHOW GRANTS`](show-grants.html "13.7.5.21 SHOW GRANTS Statement"), use the same format as for the [`GRANT`](grant.html "13.7.1.4 GRANT Statement") statement (for example, `'jeffrey'@'localhost'`):
 
 ```sql
 mysql> SHOW GRANTS FOR 'jeffrey'@'localhost';
@@ -24,9 +24,9 @@ mysql> SHOW GRANTS FOR 'jeffrey'@'localhost';
 +------------------------------------------------------------------+
 ```
 
-A parte do host, se omitida, tem como padrão `'%'.` Para obter informações adicionais sobre a especificação de nomes de contas, consulte Seção 6.2.4, “Especificação de Nomes de Contas”.
+The host part, if omitted, defaults to `'%'`. For additional information about specifying account names, see [Section 6.2.4, “Specifying Account Names”](account-names.html "6.2.4 Specifying Account Names").
 
-Para exibir os privilégios concedidos ao usuário atual (a conta que você está usando para se conectar ao servidor), você pode usar qualquer uma das seguintes declarações:
+To display the privileges granted to the current user (the account you are using to connect to the server), you can use any of the following statements:
 
 ```sql
 SHOW GRANTS;
@@ -34,8 +34,8 @@ SHOW GRANTS FOR CURRENT_USER;
 SHOW GRANTS FOR CURRENT_USER();
 ```
 
-Se `SHOW GRANTS FOR CURRENT_USER` (ou qualquer sintaxe equivalente) for usado no contexto do definidor, como dentro de um procedimento armazenado que é executado com privilégios de definidor em vez de de invocador, as permissões exibidas são as do definidor e não do invocador.
+If `SHOW GRANTS FOR CURRENT_USER` (or any equivalent syntax) is used in definer context, such as within a stored procedure that executes with definer rather than invoker privileges, the grants displayed are those of the definer and not the invoker.
 
-`SHOW GRANTS` não exibe privilégios que estão disponíveis para a conta nomeada, mas que são concedidos a uma conta diferente. Por exemplo, se uma conta anônima existir, a conta nomeada pode ser capaz de usar seus privilégios, mas o `SHOW GRANTS` não os exibe.
+[`SHOW GRANTS`](show-grants.html "13.7.5.21 SHOW GRANTS Statement") does not display privileges that are available to the named account but are granted to a different account. For example, if an anonymous account exists, the named account might be able to use its privileges, but [`SHOW GRANTS`](show-grants.html "13.7.5.21 SHOW GRANTS Statement") does not display them.
 
-A saída `SHOW GRANTS` não inclui cláusulas `IDENTIFIED BY PASSWORD`. Use a instrução `SHOW CREATE USER` em vez disso. Veja Seção 13.7.5.12, “Instrução SHOW CREATE USER”.
+`SHOW GRANTS` output does not include `IDENTIFIED BY PASSWORD` clauses. Use the [`SHOW CREATE USER`](show-create-user.html "13.7.5.12 SHOW CREATE USER Statement") statement instead. See [Section 13.7.5.12, “SHOW CREATE USER Statement”](show-create-user.html "13.7.5.12 SHOW CREATE USER Statement").

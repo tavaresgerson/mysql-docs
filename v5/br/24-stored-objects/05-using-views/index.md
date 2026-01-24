@@ -1,23 +1,23 @@
-## 23.5 Usando visualizações
+## 23.5 Using Views
 
-23.5.1 Visualizar sintaxe
+23.5.1 View Syntax
 
-23.5.2 Visualizar algoritmos de processamento
+23.5.2 View Processing Algorithms
 
-23.5.3 Visualizações atualizáveis e inseríveis
+23.5.3 Updatable and Insertable Views
 
-23.5.4 A cláusula de opção de visualização com verificação
+23.5.4 The View WITH CHECK OPTION Clause
 
-23.5.5 Visualizar metadados
+23.5.5 View Metadata
 
-O MySQL suporta vistas, incluindo vistas atualizáveis. As vistas são consultas armazenadas que, quando executadas, produzem um conjunto de resultados. Uma vista funciona como uma tabela virtual.
+MySQL supports views, including updatable views. Views are stored queries that when invoked produce a result set. A view acts as a virtual table.
 
-A discussão a seguir descreve a sintaxe para criar e excluir visualizações e mostra alguns exemplos de como usá-las.
+The following discussion describes the syntax for creating and dropping views, and shows some examples of how to use them.
 
-### Recursos adicionais
+### Additional Resources
 
-- Você pode achar os [Fóruns de Usuários do MySQL](https://forums.mysql.com/list.php?20) úteis ao trabalhar com visualizações.
+* You may find the [MySQL User Forums](https://forums.mysql.com/list.php?20) helpful when working with views.
 
-- Para respostas a algumas perguntas frequentes sobre vistas no MySQL, consulte a Seção A.6, “Perguntas frequentes do MySQL 5.7: Vistas”.
+* For answers to some commonly asked questions regarding views in MySQL, see Section A.6, “MySQL 5.7 FAQ: Views”.
 
-- Há algumas restrições sobre o uso de visualizações; veja a Seção 23.9, “Restrições sobre visualizações”.
+* There are some restrictions on the use of views; see Section 23.9, “Restrictions on Views”.

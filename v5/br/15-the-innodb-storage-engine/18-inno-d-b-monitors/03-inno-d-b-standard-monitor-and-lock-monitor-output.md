@@ -1,10 +1,10 @@
-### 14.18.3 Monitor padrão InnoDB e Monitor de bloqueio de saída
+### 14.18.3 InnoDB Standard Monitor and Lock Monitor Output
 
-O Monitor de Bloqueio é o mesmo que o Monitor Padrão, exceto que ele inclui informações adicionais sobre o bloqueio. Ativação de qualquer um dos monitores para saída periódica aciona o mesmo fluxo de saída, mas o fluxo inclui informações extras se o Monitor de Bloqueio estiver ativado. Por exemplo, se você ativar o Monitor Padrão e o Monitor de Bloqueio, isso aciona um único fluxo de saída. O fluxo inclui informações extras sobre o bloqueio até que você desative o Monitor de Bloqueio.
+The Lock Monitor is the same as the Standard Monitor except that it includes additional lock information. Enabling either monitor for periodic output turns on the same output stream, but the stream includes extra information if the Lock Monitor is enabled. For example, if you enable the Standard Monitor and Lock Monitor, that turns on a single output stream. The stream includes extra lock information until you disable the Lock Monitor.
 
-A saída padrão do Monitor é limitada a 1 MB quando produzida usando a instrução `SHOW ENGINE INNODB STATUS`. Esse limite não se aplica à saída escrita na saída padrão de erro do tserver (`stderr`).
+Standard Monitor output is limited to 1MB when produced using the `SHOW ENGINE INNODB STATUS` statement. This limit does not apply to output written to tserver standard error output (`stderr`).
 
-Exemplo de saída padrão do monitor:
+Example Standard Monitor output:
 
 ```sql
 mysql> SHOW ENGINE INNODB STATUS\G
@@ -249,58 +249,58 @@ END OF INNODB MONITOR OUTPUT
 ============================
 ```
 
-#### Seções de Saída de Monitor Padrão
+#### Standard Monitor Output Sections
 
-Para uma descrição de cada métrica relatada pelo Monitor Padrão, consulte o capítulo Métricos no Guia do Usuário do Oracle Enterprise Manager para Banco de Dados MySQL.
+For a description of each metric reported by the Standard Monitor, refer to the Metrics chapter in the Oracle Enterprise Manager for MySQL Database User's Guide.
 
-- `Status`
+* `Status`
 
-  Esta seção mostra o timestamp, o nome do monitor e o número de segundos com base nos quais as médias por segundo são calculadas. O número de segundos é o tempo decorrido entre a hora atual e a última vez que a saída do Monitor do InnoDB foi impressa.
+  This section shows the timestamp, the monitor name, and the number of seconds that per-second averages are based on. The number of seconds is the elapsed time between the current time and the last time `InnoDB` Monitor output was printed.
 
-- `CORRENTE DE FOCO`
+* `BACKGROUND THREAD`
 
-  As linhas `srv_master_thread` mostram o trabalho realizado pelo principal thread de segundo plano.
+  The `srv_master_thread` lines shows work done by the main background thread.
 
-- `SEMAPHORES`
+* `SEMAPHORES`
 
-  Esta seção relata os threads que estão aguardando um semaforo e estatísticas sobre quantas vezes os threads precisaram girar ou esperar em um semaforo de mutex ou de bloqueio de escrita/leitura. Um grande número de threads aguardando semaforos pode ser o resultado de I/O em disco ou problemas de concorrência dentro do `InnoDB`. A concorrência pode ser devido ao alto paralelismo das consultas ou a problemas na escalonagem de threads do sistema operacional. Definir a variável de sistema `innodb_thread_concurrency` menor que o valor padrão pode ajudar nessas situações. A linha `Rotas de giro por espera` mostra o número de rotações de spinlock por espera do sistema operacional em um mutex.
+  This section reports threads waiting for a semaphore and statistics on how many times threads have needed a spin or a wait on a mutex or a rw-lock semaphore. A large number of threads waiting for semaphores may be a result of disk I/O, or contention problems inside `InnoDB`. Contention can be due to heavy parallelism of queries or problems in operating system thread scheduling. Setting the `innodb_thread_concurrency` system variable smaller than the default value might help in such situations. The `Spin rounds per wait` line shows the number of spinlock rounds per OS wait for a mutex.
 
-  As métricas do Mutex são relatadas pelo comando `SHOW ENGINE INNODB MUTEX`.
+  Mutex metrics are reported by `SHOW ENGINE INNODB MUTEX`.
 
-- `ERRO MAIS RECENTE DE CHAVE ESTÁVEL`
+* `LATEST FOREIGN KEY ERROR`
 
-  Esta seção fornece informações sobre o erro mais recente de restrição de chave estrangeira. Não está presente se nenhum erro desse tipo ocorreu. O conteúdo inclui a declaração que falhou, bem como informações sobre a restrição que falhou e as tabelas referenciadas e referenciadoras.
+  This section provides information about the most recent foreign key constraint error. It is not present if no such error has occurred. The contents include the statement that failed as well as information about the constraint that failed and the referenced and referencing tables.
 
-- `DETERMINADO MAIS RECENTE DE BLOQUEIO`
+* `LATEST DETECTED DEADLOCK`
 
-  Esta seção fornece informações sobre o impasse mais recente. Não está presente se nenhum impasse ocorrer. O conteúdo mostra quais transações estão envolvidas, a declaração que cada uma estava tentando executar, os bloqueios que possuem e precisam e qual transação `InnoDB` decidiu reverter para quebrar o impasse. Os modos de bloqueio relatados nesta seção são explicados na Seção 14.7.1, “Bloqueio InnoDB”.
+  This section provides information about the most recent deadlock. It is not present if no deadlock has occurred. The contents show which transactions are involved, the statement each was attempting to execute, the locks they have and need, and which transaction `InnoDB` decided to roll back to break the deadlock. The lock modes reported in this section are explained in Section 14.7.1, “InnoDB Locking”.
 
-- `TRANSACOES`
+* `TRANSACTIONS`
 
-  Se esta seção relatar espera de bloqueio, seus aplicativos podem estar enfrentando disputa de bloqueio. A saída também pode ajudar a identificar as razões para deadlocks de transações.
+  If this section reports lock waits, your applications might have lock contention. The output can also help to trace the reasons for transaction deadlocks.
 
-- `FILE I/O`
+* `FILE I/O`
 
-  Esta seção fornece informações sobre os threads que o `InnoDB` usa para realizar vários tipos de E/S. Os primeiros deles são dedicados ao processamento geral do `InnoDB`. O conteúdo também exibe informações sobre operações de E/S pendentes e estatísticas sobre o desempenho do E/S.
+  This section provides information about threads that `InnoDB` uses to perform various types of I/O. The first few of these are dedicated to general `InnoDB` processing. The contents also display information for pending I/O operations and statistics for I/O performance.
 
-  O número desses threads é controlado pelos parâmetros `innodb_read_io_threads` e `innodb_write_io_threads`. Consulte a Seção 14.15, “Opções de inicialização do InnoDB e variáveis de sistema”.
+  The number of these threads are controlled by the `innodb_read_io_threads` and `innodb_write_io_threads` parameters. See Section 14.15, “InnoDB Startup Options and System Variables”.
 
-- `INSERIR BUFFER E ÍNDICE HASH ADAPTATIVO`
+* `INSERT BUFFER AND ADAPTIVE HASH INDEX`
 
-  Esta seção mostra o status do buffer de inserção do InnoDB (também conhecido como buffer de alterações) e do índice de hash adaptativo.
+  This section shows the status of the `InnoDB` insert buffer (also referred to as the change buffer) and the adaptive hash index.
 
-  Para informações relacionadas, consulte a Seção 14.5.2, “Alterar Buffer”, e a Seção 14.5.3, “Índice Hash Adaptativo”.
+  For related information, see Section 14.5.2, “Change Buffer”, and Section 14.5.3, “Adaptive Hash Index”.
 
-- `LOG`
+* `LOG`
 
-  Esta seção exibe informações sobre o log do `InnoDB`. Os conteúdos incluem o número atual da sequência do log, até onde o log foi descarregado no disco e a posição em que o `InnoDB` fez o último ponto de verificação. (Veja a Seção 14.12.3, “Pontos de Verificação do InnoDB”.) A seção também exibe informações sobre as escritas pendentes e as estatísticas de desempenho das escritas.
+  This section displays information about the `InnoDB` log. The contents include the current log sequence number, how far the log has been flushed to disk, and the position at which `InnoDB` last took a checkpoint. (See Section 14.12.3, “InnoDB Checkpoints”.) The section also displays information about pending writes and write performance statistics.
 
-- `POOL DE BUFFER E MEMORY`
+* `BUFFER POOL AND MEMORY`
 
-  Esta seção fornece estatísticas sobre as páginas lidas e escritas. Você pode calcular, a partir desses números, quantas operações de E/S de arquivos suas consultas estão realizando atualmente.
+  This section gives you statistics on pages read and written. You can calculate from these numbers how many data file I/O operations your queries currently are doing.
 
-  Para obter descrições das estatísticas do pool de tampão, consulte Monitoramento do Pool de Tampão Usando o Monitor Padrão InnoDB. Para obter informações adicionais sobre o funcionamento do pool de tampão, consulte a Seção 14.5.1, “Pool de Tampão”.
+  For buffer pool statistics descriptions, see Monitoring the Buffer Pool Using the InnoDB Standard Monitor. For additional information about the operation of the buffer pool, see Section 14.5.1, “Buffer Pool”.
 
-- `OPERACOES EM LINHAS`
+* `ROW OPERATIONS`
 
-  Esta seção mostra o que o thread principal está fazendo, incluindo o número e a taxa de desempenho para cada tipo de operação de linha.
+  This section shows what the main thread is doing, including the number and performance rate for each type of row operation.

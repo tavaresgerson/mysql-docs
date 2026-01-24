@@ -1,87 +1,87 @@
-### 16.4.1 Recursos e problemas de replicação
+### 16.4.1 Replication Features and Issues
 
-16.4.1.1 Replicação e AUTO_INCREMENT
+[16.4.1.1 Replication and AUTO_INCREMENT](replication-features-auto-increment.html)
 
-16.4.1.2 Replicação e tabelas BLACKHOLE
+[16.4.1.2 Replication and BLACKHOLE Tables](replication-features-blackhole.html)
 
-16.4.1.3 Replicação e Conjuntos de Caracteres
+[16.4.1.3 Replication and Character Sets](replication-features-charset.html)
 
-16.4.1.4 Replicação e TABELA CHECKSUM
+[16.4.1.4 Replication and CHECKSUM TABLE](replication-features-checksum-table.html)
 
-16.4.1.5 Replicação de declarações CREATE ... IF NOT EXISTS
+[16.4.1.5 Replication of CREATE ... IF NOT EXISTS Statements](replication-features-create-if-not-exists.html)
 
-16.4.1.6 Replicação de declarações CREATE TABLE ... SELECT
+[16.4.1.6 Replication of CREATE TABLE ... SELECT Statements](replication-features-create-select.html)
 
-16.4.1.7 Replicação de CREATE SERVER, ALTER SERVER e DROP SERVER
+[16.4.1.7 Replication of CREATE SERVER, ALTER SERVER, and DROP SERVER](replication-features-create-alter-drop-server.html)
 
-16.4.1.8 Replicação de CURRENT_USER()
+[16.4.1.8 Replication of CURRENT_USER()](replication-features-current-user.html)
 
-16.4.1.9 Replicação de declarações DROP ... IF EXISTS
+[16.4.1.9 Replication of DROP ... IF EXISTS Statements](replication-features-drop-if-exists.html)
 
-16.4.1.10 Replicação com definições de tabelas diferentes na fonte e na réplica
+[16.4.1.10 Replication with Differing Table Definitions on Source and Replica](replication-features-differing-tables.html)
 
-16.4.1.11 Opções de tabela de replicação e diretório
+[16.4.1.11 Replication and DIRECTORY Table Options](replication-features-directory.html)
 
-16.4.1.12 Replicação e valores de ponto flutuante
+[16.4.1.12 Replication and Floating-Point Values](replication-features-floatvalues.html)
 
-16.4.1.13 Suporte à replicação e segundos fracionários
+[16.4.1.13 Replication and Fractional Seconds Support](replication-features-fractional-seconds.html)
 
-16.4.1.14 Replicação e FLUSH
+[16.4.1.14 Replication and FLUSH](replication-features-flush.html)
 
-16.4.1.15 Replicação e funções do sistema
+[16.4.1.15 Replication and System Functions](replication-features-functions.html)
 
-16.4.1.16 Replicação de Recursos Convidados
+[16.4.1.16 Replication of Invoked Features](replication-features-invoked.html)
 
-16.4.1.17 Replicação e LIMITE
+[16.4.1.17 Replication and LIMIT](replication-features-limit.html)
 
-16.4.1.18 Replicação e CARREGAR DADOS
+[16.4.1.18 Replication and LOAD DATA](replication-features-load-data.html)
 
-16.4.1.19 Replicação e max_allowed_packet
+[16.4.1.19 Replication and max_allowed_packet](replication-features-max-allowed-packet.html)
 
-16.4.1.2.20 Replicação e tabelas de MEMORY
+[16.4.1.20 Replication and MEMORY Tables](replication-features-memory.html)
 
-16.4.1.21 Replicação do banco de dados do sistema MySQL
+[16.4.1.21 Replication of the mysql System Database](replication-features-mysqldb.html)
 
-16.4.1.22 Replicação e o otimizador de consultas
+[16.4.1.22 Replication and the Query Optimizer](replication-features-optimizer.html)
 
-16.4.1.23 Replicação e Partição
+[16.4.1.23 Replication and Partitioning](replication-features-partitioning.html)
 
-16.4.1.24 Replicação e REPARO DA TÁBLIA
+[16.4.1.24 Replication and REPAIR TABLE](replication-features-repair-table.html)
 
-16.4.1.25 Replicação e Palavras Reservadas
+[16.4.1.25 Replication and Reserved Words](replication-features-reserved-words.html)
 
-16.4.1.26 Replicação e Parada de Fonte ou Replicação
+[16.4.1.26 Replication and Source or Replica Shutdowns](replication-features-shutdowns.html)
 
-16.4.1.27 Erros de replicação durante a replicação
+[16.4.1.27 Replica Errors During Replication](replication-features-errors.html)
 
-16.4.1.28 Modo de replicação e servidor SQL
+[16.4.1.28 Replication and Server SQL Mode](replication-features-sql-mode.html)
 
-16.4.1.29 Replicação e tabelas temporárias
+[16.4.1.29 Replication and Temporary Tables](replication-features-temptables.html)
 
-16.4.1.30 Tentativas de replicação e tempos de espera
+[16.4.1.30 Replication Retries and Timeouts](replication-features-timeout.html)
 
-16.4.1.31 Replicação e Fuso Horários
+[16.4.1.31 Replication and Time Zones](replication-features-timezone.html)
 
-16.4.1.32 Inconsistências na Replicação e Transações
+[16.4.1.32 Replication and Transaction Inconsistencies](replication-features-transaction-inconsistencies.html)
 
-16.4.1.33 Replicação e Transações
+[16.4.1.33 Replication and Transactions](replication-features-transactions.html)
 
-16.4.1.34 Replicação e gatilhos
+[16.4.1.34 Replication and Triggers](replication-features-triggers.html)
 
-16.4.1.35 Replicação e TRUNCATE TABLE
+[16.4.1.35 Replication and TRUNCATE TABLE](replication-features-truncate.html)
 
-16.4.1.36 Replicação e comprimento do nome do usuário
+[16.4.1.36 Replication and User Name Length](replication-features-user-names.html)
 
-16.4.1.37 Replicação e Variáveis
+[16.4.1.37 Replication and Variables](replication-features-variables.html)
 
-16.4.1.38 Replicação e visualizações
+[16.4.1.38 Replication and Views](replication-features-views.html)
 
-As seções a seguir fornecem informações sobre o que é suportado e o que não é suportado na replicação do MySQL, além de problemas e situações específicas que podem ocorrer ao replicar determinadas instruções.
+The following sections provide information about what is supported and what is not in MySQL replication, and about specific issues and situations that may occur when replicating certain statements.
 
-A replicação baseada em declarações depende da compatibilidade no nível SQL entre a fonte e a réplica. Em outras palavras, a replicação baseada em declarações bem-sucedida exige que quaisquer recursos SQL usados sejam suportados tanto pelo servidor fonte quanto pelo servidor réplica. Se você usar um recurso no servidor fonte que está disponível apenas na versão atual do MySQL, não poderá replicar para uma réplica que usa uma versão anterior do MySQL. Tais incompatibilidades também podem ocorrer dentro de uma série de lançamentos, bem como entre versões.
+Statement-based replication depends on compatibility at the SQL level between the source and replica. In other words, successful statement-based replication requires that any SQL features used be supported by both the source and the replica servers. If you use a feature on the source server that is available only in the current version of MySQL, you cannot replicate to a replica that uses an earlier version of MySQL. Such incompatibilities can also occur within a release series as well as between versions.
 
-Se você planeja usar a replicação baseada em declarações entre o MySQL 5.7 e uma série anterior de lançamentos do MySQL, é uma boa ideia consultar a edição do *Manual de Referência do MySQL* correspondente à série de lançamentos anterior para obter informações sobre as características de replicação dessa série.
+If you are planning to use statement-based replication between MySQL 5.7 and a previous MySQL release series, it is a good idea to consult the edition of the *MySQL Reference Manual* corresponding to the earlier release series for information regarding the replication characteristics of that series.
 
-Com a replicação baseada em declarações do MySQL, pode haver problemas na replicação de rotinas ou gatilhos armazenados. Você pode evitar esses problemas usando a replicação baseada em linhas do MySQL. Para uma lista detalhada dos problemas, consulte Seção 23.7, “Registro binário de programas armazenados”. Para mais informações sobre o registro baseada em linhas e replicação baseada em linhas, consulte Seção 5.4.4.1, “Formatos de registro binário” e Seção 16.2.1, “Formatos de replicação”.
+With MySQL's statement-based replication, there may be issues with replicating stored routines or triggers. You can avoid these issues by using MySQL's row-based replication instead. For a detailed list of issues, see [Section 23.7, “Stored Program Binary Logging”](stored-programs-logging.html "23.7 Stored Program Binary Logging"). For more information about row-based logging and row-based replication, see [Section 5.4.4.1, “Binary Logging Formats”](binary-log-formats.html "5.4.4.1 Binary Logging Formats"), and [Section 16.2.1, “Replication Formats”](replication-formats.html "16.2.1 Replication Formats").
 
-Para informações adicionais específicas sobre replicação e `InnoDB`, consulte Seção 14.20, “Replicação InnoDB e MySQL”. Para informações relacionadas à replicação com NDB Cluster, consulte Seção 21.7, “Replicação NDB Cluster”.
+For additional information specific to replication and `InnoDB`, see [Section 14.20, “InnoDB and MySQL Replication”](innodb-and-mysql-replication.html "14.20 InnoDB and MySQL Replication"). For information relating to replication with NDB Cluster, see [Section 21.7, “NDB Cluster Replication”](mysql-cluster-replication.html "21.7 NDB Cluster Replication").

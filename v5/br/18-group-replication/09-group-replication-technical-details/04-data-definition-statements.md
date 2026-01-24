@@ -1,13 +1,13 @@
-### 17.9.4 Declarações de Definição de Dados
+### 17.9.4 Data Definition Statements
 
-Em uma topologia de replicação em grupo, é preciso ter cuidado ao executar instruções de definição de dados, também conhecidas como linguagem de definição de dados (DDL). Como o MySQL não suporta DDL atômica ou transacional, não se pode executar otimisticamente instruções de DDL e, posteriormente, reverter se necessário. Consequentemente, a falta de atomicidade não se encaixa diretamente no paradigma de replicação otimista em que a replicação em grupo é baseada.
+In a Group Replication topology, care needs to be taken when executing data definition statements also commonly known as data definition language (DDL). Given that MySQL does not support atomic or transactional DDL, one cannot optimistically execute DDL statements and later roll back if needs be. Consequently, the lack of atomicity does not fit directly into the optimistic replication paradigm that Group Replication is based on.
 
-Portanto, é necessário ter mais cuidado ao replicar declarações de definição de dados. Alterações no esquema e alterações nos dados que o objeto contém precisam ser tratadas pelo mesmo servidor enquanto a operação de esquema ainda não estiver concluída e replicada em todos os lugares. Não fazer isso pode resultar em inconsistência de dados.
+Therefore, more care needs to be taken when replicating data definition statements. Schema changes and changes to the data that the object contains need to be handled through the same server while the schema operation has not yet completed and replicated everywhere. Failure to do so can result in data inconsistency.
 
-Nota
+Note
 
-Se o grupo estiver configurado no modo de primário único, então isso não é um problema, porque todas as alterações são realizadas através do mesmo servidor, o primário.
+If the group is deployed in single-primary mode, then this is not a problem, because all changes are performed through the same server, the primary.
 
-Aviso
+Warning
 
-A execução de DDL no MySQL não é atômica ou transacional. O servidor executa e confirma sem garantir o acordo do grupo primeiro. Como tal, você deve encaminhar DDL e DML para o mesmo objeto através do mesmo servidor, enquanto o DDL está sendo executado e ainda não foi replicado em todos os lugares.
+MySQL DDL execution is not atomic or transactional. The server executes and commits without securing group agreement first. As such, you must route DDL and DML for the same object through the same server, while the DDL is executing and has not replicated everywhere yet.

@@ -1,71 +1,69 @@
-### 21.6.5 Realizar um Reinício Rotativo de um Clúster NDB
+### 21.6.5 Performing a Rolling Restart of an NDB Cluster
 
-Esta seção discute como realizar um reinício contínuo de uma instalação de NDB Cluster, chamado assim porque envolve a parada e o início (ou reinício) de cada nó por vez, para que o próprio cluster permaneça operacional. Isso é frequentemente feito como parte de uma atualização ou atualização contínua, onde a alta disponibilidade do cluster é obrigatória e nenhum tempo de inatividade do cluster como um todo é permitido. Quando nos referimos a atualizações, as informações fornecidas aqui geralmente se aplicam também a atualizações para versões anteriores.
+This section discusses how to perform a rolling restart of an NDB Cluster installation, so called because it involves stopping and starting (or restarting) each node in turn, so that the cluster itself remains operational. This is often done as part of a rolling upgrade or rolling downgrade, where high availability of the cluster is mandatory and no downtime of the cluster as a whole is permissible. Where we refer to upgrades, the information provided here also generally applies to downgrades as well.
 
-Há várias razões pelas quais um reinício em andamento pode ser desejável. Essas razões são descritas nos próximos parágrafos.
+There are a number of reasons why a rolling restart might be desirable. These are described in the next few paragraphs.
 
-**Alterações na configuração.** Para fazer uma alteração na configuração do cluster, como adicionar um nó SQL ao cluster ou definir um parâmetro de configuração para um novo valor.
+**Configuration change.** To make a change in the cluster's configuration, such as adding an SQL node to the cluster, or setting a configuration parameter to a new value.
 
-Atualização ou downgrade do software do NDB Cluster. Para atualizar o cluster para uma versão mais recente do software do NDB Cluster (ou para fazer um downgrade para uma versão mais antiga). Isso geralmente é chamado de “atualização contínua” (ou “downgrade contínuo”, quando se reverte para uma versão mais antiga do NDB Cluster).
+**NDB Cluster software upgrade or downgrade.** To upgrade the cluster to a newer version of the NDB Cluster software (or to downgrade it to an older version). This is usually referred to as a “rolling upgrade” (or “rolling downgrade”, when reverting to an older version of NDB Cluster).
 
-**Alteração no host do nó.** Para fazer alterações no hardware ou no sistema operacional em que um ou mais nós do NDB Cluster estão em execução.
+**Change on node host.** To make changes in the hardware or operating system on which one or more NDB Cluster node processes are running.
 
-**Reinicialização do sistema (reinicialização do cluster).** Para reinicializar o cluster porque ele atingiu um estado indesejável. Nesses casos, muitas vezes é desejável recarregar os dados e metadados de um ou mais nós de dados. Isso pode ser feito de três maneiras:
+**System reset (cluster reset).** To reset the cluster because it has reached an undesirable state. In such cases it is often desirable to reload the data and metadata of one or more data nodes. This can be done in any of three ways:
 
-- Comece cada processo do nó de dados (**ndbd** ou possivelmente **ndbmtd**) com a opção `--initial` (**ndbd**), que obriga o nó de dados a limpar seu sistema de arquivos e a recarregar todos os dados e metadados do NDB Cluster dos outros nós de dados.
+* Start each data node process ([**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") or possibly [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)")) with the [`--initial`](mysql-cluster-programs-ndbd.html#option_ndbd_initial) option, which forces the data node to clear its file system and to reload all NDB Cluster data and metadata from the other data nodes.
 
-- Crie um backup usando o cliente **ndb_mgm** com o comando `START BACKUP` (mysql-cluster-backup-using-management-client.html) antes de realizar o reinício. Após a atualização, restaure o nó ou os nós usando **ndb_restore**.
+* Create a backup using the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") client [`START BACKUP`](mysql-cluster-backup-using-management-client.html "21.6.8.2 Using The NDB Cluster Management Client to Create a Backup") command prior to performing the restart. Following the upgrade, restore the node or nodes using [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup").
 
-  Para obter mais informações, consulte Seção 21.6.8, “Backup Online de NDB Cluster” e Seção 21.5.24, “ndb_restore — Restaurar um backup de NDB Cluster”.
+  See [Section 21.6.8, “Online Backup of NDB Cluster”](mysql-cluster-backup.html "21.6.8 Online Backup of NDB Cluster"), and [Section 21.5.24, “ndb_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup"), for more information.
 
-- Use **mysqldump** para criar um backup antes da atualização; depois, restaure o dump usando `LOAD DATA`.
+* Use [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") to create a backup prior to the upgrade; afterward, restore the dump using [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement").
 
-**Recuperação de recursos.** Para liberar a memória previamente alocada a uma tabela por operações consecutivas de `INSERT` e `DELETE`, para reutilizá-la por outras tabelas do NDB Cluster.
+**Resource Recovery.** To free memory previously allocated to a table by successive [`INSERT`](insert.html "13.2.5 INSERT Statement") and [`DELETE`](delete.html "13.2.2 DELETE Statement") operations, for re-use by other NDB Cluster tables.
 
-O processo para realizar um reinício contínuo pode ser generalizado da seguinte forma:
+The process for performing a rolling restart may be generalized as follows:
 
-1. Pare todos os nós de gerenciamento de clúster (**ndb_mgmd** processos), reconecte-os e, em seguida, reinicie-os. (Veja Reinicializações em rolagem com múltiplos servidores de gerenciamento.)
+1. Stop all cluster management nodes ([**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") processes), reconfigure them, then restart them. (See [Rolling restarts with multiple management servers](mysql-cluster-rolling-restart.html#mysql-cluster-rolling-restart-multiple-ndb-mgmd "Rolling restarts with multiple management servers").)
 
-2. Pare, reconfigure e, em seguida, reinicie cada nó de dados do cluster (processo **ndbd**) uma a uma.
+2. Stop, reconfigure, then restart each cluster data node ([**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") process) in turn.
 
-   Alguns parâmetros de configuração de nós podem ser atualizados emitindo `RESTART` para cada um dos nós de dados no cliente **ndb_mgm** após o passo anterior. Outros parâmetros exigem que o nó de dados seja parado completamente usando o comando de gerenciamento `STOP`, e depois reiniciado novamente a partir de uma janela de sistema invocando o executável **ndbd** ou **ndbmtd** conforme apropriado. (Um comando de shell como **kill** também pode ser usado na maioria dos sistemas Unix para parar um processo de nó de dados, mas o comando `STOP` é preferido e geralmente mais simples.)
+   Some node configuration parameters can be updated by issuing [`RESTART`](mysql-cluster-mgm-client-commands.html#ndbclient-restart) for each of the data nodes in the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") client following the previous step. Other parameters require that the data node be stopped completely using the management client [`STOP`](mysql-cluster-mgm-client-commands.html#ndbclient-stop) command, then started again from a system shell by invoking the [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") or [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") executable as appropriate. (A shell command such as [**kill**](kill.html "13.7.6.4 KILL Statement") can also be used on most Unix systems to stop a data node process, but the `STOP` command is preferred and usually simpler.)
 
-   Nota
+   Note
 
-   No Windows, você também pode usar os comandos **SC STOP** e **SC START**, os comandos `NET STOP` e `NET START`, ou o Gerenciador de Serviços do Windows para parar e iniciar nós que foram instalados como serviços do Windows (consulte Seção 21.3.2.4, “Instalando Processos do NDB Cluster como Serviços do Windows”).
+   On Windows, you can also use **SC STOP** and **SC START** commands, `NET STOP` and `NET START` commands, or the Windows Service Manager to stop and start nodes which have been installed as Windows services (see [Section 21.3.2.4, “Installing NDB Cluster Processes as Windows Services”](mysql-cluster-install-windows-service.html "21.3.2.4 Installing NDB Cluster Processes as Windows Services")).
 
-   O tipo de reinício necessário está indicado na documentação para cada parâmetro de configuração do nó. Consulte Seção 21.4.3, “Arquivos de configuração do clúster NDB”.
+   The type of restart required is indicated in the documentation for each node configuration parameter. See [Section 21.4.3, “NDB Cluster Configuration Files”](mysql-cluster-config-file.html "21.4.3 NDB Cluster Configuration Files").
 
-3. Pare, reconfigure e, em seguida, reinicie cada nó do cluster SQL (**mysqld**) uma a uma.
+3. Stop, reconfigure, then restart each cluster SQL node ([**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") process) in turn.
 
-O NDB Cluster suporta uma ordem de atualização dos nós um pouco flexível. Ao atualizar um NDB Cluster, você pode atualizar os nós de API (incluindo os nós de SQL) antes de atualizar os nós de gerenciamento, os nós de dados ou ambos. Em outras palavras, você tem permissão para atualizar os nós de API e SQL em qualquer ordem. Isso está sujeito às seguintes disposições:
+NDB Cluster supports a somewhat flexible order for upgrading nodes. When upgrading an NDB Cluster, you may upgrade API nodes (including SQL nodes) before upgrading the management nodes, data nodes, or both. In other words, you are permitted to upgrade the API and SQL nodes in any order. This is subject to the following provisions:
 
-- Essa funcionalidade é destinada ao uso como parte de uma atualização online apenas. Uma mistura de binários de nós de diferentes lançamentos do NDB Cluster não é intencional nem é suportada para uso contínuo e de longo prazo em um ambiente de produção.
+* This functionality is intended for use as part of an online upgrade only. A mix of node binaries from different NDB Cluster releases is neither intended nor supported for continuous, long-term use in a production setting.
 
-- Você deve atualizar todos os nós do mesmo tipo (de gerenciamento, dados ou API) antes de atualizar quaisquer nós de um tipo diferente. Isso permanece verdadeiro, independentemente da ordem em que os nós são atualizados.
+* You must upgrade all nodes of the same type (management, data, or API node) before upgrading any nodes of a different type. This remains true regardless of the order in which the nodes are upgraded.
 
-- Você deve atualizar todos os nós de gerenciamento antes de atualizar quaisquer nós de dados. Isso permanece verdadeiro, independentemente da ordem em que você atualizar os nós de API e SQL do cluster.
+* You must upgrade all management nodes before upgrading any data nodes. This remains true regardless of the order in which you upgrade the cluster's API and SQL nodes.
 
-- As funcionalidades específicas da versão "nova" não devem ser utilizadas até que todos os nós de gerenciamento e nós de dados tenham sido atualizados.
+* Features specific to the “new” version must not be used until all management nodes and data nodes have been upgraded.
 
-  Isso também se aplica a qualquer mudança na versão do servidor MySQL que possa ser aplicada, além da mudança na versão do motor NDB, então não se esqueça de levar isso em consideração ao planejar a atualização. (Isso é verdade para atualizações online do NDB Cluster em geral.)
+  This also applies to any MySQL Server version change that may apply, in addition to the NDB engine version change, so do not forget to take this into account when planning the upgrade. (This is true for online upgrades of NDB Cluster in general.)
 
-Não é possível que qualquer nó da API realize operações de esquema (como declarações de definição de dados) durante o reinício de um nó. Devido, em parte, a essa limitação, as operações de esquema também não são suportadas durante uma atualização ou redução online. Além disso, não é possível realizar backups nativos enquanto uma atualização ou redução está em andamento.
+It is not possible for any API node to perform schema operations (such as data definition statements) during a node restart. Due in part to this limitation, schema operations are also not supported during an online upgrade or downgrade. In addition, it is not possible to perform native backups while an upgrade or downgrade is ongoing.
 
-**Reinício em rolagem com múltiplos servidores de gerenciamento.**
+**Rolling restarts with multiple management servers.**
 
-Ao realizar um reinício contínuo de um NDB Cluster com vários nós de gerenciamento, você deve ter em mente que o **ndb_mgmd** verifica se algum outro nó de gerenciamento está em execução e, se estiver, tenta usar os dados de configuração desse nó. Para evitar que isso ocorra e forçar o **ndb_mgmd** a reler seu arquivo de configuração, siga os passos abaixo:
+When performing a rolling restart of an NDB Cluster with multiple management nodes, you should keep in mind that [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") checks to see if any other management node is running, and, if so, tries to use that node's configuration data. To keep this from occurring, and to force [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") to re-read its configuration file, perform the following steps:
 
-1. Pare todos os processos do NDB Cluster **ndb_mgmd**.
+1. Stop all NDB Cluster [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") processes.
+2. Update all `config.ini` files.
+3. Start a single [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") with [`--reload`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_reload), [`--initial`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_initial), or both options as desired.
 
-2. Atualize todos os arquivos `config.ini`.
+4. If you started the first [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") with the [`--initial`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_initial) option, you must also start any remaining [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") processes using `--initial`.
 
-3. Inicie um único **ndb_mgmd** com `--reload`, `--initial` ou ambas as opções conforme desejar.
+   Regardless of any other options used when starting the first [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon"), you should not start any remaining [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") processes after the first one using [`--reload`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_reload).
 
-4. Se você iniciou o primeiro **ndb_mgmd** com a opção `--initial`, você também deve iniciar quaisquer processos restantes de **ndb_mgmd** usando `--initial`.
+5. Complete the rolling restarts of the data nodes and API nodes as normal.
 
-   Independentemente das outras opções usadas ao iniciar o primeiro **ndb_mgmd**, você não deve iniciar quaisquer processos restantes do **ndb_mgmd** após o primeiro usando `--reload`.
-
-5. Complete os reinícios contínuos dos nós de dados e dos nós de API como de costume.
-
-Ao realizar um reinício contínuo para atualizar a configuração do clúster, você pode usar a coluna `config_generation` da tabela `ndbinfo.nodes` para acompanhar quais nós de dados foram reiniciados com sucesso com a nova configuração. Veja Seção 21.6.15.28, “A tabela ndbinfo nodes”.
+When performing a rolling restart to update the cluster's configuration, you can use the `config_generation` column of the [`ndbinfo.nodes`](mysql-cluster-ndbinfo-nodes.html "21.6.15.28 The ndbinfo nodes Table") table to keep track of which data nodes have been successfully restarted with the new configuration. See [Section 21.6.15.28, “The ndbinfo nodes Table”](mysql-cluster-ndbinfo-nodes.html "21.6.15.28 The ndbinfo nodes Table").

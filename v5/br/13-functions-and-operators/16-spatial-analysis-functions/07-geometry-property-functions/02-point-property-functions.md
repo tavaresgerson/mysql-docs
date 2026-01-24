@@ -1,10 +1,10 @@
-#### 12.16.7.2 Funções de Propriedade de Pontos
+#### 12.16.7.2 Point Property Functions
 
-Um ponto é composto por coordenadas X e Y, que podem ser obtidas usando as seguintes funções:
+A `Point` consists of X and Y coordinates, which may be obtained using the following functions:
 
-- `ST_X(p)`
+* `ST_X(p)`
 
-  Retorna o valor da coordenada X do objeto `Ponto` *`p`* como um número de precisão dupla.
+  Returns the X-coordinate value for the `Point` object *`p`* as a double-precision number.
 
   ```sql
   mysql> SELECT ST_X(Point(56.7, 53.34));
@@ -15,11 +15,11 @@ Um ponto é composto por coordenadas X e Y, que podem ser obtidas usando as segu
   +--------------------------+
   ```
 
-  `ST_X()` e `X()` são sinônimos.
+  `ST_X()` and `X()` are synonyms.
 
-- `ST_Y(p)`
+* `ST_Y(p)`
 
-  Retorna o valor da coordenada Y do objeto `Ponto` *`p`* como um número de precisão dupla.
+  Returns the Y-coordinate value for the `Point` object *`p`* as a double-precision number.
 
   ```sql
   mysql> SELECT ST_Y(Point(56.7, 53.34));
@@ -30,16 +30,16 @@ Um ponto é composto por coordenadas X e Y, que podem ser obtidas usando as segu
   +--------------------------+
   ```
 
-  `ST_Y()` e `Y()` são sinônimos.
+  `ST_Y()` and `Y()` are synonyms.
 
-- `X(p)`
+* `X(p)`
 
-  `ST_X()` e `X()` são sinônimos. Para mais informações, consulte a descrição de `ST_X()`.
+  `ST_X()` and `X()` are synonyms. For more information, see the description of `ST_X()`.
 
-  `X()` está desatualizado; espere que ele seja removido em uma futura versão do MySQL. Use `ST_X()`.
+  `X()` is deprecated; expect it to be removed in a future MySQL release. Use `ST_X()` instead.
 
-- `Y(p)`
+* `Y(p)`
 
-  `ST_Y()` e `Y()` são sinônimos. Para mais informações, consulte a descrição de `ST_Y()`.
+  `ST_Y()` and `Y()` are synonyms. For more information, see the description of `ST_Y()`.
 
-  `Y()` está desatualizado; espere que ele seja removido em uma futura versão do MySQL. Use `ST_Y()` em vez disso.
+  `Y()` is deprecated; expect it to be removed in a future MySQL release. Use `ST_Y()` instead.

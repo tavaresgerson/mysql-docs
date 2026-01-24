@@ -1,14 +1,14 @@
-#### 26.4.4.11 O procedimento ps_setup_enable_thread()
+#### 26.4.4.11 The ps_setup_enable_thread() Procedure
 
-Dada uma ID de conexão, habilita a instrumentação do Schema de Desempenho para o thread. Produz um conjunto de resultados indicando quantos threads foram habilitados. Os threads já habilitados não são contados.
+Given a connection ID, enables Performance Schema instrumentation for the thread. Produces a result set indicating how many threads were enabled. Already enabled threads do not count.
 
-##### Parâmetros
+##### Parameters
 
-- `in_connection_id BIGINT`: O ID da conexão. Este é um valor do tipo especificado na coluna `PROCESSLIST_ID` da tabela `threads` do Gerenciamento de Desempenho ou na coluna `Id` da saída do comando `SHOW PROCESSLIST`.
+* `in_connection_id BIGINT`: The connection ID. This is a value of the type given in the `PROCESSLIST_ID` column of the Performance Schema `threads` table or the `Id` column of `SHOW PROCESSLIST` output.
 
-##### Exemplo
+##### Example
 
-Ative uma conexão específica pelo seu ID de conexão:
+Enable a specific connection by its connection ID:
 
 ```sql
 mysql> CALL sys.ps_setup_enable_thread(225);
@@ -19,7 +19,7 @@ mysql> CALL sys.ps_setup_enable_thread(225);
 +------------------+
 ```
 
-Ative a conexão atual:
+Enable the current connection:
 
 ```sql
 mysql> CALL sys.ps_setup_enable_thread(CONNECTION_ID());

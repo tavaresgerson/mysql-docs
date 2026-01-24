@@ -1,56 +1,55 @@
-#### 12.16.9.1 Funções de Relação Espacial que Utilizam Formas de Objetos
+#### 12.16.9.1 Spatial Relation Functions That Use Object Shapes
 
-A especificação OpenGIS define as seguintes funções para testar a relação entre dois valores de geometria *`g1`* e *`g2`*, usando formas de objetos precisas. Os valores de retorno 1 e 0 indicam verdadeiro e falso, respectivamente, exceto para `ST_Distance()` e `Distance()`, que retornam valores de distância.
+The OpenGIS specification defines the following functions to test the relationship between two geometry values *`g1`* and *`g2`*, using precise object shapes. The return values 1 and 0 indicate true and false, respectively, except for `ST_Distance()` and `Distance()`, which return distance values.
 
-Essas funções suportam todas as combinações de tipos de argumento, exceto aquelas que não são aplicáveis de acordo com a especificação do Open Geospatial Consortium.
+These functions support all argument type combinations except those that are inapplicable according to the Open Geospatial Consortium specification.
 
-- `Cruzes(g1, g2)`
+* `Crosses(g1, g2)`
 
-  `ST_Crosses()` e `Crosses()` são sinônimos. Para mais informações, consulte a descrição de `ST_Crosses()`.
+  `ST_Crosses()` and `Crosses()` are synonyms. For more information, see the description of `ST_Crosses()`.
 
-  `Crosses()` está desatualizado; espere que ele seja removido em uma futura versão do MySQL. Use `ST_Crosses()` em vez disso.
+  `Crosses()` is deprecated; expect it to be removed in a future MySQL release. Use `ST_Crosses()` instead.
 
-- `Distância(g1, g2)`
+* `Distance(g1, g2)`
 
-  `ST_Distance()` e `Distance()` são sinônimos. Para mais informações, consulte a descrição de `ST_Distance()`.
+  `ST_Distance()` and `Distance()` are synonyms. For more information, see the description of `ST_Distance()`.
 
-  `Distance()` está desatualizado; espere que ele seja removido em uma futura versão do MySQL. Use `ST_Distance()` em vez disso.
+  `Distance()` is deprecated; expect it to be removed in a future MySQL release. Use `ST_Distance()` instead.
 
-- `ST_Contains(g1, g2)`
+* `ST_Contains(g1, g2)`
 
-  Retorna 1 ou 0 para indicar se *`g1`* contém completamente *`g2`*. Isso testa a relação oposta à `ST_Within()`.
+  Returns 1 or 0 to indicate whether *`g1`* completely contains *`g2`*. This tests the opposite relationship as `ST_Within()`.
 
-- `ST_Crosses(g1, g2)`
+* `ST_Crosses(g1, g2)`
 
-  O termo *cruza espacialmente* denota uma relação espacial entre duas geómetrias dadas que possui as seguintes propriedades:
+  The term *spatially crosses* denotes a spatial relation between two given geometries that has the following properties:
 
-  - As duas geometrias se cruzam.
+  + The two geometries intersect.
+  + Their intersection results in a geometry that has a dimension that is one less than the maximum dimension of the two given geometries.
 
-  - Sua interseção resulta em uma geometria que tem uma dimensão que é uma unidade menor que a dimensão máxima das duas geometrias dadas.
+  + Their intersection is not equal to either of the two given geometries.
 
-  - Sua interseção não é igual a nenhuma das duas geometrias dadas.
+  This function returns 1 or 0 to indicate whether *`g1`* spatially crosses *`g2`*. If *`g1`* is a `Polygon` or a `MultiPolygon`, or if *`g2`* is a `Point` or a `MultiPoint`, the return value is `NULL`.
 
-  Essa função retorna 1 ou 0 para indicar se *`g1`* cruza espacialmente *`g2`*. Se *`g1`* for um `Polygon` ou um `MultiPolygon`, ou se *`g2`* for um `Point` ou um `MultiPoint`, o valor de retorno é `NULL`.
+  This function returns 0 if called with an inapplicable geometry argument type combination. For example, it returns 0 if the first argument is a `Polygon` or `MultiPolygon` and/or the second argument is a `Point` or `MultiPoint`.
 
-  Essa função retorna 0 se chamada com uma combinação de tipos de argumento de geometria inapropriada. Por exemplo, ela retorna 0 se o primeiro argumento for um `Polygon` ou `MultiPolygon` e/ou o segundo argumento for um `Point` ou `MultiPoint`.
+  Returns 1 if *`g1`* spatially crosses *`g2`*. Returns `NULL` if *`g1`* is a `Polygon` or a `MultiPolygon`, or if *`g2`* is a `Point` or a `MultiPoint`. Otherwise, returns 0.
 
-  Retorna 1 se *`g1`* cruzar espacialmente *`g2`*. Retorna `NULL` se *`g1`* for um `Polygon` ou um `MultiPolygon`, ou se *`g2`* for um `Point` ou um `MultiPoint`. Caso contrário, retorna 0.
+  This function returns 0 if called with an inapplicable geometry argument type combination. For example, it returns 0 if the first argument is a `Polygon` or `MultiPolygon` and/or the second argument is a `Point` or `MultiPoint`.
 
-  Essa função retorna 0 se chamada com uma combinação de tipos de argumento de geometria inapropriada. Por exemplo, ela retorna 0 se o primeiro argumento for um `Polygon` ou `MultiPolygon` e/ou o segundo argumento for um `Point` ou `MultiPoint`.
+  `ST_Crosses()` and `Crosses()` are synonyms.
 
-  `ST_Crosses()` e `Crosses()` são sinônimos.
+* `ST_Disjoint(g1, g2)`
 
-- `ST_Disjoint(g1, g2)`
+  Returns 1 or 0 to indicate whether *`g1`* is spatially disjoint from (does not intersect) *`g2`*.
 
-  Retorna 1 ou 0 para indicar se *`g1`* é espacialmente disjuntado de (não intersecta) *`g2`*.
+* `ST_Distance(g1, g2)`
 
-- `ST_Distância(g1, g2)`
+  Returns the distance between *`g1`* and *`g2`*. If either argument is `NULL` or an empty geometry, the return value is `NULL`.
 
-  Retorna a distância entre *`g1`* e *`g2`*. Se qualquer argumento for `NULL` ou uma geometria vazia, o valor de retorno será `NULL`.
+  This function processes geometry collections by returning the shortest distance among all combinations of the components of the two geometry arguments.
 
-  Essa função processa coleções de geometria, retornando a menor distância entre todas as combinações dos componentes dos dois argumentos de geometria.
-
-  Se um resultado intermediário ou final produzir NaN ou um número negativo, ocorrerá um erro `ER_GIS_INVALID_DATA`.
+  If an intermediate or final result produces NaN or a negative number, an `ER_GIS_INVALID_DATA` error occurs.
 
   ```sql
   mysql> SET @g1 = Point(1,1);
@@ -63,11 +62,11 @@ Essas funções suportam todas as combinações de tipos de argumento, exceto aq
   +-----------------------+
   ```
 
-  `ST_Distance()` e `Distance()` são sinônimos.
+  `ST_Distance()` and `Distance()` are synonyms.
 
-- `ST_Equals(g1, g2)`
+* `ST_Equals(g1, g2)`
 
-  Retorna 1 ou 0 para indicar se *`g1`* é espacialmente igual a *`g2`*.
+  Returns 1 or 0 to indicate whether *`g1`* is spatially equal to *`g2`*.
 
   ```sql
   mysql> SET @g1 = Point(1,1), @g2 = Point(2,2);
@@ -79,34 +78,34 @@ Essas funções suportam todas as combinações de tipos de argumento, exceto aq
   +---------------------+---------------------+
   ```
 
-- `ST_Intersects(g1, g2)`
+* `ST_Intersects(g1, g2)`
 
-  Retorna 1 ou 0 para indicar se *`g1`* intersecta espacialmente *`g2`*.
+  Returns 1 or 0 to indicate whether *`g1`* spatially intersects *`g2`*.
 
-- `ST_Overlaps(g1, g2)`
+* `ST_Overlaps(g1, g2)`
 
-  Duas geometrias *se sobrepõem espacialmente* se intersectam e sua interseção resulta em uma geometria da mesma dimensão, mas não igual a nenhuma das geometrias dadas.
+  Two geometries *spatially overlap* if they intersect and their intersection results in a geometry of the same dimension but not equal to either of the given geometries.
 
-  Essa função retorna 1 ou 0 para indicar se *`g1`* sobrepõe-se espacialmente a *`g2`*.
+  This function returns 1 or 0 to indicate whether *`g1`* spatially overlaps *`g2`*.
 
-  Essa função retorna 0 se chamada com uma combinação de tipos de argumento de geometria inapropriada. Por exemplo, ela retorna 0 se chamada com geometrias de dimensões diferentes ou se qualquer argumento for um `Ponto`.
+  This function returns 0 if called with an inapplicable geometry argument type combination. For example, it returns 0 if called with geometries of different dimensions or any argument is a `Point`.
 
-- `ST_Touches(g1, g2)`
+* `ST_Touches(g1, g2)`
 
-  Duas geometrias *tocam-se espacialmente* se seus interiores não se intersectam, mas a borda de uma das geometrias intersecta a borda ou o interior da outra.
+  Two geometries *spatially touch* if their interiors do not intersect, but the boundary of one of the geometries intersects either the boundary or the interior of the other.
 
-  Essa função retorna 1 ou 0 para indicar se *`g1`* toca espacialmente *`g2`*.
+  This function returns 1 or 0 to indicate whether *`g1`* spatially touches *`g2`*.
 
-  Essa função retorna 0 se chamada com uma combinação de tipos de argumento de geometria inapropriada. Por exemplo, ela retorna 0 se qualquer um dos argumentos for um `Ponto` ou `MultiPonto`.
+  This function returns 0 if called with an inapplicable geometry argument type combination. For example, it returns 0 if either of the arguments is a `Point` or `MultiPoint`.
 
-  `ST_Touches()` e `Touches()` são sinônimos.
+  `ST_Touches()` and `Touches()` are synonyms.
 
-- `ST_Dentro(g1, g2)`
+* `ST_Within(g1, g2)`
 
-  Retorna 1 ou 0 para indicar se *`g1`* está espacialmente dentro de *`g2`*. Isso testa a relação oposta à `ST_Contains()`.
+  Returns 1 or 0 to indicate whether *`g1`* is spatially within *`g2`*. This tests the opposite relationship as `ST_Contains()`.
 
-- `Touches(g1, g2)`
+* `Touches(g1, g2)`
 
-  `ST_Touches()` e `Touches()` são sinônimos. Para mais informações, consulte a descrição de `ST_Touches()`.
+  `ST_Touches()` and `Touches()` are synonyms. For more information, see the description of `ST_Touches()`.
 
-  `Touches()` está desatualizado; espere que ele seja removido em uma futura versão do MySQL. Use `ST_Touches()` em vez disso.
+  `Touches()` is deprecated; expect it to be removed in a future MySQL release. Use `ST_Touches()` instead.

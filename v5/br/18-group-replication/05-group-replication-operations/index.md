@@ -1,13 +1,13 @@
-## 17.5 Operações de Replicação em Grupo
+## 17.5 Group Replication Operations
 
-17.5.1 Implantação no modo Multi-Primary ou Single-Primary
+[17.5.1 Deploying in Multi-Primary or Single-Primary Mode](group-replication-deploying-in-multi-primary-or-single-primary-mode.html)
 
-17.5.2 Recuperação de Ajuste
+[17.5.2 Tuning Recovery](group-replication-tuning-recovery.html)
 
-17.5.3 Partição de rede
+[17.5.3 Network Partitioning](group-replication-network-partitioning.html)
 
-17.5.4 Reinicialização de um grupo
+[17.5.4 Restarting a Group](group-replication-restarting-group.html)
 
-17.5.5 Uso do MySQL Enterprise Backup com Replicação por Grupo
+[17.5.5 Using MySQL Enterprise Backup with Group Replication](group-replication-enterprise-backup.html)
 
-Esta seção descreve os diferentes modos de implantação da Replicação em Grupo, explica as operações comuns para gerenciar grupos e fornece informações sobre como ajustar seus grupos.
+This section describes the different modes of deploying Group Replication, explains common operations for managing groups and provides information about how to tune your groups. .

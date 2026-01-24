@@ -1,24 +1,24 @@
-### 12.17.3 Funções que buscam valores JSON
+### 12.17.3 Functions That Search JSON Values
 
-As funções desta seção realizam operações de busca em valores JSON para extrair dados deles, informar se os dados existem em uma localização dentro deles ou informar o caminho para os dados dentro deles.
+The functions in this section perform search operations on JSON values to extract data from them, report whether data exists at a location within them, or report the path to data within them.
 
-- `JSON_CONTAINS(alvo, candidato[, caminho])`
+* `JSON_CONTAINS(target, candidate[, path])`
 
-  Indica, retornando 1 ou 0, se um dado documento JSON de *`candidate`* está contido em um documento JSON de *`target`*, ou, se um argumento *`path`* foi fornecido, se o candidato é encontrado em um caminho específico dentro do alvo. Retorna `NULL` se qualquer argumento for `NULL` ou se o argumento *`path`* não identificar uma seção do documento alvo. Um erro ocorre se *`target`* ou *`candidate`* não for um documento JSON válido ou se o argumento *`path`* não for uma expressão de caminho válida ou contiver um caractere curinga \* ou \*\*\`.
+  Indicates by returning 1 or 0 whether a given *`candidate`* JSON document is contained within a *`target`* JSON document, or—if a *`path`* argument was supplied—whether the candidate is found at a specific path within the target. Returns `NULL` if any argument is `NULL`, or if the path argument does not identify a section of the target document. An error occurs if *`target`* or *`candidate`* is not a valid JSON document, or if the *`path`* argument is not a valid path expression or contains a `*` or `**` wildcard.
 
-  Para verificar apenas se algum dado existe no caminho, use `JSON_CONTAINS_PATH()` em vez disso.
+  To check only whether any data exists at the path, use `JSON_CONTAINS_PATH()` instead.
 
-  As regras a seguir definem o confinamento:
+  The following rules define containment:
 
-  - Um escalar candidato está contido em um escalar alvo se e somente se eles forem comparáveis e iguais. Dois valores escalares são comparáveis se tiverem os mesmos tipos `JSON_TYPE()`, com a exceção de que valores dos tipos `INTEGER` e `DECIMAL` também são comparáveis entre si.
+  + A candidate scalar is contained in a target scalar if and only if they are comparable and are equal. Two scalar values are comparable if they have the same `JSON_TYPE()` types, with the exception that values of types `INTEGER` and `DECIMAL` are also comparable to each other.
 
-  - Um conjunto candidato está contido em um conjunto alvo se e somente se cada elemento do candidato estiver contido em algum elemento do alvo.
+  + A candidate array is contained in a target array if and only if every element in the candidate is contained in some element of the target.
 
-  - Um candidato não-vetor está contido em um vetor-alvo se e somente se o candidato estiver contido em algum elemento do alvo.
+  + A candidate nonarray is contained in a target array if and only if the candidate is contained in some element of the target.
 
-  - Um objeto candidato está contido em um objeto alvo se e somente se, para cada chave no candidato, houver uma chave com o mesmo nome no alvo e o valor associado à chave do candidato estiver contido no valor associado à chave do alvo.
+  + A candidate object is contained in a target object if and only if for each key in the candidate there is a key with the same name in the target and the value associated with the candidate key is contained in the value associated with the target key.
 
-  Caso contrário, o valor do candidato não está contido no documento de destino.
+  Otherwise, the candidate value is not contained in the target document.
 
   ```sql
   mysql> SET @j = '{"a": 1, "b": 2, "c": {"d": 4}}';
@@ -51,17 +51,17 @@ As funções desta seção realizam operações de busca em valores JSON para ex
   +-------------------------------+
   ```
 
-- `JSON_CONTAINS_PATH(json_doc, one_or_all, caminho[, caminho] ...)`
+* `JSON_CONTAINS_PATH(json_doc, one_or_all, path[, path] ...)`
 
-  Retorna 0 ou 1 para indicar se um documento JSON contém dados em um caminho ou caminhos específicos. Retorna `NULL` se qualquer argumento for `NULL`. Um erro ocorre se o argumento *`json_doc`* não for um documento JSON válido, qualquer argumento *`path`* não for uma expressão de caminho válida ou *`one_or_all`* não for `'one'` ou `'all'`.
+  Returns 0 or 1 to indicate whether a JSON document contains data at a given path or paths. Returns `NULL` if any argument is `NULL`. An error occurs if the *`json_doc`* argument is not a valid JSON document, any *`path`* argument is not a valid path expression, or *`one_or_all`* is not `'one'` or `'all'`.
 
-  Para verificar um valor específico em um caminho, use `JSON_CONTAINS()`.
+  To check for a specific value at a path, use `JSON_CONTAINS()` instead.
 
-  O valor de retorno é 0 se nenhum caminho especificado existir dentro do documento. Caso contrário, o valor de retorno depende do argumento *`one_or_all`*:
+  The return value is 0 if no specified path exists within the document. Otherwise, the return value depends on the *`one_or_all`* argument:
 
-  - `'one'`: 1 se pelo menos um caminho existir dentro do documento, 0 caso contrário.
+  + `'one'`: 1 if at least one path exists within the document, 0 otherwise.
 
-  - `'all'`: 1 se todos os caminhos existirem dentro do documento, 0 caso contrário.
+  + `'all'`: 1 if all paths exist within the document, 0 otherwise.
 
   ```sql
   mysql> SET @j = '{"a": 1, "b": 2, "c": {"d": 4}}';
@@ -91,11 +91,11 @@ As funções desta seção realizam operações de busca em valores JSON para ex
   +----------------------------------------+
   ```
 
-- `JSON_EXTRACT(json_doc, caminho[, caminho] ...)`
+* `JSON_EXTRACT(json_doc, path[, path] ...)`
 
-  Retorna dados de um documento JSON, selecionados das partes do documento correspondidas pelos argumentos *`path`*. Retorna `NULL` se algum argumento for `NULL` ou se nenhum caminho localizar um valor no documento. Um erro ocorre se o argumento *`json_doc`* não for um documento JSON válido ou se qualquer argumento *`path`* não for uma expressão de caminho válida.
+  Returns data from a JSON document, selected from the parts of the document matched by the *`path`* arguments. Returns `NULL` if any argument is `NULL` or no paths locate a value in the document. An error occurs if the *`json_doc`* argument is not a valid JSON document or any *`path`* argument is not a valid path expression.
 
-  O valor de retorno consiste em todos os valores correspondentes aos argumentos `path`. Se for possível que esses argumentos possam retornar múltiplos valores, os valores correspondentes são autoencapsulados como um array, na ordem correspondente aos caminhos que os produziram. Caso contrário, o valor de retorno é o único valor correspondente.
+  The return value consists of all values matched by the *`path`* arguments. If it is possible that those arguments could return multiple values, the matched values are autowrapped as an array, in the order corresponding to the paths that produced them. Otherwise, the return value is the single matched value.
 
   ```sql
   mysql> SELECT JSON_EXTRACT('[10, 20, [30, 40', '$[1]');
@@ -118,13 +118,13 @@ As funções desta seção realizam operações de busca em valores JSON para ex
   +-----------------------------------------------+
   ```
 
-  O MySQL 5.7.9 e versões posteriores suportam o operador `->` como uma abreviação para essa função, usado com 2 argumentos, onde o lado esquerdo é um identificador de coluna `JSON` (não uma expressão) e o lado direito é o caminho JSON a ser correspondido dentro da coluna.
+  MySQL 5.7.9 and later supports the `->` operator as shorthand for this function as used with 2 arguments where the left hand side is a `JSON` column identifier (not an expression) and the right hand side is the JSON path to be matched within the column.
 
-- `coluna->caminho`
+* `column->path`
 
-  No MySQL 5.7.9 e versões posteriores, o operador `->` serve como um alias para a função `JSON_EXTRACT()`, quando usado com dois argumentos: um identificador de coluna à esquerda e um caminho JSON (um literal de string) à direita, que é avaliado contra o documento JSON (o valor da coluna). Você pode usar tais expressões no lugar de referências de coluna sempre que elas ocorrem em instruções SQL.
+  In MySQL 5.7.9 and later, the `->` operator serves as an alias for the `JSON_EXTRACT()` function when used with two arguments, a column identifier on the left and a JSON path (a string literal) on the right that is evaluated against the JSON document (the column value). You can use such expressions in place of column references wherever they occur in SQL statements.
 
-  As duas instruções `SELECT` mostradas aqui produzem o mesmo resultado:
+  The two `SELECT` statements shown here produce the same output:
 
   ```sql
   mysql> SELECT c, JSON_EXTRACT(c, "$.id"), g
@@ -154,7 +154,7 @@ As funções desta seção realizam operações de busca em valores JSON para ex
   3 rows in set (0.00 sec)
   ```
 
-  Essa funcionalidade não se limita ao `SELECT`, como mostrado aqui:
+  This functionality is not limited to `SELECT`, as shown here:
 
   ```sql
   mysql> ALTER TABLE jemp ADD COLUMN n INT;
@@ -194,9 +194,9 @@ As funções desta seção realizam operações de busca em valores JSON para ex
   2 rows in set (0.00 sec)
   ```
 
-  (Consulte "Indexação de uma coluna gerada para fornecer um índice de coluna JSON", para as instruções usadas para criar e preencher a tabela mostrada anteriormente.)
+  (See Indexing a Generated Column to Provide a JSON Column Index, for the statements used to create and populate the table just shown.)
 
-  Isso também funciona com valores de matriz JSON, como mostrado aqui:
+  This also works with JSON array values, as shown here:
 
   ```sql
   mysql> CREATE TABLE tj10 (a JSON, b INT);
@@ -225,7 +225,7 @@ As funções desta seção realizam operações de busca em valores JSON para ex
   2 rows in set (0.00 sec)
   ```
 
-  Matrizes aninhadas são suportadas. Uma expressão que usa `->` avalia como `NULL` se nenhuma chave correspondente for encontrada no documento JSON de destino, como mostrado aqui:
+  Nested arrays are supported. An expression using `->` evaluates as `NULL` if no matching key is found in the target JSON document, as shown here:
 
   ```sql
   mysql> SELECT * FROM tj10 WHERE a->"$[4][1]" IS NOT NULL;
@@ -245,7 +245,7 @@ As funções desta seção realizam operações de busca em valores JSON para ex
   2 rows in set (0.00 sec)
   ```
 
-  Esse é o mesmo comportamento observado em casos como esse quando se usa `JSON_EXTRACT()`:
+  This is the same behavior as seen in such cases when using `JSON_EXTRACT()`:
 
   ```sql
   mysql> SELECT JSON_EXTRACT(a, "$[4][1]") FROM tj10;
@@ -258,19 +258,19 @@ As funções desta seção realizam operações de busca em valores JSON para ex
   2 rows in set (0.00 sec)
   ```
 
-- `coluna->>caminho`
+* `column->>path`
 
-  Este é um operador de extração sem aspas aprimorado, disponível no MySQL 5.7.13 e versões posteriores. Enquanto o operador `->` simplesmente extrai um valor, o operador `->>` também desasigna as aspas do resultado extraído. Em outras palavras, dado um valor da coluna `JSON` *`column`* e uma expressão de caminho *`path`* (um literal de string), as seguintes três expressões retornam o mesmo valor:
+  This is an improved, unquoting extraction operator available in MySQL 5.7.13 and later. Whereas the `->` operator simply extracts a value, the `->>` operator in addition unquotes the extracted result. In other words, given a `JSON` column value *`column`* and a path expression *`path`* (a string literal), the following three expressions return the same value:
 
-  - `JSON_UNQUOTE(` `JSON_EXTRACT(coluna, caminho) )`
+  + `JSON_UNQUOTE(` `JSON_EXTRACT(column, path) )`
 
-  - `JSON_UNQUOTE(coluna` `->` `caminho)`
+  + `JSON_UNQUOTE(column` `->` `path)`
 
-  - `coluna->>caminho`
+  + `column->>path`
 
-  O operador `->>` pode ser usado sempre que o `JSON_UNQUOTE(JSON_EXTRACT())` seria permitido. Isso inclui (mas não se limita a) listas `SELECT`, cláusulas `WHERE` e `HAVING`, e cláusulas `ORDER BY` e `GROUP BY`.
+  The `->>` operator can be used wherever `JSON_UNQUOTE(JSON_EXTRACT())` would be allowed. This includes (but is not limited to) `SELECT` lists, `WHERE` and `HAVING` clauses, and `ORDER BY` and `GROUP BY` clauses.
 
-  As próximas declarações demonstram algumas equivalências do operador `->>` com outras expressões no cliente **mysql**:
+  The next few statements demonstrate some `->>` operator equivalences with other expressions in the **mysql** client:
 
   ```sql
   mysql> SELECT * FROM jemp WHERE g > 2;
@@ -313,9 +313,9 @@ As funções desta seção realizam operações de busca em valores JSON para ex
   2 rows in set (0.00 sec)
   ```
 
-  Consulte "Indexação de uma coluna gerada para fornecer um índice de coluna JSON", para obter as instruções SQL usadas para criar e preencher a tabela `jemp` no conjunto de exemplos mostrados anteriormente.
+  See Indexing a Generated Column to Provide a JSON Column Index, for the SQL statements used to create and populate the `jemp` table in the set of examples just shown.
 
-  Esse operador também pode ser usado com arrays JSON, como mostrado aqui:
+  This operator can also be used with JSON arrays, as shown here:
 
   ```sql
   mysql> CREATE TABLE tj10 (a JSON, b INT);
@@ -346,7 +346,7 @@ As funções desta seção realizam operações de busca em valores JSON para ex
   2 rows in set (0.00 sec)
   ```
 
-  Assim como o operador `->`, o operador `->>` é sempre expandido na saída do `EXPLAIN`, como demonstra o seguinte exemplo:
+  As with `->`, the `->>` operator is always expanded in the output of `EXPLAIN`, as the following example demonstrates:
 
   ```sql
   mysql> EXPLAIN SELECT c->>'$.name' AS name
@@ -376,15 +376,15 @@ As funções desta seção realizam operações de busca em valores JSON para ex
   1 row in set (0.00 sec)
   ```
 
-  Isso é semelhante à forma como o MySQL expande o operador `->` nas mesmas circunstâncias.
+  This is similar to how MySQL expands the `->` operator in the same circumstances.
 
-  O operador `->>` foi adicionado no MySQL 5.7.13.
+  The `->>` operator was added in MySQL 5.7.13.
 
-- `JSON_KEYS(json_doc[, path])`
+* `JSON_KEYS(json_doc[, path])`
 
-  Retorna as chaves do valor de nível superior de um objeto JSON como um array JSON, ou, se um argumento *`path`* for fornecido, as chaves de nível superior do caminho selecionado. Retorna `NULL` se qualquer argumento for `NULL`, o argumento *`json_doc`* não for um objeto ou *`path`*, se fornecido, não localizar um objeto. Um erro ocorre se o argumento *`json_doc`* não for um documento JSON válido ou o argumento *`path`* não for uma expressão de caminho válida ou contiver um caractere curinga \* ou \*\*\*.
+  Returns the keys from the top-level value of a JSON object as a JSON array, or, if a *`path`* argument is given, the top-level keys from the selected path. Returns `NULL` if any argument is `NULL`, the *`json_doc`* argument is not an object, or *`path`*, if given, does not locate an object. An error occurs if the *`json_doc`* argument is not a valid JSON document or the *`path`* argument is not a valid path expression or contains a `*` or `**` wildcard.
 
-  O array de resultados está vazio se o objeto selecionado estiver vazio. Se o valor do nível superior tiver subobjetos aninhados, o valor de retorno não incluirá as chaves desses subobjetos.
+  The result array is empty if the selected object is empty. If the top-level value has nested subobjects, the return value does not include keys from those subobjects.
 
   ```sql
   mysql> SELECT JSON_KEYS('{"a": 1, "b": {"c": 30}}');
@@ -401,23 +401,23 @@ As funções desta seção realizam operações de busca em valores JSON para ex
   +----------------------------------------------+
   ```
 
-- [`JSON_SEARCH(json_doc, one_or_all, search_str[, escape_char[, path] ...])`](json-search-functions.html#function_json-search)
+* [`JSON_SEARCH(json_doc, one_or_all, search_str[, escape_char[, path] ...])`](json-search-functions.html#function_json-search)
 
-  Retorna o caminho para a string fornecida dentro de um documento JSON. Retorna `NULL` se qualquer um dos argumentos *`json_doc`*, *`search_str`* ou *`path`* for `NULL`; não existir *`path`* dentro do documento; ou *`search_str`* não for encontrado. Um erro ocorre se o argumento *`json_doc`* não for um documento JSON válido, qualquer argumento *`path`* não for uma expressão de caminho válida, *`one_or_all`* não for `'one'` ou `'all'`, ou *`escape_char`* não for uma expressão constante.
+  Returns the path to the given string within a JSON document. Returns `NULL` if any of the *`json_doc`*, *`search_str`*, or *`path`* arguments are `NULL`; no *`path`* exists within the document; or *`search_str`* is not found. An error occurs if the *`json_doc`* argument is not a valid JSON document, any *`path`* argument is not a valid path expression, *`one_or_all`* is not `'one'` or `'all'`, or *`escape_char`* is not a constant expression.
 
-  O argumento *`one_or_all`* afeta a pesquisa da seguinte forma:
+  The *`one_or_all`* argument affects the search as follows:
 
-  - `'one'`: A pesquisa termina após a primeira correspondência e retorna uma string de caminho. Não está definido qual correspondência é considerada a primeira.
+  + `'one'`: The search terminates after the first match and returns one path string. It is undefined which match is considered first.
 
-  - `'all'`: A pesquisa retorna todas as cadeias de caminho correspondentes, de modo que nenhum caminho duplicado seja incluído. Se houver várias cadeias, elas são autoenroladas como um array. A ordem dos elementos do array é indefinida.
+  + `'all'`: The search returns all matching path strings such that no duplicate paths are included. If there are multiple strings, they are autowrapped as an array. The order of the array elements is undefined.
 
-  Dentro do argumento de cadeia de caracteres de pesquisa *`search_str`*, os caracteres `%` e `_` funcionam como no operador `LIKE`: `%` corresponde a qualquer número de caracteres (incluindo zero caracteres), e `_` corresponde exatamente a um caractere.
+  Within the *`search_str`* search string argument, the `%` and `_` characters work as for the `LIKE` operator: `%` matches any number of characters (including zero characters), and `_` matches exactly one character.
 
-  Para especificar um caractere literal `%` ou `_` na string de pesquisa, anteceda-o pelo caractere de escape. O padrão é `\` se o argumento *`escape_char`* estiver ausente ou `NULL`. Caso contrário, *`escape_char`* deve ser uma constante que seja vazia ou um caractere.
+  To specify a literal `%` or `_` character in the search string, precede it by the escape character. The default is `\` if the *`escape_char`* argument is missing or `NULL`. Otherwise, *`escape_char`* must be a constant that is empty or one character.
 
-  Para obter mais informações sobre a correspondência e o comportamento dos caracteres de escape, consulte a descrição do `LIKE` na Seção 12.8.1, “Funções e Operadores de Comparação de Strings”. Para o tratamento de caracteres de escape, uma diferença em relação ao comportamento do `LIKE` é que o caractere de escape para o `JSON_SEARCH()` deve ser avaliado como uma constante no momento da compilação, e não apenas no momento da execução. Por exemplo, se o `JSON_SEARCH()` for usado em uma instrução preparada e o argumento `escape_char` for fornecido usando um parâmetro `?`, o valor do parâmetro pode ser constante no momento da execução, mas não no momento da compilação.
+  For more information about matching and escape character behavior, see the description of `LIKE` in Section 12.8.1, “String Comparison Functions and Operators”. For escape character handling, a difference from the `LIKE` behavior is that the escape character for `JSON_SEARCH()` must evaluate to a constant at compile time, not just at execution time. For example, if `JSON_SEARCH()` is used in a prepared statement and the *`escape_char`* argument is supplied using a `?` parameter, the parameter value might be constant at execution time, but is not at compile time.
 
-  *`search_str`* e *`path`* são sempre interpretados como strings utf8mb4, independentemente de sua codificação real. Esse é um problema conhecido que foi corrigido no MySQL 8.0 (Bug #32449181).
+  *`search_str`* and *`path`* are always interpeted as utf8mb4 strings, regardless of their actual encoding. This is a known issue which is fixed in MySQL 8.0 ( Bug #32449181).
 
   ```sql
   mysql> SET @j = '["abc", [{"k": "10"}, "def"], {"x":"abc"}, {"y":"bcd"}]';
@@ -549,4 +549,4 @@ As funções desta seção realizam operações de busca em valores JSON para ex
   +-------------------------------------------+
   ```
 
-  Para obter mais informações sobre a sintaxe de caminho JSON suportada pelo MySQL, incluindo as regras que regem os operadores de ponto de interrogação `*` e `**`, consulte Sintaxe de caminho JSON.
+  For more information about the JSON path syntax supported by MySQL, including rules governing the wildcard operators `*` and `**`, see JSON Path Syntax.

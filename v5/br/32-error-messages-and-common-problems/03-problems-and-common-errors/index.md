@@ -1,17 +1,17 @@
-## B.3 Problemas e Erros Comuns
+## B.3 Problems and Common Errors
 
-[B.3.1 Como determinar o que está causando um problema](what-is-crashing.html)
+[B.3.1 How to Determine What Is Causing a Problem](what-is-crashing.html)
 
-[B.3.2 Erros Comuns ao Usar Programas MySQL](common-errors.html)
+[B.3.2 Common Errors When Using MySQL Programs](common-errors.html)
 
-[B.3.3 Questões relacionadas à administração](administration-issues.html)
+[B.3.3 Administration-Related Issues](administration-issues.html)
 
-[B.3.4 Questões relacionadas a consultas](query-issues.html)
+[B.3.4 Query-Related Issues](query-issues.html)
 
-[Problemas relacionados ao otimizador](optimizer-issues.html)
+[B.3.5 Optimizer-Related Issues](optimizer-issues.html)
 
-[Problemas relacionados à definição de tabela (B.3.6)](table-definition-issues.html)
+[B.3.6 Table Definition-Related Issues](table-definition-issues.html)
 
-[B.3.7 Problemas Conhecidos no MySQL](known-issues.html)
+[B.3.7 Known Issues in MySQL](known-issues.html)
 
-Esta seção lista alguns problemas comuns e mensagens de erro que você pode encontrar. Ela descreve como determinar as causas dos problemas e o que fazer para resolvê-los.
+This section lists some common problems and error messages that you may encounter. It describes how to determine the causes of the problems and what to do to solve them.

@@ -1,13 +1,13 @@
-#### 26.4.3.23 A visualização ps_check_lost_instrumentation
+#### 26.4.3.23 The ps_check_lost_instrumentation View
 
-Essa exibição retorna informações sobre instrumentos perdidos do Schema de Desempenho, para indicar se o Schema de Desempenho não consegue monitorar todos os dados de execução.
+This view returns information about lost Performance Schema instruments, to indicate whether the Performance Schema is unable to monitor all runtime data.
 
-A visualização `ps_check_lost_instrumentation` tem essas colunas:
+The `ps_check_lost_instrumentation` view has these columns:
 
-- `nome_variável`
+* `variable_name`
 
-  O nome da variável de status do Schema de Desempenho que indica que tipo de instrumento foi perdido.
+  The Performance Schema status variable name indicating which type of instrument was lost.
 
-- `valor_variável`
+* `variable_value`
 
-  O número de instrumentos perdidos.
+  The number of instruments lost.

@@ -1,47 +1,47 @@
-#### 21.6.15.8 Tabela ndbinfo config_params
+#### 21.6.15.8 The ndbinfo config_params Table
 
-A tabela `config_params` é uma tabela estática que fornece os nomes e os números de ID internos dos parâmetros de configuração do NDB Cluster, além de outras informações sobre esses parâmetros.
+The `config_params` table is a static table which provides the names and internal ID numbers of and other information about NDB Cluster configuration parameters.
 
-A tabela `config_params` contém as seguintes colunas:
+The `config_params` table contains the following columns:
 
-- `param_number`
+* `param_number`
 
-  O número de ID interno do parâmetro
+  The parameter's internal ID number
 
-- `param_name`
+* `param_name`
 
-  O nome do parâmetro
+  The name of the parameter
 
-- `param_description`
+* `param_description`
 
-  Uma breve descrição do parâmetro
+  A brief description of the parameter
 
-- `param_type`
+* `param_type`
 
-  O tipo de dado do parâmetro
+  The parameter's data type
 
-- `param_default`
+* `param_default`
 
-  O valor padrão do parâmetro, se houver
+  The parameter's default value, if any
 
-- `param_min`
+* `param_min`
 
-  O valor máximo do parâmetro, se houver
+  The parameter's maximum value, if any
 
-- `param_max`
+* `param_max`
 
-  O valor mínimo do parâmetro, se houver
+  The parameter's minimum value, if any
 
-- `param_mandatory`
+* `param_mandatory`
 
-  1 se o parâmetro for obrigatório, caso contrário, 0
+  This is 1 if the parameter is required, otherwise 0
 
-- `param_status`
+* `param_status`
 
-  Atualmente, não utilizada
+  Currently unused
 
-##### Notas
+##### Notes
 
-No NDB Cluster 7.5 (e versões posteriores), essa tabela é de leitura somente. As colunas `param_description`, `param_type`, `param_default`, `param_min`, `param_max`, `param_mandatory` e `param_status` foram adicionadas no NDB 7.5.0.
+In NDB Cluster 7.5 (and later), this table is read-only. The `param_description`, `param_type`, `param_default`, `param_min`, `param_max`, `param_mandatory`, and `param_status` columns were all added in NDB 7.5.0.
 
-Embora esta seja uma tabela estática, seu conteúdo pode variar entre as instalações do NDB Cluster, uma vez que os parâmetros suportados podem variar devido a diferenças entre as versões do software, configurações de hardware do cluster e outros fatores.
+Although this is a static table, its content can vary between NDB Cluster installations, since supported parameters can vary due to differences between software releases, cluster hardware configurations, and other factors.

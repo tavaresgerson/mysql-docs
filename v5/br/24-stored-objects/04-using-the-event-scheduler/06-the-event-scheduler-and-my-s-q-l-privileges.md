@@ -1,22 +1,22 @@
-### 23.4.6 O Agendamento de Eventos e Permissões do MySQL
+### 23.4.6 The Event Scheduler and MySQL Privileges
 
-Para habilitar ou desabilitar a execução de eventos agendados, é necessário definir o valor da variável de sistema global `event_scheduler`. Isso requer privilégios suficientes para definir variáveis de sistema globais. Consulte a Seção 5.1.8.1, “Privilégios de Variáveis de Sistema”.
+To enable or disable the execution of scheduled events, it is necessary to set the value of the global `event_scheduler` system variable. This requires privileges sufficient to set global system variables. See Section 5.1.8.1, “System Variable Privileges”.
 
-O privilégio `EVENT` rege a criação, modificação e exclusão de eventos. Este privilégio pode ser concedido usando `GRANT`. Por exemplo, esta declaração `GRANT` confere o privilégio `EVENT` para o esquema chamado `myschema` para o usuário `jon@ghidora`:
+The `EVENT` privilege governs the creation, modification, and deletion of events. This privilege can be bestowed using `GRANT`. For example, this `GRANT` statement confers the `EVENT` privilege for the schema named `myschema` on the user `jon@ghidora`:
 
 ```sql
 GRANT EVENT ON myschema.* TO jon@ghidora;
 ```
 
-(Suponhamos que essa conta de usuário já exista e que queiramos que ela permaneça inalterada, caso contrário.)
+(We assume that this user account already exists, and that we wish for it to remain unchanged otherwise.)
 
-Para conceder ao mesmo usuário o privilégio `EVENT` em todos os esquemas, use a seguinte declaração:
+To grant this same user the `EVENT` privilege on all schemas, use the following statement:
 
 ```sql
 GRANT EVENT ON *.* TO jon@ghidora;
 ```
 
-O privilégio `EVENT` tem escopo global ou de nível de esquema. Portanto, tentar concedê-lo em uma única tabela resulta em um erro, conforme mostrado:
+The `EVENT` privilege has global or schema-level scope. Therefore, trying to grant it on a single table results in an error as shown:
 
 ```sql
 mysql> GRANT EVENT ON myschema.mytable TO jon@ghidora;
@@ -24,7 +24,7 @@ ERROR 1144 (42000): Illegal GRANT/REVOKE command; please
 consult the manual to see which privileges can be used
 ```
 
-É importante entender que um evento é executado com os privilégios do seu definidor e que ele não pode realizar nenhuma ação para a qual seu definidor não tenha os privilégios necessários. Por exemplo, suponha que `jon@ghidora` tenha o privilégio `EVENT` para `myschema`. Suponha também que esse usuário tenha o privilégio `SELECT` para `myschema`, mas nenhum outro privilégio para esse esquema. É possível que `jon@ghidora` crie um novo evento como este:
+It is important to understand that an event is executed with the privileges of its definer, and that it cannot perform any actions for which its definer does not have the requisite privileges. For example, suppose that `jon@ghidora` has the `EVENT` privilege for `myschema`. Suppose also that this user has the `SELECT` privilege for `myschema`, but no other privileges for this schema. It is possible for `jon@ghidora` to create a new event such as this one:
 
 ```sql
 CREATE EVENT e_store_ts
@@ -34,9 +34,9 @@ CREATE EVENT e_store_ts
       INSERT INTO myschema.mytable VALUES (UNIX_TIMESTAMP());
 ```
 
-O usuário espera por cerca de um minuto e, em seguida, executa uma consulta `SELECT * FROM mytable;`, esperando ver várias novas linhas na tabela. Em vez disso, a tabela está vazia. Como o usuário não tem o privilégio de `INSERT` para a tabela em questão, o evento não tem efeito.
+The user waits for a minute or so, and then performs a `SELECT * FROM mytable;` query, expecting to see several new rows in the table. Instead, the table is empty. Since the user does not have the `INSERT` privilege for the table in question, the event has no effect.
 
-Se você verificar o log de erros do MySQL (`hostname.err`), você pode ver que o evento está sendo executado, mas a ação que ele está tentando realizar falha:
+If you inspect the MySQL error log (`hostname.err`), you can see that the event is executing, but the action it is attempting to perform fails:
 
 ```sql
 2013-09-24T12:41:31.261992Z 25 [ERROR] Event Scheduler:
@@ -51,7 +51,7 @@ Se você verificar o log de erros do MySQL (`hostname.err`), você pode ver que 
 [jon@ghidora].[myschema.e_store_ts] event execution failed.
 ```
 
-Como esse usuário provavelmente não tem acesso ao log de erros, é possível verificar se a declaração de ação do evento é válida executando-a diretamente:
+Since this user very likely does not have access to the error log, it is possible to verify whether the event's action statement is valid by executing it directly:
 
 ```sql
 mysql> INSERT INTO myschema.mytable VALUES (UNIX_TIMESTAMP());
@@ -59,7 +59,7 @@ ERROR 1142 (42000): INSERT command denied to user
 'jon'@'ghidora' for table 'mytable'
 ```
 
-A inspeção da tabela do esquema de informações `EVENTS` mostra que `e_store_ts` existe e está habilitada, mas sua coluna `LAST_EXECUTED` está em `NULL`:
+Inspection of the Information Schema `EVENTS` table shows that `e_store_ts` exists and is enabled, but its `LAST_EXECUTED` column is `NULL`:
 
 ```sql
 mysql> SELECT * FROM INFORMATION_SCHEMA.EVENTS
@@ -88,19 +88,19 @@ EVENT_DEFINITION: INSERT INTO myschema.mytable VALUES (UNIX_TIMESTAMP())
 1 row in set (0.00 sec)
 ```
 
-Para revogar o privilégio `EVENT`, use a instrução `REVOKE`. Neste exemplo, o privilégio `EVENT` no esquema `myschema` é removido da conta de usuário `jon@ghidora`:
+To rescind the `EVENT` privilege, use the `REVOKE` statement. In this example, the `EVENT` privilege on the schema `myschema` is removed from the `jon@ghidora` user account:
 
 ```sql
 REVOKE EVENT ON myschema.* FROM jon@ghidora;
 ```
 
-Importante
+Important
 
-Retirar o privilégio `EVENT` de um usuário não exclui ou desabilita quaisquer eventos que possam ter sido criados por esse usuário.
+Revoking the `EVENT` privilege from a user does not delete or disable any events that may have been created by that user.
 
-Um evento não é migrado ou excluído como resultado da renomeação ou exclusão do usuário que o criou.
+An event is not migrated or dropped as a result of renaming or dropping the user who created it.
 
-Suponha que o usuário `jon@ghidora` tenha sido concedido os privilégios `EVENT` e `INSERT` no esquema `myschema`. Esse usuário, então, cria o seguinte evento:
+Suppose that the user `jon@ghidora` has been granted the `EVENT` and `INSERT` privileges on the `myschema` schema. This user then creates the following event:
 
 ```sql
 CREATE EVENT e_insert
@@ -110,14 +110,14 @@ CREATE EVENT e_insert
       INSERT INTO myschema.mytable;
 ```
 
-Após a criação desse evento, o `root` revoga o privilégio `EVENT` para `jon@ghidora`. No entanto, `e_insert` continua a ser executado, inserindo uma nova linha na `mytable` a cada sete segundos. O mesmo aconteceria se o `root` tivesse emitido qualquer uma dessas declarações:
+After this event has been created, `root` revokes the `EVENT` privilege for `jon@ghidora`. However, `e_insert` continues to execute, inserting a new row into `mytable` each seven seconds. The same would be true if `root` had issued either of these statements:
 
-- `DROP USER jon@ghidora;`
-- `RENOMEIE o usuário jon@ghidora para someotherguy@ghidora;`
+* `DROP USER jon@ghidora;`
+* `RENAME USER jon@ghidora TO someotherguy@ghidora;`
 
-Você pode verificar se isso é verdade examinando a tabela `mysql.event` (discutida mais adiante nesta seção) ou a tabela `EVENTS` do Schema de Informações antes e depois de emitir uma declaração `DROP USER` ou `RENAME USER`.
+You can verify that this is true by examining the `mysql.event` table (discussed later in this section) or the Information Schema `EVENTS` table before and after issuing a `DROP USER` or `RENAME USER` statement.
 
-As definições dos eventos são armazenadas na tabela `mysql.event`. Para excluir um evento criado por outra conta de usuário, o usuário `root` do MySQL (ou outro usuário com os privilégios necessários) pode excluir linhas dessa tabela. Por exemplo, para remover o evento `e_insert` mostrado anteriormente, o `root` pode usar a seguinte instrução:
+Event definitions are stored in the `mysql.event` table. To drop an event created by another user account, the MySQL `root` user (or another user with the necessary privileges) can delete rows from this table. For example, to remove the event `e_insert` shown previously, `root` can use the following statement:
 
 ```sql
 DELETE FROM mysql.event
@@ -125,20 +125,20 @@ DELETE FROM mysql.event
       AND name = 'e_insert';
 ```
 
-É muito importante combinar o nome do evento e o nome do esquema do banco de dados ao excluir linhas da tabela `mysql.event`. Isso ocorre porque diferentes eventos com o mesmo nome podem existir em diferentes esquemas.
+It is very important to match the event name and database schema name when deleting rows from the `mysql.event` table. This is because different events of the same name can exist in different schemas.
 
-Os privilégios `EVENT` dos usuários são armazenados nas colunas `Event_priv` das tabelas `mysql.user` e `mysql.db`. Em ambos os casos, essa coluna contém um dos valores `'Y'` ou `'N'`. `'N'` é o padrão. `mysql.user.Event_priv` é definido como `'Y'` para um usuário específico apenas se esse usuário tiver o privilégio global `EVENT` (ou seja, se o privilégio foi concedido usando `GRANT EVENT ON *.*`). Para um privilégio `EVENT` em nível de esquema, o `GRANT` cria uma linha na `mysql.db` e define a coluna `Db` dessa linha para o nome do esquema, a coluna `User` para o nome do usuário e a coluna `Event_priv` para `'Y'`. Nunca haverá necessidade de manipular essas tabelas diretamente, uma vez que as instruções `GRANT EVENT` e `REVOKE EVENT` realizam as operações necessárias nelas.
+Users' `EVENT` privileges are stored in the `Event_priv` columns of the `mysql.user` and `mysql.db` tables. In both cases, this column holds one of the values '`Y`' or '`N`'. '`N`' is the default. `mysql.user.Event_priv` is set to '`Y`' for a given user only if that user has the global `EVENT` privilege (that is, if the privilege was bestowed using `GRANT EVENT ON *.*`). For a schema-level `EVENT` privilege, `GRANT` creates a row in `mysql.db` and sets that row's `Db` column to the name of the schema, the `User` column to the name of the user, and the `Event_priv` column to '`Y`'. There should never be any need to manipulate these tables directly, since the `GRANT EVENT` and `REVOKE EVENT` statements perform the required operations on them.
 
-Cinco variáveis de status fornecem contagens de operações relacionadas a eventos (mas *não* de declarações executadas por eventos; veja a Seção 23.8, “Restrições sobre Programas Armazenados”). Elas são:
+Five status variables provide counts of event-related operations (but *not* of statements executed by events; see Section 23.8, “Restrictions on Stored Programs”). These are:
 
-- `Com_create_event`: O número de declarações `CREATE EVENT` executadas desde o último reinício do servidor.
+* `Com_create_event`: The number of `CREATE EVENT` statements executed since the last server restart.
 
-- `Com_alter_event`: O número de declarações `ALTER EVENT` executadas desde o último reinício do servidor.
+* `Com_alter_event`: The number of `ALTER EVENT` statements executed since the last server restart.
 
-- `Com_drop_event`: O número de declarações `DROP EVENT` executadas desde o último reinício do servidor.
+* `Com_drop_event`: The number of `DROP EVENT` statements executed since the last server restart.
 
-- `Com_show_create_event`: O número de declarações `SHOW CREATE EVENT` executadas desde o último reinício do servidor.
+* `Com_show_create_event`: The number of `SHOW CREATE EVENT` statements executed since the last server restart.
 
-- `Com_show_events`: O número de declarações `SHOW EVENTS` executadas desde o último reinício do servidor.
+* `Com_show_events`: The number of `SHOW EVENTS` statements executed since the last server restart.
 
-Você pode visualizar os valores atuais para todos esses itens de uma só vez, executando a instrução `SHOW STATUS LIKE '%event%';`.
+You can view current values for all of these at one time by running the statement `SHOW STATUS LIKE '%event%';`.

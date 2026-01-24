@@ -1,4 +1,4 @@
-#### 13.6.7.5 Declaração de Sinal
+#### 13.6.7.5 SIGNAL Statement
 
 ```sql
 SIGNAL condition_value
@@ -32,35 +32,35 @@ condition_name, simple_value_specification:
     (see following discussion)
 ```
 
-`SIGNAL` é a maneira de "retornar" um erro. `SIGNAL` fornece informações de erro a um manipulador, a uma parte externa da aplicação ou ao cliente. Além disso, fornece controle sobre as características do erro (número de erro, valor `SQLSTATE`, mensagem). Sem `SIGNAL`, é necessário recorrer a soluções alternativas, como referenciar deliberadamente uma tabela inexistente para fazer com que uma rotina retorne um erro.
+[`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement") is the way to “return” an error. [`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement") provides error information to a handler, to an outer portion of the application, or to the client. Also, it provides control over the error's characteristics (error number, `SQLSTATE` value, message). Without [`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement"), it is necessary to resort to workarounds such as deliberately referring to a nonexistent table to cause a routine to return an error.
 
-Não são necessários privilégios para executar a instrução `SIGNAL`.
+No privileges are required to execute the [`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement") statement.
 
-Para recuperar informações da área de diagnóstico, use a instrução `GET DIAGNOSTICS` (consulte Seção 13.6.7.3, “Instrução GET DIAGNOSTICS”). Para informações sobre a área de diagnóstico, consulte Seção 13.6.7.7, “A Área de Diagnóstico do MySQL”.
+To retrieve information from the diagnostics area, use the [`GET DIAGNOSTICS`](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement") statement (see [Section 13.6.7.3, “GET DIAGNOSTICS Statement”](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement")). For information about the diagnostics area, see [Section 13.6.7.7, “The MySQL Diagnostics Area”](diagnostics-area.html "13.6.7.7 The MySQL Diagnostics Area").
 
-- Visão geral do sinal
-- Itens de Informações de Condição de Sinal
-- Efeito dos sinais em manipuladores, cursors e declarações
+* [SIGNAL Overview](signal.html#signal-overview "SIGNAL Overview")
+* [Signal Condition Information Items](signal.html#signal-condition-information-items "Signal Condition Information Items")
+* [Effect of Signals on Handlers, Cursors, and Statements](signal.html#signal-effects "Effect of Signals on Handlers, Cursors, and Statements")
 
-##### SIGNAL Visão geral
+##### SIGNAL Overview
 
-O `condition_value` em uma declaração `SIGNAL` indica o valor de erro a ser retornado. Ele pode ser um valor `SQLSTATE` (uma string literal de 5 caracteres) ou um `condition_name` que se refere a uma condição nomeada previamente definida com `DECLARE ... CONDITION` (veja Seção 13.6.7.1, "Declaração ... CONDITION").
+The *`condition_value`* in a [`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement") statement indicates the error value to be returned. It can be an `SQLSTATE` value (a 5-character string literal) or a *`condition_name`* that refers to a named condition previously defined with [`DECLARE ... CONDITION`](declare-condition.html "13.6.7.1 DECLARE ... CONDITION Statement") (see [Section 13.6.7.1, “DECLARE ... CONDITION Statement”](declare-condition.html "13.6.7.1 DECLARE ... CONDITION Statement")).
 
-Um valor `SQLSTATE` pode indicar erros, avisos ou “não encontrado”. Os primeiros dois caracteres do valor indicam sua classe de erro, conforme discutido em Itens de informações de condição de sinal. Alguns valores de sinal causam a terminação da instrução; veja Efeito dos sinais nos manipuladores, cursors e instruções.
+An `SQLSTATE` value can indicate errors, warnings, or “not found.” The first two characters of the value indicate its error class, as discussed in [Signal Condition Information Items](signal.html#signal-condition-information-items "Signal Condition Information Items"). Some signal values cause statement termination; see [Effect of Signals on Handlers, Cursors, and Statements](signal.html#signal-effects "Effect of Signals on Handlers, Cursors, and Statements").
 
-O valor `SQLSTATE` para uma instrução `[SIGNAL]` (signal.html) não deve começar com `'00'` porque esses valores indicam sucesso e não são válidos para sinalizar um erro. Isso é verdadeiro se o valor `SQLSTATE` for especificado diretamente na instrução `[SIGNAL]` ou em uma condição nomeada referenciada na instrução. Se o valor for inválido, ocorrerá um erro `Bad SQLSTATE`.
+The `SQLSTATE` value for a [`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement") statement should not start with `'00'` because such values indicate success and are not valid for signaling an error. This is true whether the `SQLSTATE` value is specified directly in the [`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement") statement or in a named condition referred to in the statement. If the value is invalid, a `Bad SQLSTATE` error occurs.
 
-Para indicar um valor genérico `SQLSTATE`, use `'45000'`, que significa “exceção não tratada definida pelo usuário”.
+To signal a generic `SQLSTATE` value, use `'45000'`, which means “unhandled user-defined exception.”
 
-A declaração `SIGNAL` inclui opcionalmente uma cláusula `SET` que contém vários itens de sinal, em uma lista de atribuições de *`condition_information_item_name`* = *`simple_value_specification`* separadas por vírgulas.
+The [`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement") statement optionally includes a `SET` clause that contains multiple signal items, in a list of *`condition_information_item_name`* = *`simple_value_specification`* assignments, separated by commas.
 
-Cada `nome_item_informacao_condicao` pode ser especificado apenas uma vez na cláusula `SET`. Caso contrário, ocorrerá um erro `Condição de informação de item duplicado`.
+Each *`condition_information_item_name`* may be specified only once in the `SET` clause. Otherwise, a `Duplicate condition information item` error occurs.
 
-Os identificadores válidos de especificação de `simple_value_specification` podem ser especificados usando parâmetros de procedimentos ou funções armazenados, variáveis locais de programas armazenados declaradas com `DECLARE`, variáveis definidas pelo usuário, variáveis de sistema ou literais. Um literal de caractere pode incluir um introduzir `_charset`.
+Valid *`simple_value_specification`* designators can be specified using stored procedure or function parameters, stored program local variables declared with [`DECLARE`](declare.html "13.6.3 DECLARE Statement"), user-defined variables, system variables, or literals. A character literal may include a *`_charset`* introducer.
 
-Para obter informações sobre os valores permitidos de *`condition_information_item_name`*, consulte Itens de informações de condição de sinal.
+For information about permissible *`condition_information_item_name`* values, see [Signal Condition Information Items](signal.html#signal-condition-information-items "Signal Condition Information Items").
 
-O procedimento a seguir sinaliza um erro ou aviso, dependendo do valor de `pval`, seu parâmetro de entrada:
+The following procedure signals an error or warning depending on the value of `pval`, its input parameter:
 
 ```sql
 CREATE PROCEDURE p (pval INT)
@@ -83,15 +83,15 @@ BEGIN
 END;
 ```
 
-Se `pval` for 0, `p()` emite um aviso porque os valores `SQLSTATE` que começam com `'01'` são sinais na classe de aviso. O aviso não termina o procedimento e pode ser visualizado com `[`SHOW WARNINGS\`]\(show-warnings.html) após o procedimento retornar.
+If `pval` is 0, `p()` signals a warning because `SQLSTATE` values that begin with `'01'` are signals in the warning class. The warning does not terminate the procedure, and can be seen with [`SHOW WARNINGS`](show-warnings.html "13.7.5.40 SHOW WARNINGS Statement") after the procedure returns.
 
-Se `pval` for 1, `p()` sinaliza um erro e define o item de informação de condição `MESSAGE_TEXT`. O erro termina o procedimento e o texto é retornado com as informações de erro.
+If `pval` is 1, `p()` signals an error and sets the `MESSAGE_TEXT` condition information item. The error terminates the procedure, and the text is returned with the error information.
 
-Se `pval` for 2, o mesmo erro é sinalizado, embora o valor `SQLSTATE` seja especificado usando uma condição nomeada neste caso.
+If `pval` is 2, the same error is signaled, although the `SQLSTATE` value is specified using a named condition in this case.
 
-Se `pval` for qualquer outra coisa, `p()` primeiro emite um aviso e define os itens de informações do texto da mensagem e do número de erro. Esse aviso não termina o procedimento, então a execução continua e `p()` então emite um erro. O erro termina o procedimento. O texto da mensagem e o número de erro definidos pelo aviso são substituídos pelos valores definidos pelo erro, que são retornados com as informações de erro.
+If `pval` is anything else, `p()` first signals a warning and sets the message text and error number condition information items. This warning does not terminate the procedure, so execution continues and `p()` then signals an error. The error does terminate the procedure. The message text and error number set by the warning are replaced by the values set by the error, which are returned with the error information.
 
-`SIGNAL` é tipicamente usado dentro de programas armazenados, mas é uma extensão do MySQL que é permitida fora do contexto do manipulador. Por exemplo, se você invocar o programa cliente **mysql**, você pode inserir qualquer uma dessas instruções na prompt:
+[`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement") is typically used within stored programs, but it is a MySQL extension that it is permitted outside handler context. For example, if you invoke the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client program, you can enter any of these statements at the prompt:
 
 ```sql
 SIGNAL SQLSTATE '77777';
@@ -103,9 +103,9 @@ CREATE EVENT e ON SCHEDULE EVERY 1 SECOND
   DO SIGNAL SQLSTATE '77777';
 ```
 
-`SIGNAL` é executado de acordo com as seguintes regras:
+[`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement") executes according to the following rules:
 
-Se a declaração `SIGNAL` indicar um valor específico de `SQLSTATE`, esse valor é usado para sinalizar a condição especificada. Exemplo:
+If the [`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement") statement indicates a particular `SQLSTATE` value, that value is used to signal the condition specified. Example:
 
 ```sql
 CREATE PROCEDURE p (divisor INT)
@@ -116,7 +116,7 @@ BEGIN
 END;
 ```
 
-Se a declaração `SIGNAL` usar uma condição nomeada, a condição deve ser declarada em algum escopo que se aplique à declaração `SIGNAL` e deve ser definida usando um valor `SQLSTATE`, e não um número de erro MySQL. Exemplo:
+If the [`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement") statement uses a named condition, the condition must be declared in some scope that applies to the [`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement") statement, and must be defined using an `SQLSTATE` value, not a MySQL error number. Example:
 
 ```sql
 CREATE PROCEDURE p (divisor INT)
@@ -128,16 +128,16 @@ BEGIN
 END;
 ```
 
-Se a condição nomeada não existir no escopo da declaração `SIGNAL`, ocorrerá um erro `Condição indefinida`.
+If the named condition does not exist in the scope of the [`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement") statement, an `Undefined CONDITION` error occurs.
 
-Se `SIGNAL` se refere a uma condição nomeada que é definida com um número de erro MySQL em vez de um valor `SQLSTATE`, um `SIGNAL/RESIGNAL` só pode usar uma condição definida com o erro `SQLSTATE` ocorre. As seguintes declarações causam esse erro porque a condição nomeada está associada a um número de erro MySQL:
+If [`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement") refers to a named condition that is defined with a MySQL error number rather than an `SQLSTATE` value, a `SIGNAL/RESIGNAL can only use a CONDITION defined with SQLSTATE` error occurs. The following statements cause that error because the named condition is associated with a MySQL error number:
 
 ```sql
 DECLARE no_such_table CONDITION FOR 1051;
 SIGNAL no_such_table;
 ```
 
-Se uma condição com um nome específico for declarada várias vezes em diferentes escopos, a declaração com o escopo mais local será aplicada. Considere o seguinte procedimento:
+If a condition with a given name is declared multiple times in different scopes, the declaration with the most local scope applies. Consider the following procedure:
 
 ```sql
 CREATE PROCEDURE p (divisor INT)
@@ -153,13 +153,13 @@ BEGIN
 END;
 ```
 
-Se `divisor` for 0, a primeira instrução `SIGNAL` (signal.html) é executada. A declaração de condição `my_error` mais interna é aplicada, levantando `SQLSTATE` `'22012'`.
+If `divisor` is 0, the first [`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement") statement executes. The innermost `my_error` condition declaration applies, raising `SQLSTATE` `'22012'`.
 
-Se `divisor` não for 0, a segunda instrução `SIGNAL` (signal.html) é executada. A declaração mais externa de `my_error` é aplicada, elevando `SQLSTATE` para `'45000'`.
+If `divisor` is not 0, the second [`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement") statement executes. The outermost `my_error` condition declaration applies, raising `SQLSTATE` `'45000'`.
 
-Para obter informações sobre como o servidor escolhe manipuladores quando uma condição ocorre, consulte Seção 13.6.7.6, “Regras de escopo para manipuladores”.
+For information about how the server chooses handlers when a condition occurs, see [Section 13.6.7.6, “Scope Rules for Handlers”](handler-scope.html "13.6.7.6 Scope Rules for Handlers").
 
-Os sinais podem ser levantados dentro dos manipuladores de exceção:
+Signals can be raised within exception handlers:
 
 ```sql
 CREATE PROCEDURE p ()
@@ -173,11 +173,11 @@ BEGIN
 END;
 ```
 
-A chamada `CALL p()` chega à instrução `DROP TABLE`. Não existe uma tabela chamada `no_such_table`, então o manipulador de erros é ativado. O manipulador de erros destrói o erro original (“tabela não existente”) e cria um novo erro com `SQLSTATE` `'99999'` e a mensagem `Um erro ocorreu`.
+`CALL p()` reaches the [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement") statement. There is no table named `no_such_table`, so the error handler is activated. The error handler destroys the original error (“no such table”) and makes a new error with `SQLSTATE` `'99999'` and message `An error occurred`.
 
-##### Itens de Informações de Condição de Sinal
+##### Signal Condition Information Items
 
-A tabela a seguir lista os nomes dos itens de informações de condição da área de diagnóstico que podem ser definidos em uma declaração de `SIGNAL` (ou `RESIGNAL`. Todos os itens são padrão SQL, exceto `MYSQL_ERRNO`, que é uma extensão do MySQL. Para obter mais informações sobre esses itens, consulte Seção 13.6.7.7, “A Área de Diagnóstico do MySQL”.
+The following table lists the names of diagnostics area condition information items that can be set in a [`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement") (or [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement")) statement. All items are standard SQL except `MYSQL_ERRNO`, which is a MySQL extension. For more information about these items see [Section 13.6.7.7, “The MySQL Diagnostics Area”](diagnostics-area.html "13.6.7.7 The MySQL Diagnostics Area").
 
 ```sql
 Item Name             Definition
@@ -196,38 +196,38 @@ MESSAGE_TEXT          VARCHAR(128)
 MYSQL_ERRNO           SMALLINT UNSIGNED
 ```
 
-O conjunto de caracteres para itens de caracteres é UTF-8.
+The character set for character items is UTF-8.
 
-É ilegal atribuir `NULL` a um item de informação de condição em uma declaração de `SIGNAL` (signal.html).
+It is illegal to assign `NULL` to a condition information item in a [`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement") statement.
 
-Uma declaração `SIGNAL` sempre especifica um valor `SQLSTATE`, seja diretamente ou indiretamente, referenciando uma condição nomeada definida com um valor `SQLSTATE`. Os dois primeiros caracteres de um valor `SQLSTATE` são sua classe, e a classe determina o valor padrão para os itens de informações da condição:
+A [`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement") statement always specifies an `SQLSTATE` value, either directly, or indirectly by referring to a named condition defined with an `SQLSTATE` value. The first two characters of an `SQLSTATE` value are its class, and the class determines the default value for the condition information items:
 
-- Classe = `'00'` (sucesso)
+* Class = `'00'` (success)
 
-  Ilegal. Os valores `SQLSTATE` que começam com `'00'` indicam sucesso e não são válidos para `SIGNAL`.
+  Illegal. `SQLSTATE` values that begin with `'00'` indicate success and are not valid for [`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement").
 
-- Classe = `'01'` (aviso)
+* Class = `'01'` (warning)
 
   ```sql
   MESSAGE_TEXT = 'Unhandled user-defined warning condition';
   MYSQL_ERRNO = ER_SIGNAL_WARN
   ```
 
-- Classe = `'02'` (não encontrado)
+* Class = `'02'` (not found)
 
   ```sql
   MESSAGE_TEXT = 'Unhandled user-defined not found condition';
   MYSQL_ERRNO = ER_SIGNAL_NOT_FOUND
   ```
 
-- Classe > `'02'` (exceção)
+* Class > `'02'` (exception)
 
   ```sql
   MESSAGE_TEXT = 'Unhandled user-defined exception condition';
   MYSQL_ERRNO = ER_SIGNAL_EXCEPTION
   ```
 
-Para as classes jurídicas, os outros itens de informações das condições são definidos da seguinte forma:
+For legal classes, the other condition information items are set as follows:
 
 ```sql
 CLASS_ORIGIN = SUBCLASS_ORIGIN = '';
@@ -236,42 +236,42 @@ CATALOG_NAME = SCHEMA_NAME = TABLE_NAME = COLUMN_NAME = '';
 CURSOR_NAME = '';
 ```
 
-Os valores de erro acessíveis após a execução de `SIGNAL` são o valor `SQLSTATE` gerado pela instrução `SIGNAL` e os itens `MESSAGE_TEXT` e `MYSQL_ERRNO`. Esses valores estão disponíveis na API C:
+The error values that are accessible after [`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement") executes are the `SQLSTATE` value raised by the [`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement") statement and the `MESSAGE_TEXT` and `MYSQL_ERRNO` items. These values are available from the C API:
 
-- `mysql_sqlstate()` retorna o valor `SQLSTATE`.
+* [`mysql_sqlstate()`](/doc/c-api/5.7/en/mysql-sqlstate.html) returns the `SQLSTATE` value.
 
-- `mysql_errno()` retorna o valor `MYSQL_ERRNO`.
+* [`mysql_errno()`](/doc/c-api/5.7/en/mysql-errno.html) returns the `MYSQL_ERRNO` value.
 
-- `mysql_error()` retorna o valor `MESSAGE_TEXT`.
+* [`mysql_error()`](/doc/c-api/5.7/en/mysql-error.html) returns the `MESSAGE_TEXT` value.
 
-No nível SQL, o resultado de `SHOW WARNINGS` e `SHOW ERRORS` indica os valores `MYSQL_ERRNO` e `MESSAGE_TEXT` nas colunas `Código` e `Mensagem`.
+At the SQL level, the output from [`SHOW WARNINGS`](show-warnings.html "13.7.5.40 SHOW WARNINGS Statement") and [`SHOW ERRORS`](show-errors.html "13.7.5.17 SHOW ERRORS Statement") indicates the `MYSQL_ERRNO` and `MESSAGE_TEXT` values in the `Code` and `Message` columns.
 
-Para recuperar informações da área de diagnóstico, use a instrução `GET DIAGNOSTICS` (consulte Seção 13.6.7.3, “Instrução GET DIAGNOSTICS”). Para informações sobre a área de diagnóstico, consulte Seção 13.6.7.7, “A Área de Diagnóstico do MySQL”.
+To retrieve information from the diagnostics area, use the [`GET DIAGNOSTICS`](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement") statement (see [Section 13.6.7.3, “GET DIAGNOSTICS Statement”](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement")). For information about the diagnostics area, see [Section 13.6.7.7, “The MySQL Diagnostics Area”](diagnostics-area.html "13.6.7.7 The MySQL Diagnostics Area").
 
-##### Efeito dos sinais nos manipuladores, cursors e declarações
+##### Effect of Signals on Handlers, Cursors, and Statements
 
-Os sinais têm efeitos diferentes na execução da declaração, dependendo da classe do sinal. A classe determina o quão grave é um erro. O MySQL ignora o valor da variável de sistema `sql_mode`; em particular, o modo SQL rigoroso não importa. O MySQL também ignora `IGNORE`: A intenção do `SIGNAL` é gerar um erro gerado pelo usuário explicitamente, portanto, um sinal nunca é ignorado.
+Signals have different effects on statement execution depending on the signal class. The class determines how severe an error is. MySQL ignores the value of the [`sql_mode`](server-system-variables.html#sysvar_sql_mode) system variable; in particular, strict SQL mode does not matter. MySQL also ignores `IGNORE`: The intent of [`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement") is to raise a user-generated error explicitly, so a signal is never ignored.
 
-Nas descrições a seguir, “não tratado” significa que nenhum manipulador para o valor `SQLSTATE` sinalizado foi definido com `DECLARE ... HANDLER`.
+In the following descriptions, “unhandled” means that no handler for the signaled `SQLSTATE` value has been defined with [`DECLARE ... HANDLER`](declare-handler.html "13.6.7.2 DECLARE ... HANDLER Statement").
 
-- Classe = `'00'` (sucesso)
+* Class = `'00'` (success)
 
-  Ilegal. Os valores `SQLSTATE` que começam com `'00'` indicam sucesso e não são válidos para `SIGNAL`.
+  Illegal. `SQLSTATE` values that begin with `'00'` indicate success and are not valid for [`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement").
 
-- Classe = `'01'` (aviso)
+* Class = `'01'` (warning)
 
-  O valor da variável de sistema `warning_count` aumenta. O sinal é exibido com ``SHOW WARNINGS`. Os manipuladores `SQLWARNING\` capturam o sinal.
+  The value of the [`warning_count`](server-system-variables.html#sysvar_warning_count) system variable goes up. [`SHOW WARNINGS`](show-warnings.html "13.7.5.40 SHOW WARNINGS Statement") shows the signal. `SQLWARNING` handlers catch the signal.
 
-  As avisos não podem ser retornados a partir de funções armazenadas porque a instrução `RETURN` que faz a função retornar limpa a área de diagnóstico. Assim, a instrução limpa quaisquer avisos que possam ter estado presentes lá (e redefini o `warning_count` para 0).
+  Warnings cannot be returned from stored functions because the [`RETURN`](return.html "13.6.5.7 RETURN Statement") statement that causes the function to return clears the diagnostic area. The statement thus clears any warnings that may have been present there (and resets [`warning_count`](server-system-variables.html#sysvar_warning_count) to 0).
 
-- Classe = `'02'` (não encontrado)
+* Class = `'02'` (not found)
 
-  Os manipuladores `NOT FOUND` capturam o sinal. Não há efeito nos cursors. Se o sinal não for manipulado em uma função armazenada, as instruções terminam.
+  `NOT FOUND` handlers catch the signal. There is no effect on cursors. If the signal is unhandled in a stored function, statements end.
 
-- Classe > `'02'` (exceção)
+* Class > `'02'` (exception)
 
-  Os manipuladores `SQLEXCEPTION` capturam o sinal. Se o sinal não for tratado em uma função armazenada, as instruções terminam.
+  `SQLEXCEPTION` handlers catch the signal. If the signal is unhandled in a stored function, statements end.
 
-- Classe = `'40'`
+* Class = `'40'`
 
-  Tratado como uma exceção comum.
+  Treated as an ordinary exception.

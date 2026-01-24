@@ -1,40 +1,40 @@
-### 21.6.6 Modo de usuário único do cluster NDB
+### 21.6.6 NDB Cluster Single User Mode
 
-O modo de usuário único permite que o administrador do banco de dados restrinja o acesso ao sistema do banco de dados a um único nó da API, como um servidor MySQL (nó SQL) ou uma instância de **ndb_restore**. Ao entrar no modo de usuário único, as conexões a todos os outros nós da API são fechadas de forma suave e todas as transações em execução são abortadas. Nenhuma nova transação é permitida para começar.
+Single user mode enables the database administrator to restrict access to the database system to a single API node, such as a MySQL server (SQL node) or an instance of [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup"). When entering single user mode, connections to all other API nodes are closed gracefully and all running transactions are aborted. No new transactions are permitted to start.
 
-Depois que o cluster entrar no modo de usuário único, apenas o nó da API designado terá acesso ao banco de dados.
+Once the cluster has entered single user mode, only the designated API node is granted access to the database.
 
-Você pode usar o comando `ALL STATUS` no cliente **ndb_mgm** para ver quando o clúster entrou no modo de usuário único. Você também pode verificar a coluna `status` da tabela `ndbinfo.nodes` (consulte Seção 21.6.15.28, “A tabela ndbinfo nodes”, para mais informações).
+You can use the `ALL STATUS` command in the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") client to see when the cluster has entered single user mode. You can also check the `status` column of the [`ndbinfo.nodes`](mysql-cluster-ndbinfo-nodes.html "21.6.15.28 The ndbinfo nodes Table") table (see [Section 21.6.15.28, “The ndbinfo nodes Table”](mysql-cluster-ndbinfo-nodes.html "21.6.15.28 The ndbinfo nodes Table"), for more information).
 
-Exemplo:
+Example:
 
 ```sql
 ndb_mgm> ENTER SINGLE USER MODE 5
 ```
 
-Após a execução deste comando e a entrada do clúster no modo de usuário único, o nó da API cujo ID de nó é `5` se torna o único usuário permitido no clúster.
+After this command has executed and the cluster has entered single user mode, the API node whose node ID is `5` becomes the cluster's only permitted user.
 
-O nó especificado no comando anterior deve ser um nó de API; tentar especificar qualquer outro tipo de nó é rejeitado.
+The node specified in the preceding command must be an API node; attempting to specify any other type of node is rejected.
 
-Nota
+Note
 
-Quando o comando anterior for executado, todas as transações em execução no nó designado serão abortadas, a conexão será fechada e o servidor precisará ser reiniciado.
+When the preceding command is invoked, all transactions running on the designated node are aborted, the connection is closed, and the server must be restarted.
 
-O comando `EXIT SINGLE USER MODE` altera o estado dos nós de dados do cluster do modo de usuário único para o modo normal. Os nós da API, como os Servidores MySQL, que estão aguardando uma conexão (ou seja, aguardando que o cluster esteja pronto e disponível), podem se conectar novamente. O nó da API denominado como o nó de usuário único continua em execução (se ainda estiver conectado) durante e após a mudança de estado.
+The command `EXIT SINGLE USER MODE` changes the state of the cluster's data nodes from single user mode to normal mode. API nodes—such as MySQL Servers—waiting for a connection (that is, waiting for the cluster to become ready and available), are again permitted to connect. The API node denoted as the single-user node continues to run (if still connected) during and after the state change.
 
-Exemplo:
+Example:
 
 ```sql
 ndb_mgm> EXIT SINGLE USER MODE
 ```
 
-Existem duas maneiras recomendadas de lidar com a falha de um nó quando executado no modo de usuário único:
+There are two recommended ways to handle a node failure when running in single user mode:
 
-- Método 1:
+* Method 1:
 
-  1. Finalizar todas as transações no modo de usuário único
-  2. Emita o comando `SAIR DO MODO ÚNICO USUÁRIO`
-  3. Reinicie os nós de dados do cluster
-- Método 2:
+  1. Finish all single user mode transactions
+  2. Issue the `EXIT SINGLE USER MODE` command
+  3. Restart the cluster's data nodes
+* Method 2:
 
-  Reinicie os nós de armazenamento antes de entrar no modo de usuário único.
+  Restart storage nodes prior to entering single user mode.

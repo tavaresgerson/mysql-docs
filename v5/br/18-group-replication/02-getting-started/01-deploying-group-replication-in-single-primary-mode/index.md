@@ -1,21 +1,21 @@
-### 17.2.1 Implantação da Replicação em Grupo no Modo de Primordial Único
+### 17.2.1 Deploying Group Replication in Single-Primary Mode
 
-17.2.1.1 Implantação de Instâncias para Replicação em Grupo
+[17.2.1.1 Deploying Instances for Group Replication](group-replication-deploying-instances.html)
 
-17.2.1.2 Configurando uma Instância para Replicação em Grupo
+[17.2.1.2 Configuring an Instance for Group Replication](group-replication-configuring-instances.html)
 
-17.2.1.3 Credenciais do usuário
+[17.2.1.3 User Credentials](group-replication-user-credentials.html)
 
-17.2.1.4 Lançamento da Replicação em Grupo
+[17.2.1.4 Launching Group Replication](group-replication-launching.html)
 
-17.2.1.5 Impulsionar o grupo
+[17.2.1.5 Bootstrapping the Group](group-replication-bootstrap.html)
 
-17.2.1.6 Adicionando Instâncias ao Grupo
+[17.2.1.6 Adding Instances to the Group](group-replication-adding-instances.html)
 
-Cada uma das instâncias do servidor MySQL em um grupo pode ser executada em uma máquina hospedeira física independente, que é a maneira recomendada para implantar a Replicação de Grupo. Esta seção explica como criar um grupo de replicação com três instâncias do Servidor MySQL, cada uma executando em uma máquina hospedeira diferente. Consulte Seção 17.2.2, “Implantação Local da Replicação de Grupo” para obter informações sobre a implantação de múltiplas instâncias do servidor MySQL executando a Replicação de Grupo na mesma máquina hospedeira, por exemplo, para fins de teste.
+Each of the MySQL server instances in a group can run on an independent physical host machine, which is the recommended way to deploy Group Replication. This section explains how to create a replication group with three MySQL Server instances, each running on a different host machine. See [Section 17.2.2, “Deploying Group Replication Locally”](group-replication-deploying-locally.html "17.2.2 Deploying Group Replication Locally") for information about deploying multiple MySQL server instances running Group Replication on the same host machine, for example for testing purposes.
 
-**Figura 17.4 Arquitetura de Grupo**
+**Figure 17.4 Group Architecture**
 
-![Três instâncias de servidor, S1, S2 e S3, são implantadas como um grupo interconectado, e os clientes se comunicam com cada uma das instâncias de servidor](images/gr-3-server-group.png)
+![Three server instances, S1, S2, and S3, are deployed as an interconnected group, and clients communicate with each of the server instances.](images/gr-3-server-group.png)
 
-Este tutorial explica como obter e implantar o MySQL Server com o plugin de replicação por grupo, como configurar cada instância do servidor antes de criar um grupo e como usar o monitoramento do Schema de Desempenho para verificar se tudo está funcionando corretamente.
+This tutorial explains how to get and deploy MySQL Server with the Group Replication plugin, how to configure each server instance before creating a group, and how to use Performance Schema monitoring to verify that everything is working correctly.

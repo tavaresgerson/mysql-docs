@@ -1,8 +1,8 @@
-### 23.3.1 Sintaxe e exemplos de gatilho
+### 23.3.1 Trigger Syntax and Examples
 
-Para criar um gatilho ou excluir um gatilho, use a instrução `CREATE TRIGGER` ou `DROP TRIGGER`, descritas nas Seções 13.1.20, “Instrução CREATE TRIGGER”, e 13.1.31, “Instrução DROP TRIGGER”.
+To create a trigger or drop a trigger, use the `CREATE TRIGGER` or `DROP TRIGGER` statement, described in Section 13.1.20, “CREATE TRIGGER Statement”, and Section 13.1.31, “DROP TRIGGER Statement”.
 
-Aqui está um exemplo simples que associa um gatilho a uma tabela, para ser ativado em operações de `INSERT`. O gatilho atua como um acumulador, somando os valores inseridos em uma das colunas da tabela.
+Here is a simple example that associates a trigger with a table, to activate for `INSERT` operations. The trigger acts as an accumulator, summing the values inserted into one of the columns of the table.
 
 ```sql
 mysql> CREATE TABLE account (acct_num INT, amount DECIMAL(10,2));
@@ -13,15 +13,15 @@ mysql> CREATE TRIGGER ins_sum BEFORE INSERT ON account
 Query OK, 0 rows affected (0.01 sec)
 ```
 
-A instrução `CREATE TRIGGER` cria um gatilho chamado `ins_sum` que está associado à tabela `account`. Ela também inclui cláusulas que especificam o tempo de ação do gatilho, o evento de disparo e o que fazer quando o gatilho for ativado:
+The `CREATE TRIGGER` statement creates a trigger named `ins_sum` that is associated with the `account` table. It also includes clauses that specify the trigger action time, the triggering event, and what to do when the trigger activates:
 
-- A palavra-chave `BEFORE` indica o tempo da ação de disparo. Neste caso, o disparo é ativado antes de cada linha inserida na tabela. A outra palavra-chave permitida aqui é `AFTER`.
+* The keyword `BEFORE` indicates the trigger action time. In this case, the trigger activates before each row inserted into the table. The other permitted keyword here is `AFTER`.
 
-- A palavra-chave `INSERT` indica o evento de gatilho, ou seja, o tipo de operação que ativa o gatilho. No exemplo, as operações `INSERT` causam a ativação do gatilho. Você também pode criar gatilhos para operações `DELETE` e `UPDATE`.
+* The keyword `INSERT` indicates the trigger event; that is, the type of operation that activates the trigger. In the example, `INSERT` operations cause trigger activation. You can also create triggers for `DELETE` and `UPDATE` operations.
 
-- A declaração após `PARA CADA LINHA` define o corpo do gatilho; ou seja, a declaração a ser executada cada vez que o gatilho é ativado, o que ocorre uma vez para cada linha afetada pelo evento que desencadeia. No exemplo, o corpo do gatilho é um simples `SET` que acumula os valores inseridos na coluna `amount` em uma variável de usuário. A declaração refere-se à coluna como `NEW.amount`, o que significa “o valor da coluna `amount` a ser inserido na nova linha”.
+* The statement following `FOR EACH ROW` defines the trigger body; that is, the statement to execute each time the trigger activates, which occurs once for each row affected by the triggering event. In the example, the trigger body is a simple `SET` that accumulates into a user variable the values inserted into the `amount` column. The statement refers to the column as `NEW.amount` which means “the value of the `amount` column to be inserted into the new row.”
 
-Para usar o gatilho, defina a variável acumuladora para zero, execute uma instrução `INSERT` e, em seguida, veja qual valor a variável tem depois:
+To use the trigger, set the accumulator variable to zero, execute an `INSERT` statement, and then see what value the variable has afterward:
 
 ```sql
 mysql> SET @sum = 0;
@@ -34,21 +34,21 @@ mysql> SELECT @sum AS 'Total amount inserted';
 +-----------------------+
 ```
 
-Neste caso, o valor de `@sum` após a execução da instrução `INSERT` é `14,98 + 1937,50 - 100`, ou `1852,48`.
+In this case, the value of `@sum` after the `INSERT` statement has executed is `14.98 + 1937.50 - 100`, or `1852.48`.
 
-Para destruir o gatilho, use a instrução `DROP TRIGGER`. Você deve especificar o nome do esquema se o gatilho não estiver no esquema padrão:
+To destroy the trigger, use a `DROP TRIGGER` statement. You must specify the schema name if the trigger is not in the default schema:
 
 ```sql
 mysql> DROP TRIGGER test.ins_sum;
 ```
 
-Se você excluir uma tabela, todos os gatilhos da tabela também serão excluídos.
+If you drop a table, any triggers for the table are also dropped.
 
-Os nomes dos gatilhos existem no espaço de nome do esquema, o que significa que todos os gatilhos devem ter nomes únicos dentro de um esquema. Os gatilhos em diferentes esquemas podem ter o mesmo nome.
+Trigger names exist in the schema namespace, meaning that all triggers must have unique names within a schema. Triggers in different schemas can have the same name.
 
-A partir do MySQL 5.7.2, é possível definir múltiplos gatilhos para uma determinada tabela que tenham o mesmo evento de gatilho e hora de ação. Por exemplo, você pode ter dois gatilhos `BEFORE UPDATE` para uma tabela. Por padrão, os gatilhos que têm o mesmo evento de gatilho e hora de ação são ativados na ordem em que foram criados. Para alterar a ordem dos gatilhos, especifique uma cláusula após `FOR EACH ROW` que indique `FOLLOWS` ou `PRECEDES` e o nome de um gatilho existente que também tenha o mesmo evento de gatilho e hora de ação. Com `FOLLOWS`, o novo gatilho é ativado após o gatilho existente. Com `PRECEDES`, o novo gatilho é ativado antes do gatilho existente.
+As of MySQL 5.7.2, it is possible to define multiple triggers for a given table that have the same trigger event and action time. For example, you can have two `BEFORE UPDATE` triggers for a table. By default, triggers that have the same trigger event and action time activate in the order they were created. To affect trigger order, specify a clause after `FOR EACH ROW` that indicates `FOLLOWS` or `PRECEDES` and the name of an existing trigger that also has the same trigger event and action time. With `FOLLOWS`, the new trigger activates after the existing trigger. With `PRECEDES`, the new trigger activates before the existing trigger.
 
-Por exemplo, a seguinte definição de gatilho define outro gatilho `BEFORE INSERT` para a tabela `account`:
+For example, the following trigger definition defines another `BEFORE INSERT` trigger for the `account` table:
 
 ```sql
 mysql> CREATE TRIGGER ins_transaction BEFORE INSERT ON account
@@ -59,19 +59,19 @@ mysql> CREATE TRIGGER ins_transaction BEFORE INSERT ON account
 Query OK, 0 rows affected (0.01 sec)
 ```
 
-Esse gatilho, `ins_transaction`, é semelhante ao `ins_sum`, mas acumula depósitos e saques separadamente. Ele possui uma cláusula `PRECEDES` que faz com que ele seja ativado antes do `ins_sum`; sem essa cláusula, ele seria ativado após o `ins_sum`, pois é criado após o `ins_sum`.
+This trigger, `ins_transaction`, is similar to `ins_sum` but accumulates deposits and withdrawals separately. It has a `PRECEDES` clause that causes it to activate before `ins_sum`; without that clause, it would activate after `ins_sum` because it is created after `ins_sum`.
 
-Antes do MySQL 5.7.2, não pode haver múltiplos gatilhos para uma determinada tabela que tenham o mesmo evento de gatilho e hora de ação. Por exemplo, não pode haver dois gatilhos `BEFORE UPDATE` para uma tabela. Para contornar isso, você pode definir um gatilho que execute múltiplas instruções usando a construção de declaração composta `BEGIN ... END` após `FOR EACH ROW`. (Um exemplo aparece mais adiante nesta seção.)
+Before MySQL 5.7.2, there cannot be multiple triggers for a given table that have the same trigger event and action time. For example, you cannot have two `BEFORE UPDATE` triggers for a table. To work around this, you can define a trigger that executes multiple statements by using the `BEGIN ... END` compound statement construct after `FOR EACH ROW`. (An example appears later in this section.)
 
-Dentro do corpo do gatilho, as palavras-chave `OLD` e `NEW` permitem que você acesse as colunas nas linhas afetadas por um gatilho. `OLD` e `NEW` são extensões do MySQL para gatilhos; elas não são sensíveis ao maiúsculas e minúsculas.
+Within the trigger body, the `OLD` and `NEW` keywords enable you to access columns in the rows affected by a trigger. `OLD` and `NEW` are MySQL extensions to triggers; they are not case-sensitive.
 
-Em um gatilho `INSERT`, apenas `NEW.col_name` pode ser usado; não há linha antiga. Em um gatilho `DELETE`, apenas `OLD.col_name` pode ser usado; não há nova linha. Em um gatilho `UPDATE`, você pode usar `OLD.col_name` para referenciar as colunas de uma linha antes de ser atualizada e `NEW.col_name` para referenciar as colunas da linha após ser atualizada.
+In an `INSERT` trigger, only `NEW.col_name` can be used; there is no old row. In a `DELETE` trigger, only `OLD.col_name` can be used; there is no new row. In an `UPDATE` trigger, you can use `OLD.col_name` to refer to the columns of a row before it is updated and `NEW.col_name` to refer to the columns of the row after it is updated.
 
-Uma coluna com o nome `OLD` é somente de leitura. Você pode referenciá-la (se tiver o privilégio `SELECT`), mas não modificá-la. Você pode referenciar uma coluna com o nome `NEW` se tiver o privilégio `SELECT` para ela. Em um gatilho `BEFORE`, você também pode alterar seu valor com `SET NEW.col_name = value` se tiver o privilégio `UPDATE` para ele. Isso significa que você pode usar um gatilho para modificar os valores que serão inseridos em uma nova linha ou usados para atualizar uma linha. (Tal declaração `SET` não tem efeito em um gatilho `AFTER` porque a alteração da linha já ocorreu.)
+A column named with `OLD` is read only. You can refer to it (if you have the `SELECT` privilege), but not modify it. You can refer to a column named with `NEW` if you have the `SELECT` privilege for it. In a `BEFORE` trigger, you can also change its value with `SET NEW.col_name = value` if you have the `UPDATE` privilege for it. This means you can use a trigger to modify the values to be inserted into a new row or used to update a row. (Such a `SET` statement has no effect in an `AFTER` trigger because the row change has already occurred.)
 
-Em um gatilho `BEFORE`, o valor `NEW` para uma coluna `AUTO_INCREMENT` é 0, e não o número da sequência que é gerado automaticamente quando a nova linha é realmente inserida.
+In a `BEFORE` trigger, the `NEW` value for an `AUTO_INCREMENT` column is 0, not the sequence number that is generated automatically when the new row actually is inserted.
 
-Usando o construtor `BEGIN ... END`, você pode definir um gatilho que executa múltiplas instruções. Dentro do bloco `BEGIN`, você também pode usar outras sintaxes permitidas em rotinas armazenadas, como condicionais e loops. No entanto, assim como para rotinas armazenadas, se você usar o programa **mysql** para definir um gatilho que executa múltiplas instruções, é necessário redefinir o delimitador da instrução **mysql** para que você possa usar o delimitador da instrução `;` dentro da definição do gatilho. O exemplo a seguir ilustra esses pontos. Ele define um gatilho `UPDATE` que verifica o novo valor a ser usado para atualizar cada linha e modifica o valor para estar dentro do intervalo de 0 a 100. Isso deve ser um gatilho `BEFORE` porque o valor deve ser verificado antes de ser usado para atualizar a linha:
+By using the `BEGIN ... END` construct, you can define a trigger that executes multiple statements. Within the `BEGIN` block, you also can use other syntax that is permitted within stored routines such as conditionals and loops. However, just as for stored routines, if you use the **mysql** program to define a trigger that executes multiple statements, it is necessary to redefine the **mysql** statement delimiter so that you can use the `;` statement delimiter within the trigger definition. The following example illustrates these points. It defines an `UPDATE` trigger that checks the new value to be used for updating each row, and modifies the value to be within the range from 0 to 100. This must be a `BEFORE` trigger because the value must be checked before it is used to update the row:
 
 ```sql
 mysql> delimiter //
@@ -87,29 +87,29 @@ mysql> CREATE TRIGGER upd_check BEFORE UPDATE ON account
 mysql> delimiter ;
 ```
 
-Pode ser mais fácil definir um procedimento armazenado separadamente e, em seguida, invocá-lo a partir do gatilho usando uma simples instrução `CALL`. Isso também é vantajoso se você quiser executar o mesmo código dentro de vários gatilhos.
+It can be easier to define a stored procedure separately and then invoke it from the trigger using a simple `CALL` statement. This is also advantageous if you want to execute the same code from within several triggers.
 
-Há limitações sobre o que pode aparecer nas declarações que um gatilho executa quando ativado:
+There are limitations on what can appear in statements that a trigger executes when activated:
 
-- O gatilho não pode usar a instrução `CALL` para invocar procedimentos armazenados que retornam dados ao cliente ou que utilizam SQL dinâmico. (Os procedimentos armazenados são permitidos para retornar dados ao gatilho por meio dos parâmetros `OUT` ou `INOUT`.)
+* The trigger cannot use the `CALL` statement to invoke stored procedures that return data to the client or that use dynamic SQL. (Stored procedures are permitted to return data to the trigger through `OUT` or `INOUT` parameters.)
 
-- O gatilho não pode usar instruções que explicitamente ou implicitamente iniciem ou terminem uma transação, como `START TRANSACTION`, `COMMIT` ou `ROLLBACK`. (`ROLLBACK to SAVEPOINT` é permitido porque não termina uma transação.).
+* The trigger cannot use statements that explicitly or implicitly begin or end a transaction, such as `START TRANSACTION`, `COMMIT`, or `ROLLBACK`. (`ROLLBACK to SAVEPOINT` is permitted because it does not end a transaction.).
 
-Veja também a Seção 23.8, “Restrições sobre Programas Armazenados”.
+See also Section 23.8, “Restrictions on Stored Programs”.
 
-O MySQL lida com erros durante a execução de gatilhos da seguinte forma:
+MySQL handles errors during trigger execution as follows:
 
-- Se um gatilho `ANTES` falhar, a operação na linha correspondente não será executada.
+* If a `BEFORE` trigger fails, the operation on the corresponding row is not performed.
 
-- Um gatilho `ANTES` é ativado pela *tentativa* de inserir ou modificar a linha, independentemente de a tentativa ter sucesso posteriormente.
+* A `BEFORE` trigger is activated by the *attempt* to insert or modify the row, regardless of whether the attempt subsequently succeeds.
 
-- Um gatilho `AFTER` é executado apenas se qualquer gatilho `BEFORE` e a operação de linha forem executadas com sucesso.
+* An `AFTER` trigger is executed only if any `BEFORE` triggers and the row operation execute successfully.
 
-- Um erro durante um gatilho `ANTES` ou `DEPOIS` resulta no fracasso de toda a instrução que causou a invocação do gatilho.
+* An error during either a `BEFORE` or `AFTER` trigger results in failure of the entire statement that caused trigger invocation.
 
-- Para tabelas transacionais, o cancelamento de uma instrução deve causar o retorno às alterações realizadas pela instrução. O cancelamento de um gatilho faz com que a instrução falhe, então o cancelamento do gatilho também causa o retorno às alterações. Para tabelas não transacionais, esse retorno não pode ser feito, então, embora a instrução falhe, quaisquer alterações realizadas antes do ponto do erro permanecem em vigor.
+* For transactional tables, failure of a statement should cause rollback of all changes performed by the statement. Failure of a trigger causes the statement to fail, so trigger failure also causes rollback. For nontransactional tables, such rollback cannot be done, so although the statement fails, any changes performed prior to the point of the error remain in effect.
 
-Os gatilhos podem conter referências diretas a tabelas por nome, como o gatilho chamado `testref` mostrado neste exemplo:
+Triggers can contain direct references to tables by name, such as the trigger named `testref` shown in this example:
 
 ```sql
 CREATE TABLE test1(a1 INT);
@@ -141,7 +141,7 @@ INSERT INTO test4 (a4) VALUES
   (0), (0), (0), (0), (0), (0), (0), (0), (0), (0);
 ```
 
-Suponha que você insira os seguintes valores na tabela `test1`, conforme mostrado aqui:
+Suppose that you insert the following values into table `test1` as shown here:
 
 ```sql
 mysql> INSERT INTO test1 VALUES
@@ -150,7 +150,7 @@ Query OK, 8 rows affected (0.01 sec)
 Records: 8  Duplicates: 0  Warnings: 0
 ```
 
-Como resultado, as quatro tabelas contêm os seguintes dados:
+As a result, the four tables contain the following data:
 
 ```sql
 mysql> SELECT * FROM test1;

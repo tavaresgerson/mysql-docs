@@ -1,8 +1,8 @@
-#### 13.2.10.9 Erros de subconsultas
+#### 13.2.10.9 Subquery Errors
 
-Existem alguns erros que se aplicam apenas a subconsultas. Esta seção descreve-os.
+There are some errors that apply only to subqueries. This section describes them.
 
-- Sintaxe de subconsulta não suportada:
+* Unsupported subquery syntax:
 
   ```sql
   ERROR 1235 (ER_NOT_SUPPORTED_YET)
@@ -11,13 +11,13 @@ Existem alguns erros que se aplicam apenas a subconsultas. Esta seção descreve
   'LIMIT & IN/ALL/ANY/SOME subquery'"
   ```
 
-  Isso significa que o MySQL não suporta declarações do seguinte formato:
+  This means that MySQL does not support statements of the following form:
 
   ```sql
   SELECT * FROM t1 WHERE s1 IN (SELECT s2 FROM t2 ORDER BY s1 LIMIT 1)
   ```
 
-- Número incorreto de colunas da subconsulta:
+* Incorrect number of columns from subquery:
 
   ```sql
   ERROR 1241 (ER_OPERAND_COL)
@@ -25,15 +25,15 @@ Existem alguns erros que se aplicam apenas a subconsultas. Esta seção descreve
   Message = "Operand should contain 1 column(s)"
   ```
 
-  Esse erro ocorre em casos como este:
+  This error occurs in cases like this:
 
   ```sql
   SELECT (SELECT column1, column2 FROM t2) FROM t1;
   ```
 
-  Você pode usar uma subconsulta que retorne várias colunas, se o propósito for a comparação de linhas. Em outros contextos, a subconsulta deve ser um operando escalar. Veja Seção 13.2.10.5, “Subconsultas de Linhas”.
+  You may use a subquery that returns multiple columns, if the purpose is row comparison. In other contexts, the subquery must be a scalar operand. See [Section 13.2.10.5, “Row Subqueries”](row-subqueries.html "13.2.10.5 Row Subqueries").
 
-- Número incorreto de linhas da subconsulta:
+* Incorrect number of rows from subquery:
 
   ```sql
   ERROR 1242 (ER_SUBSELECT_NO_1_ROW)
@@ -41,19 +41,19 @@ Existem alguns erros que se aplicam apenas a subconsultas. Esta seção descreve
   Message = "Subquery returns more than 1 row"
   ```
 
-  Esse erro ocorre para declarações em que a subconsulta deve retornar no máximo uma linha, mas retorna várias linhas. Considere o seguinte exemplo:
+  This error occurs for statements where the subquery must return at most one row but returns multiple rows. Consider the following example:
 
   ```sql
   SELECT * FROM t1 WHERE column1 = (SELECT column1 FROM t2);
   ```
 
-  Se `SELECT column1 FROM t2` retornar apenas uma linha, a consulta anterior funciona. Se a subconsulta retornar mais de uma linha, ocorrerá o erro 1242. Nesse caso, a consulta deve ser reescrita da seguinte forma:
+  If `SELECT column1 FROM t2` returns just one row, the previous query works. If the subquery returns more than one row, error 1242 occurs. In that case, the query should be rewritten as:
 
   ```sql
   SELECT * FROM t1 WHERE column1 = ANY (SELECT column1 FROM t2);
   ```
 
-- Tabela usada incorretamente na subconsulta:
+* Incorrectly used table in subquery:
 
   ```sql
   Error 1093 (ER_UPDATE_TABLE_USED)
@@ -62,12 +62,12 @@ Existem alguns erros que se aplicam apenas a subconsultas. Esta seção descreve
   for update in FROM clause"
   ```
 
-  Esse erro ocorre em casos como os seguintes, que tenta modificar uma tabela e selecionar da mesma tabela na subconsulta:
+  This error occurs in cases such as the following, which attempts to modify a table and select from the same table in the subquery:
 
   ```sql
   UPDATE t1 SET column2 = (SELECT MAX(column1) FROM t1);
   ```
 
-  Você pode usar uma subconsulta para atribuição dentro de uma instrução `UPDATE` porque as subconsultas são legais em instruções `UPDATE` e `DELETE` assim como em instruções `SELECT`. No entanto, você não pode usar a mesma tabela (neste caso, a tabela `t1`) tanto para a cláusula `FROM` da subconsulta quanto para o alvo de atualização.
+  You can use a subquery for assignment within an [`UPDATE`](update.html "13.2.11 UPDATE Statement") statement because subqueries are legal in [`UPDATE`](update.html "13.2.11 UPDATE Statement") and [`DELETE`](delete.html "13.2.2 DELETE Statement") statements as well as in [`SELECT`](select.html "13.2.9 SELECT Statement") statements. However, you cannot use the same table (in this case, table `t1`) for both the subquery `FROM` clause and the update target.
 
-Para os motores de armazenamento transacionais, o erro de uma subconsulta faz com que toda a instrução falhe. Para os motores de armazenamento não transacionais, as modificações de dados feitas antes do erro são preservadas.
+For transactional storage engines, the failure of a subquery causes the entire statement to fail. For nontransactional storage engines, data modifications made before the error was encountered are preserved.

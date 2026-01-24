@@ -1,8 +1,8 @@
-#### 13.1.8.1 Operações de Partição em Tabelas ALTER
+#### 13.1.8.1 ALTER TABLE Partition Operations
 
-As cláusulas relacionadas à partição para `ALTER TABLE` podem ser usadas com tabelas particionadas para repartir, adicionar, excluir, descartar, importar, combinar e dividir partições, além de realizar a manutenção da partição.
+Partitioning-related clauses for [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") can be used with partitioned tables for repartitioning, to add, drop, discard, import, merge, and split partitions, and to perform partitioning maintenance.
 
-- Basta usar uma cláusula *`partition_options`* com `ALTER TABLE` em uma tabela particionada para particionar a tabela de acordo com o esquema de particionamento definido pela *`partition_options`*. Esta cláusula sempre começa com `PARTITION BY` e segue a mesma sintaxe e outras regras que se aplicam à cláusula *`partition_options`* para `CREATE TABLE` (para informações mais detalhadas, consulte Seção 13.1.18, “Instrução CREATE TABLE”), e também pode ser usada para particionar uma tabela existente que ainda não está particionada. Por exemplo, considere uma tabela (não particionada) definida como mostrado aqui:
+* Simply using a *`partition_options`* clause with [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") on a partitioned table repartitions the table according to the partitioning scheme defined by the *`partition_options`*. This clause always begins with `PARTITION BY`, and follows the same syntax and other rules as apply to the *`partition_options`* clause for [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") (for more detailed information, see [Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement")), and can also be used to partition an existing table that is not already partitioned. For example, consider a (nonpartitioned) table defined as shown here:
 
   ```sql
   CREATE TABLE t1 (
@@ -11,7 +11,7 @@ As cláusulas relacionadas à partição para `ALTER TABLE` podem ser usadas com
   );
   ```
 
-  Essa tabela pode ser particionada por `HASH`, usando a coluna `id` como chave de particionamento, em 8 partições por meio desta declaração:
+  This table can be partitioned by `HASH`, using the `id` column as the partitioning key, into 8 partitions by means of this statement:
 
   ```sql
   ALTER TABLE t1
@@ -19,9 +19,9 @@ As cláusulas relacionadas à partição para `ALTER TABLE` podem ser usadas com
       PARTITIONS 8;
   ```
 
-  O MySQL suporta a opção `ALGORITHM` com `[SUB]PARTITION BY [LINEAR] KEY`. `ALGORITHM=1` faz com que o servidor use as mesmas funções de hashing de chaves que o MySQL 5.1 ao calcular o posicionamento das linhas nas partições; `ALGORITHM=2` significa que o servidor emprega as funções de hashing de chaves implementadas e usadas por padrão para novas tabelas `KEY` particionadas no MySQL 5.5 e versões posteriores. (Tabelas particionadas criadas com as funções de hashing de chaves empregadas no MySQL 5.5 e versões posteriores não podem ser usadas por um servidor MySQL 5.1.) Não especificar a opção tem o mesmo efeito que usar `ALGORITHM=2`. Esta opção é destinada principalmente para uso ao atualizar ou desatualizar tabelas `[LINEAR] KEY` particionadas entre versões do MySQL 5.1 e versões posteriores do MySQL, ou para criar tabelas particionadas por `KEY` ou `LINEAR KEY` em um servidor MySQL 5.5 ou posterior que possa ser usado em um servidor MySQL 5.1.
+  MySQL supports an `ALGORITHM` option with `[SUB]PARTITION BY [LINEAR] KEY`. `ALGORITHM=1` causes the server to use the same key-hashing functions as MySQL 5.1 when computing the placement of rows in partitions; `ALGORITHM=2` means that the server employs the key-hashing functions implemented and used by default for new `KEY` partitioned tables in MySQL 5.5 and later. (Partitioned tables created with the key-hashing functions employed in MySQL 5.5 and later cannot be used by a MySQL 5.1 server.) Not specifying the option has the same effect as using `ALGORITHM=2`. This option is intended for use chiefly when upgrading or downgrading `[LINEAR] KEY` partitioned tables between MySQL 5.1 and later MySQL versions, or for creating tables partitioned by `KEY` or `LINEAR KEY` on a MySQL 5.5 or later server which can be used on a MySQL 5.1 server.
 
-  Para atualizar uma tabela `KEY` particionada criada no MySQL 5.1, execute primeiro `SHOW CREATE TABLE` e anote as colunas exatas e o número de particionamentos mostrados. Agora, execute uma instrução `ALTER TABLE` usando exatamente a mesma lista de colunas e número de particionamentos que na instrução `CREATE TABLE`, adicionando `ALGORITHM=2` imediatamente após as palavras-chave `PARTITION BY`. (Você também deve incluir a palavra-chave `LINEAR` se ela foi usada na definição original da tabela.) Um exemplo de uma sessão no cliente **mysql** é mostrado aqui:
+  To upgrade a `KEY` partitioned table that was created in MySQL 5.1, first execute [`SHOW CREATE TABLE`](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement") and note the exact columns and number of partitions shown. Now execute an `ALTER TABLE` statement using exactly the same column list and number of partitions as in the `CREATE TABLE` statement, while adding `ALGORITHM=2` immediately following the `PARTITION BY` keywords. (You should also include the `LINEAR` keyword if it was used for the original table definition.) An example from a session in the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client is shown here:
 
   ```sql
   mysql> SHOW CREATE TABLE p\G
@@ -53,15 +53,15 @@ As cláusulas relacionadas à partição para `ALTER TABLE` podem ser usadas com
   1 row in set (0.00 sec)
   ```
 
-  A degradação de uma tabela criada usando a hashing de chave padrão usada no MySQL 5.5 e versões posteriores para permitir seu uso por um servidor MySQL 5.1 é semelhante, exceto que, neste caso, você deve usar `ALGORITHM=1` para forçar a reconstrução das partições da tabela usando as funções de hashing de chave do MySQL 5.1. Recomenda-se que você não faça isso, exceto quando necessário para a compatibilidade com um servidor MySQL 5.1, pois as funções de hashing de chave `KEY` aprimoradas usadas por padrão no MySQL 5.5 e versões posteriores fornecem correções para vários problemas encontrados na implementação mais antiga.
+  Downgrading a table created using the default key-hashing used in MySQL 5.5 and later to enable its use by a MySQL 5.1 server is similar, except in this case you should use `ALGORITHM=1` to force the table's partitions to be rebuilt using the MySQL 5.1 key-hashing functions. It is recommended that you not do this except when necessary for compatibility with a MySQL 5.1 server, as the improved `KEY` hashing functions used by default in MySQL 5.5 and later provide fixes for a number of issues found in the older implementation.
 
-  Nota
+  Note
 
-  Uma tabela atualizada por meio de `ALTER TABLE ... PARTITION BY ALGORITHM=2 [LINEAR] KEY ...` não pode mais ser usada por um servidor MySQL 5.1. (Tal tabela precisaria ser despromovida com `ALTER TABLE ... PARTITION BY ALGORITHM=1 [LINEAR] KEY ...` antes que pudesse ser usada novamente por um servidor MySQL 5.1.)
+  A table upgraded by means of `ALTER TABLE ... PARTITION BY ALGORITHM=2 [LINEAR] KEY ...` can no longer be used by a MySQL 5.1 server. (Such a table would need to be downgraded with `ALTER TABLE ... PARTITION BY ALGORITHM=1 [LINEAR] KEY ...` before it could be used again by a MySQL 5.1 server.)
 
-  A tabela resultante do uso de uma declaração `ALTER TABLE ... PARTITION BY` deve seguir as mesmas regras que uma criada usando `CREATE TABLE ... PARTITION BY`. Isso inclui as regras que regem a relação entre quaisquer chaves únicas (incluindo qualquer chave primária) que a tabela possa ter, e as colunas ou colunas usadas na expressão de particionamento, conforme discutido em Seção 22.6.1, “Chaves de Partição, Chaves Primárias e Chaves Únicas”. As regras de `CREATE TABLE ... PARTITION BY` para especificar o número de particionamentos também se aplicam a `ALTER TABLE ... PARTITION BY`.
+  The table that results from using an `ALTER TABLE ... PARTITION BY` statement must follow the same rules as one created using `CREATE TABLE ... PARTITION BY`. This includes the rules governing the relationship between any unique keys (including any primary key) that the table might have, and the column or columns used in the partitioning expression, as discussed in [Section 22.6.1, “Partitioning Keys, Primary Keys, and Unique Keys”](partitioning-limitations-partitioning-keys-unique-keys.html "22.6.1 Partitioning Keys, Primary Keys, and Unique Keys"). The `CREATE TABLE ... PARTITION BY` rules for specifying the number of partitions also apply to `ALTER TABLE ... PARTITION BY`.
 
-  A cláusula *`partition_definition`* para `ALTER TABLE ADD PARTITION` suporta as mesmas opções que a cláusula do mesmo nome para a instrução `CREATE TABLE`. (Veja Seção 13.1.18, “Instrução CREATE TABLE”, para a sintaxe e descrição.) Suponha que você tenha a tabela particionada criada conforme mostrado aqui:
+  The *`partition_definition`* clause for `ALTER TABLE ADD PARTITION` supports the same options as the clause of the same name for the [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement. (See [Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement"), for the syntax and description.) Suppose that you have the partitioned table created as shown here:
 
   ```sql
   CREATE TABLE t1 (
@@ -75,25 +75,25 @@ As cláusulas relacionadas à partição para `ALTER TABLE` podem ser usadas com
   );
   ```
 
-  Você pode adicionar uma nova partição `p3` a esta tabela para armazenar valores menores que `2002`, conforme descrito a seguir:
+  You can add a new partition `p3` to this table for storing values less than `2002` as follows:
 
   ```sql
   ALTER TABLE t1 ADD PARTITION (PARTITION p3 VALUES LESS THAN (2002));
   ```
 
-  `DROP PARTITION` pode ser usado para descartar uma ou mais partições `RANGE` ou `LIST`. Esta declaração não pode ser usada com partições `HASH` ou `KEY`; em vez disso, use `COALESCE PARTITION` (consulte abaixo). Qualquer dado que foi armazenado nas partições descartadas nomeadas na lista *`partition_names`* é descartado. Por exemplo, dado a tabela `t1` definida anteriormente, você pode descartar as partições nomeadas `p0` e `p1` conforme mostrado aqui:
+  `DROP PARTITION` can be used to drop one or more `RANGE` or `LIST` partitions. This statement cannot be used with `HASH` or `KEY` partitions; instead, use `COALESCE PARTITION` (see below). Any data that was stored in the dropped partitions named in the *`partition_names`* list is discarded. For example, given the table `t1` defined previously, you can drop the partitions named `p0` and `p1` as shown here:
 
   ```sql
   ALTER TABLE t1 DROP PARTITION p0, p1;
   ```
 
-  Nota
+  Note
 
-  A instrução `DROP PARTITION` não funciona com tabelas que utilizam o mecanismo de armazenamento `NDB`. Consulte Seção 22.3.1, “Gestão de Partições RANGE e LIST” e Seção 21.2.7, “Limitações Conhecidas do NDB Cluster”.
+  `DROP PARTITION` does not work with tables that use the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine. See [Section 22.3.1, “Management of RANGE and LIST Partitions”](partitioning-management-range-list.html "22.3.1 Management of RANGE and LIST Partitions"), and [Section 21.2.7, “Known Limitations of NDB Cluster”](mysql-cluster-limitations.html "21.2.7 Known Limitations of NDB Cluster").
 
-  `ADD PARTITION` e `DROP PARTITION` não suportam atualmente `IF [NOT] EXISTS`.
+  `ADD PARTITION` and `DROP PARTITION` do not currently support `IF [NOT] EXISTS`.
 
-  As opções `DISCARD PARTITION ... TABLESPACE` e `IMPORT PARTITION ... TABLESPACE` estendem o recurso Transportable Tablespace para partições individuais de tabelas `InnoDB`. Cada partição de tabela `InnoDB` tem seu próprio arquivo de espaço de tabelas (arquivo `.ibd`). O recurso Transportable Tablespace facilita a cópia dos espaços de tabelas de uma instância de servidor MySQL em execução para outra instância em execução, ou a realização de uma restauração na mesma instância. Ambas as opções aceitam uma lista de um ou mais nomes de partição separados por vírgula. Por exemplo:
+  [`DISCARD PARTITION ... TABLESPACE`](alter-table.html "13.1.8 ALTER TABLE Statement") and [`IMPORT PARTITION ... TABLESPACE`](alter-table.html "13.1.8 ALTER TABLE Statement") options extend the [Transportable Tablespace](glossary.html#glos_transportable_tablespace "transportable tablespace") feature to individual `InnoDB` table partitions. Each `InnoDB` table partition has its own tablespace file (`.ibd` file). The [Transportable Tablespace](glossary.html#glos_transportable_tablespace "transportable tablespace") feature makes it easy to copy the tablespaces from a running MySQL server instance to another running instance, or to perform a restore on the same instance. Both options take a list of one or more comma-separated partition names. For example:
 
   ```sql
   ALTER TABLE t1 DISCARD PARTITION p2, p3 TABLESPACE;
@@ -103,13 +103,13 @@ As cláusulas relacionadas à partição para `ALTER TABLE` podem ser usadas com
   ALTER TABLE t1 IMPORT PARTITION p2, p3 TABLESPACE;
   ```
 
-  Ao executar `DISCARD PARTITION ... TABLESPACE` e `IMPORT PARTITION ... TABLESPACE` em tabelas subpartidas, tanto os nomes de partição quanto os de subpartição são permitidos. Quando um nome de partição é especificado, as subpartições dessa partição são incluídas.
+  When running [`DISCARD PARTITION ... TABLESPACE`](alter-table.html "13.1.8 ALTER TABLE Statement") and [`IMPORT PARTITION ... TABLESPACE`](alter-table.html "13.1.8 ALTER TABLE Statement") on subpartitioned tables, both partition and subpartition names are allowed. When a partition name is specified, subpartitions of that partition are included.
 
-  O recurso Transportable Tablespace também suporta a cópia ou restauração de tabelas `InnoDB` particionadas. Para mais informações, consulte Seção 14.6.1.3, “Importando Tabelas InnoDB”.
+  The [Transportable Tablespace](glossary.html#glos_transportable_tablespace "transportable tablespace") feature also supports copying or restoring partitioned `InnoDB` tables. For more information, see [Section 14.6.1.3, “Importing InnoDB Tables”](innodb-table-import.html "14.6.1.3 Importing InnoDB Tables").
 
-  Os nomes de renomeação de tabelas particionadas são suportados. Você pode renomear particionações individuais indiretamente usando `ALTER TABLE ... REORGANIZE PARTITION`; no entanto, essa operação copia os dados da particionação.
+  Renames of partitioned tables are supported. You can rename individual partitions indirectly using `ALTER TABLE ... REORGANIZE PARTITION`; however, this operation copies the partition's data.
 
-  Para excluir linhas de partições selecionadas, use a opção `TRUNCATE PARTITION`. Essa opção aceita uma lista de um ou mais nomes de partições separados por vírgula. Por exemplo, considere a tabela `t1` conforme definida aqui:
+  To delete rows from selected partitions, use the `TRUNCATE PARTITION` option. This option takes a comma-separated list of one or more partition names. For example, consider the table `t1` as defined here:
 
   ```sql
   CREATE TABLE t1 (
@@ -125,25 +125,25 @@ As cláusulas relacionadas à partição para `ALTER TABLE` podem ser usadas com
   );
   ```
 
-  Para excluir todas as linhas da partição `p0`, use a seguinte instrução:
+  To delete all rows from partition `p0`, use the following statement:
 
   ```sql
   ALTER TABLE t1 TRUNCATE PARTITION p0;
   ```
 
-  A declaração mostrada acima tem o mesmo efeito que a seguinte declaração `DELETE`:
+  The statement just shown has the same effect as the following [`DELETE`](delete.html "13.2.2 DELETE Statement") statement:
 
   ```sql
   DELETE FROM t1 WHERE year_col < 1991;
   ```
 
-  Ao truncar múltiplas partições, as partições não precisam ser contínuas: isso pode simplificar muito as operações de exclusão em tabelas particionadas que, de outra forma, exigiriam condições `WHERE` muito complexas se feitas com instruções `DELETE`. Por exemplo, esta instrução exclui todas as linhas das partições `p1` e `p3`:
+  When truncating multiple partitions, the partitions do not have to be contiguous: This can greatly simplify delete operations on partitioned tables that would otherwise require very complex `WHERE` conditions if done with [`DELETE`](delete.html "13.2.2 DELETE Statement") statements. For example, this statement deletes all rows from partitions `p1` and `p3`:
 
   ```sql
   ALTER TABLE t1 TRUNCATE PARTITION p1, p3;
   ```
 
-  Aqui está uma declaração equivalente `DELETE`:
+  An equivalent [`DELETE`](delete.html "13.2.2 DELETE Statement") statement is shown here:
 
   ```sql
   DELETE FROM t1 WHERE
@@ -152,11 +152,11 @@ As cláusulas relacionadas à partição para `ALTER TABLE` podem ser usadas com
       (year_col >= 2003 AND year_col < 2007);
   ```
 
-  Se você usar a palavra-chave `ALL` no lugar da lista de nomes de partições, a instrução atua em todas as partições da tabela.
+  If you use the `ALL` keyword in place of the list of partition names, the statement acts on all table partitions.
 
-  A opção `TRUNCATE PARTITION` apenas exclui as linhas; ela não altera a definição da própria tabela ou de nenhuma de suas partições.
+  `TRUNCATE PARTITION` merely deletes rows; it does not alter the definition of the table itself, or of any of its partitions.
 
-  Para verificar se as linhas foram excluídas, verifique a tabela `INFORMATION_SCHEMA.PARTITIONS`, usando uma consulta como esta:
+  To verify that the rows were dropped, check the `INFORMATION_SCHEMA.PARTITIONS` table, using a query such as this one:
 
   ```sql
   SELECT PARTITION_NAME, TABLE_ROWS
@@ -164,9 +164,9 @@ As cláusulas relacionadas à partição para `ALTER TABLE` podem ser usadas com
       WHERE TABLE_NAME = 't1';
   ```
 
-  A opção `TRUNCATE PARTITION` só é suportada para tabelas particionadas que utilizam os motores de armazenamento `MyISAM`, `InnoDB` ou `MEMORY`. Ela também funciona em tabelas de armazenamento [`BLACKHOLE`]\(blackhole-storage-engine.html] (mas não tem efeito). Não é suportada para tabelas de armazenamento `ARCHIVE`.
+  `TRUNCATE PARTITION` is supported only for partitioned tables that use the [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine"), [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine"), or [`MEMORY`](memory-storage-engine.html "15.3 The MEMORY Storage Engine") storage engine. It also works on [`BLACKHOLE`](blackhole-storage-engine.html "15.6 The BLACKHOLE Storage Engine") tables (but has no effect). It is not supported for [`ARCHIVE`](archive-storage-engine.html "15.5 The ARCHIVE Storage Engine") tables.
 
-  `COALESCE PARTITION` pode ser usado com uma tabela que está particionada por `HASH` ou `KEY` para reduzir o número de particionações em *`número`*. Suponha que você criou a tabela `t2` da seguinte forma:
+  `COALESCE PARTITION` can be used with a table that is partitioned by `HASH` or `KEY` to reduce the number of partitions by *`number`*. Suppose that you have created table `t2` as follows:
 
   ```sql
   CREATE TABLE t2 (
@@ -177,75 +177,76 @@ As cláusulas relacionadas à partição para `ALTER TABLE` podem ser usadas com
   PARTITIONS 6;
   ```
 
-  Para reduzir o número de partições usadas pelo `t2` de 6 para 4, use a seguinte declaração:
+  To reduce the number of partitions used by `t2` from 6 to 4, use the following statement:
 
   ```sql
   ALTER TABLE t2 COALESCE PARTITION 2;
   ```
 
-  Os dados contidos nas últimas *`número`* partições são reunidos nas partições restantes. Neste caso, as partições 4 e 5 são reunidas nas primeiras 4 partições (as partições numeradas 0, 1, 2 e 3).
+  The data contained in the last *`number`* partitions are merged into the remaining partitions. In this case, partitions 4 and 5 are merged into the first 4 partitions (the partitions numbered 0, 1, 2, and 3).
 
-  Para alterar algumas, mas não todas, das partições usadas por uma tabela particionada, você pode usar `REORGANIZE PARTITION`. Essa instrução pode ser usada de várias maneiras:
+  To change some but not all the partitions used by a partitioned table, you can use `REORGANIZE PARTITION`. This statement can be used in several ways:
 
-  - Para fundir um conjunto de partições em uma única partição. Isso é feito nomeando várias partições na lista *`partition_names`* e fornecendo uma única definição para *`partition_definition`*.
+  + To merge a set of partitions into a single partition. This is done by naming several partitions in the *`partition_names`* list and supplying a single definition for *`partition_definition`*.
 
-  - Para dividir uma partição existente em várias partições. Para isso, nomeie uma única partição para *`partition_names`* e forneça várias *`partition_definitions`*.
+  + To split an existing partition into several partitions. Accomplish this by naming a single partition for *`partition_names`* and providing multiple *`partition_definitions`*.
 
-  - Para alterar os intervalos para um subconjunto de partições definidas usando `MENOS QUE` ou as listas de valores para um subconjunto de partições definidas usando `IN`.
+  + To change the ranges for a subset of partitions defined using `VALUES LESS THAN` or the value lists for a subset of partitions defined using `VALUES IN`.
 
-  - Esta declaração também pode ser usada sem a opção `partition_names INTO (partition_definitions)` em tabelas que são automaticamente particionadas usando a particionamento `HASH` para forçar a redistribuição dos dados. (Atualmente, apenas as tabelas `NDB` são automaticamente particionadas dessa maneira.) Isso é útil no NDB Cluster, onde, após você ter adicionado novos nós de dados do NDB Cluster online a um NDB Cluster existente, você deseja redistribuir os dados das tabelas do NDB Cluster existentes para os novos nós de dados. Nesses casos, você deve invocar a declaração com a opção `ALGORITHM=INPLACE`; em outras palavras, como mostrado aqui:
+  + This statement may also be used without the `partition_names INTO (partition_definitions)` option on tables that are automatically partitioned using `HASH` partitioning to force redistribution of data. (Currently, only [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables are automatically partitioned in this way.) This is useful in NDB Cluster where, after you have added new NDB Cluster data nodes online to an existing NDB Cluster, you wish to redistribute existing NDB Cluster table data to the new data nodes. In such cases, you should invoke the statement with the `ALGORITHM=INPLACE` option; in other words, as shown here:
 
     ```sql
     ALTER TABLE table ALGORITHM=INPLACE, REORGANIZE PARTITION;
     ```
 
-    Você não pode executar outros DDL simultaneamente com a reorganização online da tabela, ou seja, nenhuma outra instrução DDL pode ser emitida enquanto uma instrução `ALTER TABLE ... ALGORITHM=INPLACE, REORGANIZE PARTITION` estiver sendo executada. Para obter mais informações sobre como adicionar nós de dados do NDB Cluster online, consulte Seção 21.6.7, “Adicionar nós de dados do NDB Cluster Online”.
+    You cannot perform other DDL concurrently with online table reorganization—that is, no other DDL statements can be issued while an `ALTER TABLE ... ALGORITHM=INPLACE, REORGANIZE PARTITION` statement is executing. For more information about adding NDB Cluster data nodes online, see [Section 21.6.7, “Adding NDB Cluster Data Nodes Online”](mysql-cluster-online-add-node.html "21.6.7 Adding NDB Cluster Data Nodes Online").
 
-    Nota
+    Note
 
-    `ALTER TABLE ... ALGORITHM=INPLACE, REORGANIZE PARTITION` não funciona com tabelas criadas usando a opção `MAX_ROWS`, porque ele usa o valor constante `MAX_ROWS` especificado na declaração original de `CREATE TABLE` para determinar o número de partições necessárias, então nenhuma nova partição é criada. Em vez disso, você pode usar `ALTER TABLE ... ALGORITHM=INPLACE, MAX_ROWS=rows` para aumentar o número máximo de linhas para essa tabela; nesse caso, `ALTER TABLE ... ALGORITHM=INPLACE, REORGANIZE PARTITION` não é necessário (e causa um erro se executado). O valor de *`rows`* deve ser maior que o valor especificado para `MAX_ROWS` na declaração original de `CREATE TABLE` para que isso funcione.
+    `ALTER TABLE ... ALGORITHM=INPLACE, REORGANIZE PARTITION` does not work with tables which were created using the `MAX_ROWS` option, because it uses the constant `MAX_ROWS` value specified in the original [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement to determine the number of partitions required, so no new partitions are created. Instead, you can use `ALTER TABLE ... ALGORITHM=INPLACE, MAX_ROWS=rows` to increase the maximum number of rows for such a table; in this case, `ALTER TABLE ... ALGORITHM=INPLACE, REORGANIZE PARTITION` is not needed (and causes an error if executed). The value of *`rows`* must be greater than the value specified for `MAX_ROWS` in the original `CREATE TABLE` statement for this to work.
 
-    O uso de `MAX_ROWS` para forçar o número de partições da tabela é desaconselhável no NDB 7.5.4 e versões posteriores; use `PARTITION_BALANCE` (consulte Definindo opções do NDB_TABLE).
+    Employing `MAX_ROWS` to force the number of table partitions is deprecated in NDB 7.5.4 and later; use `PARTITION_BALANCE` instead (see [Setting NDB_TABLE options](create-table.html#create-table-comment-ndb-table-options "Setting NDB_TABLE options")).
 
-    Tentar usar `REORGANIZE PARTITION` sem a opção `partition_names INTO (partition_definitions)` em tabelas explicitamente particionadas resulta no erro REORGANIZE PARTITION without parameters só pode ser usado em tabelas auto-particionadas usando particionamento HASH.
+    Attempting to use `REORGANIZE PARTITION` without the `partition_names INTO (partition_definitions)` option on explicitly partitioned tables results in the error REORGANIZE PARTITION without parameters can only be used on auto-partitioned tables using HASH partitioning.
 
-  Nota
+  Note
 
-  Para partições que não foram explicitamente nomeadas, o MySQL fornece automaticamente os nomes padrão `p0`, `p1`, `p2`, e assim por diante. O mesmo vale para as subpartições.
+  For partitions that have not been explicitly named, MySQL automatically provides the default names `p0`, `p1`, `p2`, and so on. The same is true with regard to subpartitions.
 
-  Para obter informações mais detalhadas sobre as instruções `ALTER TABLE ... REORGANIZE PARTITION` e exemplos, consulte Seção 22.3.1, “Gestão de Partições RANGE e LIST”.
+  For more detailed information about and examples of `ALTER TABLE ... REORGANIZE PARTITION` statements, see [Section 22.3.1, “Management of RANGE and LIST Partitions”](partitioning-management-range-list.html "22.3.1 Management of RANGE and LIST Partitions").
 
-- Para trocar uma partição ou subpartição de uma tabela por outra, use a instrução `ALTER TABLE ... EXCHANGE PARTITION` — ou seja, para mover quaisquer linhas existentes na partição ou subpartição para a tabela não particionada e quaisquer linhas existentes na tabela não particionada para a partição ou subpartição da tabela.
+* To exchange a table partition or subpartition with a table, use the [`ALTER TABLE ... EXCHANGE PARTITION`](alter-table.html "13.1.8 ALTER TABLE Statement") statement—that is, to move any existing rows in the partition or subpartition to the nonpartitioned table, and any existing rows in the nonpartitioned table to the table partition or subpartition.
 
-  Para informações sobre uso e exemplos, consulte Seção 22.3.3, “Troca de Partições e Subpartições com Tabelas”.
+  For usage information and examples, see [Section 22.3.3, “Exchanging Partitions and Subpartitions with Tables”](partitioning-management-exchange.html "22.3.3 Exchanging Partitions and Subpartitions with Tables").
 
-- Várias opções fornecem funcionalidades de manutenção e reparo de partições análogas à implementada para tabelas não particionadas por instruções como `CHECK TABLE` e `REPAIR TABLE` (que também são suportadas para tabelas particionadas; para mais informações, consulte Seção 13.7.2, “Instruções de Manutenção de Tabelas”). Essas incluem `ANALYZE PARTITION`, `CHECK PARTITION`, `OPTIMIZE PARTITION`, `REBUILD PARTITION` e `REPAIR PARTITION`. Cada uma dessas opções aceita uma cláusula *`partition_names`* composta por um ou mais nomes de partições, separados por vírgulas. As partições devem já existir na tabela a ser alterada. Você também pode usar a palavra-chave `ALL` no lugar de *`partition_names`*, caso em que a instrução atua em todas as partições da tabela. Para mais informações e exemplos, consulte Seção 22.3.4, “Manutenção de Partições”.
+* Several options provide partition maintenance and repair functionality analogous to that implemented for nonpartitioned tables by statements such as [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") and [`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement") (which are also supported for partitioned tables; for more information, see [Section 13.7.2, “Table Maintenance Statements”](table-maintenance-statements.html "13.7.2 Table Maintenance Statements")). These include `ANALYZE PARTITION`, `CHECK PARTITION`, `OPTIMIZE PARTITION`, `REBUILD PARTITION`, and `REPAIR PARTITION`. Each of these options takes a *`partition_names`* clause consisting of one or more names of partitions, separated by commas. The partitions must already exist in the table to be altered. You can also use the `ALL` keyword in place of *`partition_names`*, in which case the statement acts on all table partitions. For more information and examples, see [Section 22.3.4, “Maintenance of Partitions”](partitioning-maintenance.html "22.3.4 Maintenance of Partitions").
 
-  Alguns motores de armazenamento do MySQL, como o `InnoDB`, não suportam a otimização por partição. Para uma tabela particionada usando um motor de armazenamento desse tipo, a instrução `ALTER TABLE ... OPTIMIZE PARTITION` faz com que toda a tabela seja reconstruída e analisada, e um aviso apropriado é emitido. (Bug #11751825, Bug #42822)
+  Some MySQL storage engines, such as [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine"), do not support per-partition optimization. For a partitioned table using such a storage engine, `ALTER TABLE ... OPTIMIZE PARTITION` causes the entire table to rebuilt and analyzed, and an appropriate warning to be issued. (Bug
+  #11751825, Bug #42822)
 
-  Para contornar esse problema, use as instruções `ALTER TABLE ... REBUILD PARTITION` e `ALTER TABLE ... ANALYZE PARTITION` em vez disso.
+  To work around this problem, use the statements `ALTER TABLE ... REBUILD PARTITION` and `ALTER TABLE ... ANALYZE PARTITION` instead.
 
-  As opções `ANALYZE PARTITION`, `CHECK PARTITION`, `OPTIMIZE PARTITION` e `REPAIR PARTITION` não são permitidas para tabelas que não estão particionadas.
+  The `ANALYZE PARTITION`, `CHECK PARTITION`, `OPTIMIZE PARTITION`, and `REPAIR PARTITION` options are not permitted for tables which are not partitioned.
 
-- No MySQL 5.7.9 e versões posteriores, você pode usar `ALTER TABLE ... UPGRADE PARTITIONING` para atualizar uma tabela particionada `InnoDB` que foi criada com o antigo manipulador de particionamento genérico para a particionamento nativo do `InnoDB` empregado no MySQL 5.7.6 e versões posteriores. Além disso, a partir do MySQL 5.7.9, o utilitário **mysql_upgrade** verifica essas tabelas `InnoDB` particionadas e tenta atualizá-las para o particionamento nativo como parte de suas operações normais.
+* In MySQL 5.7.9 and later, you can use `ALTER TABLE ... UPGRADE PARTITIONING` to upgrade a partitioned [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") table that was created with the old generic partitioning handler to the `InnoDB` native partitioning employed in MySQL 5.7.6 and later. Also beginning with MySQL 5.7.9, the [**mysql_upgrade**](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables") utility checks for such partitioned `InnoDB` tables and attempts to upgrade them to native partitioning as part of its normal operations.
 
-  Importante
+  Important
 
-  Tabelas `InnoDB` particionadas que não utilizam o manipulador de particionamento nativo do `InnoDB` não podem ser usadas no MySQL 8.0 ou posterior. O `ALTER TABLE ... UPGRADE PARTITIONING` não é suportado no MySQL 8.0 ou posterior; portanto, quaisquer tabelas `InnoDB` particionadas que utilizem o manipulador genérico *devem* ser atualizadas para o manipulador nativo do \`InnoDB *antes* de atualizar sua instalação do MySQL para o MySQL 8.0 ou posterior.
+  Partitioned `InnoDB` tables that do not use the `InnoDB` native partitioning handler cannot be used in MySQL 8.0 or later. `ALTER TABLE ... UPGRADE PARTITIONING` is not supported in MySQL 8.0 or later; therefore, any partitioned `InnoDB` tables that employ the generic handler *must* be upgraded to the InnoDB native handler *before* upgrading your MySQL installation to MySQL 8.0 or later.
 
-- A opção `REMOVE PARTITIONING` permite que você remova a partição de uma tabela sem afetar a tabela ou seus dados. Essa opção pode ser combinada com outras opções de `ALTER TABLE` (alter-table.html), como aquelas usadas para adicionar, excluir ou renomear colunas ou índices.
+* `REMOVE PARTITIONING` enables you to remove a table's partitioning without otherwise affecting the table or its data. This option can be combined with other [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") options such as those used to add, drop, or rename columns or indexes.
 
-- Usar a opção `ENGINE` com `ALTER TABLE` altera o mecanismo de armazenamento usado pela tabela sem afetar a partição.
+* Using the `ENGINE` option with [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") changes the storage engine used by the table without affecting the partitioning.
 
-Quando a instrução `ALTER TABLE ... EXCHANGE PARTITION` ou `ALTER TABLE ... TRUNCATE PARTITION` é executada em uma tabela particionada que usa `MyISAM` (ou outro mecanismo de armazenamento que utiliza bloqueio em nível de tabela), apenas as partições que são realmente lidas são bloqueadas. (Isso não se aplica a tabelas particionadas que usam um mecanismo de armazenamento que emprega bloqueio em nível de linha, como `InnoDB`.) Veja Seção 22.6.4, “Particionamento e Bloqueio”.
+When `ALTER TABLE ... EXCHANGE PARTITION` or `ALTER TABLE ... TRUNCATE PARTITION` is run against a partitioned table that uses [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine") (or another storage engine that makes use of table-level locking), only those partitions that are actually read from are locked. (This does not apply to partitioned tables using a storage enginethat employs row-level locking, such as [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine").) See [Section 22.6.4, “Partitioning and Locking”](partitioning-limitations-locking.html "22.6.4 Partitioning and Locking").
 
-É possível que uma instrução `ALTER TABLE` contenha uma cláusula `PARTITION BY` ou `REMOVE PARTITIONING` em uma adição a outras especificações de alteração, mas a cláusula `PARTITION BY` ou `REMOVE PARTITIONING` deve ser especificada por último após quaisquer outras especificações.
+It is possible for an [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statement to contain a `PARTITION BY` or `REMOVE PARTITIONING` clause in an addition to other alter specifications, but the `PARTITION BY` or `REMOVE PARTITIONING` clause must be specified last after any other specifications.
 
-As opções `ADD PARTITION`, `DROP PARTITION`, `COALESCE PARTITION`, `REORGANIZE PARTITION`, `ANALYZE PARTITION`, `CHECK PARTITION` e `REPAIR PARTITION` não podem ser combinadas com outras especificações de alteração em uma única `ALTER TABLE`, pois as opções listadas acima atuam em partições individuais. Para mais informações, consulte Seção 13.1.8.1, “Operações de Partição ALTER TABLE”.
+The `ADD PARTITION`, `DROP PARTITION`, `COALESCE PARTITION`, `REORGANIZE PARTITION`, `ANALYZE PARTITION`, `CHECK PARTITION`, and `REPAIR PARTITION` options cannot be combined with other alter specifications in a single `ALTER TABLE`, since the options just listed act on individual partitions. For more information, see [Section 13.1.8.1, “ALTER TABLE Partition Operations”](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations").
 
-Apenas uma única instância de qualquer uma das seguintes opções pode ser usada em uma declaração específica de `ALTER TABLE`: `PARTITION BY`, `ADD PARTITION`, `DROP PARTITION`, `TRUNCATE PARTITION`, `EXCHANGE PARTITION`, `REORGANIZE PARTITION` ou `COALESCE PARTITION`, `ANALYZE PARTITION`, `CHECK PARTITION`, `OPTIMIZE PARTITION`, `REBUILD PARTITION`, `REMOVE PARTITIONING`.
+Only a single instance of any one of the following options can be used in a given [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statement: `PARTITION BY`, `ADD PARTITION`, `DROP PARTITION`, `TRUNCATE PARTITION`, `EXCHANGE PARTITION`, `REORGANIZE PARTITION`, or `COALESCE PARTITION`, `ANALYZE PARTITION`, `CHECK PARTITION`, `OPTIMIZE PARTITION`, `REBUILD PARTITION`, `REMOVE PARTITIONING`.
 
-Por exemplo, as seguintes duas declarações são inválidas:
+For example, the following two statements are invalid:
 
 ```sql
 ALTER TABLE t1 ANALYZE PARTITION p1, ANALYZE PARTITION p2;
@@ -253,21 +254,21 @@ ALTER TABLE t1 ANALYZE PARTITION p1, ANALYZE PARTITION p2;
 ALTER TABLE t1 ANALYZE PARTITION p1, CHECK PARTITION p2;
 ```
 
-No primeiro caso, você pode analisar as partições `p1` e `p2` da tabela `t1` simultaneamente usando uma única instrução com uma única opção `ANALYZE PARTITION` que lista ambas as partições a serem analisadas, como este:
+In the first case, you can analyze partitions `p1` and `p2` of table `t1` concurrently using a single statement with a single `ANALYZE PARTITION` option that lists both of the partitions to be analyzed, like this:
 
 ```sql
 ALTER TABLE t1 ANALYZE PARTITION p1, p2;
 ```
 
-No segundo caso, não é possível realizar operações `ANALYZE` e `CHECK` em diferentes partições da mesma tabela simultaneamente. Em vez disso, você deve emitir duas declarações separadas, como esta:
+In the second case, it is not possible to perform `ANALYZE` and `CHECK` operations on different partitions of the same table concurrently. Instead, you must issue two separate statements, like this:
 
 ```sql
 ALTER TABLE t1 ANALYZE PARTITION p1;
 ALTER TABLE t1 CHECK PARTITION p2;
 ```
 
-As operações `REBUILD` não são suportadas atualmente para subpartições. A palavra-chave `REBUILD` é expressamente desaconselhada com subpartições e faz com que a operação `ALTER TABLE` falhe com um erro se usada dessa forma.
+`REBUILD` operations are currently unsupported for subpartitions. The `REBUILD` keyword is expressly disallowed with subpartitions, and causes `ALTER TABLE` to fail with an error if so used.
 
-As operações `CHECK PARTITION` e `REPAIR PARTITION` falham quando a partição a ser verificada ou reparada contém erros de chave duplicada.
+`CHECK PARTITION` and `REPAIR PARTITION` operations fail when the partition to be checked or repaired contains any duplicate key errors.
 
-Para obter mais informações sobre essas declarações, consulte Seção 22.3.4, “Manutenção de Partições”.
+For more information about these statements, see [Section 22.3.4, “Maintenance of Partitions”](partitioning-maintenance.html "22.3.4 Maintenance of Partitions").

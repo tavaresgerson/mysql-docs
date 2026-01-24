@@ -1,10 +1,10 @@
-#### 13.7.5.7. Declaração SHOW CREATE EVENT EVENT
+#### 13.7.5.7 SHOW CREATE EVENT Statement
 
 ```sql
 SHOW CREATE EVENT event_name
 ```
 
-Esta declaração exibe a declaração `CREATE EVENT` necessária para recriar um evento específico. Ela requer o privilégio `EVENT` para o banco de dados a partir do qual o evento deve ser exibido. Por exemplo (usando o mesmo evento `e_daily` definido e alterado na Seção 13.7.5.18, “Declaração SHOW EVENTS”):
+This statement displays the [`CREATE EVENT`](create-event.html "13.1.12 CREATE EVENT Statement") statement needed to re-create a given event. It requires the [`EVENT`](privileges-provided.html#priv_event) privilege for the database from which the event is to be shown. For example (using the same event `e_daily` defined and then altered in [Section 13.7.5.18, “SHOW EVENTS Statement”](show-events.html "13.7.5.18 SHOW EVENTS Statement")):
 
 ```sql
 mysql> SHOW CREATE EVENT myschema.e_daily\G
@@ -33,6 +33,6 @@ collation_connection: utf8_general_ci
   Database Collation: latin1_swedish_ci
 ```
 
-`character_set_client` é o valor da sessão da variável de sistema `character_set_client` quando o evento foi criado. `collation_connection` é o valor da sessão da variável de sistema `collation_connection` quando o evento foi criado. `Database Collation` é a collation do banco de dados com o qual o evento está associado.
+`character_set_client` is the session value of the [`character_set_client`](server-system-variables.html#sysvar_character_set_client) system variable when the event was created. `collation_connection` is the session value of the [`collation_connection`](server-system-variables.html#sysvar_collation_connection) system variable when the event was created. `Database Collation` is the collation of the database with which the event is associated.
 
-A saída reflete o status atual do evento (`ENABLE`) e não o status com o qual ele foi criado.
+The output reflects the current status of the event (`ENABLE`) rather than the status with which it was created.

@@ -1,19 +1,19 @@
-# Capítulo 29 MySQL Workbench
+# Chapter 29 MySQL Workbench
 
-O MySQL Workbench oferece uma ferramenta gráfica para trabalhar com servidores e bancos de dados MySQL. O MySQL Workbench é desenvolvido e testado com o MySQL Server 8.0. O MySQL Workbench pode se conectar ao MySQL Server 8.4 e versões posteriores, mas algumas funcionalidades do MySQL Workbench podem não funcionar com essas versões mais recentes do servidor.
+MySQL Workbench provides a graphical tool for working with MySQL servers and databases. MySQL Workbench is developed and tested with MySQL Server 8.0. MySQL Workbench may connect to MySQL Server 8.4 and higher but some MySQL Workbench features may not function with those newer server versions.
 
-A discussão a seguir descreve brevemente as funcionalidades do MySQL Workbench. Para obter mais informações, consulte o manual do MySQL Workbench, disponível em https://dev.mysql.com/doc/workbench/pt/.
+The following discussion briefly describes MySQL Workbench capabilities. For more information, see the MySQL Workbench manual, available at [https://dev.mysql.com/doc/workbench/en/](/doc/workbench/en/).
 
-O MySQL Workbench oferece cinco áreas principais de funcionalidade:
+MySQL Workbench provides five main areas of functionality:
 
-- **Desenvolvimento de SQL**: Permite criar e gerenciar conexões com servidores de banco de dados. Além de permitir que você configure os parâmetros de conexão, o MySQL Workbench oferece a capacidade de executar consultas SQL nas conexões de banco de dados usando o Editor de SQL integrado. Essa funcionalidade substitui a anteriormente fornecida pela aplicação independente Query Browser.
+* **SQL Development**: Enables you to create and manage connections to database servers. As well as enabling you to configure connection parameters, MySQL Workbench provides the capability to execute SQL queries on the database connections using the built-in SQL Editor. This functionality replaces that previously provided by the Query Browser standalone application.
 
-- **Modelagem de Dados**: Permite criar modelos do esquema do seu banco de dados de forma gráfica, realizar engenharia reversa e direta entre um esquema e um banco de dados em execução, e editar todos os aspectos do seu banco de dados usando o Editor de Tabelas abrangente. O Editor de Tabelas oferece facilidades de fácil uso para editar Tabelas, Colunas, Índices, Gatilhos, Partição, Opções, Inserções e Privilégios, Rotinas e Visualizações.
+* **Data Modeling**: Enables you to create models of your database schema graphically, reverse and forward engineer between a schema and a live database, and edit all aspects of your database using the comprehensive Table Editor. The Table Editor provides easy-to-use facilities for editing Tables, Columns, Indexes, Triggers, Partitioning, Options, Inserts and Privileges, Routines and Views.
 
-- **Administração de Servidores**: Permite criar e administrar instâncias de servidores.
+* **Server Administration**: Enables you to create and administer server instances.
 
-- **Migração de Dados**: Permite a migração de tabelas, objetos e dados de Microsoft SQL Server, Sybase ASE, SQLite, SQL Anywhere, PostgreSQL e outros RDBMS para MySQL. A migração também suporta a migração de versões anteriores do MySQL para as versões mais recentes.
+* **Data Migration**: Allows you to migrate from Microsoft SQL Server, Sybase ASE, SQLite, SQL Anywhere, PostreSQL, and other RDBMS tables, objects and data to MySQL. Migration also supports migrating from earlier versions of MySQL to the latest releases.
 
-- **Suporte ao MySQL Enterprise**: Suporte para produtos empresariais, como o MySQL Enterprise Backup e o MySQL Audit.
+* **MySQL Enterprise Support**: Support for Enterprise products such as MySQL Enterprise Backup and MySQL Audit.
 
-O MySQL Workbench está disponível em duas edições: a Edição Comunitária e a Edição Comercial. A Edição Comunitária está disponível gratuitamente. A Edição Comercial oferece recursos empresariais adicionais, como a geração de documentação de banco de dados, a um custo baixo.
+MySQL Workbench is available in two editions, the Community Edition and the Commercial Edition. The Community Edition is available free of charge. The Commercial Edition provides additional Enterprise features, such as database documentation generation, at low cost.

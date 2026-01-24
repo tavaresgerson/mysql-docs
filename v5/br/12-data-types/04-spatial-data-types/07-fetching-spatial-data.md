@@ -1,26 +1,26 @@
-### 11.4.7 Obter Dados Espaciais
+### 11.4.7 Fetching Spatial Data
 
-Os valores de geometria armazenados em uma tabela podem ser recuperados no formato interno. Você também pode convertê-los para o formato WKT ou WKB.
+Geometry values stored in a table can be fetched in internal format. You can also convert them to WKT or WKB format.
 
-- Obter dados espaciais no formato interno:
+* Fetching spatial data in internal format:
 
-  Obter valores de geometria usando o formato interno pode ser útil em transferências entre tabelas:
+  Fetching geometry values using internal format can be useful in table-to-table transfers:
 
   ```sql
   CREATE TABLE geom2 (g GEOMETRY) SELECT g FROM geom;
   ```
 
-- Obter dados espaciais no formato WKT:
+* Fetching spatial data in WKT format:
 
-  A função `ST_AsText()` converte uma geometria do formato interno para uma string WKT.
+  The `ST_AsText()` function converts a geometry from internal format to a WKT string.
 
   ```sql
   SELECT ST_AsText(g) FROM geom;
   ```
 
-- Obter dados espaciais no formato WKB:
+* Fetching spatial data in WKB format:
 
-  A função `ST_AsBinary()` converte uma geometria do formato interno para um `BLOB` que contém o valor WKB.
+  The `ST_AsBinary()` function converts a geometry from internal format to a `BLOB` containing the WKB value.
 
   ```sql
   SELECT ST_AsBinary(g) FROM geom;

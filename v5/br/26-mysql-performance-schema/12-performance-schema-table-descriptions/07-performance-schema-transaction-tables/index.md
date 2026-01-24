@@ -1,42 +1,42 @@
-### 25.12.7 Tabelas de Transações do Schema de Desempenho
+### 25.12.7 Performance Schema Transaction Tables
 
-25.12.7.1 Tabela events_transactions_current
+[25.12.7.1 The events_transactions_current Table](performance-schema-events-transactions-current-table.html)
 
-25.12.7.2 Tabela de histórico de eventos_transações
+[25.12.7.2 The events_transactions_history Table](performance-schema-events-transactions-history-table.html)
 
-25.12.7.3 A tabela de histórico de eventos_transações
+[25.12.7.3 The events_transactions_history_long Table](performance-schema-events-transactions-history-long-table.html)
 
-Os instrumentos do Schema de Desempenho transacionam. Na hierarquia de eventos, os eventos de espera estão dentro dos eventos de estágio, que estão dentro dos eventos de declaração, que estão dentro dos eventos de transação.
+The Performance Schema instruments transactions. Within the event hierarchy, wait events nest within stage events, which nest within statement events, which nest within transaction events.
 
-Essas tabelas armazenam eventos de transação:
+These tables store transaction events:
 
-- `eventos_transacoes_atual`: O evento de transação atual para cada thread.
+* [`events_transactions_current`](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table"): The current transaction event for each thread.
 
-- `eventos_transações_história`: Os eventos de transação mais recentes que terminaram por thread.
+* [`events_transactions_history`](performance-schema-events-transactions-history-table.html "25.12.7.2 The events_transactions_history Table"): The most recent transaction events that have ended per thread.
 
-- `eventos_transacoes_historico_longo`: Os eventos de transação mais recentes que terminaram globalmente (em todas as threads).
+* [`events_transactions_history_long`](performance-schema-events-transactions-history-long-table.html "25.12.7.3 The events_transactions_history_long Table"): The most recent transaction events that have ended globally (across all threads).
 
-As seções a seguir descrevem as tabelas de eventos de transação. Existem também tabelas resumidas que agregam informações sobre eventos de transação; consulte Seção 25.12.15.4, “Tabelas de Resumo de Transação”.
+The following sections describe the transaction event tables. There are also summary tables that aggregate information about transaction events; see [Section 25.12.15.4, “Transaction Summary Tables”](performance-schema-transaction-summary-tables.html "25.12.15.4 Transaction Summary Tables").
 
-Para obter mais informações sobre a relação entre as três tabelas de eventos de transação, consulte Seção 25.9, “Tabelas do Schema de Desempenho para Eventos Atuais e Históricos”.
+For more information about the relationship between the three transaction event tables, see [Section 25.9, “Performance Schema Tables for Current and Historical Events”](performance-schema-event-tables.html "25.9 Performance Schema Tables for Current and Historical Events").
 
-- Configurando a Coleta de Eventos de Transação
-- Limites de transação
-- Instrumentação de Transações
-- Transações e Eventos Aninhados
-- Transações e Programas Armazenados
-- Transações e pontos de salvamento
-- Transações e Erros
+* [Configuring Transaction Event Collection](performance-schema-transaction-tables.html#performance-schema-transaction-tables-configuration "Configuring Transaction Event Collection")
+* [Transaction Boundaries](performance-schema-transaction-tables.html#performance-schema-transaction-tables-transaction-boundaries "Transaction Boundaries")
+* [Transaction Instrumentation](performance-schema-transaction-tables.html#performance-schema-transaction-tables-instrumentation "Transaction Instrumentation")
+* [Transactions and Nested Events](performance-schema-transaction-tables.html#performance-schema-transaction-tables-nested-events "Transactions and Nested Events")
+* [Transactions and Stored Programs](performance-schema-transaction-tables.html#performance-schema-transaction-tables-stored-programs "Transactions and Stored Programs")
+* [Transactions and Savepoints](performance-schema-transaction-tables.html#performance-schema-transaction-tables-savepoints "Transactions and Savepoints")
+* [Transactions and Errors](performance-schema-transaction-tables.html#performance-schema-transaction-tables-errors "Transactions and Errors")
 
-#### Configurando a Coleta de Eventos de Transação
+#### Configuring Transaction Event Collection
 
-Para controlar se os eventos de transação devem ser coletados, defina o estado dos instrumentos e dos consumidores relevantes:
+To control whether to collect transaction events, set the state of the relevant instruments and consumers:
 
-- A tabela `setup_instruments` contém um instrumento chamado `transaction`. Use este instrumento para habilitar ou desabilitar a coleta de classes individuais de eventos de transação.
+* The [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table contains an instrument named `transaction`. Use this instrument to enable or disable collection of individual transaction event classes.
 
-- A tabela `setup_consumers` contém valores de consumidores com nomes correspondentes aos nomes atuais e históricos das tabelas de eventos de transação. Use esses consumidores para filtrar a coleção de eventos de transação.
+* The [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") table contains consumer values with names corresponding to the current and historical transaction event table names. Use these consumers to filter collection of transaction events.
 
-O instrumento `transaction` e os consumidores de transação são desabilitados por padrão:
+The `transaction` instrument and the transaction consumers are disabled by default:
 
 ```sql
 mysql> SELECT *
@@ -59,9 +59,9 @@ mysql> SELECT *
 +----------------------------------+---------+
 ```
 
-Para controlar a coleta de eventos de transação ao iniciar o servidor, use linhas como estas no seu arquivo `my.cnf`:
+To control transaction event collection at server startup, use lines like these in your `my.cnf` file:
 
-- Ativar:
+* Enable:
 
   ```sql
   [mysqld]
@@ -71,7 +71,7 @@ Para controlar a coleta de eventos de transação ao iniciar o servidor, use lin
   performance-schema-consumer-events-transactions-history-long=ON
   ```
 
-- Desativar:
+* Disable:
 
   ```sql
   [mysqld]
@@ -81,9 +81,9 @@ Para controlar a coleta de eventos de transação ao iniciar o servidor, use lin
   performance-schema-consumer-events-transactions-history-long=OFF
   ```
 
-Para controlar a coleta de eventos de transação em tempo de execução, atualize as tabelas `setup_instruments` e `setup_consumers`:
+To control transaction event collection at runtime, update the [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") and [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") tables:
 
-- Ativar:
+* Enable:
 
   ```sql
   UPDATE performance_schema.setup_instruments
@@ -95,7 +95,7 @@ Para controlar a coleta de eventos de transação em tempo de execução, atuali
   WHERE NAME LIKE 'events_transactions%';
   ```
 
-- Desativar:
+* Disable:
 
   ```sql
   UPDATE performance_schema.setup_instruments
@@ -107,9 +107,9 @@ Para controlar a coleta de eventos de transação em tempo de execução, atuali
   WHERE NAME LIKE 'events_transactions%';
   ```
 
-Para coletar eventos de transação apenas para tabelas específicas de eventos de transação, habilite o instrumento `transaction`, mas apenas os consumidores de transação que correspondem às tabelas desejadas.
+To collect transaction events only for specific transaction event tables, enable the `transaction` instrument but only the transaction consumers corresponding to the desired tables.
 
-A tabela `setup_timers` contém uma linha com o valor `NAME` de `transaction`, que indica a unidade para o temporizador de eventos de transação. A unidade padrão é `NANOSECOND`:
+The [`setup_timers`](performance-schema-setup-timers-table.html "25.12.2.5 The setup_timers Table") table contains a row with a `NAME` value of `transaction` that indicates the unit for transaction event timing. The default unit is `NANOSECOND`:
 
 ```sql
 mysql> SELECT *
@@ -122,7 +122,7 @@ mysql> SELECT *
 +-------------+------------+
 ```
 
-Para alterar a unidade de temporização, modifique o valor `TIMER_NAME`:
+To change the timing unit, modify the `TIMER_NAME` value:
 
 ```sql
 UPDATE performance_schema.setup_timers
@@ -130,45 +130,45 @@ SET TIMER_NAME = 'MICROSECOND'
 WHERE NAME = 'transaction';
 ```
 
-Para obter informações adicionais sobre a configuração da coleta de eventos, consulte Seção 25.3, “Configuração de Inicialização do Schema de Desempenho” e Seção 25.4, “Configuração de Execução em Tempo Real do Schema de Desempenho”.
+For additional information about configuring event collection, see [Section 25.3, “Performance Schema Startup Configuration”](performance-schema-startup-configuration.html "25.3 Performance Schema Startup Configuration"), and [Section 25.4, “Performance Schema Runtime Configuration”](performance-schema-runtime-configuration.html "25.4 Performance Schema Runtime Configuration").
 
-#### Limites de transação
+#### Transaction Boundaries
 
-No MySQL Server, as transações começam explicitamente com essas instruções:
+In MySQL Server, transactions start explicitly with these statements:
 
 ```sql
 START TRANSACTION | BEGIN | XA START | XA BEGIN
 ```
 
-As transações também começam implicitamente. Por exemplo, quando a variável de sistema `autocommit` é habilitada, o início de cada instrução inicia uma nova transação.
+Transactions also start implicitly. For example, when the [`autocommit`](server-system-variables.html#sysvar_autocommit) system variable is enabled, the start of each statement starts a new transaction.
 
-Quando o `autocommit` é desativado, a primeira instrução após uma transação confirmada marca o início de uma nova transação. As instruções subsequentes fazem parte da transação até que ela seja confirmada.
+When [`autocommit`](server-system-variables.html#sysvar_autocommit) is disabled, the first statement following a committed transaction marks the start of a new transaction. Subsequent statements are part of the transaction until it is committed.
 
-As transações terminam explicitamente com essas declarações:
+Transactions explicitly end with these statements:
 
 ```sql
 COMMIT | ROLLBACK | XA COMMIT | XA ROLLBACK
 ```
 
-As transações também terminam implicitamente com a execução de instruções DDL, instruções de bloqueio e instruções de administração do servidor.
+Transactions also end implicitly, by execution of DDL statements, locking statements, and server administration statements.
 
-Na discussão a seguir, as referências a `START TRANSACTION` também se aplicam a `BEGIN`, `XA START` e `XA BEGIN`. Da mesma forma, as referências a `COMMIT` e `ROLLBACK` se aplicam a `XA COMMIT` e `XA ROLLBACK`, respectivamente.
+In the following discussion, references to [`START TRANSACTION`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") also apply to [`BEGIN`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements"), [`XA START`](xa-statements.html "13.3.7.1 XA Transaction SQL Statements"), and [`XA BEGIN`](xa-statements.html "13.3.7.1 XA Transaction SQL Statements"). Similarly, references to [`COMMIT`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") and [`ROLLBACK`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") apply to [`XA COMMIT`](xa-statements.html "13.3.7.1 XA Transaction SQL Statements") and [`XA ROLLBACK`](xa-statements.html "13.3.7.1 XA Transaction SQL Statements"), respectively.
 
-O Schema de Desempenho define os limites das transações de forma semelhante ao do servidor. O início e o fim de um evento de transação correspondem de perto às transições de estado correspondentes no servidor:
+The Performance Schema defines transaction boundaries similarly to that of the server. The start and end of a transaction event closely match the corresponding state transitions in the server:
 
-- Para uma transação explicitamente iniciada, o evento de transação começa durante o processamento da instrução `START TRANSACTION`.
+* For an explicitly started transaction, the transaction event starts during processing of the [`START TRANSACTION`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") statement.
 
-- Para uma transação iniciada implicitamente, o evento da transação começa na primeira declaração que utiliza um mecanismo de transação após a conclusão da transação anterior.
+* For an implicitly started transaction, the transaction event starts on the first statement that uses a transactional engine after the previous transaction has ended.
 
-- Para qualquer transação, seja explicitamente ou implicitamente encerrada, o evento da transação termina quando o servidor sai do estado de transação ativa durante o processamento de `COMMIT` ou `ROLLBACK`.
+* For any transaction, whether explicitly or implicitly ended, the transaction event ends when the server transitions out of the active transaction state during the processing of [`COMMIT`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") or [`ROLLBACK`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements").
 
-Há implicações sutis nessa abordagem:
+There are subtle implications to this approach:
 
-- Os eventos de transação no Gerenciamento de Desempenho não incluem totalmente os eventos de declaração associados às declarações correspondentes `START TRANSACTION` (commit.html), `COMMIT` (commit.html) ou `ROLLBACK` (commit.html). Há uma pequena quantidade de sobreposição de tempo entre o evento de transação e essas declarações.
+* Transaction events in the Performance Schema do not fully include the statement events associated with the corresponding [`START TRANSACTION`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements"), [`COMMIT`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements"), or [`ROLLBACK`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") statements. There is a trivial amount of timing overlap between the transaction event and these statements.
 
-- As declarações que trabalham com motores não transacionais não têm efeito no estado da transação da conexão. Para transações implícitas, o evento da transação começa com a primeira declaração que usa um motor transacional. Isso significa que as declarações que operam exclusivamente em tabelas não transacionais são ignoradas, mesmo após `START TRANSACTION`.
+* Statements that work with nontransactional engines have no effect on the transaction state of the connection. For implicit transactions, the transaction event begins with the first statement that uses a transactional engine. This means that statements operating exclusively on nontransactional tables are ignored, even following [`START TRANSACTION`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements").
 
-Para ilustrar, considere o seguinte cenário:
+To illustrate, consider the following scenario:
 
 ```sql
 1. SET autocommit = OFF;
@@ -184,62 +184,61 @@ Para ilustrar, considere o seguinte cenário:
 9. COMMIT;                                  -- Transaction 2 COMMIT
 ```
 
-Do ponto de vista do servidor, a Transação 1 termina quando a tabela `t2` é criada. A Transação 2 não começa até que uma tabela transacional seja acessada, apesar das atualizações intermediárias em tabelas não transacionais.
+From the perspective of the server, Transaction 1 ends when table `t2` is created. Transaction 2 does not start until a transactional table is accessed, despite the intervening updates to nontransactional tables.
 
-Do ponto de vista do Schema de Desempenho, a Transação 2 começa quando o servidor passa para um estado de transação ativa. As instruções 6 e 7 não estão incluídas nos limites da Transação 2, o que está de acordo com a forma como o servidor registra as transações no log binário.
+From the perspective of the Performance Schema, Transaction 2 starts when the server transitions into an active transaction state. Statements 6 and 7 are not included within the boundaries of Transaction 2, which is consistent with how the server writes transactions to the binary log.
 
-#### Instrumentação de transações
+#### Transaction Instrumentation
 
-Três atributos definem as transações:
+Three attributes define transactions:
 
-- Modo de acesso (somente leitura, leitura e escrita)
+* Access mode (read only, read write)
+* Isolation level ([`SERIALIZABLE`](innodb-transaction-isolation-levels.html#isolevel_serializable), [`REPEATABLE READ`](innodb-transaction-isolation-levels.html#isolevel_repeatable-read), and so forth)
 
-- Nível de isolamento (`SERIALIZABLE`, `REPEATABLE READ`, e assim por diante)
+* Implicit ([`autocommit`](server-system-variables.html#sysvar_autocommit) enabled) or explicit ([`autocommit`](server-system-variables.html#sysvar_autocommit) disabled)
 
-- Implícito (`autocommit` ativado) ou explícito (`autocommit` desativado)
+To reduce complexity of the transaction instrumentation and to ensure that the collected transaction data provides complete, meaningful results, all transactions are instrumented independently of access mode, isolation level, or autocommit mode.
 
-Para reduzir a complexidade da instrumentação das transações e garantir que os dados coletados das transações forneçam resultados completos e significativos, todas as transações são instrumentadas independentemente do modo de acesso, do nível de isolamento ou do modo de autocommit.
+To selectively examine transaction history, use the attribute columns in the transaction event tables: `ACCESS_MODE`, `ISOLATION_LEVEL`, and `AUTOCOMMIT`.
 
-Para examinar seletivamente o histórico de transações, use as colunas de atributos nas tabelas de eventos de transação: `ACCESS_MODE`, `ISOLATION_LEVEL` e `AUTOCOMMIT`.
+The cost of transaction instrumentation can be reduced various ways, such as enabling or disabling transaction instrumentation according to user, account, host, or thread (client connection).
 
-O custo da instrumentação de transações pode ser reduzido de várias maneiras, como ativar ou desativar a instrumentação de transações de acordo com o usuário, a conta, o host ou o thread (conexão do cliente).
+#### Transactions and Nested Events
 
-#### Transações e Eventos Aninhados
+The parent of a transaction event is the event that initiated the transaction. For an explicitly started transaction, this includes the [`START TRANSACTION`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") and [`COMMIT AND CHAIN`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") statements. For an implicitly started transaction, it is the first statement that uses a transactional engine after the previous transaction ends.
 
-O pai de um evento de transação é o evento que iniciou a transação. Para uma transação explicitamente iniciada, isso inclui as instruções `START TRANSACTION` e `COMMIT AND CHAIN`. Para uma transação implicitamente iniciada, é a primeira instrução que usa um mecanismo de transação após o término da transação anterior.
+In general, a transaction is the top-level parent to all events initiated during the transaction, including statements that explicitly end the transaction such as [`COMMIT`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") and [`ROLLBACK`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements"). Exceptions are statements that implicitly end a transaction, such as DDL statements, in which case the current transaction must be committed before the new statement is executed.
 
-Em geral, uma transação é o pai de nível superior de todos os eventos iniciados durante a transação, incluindo declarações que explicitamente encerram a transação, como `COMMIT` e `ROLLBACK`. As exceções são declarações que encerram implicitamente uma transação, como declarações DDL, no qual caso a transação atual deve ser comprometida antes que a nova declaração seja executada.
+#### Transactions and Stored Programs
 
-#### Transações e Programas Armazenados
+Transactions and stored program events are related as follows:
 
-As transações e os eventos de programas armazenados estão relacionados da seguinte forma:
+* Stored Procedures
 
-- Procedimentos Armazenados
+  Stored procedures operate independently of transactions. A stored procedure can be started within a transaction, and a transaction can be started or ended from within a stored procedure. If called from within a transaction, a stored procedure can execute statements that force a commit of the parent transaction and then start a new transaction.
 
-  Os procedimentos armazenados funcionam de forma independente das transações. Um procedimento armazenado pode ser iniciado dentro de uma transação, e uma transação pode ser iniciada ou encerrada dentro de um procedimento armazenado. Se chamado dentro de uma transação, um procedimento armazenado pode executar instruções que forçam o commit da transação pai e, em seguida, iniciar uma nova transação.
+  If a stored procedure is started within a transaction, that transaction is the parent of the stored procedure event.
 
-  Se um procedimento armazenado for iniciado dentro de uma transação, essa transação é a origem do evento do procedimento armazenado.
+  If a transaction is started by a stored procedure, the stored procedure is the parent of the transaction event.
 
-  Se uma transação é iniciada por um procedimento armazenado, o procedimento armazenado é o pai do evento de transação.
+* Stored Functions
 
-- Funções Armazenadas
+  Stored functions are restricted from causing an explicit or implicit commit or rollback. Stored function events can reside within a parent transaction event.
 
-  As funções armazenadas não podem causar um commit ou rollback explícito ou implícito. Os eventos de função armazenada podem residir dentro de um evento de transação pai.
+* Triggers
 
-- Descobrir os gatilhos
+  Triggers activate as part of a statement that accesses the table with which it is associated, so the parent of a trigger event is always the statement that activates it.
 
-  Os gatilhos são ativados como parte de uma declaração que acessa a tabela com a qual está associado, portanto, o pai de um evento de gatilho é sempre a declaração que o ativa.
+  Triggers cannot issue statements that cause an explicit or implicit commit or rollback of a transaction.
 
-  Os gatilhos não podem emitir declarações que causem um compromisso explícito ou implícito ou um rollback de uma transação.
+* Scheduled Events
 
-- Eventos agendados
+  The execution of the statements in the body of a scheduled event takes place in a new connection. Nesting of a scheduled event within a parent transaction is not applicable.
 
-  A execução das instruções no corpo de um evento agendado ocorre em uma nova conexão. A criação de um evento agendado dentro de uma transação pai não é aplicável.
+#### Transactions and Savepoints
 
-#### Transações e pontos de salvamento
+Savepoint statements are recorded as separate statement events. Transaction events include separate counters for [`SAVEPOINT`](savepoint.html "13.3.4 SAVEPOINT, ROLLBACK TO SAVEPOINT, and RELEASE SAVEPOINT Statements"), [`ROLLBACK TO SAVEPOINT`](savepoint.html "13.3.4 SAVEPOINT, ROLLBACK TO SAVEPOINT, and RELEASE SAVEPOINT Statements"), and [`RELEASE SAVEPOINT`](savepoint.html "13.3.4 SAVEPOINT, ROLLBACK TO SAVEPOINT, and RELEASE SAVEPOINT Statements") statements issued during the transaction.
 
-As declarações de ponto de salvamento são registradas como eventos de declaração separados. Os eventos de transação incluem contadores separados para as declarações `SAVEPOINT`, `ROLLBACK TO SAVEPOINT` e `RELEASE SAVEPOINT` emitidas durante a transação.
+#### Transactions and Errors
 
-#### Transações e Erros
-
-Erros e avisos que ocorrem durante uma transação são registrados em eventos de declaração, mas não nos eventos de transação correspondentes. Isso inclui erros e avisos específicos da transação, como um rollback em uma tabela não transacional ou erros de consistência GTID.
+Errors and warnings that occur within a transaction are recorded in statement events, but not in the corresponding transaction event. This includes transaction-specific errors and warnings, such as a rollback on a nontransactional table or GTID consistency errors.

@@ -1,25 +1,25 @@
-#### 26.4.3.3 As visualizações host_summary_by_file_io_type e x$host_summary_by_file_io_type
+#### 26.4.3.3 The host_summary_by_file_io_type and x$host_summary_by_file_io_type Views
 
-Essas visualizações resumem o acesso e gravação de arquivos, agrupados por host e tipo de evento. Por padrão, as linhas são ordenadas por host e latência total de I/O em ordem decrescente.
+These views summarize file I/O, grouped by host and event type. By default, rows are sorted by host and descending total I/O latency.
 
-As views `host_summary_by_file_io_type` e `x$host_summary_by_file_io_type` possuem essas colunas:
+The `host_summary_by_file_io_type` and `x$host_summary_by_file_io_type` views have these columns:
 
-- `host`
+* `host`
 
-  O host a partir do qual o cliente se conectou. As linhas para as quais a coluna `HOST` na tabela subjacente do Gerenciamento de Desempenho é `NULL` são assumidas como pertencentes a threads de segundo plano e são relatadas com o nome do host `background`.
+  The host from which the client connected. Rows for which the `HOST` column in the underlying Performance Schema table is `NULL` are assumed to be for background threads and are reported with a host name of `background`.
 
-- `nome_do_evento`
+* `event_name`
 
-  O nome do evento de E/S do arquivo.
+  The file I/O event name.
 
-- `total`
+* `total`
 
-  O número total de ocorrências do evento de E/S de arquivo para o host.
+  The total number of occurrences of the file I/O event for the host.
 
-- `total_latency`
+* `total_latency`
 
-  O tempo total de espera de ocorrências temporizadas do evento de E/S do arquivo para o host.
+  The total wait time of timed occurrences of the file I/O event for the host.
 
-- `max_latency`
+* `max_latency`
 
-  O tempo de espera máximo de uma única ocorrência temporizada do evento de E/S do arquivo para o host.
+  The maximum single wait time of timed occurrences of the file I/O event for the host.

@@ -1,8 +1,8 @@
-#### 25.12.15.3 Tabelas de Resumo das Declarações
+#### 25.12.15.3 Statement Summary Tables
 
-O Schema de Desempenho mantém tabelas para coletar eventos de declaração atuais e recentes, e agrega essas informações em tabelas resumidas. Seção 25.12.6, “Tabelas de Eventos de Declaração do Schema de Desempenho” descreve os eventos sobre os quais os resumos de declaração são baseados. Consulte essa discussão para obter informações sobre o conteúdo dos eventos de declaração, as tabelas de eventos de declaração atuais e históricas, e como controlar a coleta de eventos de declaração, que está parcialmente desativada por padrão.
+The Performance Schema maintains tables for collecting current and recent statement events, and aggregates that information in summary tables. [Section 25.12.6, “Performance Schema Statement Event Tables”](performance-schema-statement-tables.html "25.12.6 Performance Schema Statement Event Tables") describes the events on which statement summaries are based. See that discussion for information about the content of statement events, the current and historical statement event tables, and how to control statement event collection, which is partially disabled by default.
 
-Exemplo de resumo de informações de evento de declaração:
+Example statement event summary information:
 
 ```sql
 mysql> SELECT *
@@ -36,90 +36,90 @@ SUM_CREATED_TMP_DISK_TABLES: 0
 ...
 ```
 
-Cada tabela de resumo de declaração tem uma ou mais colunas de agrupamento para indicar como a tabela agrega eventos. Os nomes dos eventos referem-se aos nomes dos instrumentos de evento na tabela `setup_instruments`:
+Each statement summary table has one or more grouping columns to indicate how the table aggregates events. Event names refer to names of event instruments in the [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table:
 
-- O `events_statements_summary_by_account_by_event_name` possui as colunas `EVENT_NAME`, `USER` e `HOST`. Cada linha resume os eventos para uma conta específica (combinação de usuário e host) e nome do evento.
+* [`events_statements_summary_by_account_by_event_name`](performance-schema-statement-summary-tables.html "25.12.15.3 Statement Summary Tables") has `EVENT_NAME`, `USER`, and `HOST` columns. Each row summarizes events for a given account (user and host combination) and event name.
 
-- O `events_statements_summary_by_digest` possui as colunas `SCHEMA_NAME` e `DIGEST`. Cada linha resume os eventos por schema e valor de digest. (A coluna `DIGEST_TEXT` contém o texto normalizado do digest do statement correspondente, mas não é uma coluna de agrupamento nem de resumo.)
+* [`events_statements_summary_by_digest`](performance-schema-statement-summary-tables.html "25.12.15.3 Statement Summary Tables") has `SCHEMA_NAME` and `DIGEST` columns. Each row summarizes events per schema and digest value. (The `DIGEST_TEXT` column contains the corresponding normalized statement digest text, but is neither a grouping nor a summary column.)
 
-  O número máximo de linhas na tabela é dimensionado automaticamente ao iniciar o servidor. Para definir esse máximo explicitamente, defina a variável de sistema `performance_schema_digests_size` ao iniciar o servidor.
+  The maximum number of rows in the table is autosized at server startup. To set this maximum explicitly, set the [`performance_schema_digests_size`](performance-schema-system-variables.html#sysvar_performance_schema_digests_size) system variable at server startup.
 
-- O `events_statements_summary_by_host_by_event_name` possui as colunas `EVENT_NAME` e `HOST`. Cada linha resume os eventos para um determinado host e nome de evento.
+* [`events_statements_summary_by_host_by_event_name`](performance-schema-statement-summary-tables.html "25.12.15.3 Statement Summary Tables") has `EVENT_NAME` and `HOST` columns. Each row summarizes events for a given host and event name.
 
-- O `events_statements_summary_by_program` possui as colunas `OBJECT_TYPE`, `OBJECT_SCHEMA` e `OBJECT_NAME`. Cada linha resume os eventos para um determinado programa armazenado (procedimento armazenado ou função, gatilho ou evento).
+* [`events_statements_summary_by_program`](performance-schema-statement-summary-tables.html "25.12.15.3 Statement Summary Tables") has `OBJECT_TYPE`, `OBJECT_SCHEMA`, and `OBJECT_NAME` columns. Each row summarizes events for a given stored program (stored procedure or function, trigger, or event).
 
-- `events_statements_summary_by_thread_by_event_name` possui as colunas `THREAD_ID` e `EVENT_NAME`. Cada linha resume os eventos para um determinado thread e nome de evento.
+* [`events_statements_summary_by_thread_by_event_name`](performance-schema-statement-summary-tables.html "25.12.15.3 Statement Summary Tables") has `THREAD_ID` and `EVENT_NAME` columns. Each row summarizes events for a given thread and event name.
 
-- O `events_statements_summary_by_user_by_event_name` possui as colunas `EVENT_NAME` e `USER`. Cada linha resume os eventos para um usuário e um nome de evento específicos.
+* [`events_statements_summary_by_user_by_event_name`](performance-schema-statement-summary-tables.html "25.12.15.3 Statement Summary Tables") has `EVENT_NAME` and `USER` columns. Each row summarizes events for a given user and event name.
 
-- O `events_statements_summary_global_by_event_name` possui uma coluna `EVENT_NAME`. Cada linha resume os eventos para um nome de evento específico.
+* [`events_statements_summary_global_by_event_name`](performance-schema-statement-summary-tables.html "25.12.15.3 Statement Summary Tables") has an `EVENT_NAME` column. Each row summarizes events for a given event name.
 
-- A tabela `prepared_statements_instances` possui uma coluna `OBJECT_INSTANCE_BEGIN`. Cada linha resume os eventos de um determinado comando preparado.
+* [`prepared_statements_instances`](performance-schema-prepared-statements-instances-table.html "25.12.6.4 The prepared_statements_instances Table") has an `OBJECT_INSTANCE_BEGIN` column. Each row summarizes events for a given prepared statement.
 
-Cada tabela de resumo de declaração tem essas colunas de resumo contendo valores agregados (com exceções conforme indicado):
+Each statement summary table has these summary columns containing aggregated values (with exceptions as noted):
 
-- `COUNT_STAR`, `SUM_TIMER_WAIT`, `MIN_TIMER_WAIT`, `AVG_TIMER_WAIT`, `MAX_TIMER_WAIT`
+* `COUNT_STAR`, `SUM_TIMER_WAIT`, `MIN_TIMER_WAIT`, `AVG_TIMER_WAIT`, `MAX_TIMER_WAIT`
 
-  Essas colunas são análogas às colunas dos mesmos nomes nas tabelas de resumo de eventos de espera (consulte Seção 25.12.15.1, “Tabelas de Resumo de Eventos de Espera”), exceto que as tabelas de resumo de declarações agregam eventos de `events_statements_current` em vez de `events_waits_current`.
+  These columns are analogous to the columns of the same names in the wait event summary tables (see [Section 25.12.15.1, “Wait Event Summary Tables”](performance-schema-wait-summary-tables.html "25.12.15.1 Wait Event Summary Tables")), except that the statement summary tables aggregate events from [`events_statements_current`](performance-schema-events-statements-current-table.html "25.12.6.1 The events_statements_current Table") rather than [`events_waits_current`](performance-schema-events-waits-current-table.html "25.12.4.1 The events_waits_current Table").
 
-  A tabela `prepared_statements_instances` não possui essas colunas.
+  The [`prepared_statements_instances`](performance-schema-prepared-statements-instances-table.html "25.12.6.4 The prepared_statements_instances Table") table does not have these columns.
 
-- `SUM_xxx`
+* `SUM_xxx`
 
-  O agregado da coluna correspondente ao *`xxx`* na tabela `events_statements_current`. Por exemplo, as colunas `SUM_LOCK_TIME` e `SUM_ERRORS` nos quadros de resumo de declarações são os agregados das colunas `LOCK_TIME` e `ERRORS` na tabela `events_statements_current`.
+  The aggregate of the corresponding *`xxx`* column in the [`events_statements_current`](performance-schema-events-statements-current-table.html "25.12.6.1 The events_statements_current Table") table. For example, the `SUM_LOCK_TIME` and `SUM_ERRORS` columns in statement summary tables are the aggregates of the `LOCK_TIME` and `ERRORS` columns in [`events_statements_current`](performance-schema-events-statements-current-table.html "25.12.6.1 The events_statements_current Table") table.
 
-A tabela `events_statements_summary_by_digest` possui essas colunas de resumo adicionais:
+The [`events_statements_summary_by_digest`](performance-schema-statement-summary-tables.html "25.12.15.3 Statement Summary Tables") table has these additional summary columns:
 
-- `PRIMEIRO_VISTO`, `ÚLTIMO_VISTO`
+* `FIRST_SEEN`, `LAST_SEEN`
 
-  Os tempos de registro indicam quando as declarações com o valor de digestão fornecido foram vistas pela primeira vez e quando foram vistas pela última vez.
+  Timestamps indicating when statements with the given digest value were first seen and most recently seen.
 
-A tabela `events_statements_summary_by_program` possui essas colunas de resumo adicionais:
+The [`events_statements_summary_by_program`](performance-schema-statement-summary-tables.html "25.12.15.3 Statement Summary Tables") table has these additional summary columns:
 
-- `CONTAS_STATEMENTS`, `SUMA_STATEMENTS_WAIT`, `MIN_STATEMENTS_WAIT`, `AVG_STATEMENTS_WAIT`, `MAX_STATEMENTS_WAIT`
+* `COUNT_STATEMENTS`, `SUM_STATEMENTS_WAIT`, `MIN_STATEMENTS_WAIT`, `AVG_STATEMENTS_WAIT`, `MAX_STATEMENTS_WAIT`
 
-  Estatísticas sobre declarações aninhadas invocadas durante a execução de programas armazenados.
+  Statistics about nested statements invoked during stored program execution.
 
-A tabela `prepared_statements_instances` possui essas colunas de resumo adicionais:
+The [`prepared_statements_instances`](performance-schema-prepared-statements-instances-table.html "25.12.6.4 The prepared_statements_instances Table") table has these additional summary columns:
 
-- `CONTAR_EXECUTAR`, `SOMAR_TEMPO_EXECUTAR`, `MIN_TEMPO_EXECUTAR`, `MÉDIA_TEMPO_EXECUTAR`, `MAX_TEMPO_EXECUTAR`
+* `COUNT_EXECUTE`, `SUM_TIMER_EXECUTE`, `MIN_TIMER_EXECUTE`, `AVG_TIMER_EXECUTE`, `MAX_TIMER_EXECUTE`
 
-  Estatísticas agregadas para execuções da declaração preparada.
+  Aggregated statistics for executions of the prepared statement.
 
-A opção `TRUNCATE TABLE` é permitida para tabelas de resumo de declarações. Ela tem esses efeitos:
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is permitted for statement summary tables. It has these effects:
 
-- Para `events_statements_summary_by_digest`, ele remove as linhas.
+* For [`events_statements_summary_by_digest`](performance-schema-statement-summary-tables.html "25.12.15.3 Statement Summary Tables"), it removes the rows.
 
-- Para outras tabelas de resumo que não são agregadas por conta, host ou usuário, o truncamento redefine as colunas de resumo para zero, em vez de remover linhas.
+* For other summary tables not aggregated by account, host, or user, truncation resets the summary columns to zero rather than removing rows.
 
-- Para outras tabelas resumidas agregadas por conta, host ou usuário, o truncamento remove linhas de contas, hosts ou usuários sem conexões e redefini o valor das colunas resumidas para zero para as linhas restantes.
+* For other summary tables aggregated by account, host, or user, truncation removes rows for accounts, hosts, or users with no connections, and resets the summary columns to zero for the remaining rows.
 
-Além disso, cada tabela de resumo de declarações que é agregada por conta, host, usuário ou thread é implicitamente truncada pela truncagem da tabela de conexão na qual depende, ou pela truncagem de `events_statements_summary_global_by_event_name`. Para obter detalhes, consulte Seção 25.12.8, “Tabelas de Conexão do Schema de Desempenho”.
+In addition, each statement summary table that is aggregated by account, host, user, or thread is implicitly truncated by truncation of the connection table on which it depends, or truncation of [`events_statements_summary_global_by_event_name`](performance-schema-statement-summary-tables.html "25.12.15.3 Statement Summary Tables"). For details, see [Section 25.12.8, “Performance Schema Connection Tables”](performance-schema-connection-tables.html "25.12.8 Performance Schema Connection Tables").
 
-##### Regras de agregação do resumo das declarações
+##### Statement Digest Aggregation Rules
 
-Se o consumidor `statements_digest` estiver habilitado, a agregação em `events_statements_summary_by_digest` ocorre da seguinte forma quando uma declaração é concluída. A agregação é baseada no valor `DIGEST` calculado para a declaração.
+If the `statements_digest` consumer is enabled, aggregation into [`events_statements_summary_by_digest`](performance-schema-statement-summary-tables.html "25.12.15.3 Statement Summary Tables") occurs as follows when a statement completes. Aggregation is based on the `DIGEST` value computed for the statement.
 
-- Se uma linha do `events_statements_summary_by_digest` já existir com o valor do digest para a declaração que acabou de ser concluída, as estatísticas da declaração são agregadas a essa linha. A coluna `LAST_SEEN` é atualizada para a hora atual.
+* If a [`events_statements_summary_by_digest`](performance-schema-statement-summary-tables.html "25.12.15.3 Statement Summary Tables") row already exists with the digest value for the statement that just completed, statistics for the statement are aggregated to that row. The `LAST_SEEN` column is updated to the current time.
 
-- Se nenhuma linha tiver o valor de digestão para a declaração que acabou de ser concluída e a tabela não estiver cheia, uma nova linha é criada para a declaração. As colunas `FIRST_SEEN` e `LAST_SEEN` são inicializadas com a hora atual.
+* If no row has the digest value for the statement that just completed, and the table is not full, a new row is created for the statement. The `FIRST_SEEN` and `LAST_SEEN` columns are initialized with the current time.
 
-- Se nenhuma linha tiver o valor do resumo da declaração para a declaração que acabou de ser concluída e a tabela estiver cheia, as estatísticas para a declaração que acabou de ser concluída são adicionadas a uma linha especial de “captura geral” com `DIGEST` = `NULL`, que é criada, se necessário. Se a linha for criada, as colunas `FIRST_SEEN` e `LAST_SEEN` são inicializadas com a hora atual. Caso contrário, a coluna `LAST_SEEN` é atualizada com a hora atual.
+* If no row has the statement digest value for the statement that just completed, and the table is full, the statistics for the statement that just completed are added to a special “catch-all” row with `DIGEST` = `NULL`, which is created if necessary. If the row is created, the `FIRST_SEEN` and `LAST_SEEN` columns are initialized with the current time. Otherwise, the `LAST_SEEN` column is updated with the current time.
 
-A linha com `DIGEST` = `NULL` é mantida porque as tabelas do Gerenciamento de Desempenho têm um tamanho máximo devido a restrições de memória. A linha `DIGEST` = `NULL` permite que os digests que não correspondem a outras linhas sejam contados mesmo que a tabela de resumo esteja cheia, usando um compartimento comum "outro". Essa linha ajuda você a estimar se o resumo do digest é representativo:
+The row with `DIGEST` = `NULL` is maintained because Performance Schema tables have a maximum size due to memory constraints. The `DIGEST` = `NULL` row permits digests that do not match other rows to be counted even if the summary table is full, using a common “other” bucket. This row helps you estimate whether the digest summary is representative:
 
-- Uma linha `DIGEST` = `NULL` que tem um valor `COUNT_STAR` que representa 5% de todos os digests mostra que a tabela de resumo de digests é muito representativa; as outras linhas cobrem 95% das declarações vistas.
+* A `DIGEST` = `NULL` row that has a `COUNT_STAR` value that represents 5% of all digests shows that the digest summary table is very representative; the other rows cover 95% of the statements seen.
 
-- Uma linha `DIGEST` = `NULL` que tem um valor `COUNT_STAR` que representa 50% de todos os digests mostra que a tabela de resumo de digests não é muito representativa; as outras linhas cobrem apenas metade das declarações vistas. Muito provavelmente, o DBA deve aumentar o tamanho máximo da tabela para que mais das linhas contadas na linha `DIGEST` = `NULL` sejam contadas usando linhas mais específicas. Por padrão, a tabela é dimensionada automaticamente, mas se esse tamanho for muito pequeno, defina a variável de sistema `performance_schema_digests_size` para um valor maior no início do servidor.
+* A `DIGEST` = `NULL` row that has a `COUNT_STAR` value that represents 50% of all digests shows that the digest summary table is not very representative; the other rows cover only half the statements seen. Most likely the DBA should increase the maximum table size so that more of the rows counted in the `DIGEST` = `NULL` row would be counted using more specific rows instead. By default, the table is autosized, but if this size is too small, set the [`performance_schema_digests_size`](performance-schema-system-variables.html#sysvar_performance_schema_digests_size) system variable to a larger value at server startup.
 
-##### Comportamento de Instrumentação de Programa Armazenado
+##### Stored Program Instrumentation Behavior
 
-Para os tipos de programas armazenados para os quais a instrumentação está habilitada na tabela `setup_objects`, a tabela `events_statements_summary_by_program` mantém estatísticas para os programas armazenados da seguinte forma:
+For stored program types for which instrumentation is enabled in the [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table") table, [`events_statements_summary_by_program`](performance-schema-statement-summary-tables.html "25.12.15.3 Statement Summary Tables") maintains statistics for stored programs as follows:
 
-- Uma linha é adicionada para um objeto quando ele é usado pela primeira vez no servidor.
+* A row is added for an object when it is first used in the server.
 
-- A linha para um objeto é removida quando o objeto é solto.
+* The row for an object is removed when the object is dropped.
 
-- As estatísticas são agregadas na linha de um objeto conforme ele é executado.
+* Statistics are aggregated in the row for an object as it executes.
 
-Veja também Seção 25.4.3, “Pré-filtragem de Eventos”.
+See also [Section 25.4.3, “Event Pre-Filtering”](performance-schema-pre-filtering.html "25.4.3 Event Pre-Filtering").

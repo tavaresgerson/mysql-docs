@@ -1,25 +1,25 @@
-#### 26.4.3.4 As visualizações host_summary_by_stages e x$host_summary_by_stages
+#### 26.4.3.4 The host_summary_by_stages and x$host_summary_by_stages Views
 
-Essas visualizações resumem as etapas da declaração, agrupadas por host. Por padrão, as linhas são ordenadas por host e latência total decrescente.
+These views summarize statement stages, grouped by host. By default, rows are sorted by host and descending total latency.
 
-As views `host_summary_by_stages` e `x$host_summary_by_stages` possuem essas colunas:
+The `host_summary_by_stages` and `x$host_summary_by_stages` views have these columns:
 
-- `host`
+* `host`
 
-  O host a partir do qual o cliente se conectou. As linhas para as quais a coluna `HOST` na tabela subjacente do Gerenciamento de Desempenho é `NULL` são assumidas como pertencentes a threads de segundo plano e são relatadas com o nome do host `background`.
+  The host from which the client connected. Rows for which the `HOST` column in the underlying Performance Schema table is `NULL` are assumed to be for background threads and are reported with a host name of `background`.
 
-- `nome_do_evento`
+* `event_name`
 
-  O nome do evento em palco.
+  The stage event name.
 
-- `total`
+* `total`
 
-  O número total de ocorrências do evento em andamento para o anfitrião.
+  The total number of occurrences of the stage event for the host.
 
-- `total_latency`
+* `total_latency`
 
-  O tempo total de espera de eventos cronometrados do evento em andamento para o anfitrião.
+  The total wait time of timed occurrences of the stage event for the host.
 
-- `avg_latency`
+* `avg_latency`
 
-  O tempo médio de espera por ocorrência cronometrada do evento em andamento para o anfitrião.
+  The average wait time per timed occurrence of the stage event for the host.

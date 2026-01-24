@@ -1,12 +1,12 @@
-#### 21.5.24.2 Restauração para um número diferente de nós de dados
+#### 21.5.24.2 Restoring to a different number of data nodes
 
-É possível restaurar de um backup do NDB para um clúster com um número diferente de nós de dados em relação ao original a partir do qual o backup foi feito. As duas seções a seguir discutem, respectivamente, os casos em que o clúster de destino tem um número menor ou maior de nós de dados em relação à fonte do backup.
+It is possible to restore from an NDB backup to a cluster having a different number of data nodes than the original from which the backup was taken. The following two sections discuss, respectively, the cases where the target cluster has a lesser or greater number of data nodes than the source of the backup.
 
-##### 21.5.24.2.1 Restauração com menos nós do que o original
+##### 21.5.24.2.1 Restoring to Fewer Nodes Than the Original
 
-Você pode restaurar para um clúster com menos nós de dados do que o original, desde que o maior número de nós seja um múltiplo par do menor número. No exemplo a seguir, usamos um backup feito em um clúster com quatro nós de dados para um clúster com dois nós de dados.
+You can restore to a cluster having fewer data nodes than the original provided that the larger number of nodes is an even multiple of the smaller number. In the following example, we use a backup taken on a cluster having four data nodes to a cluster having two data nodes.
 
-1. O servidor de gerenciamento do clúster original está no host `host10`. O clúster original tem quatro nós de dados, com os IDs dos nós e os nomes dos hosts mostrados no seguinte extrato do arquivo `config.ini` do servidor de gerenciamento:
+1. The management server for the original cluster is on host `host10`. The original cluster has four data nodes, with the node IDs and host names shown in the following extract from the management server's `config.ini` file:
 
    ```sql
    [ndbd]
@@ -26,21 +26,21 @@ Você pode restaurar para um clúster com menos nós de dados do que o original,
    HostName=host8
    ```
 
-   Acreditamos que cada nó de dados foi originalmente iniciado com **ndbmtd** `--ndb-connectstring=host10` ou o equivalente.
+   We assume that each data node was originally started with [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") [`--ndb-connectstring=host10`](mysql-cluster-programs-ndbd.html#option_ndbd_ndb-connectstring) or the equivalent.
 
-2. Realize um backup da maneira normal. Consulte Seção 21.6.8.2, “Usando o Cliente de Gerenciamento do NDB Cluster para Criar um Backup” para obter informações sobre como fazer isso.
+2. Perform a backup in the normal manner. See [Section 21.6.8.2, “Using The NDB Cluster Management Client to Create a Backup”](mysql-cluster-backup-using-management-client.html "21.6.8.2 Using The NDB Cluster Management Client to Create a Backup"), for information about how to do this.
 
-3. Aqui estão listados os arquivos criados pelo backup em cada nó de dados, onde *`N`* é o ID do nó e *`B`* é o ID do backup.
+3. The files created by the backup on each data node are listed here, where *`N`* is the node ID and *`B`* is the backup ID.
 
-   - `BACKUP-B-0.N.Data`
-   - `BACKUP-B.N.ctl`
-   - `BACKUP-B.N.log`
+   * `BACKUP-B-0.N.Data`
+   * `BACKUP-B.N.ctl`
+   * `BACKUP-B.N.log`
 
-   Esses arquivos são encontrados em `BackupDataDir`/BACKUP/BACKUP-B\`, em cada nó de dados. Para o resto deste exemplo, assumimos que o ID de backup é 1.
+   These files are found under [`BackupDataDir`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-backupdatadir)`/BACKUP/BACKUP-B`, on each data node. For the rest of this example, we assume that the backup ID is 1.
 
-   Tenha todos esses arquivos disponíveis para serem copiados posteriormente para os novos nós de dados (onde eles podem ser acessados no sistema de arquivos local do nó de dados por **ndb_restore**). É mais simples copiá-los para um único local; assumimos que você fez isso.
+   Have all of these files available for later copying to the new data nodes (where they can be accessed on the data node's local file system by [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup")). It is simplest to copy them all to a single location; we assume that this is what you have done.
 
-4. O servidor de gerenciamento do clúster de destino está no host `host20`, e o destino tem dois nós de dados, com os IDs dos nós e os nomes dos hosts mostrados, a partir do arquivo `config.ini` do servidor de gerenciamento em `host20`:
+4. The management server for the target cluster is on host `host20`, and the target has two data nodes, with the node IDs and host names shown, from the management server `config.ini` file on `host20`:
 
    ```sql
    [ndbd]
@@ -52,29 +52,29 @@ Você pode restaurar para um clúster com menos nós de dados do que o original,
    hostname=host5
    ```
 
-   Cada um dos nós de dados nos hosts `host3` e `host5` deve ser iniciado com **ndbmtd** `-c host20` `--initial` ou o equivalente, para que o novo (alvo) cluster comece com sistemas de arquivos de nó de dados limpos.
+   Each of the data node processes on `host3` and `host5` should be started with [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") `-c host20` [`--initial`](mysql-cluster-programs-ndbd.html#option_ndbd_initial) or the equivalent, so that the new (target) cluster starts with clean data node file systems.
 
-5. Copie dois conjuntos diferentes de dois arquivos de backup para cada um dos nós de dados de destino. Para este exemplo, copie os arquivos de backup dos nós 2 e 4 do cluster original para o nó 3 no cluster de destino. Estes arquivos estão listados aqui:
+5. Copy two different sets of two backup files to each of the target data nodes. For this example, copy the backup files from nodes 2 and 4 from the original cluster to node 3 in the target cluster. These files are listed here:
 
-   - `BACKUP-1-0.2.Data`
-   - `BACKUP-1.2.ctl`
-   - `BACKUP-1.2.log`
-   - `BACKUP-1-0.4.Data`
-   - `BACKUP-1.4.ctl`
-   - `BACKUP-1.4.log`
+   * `BACKUP-1-0.2.Data`
+   * `BACKUP-1.2.ctl`
+   * `BACKUP-1.2.log`
+   * `BACKUP-1-0.4.Data`
+   * `BACKUP-1.4.ctl`
+   * `BACKUP-1.4.log`
 
-   Em seguida, copie os arquivos de backup dos nós 6 e 8 para o nó 5; esses arquivos estão listados na lista a seguir:
+   Then copy the backup files from nodes 6 and 8 to node 5; these files are shown in the following list:
 
-   - `BACKUP-1-0.6.Data`
-   - `BACKUP-1.6.ctl`
-   - `BACKUP-1.6.log`
-   - `BACKUP-1-0.8.Data`
-   - `BACKUP-1.8.ctl`
-   - `BACKUP-1.8.log`
+   * `BACKUP-1-0.6.Data`
+   * `BACKUP-1.6.ctl`
+   * `BACKUP-1.6.log`
+   * `BACKUP-1-0.8.Data`
+   * `BACKUP-1.8.ctl`
+   * `BACKUP-1.8.log`
 
-   Para o restante deste exemplo, assumimos que os arquivos de backup respectivos foram salvos no diretório `/BACKUP-1` em cada um dos nós 3 e 5.
+   For the remainder of this example, we assume that the respective backup files have been saved to the directory `/BACKUP-1` on each of nodes 3 and 5.
 
-6. Em cada um dos dois nós de dados de destino, você deve restaurar a partir de ambos os conjuntos de backups. Primeiro, restaure os backups dos nós 2 e 4 para o nó 3, invocando **ndb_restore** no `host3` conforme mostrado aqui:
+6. On each of the two target data nodes, you must restore from both sets of backups. First, restore the backups from nodes 2 and 4 to node 3 by invoking [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") on `host3` as shown here:
 
    ```sql
    $> ndb_restore -c host20 --nodeid=2 --backupid=1 --restore-data --backup-path=/BACKUP-1
@@ -82,7 +82,7 @@ Você pode restaurar para um clúster com menos nós de dados do que o original,
    $> ndb_restore -c host20 --nodeid=4 --backupid=1 --restore-data --backup-path=/BACKUP-1
    ```
 
-   Em seguida, restaure os backups dos nós 6 e 8 para o nó 5, invocando **ndb_restore** no `host5`, da seguinte forma:
+   Then restore the backups from nodes 6 and 8 to node 5 by invoking [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") on `host5`, like this:
 
    ```sql
    $> ndb_restore -c host20 --nodeid=6 --backupid=1 --restore-data --backup-path=/BACKUP-1
@@ -90,65 +90,65 @@ Você pode restaurar para um clúster com menos nós de dados do que o original,
    $> ndb_restore -c host20 --nodeid=8 --backupid=1 --restore-data --backup-path=/BACKUP-1
    ```
 
-##### 21.5.24.2.2 Restauração em mais nós do que o original
+##### 21.5.24.2.2 Restoring to More Nodes Than the Original
 
-O ID do nó especificado para um comando **ndb_restore** é o do nó no backup original e não o do nó de dados para o qual ele será restaurado. Ao realizar um backup usando o método descrito nesta seção, o **ndb_restore** se conecta ao servidor de gerenciamento e obtém uma lista dos nós de dados no clúster para o qual o backup está sendo restaurado. Os dados restaurados são distribuídos de acordo, de modo que o número de nós no clúster de destino não precisa ser conhecido ou calculado ao realizar o backup.
+The node ID specified for a given [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") command is that of the node in the original backup and not that of the data node to restore it to. When performing a backup using the method described in this section, [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") connects to the management server and obtains a list of data nodes in the cluster the backup is being restored to. The restored data is distributed accordingly, so that the number of nodes in the target cluster does not need to be to be known or calculated when performing the backup.
 
-Nota
+Note
 
-Ao alterar o número total de threads LCP ou threads LQH por grupo de nós, você deve recriar o esquema a partir do backup criado usando **mysqldump**.
+When changing the total number of LCP threads or LQH threads per node group, you should recreate the schema from backup created using [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program").
 
-1. *Crie o backup dos dados*. Você pode fazer isso invocando o comando **ndb_mgm** do cliente `START BACKUP` no shell do sistema, da seguinte maneira:
+1. *Create the backup of the data*. You can do this by invoking the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") client `START BACKUP` command from the system shell, like this:
 
    ```sql
    $> ndb_mgm -e "START BACKUP 1"
    ```
 
-   Isso pressupõe que o ID de backup desejado é 1.
+   This assumes that the desired backup ID is 1.
 
-2. Crie um backup do esquema. No NDB 7.5.2 e versões posteriores, essa etapa é necessária apenas se o número total de threads LCP ou threads LQH por grupo de nós for alterado.
+2. Create a backup of the schema. In NDB 7.5.2 and later, this step is necessary only if the total number of LCP threads or LQH threads per node group is changed.
 
    ```sql
    $> mysqldump --no-data --routines --events --triggers --databases > myschema.sql
    ```
 
-   Importante
+   Important
 
-   Depois de criar o backup nativo `NDB` usando **ndb_mgm**, você não deve fazer nenhuma alteração no esquema antes de criar o backup do esquema, caso contrário.
+   Once you have created the `NDB` native backup using [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client"), you must not make any schema changes before creating the backup of the schema, if you do so.
 
-3. Copie o diretório de backup para o novo clúster. Por exemplo, se o backup que você deseja restaurar tiver o ID 1 e `BackupDataDir` = `/backups/node_nodeid`, então o caminho do backup neste nó é `/backups/node_1/BACKUP/BACKUP-1`. Dentro deste diretório, há três arquivos, listados aqui:
+3. Copy the backup directory to the new cluster. For example if the backup you want to restore has ID 1 and `BackupDataDir` = `/backups/node_nodeid`, then the path to the backup on this node is `/backups/node_1/BACKUP/BACKUP-1`. Inside this directory there are three files, listed here:
 
-   - `BACKUP-1-0.1.Data`
-   - `BACKUP-1.1.ctl`
-   - `BACKUP-1.1.log`
+   * `BACKUP-1-0.1.Data`
+   * `BACKUP-1.1.ctl`
+   * `BACKUP-1.1.log`
 
-   Você deve copiar todo o diretório para o novo nó.
+   You should copy the entire directory to the new node.
 
-   Se você precisasse criar um arquivo de esquema, copie-o para um local em um nó SQL onde ele possa ser lido pelo **mysqld**.
+   If you needed to create a schema file, copy this to a location on an SQL node where it can be read by [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server").
 
-Não há necessidade de restaurar o backup a partir de um ou mais nós específicos.
+There is no requirement for the backup to be restored from a specific node or nodes.
 
-Para restaurar a partir do backup recém-criado, siga os passos abaixo:
+To restore from the backup just created, perform the following steps:
 
-1. *Restaure o esquema*.
+1. *Restore the schema*.
 
-   - Se você criou um arquivo de backup de esquema separado usando **mysqldump**, importe este arquivo usando o cliente **mysql**, de forma semelhante ao que está mostrado aqui:
+   * If you created a separate schema backup file using [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program"), import this file using the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client, similar to what is shown here:
 
      ```sql
      $> mysql < myschema.sql
      ```
 
-     Ao importar o arquivo do esquema, você pode precisar especificar as opções `--user` e `--password` (e possivelmente outras) além do que está mostrado, para que o cliente **mysql** possa se conectar ao servidor MySQL.
+     When importing the schema file, you may need to specify the [`--user`](mysql-command-options.html#option_mysql_user) and [`--password`](mysql-command-options.html#option_mysql_password) options (and possibly others) in addition to what is shown, in order for the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client to be able to connect to the MySQL server.
 
-   - Se você não precisasse criar um arquivo de esquema, você pode recriar o esquema usando **ndb_restore** `--restore-meta` (forma abreviada `-m`), semelhante ao que está mostrado aqui:
+   * If you did *not* need to create a schema file, you can re-create the schema using [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") [`--restore-meta`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_restore-meta) (short form `-m`), similar to what is shown here:
 
      ```sql
      $> ndb_restore --nodeid=1 --backupid=1 --restore-meta --backup-path=/backups/node_1/BACKUP/BACKUP-1
      ```
 
-     **ndb_restore** deve ser capaz de entrar em contato com o servidor de gerenciamento; adicione a opção `--ndb-connectstring` se e quando necessário para tornar isso possível.
+     [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") must be able to contact the management server; add the [`--ndb-connectstring`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_ndb-connectstring) option if and as needed to make this possible.
 
-2. *Restaure os dados*. Isso precisa ser feito uma vez para cada nó de dados no cluster original, cada vez usando o ID do nó do nó em questão. Supondo que originalmente houvesse 4 nós de dados, o conjunto de comandos necessários seria algo como:
+2. *Restore the data*. This needs to be done once for each data node in the original cluster, each time using that data node's node ID. Assuming that there were 4 data nodes originally, the set of commands required would look something like this:
 
    ```sql
    ndb_restore --nodeid=1 --backupid=1 --restore-data --backup-path=/backups/node_1/BACKUP/BACKUP-1 --disable-indexes
@@ -157,14 +157,14 @@ Para restaurar a partir do backup recém-criado, siga os passos abaixo:
    ndb_restore --nodeid=4 --backupid=1 --restore-data --backup-path=/backups/node_4/BACKUP/BACKUP-1 --disable-indexes
    ```
 
-   Esses podem ser executados em paralelo.
+   These can be run in parallel.
 
-   Certifique-se de adicionar a opção `--ndb-connectstring` conforme necessário.
+   Be sure to add the [`--ndb-connectstring`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_ndb-connectstring) option as needed.
 
-3. *Recompile os índices*. Estes foram desativados pela opção `--disable-indexes` usada nos comandos mostrados anteriormente. Recriar os índices evita erros devido ao fato de o restore não ser consistente em todos os pontos. Recompilar os índices também pode melhorar o desempenho em alguns casos. Para recompilar os índices, execute o seguinte comando uma vez, em um único nó:
+3. *Rebuild the indexes*. These were disabled by the [`--disable-indexes`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_disable-indexes) option used in the commands just shown. Recreating the indexes avoids errors due to the restore not being consistent at all points. Rebuilding the indexes can also improve performance in some cases. To rebuild the indexes, execute the following command once, on a single node:
 
    ```sql
    $> ndb_restore --nodeid=1 --backupid=1 --backup-path=/backups/node_1/BACKUP/BACKUP-1 --rebuild-indexes
    ```
 
-   Como mencionado anteriormente, você pode precisar adicionar a opção `--ndb-connectstring`, para que o **ndb_restore** possa entrar em contato com o servidor de gerenciamento.
+   As mentioned previously, you may need to add the [`--ndb-connectstring`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_ndb-connectstring) option, so that [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") can contact the management server.

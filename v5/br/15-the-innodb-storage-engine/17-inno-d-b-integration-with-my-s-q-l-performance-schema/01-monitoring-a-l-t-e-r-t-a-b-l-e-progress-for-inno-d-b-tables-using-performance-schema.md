@@ -1,34 +1,34 @@
-### 14.17.1 Monitoramento do progresso da alteração de tabelas ALTER TABLE para tabelas InnoDB usando o Gerenciador de Desempenho
+### 14.17.1 Monitoring ALTER TABLE Progress for InnoDB Tables Using Performance Schema
 
-Você pode monitorar o progresso da instrução `ALTER TABLE` para tabelas `InnoDB` usando o Gerenciador de Desempenho.
+You can monitor `ALTER TABLE` progress for `InnoDB` tables using Performance Schema.
 
-Existem sete eventos de estágio que representam diferentes fases da `ALTER TABLE`. Cada evento de estágio relata um total em andamento de `WORK_COMPLETED` e `WORK_ESTIMATED` para a operação geral de `ALTER TABLE` à medida que ela progride por suas diferentes fases. `WORK_ESTIMATED` é calculado usando uma fórmula que leva em consideração todo o trabalho que a `ALTER TABLE` realiza e pode ser revisada durante o processamento da `ALTER TABLE`. Os valores de `WORK_COMPLETED` e `WORK_ESTIMATED` são uma representação abstrata de todo o trabalho realizado pela `ALTER TABLE`.
+There are seven stage events that represent different phases of `ALTER TABLE`. Each stage event reports a running total of `WORK_COMPLETED` and `WORK_ESTIMATED` for the overall `ALTER TABLE` operation as it progresses through its different phases. `WORK_ESTIMATED` is calculated using a formula that takes into account all of the work that `ALTER TABLE` performs, and may be revised during `ALTER TABLE` processing. `WORK_COMPLETED` and `WORK_ESTIMATED` values are an abstract representation of all of the work performed by `ALTER TABLE`.
 
-Em ordem de ocorrência, os eventos da etapa `ALTER TABLE` incluem:
+In order of occurrence, `ALTER TABLE` stage events include:
 
-- `stage/innodb/alter table (leitura de PK e ordenação interna)`: Esta etapa está ativa quando o `ALTER TABLE` está na fase de leitura de chave primária. Ela começa com `WORK_COMPLETED=0` e `WORK_ESTIMATED` definido para o número estimado de páginas na chave primária. Quando a etapa é concluída, `WORK_ESTIMATED` é atualizado para o número real de páginas na chave primária.
+* `stage/innodb/alter table (read PK and internal sort)`: This stage is active when `ALTER TABLE` is in the reading-primary-key phase. It starts with `WORK_COMPLETED=0` and `WORK_ESTIMATED` set to the estimated number of pages in the primary key. When the stage is completed, `WORK_ESTIMATED` is updated to the actual number of pages in the primary key.
 
-- `stage/innodb/alter table (merge sort)`: Esta etapa é repetida para cada índice adicionado pela operação `ALTER TABLE`.
+* `stage/innodb/alter table (merge sort)`: This stage is repeated for each index added by the `ALTER TABLE` operation.
 
-- `stage/innodb/alter table (insert)`: Esta etapa é repetida para cada índice adicionado pela operação `ALTER TABLE`.
+* `stage/innodb/alter table (insert)`: This stage is repeated for each index added by the `ALTER TABLE` operation.
 
-- `stage/innodb/alter table (log apply index)`: Esta etapa inclui a aplicação do log de DML gerado enquanto o `ALTER TABLE` estava em execução.
+* `stage/innodb/alter table (log apply index)`: This stage includes the application of DML log generated while `ALTER TABLE` was running.
 
-- `stage/innodb/alter table (flush)`: Antes que essa etapa comece, o `WORK_ESTIMATED` é atualizado com uma estimativa mais precisa, com base na extensão da lista de esvaziamento.
+* `stage/innodb/alter table (flush)`: Before this stage begins, `WORK_ESTIMATED` is updated with a more accurate estimate, based on the length of the flush list.
 
-- `stage/innodb/alter table (log apply table)`: Esta etapa inclui a aplicação do log de DML concorrente gerado enquanto o `ALTER TABLE` estava em execução. A duração desta fase depende da extensão das alterações na tabela. Esta fase é instantânea se nenhuma DML concorrente tiver sido executada na tabela.
+* `stage/innodb/alter table (log apply table)`: This stage includes the application of concurrent DML log generated while `ALTER TABLE` was running. The duration of this phase depends on the extent of table changes. This phase is instant if no concurrent DML was run on the table.
 
-- `stage/innodb/alter table (end)`: Inclui qualquer trabalho restante que apareceu após a fase de esvaziamento, como a reaplicação de DML que foi executada na tabela enquanto o `ALTER TABLE` estava em execução.
+* `stage/innodb/alter table (end)`: Includes any remaining work that appeared after the flush phase, such as reapplying DML that was executed on the table while `ALTER TABLE` was running.
 
-Nota
+Note
 
-Os eventos da etapa `ALTER TABLE` do `InnoDB` atualmente não consideram a adição de índices espaciais.
+`InnoDB` `ALTER TABLE` stage events do not currently account for the addition of spatial indexes.
 
-#### ALTER TABLE Monitoramento Exemplo Usando o Gerenciamento de Desempenho
+#### ALTER TABLE Monitoring Example Using Performance Schema
 
-O exemplo a seguir demonstra como habilitar os instrumentos do evento `stage/innodb/alter table%` e as tabelas de consumo relacionadas para monitorar o progresso da instrução `ALTER TABLE`. Para obter informações sobre os instrumentos de eventos de estágios do Schema de Desempenho e os consumidores relacionados, consulte a Seção 25.12.5, “Tabelas de Eventos de Estágio do Schema de Desempenho”.
+The following example demonstrates how to enable the `stage/innodb/alter table%` stage event instruments and related consumer tables to monitor `ALTER TABLE` progress. For information about Performance Schema stage event instruments and related consumers, see Section 25.12.5, “Performance Schema Stage Event Tables”.
 
-1. Ative os instrumentos `stage/innodb/alter%`:
+1. Enable the `stage/innodb/alter%` instruments:
 
    ```sql
    mysql> UPDATE performance_schema.setup_instruments
@@ -38,7 +38,7 @@ O exemplo a seguir demonstra como habilitar os instrumentos do evento `stage/inn
    Rows matched: 7  Changed: 7  Warnings: 0
    ```
 
-2. Ative as tabelas de consumidores de eventos de palco, que incluem `events_stages_current`, `events_stages_history` e `events_stages_history_long`.
+2. Enable the stage event consumer tables, which include `events_stages_current`, `events_stages_history`, and `events_stages_history_long`.
 
    ```sql
    mysql> UPDATE performance_schema.setup_consumers
@@ -48,7 +48,7 @@ O exemplo a seguir demonstra como habilitar os instrumentos do evento `stage/inn
    Rows matched: 3  Changed: 3  Warnings: 0
    ```
 
-3. Execute uma operação `ALTER TABLE`. Neste exemplo, uma coluna `middle_name` é adicionada à tabela `employees` do banco de dados de amostra de funcionários.
+3. Run an `ALTER TABLE` operation. In this example, a `middle_name` column is added to the employees table of the employees sample database.
 
    ```sql
    mysql> ALTER TABLE employees.employees ADD COLUMN middle_name varchar(14) AFTER first_name;
@@ -56,7 +56,7 @@ O exemplo a seguir demonstra como habilitar os instrumentos do evento `stage/inn
    Records: 0  Duplicates: 0  Warnings: 0
    ```
 
-4. Verifique o progresso da operação `ALTER TABLE` consultando a tabela `events_stages_current` do Schema de Desempenho. O evento do estágio mostrado difere dependendo da fase da `ALTER TABLE` que está em andamento. A coluna `WORK_COMPLETED` mostra o trabalho concluído. A coluna `WORK_ESTIMATED` fornece uma estimativa do trabalho restante.
+4. Check the progress of the `ALTER TABLE` operation by querying the Performance Schema `events_stages_current` table. The stage event shown differs depending on which `ALTER TABLE` phase is currently in progress. The `WORK_COMPLETED` column shows the work completed. The `WORK_ESTIMATED` column provides an estimate of the remaining work.
 
    ```sql
    mysql> SELECT EVENT_NAME, WORK_COMPLETED, WORK_ESTIMATED
@@ -69,7 +69,7 @@ O exemplo a seguir demonstra como habilitar os instrumentos do evento `stage/inn
    1 row in set (0.01 sec)
    ```
 
-   A tabela `events_stages_current` retorna um conjunto vazio se a operação `ALTER TABLE` tiver sido concluída. Nesse caso, você pode consultar a tabela `events_stages_history` para visualizar os dados do evento da operação concluída. Por exemplo:
+   The `events_stages_current` table returns an empty set if the `ALTER TABLE` operation has completed. In this case, you can check the `events_stages_history` table to view event data for the completed operation. For example:
 
    ```sql
    mysql> SELECT EVENT_NAME, WORK_COMPLETED, WORK_ESTIMATED
@@ -86,6 +86,6 @@ O exemplo a seguir demonstra como habilitar os instrumentos do evento `stage/inn
    5 rows in set (0.00 sec)
    ```
 
-   Como mostrado acima, o valor `WORK_ESTIMATED` foi revisado durante o processamento de `ALTER TABLE`. O trabalho estimado após a conclusão da etapa inicial é
+   As shown above, the `WORK_ESTIMATED` value was revised during `ALTER TABLE` processing. The estimated work after completion of the initial stage is
 
-   1213. Quando o processamento de `ALTER TABLE` foi concluído, o valor de `WORK_ESTIMATED` foi definido para o valor real, que é 1981.
+   1213. When `ALTER TABLE` processing completed, `WORK_ESTIMATED` was set to the actual value, which is 1981.

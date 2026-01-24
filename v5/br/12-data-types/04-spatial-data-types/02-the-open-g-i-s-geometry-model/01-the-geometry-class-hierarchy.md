@@ -1,45 +1,44 @@
-#### 11.4.2.1 Hierarquia da Classe de Geometria
+#### 11.4.2.1 The Geometry Class Hierarchy
 
-As classes de geometria definem uma hierarquia da seguinte forma:
+The geometry classes define a hierarchy as follows:
 
-- `Geometria` (não instanciável)
+* `Geometry` (noninstantiable)
 
-  - `Ponto` (instanciável)
-  - `Curva` (não instanciável)
+  + `Point` (instantiable)
+  + `Curve` (noninstantiable)
 
-    - `LineString` (instanciável)
+    - `LineString` (instantiable)
 
-      - `Linha`
-      - `LinearRing`
-  - `Superfície` (não instanciável)
+      * `Line`
+      * `LinearRing`
+  + `Surface` (noninstantiable)
 
-    - `Polygon` (instanciável)
-  - `GeometryCollection` (instanciável)
+    - `Polygon` (instantiable)
+  + `GeometryCollection` (instantiable)
 
-    - `MultiPoint` (instanciável)
+    - `MultiPoint` (instantiable)
+    - `MultiCurve` (noninstantiable)
 
-    - `MultiCurve` (não instanciável)
+      * `MultiLineString` (instantiable)
 
-      - `MultiLineString` (instanciável)
+    - `MultiSurface` (noninstantiable)
 
-    - `MultiSurface` (não instanciável)
+      * `MultiPolygon` (instantiable)
 
-      - `MultiPolygon` (instanciável)
+It is not possible to create objects in noninstantiable classes. It is possible to create objects in instantiable classes. All classes have properties, and instantiable classes may also have assertions (rules that define valid class instances).
 
-Não é possível criar objetos em classes não instanciáveis. É possível criar objetos em classes instanciáveis. Todas as classes têm propriedades, e as classes instanciáveis também podem ter asserções (regras que definem instâncias válidas de classe).
+`Geometry` is the base class. It is an abstract class. The instantiable subclasses of `Geometry` are restricted to zero-, one-, and two-dimensional geometric objects that exist in two-dimensional coordinate space. All instantiable geometry classes are defined so that valid instances of a geometry class are topologically closed (that is, all defined geometries include their boundary).
 
-`Geometry` é a classe base. É uma classe abstrata. As subclasses instanciáveis de `Geometry` são restritas a objetos geométricos unidimensionais, bidimensionais e tridimensionais que existem no espaço de coordenadas bidimensional. Todas as classes de geometria instanciáveis são definidas de modo que as instâncias válidas de uma classe de geometria sejam topologicamente fechadas (ou seja, todas as geometrias definidas incluem sua borda).
+The base `Geometry` class has subclasses for `Point`, `Curve`, `Surface`, and `GeometryCollection`:
 
-A classe base `Geometry` tem subclasses para `Point`, `Curve`, `Surface` e `GeometryCollection`:
+* `Point` represents zero-dimensional objects.
 
-- O termo "ponto" representa objetos de dimensão zero.
+* `Curve` represents one-dimensional objects, and has subclass `LineString`, with sub-subclasses `Line` and `LinearRing`.
 
-- `Curve` representa objetos unidimensionais e tem a subclasse `LineString`, com sub-subclasses `Line` e `LinearRing`.
+* `Surface` is designed for two-dimensional objects and has subclass `Polygon`.
 
-- `Surface` é projetado para objetos bidimensionais e possui a subclasse `Polygon`.
+* `GeometryCollection` has specialized zero-, one-, and two-dimensional collection classes named `MultiPoint`, `MultiLineString`, and `MultiPolygon` for modeling geometries corresponding to collections of `Points`, `LineStrings`, and `Polygons`, respectively. `MultiCurve` and `MultiSurface` are introduced as abstract superclasses that generalize the collection interfaces to handle `Curves` and `Surfaces`.
 
-- `GeometryCollection` possui classes especializadas de coleção de zero, um e duas dimensões chamadas `MultiPoint`, `MultiLineString` e `MultiPolygon`, para modelar geometrias correspondentes a coleções de `Points`, `LineStrings` e `Polygons`, respectivamente. `MultiCurve` e `MultiSurface` são introduzidas como superclasses abstratas que generalizam as interfaces de coleção para lidar com `Curves` e `Surfaces`.
+`Geometry`, `Curve`, `Surface`, `MultiCurve`, and `MultiSurface` are defined as noninstantiable classes. They define a common set of methods for their subclasses and are included for extensibility.
 
-`Geometry`, `Curve`, `Surface`, `MultiCurve` e `MultiSurface` são definidas como classes não instanciáveis. Elas definem um conjunto comum de métodos para suas subclasses e são incluídas para extensibilidade.
-
-`Ponto`, `LinhaString`, `Poligono`, `Coleção de Geometria`, `MultiPonto`, `MultiLinhaString` e `MultiPoligono` são classes instanciáveis.
+`Point`, `LineString`, `Polygon`, `GeometryCollection`, `MultiPoint`, `MultiLineString`, and `MultiPolygon` are instantiable classes.

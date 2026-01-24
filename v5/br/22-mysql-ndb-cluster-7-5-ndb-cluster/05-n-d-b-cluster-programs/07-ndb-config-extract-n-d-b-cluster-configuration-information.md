@@ -1,38 +1,37 @@
-### 21.5.7 ndb_config — Extrair informações de configuração do cluster NDB
+### 21.5.7 ndb_config — Extract NDB Cluster Configuration Information
 
-Essa ferramenta extrai informações de configuração atuais para nós de dados, nós SQL e nós API de uma das várias fontes: um nó de gerenciamento do NDB Cluster ou seu arquivo `config.ini` ou `my.cnf`. Por padrão, o nó de gerenciamento é a fonte dos dados de configuração; para substituir o padrão, execute o ndb_config com a opção `--config-file` ou `--mycnf`. Também é possível usar um nó de dados como fonte, especificando seu ID de nó com `--config_from_node=node_id`.
+This tool extracts current configuration information for data nodes, SQL nodes, and API nodes from one of a number of sources: an NDB Cluster management node, or its `config.ini` or `my.cnf` file. By default, the management node is the source for the configuration data; to override the default, execute ndb_config with the [`--config-file`](mysql-cluster-programs-ndb-config.html#option_ndb_config_config-file) or [`--mycnf`](mysql-cluster-programs-ndb-config.html#option_ndb_config_mycnf) option. It is also possible to use a data node as the source by specifying its node ID with [`--config_from_node=node_id`](mysql-cluster-programs-ndb-config.html#option_ndb_config_config_from_node).
 
-**ndb_config** também pode fornecer um dump offline de todos os parâmetros de configuração que podem ser usados, juntamente com seus valores padrão, máximo e mínimo e outras informações. O dump pode ser produzido no formato de texto ou XML; para mais informações, consulte a discussão das opções `--configinfo` e `--xml` mais adiante nesta seção).
+[**ndb_config**](mysql-cluster-programs-ndb-config.html "21.5.7 ndb_config — Extract NDB Cluster Configuration Information") can also provide an offline dump of all configuration parameters which can be used, along with their default, maximum, and minimum values and other information. The dump can be produced in either text or XML format; for more information, see the discussion of the [`--configinfo`](mysql-cluster-programs-ndb-config.html#option_ndb_config_configinfo) and [`--xml`](mysql-cluster-programs-ndb-config.html#option_ndb_config_xml) options later in this section).
 
-Você pode filtrar os resultados por seção (`DB`, `SISTEMA` ou `CONEXÕES`) usando uma das opções `--nodes`, `--system` ou `--connections`.
+You can filter the results by section (`DB`, `SYSTEM`, or `CONNECTIONS`) using one of the options [`--nodes`](mysql-cluster-programs-ndb-config.html#option_ndb_config_nodes), [`--system`](mysql-cluster-programs-ndb-config.html#option_ndb_config_system), or [`--connections`](mysql-cluster-programs-ndb-config.html#option_ndb_config_connections).
 
-As opções que podem ser usadas com **ndb_config** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
+Options that can be used with [**ndb_config**](mysql-cluster-programs-ndb-config.html "21.5.7 ndb_config — Extract NDB Cluster Configuration Information") are shown in the following table. Additional descriptions follow the table.
 
-**Tabela 21.27 Opções de linha de comando usadas com o programa ndb_config**
+**Table 21.27 Command-line options used with the program ndb_config**
 
-<table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Formato</th> <th>Descrição</th> <th>Adicionado, Descontinuado ou Removido</th> </tr></thead><tbody><tr> <th><p> PH_HTML_CODE_<code> --defaults-extra-file=path </code>] </p></th> <td>Diretório contendo conjuntos de caracteres</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> PH_HTML_CODE_<code> --defaults-extra-file=path </code>] </p></th> <td>Defina o caminho para o arquivo config.ini</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> PH_HTML_CODE_<code> --defaults-group-suffix=string </code>] </p></th> <td>Obtenha os dados de configuração do nó com este ID (deve ser um nó de dados)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> PH_HTML_CODE_<code> --diff-default </code>] </p></th> <td>Exibe informações sobre todos os parâmetros de configuração do NDB em formato de texto, com valores padrão, máximo e mínimo. Use com --xml para obter saída em formato XML</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> PH_HTML_CODE_<code>--fields=string</code>] </p></th> <td>Imprima informações apenas sobre as conexões especificadas nas seções [tc<code> --defaults-extra-file=path </code>, [tcp defaul<code> --defaults-extra-file=path </code>, [sci], [sci defaul<code> --defaults-extra-file=path </code>, [sh<code> --defaults-extra-file=path </code> ou [shm defaul<code> --defaults-extra-file=path </code> do arquivo de configuração do cluster. Não pode ser usado com --system ou --nodes</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> PH_HTML_CODE_<code> -f </code>] </p></th> <td>Número de vezes para tentar a conexão novamente antes de desistir</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> PH_HTML_CODE_<code>--help</code>] </p></th> <td>Número de segundos para esperar entre as tentativas de contato com o servidor de gerenciamento</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p>PH_HTML_CODE_<code> -? </code>],</p><p> PH_HTML_CODE_<code> --host=name </code>] </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> PH_HTML_CODE_<code> --login-path=path </code>] </p></th> <td>Escreva o arquivo de núcleo em erro; usado no depuração</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-extra-file=path </code> </p></th> <td>Leia o arquivo fornecido após os arquivos globais terem sido lidos</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> --config-file=file_name </code><code> --defaults-extra-file=path </code>] </p></th> <td>Ler opções padrão a partir do arquivo fornecido apenas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-group-suffix=string </code> </p></th> <td>Leia também grupos com concatenação(grupo, sufixo)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> --diff-default </code> </p></th> <td>Imprima apenas os parâmetros de configuração que têm valores não padrão</td> <td><p>ADICIONADO: NDB 7.5.7, NDB 7.6.3</p></td> </tr></tbody><tbody><tr> <th><p><code>--fields=string</code>,</p><p> <code> -f </code> </p></th> <td>Separador de campo</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p><code>--help</code>,</p><p> <code> -? </code> </p></th> <td>Exibir texto de ajuda e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> --host=name </code> </p></th> <td>Especifique o host</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> --login-path=path </code> </p></th> <td>Leia o caminho fornecido a partir do arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> --config-from-node=# </code><code> --defaults-extra-file=path </code>] </p></th> <td>Ler dados de configuração do arquivo my.cnf</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p><code> --config-from-node=# </code><code> --defaults-extra-file=path </code>],</p><p> <code> --config-from-node=# </code><code> --defaults-group-suffix=string </code>] </p></th> <td>Defina a string de conexão para se conectar ao ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:por<code> --defaults-extra-file=path </code>". Substitui as entradas no NDB_CONNECTSTRING e no my.cnf</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p><code> --config-from-node=# </code><code> --diff-default </code>],</p><p> <code> --config-from-node=# </code><code>--fields=string</code>] </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> --config-from-node=# </code><code> -f </code>] </p></th> <td>Defina o ID do nó para este nó, substituindo qualquer ID definida pela opção --ndb-connectstring</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> --config-from-node=# </code><code>--help</code>] </p></th> <td>Ative as otimizações para a seleção de nós para transações. Ativado por padrão; use --skip-ndb-optimized-node-selection para desativá-lo</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> --config-from-node=# </code><code> -? </code>] </p></th> <td>Não leia as opções padrão de nenhum arquivo de opção, exceto o arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> --config-from-node=# </code><code> --host=name </code>] </p></th> <td>Obtenha a configuração do nó com este ID</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> --config-from-node=# </code><code> --login-path=path </code>] </p></th> <td>Imprima apenas as informações do nó ([seção ndb<code> --defaults-extra-file=path </code> ou [ndbd padrã<code> --defaults-extra-file=path </code> do arquivo de configuração do cluster). Não pode ser usado com --system ou --connections</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p><code> --configinfo </code><code> --defaults-extra-file=path </code>],</p><p> <code> --configinfo </code><code> --defaults-extra-file=path </code>] </p></th> <td>Uma ou mais opções de consulta (atributos)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p><code> --configinfo </code><code> --defaults-group-suffix=string </code>],</p><p> <code> --configinfo </code><code> --diff-default </code>] </p></th> <td>Descarrega todos os parâmetros e valores em uma única string delimitada por vírgula</td> <td><p>ADICIONADO: NDB 7.4.16, NDB 7.5.7</p></td> </tr></tbody><tbody><tr> <th><p> <code> --configinfo </code><code>--fields=string</code>] </p></th> <td>Imprimir a lista de argumentos do programa e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p><code> --configinfo </code><code> -f </code>],</p><p> <code> --configinfo </code><code>--help</code>] </p></th> <td>Separador de linhas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> --configinfo </code><code> -? </code>] </p></th> <td>Imprima apenas as informações da seção SYSTEM (consulte ndb_config --configinfo output). Não pode ser usado com --nodes ou --connections</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> --configinfo </code><code> --host=name </code>] </p></th> <td>Especifique o tipo de nó</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p><code> --configinfo </code><code> --login-path=path </code>],</p><p> <code> --connections </code><code> --defaults-extra-file=path </code>] </p></th> <td>Exibir texto de ajuda e sair; o mesmo que --help</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p><code> --connections </code><code> --defaults-extra-file=path </code>],</p><p> <code> --connections </code><code> --defaults-group-suffix=string </code>] </p></th> <td>Exibir informações da versão e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> --connections </code><code> --diff-default </code>] </p></th> <td>Use --xml com --configinfo para obter um dump de todos os parâmetros de configuração do NDB no formato XML com valores padrão, máximo e mínimo</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody></table>
+<table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Format</th> <th>Description</th> <th>Added, Deprecated, or Removed</th> </tr></thead><tbody><tr> <th><p> <code> --character-sets-dir=path </code> </p></th> <td>Directory containing character sets</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --config-file=file_name </code> </p></th> <td>Set the path to config.ini file</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --config-from-node=# </code> </p></th> <td>Obtain configuration data from the node having this ID (must be a data node)</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --configinfo </code> </p></th> <td>Dumps information about all NDB configuration parameters in text format with default, maximum, and minimum values. Use with --xml to obtain XML output</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --connections </code> </p></th> <td>Print information only about connections specified in [tcp], [tcp default], [sci], [sci default], [shm], or [shm default] sections of cluster configuration file. Cannot be used with --system or --nodes</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-retries=# </code> </p></th> <td>Number of times to retry connection before giving up</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-retry-delay=# </code> </p></th> <td>Number of seconds to wait between attempts to contact management server</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--connect-string=connection_string</code>, </p><p> <code> -c connection_string </code> </p></th> <td>Same as --ndb-connectstring</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --core-file </code> </p></th> <td>Write core file on error; used in debugging</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-extra-file=path </code> </p></th> <td>Read given file after global files are read</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-file=path </code> </p></th> <td>Read default options from given file only</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-group-suffix=string </code> </p></th> <td>Also read groups with concat(group, suffix)</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --diff-default </code> </p></th> <td>Print only configuration parameters that have non-default values</td> <td><p> ADDED: NDB 7.5.7, NDB 7.6.3 </p></td> </tr></tbody><tbody><tr> <th><p> <code>--fields=string</code>, </p><p> <code> -f </code> </p></th> <td>Field separator</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--help</code>, </p><p> <code> -? </code> </p></th> <td>Display help text and exit</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --host=name </code> </p></th> <td>Specify host</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --login-path=path </code> </p></th> <td>Read given path from login file</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --mycnf </code> </p></th> <td>Read configuration data from my.cnf file</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-connectstring=connection_string</code>, </p><p> <code> -c connection_string </code> </p></th> <td>Set connect string for connecting to ndb_mgmd. Syntax: "[nodeid=id;][host=]hostname[:port]". Overrides entries in NDB_CONNECTSTRING and my.cnf</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-mgmd-host=connection_string</code>, </p><p> <code> -c connection_string </code> </p></th> <td>Same as --ndb-connectstring</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --ndb-nodeid=# </code> </p></th> <td>Set node ID for this node, overriding any ID set by --ndb-connectstring</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --ndb-optimized-node-selection </code> </p></th> <td>Enable optimizations for selection of nodes for transactions. Enabled by default; use --skip-ndb-optimized-node-selection to disable</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --no-defaults </code> </p></th> <td>Do not read default options from any option file other than login file</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --nodeid=# </code> </p></th> <td>Get configuration of node with this ID</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --nodes </code> </p></th> <td>Print node information ([ndbd] or [ndbd default] section of cluster configuration file) only. Cannot be used with --system or --connections</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--query=string</code>, </p><p> <code> -q string </code> </p></th> <td>One or more query options (attributes)</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--query-all</code>, </p><p> <code> -a </code> </p></th> <td>Dumps all parameters and values to a single comma-delimited string</td> <td><p> ADDED: NDB 7.4.16, NDB 7.5.7 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --print-defaults </code> </p></th> <td>Print program argument list and exit</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--rows=string</code>, </p><p> <code> -r string </code> </p></th> <td>Row separator</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --system </code> </p></th> <td>Print SYSTEM section information only (see ndb_config --configinfo output). Cannot be used with --nodes or --connections</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --type=name </code> </p></th> <td>Specify node type</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--usage</code>, </p><p> <code> -? </code> </p></th> <td>Display help text and exit; same as --help</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--version</code>, </p><p> <code> -V </code> </p></th> <td>Display version information and exit</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --configinfo --xml </code> </p></th> <td>Use --xml with --configinfo to obtain a dump of all NDB configuration parameters in XML format with default, maximum, and minimum values</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody></table>
 
-- `--character-sets-dir`
+* `--character-sets-dir`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Diretório contendo conjuntos de caracteres.
+  Directory containing character sets.
 
-- `--configinfo`
+* `--configinfo`
 
-  A opção `--configinfo` faz com que **ndb_config** exiba uma lista de cada parâmetro de configuração do NDB Cluster suportado pela distribuição do NDB Cluster, da qual **ndb_config** faz parte, incluindo as seguintes informações:
+  The `--configinfo` option causes [**ndb_config**](mysql-cluster-programs-ndb-config.html "21.5.7 ndb_config — Extract NDB Cluster Configuration Information") to dump a list of each NDB Cluster configuration parameter supported by the NDB Cluster distribution of which [**ndb_config**](mysql-cluster-programs-ndb-config.html "21.5.7 ndb_config — Extract NDB Cluster Configuration Information") is a part, including the following information:
 
-  - Uma breve descrição do propósito, efeitos e uso de cada parâmetro
+  + A brief description of each parameter's purpose, effects, and usage
 
-  - A seção do arquivo `config.ini` onde o parâmetro pode ser usado
+  + The section of the `config.ini` file where the parameter may be used
 
-  - O tipo de dado ou unidade de medida do parâmetro
+  + The parameter's data type or unit of measurement
+  + Where applicable, the parameter's default, minimum, and maximum values
 
-  - Quando aplicável, os valores padrão, mínimo e máximo do parâmetro
+  + NDB Cluster release version and build information
 
-  - Versão do lançamento do cluster do NDB e informações de compilação
-
-  Por padrão, essa saída é em formato de texto. Parte dessa saída é mostrada aqui:
+  By default, this output is in text format. Part of this output is shown here:
 
   ```sql
   $> ndb_config --configinfo
@@ -64,229 +63,230 @@ As opções que podem ser usadas com **ndb_config** estão mostradas na tabela a
   …
   ```
 
-  Use esta opção juntamente com a opção `--xml` para obter a saída no formato XML.
+  Use this option together with the [`--xml`](mysql-cluster-programs-ndb-config.html#option_ndb_config_xml) option to obtain output in XML format.
 
-- `--config-file=caminho-para-arquivo`
+* `--config-file=path-to-file`
 
-  <table frame="box" rules="all" summary="Propriedades para arquivo de configuração"><tbody><tr><th>Formato de linha de comando</th> <td><code>--config-file=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for config-file"><tbody><tr><th>Command-Line Format</th> <td><code>--config-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
-  Fornece o caminho para o arquivo de configuração do servidor de gerenciamento (`config.ini`). Este pode ser um caminho relativo ou absoluto. Se o nó de gerenciamento estiver em um host diferente daquele em que o **ndb_config** é invocado, então um caminho absoluto deve ser usado.
+  Gives the path to the management server's configuration file (`config.ini`). This may be a relative or absolute path. If the management node resides on a different host from the one on which [**ndb_config**](mysql-cluster-programs-ndb-config.html "21.5.7 ndb_config — Extract NDB Cluster Configuration Information") is invoked, then an absolute path must be used.
 
-- `--config_from_node=#`
+* `--config_from_node=#`
 
-  <table frame="box" rules="all" summary="Propriedades para config_from_node"><tbody><tr><th>Formato de linha de comando</th> <td><code>--config-from-node=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td><code>none</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>48</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for config_from_node"><tbody><tr><th>Command-Line Format</th> <td><code>--config-from-node=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>none</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>48</code></td> </tr></tbody></table>
 
-  Obtenha os dados de configuração do cluster a partir do nó de dados que possui esse ID.
+  Obtain the cluster's configuration data from the data node that has this ID.
 
-  Se o nó com esse ID não for um nó de dados, o **ndb_config** falha com um erro. (Para obter dados de configuração do nó de gerenciamento, omita essa opção.)
+  If the node having this ID is not a data node, [**ndb_config**](mysql-cluster-programs-ndb-config.html "21.5.7 ndb_config — Extract NDB Cluster Configuration Information") fails with an error. (To obtain configuration data from the management node instead, simply omit this option.)
 
-- `--conexões`
+* `--connections`
 
-  <table frame="box" rules="all" summary="Propriedades para conexões"><tbody><tr><th>Formato de linha de comando</th> <td><code>--connections</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connections"><tbody><tr><th>Command-Line Format</th> <td><code>--connections</code></td> </tr></tbody></table>
 
-  Informe ao **ndb_config** que ele imprima apenas as informações de `CONNECTIONS`, ou seja, as informações sobre os parâmetros encontrados nas seções `[tcp]`, `[tcp default]`, `[shm]` ou `[shm default]` do arquivo de configuração do cluster (consulte Seção 21.4.3.10, “Conexões TCP/IP do NDB Cluster” e Seção 21.4.3.12, “Conexões de Memória Compartilhada do NDB Cluster”, para mais informações).
+  Tells [**ndb_config**](mysql-cluster-programs-ndb-config.html "21.5.7 ndb_config — Extract NDB Cluster Configuration Information") to print `CONNECTIONS` information only—that is, information about parameters found in the `[tcp]`, `[tcp default]`, `[shm]`, or `[shm default]` sections of the cluster configuration file (see [Section 21.4.3.10, “NDB Cluster TCP/IP Connections”](mysql-cluster-tcp-definition.html "21.4.3.10 NDB Cluster TCP/IP Connections"), and [Section 21.4.3.12, “NDB Cluster Shared Memory Connections”](mysql-cluster-shm-definition.html "21.4.3.12 NDB Cluster Shared Memory Connections"), for more information).
 
-  Esta opção é mutuamente exclusiva de `--nodes` e `--system`; apenas uma dessas 3 opções pode ser usada.
+  This option is mutually exclusive with [`--nodes`](mysql-cluster-programs-ndb-config.html#option_ndb_config_nodes) and [`--system`](mysql-cluster-programs-ndb-config.html#option_ndb_config_system); only one of these 3 options can be used.
 
-- `--connect-retries`
+* `--connect-retries`
 
-  <table frame="box" rules="all" summary="Propriedades para tentativas de conexão de reposição"><tbody><tr><th>Formato de linha de comando</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>12</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>12</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>12</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>12</code></td> </tr></tbody></table>
 
-  Número de vezes para tentar a conexão novamente antes de desistir.
+  Number of times to retry connection before giving up.
 
-- `--connect-retry-delay`
+* `--connect-retry-delay`
 
-  <table frame="box" rules="all" summary="Propriedades para connect-retry-delay"><tbody><tr><th>Formato de linha de comando</th> <td><code>--connect-retry-delay=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>5</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>5</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-retry-delay"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retry-delay=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>5</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>5</code></td> </tr></tbody></table>
 
-  Número de segundos para esperar entre as tentativas de contato com o servidor de gerenciamento.
+  Number of seconds to wait between attempts to contact management server.
 
-- `--connect-string`
+* `--connect-string`
 
-  <table frame="box" rules="all" summary="Propriedades para a string de conexão"><tbody><tr><th>Formato de linha de comando</th> <td><code>--connect-string=connection_string</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-string"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-string=connection_string</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  O mesmo que `--ndb-connectstring`.
+  Same as [`--ndb-connectstring`](mysql-cluster-programs-ndb-config.html#option_ndb_config_ndb-connectstring).
 
-- `--core-file`
+* `--core-file`
 
-  <table frame="box" rules="all" summary="Propriedades para arquivo de núcleo"><tbody><tr><th>Formato de linha de comando</th> <td><code>--core-file</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for core-file"><tbody><tr><th>Command-Line Format</th> <td><code>--core-file</code></td> </tr></tbody></table>
 
-  Escreva o arquivo de núcleo em erro; usado no depuração.
+  Write core file on error; used in debugging.
 
-- `--defaults-extra-file`
+* `--defaults-extra-file`
 
-  <table frame="box" rules="all" summary="Propriedades para defaults-extra-file"><tbody><tr><th>Formato de linha de comando</th> <td><code>--defaults-extra-file=path</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for defaults-extra-file"><tbody><tr><th>Command-Line Format</th> <td><code>--defaults-extra-file=path</code></td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  Leia o arquivo fornecido após a leitura dos arquivos globais.
+  Read given file after global files are read.
 
-- `--defaults-file`
+* `--defaults-file`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Leia as opções padrão do arquivo fornecido.
+  Read default options from given file only.
 
-- `--defaults-group-suffix`
+* `--defaults-group-suffix`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Leia também grupos com concatenação (grupo, sufixo).
+  Also read groups with concat(group, suffix).
 
-- `--diff-default`
+* `--diff-default`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Imprima apenas os parâmetros de configuração que têm valores não padrão.
+  Print only configuration parameters that have non-default values.
 
-- `--fields=delimiter`, `-f` *`delimiter`*
+* `--fields=delimiter`, `-f` *`delimiter`*
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Especifica uma cadeia de caracteres `delimitador` usada para separar os campos no resultado. O padrão é `,` (o caractere vírgula).
+  Specifies a *`delimiter`* string used to separate the fields in the result. The default is `,` (the comma character).
 
-  Nota
+  Note
 
-  Se o delimitador contiver espaços ou escape (como `\n` para o caractere de retorno de linha), ele deve ser citado.
+  If the *`delimiter`* contains spaces or escapes (such as `\n` for the linefeed character), then it must be quoted.
 
-- `--help`
+* `--help`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Exibir texto de ajuda e sair.
+  Display help text and exit.
 
-- `--host=hostname`
+* `--host=hostname`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Especifica o nome do host do nó para o qual as informações de configuração devem ser obtidas.
+  Specifies the host name of the node for which configuration information is to be obtained.
 
-  Nota
+  Note
 
-  Embora o nome de domínio `localhost` geralmente resolva para o endereço IP `127.0.0.1`, isso nem sempre é verdade para todas as plataformas e configurações operacionais. Isso significa que, quando `localhost` é usado em `config.ini`, o comando **ndb_config --host=localhost** pode falhar se o **ndb_config** for executado em um host diferente onde `localhost` seja resolvido para um endereço diferente (por exemplo, em algumas versões do SUSE Linux, este é `127.0.0.2`). Em geral, para obter os melhores resultados, você deve usar endereços IP numéricos para todos os valores de configuração do NDB Cluster relacionados a hosts, ou verificar se todos os hosts do NDB Cluster tratam `localhost` da mesma maneira.
+  While the hostname `localhost` usually resolves to the IP address `127.0.0.1`, this may not necessarily be true for all operating platforms and configurations. This means that it is possible, when `localhost` is used in `config.ini`, for [**ndb_config `--host=localhost`**](mysql-cluster-programs-ndb-config.html "21.5.7 ndb_config — Extract NDB Cluster Configuration Information") to fail if [**ndb_config**](mysql-cluster-programs-ndb-config.html "21.5.7 ndb_config — Extract NDB Cluster Configuration Information") is run on a different host where `localhost` resolves to a different address (for example, on some versions of SUSE Linux, this is `127.0.0.2`). In general, for best results, you should use numeric IP addresses for all NDB Cluster configuration values relating to hosts, or verify that all NDB Cluster hosts handle `localhost` in the same fashion.
 
-- `--login-path`
+* `--login-path`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Leia o caminho fornecido a partir do arquivo de login.
+  Read given path from login file.
 
-- `--mycnf`
+* `--mycnf`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Leia os dados de configuração do arquivo `my.cnf`.
+  Read configuration data from the `my.cnf` file.
 
-- `--ndb-connectstring=connection_string`, `-c connection_string`
+* `--ndb-connectstring=connection_string`, `-c connection_string`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  Especifica a cadeia de conexão a ser usada para se conectar ao servidor de gerenciamento. O formato da cadeia de conexão é o mesmo descrito na Seção 21.4.3.3, "Cadeias de conexão de cluster NDB", e o padrão é `localhost:1186`.
+  Specifies the connection string to use in connecting to the management server. The format for the connection string is the same as described in [Section 21.4.3.3, “NDB Cluster Connection Strings”](mysql-cluster-connection-strings.html "21.4.3.3 NDB Cluster Connection Strings"), and defaults to `localhost:1186`.
 
-- `--ndb-mgmd-host`
+* `--ndb-mgmd-host`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr></tbody></table>
 
-  O mesmo que `--ndb-connectstring`.
+  Same as [`--ndb-connectstring`](mysql-cluster-programs-ndb-config.html#option_ndb_config_ndb-connectstring).
 
-- `--ndb-nodeid`
+* `--ndb-nodeid`
 
-  <table frame="box" rules="all" summary="Propriedades para arquivo de configuração"><tbody><tr><th>Formato de linha de comando</th> <td><code>--config-file=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for config-file"><tbody><tr><th>Command-Line Format</th> <td><code>--config-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
-  Defina o ID do nó para este nó, substituindo qualquer ID definida por `--ndb-connectstring`.
+  Set node ID for this node, overriding any ID set by [`--ndb-connectstring`](mysql-cluster-programs-ndb-config.html#option_ndb_config_ndb-connectstring).
 
-- `--ndb-optimized-node-selection`
+* `--ndb-optimized-node-selection`
 
-  <table frame="box" rules="all" summary="Propriedades para arquivo de configuração"><tbody><tr><th>Formato de linha de comando</th> <td><code>--config-file=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for config-file"><tbody><tr><th>Command-Line Format</th> <td><code>--config-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
-  Ative as otimizações para a seleção de nós para transações. Ativado por padrão; use `--skip-ndb-optimized-node-selection` para desativá-lo.
+  Enable optimizations for selection of nodes for transactions. Enabled by default; use `--skip-ndb-optimized-node-selection` to disable.
 
-- `--no-defaults`
+* `--no-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para arquivo de configuração"><tbody><tr><th>Formato de linha de comando</th> <td><code>--config-file=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for config-file"><tbody><tr><th>Command-Line Format</th> <td><code>--config-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
-  Não leia as opções padrão de nenhum arquivo de opção, exceto o arquivo de login.
+  Do not read default options from any option file other than login file.
 
-- `--nodeid=node_id`
+* `--nodeid=node_id`
 
-  <table frame="box" rules="all" summary="Propriedades para arquivo de configuração"><tbody><tr><th>Formato de linha de comando</th> <td><code>--config-file=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for config-file"><tbody><tr><th>Command-Line Format</th> <td><code>--config-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
-  Especifique o ID do nó para o qual as informações de configuração devem ser obtidas. Anteriormente, `--id` poderia ser usado como sinônimo dessa opção; no NDB 7.5 e versões posteriores, a única forma aceita é `--nodeid`.
+  Specify the node ID of the node for which configuration information is to be obtained. Formerly, `--id` could be used as a synonym for this option; in NDB 7.5 and later, the only form accepted is `--nodeid`.
 
-- `--nodes`
+* `--nodes`
 
-  <table frame="box" rules="all" summary="Propriedades para arquivo de configuração"><tbody><tr><th>Formato de linha de comando</th> <td><code>--config-file=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for config-file"><tbody><tr><th>Command-Line Format</th> <td><code>--config-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
-  Informe **ndb_config** para imprimir informações relacionadas apenas aos parâmetros definidos em uma seção `[ndbd]` ou `[ndbd default]` do arquivo de configuração do cluster (consulte Seção 21.4.3.6, “Definindo NDB Cluster Data Nodes”).
+  Tells [**ndb_config**](mysql-cluster-programs-ndb-config.html "21.5.7 ndb_config — Extract NDB Cluster Configuration Information") to print information relating only to parameters defined in an `[ndbd]` or `[ndbd default]` section of the cluster configuration file (see [Section 21.4.3.6, “Defining NDB Cluster Data Nodes”](mysql-cluster-ndbd-definition.html "21.4.3.6 Defining NDB Cluster Data Nodes")).
 
-  Esta opção é mutuamente exclusiva de `--connections` e `--system`; apenas uma dessas 3 opções pode ser usada.
+  This option is mutually exclusive with [`--connections`](mysql-cluster-programs-ndb-config.html#option_ndb_config_connections) and [`--system`](mysql-cluster-programs-ndb-config.html#option_ndb_config_system); only one of these 3 options can be used.
 
-- `--query=query-options`, `-q` *`query-options`*
+* `--query=query-options`, `-q` *`query-options`*
 
-  <table frame="box" rules="all" summary="Propriedades para arquivo de configuração"><tbody><tr><th>Formato de linha de comando</th> <td><code>--config-file=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for config-file"><tbody><tr><th>Command-Line Format</th> <td><code>--config-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
-  Esta é uma lista delimitada por vírgula de opções de consulta, ou seja, uma lista de um ou mais atributos de nó a serem retornados. Estes incluem `nodeid` (ID do nó), tipo (tipo de nó — ou seja, `ndbd`, `mysqld` ou `ndb_mgmd`) e quaisquer parâmetros de configuração cujos valores devem ser obtidos.
+  This is a comma-delimited list of query options—that is, a list of one or more node attributes to be returned. These include `nodeid` (node ID), type (node type—that is, `ndbd`, `mysqld`, or `ndb_mgmd`), and any configuration parameters whose values are to be obtained.
 
-  Por exemplo, `--query=nodeid,type,datamemory,datadir` retorna o ID do nó, o tipo do nó, `DataMemory` e `DataDir` para cada nó.
+  For example, `--query=nodeid,type,datamemory,datadir` returns the node ID, node type, [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory), and [`DataDir`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datadir) for each node.
 
-  Anteriormente, `id` era aceito como sinônimo de `nodeid`, mas foi removido na NDB 7.5 e em versões posteriores.
+  Formerly, `id` was accepted as a synonym for `nodeid`, but has been removed in NDB 7.5 and later.
 
-  Nota
+  Note
 
-  Se um parâmetro específico não for aplicável a um determinado tipo de nó, uma string vazia será retornada para o valor correspondente. Consulte os exemplos mais adiante nesta seção para obter mais informações.
+  If a given parameter is not applicable to a certain type of node, than an empty string is returned for the corresponding value. See the examples later in this section for more information.
 
-- `--query-all`, `-a`
+* `--query-all`, `-a`
 
-  <table frame="box" rules="all" summary="Propriedades para arquivo de configuração"><tbody><tr><th>Formato de linha de comando</th> <td><code>--config-file=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for config-file"><tbody><tr><th>Command-Line Format</th> <td><code>--config-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
-  Retorna uma lista separada por vírgula de todas as opções de consulta (atributos do nó; observe que essa lista é uma única string.
+  Returns a comma-delimited list of all query options (node attributes; note that this list is a single string.
 
-  Essa opção foi introduzida no NDB 7.5.7 (Bug #60095, Bug #11766869).
+  This option was introduced in NDB 7.5.7 (Bug #60095, Bug
+  #11766869).
 
-- `--print-defaults`
+* `--print-defaults`
 
-  <table frame="box" rules="all" summary="Propriedades para arquivo de configuração"><tbody><tr><th>Formato de linha de comando</th> <td><code>--config-file=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for config-file"><tbody><tr><th>Command-Line Format</th> <td><code>--config-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
-  Imprima a lista de argumentos do programa e saia.
+  Print program argument list and exit.
 
-- `--rows=separator`, `-r` *`separator`*
+* `--rows=separator`, `-r` *`separator`*
 
-  <table frame="box" rules="all" summary="Propriedades para arquivo de configuração"><tbody><tr><th>Formato de linha de comando</th> <td><code>--config-file=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for config-file"><tbody><tr><th>Command-Line Format</th> <td><code>--config-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
-  Especifica uma string de *separador* usada para separar as linhas no resultado. O padrão é um caractere de espaço.
+  Specifies a *`separator`* string used to separate the rows in the result. The default is a space character.
 
-  Nota
+  Note
 
-  Se o *`separator`* contiver espaços ou escape (como `\n` para o caractere de retorno de linha), ele deve ser citado.
+  If the *`separator`* contains spaces or escapes (such as `\n` for the linefeed character), then it must be quoted.
 
-- `--system`
+* `--system`
 
-  <table frame="box" rules="all" summary="Propriedades para arquivo de configuração"><tbody><tr><th>Formato de linha de comando</th> <td><code>--config-file=file_name</code></td> </tr><tr><th>Tipo</th> <td>Nome do arquivo</td> </tr><tr><th>Valor padrão</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for config-file"><tbody><tr><th>Command-Line Format</th> <td><code>--config-file=file_name</code></td> </tr><tr><th>Type</th> <td>File name</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
-  Informe ao **ndb_config** para imprimir apenas as informações do `SISTEMA`. Isso inclui variáveis do sistema que não podem ser alteradas em tempo de execução; portanto, não há uma seção correspondente do arquivo de configuração do clúster para elas. Elas podem ser vistas (com o prefixo `****** SISTEMA ******`) na saída do **ndb_config** `--configinfo`.
+  Tells [**ndb_config**](mysql-cluster-programs-ndb-config.html "21.5.7 ndb_config — Extract NDB Cluster Configuration Information") to print `SYSTEM` information only. This consists of system variables that cannot be changed at run time; thus, there is no corresponding section of the cluster configuration file for them. They can be seen (prefixed with `****** SYSTEM ******`) in the output of [**ndb_config**](mysql-cluster-programs-ndb-config.html "21.5.7 ndb_config — Extract NDB Cluster Configuration Information") [`--configinfo`](mysql-cluster-programs-ndb-config.html#option_ndb_config_configinfo).
 
-  Esta opção é mutuamente exclusiva de `--nodes` e `--connections`; apenas uma dessas 3 opções pode ser usada.
+  This option is mutually exclusive with [`--nodes`](mysql-cluster-programs-ndb-config.html#option_ndb_config_nodes) and [`--connections`](mysql-cluster-programs-ndb-config.html#option_ndb_config_connections); only one of these 3 options can be used.
 
-- `--type=node_type`
+* `--type=node_type`
 
-  <table frame="box" rules="all" summary="Propriedades para config_from_node"><tbody><tr><th>Formato de linha de comando</th> <td><code>--config-from-node=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td><code>none</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>48</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for config_from_node"><tbody><tr><th>Command-Line Format</th> <td><code>--config-from-node=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>none</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>48</code></td> </tr></tbody></table>
 
-  Filtra os resultados para que apenas os valores de configuração que se aplicam aos nós do tipo especificado *`node_type`* (`ndbd`, `mysqld` ou `ndb_mgmd`) sejam retornados.
+  Filters results so that only configuration values applying to nodes of the specified *`node_type`* (`ndbd`, `mysqld`, or `ndb_mgmd`) are returned.
 
-- `--usage`, `--help` ou `-?`
+* `--usage`, `--help`, or `-?`
 
-  <table frame="box" rules="all" summary="Propriedades para config_from_node"><tbody><tr><th>Formato de linha de comando</th> <td><code>--config-from-node=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td><code>none</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>48</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for config_from_node"><tbody><tr><th>Command-Line Format</th> <td><code>--config-from-node=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>none</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>48</code></td> </tr></tbody></table>
 
-  Faz com que **ndb_config** imprima uma lista de opções disponíveis e, em seguida, saia. Sinônimo de `--help`.
+  Causes [**ndb_config**](mysql-cluster-programs-ndb-config.html "21.5.7 ndb_config — Extract NDB Cluster Configuration Information") to print a list of available options, and then exit. Synonym for [`--help`](mysql-cluster-programs-ndb-config.html#option_ndb_config_help).
 
-- `--version`, `-V`
+* `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Propriedades para config_from_node"><tbody><tr><th>Formato de linha de comando</th> <td><code>--config-from-node=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td><code>none</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>48</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for config_from_node"><tbody><tr><th>Command-Line Format</th> <td><code>--config-from-node=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>none</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>48</code></td> </tr></tbody></table>
 
-  Faz com que **ndb_config** imprima uma string de informações da versão e, em seguida, saia.
+  Causes [**ndb_config**](mysql-cluster-programs-ndb-config.html "21.5.7 ndb_config — Extract NDB Cluster Configuration Information") to print a version information string, and then exit.
 
-- `--configinfo` `--xml`
+* `--configinfo` `--xml`
 
-  <table frame="box" rules="all" summary="Propriedades para config_from_node"><tbody><tr><th>Formato de linha de comando</th> <td><code>--config-from-node=#</code></td> </tr><tr><th>Tipo</th> <td>Numérico</td> </tr><tr><th>Valor padrão</th> <td><code>none</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>48</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for config_from_node"><tbody><tr><th>Command-Line Format</th> <td><code>--config-from-node=#</code></td> </tr><tr><th>Type</th> <td>Numeric</td> </tr><tr><th>Default Value</th> <td><code>none</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>48</code></td> </tr></tbody></table>
 
-  Para fornecer a saída como XML, adicione a opção `--configinfo` ao arquivo **ndb_config**. Uma parte dessa saída é mostrada neste exemplo:
+  Cause [**ndb_config**](mysql-cluster-programs-ndb-config.html "21.5.7 ndb_config — Extract NDB Cluster Configuration Information") [`--configinfo`](mysql-cluster-programs-ndb-config.html#option_ndb_config_configinfo) to provide output as XML by adding this option. A portion of such output is shown in this example:
 
   ```sql
   $> ndb_config --configinfo --xml
@@ -323,29 +323,29 @@ As opções que podem ser usadas com **ndb_config** estão mostradas na tabela a
   </configvariables>
   ```
 
-  Nota
+  Note
 
-  Normalmente, a saída XML produzida pelo comando `--configinfo` `--xml` de **ndb_config** é formatada com uma linha por elemento; adicionamos espaços extras no exemplo anterior e no seguinte, por questões de legibilidade. Isso não deve fazer diferença para as aplicações que utilizam essa saída, já que a maioria dos processadores de XML ignora espaços em branco não essenciais como uma questão de rotina ou pode ser instruída a fazer isso.
+  Normally, the XML output produced by [**ndb_config**](mysql-cluster-programs-ndb-config.html "21.5.7 ndb_config — Extract NDB Cluster Configuration Information") `--configinfo` `--xml` is formatted using one line per element; we have added extra whitespace in the previous example, as well as the next one, for reasons of legibility. This should not make any difference to applications using this output, since most XML processors either ignore nonessential whitespace as a matter of course, or can be instructed to do so.
 
-  A saída XML também indica quando a alteração de um parâmetro específico exige que os nós de dados sejam reiniciados usando a opção `--initial`. Isso é mostrado pela presença de um atributo `initial="true"` no elemento `<param>` correspondente. Além disso, o tipo de reinício (`system` ou `node`) também é mostrado; se um parâmetro específico requer um reinício do sistema, isso é indicado pela presença de um atributo `restart="system"` no elemento `<param>` correspondente. Por exemplo, alterar o valor definido para o parâmetro `Diskless` requer um reinício inicial do sistema, como mostrado aqui (com os atributos `restart` e `initial` destacados para visibilidade):
+  The XML output also indicates when changing a given parameter requires that data nodes be restarted using the [`--initial`](mysql-cluster-programs-ndbd.html#option_ndbd_initial) option. This is shown by the presence of an `initial="true"` attribute in the corresponding `<param>` element. In addition, the restart type (`system` or `node`) is also shown; if a given parameter requires a system restart, this is indicated by the presence of a `restart="system"` attribute in the corresponding `<param>` element. For example, changing the value set for the [`Diskless`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-diskless) parameter requires a system initial restart, as shown here (with the `restart` and `initial` attributes highlighted for visibility):
 
   ```sql
   <param name="Diskless" comment="Run wo/ disk" type="bool" default="false"
             restart="system" initial="true"/>
   ```
 
-  Atualmente, nenhum atributo `initial` é incluído na saída XML para elementos `<param>` que correspondem a parâmetros que não requerem reinicializações iniciais; em outras palavras, `initial="false"` é o padrão, e o valor `false` deve ser assumido se o atributo não estiver presente. Da mesma forma, o tipo padrão de reinicialização é `node` (ou seja, uma reinicialização online ou "rolling" do clúster), mas o atributo `restart` é incluído apenas se o tipo de reinicialização for `system` (o que significa que todos os nós do clúster devem ser desligados ao mesmo tempo, e depois reiniciados).
+  Currently, no `initial` attribute is included in the XML output for `<param>` elements corresponding to parameters which do not require initial restarts; in other words, `initial="false"` is the default, and the value `false` should be assumed if the attribute is not present. Similarly, the default restart type is `node` (that is, an online or “rolling” restart of the cluster), but the `restart` attribute is included only if the restart type is `system` (meaning that all cluster nodes must be shut down at the same time, then restarted).
 
-  Os parâmetros desatualizados são indicados no resultado XML pelo atributo `deprecated`, conforme mostrado aqui:
+  Deprecated parameters are indicated in the XML output by the `deprecated` attribute, as shown here:
 
   ```sql
   <param name="NoOfDiskPagesToDiskAfterRestartACC" comment="DiskCheckpointSpeed"
          type="unsigned" default="20" min="1" max="4294967039" deprecated="true"/>
   ```
 
-  Nesses casos, o `comment` refere-se a um ou mais parâmetros que substituem o parâmetro descontinuado. Da mesma forma que o `initial`, o atributo `deprecated` é indicado apenas quando o parâmetro está descontinuado, com `deprecated="true"`, e não aparece em absoluto para parâmetros que não estão descontinuados. (Bug #21127135)
+  In such cases, the `comment` refers to one or more parameters that supersede the deprecated parameter. Similarly to `initial`, the `deprecated` attribute is indicated only when the parameter is deprecated, with `deprecated="true"`, and does not appear at all for parameters which are not deprecated. (Bug #21127135)
 
-  A partir da versão 7.5.0 do NDB, os parâmetros obrigatórios são indicados com `mandatory="true"`, conforme mostrado aqui:
+  Beginning with NDB 7.5.0, parameters that are required are indicated with `mandatory="true"`, as shown here:
 
   ```sql
   <param name="NodeId"
@@ -353,19 +353,19 @@ As opções que podem ser usadas com **ndb_config** estão mostradas na tabela a
             type="unsigned" mandatory="true" min="1" max="255"/>
   ```
 
-  Da mesma forma que o atributo `initial` ou `deprecated` é exibido apenas para um parâmetro que requer um reinício inicial ou que está desatualizado, o atributo `mandatory` é incluído apenas se o parâmetro fornecido for realmente necessário.
+  In much the same way that the `initial` or `deprecated` attribute is displayed only for a parameter that requires an intial restart or that is deprecated, the `mandatory` attribute is included only if the given parameter is actually required.
 
-  Importante
+  Important
 
-  A opção `--xml` só pode ser usada com a opção `--configinfo`. Usar `--xml` sem `--configinfo` resulta em um erro.
+  The `--xml` option can be used only with the `--configinfo` option. Using `--xml` without `--configinfo` fails with an error.
 
-  Ao contrário das opções usadas com este programa para obter dados de configuração atuais, `--configinfo` e `--xml` utilizam informações obtidas das fontes do NDB Cluster quando o **ndb_config** foi compilado. Por essa razão, não é necessário fazer uma conexão com um NDB Cluster em execução ou acessar um arquivo `config.ini` ou `my.cnf` para essas duas opções.
+  Unlike the options used with this program to obtain current configuration data, `--configinfo` and `--xml` use information obtained from the NDB Cluster sources when [**ndb_config**](mysql-cluster-programs-ndb-config.html "21.5.7 ndb_config — Extract NDB Cluster Configuration Information") was compiled. For this reason, no connection to a running NDB Cluster or access to a `config.ini` or `my.cnf` file is required for these two options.
 
-Combinar outras opções de **ndb_config** (como `--query` ou `--type`) com `--configinfo` (com ou sem a opção `--xml` não é suportada. Atualmente, se você tentar fazer isso, o resultado usual é que todas as outras opções, além de `--configinfo` ou `--xml`, são simplesmente ignoradas. *No entanto, esse comportamento não é garantido e está sujeito a mudanças a qualquer momento*. Além disso, desde **ndb_config**, quando usado com a opção `--configinfo`, não acessa o NDB Cluster ou não lê nenhum arquivo, tentando especificar opções adicionais como `--ndb-connectstring` ou `--config-file` com `--configinfo` não serve para nada.
+Combining other [**ndb_config**](mysql-cluster-programs-ndb-config.html "21.5.7 ndb_config — Extract NDB Cluster Configuration Information") options (such as [`--query`](mysql-cluster-programs-ndb-config.html#option_ndb_config_query) or [`--type`](mysql-cluster-programs-ndb-config.html#option_ndb_config_type)) with `--configinfo` (with or without the `--xml` option is not supported. Currently, if you attempt to do so, the usual result is that all other options besides `--configinfo` or `--xml` are simply ignored. *However, this behavior is not guaranteed and is subject to change at any time*. In addition, since [**ndb_config**](mysql-cluster-programs-ndb-config.html "21.5.7 ndb_config — Extract NDB Cluster Configuration Information"), when used with the `--configinfo` option, does not access the NDB Cluster or read any files, trying to specify additional options such as `--ndb-connectstring` or `--config-file` with `--configinfo` serves no purpose.
 
-#### Exemplos
+#### Examples
 
-1. Para obter o ID do nó e o tipo de cada nó no cluster:
+1. To obtain the node ID and type of each node in the cluster:
 
    ```sql
    $> ./ndb_config --query=nodeid,type --fields=':' --rows='\n'
@@ -380,9 +380,9 @@ Combinar outras opções de **ndb_config** (como `--query` ou `--type`) com `--c
    9:mysqld
    ```
 
-   Neste exemplo, usamos as opções ``--fields` para separar o ID e o tipo de cada nó com um caractere de colon (`:`), e as opções ``--rows` para colocar os valores de cada nó em uma nova linha na saída.
+   In this example, we used the [`--fields`](mysql-cluster-programs-ndb-config.html#option_ndb_config_fields) options to separate the ID and type of each node with a colon character (`:`), and the [`--rows`](mysql-cluster-programs-ndb-config.html#option_ndb_config_rows) options to place the values for each node on a new line in the output.
 
-2. Para criar uma cadeia de conexão que possa ser usada por nós de dados, SQL e API para se conectar ao servidor de gerenciamento:
+2. To produce a connection string that can be used by data, SQL, and API nodes to connect to the management server:
 
    ```sql
    $> ./ndb_config --config-file=usr/local/mysql/cluster-data/config.ini \
@@ -390,7 +390,7 @@ Combinar outras opções de **ndb_config** (como `--query` ou `--type`) com `--c
    198.51.100.179:1186
    ```
 
-3. Essa invocação de **ndb_config** verifica apenas os nós de dados (usando a opção `--type`), e mostra os valores para o ID e o nome do host de cada nó, bem como os valores definidos para seus parâmetros `DataMemory` e `DataDir`:
+3. This invocation of [**ndb_config**](mysql-cluster-programs-ndb-config.html "21.5.7 ndb_config — Extract NDB Cluster Configuration Information") checks only data nodes (using the [`--type`](mysql-cluster-programs-ndb-config.html#option_ndb_config_type) option), and shows the values for each node's ID and host name, as well as the values set for its [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory) and [`DataDir`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datadir) parameters:
 
    ```sql
    $> ./ndb_config --type=ndbd --query=nodeid,host,datamemory,datadir -f ' : ' -r '\n'
@@ -400,9 +400,9 @@ Combinar outras opções de **ndb_config** (como `--query` ou `--type`) com `--c
    4 : 198.51.100.119 : 83886080 : /usr/local/mysql/cluster-data
    ```
 
-   Neste exemplo, usamos as opções curtas `-f` e `-r` para definir o delimitador de campo e o separador de linha, respectivamente, além da opção curta `-q` para passar uma lista de parâmetros a serem obtidos.
+   In this example, we used the short options `-f` and `-r` for setting the field delimiter and row separator, respectively, as well as the short option `-q` to pass a list of parameters to be obtained.
 
-4. Para excluir resultados de qualquer host, exceto um em particular, use a opção `--host`:
+4. To exclude results from any host except one in particular, use the [`--host`](mysql-cluster-programs-ndb-config.html#option_ndb_config_host) option:
 
    ```sql
    $> ./ndb_config --host=198.51.100.176 -f : -r '\n' -q id,type
@@ -410,6 +410,6 @@ Combinar outras opções de **ndb_config** (como `--query` ou `--type`) com `--c
    5:ndb_mgmd
    ```
 
-   Neste exemplo, também usamos a forma abreviada `-q` para determinar os atributos a serem consultados.
+   In this example, we also used the short form `-q` to determine the attributes to be queried.
 
-   Da mesma forma, você pode limitar os resultados a um nó com um ID específico usando a opção `--nodeid`.
+   Similarly, you can limit results to a node with a specific ID using the [`--nodeid`](mysql-cluster-programs-ndb-config.html#option_ndb_config_nodeid) option.

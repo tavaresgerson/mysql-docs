@@ -1,10 +1,10 @@
-### 12.9.7 Adicionando uma Cotação Definida pelo Usuário para Indexação de Texto Completo
+### 12.9.7 Adding a User-Defined Collation for Full-Text Indexing
 
-Esta seção descreve como adicionar uma collation definida pelo usuário para pesquisas de texto completo usando o analisador de texto completo integrado. A collation de exemplo é semelhante a `latin1_swedish_ci`, mas trata o caractere `'-'` como uma letra em vez de um caractere de pontuação, para que possa ser indexado como um caractere de palavra. Informações gerais sobre a adição de collation estão fornecidas na Seção 10.14, “Adicionando uma Collation a um Conjunto de Caracteres”; presume-se que você a leu e está familiarizado com os arquivos envolvidos.
+This section describes how to add a user-defined collation for full-text searches using the built-in full-text parser. The sample collation is like `latin1_swedish_ci` but treats the `'-'` character as a letter rather than as a punctuation character so that it can be indexed as a word character. General information about adding collations is given in Section 10.14, “Adding a Collation to a Character Set”; it is assumed that you have read it and are familiar with the files involved.
 
-Para adicionar uma concordância para a indexação de texto completo, use o procedimento a seguir. As instruções aqui adicionam uma concordância para um conjunto de caracteres simples, que, conforme discutido na Seção 10.14, “Adicionando uma Concordância a um Conjunto de Caracteres”, pode ser criada usando um arquivo de configuração que descreve as propriedades do conjunto de caracteres. Para um conjunto de caracteres complexo, como o Unicode, crie concordâncias usando arquivos de código C que descrevem as propriedades do conjunto de caracteres.
+To add a collation for full-text indexing, use the following procedure. The instructions here add a collation for a simple character set, which as discussed in Section 10.14, “Adding a Collation to a Character Set”, can be created using a configuration file that describes the character set properties. For a complex character set such as Unicode, create collations using C source files that describe the character set properties.
 
-1. Adicione uma ordenação ao arquivo `Index.xml`. O intervalo permitido de IDs para ordenações definidas pelo usuário está descrito na Seção 10.14.2, “Escolhendo um ID de Ordenação”. O ID deve estar inutilizado, então escolha um valor diferente de 1025 se esse ID já estiver ocupado no seu sistema.
+1. Add a collation to the `Index.xml` file. The permitted range of IDs for user-defined collations is given in Section 10.14.2, “Choosing a Collation ID”. The ID must be unused, so choose a value different from 1025 if that ID is already taken on your system.
 
    ```sql
    <charset name="latin1">
@@ -13,7 +13,7 @@ Para adicionar uma concordância para a indexação de texto completo, use o pro
    </charset>
    ```
 
-2. Declare a ordem de classificação para a collation no arquivo `latin1.xml`. Neste caso, a ordem pode ser copiada do `latin1_swedish_ci`:
+2. Declare the sort order for the collation in the `latin1.xml` file. In this case, the order can be copied from `latin1_swedish_ci`:
 
    ```sql
    <collation name="latin1_fulltext_ci">
@@ -38,7 +38,7 @@ Para adicionar uma concordância para a indexação de texto completo, use o pro
    </collation>
    ```
 
-3. Modifique o array `ctype` em `latin1.xml`. Altere o valor correspondente a 0x2D (que é o código para o caractere `'-'` ) de 10 (ponto) para 01 (letra maiúscula). No array a seguir, este é o elemento na quarta linha da parte inferior, terceiro valor a partir do final.
+3. Modify the `ctype` array in `latin1.xml`. Change the value corresponding to 0x2D (which is the code for the `'-'` character) from 10 (punctuation) to 01 (uppercase letter). In the following array, this is the element in the fourth row down, third value from the end.
 
    ```sql
    <ctype>
@@ -64,9 +64,8 @@ Para adicionar uma concordância para a indexação de texto completo, use o pro
    </ctype>
    ```
 
-4. Reinicie o servidor.
-
-5. Para utilizar a nova classificação, inclua-a na definição das colunas que devem usá-la:
+4. Restart the server.
+5. To employ the new collation, include it in the definition of columns that are to use it:
 
    ```sql
    mysql> DROP TABLE IF EXISTS t1;
@@ -79,7 +78,7 @@ Para adicionar uma concordância para a indexação de texto completo, use o pro
    Query OK, 0 rows affected (0.47 sec)
    ```
 
-6. Teste a ordenação para verificar se o hífen é considerado como um caractere de palavra:
+6. Test the collation to verify that hyphen is considered as a word character:
 
    ```sql
    mysql> INSERT INTO t1 VALUEs ('----'),('....'),('abcd');

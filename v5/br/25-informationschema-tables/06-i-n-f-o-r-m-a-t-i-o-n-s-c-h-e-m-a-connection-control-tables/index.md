@@ -1,7 +1,7 @@
-## 24.6 TABELAS DE CONTROLE DE CONEXÃO DO SCHEMA DE INFORMAÇÕES
+## 24.6 INFORMATION_SCHEMA Connection Control Tables
 
-24.6.1 Referência da Tabela de Controle de Conexão do Schema de Informações
+[24.6.1 INFORMATION_SCHEMA Connection Control Table Reference](information-schema-connection-control-table-reference.html)
 
-Tabela INFORMATION_SCHEMA CONNECTION_CONTROL_FAILED_LOGIN_ATTEMPTS
+[24.6.2 The INFORMATION_SCHEMA CONNECTION_CONTROL_FAILED_LOGIN_ATTEMPTS Table](information-schema-connection-control-failed-login-attempts-table.html)
 
-As seções a seguir descrevem as tabelas `INFORMATION_SCHEMA` associadas ao plugin `connection_control`.
+The following sections describe the `INFORMATION_SCHEMA` tables associated with the `connection_control` plugin.

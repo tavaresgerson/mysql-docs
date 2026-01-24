@@ -1,25 +1,25 @@
-### 15.11.1 Arquitetura de Motor de Armazenamento Desmontável
+### 15.11.1 Pluggable Storage Engine Architecture
 
-O MySQL Server utiliza uma arquitetura de mecanismo de armazenamento plugável que permite que os mecanismos de armazenamento sejam carregados e descarregados de um servidor MySQL em execução.
+MySQL Server uses a pluggable storage engine architecture that enables storage engines to be loaded into and unloaded from a running MySQL server.
 
-**Conectando um Motor de Armazenamento**
+**Plugging in a Storage Engine**
 
-Antes que um mecanismo de armazenamento possa ser usado, a biblioteca de plug-in do mecanismo de armazenamento deve ser carregada no MySQL usando a instrução `INSTALL PLUGIN`. Por exemplo, se o plug-in do mecanismo `EXAMPLE` for chamado de `example` e a biblioteca compartilhada for chamada de `ha_example.so`, você carregá-la-á com a seguinte instrução:
+Before a storage engine can be used, the storage engine plugin shared library must be loaded into MySQL using the `INSTALL PLUGIN` statement. For example, if the `EXAMPLE` engine plugin is named `example` and the shared library is named `ha_example.so`, you load it with the following statement:
 
 ```sql
 INSTALL PLUGIN example SONAME 'ha_example.so';
 ```
 
-Para instalar um motor de armazenamento plugável, o arquivo do plugin deve estar localizado no diretório do plugin MySQL e o usuário que emite a instrução `INSTALL PLUGIN` deve ter privilégio de `INSERT` para a tabela `mysql.plugin`.
+To install a pluggable storage engine, the plugin file must be located in the MySQL plugin directory, and the user issuing the `INSTALL PLUGIN` statement must have `INSERT` privilege for the `mysql.plugin` table.
 
-A biblioteca compartilhada deve estar localizada no diretório do plugin do servidor MySQL, cujo local é fornecido pela variável de sistema `plugin_dir`.
+The shared library must be located in the MySQL server plugin directory, the location of which is given by the `plugin_dir` system variable.
 
-**Desconectar um Motor de Armazenamento**
+**Unplugging a Storage Engine**
 
-Para desativar um motor de armazenamento, use a instrução `UNINSTALL PLUGIN`:
+To unplug a storage engine, use the `UNINSTALL PLUGIN` statement:
 
 ```sql
 UNINSTALL PLUGIN example;
 ```
 
-Se você desconectar um mecanismo de armazenamento necessário para tabelas existentes, essas tabelas se tornam inacessíveis, mas ainda estão presentes no disco (se aplicável). Certifique-se de que não há tabelas usando um mecanismo de armazenamento antes de desconectar o mecanismo de armazenamento.
+If you unplug a storage engine that is needed by existing tables, those tables become inaccessible, but are still present on disk (where applicable). Ensure that there are no tables using a storage engine before you unplug the storage engine.

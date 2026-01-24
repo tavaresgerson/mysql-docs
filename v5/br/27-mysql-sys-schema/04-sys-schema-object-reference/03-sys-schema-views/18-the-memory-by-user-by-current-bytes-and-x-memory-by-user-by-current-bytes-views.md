@@ -1,29 +1,29 @@
-#### 26.4.3.18 As visualizações memory_by_user_by_current_bytes e x$memory_by_user_by_current_bytes
+#### 26.4.3.18 The memory_by_user_by_current_bytes and x$memory_by_user_by_current_bytes Views
 
-Esses pontos resumem o uso da memória, agrupados por usuário. Por padrão, as linhas são ordenadas por quantidade de memória usada em ordem decrescente.
+These views summarize memory use, grouped by user. By default, rows are sorted by descending amount of memory used.
 
-As views `memory_by_user_by_current_bytes` e `x$memory_by_user_by_current_bytes` possuem essas colunas:
+The `memory_by_user_by_current_bytes` and `x$memory_by_user_by_current_bytes` views have these columns:
 
-- `usuário`
+* `user`
 
-  O nome de usuário do cliente. As linhas para as quais a coluna `USER` na tabela subjacente do Schema de Desempenho é `NULL` são assumidas como pertencentes a threads de segundo plano e são relatadas com o nome do host `background`.
+  The client user name. Rows for which the `USER` column in the underlying Performance Schema table is `NULL` are assumed to be for background threads and are reported with a host name of `background`.
 
-- `current_count_used`
+* `current_count_used`
 
-  O número atual de blocos de memória alocados que ainda não foram liberados para o usuário.
+  The current number of allocated memory blocks that have not been freed yet for the user.
 
-- `current_allocated`
+* `current_allocated`
 
-  O número atual de bytes alocados que ainda não foram liberados para o usuário.
+  The current number of allocated bytes that have not been freed yet for the user.
 
-- `current_avg_alloc`
+* `current_avg_alloc`
 
-  O número atual de bytes alocados por bloco de memória para o usuário.
+  The current number of allocated bytes per memory block for the user.
 
-- `current_max_alloc`
+* `current_max_alloc`
 
-  A maior alocação de memória de corrente atual em bytes para o usuário.
+  The largest single current memory allocation in bytes for the user.
 
-- `total_allocated`
+* `total_allocated`
 
-  A alocação total de memória em bytes para o usuário.
+  The total memory allocation in bytes for the user.

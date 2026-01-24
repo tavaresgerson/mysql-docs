@@ -1,8 +1,8 @@
-### 22.6.1 Chaves de Partição, Chaves Primárias e Chaves Únicas
+### 22.6.1 Partitioning Keys, Primary Keys, and Unique Keys
 
-Esta seção discute a relação entre as chaves de partição e as chaves primárias e chaves únicas. A regra que rege essa relação pode ser expressa da seguinte forma: Todas as colunas usadas na expressão de partição de uma tabela particionada devem fazer parte de cada chave única que a tabela possa ter.
+This section discusses the relationship of partitioning keys with primary keys and unique keys. The rule governing this relationship can be expressed as follows: All columns used in the partitioning expression for a partitioned table must be part of every unique key that the table may have.
 
-Em outras palavras, *cada chave única na tabela deve usar todas as colunas na expressão de particionamento da tabela*. (Isso também inclui a chave primária da tabela, já que é, por definição, uma chave única. Este caso específico é discutido mais adiante nesta seção.) Por exemplo, cada uma das seguintes declarações de criação de tabela é inválida:
+In other words, *every unique key on the table must use every column in the table's partitioning expression*. (This also includes the table's primary key, since it is by definition a unique key. This particular case is discussed later in this section.) For example, each of the following table creation statements is invalid:
 
 ```sql
 CREATE TABLE t1 (
@@ -27,9 +27,9 @@ PARTITION BY HASH(col1 + col3)
 PARTITIONS 4;
 ```
 
-Em cada caso, a tabela proposta teria pelo menos uma chave única que não incluísse todas as colunas usadas na expressão de particionamento.
+In each case, the proposed table would have at least one unique key that does not include all columns used in the partitioning expression.
 
-Cada uma das seguintes declarações é válida e representa uma maneira de fazer a declaração de criação de tabela inválida funcionar:
+Each of the following statements is valid, and represents one way in which the corresponding invalid table creation statement could be made to work:
 
 ```sql
 CREATE TABLE t1 (
@@ -53,7 +53,7 @@ PARTITION BY HASH(col1 + col3)
 PARTITIONS 4;
 ```
 
-Esse exemplo mostra o erro produzido nesses casos:
+This example shows the error produced in such cases:
 
 ```sql
 mysql> CREATE TABLE t3 (
@@ -69,7 +69,7 @@ mysql> CREATE TABLE t3 (
 ERROR 1491 (HY000): A PRIMARY KEY must include all columns in the table's partitioning function
 ```
 
-A instrução `CREATE TABLE` falha porque tanto `col1` quanto `col3` estão incluídos na chave de particionamento proposta, mas nenhuma dessas colunas faz parte de ambas as chaves únicas da tabela. Isso mostra uma possível solução para a definição de tabela inválida:
+The [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement fails because both `col1` and `col3` are included in the proposed partitioning key, but neither of these columns is part of both of unique keys on the table. This shows one possible fix for the invalid table definition:
 
 ```sql
 mysql> CREATE TABLE t3 (
@@ -85,9 +85,9 @@ mysql> CREATE TABLE t3 (
 Query OK, 0 rows affected (0.05 sec)
 ```
 
-Neste caso, a chave de partição proposta `col3` faz parte de ambas as chaves únicas, e a instrução de criação da tabela é bem-sucedida.
+In this case, the proposed partitioning key `col3` is part of both unique keys, and the table creation statement succeeds.
 
-A tabela a seguir não pode ser particionada de forma alguma, porque não há como incluir em uma chave de particionamento colunas que pertencem a ambas as chaves únicas:
+The following table cannot be partitioned at all, because there is no way to include in a partitioning key any columns that belong to both unique keys:
 
 ```sql
 CREATE TABLE t4 (
@@ -100,7 +100,7 @@ CREATE TABLE t4 (
 );
 ```
 
-Como toda chave primária é, por definição, uma chave única, essa restrição também inclui a chave primária da tabela, se ela tiver uma. Por exemplo, as duas declarações a seguir são inválidas:
+Since every primary key is by definition a unique key, this restriction also includes the table's primary key, if it has one. For example, the next two statements are invalid:
 
 ```sql
 CREATE TABLE t5 (
@@ -125,7 +125,7 @@ PARTITION BY HASH( YEAR(col2) )
 PARTITIONS 4;
 ```
 
-Em ambos os casos, a chave primária não inclui todas as colunas referenciadas na expressão de particionamento. No entanto, as duas próximas declarações são válidas:
+In both cases, the primary key does not include all columns referenced in the partitioning expression. However, both of the next two statements are valid:
 
 ```sql
 CREATE TABLE t7 (
@@ -150,9 +150,9 @@ PARTITION BY HASH(col1 + YEAR(col2))
 PARTITIONS 4;
 ```
 
-Se uma tabela não tiver chaves únicas — o que inclui não ter uma chave primária — essa restrição não se aplica, e você pode usar qualquer coluna ou colunas na expressão de particionamento, desde que o tipo de coluna seja compatível com o tipo de particionamento.
+If a table has no unique keys—this includes having no primary key—then this restriction does not apply, and you may use any column or columns in the partitioning expression as long as the column type is compatible with the partitioning type.
 
-Por essa mesma razão, você não pode adicionar uma chave única a uma tabela particionada posteriormente, a menos que a chave inclua todas as colunas usadas pela expressão de particionamento da tabela. Considere a tabela particionada criada conforme mostrado aqui:
+For the same reason, you cannot later add a unique key to a partitioned table unless the key includes all columns used by the table's partitioning expression. Consider the partitioned table created as shown here:
 
 ```sql
 mysql> CREATE TABLE t_no_pk (c1 INT, c2 INT)
@@ -165,7 +165,7 @@ mysql> CREATE TABLE t_no_pk (c1 INT, c2 INT)
 Query OK, 0 rows affected (0.12 sec)
 ```
 
-É possível adicionar uma chave primária a `t_no_pk` usando qualquer uma dessas instruções de `ALTER TABLE`:
+It is possible to add a primary key to `t_no_pk` using either of these [`ALTER TABLE`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") statements:
 
 ```sql
 #  possible PK
@@ -189,7 +189,7 @@ Query OK, 0 rows affected (0.09 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 ```
 
-No entanto, a próxima declaração falha, porque `c1` faz parte da chave de partição, mas não faz parte da chave primária proposta:
+However, the next statement fails, because `c1` is part of the partitioning key, but is not part of the proposed primary key:
 
 ```sql
 #  fails with error 1503
@@ -197,9 +197,9 @@ mysql> ALTER TABLE t_no_pk ADD PRIMARY KEY(c2);
 ERROR 1503 (HY000): A PRIMARY KEY must include all columns in the table's partitioning function
 ```
 
-Como `t_no_pk` tem apenas `c1` em sua expressão de partição, tentar adicionar uma chave única apenas em `c2` falha. No entanto, você pode adicionar uma chave única que use tanto `c1` quanto `c2`.
+Since `t_no_pk` has only `c1` in its partitioning expression, attempting to adding a unique key on `c2` alone fails. However, you can add a unique key that uses both `c1` and `c2`.
 
-Essas regras também se aplicam a tabelas não particionadas existentes que você deseja particionar usando `ALTER TABLE ... PARTITION BY`. Considere uma tabela `np_pk` criada conforme mostrado aqui:
+These rules also apply to existing nonpartitioned tables that you wish to partition using [`ALTER TABLE ... PARTITION BY`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations"). Consider a table `np_pk` created as shown here:
 
 ```sql
 mysql> CREATE TABLE np_pk (
@@ -211,7 +211,7 @@ mysql> CREATE TABLE np_pk (
 Query OK, 0 rows affected (0.08 sec)
 ```
 
-A seguinte instrução `ALTER TABLE` falha com um erro, porque a coluna `added` não faz parte de nenhuma chave única na tabela:
+The following [`ALTER TABLE`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") statement fails with an error, because the `added` column is not part of any unique key in the table:
 
 ```sql
 mysql> ALTER TABLE np_pk
@@ -220,7 +220,7 @@ mysql> ALTER TABLE np_pk
 ERROR 1503 (HY000): A PRIMARY KEY must include all columns in the table's partitioning function
 ```
 
-No entanto, essa declaração usando a coluna `id` como coluna de particionamento é válida, conforme mostrado aqui:
+However, this statement using the `id` column for the partitioning column is valid, as shown here:
 
 ```sql
 mysql> ALTER TABLE np_pk
@@ -230,4 +230,4 @@ Query OK, 0 rows affected (0.11 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 ```
 
-No caso do `np_pk`, a única coluna que pode ser usada como parte de uma expressão de partição é `id`; se você deseja particionar essa tabela usando qualquer outra coluna ou colunas na expressão de partição, você deve primeiro modificar a tabela, adicionando a(s) coluna(s) desejada(s) à chave primária ou removendo a chave primária por completo.
+In the case of `np_pk`, the only column that may be used as part of a partitioning expression is `id`; if you wish to partition this table using any other column or columns in the partitioning expression, you must first modify the table, either by adding the desired column or columns to the primary key, or by dropping the primary key altogether.

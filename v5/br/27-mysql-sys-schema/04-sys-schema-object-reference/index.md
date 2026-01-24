@@ -1,13 +1,13 @@
-## 26.4 sys Objeto de esquema de referência
+## 26.4 sys Schema Object Reference
 
-26.4.1 Índice de Objeto de Esquema sys
+26.4.1 sys Schema Object Index
 
-26.4.2 Tabelas e gatilhos do esquema sys
+26.4.2 sys Schema Tables and Triggers
 
-26.4.3 Visualizações do esquema sys
+26.4.3 sys Schema Views
 
-26.4.4 Procedimentos armazenados do esquema sys
+26.4.4 sys Schema Stored Procedures
 
-26.4.5 Funções Armazenadas no Schema sys
+26.4.5 sys Schema Stored Functions
 
-O esquema `sys` inclui tabelas e gatilhos, visualizações e procedimentos e funções armazenadas. As seções a seguir fornecem detalhes sobre cada um desses objetos.
+The `sys` schema includes tables and triggers, views, and stored procedures and functions. The following sections provide details for each of these objects.

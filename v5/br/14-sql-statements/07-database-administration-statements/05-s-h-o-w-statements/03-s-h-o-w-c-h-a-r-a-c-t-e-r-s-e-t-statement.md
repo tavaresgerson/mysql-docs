@@ -1,11 +1,11 @@
-#### 13.7.5.3. Declaração de Caracteres do Conjunto
+#### 13.7.5.3 SHOW CHARACTER SET Statement
 
 ```sql
 SHOW {CHARACTER SET | CHARSET}
     [LIKE 'pattern' | WHERE expr]
 ```
 
-A instrução `SHOW CHARACTER SET` mostra todos os conjuntos de caracteres disponíveis. A cláusula `LIKE`, se presente, indica quais nomes de conjuntos de caracteres devem ser correspondidos. A cláusula `WHERE` pode ser usada para selecionar linhas com condições mais gerais, conforme discutido em Seção 24.8, “Extensões para Instruções SHOW”. Por exemplo:
+The [`SHOW CHARACTER SET`](show-character-set.html "13.7.5.3 SHOW CHARACTER SET Statement") statement shows all available character sets. The [`LIKE`](string-comparison-functions.html#operator_like) clause, if present, indicates which character set names to match. The `WHERE` clause can be given to select rows using more general conditions, as discussed in [Section 24.8, “Extensions to SHOW Statements”](extended-show.html "24.8 Extensions to SHOW Statements"). For example:
 
 ```sql
 mysql> SHOW CHARACTER SET LIKE 'latin%';
@@ -19,24 +19,24 @@ mysql> SHOW CHARACTER SET LIKE 'latin%';
 +---------+-----------------------------+-------------------+--------+
 ```
 
-A saída `SHOW CHARACTER SET` tem essas colunas:
+[`SHOW CHARACTER SET`](show-character-set.html "13.7.5.3 SHOW CHARACTER SET Statement") output has these columns:
 
-- `Charset`
+* `Charset`
 
-  O nome do conjunto de caracteres.
+  The character set name.
 
-- `Descrição`
+* `Description`
 
-  Uma descrição do conjunto de caracteres.
+  A description of the character set.
 
-- `Colagem padrão`
+* `Default collation`
 
-  A collation padrão para o conjunto de caracteres.
+  The default collation for the character set.
 
-- `Maxlen`
+* `Maxlen`
 
-  O número máximo de bytes necessários para armazenar um caractere.
+  The maximum number of bytes required to store one character.
 
-O conjunto de caracteres `filename` é para uso interno apenas; consequentemente, `SHOW CHARACTER SET` não o exibe.
+The `filename` character set is for internal use only; consequently, [`SHOW CHARACTER SET`](show-character-set.html "13.7.5.3 SHOW CHARACTER SET Statement") does not display it.
 
-As informações sobre o conjunto de caracteres também estão disponíveis na tabela `INFORMATION_SCHEMA` `CHARACTER_SETS`.
+Character set information is also available from the `INFORMATION_SCHEMA` [`CHARACTER_SETS`](information-schema-character-sets-table.html "24.3.2 The INFORMATION_SCHEMA CHARACTER_SETS Table") table.

@@ -1,88 +1,88 @@
-### 24.3.29 A tabela INFORMATION_SCHEMA TRIGGERS
+### 24.3.29 The INFORMATION_SCHEMA TRIGGERS Table
 
-A tabela `TRIGGERS` fornece informações sobre os gatilhos. Para ver informações sobre os gatilhos de uma tabela, você deve ter o privilégio `TRIGGER` para a tabela.
+The [`TRIGGERS`](information-schema-triggers-table.html "24.3.29 The INFORMATION_SCHEMA TRIGGERS Table") table provides information about triggers. To see information about a table's triggers, you must have the [`TRIGGER`](privileges-provided.html#priv_trigger) privilege for the table.
 
-A tabela `TRIGGERS` tem as seguintes colunas:
+The [`TRIGGERS`](information-schema-triggers-table.html "24.3.29 The INFORMATION_SCHEMA TRIGGERS Table") table has these columns:
 
-- `TRIGGER_CATALOG`
+* `TRIGGER_CATALOG`
 
-  O nome do catálogo ao qual o gatilho pertence. Esse valor é sempre `def`.
+  The name of the catalog to which the trigger belongs. This value is always `def`.
 
-- `TRIGGER_SCHEMA`
+* `TRIGGER_SCHEMA`
 
-  O nome do esquema (banco de dados) ao qual o gatilho pertence.
+  The name of the schema (database) to which the trigger belongs.
 
-- `TRIGGER_NAME`
+* `TRIGGER_NAME`
 
-  O nome do gatilho.
+  The name of the trigger.
 
-- `EVENT_MANIPULATION`
+* `EVENT_MANIPULATION`
 
-  O evento desencadeador. Este é o tipo de operação na tabela associada para a qual o gatilho é ativado. O valor é `INSERT` (uma linha foi inserida), `DELETE` (uma linha foi excluída) ou `UPDATE` (uma linha foi modificada).
+  The trigger event. This is the type of operation on the associated table for which the trigger activates. The value is `INSERT` (a row was inserted), `DELETE` (a row was deleted), or `UPDATE` (a row was modified).
 
-- `EVENT_OBJECT_CATALOG`, `EVENT_OBJECT_SCHEMA` e `EVENT_OBJECT_TABLE`
+* `EVENT_OBJECT_CATALOG`, `EVENT_OBJECT_SCHEMA`, and `EVENT_OBJECT_TABLE`
 
-  Como observado na Seção 23.3, “Usando gatilhos”, cada gatilho está associado exatamente a uma tabela. Essas colunas indicam o catálogo e o esquema (banco de dados) em que essa tabela ocorre, e o nome da tabela, respectivamente. O valor `EVENT_OBJECT_CATALOG` é sempre `def`.
+  As noted in [Section 23.3, “Using Triggers”](triggers.html "23.3 Using Triggers"), every trigger is associated with exactly one table. These columns indicate the catalog and schema (database) in which this table occurs, and the table name, respectively. The `EVENT_OBJECT_CATALOG` value is always `def`.
 
-- `AÇÃO_ORDEM`
+* `ACTION_ORDER`
 
-  A posição ordinal da ação do gatilho na lista de gatilhos na mesma tabela com os mesmos valores de `EVENT_MANIPULATION` e `ACTION_TIMING`.
+  The ordinal position of the trigger's action within the list of triggers on the same table with the same `EVENT_MANIPULATION` and `ACTION_TIMING` values.
 
-- `AÇÃO_CONDICIONAL`
+* `ACTION_CONDITION`
 
-  Esse valor é sempre `NULL`.
+  This value is always `NULL`.
 
-- `DECLARAÇÃO DE AÇÃO`
+* `ACTION_STATEMENT`
 
-  O corpo do gatilho; ou seja, a declaração executada quando o gatilho é ativado. Este texto usa codificação UTF-8.
+  The trigger body; that is, the statement executed when the trigger activates. This text uses UTF-8 encoding.
 
-- `AÇÃO_ORIENTAÇÃO`
+* `ACTION_ORIENTATION`
 
-  Esse valor é sempre `ROW`.
+  This value is always `ROW`.
 
-- `AÇÃO_TIMING`
+* `ACTION_TIMING`
 
-  Se o gatilho é ativado antes ou depois do evento que o desencadeia. O valor é `BEFORE` ou `AFTER`.
+  Whether the trigger activates before or after the triggering event. The value is `BEFORE` or `AFTER`.
 
-- `AÇÃO_REFERÊNCIA_TABELA_VELHA`
+* `ACTION_REFERENCE_OLD_TABLE`
 
-  Esse valor é sempre `NULL`.
+  This value is always `NULL`.
 
-- `AÇÃO_REFERÊNCIA_NOVO_TABELA`
+* `ACTION_REFERENCE_NEW_TABLE`
 
-  Esse valor é sempre `NULL`.
+  This value is always `NULL`.
 
-- `AÇÃO_REFERÊNCIA_VELHA_LINHA` e `AÇÃO_REFERÊNCIA_NOVA_LINHA`
+* `ACTION_REFERENCE_OLD_ROW` and `ACTION_REFERENCE_NEW_ROW`
 
-  Os identificadores de coluna antigos e novos, respectivamente. O valor `ACTION_REFERENCE_OLD_ROW` é sempre `OLD` e o valor `ACTION_REFERENCE_NEW_ROW` é sempre `NEW`.
+  The old and new column identifiers, respectively. The `ACTION_REFERENCE_OLD_ROW` value is always `OLD` and the `ACTION_REFERENCE_NEW_ROW` value is always `NEW`.
 
-- `CREADO`
+* `CREATED`
 
-  A data e a hora em que o gatilho foi criado. Este é um valor `TIMESTAMP(2)` (com uma parte fracionária em centésimos de segundo) para gatilhos criados no MySQL 5.7.2 ou posterior, `NULL` para gatilhos criados antes de 5.7.2.
+  The date and time when the trigger was created. This is a `TIMESTAMP(2)` value (with a fractional part in hundredths of seconds) for triggers created in MySQL 5.7.2 or later, `NULL` for triggers created prior to 5.7.2.
 
-- `SQL_MODE`
+* `SQL_MODE`
 
-  O modo SQL em vigor quando o gatilho foi criado e sob o qual o gatilho é executado. Para os valores permitidos, consulte Seção 5.1.10, “Modos SQL do Servidor”.
+  The SQL mode in effect when the trigger was created, and under which the trigger executes. For the permitted values, see [Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes").
 
-- `DEFINIR`
+* `DEFINER`
 
-  A conta nomeada na cláusula `DEFINER` (geralmente o usuário que criou o gatilho), no formato `'user_name'@'host_name'`.
+  The account named in the `DEFINER` clause (often the user who created the trigger), in `'user_name'@'host_name'` format.
 
-- `CHARACTER_SET_CLIENT`
+* `CHARACTER_SET_CLIENT`
 
-  O valor da sessão da variável de sistema `character_set_client` quando o gatilho foi criado.
+  The session value of the [`character_set_client`](server-system-variables.html#sysvar_character_set_client) system variable when the trigger was created.
 
-- `COLLATION_CONNECTION`
+* `COLLATION_CONNECTION`
 
-  O valor da sessão da variável de sistema `collation_connection` quando o gatilho foi criado.
+  The session value of the [`collation_connection`](server-system-variables.html#sysvar_collation_connection) system variable when the trigger was created.
 
-- `DATABASE_COLLATION`
+* `DATABASE_COLLATION`
 
-  A agregação do banco de dados com o qual o gatilho está associado.
+  The collation of the database with which the trigger is associated.
 
-#### Exemplo
+#### Example
 
-O exemplo a seguir utiliza o gatilho `ins_sum` definido em Seção 23.3, “Usando gatilhos”:
+The following example uses the `ins_sum` trigger defined in [Section 23.3, “Using Triggers”](triggers.html "23.3 Using Triggers"):
 
 ```sql
 mysql> SELECT * FROM INFORMATION_SCHEMA.TRIGGERS
@@ -115,4 +115,4 @@ ACTION_REFERENCE_NEW_TABLE: NULL
         DATABASE_COLLATION: latin1_swedish_ci
 ```
 
-As informações sobre gatilhos também estão disponíveis na instrução `SHOW TRIGGERS`. Consulte Seção 13.7.5.38, “Instrução SHOW TRIGGERS”.
+Trigger information is also available from the [`SHOW TRIGGERS`](show-triggers.html "13.7.5.38 SHOW TRIGGERS Statement") statement. See [Section 13.7.5.38, “SHOW TRIGGERS Statement”](show-triggers.html "13.7.5.38 SHOW TRIGGERS Statement").

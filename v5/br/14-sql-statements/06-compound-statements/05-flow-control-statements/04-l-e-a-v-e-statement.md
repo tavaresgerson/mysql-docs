@@ -1,11 +1,11 @@
-#### 13.6.5.4 Declaração LEAVE
+#### 13.6.5.4 LEAVE Statement
 
 ```sql
 LEAVE label
 ```
 
-Esta declaração é usada para sair da estrutura de controle de fluxo que tem o rótulo dado. Se o rótulo for para o bloco de programa armazenado mais externo, `LEAVE` sai do programa.
+This statement is used to exit the flow control construct that has the given label. If the label is for the outermost stored program block, [`LEAVE`](leave.html "13.6.5.4 LEAVE Statement") exits the program.
 
-`LEAVE` pode ser usado dentro de estruturas de `BEGIN ... END` (begin-end.html) ou loops (`LOOP`, `REPEAT`, `WHILE`).
+[`LEAVE`](leave.html "13.6.5.4 LEAVE Statement") can be used within [`BEGIN ... END`](begin-end.html "13.6.1 BEGIN ... END Compound Statement") or loop constructs ([`LOOP`](loop.html "13.6.5.5 LOOP Statement"), [`REPEAT`](repeat.html "13.6.5.6 REPEAT Statement"), [`WHILE`](while.html "13.6.5.8 WHILE Statement")).
 
-Para um exemplo, veja Seção 13.6.5.5, “Instrução LOOP”.
+For an example, see [Section 13.6.5.5, “LOOP Statement”](loop.html "13.6.5.5 LOOP Statement").

@@ -1,85 +1,77 @@
-# Capítulo 23 Objetos Armazenados
+# Chapter 23 Stored Objects
 
-**Índice**
+**Table of Contents**
 
-23.1 Definindo Programas Armazenados
+23.1 Defining Stored Programs
 
-23.2 Uso de Rotinas Armazenadas:   23.2.1 Sintaxe da Rotina Armazenada
+23.2 Using Stored Routines :   23.2.1 Stored Routine Syntax
 
-```
-23.2.2 Stored Routines and MySQL Privileges
+    23.2.2 Stored Routines and MySQL Privileges
 
-23.2.3 Stored Routine Metadata
+    23.2.3 Stored Routine Metadata
 
-23.2.4 Stored Procedures, Functions, Triggers, and LAST_INSERT_ID()
-```
+    23.2.4 Stored Procedures, Functions, Triggers, and LAST_INSERT_ID()
 
-23.3 Uso de gatilhos:   23.3.1 Sintaxe e exemplos de gatilhos
+23.3 Using Triggers :   23.3.1 Trigger Syntax and Examples
 
-```
-23.3.2 Trigger Metadata
-```
+    23.3.2 Trigger Metadata
 
-23.4 Usando o Agendamento de Eventos:   23.4.1 Visão geral do Agendamento de Eventos
+23.4 Using the Event Scheduler :   23.4.1 Event Scheduler Overview
 
-```
-23.4.2 Event Scheduler Configuration
+    23.4.2 Event Scheduler Configuration
 
-23.4.3 Event Syntax
+    23.4.3 Event Syntax
 
-23.4.4 Event Metadata
+    23.4.4 Event Metadata
 
-23.4.5 Event Scheduler Status
+    23.4.5 Event Scheduler Status
 
-23.4.6 The Event Scheduler and MySQL Privileges
-```
+    23.4.6 The Event Scheduler and MySQL Privileges
 
-23.5 Usando Visualizações:   23.5.1 Sintaxe de Visualização
+23.5 Using Views :   23.5.1 View Syntax
 
-```
-23.5.2 View Processing Algorithms
+    23.5.2 View Processing Algorithms
 
-23.5.3 Updatable and Insertable Views
+    23.5.3 Updatable and Insertable Views
 
-23.5.4 The View WITH CHECK OPTION Clause
+    23.5.4 The View WITH CHECK OPTION Clause
 
-23.5.5 View Metadata
-```
+    23.5.5 View Metadata
 
-23.6 Controle de acesso a objetos armazenados
+23.6 Stored Object Access Control
 
-23.7 Registro binário de programas armazenados
+23.7 Stored Program Binary Logging
 
-23.8 Restrições aos Programas Armazenados
+23.8 Restrictions on Stored Programs
 
-23.9 Restrições sobre visualizações
+23.9 Restrictions on Views
 
-Este capítulo discute os objetos de banco de dados armazenados que são definidos em termos de código SQL armazenado no servidor para execução posterior.
+This chapter discusses stored database objects that are defined in terms of SQL code that is stored on the server for later execution.
 
-Os objetos armazenados incluem esses tipos de objetos:
+Stored objects include these object types:
 
-- Procedência armazenada: Um objeto criado com `CREATE PROCEDURE` e invocado usando a instrução `CALL`. Uma procedência não tem um valor de retorno, mas pode modificar seus parâmetros para posterior inspeção pelo chamador. Também pode gerar conjuntos de resultados para serem retornados ao programa cliente.
+* Stored procedure: An object created with `CREATE PROCEDURE` and invoked using the `CALL` statement. A procedure does not have a return value but can modify its parameters for later inspection by the caller. It can also generate result sets to be returned to the client program.
 
-- Função armazenada: Um objeto criado com `CREATE FUNCTION` e usado de forma semelhante a uma função embutida. Você o invoca em uma expressão e ele retorna um valor durante a avaliação da expressão.
+* Stored function: An object created with `CREATE FUNCTION` and used much like a built-in function. You invoke it in an expression and it returns a value during expression evaluation.
 
-- Trigger: Um objeto criado com `CREATE TRIGGER` que está associado a uma tabela. Um trigger é ativado quando um evento específico ocorre na tabela, como uma inserção ou atualização.
+* Trigger: An object created with `CREATE TRIGGER` that is associated with a table. A trigger is activated when a particular event occurs for the table, such as an insert or update.
 
-- Evento: Um objeto criado com `CREATE EVENT` e invocado pelo servidor de acordo com o cronograma.
+* Event: An object created with `CREATE EVENT` and invoked by the server according to schedule.
 
-- Exibição: Um objeto criado com `CREATE VIEW` que, quando referenciado, produz um conjunto de resultados. Uma visualização atua como uma tabela virtual.
+* View: An object created with `CREATE VIEW` that when referenced produces a result set. A view acts as a virtual table.
 
-A terminologia utilizada neste documento reflete a hierarquia do objeto armazenado:
+Terminology used in this document reflects the stored object hierarchy:
 
-- As rotinas armazenadas incluem procedimentos e funções armazenadas.
-- Os programas armazenados incluem rotinas armazenadas, gatilhos e eventos.
-- Os objetos armazenados incluem programas e visualizações armazenados.
+* Stored routines include stored procedures and functions.
+* Stored programs include stored routines, triggers, and events.
+* Stored objects include stored programs and views.
 
-Este capítulo descreve como usar objetos armazenados. As seções a seguir fornecem informações adicionais sobre a sintaxe SQL para instruções relacionadas a esses objetos e sobre o processamento de objetos:
+This chapter describes how to use stored objects. The following sections provide additional information about SQL syntax for statements related to these objects, and about object processing:
 
-- Para cada tipo de objeto, existem as instruções `CREATE`, `ALTER` e `DROP` que controlam quais objetos existem e como são definidos. Veja a Seção 13.1, “Instruções de Definição de Dados”.
+* For each object type, there are `CREATE`, `ALTER`, and `DROP` statements that control which objects exist and how they are defined. See Section 13.1, “Data Definition Statements”.
 
-- A instrução `CALL` é usada para invocar procedimentos armazenados. Veja a Seção 13.2.1, “Instrução CALL”.
+* The `CALL` statement is used to invoke stored procedures. See Section 13.2.1, “CALL Statement”.
 
-- As definições de programas armazenados incluem um corpo que pode usar instruções compostas, loops, condicionais e variáveis declaradas. Veja a Seção 13.6, “Instruções Compostas”.
+* Stored program definitions include a body that may use compound statements, loops, conditionals, and declared variables. See Section 13.6, “Compound Statements”.
 
-- Alterações nos metadados dos objetos referenciados por programas armazenados são detectadas e causam a reinterpretação automática das declarações afetadas quando o programa é executado novamente. Para obter mais informações, consulte a Seção 8.10.4, “Cache de Declarações Preparadas e Programas Armazenados”.
+* Metadata changes to objects referred to by stored programs are detected and cause automatic reparsing of the affected statements when the program is next executed. For more information, see Section 8.10.4, “Caching of Prepared Statements and Stored Programs”.

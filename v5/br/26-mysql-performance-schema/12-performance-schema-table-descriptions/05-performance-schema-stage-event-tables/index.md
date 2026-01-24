@@ -1,39 +1,39 @@
-### 25.12.5 Tabelas de Eventos de Estágio do Schema de Desempenho
+### 25.12.5 Performance Schema Stage Event Tables
 
-25.12.5.1 Tabela events_stages_current
+[25.12.5.1 The events_stages_current Table](performance-schema-events-stages-current-table.html)
 
-25.12.5.2 A tabela events_stages_history
+[25.12.5.2 The events_stages_history Table](performance-schema-events-stages-history-table.html)
 
-25.12.5.3 A tabela events_stages_history_long
+[25.12.5.3 The events_stages_history_long Table](performance-schema-events-stages-history-long-table.html)
 
-Os estágios dos instrumentos do Schema de Desempenho, que são etapas durante o processo de execução de declarações, como a análise de uma declaração, a abertura de uma tabela ou a execução de uma operação `filesort`. Os estágios correspondem aos estados do thread exibidos pelo `SHOW PROCESSLIST` ou que são visíveis na tabela do Schema de Informações `PROCESSLIST`. Os estágios começam e terminam quando os valores de estado mudam.
+The Performance Schema instruments stages, which are steps during the statement-execution process, such as parsing a statement, opening a table, or performing a `filesort` operation. Stages correspond to the thread states displayed by [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement") or that are visible in the Information Schema [`PROCESSLIST`](information-schema-processlist-table.html "24.3.18 The INFORMATION_SCHEMA PROCESSLIST Table") table. Stages begin and end when state values change.
 
-Na hierarquia de eventos, os eventos de espera estão dentro dos eventos de estágio, que estão dentro dos eventos de declaração, que estão dentro dos eventos de transação.
+Within the event hierarchy, wait events nest within stage events, which nest within statement events, which nest within transaction events.
 
-Essas tabelas armazenam eventos de estágio:
+These tables store stage events:
 
-- `eventos_stages_current`: O evento atual da etapa para cada thread.
+* [`events_stages_current`](performance-schema-events-stages-current-table.html "25.12.5.1 The events_stages_current Table"): The current stage event for each thread.
 
-- `eventos_stages_history`: Os eventos mais recentes dos estágios que terminaram por thread.
+* [`events_stages_history`](performance-schema-events-stages-history-table.html "25.12.5.2 The events_stages_history Table"): The most recent stage events that have ended per thread.
 
-- `eventos_stages_history_long`: Os eventos mais recentes dos estágios que terminaram globalmente (em todos os threads).
+* [`events_stages_history_long`](performance-schema-events-stages-history-long-table.html "25.12.5.3 The events_stages_history_long Table"): The most recent stage events that have ended globally (across all threads).
 
-As seções a seguir descrevem as tabelas de eventos de palco. Há também tabelas resumidas que agregam informações sobre eventos de palco; veja Seção 25.12.15.2, “Tabelas de Resumo de Palco”.
+The following sections describe the stage event tables. There are also summary tables that aggregate information about stage events; see [Section 25.12.15.2, “Stage Summary Tables”](performance-schema-stage-summary-tables.html "25.12.15.2 Stage Summary Tables").
 
-Para obter mais informações sobre a relação entre as três tabelas de eventos em etapas, consulte Seção 25.9, "Tabelas do Schema de Desempenho para Eventos Atuais e Históricos".
+For more information about the relationship between the three stage event tables, see [Section 25.9, “Performance Schema Tables for Current and Historical Events”](performance-schema-event-tables.html "25.9 Performance Schema Tables for Current and Historical Events").
 
-- Configurando a Coleta de Eventos de Estágio
-- Informações sobre o progresso do evento em palco
+* [Configuring Stage Event Collection](performance-schema-stage-tables.html#stage-event-configuration "Configuring Stage Event Collection")
+* [Stage Event Progress Information](performance-schema-stage-tables.html#stage-event-progress "Stage Event Progress Information")
 
-#### Configurando a Coleta de Eventos de Estágio
+#### Configuring Stage Event Collection
 
-Para controlar se os eventos de estágio devem ser coletados, defina o estado dos instrumentos e dos consumidores relevantes:
+To control whether to collect stage events, set the state of the relevant instruments and consumers:
 
-- A tabela `setup_instruments` contém instrumentos com nomes que começam com `stage`. Use esses instrumentos para habilitar ou desabilitar a coleta de classes individuais de eventos de palco.
+* The [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table contains instruments with names that begin with `stage`. Use these instruments to enable or disable collection of individual stage event classes.
 
-- A tabela `setup_consumers` contém os valores dos consumidores com nomes correspondentes aos nomes das tabelas de eventos de estágio atuais e históricos. Use esses consumidores para filtrar a coleção de eventos de estágio.
+* The [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") table contains consumer values with names corresponding to the current and historical stage event table names. Use these consumers to filter collection of stage events.
 
-Além dos instrumentos que fornecem informações sobre o progresso da declaração, os instrumentos de estágio são desabilitados por padrão. Por exemplo:
+Other than those instruments that provide statement progress information, the stage instruments are disabled by default. For example:
 
 ```sql
 mysql> SELECT *
@@ -64,7 +64,7 @@ mysql> SELECT *
 +----------------------------------------------------+---------+-------+
 ```
 
-Os instrumentos de eventos em estágio que fornecem informações sobre o progresso da declaração estão habilitados e temporizados por padrão:
+Stage event instruments that provide statement progress information are enabled and timed by default:
 
 ```sql
 mysql> SELECT *
@@ -85,7 +85,7 @@ mysql> SELECT *
 +------------------------------------------------------+---------+-------+
 ```
 
-Os consumidores do estágio são desabilitados por padrão:
+The stage consumers are disabled by default:
 
 ```sql
 mysql> SELECT *
@@ -100,9 +100,9 @@ mysql> SELECT *
 +----------------------------+---------+
 ```
 
-Para controlar a coleta de eventos de estágio ao iniciar o servidor, use linhas como estas no seu arquivo `my.cnf`:
+To control stage event collection at server startup, use lines like these in your `my.cnf` file:
 
-- Ativar:
+* Enable:
 
   ```sql
   [mysqld]
@@ -112,7 +112,7 @@ Para controlar a coleta de eventos de estágio ao iniciar o servidor, use linhas
   performance-schema-consumer-events-stages-history-long=ON
   ```
 
-- Desativar:
+* Disable:
 
   ```sql
   [mysqld]
@@ -122,9 +122,9 @@ Para controlar a coleta de eventos de estágio ao iniciar o servidor, use linhas
   performance-schema-consumer-events-stages-history-long=OFF
   ```
 
-Para controlar a coleta de eventos de estágio em tempo de execução, atualize as tabelas `setup_instruments` e `setup_consumers`:
+To control stage event collection at runtime, update the [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") and [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") tables:
 
-- Ativar:
+* Enable:
 
   ```sql
   UPDATE performance_schema.setup_instruments
@@ -136,7 +136,7 @@ Para controlar a coleta de eventos de estágio em tempo de execução, atualize 
   WHERE NAME LIKE 'events_stages%';
   ```
 
-- Desativar:
+* Disable:
 
   ```sql
   UPDATE performance_schema.setup_instruments
@@ -148,9 +148,9 @@ Para controlar a coleta de eventos de estágio em tempo de execução, atualize 
   WHERE NAME LIKE 'events_stages%';
   ```
 
-Para coletar apenas eventos específicos de palco, habilite apenas os instrumentos de palco correspondentes. Para coletar eventos de palco apenas para tabelas específicas de eventos de palco, habilite os instrumentos de palco, mas apenas os consumidores de palco correspondentes às tabelas desejadas.
+To collect only specific stage events, enable only the corresponding stage instruments. To collect stage events only for specific stage event tables, enable the stage instruments but only the stage consumers corresponding to the desired tables.
 
-A tabela `setup_timers` contém uma linha com o valor `NAME` de `stage`, que indica a unidade para o cronometramento de eventos de estágio. A unidade padrão é `NANOSECOND`:
+The [`setup_timers`](performance-schema-setup-timers-table.html "25.12.2.5 The setup_timers Table") table contains a row with a `NAME` value of `stage` that indicates the unit for stage event timing. The default unit is `NANOSECOND`:
 
 ```sql
 mysql> SELECT *
@@ -163,7 +163,7 @@ mysql> SELECT *
 +-------+------------+
 ```
 
-Para alterar a unidade de temporização, modifique o valor `TIMER_NAME`:
+To change the timing unit, modify the `TIMER_NAME` value:
 
 ```sql
 UPDATE performance_schema.setup_timers
@@ -171,47 +171,47 @@ SET TIMER_NAME = 'MICROSECOND'
 WHERE NAME = 'stage';
 ```
 
-Para obter informações adicionais sobre a configuração da coleta de eventos, consulte Seção 25.3, “Configuração de Inicialização do Schema de Desempenho” e Seção 25.4, “Configuração de Execução em Tempo Real do Schema de Desempenho”.
+For additional information about configuring event collection, see [Section 25.3, “Performance Schema Startup Configuration”](performance-schema-startup-configuration.html "25.3 Performance Schema Startup Configuration"), and [Section 25.4, “Performance Schema Runtime Configuration”](performance-schema-runtime-configuration.html "25.4 Performance Schema Runtime Configuration").
 
-#### Informações sobre o progresso do evento em andamento
+#### Stage Event Progress Information
 
-As tabelas de eventos do estágio do Schema de Desempenho contêm duas colunas que, juntas, fornecem um indicador de progresso do estágio para cada linha:
+The Performance Schema stage event tables contain two columns that, taken together, provide a stage progress indicator for each row:
 
-- `WORK_COMPLETED`: Número de unidades de trabalho concluídas para a etapa
+* `WORK_COMPLETED`: The number of work units completed for the stage
 
-- `WORK_ESTIMATED`: O número de unidades de trabalho esperadas para a etapa
+* `WORK_ESTIMATED`: The number of work units expected for the stage
 
-Cada coluna é `NULL` se nenhuma informação de progresso for fornecida para um instrumento. A interpretação das informações, se estiverem disponíveis, depende inteiramente da implementação do instrumento. As tabelas do Schema de Desempenho fornecem um contêiner para armazenar dados de progresso, mas não fazem suposições sobre a semântica da própria métrica:
+Each column is `NULL` if no progress information is provided for an instrument. Interpretation of the information, if it is available, depends entirely on the instrument implementation. The Performance Schema tables provide a container to store progress data, but make no assumptions about the semantics of the metric itself:
 
-- Uma "unidade de trabalho" é uma métrica inteira que aumenta ao longo do tempo durante a execução, como o número de bytes, linhas, arquivos ou tabelas processadas. A definição de "unidade de trabalho" para um instrumento específico é deixada para o código de instrumentação que fornece os dados.
+* A “work unit” is an integer metric that increases over time during execution, such as the number of bytes, rows, files, or tables processed. The definition of “work unit” for a particular instrument is left to the instrumentation code providing the data.
 
-- O valor `WORK_COMPLETED` pode aumentar uma ou várias unidades de cada vez, dependendo do código instrumentado.
+* The `WORK_COMPLETED` value can increase one or many units at a time, depending on the instrumented code.
 
-- O valor `WORK_ESTIMATED` pode mudar durante a fase, dependendo do código instrumentado.
+* The `WORK_ESTIMATED` value can change during the stage, depending on the instrumented code.
 
-O instrumento para um indicador de progresso de um evento em palco pode implementar qualquer um dos seguintes comportamentos:
+Instrumentation for a stage event progress indicator can implement any of the following behaviors:
 
-- Sem instrumentação de progresso
+* No progress instrumentation
 
-  Este é o caso mais típico, onde não são fornecidos dados de progresso. As colunas `WORK_COMPLETED` e `WORK_ESTIMATED` estão ambas em `NULL`.
+  This is the most typical case, where no progress data is provided. The `WORK_COMPLETED` and `WORK_ESTIMATED` columns are both `NULL`.
 
-- Instrumentação de progresso sem limites
+* Unbounded progress instrumentation
 
-  Apenas a coluna `WORK_COMPLETED` é significativa. Não há dados fornecidos para a coluna `WORK_ESTIMATED`, que exibe 0.
+  Only the `WORK_COMPLETED` column is meaningful. No data is provided for the `WORK_ESTIMATED` column, which displays 0.
 
-  Ao consultar a tabela `events_stages_current` para a sessão monitorada, um aplicativo de monitoramento pode relatar quanto trabalho já foi realizado até o momento, mas não pode relatar se o estágio está próximo de ser concluído. Atualmente, nenhum estágio é instrumentado dessa forma.
+  By querying the [`events_stages_current`](performance-schema-events-stages-current-table.html "25.12.5.1 The events_stages_current Table") table for the monitored session, a monitoring application can report how much work has been performed so far, but cannot report whether the stage is near completion. Currently, no stages are instrumented like this.
 
-- Instrumentação de progresso limitado
+* Bounded progress instrumentation
 
-  As colunas `WORK_COMPLETED` e `WORK_ESTIMATED` são ambas significativas.
+  The `WORK_COMPLETED` and `WORK_ESTIMATED` columns are both meaningful.
 
-  Esse tipo de indicador de progresso é apropriado para uma operação com um critério de conclusão definido, como o instrumento de cópia de tabelas descrito mais adiante. Ao consultar a tabela `events_stages_current` para a sessão monitorada, um aplicativo de monitoramento pode relatar quanto trabalho já foi realizado até o momento e pode relatar o percentual de conclusão geral para a etapa, calculando a razão `WORK_COMPLETED` / `WORK_ESTIMATED`.
+  This type of progress indicator is appropriate for an operation with a defined completion criterion, such as the table-copy instrument described later. By querying the [`events_stages_current`](performance-schema-events-stages-current-table.html "25.12.5.1 The events_stages_current Table") table for the monitored session, a monitoring application can report how much work has been performed so far, and can report the overall completion percentage for the stage, by computing the `WORK_COMPLETED` / `WORK_ESTIMATED` ratio.
 
-A ferramenta `stage/sql/copy to tmp table` ilustra como funcionam os indicadores de progresso. Durante a execução de uma instrução `ALTER TABLE` (alter-table.html), a etapa `stage/sql/copy to tmp table` é usada, e essa etapa pode demorar muito tempo para ser executada, dependendo do tamanho dos dados a serem copiados.
+The `stage/sql/copy to tmp table` instrument illustrates how progress indicators work. During execution of an [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statement, the `stage/sql/copy to tmp table` stage is used, and this stage can execute potentially for a long time, depending on the size of the data to copy.
 
-A tarefa de cópia de tabela tem uma finalização definida (todas as linhas copiadas), e a etapa `stage/sql/copy to tmp table` é instrumentada para fornecer informações de progresso limitadas: A unidade de trabalho usada é o número de linhas copiadas, `WORK_COMPLETED` e `WORK_ESTIMATED` são ambos significativos, e sua proporção indica a porcentagem de tarefa concluída.
+The table-copy task has a defined termination (all rows copied), and the `stage/sql/copy to tmp table` stage is instrumented to provided bounded progress information: The work unit used is number of rows copied, `WORK_COMPLETED` and `WORK_ESTIMATED` are both meaningful, and their ratio indicates task percentage complete.
 
-Para habilitar o instrumento e os consumidores relevantes, execute as seguintes declarações:
+To enable the instrument and the relevant consumers, execute these statements:
 
 ```sql
 UPDATE performance_schema.setup_instruments
@@ -223,4 +223,4 @@ SET ENABLED='YES'
 WHERE NAME LIKE 'events_stages_%';
 ```
 
-Para ver o progresso de uma instrução `ALTER TABLE` em andamento, selecione a tabela `events_stages_current` (performance-schema-events-stages-current-table.html).
+To see the progress of an ongoing [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statement, select from the [`events_stages_current`](performance-schema-events-stages-current-table.html "25.12.5.1 The events_stages_current Table") table.

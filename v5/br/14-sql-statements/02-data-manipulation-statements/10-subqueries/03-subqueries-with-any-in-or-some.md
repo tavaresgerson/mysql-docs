@@ -1,6 +1,6 @@
-#### 13.2.10.3 Subconsultas com ANY, IN ou SOME
+#### 13.2.10.3 Subqueries with ANY, IN, or SOME
 
-Sintaxe:
+Syntax:
 
 ```sql
 operand comparison_operator ANY (subquery)
@@ -8,36 +8,36 @@ operand IN (subquery)
 operand comparison_operator SOME (subquery)
 ```
 
-Onde *`comparador`* é um desses operadores:
+Where *`comparison_operator`* is one of these operators:
 
 ```sql
 =  >  <  >=  <=  <>  !=
 ```
 
-A palavra-chave `ANY`, que deve ser seguida por um operador de comparação, significa “retorne `TRUE` se a comparação for `TRUE` para `ANY` dos valores na coluna que a subconsulta retorna”. Por exemplo:
+The `ANY` keyword, which must follow a comparison operator, means “return `TRUE` if the comparison is `TRUE` for `ANY` of the values in the column that the subquery returns.” For example:
 
 ```sql
 SELECT s1 FROM t1 WHERE s1 > ANY (SELECT s1 FROM t2);
 ```
 
-Suponha que haja uma linha na tabela `t1` contendo `(10)`. A expressão é `TRUE` se a tabela `t2` contiver `(21,14,7)` porque há um valor `7` em `t2` que é menor que `10`. A expressão é `FALSE` se a tabela `t2` contiver `(20,10)` ou se a tabela `t2` estiver vazia. A expressão é *desconhecida* (ou seja, `NULL`) se a tabela `t2` contiver `(NULL,NULL,NULL)`.
+Suppose that there is a row in table `t1` containing `(10)`. The expression is `TRUE` if table `t2` contains `(21,14,7)` because there is a value `7` in `t2` that is less than `10`. The expression is `FALSE` if table `t2` contains `(20,10)`, or if table `t2` is empty. The expression is *unknown* (that is, `NULL`) if table `t2` contains `(NULL,NULL,NULL)`.
 
-Quando usado com uma subconsulta, a palavra `IN` é um alias para `= ANY`. Portanto, essas duas instruções são iguais:
+When used with a subquery, the word `IN` is an alias for `= ANY`. Thus, these two statements are the same:
 
 ```sql
 SELECT s1 FROM t1 WHERE s1 = ANY (SELECT s1 FROM t2);
 SELECT s1 FROM t1 WHERE s1 IN    (SELECT s1 FROM t2);
 ```
 
-`IN` e `= ANY` não são sinônimos quando usados com uma lista de expressão. `IN` pode aceitar uma lista de expressão, mas `= ANY` não pode. Veja Seção 12.4.2, “Funções e Operadores de Comparação”.
+`IN` and `= ANY` are not synonyms when used with an expression list. `IN` can take an expression list, but `= ANY` cannot. See [Section 12.4.2, “Comparison Functions and Operators”](comparison-operators.html "12.4.2 Comparison Functions and Operators").
 
-`NOT IN` não é um alias para `<> ANY`, mas sim para `<> ALL`. Veja Seção 13.2.10.4, “Subconsultas com ALL”.
+`NOT IN` is not an alias for `<> ANY`, but for `<> ALL`. See [Section 13.2.10.4, “Subqueries with ALL”](all-subqueries.html "13.2.10.4 Subqueries with ALL").
 
-A palavra `SOME` é um alias para `ANY`. Assim, essas duas declarações são iguais:
+The word `SOME` is an alias for `ANY`. Thus, these two statements are the same:
 
 ```sql
 SELECT s1 FROM t1 WHERE s1 <> ANY  (SELECT s1 FROM t2);
 SELECT s1 FROM t1 WHERE s1 <> SOME (SELECT s1 FROM t2);
 ```
 
-O uso da palavra `algum` é raro, mas este exemplo mostra por que ela pode ser útil. Para a maioria das pessoas, a frase em inglês “a não é igual a qualquer b” significa “não existe um b que seja igual a a”, mas isso não é o que a sintaxe SQL significa. A sintaxe significa “existe algum b para o qual a não é igual”. Usar `<> algum` em vez disso ajuda a garantir que todos entendam o verdadeiro significado da consulta.
+Use of the word `SOME` is rare, but this example shows why it might be useful. To most people, the English phrase “a is not equal to any b” means “there is no b which is equal to a,” but that is not what is meant by the SQL syntax. The syntax means “there is some b to which a is not equal.” Using `<> SOME` instead helps ensure that everyone understands the true meaning of the query.

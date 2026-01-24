@@ -1,6 +1,6 @@
-## 25.2 Configuração de construção do esquema de desempenho
+## 25.2 Performance Schema Build Configuration
 
-O Schema de Desempenho é obrigatório e sempre compilado. É possível excluir certas partes da instrumentação do Schema de Desempenho. Por exemplo, para excluir a instrumentação de estágios e declarações, faça o seguinte:
+The Performance Schema is mandatory and always compiled in. It is possible to exclude certain parts of the Performance Schema instrumentation. For example, to exclude stage and statement instrumentation, do this:
 
 ```sql
 $> cmake . \
@@ -8,9 +8,9 @@ $> cmake . \
         -DDISABLE_PSI_STATEMENT=1
 ```
 
-Para obter mais informações, consulte as descrições das opções `DISABLE_PSI_XXX` do **CMake** na Seção 2.8.7, “Opções de Configuração de Código-Fonte do MySQL”.
+For more information, see the descriptions of the `DISABLE_PSI_XXX` **CMake** options in [Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options").
 
-Se você instalar o MySQL sobre uma instalação anterior que foi configurada sem o Schema de Desempenho (ou com uma versão mais antiga do Schema de Desempenho que tem tabelas ausentes ou desatualizadas), uma indicação desse problema é a presença de mensagens como as seguintes no log de erro:
+If you install MySQL over a previous installation that was configured without the Performance Schema (or with an older version of the Performance Schema that has missing or out-of-date tables). One indication of this issue is the presence of messages such as the following in the error log:
 
 ```sql
 [ERROR] Native table 'performance_schema'.'events_waits_history'
@@ -20,9 +20,9 @@ has the wrong structure
 ...
 ```
 
-Para corrigir esse problema, execute o procedimento de atualização do MySQL. Consulte Seção 2.10, “Atualizando o MySQL”.
+To correct that problem, perform the MySQL upgrade procedure. See [Section 2.10, “Upgrading MySQL”](upgrading.html "2.10 Upgrading MySQL").
 
-Para verificar se um servidor foi construído com suporte ao Schema de Desempenho, verifique sua saída de ajuda. Se o Schema de Desempenho estiver disponível, a saída menciona várias variáveis com nomes que começam com `performance_schema`:
+To verify whether a server was built with Performance Schema support, check its help output. If the Performance Schema is available, the output mentions several variables with names that begin with `performance_schema`:
 
 ```sql
 $> mysqld --verbose --help
@@ -34,7 +34,7 @@ $> mysqld --verbose --help
 ...
 ```
 
-Você também pode se conectar ao servidor e procurar por uma linha que nomeie o mecanismo de armazenamento `PERFORMANCE_SCHEMA` na saída do comando `SHOW ENGINES`:
+You can also connect to the server and look for a line that names the [`PERFORMANCE_SCHEMA`](performance-schema.html "Chapter 25 MySQL Performance Schema") storage engine in the output from [`SHOW ENGINES`](show-engines.html "13.7.5.16 SHOW ENGINES Statement"):
 
 ```sql
 mysql> SHOW ENGINES\G
@@ -48,6 +48,6 @@ Transactions: NO
 ...
 ```
 
-Se o Schema de Desempenho não foi configurado no servidor durante a construção, nenhuma linha para `PERFORMANCE_SCHEMA` aparece na saída do `SHOW ENGINES`. Você pode ver `performance_schema` listado na saída do `SHOW DATABASES`, mas ele não tem tabelas e não pode ser usado.
+If the Performance Schema was not configured into the server at build time, no row for [`PERFORMANCE_SCHEMA`](performance-schema.html "Chapter 25 MySQL Performance Schema") appears in the output from [`SHOW ENGINES`](show-engines.html "13.7.5.16 SHOW ENGINES Statement"). You might see `performance_schema` listed in the output from [`SHOW DATABASES`](show-databases.html "13.7.5.14 SHOW DATABASES Statement"), but it has no tables and cannot be used.
 
-Uma linha para `PERFORMANCE_SCHEMA` na saída de `SHOW ENGINES` significa que o Schema de Desempenho está disponível, não que ele está habilitado. Para habilitá-lo, você deve fazê-lo na inicialização do servidor, conforme descrito na próxima seção.
+A line for [`PERFORMANCE_SCHEMA`](performance-schema.html "Chapter 25 MySQL Performance Schema") in the [`SHOW ENGINES`](show-engines.html "13.7.5.16 SHOW ENGINES Statement") output means that the Performance Schema is available, not that it is enabled. To enable it, you must do so at server startup, as described in the next section.

@@ -1,34 +1,33 @@
-#### 16.2.4.1 O Log de Relé
+#### 16.2.4.1 The Relay Log
 
-O log de retransmissão, assim como o log binário, é composto por um conjunto de arquivos numerados que contêm eventos que descrevem as alterações no banco de dados, e um arquivo de índice que contém os nomes de todos os arquivos de log de retransmissão usados.
+The relay log, like the binary log, consists of a set of numbered files containing events that describe database changes, and an index file that contains the names of all used relay log files.
 
-O termo "arquivo de registro de retransmissão" geralmente denota um arquivo numerado individual contendo eventos do banco de dados. O termo "registro de retransmissão" denota coletivamente o conjunto de arquivos de registro de retransmissão numerados, mais o arquivo de índice.
+The term “relay log file” generally denotes an individual numbered file containing database events. The term “relay log” collectively denotes the set of numbered relay log files plus the index file.
 
-Os arquivos de registro de retransmissão têm o mesmo formato que os arquivos de registro binários e podem ser lidos usando **mysqlbinlog** (veja Seção 4.6.7, “mysqlbinlog — Ferramenta para Processamento de Arquivos de Registro Binários”).
+Relay log files have the same format as binary log files and can be read using [**mysqlbinlog**](mysqlbinlog.html "4.6.7 mysqlbinlog — Utility for Processing Binary Log Files") (see [Section 4.6.7, “mysqlbinlog — Utility for Processing Binary Log Files”](mysqlbinlog.html "4.6.7 mysqlbinlog — Utility for Processing Binary Log Files")).
 
-Por padrão, os nomes dos arquivos de registro de retransmissão têm a forma `nome_do_servidor_replica-bin.nnnnnn`, no diretório de dados, onde *`nome_do_servidor_replica`* é o nome do host do servidor replica e *`nnnnnn`* é um número de sequência. Os arquivos de registro de retransmissão sucessivos são criados usando números de sequência sucessivos, começando com `000001`. A replica usa um arquivo de índice para rastrear os arquivos de registro de retransmissão atualmente em uso. O nome padrão do arquivo de índice de registro de retransmissão é `nome_do_servidor_replica-bin.index`, no diretório de dados.
+By default, relay log file names have the form `host_name-relay-bin.nnnnnn` in the data directory, where *`host_name`* is the name of the replica server host and *`nnnnnn`* is a sequence number. Successive relay log files are created using successive sequence numbers, beginning with `000001`. The replica uses an index file to track the relay log files currently in use. The default relay log index file name is `host_name-relay-bin.index` in the data directory.
 
-Os nomes dos arquivos de registro de retransmissão padrão e do índice de registro de retransmissão podem ser substituídos, respectivamente, pelas variáveis de sistema `relay_log` e `relay_log_index` (consulte Seção 16.1.6, “Opções e variáveis de registro binário de replicação”).
+The default relay log file and relay log index file names can be overridden with, respectively, the [`relay_log`](replication-options-replica.html#sysvar_relay_log) and [`relay_log_index`](replication-options-replica.html#sysvar_relay_log_index) system variables (see [Section 16.1.6, “Replication and Binary Logging Options and Variables”](replication-options.html "16.1.6 Replication and Binary Logging Options and Variables")).
 
-Se uma réplica usar os nomes padrão de arquivo de log de retransmissão baseados no host, alterar o nome do host de uma réplica após a replicação ter sido configurada pode causar o falhanço da replicação com os erros "Falha ao abrir o log de retransmissão" e "Não foi possível encontrar o log de destino durante a inicialização do log de retransmissão". Esse é um problema conhecido (veja o Bug #2122). Se você antecipar que o nome do host de uma réplica pode mudar no futuro (por exemplo, se a rede for configurada na réplica de forma que seu nome de host possa ser modificado usando DHCP), você pode evitar esse problema completamente usando as variáveis de sistema `relay_log` e `relay_log_index` para especificar explicitamente os nomes dos arquivos de log de retransmissão quando você configura a réplica inicialmente. Isso torna os nomes independentes das mudanças no nome do host do servidor.
+If a replica uses the default host-based relay log file names, changing a replica's host name after replication has been set up can cause replication to fail with the errors Failed to open the relay log and Could not find target log during relay log initialization. This is a known issue (see Bug #2122). If you anticipate that a replica's host name might change in the future (for example, if networking is set up on the replica such that its host name can be modified using DHCP), you can avoid this issue entirely by using the [`relay_log`](replication-options-replica.html#sysvar_relay_log) and [`relay_log_index`](replication-options-replica.html#sysvar_relay_log_index) system variables to specify relay log file names explicitly when you initially set up the replica. This makes the names independent of server host name changes.
 
-Se você encontrar o problema depois que a replicação já tiver começado, uma maneira de contorná-lo é parar o servidor de replicação, prependendo o conteúdo do antigo arquivo de índice do log do retransmissor ao novo, e depois reiniciar a replicação. Em um sistema Unix, isso pode ser feito conforme mostrado aqui:
+If you encounter the issue after replication has already begun, one way to work around it is to stop the replica server, prepend the contents of the old relay log index file to the new one, and then restart the replica. On a Unix system, this can be done as shown here:
 
 ```sql
 $> cat new_relay_log_name.index >> old_relay_log_name.index
 $> mv old_relay_log_name.index new_relay_log_name.index
 ```
 
-Um servidor de replicação cria um novo arquivo de log de retransmissão nas seguintes condições:
+A replica server creates a new relay log file under the following conditions:
 
-- Cada vez que a thread de I/O de replicação é iniciada.
+* Each time the replication I/O thread starts.
+* When the logs are flushed (for example, with [`FLUSH LOGS`](flush.html#flush-logs) or [**mysqladmin flush-logs**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program")).
 
-- Quando os logs são limpos (por exemplo, com `FLUSH LOGS` ou **mysqladmin flush-logs**).
+* When the size of the current relay log file becomes too large, determined as follows:
 
-- Quando o tamanho do arquivo de registro do relay atual se torna muito grande, isso é determinado da seguinte forma:
+  + If the value of [`max_relay_log_size`](replication-options-replica.html#sysvar_max_relay_log_size) is greater than 0, that is the maximum relay log file size.
 
-  - Se o valor de `max_relay_log_size` for maior que 0, isso é o tamanho máximo do arquivo de log do retransmissor.
+  + If the value of [`max_relay_log_size`](replication-options-replica.html#sysvar_max_relay_log_size) is 0, [`max_binlog_size`](replication-options-binary-log.html#sysvar_max_binlog_size) determines the maximum relay log file size.
 
-  - Se o valor de `max_relay_log_size` for 0, o `max_binlog_size` determina o tamanho máximo do arquivo de log de retransmissão.
-
-O thread de replicação SQL exclui automaticamente cada arquivo de log de relevo após ele ter executado todos os eventos no arquivo e não precisar mais dele. Não há um mecanismo explícito para excluir logs de relevo, pois o thread de replicação SQL cuida disso. No entanto, o `FLUSH LOGS` roda logs de relevo, o que influencia quando o thread de replicação SQL os exclui.
+The replication SQL thread automatically deletes each relay log file after it has executed all events in the file and no longer needs it. There is no explicit mechanism for deleting relay logs because the replication SQL thread takes care of doing so. However, [`FLUSH LOGS`](flush.html#flush-logs) rotates relay logs, which influences when the replication SQL thread deletes them.

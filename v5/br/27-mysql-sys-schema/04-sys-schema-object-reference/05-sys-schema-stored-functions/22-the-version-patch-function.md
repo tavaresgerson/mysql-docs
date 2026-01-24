@@ -1,16 +1,16 @@
-#### 26.4.5.22 A função version_patch()
+#### 26.4.5.22 The version_patch() Function
 
-Essa função retorna a versão de lançamento do patch do servidor MySQL.
+This function returns the patch release version of the MySQL server.
 
-##### Parâmetros
+##### Parameters
 
-Nenhum.
+None.
 
-##### Valor de retorno
+##### Return Value
 
-Um valor `TINYINT UNSIGNED`.
+A `TINYINT UNSIGNED` value.
 
-##### Exemplo
+##### Example
 
 ```sql
 mysql> SELECT VERSION(), sys.version_patch();

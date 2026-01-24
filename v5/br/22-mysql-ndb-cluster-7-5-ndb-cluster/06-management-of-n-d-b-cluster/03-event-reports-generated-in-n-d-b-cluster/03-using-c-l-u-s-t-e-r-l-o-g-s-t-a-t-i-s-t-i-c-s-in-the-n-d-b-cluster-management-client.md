@@ -1,91 +1,89 @@
-#### 21.6.3.3 Usar estatísticas do CLUSTERLOG no cliente de gerenciamento de clusters NDB
+#### 21.6.3.3 Using CLUSTERLOG STATISTICS in the NDB Cluster Management Client
 
-O comando `CLUSTERLOG STATISTICS` do cliente de gerenciamento do `NDB` pode fornecer várias estatísticas úteis em sua saída. Os contadores que fornecem informações sobre o estado do clúster são atualizados em intervalos de relatórios de 5 segundos pelo coordenador de transações (TC) e pelo manipulador de consultas local (LQH) e são escritos no log do clúster.
+The [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") management client's [`CLUSTERLOG STATISTICS`](mysql-cluster-logging-management-commands.html "21.6.3.1 NDB Cluster Logging Management Commands") command can provide a number of useful statistics in its output. Counters providing information about the state of the cluster are updated at 5-second reporting intervals by the transaction coordinator (TC) and the local query handler (LQH), and written to the cluster log.
 
-**Estatísticas do coordenador de transação.** Cada transação tem um coordenador de transação, que é escolhido por um dos seguintes métodos:
+**Transaction coordinator statistics.** Each transaction has one transaction coordinator, which is chosen by one of the following methods:
 
-- De forma round-robin
-- Por proximidade de comunicação
-- Ao fornecer uma dica de colocação de dados quando a transação é iniciada
+* In a round-robin fashion
+* By communication proximity
+* By supplying a data placement hint when the transaction is started
 
-Nota
+Note
 
-Você pode determinar qual método de seleção de nós TC é usado para transações iniciadas a partir de um nó SQL específico usando a variável de sistema `ndb_optimized_node_selection`.
+You can determine which TC selection method is used for transactions started from a given SQL node using the [`ndb_optimized_node_selection`](mysql-cluster-options-variables.html#sysvar_ndb_optimized_node_selection) system variable.
 
-Todas as operações dentro da mesma transação utilizam o mesmo coordenador de transação, que reporta as seguintes estatísticas:
+All operations within the same transaction use the same transaction coordinator, which reports the following statistics:
 
-- **Contagem de transações.** Este é o número de transações iniciadas no último intervalo usando este TC como coordenador da transação. Qualquer uma dessas transações pode ter sido confirmada, interrompida ou permanecer não confirmada no final do intervalo de relatório.
+* **Trans count.** This is the number transactions started in the last interval using this TC as the transaction coordinator. Any of these transactions may have committed, have been aborted, or remain uncommitted at the end of the reporting interval.
 
-  Nota
+  Note
 
-  As transações não migram entre os TC.
+  Transactions do not migrate between TCs.
 
-- **Número de transações confirmadas.** Este é o número de transações que utilizaram este TC como coordenador de transação e que foram confirmadas no último intervalo de relatórios. Como algumas transações confirmadas neste intervalo de relatórios podem ter começado em um intervalo de relatórios anterior, é possível que o número de transações confirmadas seja maior que o número de transações.
+* **Commit count.** This is the number of transactions using this TC as the transaction coordinator that were committed in the last reporting interval. Because some transactions committed in this reporting interval may have started in a previous reporting interval, it is possible for `Commit count` to be greater than `Trans count`.
 
-- **Contagem de leituras.** Este é o número de operações de leitura da chave primária usando este TC como coordenador de transação que foram iniciadas no último intervalo de relatório, incluindo leituras simples. Este contagem também inclui leituras realizadas como parte de operações de índice único. Uma operação de leitura de índice único gera 2 operações de leitura da chave primária — 1 para a tabela de índice único oculta e 1 para a tabela em que a leitura ocorre.
+* **Read count.** This is the number of primary key read operations using this TC as the transaction coordinator that were started in the last reporting interval, including simple reads. This count also includes reads performed as part of unique index operations. A unique index read operation generates 2 primary key read operations—1 for the hidden unique index table, and 1 for the table on which the read takes place.
 
-- **Contagem de leituras simples.** Este é o número de operações de leitura simples usando este TC (coordenador de transação) que foram iniciadas no último intervalo de relatório.
+* **Simple read count.** This is the number of simple read operations using this TC as the transaction coordinator that were started in the last reporting interval.
 
-- **Escreva o número de operações de escrita de chave primária** usando este TC como coordenador de transação que foram iniciadas no último intervalo de relatório. Isso inclui todas as inserções, atualizações, escritas e exclusões, bem como escritas realizadas como parte de operações de índice único.
+* **Write count.** This is the number of primary key write operations using this TC as the transaction coordinator that were started in the last reporting interval. This includes all inserts, updates, writes and deletes, as well as writes performed as part of unique index operations.
 
-  Nota
+  Note
 
-  Uma operação de atualização de índice única pode gerar múltiplas operações de leitura e escrita de PK na tabela de índice e na tabela base.
+  A unique index update operation can generate multiple PK read and write operations on the index table and on the base table.
 
-- **AttrInfoCount.** Este é o número de palavras de dados de 32 bits recebidas no último intervalo de relatório para operações de chave primária usando este TC como coordenador de transação. Para leituras, isso é proporcional ao número de colunas solicitadas. Para inserções e atualizações, isso é proporcional ao número de colunas escritas e ao tamanho de seus dados. Para operações de exclusão, geralmente é zero.
+* **AttrInfoCount.** This is the number of 32-bit data words received in the last reporting interval for primary key operations using this TC as the transaction coordinator. For reads, this is proportional to the number of columns requested. For inserts and updates, this is proportional to the number of columns written, and the size of their data. For delete operations, this is usually zero.
 
-  As operações de índice únicas geram múltiplas operações de PK e, portanto, aumentam esse contagem. No entanto, as palavras de dados enviadas para descrever a própria operação de PK e as informações-chave enviadas *não* são contadas aqui. As informações de atributo enviadas para descrever as colunas a serem lidas em varreduras ou para descrever os ScanFilters também não são contadas no `AttrInfoCount`.
+  Unique index operations generate multiple PK operations and so increase this count. However, data words sent to describe the PK operation itself, and the key information sent, are *not* counted here. Attribute information sent to describe columns to read for scans, or to describe ScanFilters, is also not counted in `AttrInfoCount`.
 
-- **Operações Concorrentes.** Este é o número de operações de chave primária ou de varredura que usam esta TC como coordenador de transação e que foram iniciadas durante o último intervalo de relatório, mas que não foram concluídas. As operações incrementam este contador quando são iniciadas e o decrementam quando são concluídas; isso ocorre após a transação ser confirmada. Leitura e escrita sujas, bem como operações falhas, decrementam este contador.
+* **Concurrent Operations.** This is the number of primary key or scan operations using this TC as the transaction coordinator that were started during the last reporting interval but that were not completed. Operations increment this counter when they are started and decrement it when they are completed; this occurs after the transaction commits. Dirty reads and writes—as well as failed operations—decrement this counter.
 
-  O valor máximo que `Operações Concorrentes` pode ter é o número máximo de operações que um bloco TC pode suportar; atualmente, isso é `(2 * MaxNoOfConcurrentOperations) + 16 + MaxNoOfConcurrentTransactions`. (Para mais informações sobre esses parâmetros de configuração, consulte a seção *Parâmetros de Transação* de Seção 21.4.3.6, “Definindo Nodos de Dados do NDB Cluster”.)
+  The maximum value that `Concurrent Operations` can have is the maximum number of operations that a TC block can support; currently, this is `(2 * MaxNoOfConcurrentOperations) + 16 + MaxNoOfConcurrentTransactions`. (For more information about these configuration parameters, see the *Transaction Parameters* section of [Section 21.4.3.6, “Defining NDB Cluster Data Nodes”](mysql-cluster-ndbd-definition.html "21.4.3.6 Defining NDB Cluster Data Nodes").)
 
-- **Contagem de abortos.** Este é o número de transações que utilizaram este TC como coordenador de transação e que foram abortadas durante o último intervalo de relatório. Como algumas transações que foram abortadas no último intervalo de relatório podem ter começado em um intervalo de relatório anterior, a **Contagem de abortos** pode, às vezes, ser maior que a **Contagem de transações**.
+* **Abort count.** This is the number of transactions using this TC as the transaction coordinator that were aborted during the last reporting interval. Because some transactions that were aborted in the last reporting interval may have started in a previous reporting interval, `Abort count` can sometimes be greater than `Trans count`.
 
-- **Escaneios.** Este é o número de escaneios de tabela usando este TC como coordenador de transação que foram iniciados durante o último intervalo de relatório. Isso não inclui escaneios de intervalo (ou seja, escaneios de índice ordenados).
+* **Scans.** This is the number of table scans using this TC as the transaction coordinator that were started during the last reporting interval. This does not include range scans (that is, ordered index scans).
 
-- **Explorações de intervalo.** Este é o número de explorações de índice solicitadas usando este TC como coordenador de transação que foram iniciadas no último intervalo de relatório.
+* **Range scans.** This is the number of ordered index scans using this TC as the transaction coordinator that were started in the last reporting interval.
 
-- **Leitura local.** Este é o número de operações de leitura de chave primária realizadas usando um coordenador de transação em um nó que também contém a replica primária do fragmento do registro. Esse contagem também pode ser obtida do contador `LOCAL_READS` na tabela `ndbinfo.counters`.
+* **Local reads.** This is the number of primary-key read operations performed using a transaction coordinator on a node that also holds the primary fragment replica of the record. This count can also be obtained from the `LOCAL_READS` counter in the [`ndbinfo.counters`](mysql-cluster-ndbinfo-counters.html "21.6.15.10 The ndbinfo counters Table") table.
 
-- **Localmente escrito.** Este número indica o número de operações de leitura de chave primária que foram realizadas usando um coordenador de transação em um nó que também contém a replica primária do fragmento do registro. Esse contagem também pode ser obtida do contador `LOCAL_WRITES` na tabela `ndbinfo.counters`.
+* **Local writes.** This contains the number of primary-key read operations that were performed using a transaction coordinator on a node that also holds the primary fragment replica of the record. This count can also be obtained from the `LOCAL_WRITES` counter in the [`ndbinfo.counters`](mysql-cluster-ndbinfo-counters.html "21.6.15.10 The ndbinfo counters Table") table.
 
-**Estatísticas do manipulador de consultas locais (Operações).** Há um evento de clúster por bloco de manipulador de consultas locais (ou seja, 1 por processo de nó de dados). As operações são registradas no LQH onde os dados sobre os quais estão operando residem.
+**Local query handler statistics (Operations).** There is 1 cluster event per local query handler block (that is, 1 per data node process). Operations are recorded in the LQH where the data they are operating on resides.
 
-Nota
+Note
 
-Uma única transação pode operar em dados armazenados em múltiplos blocos LQH.
+A single transaction may operate on data stored in multiple LQH blocks.
 
-A estatística "Operações" fornece o número de operações locais realizadas por este bloco LQH no último intervalo de relatórios e inclui todos os tipos de operações de leitura e escrita (operações de inserção, atualização, escrita e exclusão). Isso também inclui operações usadas para replicar escritas. Por exemplo, em um clúster com duas réplicas de fragmentação, a escrita na replica primária de fragmentação é registrada no LQH primário, e a escrita no backup é registrada no LQH de backup. Operações de chave única podem resultar em múltiplas operações locais; no entanto, isso *não* inclui operações locais geradas como resultado de uma varredura de tabela ou varredura de índice ordenado, que não são contadas.
+The `Operations` statistic provides the number of local operations performed by this LQH block in the last reporting interval, and includes all types of read and write operations (insert, update, write, and delete operations). This also includes operations used to replicate writes. For example, in a cluster having two fragment replicas, the write to the primary fragment replica is recorded in the primary LQH, and the write to the backup is recorded in the backup LQH. Unique key operations may result in multiple local operations; however, this does *not* include local operations generated as a result of a table scan or ordered index scan, which are not counted.
 
-**Estatísticas do planejador de processos.**
+**Process scheduler statistics.**
 
-Além das estatísticas relatadas pelo coordenador de transações e pelo manipulador de consultas locais, cada processo **ndbd** possui um planejador que também fornece métricas úteis relacionadas ao desempenho de um NDB Cluster. Esse planejador executa em um loop infinito; durante cada loop, o planejador realiza as seguintes tarefas:
+In addition to the statistics reported by the transaction coordinator and local query handler, each [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") process has a scheduler which also provides useful metrics relating to the performance of an NDB Cluster. This scheduler runs in an infinite loop; during each loop the scheduler performs the following tasks:
 
-1. Leia quaisquer mensagens recebidas de soquetes em um buffer de trabalho.
+1. Read any incoming messages from sockets into a job buffer.
+2. Check whether there are any timed messages to be executed; if so, put these into the job buffer as well.
 
-2. Verifique se há mensagens com prazos a serem executadas; se houver, coloque essas mensagens também no buffer de tarefas.
+3. Execute (in a loop) any messages in the job buffer.
+4. Send any distributed messages that were generated by executing the messages in the job buffer.
 
-3. Execute (em um loop) quaisquer mensagens no buffer de trabalho.
+5. Wait for any new incoming messages.
 
-4. Envie quaisquer mensagens distribuídas que foram geradas ao executar as mensagens no buffer de trabalho.
+Process scheduler statistics include the following:
 
-5. Aguarde por quaisquer novas mensagens recebidas.
+* **Mean Loop Counter.** This is the number of loops executed in the third step from the preceding list. This statistic increases in size as the utilization of the TCP/IP buffer improves. You can use this to monitor changes in performance as you add new data node processes.
 
-As estatísticas do planejador de processos incluem o seguinte:
+* **Mean send size and Mean receive size.** These statistics enable you to gauge the efficiency of, respectively writes and reads between nodes. The values are given in bytes. Higher values mean a lower cost per byte sent or received; the maximum value is 64K.
 
-- **Contador de Looperes Mínimo.** Este é o número de loopes executados no terceiro passo a partir da lista anterior. Esta estatística aumenta à medida que a utilização do buffer TCP/IP melhora. Você pode usar isso para monitorar mudanças no desempenho à medida que adiciona novos processos de nó de dados.
-
-- **Tamanho médio de envio e tamanho médio de recebimento.** Essas estatísticas permitem avaliar a eficiência, respectivamente, das operações de escrita e leitura entre os nós. Os valores são fornecidos em bytes. Valores mais altos significam um custo menor por byte enviado ou recebido; o valor máximo é de 64K.
-
-Para registrar todas as estatísticas do log do cluster, você pode usar o seguinte comando no cliente de gerenciamento do `NDB`:
+To cause all cluster log statistics to be logged, you can use the following command in the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") management client:
 
 ```sql
 ndb_mgm> ALL CLUSTERLOG STATISTICS=15
 ```
 
-Nota
+Note
 
-Definir o limite para `STATISTICS` em 15 faz com que o log do cluster se torne muito extenso e cresça rapidamente, em proporção direta ao número de nós do cluster e à quantidade de atividade no NDB Cluster.
+Setting the threshold for `STATISTICS` to 15 causes the cluster log to become very verbose, and to grow quite rapidly in size, in direct proportion to the number of cluster nodes and the amount of activity in the NDB Cluster.
 
-Para obter mais informações sobre os comandos do cliente de gerenciamento do NDB Cluster relacionados ao registro e relatórios, consulte Seção 21.6.3.1, “Comandos de Gerenciamento de Registro do NDB Cluster”.
+For more information about NDB Cluster management client commands relating to logging and reporting, see [Section 21.6.3.1, “NDB Cluster Logging Management Commands”](mysql-cluster-logging-management-commands.html "21.6.3.1 NDB Cluster Logging Management Commands").

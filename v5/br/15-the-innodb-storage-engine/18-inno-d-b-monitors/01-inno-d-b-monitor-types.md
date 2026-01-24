@@ -1,17 +1,17 @@
-### 14.18.1 Tipos de Monitor InnoDB
+### 14.18.1 InnoDB Monitor Types
 
-Existem dois tipos de monitor `InnoDB`:
+There are two types of `InnoDB` monitor:
 
-- O monitor padrão `InnoDB` exibe os seguintes tipos de informações:
+* The standard `InnoDB` Monitor displays the following types of information:
 
-  - Trabalho realizado pelo thread de fundo principal
-  - Semaphore aguarda
-  - Dados sobre os erros mais recentes de chave estrangeira e bloqueio
-  - Lock aguarda transações
-  - Bloqueios de tabela e registros mantidos por transações ativas
-  - Operações de entrada/saída pendentes e estatísticas relacionadas
-  - Insira estatísticas de índice de hash buffer e adaptativo
-  - Refazer os dados do log
-  - Estatísticas do pool de tampão
-  - Dados da operação de linha
-- O Monitor de Bloqueio do `InnoDB` imprime informações adicionais sobre os bloqueios como parte da saída padrão do Monitor do `InnoDB`.
+  + Work done by the main background thread
+  + Semaphore waits
+  + Data about the most recent foreign key and deadlock errors
+  + Lock waits for transactions
+  + Table and record locks held by active transactions
+  + Pending I/O operations and related statistics
+  + Insert buffer and adaptive hash index statistics
+  + Redo log data
+  + Buffer pool statistics
+  + Row operation data
+* The `InnoDB` Lock Monitor prints additional lock information as part of the standard `InnoDB` Monitor output.

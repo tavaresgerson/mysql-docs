@@ -1,16 +1,16 @@
-### 15.8.2 Como criar tabelas FEDERATED
+### 15.8.2 How to Create FEDERATED Tables
 
-15.8.2.1 Criando uma Tabela FEDERATED Usando a CONEXÃO
+15.8.2.1 Creating a FEDERATED Table Using CONNECTION
 
-15.8.2.2 Criando uma Tabela FEDERATED Usando CREATE SERVER
+15.8.2.2 Creating a FEDERATED Table Using CREATE SERVER
 
-Para criar uma tabela `FEDERATED`, você deve seguir estes passos:
+To create a `FEDERATED` table you should follow these steps:
 
-1. Crie a tabela no servidor remoto. Alternativamente, anote a definição da tabela de uma tabela existente, talvez usando a instrução `SHOW CREATE TABLE`.
+1. Create the table on the remote server. Alternatively, make a note of the table definition of an existing table, perhaps using the `SHOW CREATE TABLE` statement.
 
-2. Crie a tabela no servidor local com uma definição de tabela idêntica, mas adicione as informações de conexão que ligam a tabela local à tabela remota.
+2. Create the table on the local server with an identical table definition, but adding the connection information that links the local table to the remote table.
 
-Por exemplo, você pode criar a seguinte tabela no servidor remoto:
+For example, you could create the following table on the remote server:
 
 ```sql
 CREATE TABLE test_table (
@@ -25,12 +25,12 @@ ENGINE=MyISAM
 DEFAULT CHARSET=latin1;
 ```
 
-Para criar a tabela local a ser federada à tabela remota, existem duas opções disponíveis. Você pode criar a tabela local e especificar a string de conexão (contendo o nome do servidor, login e senha) a ser usada para se conectar à tabela remota usando a cláusula `CONNECTION`, ou você pode usar uma conexão existente que você criou anteriormente usando a instrução `CREATE SERVER`.
+For creating the local table to be federated to the remote table, there are two options available. You can either create the local table and specify the connection string (containing the server name, login, password) to be used to connect to the remote table using the `CONNECTION`, or you can use an existing connection that you have previously created using the `CREATE SERVER` statement.
 
-Importante
+Important
 
-Quando você cria a tabela local, ela *deve* ter uma definição de campo idêntica à da tabela remota.
+When you create the local table it *must* have an identical field definition to the remote table.
 
-Nota
+Note
 
-Você pode melhorar o desempenho de uma tabela `FEDERATED` adicionando índices à tabela no host. A otimização ocorre porque a consulta enviada ao servidor remoto inclui o conteúdo da cláusula `WHERE` e é enviada ao servidor remoto e, posteriormente, executada localmente. Isso reduz o tráfego de rede que, de outra forma, solicitaria toda a tabela ao servidor para processamento local.
+You can improve the performance of a `FEDERATED` table by adding indexes to the table on the host. The optimization occurs because the query sent to the remote server includes the contents of the `WHERE` clause, and is sent to the remote server and subsequently executed locally. This reduces the network traffic that would otherwise request the entire table from the server for local processing.

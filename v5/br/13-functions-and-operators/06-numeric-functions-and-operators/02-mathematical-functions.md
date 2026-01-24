@@ -1,16 +1,16 @@
-### 12.6.2 Funções matemáticas
+### 12.6.2 Mathematical Functions
 
-**Tabela 12.10 Funções Matemáticas**
+**Table 12.10 Mathematical Functions**
 
-<table frame="box" rules="all" summary="Uma referência que lista funções matemáticas."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td>PH_HTML_CODE_<code>COT()</code>]</td> <td>Retorne o valor absoluto</td> </tr><tr><td>PH_HTML_CODE_<code>COT()</code>]</td> <td>Retorne o cosseno do arco</td> </tr><tr><td>PH_HTML_CODE_<code>DEGREES()</code>]</td> <td>Retorne o arco seno</td> </tr><tr><td>PH_HTML_CODE_<code>EXP()</code>]</td> <td>Retorne a tangente do arco</td> </tr><tr><td>PH_HTML_CODE_<code>FLOOR()</code>], PH_HTML_CODE_<code>LN()</code>]</td> <td>Retorne o arco tangente dos dois argumentos</td> </tr><tr><td>PH_HTML_CODE_<code>LOG()</code>]</td> <td>Retorne o menor valor inteiro não menor que o argumento</td> </tr><tr><td>PH_HTML_CODE_<code>LOG10()</code>]</td> <td>Retorne o menor valor inteiro não menor que o argumento</td> </tr><tr><td>PH_HTML_CODE_<code>LOG2()</code>]</td> <td>Converter números entre diferentes bases numéricas</td> </tr><tr><td>PH_HTML_CODE_<code>MOD()</code>]</td> <td>Retorne o cosseno</td> </tr><tr><td><code>COT()</code></td> <td>Retorne a co-tangente</td> </tr><tr><td><code>ACOS()</code><code>COT()</code>]</td> <td>Calcule o valor de verificação de redundância cíclica</td> </tr><tr><td><code>DEGREES()</code></td> <td>Converter radianos em graus</td> </tr><tr><td><code>EXP()</code></td> <td>Eleve à potência de</td> </tr><tr><td><code>FLOOR()</code></td> <td>Retorne o maior valor inteiro que não seja maior que o argumento</td> </tr><tr><td><code>LN()</code></td> <td>Retorne o logaritmo natural do argumento</td> </tr><tr><td><code>LOG()</code></td> <td>Retorne o logaritmo natural do primeiro argumento</td> </tr><tr><td><code>LOG10()</code></td> <td>Retorne o logaritmo decimal do argumento</td> </tr><tr><td><code>LOG2()</code></td> <td>Retorne o logaritmo em base 2 do argumento</td> </tr><tr><td><code>MOD()</code></td> <td>Devolva o restante</td> </tr><tr><td><code>ASIN()</code><code>COT()</code>]</td> <td>Retorne o valor de pi</td> </tr><tr><td><code>ASIN()</code><code>COT()</code>]</td> <td>Retorne o argumento elevado à potência especificada</td> </tr><tr><td><code>ASIN()</code><code>DEGREES()</code>]</td> <td>Retorne o argumento elevado à potência especificada</td> </tr><tr><td><code>ASIN()</code><code>EXP()</code>]</td> <td>Argumento de retorno convertido para radianos</td> </tr><tr><td><code>ASIN()</code><code>FLOOR()</code>]</td> <td>Retorne um valor aleatório de ponto flutuante</td> </tr><tr><td><code>ASIN()</code><code>LN()</code>]</td> <td>Em torno do argumento</td> </tr><tr><td><code>ASIN()</code><code>LOG()</code>]</td> <td>Retorne o sinal do argumento</td> </tr><tr><td><code>ASIN()</code><code>LOG10()</code>]</td> <td>Retorne o seno do argumento</td> </tr><tr><td><code>ASIN()</code><code>LOG2()</code>]</td> <td>Retorne a raiz quadrada do argumento</td> </tr><tr><td><code>ASIN()</code><code>MOD()</code>]</td> <td>Retorne a tangente do argumento</td> </tr><tr><td><code>ATAN()</code><code>COT()</code>]</td> <td>Reduzir para o número especificado de casas decimais</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists mathematical functions."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>ABS()</code></td> <td> Return the absolute value </td> </tr><tr><td><code>ACOS()</code></td> <td> Return the arc cosine </td> </tr><tr><td><code>ASIN()</code></td> <td> Return the arc sine </td> </tr><tr><td><code>ATAN()</code></td> <td> Return the arc tangent </td> </tr><tr><td><code>ATAN2()</code>, <code>ATAN()</code></td> <td> Return the arc tangent of the two arguments </td> </tr><tr><td><code>CEIL()</code></td> <td> Return the smallest integer value not less than the argument </td> </tr><tr><td><code>CEILING()</code></td> <td> Return the smallest integer value not less than the argument </td> </tr><tr><td><code>CONV()</code></td> <td> Convert numbers between different number bases </td> </tr><tr><td><code>COS()</code></td> <td> Return the cosine </td> </tr><tr><td><code>COT()</code></td> <td> Return the cotangent </td> </tr><tr><td><code>CRC32()</code></td> <td> Compute a cyclic redundancy check value </td> </tr><tr><td><code>DEGREES()</code></td> <td> Convert radians to degrees </td> </tr><tr><td><code>EXP()</code></td> <td> Raise to the power of </td> </tr><tr><td><code>FLOOR()</code></td> <td> Return the largest integer value not greater than the argument </td> </tr><tr><td><code>LN()</code></td> <td> Return the natural logarithm of the argument </td> </tr><tr><td><code>LOG()</code></td> <td> Return the natural logarithm of the first argument </td> </tr><tr><td><code>LOG10()</code></td> <td> Return the base-10 logarithm of the argument </td> </tr><tr><td><code>LOG2()</code></td> <td> Return the base-2 logarithm of the argument </td> </tr><tr><td><code>MOD()</code></td> <td> Return the remainder </td> </tr><tr><td><code>PI()</code></td> <td> Return the value of pi </td> </tr><tr><td><code>POW()</code></td> <td> Return the argument raised to the specified power </td> </tr><tr><td><code>POWER()</code></td> <td> Return the argument raised to the specified power </td> </tr><tr><td><code>RADIANS()</code></td> <td> Return argument converted to radians </td> </tr><tr><td><code>RAND()</code></td> <td> Return a random floating-point value </td> </tr><tr><td><code>ROUND()</code></td> <td> Round the argument </td> </tr><tr><td><code>SIGN()</code></td> <td> Return the sign of the argument </td> </tr><tr><td><code>SIN()</code></td> <td> Return the sine of the argument </td> </tr><tr><td><code>SQRT()</code></td> <td> Return the square root of the argument </td> </tr><tr><td><code>TAN()</code></td> <td> Return the tangent of the argument </td> </tr><tr><td><code>TRUNCATE()</code></td> <td> Truncate to specified number of decimal places </td> </tr></tbody></table>
 
-Todas as funções matemáticas retornam `NULL` em caso de erro.
+All mathematical functions return `NULL` in the event of an error.
 
-- `ABS(X)`
+* `ABS(X)`
 
-  Retorna o valor absoluto de *`X`*, ou `NULL` se *`X`* for `NULL`.
+  Returns the absolute value of *`X`*, or `NULL` if *`X`* is `NULL`.
 
-  O tipo de resultado é derivado do tipo de argumento. Uma implicação disso é que `ABS(-9223372036854775808)` produz um erro porque o resultado não pode ser armazenado em um valor `BIGINT` assinado.
+  The result type is derived from the argument type. An implication of this is that `ABS(-9223372036854775808)` produces an error because the result cannot be stored in a signed `BIGINT` value.
 
   ```sql
   mysql> SELECT ABS(2);
@@ -19,11 +19,11 @@ Todas as funções matemáticas retornam `NULL` em caso de erro.
           -> 32
   ```
 
-  Essa função é segura para uso com valores de `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT").
+  This function is safe to use with `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") values.
 
-- `ACOS(X)`
+* `ACOS(X)`
 
-  Retorna o cosseno do arco de *`X`*, ou seja, o valor cujo cosseno é *`X`*. Retorna `NULL` se *`X`* não estiver no intervalo de `-1` a `1`.
+  Returns the arc cosine of *`X`*, that is, the value whose cosine is *`X`*. Returns `NULL` if *`X`* is not in the range `-1` to `1`.
 
   ```sql
   mysql> SELECT ACOS(1);
@@ -34,9 +34,9 @@ Todas as funções matemáticas retornam `NULL` em caso de erro.
           -> 1.5707963267949
   ```
 
-- `ASIN(X)`
+* `ASIN(X)`
 
-  Retorna o arco-seno de *`X`*, ou seja, o valor cujo seno é *`X`*. Retorna `NULL` se *`X`* não estiver no intervalo de `-1` a `1`.
+  Returns the arc sine of *`X`*, that is, the value whose sine is *`X`*. Returns `NULL` if *`X`* is not in the range `-1` to `1`.
 
   ```sql
   mysql> SELECT ASIN(0.2);
@@ -58,9 +58,9 @@ Todas as funções matemáticas retornam `NULL` em caso de erro.
   +---------+------+-----------------------------------------+
   ```
 
-- `ATAN(X)`
+* `ATAN(X)`
 
-  Retorna o arco tangente de *`X`*, ou seja, o valor cujo tangente é *`X`*.
+  Returns the arc tangent of *`X`*, that is, the value whose tangent is *`X`*.
 
   ```sql
   mysql> SELECT ATAN(2);
@@ -69,9 +69,9 @@ Todas as funções matemáticas retornam `NULL` em caso de erro.
           -> -1.1071487177941
   ```
 
-- `ATAN(Y, X)`, `ATAN2(Y, X)`
+* `ATAN(Y,X)`, `ATAN2(Y,X)`
 
-  Retorna a tangente do arco das duas variáveis *`X`* e *`Y`*. É semelhante ao cálculo da tangente do arco de `Y / X`, exceto que os sinais de ambos os argumentos são usados para determinar o quadrante do resultado.
+  Returns the arc tangent of the two variables *`X`* and *`Y`*. It is similar to calculating the arc tangent of `Y / X`, except that the signs of both arguments are used to determine the quadrant of the result.
 
   ```sql
   mysql> SELECT ATAN(-2,2);
@@ -80,13 +80,13 @@ Todas as funções matemáticas retornam `NULL` em caso de erro.
           -> 1.5707963267949
   ```
 
-- `CEIL(X)`
+* `CEIL(X)`
 
-  `CEIL()` é sinônimo de `CEILING()`.
+  `CEIL()` is a synonym for `CEILING()`.
 
-- `CEILING(X)`
+* `CEILING(X)`
 
-  Retorna o menor valor inteiro não menor que *`X`*.
+  Returns the smallest integer value not less than *`X`*.
 
   ```sql
   mysql> SELECT CEILING(1.23);
@@ -95,11 +95,11 @@ Todas as funções matemáticas retornam `NULL` em caso de erro.
           -> -1
   ```
 
-  Para argumentos numéricos de valor exato, o valor de retorno tem um tipo numérico de valor exato. Para argumentos de string ou de ponto flutuante, o valor de retorno tem um tipo de ponto flutuante.
+  For exact-value numeric arguments, the return value has an exact-value numeric type. For string or floating-point arguments, the return value has a floating-point type.
 
-- `CONV(N, de_base, para_base)`
+* `CONV(N,from_base,to_base)`
 
-  Converte números entre diferentes bases numéricas. Retorna uma representação de string do número *`N`*, convertido da base *`from_base`* para a base *`to_base`*. Retorna `NULL` se algum argumento for `NULL`. O argumento *`N`* é interpretado como um inteiro, mas pode ser especificado como um inteiro ou uma string. A base mínima é `2` e a base máxima é `36`. Se *`from_base`* for um número negativo, *`N`* é considerado um número assinado. Caso contrário, *`N`* é tratado como não assinado. A função `CONV()` funciona com precisão de 64 bits.
+  Converts numbers between different number bases. Returns a string representation of the number *`N`*, converted from base *`from_base`* to base *`to_base`*. Returns `NULL` if any argument is `NULL`. The argument *`N`* is interpreted as an integer, but may be specified as an integer or a string. The minimum base is `2` and the maximum base is `36`. If *`from_base`* is a negative number, *`N`* is regarded as a signed number. Otherwise, *`N`* is treated as unsigned. `CONV()` works with 64-bit precision.
 
   ```sql
   mysql> SELECT CONV('a',16,2);
@@ -112,18 +112,18 @@ Todas as funções matemáticas retornam `NULL` em caso de erro.
           -> '40'
   ```
 
-- `COS(X)`
+* `COS(X)`
 
-  Retorna o cosseno de *`X`*, onde *`X`* é dado em radianos.
+  Returns the cosine of *`X`*, where *`X`* is given in radians.
 
   ```sql
   mysql> SELECT COS(PI());
           -> -1
   ```
 
-- `COT(X)`
+* `COT(X)`
 
-  Retorna a cotangente de *`X`*.
+  Returns the cotangent of *`X`*.
 
   ```sql
   mysql> SELECT COT(12);
@@ -132,9 +132,9 @@ Todas as funções matemáticas retornam `NULL` em caso de erro.
           -> out-of-range error
   ```
 
-- `CRC32(expr)`
+* `CRC32(expr)`
 
-  Calcula um valor de verificação de redundância cíclica e retorna um valor não assinado de 32 bits. O resultado é `NULL` se o argumento for `NULL`. O argumento deve ser uma string e, se possível, é tratado como uma string se não for.
+  Computes a cyclic redundancy check value and returns a 32-bit unsigned value. The result is `NULL` if the argument is `NULL`. The argument is expected to be a string and (if possible) is treated as one if it is not.
 
   ```sql
   mysql> SELECT CRC32('MySQL');
@@ -143,9 +143,9 @@ Todas as funções matemáticas retornam `NULL` em caso de erro.
           -> 2501908538
   ```
 
-- `DEGREES(X)`
+* `DEGREES(X)`
 
-  Retorna o argumento *`X`*, convertido de radianos para graus.
+  Returns the argument *`X`*, converted from radians to degrees.
 
   ```sql
   mysql> SELECT DEGREES(PI());
@@ -154,9 +154,9 @@ Todas as funções matemáticas retornam `NULL` em caso de erro.
           -> 90
   ```
 
-- `EXP(X)`
+* `EXP(X)`
 
-  Retorna o valor de *e* (a base dos logaritmos naturais) elevado à potência de *`X`*. O inverso desta função é `LOG()` (usando apenas um argumento) ou `LN()`.
+  Returns the value of *e* (the base of natural logarithms) raised to the power of *`X`*. The inverse of this function is `LOG()` (using a single argument only) or `LN()`.
 
   ```sql
   mysql> SELECT EXP(2);
@@ -167,28 +167,28 @@ Todas as funções matemáticas retornam `NULL` em caso de erro.
           -> 1
   ```
 
-- `FLOOR(X)`
+* `FLOOR(X)`
 
-  Retorna o maior valor inteiro que não seja maior que *`X`*.
+  Returns the largest integer value not greater than *`X`*.
 
   ```sql
   mysql> SELECT FLOOR(1.23), FLOOR(-1.23);
           -> 1, -2
   ```
 
-  Para argumentos numéricos de valor exato, o valor de retorno tem um tipo numérico de valor exato. Para argumentos de string ou de ponto flutuante, o valor de retorno tem um tipo de ponto flutuante.
+  For exact-value numeric arguments, the return value has an exact-value numeric type. For string or floating-point arguments, the return value has a floating-point type.
 
-- `FORMAT(X, D)`
+* `FORMAT(X,D)`
 
-  Formata o número *`X`* para um formato como `'#,###,###.##'`, arredondado a *`D`* casas decimais, e retorna o resultado como uma string. Para detalhes, consulte a Seção 12.8, “Funções e Operadores de String”.
+  Formats the number *`X`* to a format like `'#,###,###.##'`, rounded to *`D`* decimal places, and returns the result as a string. For details, see Section 12.8, “String Functions and Operators”.
 
-- `HEX(N_or_S)`
+* `HEX(N_or_S)`
 
-  Essa função pode ser usada para obter uma representação hexadecimal de um número decimal ou uma string; a maneira como ela faz isso varia de acordo com o tipo do argumento. Consulte a descrição dessa função na Seção 12.8, “Funções e Operadores de String”, para obter detalhes.
+  This function can be used to obtain a hexadecimal representation of a decimal number or a string; the manner in which it does so varies according to the argument's type. See this function's description in Section 12.8, “String Functions and Operators”, for details.
 
-- `LN(X)`
+* `LN(X)`
 
-  Retorna o logaritmo natural de *`X`*; ou seja, o logaritmo na base *e* de *`X`*. Se *`X`* for igual ou menor que 0,0E0, a função retorna `NULL` e uma mensagem de aviso “Argumento inválido para logaritmo” é exibida.
+  Returns the natural logarithm of *`X`*; that is, the base-*e* logarithm of *`X`*. If *`X`* is less than or equal to 0.0E0, the function returns `NULL` and a warning “Invalid argument for logarithm” is reported.
 
   ```sql
   mysql> SELECT LN(2);
@@ -197,13 +197,13 @@ Todas as funções matemáticas retornam `NULL` em caso de erro.
           -> NULL
   ```
 
-  Essa função é sinônima de `LOG(X)`. O inverso dessa função é a função `EXP()`.
+  This function is synonymous with `LOG(X)`. The inverse of this function is the `EXP()` function.
 
-- `LOG(X)`, `LOG(B,X)`
+* `LOG(X)`, `LOG(B,X)`
 
-  Se chamada com um parâmetro, essa função retorna o logaritmo natural de *`X`*. Se *`X`* for igual ou menor que 0,0E0, a função retorna `NULL` e uma mensagem de aviso “Argumento inválido para logaritmo” é exibida.
+  If called with one parameter, this function returns the natural logarithm of *`X`*. If *`X`* is less than or equal to 0.0E0, the function returns `NULL` and a warning “Invalid argument for logarithm” is reported.
 
-  O inverso dessa função (quando chamado com um único argumento) é a função `EXP()`.
+  The inverse of this function (when called with a single argument) is the `EXP()` function.
 
   ```sql
   mysql> SELECT LOG(2);
@@ -212,7 +212,7 @@ Todas as funções matemáticas retornam `NULL` em caso de erro.
           -> NULL
   ```
 
-  Se chamada com dois parâmetros, essa função retorna o logaritmo de *`X`* na base *`B`*. Se *`X`* for igual ou menor que 0 ou se *`B`* for igual ou menor que 1, então `NULL` é retornado.
+  If called with two parameters, this function returns the logarithm of *`X`* to the base *`B`*. If *`X`* is less than or equal to 0, or if *`B`* is less than or equal to 1, then `NULL` is returned.
 
   ```sql
   mysql> SELECT LOG(2,65536);
@@ -223,11 +223,11 @@ Todas as funções matemáticas retornam `NULL` em caso de erro.
           -> NULL
   ```
 
-  `LOG(B, X)` é equivalente a `LOG(X) / LOG(B)`.
+  `LOG(B,X)` is equivalent to `LOG(X) / LOG(B)`.
 
-- `LOG2(X)`
+* `LOG2(X)`
 
-  Retorna o logaritmo em base 2 de `X`. Se *`X`* for igual ou menor que 0,0E0, a função retorna `NULL` e uma mensagem de aviso "Argumento inválido para logaritmo" é exibida.
+  Returns the base-2 logarithm of `X`. If *`X`* is less than or equal to 0.0E0, the function returns `NULL` and a warning “Invalid argument for logarithm” is reported.
 
   ```sql
   mysql> SELECT LOG2(65536);
@@ -236,11 +236,11 @@ Todas as funções matemáticas retornam `NULL` em caso de erro.
           -> NULL
   ```
 
-  `LOG2()` é útil para descobrir quantos bits um número precisa para armazenamento. Essa função é aproximadamente equivalente à expressão `LOG(X) / LOG(2)`.
+  `LOG2()` is useful for finding out how many bits a number requires for storage. This function is approximately equivalent to the expression `LOG(X) / LOG(2)`.
 
-- `LOG10(X)`
+* `LOG10(X)`
 
-  Retorna o logaritmo na base 10 de *`X`*. Se *`X`* for igual ou menor que 0,0E0, a função retorna `NULL` e uma mensagem de aviso "Argumento inválido para logaritmo" é exibida.
+  Returns the base-10 logarithm of *`X`*. If *`X`* is less than or equal to 0.0E0, the function returns `NULL` and a warning “Invalid argument for logarithm” is reported.
 
   ```sql
   mysql> SELECT LOG10(2);
@@ -251,11 +251,11 @@ Todas as funções matemáticas retornam `NULL` em caso de erro.
           -> NULL
   ```
 
-  `LOG10(X)` é aproximadamente equivalente a `LOG(10,X)`.
+  `LOG10(X)` is approximately equivalent to `LOG(10,X)`.
 
-- `MOD(N, M)`, `N % M`, `N MOD M`
+* `MOD(N,M)`, `N % M`, `N MOD M`
 
-  Operação do módulo. Retorna o resto de *`N`* dividido por *`M`*.
+  Modulo operation. Returns the remainder of *`N`* divided by *`M`*.
 
   ```sql
   mysql> SELECT MOD(234, 10);
@@ -268,22 +268,22 @@ Todas as funções matemáticas retornam `NULL` em caso de erro.
           -> 2
   ```
 
-  Essa função é segura para uso com valores de `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT").
+  This function is safe to use with `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") values.
 
-  `MOD()` também funciona com valores que têm uma parte fracionária e retorna o resto exato após a divisão:
+  `MOD()` also works on values that have a fractional part and returns the exact remainder after division:
 
   ```sql
   mysql> SELECT MOD(34.5,3);
           -> 1.5
   ```
 
-  `MOD(N, 0)` retorna `NULL`.
+  `MOD(N,0)` returns `NULL`.
 
-- `PI()`
+* `PI()`
 
-  Retorna o valor de π (pi). O número padrão de casas decimais exibidas é sete, mas o MySQL usa o valor completo de dupla precisão internamente.
+  Returns the value of π (pi). The default number of decimal places displayed is seven, but MySQL uses the full double-precision value internally.
 
-  Como o valor de retorno dessa função é um valor de ponto duplo, sua representação exata pode variar entre plataformas ou implementações. Isso também se aplica a quaisquer expressões que utilizem `PI()`. Consulte a Seção 11.1.4, “Tipos de Ponto Flutuante (Valor Aproximado) - FLOAT, DOUBLE” - FLOAT, DOUBLE").
+  Because the return value of this function is a double-precision value, its exact representation may vary between platforms or implementations. This also applies to any expressions making use of `PI()`. See Section 11.1.4, “Floating-Point Types (Approximate Value) - FLOAT, DOUBLE” - FLOAT, DOUBLE").
 
   ```sql
   mysql> SELECT PI();
@@ -292,9 +292,9 @@ Todas as funções matemáticas retornam `NULL` em caso de erro.
           -> 3.141592653589793000
   ```
 
-- `POW(X, Y)`
+* `POW(X,Y)`
 
-  Retorna o valor de *`X`* elevado à potência de *`Y`*.
+  Returns the value of *`X`* raised to the power of *`Y`*.
 
   ```sql
   mysql> SELECT POW(2,2);
@@ -303,36 +303,36 @@ Todas as funções matemáticas retornam `NULL` em caso de erro.
           -> 0.25
   ```
 
-- `POWER(X,Y)`
+* `POWER(X,Y)`
 
-  Este é um sinônimo de `POW()`.
+  This is a synonym for `POW()`.
 
-- `RADIANOS(X)`
+* `RADIANS(X)`
 
-  Retorna o argumento *`X`*, convertido de graus para radianos. (Observe que π radianos equivalem a 180 graus.)
+  Returns the argument *`X`*, converted from degrees to radians. (Note that π radians equals 180 degrees.)
 
   ```sql
   mysql> SELECT RADIANS(90);
           -> 1.5707963267949
   ```
 
-- `RAND([N])`
+* `RAND([N])`
 
-  Retorna um valor aleatório de ponto flutuante *`v`* na faixa `0` <= *`v`* < `1.0`. Para obter um número inteiro aleatório *`R`* na faixa *`i`* <= *`R`* < *`j`*, use a expressão [\`FLOOR(i
+  Returns a random floating-point value *`v`* in the range `0` <= *`v`* < `1.0`. To obtain a random integer *`R`* in the range *`i`* <= *`R`* < *`j`*, use the expression [`FLOOR(i
 
-  - RAND() \* (j`](funções matemáticas.html#função_piso) − `i))`. Por exemplo, para obter um número inteiro aleatório no intervalo `7` <= *`R`* < `12\`, use a seguinte declaração:
+  + RAND() * (j`](mathematical-functions.html#function_floor) − `i))`. For example, to obtain a random integer in the range the range `7` <= *`R`* < `12`, use the following statement:
 
   ```sql
   SELECT FLOOR(7 + (RAND() * 5));
   ```
 
-  Se um argumento inteiro *`N`* for especificado, ele será usado como o valor de seed:
+  If an integer argument *`N`* is specified, it is used as the seed value:
 
-  - Com um argumento inicializador constante, a semente é inicializada uma vez quando a instrução é preparada, antes da execução.
+  + With a constant initializer argument, the seed is initialized once when the statement is prepared, prior to execution.
 
-  - Com um argumento inicializador não constante (como o nome de uma coluna), a semente é inicializada com o valor para cada invocação do `RAND()`.
+  + With a nonconstant initializer argument (such as a column name), the seed is initialized with the value for each invocation of `RAND()`.
 
-  Uma implicação desse comportamento é que, para valores de argumento iguais, `RAND(N)` retorna o mesmo valor cada vez, e, assim, produz uma sequência de valores de coluna repetiível. No exemplo a seguir, a sequência de valores produzida por `RAND(3)` é a mesma em ambos os lugares em que ocorre.
+  One implication of this behavior is that for equal argument values, `RAND(N)` returns the same value each time, and thus produces a repeatable sequence of column values. In the following example, the sequence of values produced by `RAND(3)` is the same both places it occurs.
 
   ```sql
   mysql> CREATE TABLE t (i INT);
@@ -383,27 +383,27 @@ Todas as funções matemáticas retornam `NULL` em caso de erro.
   3 rows in set (0.01 sec)
   ```
 
-  `RAND()` em uma cláusula `WHERE` é avaliado para cada linha (ao selecionar de uma única tabela) ou combinação de linhas (ao selecionar de uma junção de múltiplas tabelas). Assim, para fins de otimizador, `RAND()` não é um valor constante e não pode ser usado para otimizações de índices. Para mais informações, consulte a Seção 8.2.1.18, “Otimização de Chamada de Função”.
+  `RAND()` in a `WHERE` clause is evaluated for every row (when selecting from one table) or combination of rows (when selecting from a multiple-table join). Thus, for optimizer purposes, `RAND()` is not a constant value and cannot be used for index optimizations. For more information, see Section 8.2.1.18, “Function Call Optimization”.
 
-  O uso de uma coluna com valores de `RAND()` em uma cláusula `ORDER BY` ou `GROUP BY` pode gerar resultados inesperados, pois, para qualquer uma dessas cláusulas, uma expressão `RAND()` pode ser avaliada várias vezes para a mesma linha, retornando um resultado diferente cada vez. Se o objetivo for recuperar linhas em ordem aleatória, você pode usar uma declaração como esta:
+  Use of a column with `RAND()` values in an `ORDER BY` or `GROUP BY` clause may yield unexpected results because for either clause a `RAND()` expression can be evaluated multiple times for the same row, each time returning a different result. If the goal is to retrieve rows in random order, you can use a statement like this:
 
   ```sql
   SELECT * FROM tbl_name ORDER BY RAND();
   ```
 
-  Para selecionar uma amostra aleatória de um conjunto de linhas, combine `ORDER BY RAND()` com `LIMIT`:
+  To select a random sample from a set of rows, combine `ORDER BY RAND()` with `LIMIT`:
 
   ```sql
   SELECT * FROM table1, table2 WHERE a=b AND c<d ORDER BY RAND() LIMIT 1000;
   ```
 
-  `RAND()` não é um gerador de números aleatórios perfeito. É uma maneira rápida de gerar números aleatórios sob demanda, que é portátil entre plataformas para a mesma versão do MySQL.
+  `RAND()` is not meant to be a perfect random generator. It is a fast way to generate random numbers on demand that is portable between platforms for the same MySQL version.
 
-  Essa função não é segura para a replicação baseada em instruções. Um aviso é registrado se você usar essa função quando o `binlog_format` estiver configurado para `STATEMENT`.
+  This function is unsafe for statement-based replication. A warning is logged if you use this function when `binlog_format` is set to `STATEMENT`.
 
-- `ROUND(X)`, `ROUND(X, D)`
+* `ROUND(X)`, `ROUND(X,D)`
 
-  Arredonda o argumento *`X`* para *`D`* casas decimais. O algoritmo de arredondamento depende do tipo de dados de *`X`*. *`D`* tem o valor padrão de 0 se não for especificado. *`D`* pode ser negativo para fazer com que os dígitos à esquerda da vírgula do valor *`X`* sejam convertidos em zero. O valor absoluto máximo para *`D`* é 30; quaisquer dígitos que excedam 30 (ou -30) são truncados.
+  Rounds the argument *`X`* to *`D`* decimal places. The rounding algorithm depends on the data type of *`X`*. *`D`* defaults to 0 if not specified. *`D`* can be negative to cause *`D`* digits left of the decimal point of the value *`X`* to become zero. The maximum absolute value for *`D`* is 30; any digits in excess of 30 (or -30) are truncated.
 
   ```sql
   mysql> SELECT ROUND(-1.23);
@@ -422,7 +422,7 @@ Todas as funções matemáticas retornam `NULL` em caso de erro.
           -> 0.123456789012345678901234567890
   ```
 
-  O valor de retorno tem o mesmo tipo que o primeiro argumento (assumindo que é inteiro, duplo ou decimal). Isso significa que, para um argumento inteiro, o resultado é um inteiro (sem casas decimais):
+  The return value has the same type as the first argument (assuming that it is integer, double, or decimal). This means that for an integer argument, the result is an integer (no decimal places):
 
   ```sql
   mysql> SELECT ROUND(150.000,2), ROUND(150,2);
@@ -433,13 +433,13 @@ Todas as funções matemáticas retornam `NULL` em caso de erro.
   +------------------+--------------+
   ```
 
-  `ROUND()` utiliza as seguintes regras, dependendo do tipo do primeiro argumento:
+  `ROUND()` uses the following rules depending on the type of the first argument:
 
-  - Para números com valor exato, o `ROUND()` usa a regra "arredondar para a metade mais próxima de zero" ou "arredondar para o número inteiro mais próximo": um valor com uma parte fracionária de 0,5 ou maior é arredondado para o número inteiro seguinte se for positivo ou para o número inteiro anterior se for negativo (ou seja, é arredondado para longe de zero). Um valor com uma parte fracionária menor que 0,5 é arredondado para o número inteiro anterior se for positivo ou para o número inteiro seguinte se for negativo.
+  + For exact-value numbers, `ROUND()` uses the “round half away from zero” or “round toward nearest” rule: A value with a fractional part of .5 or greater is rounded up to the next integer if positive or down to the next integer if negative. (In other words, it is rounded away from zero.) A value with a fractional part less than .5 is rounded down to the next integer if positive or up to the next integer if negative.
 
-  - Para números com valor aproximado, o resultado depende da biblioteca C. Em muitos sistemas, isso significa que o `ROUND()` usa a regra "arredondar para o número inteiro mais próximo": um valor com uma parte fracionária exatamente no meio entre dois inteiros é arredondado para o número inteiro mais próximo.
+  + For approximate-value numbers, the result depends on the C library. On many systems, this means that `ROUND()` uses the “round to nearest even” rule: A value with a fractional part exactly halfway between two integers is rounded to the nearest even integer.
 
-  O exemplo a seguir mostra como a arredondagem difere para valores exatos e aproximados:
+  The following example shows how rounding differs for exact and approximate values:
 
   ```sql
   mysql> SELECT ROUND(2.5), ROUND(25E-1);
@@ -450,11 +450,11 @@ Todas as funções matemáticas retornam `NULL` em caso de erro.
   +------------+--------------+
   ```
 
-  Para mais informações, consulte a Seção 12.21, “Matemática de Precisão”.
+  For more information, see Section 12.21, “Precision Math”.
 
-- `SIGN(X)`
+* `SIGN(X)`
 
-  Retorna o sinal do argumento como `-1`, `0` ou `1`, dependendo se *`X`* é negativo, zero ou positivo.
+  Returns the sign of the argument as `-1`, `0`, or `1`, depending on whether *`X`* is negative, zero, or positive.
 
   ```sql
   mysql> SELECT SIGN(-32);
@@ -465,9 +465,9 @@ Todas as funções matemáticas retornam `NULL` em caso de erro.
           -> 1
   ```
 
-- `SIN(X)`
+* `SIN(X)`
 
-  Retorna a função seno de *`X`*, onde *`X`* é fornecido em radianos.
+  Returns the sine of *`X`*, where *`X`* is given in radians.
 
   ```sql
   mysql> SELECT SIN(PI());
@@ -476,9 +476,9 @@ Todas as funções matemáticas retornam `NULL` em caso de erro.
           -> 0
   ```
 
-- `SQRT(X)`
+* `SQRT(X)`
 
-  Retorna a raiz quadrada de um número não negativo *`X`*.
+  Returns the square root of a nonnegative number *`X`*.
 
   ```sql
   mysql> SELECT SQRT(4);
@@ -489,9 +489,9 @@ Todas as funções matemáticas retornam `NULL` em caso de erro.
           -> NULL
   ```
 
-- `TAN(X)`
+* `TAN(X)`
 
-  Retorna o tangente de *`X`*, onde *`X`* é dado em radianos.
+  Returns the tangent of *`X`*, where *`X`* is given in radians.
 
   ```sql
   mysql> SELECT TAN(PI());
@@ -500,9 +500,9 @@ Todas as funções matemáticas retornam `NULL` em caso de erro.
           -> 1.5574077246549
   ```
 
-- `TRUNCATE(X, D)`
+* `TRUNCATE(X,D)`
 
-  Retorna o número *`X`*, truncado para *`D`* casas decimais. Se *`D`* for `0`, o resultado não terá ponto decimal ou parte fracionária. *`D`* pode ser negativo para fazer com que os *`D`* dígitos à esquerda do ponto decimal do valor *`X`* se tornem zero.
+  Returns the number *`X`*, truncated to *`D`* decimal places. If *`D`* is `0`, the result has no decimal point or fractional part. *`D`* can be negative to cause *`D`* digits left of the decimal point of the value *`X`* to become zero.
 
   ```sql
   mysql> SELECT TRUNCATE(1.223,1);
@@ -519,4 +519,4 @@ Todas as funções matemáticas retornam `NULL` em caso de erro.
          -> 1028
   ```
 
-  Todos os números são arredondados para zero.
+  All numbers are rounded toward zero.

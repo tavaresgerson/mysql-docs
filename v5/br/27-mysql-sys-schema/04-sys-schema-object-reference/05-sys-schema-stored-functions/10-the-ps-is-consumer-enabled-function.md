@@ -1,18 +1,18 @@
-#### 26.4.5.10 A função ps_is_consumer_enabled()
+#### 26.4.5.10 The ps_is_consumer_enabled() Function
 
-Retorna `YES` ou `NO` para indicar se um consumidor do Schema de Desempenho está habilitado, ou `NULL` se o argumento for `NULL`. Se o argumento não for um nome de consumidor válido, ocorrerá um erro. (Antes do MySQL 5.7.28, a função retorna `NULL` se o argumento não for um nome de consumidor válido.)
+Returns `YES` or `NO` to indicate whether a given Performance Schema consumer is enabled, or `NULL` if the argument is `NULL`. If the argument is not a valid consumer name, an error occurs. (Prior to MySQL 5.7.28, the function returns `NULL` if the argument is not a valid consumer name.)
 
-Essa função leva em consideração a hierarquia do consumidor, portanto, um consumidor não é considerado habilitado a menos que todos os consumidores dos quais ele depende também estejam habilitados. Para obter informações sobre a hierarquia do consumidor, consulte a Seção 25.4.7, “Pré-filtragem por Consumidor”.
+This function accounts for the consumer hierarchy, so a consumer is not considered enabled unless all consumers on which depends are also enabled. For information about the consumer hierarchy, see Section 25.4.7, “Pre-Filtering by Consumer”.
 
-##### Parâmetros
+##### Parameters
 
-- `in_consumer VARCHAR(64)`: O nome do consumidor a ser verificado.
+* `in_consumer VARCHAR(64)`: The name of the consumer to check.
 
-##### Valor de retorno
+##### Return Value
 
-Um valor `ENUM('SIM','NÃO')`.
+An `ENUM('YES','NO')` value.
 
-##### Exemplo
+##### Example
 
 ```sql
 mysql> SELECT sys.ps_is_consumer_enabled('thread_instrumentation');

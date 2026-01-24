@@ -1,20 +1,20 @@
-#### 26.4.5.7 A função list_add()
+#### 26.4.5.7 The list_add() Function
 
-Adiciona um valor a uma lista de valores separados por vírgula e retorna o resultado.
+Adds a value to a comma-separated list of values and returns the result.
 
-Essa função e a função `list_drop()` podem ser úteis para manipular o valor de variáveis do sistema, como `sql_mode` e `optimizer_switch`, que aceitam uma lista de valores separados por vírgula.
+This function and `list_drop()` Function") can be useful for manipulating the value of system variables such as `sql_mode` and `optimizer_switch` that take a comma-separated list of values.
 
-##### Parâmetros
+##### Parameters
 
-- `in_list TEXT`: A lista a ser modificada.
+* `in_list TEXT`: The list to be modified.
 
-- `in_add_value TEXT`: O valor a ser adicionado à lista.
+* `in_add_value TEXT`: The value to add to the list.
 
-##### Valor de retorno
+##### Return Value
 
-Um valor `TEXT`.
+A `TEXT` value.
 
-##### Exemplo
+##### Example
 
 ```sql
 mysql> SELECT @@sql_mode;

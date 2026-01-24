@@ -1,4 +1,4 @@
-#### 13.6.5.2 Instrução IF
+#### 13.6.5.2 IF Statement
 
 ```sql
 IF search_condition THEN statement_list
@@ -7,17 +7,17 @@ IF search_condition THEN statement_list
 END IF
 ```
 
-A instrução `IF` para programas armazenados implementa uma construção condicional básica.
+The [`IF`](if.html "13.6.5.2 IF Statement") statement for stored programs implements a basic conditional construct.
 
-Nota
+Note
 
-Existe também uma função *`IF()`* (flow-control-functions.html#function_if), que difere da declaração *`IF`* (if.html) descrita aqui. Veja Seção 12.5, “Funções de Controle de Fluxo”. A declaração *`IF`* (if.html) pode ter cláusulas `THEN`, `ELSE` e `ELSEIF`, e é finalizada com `END IF`.
+There is also an [`IF()`](flow-control-functions.html#function_if) *function*, which differs from the [`IF`](if.html "13.6.5.2 IF Statement") *statement* described here. See [Section 12.5, “Flow Control Functions”](flow-control-functions.html "12.5 Flow Control Functions"). The [`IF`](if.html "13.6.5.2 IF Statement") statement can have `THEN`, `ELSE`, and `ELSEIF` clauses, and it is terminated with `END IF`.
 
-Se uma *`search_condition`* dada avaliar como verdadeira, a cláusula correspondente `THEN` ou `ELSEIF` *`statement_list`* é executada. Se nenhuma *`search_condition`* corresponder, a cláusula `ELSE` *`statement_list`* é executada.
+If a given *`search_condition`* evaluates to true, the corresponding `THEN` or `ELSEIF` clause *`statement_list`* executes. If no *`search_condition`* matches, the `ELSE` clause *`statement_list`* executes.
 
-Cada *`statement_list`* consiste em uma ou mais instruções SQL; uma *`statement_list`* vazia não é permitida.
+Each *`statement_list`* consists of one or more SQL statements; an empty *`statement_list`* is not permitted.
 
-Um bloco `SE ... ENTÃO ... FIM SE`, assim como todos os outros blocos de controle de fluxo usados em programas armazenados, deve ser encerrado com um ponto e vírgula, como mostrado neste exemplo:
+An `IF ... END IF` block, like all other flow-control blocks used within stored programs, must be terminated with a semicolon, as shown in this example:
 
 ```sql
 DELIMITER //
@@ -41,7 +41,7 @@ CREATE FUNCTION SimpleCompare(n INT, m INT)
 DELIMITER ;
 ```
 
-Assim como outros construtos de controle de fluxo, os blocos `IF ... END IF` podem ser aninhados dentro de outros construtos de controle de fluxo, incluindo outras instruções `IF`. Cada `IF` deve ser encerrado por seu próprio `END IF` seguido por um ponto e vírgula. Você pode usar indentação para tornar os blocos de controle de fluxo aninhados mais facilmente legíveis para humanos (embora isso não seja exigido pelo MySQL), como mostrado aqui:
+As with other flow-control constructs, `IF ... END IF` blocks may be nested within other flow-control constructs, including other [`IF`](if.html "13.6.5.2 IF Statement") statements. Each [`IF`](if.html "13.6.5.2 IF Statement") must be terminated by its own `END IF` followed by a semicolon. You can use indentation to make nested flow-control blocks more easily readable by humans (although this is not required by MySQL), as shown here:
 
 ```sql
 DELIMITER //
@@ -69,4 +69,4 @@ CREATE FUNCTION VerboseCompare (n INT, m INT)
 DELIMITER ;
 ```
 
-Neste exemplo, o bloco interno `IF` é avaliado apenas se `n` não for igual a `m`.
+In this example, the inner [`IF`](if.html "13.6.5.2 IF Statement") is evaluated only if `n` is not equal to `m`.

@@ -1,17 +1,17 @@
-### 19.2.2 Começando o MySQL Shell
+### 19.2.2 Starting MySQL Shell
 
-Você precisa de um nome de conta e senha para estabelecer uma sessão usando o MySQL Shell. Substitua *`user`* pelo seu nome de conta.
+You need an account name and password to establish a session using MySQL Shell. Replace *`user`* with your account name.
 
-No mesmo sistema onde a instância do servidor está em execução, abra uma janela de terminal (prompt de comando no Windows) e inicie o MySQL Shell com o seguinte comando:
+On the same system where the server instance is running, open a terminal window (command prompt on Windows) and start MySQL Shell with the following command:
 
 ```sql
 mysqlsh --uri user@localhost
 ```
 
-Você será solicitado a inserir sua senha, e isso estabelecerá uma sessão X.
+You are prompted to input your password and then this establishes an X Session.
 
-Para obter instruções para começar a usar o MySQL como uma loja de documentos, consulte os seguintes guias de início rápido:
+For instructions to get you started using MySQL as a document store, see the following quick-start guides:
 
-- Guia de início rápido: Shell MySQL para JavaScript
+* Quick-Start Guide: MySQL Shell for JavaScript
 
-- Guia de início rápido: Shell MySQL para Python
+* Quick-Start Guide: MySQL Shell for Python

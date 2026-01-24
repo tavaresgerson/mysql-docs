@@ -1,52 +1,52 @@
-### 14.22.2 Forçar a recuperação do InnoDB
+### 14.22.2 Forcing InnoDB Recovery
 
-Para investigar a corrupção de páginas de banco de dados, você pode dumper suas tabelas do banco de dados com `SELECT ... INTO OUTFILE`. Geralmente, a maioria dos dados obtidos dessa maneira permanece intacta. A corrupção grave pode fazer com que as instruções `SELECT * FROM tbl_name` ou as operações de fundo do `InnoDB` saiam inesperadamente ou afirmem, ou até mesmo fazer com que a recuperação de avanço do `InnoDB` quebre. Nesses casos, você pode usar a opção `innodb_force_recovery` para forçar o motor de armazenamento `InnoDB` a ser iniciado, impedindo que as operações de fundo sejam executadas, para que você possa dumper suas tabelas. Por exemplo, você pode adicionar a seguinte linha à seção `[mysqld]` do seu arquivo de opções antes de reiniciar o servidor:
+To investigate database page corruption, you might dump your tables from the database with `SELECT ... INTO OUTFILE`. Usually, most of the data obtained in this way is intact. Serious corruption might cause `SELECT * FROM tbl_name` statements or `InnoDB` background operations to unexpectedly exit or assert, or even cause `InnoDB` roll-forward recovery to crash. In such cases, you can use the `innodb_force_recovery` option to force the `InnoDB` storage engine to start up while preventing background operations from running, so that you can dump your tables. For example, you can add the following line to the `[mysqld]` section of your option file before restarting the server:
 
 ```sql
 [mysqld]
 innodb_force_recovery = 1
 ```
 
-Para obter informações sobre o uso de arquivos de opção, consulte a Seção 4.2.2.2, “Usando arquivos de opção”.
+For information about using option files, see Section 4.2.2.2, “Using Option Files”.
 
-Aviso
+Warning
 
-Apenas defina `innodb_force_recovery` para um valor maior que 0 em uma situação de emergência, para que você possa iniciar o `InnoDB` e fazer o dump de suas tabelas. Antes de fazer isso, certifique-se de ter uma cópia de backup do seu banco de dados, caso precise recriá-lo. Valores de 4 ou maiores podem corromper permanentemente os arquivos de dados. Use apenas um ajuste de `innodb_force_recovery` de 4 ou maior em uma instância do servidor de produção após ter testado com sucesso o ajuste em uma cópia física separada do seu banco de dados. Ao forçar a recuperação do `InnoDB`, você deve sempre começar com `innodb_force_recovery=1` e aumentar o valor apenas incrementalmente, conforme necessário.
+Only set `innodb_force_recovery` to a value greater than 0 in an emergency situation, so that you can start `InnoDB` and dump your tables. Before doing so, ensure that you have a backup copy of your database in case you need to recreate it. Values of 4 or greater can permanently corrupt data files. Only use an `innodb_force_recovery` setting of 4 or greater on a production server instance after you have successfully tested the setting on a separate physical copy of your database. When forcing `InnoDB` recovery, you should always start with `innodb_force_recovery=1` and only increase the value incrementally, as necessary.
 
-`innodb_force_recovery` é 0 por padrão (inicialização normal sem recuperação forçada). Os valores não nulos permitidos para `innodb_force_recovery` são de 1 a 6. Um valor maior inclui a funcionalidade de valores menores. Por exemplo, um valor de 3 inclui toda a funcionalidade dos valores 1 e 2.
+`innodb_force_recovery` is 0 by default (normal startup without forced recovery). The permissible nonzero values for `innodb_force_recovery` are 1 to 6. A larger value includes the functionality of lesser values. For example, a value of 3 includes all of the functionality of values 1 and 2.
 
-Se você conseguir descartar suas tabelas com um valor de `innodb_force_recovery` de 3 ou menos, então você está relativamente seguro de que apenas alguns dados em páginas individuais corrompidas estão perdidos. Um valor de 4 ou maior é considerado perigoso porque os arquivos de dados podem ser permanentemente corrompidos. Um valor de 6 é considerado drástico porque as páginas do banco de dados são deixadas em um estado obsoleto, o que, por sua vez, pode introduzir mais corrupção nas árvores B e em outras estruturas do banco de dados.
+If you are able to dump your tables with an `innodb_force_recovery` value of 3 or less, then you are relatively safe that only some data on corrupt individual pages is lost. A value of 4 or greater is considered dangerous because data files can be permanently corrupted. A value of 6 is considered drastic because database pages are left in an obsolete state, which in turn may introduce more corruption into B-trees and other database structures.
 
-Como medida de segurança, o `InnoDB` impede as operações `INSERT`, `UPDATE` ou `DELETE` quando o `innodb_force_recovery` é maior que 0. Um valor de `innodb_force_recovery` de 4 ou superior coloca o `InnoDB` no modo de leitura somente.
+As a safety measure, `InnoDB` prevents `INSERT`, `UPDATE`, or `DELETE` operations when `innodb_force_recovery` is greater than 0. An `innodb_force_recovery` setting of 4 or greater places `InnoDB` in read-only mode.
 
-- `1` (`SRV_FORCE_IGNORE_CORRUPT`)
+* `1` (`SRV_FORCE_IGNORE_CORRUPT`)
 
-  Permite que o servidor continue funcionando mesmo quando detecta uma página corrompida. Tenta fazer com que `SELECT * FROM tbl_name` ignore registros e páginas de índice corrompidos, o que ajuda no descarte de tabelas.
+  Lets the server run even if it detects a corrupt page. Tries to make `SELECT * FROM tbl_name` jump over corrupt index records and pages, which helps in dumping tables.
 
-- `2` (`SRV_FORCE_NO_BACKGROUND`)
+* `2` (`SRV_FORCE_NO_BACKGROUND`)
 
-  Previne que o thread mestre e quaisquer fios de purga sejam executados. Se uma saída inesperada ocorrer durante a operação de purga, esse valor de recuperação a impede.
+  Prevents the master thread and any purge threads from running. If an unexpected exit would occur during the purge operation, this recovery value prevents it.
 
-- `3` (`SRV_FORCE_NO_TRX_UNDO`)
+* `3` (`SRV_FORCE_NO_TRX_UNDO`)
 
-  Não executa recuos de transações após a recuperação de falhas.
+  Does not run transaction rollbacks after crash recovery.
 
-- `4` (`SRV_FORCE_NO_IBUF_MERGE`)
+* `4` (`SRV_FORCE_NO_IBUF_MERGE`)
 
-  Previne operações de junção do buffer de inserção. Se elas causarem um crash, não as executa. Não calcula estatísticas de tabela. Esse valor pode corromper permanentemente os arquivos de dados. Após usar esse valor, esteja preparado para excluir e recriar todos os índices secundários. Define `InnoDB` como somente leitura.
+  Prevents insert buffer merge operations. If they would cause a crash, does not do them. Does not calculate table statistics. This value can permanently corrupt data files. After using this value, be prepared to drop and recreate all secondary indexes. Sets `InnoDB` to read-only.
 
-- `5` (`SRV_FORCE_NO_UNDO_LOG_SCAN`)
+* `5` (`SRV_FORCE_NO_UNDO_LOG_SCAN`)
 
-  Não verifica os registros de desfazer ao iniciar o banco de dados: o `InnoDB` trata até mesmo as transações incompletas como confirmadas. Esse valor pode corromper permanentemente os arquivos de dados. Defina o `InnoDB` como somente leitura.
+  Does not look at undo logs when starting the database: `InnoDB` treats even incomplete transactions as committed. This value can permanently corrupt data files. Sets `InnoDB` to read-only.
 
-- `6` (`SRV_FORCE_NO_LOG_REDO`)
+* `6` (`SRV_FORCE_NO_LOG_REDO`)
 
-  Não faz o registro de revisão avançar na recuperação. Esse valor pode corromper permanentemente os arquivos de dados. Deixa as páginas do banco de dados em um estado obsoleto, o que, por sua vez, pode introduzir mais corrupção nas árvores B e em outras estruturas do banco de dados. Define o `InnoDB` como somente leitura.
+  Does not do the redo log roll-forward in connection with recovery. This value can permanently corrupt data files. Leaves database pages in an obsolete state, which in turn may introduce more corruption into B-trees and other database structures. Sets `InnoDB` to read-only.
 
-Você pode `SELECT` de tabelas para excluí-las. Com um valor de `innodb_force_recovery` de 3 ou menos, você pode `DROP` ou `CREATE` tabelas. `DROP TABLE` também é suportado com um valor de `innodb_force_recovery` maior que 3, até o MySQL 5.7.17. A partir do MySQL 5.7.18, `DROP TABLE` não é permitido com um valor de `innodb_force_recovery` maior que 4.
+You can `SELECT` from tables to dump them. With an `innodb_force_recovery` value of 3 or less you can `DROP` or `CREATE` tables. `DROP TABLE` is also supported with an `innodb_force_recovery` value greater than 3, up to MySQL 5.7.17. As of MySQL 5.7.18, `DROP TABLE` is not permitted with an `innodb_force_recovery` value greater than 4.
 
-Se você sabe que uma determinada tabela está causando uma saída inesperada durante o rollback, você pode excluí-la. Se você encontrar um rollback descontrolado causado por uma importação em massa falhando ou por uma alteração na tabela, você pode matar o processo **mysqld** e definir o `innodb_force_recovery` para `3` para restaurar o banco de dados sem o rollback, e depois excluir a tabela que está causando o rollback descontrolado.
+If you know that a given table is causing an unexpected exit on rollback, you can drop it. If you encounter a runaway rollback caused by a failing mass import or `ALTER TABLE`, you can kill the **mysqld** process and set `innodb_force_recovery` to `3` to bring the database up without the rollback, and then `DROP` the table that is causing the runaway rollback.
 
-Se a corrupção nos dados da tabela impedir que você descarte todo o conteúdo da tabela, uma consulta com a cláusula `ORDER BY primary_key DESC` pode ser capaz de descarregar a parte da tabela após a parte corrompida.
+If corruption within the table data prevents you from dumping the entire table contents, a query with an `ORDER BY primary_key DESC` clause might be able to dump the portion of the table after the corrupted part.
 
-Se for necessário um valor alto de `innodb_force_recovery` para iniciar o `InnoDB`, podem haver estruturas de dados corrompidas que podem causar falhas em consultas complexas (consultas que contêm `WHERE`, `ORDER BY` ou outras cláusulas). Nesse caso, você pode apenas ser capaz de executar consultas básicas `SELECT * FROM t`.
+If a high `innodb_force_recovery` value is required to start `InnoDB`, there may be corrupted data structures that could cause complex queries (queries containing `WHERE`, `ORDER BY`, or other clauses) to fail. In this case, you may only be able to run basic `SELECT * FROM t` queries.

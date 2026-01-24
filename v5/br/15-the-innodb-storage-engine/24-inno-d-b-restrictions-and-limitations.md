@@ -1,28 +1,28 @@
-## 14.24 Restrições e Limitações do InnoDB
+## 14.24 InnoDB Restrictions and Limitations
 
-Esta seção descreve as restrições e limitações do mecanismo de armazenamento `InnoDB`.
+This section describes restrictions and limitations of the `InnoDB` storage engine.
 
-- Você não pode criar uma tabela com um nome de coluna que coincida com o nome de uma coluna interna do `InnoDB` (incluindo `DB_ROW_ID`, `DB_TRX_ID` e `DB_ROLL_PTR`). Esta restrição se aplica ao uso dos nomes em qualquer caso de letra.
+* You cannot create a table with a column name that matches the name of an internal `InnoDB` column (including `DB_ROW_ID`, `DB_TRX_ID`, and `DB_ROLL_PTR`. This restriction applies to use of the names in any lettercase.
 
   ```sql
   mysql> CREATE TABLE t1 (c1 INT, db_row_id INT) ENGINE=INNODB;
   ERROR 1166 (42000): Incorrect column name 'db_row_id'
   ```
 
-- A opção `SHOW TABLE STATUS` não fornece estatísticas precisas para as tabelas `InnoDB`, exceto pelo tamanho físico reservado pela tabela. O número de linhas é apenas uma estimativa aproximada usada na otimização do SQL.
+* `SHOW TABLE STATUS` does not provide accurate statistics for `InnoDB` tables except for the physical size reserved by the table. The row count is only a rough estimate used in SQL optimization.
 
-- O `InnoDB` não mantém um contagem interna de linhas em uma tabela porque transações concorrentes podem "ver" números diferentes de linhas ao mesmo tempo. Consequentemente, as instruções `SELECT COUNT(*)` contam apenas as linhas visíveis para a transação atual.
+* `InnoDB` does not keep an internal count of rows in a table because concurrent transactions might “see” different numbers of rows at the same time. Consequently, `SELECT COUNT(*)` statements only count rows visible to the current transaction.
 
-  Para obter informações sobre como o `InnoDB` processa as instruções `SELECT COUNT(*)`, consulte a descrição da função `COUNT()` na Seção 12.19.1, “Descrição de Funções Agregadas”.
+  For information about how `InnoDB` processes `SELECT COUNT(*)` statements, refer to the `COUNT()` description in Section 12.19.1, “Aggregate Function Descriptions”.
 
-- `ROW_FORMAT=COMPRESSED` não é suportado para tamanhos de página maiores que 16 KB.
+* `ROW_FORMAT=COMPRESSED` is unsupported for page sizes greater than 16KB.
 
-- Uma instância do MySQL que utiliza um tamanho de página específico do `InnoDB` (`innodb_page_size`) não pode usar arquivos de dados ou arquivos de log de uma instância que utiliza um tamanho de página diferente.
+* A MySQL instance using a particular `InnoDB` page size (`innodb_page_size`) cannot use data files or log files from an instance that uses a different page size.
 
-- Para obter informações sobre as limitações associadas à importação de tabelas usando o recurso *Transportable Tablespaces*, consulte Limitações de Importação de Tabelas.
+* For limitations associated with importing tables using the *Transportable Tablespaces* feature, see Table Import Limitations.
 
-- Para as limitações associadas ao DDL online, consulte a Seção 14.13.6, “Limitações do DDL Online”.
+* For limitations associated with online DDL, see Section 14.13.6, “Online DDL Limitations”.
 
-- Para as limitações associadas aos espaços de tabela gerais, consulte Limitações de Espaço de Tabela Geral.
+* For limitations associated with general tablespaces, see General Tablespace Limitations.
 
-- Para as limitações associadas à criptografia de dados em repouso, consulte Limitações de criptografia.
+* For limitations associated with data-at-rest encryption, see Encryption Limitations.

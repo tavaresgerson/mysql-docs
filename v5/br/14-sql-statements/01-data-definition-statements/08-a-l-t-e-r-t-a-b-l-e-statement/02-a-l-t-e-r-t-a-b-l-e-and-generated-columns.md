@@ -1,22 +1,22 @@
-#### 13.1.8.2 ALTER TABLE e Colunas Geradas
+#### 13.1.8.2 ALTER TABLE and Generated Columns
 
-As operações `ALTER TABLE` permitidas para colunas geradas são `ADD`, `MODIFY` e `CHANGE`.
+`ALTER TABLE` operations permitted for generated columns are `ADD`, `MODIFY`, and `CHANGE`.
 
-- Colunas geradas podem ser adicionadas.
+* Generated columns can be added.
 
   ```sql
   CREATE TABLE t1 (c1 INT);
   ALTER TABLE t1 ADD COLUMN c2 INT GENERATED ALWAYS AS (c1 + 1) STORED;
   ```
 
-- O tipo de dados e a expressão das colunas geradas podem ser modificados.
+* The data type and expression of generated columns can be modified.
 
   ```sql
   CREATE TABLE t1 (c1 INT, c2 INT GENERATED ALWAYS AS (c1 + 1) STORED);
   ALTER TABLE t1 MODIFY COLUMN c2 TINYINT GENERATED ALWAYS AS (c1 + 5) STORED;
   ```
 
-- Colunas geradas podem ser renomeadas ou excluídas, desde que nenhuma outra coluna as refira.
+* Generated columns can be renamed or dropped, if no other column refers to them.
 
   ```sql
   CREATE TABLE t1 (c1 INT, c2 INT GENERATED ALWAYS AS (c1 + 1) STORED);
@@ -24,7 +24,7 @@ As operações `ALTER TABLE` permitidas para colunas geradas são `ADD`, `MODIFY
   ALTER TABLE t1 DROP COLUMN c3;
   ```
 
-- As colunas geradas virtualmente não podem ser alteradas para colunas geradas armazenadas, ou vice-versa. Para contornar isso, exclua a coluna e, em seguida, adicione-a com a nova definição.
+* Virtual generated columns cannot be altered to stored generated columns, or vice versa. To work around this, drop the column, then add it with the new definition.
 
   ```sql
   CREATE TABLE t1 (c1 INT, c2 INT GENERATED ALWAYS AS (c1 + 1) VIRTUAL);
@@ -32,36 +32,36 @@ As operações `ALTER TABLE` permitidas para colunas geradas são `ADD`, `MODIFY
   ALTER TABLE t1 ADD COLUMN c2 INT GENERATED ALWAYS AS (c1 + 1) STORED;
   ```
 
-- As colunas não geradas podem ser alteradas para colunas armazenadas, mas não para colunas geradas virtualmente.
+* Nongenerated columns can be altered to stored but not virtual generated columns.
 
   ```sql
   CREATE TABLE t1 (c1 INT, c2 INT);
   ALTER TABLE t1 MODIFY COLUMN c2 INT GENERATED ALWAYS AS (c1 + 1) STORED;
   ```
 
-- Colunas armazenadas, mas não geradas virtualmente, podem ser alteradas para colunas não geradas. Os valores gerados armazenados se tornam os valores da coluna não gerada.
+* Stored but not virtual generated columns can be altered to nongenerated columns. The stored generated values become the values of the nongenerated column.
 
   ```sql
   CREATE TABLE t1 (c1 INT, c2 INT GENERATED ALWAYS AS (c1 + 1) STORED);
   ALTER TABLE t1 MODIFY COLUMN c2 INT;
   ```
 
-- `ADD COLUMN` não é uma operação de inserção em tempo real para colunas armazenadas (realizada sem o uso de uma tabela temporária), porque a expressão deve ser avaliada pelo servidor. Para colunas armazenadas, as alterações de indexação são feitas em tempo real, e as alterações de expressão não são feitas em tempo real. As alterações nos comentários das colunas são feitas em tempo real.
+* `ADD COLUMN` is not an in-place operation for stored columns (done without using a temporary table) because the expression must be evaluated by the server. For stored columns, indexing changes are done in place, and expression changes are not done in place. Changes to column comments are done in place.
 
-- Para tabelas não particionadas, `ADD COLUMN` e `DROP COLUMN` são operações in-place para colunas virtuais. No entanto, adicionar ou excluir uma coluna virtual não pode ser feito in-place em combinação com outras operações de `ALTER TABLE` (alter-table.html).
+* For non-partitioned tables, `ADD COLUMN` and `DROP COLUMN` are in-place operations for virtual columns. However, adding or dropping a virtual column cannot be performed in place in combination with other [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") operations.
 
-  Para tabelas particionadas, `ADD COLUMN` e `DROP COLUMN` não são operações in-place para colunas virtuais.
+  For partitioned tables, `ADD COLUMN` and `DROP COLUMN` are not in-place operations for virtual columns.
 
-- O `InnoDB` suporta índices secundários em colunas geradas virtualmente. Adicionar ou excluir um índice secundário em uma coluna gerada virtualmente é uma operação in-place. Para mais informações, consulte Seção 13.1.18.8, “Índices Secundários e Colunas Geradas”.
+* `InnoDB` supports secondary indexes on virtual generated columns. Adding or dropping a secondary index on a virtual generated column is an in-place operation. For more information, see [Section 13.1.18.8, “Secondary Indexes and Generated Columns”](create-table-secondary-indexes.html "13.1.18.8 Secondary Indexes and Generated Columns").
 
-- Quando uma coluna gerada `VIRTUAL` é adicionada a uma tabela ou modificada, não se garante que os valores calculados pela expressão da coluna gerada não estejam fora do intervalo da coluna. Isso pode levar a dados inconsistentes serem retornados e a declarações falharem inesperadamente. Para permitir o controle sobre se a validação ocorre para essas colunas, o `ALTER TABLE` suporta as cláusulas `WITHOUT VALIDATION` e `WITH VALIDATION`:
+* When a `VIRTUAL` generated column is added to a table or modified, it is not ensured that values being calculated by the generated column expression are not out of range for the column. This can lead to inconsistent data being returned and unexpectedly failed statements. To permit control over whether validation occurs for such columns, `ALTER TABLE` supports `WITHOUT VALIDATION` and `WITH VALIDATION` clauses:
 
-  - Com `SEM VALIDAÇÃO` (a opção padrão se nenhuma das cláusulas for especificada), uma operação no local é realizada (se possível), a integridade dos dados não é verificada e a instrução termina mais rapidamente. No entanto, leituras posteriores da tabela podem exibir avisos ou erros para a coluna se os valores estiverem fora do intervalo.
+  + With `WITHOUT VALIDATION` (the default if neither clause is specified), an in-place operation is performed (if possible), data integrity is not checked, and the statement finishes more quickly. However, later reads from the table might report warnings or errors for the column if values are out of range.
 
-  - Com `WITH VALIDATION`, `ALTER TABLE` copia a tabela. Se ocorrer um erro fora do intervalo ou qualquer outro erro, a instrução falhará. Como uma cópia da tabela é realizada, a instrução leva mais tempo.
+  + With `WITH VALIDATION`, `ALTER TABLE` copies the table. If an out-of-range or any other error occurs, the statement fails. Because a table copy is performed, the statement takes longer.
 
-  `SEM VALIDAÇÃO` e `COM VALIDAÇÃO` só são permitidos com as operações `ADICIONAR COLUNA`, `ALTERAR COLUNA` e `MODIFICAR COLUNA`. Caso contrário, ocorre um erro `ER_WRONG_USAGE`.
+  `WITHOUT VALIDATION` and `WITH VALIDATION` are permitted only with `ADD COLUMN`, `CHANGE COLUMN`, and `MODIFY COLUMN` operations. Otherwise, an [`ER_WRONG_USAGE`](/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_wrong_usage) error occurs.
 
-- A partir do MySQL 5.7.10, se a avaliação da expressão causar truncação ou fornecer uma entrada incorreta para uma função, a instrução `ALTER TABLE` termina com um erro e a operação DDL é rejeitada.
+* As of MySQL 5.7.10, if expression evaluation causes truncation or provides incorrect input to a function, the [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statement terminates with an error and the DDL operation is rejected.
 
-- Uma declaração `ALTER TABLE` que altera o valor padrão de uma coluna *`col_name`* também pode alterar o valor de uma expressão de coluna gerada que faz referência à coluna usando `DEFAULT(col_name)` (funções diversas.html#função_default). Por essa razão, a partir do MySQL 5.7.13, as operações `ALTER TABLE` que alteram a definição de uma coluna causam uma reconstrução da tabela se qualquer expressão de coluna gerada usar `DEFAULT()` (funções diversas.html#função_default).
+* An [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statement that changes the default value of a column *`col_name`* may also change the value of a generated column expression that refers to the column using [`DEFAULT(col_name)`](miscellaneous-functions.html#function_default). For this reason, as of MySQL 5.7.13, [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") operations that change the definition of a column cause a table rebuild if any generated column expression uses [`DEFAULT()`](miscellaneous-functions.html#function_default).

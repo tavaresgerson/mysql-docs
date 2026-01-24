@@ -1,16 +1,16 @@
-#### 26.4.5.20 A função version_major()
+#### 26.4.5.20 The version_major() Function
 
-Essa função retorna a versão principal do servidor MySQL.
+This function returns the major version of the MySQL server.
 
-##### Parâmetros
+##### Parameters
 
-Nenhum.
+None.
 
-##### Valor de retorno
+##### Return Value
 
-Um valor `TINYINT UNSIGNED`.
+A `TINYINT UNSIGNED` value.
 
-##### Exemplo
+##### Example
 
 ```sql
 mysql> SELECT VERSION(), sys.version_major();

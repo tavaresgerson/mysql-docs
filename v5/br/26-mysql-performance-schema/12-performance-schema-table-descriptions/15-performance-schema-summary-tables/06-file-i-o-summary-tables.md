@@ -1,8 +1,8 @@
-#### 25.12.15.6 Tabelas de Resumo de Entrada/Saída de Arquivos
+#### 25.12.15.6 File I/O Summary Tables
 
-O Schema de Desempenho mantém tabelas de resumo de E/S de arquivos que agregam informações sobre operações de E/S.
+The Performance Schema maintains file I/O summary tables that aggregate information about I/O operations.
 
-Exemplo de informações de resumo de eventos de E/S de arquivo:
+Example file I/O event summary information:
 
 ```sql
 mysql> SELECT * FROM performance_schema.file_summary_by_event_name\G
@@ -30,30 +30,30 @@ mysql> SELECT * FROM performance_schema.file_summary_by_instance\G
 ...
 ```
 
-Cada tabela de resumo de entrada/saída de arquivo tem uma ou mais colunas de agrupamento para indicar como a tabela agrega eventos. Os nomes dos eventos referem-se aos nomes dos instrumentos de evento na tabela `setup_instruments`:
+Each file I/O summary table has one or more grouping columns to indicate how the table aggregates events. Event names refer to names of event instruments in the [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table:
 
-- O `file_summary_by_event_name` possui uma coluna `EVENT_NAME`. Cada linha resume os eventos para um nome de evento específico.
+* [`file_summary_by_event_name`](performance-schema-file-summary-tables.html "25.12.15.6 File I/O Summary Tables") has an `EVENT_NAME` column. Each row summarizes events for a given event name.
 
-- O `file_summary_by_instance` possui as colunas `FILE_NAME`, `EVENT_NAME` e `OBJECT_INSTANCE_BEGIN`. Cada linha resume os eventos para um arquivo e um nome de evento específicos.
+* [`file_summary_by_instance`](performance-schema-file-summary-tables.html "25.12.15.6 File I/O Summary Tables") has `FILE_NAME`, `EVENT_NAME`, and `OBJECT_INSTANCE_BEGIN` columns. Each row summarizes events for a given file and event name.
 
-Cada tabela de resumo de entrada/saída de arquivo tem as seguintes colunas de resumo que contêm valores agregados. Algumas colunas são mais gerais e têm valores que são iguais à soma dos valores de colunas mais detalhadas. Dessa forma, as agregações em níveis mais altos estão disponíveis diretamente, sem a necessidade de visualizações definidas pelo usuário que somam colunas de nível mais baixo.
+Each file I/O summary table has the following summary columns containing aggregated values. Some columns are more general and have values that are the same as the sum of the values of more fine-grained columns. In this way, aggregations at higher levels are available directly without the need for user-defined views that sum lower-level columns.
 
-- `COUNT_STAR`, `SUM_TIMER_WAIT`, `MIN_TIMER_WAIT`, `AVG_TIMER_WAIT`, `MAX_TIMER_WAIT`
+* `COUNT_STAR`, `SUM_TIMER_WAIT`, `MIN_TIMER_WAIT`, `AVG_TIMER_WAIT`, `MAX_TIMER_WAIT`
 
-  Essas colunas agregam todas as operações de E/S.
+  These columns aggregate all I/O operations.
 
-- `CONTAR_LEITURA`, `SOMAR_TEMPO_LEITURA`, `MIN_TEMPO_LEITURA`, `AVG_TEMPO_LEITURA`, `MAX_TEMPO_LEITURA`, `SOMAR_NUMERO_DE_BYTES_LEITURA`
+* `COUNT_READ`, `SUM_TIMER_READ`, `MIN_TIMER_READ`, `AVG_TIMER_READ`, `MAX_TIMER_READ`, `SUM_NUMBER_OF_BYTES_READ`
 
-  Essas colunas agregam todas as operações de leitura, incluindo `FGETS`, `FGETC`, `FREAD` e `READ`.
+  These columns aggregate all read operations, including `FGETS`, `FGETC`, `FREAD`, and `READ`.
 
-- `COUNT_WRITE`, `SUM_TIMER_WRITE`, `MIN_TIMER_WRITE`, `AVG_TIMER_WRITE`, `MAX_TIMER_WRITE`, `SUM_NUMBER_OF_BYTES_WRITE`
+* `COUNT_WRITE`, `SUM_TIMER_WRITE`, `MIN_TIMER_WRITE`, `AVG_TIMER_WRITE`, `MAX_TIMER_WRITE`, `SUM_NUMBER_OF_BYTES_WRITE`
 
-  Essas colunas agregam todas as operações de escrita, incluindo `FPUTS`, `FPUTC`, `FPRINTF`, `VFPRINTF`, `FWRITE` e `PWRITE`.
+  These columns aggregate all write operations, including `FPUTS`, `FPUTC`, `FPRINTF`, `VFPRINTF`, `FWRITE`, and `PWRITE`.
 
-- `CONTAGEM_MISC`, `SOMA_TIMER_MISC`, `MIN_TIMER_MISC`, `MÉDIA_TIMER_MISC`, `MAX_TIMER_MISC`
+* `COUNT_MISC`, `SUM_TIMER_MISC`, `MIN_TIMER_MISC`, `AVG_TIMER_MISC`, `MAX_TIMER_MISC`
 
-  Essas colunas agregam todas as outras operações de E/S, incluindo `CREATE`, `DELETE`, `OPEN`, `CLOSE`, `STREAM_OPEN`, `STREAM_CLOSE`, `SEEK`, `TELL`, `FLUSH`, `STAT`, `FSTAT`, `CHSIZE`, `RENAME` e `SYNC`. Não há contagem de bytes para essas operações.
+  These columns aggregate all other I/O operations, including `CREATE`, `DELETE`, `OPEN`, `CLOSE`, `STREAM_OPEN`, `STREAM_CLOSE`, `SEEK`, `TELL`, `FLUSH`, `STAT`, `FSTAT`, `CHSIZE`, `RENAME`, and `SYNC`. There are no byte counts for these operations.
 
-A opção `TRUNCATE TABLE` é permitida para tabelas de resumo de E/S de arquivos. Ela redefine as colunas de resumo para zero, em vez de remover linhas.
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is permitted for file I/O summary tables. It resets the summary columns to zero rather than removing rows.
 
-O servidor MySQL utiliza várias técnicas para evitar operações de E/S ao armazenar informações lidas de arquivos em cache, portanto, é possível que as instruções que você espera resultar em eventos de E/S não o façam. Você pode garantir que o E/S ocorra ao limpar o cache ou reiniciar o servidor para redefinir seu estado.
+The MySQL server uses several techniques to avoid I/O operations by caching information read from files, so it is possible that statements you might expect to result in I/O events do not do so. You may be able to ensure that I/O does occur by flushing caches or restarting the server to reset its state.

@@ -1,14 +1,14 @@
-#### 26.4.4.15 O procedimento ps_setup_show_disabled()
+#### 26.4.4.15 The ps_setup_show_disabled() Procedure
 
-Exibe todas as configurações da Schema de Desempenho atualmente desativadas.
+Displays all currently disabled Performance Schema configuration.
 
-##### Parâmetros
+##### Parameters
 
-- `in_show_instruments BOOLEAN`: Se os instrumentos desabilitados devem ser exibidos. Isso pode ser uma longa lista.
+* `in_show_instruments BOOLEAN`: Whether to display disabled instruments. This might be a long list.
 
-- `in_show_threads BOOLEAN`: Se deve exibir threads desativadas.
+* `in_show_threads BOOLEAN`: Whether to display disabled threads.
 
-##### Exemplo
+##### Example
 
 ```sql
 mysql> CALL sys.ps_setup_show_disabled(TRUE, TRUE);

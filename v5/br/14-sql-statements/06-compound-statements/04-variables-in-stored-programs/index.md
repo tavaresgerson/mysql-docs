@@ -1,17 +1,17 @@
-### 13.6.4 Variáveis em Programas Armazenados
+### 13.6.4 Variables in Stored Programs
 
-13.6.4.1 Declaração de variável local DECLARE
+[13.6.4.1 Local Variable DECLARE Statement](declare-local-variable.html)
 
-13.6.4.2 Escopo e resolução de variáveis locais
+[13.6.4.2 Local Variable Scope and Resolution](local-variable-scope.html)
 
-As variáveis de sistema e as variáveis definidas pelo usuário podem ser usadas em programas armazenados, assim como podem ser usadas fora do contexto de programas armazenados. Além disso, os programas armazenados podem usar `DECLARE` para definir variáveis locais, e as rotinas armazenadas (procedimentos e funções) podem ser declaradas para receber parâmetros que comunicam valores entre a rotina e seu solicitante.
+System variables and user-defined variables can be used in stored programs, just as they can be used outside stored-program context. In addition, stored programs can use `DECLARE` to define local variables, and stored routines (procedures and functions) can be declared to take parameters that communicate values between the routine and its caller.
 
-- Para declarar variáveis locais, use a instrução `DECLARE`, conforme descrito na Seção 13.6.4.1, “Instrução de DECLARE de Variável Local”.
+* To declare local variables, use the [`DECLARE`](declare-local-variable.html "13.6.4.1 Local Variable DECLARE Statement") statement, as described in [Section 13.6.4.1, “Local Variable DECLARE Statement”](declare-local-variable.html "13.6.4.1 Local Variable DECLARE Statement").
 
-- As variáveis podem ser definidas diretamente com a instrução `SET`. Veja Seção 13.7.4.1, “Sintaxe SET para atribuição de variáveis”.
+* Variables can be set directly with the [`SET`](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment") statement. See [Section 13.7.4.1, “SET Syntax for Variable Assignment”](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment").
 
-- Os resultados das consultas podem ser recuperados em variáveis locais usando `SELECT ... INTO var_list` ou abrindo um cursor e usando `FETCH ... INTO var_list`. Veja Seção 13.2.9.1, “Instrução SELECT ... INTO” e Seção 13.6.6, “Cursors”.
+* Results from queries can be retrieved into local variables using [`SELECT ... INTO var_list`](select-into.html "13.2.9.1 SELECT ... INTO Statement") or by opening a cursor and using [`FETCH ... INTO var_list`](fetch.html "13.6.6.3 Cursor FETCH Statement"). See [Section 13.2.9.1, “SELECT ... INTO Statement”](select-into.html "13.2.9.1 SELECT ... INTO Statement"), and [Section 13.6.6, “Cursors”](cursors.html "13.6.6 Cursors").
 
-Para obter informações sobre o escopo das variáveis locais e como o MySQL resolve nomes ambíguos, consulte Seção 13.6.4.2, “Escopo e Resolução de Variáveis Locais”.
+For information about the scope of local variables and how MySQL resolves ambiguous names, see [Section 13.6.4.2, “Local Variable Scope and Resolution”](local-variable-scope.html "13.6.4.2 Local Variable Scope and Resolution").
 
-Não é permitido atribuir o valor `DEFAULT` aos parâmetros de procedimentos ou funções armazenados ou às variáveis locais de programas armazenados (por exemplo, com uma declaração `SET var_name = DEFAULT`). No MySQL 5.7, isso resulta em um erro de sintaxe.
+It is not permitted to assign the value `DEFAULT` to stored procedure or function parameters or stored program local variables (for example with a `SET var_name = DEFAULT` statement). In MySQL 5.7, this results in a syntax error.

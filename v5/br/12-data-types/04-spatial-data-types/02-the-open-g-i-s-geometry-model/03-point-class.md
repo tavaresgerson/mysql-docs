@@ -1,19 +1,17 @@
-#### 11.4.2.3 Classe de Pontos
+#### 11.4.2.3 Point Class
 
-Um ponto é uma geometria que representa um único local no espaço de coordenadas.
+A `Point` is a geometry that represents a single location in coordinate space.
 
-**Exemplos de `Ponto`**
+**`Point` Examples**
 
-- Imagine um mapa em grande escala do mundo com muitas cidades. Um objeto `Ponto` poderia representar cada cidade.
+* Imagine a large-scale map of the world with many cities. A `Point` object could represent each city.
 
-- Em um mapa da cidade, um objeto `Ponto` poderia representar uma parada de ônibus.
+* On a city map, a `Point` object could represent a bus stop.
 
-**Propriedades do `Ponto`**
+**`Point` Properties**
 
-- Valor da coordenada X.
+* X-coordinate value.
+* Y-coordinate value.
+* `Point` is defined as a zero-dimensional geometry.
 
-- Valor da coordenada Y.
-
-- "Ponto" é definido como uma geometria de dimensão zero.
-
-- A fronteira de um `Ponto` é o conjunto vazio.
+* The boundary of a `Point` is the empty set.

@@ -1,11 +1,11 @@
-### 23.2.3 Metadados de rotina armazenados
+### 23.2.3 Stored Routine Metadata
 
-Para obter metadados sobre rotinas armazenadas:
+To obtain metadata about stored routines:
 
-- Consulte a tabela `ROUTINES` do banco de dados `INFORMATION_SCHEMA`. Veja a Seção 24.3.21, “A tabela INFORMATION_SCHEMA ROUTINES”.
+* Query the `ROUTINES` table of the `INFORMATION_SCHEMA` database. See Section 24.3.21, “The INFORMATION_SCHEMA ROUTINES Table”.
 
-- Use as instruções `SHOW CREATE PROCEDURE` e `SHOW CREATE FUNCTION` para ver as definições das rotinas. Veja a Seção 13.7.5.9, “Instrução SHOW CREATE PROCEDURE”.
+* Use the `SHOW CREATE PROCEDURE` and `SHOW CREATE FUNCTION` statements to see routine definitions. See Section 13.7.5.9, “SHOW CREATE PROCEDURE Statement”.
 
-- Use as instruções `SHOW PROCEDURE STATUS` e `SHOW FUNCTION STATUS` para ver as características das rotinas. Veja a Seção 13.7.5.28, “Instrução SHOW PROCEDURE STATUS”.
+* Use the `SHOW PROCEDURE STATUS` and `SHOW FUNCTION STATUS` statements to see routine characteristics. See Section 13.7.5.28, “SHOW PROCEDURE STATUS Statement”.
 
-- Use as instruções `SHOW PROCEDURE CODE` e `SHOW FUNCTION CODE` para ver uma representação da implementação interna da rotina. Veja a Seção 13.7.5.27, “Instrução SHOW PROCEDURE CODE”.
+* Use the `SHOW PROCEDURE CODE` and `SHOW FUNCTION CODE` statements to see a representation of the internal implementation of the routine. See Section 13.7.5.27, “SHOW PROCEDURE CODE Statement”.

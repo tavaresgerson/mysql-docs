@@ -1,32 +1,32 @@
-### 24.4.20 Tabela INFORMATION_SCHEMA INNODB_SYS_FOREIGN
+### 24.4.20 The INFORMATION_SCHEMA INNODB_SYS_FOREIGN Table
 
-A tabela `INNODB_SYS_FOREIGN` (<https://dev.mysql.com/doc/refman/8.0/en/innodb-sys-foreign-table.html>) fornece metadados sobre as chaves estrangeiras do `InnoDB` (<https://dev.mysql.com/doc/refman/8.0/pt/glossary.html#glos_foreign_key>), equivalentes às informações da tabela `SYS_FOREIGN` no dicionário de dados do `InnoDB`.
+The [`INNODB_SYS_FOREIGN`](information-schema-innodb-sys-foreign-table.html "24.4.20 The INFORMATION_SCHEMA INNODB_SYS_FOREIGN Table") table provides metadata about `InnoDB` [foreign keys](glossary.html#glos_foreign_key "foreign key"), equivalent to the information from the `SYS_FOREIGN` table in the `InnoDB` data dictionary.
 
-Para informações de uso relacionadas e exemplos, consulte Seção 14.16.3, “Tabelas do Sistema InnoDB INFORMATION_SCHEMA”.
+For related usage information and examples, see [Section 14.16.3, “InnoDB INFORMATION_SCHEMA System Tables”](innodb-information-schema-system-tables.html "14.16.3 InnoDB INFORMATION_SCHEMA System Tables").
 
-A tabela [`INNODB_SYS_FOREIGN`](https://pt.wikipedia.org/wiki/Tabela_INNODB_SYS_FOREIGN) tem as seguintes colunas:
+The [`INNODB_SYS_FOREIGN`](information-schema-innodb-sys-foreign-table.html "24.4.20 The INFORMATION_SCHEMA INNODB_SYS_FOREIGN Table") table has these columns:
 
-- `ID`
+* `ID`
 
-  O nome (não um valor numérico) do índice da chave estrangeira, precedido pelo nome do esquema (banco de dados) (por exemplo, `test/produtos_fk`).
+  The name (not a numeric value) of the foreign key index, preceded by the schema (database) name (for example, `test/products_fk`).
 
-- `FOR_NAME`
+* `FOR_NAME`
 
-  O nome da tabela child table nesta relação de chave estrangeira.
+  The name of the [child table](glossary.html#glos_child_table "child table") in this foreign key relationship.
 
-- `REF_NAME`
+* `REF_NAME`
 
-  O nome da tabela tabela pai nesta relação de chave estrangeira.
+  The name of the [parent table](glossary.html#glos_parent_table "parent table") in this foreign key relationship.
 
-- `N_COLS`
+* `N_COLS`
 
-  O número de colunas no índice da chave estrangeira.
+  The number of columns in the foreign key index.
 
-- `TIPO`
+* `TYPE`
 
-  Uma coleção de bits com informações sobre a coluna de chave estrangeira, ORed juntas. 0 = `ON DELETE/UPDATE RESTRICT`, 1 = `ON DELETE CASCADE`, 2 = `ON DELETE SET NULL`, 4 = `ON UPDATE CASCADE`, 8 = `ON UPDATE SET NULL`, 16 = `ON DELETE NO ACTION`, 32 = `ON UPDATE NO ACTION`.
+  A collection of bit flags with information about the foreign key column, ORed together. 0 = `ON DELETE/UPDATE RESTRICT`, 1 = `ON DELETE CASCADE`, 2 = `ON DELETE SET NULL`, 4 = `ON UPDATE CASCADE`, 8 = `ON UPDATE SET NULL`, 16 = `ON DELETE NO ACTION`, 32 = `ON UPDATE NO ACTION`.
 
-#### Exemplo
+#### Example
 
 ```sql
 mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_SYS_FOREIGN\G
@@ -38,8 +38,8 @@ REF_NAME: test/parent
     TYPE: 1
 ```
 
-#### Notas
+#### Notes
 
-- Você deve ter o privilégio `PROCESSO` para consultar esta tabela.
+* You must have the [`PROCESS`](privileges-provided.html#priv_process) privilege to query this table.
 
-- Use a tabela `INFORMATION_SCHEMA` `COLUMNS` ou a instrução `SHOW COLUMNS` para visualizar informações adicionais sobre as colunas desta tabela, incluindo tipos de dados e valores padrão.
+* Use the `INFORMATION_SCHEMA` [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") table or the [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") statement to view additional information about the columns of this table, including data types and default values.

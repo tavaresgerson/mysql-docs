@@ -1,16 +1,16 @@
-### 21.6.18 Problemas de segurança do cluster do NDB
+### 21.6.18 NDB Cluster Security Issues
 
-21.6.18.1 Problemas de segurança e de rede do cluster NDB
+[21.6.18.1 NDB Cluster Security and Networking Issues](mysql-cluster-security-networking-issues.html)
 
-21.6.18.2 NDB Cluster e Permissões do MySQL
+[21.6.18.2 NDB Cluster and MySQL Privileges](mysql-cluster-security-mysql-privileges.html)
 
-21.6.18.3 Procedimentos de segurança do cluster NDB e do MySQL
+[21.6.18.3 NDB Cluster and MySQL Security Procedures](mysql-cluster-security-mysql-security-procedures.html)
 
-Esta seção discute as considerações de segurança a serem levadas em conta ao configurar e executar o NDB Cluster.
+This section discusses security considerations to take into account when setting up and running NDB Cluster.
 
-Os tópicos abordados nesta seção incluem os seguintes:
+Topics covered in this section include the following:
 
-- Problemas de segurança do cluster e da rede do NDB
-- Problemas de configuração relacionados à execução segura do NDB Cluster
-- NDB Cluster e o sistema de privilégios do MySQL
-- Procedimentos de segurança padrão do MySQL, conforme aplicável ao NDB Cluster
+* NDB Cluster and network security issues
+* Configuration issues relating to running NDB Cluster securely
+* NDB Cluster and the MySQL privilege system
+* MySQL standard security procedures as applicable to NDB Cluster

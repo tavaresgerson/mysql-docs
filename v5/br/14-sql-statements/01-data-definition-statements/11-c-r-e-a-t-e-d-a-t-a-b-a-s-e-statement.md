@@ -1,4 +1,4 @@
-### 13.1.11 Declaração CREATE DATABASE
+### 13.1.11 CREATE DATABASE Statement
 
 ```sql
 CREATE {DATABASE | SCHEMA} [IF NOT EXISTS] db_name
@@ -10,22 +10,22 @@ create_option: [DEFAULT] {
 }
 ```
 
-`CREATE DATABASE` cria um banco de dados com o nome fornecido. Para usar essa instrução, você precisa do privilégio `CREATE` para o banco de dados. `CREATE SCHEMA` é um sinônimo de `CREATE DATABASE`.
+[`CREATE DATABASE`](create-database.html "13.1.11 CREATE DATABASE Statement") creates a database with the given name. To use this statement, you need the [`CREATE`](privileges-provided.html#priv_create) privilege for the database. [`CREATE SCHEMA`](create-database.html "13.1.11 CREATE DATABASE Statement") is a synonym for [`CREATE DATABASE`](create-database.html "13.1.11 CREATE DATABASE Statement").
 
-Um erro ocorre se o banco de dados existir e você não especificar `IF NOT EXISTS`.
+An error occurs if the database exists and you did not specify `IF NOT EXISTS`.
 
-A instrução `CREATE DATABASE` não é permitida dentro de uma sessão que tenha uma instrução `LOCK TABLES` ativa.
+[`CREATE DATABASE`](create-database.html "13.1.11 CREATE DATABASE Statement") is not permitted within a session that has an active [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") statement.
 
-Cada `create_option` especifica uma característica do banco de dados. As características do banco de dados são armazenadas no arquivo `db.opt` no diretório do banco de dados. A opção `CHARACTER SET` especifica o conjunto de caracteres padrão do banco de dados. A opção `COLLATE` especifica a collation padrão do banco de dados. Para informações sobre os nomes dos conjuntos de caracteres e collation, consulte Capítulo 10, *Caracteres, Collations, Unicode*.
+Each *`create_option`* specifies a database characteristic. Database characteristics are stored in the `db.opt` file in the database directory. The `CHARACTER SET` option specifies the default database character set. The `COLLATE` option specifies the default database collation. For information about character set and collation names, see [Chapter 10, *Character Sets, Collations, Unicode*](charset.html "Chapter 10 Character Sets, Collations, Unicode").
 
-Para ver os conjuntos de caracteres e as codificações disponíveis, use as instruções `SHOW CHARACTER SET` e `SHOW COLLATION`, respectivamente. Veja Seção 13.7.5.3, “Instrução SHOW CHARACTER SET” e Seção 13.7.5.4, “Instrução SHOW COLLATION”.
+To see the available character sets and collations, use the [`SHOW CHARACTER SET`](show-character-set.html "13.7.5.3 SHOW CHARACTER SET Statement") and [`SHOW COLLATION`](show-collation.html "13.7.5.4 SHOW COLLATION Statement") statements, respectively. See [Section 13.7.5.3, “SHOW CHARACTER SET Statement”](show-character-set.html "13.7.5.3 SHOW CHARACTER SET Statement"), and [Section 13.7.5.4, “SHOW COLLATION Statement”](show-collation.html "13.7.5.4 SHOW COLLATION Statement").
 
-Um banco de dados no MySQL é implementado como um diretório que contém arquivos que correspondem às tabelas no banco de dados. Como não há tabelas em um banco de dados quando ele é criado inicialmente, a instrução `CREATE DATABASE` cria apenas um diretório sob o diretório de dados do MySQL e o arquivo `db.opt`. As regras para nomes de bancos de dados permitidos estão descritas na Seção 9.2, “Nomes de Objetos do Esquema”. Se um nome de banco de dados contiver caracteres especiais, o nome do diretório do banco de dados contém versões codificadas desses caracteres, conforme descrito na Seção 9.2.4, “Mapeamento de Identificadores para Nomes de Arquivos”.
+A database in MySQL is implemented as a directory containing files that correspond to tables in the database. Because there are no tables in a database when it is initially created, the [`CREATE DATABASE`](create-database.html "13.1.11 CREATE DATABASE Statement") statement creates only a directory under the MySQL data directory and the `db.opt` file. Rules for permissible database names are given in [Section 9.2, “Schema Object Names”](identifiers.html "9.2 Schema Object Names"). If a database name contains special characters, the name for the database directory contains encoded versions of those characters as described in [Section 9.2.4, “Mapping of Identifiers to File Names”](identifier-mapping.html "9.2.4 Mapping of Identifiers to File Names").
 
-Se você criar manualmente um diretório sob o diretório de dados (por exemplo, com **mkdir**), o servidor o considera um diretório de banco de dados e ele aparece na saída de `SHOW DATABASES`.
+If you manually create a directory under the data directory (for example, with **mkdir**), the server considers it a database directory and it shows up in the output of [`SHOW DATABASES`](show-databases.html "13.7.5.14 SHOW DATABASES Statement").
 
-Ao criar um banco de dados, deixe o servidor gerenciar o diretório e os arquivos nele. Manipular diretórios e arquivos de banco de dados diretamente pode causar inconsistências e resultados inesperados.
+When you create a database, let the server manage the directory and the files in it. Manipulating database directories and files directly can cause inconsistencies and unexpected results.
 
-O MySQL não tem limite no número de bancos de dados. O sistema de arquivos subjacente pode ter um limite no número de diretórios.
+MySQL has no limit on the number of databases. The underlying file system may have a limit on the number of directories.
 
-Você também pode usar o programa **mysqladmin** para criar bancos de dados. Veja Seção 4.5.2, “mysqladmin — Um programa de administração do servidor MySQL”.
+You can also use the [**mysqladmin**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") program to create databases. See [Section 4.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program").

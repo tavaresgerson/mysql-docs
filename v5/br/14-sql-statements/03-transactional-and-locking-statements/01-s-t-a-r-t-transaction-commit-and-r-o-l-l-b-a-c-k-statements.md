@@ -1,4 +1,4 @@
-### 13.3.1 Declarações START TRANSACTION, COMMIT e ROLLBACK
+### 13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements
 
 ```sql
 START TRANSACTION
@@ -16,19 +16,19 @@ ROLLBACK [WORK] [AND [NO] CHAIN] NO] RELEASE]
 SET autocommit = {0 | 1}
 ```
 
-Essas declarações fornecem controle sobre o uso de transações:
+These statements provide control over use of [transactions](glossary.html#glos_transaction "transaction"):
 
-- `START TRANSACTION` ou `BEGIN` inicia uma nova transação.
+* `START TRANSACTION` or `BEGIN` start a new transaction.
 
-- `COMMIT` compromete a transação atual, tornando suas alterações permanentes.
+* `COMMIT` commits the current transaction, making its changes permanent.
 
-- O comando `ROLLBACK` desfaz a transação atual, cancelando suas alterações.
+* `ROLLBACK` rolls back the current transaction, canceling its changes.
 
-- `SET autocommit` desabilita ou habilita o modo de autocommit padrão para a sessão atual.
+* `SET autocommit` disables or enables the default autocommit mode for the current session.
 
-Por padrão, o MySQL funciona com o modo autocommit ativado. Isso significa que, quando não estiver dentro de uma transação, cada instrução é atômica, como se estivesse cercada por `START TRANSACTION` e `COMMIT`. Você não pode usar `ROLLBACK` para desfazer o efeito; no entanto, se ocorrer um erro durante a execução da instrução, a instrução será desfeita.
+By default, MySQL runs with [autocommit](glossary.html#glos_autocommit "autocommit") mode enabled. This means that, when not otherwise inside a transaction, each statement is atomic, as if it were surrounded by `START TRANSACTION` and `COMMIT`. You cannot use `ROLLBACK` to undo the effect; however, if an error occurs during statement execution, the statement is rolled back.
 
-Para desabilitar o modo de commit automático implicitamente para uma única série de instruções, use a instrução `START TRANSACTION`:
+To disable autocommit mode implicitly for a single series of statements, use the `START TRANSACTION` statement:
 
 ```sql
 START TRANSACTION;
@@ -37,72 +37,72 @@ UPDATE table2 SET summary=@A WHERE type=1;
 COMMIT;
 ```
 
-Com `START TRANSACTION`, o autocommit permanece desativado até que você encerre a transação com `COMMIT` ou `ROLLBACK`. O modo autocommit então retorna ao seu estado anterior.
+With `START TRANSACTION`, autocommit remains disabled until you end the transaction with `COMMIT` or `ROLLBACK`. The autocommit mode then reverts to its previous state.
 
-`START TRANSACTION` permite vários modificadores que controlam as características da transação. Para especificar vários modificadores, separe-os por vírgulas.
+`START TRANSACTION` permits several modifiers that control transaction characteristics. To specify multiple modifiers, separate them by commas.
 
-- O modificador `WITH CONSISTENT SNAPSHOT` inicia uma leitura consistente para os motores de armazenamento que são capazes disso. Isso se aplica apenas ao `InnoDB`. O efeito é o mesmo de emitir uma `START TRANSACTION` seguida de uma `SELECT` de qualquer tabela `InnoDB`. Veja Seção 14.7.2.3, “Leitura Não Bloqueada Consistente”. O modificador `WITH CONSISTENT SNAPSHOT` não altera o nível de isolamento da transação atual (glossary.html#glos_isolation_level), portanto, fornece uma instantânea consistente apenas se o nível de isolamento atual for um que permita uma leitura consistente. O único nível de isolamento que permite uma leitura consistente é `REPEATABLE READ`. Para todos os outros níveis de isolamento, a cláusula `WITH CONSISTENT SNAPSHOT` é ignorada. A partir do MySQL 5.7.2, uma mensagem de aviso é gerada quando a cláusula `WITH CONSISTENT SNAPSHOT` é ignorada.
+* The `WITH CONSISTENT SNAPSHOT` modifier starts a [consistent read](glossary.html#glos_consistent_read "consistent read") for storage engines that are capable of it. This applies only to `InnoDB`. The effect is the same as issuing a `START TRANSACTION` followed by a [`SELECT`](select.html "13.2.9 SELECT Statement") from any `InnoDB` table. See [Section 14.7.2.3, “Consistent Nonlocking Reads”](innodb-consistent-read.html "14.7.2.3 Consistent Nonlocking Reads"). The `WITH CONSISTENT SNAPSHOT` modifier does not change the current transaction [isolation level](glossary.html#glos_isolation_level "isolation level"), so it provides a consistent snapshot only if the current isolation level is one that permits a consistent read. The only isolation level that permits a consistent read is [`REPEATABLE READ`](innodb-transaction-isolation-levels.html#isolevel_repeatable-read). For all other isolation levels, the `WITH CONSISTENT SNAPSHOT` clause is ignored. As of MySQL 5.7.2, a warning is generated when the `WITH CONSISTENT SNAPSHOT` clause is ignored.
 
-- Os modificadores `LEIA ESCRITA` e `LEIA SOMENTE` definem o modo de acesso à transação. Eles permitem ou proíbem alterações em tabelas usadas na transação. A restrição `LEIA SOMENTE` impede que a transação modifique ou bloqueie tabelas tanto transacionais quanto não transacionais que sejam visíveis para outras transações; a transação ainda pode modificar ou bloquear tabelas temporárias.
+* The `READ WRITE` and `READ ONLY` modifiers set the transaction access mode. They permit or prohibit changes to tables used in the transaction. The `READ ONLY` restriction prevents the transaction from modifying or locking both transactional and nontransactional tables that are visible to other transactions; the transaction can still modify or lock temporary tables.
 
-  O MySQL permite otimizações adicionais para consultas em tabelas `InnoDB` quando a transação é conhecida como somente leitura. Especificar `READ ONLY` garante que essas otimizações sejam aplicadas em casos em que o status de somente leitura não pode ser determinado automaticamente. Consulte Seção 8.5.3, “Otimizando Transações InnoDB de Leitura Somente” para obter mais informações.
+  MySQL enables extra optimizations for queries on `InnoDB` tables when the transaction is known to be read-only. Specifying `READ ONLY` ensures these optimizations are applied in cases where the read-only status cannot be determined automatically. See [Section 8.5.3, “Optimizing InnoDB Read-Only Transactions”](innodb-performance-ro-txn.html "8.5.3 Optimizing InnoDB Read-Only Transactions") for more information.
 
-  Se nenhum modo de acesso for especificado, o modo padrão será aplicado. A menos que o padrão tenha sido alterado, ele é de leitura/escrita. Não é permitido especificar `LEIA/ESCRITA` e `LEITURA ÚNICA` na mesma declaração.
+  If no access mode is specified, the default mode applies. Unless the default has been changed, it is read/write. It is not permitted to specify both `READ WRITE` and `READ ONLY` in the same statement.
 
-  No modo de leitura somente, ainda é possível alterar tabelas criadas com a palavra-chave `TEMPORARY` usando instruções DML. As alterações feitas com instruções DDL não são permitidas, assim como com tabelas permanentes.
+  In read-only mode, it remains possible to change tables created with the `TEMPORARY` keyword using DML statements. Changes made with DDL statements are not permitted, just as with permanent tables.
 
-  Para obter informações adicionais sobre o modo de acesso de transações, incluindo maneiras de alterar o modo padrão, consulte Seção 13.3.6, “Instrução SET TRANSACTION”.
+  For additional information about transaction access mode, including ways to change the default mode, see [Section 13.3.6, “SET TRANSACTION Statement”](set-transaction.html "13.3.6 SET TRANSACTION Statement").
 
-  Se a variável de sistema `read_only` estiver habilitada, iniciar explicitamente uma transação com `START TRANSACTION READ WRITE` requer o privilégio `SUPER`.
+  If the [`read_only`](server-system-variables.html#sysvar_read_only) system variable is enabled, explicitly starting a transaction with `START TRANSACTION READ WRITE` requires the [`SUPER`](privileges-provided.html#priv_super) privilege.
 
-Importante
+Important
 
-Muitas APIs usadas para escrever aplicativos de cliente do MySQL (como o JDBC) fornecem seus próprios métodos para iniciar transações que podem (e às vezes devem) ser usados em vez de enviar uma declaração `START TRANSACTION` do cliente. Consulte [Capítulo 27, *Conectivos e APIs*] (connectors-apis.html), ou a documentação da sua API, para obter mais informações.
+Many APIs used for writing MySQL client applications (such as JDBC) provide their own methods for starting transactions that can (and sometimes should) be used instead of sending a `START TRANSACTION` statement from the client. See [Chapter 27, *Connectors and APIs*](connectors-apis.html "Chapter 27 Connectors and APIs"), or the documentation for your API, for more information.
 
-Para desabilitar o modo de autocommit explicitamente, use a seguinte declaração:
+To disable autocommit mode explicitly, use the following statement:
 
 ```sql
 SET autocommit=0;
 ```
 
-Depois de desabilitar o modo de autocommit, definindo a variável `autocommit` para zero, as alterações em tabelas seguras para transações (como as para `InnoDB` ou `NDB`) não são feitas permanentemente imediatamente. Você deve usar `COMMIT` para armazenar suas alterações no disco ou `ROLLBACK` para ignorar as alterações.
+After disabling autocommit mode by setting the [`autocommit`](server-system-variables.html#sysvar_autocommit) variable to zero, changes to transaction-safe tables (such as those for [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") or [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6")) are not made permanent immediately. You must use [`COMMIT`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") to store your changes to disk or `ROLLBACK` to ignore the changes.
 
-`autocommit` é uma variável de sessão e deve ser definida para cada sessão. Para desabilitar o modo de autocommit para cada nova conexão, consulte a descrição da variável de sistema `autocommit` na Seção 5.1.7, “Variáveis de Sistema do Servidor”.
+[`autocommit`](server-system-variables.html#sysvar_autocommit) is a session variable and must be set for each session. To disable autocommit mode for each new connection, see the description of the [`autocommit`](server-system-variables.html#sysvar_autocommit) system variable at [Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables").
 
-`BEGIN` e `BEGIN WORK` são suportados como sinônimos de `START TRANSACTION` para iniciar uma transação. `START TRANSACTION` é a sintaxe padrão do SQL, é a maneira recomendada para iniciar uma transação ad-hoc e permite modificadores que `BEGIN` não permite.
+`BEGIN` and `BEGIN WORK` are supported as aliases of `START TRANSACTION` for initiating a transaction. `START TRANSACTION` is standard SQL syntax, is the recommended way to start an ad-hoc transaction, and permits modifiers that `BEGIN` does not.
 
-A instrução `BEGIN` difere do uso da palavra-chave `BEGIN` que inicia uma instrução composta `BEGIN ... END` (begin-end.html). Esta última não inicia uma transação. Veja Seção 13.6.1, “Instrução Composta BEGIN ... END”.
+The `BEGIN` statement differs from the use of the `BEGIN` keyword that starts a [`BEGIN ... END`](begin-end.html "13.6.1 BEGIN ... END Compound Statement") compound statement. The latter does not begin a transaction. See [Section 13.6.1, “BEGIN ... END Compound Statement”](begin-end.html "13.6.1 BEGIN ... END Compound Statement").
 
-Nota
+Note
 
-Em todos os programas armazenados (procedimentos e funções armazenados, gatilhos e eventos), o analisador trata `BEGIN [WORK]` como o início de um bloco `BEGIN ... END` (begin-end.html). Comece uma transação neste contexto com `START TRANSACTION` (commit.html) em vez disso.
+Within all stored programs (stored procedures and functions, triggers, and events), the parser treats `BEGIN [WORK]` as the beginning of a [`BEGIN ... END`](begin-end.html "13.6.1 BEGIN ... END Compound Statement") block. Begin a transaction in this context with [`START TRANSACTION`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") instead.
 
-A palavra-chave opcional `WORK` é suportada para `COMMIT` e `ROLLBACK`, assim como as cláusulas `CHAIN` e `RELEASE`. `CHAIN` e `RELEASE` podem ser usadas para controle adicional sobre o término da transação. O valor da variável de sistema `completion_type` determina o comportamento padrão de conclusão. Veja Seção 5.1.7, “Variáveis de Sistema do Servidor”.
+The optional `WORK` keyword is supported for `COMMIT` and `ROLLBACK`, as are the `CHAIN` and `RELEASE` clauses. `CHAIN` and `RELEASE` can be used for additional control over transaction completion. The value of the [`completion_type`](server-system-variables.html#sysvar_completion_type) system variable determines the default completion behavior. See [Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables").
 
-A cláusula `AND CHAIN` faz com que uma nova transação comece assim que a atual terminar, e a nova transação tem o mesmo nível de isolamento que a transação que acabou de ser encerrada. A nova transação também usa o mesmo modo de acesso (`READ WRITE` ou `READ ONLY`) que a transação que acabou de ser encerrada. A cláusula `RELEASE` faz com que o servidor desconecte a sessão do cliente atual após o término da transação atual. A inclusão da palavra-chave `NO` suprime a conclusão da `CHAIN` ou `RELEASE`, o que pode ser útil se a variável de sistema `completion_type` estiver definida para causar a conclusão da cadeia ou liberação por padrão.
+The `AND CHAIN` clause causes a new transaction to begin as soon as the current one ends, and the new transaction has the same isolation level as the just-terminated transaction. The new transaction also uses the same access mode (`READ WRITE` or `READ ONLY`) as the just-terminated transaction. The `RELEASE` clause causes the server to disconnect the current client session after terminating the current transaction. Including the `NO` keyword suppresses `CHAIN` or `RELEASE` completion, which can be useful if the [`completion_type`](server-system-variables.html#sysvar_completion_type) system variable is set to cause chaining or release completion by default.
 
-Iniciar uma transação faz com que qualquer transação pendente seja comprometida. Consulte Seção 13.3.3, “Declarações que causam um compromisso implícito” para obter mais informações.
+Beginning a transaction causes any pending transaction to be committed. See [Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit"), for more information.
 
-Iniciar uma transação também faz com que as bloqueadas de tabela adquiridas com `LOCK TABLES` sejam liberadas, como se você tivesse executado `UNLOCK TABLES`. Iniciar uma transação não libera uma bloqueadora de leitura global adquirida com `FLUSH TABLES WITH READ LOCK`.
+Beginning a transaction also causes table locks acquired with [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") to be released, as though you had executed [`UNLOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements"). Beginning a transaction does not release a global read lock acquired with [`FLUSH TABLES WITH READ LOCK`](flush.html#flush-tables-with-read-lock).
 
-Para obter os melhores resultados, as transações devem ser realizadas usando apenas tabelas gerenciadas por um único mecanismo de armazenamento seguro para transações. Caso contrário, os seguintes problemas podem ocorrer:
+For best results, transactions should be performed using only tables managed by a single transaction-safe storage engine. Otherwise, the following problems can occur:
 
-- Se você usar tabelas de mais de um motor de armazenamento seguro para transações (como `InnoDB`) e o nível de isolamento de transação não for `SERIALIZABLE`, é possível que, quando uma transação é confirmada, outra transação em andamento que usa as mesmas tabelas veja apenas algumas das alterações feitas pela primeira transação. Ou seja, a atomicidade das transações não é garantida com motores mistos e inconsistências podem resultar. (Se as transações com motores mistos forem raras, você pode usar `SET TRANSACTION ISOLATION LEVEL` para definir o nível de isolamento para `SERIALIZABLE` em uma base por transação, conforme necessário.)
+* If you use tables from more than one transaction-safe storage engine (such as `InnoDB`), and the transaction isolation level is not [`SERIALIZABLE`](innodb-transaction-isolation-levels.html#isolevel_serializable), it is possible that when one transaction commits, another ongoing transaction that uses the same tables sees only some of the changes made by the first transaction. That is, the atomicity of transactions is not guaranteed with mixed engines and inconsistencies can result. (If mixed-engine transactions are infrequent, you can use [`SET TRANSACTION ISOLATION LEVEL`](set-transaction.html "13.3.6 SET TRANSACTION Statement") to set the isolation level to [`SERIALIZABLE`](innodb-transaction-isolation-levels.html#isolevel_serializable) on a per-transaction basis as necessary.)
 
-- Se você usar tabelas que não são seguras para transações dentro de uma transação, as alterações nessas tabelas são armazenadas de uma vez, independentemente do status do modo de autocommit.
+* If you use tables that are not transaction-safe within a transaction, changes to those tables are stored at once, regardless of the status of autocommit mode.
 
-- Se você emitir uma declaração de `ROLLBACK` após atualizar uma tabela não transacional dentro de uma transação, uma mensagem de aviso de `ER_WARNING_NOT_COMPLETE_ROLLBACK` ocorre. As alterações em tabelas seguras para transações são revertidas, mas não as alterações em tabelas não seguras para transações.
+* If you issue a [`ROLLBACK`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") statement after updating a nontransactional table within a transaction, an [`ER_WARNING_NOT_COMPLETE_ROLLBACK`](/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_warning_not_complete_rollback) warning occurs. Changes to transaction-safe tables are rolled back, but not changes to nontransaction-safe tables.
 
-Cada transação é armazenada no log binário em um único bloco, após o `COMMIT`. As transações que são revertidas não são registradas. (**Exceção**: As modificações em tabelas não transacionais não podem ser revertidas. Se uma transação que é revertida incluir modificações em tabelas não transacionais, toda a transação é registrada com uma declaração de `ROLLBACK` no final para garantir que as modificações nas tabelas não transacionais sejam replicadas.) Veja Seção 5.4.4, “O Log Binário”.
+Each transaction is stored in the binary log in one chunk, upon [`COMMIT`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements"). Transactions that are rolled back are not logged. (**Exception**: Modifications to nontransactional tables cannot be rolled back. If a transaction that is rolled back includes modifications to nontransactional tables, the entire transaction is logged with a [`ROLLBACK`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") statement at the end to ensure that modifications to the nontransactional tables are replicated.) See [Section 5.4.4, “The Binary Log”](binary-log.html "5.4.4 The Binary Log").
 
-Você pode alterar o nível de isolamento ou o modo de acesso para transações com a instrução `SET TRANSACTION`. Veja Seção 13.3.6, “Instrução SET TRANSACTION”.
+You can change the isolation level or access mode for transactions with the [`SET TRANSACTION`](set-transaction.html "13.3.6 SET TRANSACTION Statement") statement. See [Section 13.3.6, “SET TRANSACTION Statement”](set-transaction.html "13.3.6 SET TRANSACTION Statement").
 
-O recuo pode ser uma operação lenta que pode ocorrer implicitamente sem que o usuário tenha solicitado explicitamente (por exemplo, quando ocorre um erro). Por isso, o `SHOW PROCESSLIST` exibe `Recuo` na coluna `Estado` para a sessão, não apenas para recuos explícitos realizados com a instrução `ROLLBACK`, mas também para recuos implícitos.
+Rolling back can be a slow operation that may occur implicitly without the user having explicitly asked for it (for example, when an error occurs). Because of this, [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement") displays `Rolling back` in the `State` column for the session, not only for explicit rollbacks performed with the [`ROLLBACK`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") statement but also for implicit rollbacks.
 
-Nota
+Note
 
-No MySQL 5.7, `BEGIN`, `COMMIT` e `ROLLBACK` não são afetados pelas regras de `--replicate-do-db` (replication-options-replica.html#option_mysqld_replicate-do-db) ou `--replicate-ignore-db` (replication-options-replica.html#option_mysqld_replicate-ignore-db).
+In MySQL 5.7, `BEGIN`, `COMMIT`, and `ROLLBACK` are not affected by [`--replicate-do-db`](replication-options-replica.html#option_mysqld_replicate-do-db) or [`--replicate-ignore-db`](replication-options-replica.html#option_mysqld_replicate-ignore-db) rules.
 
-Quando o `InnoDB` realiza um rollback completo de uma transação, todos os bloqueios definidos pela transação são liberados. Se uma única instrução SQL dentro de uma transação for revertida como resultado de um erro, como um erro de chave duplicada, os bloqueios definidos pela instrução são preservados enquanto a transação permanece ativa. Isso acontece porque o `InnoDB` armazena os bloqueios de linha em um formato de tal forma que não pode saber depois qual bloqueio foi definido por qual instrução.
+When `InnoDB` performs a complete rollback of a transaction, all locks set by the transaction are released. If a single SQL statement within a transaction rolls back as a result of an error, such as a duplicate key error, locks set by the statement are preserved while the transaction remains active. This happens because `InnoDB` stores row locks in a format such that it cannot know afterward which lock was set by which statement.
 
-Se uma instrução `SELECT` dentro de uma transação chamar uma função armazenada, e uma instrução dentro da função armazenada falhar, essa instrução será revertida. Se a instrução `ROLLBACK` for executada para a transação posteriormente, toda a transação será revertida.
+If a [`SELECT`](select.html "13.2.9 SELECT Statement") statement within a transaction calls a stored function, and a statement within the stored function fails, that statement rolls back. If [`ROLLBACK`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") is executed for the transaction subsequently, the entire transaction rolls back.

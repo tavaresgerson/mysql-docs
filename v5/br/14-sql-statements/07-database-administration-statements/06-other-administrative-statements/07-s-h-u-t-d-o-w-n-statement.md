@@ -1,13 +1,13 @@
-#### 13.7.6.7 Declaração de ENCERRAMENTO
+#### 13.7.6.7 SHUTDOWN Statement
 
 ```sql
 SHUTDOWN
 ```
 
-Esta declaração para com o servidor MySQL. Ela requer o privilégio `SHUTDOWN`.
+This statement stops the MySQL server. It requires the [`SHUTDOWN`](privileges-provided.html#priv_shutdown) privilege.
 
-`SHUTDOWN` fornece uma interface de nível SQL para a mesma funcionalidade disponível usando o comando **mysqladmin shutdown** ou a função de API C `mysql_shutdown()`. Uma sequência bem-sucedida de `SHUTDOWN` consiste em verificar os privilégios, validar os argumentos e enviar um pacote OK ao cliente. Em seguida, o servidor é desligado.
+[`SHUTDOWN`](shutdown.html "13.7.6.7 SHUTDOWN Statement") provides an SQL-level interface to the same functionality available using the [**mysqladmin shutdown**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") command or the [`mysql_shutdown()`](/doc/c-api/5.7/en/mysql-shutdown.html) C API function. A successful [`SHUTDOWN`](shutdown.html "13.7.6.7 SHUTDOWN Statement") sequence consists of checking the privileges, validating the arguments, and sending an OK packet to the client. Then the server is shut down.
 
-A variável de status `Com_shutdown` acompanha o número de instruções `SHUTDOWN`. Como as variáveis de status são inicializadas para cada inicialização do servidor e não persistem em reinicializações, o `Com_shutdown` normalmente tem um valor de zero, mas pode ser diferente de zero se as instruções `SHUTDOWN` tiverem sido executadas, mas falhassem.
+The [`Com_shutdown`](server-status-variables.html#statvar_Com_xxx) status variable tracks the number of [`SHUTDOWN`](shutdown.html "13.7.6.7 SHUTDOWN Statement") statements. Because status variables are initialized for each server startup and do not persist across restarts, `Com_shutdown` normally has a value of zero, but can be nonzero if [`SHUTDOWN`](shutdown.html "13.7.6.7 SHUTDOWN Statement") statements were executed but failed.
 
-Outra maneira de parar o servidor é enviá-lo um sinal `SIGTERM`, que pode ser feito pelo `root` ou pela conta que possui o processo do servidor. `SIGTERM` permite que o desligamento do servidor seja realizado sem precisar se conectar ao servidor. Veja Seção 4.10, “Tratamento de Sinais Unix no MySQL”.
+Another way to stop the server is to send it a `SIGTERM` signal, which can be done by `root` or the account that owns the server process. `SIGTERM` enables server shutdown to be performed without having to connect to the server. See [Section 4.10, “Unix Signal Handling in MySQL”](unix-signal-response.html "4.10 Unix Signal Handling in MySQL").

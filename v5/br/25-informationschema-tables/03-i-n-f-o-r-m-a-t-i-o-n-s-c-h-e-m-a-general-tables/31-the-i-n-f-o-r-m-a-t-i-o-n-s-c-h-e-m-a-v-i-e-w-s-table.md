@@ -1,24 +1,24 @@
-### 24.3.31 A tabela INFORMATION_SCHEMA VIEWS
+### 24.3.31 The INFORMATION_SCHEMA VIEWS Table
 
-A tabela `VIEWS` fornece informações sobre as visualizações nos bancos de dados. Você deve ter o privilégio `SHOW VIEW` para acessar essa tabela.
+The [`VIEWS`](information-schema-views-table.html "24.3.31 The INFORMATION_SCHEMA VIEWS Table") table provides information about views in databases. You must have the [`SHOW VIEW`](privileges-provided.html#priv_show-view) privilege to access this table.
 
-A tabela `VIEWS` tem essas colunas:
+The [`VIEWS`](information-schema-views-table.html "24.3.31 The INFORMATION_SCHEMA VIEWS Table") table has these columns:
 
-- `TABLE_CATALOG`
+* `TABLE_CATALOG`
 
-  O nome do catálogo ao qual a visualização pertence. Esse valor é sempre `def`.
+  The name of the catalog to which the view belongs. This value is always `def`.
 
-- `TABLE_SCHEMA`
+* `TABLE_SCHEMA`
 
-  O nome do esquema (banco de dados) ao qual a visualização pertence.
+  The name of the schema (database) to which the view belongs.
 
-- `NOME_TABELA`
+* `TABLE_NAME`
 
-  O nome da vista.
+  The name of the view.
 
-- `DEFINIÇÃO_DE_VISUALIZAÇÃO`
+* `VIEW_DEFINITION`
 
-  A instrução `SELECT` que fornece a definição da visualização. Esta coluna contém a maioria do que você vê na coluna `Criar Tabela` que a instrução `SHOW CREATE VIEW` produz. Ignorar as palavras antes de `SELECT` e ignorar as palavras `COM OPÇÃO DE VERIFICAÇÃO`. Suponha que a declaração original fosse:
+  The [`SELECT`](select.html "13.2.9 SELECT Statement") statement that provides the definition of the view. This column has most of what you see in the `Create Table` column that [`SHOW CREATE VIEW`](show-create-view.html "13.7.5.13 SHOW CREATE VIEW Statement") produces. Skip the words before [`SELECT`](select.html "13.2.9 SELECT Statement") and skip the words `WITH CHECK OPTION`. Suppose that the original statement was:
 
   ```sql
   CREATE VIEW v AS
@@ -28,43 +28,43 @@ A tabela `VIEWS` tem essas colunas:
     WITH CHECK OPTION;
   ```
 
-  Então, a definição de visualização parece assim:
+  Then the view definition looks like this:
 
   ```sql
   SELECT s2,s1 FROM t WHERE s1 > 5 ORDER BY s1
   ```
 
-- `CHECK_OPTION`
+* `CHECK_OPTION`
 
-  O valor do atributo `CHECK_OPTION`. O valor é `NONE`, `CASCADE` ou `LOCAL`.
+  The value of the `CHECK_OPTION` attribute. The value is one of `NONE`, `CASCADE`, or `LOCAL`.
 
-- `IS_UPDATABLE`
+* `IS_UPDATABLE`
 
-  O MySQL define uma bandeira, chamada de bandeira de atualizabilidade da visualização, no momento da criação da visualização (`CREATE VIEW`). A bandeira é definida como `YES` (verdadeiro) se as operações de atualização (`UPDATE`) e exclusão (`DELETE`) (e operações semelhantes) forem legais para a visualização. Caso contrário, a bandeira é definida como `NO` (falso). A coluna `IS_UPDATABLE` na tabela `VIEWS` (information-schema-views-table.html) exibe o status dessa bandeira.
+  MySQL sets a flag, called the view updatability flag, at [`CREATE VIEW`](create-view.html "13.1.21 CREATE VIEW Statement") time. The flag is set to `YES` (true) if [`UPDATE`](update.html "13.2.11 UPDATE Statement") and [`DELETE`](delete.html "13.2.2 DELETE Statement") (and similar operations) are legal for the view. Otherwise, the flag is set to `NO` (false). The `IS_UPDATABLE` column in the [`VIEWS`](information-schema-views-table.html "24.3.31 The INFORMATION_SCHEMA VIEWS Table") table displays the status of this flag.
 
-  Se uma visualização não for atualizável, declarações como `UPDATE`, `DELETE` e `INSERT` são ilegais e são rejeitadas. (Mesmo que uma visualização seja atualizável, pode não ser possível inseri-la nela; para detalhes, consulte Seção 23.5.3, “Visualizações Atualizáveis e Inseríveis”.)
+  If a view is not updatable, statements such [`UPDATE`](update.html "13.2.11 UPDATE Statement"), [`DELETE`](delete.html "13.2.2 DELETE Statement"), and [`INSERT`](insert.html "13.2.5 INSERT Statement") are illegal and are rejected. (Even if a view is updatable, it might not be possible to insert into it; for details, refer to [Section 23.5.3, “Updatable and Insertable Views”](view-updatability.html "23.5.3 Updatable and Insertable Views").)
 
-  A bandeira `IS_UPDATABLE` pode não ser confiável se uma visualização depender de uma ou mais outras visualizações e uma dessas visualizações subjacentes for atualizada. Independentemente do valor `IS_UPDATABLE`, o servidor mantém o controle da atualizabilidade de uma visualização e rejeita corretamente as operações de alteração de dados para visualizações que não são atualizáveis. Se o valor `IS_UPDATABLE` para uma visualização se tornar impreciso devido a alterações em visualizações subjacentes, o valor pode ser atualizado excluindo e recriando a visualização.
+  The `IS_UPDATABLE` flag may be unreliable if a view depends on one or more other views, and one of these underlying views is updated. Regardless of the `IS_UPDATABLE` value, the server keeps track of the updatability of a view and correctly rejects data change operations to views that are not updatable. If the `IS_UPDATABLE` value for a view has become inaccurate to due to changes to underlying views, the value can be updated by deleting and re-creating the view.
 
-- `DEFINIR`
+* `DEFINER`
 
-  A conta do usuário que criou a visualização, no formato `'user_name'@'host_name'`.
+  The account of the user who created the view, in `'user_name'@'host_name'` format.
 
-- `TIPO_DE_SEGURANÇA`
+* `SECURITY_TYPE`
 
-  A característica de visualização `SQL SECURITY`. O valor é `DEFINER` ou `INVOKER`.
+  The view `SQL SECURITY` characteristic. The value is one of `DEFINER` or `INVOKER`.
 
-- `CHARACTER_SET_CLIENT`
+* `CHARACTER_SET_CLIENT`
 
-  O valor da sessão da variável de sistema `character_set_client` quando a visualização foi criada.
+  The session value of the [`character_set_client`](server-system-variables.html#sysvar_character_set_client) system variable when the view was created.
 
-- `COLLATION_CONNECTION`
+* `COLLATION_CONNECTION`
 
-  O valor da sessão da variável de sistema `collation_connection` quando a visualização foi criada.
+  The session value of the [`collation_connection`](server-system-variables.html#sysvar_collation_connection) system variable when the view was created.
 
-#### Notas
+#### Notes
 
-O MySQL permite diferentes configurações de `sql_mode` para indicar ao servidor o tipo de sintaxe SQL a ser suportado. Por exemplo, você pode usar o modo SQL `ANSI` para garantir que o MySQL interprete corretamente o operador de concatenação SQL padrão, a barra dupla (`||`), em suas consultas. Se você criar uma visualização que concatena itens, você pode se preocupar que alterar a configuração de `sql_mode` para um valor diferente de `ANSI` possa fazer com que a visualização se torne inválida. Mas isso não é o caso. Independentemente de como você escreve a definição de uma visualização, o MySQL sempre a armazena da mesma maneira, em uma forma canônica. Aqui está um exemplo que mostra como o servidor altera um operador de concatenação de barra dupla para uma função `CONCAT()`:
+MySQL permits different [`sql_mode`](server-system-variables.html#sysvar_sql_mode) settings to tell the server the type of SQL syntax to support. For example, you might use the [`ANSI`](sql-mode.html#sqlmode_ansi) SQL mode to ensure MySQL correctly interprets the standard SQL concatenation operator, the double bar (`||`), in your queries. If you then create a view that concatenates items, you might worry that changing the [`sql_mode`](server-system-variables.html#sysvar_sql_mode) setting to a value different from [`ANSI`](sql-mode.html#sqlmode_ansi) could cause the view to become invalid. But this is not the case. No matter how you write out a view definition, MySQL always stores it the same way, in a canonical form. Here is an example that shows how the server changes a double bar concatenation operator to a [`CONCAT()`](string-functions.html#function_concat) function:
 
 ```sql
 mysql> SET sql_mode = 'ANSI';
@@ -83,4 +83,4 @@ mysql> SELECT VIEW_DEFINITION FROM INFORMATION_SCHEMA.VIEWS
 1 row in set (0.00 sec)
 ```
 
-A vantagem de armazenar uma definição de visualização em forma canônica é que alterações feitas posteriormente no valor de `sql_mode` não afetam os resultados da visualização. No entanto, uma consequência adicional é que os comentários anteriores a `SELECT` são removidos da definição pelo servidor.
+The advantage of storing a view definition in canonical form is that changes made later to the value of [`sql_mode`](server-system-variables.html#sysvar_sql_mode) do not affect the results from the view. However, an additional consequence is that comments prior to [`SELECT`](select.html "13.2.9 SELECT Statement") are stripped from the definition by the server.

@@ -1,17 +1,17 @@
-### 12.16.2 Tratamento de argumentos por funções espaciais
+### 12.16.2 Argument Handling by Spatial Functions
 
-Os valores espaciais, ou geometrias, possuem as propriedades descritas na Seção 11.4.2.2, “Classe de Geometria”. A discussão a seguir lista as características gerais de manipulação de argumentos de funções espaciais. Funções ou grupos de funções específicas podem ter características adicionais ou diferentes de manipulação de argumentos, conforme discutido nas seções onde essas descrições de funções ocorrem. Quando isso for verdade, essas descrições têm precedência sobre a discussão geral aqui.
+Spatial values, or geometries, have the properties described in Section 11.4.2.2, “Geometry Class”. The following discussion lists general spatial function argument-handling characteristics. Specific functions or groups of functions may have additional or different argument-handling characteristics, as discussed in the sections where those function descriptions occur. Where that is true, those descriptions take precedence over the general discussion here.
 
-As funções espaciais são definidas apenas para valores de geometria válidos. Consulte a Seção 11.4.4, “Formação e validade da geometria”.
+Spatial functions are defined only for valid geometry values. See Section 11.4.4, “Geometry Well-Formedness and Validity”.
 
-O identificador de referência espacial (SRID) de uma geometria identifica o espaço de coordenadas no qual a geometria é definida. No MySQL, o valor SRID é um inteiro associado ao valor da geometria. O valor máximo utilizável do SRID é 232−1. Se for fornecido um valor maior, apenas os 32 bits inferiores são utilizados.
+The spatial reference identifier (SRID) of a geometry identifies the coordinate space in which the geometry is defined. In MySQL, the SRID value is an integer associated with the geometry value. The maximum usable SRID value is 232−1. If a larger value is given, only the lower 32 bits are used.
 
-No MySQL, todos os cálculos são feitos assumindo SRID 0, independentemente do valor real do SRID. O SRID 0 representa um plano cartesiano plano infinito sem unidades atribuídas aos seus eixos. No futuro, os cálculos podem usar os valores de SRID especificados. Para garantir o comportamento do SRID 0, crie valores de geometria usando SRID 0. O SRID 0 é o padrão para novos valores de geometria se nenhum SRID for especificado.
+In MySQL, all computations are done assuming SRID 0, regardless of the actual SRID value. SRID 0 represents an infinite flat Cartesian plane with no units assigned to its axes. In the future, computations may use the specified SRID values. To ensure SRID 0 behavior, create geometry values using SRID 0. SRID 0 is the default for new geometry values if no SRID is specified.
 
-Os valores de geometria produzidos por qualquer função espacial herdam o SRID dos argumentos de geometria.
+Geometry values produced by any spatial function inherit the SRID of the geometry arguments.
 
-As diretrizes do Consórcio de Geoprocessamento Aberto exigem que os polígonos de entrada já estejam fechados, portanto, polígonos abertos são rejeitados como inválidos, em vez de serem fechados.
+The Open Geospatial Consortium guidelines require that input polygons already be closed, so unclosed polygons are rejected as invalid rather than being closed.
 
-O tratamento de coleções de geometrias vazias é o seguinte: uma coleção de geometrias de entrada WKT vazia pode ser especificada como `'GEOMETRYCOLLECTION()'`. Esse também é o WKT de saída resultante de uma operação espacial que produz uma coleção de geometrias vazia.
+Empty geometry-collection handling is as follows: An empty WKT input geometry collection may be specified as `'GEOMETRYCOLLECTION()'`. This is also the output WKT resulting from a spatial operation that produces an empty geometry collection.
 
-Durante a análise de uma coleção de geometrias aninhadas, a coleção é unificada e seus componentes básicos são usados em várias operações de SIG para calcular resultados. Isso oferece maior flexibilidade aos usuários, pois não é necessário se preocupar com a unicidade dos dados de geometria. Coleções de geometrias aninhadas podem ser geradas a partir de chamadas de função de SIG aninhadas sem precisar ser explicitamente unidas primeiro.
+During parsing of a nested geometry collection, the collection is flattened and its basic components are used in various GIS operations to compute results. This provides additional flexibility to users because it is unnecessary to be concerned about the uniqueness of geometry data. Nested geometry collections may be produced from nested GIS function calls without having to be explicitly flattened first.

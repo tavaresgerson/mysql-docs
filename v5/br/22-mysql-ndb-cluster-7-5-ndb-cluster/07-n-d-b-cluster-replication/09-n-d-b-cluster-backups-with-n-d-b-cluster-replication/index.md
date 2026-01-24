@@ -1,67 +1,67 @@
-### 21.7.9 Resgate de clusters NDB Com a Replicação do NDB Cluster
+### 21.7.9 NDB Cluster Backups With NDB Cluster Replication
 
-21.7.9.1 Replicação de NDB Cluster: Automatização da Sincronização da Replicação com o Log Binário de Fonte
+[21.7.9.1 NDB Cluster Replication: Automating Synchronization of the Replica to the Source Binary Log](mysql-cluster-replication-auto-sync.html)
 
-21.7.9.2 Recuperação no Ponto de Tempo Usando a Replicação do NDB Cluster
+[21.7.9.2 Point-In-Time Recovery Using NDB Cluster Replication](mysql-cluster-replication-pitr.html)
 
-Esta seção discute a criação de backups e a restauração a partir deles usando a replicação do NDB Cluster. Suponhamos que os servidores de replicação já tenham sido configurados como mencionado anteriormente (veja Seção 21.7.5, “Preparando o NDB Cluster para Replicação” e as seções imediatamente seguintes). Após isso, o procedimento para criar um backup e, em seguida, restaurá-lo é o seguinte:
+This section discusses making backups and restoring from them using NDB Cluster replication. We assume that the replication servers have already been configured as covered previously (see [Section 21.7.5, “Preparing the NDB Cluster for Replication”](mysql-cluster-replication-preparation.html "21.7.5 Preparing the NDB Cluster for Replication"), and the sections immediately following). This having been done, the procedure for making a backup and then restoring from it is as follows:
 
-1. Existem dois métodos diferentes pelos quais o backup pode ser iniciado.
+1. There are two different methods by which the backup may be started.
 
-   - **Método A.** Este método exige que o processo de backup do cluster tenha sido habilitado anteriormente no servidor de origem, antes de iniciar o processo de replicação. Isso pode ser feito incluindo a seguinte linha em uma seção `[mysql_cluster]` no arquivo `my.cnf`, onde *`management_host`* é o endereço IP ou nome de host do servidor de gerenciamento do `NDB` do cluster de origem, e *`port`* é o número da porta do servidor de gerenciamento:
+   * **Method A.** This method requires that the cluster backup process was previously enabled on the source server, prior to starting the replication process. This can be done by including the following line in a `[mysql_cluster]` section in the `my.cnf file`, where *`management_host`* is the IP address or host name of the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") management server for the source cluster, and *`port`* is the management server's port number:
 
      ```sql
      ndb-connectstring=management_host[:port]
      ```
 
-     Nota
+     Note
 
-     O número do porto precisa ser especificado apenas se a porta padrão (1186) não estiver sendo usada. Consulte Seção 21.3.3, “Configuração Inicial do NDB Cluster” para obter mais informações sobre portas e alocação de portas no NDB Cluster.
+     The port number needs to be specified only if the default port (1186) is not being used. See [Section 21.3.3, “Initial Configuration of NDB Cluster”](mysql-cluster-install-configuration.html "21.3.3 Initial Configuration of NDB Cluster"), for more information about ports and port allocation in NDB Cluster.
 
-     Nesse caso, o backup pode ser iniciado executando essa instrução na fonte de replicação:
+     In this case, the backup can be started by executing this statement on the replication source:
 
      ```sql
      shellS> ndb_mgm -e "START BACKUP"
      ```
 
-   - **Método B.** Se o arquivo `my.cnf` não especificar onde encontrar o host de gerenciamento, você pode iniciar o processo de backup passando essas informações ao cliente de gerenciamento do `NDB` como parte do comando `START BACKUP`. Isso pode ser feito conforme mostrado aqui, onde *`management_host`* e *`port`* são o nome do host e o número da porta do servidor de gerenciamento:
+   * **Method B.** If the `my.cnf` file does not specify where to find the management host, you can start the backup process by passing this information to the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") management client as part of the [`START BACKUP`](mysql-cluster-backup-using-management-client.html "21.6.8.2 Using The NDB Cluster Management Client to Create a Backup") command. This can be done as shown here, where *`management_host`* and *`port`* are the host name and port number of the management server:
 
      ```sql
      shellS> ndb_mgm management_host:port -e "START BACKUP"
      ```
 
-     No nosso cenário descrito anteriormente (veja Seção 21.7.5, “Preparando o NDB Cluster para Replicação”), isso seria executado da seguinte forma:
+     In our scenario as outlined earlier (see [Section 21.7.5, “Preparing the NDB Cluster for Replication”](mysql-cluster-replication-preparation.html "21.7.5 Preparing the NDB Cluster for Replication")), this would be executed as follows:
 
      ```sql
      shellS> ndb_mgm rep-source:1186 -e "START BACKUP"
      ```
 
-2. Copie os arquivos de backup do clúster para a réplica que está sendo colocada em linha. Cada sistema que executa um processo **ndbd** para o clúster de origem tem arquivos de backup do clúster localizados nele, e *todos* desses arquivos devem ser copiados para a réplica para garantir um restabelecimento bem-sucedido. Os arquivos de backup podem ser copiados para qualquer diretório no computador onde o host de gerenciamento da réplica reside, desde que os binários MySQL e NDB tenham permissões de leitura nesse diretório. Neste caso, assumimos que esses arquivos foram copiados para o diretório `/var/BACKUPS/BACKUP-1`.
+2. Copy the cluster backup files to the replica that is being brought on line. Each system running an [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") process for the source cluster has cluster backup files located on it, and *all* of these files must be copied to the replica to ensure a successful restore. The backup files can be copied into any directory on the computer where the replica's management host resides, as long as the MySQL and NDB binaries have read permissions in that directory. In this case, we assume that these files have been copied into the directory `/var/BACKUPS/BACKUP-1`.
 
-   Embora não seja necessário que o clúster de replica tenha o mesmo número de processos **ndbd** (nós de dados) que o da fonte, é altamente recomendável que esse número seja o mesmo. É *necessário* que a replica seja iniciada com a opção `--skip-slave-start`, para evitar o início prematuro do processo de replicação.
+   While it is not necessary that the replica cluster have the same number of [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") processes (data nodes) as the source, it is highly recommended this number be the same. It *is* necessary that the replica be started with the [`--skip-slave-start`](replication-options-replica.html#option_mysqld_skip-slave-start) option, to prevent premature startup of the replication process.
 
-3. Crie quaisquer bancos de dados no clúster de replica que estejam presentes no clúster de origem e que devam ser replicados.
+3. Create any databases on the replica cluster that are present on the source cluster and that are to be replicated.
 
-   Importante
+   Important
 
-   Uma instrução `CREATE DATABASE` (ou `CREATE SCHEMA`) correspondente a cada banco de dados a ser replicado deve ser executada em cada nó SQL do clúster de replicação.
+   A [`CREATE DATABASE`](create-database.html "13.1.11 CREATE DATABASE Statement") (or [`CREATE SCHEMA`](create-database.html "13.1.11 CREATE DATABASE Statement")) statement corresponding to each database to be replicated must be executed on each SQL node in the replica cluster.
 
-4. Reinicie o cluster de replicação usando esta declaração no cliente **mysql**:
+4. Reset the replica cluster using this statement in the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client:
 
    ```sql
    mysqlR> RESET SLAVE;
    ```
 
-5. Agora você pode iniciar o processo de restauração do clúster na replica usando o comando **ndb_restore** para cada arquivo de backup, uma a uma. Para o primeiro deles, é necessário incluir a opção `-m` para restaurar os metadados do clúster, conforme mostrado aqui:
+5. You can now start the cluster restoration process on the replica using the [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") command for each backup file in turn. For the first of these, it is necessary to include the `-m` option to restore the cluster metadata, as shown here:
 
    ```sql
    shellR> ndb_restore -c replica_host:port -n node-id \
            -b backup-id -m -r dir
    ```
 
-   *`dir`* é o caminho para o diretório onde os arquivos de backup foram colocados na replica. Para os comandos **ndb_restore** correspondentes aos arquivos de backup restantes, a opção `-m` *não* deve ser usada.
+   *`dir`* is the path to the directory where the backup files have been placed on the replica. For the [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") commands corresponding to the remaining backup files, the `-m` option should *not* be used.
 
-   Para restaurar a partir de um cluster de origem com quatro nós de dados (como mostrado na figura na Seção 21.7, “Replicação de Clusters NDB”), onde os arquivos de backup foram copiados para o diretório `/var/BACKUP/BACKUP-1`, a sequência correta de comandos a serem executados na replica pode parecer assim:
+   For restoring from a source cluster with four data nodes (as shown in the figure in [Section 21.7, “NDB Cluster Replication”](mysql-cluster-replication.html "21.7 NDB Cluster Replication")) where the backup files have been copied to the directory `/var/BACKUPS/BACKUP-1`, the proper sequence of commands to be executed on the replica might look like this:
 
    ```sql
    shellR> ndb_restore -c replica-host:1186 -n 2 -b 1 -m \
@@ -74,18 +74,18 @@ Esta seção discute a criação de backups e a restauração a partir deles usa
            -r ./var/BACKUPS/BACKUP-1
    ```
 
-   Importante
+   Important
 
-   A opção `-e` (ou `--restore-epoch` em mysql-cluster-programs-ndb-restore.html#option_ndb_restore_restore-epoch) na invocação final do **ndb_restore** neste exemplo é necessária para garantir que o epígrafe seja escrito na tabela `mysql.ndb_apply_status` da replica. Sem essa informação, a replica não pode se sincronizar corretamente com a fonte. (Veja Seção 21.5.24, “ndb_restore — Restaurar um backup do NDB Cluster”).
+   The `-e` (or [`--restore-epoch`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_restore-epoch)) option in the final invocation of [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") in this example is required to make sure that the epoch is written to the replica's `mysql.ndb_apply_status` table. Without this information, the replica cannot synchronize properly with the source. (See [Section 21.5.24, “ndb_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup").)
 
-6. Agora, você precisa obter a época mais recente da tabela `ndb_apply_status` na replica (como discutido em Seção 21.7.8, “Implementando Failover com Replicação de NDB Cluster”):
+6. Now you need to obtain the most recent epoch from the `ndb_apply_status` table on the replica (as discussed in [Section 21.7.8, “Implementing Failover with NDB Cluster Replication”](mysql-cluster-replication-failover.html "21.7.8 Implementing Failover with NDB Cluster Replication")):
 
    ```sql
    mysqlR> SELECT @latest:=MAX(epoch)
            FROM mysql.ndb_apply_status;
    ```
 
-7. Usando `@latest` como o valor da época obtido no passo anterior, você pode obter a posição inicial correta `@pos` no arquivo de log binário correto `@file` a partir da tabela `mysql.ndb_binlog_index` na fonte. A consulta mostrada aqui obtém esses valores das colunas `next_position` e `next_file` da última época aplicada antes da posição de restauração lógica:
+7. Using `@latest` as the epoch value obtained in the previous step, you can obtain the correct starting position `@pos` in the correct binary log file `@file` from the `mysql.ndb_binlog_index` table on the source. The query shown here gets these from the `next_position` and `next_file` columns from the last epoch applied before the logical restore position:
 
    ```sql
    mysqlS> SELECT
@@ -96,9 +96,9 @@ Esta seção discute a criação de backups e a restauração a partir deles usa
         -> ORDER BY epoch ASC LIMIT 1;
    ```
 
-   Caso atualmente não haja tráfego de replicação, você pode obter informações semelhantes executando `SHOW MASTER STATUS` na fonte e usando o valor exibido na coluna `Position` do resultado para o arquivo cujo nome tem o sufixo com o maior valor para todos os arquivos exibidos na coluna `File`. Nesse caso, você deve determinar qual é esse arquivo e fornecer o nome no próximo passo manualmente ou analisando o resultado com um script.
+   In the event that there is currently no replication traffic, you can get similar information by running [`SHOW MASTER STATUS`](show-master-status.html "13.7.5.23 SHOW MASTER STATUS Statement") on the source and using the value shown in the `Position` column of the output for the file whose name has the suffix with the greatest value for all files shown in the `File` column. In this case, you must determine which file this is and supply the name in the next step manually or by parsing the output with a script.
 
-8. Usando os valores obtidos na etapa anterior, você pode agora emitir a declaração apropriada `CHANGE MASTER TO` no cliente **mysql** da replica:
+8. Using the values obtained in the previous step, you can now issue the appropriate [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") statement in the replica's [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client:
 
    ```sql
    mysqlR> CHANGE MASTER TO
@@ -106,12 +106,12 @@ Esta seção discute a criação de backups e a restauração a partir deles usa
         ->     MASTER_LOG_POS=@pos;
    ```
 
-9. Agora que a replica sabe a partir de qual ponto do arquivo de log binário começar a ler os dados da fonte, você pode fazer com que a replica comece a replicar com essa declaração:
+9. Now that the replica knows from what point in which binary log file to start reading data from the source, you can cause the replica to begin replicating with this statement:
 
    ```sql
    mysqlR> START SLAVE;
    ```
 
-Para realizar uma cópia de segurança e restauração em um segundo canal de replicação, é necessário apenas repetir esses passos, substituindo os nomes de host e IDs da fonte secundária e da replica pelos dos servidores de fonte primária e replica, conforme apropriado, e executando as declarações anteriores neles.
+To perform a backup and restore on a second replication channel, it is necessary only to repeat these steps, substituting the host names and IDs of the secondary source and replica for those of the primary source and replica servers where appropriate, and running the preceding statements on them.
 
-Para obter informações adicionais sobre como realizar backups de cluster e restaurar o cluster a partir de backups, consulte Seção 21.6.8, “Backup Online do NDB Cluster”.
+For additional information on performing Cluster backups and restoring Cluster from backups, see [Section 21.6.8, “Online Backup of NDB Cluster”](mysql-cluster-backup.html "21.6.8 Online Backup of NDB Cluster").

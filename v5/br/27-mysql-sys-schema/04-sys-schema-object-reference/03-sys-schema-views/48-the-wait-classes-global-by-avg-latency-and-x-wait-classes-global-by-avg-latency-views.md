@@ -1,31 +1,31 @@
-#### 26.4.3.48 As visualizações wait_classes_global_by_avg_latency e x$wait_classes_global_by_avg_latency
+#### 26.4.3.48 The wait_classes_global_by_avg_latency and x$wait_classes_global_by_avg_latency Views
 
-Esses gráficos resumem as latências médias da classe de espera, agrupadas por classe de evento. Por padrão, as linhas são ordenadas em ordem decrescente de latência média. Os eventos em espera são ignorados.
+These views summarize wait class average latencies, grouped by event class. By default, rows are sorted by descending average latency. Idle events are ignored.
 
-Uma classe de evento é determinada removendo tudo após os três primeiros componentes do nome do evento. Por exemplo, a classe para `wait/io/file/sql/slow_log` é `wait/io/file`.
+An event class is determined by stripping from the event name everything after the first three components. For example, the class for `wait/io/file/sql/slow_log` is `wait/io/file`.
 
-As views `wait_classes_global_by_avg_latency` e `x$wait_classes_global_by_avg_latency` possuem essas colunas:
+The `wait_classes_global_by_avg_latency` and `x$wait_classes_global_by_avg_latency` views have these columns:
 
-- `event_class`
+* `event_class`
 
-  A classe de eventos.
+  The event class.
 
-- `total`
+* `total`
 
-  O número total de ocorrências de eventos na classe.
+  The total number of occurrences of events in the class.
 
-- `total_latency`
+* `total_latency`
 
-  O tempo total de espera de ocorrências temporizadas de eventos na classe.
+  The total wait time of timed occurrences of events in the class.
 
-- `min_latency`
+* `min_latency`
 
-  O tempo de espera mínimo para uma única ocorrência de eventos na classe.
+  The minimum single wait time of timed occurrences of events in the class.
 
-- `avg_latency`
+* `avg_latency`
 
-  O tempo médio de espera por ocorrência cronometrada de eventos na classe.
+  The average wait time per timed occurrence of events in the class.
 
-- `max_latency`
+* `max_latency`
 
-  O tempo máximo de espera de uma única ocorrência temporizada de eventos na classe.
+  The maximum single wait time of timed occurrences of events in the class.

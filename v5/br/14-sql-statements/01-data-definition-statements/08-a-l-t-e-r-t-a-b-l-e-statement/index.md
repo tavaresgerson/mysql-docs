@@ -1,10 +1,10 @@
-### 13.1.8 Declaração ALTER TABLE
+### 13.1.8 ALTER TABLE Statement
 
-13.1.8.1 Operações de Partição de Tabela
+[13.1.8.1 ALTER TABLE Partition Operations](alter-table-partition-operations.html)
 
-13.1.8.2 ALTER TABLE e Colunas Geradas
+[13.1.8.2 ALTER TABLE and Generated Columns](alter-table-generated-columns.html)
 
-13.1.8.3 Exemplos de ALTER TABLE
+[13.1.8.3 ALTER TABLE Examples](alter-table-examples.html)
 
 ```sql
 ALTER TABLE tbl_name
@@ -123,126 +123,126 @@ partition_options:
     (see CREATE TABLE options)
 ```
 
-`ALTER TABLE` altera a estrutura de uma tabela. Por exemplo, você pode adicionar ou excluir colunas, criar ou destruir índices, alterar o tipo de colunas existentes ou renomear colunas ou a própria tabela. Você também pode alterar características como o mecanismo de armazenamento usado para a tabela ou o comentário da tabela.
+[`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") changes the structure of a table. For example, you can add or delete columns, create or destroy indexes, change the type of existing columns, or rename columns or the table itself. You can also change characteristics such as the storage engine used for the table or the table comment.
 
-- Para usar `ALTER TABLE`, você precisa de privilégios de `ALTER`, `CREATE` e `INSERT` para a tabela. Renomear uma tabela requer `ALTER` e `DROP` na tabela antiga, `ALTER`, `CREATE` e `INSERT` na nova tabela.
+* To use [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement"), you need [`ALTER`](privileges-provided.html#priv_alter), [`CREATE`](privileges-provided.html#priv_create), and [`INSERT`](privileges-provided.html#priv_insert) privileges for the table. Renaming a table requires [`ALTER`](privileges-provided.html#priv_alter) and [`DROP`](privileges-provided.html#priv_drop) on the old table, [`ALTER`](privileges-provided.html#priv_alter), [`CREATE`](privileges-provided.html#priv_create), and [`INSERT`](privileges-provided.html#priv_insert) on the new table.
 
-- Após o nome da tabela, especifique as alterações a serem feitas. Se nenhuma for fornecida, `ALTER TABLE` não faz nada.
+* Following the table name, specify the alterations to be made. If none are given, [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") does nothing.
 
-- A sintaxe para muitas das alterações permitidas é semelhante às cláusulas da instrução `CREATE TABLE`. As cláusulas *`column_definition`* usam a mesma sintaxe para `ADD` e `CHANGE` que para `CREATE TABLE`. Para mais informações, consulte Seção 13.1.18, “Instrução CREATE TABLE”.
+* The syntax for many of the permissible alterations is similar to clauses of the [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement. *`column_definition`* clauses use the same syntax for `ADD` and `CHANGE` as for [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement"). For more information, see [Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement").
 
-- A palavra `COLUNA` é opcional e pode ser omitida.
+* The word `COLUMN` is optional and can be omitted.
 
-- Várias cláusulas `ADD`, `ALTER`, `DROP` e `CHANGE` são permitidas em uma única instrução `ALTER TABLE`, separadas por vírgulas. Esta é uma extensão do MySQL ao SQL padrão, que permite apenas uma cláusula de cada vez por instrução `ALTER TABLE`. Por exemplo, para descartar várias colunas em uma única instrução, faça o seguinte:
+* Multiple `ADD`, `ALTER`, `DROP`, and `CHANGE` clauses are permitted in a single [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statement, separated by commas. This is a MySQL extension to standard SQL, which permits only one of each clause per [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statement. For example, to drop multiple columns in a single statement, do this:
 
   ```sql
   ALTER TABLE t2 DROP COLUMN c, DROP COLUMN d;
   ```
 
-- Se um mecanismo de armazenamento não suportar uma operação de tentativa de operação `ALTER TABLE`, pode resultar um aviso. Tais avisos podem ser exibidos com `SHOW WARNINGS`. Consulte Seção 13.7.5.40, “Instrução SHOW WARNINGS”. Para informações sobre a solução de problemas com `ALTER TABLE`, consulte Seção B.3.6.1, “Problemas com ALTER TABLE”.
+* If a storage engine does not support an attempted [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") operation, a warning may result. Such warnings can be displayed with [`SHOW WARNINGS`](show-warnings.html "13.7.5.40 SHOW WARNINGS Statement"). See [Section 13.7.5.40, “SHOW WARNINGS Statement”](show-warnings.html "13.7.5.40 SHOW WARNINGS Statement"). For information on troubleshooting [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement"), see [Section B.3.6.1, “Problems with ALTER TABLE”](alter-table-problems.html "B.3.6.1 Problems with ALTER TABLE").
 
-- Para obter informações sobre colunas geradas, consulte Seção 13.1.8.2, “ALTER TABLE e Colunas Geradas”.
+* For information about generated columns, see [Section 13.1.8.2, “ALTER TABLE and Generated Columns”](alter-table-generated-columns.html "13.1.8.2 ALTER TABLE and Generated Columns").
 
-- Para exemplos de uso, consulte Seção 13.1.8.3, “Exemplos de ALTER TABLE”.
+* For usage examples, see [Section 13.1.8.3, “ALTER TABLE Examples”](alter-table-examples.html "13.1.8.3 ALTER TABLE Examples").
 
-- Com a função `mysql_info()` da API C, você pode descobrir quantos registros foram copiados pelo `ALTER TABLE` (`alter-table.html`). Veja mysql_info().
+* With the [`mysql_info()`](/doc/c-api/5.7/en/mysql-info.html) C API function, you can find out how many rows were copied by [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement"). See [mysql_info()](/doc/c-api/5.7/en/mysql-info.html).
 
-Há vários aspectos adicionais da instrução `ALTER TABLE`, descritos nos tópicos a seguir nesta seção:
+There are several additional aspects to the `ALTER TABLE` statement, described under the following topics in this section:
 
-- Opções de tabela
-- Requisitos de desempenho e espaço
-- Controle de Concorrência
-- Adicionar e Remover Colunas
-- Renomear, redefinir e reorganizar colunas (alter-table.html#alter-table-redefine-column)
-- Chaves Primárias e Índices
-- Chaves Estrangeiras e Outras Restrições
-- Alterar o conjunto de caracteres
-- Descartar e importar espaços de tabela InnoDB
-- Ordem de Linhas para Tabelas MyISAM
-- Opções de Partição
+* [Table Options](alter-table.html#alter-table-options "Table Options")
+* [Performance and Space Requirements](alter-table.html#alter-table-performance "Performance and Space Requirements")
+* [Concurrency Control](alter-table.html#alter-table-concurrency "Concurrency Control")
+* [Adding and Dropping Columns](alter-table.html#alter-table-add-drop-column "Adding and Dropping Columns")
+* [Renaming, Redefining, and Reordering Columns](alter-table.html#alter-table-redefine-column "Renaming, Redefining, and Reordering Columns")
+* [Primary Keys and Indexes](alter-table.html#alter-table-index "Primary Keys and Indexes")
+* [Foreign Keys and Other Constraints](alter-table.html#alter-table-foreign-key "Foreign Keys and Other Constraints")
+* [Changing the Character Set](alter-table.html#alter-table-character-set "Changing the Character Set")
+* [Discarding and Importing InnoDB Tablespaces](alter-table.html#alter-table-discard-import "Discarding and Importing InnoDB Tablespaces")
+* [Row Order for MyISAM Tables](alter-table.html#alter-table-row-order "Row Order for MyISAM Tables")
+* [Partitioning Options](alter-table.html#alter-table-partition-options "Partitioning Options")
 
-#### Opções da tabela
+#### Table Options
 
-*`table_options`* indica as opções de tabela do tipo que podem ser usadas na declaração `CREATE TABLE`, como `ENGINE`, `AUTO_INCREMENT`, `AVG_ROW_LENGTH`, `MAX_ROWS`, `ROW_FORMAT` ou `TABLESPACE`.
+*`table_options`* signifies table options of the kind that can be used in the [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement, such as `ENGINE`, `AUTO_INCREMENT`, `AVG_ROW_LENGTH`, `MAX_ROWS`, `ROW_FORMAT`, or `TABLESPACE`.
 
-Para descrições de todas as opções de tabela, consulte Seção 13.1.18, “Instrução CREATE TABLE”. No entanto, `ALTER TABLE` ignora `DATA DIRECTORY` e `INDEX DIRECTORY` quando fornecidos como opções de tabela. `ALTER TABLE` permite que eles apenas como opções de particionamento e, a partir do MySQL 5.7.17, exige que você tenha o privilégio `FILE`.
+For descriptions of all table options, see [Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement"). However, [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") ignores `DATA DIRECTORY` and `INDEX DIRECTORY` when given as table options. [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") permits them only as partitioning options, and, as of MySQL 5.7.17, requires that you have the `FILE` privilege.
 
-O uso de opções de tabela com `ALTER TABLE` oferece uma maneira conveniente de alterar características individuais de uma tabela. Por exemplo:
+Use of table options with [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") provides a convenient way of altering single table characteristics. For example:
 
-- Se `t1` atualmente não for uma tabela `InnoDB`, essa instrução altera seu mecanismo de armazenamento para \`InnoDB:
+* If `t1` is currently not an `InnoDB` table, this statement changes its storage engine to `InnoDB`:
 
   ```sql
   ALTER TABLE t1 ENGINE = InnoDB;
   ```
 
-  - Consulte Seção 14.6.1.5, “Conversão de tabelas de MyISAM para InnoDB” para obter considerações sobre a conversão de tabelas para o mecanismo de armazenamento `InnoDB`.
+  + See [Section 14.6.1.5, “Converting Tables from MyISAM to InnoDB”](converting-tables-to-innodb.html "14.6.1.5 Converting Tables from MyISAM to InnoDB") for considerations when switching tables to the `InnoDB` storage engine.
 
-  - Quando você especifica uma cláusula `ENGINE`, o `ALTER TABLE` reconstrui a tabela. Isso é verdadeiro mesmo que a tabela já tenha o motor de armazenamento especificado.
+  + When you specify an `ENGINE` clause, [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") rebuilds the table. This is true even if the table already has the specified storage engine.
 
-  - Executar `ALTER TABLE tbl_name ENGINE=INNODB` em uma tabela `InnoDB` existente realiza uma operação de `ALTER TABLE` (alter-table.html) “nulo”, que pode ser usada para desfragmentar uma tabela `InnoDB`, conforme descrito em Seção 14.12.4, “Desfragmentando uma Tabela”. Executar `ALTER TABLE tbl_name FORCE` em uma tabela `InnoDB` realiza a mesma função.
+  + Running [`ALTER TABLE tbl_name ENGINE=INNODB`](alter-table.html "13.1.8 ALTER TABLE Statement") on an existing `InnoDB` table performs a “null” [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") operation, which can be used to defragment an `InnoDB` table, as described in [Section 14.12.4, “Defragmenting a Table”](innodb-file-defragmenting.html "14.12.4 Defragmenting a Table"). Running [`ALTER TABLE tbl_name FORCE`](alter-table.html "13.1.8 ALTER TABLE Statement") on an `InnoDB` table performs the same function.
 
-  - `ALTER TABLE tbl_name ENGINE=INNODB` e `ALTER TABLE tbl_name FORCE` usam DDL online. Para mais informações, consulte Seção 14.13, “InnoDB e DDL online”.
+  + [`ALTER TABLE tbl_name ENGINE=INNODB`](alter-table.html "13.1.8 ALTER TABLE Statement") and [`ALTER TABLE tbl_name FORCE`](alter-table.html "13.1.8 ALTER TABLE Statement") use [online DDL](innodb-online-ddl.html "14.13 InnoDB and Online DDL"). For more information, see [Section 14.13, “InnoDB and Online DDL”](innodb-online-ddl.html "14.13 InnoDB and Online DDL").
 
-  - O resultado da tentativa de alterar o motor de armazenamento de uma tabela depende se o motor de armazenamento desejado está disponível e da configuração do modo SQL `NO_ENGINE_SUBSTITUTION`, conforme descrito na Seção 5.1.10, "Modos SQL do Servidor".
+  + The outcome of attempting to change the storage engine of a table is affected by whether the desired storage engine is available and the setting of the [`NO_ENGINE_SUBSTITUTION`](sql-mode.html#sqlmode_no_engine_substitution) SQL mode, as described in [Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes").
 
-  - Para evitar a perda acidental de dados, a instrução `ALTER TABLE` não pode ser usada para alterar o mecanismo de armazenamento de uma tabela para `MERGE` ou `BLACKHOLE`.
+  + To prevent inadvertent loss of data, [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") cannot be used to change the storage engine of a table to `MERGE` or `BLACKHOLE`.
 
-- Para alterar a tabela `InnoDB` para usar o formato de armazenamento de linhas compactado:
+* To change the `InnoDB` table to use compressed row-storage format:
 
   ```sql
   ALTER TABLE t1 ROW_FORMAT = COMPRESSED;
   ```
 
-- Para habilitar ou desabilitar a criptografia para uma tabela `InnoDB` em um espaço de tabelas por arquivo:
+* To enable or disable encryption for an `InnoDB` table in a file-per-table tablespace:
 
   ```sql
   ALTER TABLE t1 ENCRYPTION='Y';
   ALTER TABLE t1 ENCRYPTION='N';
   ```
 
-  Um plugin de chave de fenda deve ser instalado e configurado para usar a opção `ENCRYPTION`. Para mais informações, consulte Seção 14.14, “Criptografia de Dados em Repouso do InnoDB”.
+  A keyring plugin must be installed and configured to use the `ENCRYPTION` option. For more information, see [Section 14.14, “InnoDB Data-at-Rest Encryption”](innodb-data-encryption.html "14.14 InnoDB Data-at-Rest Encryption").
 
-  A opção `ENCRYPTION` é suportada apenas pelo mecanismo de armazenamento `InnoDB`; portanto, ela só funciona se a tabela já estiver usando `InnoDB` (e você não alterar o mecanismo de armazenamento da tabela) ou se a instrução `ALTER TABLE` especificar também `ENGINE=InnoDB`. Caso contrário, a instrução será rejeitada com `ER_CHECK_NOT_IMPLEMENTED`.
+  The `ENCRYPTION` option is supported only by the `InnoDB` storage engine; thus it works only if the table already uses `InnoDB` (and you do not change the table's storage engine), or if the `ALTER TABLE` statement also specifies `ENGINE=InnoDB`. Otherwise the statement is rejected with [`ER_CHECK_NOT_IMPLEMENTED`](/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_check_not_implemented).
 
-- Para redefinir o valor de incremento automático atual:
+* To reset the current auto-increment value:
 
   ```sql
   ALTER TABLE t1 AUTO_INCREMENT = 13;
   ```
 
-  Você não pode redefinir o contador para um valor menor ou igual ao valor que está atualmente em uso. Para o `InnoDB` e o `MyISAM`, se o valor for menor ou igual ao valor máximo atualmente na coluna `AUTO_INCREMENT`, o valor é redefinido para o valor atual da coluna `AUTO_INCREMENT` mais um.
+  You cannot reset the counter to a value less than or equal to the value that is currently in use. For both `InnoDB` and `MyISAM`, if the value is less than or equal to the maximum value currently in the `AUTO_INCREMENT` column, the value is reset to the current maximum `AUTO_INCREMENT` column value plus one.
 
-- Para alterar o conjunto de caracteres padrão da tabela:
+* To change the default table character set:
 
   ```sql
   ALTER TABLE t1 CHARACTER SET = utf8;
   ```
 
-  Veja também Alterar o conjunto de caracteres.
+  See also [Changing the Character Set](alter-table.html#alter-table-character-set "Changing the Character Set").
 
-- Para adicionar (ou alterar) um comentário de tabela:
+* To add (or change) a table comment:
 
   ```sql
   ALTER TABLE t1 COMMENT = 'New table comment';
   ```
 
-- Use `ALTER TABLE` com a opção `TABLESPACE` para mover tabelas `InnoDB` entre espaços de tabelas existentes (espaços de tabelas gerais, espaços de tabelas por arquivo e o espaço de tabelas do sistema). Veja Mover tabelas entre espaços de tabelas usando ALTER TABLE.
+* Use `ALTER TABLE` with the `TABLESPACE` option to move `InnoDB` tables between existing [general tablespaces](glossary.html#glos_general_tablespace "general tablespace"), [file-per-table](glossary.html#glos_file_per_table "file-per-table") tablespaces, and the [system tablespace](glossary.html#glos_system_tablespace "system tablespace"). See [Moving Tables Between Tablespaces Using ALTER TABLE](general-tablespaces.html#general-tablespaces-moving-non-partitioned-tables "Moving Tables Between Tablespaces Using ALTER TABLE").
 
-  - As operações `ALTER TABLE ... TABLESPACE` sempre causam uma reconstrução completa da tabela, mesmo que o atributo `TABLESPACE` não tenha mudado de seu valor anterior.
+  + `ALTER TABLE ... TABLESPACE` operations always cause a full table rebuild, even if the `TABLESPACE` attribute has not changed from its previous value.
 
-  - A sintaxe `ALTER TABLE ... TABLESPACE` não suporta a movimentação de uma tabela de um espaço de tabelas temporário para um espaço de tabelas persistente.
+  + `ALTER TABLE ... TABLESPACE` syntax does not support moving a table from a temporary tablespace to a persistent tablespace.
 
-  - A cláusula `DATA DIRECTORY`, que é suportada com `CREATE TABLE ... TABLESPACE`, não é suportada com `ALTER TABLE ... TABLESPACE` e é ignorada se especificada.
+  + The `DATA DIRECTORY` clause, which is supported with [`CREATE TABLE ... TABLESPACE`](create-table.html "13.1.18 CREATE TABLE Statement"), is not supported with `ALTER TABLE ... TABLESPACE`, and is ignored if specified.
 
-  - Para obter mais informações sobre as capacidades e limitações da opção `TABLESPACE`, consulte `CREATE TABLE`.
+  + For more information about the capabilities and limitations of the `TABLESPACE` option, see [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement").
 
-- O MySQL NDB Cluster 7.5.2 e versões posteriores suportam a definição das opções `NDB_TABLE` para controlar o equilíbrio de partições de uma tabela (tipo de contagem de fragmentos), a capacidade de leitura de qualquer replica, replicação completa ou qualquer combinação dessas opções, como parte do comentário da tabela para uma instrução `ALTER TABLE` da mesma maneira que para `CREATE TABLE`, conforme mostrado neste exemplo:
+* MySQL NDB Cluster 7.5.2 and later supports setting `NDB_TABLE` options for controlling a table's partition balance (fragment count type), read-from-any-replica capability, full replication, or any combination of these, as part of the table comment for an `ALTER TABLE` statement in the same manner as for [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement"), as shown in this example:
 
   ```sql
   ALTER TABLE t1 COMMENT = "NDB_TABLE=READ_BACKUP=0,PARTITION_BALANCE=FOR_RA_BY_NODE";
   ```
 
-  É também possível definir opções `NDB_COMMENT` para colunas de tabelas de `NDB` como parte de uma instrução `ALTER TABLE`, como esta:
+  It is also possible to set `NDB_COMMENT` options for columns of [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables as part of an `ALTER TABLE` statement, like this one:
 
   ```sql
   ALTER TABLE t1
@@ -250,325 +250,321 @@ O uso de opções de tabela com `ALTER TABLE` oferece uma maneira conveniente de
       COMMENT = 'NDB_COLUMN=MAX_BLOB_PART_SIZE';
   ```
 
-  Tenha em mente que `ALTER TABLE ... COMMENT ...` descarta qualquer comentário existente para a tabela. Consulte Definir opções de NDB_TABLE para obter informações e exemplos adicionais.
+  Bear in mind that `ALTER TABLE ... COMMENT ...` discards any existing comment for the table. See [Setting NDB_TABLE options](create-table.html#create-table-comment-ndb-table-options "Setting NDB_TABLE options"), for additional information and examples.
 
-Para verificar se as opções da tabela foram alteradas conforme o esperado, use `SHOW CREATE TABLE` ou consulte a tabela do Schema de Informações `TABLES`.
+To verify that the table options were changed as intended, use [`SHOW CREATE TABLE`](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement"), or query the Information Schema [`TABLES`](information-schema-tables-table.html "24.3.25 The INFORMATION_SCHEMA TABLES Table") table.
 
-#### Requisitos de desempenho e espaço
+#### Performance and Space Requirements
 
-As operações de `ALTER TABLE` são processadas usando um dos seguintes algoritmos:
+[`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") operations are processed using one of the following algorithms:
 
-- `COPY`: As operações são realizadas em uma cópia da tabela original, e os dados da tabela são copiados da tabela original para a nova tabela linha por linha. O DML concorrente não é permitido.
+* `COPY`: Operations are performed on a copy of the original table, and table data is copied from the original table to the new table row by row. Concurrent DML is not permitted.
 
-- `INPLACE`: As operações evitam a cópia dos dados da tabela, mas podem reconstruí-la no local. Pode ser realizada uma bloqueio exclusivo de metadados na tabela por um breve período durante as fases de preparação e execução da operação. Normalmente, o DML concorrente é suportado.
+* `INPLACE`: Operations avoid copying table data but may rebuild the table in place. An exclusive metadata lock on the table may be taken briefly during preparation and execution phases of the operation. Typically, concurrent DML is supported.
 
-Para tabelas que utilizam o mecanismo de armazenamento `NDB`, esses algoritmos funcionam da seguinte forma:
+For tables using the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine, these algorithms work as follows:
 
-- `COPY`: O `NDB` cria uma cópia da tabela e a altera; o manipulador do NDB Cluster então copia os dados entre as versões antigas e novas da tabela. Posteriormente, o `NDB` exclui a tabela antiga e renomeia a nova.
+* `COPY`: `NDB` creates a copy of the table and alters it; the NDB Cluster handler then copies the data between the old and new versions of the table. Subsequently, `NDB` deletes the old table and renames the new one.
 
-  Isso é às vezes chamado de "cópia" ou "ALTER TABLE" "offline".
+  This is sometimes also referred to as a “copying” or “offline” `ALTER TABLE`.
 
-- `INPLACE`: Os nós de dados fazem as alterações necessárias; o manipulador do NDB Cluster não copia dados ou participa de outra forma.
+* `INPLACE`: The data nodes make the required changes; the NDB Cluster handler does not copy data or otherwise take part.
 
-  Isso é às vezes chamado de "ALTER TABLE" "não de cópia" ou "online".
+  This is sometimes also referred to as a “non-copying” or “online” `ALTER TABLE`.
 
-Para obter mais informações, consulte Seção 21.6.12, “Operações online com ALTER TABLE no NDB Cluster”.
+See [Section 21.6.12, “Online Operations with ALTER TABLE in NDB Cluster”](mysql-cluster-online-operations.html "21.6.12 Online Operations with ALTER TABLE in NDB Cluster"), for more information.
 
-A cláusula `ALGORITHM` é opcional. Se a cláusula `ALGORITHM` for omitida, o MySQL usa `ALGORITHM=INPLACE` para os motores de armazenamento e as cláusulas de `ALTER TABLE` que a suportam. Caso contrário, é usado `ALGORITHM=COPY`.
+The `ALGORITHM` clause is optional. If the `ALGORITHM` clause is omitted, MySQL uses `ALGORITHM=INPLACE` for storage engines and [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") clauses that support it. Otherwise, `ALGORITHM=COPY` is used.
 
-Especificar uma cláusula `ALGORITHM` exige que a operação use o algoritmo especificado para cláusulas e motores de armazenamento que o suportem, ou falhará com um erro caso contrário. Especificar `ALGORITHM=DEFAULT` é o mesmo que omitir a cláusula `ALGORITHM`.
+Specifying an `ALGORITHM` clause requires the operation to use the specified algorithm for clauses and storage engines that support it, or fail with an error otherwise. Specifying `ALGORITHM=DEFAULT` is the same as omitting the `ALGORITHM` clause.
 
-As operações de alteração de tabela (`ALTER TABLE`) que utilizam o algoritmo `COPY` aguardam que outras operações que estão modificando a tabela sejam concluídas. Após as alterações serem aplicadas à cópia da tabela, os dados são copiados, a tabela original é excluída e a cópia da tabela é renomeada para o nome da tabela original. Enquanto a operação de alteração de tabela (`ALTER TABLE`) está sendo executada, a tabela original pode ser lida por outras sessões (com a exceção mencionada brevemente). As atualizações e escritas na tabela iniciadas após o início da operação de alteração de tabela (`ALTER TABLE`) são interrompidas até que a nova tabela esteja pronta, e então são automaticamente redirecionadas para a nova tabela. A cópia temporária da tabela é criada no diretório do banco de dados da tabela original, a menos que seja uma operação `RENAME TO` que mova a tabela para um banco de dados que reside em um diretório diferente.
+[`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") operations that use the `COPY` algorithm wait for other operations that are modifying the table to complete. After alterations are applied to the table copy, data is copied over, the original table is deleted, and the table copy is renamed to the name of the original table. While the [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") operation executes, the original table is readable by other sessions (with the exception noted shortly). Updates and writes to the table started after the [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") operation begins are stalled until the new table is ready, then are automatically redirected to the new table. The temporary copy of the table is created in the database directory of the original table unless it is a `RENAME TO` operation that moves the table to a database that resides in a different directory.
 
-A exceção mencionada anteriormente é que os bloqueios de leitura `ALTER TABLE` bloqueiam leituras (não apenas escritas) no ponto em que estão prontos para instalar uma nova versão do arquivo `.frm` da tabela. Nesse ponto, ele deve adquirir um bloqueio exclusivo. Para isso, ele aguarda que os leitores atuais terminem e bloqueia novas leituras e escritas.
+The exception referred to earlier is that [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") blocks reads (not just writes) at the point where it is ready to install a new version of the table `.frm` file, discard the old file, and clear outdated table structures from the table and table definition caches. At this point, it must acquire an exclusive lock. To do so, it waits for current readers to finish, and blocks new reads and writes.
 
-Uma operação de `ALTER TABLE` que usa o algoritmo `COPY` impede operações concorrentes de DML. As consultas concorrentes ainda são permitidas. Ou seja, uma operação de cópia de tabela sempre inclui pelo menos as restrições de concorrência de `LOCK=SHARED` (permite consultas, mas não DML). Você pode restringir ainda mais a concorrência para operações que suportam a cláusula `LOCK`, especificando `LOCK=EXCLUSIVE`, o que impede DML e consultas. Para mais informações, consulte Controle de Concorrência.
+An [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") operation that uses the `COPY` algorithm prevents concurrent DML operations. Concurrent queries are still allowed. That is, a table-copying operation always includes at least the concurrency restrictions of `LOCK=SHARED` (allow queries but not DML). You can further restrict concurrency for operations that support the `LOCK` clause by specifying `LOCK=EXCLUSIVE`, which prevents DML and queries. For more information, see [Concurrency Control](alter-table.html#alter-table-concurrency "Concurrency Control").
 
-Para forçar o uso do algoritmo `COPY` para uma operação de `ALTER TABLE` que, de outra forma, não o usaria, habilite a variável de sistema `old_alter_table` (alter-table.html ou especifique `ALGORITHM=COPY`. Se houver um conflito entre o ajuste `old_alter_table` e uma cláusula `ALGORITHM` com um valor diferente de `DEFAULT`, a cláusula `ALGORITHM` terá precedência.
+To force use of the `COPY` algorithm for an [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") operation that would otherwise not use it, enable the [`old_alter_table`](server-system-variables.html#sysvar_old_alter_table) system variable or specify `ALGORITHM=COPY`. If there is a conflict between the `old_alter_table` setting and an `ALGORITHM` clause with a value other than `DEFAULT`, the `ALGORITHM` clause takes precedence.
 
-Para tabelas do `InnoDB`, uma operação de `ALTER TABLE` que usa o algoritmo `COPY` em uma tabela que reside em um espaço de tabelas compartilhado pode aumentar a quantidade de espaço usada pelo espaço de tabelas. Tais operações exigem tanto espaço adicional quanto os dados da tabela mais os índices. Para uma tabela que reside em um espaço de tabelas compartilhado, o espaço adicional usado durante a operação não é liberado de volta ao sistema operacional, como acontece com uma tabela que reside em um espaço de tabelas `file-per-table` (glossary.html#glos_file_per_table).
+For `InnoDB` tables, an [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") operation that uses the `COPY` algorithm on a table that resides in a [shared tablespace](glossary.html#glos_shared_tablespace "shared tablespace") can increase the amount of space used by the tablespace. Such operations require as much additional space as the data in the table plus indexes. For a table residing in a shared tablespace, the additional space used during the operation is not released back to the operating system as it is for a table that resides in a [file-per-table](glossary.html#glos_file_per_table "file-per-table") tablespace.
 
-Para obter informações sobre os requisitos de espaço para operações DDL online, consulte Seção 14.13.3, “Requisitos de Espaço DDL Online”.
+For information about space requirements for online DDL operations, see [Section 14.13.3, “Online DDL Space Requirements”](innodb-online-ddl-space-requirements.html "14.13.3 Online DDL Space Requirements").
 
-As operações de alteração de tabela (`ALTER TABLE`) que suportam o algoritmo `INPLACE` incluem:
+[`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") operations that support the `INPLACE` algorithm include:
 
-- As operações `ALTER TABLE` suportadas pelo recurso `InnoDB` DDL online. Consulte Seção 14.13.1, "Operações de DDL online".
+* `ALTER TABLE` operations supported by the `InnoDB` [online DDL](glossary.html#glos_online_ddl "online DDL") feature. See [Section 14.13.1, “Online DDL Operations”](innodb-online-ddl-operations.html "14.13.1 Online DDL Operations").
 
-- Renomear uma tabela. O MySQL renomeia os arquivos que correspondem à tabela *`tbl_name`* sem fazer uma cópia. (Você também pode usar a instrução `RENAME TABLE` para renomear tabelas. Veja Seção 13.1.33, “Instrução RENAME TABLE”.) Os privilégios concedidos especificamente para a tabela renomeada não são migrados para o novo nome. Eles devem ser alterados manualmente.
+* Renaming a table. MySQL renames files that correspond to the table *`tbl_name`* without making a copy. (You can also use the [`RENAME TABLE`](rename-table.html "13.1.33 RENAME TABLE Statement") statement to rename tables. See [Section 13.1.33, “RENAME TABLE Statement”](rename-table.html "13.1.33 RENAME TABLE Statement").) Privileges granted specifically for the renamed table are not migrated to the new name. They must be changed manually.
 
-- Operações que apenas modificam os metadados da tabela. Essas operações são imediatas porque o servidor altera apenas o arquivo `.frm` da tabela, sem tocar no conteúdo da tabela. As operações que alteram apenas os metadados incluem:
+* Operations that only modify table metadata. These operations are immediate because the server only alters the table `.frm` file, not touch table contents. Metadata-only operations include:
 
-  - Renomear uma coluna.
+  + Renaming a column.
+  + Changing the default value of a column (except for [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables).
 
-  - Alterar o valor padrão de uma coluna (exceto para tabelas de `NDB`.
+  + Modifying the definition of an [`ENUM`](enum.html "11.3.5 The ENUM Type") or [`SET`](set.html "11.3.6 The SET Type") column by adding new enumeration or set members to the *end* of the list of valid member values, as long as the storage size of the data type does not change. For example, adding a member to a [`SET`](set.html "11.3.6 The SET Type") column that has 8 members changes the required storage per value from 1 byte to 2 bytes; this requires a table copy. Adding members in the middle of the list causes renumbering of existing members, which requires a table copy.
 
-  - Modificar a definição de uma coluna `[ENUM]` ou `[SET]` adicionando novos membros da enumeração ou do conjunto ao `[fim]` da lista de valores de membro válidos, desde que o tamanho de armazenamento do tipo de dados não mude. Por exemplo, adicionar um membro a uma coluna `[SET]` que tem 8 membros altera o armazenamento necessário por valor de 1 byte para 2 bytes; isso requer uma cópia da tabela. Adicionar membros no meio da lista causa a reenumeração dos membros existentes, o que requer uma cópia da tabela.
+* Renaming an index.
+* Adding or dropping a secondary index, for [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") and [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables. See [Section 14.13, “InnoDB and Online DDL”](innodb-online-ddl.html "14.13 InnoDB and Online DDL").
 
-- Renomear um índice.
+* For [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables, operations that add and drop indexes on variable-width columns. These operations occur online, without table copying and without blocking concurrent DML actions for most of their duration. See [Section 21.6.12, “Online Operations with ALTER TABLE in NDB Cluster”](mysql-cluster-online-operations.html "21.6.12 Online Operations with ALTER TABLE in NDB Cluster").
 
-- Adicionar ou remover um índice secundário para as tabelas de `InnoDB` e `NDB`. Consulte Seção 14.13, “InnoDB e DDL Online”.
+[`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") upgrades MySQL 5.5 temporal columns to 5.6 format for `ADD COLUMN`, `CHANGE COLUMN`, `MODIFY COLUMN`, `ADD INDEX`, and `FORCE` operations. This conversion cannot be done using the `INPLACE` algorithm because the table must be rebuilt, so specifying `ALGORITHM=INPLACE` in these cases results in an error. Specify `ALGORITHM=COPY` if necessary.
 
-- Para as tabelas `[`NDB\`]\(mysql-cluster.html), operações que adicionam e excluem índices em colunas de largura variável. Essas operações ocorrem online, sem cópia da tabela e sem bloquear ações DML concorrentes durante a maior parte de sua duração. Veja Seção 21.6.12, “Operações online com ALTER TABLE no NDB Cluster”.
+If an `ALTER TABLE` operation on a multicolumn index used to partition a table by `KEY` changes the order of the columns, it can only be performed using `ALGORITHM=COPY`.
 
-`ALTER TABLE` atualiza as colunas temporais do MySQL 5.5 para o formato 5.6 para as operações `ADD COLUMN`, `CHANGE COLUMN`, `MODIFY COLUMN`, `ADD INDEX` e `FORCE`. Essa conversão não pode ser feita usando o algoritmo `INPLACE` porque a tabela deve ser reconstruída, portanto, especificar `ALGORITHM=INPLACE` nesses casos resulta em um erro. Especifique `ALGORITHM=COPY` se necessário.
+The `WITHOUT VALIDATION` and `WITH VALIDATION` clauses affect whether [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") performs an in-place operation for [virtual generated column](glossary.html#glos_virtual_generated_column "virtual generated column") modifications. See [Section 13.1.8.2, “ALTER TABLE and Generated Columns”](alter-table-generated-columns.html "13.1.8.2 ALTER TABLE and Generated Columns").
 
-Se uma operação `ALTER TABLE` em um índice de várias colunas usado para particionar uma tabela por `KEY` alterar a ordem das colunas, ela só pode ser realizada usando `ALGORITHM=COPY`.
+NDB Cluster formerly supported online `ALTER TABLE` operations using the `ONLINE` and `OFFLINE` keywords. These keywords are no longer supported; their use causes a syntax error. MySQL NDB Cluster 7.5 (and later) supports online operations using the same `ALGORITHM=INPLACE` syntax used with the standard MySQL Server. `NDB` does not support changing a tablespace online. See [Section 21.6.12, “Online Operations with ALTER TABLE in NDB Cluster”](mysql-cluster-online-operations.html "21.6.12 Online Operations with ALTER TABLE in NDB Cluster"), for more information.
 
-As cláusulas `SEM VALIDAÇÃO` e `COM VALIDAÇÃO` afetam se a operação `ALTER TABLE` realiza uma operação in-place para modificações de colunas geradas virtualmente. Consulte Seção 13.1.8.2, “ALTER TABLE e Colunas Geradas”.
+`ALTER TABLE` with `DISCARD ... PARTITION ... TABLESPACE` or `IMPORT ... PARTITION ... TABLESPACE` does not create any temporary tables or temporary partition files.
 
-Anteriormente, o NDB Cluster suportava operações `ALTER TABLE` online usando as palavras-chave `ONLINE` e `OFFLINE`. Essas palavras-chave não são mais suportadas; seu uso causa um erro de sintaxe. O MySQL NDB Cluster 7.5 (e versões posteriores) suporta operações online usando a mesma sintaxe `ALGORITHM=INPLACE` usada com o servidor MySQL padrão. O `NDB` não suporta a alteração de um espaço de tabela online. Consulte Seção 21.6.12, “Operações online com ALTER TABLE no NDB Cluster” para obter mais informações.
+`ALTER TABLE` with `ADD PARTITION`, `DROP PARTITION`, `COALESCE PARTITION`, `REBUILD PARTITION`, or `REORGANIZE PARTITION` does not create temporary tables (except when used with [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables); however, these operations can and do create temporary partition files.
 
-A instrução `ALTER TABLE` com `DISCARD ... PARTITION ... TABLESPACE` ou `IMPORT ... PARTITION ... TABLESPACE` não cria tabelas temporárias ou arquivos de partição temporários.
+`ADD` or `DROP` operations for `RANGE` or `LIST` partitions are immediate operations or nearly so. `ADD` or `COALESCE` operations for `HASH` or `KEY` partitions copy data between all partitions, unless `LINEAR HASH` or `LINEAR KEY` was used; this is effectively the same as creating a new table, although the `ADD` or `COALESCE` operation is performed partition by partition. `REORGANIZE` operations copy only changed partitions and do not touch unchanged ones.
 
-A instrução `ALTER TABLE` com `ADD PARTITION`, `DROP PARTITION`, `COALESCE PARTITION`, `REBUILD PARTITION` ou `REORGANIZE PARTITION` não cria tabelas temporárias (exceto quando usadas com tabelas `NDB` (mysql-cluster.html)); no entanto, essas operações podem e criam arquivos de partição temporários.
+For `MyISAM` tables, you can speed up index re-creation (the slowest part of the alteration process) by setting the [`myisam_sort_buffer_size`](server-system-variables.html#sysvar_myisam_sort_buffer_size) system variable to a high value.
 
-As operações `ADD` ou `DROP` para partições `RANGE` ou `LIST` são operações imediatas ou quase imediatas. As operações `ADD` ou `COALESCE` para partições `HASH` ou `KEY` copiam dados entre todas as partições, a menos que tenha sido usado `HASH LINEAR` ou `KEY LINEAR`; isso é efetivamente o mesmo que criar uma nova tabela, embora a operação `ADD` ou `COALESCE` seja realizada partição por partição. As operações `REORGANIZE` copiam apenas as partições alteradas e não tocam nas que não foram alteradas.
+#### Concurrency Control
 
-Para tabelas `MyISAM`, você pode acelerar a recriação de índices (a parte mais lenta do processo de alteração) definindo a variável de sistema `myisam_sort_buffer_size` para um valor alto.
+For [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") operations that support it, you can use the `LOCK` clause to control the level of concurrent reads and writes on a table while it is being altered. Specifying a non-default value for this clause enables you to require a certain amount of concurrent access or exclusivity during the alter operation, and halts the operation if the requested degree of locking is not available. The parameters for the `LOCK` clause are:
 
-#### Controle de Concorrência
+* `LOCK = DEFAULT`
 
-Para operações de `ALTER TABLE` que a suportam, você pode usar a cláusula `LOCK` para controlar o nível de leituras e escritas concorrentes em uma tabela enquanto ela está sendo alterada. Especificar um valor não padrão para essa cláusula permite que você exija um determinado nível de acesso ou exclusividade concorrente durante a operação de alteração e interrompa a operação se o grau de bloqueio solicitado não estiver disponível. Os parâmetros para a cláusula `LOCK` são:
+  Maximum level of concurrency for the given `ALGORITHM` clause (if any) and `ALTER TABLE` operation: Permit concurrent reads and writes if supported. If not, permit concurrent reads if supported. If not, enforce exclusive access.
 
-- `LOCK = DEFAULT`
+* `LOCK = NONE`
 
-  Nível máximo de concorrência para a cláusula `ALGORITHM` (se houver) e a operação `ALTER TABLE`: Permita leituras e escritas concorrentes se suportadas. Se não for o caso, permita leituras concorrentes se suportadas. Se não for o caso, imponha acesso exclusivo.
+  If supported, permit concurrent reads and writes. Otherwise, an error occurs.
 
-- `LOCK = NONE`
+* `LOCK = SHARED`
 
-  Se estiver habilitado, permita leituras e escritas simultâneas. Caso contrário, ocorrerá um erro.
+  If supported, permit concurrent reads but block writes. Writes are blocked even if concurrent writes are supported by the storage engine for the given `ALGORITHM` clause (if any) and `ALTER TABLE` operation. If concurrent reads are not supported, an error occurs.
 
-- `LOCK = SHARED`
+* `LOCK = EXCLUSIVE`
 
-  Se suportado, permita leituras concorrentes, mas bloqueie escritas. As escritas são bloqueadas mesmo que as escritas concorrentes sejam suportadas pelo mecanismo de armazenamento para a cláusula `ALGORITHM` (se houver) e a operação `ALTER TABLE`. Se as leituras concorrentes não forem suportadas, ocorrerá um erro.
+  Enforce exclusive access. This is done even if concurrent reads/writes are supported by the storage engine for the given `ALGORITHM` clause (if any) and `ALTER TABLE` operation.
 
-- `LOCK = EXCLUSIVO`
+#### Adding and Dropping Columns
 
-  Forneça acesso exclusivo. Isso é feito mesmo que leituras/escritas concorrentes sejam suportadas pelo mecanismo de armazenamento para a cláusula `ALGORITHM` especificada (se houver) e a operação `ALTER TABLE`.
+Use `ADD` to add new columns to a table, and `DROP` to remove existing columns. `DROP col_name` is a MySQL extension to standard SQL.
 
-#### Adicionar e Remover Colunas
+To add a column at a specific position within a table row, use `FIRST` or `AFTER col_name`. The default is to add the column last.
 
-Use `ADD` para adicionar novas colunas a uma tabela e `DROP` para remover colunas existentes. `DROP col_name` é uma extensão do MySQL para o SQL padrão.
+If a table contains only one column, the column cannot be dropped. If what you intend is to remove the table, use the [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement") statement instead.
 
-Para adicionar uma coluna em uma posição específica dentro de uma linha da tabela, use `FIRST` ou `AFTER col_name`. O padrão é adicionar a coluna por último.
+If columns are dropped from a table, the columns are also removed from any index of which they are a part. If all columns that make up an index are dropped, the index is dropped as well.
 
-Se uma tabela contiver apenas uma coluna, a coluna não pode ser excluída. Se o que você pretende é remover a tabela, use a instrução `DROP TABLE` em vez disso.
+#### Renaming, Redefining, and Reordering Columns
 
-Se as colunas forem excluídas de uma tabela, elas também serão removidas de qualquer índice em que façam parte. Se todas as colunas que compõem um índice forem excluídas, o índice também será excluído.
+The `CHANGE`, `MODIFY`, and `ALTER` clauses enable the names and definitions of existing columns to be altered. They have these comparative characteristics:
 
-#### Renomear, redefinir e reorganizar colunas
+* `CHANGE`:
 
-As cláusulas `CHANGE`, `MODIFY` e `ALTER` permitem alterar os nomes e definições das colunas existentes. Elas têm essas características comparativas:
+  + Can rename a column and change its definition, or both.
+  + Has more capability than `MODIFY`, but at the expense of convenience for some operations. `CHANGE` requires naming the column twice if not renaming it.
 
-- `ALTERAR`:
+  + With `FIRST` or `AFTER`, can reorder columns.
 
-  - Pode renomear uma coluna e alterar sua definição, ou ambos.
+* `MODIFY`:
 
-  - Tem mais recursos do que `MODIFY`, mas a expensas da conveniência para algumas operações. `CHANGE` exige que você nomeie a coluna duas vezes, a menos que a renomeie.
+  + Can change a column definition but not its name.
+  + More convenient than `CHANGE` to change a column definition without renaming it.
 
-  - Com `FIRST` ou `AFTER`, você pode reorganizar as colunas.
+  + With `FIRST` or `AFTER`, can reorder columns.
 
-- `MODIFICAR`:
+* `ALTER`: Used only to change a column default value.
 
-  - Pode alterar a definição de uma coluna, mas não seu nome.
+`CHANGE` is a MySQL extension to standard SQL. `MODIFY` is a MySQL extension for Oracle compatibility.
 
-  - Mais conveniente do que `CHANGE` para alterar a definição de uma coluna sem renomeá-la.
-
-  - Com `FIRST` ou `AFTER`, você pode reorganizar as colunas.
-
-- `ALTER`: Usado apenas para alterar o valor padrão de uma coluna.
-
-`CHANGE` é uma extensão do MySQL para SQL padrão. `MODIFY` é uma extensão do MySQL para compatibilidade com Oracle.
-
-Para alterar uma coluna para alterar tanto seu nome quanto sua definição, use `CHANGE`, especificando os nomes antigos e novos e a nova definição. Por exemplo, para renomear uma coluna `INT NOT NULL` de `a` para `b` e alterar sua definição para usar o tipo de dados `BIGINT`, mantendo o atributo `NOT NULL`, faça o seguinte:
+To alter a column to change both its name and definition, use `CHANGE`, specifying the old and new names and the new definition. For example, to rename an `INT NOT NULL` column from `a` to `b` and change its definition to use the `BIGINT` data type while retaining the `NOT NULL` attribute, do this:
 
 ```sql
 ALTER TABLE t1 CHANGE a b BIGINT NOT NULL;
 ```
 
-Para alterar a definição de uma coluna, mas não seu nome, use `CHANGE` ou `MODIFY`. Com `CHANGE`, a sintaxe exige dois nomes de coluna, então você deve especificar o mesmo nome duas vezes para não alterar o nome. Por exemplo, para alterar a definição da coluna `b`, faça isso:
+To change a column definition but not its name, use `CHANGE` or `MODIFY`. With `CHANGE`, the syntax requires two column names, so you must specify the same name twice to leave the name unchanged. For example, to change the definition of column `b`, do this:
 
 ```sql
 ALTER TABLE t1 CHANGE b b INT NOT NULL;
 ```
 
-`MODIFY` é mais conveniente para alterar a definição sem alterar o nome, pois requer o nome da coluna apenas uma vez:
+`MODIFY` is more convenient to change the definition without changing the name because it requires the column name only once:
 
 ```sql
 ALTER TABLE t1 MODIFY b INT NOT NULL;
 ```
 
-Para alterar o nome de uma coluna, mas não sua definição, use `CHANGE`. A sintaxe exige uma definição de coluna, então, para não alterar a definição, você deve especificar novamente a definição que a coluna tem atualmente. Por exemplo, para renomear uma coluna `INT NOT NULL` de `b` para `a`, faça o seguinte:
+To change a column name but not its definition, use `CHANGE`. The syntax requires a column definition, so to leave the definition unchanged, you must respecify the definition the column currently has. For example, to rename an `INT NOT NULL` column from `b` to `a`, do this:
 
 ```sql
 ALTER TABLE t1 CHANGE b a INT NOT NULL;
 ```
 
-Para alterações na definição de colunas usando `CHANGE` ou `MODIFY`, a definição deve incluir o tipo de dados e todos os atributos que devem ser aplicados à nova coluna, exceto atributos de índice como `PRIMARY KEY` ou `UNIQUE`. Os atributos presentes na definição original, mas não especificados na nova definição, não são mantidos. Suponha que uma coluna `col1` seja definida como `INT UNSIGNED DEFAULT 1 COMMENT 'minha coluna'` e você modifique a coluna da seguinte forma, com a intenção de alterar apenas `INT` para `BIGINT`:
+For column definition changes using `CHANGE` or `MODIFY`, the definition must include the data type and all attributes that should apply to the new column, other than index attributes such as `PRIMARY KEY` or `UNIQUE`. Attributes present in the original definition but not specified for the new definition are not carried forward. Suppose that a column `col1` is defined as `INT UNSIGNED DEFAULT 1 COMMENT 'my column'` and you modify the column as follows, intending to change only `INT` to `BIGINT`:
 
 ```sql
 ALTER TABLE t1 MODIFY col1 BIGINT;
 ```
 
-Essa declaração altera o tipo de dado de `INT` para `BIGINT`, mas também exclui os atributos `UNSIGNED`, `DEFAULT` e `COMMENT`. Para mantê-los, a declaração deve incluí-los explicitamente:
+That statement changes the data type from `INT` to `BIGINT`, but it also drops the `UNSIGNED`, `DEFAULT`, and `COMMENT` attributes. To retain them, the statement must include them explicitly:
 
 ```sql
 ALTER TABLE t1 MODIFY col1 BIGINT UNSIGNED DEFAULT 1 COMMENT 'my column';
 ```
 
-Para alterações de tipo de dados usando `CHANGE` ou `MODIFY`, o MySQL tenta converter os valores existentes das colunas para o novo tipo da melhor maneira possível.
+For data type changes using `CHANGE` or `MODIFY`, MySQL tries to convert existing column values to the new type as well as possible.
 
-Aviso
+Warning
 
-Essa conversão pode resultar em alterações nos dados. Por exemplo, se você encurtar uma coluna de string, os valores podem ser truncados. Para evitar que a operação seja bem-sucedida se as conversões para o novo tipo de dado resultar em perda de dados, habilite o modo SQL rigoroso antes de usar `ALTER TABLE` (consulte Seção 5.1.10, “Modos SQL do Servidor”).
+This conversion may result in alteration of data. For example, if you shorten a string column, values may be truncated. To prevent the operation from succeeding if conversions to the new data type would result in loss of data, enable strict SQL mode before using [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") (see [Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes")).
 
-Se você usar `CHANGE` ou `MODIFY` para encurtar uma coluna para a qual existe um índice na coluna, e o comprimento da coluna resultante for menor que o comprimento do índice, o MySQL encurta o índice automaticamente.
+If you use `CHANGE` or `MODIFY` to shorten a column for which an index exists on the column, and the resulting column length is less than the index length, MySQL shortens the index automatically.
 
-Para colunas renomeadas por `CHANGE`, o MySQL renomeia automaticamente essas referências para a coluna renomeada:
+For columns renamed by `CHANGE`, MySQL automatically renames these references to the renamed column:
 
-- Índices que se referem à coluna antiga, incluindo índices e índices `MyISAM` desativados.
+* Indexes that refer to the old column, including indexes and disabled `MyISAM` indexes.
 
-- Chaves estrangeiras que se referem à coluna antiga.
+* Foreign keys that refer to the old column.
 
-Para colunas renomeadas por `CHANGE`, o MySQL não renomeia automaticamente essas referências para a coluna renomeada:
+For columns renamed by `CHANGE`, MySQL does not automatically rename these references to the renamed column:
 
-- Expressões de coluna e partição geradas que se referem à coluna renomeada. Você deve usar `CHANGE` para redefinir essas expressões na mesma declaração `ALTER TABLE` que renomeia a coluna.
+* Generated column and partition expressions that refer to the renamed column. You must use `CHANGE` to redefine such expressions in the same [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statement as the one that renames the column.
 
-- Visões e programas armazenados que fazem referência à coluna renomeada. Você deve alterar manualmente a definição desses objetos para fazer referência ao novo nome da coluna.
+* Views and stored programs that refer to the renamed column. You must manually alter the definition of these objects to refer to the new column name.
 
-Para reorganizar as colunas de uma tabela, use `FIRST` e `AFTER` nas operações `CHANGE` ou `MODIFY`.
+To reorder columns within a table, use `FIRST` and `AFTER` in `CHANGE` or `MODIFY` operations.
 
-`ALTER ... SET DEFAULT` ou `ALTER ... DROP DEFAULT` especificam um novo valor padrão para uma coluna ou removem o valor padrão antigo, respectivamente. Se o valor padrão antigo for removido e a coluna puder ser `NULL`, o novo valor padrão será `NULL`. Se a coluna não puder ser `NULL`, o MySQL atribui um valor padrão conforme descrito em Seção 11.6, “Valores padrão de tipo de dados”.
+`ALTER ... SET DEFAULT` or `ALTER ... DROP DEFAULT` specify a new default value for a column or remove the old default value, respectively. If the old default is removed and the column can be `NULL`, the new default is `NULL`. If the column cannot be `NULL`, MySQL assigns a default value as described in [Section 11.6, “Data Type Default Values”](data-type-defaults.html "11.6 Data Type Default Values").
 
-`ALTER ... SET DEFAULT` não pode ser usado com a função `CURRENT_TIMESTAMP`.
+`ALTER ... SET DEFAULT` cannot be used with the [`CURRENT_TIMESTAMP`](date-and-time-functions.html#function_current-timestamp) function.
 
-#### Chaves Primárias e Índices
+#### Primary Keys and Indexes
 
-`DROP PRIMARY KEY` exclui a chave primária. Se não houver uma chave primária, ocorrerá um erro. Para obter informações sobre as características de desempenho das chaves primárias, especialmente para tabelas `InnoDB`, consulte Seção 8.3.2, “Otimização da Chave Primária”.
+`DROP PRIMARY KEY` drops the [primary key](glossary.html#glos_primary_key "primary key"). If there is no primary key, an error occurs. For information about the performance characteristics of primary keys, especially for `InnoDB` tables, see [Section 8.3.2, “Primary Key Optimization”](primary-key-optimization.html "8.3.2 Primary Key Optimization").
 
-Se você adicionar um `UNIQUE INDEX` ou `PRIMARY KEY` a uma tabela, o MySQL armazena-o antes de qualquer índice não exclusivo para permitir a detecção de chaves duplicadas o mais cedo possível.
+If you add a `UNIQUE INDEX` or `PRIMARY KEY` to a table, MySQL stores it before any nonunique index to permit detection of duplicate keys as early as possible.
 
-`DROP INDEX` remove um índice. Esta é uma extensão do MySQL para o SQL padrão. Veja Seção 13.1.25, “Instrução DROP INDEX”. Para determinar os nomes dos índices, use `SHOW INDEX FROM tbl_name`.
+[`DROP INDEX`](drop-index.html "13.1.25 DROP INDEX Statement") removes an index. This is a MySQL extension to standard SQL. See [Section 13.1.25, “DROP INDEX Statement”](drop-index.html "13.1.25 DROP INDEX Statement"). To determine index names, use `SHOW INDEX FROM tbl_name`.
 
-Alguns motores de armazenamento permitem que você especifique um tipo de índice ao criar um índice. A sintaxe para o especificador *`index_type`* é `USING type_name`. Para obter detalhes sobre `USING`, consulte Seção 13.1.14, “Instrução CREATE INDEX”. A posição preferida é após a lista de colunas. Você deve esperar que o suporte para a opção antes da lista de colunas seja removido em uma futura versão do MySQL.
+Some storage engines permit you to specify an index type when creating an index. The syntax for the *`index_type`* specifier is `USING type_name`. For details about `USING`, see [Section 13.1.14, “CREATE INDEX Statement”](create-index.html "13.1.14 CREATE INDEX Statement"). The preferred position is after the column list. You should expect support for use of the option before the column list to be removed in a future MySQL release.
 
-Os valores de *`index_option`* especificam opções adicionais para um índice. Para obter detalhes sobre os valores de *`index_option`* permitidos, consulte Seção 13.1.14, “Instrução CREATE INDEX”.
+*`index_option`* values specify additional options for an index. For details about permissible *`index_option`* values, see [Section 13.1.14, “CREATE INDEX Statement”](create-index.html "13.1.14 CREATE INDEX Statement").
 
-`RENAME INDEX old_index_name TO new_index_name` renomeia um índice. Esta é uma extensão do MySQL para o SQL padrão. O conteúdo da tabela permanece inalterado. *`old_index_name`* deve ser o nome de um índice existente na tabela que não seja excluído pela mesma declaração `ALTER TABLE` (alter-table.html). *`new_index_name`* é o novo nome do índice, que não pode duplicar o nome de um índice na tabela resultante após as alterações terem sido aplicadas. Nenhum nome de índice pode ser `PRIMARY`.
+`RENAME INDEX old_index_name TO new_index_name` renames an index. This is a MySQL extension to standard SQL. The content of the table remains unchanged. *`old_index_name`* must be the name of an existing index in the table that is not dropped by the same [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statement. *`new_index_name`* is the new index name, which cannot duplicate the name of an index in the resulting table after changes have been applied. Neither index name can be `PRIMARY`.
 
-Se você usar `ALTER TABLE` em uma tabela `MyISAM`, todos os índices não exclusivos são criados em um lote separado (como no caso de `REPAIR TABLE`). Isso deve tornar `ALTER TABLE` muito mais rápido quando você tiver muitos índices.
+If you use [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") on a `MyISAM` table, all nonunique indexes are created in a separate batch (as for [`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement")). This should make [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") much faster when you have many indexes.
 
-Para tabelas `MyISAM`, a atualização de chaves pode ser controlada explicitamente. Use `ALTER TABLE ... DISABLE KEYS` para dizer ao MySQL para parar de atualizar índices não únicos. Em seguida, use `ALTER TABLE ... ENABLE KEYS` para recriar índices ausentes. O `MyISAM` faz isso com um algoritmo especial que é muito mais rápido do que inserir chaves uma por uma, então desabilitar chaves antes de realizar operações de inserção em massa deve proporcionar um aumento considerável de velocidade. O uso de `ALTER TABLE ... DISABLE KEYS` requer o privilégio `INDEX`, além dos privilégios mencionados anteriormente.
+For `MyISAM` tables, key updating can be controlled explicitly. Use `ALTER TABLE ... DISABLE KEYS` to tell MySQL to stop updating nonunique indexes. Then use `ALTER TABLE ... ENABLE KEYS` to re-create missing indexes. `MyISAM` does this with a special algorithm that is much faster than inserting keys one by one, so disabling keys before performing bulk insert operations should give a considerable speedup. Using `ALTER TABLE ... DISABLE KEYS` requires the [`INDEX`](privileges-provided.html#priv_index) privilege in addition to the privileges mentioned earlier.
 
-Embora os índices não únicos estejam desativados, eles são ignorados para declarações como `SELECT` e `EXPLAIN` que, de outra forma, os usariam.
+While the nonunique indexes are disabled, they are ignored for statements such as [`SELECT`](select.html "13.2.9 SELECT Statement") and [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") that otherwise would use them.
 
-Após uma declaração de `ALTER TABLE`, pode ser necessário executar `ANALYZE TABLE` para atualizar as informações de cardinalidade do índice. Veja Seção 13.7.5.22, “Declaração SHOW INDEX”.
+After an [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statement, it may be necessary to run [`ANALYZE TABLE`](analyze-table.html "13.7.2.1 ANALYZE TABLE Statement") to update index cardinality information. See [Section 13.7.5.22, “SHOW INDEX Statement”](show-index.html "13.7.5.22 SHOW INDEX Statement").
 
-#### Chaves Estrangeiras e Outras Restrições
+#### Foreign Keys and Other Constraints
 
-As cláusulas `FOREIGN KEY` e `REFERENCES` são suportadas pelos motores de armazenamento `InnoDB` e `NDB`, que implementam `ADD [CONSTRAINT [símbolo FOREIGN KEY [nome_índice] (...) REFERENCES ... (...)`. Veja Seção 1.6.3.2, “Restrições FOREIGN KEY”. Para outros motores de armazenamento, as cláusulas são analisadas, mas ignoradas.
+The `FOREIGN KEY` and `REFERENCES` clauses are supported by the `InnoDB` and `NDB` storage engines, which implement `ADD [CONSTRAINT [symbol FOREIGN KEY [index_name] (...) REFERENCES ... (...)`. See [Section 1.6.3.2, “FOREIGN KEY Constraints”](constraint-foreign-key.html "1.6.3.2 FOREIGN KEY Constraints"). For other storage engines, the clauses are parsed but ignored.
 
-A cláusula de restrição `CHECK` é analisada, mas ignorada por todos os mecanismos de armazenamento. Veja Seção 13.1.18, “Instrução CREATE TABLE”. A razão para aceitar, mas ignorar, cláusulas de sintaxe é para compatibilidade, para facilitar a migração de código de outros servidores SQL e para executar aplicações que criam tabelas com referências. Veja Seção 1.6.2, “Diferenças do MySQL em relação ao SQL Padrão”.
+The `CHECK` constraint clause is parsed but ignored by all storage engines. See [Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement"). The reason for accepting but ignoring syntax clauses is for compatibility, to make it easier to port code from other SQL servers, and to run applications that create tables with references. See [Section 1.6.2, “MySQL Differences from Standard SQL”](differences-from-ansi.html "1.6.2 MySQL Differences from Standard SQL").
 
-Para `ALTER TABLE`, ao contrário de `CREATE TABLE`, `ADD FOREIGN KEY` ignora *`index_name`* se fornecido e usa um nome de chave estrangeira gerado automaticamente. Como solução alternativa, inclua a cláusula `CONSTRAINT` para especificar o nome da chave estrangeira:
+For [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement"), unlike [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement"), `ADD FOREIGN KEY` ignores *`index_name`* if given and uses an automatically generated foreign key name. As a workaround, include the `CONSTRAINT` clause to specify the foreign key name:
 
 ```sql
 ADD CONSTRAINT name FOREIGN KEY (....) ...
 ```
 
-Importante
+Important
 
-O MySQL ignora silenciosamente as especificações `REFERENCES` em linha, onde as referências são definidas como parte da especificação da coluna. O MySQL aceita apenas cláusulas `REFERENCES` definidas como parte de uma especificação `FOREIGN KEY` separada.
+MySQL silently ignores inline `REFERENCES` specifications, where the references are defined as part of the column specification. MySQL accepts only `REFERENCES` clauses defined as part of a separate `FOREIGN KEY` specification.
 
-Nota
+Note
 
-As tabelas `InnoDB` particionadas não suportam chaves estrangeiras. Essa restrição não se aplica às tabelas `NDB`, incluindo aquelas particionadas explicitamente por `[LINEAR] KEY`. Para mais informações, consulte Seção 22.6.2, “Limitações de Partição Relacionadas aos Motores de Armazenamento”.
+Partitioned `InnoDB` tables do not support foreign keys. This restriction does not apply to `NDB` tables, including those explicitly partitioned by `[LINEAR] KEY`. For more information, see [Section 22.6.2, “Partitioning Limitations Relating to Storage Engines”](partitioning-limitations-storage-engines.html "22.6.2 Partitioning Limitations Relating to Storage Engines").
 
-O MySQL Server e o NDB Cluster suportam o uso de `ALTER TABLE` para excluir chaves estrangeiras:
+MySQL Server and NDB Cluster both support the use of [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") to drop foreign keys:
 
 ```sql
 ALTER TABLE tbl_name DROP FOREIGN KEY fk_symbol;
 ```
 
-A adição e a remoção de uma chave estrangeira na mesma instrução `ALTER TABLE` são suportadas para `ALTER TABLE ... ALGORITHM=INPLACE`, mas não para `ALTER TABLE ... ALGORITHM=COPY`.
+Adding and dropping a foreign key in the same [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statement is supported for [`ALTER TABLE ... ALGORITHM=INPLACE`](alter-table.html "13.1.8 ALTER TABLE Statement") but not for [`ALTER TABLE ... ALGORITHM=COPY`](alter-table.html "13.1.8 ALTER TABLE Statement").
 
-O servidor proíbe alterações nas colunas de chave estrangeira que possam causar perda de integridade referencial. Uma solução é usar `ALTER TABLE ... DROP FOREIGN KEY` antes de alterar a definição da coluna e `ALTER TABLE ... ADD FOREIGN KEY` depois. Exemplos de alterações proibidas incluem:
+The server prohibits changes to foreign key columns that have the potential to cause loss of referential integrity. A workaround is to use [`ALTER TABLE ... DROP FOREIGN KEY`](alter-table.html "13.1.8 ALTER TABLE Statement") before changing the column definition and [`ALTER TABLE ... ADD FOREIGN KEY`](alter-table.html "13.1.8 ALTER TABLE Statement") afterward. Examples of prohibited changes include:
 
-- Alterações no tipo de dados de colunas de chave estrangeira que podem ser inseguras. Por exemplo, alterar `VARCHAR(20)` para `VARCHAR(30)` é permitido, mas alterá-lo para `VARCHAR(1024)` não é permitido porque isso altera o número de bytes de comprimento necessários para armazenar valores individuais.
+* Changes to the data type of foreign key columns that may be unsafe. For example, changing [`VARCHAR(20)`](char.html "11.3.2 The CHAR and VARCHAR Types") to [`VARCHAR(30)`](char.html "11.3.2 The CHAR and VARCHAR Types") is permitted, but changing it to [`VARCHAR(1024)`](char.html "11.3.2 The CHAR and VARCHAR Types") is not because that alters the number of length bytes required to store individual values.
 
-- Alterar uma coluna `NULL` para `NOT NULL` no modo não estrito é proibido para evitar a conversão de valores `NULL` em valores padrão `NOT NULL`, para os quais não existem valores correspondentes na tabela referenciada. A operação é permitida no modo estrito, mas um erro é retornado se tal conversão for necessária.
+* Changing a `NULL` column to `NOT NULL` in non-strict mode is prohibited to prevent converting `NULL` values to default non-`NULL` values, for which there are no corresponding values in the referenced table. The operation is permitted in strict mode, but an error is returned if any such conversion is required.
 
-`ALTER TABLE tbl_name RENAME new_tbl_name` altera os nomes internos das restrições de chave estrangeira e os nomes de restrições de chave estrangeira definidos pelo usuário que começam com a string “*`tbl_name`**ibfk*” para refletir o novo nome da tabela. O `InnoDB` interpreta os nomes de restrições de chave estrangeira que começam com a string “*`tbl_name`**ibfk*” como nomes gerados internamente.
+`ALTER TABLE tbl_name RENAME new_tbl_name` changes internally generated foreign key constraint names and user-defined foreign key constraint names that begin with the string “*`tbl_name`*_ibfk_” to reflect the new table name. `InnoDB` interprets foreign key constraint names that begin with the string “*`tbl_name`*_ibfk_” as internally generated names.
 
-#### Alterar o conjunto de caracteres
+#### Changing the Character Set
 
-Para alterar o conjunto de caracteres padrão da tabela e todas as colunas de caracteres (`CHAR`, `VARCHAR`, `TEXT`) para um novo conjunto de caracteres, use uma instrução como esta:
+To change the table default character set and all character columns ([`CHAR`](char.html "11.3.2 The CHAR and VARCHAR Types"), [`VARCHAR`](char.html "11.3.2 The CHAR and VARCHAR Types"), [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types")) to a new character set, use a statement like this:
 
 ```sql
 ALTER TABLE tbl_name CONVERT TO CHARACTER SET charset_name;
 ```
 
-A declaração também altera a ordenação de todas as colunas de caracteres. Se você não especificar nenhuma cláusula `COLLATE` para indicar qual ordenação usar, a declaração usará a ordenação padrão para o conjunto de caracteres. Se essa ordenação for inadequada para o uso pretendido da tabela (por exemplo, se ela mudaria de uma ordenação sensível a maiúsculas para uma ordenação sensível a minúsculas), especifique explicitamente uma ordenação.
+The statement also changes the collation of all character columns. If you specify no `COLLATE` clause to indicate which collation to use, the statement uses default collation for the character set. If this collation is inappropriate for the intended table use (for example, if it would change from a case-sensitive collation to a case-insensitive collation), specify a collation explicitly.
 
-Para uma coluna com um tipo de dados de `VARCHAR` ou um dos tipos `TEXT`, `CONVERT TO CHARACTER SET` altera o tipo de dados conforme necessário para garantir que a nova coluna tenha o tamanho suficiente para armazenar tantos caracteres quanto a coluna original. Por exemplo, uma coluna `TEXT` tem dois bytes de comprimento, que armazenam o comprimento em bytes dos valores na coluna, até um máximo de 65.535. Para uma coluna `latin1` `TEXT`, cada caractere requer um único byte, então a coluna pode armazenar até 65.535 caracteres. Se a coluna for convertida para `utf8`, cada caractere pode requerer até três bytes, para um comprimento máximo possível de 3 × 65.535 = 196.605 bytes. Esse comprimento não cabe nos bytes de comprimento de uma coluna `TEXT`, então o MySQL converte o tipo de dados para `MEDIUMTEXT`, que é o menor tipo de string para o qual os bytes de comprimento podem registrar um valor de 196.605. Da mesma forma, uma coluna `VARCHAR` pode ser convertida para `MEDIUMTEXT`.
+For a column that has a data type of [`VARCHAR`](char.html "11.3.2 The CHAR and VARCHAR Types") or one of the [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") types, `CONVERT TO CHARACTER SET` changes the data type as necessary to ensure that the new column is long enough to store as many characters as the original column. For example, a [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") column has two length bytes, which store the byte-length of values in the column, up to a maximum of 65,535. For a `latin1` [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") column, each character requires a single byte, so the column can store up to 65,535 characters. If the column is converted to `utf8`, each character might require up to three bytes, for a maximum possible length of 3 × 65,535 = 196,605 bytes. That length does not fit in a [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") column's length bytes, so MySQL converts the data type to [`MEDIUMTEXT`](blob.html "11.3.4 The BLOB and TEXT Types"), which is the smallest string type for which the length bytes can record a value of 196,605. Similarly, a [`VARCHAR`](char.html "11.3.2 The CHAR and VARCHAR Types") column might be converted to [`MEDIUMTEXT`](blob.html "11.3.4 The BLOB and TEXT Types").
 
-Para evitar alterações no tipo de dados do tipo descrito acima, não use `CONVERT TO CHARACTER SET`. Em vez disso, use `MODIFY` para alterar colunas individuais. Por exemplo:
+To avoid data type changes of the type just described, do not use `CONVERT TO CHARACTER SET`. Instead, use `MODIFY` to change individual columns. For example:
 
 ```sql
 ALTER TABLE t MODIFY latin1_text_col TEXT CHARACTER SET utf8;
 ALTER TABLE t MODIFY latin1_varchar_col VARCHAR(M) CHARACTER SET utf8;
 ```
 
-Se você especificar `CONVERT TO CHARACTER SET binary`, as colunas `CHAR`, `VARCHAR` e `TEXT` são convertidas para seus tipos de string binária correspondentes (`BINARY`, `VARBINARY`, `BLOB`). Isso significa que as colunas não têm mais um conjunto de caracteres e uma operação subsequente `CONVERT TO` não se aplica a elas.
+If you specify `CONVERT TO CHARACTER SET binary`, the [`CHAR`](char.html "11.3.2 The CHAR and VARCHAR Types"), [`VARCHAR`](char.html "11.3.2 The CHAR and VARCHAR Types"), and [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") columns are converted to their corresponding binary string types ([`BINARY`](binary-varbinary.html "11.3.3 The BINARY and VARBINARY Types"), [`VARBINARY`](binary-varbinary.html "11.3.3 The BINARY and VARBINARY Types"), [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types")). This means that the columns no longer have a character set and a subsequent `CONVERT TO` operation does not apply to them.
 
-Se `charset_name` for `DEFAULT` em uma operação `CONVERT TO CHARACTER SET`, o conjunto de caracteres nomeado pela variável de sistema `character_set_database` é usado.
+If *`charset_name`* is `DEFAULT` in a `CONVERT TO CHARACTER SET` operation, the character set named by the [`character_set_database`](server-system-variables.html#sysvar_character_set_database) system variable is used.
 
-Aviso
+Warning
 
-A operação `CONVERT TO` converte os valores das colunas entre os conjuntos de caracteres originais e nomeados. Isso *não* é o que você deseja se tiver uma coluna em um conjunto de caracteres (como `latin1`), mas os valores armazenados realmente usam algum outro conjunto de caracteres incompatível (como `utf8`). Nesse caso, você deve fazer o seguinte para cada coluna desse tipo:
+The `CONVERT TO` operation converts column values between the original and named character sets. This is *not* what you want if you have a column in one character set (like `latin1`) but the stored values actually use some other, incompatible character set (like `utf8`). In this case, you have to do the following for each such column:
 
 ```sql
 ALTER TABLE t1 CHANGE c1 c1 BLOB;
 ALTER TABLE t1 CHANGE c1 c1 TEXT CHARACTER SET utf8;
 ```
 
-A razão pela qual isso funciona é que não há conversão quando você converte para ou a partir das colunas `BLOB` (blob.html).
+The reason this works is that there is no conversion when you convert to or from [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") columns.
 
-Para alterar apenas o conjunto de caracteres *padrão* de uma tabela, use esta instrução:
+To change only the *default* character set for a table, use this statement:
 
 ```sql
 ALTER TABLE tbl_name DEFAULT CHARACTER SET charset_name;
 ```
 
-A palavra `DEFAULT` é opcional. O conjunto de caracteres padrão é o conjunto de caracteres que é usado se você não especificar o conjunto de caracteres para as colunas que você adicionar a uma tabela mais tarde (por exemplo, com `ALTER TABLE ... ADD column`).
+The word `DEFAULT` is optional. The default character set is the character set that is used if you do not specify the character set for columns that you add to a table later (for example, with `ALTER TABLE ... ADD column`).
 
-Quando a variável de sistema `foreign_key_checks` está habilitada, que é a configuração padrão, a conversão de conjuntos de caracteres não é permitida em tabelas que incluem uma coluna de string de caracteres usada em uma restrição de chave estrangeira. A solução é desabilitar `foreign_key_checks` antes de realizar a conversão de conjuntos de caracteres. Você deve realizar a conversão em ambas as tabelas envolvidas na restrição de chave estrangeira antes de reativar `foreign_key_checks`. Se você reativar `foreign_key_checks` após converter apenas uma das tabelas, uma operação `ON DELETE CASCADE` ou `ON UPDATE CASCADE` pode corromper os dados na tabela de referência devido à conversão implícita que ocorre durante essas operações (Bug
-\#45290, Bug #74816).
+When the [`foreign_key_checks`](server-system-variables.html#sysvar_foreign_key_checks) system variable is enabled, which is the default setting, character set conversion is not permitted on tables that include a character string column used in a foreign key constraint. The workaround is to disable [`foreign_key_checks`](server-system-variables.html#sysvar_foreign_key_checks) before performing the character set conversion. You must perform the conversion on both tables involved in the foreign key constraint before re-enabling [`foreign_key_checks`](server-system-variables.html#sysvar_foreign_key_checks). If you re-enable [`foreign_key_checks`](server-system-variables.html#sysvar_foreign_key_checks) after converting only one of the tables, an `ON DELETE CASCADE` or `ON UPDATE CASCADE` operation could corrupt data in the referencing table due to implicit conversion that occurs during these operations (Bug
+#45290, Bug #74816).
 
-#### Descartando e importando espaços de tabela InnoDB
+#### Discarding and Importing InnoDB Tablespaces
 
-Uma tabela `InnoDB` criada em seu próprio espaço de tabelas file-per-table pode ser importada a partir de um backup ou de outra instância do servidor MySQL usando as cláusulas `DISCARD TABLEPACE` e `IMPORT TABLESPACE`. Veja Seção 14.6.1.3, “Importação de Tabelas InnoDB”.
+An `InnoDB` table created in its own [file-per-table](glossary.html#glos_file_per_table "file-per-table") tablespace can be imported from a backup or from another MySQL server instance using `DISCARD TABLEPACE` and `IMPORT TABLESPACE` clauses. See [Section 14.6.1.3, “Importing InnoDB Tables”](innodb-table-import.html "14.6.1.3 Importing InnoDB Tables").
 
-#### Ordem de Linha para Tabelas MyISAM
+#### Row Order for MyISAM Tables
 
-A opção `ORDER BY` permite que você crie a nova tabela com as linhas em uma ordem específica. Esta opção é útil principalmente quando você sabe que consulta as linhas em uma ordem específica na maioria das vezes. Ao usar esta opção após alterações importantes na tabela, você pode obter um desempenho maior. Em alguns casos, isso pode facilitar o ordenamento no MySQL se a tabela estiver ordenada pela coluna pela qual você deseja ordená-la posteriormente.
+`ORDER BY` enables you to create the new table with the rows in a specific order. This option is useful primarily when you know that you query the rows in a certain order most of the time. By using this option after major changes to the table, you might be able to get higher performance. In some cases, it might make sorting easier for MySQL if the table is in order by the column that you want to order it by later.
 
-Nota
+Note
 
-A tabela não permanece na ordem especificada após inserções e exclusões.
+The table does not remain in the specified order after inserts and deletes.
 
-A sintaxe `ORDER BY` permite que um ou mais nomes de colunas sejam especificados para a ordenação, cada um dos quais pode ser seguido opcionalmente por `ASC` ou `DESC` para indicar a ordem de classificação ascendente ou descendente, respectivamente. O padrão é a ordem ascendente. Apenas nomes de colunas são permitidos como critérios de classificação; expressões arbitrárias não são permitidas. Esta cláusula deve ser a última após qualquer outra cláusula.
+`ORDER BY` syntax permits one or more column names to be specified for sorting, each of which optionally can be followed by `ASC` or `DESC` to indicate ascending or descending sort order, respectively. The default is ascending order. Only column names are permitted as sort criteria; arbitrary expressions are not permitted. This clause should be given last after any other clauses.
 
-A cláusula `ORDER BY` não faz sentido para tabelas do `InnoDB`, pois o `InnoDB` sempre ordena as linhas da tabela de acordo com o índice agrupado.
+`ORDER BY` does not make sense for `InnoDB` tables because `InnoDB` always orders table rows according to the [clustered index](glossary.html#glos_clustered_index "clustered index").
 
-Quando usado em uma tabela particionada, `ALTER TABLE ... ORDER BY` ordena as linhas apenas dentro de cada particionamento.
+When used on a partitioned table, `ALTER TABLE ... ORDER BY` orders rows within each partition only.
 
-#### Opções de Partição
+#### Partitioning Options
 
-*`partition_options`* indica opções que podem ser usadas com tabelas particionadas para repartir, adicionar, excluir, descartar, importar, mesclar e dividir partições, além de realizar a manutenção da partição.
+*`partition_options`* signifies options that can be used with partitioned tables for repartitioning, to add, drop, discard, import, merge, and split partitions, and to perform partitioning maintenance.
 
-É possível que uma instrução `ALTER TABLE` contenha uma cláusula `PARTITION BY` ou `REMOVE PARTITIONING` em uma adição a outras especificações de alteração, mas a cláusula `PARTITION BY` ou `REMOVE PARTITIONING` deve ser especificada por último, após qualquer outra especificação. As opções `ADD PARTITION`, `DROP PARTITION`, `DISCARD PARTITION`, `IMPORT PARTITION`, `COALESCE PARTITION`, `REORGANIZE PARTITION`, `EXCHANGE PARTITION`, `ANALYZE PARTITION`, `CHECK PARTITION` e `REPAIR PARTITION` não podem ser combinadas com outras especificações de alteração em uma única `ALTER TABLE`, pois as opções listadas acima atuam em partições individuais.
+It is possible for an [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statement to contain a `PARTITION BY` or `REMOVE PARTITIONING` clause in an addition to other alter specifications, but the `PARTITION BY` or `REMOVE PARTITIONING` clause must be specified last after any other specifications. The `ADD PARTITION`, `DROP PARTITION`, `DISCARD PARTITION`, `IMPORT PARTITION`, `COALESCE PARTITION`, `REORGANIZE PARTITION`, `EXCHANGE PARTITION`, `ANALYZE PARTITION`, `CHECK PARTITION`, and `REPAIR PARTITION` options cannot be combined with other alter specifications in a single `ALTER TABLE`, since the options just listed act on individual partitions.
 
-Para obter mais informações sobre as opções de partição, consulte Seção 13.1.18, “Instrução CREATE TABLE” e Seção 13.1.8.1, “Operações de Partição ALTER TABLE”. Para obter informações e exemplos sobre as instruções `ALTER TABLE ... EXCHANGE PARTITION`, consulte Seção 22.3.3, “Troca de Partições e Subpartições com Tabelas”.
+For more information about partition options, see [Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement"), and [Section 13.1.8.1, “ALTER TABLE Partition Operations”](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations"). For information about and examples of `ALTER TABLE ... EXCHANGE PARTITION` statements, see [Section 22.3.3, “Exchanging Partitions and Subpartitions with Tables”](partitioning-management-exchange.html "22.3.3 Exchanging Partitions and Subpartitions with Tables").
 
-Antes do MySQL 5.7.6, as tabelas `InnoDB` particionadas usavam o manipulador de particionamento genérico `ha_partition` empregado pelo `MyISAM` e outros motores de armazenamento que não forneciam seus próprios manipuladores de particionamento; no MySQL 5.7.6 e versões posteriores, essas tabelas são criadas usando o próprio manipulador de particionamento (`InnoDB`) (ou "nativo") do motor de armazenamento. A partir do MySQL 5.7.9, você pode atualizar uma tabela `InnoDB` criada no MySQL 5.7.6 ou versões anteriores (ou seja, criada usando `ha_partition`) para o manipulador de particionamento nativo do `InnoDB` usando `ALTER TABLE ... UPGRADE PARTITIONING`. (Bug #76734, Bug #20727344) Essa sintaxe de `ALTER TABLE` não aceita outras opções e só pode ser usada em uma única tabela de cada vez. Você também pode usar **mysql_upgrade** no MySQL 5.7.9 ou versões posteriores para atualizar tabelas **InnoDB** particionadas mais antigas para o manipulador de particionamento nativo.
+Prior to MySQL 5.7.6, partitioned `InnoDB` tables used the generic `ha_partition` partitioning handler employed by `MyISAM` and other storage engines not supplying their own partitioning handlers; in MySQL 5.7.6 and later, such tables are created using the `InnoDB` storage engine's own (or “native”) partitioning handler. Beginning with MySQL 5.7.9, you can upgrade an `InnoDB` table that was created in MySQL 5.7.6 or earlier (that is, created using `ha_partition`) to the `InnoDB` native partition handler using `ALTER TABLE ... UPGRADE PARTITIONING`. (Bug #76734, Bug #20727344) This `ALTER TABLE` syntax does not accept any other options and can be used only on a single table at a time. You can also use [**mysql_upgrade**](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables") in MySQL 5.7.9 or later to upgrade older partitioned **InnoDB** tables to the native partitioning handler.

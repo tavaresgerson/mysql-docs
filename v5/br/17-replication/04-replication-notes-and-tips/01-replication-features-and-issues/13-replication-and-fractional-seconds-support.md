@@ -1,11 +1,11 @@
-#### 16.4.1.13 Suporte à replicação e segundos fracionários
+#### 16.4.1.13 Replication and Fractional Seconds Support
 
-O MySQL 5.7 permite frações de segundo para os valores de `TIME`, `DATETIME` e `TIMESTAMP`, com precisão de até microsegundos (6 dígitos). Veja Seção 11.2.7, “Frações de Segundo em Valores de Hora”.
+MySQL 5.7 permits fractional seconds for [`TIME`](time.html "11.2.3 The TIME Type"), [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types"), and [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") values, with up to microseconds (6 digits) precision. See [Section 11.2.7, “Fractional Seconds in Time Values”](fractional-seconds.html "11.2.7 Fractional Seconds in Time Values").
 
-Pode haver problemas de replicação de um servidor fonte que entende segundos fracionários para uma replica mais antiga (MySQL 5.6.3 e versões anteriores) que não o faz:
+There may be problems replicating from a source server that understands fractional seconds to an older replica (MySQL 5.6.3 and earlier) that does not:
 
-- Para as instruções `CREATE TABLE` que contêm colunas com um valor de *`fsp`* (precisão de frações de segundo) maior que 0, a replicação falha devido a erros do analisador.
+* For [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statements containing columns that have an *`fsp`* (fractional seconds precision) value greater than 0, replication fails due to parser errors.
 
-- As declarações que utilizam tipos de dados temporais com um valor de `fsp` de 0 funcionam com o registro baseado em declarações, mas não com o registro baseado em linhas. No último caso, os tipos de dados têm formatos binários e códigos de tipo na fonte que diferem daqueles na replica.
+* Statements that use temporal data types with an *`fsp`* value of 0 work with statement-based logging but not row-based logging. In the latter case, the data types have binary formats and type codes on the source that differ from those on the replica.
 
-- Alguns resultados de expressões diferem entre a fonte e a réplica. Exemplos: Na fonte, a variável de sistema `timestamp` retorna um valor que inclui uma parte fracionária em microsegundos; na réplica, ela retorna um inteiro. Na fonte, funções que retornam um resultado que inclui a hora atual (como `CURTIME()`, `SYSDATE()` ou `UTC_TIMESTAMP()`) interpretam um argumento como um valor de *`fsp`* e o valor de retorno inclui uma parte de segundos fracionários dessa quantidade de dígitos. Na réplica, essas funções permitem um argumento, mas ignoram-no.
+* Some expression results differ on source and replica. Examples: On the source, the `timestamp` system variable returns a value that includes a microseconds fractional part; on the replica, it returns an integer. On the source, functions that return a result that includes the current time (such as [`CURTIME()`](date-and-time-functions.html#function_curtime), [`SYSDATE()`](date-and-time-functions.html#function_sysdate), or [`UTC_TIMESTAMP()`](date-and-time-functions.html#function_utc-timestamp)) interpret an argument as an *`fsp`* value and the return value includes a fractional seconds part of that many digits. On the replica, these functions permit an argument but ignore it.

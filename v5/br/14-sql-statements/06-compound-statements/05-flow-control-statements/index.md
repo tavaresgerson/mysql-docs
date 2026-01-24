@@ -1,23 +1,23 @@
-### 13.6.5 Declarações de controle de fluxo
+### 13.6.5 Flow Control Statements
 
-13.6.5.1 Declaração case
+[13.6.5.1 CASE Statement](case.html)
 
-13.6.5.2 IF Statement
+[13.6.5.2 IF Statement](if.html)
 
-13.6.5.3 Declaração ITERATE
+[13.6.5.3 ITERATE Statement](iterate.html)
 
-13.6.5.4 Declaração de saída
+[13.6.5.4 LEAVE Statement](leave.html)
 
-13.6.5.5 Declaração LOOP
+[13.6.5.5 LOOP Statement](loop.html)
 
-13.6.5.6 Declaração REPEAT
+[13.6.5.6 REPEAT Statement](repeat.html)
 
-13.6.5.7 Declaração de retorno
+[13.6.5.7 RETURN Statement](return.html)
 
-13.6.5.8 Instrução while
+[13.6.5.8 WHILE Statement](while.html)
 
-O MySQL suporta os construtores `IF`, `CASE`, `ITERATE`, `LEAVE`, `LOOP`, `WHILE` e `REPEAT` para controle de fluxo dentro de programas armazenados. Ele também suporta `RETURN` dentro de funções armazenadas.
+MySQL supports the [`IF`](if.html "13.6.5.2 IF Statement"), [`CASE`](case.html "13.6.5.1 CASE Statement"), [`ITERATE`](iterate.html "13.6.5.3 ITERATE Statement"), [`LEAVE`](leave.html "13.6.5.4 LEAVE Statement") [`LOOP`](loop.html "13.6.5.5 LOOP Statement"), [`WHILE`](while.html "13.6.5.8 WHILE Statement"), and [`REPEAT`](repeat.html "13.6.5.6 REPEAT Statement") constructs for flow control within stored programs. It also supports [`RETURN`](return.html "13.6.5.7 RETURN Statement") within stored functions.
 
-Muitos desses construtos contêm outras declarações, conforme indicado pelas especificações gramaticais nas seções a seguir. Esses construtos podem ser aninhados. Por exemplo, uma declaração `IF` pode conter um loop `WHILE`, que por sua vez contém uma declaração `CASE`.
+Many of these constructs contain other statements, as indicated by the grammar specifications in the following sections. Such constructs may be nested. For example, an [`IF`](if.html "13.6.5.2 IF Statement") statement might contain a [`WHILE`](while.html "13.6.5.8 WHILE Statement") loop, which itself contains a [`CASE`](case.html "13.6.5.1 CASE Statement") statement.
 
-O MySQL não suporta loops `FOR`.
+MySQL does not support `FOR` loops.

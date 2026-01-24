@@ -1,4 +1,4 @@
-#### 13.7.1.2 Declaração CREATE USER
+#### 13.7.1.2 CREATE USER Statement
 
 ```sql
 CREATE USER [IF NOT EXISTS]
@@ -46,61 +46,59 @@ lock_option: {
 }
 ```
 
-A instrução `CREATE USER` cria novas contas do MySQL. Ela permite que as propriedades de autenticação, SSL/TLS, limite de recursos e gerenciamento de senhas sejam estabelecidas para novas contas e controla se as contas são inicialmente bloqueadas ou desbloqueadas.
+The [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") statement creates new MySQL accounts. It enables authentication, SSL/TLS, resource-limit, and password-management properties to be established for new accounts, and controls whether accounts are initially locked or unlocked.
 
-Para usar `CREATE USER`, você deve ter o privilégio global `CREATE USER` ou o privilégio `INSERT` para o banco de dados do sistema `mysql`. Quando a variável de sistema `read_only` é habilitada, `CREATE USER` também requer o privilégio `SUPER`.
+To use [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement"), you must have the global [`CREATE USER`](privileges-provided.html#priv_create-user) privilege, or the [`INSERT`](privileges-provided.html#priv_insert) privilege for the `mysql` system database. When the [`read_only`](server-system-variables.html#sysvar_read_only) system variable is enabled, [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") additionally requires the [`SUPER`](privileges-provided.html#priv_super) privilege.
 
-Um erro ocorre se você tentar criar uma conta que já existe. Se a cláusula `IF NOT EXISTS` for fornecida, a instrução produz um aviso para cada conta nomeada que já existe, em vez de um erro.
+An error occurs if you try to create an account that already exists. If the `IF NOT EXISTS` clause is given, the statement produces a warning for each named account that already exists, rather than an error.
 
-Importante
+Important
 
-Em algumas circunstâncias, `CREATE USER` pode ser registrado nos logs do servidor ou no lado do cliente em um arquivo de histórico, como `~/.mysql_history`, o que significa que senhas em texto claro podem ser lidas por qualquer pessoa que tenha acesso de leitura a essas informações. Para obter informações sobre as condições sob as quais isso ocorre para os logs do servidor e como controlá-lo, consulte Seção 6.1.2.3, “Senhas e Registro”. Para informações semelhantes sobre o registro no lado do cliente, consulte Seção 4.5.1.3, “Registro do Cliente do MySQL”.
+Under some circumstances, [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") may be recorded in server logs or on the client side in a history file such as `~/.mysql_history`, which means that cleartext passwords may be read by anyone having read access to that information. For information about the conditions under which this occurs for the server logs and how to control it, see [Section 6.1.2.3, “Passwords and Logging”](password-logging.html "6.1.2.3 Passwords and Logging"). For similar information about client-side logging, see [Section 4.5.1.3, “mysql Client Logging”](mysql-logging.html "4.5.1.3 mysql Client Logging").
 
-Há vários aspectos da declaração `CREATE USER`, descritos nos seguintes tópicos:
+There are several aspects to the [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") statement, described under the following topics:
 
-- Criar usuário Visão geral
-- Opções de Autenticação de Usuário
-- Opções de SSL/TLS para criar usuário
-- Opções de Limite de Recursos para Usuários
-- Opções de Gerenciamento de Senhas para Criar Usuário
-- Opções de bloqueio de conta do usuário
+* [CREATE USER Overview](create-user.html#create-user-overview "CREATE USER Overview")
+* [CREATE USER Authentication Options](create-user.html#create-user-authentication "CREATE USER Authentication Options")
+* [CREATE USER SSL/TLS Options](create-user.html#create-user-tls "CREATE USER SSL/TLS Options")
+* [CREATE USER Resource-Limit Options](create-user.html#create-user-resource-limits "CREATE USER Resource-Limit Options")
+* [CREATE USER Password-Management Options](create-user.html#create-user-password-management "CREATE USER Password-Management Options")
+* [CREATE USER Account-Locking Options](create-user.html#create-user-account-locking "CREATE USER Account-Locking Options")
 
-##### Crie usuário Visão geral
+##### CREATE USER Overview
 
-Para cada conta, `CREATE USER` cria uma nova linha na tabela `mysql.user` do sistema. A linha da conta reflete as propriedades especificadas na declaração. Propriedades não especificadas são definidas com seus valores padrão:
+For each account, [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") creates a new row in the `mysql.user` system table. The account row reflects the properties specified in the statement. Unspecified properties are set to their default values:
 
-- Autenticação: O plugin de autenticação definido pela variável de sistema `default_authentication_plugin` e credenciais vazias
+* Authentication: The authentication plugin defined by the [`default_authentication_plugin`](server-system-variables.html#sysvar_default_authentication_plugin) system variable, and empty credentials
 
-- SSL/TLS: `NENHUM`
+* SSL/TLS: `NONE`
+* Resource limits: Unlimited
+* Password management: `PASSWORD EXPIRE DEFAULT`
 
-- Limites de recursos: Sem limite
+* Account locking: `ACCOUNT UNLOCK`
 
-- Gerenciamento de senhas: `PASSWORD EXPIRE DEFAULT`
+An account when first created has no privileges. To assign privileges to this account, use one or more [`GRANT`](grant.html "13.7.1.4 GRANT Statement") statements.
 
-- Bloqueio da conta: `DESBLOQUEAR CONTA`
-
-Uma conta criada pela primeira vez não tem privilégios. Para atribuir privilégios a essa conta, use uma ou mais instruções `GRANT`.
-
-Cada nome de conta usa o formato descrito na Seção 6.2.4, “Especificação de Nomes de Conta”. Por exemplo:
+Each account name uses the format described in [Section 6.2.4, “Specifying Account Names”](account-names.html "6.2.4 Specifying Account Names"). For example:
 
 ```sql
 CREATE USER 'jeffrey'@'localhost' IDENTIFIED BY 'password';
 ```
 
-A parte do nome do host do nome da conta, se omitida, tem como padrão `'%'.`
+The host name part of the account name, if omitted, defaults to `'%'`.
 
-Cada valor `user` que identifica uma conta pode ser seguido por um valor opcional `auth_option` que indica como a conta autentica. Esses valores permitem que plugins de autenticação de conta e credenciais (por exemplo, uma senha) sejam especificados. Cada valor `auth_option` se aplica *apenas* à conta imediatamente anterior a ele.
+Each *`user`* value naming an account may be followed by an optional *`auth_option`* value that indicates how the account authenticates. These values enable account authentication plugins and credentials (for example, a password) to be specified. Each *`auth_option`* value applies *only* to the account named immediately preceding it.
 
-De acordo com as especificações do *`user`*, a declaração pode incluir opções para SSL/TLS, limite de recursos, gerenciamento de senhas e propriedades de bloqueio. Todas essas opções são *globais* para a declaração e aplicam-se a *todas* as contas mencionadas na declaração.
+Following the *`user`* specifications, the statement may include options for SSL/TLS, resource-limit, password-management, and locking properties. All such options are *global* to the statement and apply to *all* accounts named in the statement.
 
-Exemplo: Crie uma conta que utilize o plugin de autenticação padrão e a senha fornecida. Marque a senha como expirada para que o usuário precise escolher uma nova senha na primeira conexão com o servidor:
+Example: Create an account that uses the default authentication plugin and the given password. Mark the password expired so that the user must choose a new one at the first connection to the server:
 
 ```sql
 CREATE USER 'jeffrey'@'localhost'
   IDENTIFIED BY 'new_password' PASSWORD EXPIRE;
 ```
 
-Exemplo: Crie uma conta que utilize o plugin de autenticação `sha256_password` e a senha fornecida. Exija que uma nova senha seja escolhida a cada 180 dias:
+Example: Create an account that uses the `sha256_password` authentication plugin and the given password. Require that a new password be chosen every 180 days:
 
 ```sql
 CREATE USER 'jeffrey'@'localhost'
@@ -108,7 +106,7 @@ CREATE USER 'jeffrey'@'localhost'
   PASSWORD EXPIRE INTERVAL 180 DAY;
 ```
 
-Exemplo: Crie várias contas, especificando algumas propriedades por conta e algumas propriedades globais:
+Example: Create multiple accounts, specifying some per-account properties and some global properties:
 
 ```sql
 CREATE USER
@@ -120,119 +118,119 @@ CREATE USER
   ACCOUNT LOCK;
 ```
 
-Cada valor de *`auth_option`* (`IDENTIFIED WITH ... BY` neste caso) se aplica apenas à conta nomeada imediatamente antes dele, portanto, cada conta usa o plugin de autenticação e a senha imediatamente após.
+Each *`auth_option`* value (`IDENTIFIED WITH ... BY` in this case) applies only to the account named immediately preceding it, so each account uses the immediately following authentication plugin and password.
 
-As propriedades restantes se aplicam globalmente a todas as contas mencionadas na declaração, portanto, para ambas as contas:
+The remaining properties apply globally to all accounts named in the statement, so for both accounts:
 
-- As conexões devem ser feitas usando um certificado X.509 válido.
-- São permitidas até 60 consultas por hora.
-- A conta é bloqueada inicialmente, então, na prática, é um localizador e não pode ser usado até que um administrador a desbloqueie.
+* Connections must be made using a valid X.509 certificate.
+* Up to 60 queries per hour are permitted.
+* The account is locked initially, so effectively it is a placeholder and cannot be used until an administrator unlocks it.
 
-##### Criar usuário Opções de autenticação
+##### CREATE USER Authentication Options
 
-O nome da conta pode ser seguido por uma opção de autenticação *`auth_option`* que especifica o plugin de autenticação da conta, as credenciais ou ambos:
+An account name may be followed by an *`auth_option`* authentication option that specifies the account authentication plugin, credentials, or both:
 
-- *`auth_plugin`* nomeia um plugin de autenticação. O nome do plugin pode ser uma literal de string com aspas ou um nome não citado. Os nomes dos plugins são armazenados na coluna `plugin` da tabela `mysql.user` do sistema.
+* *`auth_plugin`* names an authentication plugin. The plugin name can be a quoted string literal or an unquoted name. Plugin names are stored in the `plugin` column of the `mysql.user` system table.
 
-  Para a sintaxe de *`auth_option`* que não especifica um plugin de autenticação, o plugin padrão é indicado pelo valor da variável de sistema `default_authentication_plugin`. Para descrições de cada plugin, consulte Seção 6.4.1, “Plugins de Autenticação”.
+  For *`auth_option`* syntax that does not specify an authentication plugin, the default plugin is indicated by the value of the [`default_authentication_plugin`](server-system-variables.html#sysvar_default_authentication_plugin) system variable. For descriptions of each plugin, see [Section 6.4.1, “Authentication Plugins”](authentication-plugins.html "6.4.1 Authentication Plugins").
 
-- As credenciais são armazenadas na tabela `mysql.user` do sistema. Um valor de `'auth_string'` especifica as credenciais da conta, seja como uma string em texto claro (não criptografada) ou criptografada no formato esperado pelo plugin de autenticação associado à conta, respectivamente:
+* Credentials are stored in the `mysql.user` system table. An `'auth_string'` value specifies account credentials, either as a cleartext (unencrypted) string or hashed in the format expected by the authentication plugin associated with the account, respectively:
 
-  - Para sintaxe que usa `BY 'auth_string'`, a string é em texto claro e é passada para o plugin de autenticação para possível hashing. O resultado retornado pelo plugin é armazenado na tabela `mysql.user`. Um plugin pode usar o valor conforme especificado, nesse caso, nenhum hashing ocorre.
+  + For syntax that uses `BY 'auth_string'`, the string is cleartext and is passed to the authentication plugin for possible hashing. The result returned by the plugin is stored in the `mysql.user` table. A plugin may use the value as specified, in which case no hashing occurs.
 
-  - Para a sintaxe que usa `AS 'auth_string'`, a string é assumida como já no formato exigido pelo plugin de autenticação e é armazenada como está na tabela `mysql.user`. Se um plugin exigir um valor criptografado, o valor deve estar já criptografado em um formato apropriado para o plugin, caso contrário, o valor não pode ser usado pelo plugin e a autenticação correta das conexões do cliente não pode ocorrer.
+  + For syntax that uses `AS 'auth_string'`, the string is assumed to be already in the format the authentication plugin requires, and is stored as is in the `mysql.user` table. If a plugin requires a hashed value, the value must be already hashed in a format appropriate for the plugin, or the value cannot be used by the plugin and correct authentication of client connections cannot occur.
 
-  - Se um plugin de autenticação não realizar hashing da string de autenticação, as cláusulas `BY 'auth_string'` e `AS 'auth_string'` terão o mesmo efeito: a string de autenticação é armazenada como está na tabela de sistema `mysql.user`.
+  + If an authentication plugin performs no hashing of the authentication string, the `BY 'auth_string'` and `AS 'auth_string'` clauses have the same effect: The authentication string is stored as is in the `mysql.user` system table.
 
-`CREATE USER` permite essas sintáticas de *`auth_option`*:
+[`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") permits these *`auth_option`* syntaxes:
 
-- `IDENTIFICADO POR 'auth_string'`
+* `IDENTIFIED BY 'auth_string'`
 
-  Configura o plugin de autenticação da conta como o plugin padrão, passa o valor `'auth_string'` em texto claro para o plugin para possível hashing e armazena o resultado na linha da conta na tabela de sistema `mysql.user`.
+  Sets the account authentication plugin to the default plugin, passes the cleartext `'auth_string'` value to the plugin for possible hashing, and stores the result in the account row in the `mysql.user` system table.
 
-- `IDENTIFICADO COM auth_plugin`
+* `IDENTIFIED WITH auth_plugin`
 
-  Define o plugin de autenticação da conta para *`auth_plugin`*, limpa as credenciais para uma string vazia e armazena o resultado na linha da conta na tabela de sistema `mysql.user`.
+  Sets the account authentication plugin to *`auth_plugin`*, clears the credentials to the empty string, and stores the result in the account row in the `mysql.user` system table.
 
-- `IDENTIFICADO COM auth_plugin POR 'auth_string'`
+* `IDENTIFIED WITH auth_plugin BY 'auth_string'`
 
-  Configura o plugin de autenticação da conta para *`auth_plugin`*, passa o valor `'auth_string'` em texto claro para o plugin para possível hashing e armazena o resultado na linha da conta na tabela `mysql.user` do sistema.
+  Sets the account authentication plugin to *`auth_plugin`*, passes the cleartext `'auth_string'` value to the plugin for possible hashing, and stores the result in the account row in the `mysql.user` system table.
 
-- `IDENTIFICADO COM auth_plugin COMO 'auth_string'`
+* `IDENTIFIED WITH auth_plugin AS 'auth_string'`
 
-  Define o plugin de autenticação da conta para *`auth_plugin`* e armazena o valor `'auth_string'` como está na linha da conta `mysql.user`. Se o plugin exigir uma string hash, presume-se que a string já esteja hash em o formato exigido pelo plugin.
+  Sets the account authentication plugin to *`auth_plugin`* and stores the `'auth_string'` value as is in the `mysql.user` account row. If the plugin requires a hashed string, the string is assumed to be already hashed in the format the plugin requires.
 
-- `IDENTIFICADO PELA SENHA 'auth_string'`
+* `IDENTIFIED BY PASSWORD 'auth_string'`
 
-  Define o plugin de autenticação da conta como o plugin padrão e armazena o valor `'auth_string'` como está na linha da conta `mysql.user`. Se o plugin exigir uma string hash, presume-se que a string já esteja hashada no formato exigido pelo plugin.
+  Sets the account authentication plugin to the default plugin and stores the `'auth_string'` value as is in the `mysql.user` account row. If the plugin requires a hashed string, the string is assumed to be already hashed in the format the plugin requires.
 
-  Nota
+  Note
 
-  A sintaxe `IDENTIFIED BY PASSWORD` está desatualizada; espere-se que ela seja removida em uma futura versão do MySQL.
+  `IDENTIFIED BY PASSWORD` syntax is deprecated; expect it to be removed in a future MySQL release.
 
-Exemplo: Especifique a senha como texto claro; o plugin padrão é usado:
+Example: Specify the password as cleartext; the default plugin is used:
 
 ```sql
 CREATE USER 'jeffrey'@'localhost'
   IDENTIFIED BY 'password';
 ```
 
-Exemplo: Especifique o plugin de autenticação, juntamente com um valor de senha em texto claro:
+Example: Specify the authentication plugin, along with a cleartext password value:
 
 ```sql
 CREATE USER 'jeffrey'@'localhost'
   IDENTIFIED WITH mysql_native_password BY 'password';
 ```
 
-Em cada caso, o valor da senha armazenado na linha da conta é o valor em texto claro `'password'` após ser criptografado pelo plugin de autenticação associado à conta.
+In each case, the password value stored in the account row is the cleartext value `'password'` after it has been hashed by the authentication plugin associated with the account.
 
-Para obter informações adicionais sobre a configuração de senhas e plugins de autenticação, consulte Seção 6.2.10, “Atribuição de Senhas de Conta” e Seção 6.2.13, “Autenticação Personalizável”.
+For additional information about setting passwords and authentication plugins, see [Section 6.2.10, “Assigning Account Passwords”](assigning-passwords.html "6.2.10 Assigning Account Passwords"), and [Section 6.2.13, “Pluggable Authentication”](pluggable-authentication.html "6.2.13 Pluggable Authentication").
 
-##### Criar opções de SSL/TLS para o usuário
+##### CREATE USER SSL/TLS Options
 
-O MySQL pode verificar os atributos do certificado X.509, além da autenticação usual, que é baseada no nome do usuário e nas credenciais. Para informações de fundo sobre o uso do SSL/TLS com o MySQL, consulte Seção 6.3, “Usando Conexões Encriptadas”.
+MySQL can check X.509 certificate attributes in addition to the usual authentication that is based on the user name and credentials. For background information on the use of SSL/TLS with MySQL, see [Section 6.3, “Using Encrypted Connections”](encrypted-connections.html "6.3 Using Encrypted Connections").
 
-Para especificar opções relacionadas ao SSL/TLS para uma conta MySQL, use uma cláusula `REQUIRE` que especifique um ou mais valores de *`tls_option`*.
+To specify SSL/TLS-related options for a MySQL account, use a `REQUIRE` clause that specifies one or more *`tls_option`* values.
 
-A ordem das opções `REQUIRE` não importa, mas nenhuma opção pode ser especificada duas vezes. A palavra-chave `AND` é opcional entre as opções `REQUIRE`.
+Order of `REQUIRE` options does not matter, but no option can be specified twice. The `AND` keyword is optional between `REQUIRE` options.
 
-`CREATE USER` permite esses valores de *`tls_option`*:
+[`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") permits these *`tls_option`* values:
 
-- `NÃO HÁ`
+* `NONE`
 
-  Indica que todas as contas mencionadas na declaração não têm requisitos de SSL ou X.509. Conexões não criptografadas são permitidas se o nome do usuário e a senha forem válidos. Conexões criptografadas podem ser usadas, a critério do cliente, se o cliente tiver os arquivos de certificado e chave apropriados.
+  Indicates that all accounts named by the statement have no SSL or X.509 requirements. Unencrypted connections are permitted if the user name and password are valid. Encrypted connections can be used, at the client's option, if the client has the proper certificate and key files.
 
   ```sql
   CREATE USER 'jeffrey'@'localhost' REQUIRE NONE;
   ```
 
-  Os clientes tentam estabelecer uma conexão segura por padrão. Para clientes que têm `REQUIRE NONE`, a tentativa de conexão é revertida para uma conexão não criptografada se uma conexão segura não puder ser estabelecida. Para exigir uma conexão criptografada, um cliente precisa especificar apenas a opção `--ssl-mode=REQUIRED`; a tentativa de conexão falha se uma conexão segura não puder ser estabelecida.
+  Clients attempt to establish a secure connection by default. For clients that have `REQUIRE NONE`, the connection attempt falls back to an unencrypted connection if a secure connection cannot be established. To require an encrypted connection, a client need specify only the [`--ssl-mode=REQUIRED`](connection-options.html#option_general_ssl-mode) option; the connection attempt fails if a secure connection cannot be established.
 
-  `NONE` é o padrão se nenhuma opção `REQUIRE` relacionada ao SSL for especificada.
+  `NONE` is the default if no SSL-related `REQUIRE` options are specified.
 
-- `SSL`
+* `SSL`
 
-  Instrui o servidor a permitir apenas conexões criptografadas para todas as contas nomeadas pelo comando.
+  Tells the server to permit only encrypted connections for all accounts named by the statement.
 
   ```sql
   CREATE USER 'jeffrey'@'localhost' REQUIRE SSL;
   ```
 
-  Os clientes tentam estabelecer uma conexão segura por padrão. Para contas que têm `REQUER SSL`, a tentativa de conexão falha se uma conexão segura não puder ser estabelecida.
+  Clients attempt to establish a secure connection by default. For accounts that have `REQUIRE SSL`, the connection attempt fails if a secure connection cannot be established.
 
-- `X509`
+* `X509`
 
-  Para todas as contas mencionadas na declaração, é necessário que os clientes apresentem um certificado válido, mas o certificado exato, o emissor e o assunto não importam. O único requisito é que seja possível verificar sua assinatura com um dos certificados CA. O uso de certificados X.509 sempre implica criptografia, portanto, a opção `SSL` é desnecessária neste caso.
+  For all accounts named by the statement, requires that clients present a valid certificate, but the exact certificate, issuer, and subject do not matter. The only requirement is that it should be possible to verify its signature with one of the CA certificates. Use of X.509 certificates always implies encryption, so the `SSL` option is unnecessary in this case.
 
   ```sql
   CREATE USER 'jeffrey'@'localhost' REQUIRE X509;
   ```
 
-  Para contas com `REQUIRE X509`, os clientes devem especificar as opções `--ssl-key` e `--ssl-cert` para se conectarem. (Recomenda-se, mas não é obrigatório, que a opção `--ssl-ca` também seja especificada para que o certificado público fornecido pelo servidor possa ser verificado.) Isso é válido para `ISSUER` e `SUBJECT` também, pois essas opções `REQUIRE` implicam os requisitos de `X509`.
+  For accounts with `REQUIRE X509`, clients must specify the [`--ssl-key`](connection-options.html#option_general_ssl-key) and [`--ssl-cert`](connection-options.html#option_general_ssl-cert) options to connect. (It is recommended but not required that [`--ssl-ca`](connection-options.html#option_general_ssl-ca) also be specified so that the public certificate provided by the server can be verified.) This is true for `ISSUER` and `SUBJECT` as well because those `REQUIRE` options imply the requirements of `X509`.
 
-- `ISSUER 'emissor'`
+* `ISSUER 'issuer'`
 
-  Para todas as contas mencionadas na declaração, é necessário que os clientes apresentem um certificado X.509 válido emitido pela CA `'emissor'`. Se um cliente apresentar um certificado válido, mas com um emissor diferente, o servidor rejeitará a conexão. O uso de certificados X.509 sempre implica criptografia, portanto, a opção `SSL` não é necessária neste caso.
+  For all accounts named by the statement, requires that clients present a valid X.509 certificate issued by CA `'issuer'`. If a client presents a certificate that is valid but has a different issuer, the server rejects the connection. Use of X.509 certificates always implies encryption, so the `SSL` option is unnecessary in this case.
 
   ```sql
   CREATE USER 'jeffrey'@'localhost'
@@ -240,11 +238,11 @@ A ordem das opções `REQUIRE` não importa, mas nenhuma opção pode ser especi
       O=MySQL/CN=CA/emailAddress=ca@example.com';
   ```
 
-  Como `ISSUER` implica nos requisitos de `X509`, os clientes devem especificar as opções `--ssl-key` e `--ssl-cert` para se conectarem. (Recomenda-se, mas não é obrigatório, que a opção `--ssl-ca` também seja especificada para que o certificado público fornecido pelo servidor possa ser verificado.)
+  Because `ISSUER` implies the requirements of `X509`, clients must specify the [`--ssl-key`](connection-options.html#option_general_ssl-key) and [`--ssl-cert`](connection-options.html#option_general_ssl-cert) options to connect. (It is recommended but not required that [`--ssl-ca`](connection-options.html#option_general_ssl-ca) also be specified so that the public certificate provided by the server can be verified.)
 
-- `ASSUNTO 'assunto'`
+* `SUBJECT 'subject'`
 
-  Para todas as contas mencionadas na declaração, é necessário que os clientes apresentem um certificado X.509 válido contendo o sujeito *`subject`*. Se um cliente apresentar um certificado válido, mas com um sujeito diferente, o servidor rejeitará a conexão. O uso de certificados X.509 sempre implica criptografia, portanto, a opção `SSL` não é necessária neste caso.
+  For all accounts named by the statement, requires that clients present a valid X.509 certificate containing the subject *`subject`*. If a client presents a certificate that is valid but has a different subject, the server rejects the connection. Use of X.509 certificates always implies encryption, so the `SSL` option is unnecessary in this case.
 
   ```sql
   CREATE USER 'jeffrey'@'localhost'
@@ -253,20 +251,20 @@ A ordem das opções `REQUIRE` não importa, mas nenhuma opção pode ser especi
       CN=client/emailAddress=client@example.com';
   ```
 
-  O MySQL faz uma comparação simples de strings do valor `'subject'` com o valor no certificado, então a maiúscula e a ordem dos componentes devem ser exatamente como estão no certificado.
+  MySQL does a simple string comparison of the `'subject'` value to the value in the certificate, so lettercase and component ordering must be given exactly as present in the certificate.
 
-  Como `SUBJECT` implica nos requisitos de `X509`, os clientes devem especificar as opções `--ssl-key` e `--ssl-cert` para se conectarem. (Recomenda-se, mas não é obrigatório, que a opção `--ssl-ca` também seja especificada para que o certificado público fornecido pelo servidor possa ser verificado.)
+  Because `SUBJECT` implies the requirements of `X509`, clients must specify the [`--ssl-key`](connection-options.html#option_general_ssl-key) and [`--ssl-cert`](connection-options.html#option_general_ssl-cert) options to connect. (It is recommended but not required that [`--ssl-ca`](connection-options.html#option_general_ssl-ca) also be specified so that the public certificate provided by the server can be verified.)
 
-- `CIPHER 'cifra'`
+* `CIPHER 'cipher'`
 
-  Para todas as contas mencionadas na declaração, é necessário um método de cifra específico para criptografar as conexões. Esta opção é necessária para garantir que sejam usadas cifras e comprimentos de chave de força suficiente. A criptografia pode ser fraca se forem usados algoritmos antigos que utilizam chaves de criptografia curtas.
+  For all accounts named by the statement, requires a specific cipher method for encrypting connections. This option is needed to ensure that ciphers and key lengths of sufficient strength are used. Encryption can be weak if old algorithms using short encryption keys are used.
 
   ```sql
   CREATE USER 'jeffrey'@'localhost'
     REQUIRE CIPHER 'EDH-RSA-DES-CBC3-SHA';
   ```
 
-As opções `SUBJECT`, `ISSUER` e `CIPHER` podem ser combinadas na cláusula `REQUIRE`:
+The `SUBJECT`, `ISSUER`, and `CIPHER` options can be combined in the `REQUIRE` clause:
 
 ```sql
 CREATE USER 'jeffrey'@'localhost'
@@ -278,79 +276,79 @@ CREATE USER 'jeffrey'@'localhost'
   AND CIPHER 'EDH-RSA-DES-CBC3-SHA';
 ```
 
-##### Criar usuário Opções de limite de recursos
+##### CREATE USER Resource-Limit Options
 
-É possível definir limites de uso dos recursos do servidor para uma conta, conforme discutido em Seção 6.2.16, “Definir Limites de Recursos da Conta”. Para fazer isso, use uma cláusula `WITH` que especifique um ou mais valores de *`resource_option`*.
+It is possible to place limits on use of server resources by an account, as discussed in [Section 6.2.16, “Setting Account Resource Limits”](user-resources.html "6.2.16 Setting Account Resource Limits"). To do so, use a `WITH` clause that specifies one or more *`resource_option`* values.
 
-A ordem das opções `WITH` não importa, exceto que, se um limite de recurso específico for especificado várias vezes, a última instância terá precedência.
+Order of `WITH` options does not matter, except that if a given resource limit is specified multiple times, the last instance takes precedence.
 
-`CREATE USER` permite esses valores de *`resource_option`*:
+[`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") permits these *`resource_option`* values:
 
-- `MAX_QUERIES_PER_HOUR count`, `MAX_UPDATES_PER_HOUR count`, `MAX_CONNECTIONS_PER_HOUR count`
+* `MAX_QUERIES_PER_HOUR count`, `MAX_UPDATES_PER_HOUR count`, `MAX_CONNECTIONS_PER_HOUR count`
 
-  Para todas as contas mencionadas na declaração, essas opções restringem quantas consultas, atualizações e conexões ao servidor são permitidas para cada conta durante um período de uma hora. (Consultas para as quais os resultados são servidos a partir do cache de consultas não contam para o limite `MAX_QUERIES_PER_HOUR`.) Se *`count`* for `0` (o padrão), isso significa que não há limitação para a conta.
+  For all accounts named by the statement, these options restrict how many queries, updates, and connections to the server are permitted to each account during any given one-hour period. (Queries for which results are served from the query cache do not count against the `MAX_QUERIES_PER_HOUR` limit.) If *`count`* is `0` (the default), this means that there is no limitation for the account.
 
-- `MAX_USER_CONNECTIONS`
+* `MAX_USER_CONNECTIONS count`
 
-  Para todas as contas mencionadas na declaração, restringe o número máximo de conexões simultâneas ao servidor por cada conta. Um valor de *`count`* não nulo especifica o limite para a conta explicitamente. Se *`count`* for `0` (o padrão), o servidor determina o número de conexões simultâneas para a conta a partir do valor global da variável de sistema `max_user_connections`. Se `max_user_connections` também for zero, não há limite para a conta.
+  For all accounts named by the statement, restricts the maximum number of simultaneous connections to the server by each account. A nonzero *`count`* specifies the limit for the account explicitly. If *`count`* is `0` (the default), the server determines the number of simultaneous connections for the account from the global value of the [`max_user_connections`](server-system-variables.html#sysvar_max_user_connections) system variable. If [`max_user_connections`](server-system-variables.html#sysvar_max_user_connections) is also zero, there is no limit for the account.
 
-Exemplo:
+Example:
 
 ```sql
 CREATE USER 'jeffrey'@'localhost'
   WITH MAX_QUERIES_PER_HOUR 500 MAX_UPDATES_PER_HOUR 100;
 ```
 
-##### Crie opções de gerenciamento de senhas para o usuário
+##### CREATE USER Password-Management Options
 
-As senhas das contas têm uma idade, calculada a partir da data e hora da última alteração da senha.
+Account passwords have an age, assessed from the date and time of the most recent password change.
 
-`CREATE USER` suporta vários valores de *`password_option`* para a gestão da expiração da senha, para expirar manualmente a senha de uma conta ou estabelecer sua política de expiração da senha. As opções de política não expiram a senha. Em vez disso, elas determinam como o servidor aplica a expiração automática à conta com base na idade da senha da conta. Para uma conta específica, sua idade da senha é avaliada a partir da data e hora da última alteração da senha.
+[`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") supports several *`password_option`* values for password expiration management, to either expire an account password manually or establish its password expiration policy. Policy options do not expire the password. Instead, they determine how the server applies automatic expiration to the account based on account password age. For a given account, its password age is assessed from the date and time of the most recent password change.
 
-Esta seção descreve a sintaxe das opções de gerenciamento de senhas. Para informações sobre a definição de políticas para o gerenciamento de senhas, consulte Seção 6.2.11, “Gerenciamento de Senhas”.
+This section describes the syntax for password-management options. For information about establishing policy for password management, see [Section 6.2.11, “Password Management”](password-management.html "6.2.11 Password Management").
 
-Se várias opções de gerenciamento de senhas forem especificadas, a última terá precedência.
+If multiple password-management options are specified, the last one takes precedence.
 
-Essas opções se aplicam apenas às contas que utilizam um plugin de autenticação que armazena credenciais internamente no MySQL. Para contas que utilizam um plugin que realiza autenticação contra um sistema de credenciais externo ao MySQL, o gerenciamento de senhas deve ser realizado externamente contra esse sistema também. Para mais informações sobre o armazenamento interno de credenciais, consulte Seção 6.2.11, “Gerenciamento de Senhas”.
+These options apply only to accounts that use an authentication plugin that stores credentials internally to MySQL. For accounts that use a plugin that performs authentication against a credentials system that is external to MySQL, password management must be handled externally against that system as well. For more information about internal credentials storage, see [Section 6.2.11, “Password Management”](password-management.html "6.2.11 Password Management").
 
-Uma sessão de cliente opera no modo restrito se a senha da conta expirou manualmente ou se a idade da senha for considerada maior que sua vida útil permitida de acordo com a política de expiração automática. No modo restrito, as operações realizadas durante a sessão resultam em um erro até que o usuário estabeleça uma nova senha de conta. Para obter informações sobre o modo restrito, consulte Seção 6.2.12, “Tratamento do servidor de senhas expiradas”.
+A client session operates in restricted mode if the account password was expired manually or if the password age is considered greater than its permitted lifetime per the automatic expiration policy. In restricted mode, operations performed within the session result in an error until the user establishes a new account password. For information about restricted mode, see [Section 6.2.12, “Server Handling of Expired Passwords”](expired-password-handling.html "6.2.12 Server Handling of Expired Passwords").
 
-`CREATE USER` permite esses valores de `password_option` para controlar a expiração da senha:
+[`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") permits these *`password_option`* values for controlling password expiration:
 
-- `SENHA EXPIRA`
+* `PASSWORD EXPIRE`
 
-  Marca imediatamente a senha expirada para todas as contas nomeadas pelo comunicado.
+  Immediately marks the password expired for all accounts named by the statement.
 
   ```sql
   CREATE USER 'jeffrey'@'localhost' PASSWORD EXPIRE;
   ```
 
-- `DESATIVAR A EXPIRAÇÃO DA SENHA POR DEFECTO`
+* `PASSWORD EXPIRE DEFAULT`
 
-  Define todas as contas nomeadas pela declaração para que a política de expiração global seja aplicada, conforme especificado pela variável de sistema `default_password_lifetime`.
+  Sets all accounts named by the statement so that the global expiration policy applies, as specified by the [`default_password_lifetime`](server-system-variables.html#sysvar_default_password_lifetime) system variable.
 
   ```sql
   CREATE USER 'jeffrey'@'localhost' PASSWORD EXPIRE DEFAULT;
   ```
 
-- `SENHA EXPIRA NUNCA`
+* `PASSWORD EXPIRE NEVER`
 
-  Essa opção de expiração substitui a política global para todas as contas nomeadas pelo extrato. Para cada uma, ela desabilita a expiração da senha para que a senha nunca expire.
+  This expiration option overrides the global policy for all accounts named by the statement. For each, it disables password expiration so that the password never expires.
 
   ```sql
   CREATE USER 'jeffrey'@'localhost' PASSWORD EXPIRE NEVER;
   ```
 
-- `INTERVALO DE EXPIRAÇÃO DA SENHA N DIAS`
+* `PASSWORD EXPIRE INTERVAL N DAY`
 
-  Esta opção de expiração substitui a política global para todas as contas nomeadas pelo extrato. Para cada uma, ela define a duração da senha para *`N`* dias. A seguinte declaração exige que a senha seja alterada a cada 180 dias:
+  This expiration option overrides the global policy for all accounts named by the statement. For each, it sets the password lifetime to *`N`* days. The following statement requires the password to be changed every 180 days:
 
   ```sql
   CREATE USER 'jeffrey'@'localhost' PASSWORD EXPIRE INTERVAL 180 DAY;
   ```
 
-##### Criar opções de bloqueio de conta do usuário
+##### CREATE USER Account-Locking Options
 
-O MySQL suporta o bloqueio e desbloqueio de contas usando as opções `ACCOUNT LOCK` e `ACCOUNT UNLOCK`, que especificam o estado de bloqueio de uma conta. Para uma discussão adicional, consulte Seção 6.2.15, “Bloqueio de Conta”.
+MySQL supports account locking and unlocking using the `ACCOUNT LOCK` and `ACCOUNT UNLOCK` options, which specify the locking state for an account. For additional discussion, see [Section 6.2.15, “Account Locking”](account-locking.html "6.2.15 Account Locking").
 
-Se várias opções de bloqueio de conta forem especificadas, a última tem precedência.
+If multiple account-locking options are specified, the last one takes precedence.

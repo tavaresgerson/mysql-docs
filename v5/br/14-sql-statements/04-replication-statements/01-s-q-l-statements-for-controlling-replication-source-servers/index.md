@@ -1,16 +1,16 @@
-### 13.4.1 Instruções SQL para controlar servidores de origem de replicação
+### 13.4.1 SQL Statements for Controlling Replication Source Servers
 
-13.4.1.1 Declaração de PURGE BINARY LOGS
+[13.4.1.1 PURGE BINARY LOGS Statement](purge-binary-logs.html)
 
-13.4.1.2 Declaração de RESET MASTER
+[13.4.1.2 RESET MASTER Statement](reset-master.html)
 
-13.4.1.3 Declaração sql_log_bin do SET
+[13.4.1.3 SET sql_log_bin Statement](set-sql-log-bin.html)
 
-Esta seção discute declarações para gerenciar servidores de origem de replicação. Seção 13.4.2, "Declarações SQL para Controle de Servidores de Replicação", discute declarações para gerenciar servidores de replicação.
+This section discusses statements for managing replication source servers. [Section 13.4.2, “SQL Statements for Controlling Replica Servers”](replication-statements-replica.html "13.4.2 SQL Statements for Controlling Replica Servers"), discusses statements for managing replica servers.
 
-Além das declarações descritas aqui, as seguintes declarações `SHOW` são usadas com servidores de origem na replicação. Para obter informações sobre essas declarações, consulte Seção 13.7.5, “Declarações SHOW”.
+In addition to the statements described here, the following [`SHOW`](show.html "13.7.5 SHOW Statements") statements are used with source servers in replication. For information about these statements, see [Section 13.7.5, “SHOW Statements”](show.html "13.7.5 SHOW Statements").
 
-- `Mostre logs binários`
-- `Mostrar eventos do BINLOG`
-- `Mostre o status do mestre`
-- `SHOW SLAVE HOSTS`
+* [`SHOW BINARY LOGS`](show-binary-logs.html "13.7.5.1 SHOW BINARY LOGS Statement")
+* [`SHOW BINLOG EVENTS`](show-binlog-events.html "13.7.5.2 SHOW BINLOG EVENTS Statement")
+* [`SHOW MASTER STATUS`](show-master-status.html "13.7.5.23 SHOW MASTER STATUS Statement")
+* [`SHOW SLAVE HOSTS`](show-slave-hosts.html "13.7.5.33 SHOW SLAVE HOSTS Statement")

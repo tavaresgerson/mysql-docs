@@ -1,29 +1,29 @@
-#### 21.6.8.3 Configuração para backups do NDB Cluster
+#### 21.6.8.3 Configuration for NDB Cluster Backups
 
-Cinco parâmetros de configuração são essenciais para o backup:
+Five configuration parameters are essential for backup:
 
-- `BackupDataBufferSize`
+* [`BackupDataBufferSize`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-backupdatabuffersize)
 
-  A quantidade de memória usada para armazenar dados antes de serem escritos no disco.
+  The amount of memory used to buffer data before it is written to disk.
 
-- `BackupLogBufferSize`
+* [`BackupLogBufferSize`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-backuplogbuffersize)
 
-  A quantidade de memória usada para armazenar registros de log antes de serem escritos no disco.
+  The amount of memory used to buffer log records before these are written to disk.
 
-- `BackupMemory`
+* [`BackupMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-backupmemory)
 
-  A memória total alocada em um nó de dados para backups. Isso deve ser a soma da memória alocada para o buffer de dados de backup e o buffer de log de backup.
+  The total memory allocated in a data node for backups. This should be the sum of the memory allocated for the backup data buffer and the backup log buffer.
 
-- `BackupWriteSize`
+* [`BackupWriteSize`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-backupwritesize)
 
-  O tamanho padrão dos blocos escritos no disco. Isso se aplica tanto ao buffer de dados de backup quanto ao buffer de log de backup.
+  The default size of blocks written to disk. This applies for both the backup data buffer and the backup log buffer.
 
-- `BackupMaxWriteSize`
+* [`BackupMaxWriteSize`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-backupmaxwritesize)
 
-  O tamanho máximo dos blocos escritos no disco. Isso se aplica tanto ao buffer de dados de backup quanto ao buffer de log de backup.
+  The maximum size of blocks written to disk. This applies for both the backup data buffer and the backup log buffer.
 
-Além disso, `CompressedBackup` faz com que o `NDB` use compressão ao criar e escrever em arquivos de backup.
+In addition, [`CompressedBackup`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-compressedbackup) causes `NDB` to use compression when creating and writing to backup files.
 
-Informações mais detalhadas sobre esses parâmetros podem ser encontradas em Parâmetros de backup.
+More detailed information about these parameters can be found in [Backup Parameters](mysql-cluster-ndbd-definition.html#mysql-cluster-backup-parameters "Backup parameters").
 
-Você também pode definir uma localização para os arquivos de backup usando o parâmetro de configuração `BackupDataDir`. O padrão é `FileSystemPath``/BACKUP/BACKUP-backup_id`.
+You can also set a location for the backup files using the [`BackupDataDir`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-backupdatadir) configuration parameter. The default is [`FileSystemPath`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-filesystempath)`/BACKUP/BACKUP-backup_id`.

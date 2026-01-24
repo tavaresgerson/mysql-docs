@@ -1,33 +1,33 @@
-#### 21.6.15.23 A tabela ndbinfo logbuffers
+#### 21.6.15.23 The ndbinfo logbuffers Table
 
-A tabela `logbuffer` fornece informações sobre o uso do buffer de log do NDB Cluster.
+The `logbuffer` table provides information on NDB Cluster log buffer usage.
 
-A tabela `logbuffers` contém as seguintes colunas:
+The `logbuffers` table contains the following columns:
 
-- `node_id`
+* `node_id`
 
-  O ID deste nó de dados.
+  The ID of this data node.
 
-- `log_type`
+* `log_type`
 
-  Tipo de log. Em NDB 7.5, um dos seguintes: `REDO` ou `DD-UNDO`. Em NDB 7.6, um dos seguintes: `REDO`, `DD-UNDO`, `BACKUP-DATA` ou `BACKUP-LOG`.
+  Type of log. In NDB 7.5, one of: `REDO` or `DD-UNDO`. In NDB 7.6, one of: `REDO`, `DD-UNDO`, `BACKUP-DATA`, or `BACKUP-LOG`.
 
-- `log_id`
+* `log_id`
 
-  O ID do log; para arquivos de log de desfazer de dados de disco, este é o mesmo valor exibido na coluna `LOGFILE_GROUP_NUMBER` da tabela do esquema de informações `FILES` e também o valor exibido na coluna `log_id` da tabela `ndbinfo` `logspaces`
+  The log ID; for Disk Data undo log files, this is the same as the value shown in the `LOGFILE_GROUP_NUMBER` column of the Information Schema [`FILES`](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table") table as well as the value shown for the `log_id` column of the `ndbinfo` [`logspaces`](mysql-cluster-ndbinfo-logspaces.html "21.6.15.24 The ndbinfo logspaces Table") table
 
-- `log_part`
+* `log_part`
 
-  O número do item do log
+  The log part number
 
-- `total`
+* `total`
 
-  Espaço total disponível para este log
+  Total space available for this log
 
-- "usada"
+* `used`
 
-  Espaço utilizado por este log
+  Space used by this log
 
-##### Notas
+##### Notes
 
-O NDB 7.6.6 disponibiliza linhas da tabela `logbuffers` que refletem dois tipos adicionais de log ao realizar um backup do NDB. Uma dessas linhas tem o tipo de log `BACKUP-DATA`, que mostra a quantidade de buffer de dados usado durante o backup para copiar fragmentos para arquivos de backup. A outra linha tem o tipo de log `BACKUP-LOG`, que exibe a quantidade de buffer de log usado durante o backup para registrar as alterações feitas após o início do backup. Cada uma dessas linhas `log_type` é mostrada na tabela `logbuffers` para cada nó de dados no clúster. Essas linhas não estão presentes a menos que um backup do NDB esteja sendo realizado atualmente. (Bug #25822988)
+NDB 7.6.6 makes available `logbuffers` table rows reflecting two additional log types when performing an NDB backup. One of these rows has the log type `BACKUP-DATA`, which shows the amount of data buffer used during backup to copy fragments to backup files. The other row has the log type `BACKUP-LOG`, which displays the amount of log buffer used during the backup to record changes made after the backup has started. One each of these `log_type` rows is shown in the `logbuffers` table for each data node in the cluster. These rows are not present unless an NDB backup is currently being performed. (Bug #25822988)

@@ -1,8 +1,8 @@
-### 22.3.2 Gerenciamento das partições HASH e KEY
+### 22.3.2 Management of HASH and KEY Partitions
 
-As tabelas que são particionadas por hash ou por chave são muito semelhantes entre si em relação à realização de alterações em uma configuração de particionamento, e ambas diferem de várias maneiras das tabelas que foram particionadas por intervalo ou lista. Por essa razão, esta seção aborda apenas a modificação de tabelas particionadas por hash ou por chave. Para uma discussão sobre a adição e remoção de particionamentos de tabelas que são particionadas por intervalo ou lista, consulte Seção 22.3.1, “Gestão de Partições RANGE e LIST”.
+Tables which are partitioned by hash or by key are very similar to one another with regard to making changes in a partitioning setup, and both differ in a number of ways from tables which have been partitioned by range or list. For that reason, this section addresses the modification of tables partitioned by hash or by key only. For a discussion of adding and dropping of partitions of tables that are partitioned by range or list, see [Section 22.3.1, “Management of RANGE and LIST Partitions”](partitioning-management-range-list.html "22.3.1 Management of RANGE and LIST Partitions").
 
-Você não pode excluir partições de tabelas que estejam particionadas por `HASH` ou `KEY` da mesma maneira que pode ser feito com tabelas particionadas por `RANGE` ou `LIST`. No entanto, você pode combinar partições `HASH` ou `KEY` usando a instrução `ALTER TABLE ... COALESCE PARTITION`. Suponha que você tenha uma tabela contendo dados sobre clientes, que está dividida em doze partições. A tabela `clients` é definida da seguinte forma:
+You cannot drop partitions from tables that are partitioned by `HASH` or `KEY` in the same way that you can from tables that are partitioned by `RANGE` or `LIST`. However, you can merge `HASH` or `KEY` partitions using the `ALTER TABLE ... COALESCE PARTITION` statement. Suppose that you have a table containing data about clients, which is divided into twelve partitions. The `clients` table is defined as shown here:
 
 ```sql
 CREATE TABLE clients (
@@ -15,14 +15,14 @@ PARTITION BY HASH( MONTH(signed) )
 PARTITIONS 12;
 ```
 
-Para reduzir o número de partições de doze para oito, execute o seguinte comando `ALTER TABLE`:
+To reduce the number of partitions from twelve to eight, execute the following [`ALTER TABLE`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") command:
 
 ```sql
 mysql> ALTER TABLE clients COALESCE PARTITION 4;
 Query OK, 0 rows affected (0.02 sec)
 ```
 
-O `COALESCE` funciona igualmente bem com tabelas que são particionadas por `HASH`, `KEY`, `LINEAR HASH` ou `LINEAR KEY`. Aqui está um exemplo semelhante ao anterior, diferindo apenas no fato de que a tabela está particionada por `LINEAR KEY`:
+`COALESCE` works equally well with tables that are partitioned by `HASH`, `KEY`, `LINEAR HASH`, or `LINEAR KEY`. Here is an example similar to the previous one, differing only in that the table is partitioned by `LINEAR KEY`:
 
 ```sql
 mysql> CREATE TABLE clients_lk (
@@ -40,16 +40,16 @@ Query OK, 0 rows affected (0.06 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 ```
 
-O número após `COALESCE PARTITION` é o número de partições a serem unidas no restante — em outras palavras, é o número de partições a serem removidas da tabela.
+The number following `COALESCE PARTITION` is the number of partitions to merge into the remainder—in other words, it is the number of partitions to remove from the table.
 
-Se você tentar remover mais partições do que a tabela possui, o resultado será um erro como o mostrado:
+If you attempt to remove more partitions than the table has, the result is an error like the one shown:
 
 ```sql
 mysql> ALTER TABLE clients COALESCE PARTITION 18;
 ERROR 1478 (HY000): Cannot remove all partitions, use DROP TABLE instead
 ```
 
-Para aumentar o número de partições da tabela `clients` de 12 para 18, use `ALTER TABLE ... ADD PARTITION`, conforme mostrado aqui:
+To increase the number of partitions for the `clients` table from 12 to 18. use `ALTER TABLE ... ADD PARTITION` as shown here:
 
 ```sql
 ALTER TABLE clients ADD PARTITION PARTITIONS 6;

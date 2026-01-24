@@ -1,62 +1,52 @@
-# Capítulo 15 Motores de Armazenamento Alternativos
+# Chapter 15 Alternative Storage Engines
 
-**Índice**
+**Table of Contents**
 
-15.1 Configurando o Motor de Armazenamento
+15.1 Setting the Storage Engine
 
-15.2 O Motor de Armazenamento MyISAM:   15.2.1 Opções de Inicialização do MyISAM
+15.2 The MyISAM Storage Engine :   15.2.1 MyISAM Startup Options
 
-```
-15.2.2 Space Needed for Keys
+    15.2.2 Space Needed for Keys
 
-15.2.3 MyISAM Table Storage Formats
+    15.2.3 MyISAM Table Storage Formats
 
-15.2.4 MyISAM Table Problems
-```
+    15.2.4 MyISAM Table Problems
 
-15.3 O Motor de Armazenamento de MEMORY
+15.3 The MEMORY Storage Engine
 
-15.4 O Motor de Armazenamento CSV:   15.4.1 Reparo e verificação de tabelas CSV
+15.4 The CSV Storage Engine :   15.4.1 Repairing and Checking CSV Tables
 
-```
-15.4.2 CSV Limitations
-```
+    15.4.2 CSV Limitations
 
-15.5 O Motor de Armazenamento ARCHIVE
+15.5 The ARCHIVE Storage Engine
 
-15.6 O Motor de Armazenamento BLACKHOLE
+15.6 The BLACKHOLE Storage Engine
 
-15.7 O Motor de Armazenamento MERGE:   15.7.1 Vantagens e Desvantagens da Tabela MERGE
+15.7 The MERGE Storage Engine :   15.7.1 MERGE Table Advantages and Disadvantages
 
-```
-15.7.2 MERGE Table Problems
-```
+    15.7.2 MERGE Table Problems
 
-15.8 O Motor de Armazenamento FEDERATED:   15.8.1 Visão Geral do Motor de Armazenamento FEDERATED
+15.8 The FEDERATED Storage Engine :   15.8.1 FEDERATED Storage Engine Overview
 
-```
-15.8.2 How to Create FEDERATED Tables
+    15.8.2 How to Create FEDERATED Tables
 
-15.8.3 FEDERATED Storage Engine Notes and Tips
+    15.8.3 FEDERATED Storage Engine Notes and Tips
 
-15.8.4 FEDERATED Storage Engine Resources
-```
+    15.8.4 FEDERATED Storage Engine Resources
 
-15.9 O Motor de Armazenamento EXAMPLE
+15.9 The EXAMPLE Storage Engine
 
-15.10 Outros motores de armazenamento
+15.10 Other Storage Engines
 
-15.11 Visão geral da arquitetura do mecanismo de armazenamento do MySQL:   15.11.1 Arquitetura de mecanismo de armazenamento plugável
+15.11 Overview of MySQL Storage Engine Architecture :   15.11.1 Pluggable Storage Engine Architecture
 
-```
-15.11.2 The Common Database Server Layer
-```
+    15.11.2 The Common Database Server Layer
 
-Os motores de armazenamento são componentes do MySQL que gerenciam as operações SQL para diferentes tipos de tabelas. O `InnoDB` é o motor de armazenamento padrão e de propósito geral, e a Oracle recomenda usá-lo para tabelas, exceto em casos de uso especializados. (A instrução `CREATE TABLE` no MySQL 5.7 cria tabelas `InnoDB` por padrão.)
+Storage engines are MySQL components that handle the SQL operations for different table types. `InnoDB` is the default and most general-purpose storage engine, and Oracle recommends using it for tables except for specialized use cases. (The `CREATE TABLE` statement in MySQL 5.7 creates `InnoDB` tables by default.)
 
-O MySQL Server utiliza uma arquitetura de mecanismo de armazenamento plugável que permite que os mecanismos de armazenamento sejam carregados e descarregados de um servidor MySQL em execução.
+MySQL Server uses a pluggable storage engine architecture that enables storage engines to be loaded into and unloaded from a running MySQL server.
 
-Para determinar quais motores de armazenamento seu servidor suporta, use a instrução `SHOW ENGINES`. O valor na coluna `Support` indica se um motor pode ser usado. Um valor de `YES`, `NO` ou `DEFAULT` indica que um motor está disponível, não está disponível ou está disponível e atualmente configurado como o motor de armazenamento padrão.
+To determine which storage engines your server supports, use the `SHOW ENGINES` statement. The value in the `Support` column indicates whether an engine can be used. A value of `YES`, `NO`, or `DEFAULT` indicates that an engine is available, not available, or available and currently set as the default storage engine.
 
 ```sql
 mysql> SHOW ENGINES\G
@@ -98,60 +88,60 @@ Transactions: NO
 ...
 ```
 
-Este capítulo aborda casos de uso para motores de armazenamento MySQL de propósito especial. Ele não aborda o motor de armazenamento padrão `InnoDB` ou o motor de armazenamento `NDB`, que são abordados no Capítulo 14, *O Motor de Armazenamento InnoDB*, e no Capítulo 21, *MySQL NDB Cluster 7.5 e NDB Cluster 7.6*. Para usuários avançados, este capítulo também contém uma descrição da arquitetura de motor de armazenamento plugável (veja a Seção 15.11, “Visão Geral da Arquitetura do Motor de Armazenamento MySQL”).
+This chapter covers use cases for special-purpose MySQL storage engines. It does not cover the default `InnoDB` storage engine or the `NDB` storage engine which are covered in Chapter 14, *The InnoDB Storage Engine*, and Chapter 21, *MySQL NDB Cluster 7.5 and NDB Cluster 7.6*. For advanced users, this chapter also contains a description of the pluggable storage engine architecture (see Section 15.11, “Overview of MySQL Storage Engine Architecture”).
 
-Para obter informações sobre as funcionalidades oferecidas nos binários comerciais do MySQL Server, consulte [*Edições do MySQL*](https://www.mysql.com/products/), no site do MySQL. Os motores de armazenamento disponíveis podem depender da edição do MySQL que você está usando.
+For information about features offered in commercial MySQL Server binaries, see [*MySQL Editions*](https://www.mysql.com/products/), on the MySQL website. The storage engines available might depend on which edition of MySQL you are using.
 
-Para respostas a perguntas frequentes sobre os motores de armazenamento do MySQL, consulte a Seção A.2, “Perguntas Frequentes do MySQL 5.7: Motores de Armazenamento”.
+For answers to commonly asked questions about MySQL storage engines, see Section A.2, “MySQL 5.7 FAQ: Storage Engines”.
 
-## Motores de Armazenamento Suportado pelo MySQL 5.7
+## MySQL 5.7 Supported Storage Engines
 
-- `InnoDB`: O mecanismo de armazenamento padrão no MySQL 5.7. `InnoDB` é um mecanismo de armazenamento seguro para transações (compatível com ACID) para o MySQL que possui recursos de commit, rollback e recuperação em caso de falha para proteger os dados do usuário. O bloqueio de nível de linha `InnoDB` (sem escalonamento para bloqueios de granularidade mais grosseira) e as leituras consistentes sem bloqueio no estilo Oracle aumentam a concorrência e o desempenho em multiusuário. O `InnoDB` armazena os dados do usuário em índices agrupados para reduzir o I/O para consultas comuns baseadas em chaves primárias. Para manter a integridade dos dados, o `InnoDB` também suporta restrições de integridade referencial `FOREIGN KEY`. Para obter mais informações sobre o `InnoDB`, consulte o Capítulo 14, *O Mecanismo de Armazenamento InnoDB*.
+* `InnoDB`: The default storage engine in MySQL 5.7. `InnoDB` is a transaction-safe (ACID compliant) storage engine for MySQL that has commit, rollback, and crash-recovery capabilities to protect user data. `InnoDB` row-level locking (without escalation to coarser granularity locks) and Oracle-style consistent nonlocking reads increase multi-user concurrency and performance. `InnoDB` stores user data in clustered indexes to reduce I/O for common queries based on primary keys. To maintain data integrity, `InnoDB` also supports `FOREIGN KEY` referential-integrity constraints. For more information about `InnoDB`, see Chapter 14, *The InnoDB Storage Engine*.
 
-- `MyISAM`: Essas tabelas têm um pequeno espaço de armazenamento. O bloqueio de nível de tabela limita o desempenho em cargas de trabalho de leitura/escrita, portanto, é frequentemente usado em cargas de trabalho de leitura apenas ou de leitura predominante em configurações de Web e data warehousing.
+* `MyISAM`: These tables have a small footprint. Table-level locking limits the performance in read/write workloads, so it is often used in read-only or read-mostly workloads in Web and data warehousing configurations.
 
-- `Memória`: Armazena todos os dados na RAM, para acesso rápido em ambientes que exigem consultas rápidas de dados não críticos. Este motor era anteriormente conhecido como o motor `HEAP`. Seus casos de uso estão diminuindo; o `InnoDB`, com sua área de memória do pool de buffers, oferece uma maneira geral e durável de manter a maioria ou todos os dados na memória, e o `NDBCLUSTER` fornece consultas rápidas de chave-valor para grandes conjuntos de dados distribuídos.
+* `Memory`: Stores all data in RAM, for fast access in environments that require quick lookups of non-critical data. This engine was formerly known as the `HEAP` engine. Its use cases are decreasing; `InnoDB` with its buffer pool memory area provides a general-purpose and durable way to keep most or all data in memory, and `NDBCLUSTER` provides fast key-value lookups for huge distributed data sets.
 
-- `CSV`: Suas tabelas são arquivos de texto com valores separados por vírgula. As tabelas CSV permitem importar ou exportar dados no formato CSV, para trocar dados com scripts e aplicativos que leem e escrevem esse mesmo formato. Como as tabelas CSV não são indexadas, você geralmente mantém os dados nas tabelas `InnoDB` durante o funcionamento normal e usa apenas as tabelas CSV durante a etapa de importação ou exportação.
+* `CSV`: Its tables are really text files with comma-separated values. CSV tables let you import or dump data in CSV format, to exchange data with scripts and applications that read and write that same format. Because CSV tables are not indexed, you typically keep the data in `InnoDB` tables during normal operation, and only use CSV tables during the import or export stage.
 
-- `Arquivo`: Essas tabelas compactas e não indexadas são destinadas a armazenar e recuperar grandes quantidades de informações históricas, arquivadas ou de auditoria de segurança, que raramente são acessadas.
+* `Archive`: These compact, unindexed tables are intended for storing and retrieving large amounts of seldom-referenced historical, archived, or security audit information.
 
-- `Blackhole`: O motor de armazenamento Blackhole aceita, mas não armazena dados, semelhante ao dispositivo Unix `/dev/null`. As consultas sempre retornam um conjunto vazio. Essas tabelas podem ser usadas em configurações de replicação onde as instruções DML são enviadas para servidores replicados, mas o servidor de origem não mantém sua própria cópia dos dados.
+* `Blackhole`: The Blackhole storage engine accepts but does not store data, similar to the Unix `/dev/null` device. Queries always return an empty set. These tables can be used in replication configurations where DML statements are sent to replica servers, but the source server does not keep its own copy of the data.
 
-- `NDB` (também conhecido como `NDBCLUSTER`): Este motor de banco de dados em cluster é particularmente adequado para aplicações que exigem o maior grau possível de tempo de atividade e disponibilidade.
+* `NDB` (also known as `NDBCLUSTER`): This clustered database engine is particularly suited for applications that require the highest possible degree of uptime and availability.
 
-- `Merge`: Permite que um DBA ou desenvolvedor MySQL agrupe logicamente uma série de tabelas `MyISAM` idênticas e as refira como um único objeto. Bom para ambientes VLDB, como data warehousing.
+* `Merge`: Enables a MySQL DBA or developer to logically group a series of identical `MyISAM` tables and reference them as one object. Good for VLDB environments such as data warehousing.
 
-- `Federado`: Oferece a capacidade de vincular servidores MySQL separados para criar um banco de dados lógico a partir de muitos servidores físicos. Muito bom para ambientes distribuídos ou de data mart.
+* `Federated`: Offers the ability to link separate MySQL servers to create one logical database from many physical servers. Very good for distributed or data mart environments.
 
-- `Exemplo`: Este motor serve como um exemplo no código-fonte do MySQL que ilustra como começar a escrever novos motores de armazenamento. Ele é principalmente de interesse para desenvolvedores. O motor de armazenamento é um "esqueleto" que não faz nada. Você pode criar tabelas com este motor, mas nenhum dado pode ser armazenado neles ou recuperado deles.
+* `Example`: This engine serves as an example in the MySQL source code that illustrates how to begin writing new storage engines. It is primarily of interest to developers. The storage engine is a “stub” that does nothing. You can create tables with this engine, but no data can be stored in them or retrieved from them.
 
-Você não está limitado a usar o mesmo mecanismo de armazenamento para todo o servidor ou esquema. Você pode especificar o mecanismo de armazenamento para qualquer tabela. Por exemplo, um aplicativo pode usar principalmente tabelas `InnoDB`, com uma tabela `CSV` para exportar dados para uma planilha e algumas tabelas `MEMORY` para espaços de trabalho temporários.
+You are not restricted to using the same storage engine for an entire server or schema. You can specify the storage engine for any table. For example, an application might use mostly `InnoDB` tables, with one `CSV` table for exporting data to a spreadsheet and a few `MEMORY` tables for temporary workspaces.
 
-**Escolhendo um Motor de Armazenamento**
+**Choosing a Storage Engine**
 
-Os vários motores de armazenamento fornecidos com o MySQL foram projetados com diferentes casos de uso em mente. A tabela a seguir fornece uma visão geral de alguns motores de armazenamento fornecidos com o MySQL, com notas explicativas após a tabela.
+The various storage engines provided with MySQL are designed with different use cases in mind. The following table provides an overview of some storage engines provided with MySQL, with clarifying notes following the table.
 
-**Tabela 15.1 Resumo das características das unidades de armazenamento**
+**Table 15.1 Storage Engines Feature Summary**
 
-<table frame="box" rules="all" summary="Resumo das funcionalidades suportadas por motor de armazenamento."><col style="width: 10%"/><col style="width: 16%"/><col style="width: 16%"/><col style="width: 16%"/><col style="width: 16%"/><col style="width: 16%"/><thead><tr><th>Característica</th> <th>MyISAM</th> <th>Memória</th> <th>InnoDB</th> <th>Arquivo</th> <th>NDB</th> </tr></thead><tbody><tr><th>Índices de árvores B</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td>Não</td> <td>Não</td> </tr><tr><th>Backup/recuperação em ponto no tempo (nota 1)</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td>Sim</td> </tr><tr><th>Suporte a bancos de dados em cluster</th> <td>Não</td> <td>Não</td> <td>Não</td> <td>Não</td> <td>Sim</td> </tr><tr><th>Índices agrupados</th> <td>Não</td> <td>Não</td> <td>Sim</td> <td>Não</td> <td>Não</td> </tr><tr><th>Dados comprimidos</th> <td>Sim (nota 2)</td> <td>Não</td> <td>Sim</td> <td>Sim</td> <td>Não</td> </tr><tr><th>Caches de dados</th> <td>Não</td> <td>N/A</td> <td>Sim</td> <td>Não</td> <td>Sim</td> </tr><tr><th>Dados criptografados</th> <td>Sim (nota 3)</td> <td>Sim (nota 3)</td> <td>Sim (nota 4)</td> <td>Sim (nota 3)</td> <td>Sim (nota 5)</td> </tr><tr><th>Suporte para chave estrangeira</th> <td>Não</td> <td>Não</td> <td>Sim</td> <td>Não</td> <td>Sim</td> </tr><tr><th>Índices de pesquisa de texto completo</th> <td>Sim</td> <td>Não</td> <td>Sim (nota 6)</td> <td>Não</td> <td>Não</td> </tr><tr><th>Suporte ao tipo de dados geográficos</th> <td>Sim</td> <td>Não</td> <td>Sim</td> <td>Sim</td> <td>Sim</td> </tr><tr><th>Suporte de indexação geospacial</th> <td>Sim</td> <td>Não</td> <td>Sim (nota 7)</td> <td>Não</td> <td>Não</td> </tr><tr><th>Índices de hash</th> <td>Não</td> <td>Sim</td> <td>Não (nota 8)</td> <td>Não</td> <td>Sim</td> </tr><tr><th>Caches de índice</th> <td>Sim</td> <td>N/A</td> <td>Sim</td> <td>Não</td> <td>Sim</td> </tr><tr><th>Granularidade de bloqueio</th> <td>Tabela</td> <td>Tabela</td> <td>Linha</td> <td>Linha</td> <td>Linha</td> </tr><tr><th>MVCC</th> <td>Não</td> <td>Não</td> <td>Sim</td> <td>Não</td> <td>Não</td> </tr><tr><th>Suporte à replicação (nota 1)</th> <td>Sim</td> <td>Limpadas (nota 9)</td> <td>Sim</td> <td>Sim</td> <td>Sim</td> </tr><tr><th>Limites de armazenamento</th> <td>256 TB</td> <td>RAM</td> <td>64 TB</td> <td>Nenhum</td> <td>384EB</td> </tr><tr><th>Índices de T-tree</th> <td>Não</td> <td>Não</td> <td>Não</td> <td>Não</td> <td>Sim</td> </tr><tr><th>Transações</th> <td>Não</td> <td>Não</td> <td>Sim</td> <td>Não</td> <td>Sim</td> </tr><tr><th>Atualizar estatísticas para o dicionário de dados</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td>Sim</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Summary of features supported per storage engine."><col style="width: 10%"/><col style="width: 16%"/><col style="width: 16%"/><col style="width: 16%"/><col style="width: 16%"/><col style="width: 16%"/><thead><tr><th>Feature</th> <th>MyISAM</th> <th>Memory</th> <th>InnoDB</th> <th>Archive</th> <th>NDB</th> </tr></thead><tbody><tr><th>B-tree indexes</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td>No</td> <td>No</td> </tr><tr><th>Backup/point-in-time recovery (note 1)</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td>Yes</td> </tr><tr><th>Cluster database support</th> <td>No</td> <td>No</td> <td>No</td> <td>No</td> <td>Yes</td> </tr><tr><th>Clustered indexes</th> <td>No</td> <td>No</td> <td>Yes</td> <td>No</td> <td>No</td> </tr><tr><th>Compressed data</th> <td>Yes (note 2)</td> <td>No</td> <td>Yes</td> <td>Yes</td> <td>No</td> </tr><tr><th>Data caches</th> <td>No</td> <td>N/A</td> <td>Yes</td> <td>No</td> <td>Yes</td> </tr><tr><th>Encrypted data</th> <td>Yes (note 3)</td> <td>Yes (note 3)</td> <td>Yes (note 4)</td> <td>Yes (note 3)</td> <td>Yes (note 5)</td> </tr><tr><th>Foreign key support</th> <td>No</td> <td>No</td> <td>Yes</td> <td>No</td> <td>Yes</td> </tr><tr><th>Full-text search indexes</th> <td>Yes</td> <td>No</td> <td>Yes (note 6)</td> <td>No</td> <td>No</td> </tr><tr><th>Geospatial data type support</th> <td>Yes</td> <td>No</td> <td>Yes</td> <td>Yes</td> <td>Yes</td> </tr><tr><th>Geospatial indexing support</th> <td>Yes</td> <td>No</td> <td>Yes (note 7)</td> <td>No</td> <td>No</td> </tr><tr><th>Hash indexes</th> <td>No</td> <td>Yes</td> <td>No (note 8)</td> <td>No</td> <td>Yes</td> </tr><tr><th>Index caches</th> <td>Yes</td> <td>N/A</td> <td>Yes</td> <td>No</td> <td>Yes</td> </tr><tr><th>Locking granularity</th> <td>Table</td> <td>Table</td> <td>Row</td> <td>Row</td> <td>Row</td> </tr><tr><th>MVCC</th> <td>No</td> <td>No</td> <td>Yes</td> <td>No</td> <td>No</td> </tr><tr><th>Replication support (note 1)</th> <td>Yes</td> <td>Limited (note 9)</td> <td>Yes</td> <td>Yes</td> <td>Yes</td> </tr><tr><th>Storage limits</th> <td>256TB</td> <td>RAM</td> <td>64TB</td> <td>None</td> <td>384EB</td> </tr><tr><th>T-tree indexes</th> <td>No</td> <td>No</td> <td>No</td> <td>No</td> <td>Yes</td> </tr><tr><th>Transactions</th> <td>No</td> <td>No</td> <td>Yes</td> <td>No</td> <td>Yes</td> </tr><tr><th>Update statistics for data dictionary</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td>Yes</td> </tr></tbody></table>
 
-**Observações:**
+**Notes:**
 
-1. Implementado no servidor, e não no motor de armazenamento.
+1. Implemented in the server, rather than in the storage engine.
 
-2. As tabelas MyISAM compactadas são suportadas apenas quando o formato de linha compactado é usado. As tabelas que usam o formato de linha compactada com MyISAM são apenas de leitura.
+2. Compressed MyISAM tables are supported only when using the compressed row format. Tables using the compressed row format with MyISAM are read only.
 
-3. Implementado no servidor por meio de funções de criptografia.
+3. Implemented in the server via encryption functions.
 
-4. Implementado no servidor por meio de funções de criptografia; No MySQL 5.7 e versões posteriores, a criptografia de dados em repouso é suportada.
+4. Implemented in the server via encryption functions; In MySQL 5.7 and later, data-at-rest encryption is supported.
 
-5. Implementado no servidor por meio de funções de criptografia; backups criptografados do NDB a partir do NDB 8.0.22; criptografia transparente do sistema de arquivos do NDB suportada no NDB 8.0.29 e versões posteriores.
+5. Implemented in the server via encryption functions; encrypted NDB backups as of NDB 8.0.22; transparent NDB file system encryption supported in NDB 8.0.29 and later.
 
-6. O suporte para índices FULLTEXT está disponível no MySQL 5.6 e versões posteriores.
+6. Support for FULLTEXT indexes is available in MySQL 5.6 and later.
 
-7. O suporte para indexação georreferenciada está disponível no MySQL 5.7 e versões posteriores.
+7. Support for geospatial indexing is available in MySQL 5.7 and later.
 
-8. O InnoDB utiliza índices de hash internamente para sua funcionalidade de Índice Hash Adaptativo.
+8. InnoDB utilizes hash indexes internally for its Adaptive Hash Index feature.
 
-9. Veja a discussão mais adiante nesta seção.
+9. See the discussion later in this section.

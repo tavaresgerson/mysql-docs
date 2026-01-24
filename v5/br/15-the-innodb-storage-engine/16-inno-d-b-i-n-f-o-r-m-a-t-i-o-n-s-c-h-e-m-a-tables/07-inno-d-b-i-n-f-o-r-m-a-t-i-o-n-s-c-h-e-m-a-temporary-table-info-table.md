@@ -1,6 +1,6 @@
-### 14.16.7 Tabela de informações da tabela temporária do esquema de informações do InnoDB
+### 14.16.7 InnoDB INFORMATION_SCHEMA Temporary Table Info Table
 
-`INNODB_TEMP_TABLE_INFO` fornece informações sobre as tabelas temporárias `InnoDB` criadas pelo usuário que estão ativas na instância `InnoDB`. Não fornece informações sobre as tabelas temporárias `InnoDB` internas usadas pelo otimizador.
+`INNODB_TEMP_TABLE_INFO` provides information about user-created `InnoDB` temporary tables that are active in the `InnoDB` instance. It does not provide information about internal `InnoDB` temporary tables used by the optimizer.
 
 ```sql
 mysql> SHOW TABLES FROM INFORMATION_SCHEMA LIKE 'INNODB_TEMP%';
@@ -11,19 +11,19 @@ mysql> SHOW TABLES FROM INFORMATION_SCHEMA LIKE 'INNODB_TEMP%';
 +---------------------------------------------+
 ```
 
-Para a definição da tabela, consulte a Seção 24.4.27, “A tabela INFORMATION_SCHEMA INNODB_TEMP_TABLE_INFO”.
+For the table definition, see Section 24.4.27, “The INFORMATION_SCHEMA INNODB_TEMP_TABLE_INFO Table”.
 
-**Exemplo 14.12 INNODB_TEMP_TABLE_INFO**
+**Example 14.12 INNODB_TEMP_TABLE_INFO**
 
-Este exemplo demonstra as características da tabela `INNODB_TEMP_TABLE_INFO`.
+This example demonstrates characteristics of the `INNODB_TEMP_TABLE_INFO` table.
 
-1. Crie uma tabela temporária simples do tipo `InnoDB`:
+1. Create a simple `InnoDB` temporary table:
 
    ```sql
    mysql> CREATE TEMPORARY TABLE t1 (c1 INT PRIMARY KEY) ENGINE=INNODB;
    ```
 
-2. Faça uma consulta `INNODB_TEMP_TABLE_INFO` para visualizar os metadados da tabela temporária.
+2. Query `INNODB_TEMP_TABLE_INFO` to view the temporary table metadata.
 
    ```sql
    mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_TEMP_TABLE_INFO\G
@@ -36,15 +36,15 @@ Este exemplo demonstra as características da tabela `INNODB_TEMP_TABLE_INFO`.
           IS_COMPRESSED: FALSE
    ```
 
-   O `TABLE_ID` é um identificador único para a tabela temporária. A coluna `NAME` exibe o nome gerado pelo sistema para a tabela temporária, que é precedido por “#sql”. O número de colunas (`N_COLS`) é de 4 em vez de 1 porque o `InnoDB` sempre cria três colunas ocultas da tabela (`DB_ROW_ID`, `DB_TRX_ID` e `DB_ROLL_PTR`). `PER_TABLE_TABLESPACE` e `IS_COMPRESSED` retornam `TRUE` para tabelas temporárias compactadas. Caso contrário, esses campos retornam `FALSE`.
+   The `TABLE_ID`  is a unique identifier for the temporary table. The `NAME` column displays the system-generated name for the temporary table, which is prefixed with “#sql”. The number of columns (`N_COLS`) is 4 rather than 1 because `InnoDB` always creates three hidden table columns (`DB_ROW_ID`, `DB_TRX_ID`, and `DB_ROLL_PTR`). `PER_TABLE_TABLESPACE` and `IS_COMPRESSED` report `TRUE` for compressed temporary tables. Otherwise, these fields report `FALSE`.
 
-3. Crie uma tabela temporária compactada.
+3. Create a compressed temporary table.
 
    ```sql
    mysql> CREATE TEMPORARY TABLE t2 (c1 INT) ROW_FORMAT=COMPRESSED ENGINE=INNODB;
    ```
 
-4. Pergunte novamente `INNODB_TEMP_TABLE_INFO`.
+4. Query `INNODB_TEMP_TABLE_INFO` again.
 
    ```sql
    mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_TEMP_TABLE_INFO\G
@@ -64,24 +64,24 @@ Este exemplo demonstra as características da tabela `INNODB_TEMP_TABLE_INFO`.
           IS_COMPRESSED: FALSE
    ```
 
-   O relatório `PER_TABLE_TABLESPACE` e `IS_COMPRESSED` indicam `TRUE` para a tabela temporária comprimida. O ID `SPACE` para a tabela temporária comprimida é diferente porque as tabelas temporárias comprimidas são criadas em espaços de tabelas separados por arquivo. As tabelas temporárias não comprimidas são criadas no espaço de tabelas temporárias compartilhadas (`ibtmp1`) e indicam o mesmo ID `SPACE`.
+   `PER_TABLE_TABLESPACE` and `IS_COMPRESSED` report `TRUE` for the compressed temporary table. The `SPACE` ID for the compressed temporary table is different because compressed temporary tables are created in separate file-per-table tablespaces. Non-compressed temporary tables are created in the shared temporary tablespace (`ibtmp1`) and report the same `SPACE` ID.
 
-5. Reinicie o MySQL e execute a consulta `INNODB_TEMP_TABLE_INFO`.
+5. Restart MySQL and query `INNODB_TEMP_TABLE_INFO`.
 
    ```sql
    mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_TEMP_TABLE_INFO\G
    Empty set (0.00 sec)
    ```
 
-   Um conjunto vazio é retornado porque `INNODB_TEMP_TABLE_INFO` e seus dados não são persistidos no disco quando o servidor é desligado.
+   An empty set is returned because `INNODB_TEMP_TABLE_INFO` and its data are not persisted to disk when the server is shut down.
 
-6. Crie uma nova tabela temporária.
+6. Create a new temporary table.
 
    ```sql
    mysql> CREATE TEMPORARY TABLE t1 (c1 INT PRIMARY KEY) ENGINE=INNODB;
    ```
 
-7. Faça uma consulta `INNODB_TEMP_TABLE_INFO` para visualizar os metadados da tabela temporária.
+7. Query `INNODB_TEMP_TABLE_INFO` to view the temporary table metadata.
 
    ```sql
    mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_TEMP_TABLE_INFO\G
@@ -94,4 +94,4 @@ Este exemplo demonstra as características da tabela `INNODB_TEMP_TABLE_INFO`.
           IS_COMPRESSED: FALSE
    ```
 
-   O ID `SPACE` pode ser diferente porque é gerado dinamicamente quando o servidor é iniciado.
+   The `SPACE` ID may be different because it is dynamically generated when the server is started.

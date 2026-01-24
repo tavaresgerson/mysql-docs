@@ -1,12 +1,12 @@
-### 14.1.3 Verificar se o InnoDB é o motor de armazenamento padrão
+### 14.1.3 Verifying that InnoDB is the Default Storage Engine
 
-Emita a declaração `SHOW ENGINES` para visualizar os motores de armazenamento MySQL disponíveis. Procure por `DEFAULT` na coluna `SUPPORT`.
+Issue the `SHOW ENGINES` statement to view the available MySQL storage engines. Look for `DEFAULT` in the `SUPPORT` column.
 
 ```sql
 mysql> SHOW ENGINES;
 ```
 
-Alternativamente, consulte a tabela do esquema de informações `ENGINES`.
+Alternatively, query the Information Schema `ENGINES` table.
 
 ```sql
 mysql> SELECT * FROM INFORMATION_SCHEMA.ENGINES;

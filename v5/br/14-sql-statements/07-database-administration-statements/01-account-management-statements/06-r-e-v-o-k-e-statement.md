@@ -1,4 +1,4 @@
-#### 13.7.1.6 Declaração de REVOGAÇÃO
+#### 13.7.1.6 REVOKE Statement
 
 ```sql
 REVOKE
@@ -14,34 +14,34 @@ REVOKE PROXY ON user
     FROM user [, user] ...
 ```
 
-A declaração `REVOKE` permite que os administradores do sistema revoguem privilégios de contas do MySQL.
+The [`REVOKE`](revoke.html "13.7.1.6 REVOKE Statement") statement enables system administrators to revoke privileges from MySQL accounts.
 
-Para obter detalhes sobre os níveis em que os privilégios existem, os valores permitidos de *`priv_type`*, *`priv_level`* e *`object_type`* e a sintaxe para especificar usuários e senhas, consulte Seção 13.7.1.4, “Instrução GRANT”.
+For details on the levels at which privileges exist, the permissible *`priv_type`*, *`priv_level`*, and *`object_type`* values, and the syntax for specifying users and passwords, see [Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement").
 
-Quando a variável de sistema `read_only` está habilitada, o comando `REVOKE` exige o privilégio `SUPER`, além de quaisquer outros privilégios necessários descritos na discussão a seguir.
+When the [`read_only`](server-system-variables.html#sysvar_read_only) system variable is enabled, [`REVOKE`](revoke.html "13.7.1.6 REVOKE Statement") requires the [`SUPER`](privileges-provided.html#priv_super) privilege in addition to any other required privileges described in the following discussion.
 
-Cada nome de conta usa o formato descrito na Seção 6.2.4, “Especificação de Nomes de Conta”. Por exemplo:
+Each account name uses the format described in [Section 6.2.4, “Specifying Account Names”](account-names.html "6.2.4 Specifying Account Names"). For example:
 
 ```sql
 REVOKE INSERT ON *.* FROM 'jeffrey'@'localhost';
 ```
 
-A parte do nome do host do nome da conta, se omitida, tem como padrão `'%'.`
+The host name part of the account name, if omitted, defaults to `'%'`.
 
-Para usar a sintaxe de primeira remoção `REVOKE`, você deve ter o privilégio `GRANT OPTION` e você deve ter os privilégios que está removendo.
+To use the first [`REVOKE`](revoke.html "13.7.1.6 REVOKE Statement") syntax, you must have the [`GRANT OPTION`](privileges-provided.html#priv_grant-option) privilege, and you must have the privileges that you are revoking.
 
-Para revogar todos os privilégios, use a segunda sintaxe, que exclui todos os privilégios globais, de banco de dados, de tabela, de coluna e de rotina para o(s) usuário(s) nomeado(s):
+To revoke all privileges, use the second syntax, which drops all global, database, table, column, and routine privileges for the named user or users:
 
 ```sql
 REVOKE ALL PRIVILEGES, GRANT OPTION FROM user [, user] ...
 ```
 
-Para usar essa sintaxe de `REVOKE`, você deve ter o privilégio global de `CREATE USER` ou o privilégio de `UPDATE` para o banco de dados do sistema `mysql`.
+To use this [`REVOKE`](revoke.html "13.7.1.6 REVOKE Statement") syntax, you must have the global [`CREATE USER`](privileges-provided.html#priv_create-user) privilege, or the [`UPDATE`](privileges-provided.html#priv_update) privilege for the `mysql` system database.
 
-As contas de usuários das quais os privilégios devem ser revogados devem existir, mas os privilégios que devem ser revogados não precisam ser concedidos atualmente a eles.
+User accounts from which privileges are to be revoked must exist, but the privileges to be revoked need not be currently granted to them.
 
-`REVOKE` remove privilégios, mas não remove linhas da tabela `mysql.user` do sistema. Para remover uma conta de usuário completamente, use `DROP USER`. Veja Seção 13.7.1.3, “Instrução DROP USER”.
+[`REVOKE`](revoke.html "13.7.1.6 REVOKE Statement") removes privileges, but does not remove rows from the `mysql.user` system table. To remove a user account entirely, use [`DROP USER`](drop-user.html "13.7.1.3 DROP USER Statement"). See [Section 13.7.1.3, “DROP USER Statement”](drop-user.html "13.7.1.3 DROP USER Statement").
 
-Se as tabelas de concessão contiverem linhas de privilégio que contenham nomes de banco de dados ou tabelas com maiúsculas e minúsculas misturadas e a variável de sistema `lower_case_table_names` estiver definida para um valor diferente de zero, a opção `REVOKE` não pode ser usada para revogar esses privilégios. É necessário manipular as tabelas de concessão diretamente. (`GRANT` não cria essas linhas quando a variável `lower_case_table_names` está definida, mas essas linhas podem ter sido criadas antes de definir a variável.)
+If the grant tables hold privilege rows that contain mixed-case database or table names and the [`lower_case_table_names`](server-system-variables.html#sysvar_lower_case_table_names) system variable is set to a nonzero value, [`REVOKE`](revoke.html "13.7.1.6 REVOKE Statement") cannot be used to revoke these privileges. It is necessary to manipulate the grant tables directly. ([`GRANT`](grant.html "13.7.1.4 GRANT Statement") does not create such rows when [`lower_case_table_names`](server-system-variables.html#sysvar_lower_case_table_names) is set, but such rows might have been created prior to setting the variable.)
 
-Quando executado com sucesso a partir do programa **mysql**, o comando `REVOKE` responde com `Query OK, 0 rows affected`. Para determinar quais privilégios permanecem após a operação, use o comando `SHOW GRANTS`. Consulte Seção 13.7.5.21, “Instrução SHOW GRANTS”.
+When successfully executed from the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") program, [`REVOKE`](revoke.html "13.7.1.6 REVOKE Statement") responds with `Query OK, 0 rows affected`. To determine what privileges remain after the operation, use [`SHOW GRANTS`](show-grants.html "13.7.5.21 SHOW GRANTS Statement"). See [Section 13.7.5.21, “SHOW GRANTS Statement”](show-grants.html "13.7.5.21 SHOW GRANTS Statement").

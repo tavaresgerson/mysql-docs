@@ -1,18 +1,18 @@
-#### 26.4.5.9 A função ps_is_account_enabled()
+#### 26.4.5.9 The ps_is_account_enabled() Function
 
-Retorna `YES` ou `NO` para indicar se a instrumentação do Schema de Desempenho para uma conta específica está habilitada.
+Returns `YES` or `NO` to indicate whether Performance Schema instrumentation for a given account is enabled.
 
-##### Parâmetros
+##### Parameters
 
-- `in_host VARCHAR(60)`: O nome do host da conta a ser verificada.
+* `in_host VARCHAR(60)`: The host name of the account to check.
 
-- `in_user VARCHAR(32)`: O nome do usuário da conta a ser verificada.
+* `in_user VARCHAR(32)`: The user name of the account to check.
 
-##### Valor de retorno
+##### Return Value
 
-Um valor `ENUM('SIM','NÃO')`.
+An `ENUM('YES','NO')` value.
 
-##### Exemplo
+##### Example
 
 ```sql
 mysql> SELECT sys.ps_is_account_enabled('localhost', 'root');

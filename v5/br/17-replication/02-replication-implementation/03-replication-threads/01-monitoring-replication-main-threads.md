@@ -1,10 +1,10 @@
-#### 16.2.3.1 Monitoramento das Threads Principais de Replicação
+#### 16.2.3.1 Monitoring Replication Main Threads
 
-A instrução `SHOW PROCESSLIST` fornece informações que indicam o que está acontecendo na fonte e na replica em relação à replicação. Para informações sobre os estados da fonte, consulte Seção 8.14.5, “Estados de Fios de Replicação da Fonte”. Para informações sobre os estados da replica, consulte Seção 8.14.6, “Estados de Fios de E/S de Replicação da Replica” e Seção 8.14.7, “Estados de Fios de SQL de Replicação da Replica”.
+The [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement") statement provides information that tells you what is happening on the source and on the replica regarding replication. For information on source states, see [Section 8.14.5, “Replication Source Thread States”](source-thread-states.html "8.14.5 Replication Source Thread States"). For replica states, see [Section 8.14.6, “Replication Replica I/O Thread States”](replica-io-thread-states.html "8.14.6 Replication Replica I/O Thread States"), and [Section 8.14.7, “Replication Replica SQL Thread States”](replica-sql-thread-states.html "8.14.7 Replication Replica SQL Thread States").
 
-O exemplo a seguir ilustra como os três principais fios de replicação, o thread de exibição de exaustão do log binário, o thread de I/O de replicação e o thread de SQL de replicação aparecem na saída do `SHOW PROCESSLIST`.
+The following example illustrates how the three main replication threads, the binary log dump thread, replicatin I/O thread, and replication SQL thread, show up in the output from [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement").
 
-No servidor de origem, o resultado da consulta `SHOW PROCESSLIST` (show-processlist.html) parece assim:
+On the source server, the output from [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement") looks like this:
 
 ```sql
 mysql> SHOW PROCESSLIST\G
@@ -20,9 +20,9 @@ Command: Binlog Dump
    Info: NULL
 ```
 
-Aqui, o thread 2 é um thread de `Dump de Binlog` que atende a uma replica conectada. As informações de `Estado` indicam que todas as atualizações pendentes foram enviadas para a replica e que a fonte está aguardando mais atualizações. Se você não vir nenhum thread de `Dump de Binlog` em um servidor de origem, isso significa que a replicação não está em execução; ou seja, nenhuma replica está conectada atualmente.
+Here, thread 2 is a `Binlog Dump` thread that services a connected replica. The `State` information indicates that all outstanding updates have been sent to the replica and that the source is waiting for more updates to occur. If you see no `Binlog Dump` threads on a source server, this means that replication is not running; that is, no replicas are currently connected.
 
-Em um servidor de replicação, o resultado da consulta `SHOW PROCESSLIST` (show-processlist.html) parece assim:
+On a replica server, the output from [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement") looks like this:
 
 ```sql
 mysql> SHOW PROCESSLIST\G
@@ -47,8 +47,8 @@ Command: Connect
    Info: NULL
 ```
 
-A informação sobre o `Estado` indica que o thread 10 é o thread de I/O de replicação que está se comunicando com o servidor de origem, e o thread 11 é o thread de SQL de replicação que está processando as atualizações armazenadas nos logs de retransmissão. No momento em que o `SHOW PROCESSLIST` foi executado, ambos os fios estavam inativos, aguardando atualizações adicionais.
+The `State` information indicates that thread 10 is the replication I/O thread that is communicating with the source server, and thread 11 is the replication SQL thread that is processing the updates stored in the relay logs. At the time that [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement") was run, both threads were idle, waiting for further updates.
 
-O valor na coluna `Time` pode mostrar o quanto a réplica está atrasada em relação à fonte. Veja Seção A.14, “Perguntas Frequentes do MySQL 5.7: Replicação”. Se passar tempo suficiente no lado da fonte sem atividade no thread `Binlog Dump`, a fonte determina que a réplica não está mais conectada. Quanto a qualquer outra conexão de cliente, os tempos de espera dependem dos valores de `net_write_timeout` e `net_retry_count`; para mais informações sobre esses valores, veja Seção 5.1.7, “Variáveis do Sistema do Servidor”.
+The value in the `Time` column can show how late the replica is compared to the source. See [Section A.14, “MySQL 5.7 FAQ: Replication”](faqs-replication.html "A.14 MySQL 5.7 FAQ: Replication"). If sufficient time elapses on the source side without activity on the `Binlog Dump` thread, the source determines that the replica is no longer connected. As for any other client connection, the timeouts for this depend on the values of `net_write_timeout` and `net_retry_count`; for more information about these, see [Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables").
 
-A declaração `SHOW SLAVE STATUS` fornece informações adicionais sobre o processamento de replicação em um servidor replica. Consulte Seção 16.1.7.1, “Verificar o Status da Replicação”.
+The [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") statement provides additional information about replication processing on a replica server. See [Section 16.1.7.1, “Checking Replication Status”](replication-administration-status.html "16.1.7.1 Checking Replication Status").

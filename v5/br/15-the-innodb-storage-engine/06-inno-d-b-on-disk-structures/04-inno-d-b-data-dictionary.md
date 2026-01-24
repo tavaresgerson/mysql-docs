@@ -1,3 +1,3 @@
-### 14.6.4 Dicionário de Dados InnoDB
+### 14.6.4 InnoDB Data Dictionary
 
-O dicionário de dados `InnoDB` é composto por tabelas internas do sistema que contêm metadados usados para acompanhar objetos como tabelas, índices e colunas de tabelas. Os metadados estão fisicamente localizados no espaço de sistema `InnoDB`. Por razões históricas, os metadados do dicionário de dados se sobrepõem, em certa medida, às informações armazenadas nos arquivos de metadados da tabela `InnoDB` (arquivos `.frm`).
+The `InnoDB` data dictionary is comprised of internal system tables that contain metadata used to keep track of objects such as tables, indexes, and table columns. The metadata is physically located in the `InnoDB` system tablespace. For historical reasons, data dictionary metadata overlaps to some degree with information stored in `InnoDB` table metadata files (`.frm` files).

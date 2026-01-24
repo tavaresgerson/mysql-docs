@@ -1,38 +1,38 @@
-### 12.16.6 Funções de conversão de formato de geometria
+### 12.16.6 Geometry Format Conversion Functions
 
-O MySQL suporta as funções listadas nesta seção para converter valores de geometria do formato de geometria interna para o formato WKT ou WKB.
+MySQL supports the functions listed in this section for converting geometry values from internal geometry format to WKT or WKB format.
 
-Há também funções para converter uma string do formato WKT ou WKB para o formato de geometria interna. Veja a Seção 12.16.3, “Funções que criam valores de geometria a partir de valores WKT”, e a Seção 12.16.4, “Funções que criam valores de geometria a partir de valores WKB”.
+There are also functions to convert a string from WKT or WKB format to internal geometry format. See Section 12.16.3, “Functions That Create Geometry Values from WKT Values”, and Section 12.16.4, “Functions That Create Geometry Values from WKB Values”.
 
-- `AsBinary(g)`, `AsWKB(g)`
+* `AsBinary(g)`, `AsWKB(g)`
 
-  `ST_AsBinary()`, `ST_AsWKB()`, `AsBinary()` e `AsWKB()` são sinônimos. Para mais informações, consulte a descrição de `ST_AsBinary()`.
+  `ST_AsBinary()`, `ST_AsWKB()`, `AsBinary()`, and `AsWKB()` are synonyms. For more information, see the description of `ST_AsBinary()`.
 
-  `AsBinary()` e `AsWKB()` estão desatualizados; espere que eles sejam removidos em uma futura versão do MySQL. Use `ST_AsBinary()` e `ST_AsWKB()` em vez disso.
+  `AsBinary()` and `AsWKB()` are deprecated; expect them to be removed in a future MySQL release. Use `ST_AsBinary()` and `ST_AsWKB()` instead.
 
-- `AsText(g)`, `AsWKT(g)`
+* `AsText(g)`, `AsWKT(g)`
 
-  `ST_AsText()`, `ST_AsWKT()`, `AsText()` e `AsWKT()` são sinônimos. Para mais informações, consulte a descrição de `ST_AsText()`.
+  `ST_AsText()`, `ST_AsWKT()`, `AsText()`, and `AsWKT()` are synonyms. For more information, see the description of `ST_AsText()`.
 
-  `AsText()` e `AsWKT()` estão desatualizados; espere que eles sejam removidos em uma futura versão do MySQL. Use `ST_AsText()` e `ST_AsWKT()` em vez disso.
+  `AsText()` and `AsWKT()` are deprecated; expect them to be removed in a future MySQL release. Use `ST_AsText()` and `ST_AsWKT()` instead.
 
-- `ST_AsBinary(g)`, `ST_AsWKB(g)`
+* `ST_AsBinary(g)`, `ST_AsWKB(g)`
 
-  Converte um valor no formato de geometria interna para sua representação WKB e retorna o resultado binário.
+  Converts a value in internal geometry format to its WKB representation and returns the binary result.
 
-  Se o argumento for `NULL`, o valor de retorno será `NULL`. Se o argumento não for uma geometria sintaticamente bem formada, ocorrerá um erro `ER_GIS_INVALID_DATA`.
+  If the argument is `NULL`, the return value is `NULL`. If the argument is not a syntactically well-formed geometry, an `ER_GIS_INVALID_DATA` error occurs.
 
   ```sql
   SELECT ST_AsBinary(g) FROM geom;
   ```
 
-  `ST_AsBinary()`, `ST_AsWKB()`, `AsBinary()` e `AsWKB()` são sinônimos.
+  `ST_AsBinary()`, `ST_AsWKB()`, `AsBinary()`, and `AsWKB()` are synonyms.
 
-- `ST_AsText(g)`, `ST_AsWKT(g)`
+* `ST_AsText(g)`, `ST_AsWKT(g)`
 
-  Converte um valor no formato de geometria interna para sua representação WKT e retorna o resultado como uma string.
+  Converts a value in internal geometry format to its WKT representation and returns the string result.
 
-  Se o argumento for `NULL`, o valor de retorno será `NULL`. Se o argumento não for uma geometria sintaticamente bem formada, ocorrerá um erro `ER_GIS_INVALID_DATA`.
+  If the argument is `NULL`, the return value is `NULL`. If the argument is not a syntactically well-formed geometry, an `ER_GIS_INVALID_DATA` error occurs.
 
   ```sql
   mysql> SET @g = 'LineString(1 1,2 2,3 3)';
@@ -44,9 +44,9 @@ Há também funções para converter uma string do formato WKT ou WKB para o for
   +--------------------------------+
   ```
 
-  `ST_AsText()`, `ST_AsWKT()`, `AsText()` e `AsWKT()` são sinônimos.
+  `ST_AsText()`, `ST_AsWKT()`, `AsText()`, and `AsWKT()` are synonyms.
 
-  A saída para os valores de `MultiPoint` inclui parênteses ao redor de cada ponto. Por exemplo:
+  Output for `MultiPoint` values includes parentheses around each point. For example:
 
   ```sql
   mysql> SET @mp = 'MULTIPOINT(1 1, 2 2, 3 3)';

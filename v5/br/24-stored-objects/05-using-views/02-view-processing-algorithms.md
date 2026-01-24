@@ -1,68 +1,67 @@
-### 23.5.2 Ver algoritmos de processamento
+### 23.5.2 View Processing Algorithms
 
-A cláusula `ALGORITHM` opcional para `CREATE VIEW` ou `ALTER VIEW` é uma extensão do MySQL para o SQL padrão. Ela afeta a forma como o MySQL processa a visão. `ALGORITHM` aceita três valores: `MERGE`, `TEMPTABLE` ou `UNDEFINED`.
+The optional `ALGORITHM` clause for `CREATE VIEW` or `ALTER VIEW` is a MySQL extension to standard SQL. It affects how MySQL processes the view. `ALGORITHM` takes three values: `MERGE`, `TEMPTABLE`, or `UNDEFINED`.
 
-- Para `MERGE`, o texto de uma declaração que se refere à vista e à definição da vista são mesclados de tal forma que partes da definição da vista substituem partes correspondentes da declaração.
+* For `MERGE`, the text of a statement that refers to the view and the view definition are merged such that parts of the view definition replace corresponding parts of the statement.
 
-- Para `TEMPTABLE`, os resultados da consulta são recuperados em uma tabela temporária, que é então usada para executar a instrução.
+* For `TEMPTABLE`, the results from the view are retrieved into a temporary table, which then is used to execute the statement.
 
-- Para `UNDEFINED`, o MySQL escolhe qual algoritmo usar. Ele prefere `MERGE` em vez de `TEMPTABLE` se possível, porque `MERGE` geralmente é mais eficiente e porque uma visão não pode ser atualizada se uma tabela temporária for usada.
+* For `UNDEFINED`, MySQL chooses which algorithm to use. It prefers `MERGE` over `TEMPTABLE` if possible, because `MERGE` is usually more efficient and because a view cannot be updated if a temporary table is used.
 
-- Se a cláusula `ALGORITHM` não estiver presente, o algoritmo padrão é determinado pelo valor da bandeira `derived_merge` da variável de sistema `optimizer_switch`. Para uma discussão adicional, consulte a Seção 8.2.2.4, “Otimizando tabelas derivadas e referências de visualizações com mesclagem ou materialização”.
+* If no `ALGORITHM` clause is present, the default algorithm is determined by the value of the `derived_merge` flag of the `optimizer_switch` system variable. For additional discussion, see Section 8.2.2.4, “Optimizing Derived Tables and View References with Merging or Materialization”.
 
-Uma razão para especificar `TEMPTABLE` explicitamente é que as bloqueadas podem ser liberadas nas tabelas subjacentes após a criação da tabela temporária e antes de ela ser usada para finalizar o processamento da instrução. Isso pode resultar em liberação de bloqueio mais rápida do que o algoritmo `MERGE`, para que outros clientes que utilizam a visualização não sejam bloqueados por mais tempo.
+A reason to specify `TEMPTABLE` explicitly is that locks can be released on underlying tables after the temporary table has been created and before it is used to finish processing the statement. This might result in quicker lock release than the `MERGE` algorithm so that other clients that use the view are not blocked as long.
 
-Um algoritmo de visualização pode ser `UNDEFINED` por três razões:
+A view algorithm can be `UNDEFINED` for three reasons:
 
-- Não há nenhuma cláusula `ALGORITHM` na instrução `CREATE VIEW`.
+* No `ALGORITHM` clause is present in the `CREATE VIEW` statement.
 
-- A instrução `CREATE VIEW` tem uma cláusula explícita `ALGORITHM = UNDEFINED`.
+* The `CREATE VIEW` statement has an explicit `ALGORITHM = UNDEFINED` clause.
 
-- O algoritmo `MERGE` é especificado para uma visualização que pode ser processada apenas com uma tabela temporária. Nesse caso, o MySQL gera uma mensagem de aviso e define o algoritmo como `UNDEFINED`.
+* `ALGORITHM = MERGE` is specified for a view that can be processed only with a temporary table. In this case, MySQL generates a warning and sets the algorithm to `UNDEFINED`.
 
-Como mencionado anteriormente, o `MERGE` é tratado ao combinar partes correspondentes de uma definição de visualização na declaração que faz referência à visualização. Os exemplos a seguir ilustram brevemente como o algoritmo `MERGE` funciona. Os exemplos assumem que existe uma visualização `v_merge` que tem esta definição:
+As mentioned earlier, `MERGE` is handled by merging corresponding parts of a view definition into the statement that refers to the view. The following examples briefly illustrate how the `MERGE` algorithm works. The examples assume that there is a view `v_merge` that has this definition:
 
 ```sql
 CREATE ALGORITHM = MERGE VIEW v_merge (vc1, vc2) AS
 SELECT c1, c2 FROM t WHERE c3 > 100;
 ```
 
-Exemplo 1: Suponha que façamos essa declaração:
+Example 1: Suppose that we issue this statement:
 
 ```sql
 SELECT * FROM v_merge;
 ```
 
-O MySQL trata a declaração da seguinte forma:
+MySQL handles the statement as follows:
 
-- `v_merge` se torna `t`
+* `v_merge` becomes `t`
+* `*` becomes `vc1, vc2`, which corresponds to `c1, c2`
 
-- `*` se torna `vc1, vc2`, o que corresponde a `c1, c2`
+* The view `WHERE` clause is added
 
-- A cláusula `WHERE` da vista foi adicionada
-
-A declaração resultante a ser executada se torna:
+The resulting statement to be executed becomes:
 
 ```sql
 SELECT c1, c2 FROM t WHERE c3 > 100;
 ```
 
-Exemplo 2: Suponha que façamos essa declaração:
+Example 2: Suppose that we issue this statement:
 
 ```sql
 SELECT * FROM v_merge WHERE vc1 < 100;
 ```
 
-Esta declaração é tratada de maneira semelhante à anterior, exceto que `vc1 < 100` se torna `c1 < 100` e a cláusula `WHERE` da vista é adicionada à cláusula `WHERE` da declaração usando um conectivo `AND` (e parênteses são adicionados para garantir que as partes da cláusula sejam executadas com a precedência correta). A declaração resultante a ser executada se torna:
+This statement is handled similarly to the previous one, except that `vc1 < 100` becomes `c1 < 100` and the view `WHERE` clause is added to the statement `WHERE` clause using an `AND` connective (and parentheses are added to make sure the parts of the clause are executed with correct precedence). The resulting statement to be executed becomes:
 
 ```sql
 SELECT c1, c2 FROM t WHERE (c3 > 100) AND (c1 < 100);
 ```
 
-Efetivamente, a declaração a ser executada tem uma cláusula `WHERE` dessa forma:
+Effectively, the statement to be executed has a `WHERE` clause of this form:
 
 ```sql
 WHERE (select WHERE) AND (view WHERE)
 ```
 
-Se o algoritmo `MERGE` não puder ser usado, uma tabela temporária deve ser utilizada em vez disso. Os construtos que impedem a junção são os mesmos que impedem a junção em tabelas derivadas. Exemplos são `SELECT DISTINCT` ou `LIMIT` na subconsulta. Para obter detalhes, consulte a Seção 8.2.2.4, “Otimizando tabelas derivadas e referências de visualizações com junção ou materialização”.
+If the `MERGE` algorithm cannot be used, a temporary table must be used instead. Constructs that prevent merging are the same as those that prevent merging in derived tables. Examples are `SELECT DISTINCT` or `LIMIT` in the subquery. For details, see Section 8.2.2.4, “Optimizing Derived Tables and View References with Merging or Materialization”.

@@ -1,8 +1,8 @@
-#### 25.12.2.4 A tabela setup_objects
+#### 25.12.2.4 The setup_objects Table
 
-A tabela `setup_objects` controla se o Schema de Desempenho monitora objetos específicos. Essa tabela tem um tamanho máximo de 100 linhas por padrão. Para alterar o tamanho da tabela, modifique a variável de sistema `performance_schema_setup_objects_size` na inicialização do servidor.
+The [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table") table controls whether the Performance Schema monitors particular objects. This table has a maximum size of 100 rows by default. To change the table size, modify the [`performance_schema_setup_objects_size`](performance-schema-system-variables.html#sysvar_performance_schema_setup_objects_size) system variable at server startup.
 
-O conteúdo inicial do `setup_objects` parece assim:
+The initial [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table") contents look like this:
 
 ```sql
 mysql> SELECT * FROM performance_schema.setup_objects;
@@ -32,40 +32,40 @@ mysql> SELECT * FROM performance_schema.setup_objects;
 +-------------+--------------------+-------------+---------+-------+
 ```
 
-As modificações na tabela `setup_objects` afetam o monitoramento dos objetos imediatamente.
+Modifications to the [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table") table affect object monitoring immediately.
 
-Para os tipos de objetos listados em `setup_objects`, o Schema de Desempenho usa a tabela para monitorá-los. A correspondência de objetos é baseada nas colunas `OBJECT_SCHEMA` e `OBJECT_NAME`. Os objetos para os quais não há correspondência não são monitorados.
+For object types listed in [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table"), the Performance Schema uses the table to how to monitor them. Object matching is based on the `OBJECT_SCHEMA` and `OBJECT_NAME` columns. Objects for which there is no match are not monitored.
 
-O efeito da configuração padrão do objeto é instrumentar todas as tabelas, exceto aquelas nos bancos de dados `mysql`, `INFORMATION_SCHEMA` e `performance_schema`. (As tabelas no banco de dados `INFORMATION_SCHEMA` não são instrumentadas, independentemente do conteúdo de `setup_objects`; a linha para `information_schema.%` apenas torna isso padrão explícito.)
+The effect of the default object configuration is to instrument all tables except those in the `mysql`, `INFORMATION_SCHEMA`, and `performance_schema` databases. (Tables in the `INFORMATION_SCHEMA` database are not instrumented regardless of the contents of [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table"); the row for `information_schema.%` simply makes this default explicit.)
 
-Quando o Schema de Desempenho verifica uma correspondência em `setup_objects`, ele tenta encontrar correspondências mais específicas primeiro. Por exemplo, com uma tabela `db1.t1`, ele procura uma correspondência para `'db1'` e `'t1'`, depois para `'db1'` e `'%%'`, e depois para `'%%'` e `'%%'`. A ordem em que a correspondência ocorre importa, pois diferentes linhas de correspondência em `setup_objects` podem ter valores diferentes de `ENABLED` e `TIMED`.
+When the Performance Schema checks for a match in [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table"), it tries to find more specific matches first. For example, with a table `db1.t1`, it looks for a match for `'db1'` and `'t1'`, then for `'db1'` and `'%'`, then for `'%'` and `'%'`. The order in which matching occurs matters because different matching [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table") rows can have different `ENABLED` and `TIMED` values.
 
-As linhas podem ser inseridas ou excluídas de `setup_objects` por usuários com o privilégio de `INSERT` ou `DELETE` na tabela. Para as linhas existentes, apenas as colunas `ENABLED` e `TIMED` podem ser modificadas, por usuários com o privilégio de `UPDATE` na tabela.
+Rows can be inserted into or deleted from [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table") by users with the [`INSERT`](privileges-provided.html#priv_insert) or [`DELETE`](privileges-provided.html#priv_delete) privilege on the table. For existing rows, only the `ENABLED` and `TIMED` columns can be modified, by users with the [`UPDATE`](privileges-provided.html#priv_update) privilege on the table.
 
-Para obter mais informações sobre o papel da tabela `setup_objects` no filtro de eventos, consulte Seção 25.4.3, “Pré-filtro de Eventos”.
+For more information about the role of the [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table") table in event filtering, see [Section 25.4.3, “Event Pre-Filtering”](performance-schema-pre-filtering.html "25.4.3 Event Pre-Filtering").
 
-A tabela `setup_objects` tem as seguintes colunas:
+The [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table") table has these columns:
 
-- `OBJETO_TIPO`
+* `OBJECT_TYPE`
 
-  O tipo de objeto a ser instrumentado. O valor é um dos seguintes: `'EVENT'` (evento do Agendamento de Eventos), `'FUNCTION'` (função armazenada), `'PROCEDURE'` (procedimento armazenado), `'TABLE'` (tabela base) ou `'TRIGGER'` (trigger).
+  The type of object to instrument. The value is one of `'EVENT'` (Event Scheduler event), `'FUNCTION'` (stored function), `'PROCEDURE'` (stored procedure), `'TABLE'` (base table), or `'TRIGGER'` (trigger).
 
-  O filtro `TABLE` afeta eventos de E/S de tabela (`instrumento wait/io/table/sql/handler`) e eventos de bloqueio de tabela (`instrumento wait/lock/table/sql/handler`).
+  `TABLE` filtering affects table I/O events (`wait/io/table/sql/handler` instrument) and table lock events (`wait/lock/table/sql/handler` instrument).
 
-- `OBJECT_SCHEMA`
+* `OBJECT_SCHEMA`
 
-  O esquema que contém o objeto. Deve ser um nome literal ou `'%'` para significar “qualquer esquema”.
+  The schema that contains the object. This should be a literal name, or `'%'` to mean “any schema.”
 
-- `NOME_OBJETO`
+* `OBJECT_NAME`
 
-  O nome do objeto instrumentado. Deve ser um nome literal ou `'%'` para significar “qualquer objeto”.
+  The name of the instrumented object. This should be a literal name, or `'%'` to mean “any object.”
 
-- `ativado`
+* `ENABLED`
 
-  Se os eventos para o objeto estão instrumentados. O valor é `SIM` ou `NÃO`. Esta coluna pode ser modificada.
+  Whether events for the object are instrumented. The value is `YES` or `NO`. This column can be modified.
 
-- `TIMED`
+* `TIMED`
 
-  Se os eventos para o objeto são temporizados. O valor é `SIM` ou `NÃO`. Esta coluna pode ser modificada.
+  Whether events for the object are timed. The value is `YES` or `NO`. This column can be modified.
 
-A opção `TRUNCATE TABLE` está permitida para a tabela `setup_objects`. Ela remove as linhas.
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is permitted for the [`setup_objects`](performance-schema-setup-objects-table.html "25.12.2.4 The setup_objects Table") table. It removes the rows.

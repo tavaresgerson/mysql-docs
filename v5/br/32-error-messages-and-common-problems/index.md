@@ -1,41 +1,39 @@
-# Apêndice B Mensagens de erro e problemas comuns
+# Appendix B Error Messages and Common Problems
 
-**Índice**
+**Table of Contents**
 
-[B.1 Fontes e elementos de mensagem de erro](error-message-elements.html)
+[B.1 Error Message Sources and Elements](error-message-elements.html)
 
-[Interfaces de informações de erro B.2](error-interfaces.html)
+[B.2 Error Information Interfaces](error-interfaces.html)
 
-[B.3 Problemas e Erros Comuns](problems.html) :   [B.3.1 Como Determinar o Que Está Causing um Problema](what-is-crashing.html)
+[B.3 Problems and Common Errors](problems.html) :   [B.3.1 How to Determine What Is Causing a Problem](what-is-crashing.html)
 
-```
-[B.3.2 Common Errors When Using MySQL Programs](common-errors.html)
+    [B.3.2 Common Errors When Using MySQL Programs](common-errors.html)
 
-[B.3.3 Administration-Related Issues](administration-issues.html)
+    [B.3.3 Administration-Related Issues](administration-issues.html)
 
-[B.3.4 Query-Related Issues](query-issues.html)
+    [B.3.4 Query-Related Issues](query-issues.html)
 
-[B.3.5 Optimizer-Related Issues](optimizer-issues.html)
+    [B.3.5 Optimizer-Related Issues](optimizer-issues.html)
 
-[B.3.6 Table Definition-Related Issues](table-definition-issues.html)
+    [B.3.6 Table Definition-Related Issues](table-definition-issues.html)
 
-[B.3.7 Known Issues in MySQL](known-issues.html)
-```
+    [B.3.7 Known Issues in MySQL](known-issues.html)
 
-Este apêndice descreve os tipos de informações de erro que o MySQL fornece e como obter informações sobre eles. A seção final é para solução de problemas. Ela descreve problemas e erros comuns que podem ocorrer e resoluções potenciais.
+This appendix describes the types of error information MySQL provides and how to obtain information about them. The final section is for troubleshooting. It describes common problems and errors that may occur and potential resolutions.
 
-## Recursos adicionais
+## Additional Resources
 
-Outras documentações relacionadas a erros incluem:
+Other error-related documentation includes:
 
-- Informações sobre como configurar onde e como o servidor escreve o log de erros: [Seção 5.4.2, "O Log de Erros"](error-log.html)
+* Information about configuring where and how the server writes the error log: [Section 5.4.2, “The Error Log”](error-log.html "5.4.2 The Error Log")
 
-- Informações sobre o conjunto de caracteres utilizado para mensagens de erro: [Seção 10.6, “Conjunto de caracteres de mensagens de erro”](charset-errors.html)
+* Information about the character set used for error messages: [Section 10.6, “Error Message Character Set”](charset-errors.html "10.6 Error Message Character Set")
 
-- Informações sobre o idioma utilizado para as mensagens de erro: [Seção 10.12, “Definindo o Idioma da Mensagem de Erro”](error-message-language.html)
+* Information about the language used for error messages: [Section 10.12, “Setting the Error Message Language”](error-message-language.html "10.12 Setting the Error Message Language")
 
-- Informações sobre erros relacionados ao [`InnoDB`](innodb-storage-engine.html): [Seção 14.22.4, “Tratamento de Erros do InnoDB”](innodb-error-handling.html)
+* Information about errors related to [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine"): [Section 14.22.4, “InnoDB Error Handling”](innodb-error-handling.html "14.22.4 InnoDB Error Handling")
 
-- Informações sobre erros específicos do NDB Cluster: [Erros da API do NDB Cluster](/doc/ndb-internals/pt-BR/ndb-errors.html); veja também [Erros da API do NDB e Gerenciamento de Erros](/doc/ndbapi/pt-BR/ndb-api-errors.html) e [Erros da API do MGM](/doc/ndbapi/pt-BR/mgm-errors.html)
+* Information about errors specific to NDB Cluster: [NDB Cluster API Errors](/doc/ndb-internals/en/ndb-errors.html); see also [NDB API Errors and Error Handling](/doc/ndbapi/en/ndb-api-errors.html), and [MGM API Errors](/doc/ndbapi/en/mgm-errors.html)
 
-- Descrição das mensagens de erro que o servidor MySQL e os programas cliente geram: [Referência de Mensagem de Erro do MySQL 5.7](/doc/mysql-errors/5.7/pt_BR/)
+* Descriptions of the error messages that the MySQL server and client programs generate: [MySQL 5.7 Error Message Reference](/doc/mysql-errors/5.7/en/)

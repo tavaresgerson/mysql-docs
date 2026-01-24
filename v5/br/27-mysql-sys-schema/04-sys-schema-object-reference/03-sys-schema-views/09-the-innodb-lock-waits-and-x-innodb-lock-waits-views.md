@@ -1,109 +1,109 @@
-#### 26.4.3.9 As visualizações innodb_lock_waits e x$innodb_lock_waits
+#### 26.4.3.9 The innodb_lock_waits and x$innodb_lock_waits Views
 
-Esses pontos de vista resumem as bloquagens do `InnoDB` que as transações estão esperando. Por padrão, as linhas são ordenadas por idade de bloqueio decrescente.
+These views summarize the `InnoDB` locks that transactions are waiting for. By default, rows are sorted by descending lock age.
 
-As vistas `innodb_lock_waits` e `x$innodb_lock_waits` possuem as seguintes colunas:
+The `innodb_lock_waits` and `x$innodb_lock_waits` views have these columns:
 
-- `wait_started`
+* `wait_started`
 
-  O horário em que o bloqueio começou.
+  The time at which the lock wait started.
 
-- `wait_age`
+* `wait_age`
 
-  Quanto tempo a trava foi aguardada, como um valor `TIME`.
+  How long the lock has been waited for, as a `TIME` value.
 
-- `wait_age_secs`
+* `wait_age_secs`
 
-  Quanto tempo o bloqueio foi aguardado, em segundos.
+  How long the lock has been waited for, in seconds.
 
-- `locked_table`
+* `locked_table`
 
-  O nome da tabela bloqueada. Esta coluna contém valores combinados de nomes de esquema/tabela.
+  The name of the locked table. This column contains combined schema/table name values.
 
-- `locked_index`
+* `locked_index`
 
-  O nome do índice bloqueado.
+  The name of the locked index.
 
-- `locked_type`
+* `locked_type`
 
-  O tipo de bloqueio de espera.
+  The type of the waiting lock.
 
-- `waiting_trx_id`
+* `waiting_trx_id`
 
-  O ID da transação pendente.
+  The ID of the waiting transaction.
 
-- `waiting_trx_started`
+* `waiting_trx_started`
 
-  O horário em que a transação de espera começou.
+  The time at which the waiting transaction started.
 
-- `waiting_trx_age`
+* `waiting_trx_age`
 
-  Quanto tempo a transação de espera tem estado a aguardar, como um valor `TIME`.
+  How long the waiting transaction has been waiting, as a `TIME` value.
 
-- `waiting_trx_rows_locked`
+* `waiting_trx_rows_locked`
 
-  O número de linhas bloqueadas pela transação pendente.
+  The number of rows locked by the waiting transaction.
 
-- `waiting_trx_rows_modified`
+* `waiting_trx_rows_modified`
 
-  O número de linhas modificadas pela transação pendente.
+  The number of rows modified by the waiting transaction.
 
-- `waiting_pid`
+* `waiting_pid`
 
-  O ID do processo da transação pendente.
+  The processlist ID of the waiting transaction.
 
-- `waiting_query`
+* `waiting_query`
 
-  A declaração que está esperando pelo bloqueio.
+  The statement that is waiting for the lock.
 
-- `waiting_lock_id`
+* `waiting_lock_id`
 
-  O ID do bloqueio de espera.
+  The ID of the waiting lock.
 
-- `modo_bloqueio_esperando`
+* `waiting_lock_mode`
 
-  O modo do bloqueio de espera.
+  The mode of the waiting lock.
 
-- `blocking_trx_id`
+* `blocking_trx_id`
 
-  O ID da transação que está bloqueando o bloqueio de espera.
+  The ID of the transaction that is blocking the waiting lock.
 
-- `blocking_pid`
+* `blocking_pid`
 
-  O ID do processo da transação que está bloqueando.
+  The processlist ID of the blocking transaction.
 
-- `bloquear_consulta`
+* `blocking_query`
 
-  A declaração que a transação de bloqueio está executando. Este campo informa NULL se a sessão que emitiu a consulta de bloqueio ficar inativa. Para mais informações, consulte Identificando uma consulta de bloqueio após a sessão de emissão ficar inativa.
+  The statement the blocking transaction is executing. This field reports NULL if the session that issued the blocking query becomes idle. For more information, see Identifying a Blocking Query After the Issuing Session Becomes Idle.
 
-- `blocking_lock_id`
+* `blocking_lock_id`
 
-  O ID do bloqueio que está bloqueando o bloqueio de espera.
+  The ID of the lock that is blocking the waiting lock.
 
-- `blocking_lock_mode`
+* `blocking_lock_mode`
 
-  O modo do bloqueio que está bloqueando o bloqueio de espera.
+  The mode of the lock that is blocking the waiting lock.
 
-- `bloquear_trx_started`
+* `blocking_trx_started`
 
-  O horário em que a transação de bloqueio começou.
+  The time at which the blocking transaction started.
 
-- `bloquear_idade_trx`
+* `blocking_trx_age`
 
-  Quanto tempo a transação de bloqueio está sendo executada, como um valor `TIME`.
+  How long the blocking transaction has been executing, as a `TIME` value.
 
-- `bloquear_linhas_trx_bloqueadas`
+* `blocking_trx_rows_locked`
 
-  O número de linhas bloqueadas pela transação de bloqueio.
+  The number of rows locked by the blocking transaction.
 
-- `bloquear_linhas_de_transação_modificadas`
+* `blocking_trx_rows_modified`
 
-  O número de linhas modificadas pela transação de bloqueio.
+  The number of rows modified by the blocking transaction.
 
-- `sql_kill_blocking_query`
+* `sql_kill_blocking_query`
 
-  A instrução `KILL` para executar para matar a instrução de bloqueio.
+  The `KILL` statement to execute to kill the blocking statement.
 
-- `sql_kill_blocking_connection`
+* `sql_kill_blocking_connection`
 
-  A instrução `KILL` para executar para matar a sessão que está executando a instrução bloqueante.
+  The `KILL` statement to execute to kill the session running the blocking statement.

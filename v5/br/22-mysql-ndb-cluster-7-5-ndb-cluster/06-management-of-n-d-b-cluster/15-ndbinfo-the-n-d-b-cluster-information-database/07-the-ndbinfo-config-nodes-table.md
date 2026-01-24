@@ -1,33 +1,33 @@
-#### 21.6.15.7 Tabela ndbinfo config_nodes
+#### 21.6.15.7 The ndbinfo config_nodes Table
 
-A tabela `config_nodes` mostra os nós configurados em um arquivo `config.ini` de um NDB Cluster. Para cada nó, a tabela exibe uma linha contendo o ID do nó, o tipo de nó (nó de gerenciamento, nó de dados ou nó de API) e o nome ou endereço IP do host no qual o nó está configurado para ser executado.
+The `config_nodes` table shows nodes configured in an NDB Cluster `config.ini` file. For each node, the table displays a row containing the node ID, the type of node (management node, data node, or API node), and the name or IP address of the host on which the node is configured to run.
 
-Esta tabela não indica se um nó está realmente em execução ou se está conectado ao cluster. Informações sobre os nós conectados a um NDB Cluster podem ser obtidas nas tabelas `nodes` e `processes`.
+This table does not indicate whether a given node is actually running, or whether it is currently connected to the cluster. Information about nodes connected to an NDB Cluster can be obtained from the [`nodes`](mysql-cluster-ndbinfo-nodes.html "21.6.15.28 The ndbinfo nodes Table") and [`processes`](mysql-cluster-ndbinfo-processes.html "21.6.15.30 The ndbinfo processes Table") table.
 
-A tabela `config_nodes` contém as seguintes colunas:
+The `config_nodes` table contains the following columns:
 
-- `node_id`
+* `node_id`
 
-  O ID do nó
+  The node's ID
 
-- `tipo_nó`
+* `node_type`
 
-  O tipo de nó
+  The type of node
 
-- `node_hostname`
+* `node_hostname`
 
-  O nome ou endereço IP do host em que o nó reside
+  The name or IP address of the host on which the node resides
 
-##### Notas
+##### Notes
 
-A coluna `node_id` mostra o ID do nó usado no arquivo `config.ini` para esse nó; se nenhum for especificado, o ID do nó que seria atribuído automaticamente a esse nó será exibido.
+The `node_id` column shows the node ID used in the `config.ini` file for this node; if none is specified, the node ID that would be assigned automatically to this node is displayed.
 
-A coluna `node_type` exibe um dos seguintes três valores:
+The `node_type` column displays one of the following three values:
 
-- `MGM`: Nó de gerenciamento.
-- `NDB`: Nó de dados.
-- `API`: Nó da API; isso inclui nós SQL.
+* `MGM`: Management node.
+* `NDB`: Data node.
+* `API`: API node; this includes SQL nodes.
 
-A coluna `node_hostname` mostra o host do nó conforme especificado no arquivo `config.ini`. Isso pode estar vazio para um nó de API, se `HostName` não tiver sido definido no arquivo de configuração do cluster. Se `HostName` não tiver sido definido para um nó de dados no arquivo de configuração, `localhost` é usado aqui. `localhost` também é usado se `HostName` não tiver sido especificado para um nó de gerenciamento.
+The `node_hostname` column shows the node host as specified in the `config.ini` file. This can be empty for an API node, if [`HostName`](mysql-cluster-api-definition.html#ndbparam-api-hostname) has not been set in the cluster configuration file. If [`HostName`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-hostname) has not been set for a data node in the configuration file, `localhost` is used here. `localhost` is also used if [`HostName`](mysql-cluster-mgm-definition.html#ndbparam-mgmd-hostname) has not been specified for a management node.
 
-A tabela `config_nodes` foi adicionada no NDB 7.5.7.
+The `config_nodes` table was added in NDB 7.5.7.

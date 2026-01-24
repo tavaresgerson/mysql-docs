@@ -1,76 +1,76 @@
-### 24.3.15 A tabela INFORMATION_SCHEMA PARAMETERS
+### 24.3.15 The INFORMATION_SCHEMA PARAMETERS Table
 
-A tabela `PARAMETERS` fornece informações sobre os parâmetros para rotinas armazenadas (procedimentos armazenados e funções armazenadas) e sobre os valores de retorno para funções armazenadas. A tabela `PARAMETERS` não inclui funções integradas (nativas) ou funções carregáveis. As informações dos parâmetros são semelhantes ao conteúdo da coluna `param_list` na tabela `mysql.proc`.
+The [`PARAMETERS`](information-schema-parameters-table.html "24.3.15 The INFORMATION_SCHEMA PARAMETERS Table") table provides information about parameters for stored routines (stored procedures and stored functions), and about return values for stored functions. The [`PARAMETERS`](information-schema-parameters-table.html "24.3.15 The INFORMATION_SCHEMA PARAMETERS Table") table does not include built-in (native) functions or loadable functions. Parameter information is similar to the contents of the `param_list` column in the `mysql.proc` table.
 
-A tabela `PARAMETERS` tem as seguintes colunas:
+The [`PARAMETERS`](information-schema-parameters-table.html "24.3.15 The INFORMATION_SCHEMA PARAMETERS Table") table has these columns:
 
-- `ESPECÍFICO_CATÁLOGO`
+* `SPECIFIC_CATALOG`
 
-  O nome do catálogo ao qual a rotina que contém o parâmetro pertence. Esse valor é sempre `def`.
+  The name of the catalog to which the routine containing the parameter belongs. This value is always `def`.
 
-- `ESPECÍFICO_ESQUEMA`
+* `SPECIFIC_SCHEMA`
 
-  O nome do esquema (banco de dados) ao qual a rotina que contém o parâmetro pertence.
+  The name of the schema (database) to which the routine containing the parameter belongs.
 
-- `NOME ESPECÍFICO`
+* `SPECIFIC_NAME`
 
-  O nome da rotina que contém o parâmetro.
+  The name of the routine containing the parameter.
 
-- `ORDINAL_POSITION`
+* `ORDINAL_POSITION`
 
-  Para os parâmetros sucessivos de um procedimento ou função armazenada, os valores de `ORDINAL_POSITION` são 1, 2, 3 e assim por diante. Para uma função armazenada, também há uma linha que se aplica ao valor de retorno da função (como descrito pela cláusula `RETURNS`). O valor de retorno não é um parâmetro verdadeiro, então a linha que o descreve tem essas características únicas:
+  For successive parameters of a stored procedure or function, the `ORDINAL_POSITION` values are 1, 2, 3, and so forth. For a stored function, there is also a row that applies to the function return value (as described by the `RETURNS` clause). The return value is not a true parameter, so the row that describes it has these unique characteristics:
 
-  - O valor `ORDINAL_POSITION` é 0.
-  - Os valores `PARAMETER_NAME` e `PARAMETER_MODE` são `NULL` porque o valor de retorno não tem nome e o modo não se aplica.
+  + The `ORDINAL_POSITION` value is 0.
+  + The `PARAMETER_NAME` and `PARAMETER_MODE` values are `NULL` because the return value has no name and the mode does not apply.
 
-- `PARAMETER_MODE`
+* `PARAMETER_MODE`
 
-  O modo do parâmetro. Esse valor é `IN`, `OUT` ou `INOUT`. Para um valor de retorno de função armazenada, esse valor é `NULL`.
+  The mode of the parameter. This value is one of `IN`, `OUT`, or `INOUT`. For a stored function return value, this value is `NULL`.
 
-- `NOME_PARAMETRO`
+* `PARAMETER_NAME`
 
-  O nome do parâmetro. Para um valor de retorno de função armazenada, esse valor é `NULL`.
+  The name of the parameter. For a stored function return value, this value is `NULL`.
 
-- `DATA_TYPE`
+* `DATA_TYPE`
 
-  O tipo de dado do parâmetro.
+  The parameter data type.
 
-  O valor `DATA_TYPE` é apenas o nome do tipo, sem nenhuma outra informação. O valor `DTD_IDENTIFIER` contém o nome do tipo e, possivelmente, outras informações, como a precisão ou o comprimento.
+  The `DATA_TYPE` value is the type name only with no other information. The `DTD_IDENTIFIER` value contains the type name and possibly other information such as the precision or length.
 
-- `CHARACTER_MAXIMUM_LENGTH`
+* `CHARACTER_MAXIMUM_LENGTH`
 
-  Para parâmetros de string, o comprimento máximo em caracteres.
+  For string parameters, the maximum length in characters.
 
-- `CHARACTER_OCTET_LENGTH`
+* `CHARACTER_OCTET_LENGTH`
 
-  Para parâmetros de string, o comprimento máximo em bytes.
+  For string parameters, the maximum length in bytes.
 
-- `NUMERIC_PRECISION`
+* `NUMERIC_PRECISION`
 
-  Para parâmetros numéricos, a precisão numérica.
+  For numeric parameters, the numeric precision.
 
-- `NUMERIC_SCALE`
+* `NUMERIC_SCALE`
 
-  Para parâmetros numéricos, a escala numérica.
+  For numeric parameters, the numeric scale.
 
-- `DATETIME_PRECISION`
+* `DATETIME_PRECISION`
 
-  Para os parâmetros temporais, a precisão de frações de segundo.
+  For temporal parameters, the fractional seconds precision.
 
-- `CHARACTER_SET_NAME`
+* `CHARACTER_SET_NAME`
 
-  Para parâmetros de cadeia de caracteres, o nome do conjunto de caracteres.
+  For character string parameters, the character set name.
 
-- `COLLATION_NAME`
+* `COLLATION_NAME`
 
-  Para parâmetros de cadeia de caracteres, o nome da collation.
+  For character string parameters, the collation name.
 
-- `DTD_IDENTIFIER`
+* `DTD_IDENTIFIER`
 
-  O tipo de dado do parâmetro.
+  The parameter data type.
 
-  O valor `DATA_TYPE` é apenas o nome do tipo, sem nenhuma outra informação. O valor `DTD_IDENTIFIER` contém o nome do tipo e, possivelmente, outras informações, como a precisão ou o comprimento.
+  The `DATA_TYPE` value is the type name only with no other information. The `DTD_IDENTIFIER` value contains the type name and possibly other information such as the precision or length.
 
-- `ROUTINE_TYPE`
+* `ROUTINE_TYPE`
 
-  `PROCEDURE` para procedimentos armazenados, `FUNCTION` para funções armazenadas.
+  `PROCEDURE` for stored procedures, `FUNCTION` for stored functions.

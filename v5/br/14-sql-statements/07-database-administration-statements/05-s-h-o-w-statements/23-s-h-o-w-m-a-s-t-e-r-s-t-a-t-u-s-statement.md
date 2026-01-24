@@ -1,12 +1,12 @@
-#### 13.7.5.23 Declaração de status do mestre
+#### 13.7.5.23 SHOW MASTER STATUS Statement
 
 ```sql
 SHOW MASTER STATUS
 ```
 
-Esta declaração fornece informações de status sobre os arquivos de log binário da fonte. Ela requer o privilégio `SUPER` ou `REPLICATION CLIENT`.
+This statement provides status information about the binary log files of the source. It requires either the [`SUPER`](privileges-provided.html#priv_super) or [`REPLICATION CLIENT`](privileges-provided.html#priv_replication-client) privilege.
 
-Exemplo:
+Example:
 
 ```sql
 mysql> SHOW MASTER STATUS\G
@@ -19,4 +19,4 @@ Executed_Gtid_Set: 3E11FA47-71CA-11E1-9E33-C80AA9429562:1-5
 1 row in set (0.00 sec)
 ```
 
-Quando os IDs de transações globais estão em uso, o `Executed_Gtid_Set` mostra o conjunto de GTIDs para as transações que foram executadas na fonte. Isso é o mesmo que o valor da variável de sistema `gtid_executed` neste servidor, bem como o valor de `Executed_Gtid_Set` na saída de `SHOW SLAVE STATUS` neste servidor.
+When global transaction IDs are in use, `Executed_Gtid_Set` shows the set of GTIDs for transactions that have been executed on the source. This is the same as the value for the [`gtid_executed`](replication-options-gtids.html#sysvar_gtid_executed) system variable on this server, as well as the value for `Executed_Gtid_Set` in the output of [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") on this server.

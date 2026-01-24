@@ -1,44 +1,44 @@
-### 24.4.22 A tabela INFORMATION_SCHEMA INNODB_SYS_INDEXES
+### 24.4.22 The INFORMATION_SCHEMA INNODB_SYS_INDEXES Table
 
-A tabela [`INNODB_SYS_INDEXES`](https://pt.wikipedia.org/wiki/Tabela_information-schema-innodb-sys-indexes) fornece metadados sobre os índices do `InnoDB`, equivalentes às informações na tabela `SYS_INDEXES` interna do dicionário de dados do `InnoDB`.
+The [`INNODB_SYS_INDEXES`](information-schema-innodb-sys-indexes-table.html "24.4.22 The INFORMATION_SCHEMA INNODB_SYS_INDEXES Table") table provides metadata about `InnoDB` indexes, equivalent to the information in the internal `SYS_INDEXES` table in the `InnoDB` data dictionary.
 
-Para informações de uso relacionadas e exemplos, consulte Seção 14.16.3, “Tabelas do Sistema InnoDB INFORMATION_SCHEMA”.
+For related usage information and examples, see [Section 14.16.3, “InnoDB INFORMATION_SCHEMA System Tables”](innodb-information-schema-system-tables.html "14.16.3 InnoDB INFORMATION_SCHEMA System Tables").
 
-A tabela `INNODB_SYS_INDEXES` tem as seguintes colunas:
+The [`INNODB_SYS_INDEXES`](information-schema-innodb-sys-indexes-table.html "24.4.22 The INFORMATION_SCHEMA INNODB_SYS_INDEXES Table") table has these columns:
 
-- `INDEX_ID`
+* `INDEX_ID`
 
-  Um identificador para o índice. Os identificadores de índice são únicos em todas as bases de dados de uma instância.
+  An identifier for the index. Index identifiers are unique across all the databases in an instance.
 
-- `NOME`
+* `NAME`
 
-  O nome do índice. A maioria dos índices criados implicitamente pelo `InnoDB` tem nomes consistentes, mas os nomes dos índices nem sempre são exclusivos. Exemplos: `PRIMARY` para um índice de chave primária, `GEN_CLUST_INDEX` para o índice que representa uma chave primária quando uma não é especificada, e `ID_IND`, `FOR_IND` e `REF_IND` para restrições de chave estrangeira.
+  The name of the index. Most indexes created implicitly by `InnoDB` have consistent names but the index names are not necessarily unique. Examples: `PRIMARY` for a primary key index, `GEN_CLUST_INDEX` for the index representing a primary key when one is not specified, and `ID_IND`, `FOR_IND`, and `REF_IND` for foreign key constraints.
 
-- `TABLE_ID`
+* `TABLE_ID`
 
-  Um identificador que representa a tabela associada ao índice; o mesmo valor que `INNODB_SYS_TABLES.TABLE_ID`.
+  An identifier representing the table associated with the index; the same value as `INNODB_SYS_TABLES.TABLE_ID`.
 
-- `TIPO`
+* `TYPE`
 
-  Um valor numérico derivado de informações de nível de bits que identifica o tipo de índice. 0 = índice secundário não exclusivo; 1 = índice agrupado gerado automaticamente (`GEN_CLUST_INDEX`); 2 = índice não agrupado exclusivo; 3 = índice agrupado; 32 = índice de texto completo; 64 = índice espacial; 128 = índice secundário em uma coluna gerada virtualmente.
+  A numeric value derived from bit-level information that identifies the index type. 0 = nonunique secondary index; 1 = automatically generated clustered index (`GEN_CLUST_INDEX`); 2 = unique nonclustered index; 3 = clustered index; 32 = full-text index; 64 = spatial index; 128 = secondary index on a [virtual generated column](glossary.html#glos_virtual_generated_column "virtual generated column").
 
-- `N_FIELDS`
+* `N_FIELDS`
 
-  O número de colunas na chave do índice. Para índices `GEN_CLUST_INDEX`, esse valor é 0 porque o índice é criado usando um valor artificial em vez de uma coluna real da tabela.
+  The number of columns in the index key. For `GEN_CLUST_INDEX` indexes, this value is 0 because the index is created using an artificial value rather than a real table column.
 
-- `PAGE_NO`
+* `PAGE_NO`
 
-  O número da página raiz da árvore B-tree do índice. Para índices de texto completo, a coluna `PAGE_NO` é desativada e definida como -1 (`FIL_NULL`), porque o índice de texto completo é organizado em várias árvores B-tree (tabelas auxiliares).
+  The root page number of the index B-tree. For full-text indexes, the `PAGE_NO` column is unused and set to -1 (`FIL_NULL`) because the full-text index is laid out in several B-trees (auxiliary tables).
 
-- `ESPACO`
+* `SPACE`
 
-  Um identificador para o espaço de tabelas onde o índice reside. 0 significa o `InnoDB` espaço de tabelas do sistema. Qualquer outro número representa uma tabela criada com um arquivo `.ibd` separado no modo file-per-table. Esse identificador permanece o mesmo após uma declaração de `TRUNCATE TABLE`. Como todos os índices de uma tabela residem no mesmo espaço de tabelas da tabela, esse valor não é necessariamente único.
+  An identifier for the tablespace where the index resides. 0 means the `InnoDB` [system tablespace](glossary.html#glos_system_tablespace "system tablespace"). Any other number represents a table created with a separate `.ibd` file in [file-per-table](glossary.html#glos_file_per_table "file-per-table") mode. This identifier stays the same after a [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") statement. Because all indexes for a table reside in the same tablespace as the table, this value is not necessarily unique.
 
-- `MERGE_THRESHOLD`
+* `MERGE_THRESHOLD`
 
-  O valor do limiar de fusão para páginas de índice. Se a quantidade de dados em uma página de índice cair abaixo do valor de `MERGE_THRESHOLD` quando uma linha é excluída ou quando uma linha é encurtada por uma operação de atualização, o `InnoDB` tenta fusão a página de índice com a página de índice vizinha. O valor padrão do limiar é de 50%. Para mais informações, consulte Seção 14.8.12, “Configurando o Limiar de Fusão para Páginas de Índice”.
+  The merge threshold value for index pages. If the amount of data in an index page falls below the [`MERGE_THRESHOLD`](index-page-merge-threshold.html "14.8.12 Configuring the Merge Threshold for Index Pages") value when a row is deleted or when a row is shortened by an update operation, `InnoDB` attempts to merge the index page with the neighboring index page. The default threshold value is 50%. For more information, see [Section 14.8.12, “Configuring the Merge Threshold for Index Pages”](index-page-merge-threshold.html "14.8.12 Configuring the Merge Threshold for Index Pages").
 
-#### Exemplo
+#### Example
 
 ```sql
 mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_SYS_INDEXES WHERE TABLE_ID = 34\G
@@ -62,8 +62,8 @@ MERGE_THRESHOLD: 50
 MERGE_THRESHOLD: 50
 ```
 
-#### Notas
+#### Notes
 
-- Você deve ter o privilégio `PROCESSO` para consultar esta tabela.
+* You must have the [`PROCESS`](privileges-provided.html#priv_process) privilege to query this table.
 
-- Use a tabela `INFORMATION_SCHEMA` `COLUMNS` ou a instrução `SHOW COLUMNS` para visualizar informações adicionais sobre as colunas desta tabela, incluindo tipos de dados e valores padrão.
+* Use the `INFORMATION_SCHEMA` [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") table or the [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") statement to view additional information about the columns of this table, including data types and default values.

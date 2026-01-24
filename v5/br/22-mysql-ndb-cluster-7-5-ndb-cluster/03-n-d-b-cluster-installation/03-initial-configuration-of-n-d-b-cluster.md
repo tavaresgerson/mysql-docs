@@ -1,26 +1,26 @@
-### 21.3.3 Configuração Inicial do NDB Cluster
+### 21.3.3 Initial Configuration of NDB Cluster
 
-Nesta seção, discutimos a configuração manual de um NDB Cluster instalado, criando e editando arquivos de configuração.
+In this section, we discuss manual configuration of an installed NDB Cluster by creating and editing configuration files.
 
-Para o nosso cluster NDB de quatro nós e quatro hosts (veja Nodos do cluster e computadores hospedeiros), é necessário escrever quatro arquivos de configuração, um por host do nó.
+For our four-node, four-host NDB Cluster (see [Cluster nodes and host computers](mysql-cluster-installation.html#mysql-cluster-install-nodes-hosts "Cluster nodes and host computers")), it is necessary to write four configuration files, one per node host.
 
-- Cada nó de dados ou nó SQL requer um arquivo `my.cnf` que fornece duas informações: uma string de conexão que indica ao nó onde encontrar o nó de gerenciamento e uma linha que instrui o servidor MySQL neste host (a máquina que hospeda o nó de dados) a habilitar o mecanismo de armazenamento `NDBCLUSTER`.
+* Each data node or SQL node requires a `my.cnf` file that provides two pieces of information: a connection string that tells the node where to find the management node, and a line telling the MySQL server on this host (the machine hosting the data node) to enable the [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine.
 
-  Para obter mais informações sobre as cadeias de conexão, consulte Seção 21.4.3.3, “Cadeias de conexão do NDB Cluster”.
+  For more information on connection strings, see [Section 21.4.3.3, “NDB Cluster Connection Strings”](mysql-cluster-connection-strings.html "21.4.3.3 NDB Cluster Connection Strings").
 
-- O nó de gerenciamento precisa de um arquivo `config.ini` que indique quantos repositórios de fragmentos devem ser mantidos, quanto memória deve ser alocada para dados e índices em cada nó de dados, onde encontrar os nós de dados, onde salvar os dados no disco em cada nó de dados e onde encontrar quaisquer nós SQL.
+* The management node needs a `config.ini` file telling it how many fragment replicas to maintain, how much memory to allocate for data and indexes on each data node, where to find the data nodes, where to save data to disk on each data node, and where to find any SQL nodes.
 
-**Configurando os nós de dados e os nós SQL.** O arquivo `my.cnf` necessário para os nós de dados é bastante simples. O arquivo de configuração deve estar localizado no diretório `/etc` e pode ser editado usando qualquer editor de texto. (Crie o arquivo se ele não existir.) Por exemplo:
+**Configuring the data nodes and SQL nodes.** The `my.cnf` file needed for the data nodes is fairly simple. The configuration file should be located in the `/etc` directory and can be edited using any text editor. (Create the file if it does not exist.) For example:
 
 ```sql
 $> vi /etc/my.cnf
 ```
 
-Nota
+Note
 
-Mostramos que o **vi** está sendo usado aqui para criar o arquivo, mas qualquer editor de texto deve funcionar da mesma forma.
+We show **vi** being used here to create the file, but any text editor should work just as well.
 
-Para cada nó de dados e nó de SQL no nosso exemplo de configuração, o arquivo `my.cnf` deve ter a seguinte aparência:
+For each data node and SQL node in our example setup, `my.cnf` should look like this:
 
 ```sql
 [mysqld]
@@ -32,13 +32,13 @@ ndbcluster                      # run NDB storage engine
 ndb-connectstring=198.51.100.10  # location of management server
 ```
 
-Após inserir as informações anteriores, armazene esse arquivo e feche o editor de texto. Faça isso para as máquinas que hospedam o nó de dados "A", o nó de dados "B" e o nó SQL.
+After entering the preceding information, save this file and exit the text editor. Do this for the machines hosting data node “A”, data node “B”, and the SQL node.
 
-Importante
+Important
 
-Depois de iniciar um processo **mysqld** com os parâmetros `ndbcluster` e `ndb-connectstring` nas seções `[mysqld]` e `[mysql_cluster]` do arquivo `my.cnf`, conforme mostrado anteriormente, você não pode executar quaisquer instruções `CREATE TABLE` ou `ALTER TABLE` sem ter iniciado o cluster. Caso contrário, essas instruções falharão com um erro. Isso é feito propositalmente.
+Once you have started a [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") process with the `ndbcluster` and `ndb-connectstring` parameters in the `[mysqld]` and `[mysql_cluster]` sections of the `my.cnf` file as shown previously, you cannot execute any [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") or [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statements without having actually started the cluster. Otherwise, these statements fail with an error. This is by design.
 
-**Configurando o nó de gerenciamento.** O primeiro passo para configurar o nó de gerenciamento é criar o diretório onde o arquivo de configuração pode ser encontrado e, em seguida, criar o próprio arquivo. Por exemplo (executando como `root`):
+**Configuring the management node.** The first step in configuring the management node is to create the directory in which the configuration file can be found and then to create the file itself. For example (running as `root`):
 
 ```sql
 $> mkdir /var/lib/mysql-cluster
@@ -46,7 +46,7 @@ $> cd /var/lib/mysql-cluster
 $> vi config.ini
 ```
 
-Para a configuração representativa, o arquivo `config.ini` deve ser lido da seguinte forma:
+For our representative setup, the `config.ini` file should read as follows:
 
 ```sql
 [ndbd default]
@@ -89,12 +89,12 @@ HostName=198.51.100.20          # Hostname or IP address
                                 # purposes such as running ndb_restore)
 ```
 
-Nota
+Note
 
-O banco de dados `world` pode ser baixado em https://dev.mysql.com/doc/index-other.html.
+The `world` database can be downloaded from [https://dev.mysql.com/doc/index-other.html](/doc/index-other.html).
 
-Depois que todos os arquivos de configuração forem criados e essas opções mínimas forem especificadas, você estará pronto para iniciar o clúster e verificar se todos os processos estão em execução. Discutimos como isso é feito em Seção 21.3.4, “Inicialização do Clúster NDB”.
+After all the configuration files have been created and these minimal options have been specified, you are ready to proceed with starting the cluster and verifying that all processes are running. We discuss how this is done in [Section 21.3.4, “Initial Startup of NDB Cluster”](mysql-cluster-install-first-start.html "21.3.4 Initial Startup of NDB Cluster").
 
-Para obter informações mais detalhadas sobre os parâmetros de configuração do NDB Cluster disponíveis e seus usos, consulte Seção 21.4.3, “Arquivos de Configuração do NDB Cluster” e Seção 21.4, “Configuração do NDB Cluster”. Para a configuração do NDB Cluster em relação à realização de backups, consulte Seção 21.6.8.3, “Configuração para Backups do NDB Cluster”.
+For more detailed information about the available NDB Cluster configuration parameters and their uses, see [Section 21.4.3, “NDB Cluster Configuration Files”](mysql-cluster-config-file.html "21.4.3 NDB Cluster Configuration Files"), and [Section 21.4, “Configuration of NDB Cluster”](mysql-cluster-configuration.html "21.4 Configuration of NDB Cluster"). For configuration of NDB Cluster as relates to making backups, see [Section 21.6.8.3, “Configuration for NDB Cluster Backups”](mysql-cluster-backup-configuration.html "21.6.8.3 Configuration for NDB Cluster Backups").
 
-A porta padrão para os nós de gerenciamento do cluster é 1186. Para os nós de dados, o cluster pode alocar automaticamente portas dos que já estão livres.
+The default port for Cluster management nodes is 1186. For data nodes, the cluster can automatically allocate ports from those that are already free.

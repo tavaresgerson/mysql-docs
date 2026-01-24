@@ -1,16 +1,16 @@
-#### 17.2.1.4 Lançamento da Replicação em Grupo
+#### 17.2.1.4 Launching Group Replication
 
-Primeiro, é necessário garantir que o plugin de replicação de grupo esteja instalado no servidor s1. Se você usou `plugin_load_add='group_replication.so'` no arquivo de opções, então o plugin de replicação de grupo já está instalado e você pode prosseguir para o próximo passo. Caso contrário, você deve instalar o plugin manualmente. Para fazer isso, conecte-se ao servidor usando o cliente **mysql** e execute a instrução SQL mostrada aqui:
+It is first necessary to ensure that the Group Replication plugin is installed on server s1. If you used `plugin_load_add='group_replication.so'` in the option file then the Group Replication plugin is already installed, and you can proceed to the next step. Otherwise, you must install the plugin manually; to do this, connect to the server using the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client, and issue the SQL statement shown here:
 
 ```sql
 mysql> INSTALL PLUGIN group_replication SONAME 'group_replication.so';
 ```
 
-Importante
+Important
 
-O usuário `mysql.session` deve existir antes que você possa carregar a Replicação de Grupo. `mysql.session` foi adicionado na versão 5.7.19 do MySQL. Se seu dicionário de dados foi inicializado usando uma versão anterior, você deve realizar o procedimento de atualização do MySQL (consulte Seção 2.10, “Atualizando o MySQL”). Se a atualização não for executada, a Replicação de Grupo não conseguirá ser iniciada com a mensagem de erro Houve um erro ao tentar acessar o servidor com o usuário: mysql.session\@localhost. Certifique-se de que o usuário está presente no servidor e que o mysql_upgrade foi executado após uma atualização do servidor.
+The `mysql.session` user must exist before you can load Group Replication. `mysql.session` was added in MySQL version 5.7.19. If your data dictionary was initialized using an earlier version you must perform the MySQL upgrade procedure (see [Section 2.10, “Upgrading MySQL”](upgrading.html "2.10 Upgrading MySQL")). If the upgrade is not run, Group Replication fails to start with the error message There was an error when trying to access the server with user: mysql.session@localhost. Make sure the user is present in the server and that mysql_upgrade was ran after a server update.
 
-Para verificar se o plugin foi instalado com sucesso, execute `SHOW PLUGINS;` e verifique a saída. Ele deve mostrar algo como isso:
+To check that the plugin was installed successfully, issue `SHOW PLUGINS;` and check the output. It should show something like this:
 
 ```sql
 mysql> SHOW PLUGINS;

@@ -1,21 +1,21 @@
-#### 13.6.6.5 Restrições aos cursors no lado do servidor
+#### 13.6.6.5 Restrictions on Server-Side Cursors
 
-Os cursors do lado do servidor são implementados na API C usando a função `mysql_stmt_attr_set()`. A mesma implementação é usada para cursors em rotinas armazenadas. Um cursor do lado do servidor permite que um conjunto de resultados seja gerado no lado do servidor, mas não transferido para o cliente, exceto para as linhas solicitadas pelo cliente. Por exemplo, se um cliente executa uma consulta, mas está interessado apenas na primeira linha, as linhas restantes não são transferidas.
+Server-side cursors are implemented in the C API using the [`mysql_stmt_attr_set()`](/doc/c-api/5.7/en/mysql-stmt-attr-set.html) function. The same implementation is used for cursors in stored routines. A server-side cursor enables a result set to be generated on the server side, but not transferred to the client except for those rows that the client requests. For example, if a client executes a query but is only interested in the first row, the remaining rows are not transferred.
 
-No MySQL, um cursor do lado do servidor é materializado em uma tabela temporária interna. Inicialmente, é uma tabela `MEMORY`, mas é convertida em uma tabela `MyISAM` quando seu tamanho excede o valor mínimo das variáveis de sistema `max_heap_table_size` e `tmp_table_size`. As mesmas restrições se aplicam às tabelas temporárias internas criadas para armazenar o conjunto de resultados de um cursor, assim como para outros usos de tabelas temporárias internas. Veja Seção 8.4.4, “Uso de Tabelas Temporárias Internas no MySQL”. Uma limitação da implementação é que, para um conjunto de resultados grande, recuperar suas linhas por meio de um cursor pode ser lento.
+In MySQL, a server-side cursor is materialized into an internal temporary table. Initially, this is a `MEMORY` table, but is converted to a `MyISAM` table when its size exceeds the minimum value of the [`max_heap_table_size`](server-system-variables.html#sysvar_max_heap_table_size) and [`tmp_table_size`](server-system-variables.html#sysvar_tmp_table_size) system variables. The same restrictions apply to internal temporary tables created to hold the result set for a cursor as for other uses of internal temporary tables. See [Section 8.4.4, “Internal Temporary Table Use in MySQL”](internal-temporary-tables.html "8.4.4 Internal Temporary Table Use in MySQL"). One limitation of the implementation is that for a large result set, retrieving its rows through a cursor might be slow.
 
-Os cursors são apenas de leitura; você não pode usar um cursor para atualizar linhas.
+Cursors are read only; you cannot use a cursor to update rows.
 
-`UPDATE WHERE CURRENT OF` e `DELETE WHERE CURRENT OF` não são implementados, porque os cursors atualizáveis não são suportados.
+`UPDATE WHERE CURRENT OF` and `DELETE WHERE CURRENT OF` are not implemented, because updatable cursors are not supported.
 
-Os cursors não podem ser mantidos abertos (não ficam abertos após um commit).
+Cursors are nonholdable (not held open after a commit).
 
-Os cursors são sensíveis.
+Cursors are asensitive.
 
-Os cursors não são roláveis.
+Cursors are nonscrollable.
 
-Os cursors não têm nomes. O manipulador de declarações atua como o ID do cursor.
+Cursors are not named. The statement handler acts as the cursor ID.
 
-Você pode ter apenas um cursor aberto por declaração preparada. Se você precisar de vários cursors, você deve preparar várias declarações.
+You can have open only a single cursor per prepared statement. If you need several cursors, you must prepare several statements.
 
-Você não pode usar um cursor para uma declaração que gera um conjunto de resultados se a declaração não for suportada no modo preparado. Isso inclui declarações como `CHECK TABLE`, `HANDLER READ` e `SHOW BINLOG EVENTS`.
+You cannot use a cursor for a statement that generates a result set if the statement is not supported in prepared mode. This includes statements such as [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement"), `HANDLER READ`, and [`SHOW BINLOG EVENTS`](show-binlog-events.html "13.7.5.2 SHOW BINLOG EVENTS Statement").

@@ -1,26 +1,26 @@
-### 11.2.6 Inicialização e atualização automáticas para TIMESTAMP e DATETIME
+### 11.2.6 Automatic Initialization and Updating for TIMESTAMP and DATETIME
 
-As colunas `TIMESTAMP` e `DATETIME` podem ser inicializadas e atualizadas automaticamente para a data e hora atuais (ou seja, o timestamp atual).
+`TIMESTAMP` and `DATETIME` columns can be automatically initializated and updated to the current date and time (that is, the current timestamp).
 
-Para qualquer coluna `TIMESTAMP` ou `DATETIME` em uma tabela, você pode atribuir o timestamp atual como o valor padrão, o valor de atualização automática ou ambos:
+For any `TIMESTAMP` or `DATETIME` column in a table, you can assign the current timestamp as the default value, the auto-update value, or both:
 
-- Uma coluna auto-inicializada é definida pelo timestamp atual para as linhas inseridas que não especificam nenhum valor para a coluna.
+* An auto-initialized column is set to the current timestamp for inserted rows that specify no value for the column.
 
-- Uma coluna atualizada automaticamente é atualizada automaticamente para o timestamp atual quando o valor de qualquer outra coluna na linha for alterado do seu valor atual. Uma coluna atualizada automaticamente permanece inalterada se todas as outras colunas forem definidas com seus valores atuais. Para impedir que uma coluna atualizada automaticamente seja atualizada quando outras colunas forem alteradas, defina-a explicitamente com seu valor atual. Para atualizar uma coluna atualizada automaticamente mesmo quando outras colunas não forem alteradas, defina-a explicitamente com o valor que ela deve ter (por exemplo, defina-a como `CURRENT_TIMESTAMP`).
+* An auto-updated column is automatically updated to the current timestamp when the value of any other column in the row is changed from its current value. An auto-updated column remains unchanged if all other columns are set to their current values. To prevent an auto-updated column from updating when other columns change, explicitly set it to its current value. To update an auto-updated column even when other columns do not change, explicitly set it to the value it should have (for example, set it to `CURRENT_TIMESTAMP`).
 
-Além disso, se a variável de sistema `explicit_defaults_for_timestamp` estiver desativada, você pode inicializar ou atualizar qualquer coluna `TIMESTAMP` (mas não `DATETIME`) para a data e hora atuais, atribuindo-lhe um valor `NULL`, a menos que tenha sido definida com o atributo `NULL` para permitir valores `NULL`.
+In addition, if the `explicit_defaults_for_timestamp` system variable is disabled, you can initialize or update any `TIMESTAMP` (but not `DATETIME`) column to the current date and time by assigning it a `NULL` value, unless it has been defined with the `NULL` attribute to permit `NULL` values.
 
-Para especificar propriedades automáticas, use as cláusulas `DEFAULT CURRENT_TIMESTAMP` e `ON UPDATE CURRENT_TIMESTAMP` nas definições de colunas. A ordem das cláusulas não importa. Se ambas estiverem presentes em uma definição de coluna, qualquer uma pode ocorrer primeiro. Qualquer um dos sinônimos para `CURRENT_TIMESTAMP` tem o mesmo significado que `CURRENT_TIMESTAMP`. Estes são `CURRENT_TIMESTAMP()`, `NOW()`, `LOCALTIME`, `LOCALTIME()`, `LOCALTIMESTAMP` e `LOCALTIMESTAMP()`.
+To specify automatic properties, use the `DEFAULT CURRENT_TIMESTAMP` and `ON UPDATE CURRENT_TIMESTAMP` clauses in column definitions. The order of the clauses does not matter. If both are present in a column definition, either can occur first. Any of the synonyms for `CURRENT_TIMESTAMP` have the same meaning as `CURRENT_TIMESTAMP`. These are `CURRENT_TIMESTAMP()`, `NOW()`, `LOCALTIME`, `LOCALTIME()`, `LOCALTIMESTAMP`, and `LOCALTIMESTAMP()`.
 
-O uso de `DEFAULT CURRENT_TIMESTAMP` e `ON UPDATE CURRENT_TIMESTAMP` é específico para `TIMESTAMP` e `DATETIME`. A cláusula `DEFAULT` também pode ser usada para especificar um valor padrão (não automático) constante (por exemplo, `DEFAULT 0` ou `DEFAULT '2000-01-01 00:00:00'`).
+Use of `DEFAULT CURRENT_TIMESTAMP` and `ON UPDATE CURRENT_TIMESTAMP` is specific to `TIMESTAMP` and `DATETIME`. The `DEFAULT` clause also can be used to specify a constant (nonautomatic) default value (for example, `DEFAULT 0` or `DEFAULT '2000-01-01 00:00:00'`).
 
-Nota
+Note
 
-Os exemplos a seguir usam `DEFAULT 0`, um padrão que pode gerar avisos ou erros, dependendo se o modo SQL rigoroso ou o modo SQL `NO_ZERO_DATE` está habilitado. Tenha em mente que o modo SQL `TRADITIONAL` inclui o modo rigoroso e `NO_ZERO_DATE`. Consulte a Seção 5.1.10, “Modos SQL do Servidor”.
+The following examples use `DEFAULT 0`, a default that can produce warnings or errors depending on whether strict SQL mode or the `NO_ZERO_DATE` SQL mode is enabled. Be aware that the `TRADITIONAL` SQL mode includes strict mode and `NO_ZERO_DATE`. See Section 5.1.10, “Server SQL Modes”.
 
-As definições de colunas `TIMESTAMP` ou `DATETIME` podem especificar o timestamp atual para os valores padrão e de atualização automática, para uma, mas não para a outra, ou para nenhuma delas. Diferentes colunas podem ter diferentes combinações de propriedades automáticas. As seguintes regras descrevem as possibilidades:
+`TIMESTAMP` or `DATETIME` column definitions can specify the current timestamp for both the default and auto-update values, for one but not the other, or for neither. Different columns can have different combinations of automatic properties. The following rules describe the possibilities:
 
-- Com `DEFAULT CURRENT_TIMESTAMP` e `ON UPDATE CURRENT_TIMESTAMP`, a coluna tem o timestamp atual como seu valor padrão e é automaticamente atualizado para o timestamp atual.
+* With both `DEFAULT CURRENT_TIMESTAMP` and `ON UPDATE CURRENT_TIMESTAMP`, the column has the current timestamp for its default value and is automatically updated to the current timestamp.
 
   ```sql
   CREATE TABLE t1 (
@@ -29,9 +29,9 @@ As definições de colunas `TIMESTAMP` ou `DATETIME` podem especificar o timesta
   );
   ```
 
-- Com uma cláusula `DEFAULT`, mas sem a cláusula `ON UPDATE CURRENT_TIMESTAMP`, a coluna terá o valor padrão especificado e não será atualizada automaticamente para o timestamp atual.
+* With a `DEFAULT` clause but no `ON UPDATE CURRENT_TIMESTAMP` clause, the column has the given default value and is not automatically updated to the current timestamp.
 
-  O padrão depende de se a cláusula `DEFAULT` especifica `CURRENT_TIMESTAMP` ou um valor constante. Com `CURRENT_TIMESTAMP`, o padrão é o timestamp atual.
+  The default depends on whether the `DEFAULT` clause specifies `CURRENT_TIMESTAMP` or a constant value. With `CURRENT_TIMESTAMP`, the default is the current timestamp.
 
   ```sql
   CREATE TABLE t1 (
@@ -40,7 +40,7 @@ As definições de colunas `TIMESTAMP` ou `DATETIME` podem especificar o timesta
   );
   ```
 
-  Com uma constante, o valor padrão é o valor fornecido. Nesse caso, a coluna não tem propriedades automáticas.
+  With a constant, the default is the given value. In this case, the column has no automatic properties at all.
 
   ```sql
   CREATE TABLE t1 (
@@ -49,7 +49,7 @@ As definições de colunas `TIMESTAMP` ou `DATETIME` podem especificar o timesta
   );
   ```
 
-- Com uma cláusula `ON UPDATE CURRENT_TIMESTAMP` e uma cláusula `DEFAULT` constante, a coluna é automaticamente atualizada para o timestamp atual e tem o valor padrão constante fornecido.
+* With an `ON UPDATE CURRENT_TIMESTAMP` clause and a constant `DEFAULT` clause, the column is automatically updated to the current timestamp and has the given constant default value.
 
   ```sql
   CREATE TABLE t1 (
@@ -58,9 +58,9 @@ As definições de colunas `TIMESTAMP` ou `DATETIME` podem especificar o timesta
   );
   ```
 
-- Com uma cláusula `ON UPDATE CURRENT_TIMESTAMP`, mas sem a cláusula `DEFAULT`, a coluna é automaticamente atualizada para o timestamp atual, mas não tem o timestamp atual como valor padrão.
+* With an `ON UPDATE CURRENT_TIMESTAMP` clause but no `DEFAULT` clause, the column is automatically updated to the current timestamp but does not have the current timestamp for its default value.
 
-  O valor padrão neste caso é dependente do tipo. `TIMESTAMP` tem um valor padrão de 0, a menos que seja definido com o atributo `NULL`, caso em que o valor padrão é `NULL`.
+  The default in this case is type dependent. `TIMESTAMP` has a default of 0 unless defined with the `NULL` attribute, in which case the default is `NULL`.
 
   ```sql
   CREATE TABLE t1 (
@@ -69,7 +69,7 @@ As definições de colunas `TIMESTAMP` ou `DATETIME` podem especificar o timesta
   );
   ```
 
-  `DATETIME` tem um valor padrão de `NULL`, a menos que seja definido com o atributo `NOT NULL`, caso em que o valor padrão é 0.
+  `DATETIME` has a default of `NULL` unless defined with the `NOT NULL` attribute, in which case the default is 0.
 
   ```sql
   CREATE TABLE t1 (
@@ -78,17 +78,17 @@ As definições de colunas `TIMESTAMP` ou `DATETIME` podem especificar o timesta
   );
   ```
 
-As colunas `TIMESTAMP` e `DATETIME` não têm propriedades automáticas, a menos que sejam especificadas explicitamente, com essa exceção: Se a variável de sistema `explicit_defaults_for_timestamp` for desativada, a *primeira* coluna `TIMESTAMP` terá tanto `DEFAULT CURRENT_TIMESTAMP` quanto `ON UPDATE CURRENT_TIMESTAMP` se nenhuma delas for especificada explicitamente. Para suprimir as propriedades automáticas para a primeira coluna `TIMESTAMP`, use uma dessas estratégias:
+`TIMESTAMP` and `DATETIME` columns have no automatic properties unless they are specified explicitly, with this exception: If the `explicit_defaults_for_timestamp` system variable is disabled, the *first* `TIMESTAMP` column has both `DEFAULT CURRENT_TIMESTAMP` and `ON UPDATE CURRENT_TIMESTAMP` if neither is specified explicitly. To suppress automatic properties for the first `TIMESTAMP` column, use one of these strategies:
 
-- Ative a variável de sistema `explicit_defaults_for_timestamp`. Nesse caso, as cláusulas `DEFAULT CURRENT_TIMESTAMP` e `ON UPDATE CURRENT_TIMESTAMP` que especificam a inicialização e atualização automáticas estão disponíveis, mas não são atribuídas a nenhuma coluna `TIMESTAMP`, a menos que sejam incluídas explicitamente na definição da coluna.
+* Enable the `explicit_defaults_for_timestamp` system variable. In this case, the `DEFAULT CURRENT_TIMESTAMP` and `ON UPDATE CURRENT_TIMESTAMP` clauses that specify automatic initialization and updating are available, but are not assigned to any `TIMESTAMP` column unless explicitly included in the column definition.
 
-- Alternativamente, se `explicit_defaults_for_timestamp` estiver desativado, faça um dos seguintes:
+* Alternatively, if `explicit_defaults_for_timestamp` is disabled, do either of the following:
 
-  - Defina a coluna com uma cláusula `DEFAULT` que especifique um valor padrão constante.
+  + Define the column with a `DEFAULT` clause that specifies a constant default value.
 
-  - Especifique o atributo `NULL`. Isso também faz com que a coluna permita valores `NULL`, o que significa que você não pode atribuir o timestamp atual ao definir a coluna para `NULL`. Atribuir `NULL` define a coluna para `NULL`, não o timestamp atual. Para atribuir o timestamp atual, defina a coluna para `CURRENT_TIMESTAMP` ou um sinônimo como `NOW()`.
+  + Specify the `NULL` attribute. This also causes the column to permit `NULL` values, which means that you cannot assign the current timestamp by setting the column to `NULL`. Assigning `NULL` sets the column to `NULL`, not the current timestamp. To assign the current timestamp, set the column to `CURRENT_TIMESTAMP` or a synonym such as `NOW()`.
 
-Considere essas definições de tabelas:
+Consider these table definitions:
 
 ```sql
 CREATE TABLE t1 (
@@ -105,15 +105,15 @@ CREATE TABLE t3 (
                 ON UPDATE CURRENT_TIMESTAMP);
 ```
 
-As tabelas têm essas propriedades:
+The tables have these properties:
 
-- Em cada definição de tabela, a primeira coluna `TIMESTAMP` não tem inicialização ou atualização automática.
+* In each table definition, the first `TIMESTAMP` column has no automatic initialization or updating.
 
-- As tabelas diferem na forma como a coluna `ts1` lida com valores `NULL`. Para `t1`, `ts1` é `NOT NULL` e atribuir um valor de `NULL` a ela o define como o timestamp atual. Para `t2` e `t3`, `ts1` permite `NULL` e atribuir um valor de `NULL` a ela o define como `NULL`.
+* The tables differ in how the `ts1` column handles `NULL` values. For `t1`, `ts1` is `NOT NULL` and assigning it a value of `NULL` sets it to the current timestamp. For `t2` and `t3`, `ts1` permits `NULL` and assigning it a value of `NULL` sets it to `NULL`.
 
-- `t2` e `t3` diferem no valor padrão para `ts1`. Para `t2`, `ts1` é definido para permitir `NULL`, então o padrão também é `NULL` na ausência de uma cláusula `DEFAULT` explícita. Para `t3`, `ts1` permite `NULL`, mas tem um padrão explícito de 0.
+* `t2` and `t3` differ in the default value for `ts1`. For `t2`, `ts1` is defined to permit `NULL`, so the default is also `NULL` in the absence of an explicit `DEFAULT` clause. For `t3`, `ts1` permits `NULL` but has an explicit default of 0.
 
-Se a definição de uma coluna `TIMESTAMP` ou `DATETIME` incluir um valor explícito de precisão de frações de segundo em qualquer lugar, o mesmo valor deve ser usado em toda a definição da coluna. Isso é permitido:
+If a `TIMESTAMP` or `DATETIME` column definition includes an explicit fractional seconds precision value anywhere, the same value must be used throughout the column definition. This is permitted:
 
 ```sql
 CREATE TABLE t1 (
@@ -121,7 +121,7 @@ CREATE TABLE t1 (
 );
 ```
 
-Isso não é permitido:
+This is not permitted:
 
 ```sql
 CREATE TABLE t1 (
@@ -129,11 +129,11 @@ CREATE TABLE t1 (
 );
 ```
 
-#### Inicialização do TIMESTAMP e o atributo NULL
+#### TIMESTAMP Initialization and the NULL Attribute
 
-Se a variável de sistema `explicit_defaults_for_timestamp` estiver desativada, as colunas `TIMESTAMP` por padrão são `NOT NULL`, não podem conter valores `NULL` e atribuir `NULL` atribui o timestamp atual. Para permitir que uma coluna `TIMESTAMP` contenha `NULL`, declare-a explicitamente com o atributo `NULL`. Nesse caso, o valor padrão também se torna `NULL`, a menos que seja sobrescrito com uma cláusula `DEFAULT` que especifique um valor padrão diferente. `DEFAULT NULL` pode ser usado para especificar explicitamente `NULL` como o valor padrão. (Para uma coluna `TIMESTAMP` não declarada com o atributo `NULL`, `DEFAULT NULL` é inválida.) Se uma coluna `TIMESTAMP` permitir valores `NULL`, atribuir `NULL` a ela o define como `NULL`, não como o timestamp atual.
+If the `explicit_defaults_for_timestamp` system variable is disabled, `TIMESTAMP` columns by default are `NOT NULL`, cannot contain `NULL` values, and assigning `NULL` assigns the current timestamp. To permit a `TIMESTAMP` column to contain `NULL`, explicitly declare it with the `NULL` attribute. In this case, the default value also becomes `NULL` unless overridden with a `DEFAULT` clause that specifies a different default value. `DEFAULT NULL` can be used to explicitly specify `NULL` as the default value. (For a `TIMESTAMP` column not declared with the `NULL` attribute, `DEFAULT NULL` is invalid.) If a `TIMESTAMP` column permits `NULL` values, assigning `NULL` sets it to `NULL`, not to the current timestamp.
 
-A tabela a seguir contém várias colunas `TIMESTAMP` que permitem valores `NULL`:
+The following table contains several `TIMESTAMP` columns that permit `NULL` values:
 
 ```sql
 CREATE TABLE t
@@ -144,30 +144,30 @@ CREATE TABLE t
 );
 ```
 
-Uma coluna `TIMESTAMP` que permite valores `NULL` *não* assume o timestamp atual no momento da inserção, exceto sob uma das seguintes condições:
+A `TIMESTAMP` column that permits `NULL` values does *not* take on the current timestamp at insert time except under one of the following conditions:
 
-- Seu valor padrão é definido como `CURRENT_TIMESTAMP` e nenhum valor é especificado para a coluna
+* Its default value is defined as `CURRENT_TIMESTAMP` and no value is specified for the column
 
-- `CURRENT_TIMESTAMP` ou qualquer um de seus sinônimos, como `NOW()` é explicitamente inserido na coluna
+* `CURRENT_TIMESTAMP` or any of its synonyms such as `NOW()` is explicitly inserted into the column
 
-Em outras palavras, uma coluna `TIMESTAMP` definida para permitir valores `NULL` se auto-inicializa apenas se sua definição incluir `DEFAULT CURRENT_TIMESTAMP`:
+In other words, a `TIMESTAMP` column defined to permit `NULL` values auto-initializes only if its definition includes `DEFAULT CURRENT_TIMESTAMP`:
 
 ```sql
 CREATE TABLE t (ts TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP);
 ```
 
-Se a coluna `TIMESTAMP` permitir valores `NULL`, mas sua definição não incluir `DEFAULT CURRENT_TIMESTAMP`, você deve inserir explicitamente um valor correspondente à data e hora atuais. Suponha que as tabelas `t1` e `t2` tenham essas definições:
+If the `TIMESTAMP` column permits `NULL` values but its definition does not include `DEFAULT CURRENT_TIMESTAMP`, you must explicitly insert a value corresponding to the current date and time. Suppose that tables `t1` and `t2` have these definitions:
 
 ```sql
 CREATE TABLE t1 (ts TIMESTAMP NULL DEFAULT '0000-00-00 00:00:00');
 CREATE TABLE t2 (ts TIMESTAMP NULL DEFAULT NULL);
 ```
 
-Para definir a coluna `TIMESTAMP` em qualquer uma das tabelas para o timestamp atual no momento da inserção, atribua explicitamente esse valor. Por exemplo:
+To set the `TIMESTAMP` column in either table to the current timestamp at insert time, explicitly assign it that value. For example:
 
 ```sql
 INSERT INTO t2 VALUES (CURRENT_TIMESTAMP);
 INSERT INTO t1 VALUES (NOW());
 ```
 
-Se a variável de sistema `explicit_defaults_for_timestamp` estiver habilitada, as colunas `TIMESTAMP` permitem valores `NULL` apenas se declaradas com o atributo `NULL`. Além disso, as colunas `TIMESTAMP` não permitem atribuir `NULL` para atribuir o timestamp atual, seja declarado com o atributo `NULL` ou `NOT NULL`. Para atribuir o timestamp atual, defina a coluna para `CURRENT_TIMESTAMP` ou um sinônimo como `NOW()`.
+If the `explicit_defaults_for_timestamp` system variable is enabled, `TIMESTAMP` columns permit `NULL` values only if declared with the `NULL` attribute. Also, `TIMESTAMP` columns do not permit assigning `NULL` to assign the current timestamp, whether declared with the `NULL` or `NOT NULL` attribute. To assign the current timestamp, set the column to `CURRENT_TIMESTAMP` or a synonym such as `NOW()`.

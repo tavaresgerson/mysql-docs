@@ -1,37 +1,37 @@
-#### 25.12.11.8 A tabela replication_group_members
+#### 25.12.11.8 The replication_group_members Table
 
-Esta tabela mostra informações de rede e status dos membros do grupo de replicação. Os endereços de rede mostrados são os endereços usados para conectar os clientes ao grupo e não devem ser confundidos com o endereço interno de comunicação do grupo do membro especificado por `group_replication_local_address`.
+This table shows network and status information for replication group members. The network addresses shown are the addresses used to connect clients to the group, and should not be confused with the member's internal group communication address specified by [`group_replication_local_address`](group-replication-system-variables.html#sysvar_group_replication_local_address).
 
-A tabela `replication_group_members` tem as seguintes colunas:
+The `replication_group_members` table has these columns:
 
-- `NOME_CANAL`
+* `CHANNEL_NAME`
 
-  Nome do canal de replicação em grupo.
+  Name of the Group Replication channel.
 
-- `ID_ASSOCIAÇÃO`
+* `MEMBER_ID`
 
-  Identificador deste membro; o mesmo que o UUID do servidor.
+  Identifier for this member; the same as the server UUID.
 
-- `MEMBER_HOST`
+* `MEMBER_HOST`
 
-  Endereço de rede deste membro (nome de host ou endereço IP). Obtendo a partir da variável do membro `hostname`.
+  Network address of this member (host name or IP address). Retrieved from the member's [`hostname`](server-system-variables.html#sysvar_hostname) variable.
 
-- `MEMBER_PORT`
+* `MEMBER_PORT`
 
-  Porto em que o servidor está ouvindo. Obtendo a partir da variável do membro `port`.
+  Port on which the server is listening. Retrieved from the member's [`port`](server-system-variables.html#sysvar_port) variable.
 
-- `MEMBER_STATE`
+* `MEMBER_STATE`
 
-  Estado atual deste membro; pode ser qualquer um dos seguintes:
+  Current state of this member; can be any one of the following:
 
-  - `OFFLINE`: O plugin de replicação em grupo está instalado, mas não foi iniciado.
+  + `OFFLINE`: The Group Replication plugin is installed but has not been started.
 
-  - `RECOVERING`: O servidor se juntou a um grupo do qual está recuperando dados.
+  + `RECOVERING`: The server has joined a group from which it is retrieving data.
 
-  - `ONLINE`: O membro está em um estado totalmente funcional.
+  + `ONLINE`: The member is in a fully functioning state.
 
-  - `ERRO`: O membro encontrou um erro, seja durante a aplicação de transações ou durante a fase de recuperação, e não está participando das transações do grupo.
+  + `ERROR`: The member has encountered an error, either during applying transactions or during the recovery phase, and is not participating in the group's transactions.
 
-  - `INCONTECCÍVEL`: O processo de detecção de falhas suspeita que este membro não pode ser contatado, porque as mensagens do grupo expiraram.
+  + `UNREACHABLE`: The failure detection process suspects that this member cannot be contacted, because the group messages have timed out.
 
-A operação `TRUNCATE TABLE` não é permitida para a tabela `replication_group_members`.
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is not permitted for the [`replication_group_members`](performance-schema-replication-group-members-table.html "25.12.11.8 The replication_group_members Table") table.

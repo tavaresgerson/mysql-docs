@@ -1,31 +1,31 @@
-### 15.7.1 Vantagens e desvantagens da tabela MERGE
+### 15.7.1 MERGE Table Advantages and Disadvantages
 
-As tabelas `MERGE` podem ajudá-lo a resolver os seguintes problemas:
+`MERGE` tables can help you solve the following problems:
 
-- Gerencie facilmente um conjunto de tabelas de log. Por exemplo, você pode colocar dados de diferentes meses em tabelas separadas, comprimir algumas delas com **myisampack** e, em seguida, criar uma tabela `MERGE` para usá-las como uma única.
+* Easily manage a set of log tables. For example, you can put data from different months into separate tables, compress some of them with **myisampack**, and then create a `MERGE` table to use them as one.
 
-- Obtenha mais velocidade. Você pode dividir uma grande tabela somente de leitura com base em alguns critérios e, em seguida, colocar tabelas individuais em discos diferentes. Uma tabela `MERGE` estruturada dessa maneira pode ser muito mais rápida do que usar uma única tabela grande.
+* Obtain more speed. You can split a large read-only table based on some criteria, and then put individual tables on different disks. A `MERGE` table structured this way could be much faster than using a single large table.
 
-- Realize pesquisas mais eficientes. Se você souber exatamente o que está procurando, pode pesquisar em apenas uma das tabelas subjacentes para algumas consultas e usar uma tabela `MERGE` para outras. Você pode até ter várias tabelas `MERGE` diferentes que utilizam conjuntos sobrepostos de tabelas.
+* Perform more efficient searches. If you know exactly what you are looking for, you can search in just one of the underlying tables for some queries and use a `MERGE` table for others. You can even have many different `MERGE` tables that use overlapping sets of tables.
 
-- Realize reparos mais eficientes. É mais fácil reparar tabelas menores individuais que estão mapeadas para uma tabela `MERGE` do que reparar uma única tabela grande.
+* Perform more efficient repairs. It is easier to repair individual smaller tables that are mapped to a `MERGE` table than to repair a single large table.
 
-- Mapea rapidamente muitas tabelas como uma única. Uma tabela `MERGE` não precisa manter um índice próprio, pois utiliza os índices das tabelas individuais. Como resultado, as coleções de tabelas `MERGE` são *muito* rápidas de criar ou remapeamento. (Você ainda deve especificar as definições de índice ao criar uma tabela `MERGE`, mesmo que nenhum índice seja criado.)
+* Instantly map many tables as one. A `MERGE` table need not maintain an index of its own because it uses the indexes of the individual tables. As a result, `MERGE` table collections are *very* fast to create or remap. (You must still specify the index definitions when you create a `MERGE` table, even though no indexes are created.)
 
-- Se você tiver um conjunto de tabelas a partir do qual cria uma tabela grande sob demanda, você pode, em vez disso, criar uma tabela `MERGE` a partir delas sob demanda. Isso é muito mais rápido e economiza muito espaço em disco.
+* If you have a set of tables from which you create a large table on demand, you can instead create a `MERGE` table from them on demand. This is much faster and saves a lot of disk space.
 
-- Exceder o limite de tamanho do arquivo para o sistema operacional. Cada tabela `MyISAM` está vinculada a esse limite, mas uma coleção de tabelas `MyISAM` não está.
+* Exceed the file size limit for the operating system. Each `MyISAM` table is bound by this limit, but a collection of `MyISAM` tables is not.
 
-- Você pode criar um alias ou sinônimo para uma tabela `MyISAM` definindo uma tabela `MERGE` que mapeia para essa única tabela. Não deve haver um impacto significativo no desempenho ao fazer isso (apenas alguns chamados indiretos e chamados de `memcpy()` para cada leitura).
+* You can create an alias or synonym for a `MyISAM` table by defining a `MERGE` table that maps to that single table. There should be no really notable performance impact from doing this (only a couple of indirect calls and `memcpy()` calls for each read).
 
-As desvantagens das tabelas `MERGE` são:
+The disadvantages of `MERGE` tables are:
 
-- Você pode usar apenas tabelas `MyISAM` idênticas para uma tabela `MERGE`.
+* You can use only identical `MyISAM` tables for a `MERGE` table.
 
-- Algumas funcionalidades do `MyISAM` não estão disponíveis em tabelas `MERGE`. Por exemplo, você não pode criar índices `FULLTEXT` em tabelas `MERGE`. (Você pode criar índices `FULLTEXT` nas tabelas `MyISAM` subjacentes, mas não pode pesquisar a tabela `MERGE` com uma pesquisa de texto completo.)
+* Some `MyISAM` features are unavailable in `MERGE` tables. For example, you cannot create `FULLTEXT` indexes on `MERGE` tables. (You can create `FULLTEXT` indexes on the underlying `MyISAM` tables, but you cannot search the `MERGE` table with a full-text search.)
 
-- Se a tabela `MERGE` não for temporária, todas as tabelas `MyISAM` subjacentes também não podem ser temporárias. Se a tabela `MERGE` for temporária, as tabelas `MyISAM` podem ser uma mistura de temporárias e não temporárias.
+* If the `MERGE` table is nontemporary, all underlying `MyISAM` tables must be nontemporary. If the `MERGE` table is temporary, the `MyISAM` tables can be any mix of temporary and nontemporary.
 
-- As tabelas `MERGE` usam mais descritores de arquivo do que as tabelas `MyISAM`. Se 10 clientes estiverem usando uma tabela `MERGE` que mapeia para 10 tabelas, o servidor usará (10 × 10) + 10 descritores de arquivo. (10 descritores de arquivo de dados para cada um dos 10 clientes e 10 descritores de arquivo de índice compartilhados entre os clientes.)
+* `MERGE` tables use more file descriptors than `MyISAM` tables. If 10 clients are using a `MERGE` table that maps to 10 tables, the server uses (10 × 10) + 10 file descriptors. (10 data file descriptors for each of the 10 clients, and 10 index file descriptors shared among the clients.)
 
-- As leituras do índice são mais lentas. Quando você lê um índice, o mecanismo de armazenamento `MERGE` precisa emitir uma leitura em todas as tabelas subjacentes para verificar qual delas mais se aproxima de um valor de índice dado. Para ler o próximo valor de índice, o mecanismo de armazenamento `MERGE` precisa procurar nos buffers de leitura para encontrar o próximo valor. Somente quando um buffer de índice é esgotado, o mecanismo de armazenamento precisa ler o próximo bloco de índice. Isso torna os índices `MERGE` muito mais lentos em pesquisas `eq_ref`, mas não muito mais lentos em pesquisas `ref`. Para mais informações sobre `eq_ref` e `ref`, consulte a Seção 13.8.2, “Instrução EXPLAIN”.
+* Index reads are slower. When you read an index, the `MERGE` storage engine needs to issue a read on all underlying tables to check which one most closely matches a given index value. To read the next index value, the `MERGE` storage engine needs to search the read buffers to find the next value. Only when one index buffer is used up does the storage engine need to read the next index block. This makes `MERGE` indexes much slower on `eq_ref` searches, but not much slower on `ref` searches. For more information about `eq_ref` and `ref`, see Section 13.8.2, “EXPLAIN Statement”.

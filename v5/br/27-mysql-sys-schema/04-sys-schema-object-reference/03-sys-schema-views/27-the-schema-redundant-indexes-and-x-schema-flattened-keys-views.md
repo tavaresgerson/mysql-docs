@@ -1,73 +1,73 @@
-#### 26.4.3.27 As visualizações schema_redundant_indexes e x$schema_flattened_keys
+#### 26.4.3.27 The schema_redundant_indexes and x$schema_flattened_keys Views
 
-A visualização `schema_redundant_indexes` exibe índices que duplicam outros índices ou são tornados redundantes por eles. A visualização `x$schema_flattened_keys` é uma visualização auxiliar para `schema_redundant_indexes`.
+The `schema_redundant_indexes` view displays indexes that duplicate other indexes or are made redundant by them. The `x$schema_flattened_keys` view is a helper view for `schema_redundant_indexes`.
 
-Nas descrições das colunas a seguir, o índice dominante é o que torna o índice redundante redundante.
+In the following column descriptions, the dominant index is the one that makes the redundant index redundant.
 
-A visão `schema_redundant_indexes` tem essas colunas:
+The `schema_redundant_indexes` view has these columns:
 
-- `esquema_tabela`
+* `table_schema`
 
-  O esquema que contém a tabela.
+  The schema that contains the table.
 
-- `nome_tabela`
+* `table_name`
 
-  A tabela que contém o índice.
+  The table that contains the index.
 
-- `redundante_index_name`
+* `redundant_index_name`
 
-  O nome do índice redundante.
+  The name of the redundant index.
 
-- `redundant_index_columns`
+* `redundant_index_columns`
 
-  Os nomes das colunas no índice redundante.
+  The names of the columns in the redundant index.
 
-- `redundante_index_non_unique`
+* `redundant_index_non_unique`
 
-  Número de colunas não únicas no índice redundante.
+  The number of nonunique columns in the redundant index.
 
-- `domínio_index_name`
+* `dominant_index_name`
 
-  O nome do índice dominante.
+  The name of the dominant index.
 
-- `domínio_index_columns`
+* `dominant_index_columns`
 
-  Os nomes das colunas no índice dominante.
+  The names of the columns in the dominant index.
 
-- `dominante_index_não_único`
+* `dominant_index_non_unique`
 
-  Número de colunas não únicas no índice dominante.
+  The number of nonunique columns in the dominant index.
 
-- `subparte_existe`
+* `subpart_exists`
 
-  Se o índice indexa apenas parte de uma coluna.
+  Whether the index indexes only part of a column.
 
-- `sql_drop_index`
+* `sql_drop_index`
 
-  A instrução a ser executada para descartar o índice redundante.
+  The statement to execute to drop the redundant index.
 
-A visão `x$schema_flattened_keys` tem essas colunas:
+The `x$schema_flattened_keys` view has these columns:
 
-- `esquema_tabela`
+* `table_schema`
 
-  O esquema que contém a tabela.
+  The schema that contains the table.
 
-- `nome_tabela`
+* `table_name`
 
-  A tabela que contém o índice.
+  The table that contains the index.
 
-- `nome_do_índice`
+* `index_name`
 
-  Um nome de índice.
+  An index name.
 
-- `não_único`
+* `non_unique`
 
-  O número de colunas não únicas no índice.
+  The number of nonunique columns in the index.
 
-- `subparte_existe`
+* `subpart_exists`
 
-  Se o índice indexa apenas parte de uma coluna.
+  Whether the index indexes only part of a column.
 
-- `index_columns`
+* `index_columns`
 
-  O nome das colunas no índice.
+  The name of the columns in the index.

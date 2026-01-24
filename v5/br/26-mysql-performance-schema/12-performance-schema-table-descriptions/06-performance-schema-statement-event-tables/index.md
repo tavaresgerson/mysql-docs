@@ -1,41 +1,41 @@
-### 25.12.6 Tabelas de Eventos da Declaração do Schema de Desempenho
+### 25.12.6 Performance Schema Statement Event Tables
 
-25.12.6.1 Tabela events_statements_current
+[25.12.6.1 The events_statements_current Table](performance-schema-events-statements-current-table.html)
 
-Tabela de histórico de declarações de eventos _events_statements_history
+[25.12.6.2 The events_statements_history Table](performance-schema-events-statements-history-table.html)
 
-Tabela de histórico de declarações de eventos_events_statements_history_long
+[25.12.6.3 The events_statements_history_long Table](performance-schema-events-statements-history-long-table.html)
 
-25.12.6.4 A tabela prepared_statements_instances
+[25.12.6.4 The prepared_statements_instances Table](performance-schema-prepared-statements-instances-table.html)
 
-A execução da declaração do Instrumento do Schema de Desempenho. Os eventos de declaração ocorrem em um nível elevado da hierarquia de eventos. Dentro da hierarquia de eventos, os eventos de espera estão dentro dos eventos de estágio, que estão dentro dos eventos de declaração, que estão dentro dos eventos de transação.
+The Performance Schema instruments statement execution. Statement events occur at a high level of the event hierarchy. Within the event hierarchy, wait events nest within stage events, which nest within statement events, which nest within transaction events.
 
-Essas tabelas armazenam eventos de declaração:
+These tables store statement events:
 
-- `eventos_estatuto_atual`: O evento de estatuto atual para cada thread.
+* [`events_statements_current`](performance-schema-events-statements-current-table.html "25.12.6.1 The events_statements_current Table"): The current statement event for each thread.
 
-- `eventos_estatuto_histórico`: Os eventos de estatuto mais recentes que terminaram por thread.
+* [`events_statements_history`](performance-schema-events-statements-history-table.html "25.12.6.2 The events_statements_history Table"): The most recent statement events that have ended per thread.
 
-- `eventos_estatuto_histórico_longo`: Os eventos de estatuto mais recentes que terminaram globalmente (em todas as threads).
+* [`events_statements_history_long`](performance-schema-events-statements-history-long-table.html "25.12.6.3 The events_statements_history_long Table"): The most recent statement events that have ended globally (across all threads).
 
-- `prepared_statements_instances`: Instâncias e estatísticas de instruções preparadas
+* [`prepared_statements_instances`](performance-schema-prepared-statements-instances-table.html "25.12.6.4 The prepared_statements_instances Table"): Prepared statement instances and statistics
 
-As seções a seguir descrevem as tabelas de eventos de declaração. Há também tabelas resumidas que agregam informações sobre eventos de declaração; consulte Seção 25.12.15.3, “Tabelas de Resumo de Declaração”.
+The following sections describe the statement event tables. There are also summary tables that aggregate information about statement events; see [Section 25.12.15.3, “Statement Summary Tables”](performance-schema-statement-summary-tables.html "25.12.15.3 Statement Summary Tables").
 
-Para obter mais informações sobre a relação entre as três tabelas de eventos `events_statements_xxx`, consulte Seção 25.9, “Tabelas do Schema de Desempenho para Eventos Atuais e Históricos”.
+For more information about the relationship between the three `events_statements_xxx` event tables, see [Section 25.9, “Performance Schema Tables for Current and Historical Events”](performance-schema-event-tables.html "25.9 Performance Schema Tables for Current and Historical Events").
 
-- Configuração da coleta de eventos de declaração
-- Monitoramento de declarações
+* [Configuring Statement Event Collection](performance-schema-statement-tables.html#performance-schema-statement-tables-configuration "Configuring Statement Event Collection")
+* [Statement Monitoring](performance-schema-statement-tables.html#performance-schema-statement-tables-monitoring "Statement Monitoring")
 
-#### Configurando a Coleta de Eventos de Declaração
+#### Configuring Statement Event Collection
 
-Para controlar se os eventos de declaração devem ser coletados, defina o estado dos instrumentos e dos consumidores relevantes:
+To control whether to collect statement events, set the state of the relevant instruments and consumers:
 
-- A tabela `setup_instruments` contém instrumentos com nomes que começam com `statement`. Use esses instrumentos para habilitar ou desabilitar a coleta de classes de eventos de declaração individuais.
+* The [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table contains instruments with names that begin with `statement`. Use these instruments to enable or disable collection of individual statement event classes.
 
-- A tabela `setup_consumers` contém valores de consumidores com nomes correspondentes aos nomes atuais e históricos das tabelas de eventos de declarações, além do consumidor de digestão de declarações. Use esses consumidores para filtrar a coleção de eventos de declarações e a digestão de declarações.
+* The [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") table contains consumer values with names corresponding to the current and historical statement event table names, and the statement digest consumer. Use these consumers to filter collection of statement events and statement digesting.
 
-Os instrumentos de declaração estão habilitados por padrão, e os consumidores de declaração `events_statements_current`, `events_statements_history` e `statements_digest` estão habilitados por padrão:
+The statement instruments are enabled by default, and the `events_statements_current`, `events_statements_history`, and `statements_digest` statement consumers are enabled by default:
 
 ```sql
 mysql> SELECT *
@@ -76,9 +76,9 @@ mysql> SELECT *
 +--------------------------------+---------+
 ```
 
-Para controlar a coleta de eventos de declaração na inicialização do servidor, use linhas como estas no seu arquivo `my.cnf`:
+To control statement event collection at server startup, use lines like these in your `my.cnf` file:
 
-- Ativar:
+* Enable:
 
   ```sql
   [mysqld]
@@ -89,7 +89,7 @@ Para controlar a coleta de eventos de declaração na inicialização do servido
   performance-schema-consumer-statements-digest=ON
   ```
 
-- Desativar:
+* Disable:
 
   ```sql
   [mysqld]
@@ -100,9 +100,9 @@ Para controlar a coleta de eventos de declaração na inicialização do servido
   performance-schema-consumer-statements-digest=OFF
   ```
 
-Para controlar a coleta de eventos de declaração em tempo de execução, atualize as tabelas `setup_instruments` e `setup_consumers`:
+To control statement event collection at runtime, update the [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") and [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") tables:
 
-- Ativar:
+* Enable:
 
   ```sql
   UPDATE performance_schema.setup_instruments
@@ -114,7 +114,7 @@ Para controlar a coleta de eventos de declaração em tempo de execução, atual
   WHERE NAME LIKE '%statements%';
   ```
 
-- Desativar:
+* Disable:
 
   ```sql
   UPDATE performance_schema.setup_instruments
@@ -126,9 +126,9 @@ Para controlar a coleta de eventos de declaração em tempo de execução, atual
   WHERE NAME LIKE '%statements%';
   ```
 
-Para coletar apenas eventos de declaração específicos, habilite apenas os instrumentos de declaração correspondentes. Para coletar eventos de declaração apenas para tabelas específicas de eventos de declaração, habilite os instrumentos de declaração, mas apenas os consumidores de declaração correspondentes às tabelas desejadas.
+To collect only specific statement events, enable only the corresponding statement instruments. To collect statement events only for specific statement event tables, enable the statement instruments but only the statement consumers corresponding to the desired tables.
 
-A tabela `setup_timers` contém uma linha com o valor `NAME` de `statement`, que indica a unidade para o cronometramento de eventos de declaração. A unidade padrão é `NANOSECOND`:
+The [`setup_timers`](performance-schema-setup-timers-table.html "25.12.2.5 The setup_timers Table") table contains a row with a `NAME` value of `statement` that indicates the unit for statement event timing. The default unit is `NANOSECOND`:
 
 ```sql
 mysql> SELECT *
@@ -141,7 +141,7 @@ mysql> SELECT *
 +-----------+------------+
 ```
 
-Para alterar a unidade de temporização, modifique o valor `TIMER_NAME`:
+To change the timing unit, modify the `TIMER_NAME` value:
 
 ```sql
 UPDATE performance_schema.setup_timers
@@ -149,60 +149,59 @@ SET TIMER_NAME = 'MICROSECOND'
 WHERE NAME = 'statement';
 ```
 
-Para obter informações adicionais sobre a configuração da coleta de eventos, consulte Seção 25.3, “Configuração de Inicialização do Schema de Desempenho” e Seção 25.4, “Configuração de Execução em Tempo Real do Schema de Desempenho”.
+For additional information about configuring event collection, see [Section 25.3, “Performance Schema Startup Configuration”](performance-schema-startup-configuration.html "25.3 Performance Schema Startup Configuration"), and [Section 25.4, “Performance Schema Runtime Configuration”](performance-schema-runtime-configuration.html "25.4 Performance Schema Runtime Configuration").
 
-#### Monitoramento de declarações
+#### Statement Monitoring
 
-O monitoramento das declarações começa no momento em que o servidor percebe que uma atividade é solicitada em um thread, até o momento em que toda a atividade cessa. Normalmente, isso significa desde o momento em que o servidor recebe o primeiro pacote do cliente até o momento em que o servidor concluiu a transmissão da resposta. As declarações dentro dos programas armazenados são monitoradas como outras declarações.
+Statement monitoring begins from the moment the server sees that activity is requested on a thread, to the moment when all activity has ceased. Typically, this means from the time the server gets the first packet from the client to the time the server has finished sending the response. Statements within stored programs are monitored like other statements.
 
-Quando o Schema de Desempenho instrumenta uma solicitação (comando do servidor ou instrução SQL), ele usa nomes de instrumentos que progridem em etapas, de mais gerais (ou "abstratos") para mais específicos, até chegar a um nome de instrumento final.
+When the Performance Schema instruments a request (server command or SQL statement), it uses instrument names that proceed in stages from more general (or “abstract”) to more specific until it arrives at a final instrument name.
 
-Os nomes dos instrumentos finais correspondem a comandos do servidor e instruções SQL:
+Final instrument names correspond to server commands and SQL statements:
 
-- Os comandos do servidor correspondem aos códigos `COM_xxx` definidos no arquivo de cabeçalho `mysql_com.h` e processados em `sql/sql_parse.cc`. Exemplos são `COM_PING` e `COM_QUIT`. Os instrumentos para comandos têm nomes que começam com `statement/com`, como `statement/com/Ping` e `statement/com/Quit`.
+* Server commands correspond to the `COM_xxx codes` defined in the `mysql_com.h` header file and processed in `sql/sql_parse.cc`. Examples are `COM_PING` and `COM_QUIT`. Instruments for commands have names that begin with `statement/com`, such as `statement/com/Ping` and `statement/com/Quit`.
 
-- As instruções SQL são expressas como texto, como `DELETE FROM t1` ou `SELECT * FROM t2`. Os instrumentos para instruções SQL têm nomes que começam com `statement/sql`, como `statement/sql/delete` e `statement/sql/select`.
+* SQL statements are expressed as text, such as `DELETE FROM t1` or `SELECT * FROM t2`. Instruments for SQL statements have names that begin with `statement/sql`, such as `statement/sql/delete` and `statement/sql/select`.
 
-Alguns nomes de instrumentos finais são específicos para o tratamento de erros:
+Some final instrument names are specific to error handling:
 
-- As mensagens recebidas pelo servidor que estão fora da banda são registradas na seção `statement/com/Error`. Elas podem ser usadas para detectar comandos enviados por clientes que o servidor não entende. Isso pode ser útil para identificar clientes mal configurados ou que estão usando uma versão do MySQL mais recente do que a do servidor, ou clientes que estão tentando atacar o servidor.
+* `statement/com/Error` accounts for messages received by the server that are out of band. It can be used to detect commands sent by clients that the server does not understand. This may be helpful for purposes such as identifying clients that are misconfigured or using a version of MySQL more recent than that of the server, or clients that are attempting to attack the server.
 
-- `statement/sql/error` lida com instruções SQL que não conseguem ser parseadas. Pode ser usado para detectar consultas malformadas enviadas pelos clientes. Uma consulta que não consegue ser parseada difere de uma consulta que é parseada, mas falha devido a um erro durante a execução. Por exemplo, `SELECT * FROM` é malformado, e o instrumento `statement/sql/error` é usado. Em contraste, `SELECT *` é parseado, mas falha com um erro `No tables used` (Tabelas não usadas). Neste caso, é usado `statement/sql/select` e o evento da instrução contém informações para indicar a natureza do erro.
+* `statement/sql/error` accounts for SQL statements that fail to parse. It can be used to detect malformed queries sent by clients. A query that fails to parse differs from a query that parses but fails due to an error during execution. For example, `SELECT * FROM` is malformed, and the `statement/sql/error` instrument is used. By contrast, `SELECT *` parses but fails with a `No tables used` error. In this case, `statement/sql/select` is used and the statement event contains information to indicate the nature of the error.
 
-Um pedido pode ser obtido em qualquer uma dessas fontes:
+A request can be obtained from any of these sources:
 
-- Como um pedido de comando ou declaração de um cliente, que envia o pedido como pacotes
+* As a command or statement request from a client, which sends the request as packets
 
-- Como uma string de declaração lida do log do relay em uma réplica
+* As a statement string read from the relay log on a replica
+* As an event from the Event Scheduler
 
-- Como um evento do Agendamento de Eventos
+The details for a request are not initially known and the Performance Schema proceeds from abstract to specific instrument names in a sequence that depends on the source of the request.
 
-Os detalhes de um pedido não são conhecidos inicialmente e o Schema de Desempenho segue de nomes de instrumentos abstratos para específicos em uma sequência que depende da fonte do pedido.
+For a request received from a client:
 
-Para um pedido recebido de um cliente:
+1. When the server detects a new packet at the socket level, a new statement is started with an abstract instrument name of `statement/abstract/new_packet`.
 
-1. Quando o servidor detecta um novo pacote no nível de soquete, uma nova instrução é iniciada com o nome do instrumento abstrato `statement/abstract/new_packet`.
+2. When the server reads the packet number, it knows more about the type of request received, and the Performance Schema refines the instrument name. For example, if the request is a `COM_PING` packet, the instrument name becomes `statement/com/Ping` and that is the final name. If the request is a `COM_QUERY` packet, it is known to correspond to an SQL statement but not the particular type of statement. In this case, the instrument changes from one abstract name to a more specific but still abstract name, `statement/abstract/Query`, and the request requires further classification.
 
-2. Quando o servidor lê o número do pacote, ele sabe mais sobre o tipo de solicitação recebida, e o Schema de Desempenho refina o nome do instrumento. Por exemplo, se a solicitação for um pacote `COM_PING`, o nome do instrumento se torna `statement/com/Ping` e esse é o nome final. Se a solicitação for um pacote `COM_QUERY`, sabe-se que ele corresponde a uma instrução SQL, mas não ao tipo específico da instrução. Neste caso, o instrumento muda de um nome abstrato para um nome mais específico, mas ainda abstrato, `statement/abstract/Query`, e a solicitação requer uma classificação adicional.
+3. If the request is a statement, the statement text is read and given to the parser. After parsing, the exact statement type is known. If the request is, for example, an [`INSERT`](insert.html "13.2.5 INSERT Statement") statement, the Performance Schema refines the instrument name from `statement/abstract/Query` to `statement/sql/insert`, which is the final name.
 
-3. Se o pedido for uma declaração, o texto da declaração é lido e fornecido ao analisador. Após a análise, o tipo exato da declaração é conhecido. Se o pedido for, por exemplo, uma declaração `INSERT`, o Schema de Desempenho refina o nome do instrumento de `statement/abstract/Query` para `statement/sql/insert`, que é o nome final.
+For a request read as a statement from the relay log on a replica:
 
-Para um pedido lido como uma declaração do log de retransmissão em uma réplica:
+1. Statements in the relay log are stored as text and are read as such. There is no network protocol, so the `statement/abstract/new_packet` instrument is not used. Instead, the initial instrument is `statement/abstract/relay_log`.
 
-1. As declarações no log de retransmissão são armazenadas como texto e são lidas como tal. Não há protocolo de rede, portanto, o instrumento `statement/abstract/new_packet` não é usado. Em vez disso, o instrumento inicial é `statement/abstract/relay_log`.
+2. When the statement is parsed, the exact statement type is known. If the request is, for example, an [`INSERT`](insert.html "13.2.5 INSERT Statement") statement, the Performance Schema refines the instrument name from `statement/abstract/Query` to `statement/sql/insert`, which is the final name.
 
-2. Quando a declaração é analisada, o tipo exato da declaração é conhecido. Se o pedido for, por exemplo, uma declaração `INSERT`, o Schema de Desempenho refina o nome do instrumento de `statement/abstract/Query` para `statement/sql/insert`, que é o nome final.
+The preceding description applies only for statement-based replication. For row-based replication, table I/O done on the replica as it processes row changes can be instrumented, but row events in the relay log do not appear as discrete statements.
 
-A descrição anterior se aplica apenas à replicação baseada em declarações. Para a replicação baseada em linhas, o I/O de tabela realizado na replica enquanto processa alterações de linha pode ser instrumentado, mas os eventos de linha no log de retransmissão não aparecem como declarações discretas.
+For a request received from the Event Scheduler:
 
-Para um pedido recebido do Agendamento de Eventos:
+The event execution is instrumented using the name `statement/scheduler/event`. This is the final name.
 
-A execução do evento é instrumentada usando o nome `statement/scheduler/event`. Este é o nome final.
+Statements executed within the event body are instrumented using `statement/sql/*` names, without use of any preceding abstract instrument. An event is a stored program, and stored programs are precompiled in memory before execution. Consequently, there is no parsing at runtime and the type of each statement is known by the time it executes.
 
-As declarações executadas dentro do corpo do evento são instrumentadas usando nomes `statement/sql/*`, sem o uso de nenhum instrumento abstrato anterior. Um evento é um programa armazenado, e os programas armazenados são pré-compilados na memória antes da execução. Consequentemente, não há análise em tempo de execução e o tipo de cada declaração é conhecido no momento em que ela é executada.
+Statements executed within the event body are child statements. For example, if an event executes an [`INSERT`](insert.html "13.2.5 INSERT Statement") statement, execution of the event itself is the parent, instrumented using `statement/scheduler/event`, and the [`INSERT`](insert.html "13.2.5 INSERT Statement") is the child, instrumented using `statement/sql/insert`. The parent/child relationship holds *between* separate instrumented operations. This differs from the sequence of refinement that occurs *within* a single instrumented operation, from abstract to final instrument names.
 
-As declarações executadas dentro do corpo do evento são declarações filhas. Por exemplo, se um evento executa uma declaração `INSERT`, a execução do próprio evento é a raiz, instrumentada usando `statement/scheduler/event`, e a `INSERT` é a filha, instrumentada usando `statement/sql/insert`. A relação pai/filha ocorre *entre* operações instrumentadas separadas. Isso difere da sequência de refinamento que ocorre *dentro* de uma única operação instrumentada, de nomes de instrumentos abstratos para finais.
+For statistics to be collected for statements, it is not sufficient to enable only the final `statement/sql/*` instruments used for individual statement types. The abtract `statement/abstract/*` instruments must be enabled as well. This should not normally be an issue because all statement instruments are enabled by default. However, an application that enables or disables statement instruments selectively must take into account that disabling abstract instruments also disables statistics collection for the individual statement instruments. For example, to collect statistics for [`INSERT`](insert.html "13.2.5 INSERT Statement") statements, `statement/sql/insert` must be enabled, but also `statement/abstract/new_packet` and `statement/abstract/Query`. Similarly, for replicated statements to be instrumented, `statement/abstract/relay_log` must be enabled.
 
-Para que as estatísticas sejam coletadas para declarações, não é suficiente habilitar apenas os instrumentos finais `statement/sql/*` usados para tipos de declaração individuais. Os instrumentos abstratos `statement/abstract/*` também devem ser habilitados. Isso normalmente não deve ser um problema, pois todos os instrumentos de declaração são habilitados por padrão. No entanto, uma aplicação que habilita ou desabilita seletivamente os instrumentos de declaração deve levar em consideração que desabilitar os instrumentos abstratos também desabilita a coleta de estatísticas para os instrumentos de declaração individuais. Por exemplo, para coletar estatísticas para declarações de `INSERT`, `statement/sql/insert` deve ser habilitado, mas também `statement/abstract/new_packet` e `statement/abstract/Query`. Da mesma forma, para que as declarações replicadas sejam instrumentadas, `statement/abstract/relay_log` deve ser habilitado.
-
-Não são agregadas estatísticas para instrumentos abstratos, como `statement/abstract/Query`, porque nenhum instrumento é classificado como o nome final da declaração.
+No statistics are aggregated for abstract instruments such as `statement/abstract/Query` because no statement is ever classified with an abstract instrument as the final statement name.

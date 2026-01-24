@@ -1,12 +1,12 @@
-### 25.19.1 Análise de perfis de consulta usando o Gerenciamento de desempenho
+### 25.19.1 Query Profiling Using Performance Schema
 
-O exemplo a seguir demonstra como usar os eventos de declarações do Gerenciamento de Desempenho e eventos de estágio para recuperar dados comparáveis às informações de perfilamento fornecidas pelas declarações `SHOW PROFILES` e `SHOW PROFILE`.
+The following example demonstrates how to use Performance Schema statement events and stage events to retrieve data comparable to profiling information provided by [`SHOW PROFILES`](show-profiles.html "13.7.5.31 SHOW PROFILES Statement") and [`SHOW PROFILE`](show-profile.html "13.7.5.30 SHOW PROFILE Statement") statements.
 
-A tabela `setup_actors` pode ser usada para limitar a coleta de eventos históricos por host, usuário ou conta, reduzindo o overhead do tempo de execução e a quantidade de dados coletados nas tabelas de histórico. O primeiro passo do exemplo mostra como limitar a coleta de eventos históricos para um usuário específico.
+The [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table") table can be used to limit the collection of historical events by host, user, or account to reduce runtime overhead and the amount of data collected in history tables. The first step of the example shows how to limit collection of historical events to a specific user.
 
-O Schema de desempenho exibe as informações do temporizador de eventos em picossegundos (trilhões de um segundo) para normalizar os dados de temporização para uma unidade padrão. No exemplo a seguir, os valores de `TIMER_WAIT` são divididos por 1.000.000.000.000 para mostrar os dados em unidades de segundos. Os valores também são truncados para 6 casas decimais para exibir os dados no mesmo formato das declarações `SHOW PROFILES` e `SHOW PROFILE`.
+Performance Schema displays event timer information in picoseconds (trillionths of a second) to normalize timing data to a standard unit. In the following example, `TIMER_WAIT` values are divided by 1000000000000 to show data in units of seconds. Values are also truncated to 6 decimal places to display data in the same format as [`SHOW PROFILES`](show-profiles.html "13.7.5.31 SHOW PROFILES Statement") and [`SHOW PROFILE`](show-profile.html "13.7.5.30 SHOW PROFILE Statement") statements.
 
-1. Limite a coleta de eventos históricos ao usuário que executa a consulta. Por padrão, o `setup_actors` está configurado para permitir o monitoramento e a coleta de eventos históricos para todos os threads em primeiro plano:
+1. Limit the collection of historical events to the user running the query. By default, [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table") is configured to allow monitoring and historical event collection for all foreground threads:
 
    ```sql
    mysql> SELECT * FROM performance_schema.setup_actors;
@@ -17,7 +17,7 @@ O Schema de desempenho exibe as informações do temporizador de eventos em pico
    +------+------+------+---------+---------+
    ```
 
-   Atualize a linha padrão na tabela `setup_actors` para desabilitar a coleta e monitoramento de eventos históricos para todos os threads em primeiro plano e insira uma nova linha que habilite o monitoramento e a coleta de eventos históricos para o usuário que está executando a consulta:
+   Update the default row in the [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table") table to disable historical event collection and monitoring for all foreground threads, and insert a new row that enables monitoring and historical event collection for the user running the query:
 
    ```sql
    mysql> UPDATE performance_schema.setup_actors
@@ -29,7 +29,7 @@ O Schema de desempenho exibe as informações do temporizador de eventos em pico
           VALUES('localhost','test_user','%','YES','YES');
    ```
 
-   Os dados na tabela `setup_actors` devem agora parecer semelhantes ao seguinte:
+   Data in the [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table") table should now appear similar to the following:
 
    ```sql
    mysql> SELECT * FROM performance_schema.setup_actors;
@@ -41,7 +41,7 @@ O Schema de desempenho exibe as informações do temporizador de eventos em pico
    +-----------+-----------+------+---------+---------+
    ```
 
-2. Certifique-se de que a declaração e a instrumentação de estágio estão habilitadas atualizando a tabela \`setup_instruments. Alguns instrumentos podem estar já habilitados por padrão.
+2. Ensure that statement and stage instrumentation is enabled by updating the [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table. Some instruments may already be enabled by default.
 
    ```sql
    mysql> UPDATE performance_schema.setup_instruments
@@ -53,7 +53,7 @@ O Schema de desempenho exibe as informações do temporizador de eventos em pico
           WHERE NAME LIKE '%stage/%';
    ```
 
-3. Certifique-se de que os consumidores `events_statements_*` e `events_stages_*` estejam habilitados. Alguns consumidores podem estar habilitados por padrão.
+3. Ensure that `events_statements_*` and `events_stages_*` consumers are enabled. Some consumers may already be enabled by default.
 
    ```sql
    mysql> UPDATE performance_schema.setup_consumers
@@ -65,7 +65,7 @@ O Schema de desempenho exibe as informações do temporizador de eventos em pico
           WHERE NAME LIKE '%events_stages_%';
    ```
 
-4. Sob a conta de usuário que você está monitorando, execute a declaração que deseja perfiliar. Por exemplo:
+4. Under the user account you are monitoring, run the statement that you want to profile. For example:
 
    ```sql
    mysql> SELECT * FROM employees.employees WHERE emp_no = 10001;
@@ -76,7 +76,7 @@ O Schema de desempenho exibe as informações do temporizador de eventos em pico
    +--------+------------+------------+-----------+--------+------------+
    ```
 
-5. Identifique o `EVENT_ID` da declaração consultando a tabela `events_statements_history_long`. Essa etapa é semelhante ao uso de `SHOW PROFILES` para identificar o `Query_ID`. A seguinte consulta produz um resultado semelhante ao de `SHOW PROFILES`:
+5. Identify the `EVENT_ID` of the statement by querying the [`events_statements_history_long`](performance-schema-events-statements-history-long-table.html "25.12.6.3 The events_statements_history_long Table") table. This step is similar to running [`SHOW PROFILES`](show-profiles.html "13.7.5.31 SHOW PROFILES Statement") to identify the `Query_ID`. The following query produces output similar to [`SHOW PROFILES`](show-profiles.html "13.7.5.31 SHOW PROFILES Statement"):
 
    ```sql
    mysql> SELECT EVENT_ID, TRUNCATE(TIMER_WAIT/1000000000000,6) as Duration, SQL_TEXT
@@ -88,7 +88,7 @@ O Schema de desempenho exibe as informações do temporizador de eventos em pico
    +----------+----------+--------------------------------------------------------+
    ```
 
-6. Consulte a tabela `events_stages_history_long` para recuperar os eventos de estágio da declaração. Os estágios estão vinculados às declarações usando o nesting de eventos. Cada registro de evento de estágio tem uma coluna `NESTING_EVENT_ID` que contém o `EVENT_ID` da declaração pai.
+6. Query the [`events_stages_history_long`](performance-schema-events-stages-history-long-table.html "25.12.5.3 The events_stages_history_long Table") table to retrieve the statement's stage events. Stages are linked to statements using event nesting. Each stage event record has a `NESTING_EVENT_ID` column that contains the `EVENT_ID` of the parent statement.
 
    ```sql
    mysql> SELECT event_name AS Stage, TRUNCATE(TIMER_WAIT/1000000000000,6) AS Duration

@@ -1,4 +1,4 @@
-### 13.8.2 Instrução EXPLAIN
+### 13.8.2 EXPLAIN Statement
 
 ```sql
 {EXPLAIN | DESCRIBE | DESC}
@@ -28,16 +28,16 @@ explainable_stmt: {
 }
 ```
 
-As instruções `DESCRIBE` e `EXPLAIN` são sinônimas. Na prática, a palavra-chave `DESCRIBE` é mais frequentemente usada para obter informações sobre a estrutura da tabela, enquanto `EXPLAIN` é usada para obter um plano de execução da consulta (ou seja, uma explicação de como o MySQL executaria uma consulta).
+The [`DESCRIBE`](describe.html "13.8.1 DESCRIBE Statement") and [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") statements are synonyms. In practice, the [`DESCRIBE`](describe.html "13.8.1 DESCRIBE Statement") keyword is more often used to obtain information about table structure, whereas [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") is used to obtain a query execution plan (that is, an explanation of how MySQL would execute a query).
 
-A discussão a seguir utiliza as palavras-chave `DESCRIBE` e `EXPLAIN` de acordo com esses usos, mas o analisador MySQL as trata como completamente sinônimas.
+The following discussion uses the [`DESCRIBE`](describe.html "13.8.1 DESCRIBE Statement") and [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") keywords in accordance with those uses, but the MySQL parser treats them as completely synonymous.
 
-- Obter informações sobre a estrutura da tabela
-- Obter informações sobre o plano de execução
+* [Obtaining Table Structure Information](explain.html#explain-table-structure "Obtaining Table Structure Information")
+* [Obtaining Execution Plan Information](explain.html#explain-execution-plan "Obtaining Execution Plan Information")
 
-#### Obtendo Informações da Estrutura da Tabela
+#### Obtaining Table Structure Information
 
-`DESCRIBE` fornece informações sobre as colunas de uma tabela:
+[`DESCRIBE`](describe.html "13.8.1 DESCRIBE Statement") provides information about the columns in a table:
 
 ```sql
 mysql> DESCRIBE City;
@@ -52,48 +52,48 @@ mysql> DESCRIBE City;
 +------------+----------+------+-----+---------+----------------+
 ```
 
-`DESCRIBE` é um atalho para `SHOW COLUMNS`. Essas declarações também exibem informações para visualizações. A descrição para `SHOW COLUMNS` fornece mais informações sobre as colunas de saída. Veja Seção 13.7.5.5, “Declaração SHOW COLUMNS”.
+[`DESCRIBE`](describe.html "13.8.1 DESCRIBE Statement") is a shortcut for [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement"). These statements also display information for views. The description for [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") provides more information about the output columns. See [Section 13.7.5.5, “SHOW COLUMNS Statement”](show-columns.html "13.7.5.5 SHOW COLUMNS Statement").
 
-Por padrão, `DESCRIBE` exibe informações sobre todas as colunas da tabela. *`col_name`*, se fornecido, é o nome de uma coluna na tabela. Neste caso, a declaração exibe informações apenas para a coluna nomeada. *`wild`*, se fornecido, é uma string de padrão. Pode conter os caracteres de wildcard SQL `%` e `_`. Neste caso, a declaração exibe saída apenas para as colunas com nomes que correspondem à string. Não há necessidade de encerrar a string entre aspas, a menos que ela contenha espaços ou outros caracteres especiais.
+By default, [`DESCRIBE`](describe.html "13.8.1 DESCRIBE Statement") displays information about all columns in the table. *`col_name`*, if given, is the name of a column in the table. In this case, the statement displays information only for the named column. *`wild`*, if given, is a pattern string. It can contain the SQL `%` and `_` wildcard characters. In this case, the statement displays output only for the columns with names matching the string. There is no need to enclose the string within quotation marks unless it contains spaces or other special characters.
 
-A instrução `DESCRIBE` é fornecida para compatibilidade com o Oracle.
+The [`DESCRIBE`](describe.html "13.8.1 DESCRIBE Statement") statement is provided for compatibility with Oracle.
 
-As instruções `SHOW CREATE TABLE`, `SHOW TABLE STATUS` e `SHOW INDEX` também fornecem informações sobre as tabelas. Veja Seção 13.7.5, “Instruções SHOW”.
+The [`SHOW CREATE TABLE`](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement"), [`SHOW TABLE STATUS`](show-table-status.html "13.7.5.36 SHOW TABLE STATUS Statement"), and [`SHOW INDEX`](show-index.html "13.7.5.22 SHOW INDEX Statement") statements also provide information about tables. See [Section 13.7.5, “SHOW Statements”](show.html "13.7.5 SHOW Statements").
 
-#### Obter informações sobre o plano de execução
+#### Obtaining Execution Plan Information
 
-A instrução `EXPLAIN` fornece informações sobre como o MySQL executa instruções:
+The [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") statement provides information about how MySQL executes statements:
 
-- `EXPLAIN` funciona com as instruções `SELECT`, `DELETE`, `INSERT`, `REPLACE` e `UPDATE`.
+* [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") works with [`SELECT`](select.html "13.2.9 SELECT Statement"), [`DELETE`](delete.html "13.2.2 DELETE Statement"), [`INSERT`](insert.html "13.2.5 INSERT Statement"), [`REPLACE`](replace.html "13.2.8 REPLACE Statement"), and [`UPDATE`](update.html "13.2.11 UPDATE Statement") statements.
 
-- Quando o `EXPLAIN` é usado com uma declaração explicável, o MySQL exibe informações sobre o plano de execução da declaração do otimizador. Ou seja, o MySQL explica como processaria a declaração, incluindo informações sobre como as tabelas são unidas e em que ordem. Para obter informações sobre o uso do `EXPLAIN` para obter informações sobre o plano de execução, consulte Seção 8.8.2, “Formato de Saída EXPLAIN”.
+* When [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") is used with an explainable statement, MySQL displays information from the optimizer about the statement execution plan. That is, MySQL explains how it would process the statement, including information about how tables are joined and in which order. For information about using [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") to obtain execution plan information, see [Section 8.8.2, “EXPLAIN Output Format”](explain-output.html "8.8.2 EXPLAIN Output Format").
 
-- Quando o comando `EXPLAIN` é usado com `FOR CONNECTION connection_id` em vez de uma instrução explicável, ele exibe o plano de execução da instrução que está sendo executada na conexão nomeada. Veja Seção 8.8.4, “Obtendo Informações do Plano de Execução para uma Conexão Nomeada”.
+* When [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") is used with `FOR CONNECTION connection_id` rather than an explainable statement, it displays the execution plan for the statement executing in the named connection. See [Section 8.8.4, “Obtaining Execution Plan Information for a Named Connection”](explain-for-connection.html "8.8.4 Obtaining Execution Plan Information for a Named Connection").
 
-- Para as instruções `SELECT`, o `EXPLAIN` produz informações adicionais sobre o plano de execução que podem ser exibidas usando `SHOW WARNINGS`. Veja Seção 8.8.3, “Formato de Saída EXPLAIN Extendido”.
+* For [`SELECT`](select.html "13.2.9 SELECT Statement") statements, [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") produces additional execution plan information that can be displayed using [`SHOW WARNINGS`](show-warnings.html "13.7.5.40 SHOW WARNINGS Statement"). See [Section 8.8.3, “Extended EXPLAIN Output Format”](explain-extended.html "8.8.3 Extended EXPLAIN Output Format").
 
-  Nota
+  Note
 
-  Em versões mais antigas do MySQL, as informações detalhadas eram geradas usando `EXPLAIN EXTENDED`. Essa sintaxe ainda é reconhecida para compatibilidade reversa, mas a saída detalhada agora está habilitada por padrão, então a palavra-chave `EXTENDED` é supérflua e desatualizada. Seu uso resulta em um aviso e é removido da sintaxe de `EXPLAIN` no MySQL 8.0.
+  In older MySQL releases, extended information was produced using [`EXPLAIN EXTENDED`](explain.html "13.8.2 EXPLAIN Statement"). That syntax is still recognized for backward compatibility but extended output is now enabled by default, so the `EXTENDED` keyword is superfluous and deprecated. Its use results in a warning, and it is removed from [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") syntax in MySQL 8.0.
 
-- `EXPLAIN` é útil para examinar consultas que envolvem tabelas particionadas. Veja Seção 22.3.5, “Obtendo Informações Sobre Partições”.
+* [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") is useful for examining queries involving partitioned tables. See [Section 22.3.5, “Obtaining Information About Partitions”](partitioning-info.html "22.3.5 Obtaining Information About Partitions").
 
-  Nota
+  Note
 
-  Em versões mais antigas do MySQL, as informações das partições eram geradas usando `EXPLAIN PARTITIONS`. Essa sintaxe ainda é reconhecida para compatibilidade reversa, mas a saída das partições agora está habilitada por padrão, então a palavra-chave `PARTITIONS` é supérflua e desatualizada. Seu uso resulta em um aviso e é removido da sintaxe de `EXPLAIN` no MySQL 8.0.
+  In older MySQL releases, partition information was produced using [`EXPLAIN PARTITIONS`](explain.html "13.8.2 EXPLAIN Statement"). That syntax is still recognized for backward compatibility but partition output is now enabled by default, so the `PARTITIONS` keyword is superfluous and deprecated. Its use results in a warning, and it is removed from [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") syntax in MySQL 8.0.
 
-- A opção `FORMAT` pode ser usada para selecionar o formato de saída. `TRADITIONAL` apresenta a saída em formato tabular. Isso é o padrão se nenhuma opção `FORMAT` estiver presente. O formato `JSON` exibe as informações no formato JSON.
+* The `FORMAT` option can be used to select the output format. `TRADITIONAL` presents the output in tabular format. This is the default if no `FORMAT` option is present. `JSON` format displays the information in JSON format.
 
-  Para declarações complexas, a saída JSON pode ser bastante grande; em particular, pode ser difícil lê-la para combinar o parêntese de fechamento e o parêntese de abertura; para fazer com que a chave da estrutura JSON, se houver, seja repetida perto do parêntese de fechamento, configure `end_markers_in_json=ON`. Você deve estar ciente de que, embora isso torne a saída mais fácil de ler, também torna o JSON inválido, fazendo com que as funções JSON lancem um erro.
+  For complex statements, the JSON output can be quite large; in particular, it can be difficult when reading it to pair the closing bracket and opening brackets; to cause the JSON structure's key, if it has one, to be repeated near the closing bracket, set [`end_markers_in_json=ON`](server-system-variables.html#sysvar_end_markers_in_json). You should be aware that while this makes the output easier to read, it also renders the JSON invalid, causing JSON functions to raise an error.
 
-`EXPLAIN` requer os mesmos privilégios necessários para executar a declaração explicada. Além disso, `EXPLAIN` também requer o privilégio `SHOW VIEW` para qualquer visualização explicada.
+[`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") requires the same privileges required to execute the explained statement. Additionally, [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") also requires the [`SHOW VIEW`](privileges-provided.html#priv_show-view) privilege for any explained view.
 
-Com a ajuda de `EXPLAIN`, você pode ver onde deve adicionar índices às tabelas para que a instrução seja executada mais rapidamente, usando índices para encontrar linhas. Você também pode usar `EXPLAIN` para verificar se o otimizador está realizando as junções das tabelas em uma ordem ótima. Para dar uma dica ao otimizador para usar uma ordem de junção correspondente à ordem em que as tabelas são nomeadas em uma instrução `SELECT`, comece a instrução com `SELECT STRAIGHT_JOIN` em vez de apenas `SELECT`. (Veja Seção 13.2.9, “Instrução SELECT”.)
+With the help of [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement"), you can see where you should add indexes to tables so that the statement executes faster by using indexes to find rows. You can also use [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") to check whether the optimizer joins the tables in an optimal order. To give a hint to the optimizer to use a join order corresponding to the order in which the tables are named in a [`SELECT`](select.html "13.2.9 SELECT Statement") statement, begin the statement with `SELECT STRAIGHT_JOIN` rather than just [`SELECT`](select.html "13.2.9 SELECT Statement"). (See [Section 13.2.9, “SELECT Statement”](select.html "13.2.9 SELECT Statement").)
 
-O rastreamento do otimizador pode, às vezes, fornecer informações complementares às do `EXPLAIN`. No entanto, o formato e o conteúdo do rastreamento do otimizador estão sujeitos a alterações entre as versões. Para obter detalhes, consulte Seção 8.15, “Rastreamento do Otimizador”.
+The optimizer trace may sometimes provide information complementary to that of [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement"). However, the optimizer trace format and content are subject to change between versions. For details, see [Section 8.15, “Tracing the Optimizer”](optimizer-tracing.html "8.15 Tracing the Optimizer").
 
-Se você tiver um problema com os índices não sendo usados quando você acredita que eles deveriam ser, execute `ANALYZE TABLE` para atualizar as estatísticas da tabela, como a cardinalidade das chaves, que podem afetar as escolhas do otimizador. Veja Seção 13.7.2.1, “Instrução ANALYZE TABLE”.
+If you have a problem with indexes not being used when you believe that they should be, run [`ANALYZE TABLE`](analyze-table.html "13.7.2.1 ANALYZE TABLE Statement") to update table statistics, such as cardinality of keys, that can affect the choices the optimizer makes. See [Section 13.7.2.1, “ANALYZE TABLE Statement”](analyze-table.html "13.7.2.1 ANALYZE TABLE Statement").
 
-Nota
+Note
 
-O MySQL Workbench possui uma funcionalidade Visual Explain que fornece uma representação visual do resultado do `EXPLAIN`. Veja Tutoriais: Usando Explain para Melhorar o Desempenho das Consultas.
+MySQL Workbench has a Visual Explain capability that provides a visual representation of [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") output. See [Tutorial: Using Explain to Improve Query Performance](/doc/workbench/en/wb-tutorial-visual-explain-dbt3.html).

@@ -1,61 +1,61 @@
-#### 26.4.3.14 As visualizações io_global_by_wait_by_latency e x$io_global_by_wait_by_latency
+#### 26.4.3.14 The io_global_by_wait_by_latency and x$io_global_by_wait_by_latency Views
 
-Esses pontos de vista resumem os consumidores globais de E/S para exibir a quantidade de E/S e o tempo de espera para E/S, agrupados por evento. Por padrão, as linhas são ordenadas por latência total decrescente.
+These views summarize global I/O consumers to display amount of I/O and time waiting for I/O, grouped by event. By default, rows are sorted by descending total latency.
 
-As vistas `io_global_by_wait_by_latency` e `x$io_global_by_wait_by_latency` possuem essas colunas:
+The `io_global_by_wait_by_latency` and `x$io_global_by_wait_by_latency` views have these columns:
 
-- `nome_do_evento`
+* `event_name`
 
-  O nome do evento de entrada/saída, com o prefixo `wait/io/file/` removido.
+  The I/O event name, with the `wait/io/file/` prefix stripped.
 
-- `total`
+* `total`
 
-  O número total de ocorrências do evento de E/S.
+  The total number of occurrences of the I/O event.
 
-- `total_latency`
+* `total_latency`
 
-  O tempo total de espera de ocorrências temporizadas do evento de E/S.
+  The total wait time of timed occurrences of the I/O event.
 
-- `avg_latency`
+* `avg_latency`
 
-  O tempo médio de espera por ocorrência temporizada do evento de E/S.
+  The average wait time per timed occurrence of the I/O event.
 
-- `max_latency`
+* `max_latency`
 
-  O tempo de espera máximo de uma única ocorrência temporizada do evento de E/S.
+  The maximum single wait time of timed occurrences of the I/O event.
 
-- `latência_de_leitura`
+* `read_latency`
 
-  O tempo total de espera de ocorrências de leitura cronometradas do evento de E/S.
+  The total wait time of timed read occurrences of the I/O event.
 
-- `latency_de_escrita`
+* `write_latency`
 
-  O tempo total de espera de ocorrências de escrita temporizadas do evento de E/S.
+  The total wait time of timed write occurrences of the I/O event.
 
-- `misc_latency`
+* `misc_latency`
 
-  O tempo total de espera de outras ocorrências temporizadas do evento de E/S.
+  The total wait time of timed other occurrences of the I/O event.
 
-- `count_read`
+* `count_read`
 
-  O número de solicitações de leitura para o evento de E/S.
+  The number of read requests for the I/O event.
 
-- `total_read`
+* `total_read`
 
-  O número de bytes lidos para o evento de E/S.
+  The number of bytes read for the I/O event.
 
-- `avg_read`
+* `avg_read`
 
-  O número médio de bytes por leitura para o evento de E/S.
+  The average number of bytes per read for the I/O event.
 
-- `count_write`
+* `count_write`
 
-  O número de solicitações de escrita para o evento de E/S.
+  The number of write requests for the I/O event.
 
-- `total_escrito`
+* `total_written`
 
-  O número de bytes escritos para o evento de E/S.
+  The number of bytes written for the I/O event.
 
-- `avg_escrito`
+* `avg_written`
 
-  O número médio de bytes por escrita para o evento de E/S.
+  The average number of bytes per write for the I/O event.

@@ -1,22 +1,22 @@
-#### 26.4.4.3 O procedimento execute_prepared_stmt()
+#### 26.4.4.3 The execute_prepared_stmt() Procedure
 
-Dado uma instrução SQL como uma string, executa-a como uma instrução preparada. A instrução preparada é liberada após a execução, portanto, não pode ser reutilizada. Assim, este procedimento é útil principalmente para executar instruções dinâmicas de forma única.
+Given an SQL statement as a string, executes it as a prepared statement. The prepared statement is deallocated after execution, so it is not subject to reuse. Thus, this procedure is useful primarily for executing dynamic statements on a one-time basis.
 
-Esse procedimento usa `sys_execute_prepared_stmt` como o nome do comando preparado. Se esse nome de comando existir quando o procedimento for chamado, seu conteúdo anterior será destruído.
+This procedure uses `sys_execute_prepared_stmt` as the prepared statement name. If that statement name exists when the procedure is called, its previous content is destroyed.
 
-##### Parâmetros
+##### Parameters
 
-- `in_query LONGTEXT CHARACTER SET utf8`: A string de declaração a ser executada.
+* `in_query LONGTEXT CHARACTER SET utf8`: The statement string to execute.
 
-##### Opções de configuração
+##### Configuration Options
 
-A operação `execute_prepared_stmt()` ("Execução de declaração preparada") pode ser modificada usando as seguintes opções de configuração ou suas variáveis definidas pelo usuário correspondentes (consulte a Seção 26.4.2.1, "A Tabela sys_config"):
+`execute_prepared_stmt()` Procedure") operation can be modified using the following configuration options or their corresponding user-defined variables (see Section 26.4.2.1, “The sys_config Table”):
 
-- `debug`, `@sys.debug`
+* `debug`, `@sys.debug`
 
-  Se esta opção estiver ativada, será gerado o output de depuração. O padrão é `OFF`.
+  If this option is `ON`, produce debugging output. The default is `OFF`.
 
-##### Exemplo
+##### Example
 
 ```sql
 mysql> CALL sys.execute_prepared_stmt('SELECT COUNT(*) FROM mysql.user');

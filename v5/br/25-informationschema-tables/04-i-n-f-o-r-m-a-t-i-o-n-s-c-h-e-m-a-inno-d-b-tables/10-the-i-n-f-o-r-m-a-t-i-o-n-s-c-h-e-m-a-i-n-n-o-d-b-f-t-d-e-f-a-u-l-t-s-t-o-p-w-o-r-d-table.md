@@ -1,16 +1,16 @@
-### 24.4.10 A tabela INFORMATION_SCHEMA INNODB_FT_DEFAULT_STOPWORD
+### 24.4.10 The INFORMATION_SCHEMA INNODB_FT_DEFAULT_STOPWORD Table
 
-A tabela [`INNODB_FT_DEFAULT_STOPWORD`](https://pt.wikipedia.org/wiki/Tabela_INNODB_FT_DEFAULT_STOPWORD) contém uma lista de [stopwords](https://pt.wikipedia.org/wiki/Glos%C3%A7rio#stopword) que são usados por padrão ao criar um índice `FULLTEXT` em tabelas `InnoDB`. Para obter informações sobre a lista de stopwords padrão do `InnoDB` e como definir suas próprias listas de stopwords, consulte [Seção 12.9.4, “Stopwords de Texto Completo”](https://pt.wikipedia.org/wiki/Stopwords_de_Texto_Completo).
+The [`INNODB_FT_DEFAULT_STOPWORD`](information-schema-innodb-ft-default-stopword-table.html "24.4.10 The INFORMATION_SCHEMA INNODB_FT_DEFAULT_STOPWORD Table") table holds a list of [stopwords](glossary.html#glos_stopword "stopword") that are used by default when creating a `FULLTEXT` index on `InnoDB` tables. For information about the default `InnoDB` stopword list and how to define your own stopword lists, see [Section 12.9.4, “Full-Text Stopwords”](fulltext-stopwords.html "12.9.4 Full-Text Stopwords").
 
-Para informações de uso relacionadas e exemplos, consulte Seção 14.16.4, “Tabelas de Índices FULLTEXT do Schema de Informações InnoDB”.
+For related usage information and examples, see [Section 14.16.4, “InnoDB INFORMATION_SCHEMA FULLTEXT Index Tables”](innodb-information-schema-fulltext_index-tables.html "14.16.4 InnoDB INFORMATION_SCHEMA FULLTEXT Index Tables").
 
-A tabela [`INNODB_FT_DEFAULT_STOPWORD`](https://pt.wikipedia.org/wiki/Tabela_information-schema-innodb-ft-default-stopword) tem essas colunas:
+The [`INNODB_FT_DEFAULT_STOPWORD`](information-schema-innodb-ft-default-stopword-table.html "24.4.10 The INFORMATION_SCHEMA INNODB_FT_DEFAULT_STOPWORD Table") table has these columns:
 
-- `valor`
+* `value`
 
-  Uma palavra que é usada por padrão como uma palavra-chave de parada para índices `FULLTEXT` em tabelas `InnoDB`. Isso não é usado se você substituir o processamento padrão da palavra-chave de parada com a variável de sistema `innodb_ft_server_stopword_table` ou a variável de sistema `innodb_ft_user_stopword_table`.
+  A word that is used by default as a stopword for `FULLTEXT` indexes on `InnoDB` tables. This is not used if you override the default stopword processing with either the [`innodb_ft_server_stopword_table`](innodb-parameters.html#sysvar_innodb_ft_server_stopword_table) or the [`innodb_ft_user_stopword_table`](innodb-parameters.html#sysvar_innodb_ft_user_stopword_table) system variable.
 
-#### Exemplo
+#### Example
 
 ```sql
 mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_FT_DEFAULT_STOPWORD;
@@ -57,10 +57,10 @@ mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_FT_DEFAULT_STOPWORD;
 36 rows in set (0.00 sec)
 ```
 
-#### Notas
+#### Notes
 
-- Você deve ter o privilégio `PROCESSO` para consultar esta tabela.
+* You must have the [`PROCESS`](privileges-provided.html#priv_process) privilege to query this table.
 
-- Use a tabela `INFORMATION_SCHEMA` `COLUMNS` ou a instrução `SHOW COLUMNS` para visualizar informações adicionais sobre as colunas desta tabela, incluindo tipos de dados e valores padrão.
+* Use the `INFORMATION_SCHEMA` [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") table or the [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") statement to view additional information about the columns of this table, including data types and default values.
 
-- Para obter mais informações sobre a pesquisa `FULLTEXT` do `InnoDB`, consulte Seção 14.6.2.4, “Indeksos de Texto Completo do InnoDB” e Seção 12.9, “Funções de Pesquisa de Texto Completo”.
+* For more information about `InnoDB` `FULLTEXT` search, see [Section 14.6.2.4, “InnoDB Full-Text Indexes”](innodb-fulltext-index.html "14.6.2.4 InnoDB Full-Text Indexes"), and [Section 12.9, “Full-Text Search Functions”](fulltext-search.html "12.9 Full-Text Search Functions").

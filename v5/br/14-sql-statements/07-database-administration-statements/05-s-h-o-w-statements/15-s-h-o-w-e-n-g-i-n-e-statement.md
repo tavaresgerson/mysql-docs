@@ -1,10 +1,10 @@
-#### 13.7.5.15 Declaração do motor de exibição
+#### 13.7.5.15 SHOW ENGINE Statement
 
 ```sql
 SHOW ENGINE engine_name {STATUS | MUTEX}
 ```
 
-`SHOW ENGINE` exibe informações operacionais sobre um motor de armazenamento. Requer o privilégio `PROCESS`. A declaração tem essas variantes:
+[`SHOW ENGINE`](show-engine.html "13.7.5.15 SHOW ENGINE Statement") displays operational information about a storage engine. It requires the [`PROCESS`](privileges-provided.html#priv_process) privilege. The statement has these variants:
 
 ```sql
 SHOW ENGINE INNODB STATUS
@@ -12,77 +12,76 @@ SHOW ENGINE INNODB MUTEX
 SHOW ENGINE PERFORMANCE_SCHEMA STATUS
 ```
 
-`SHOW ENGINE INNODB STATUS` exibe informações extensas do monitor padrão `InnoDB` sobre o estado do motor de armazenamento `InnoDB`. Para informações sobre o monitor padrão e outros monitores `InnoDB` que fornecem informações sobre o processamento do `InnoDB`, consulte Seção 14.18, “Monitores InnoDB”.
+[`SHOW ENGINE INNODB STATUS`](show-engine.html "13.7.5.15 SHOW ENGINE Statement") displays extensive information from the standard `InnoDB` Monitor about the state of the `InnoDB` storage engine. For information about the standard monitor and other `InnoDB` Monitors that provide information about `InnoDB` processing, see [Section 14.18, “InnoDB Monitors”](innodb-monitors.html "14.18 InnoDB Monitors").
 
-`SHOW ENGINE INNODB MUTEX` exibe estatísticas do mutex e do rw-lock do InnoDB.
+[`SHOW ENGINE INNODB MUTEX`](show-engine.html "13.7.5.15 SHOW ENGINE Statement") displays `InnoDB` [mutex](glossary.html#glos_mutex "mutex") and [rw-lock](glossary.html#glos_rw_lock "rw-lock") statistics.
 
-Nota
+Note
 
-Os mutexes e rwlocks do `InnoDB` também podem ser monitorados usando as tabelas do Schema de Desempenho. Veja Seção 14.17.2, “Monitoramento das Esperas de Mutex do InnoDB Usando o Schema de Desempenho”.
+`InnoDB` mutexes and rwlocks can also be monitored using [Performance Schema](performance-schema.html "Chapter 25 MySQL Performance Schema") tables. See [Section 14.17.2, “Monitoring InnoDB Mutex Waits Using Performance Schema”](monitor-innodb-mutex-waits-performance-schema.html "14.17.2 Monitoring InnoDB Mutex Waits Using Performance Schema").
 
-A saída `SHOW ENGINE INNODB MUTEX` foi removida no MySQL 5.7.2. Ela foi revisada e reintroduzida no MySQL 5.7.8.
+[`SHOW ENGINE INNODB MUTEX`](show-engine.html "13.7.5.15 SHOW ENGINE Statement") output was removed in MySQL 5.7.2. It was revised and reintroduced in MySQL 5.7.8.
 
-No MySQL 5.7.8, a coleta de estatísticas de mutex é configurada dinamicamente usando as seguintes opções:
+In MySQL 5.7.8, mutex statistics collection is configured dynamically using the following options:
 
-- Para habilitar a coleta de estatísticas de mutex, execute:
+* To enable the collection of mutex statistics, run:
 
   ```sql
   SET GLOBAL innodb_monitor_enable='latch';
   ```
 
-- Para redefinir as estatísticas do mutex, execute:
+* To reset mutex statistics, run:
 
   ```sql
   SET GLOBAL innodb_monitor_reset='latch';
   ```
 
-- Para desativar a coleta de estatísticas de mutex, execute:
+* To disable the collection of mutex statistics, run:
 
   ```sql
   SET GLOBAL innodb_monitor_disable='latch';
   ```
 
-A coleta de estatísticas de mutex para `SHOW ENGINE INNODB MUTEX` também pode ser habilitada definindo `innodb_monitor_enable='all'`, ou desabilitada definindo `innodb_monitor_disable='all'`.
+Collection of mutex statistics for [`SHOW ENGINE INNODB MUTEX`](show-engine.html "13.7.5.15 SHOW ENGINE Statement") can also be enabled by setting [`innodb_monitor_enable='all'`](innodb-parameters.html#sysvar_innodb_monitor_enable), or disabled by setting [`innodb_monitor_disable='all'`](innodb-parameters.html#sysvar_innodb_monitor_disable).
 
-A saída `SHOW ENGINE INNODB MUTEX` tem essas colunas:
+[`SHOW ENGINE INNODB MUTEX`](show-engine.html "13.7.5.15 SHOW ENGINE Statement") output has these columns:
 
-- `Tipo`
+* `Type`
 
-  Sempre `InnoDB`.
+  Always `InnoDB`.
 
-- `Nome`
+* `Name`
 
-  Antes do MySQL 5.7.8, o campo `Name` informa o arquivo de origem onde o mutex é implementado e o número da linha no arquivo onde o mutex é criado. O número da linha é específico para a sua versão do MySQL. A partir do MySQL 5.7.8, apenas o nome do mutex é informado. O nome do arquivo e o número da linha ainda são informados para rwlocks.
+  Prior to MySQL 5.7.8, the `Name` field reports the source file where the mutex is implemented, and the line number in the file where the mutex is created. The line number is specific to your version of MySQL. As of MySQL 5.7.8, only the mutex name is reported. File name and line number are still reported for rwlocks.
 
-- `Status`
+* `Status`
 
-  O status do mutex.
+  The mutex status.
 
-  Antes do MySQL 5.7.8, o campo `Status` exibe vários valores se `WITH_DEBUG` foi definido no momento da compilação do MySQL. Se `WITH_DEBUG` não foi definido, a declaração exibe apenas o valor `os_waits`. No último caso (sem `WITH_DEBUG`), as informações sobre as quais o resultado é baseado são insuficientes para distinguir entre mútuos regulares e mútuos que protegem rwlocks (que permitem múltiplos leitores ou um único escritor). Consequentemente, o resultado pode parecer conter várias linhas para o mesmo mútuo. Os valores do campo `Status` antes do MySQL 5.7.8 incluem:
+  Prior to MySQL 5.7.8, the `Status` field displays several values if [`WITH_DEBUG`](source-configuration-options.html#option_cmake_with_debug) was defined at MySQL compilation time. If [`WITH_DEBUG`](source-configuration-options.html#option_cmake_with_debug) was not defined, the statement displays only the `os_waits` value. In the latter case (without [`WITH_DEBUG`](source-configuration-options.html#option_cmake_with_debug)), the information on which the output is based is insufficient to distinguish regular mutexes and mutexes that protect rwlocks (which permit multiple readers or a single writer). Consequently, the output may appear to contain multiple rows for the same mutex. Pre-MySQL 5.7.8 `Status` field values include:
 
-  - `count` indica quantas vezes o mutex foi solicitado.
+  + `count` indicates how many times the mutex was requested.
 
-  - `spin_waits` indica quantas vezes o spinlock teve que ser executado.
+  + `spin_waits` indicates how many times the spinlock had to run.
 
-  - `spin_rounds` indica o número de rodadas de spinlock. (`spin_rounds` dividido por `spin_waits` fornece o número médio de rodadas.)
+  + `spin_rounds` indicates the number of spinlock rounds. (`spin_rounds` divided by `spin_waits` provides the average round count.)
 
-  - `os_waits` indica o número de espera do sistema operacional. Isso ocorre quando o spinlock não funcionou (o mutex não foi bloqueado durante o spinlock e foi necessário ceder ao sistema operacional e esperar).
+  + `os_waits` indicates the number of operating system waits. This occurs when the spinlock did not work (the mutex was not locked during the spinlock and it was necessary to yield to the operating system and wait).
 
-  - `os_yields` indica quantas vezes uma thread que tenta bloquear um mutex desistiu de seu tempo de uso e cedeu ao sistema operacional (com a suposição de que permitir que outras threads corram libera o mutex para que ele possa ser bloqueado).
+  + `os_yields` indicates the number of times a thread trying to lock a mutex gave up its timeslice and yielded to the operating system (on the presumption that permitting other threads to run frees the mutex so that it can be locked).
 
-  - `os_wait_times` indica o tempo gasto (em ms) em espera do sistema operacional. No MySQL 5.7, o temporizador está desativado e esse valor é sempre 0.
+  + `os_wait_times` indicates the amount of time (in ms) spent in operating system waits. In MySQL 5.7 timing is disabled and this value is always 0.
 
-  A partir do MySQL 5.7.8, o campo `Status` informa o número de rodadas, espera e chamadas. As estatísticas para mutexes do sistema operacional de baixo nível, que são implementados fora do `InnoDB`, não são relatadas.
+  As of MySQL 5.7.8, the `Status` field reports the number of spins, waits, and calls. Statistics for low-level operating system mutexes, which are implemented outside of `InnoDB`, are not reported.
 
-  - `rodações` indica o número de rodadas.
+  + `spins` indicates the number of spins.
+  + `waits` indicates the number of mutex waits.
 
-  - `waits` indica o número de espera por mutex.
+  + `calls` indicates how many times the mutex was requested.
 
-  - `chamadas` indica quantas vezes o mutex foi solicitado.
+`SHOW ENGINE INNODB MUTEX` does not list mutexes and rw-locks for each buffer pool block, as the amount of output would be overwhelming on systems with a large buffer pool. `SHOW ENGINE INNODB MUTEX` does, however, print aggregate `BUF_BLOCK_MUTEX` spin, wait, and call values for buffer pool block mutexes and rw-locks. `SHOW ENGINE INNODB MUTEX` also does not list any mutexes or rw-locks that have never been waited on (`os_waits=0`). Thus, `SHOW ENGINE INNODB MUTEX` only displays information about mutexes and rw-locks outside of the buffer pool that have caused at least one OS-level [wait](glossary.html#glos_wait "wait").
 
-`SHOW ENGINE INNODB MUTEX` não lista mutexes e bloqueios de leitura/escrita (rw-locks) para cada bloco do pool de buffers, pois a quantidade de saída seria esmagadora em sistemas com um grande pool de buffers. `SHOW ENGINE INNODB MUTEX`, no entanto, imprime os valores agregados de `BUF_BLOCK_MUTEX` de spin, espera e chamada para mutexes e bloqueios de leitura/escrita (rw-locks) de blocos do pool de buffers. `SHOW ENGINE INNODB MUTEX` também não lista quaisquer mutexes ou bloqueios de leitura/escrita (rw-locks) que nunca tenham sido solicitados (`os_waits=0`). Assim, `SHOW ENGINE INNODB MUTEX` exibe apenas informações sobre mutexes e bloqueios de leitura/escrita (rw-locks) fora do pool de buffers que causaram pelo menos uma espera no nível do sistema operacional wait.
-
-Use `SHOW ENGINE PERFORMANCE_SCHEMA STATUS` para inspecionar o funcionamento interno do código do Schema de Desempenho:
+Use [`SHOW ENGINE PERFORMANCE_SCHEMA STATUS`](show-engine.html "13.7.5.15 SHOW ENGINE Statement") to inspect the internal operation of the Performance Schema code:
 
 ```sql
 mysql> SHOW ENGINE PERFORMANCE_SCHEMA STATUS\G
@@ -107,27 +106,27 @@ Status: 26459600
 ...
 ```
 
-Esta declaração visa ajudar o DBA a entender os efeitos que as diferentes opções do Schema de Desempenho têm nos requisitos de memória.
+This statement is intended to help the DBA understand the effects that different Performance Schema options have on memory requirements.
 
-Os valores de `Nome` consistem em duas partes, que nomeiam um buffer interno e um atributo de buffer, respectivamente. Interprete os nomes dos buffers da seguinte forma:
+`Name` values consist of two parts, which name an internal buffer and a buffer attribute, respectively. Interpret buffer names as follows:
 
-- Um buffer interno que não é exibido como uma tabela é nomeado entre parênteses. Exemplos: `(pfs_cond_class).size`, `(pfs_mutex_class).memory`.
+* An internal buffer that is not exposed as a table is named within parentheses. Examples: `(pfs_cond_class).size`, `(pfs_mutex_class).memory`.
 
-- Um buffer interno que é exibido como uma tabela no banco de dados `performance_schema` é nomeado com o nome da tabela, sem parênteses. Exemplos: `events_waits_history.size`, `mutex_instances.count`.
+* An internal buffer that is exposed as a table in the `performance_schema` database is named after the table, without parentheses. Examples: `events_waits_history.size`, `mutex_instances.count`.
 
-- Um valor que se aplica ao Schema de Desempenho como um todo começa com `performance_schema`. Exemplo: `performance_schema.memory`.
+* A value that applies to the Performance Schema as a whole begins with `performance_schema`. Example: `performance_schema.memory`.
 
-Os atributos de buffer têm esses significados:
+Buffer attributes have these meanings:
 
-- `size` é o tamanho do registro interno usado pela implementação, como o tamanho de uma linha em uma tabela. Os valores de `size` não podem ser alterados.
+* `size` is the size of the internal record used by the implementation, such as the size of a row in a table. `size` values cannot be changed.
 
-- `count` é o número de registros internos, como o número de linhas em uma tabela. Os valores de `count` podem ser alterados usando as opções de configuração do Gerenciamento de Desempenho.
+* `count` is the number of internal records, such as the number of rows in a table. `count` values can be changed using Performance Schema configuration options.
 
-- Para uma tabela, `tbl_name.memory` é o produto de `size` e `count`. Para o Schema de Desempenho como um todo, `performance_schema.memory` é a soma de toda a memória usada (a soma de todos os outros valores de `memory`).
+* For a table, `tbl_name.memory` is the product of `size` and `count`. For the Performance Schema as a whole, `performance_schema.memory` is the sum of all the memory used (the sum of all other `memory` values).
 
-Em alguns casos, há uma relação direta entre um parâmetro de configuração do Schema de Desempenho e um valor de `SHOW ENGINE`. Por exemplo, `events_waits_history_long.count` corresponde a `performance_schema_events_waits_history_long_size`. Em outros casos, a relação é mais complexa. Por exemplo, `events_waits_history.count` corresponde a `performance_schema_events_waits_history_size` (o número de linhas por thread) multiplicado por `performance_schema_max_thread_instances` (o número de threads).
+In some cases, there is a direct relationship between a Performance Schema configuration parameter and a `SHOW ENGINE` value. For example, `events_waits_history_long.count` corresponds to [`performance_schema_events_waits_history_long_size`](performance-schema-system-variables.html#sysvar_performance_schema_events_waits_history_long_size). In other cases, the relationship is more complex. For example, `events_waits_history.count` corresponds to [`performance_schema_events_waits_history_size`](performance-schema-system-variables.html#sysvar_performance_schema_events_waits_history_size) (the number of rows per thread) multiplied by [`performance_schema_max_thread_instances`](performance-schema-system-variables.html#sysvar_performance_schema_max_thread_instances) ( the number of threads).
 
-**Mostre o status do motor NDB.** Se o servidor tiver o motor de armazenamento `NDB` habilitado, o comando `SHOW ENGINE NDB STATUS` exibe informações de status do cluster, como o número de nós de dados conectados, a string de conexão do cluster e as épocas do log binário do cluster, além de contagem de vários objetos da API do Cluster criados pelo MySQL Server quando conectado ao cluster. A saída de exemplo deste comando é mostrada aqui:
+**SHOW ENGINE NDB STATUS.** If the server has the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine enabled, `SHOW ENGINE NDB STATUS` displays cluster status information such as the number of connected data nodes, the cluster connectstring, and cluster binary log epochs, as well as counts of various Cluster API objects created by the MySQL Server when connected to the cluster. Sample output from this statement is shown here:
 
 ```sql
 mysql> SHOW ENGINE NDB STATUS;
@@ -155,34 +154,34 @@ mysql> SHOW ENGINE NDB STATUS;
 +------------+-----------------------+--------------------------------------------------+
 ```
 
-A coluna `Status` em cada uma dessas linhas fornece informações sobre a conexão do servidor MySQL com o clúster e sobre o status do log binário do clúster, respectivamente. As informações de `Status` estão no formato de conjunto de pares nome/valor separados por vírgula.
+The `Status` column in each of these rows provides information about the MySQL server's connection to the cluster and about the cluster binary log's status, respectively. The `Status` information is in the form of comma-delimited set of name/value pairs.
 
-A coluna `Status` da linha `connection` contém os pares nome/valor descritos na tabela a seguir.
+The `connection` row's `Status` column contains the name/value pairs described in the following table.
 
-<table summary="Pares de nome e valor encontrados na coluna Status da linha de conexão no resultado da instrução SHOW ENGINE NDB STATUS."><col style="width: 40%"/><col style="width: 60%"/><thead><tr> <th>Nome</th> <th>Valor</th> </tr></thead><tbody><tr> <td><code>cluster_node_id</code></td> <td>O ID do nó do servidor MySQL no cluster</td> </tr><tr> <td><code>connected_host</code></td> <td>O nome do host ou o endereço IP do servidor de gerenciamento de clúster ao qual o servidor MySQL está conectado</td> </tr><tr> <td><code>connected_port</code></td> <td>O porto usado pelo servidor MySQL para se conectar ao servidor de gerenciamento (<code>connected_host</code>)</td> </tr><tr> <td><code>number_of_data_nodes</code></td> <td>O número de nós de dados configurados para o clúster (ou seja, o número de seções <code>[ndb<code>config.ini</code></code> no arquivo do clúster <code>config.ini</code>)</td> </tr><tr> <td><code>number_of_ready_data_nodes</code></td> <td>O número de nós de dados no clúster que estão realmente em execução</td> </tr><tr> <td><code>connect_count</code></td> <td>O número de vezes que isso aconteceu<span><strong>mysqld</strong></span>conectou ou reconectou-se aos nós de dados do cluster</td> </tr></tbody></table>
+<table summary="Name and value pairs found in the connection row Status column in the output of the SHOW ENGINE NDB STATUS statement."><col style="width: 40%"/><col style="width: 60%"/><thead><tr> <th>Name</th> <th>Value</th> </tr></thead><tbody><tr> <td><code>cluster_node_id</code></td> <td>The node ID of the MySQL server in the cluster</td> </tr><tr> <td><code>connected_host</code></td> <td>The host name or IP address of the cluster management server to which the MySQL server is connected</td> </tr><tr> <td><code>connected_port</code></td> <td>The port used by the MySQL server to connect to the management server (<code>connected_host</code>)</td> </tr><tr> <td><code>number_of_data_nodes</code></td> <td>The number of data nodes configured for the cluster (that is, the number of <code>[ndbd]</code> sections in the cluster <code>config.ini</code> file)</td> </tr><tr> <td><code>number_of_ready_data_nodes</code></td> <td>The number of data nodes in the cluster that are actually running</td> </tr><tr> <td><code>connect_count</code></td> <td>The number of times this <span><strong>mysqld</strong></span> has connected or reconnected to cluster data nodes</td> </tr></tbody></table>
 
-A coluna `Status` da linha `binlog` contém informações relacionadas à Replicação em NDB Cluster. Os pares nome/valor que ela contém são descritos na tabela a seguir.
+The `binlog` row's `Status` column contains information relating to NDB Cluster Replication. The name/value pairs it contains are described in the following table.
 
-<table summary="Pares de nome e valor encontrados na coluna Status da linha binlog no resultado da instrução SHOW ENGINE NDB STATUS."><col style="width: 40%"/><col style="width: 60%"/><thead><tr> <th>Nome</th> <th>Valor</th> </tr></thead><tbody><tr> <td><code>latest_epoch</code></td> <td>A época mais recente que mais recentemente foi executada neste servidor MySQL (ou seja, o número de sequência da transação mais recente executada no servidor)</td> </tr><tr> <td><code>latest_trans_epoch</code></td> <td>A era mais recente processada pelos nós de dados do clúster</td> </tr><tr> <td><code>latest_received_binlog_epoch</code></td> <td>A época mais recente recebida pelo thread de log binário</td> </tr><tr> <td><code>latest_handled_binlog_epoch</code></td> <td>A época mais recente processada pelo thread de log binário (para gravação no log binário)</td> </tr><tr> <td><code>latest_applied_binlog_epoch</code></td> <td>A época mais recente realmente escrita no log binário</td> </tr></tbody></table>
+<table summary="Name and value pairs found in the binlog row Status column in the output of the SHOW ENGINE NDB STATUS statement."><col style="width: 40%"/><col style="width: 60%"/><thead><tr> <th>Name</th> <th>Value</th> </tr></thead><tbody><tr> <td><code>latest_epoch</code></td> <td>The most recent epoch most recently run on this MySQL server (that is, the sequence number of the most recent transaction run on the server)</td> </tr><tr> <td><code>latest_trans_epoch</code></td> <td>The most recent epoch processed by the cluster's data nodes</td> </tr><tr> <td><code>latest_received_binlog_epoch</code></td> <td>The most recent epoch received by the binary log thread</td> </tr><tr> <td><code>latest_handled_binlog_epoch</code></td> <td>The most recent epoch processed by the binary log thread (for writing to the binary log)</td> </tr><tr> <td><code>latest_applied_binlog_epoch</code></td> <td>The most recent epoch actually written to the binary log</td> </tr></tbody></table>
 
-Consulte Seção 21.7, “Replicação de aglomerado NDB” para obter mais informações.
+See [Section 21.7, “NDB Cluster Replication”](mysql-cluster-replication.html "21.7 NDB Cluster Replication"), for more information.
 
-As linhas restantes da saída do comando `SHOW ENGINE NDB STATUS` que provavelmente serão úteis para monitorar o clúster estão listadas aqui por `Nome`:
+The remaining rows from the output of `SHOW ENGINE NDB STATUS` which are most likely to prove useful in monitoring the cluster are listed here by `Name`:
 
-- `NdbTransaction`: O número e o tamanho dos objetos `NdbTransaction` que foram criados. Um `NdbTransaction` é criado sempre que uma operação de esquema de tabela (como `CREATE TABLE` ou `ALTER TABLE`) é realizada em uma tabela `NDB` (mysql-cluster.html).
+* `NdbTransaction`: The number and size of `NdbTransaction` objects that have been created. An `NdbTransaction` is created each time a table schema operation (such as [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") or [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement")) is performed on an [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table.
 
-- `NdbOperation`: O número e o tamanho dos objetos `NdbOperation` que foram criados.
+* `NdbOperation`: The number and size of `NdbOperation` objects that have been created.
 
-- `NdbIndexScanOperation`: O número e o tamanho dos objetos `NdbIndexScanOperation` que foram criados.
+* `NdbIndexScanOperation`: The number and size of `NdbIndexScanOperation` objects that have been created.
 
-- `NdbIndexOperation`: O número e o tamanho dos objetos `NdbIndexOperation` que foram criados.
+* `NdbIndexOperation`: The number and size of `NdbIndexOperation` objects that have been created.
 
-- `NdbRecAttr`: O número e o tamanho dos objetos `NdbRecAttr` que foram criados. Geralmente, um deles é criado a cada vez que uma instrução de manipulação de dados é executada por um nó SQL.
+* `NdbRecAttr`: The number and size of `NdbRecAttr` objects that have been created. In general, one of these is created each time a data manipulation statement is performed by an SQL node.
 
-- `NdbBlob`: O número e o tamanho dos objetos `NdbBlob` que foram criados. Um `NdbBlob` é criado para cada nova operação que envolve uma coluna `BLOB` em uma tabela `NDB`.
+* `NdbBlob`: The number and size of `NdbBlob` objects that have been created. An `NdbBlob` is created for each new operation involving a [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") column in an [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table.
 
-- `NdbReceiver`: O número e o tamanho de qualquer objeto `NdbReceiver` que tenha sido criado. O número na coluna `created` é o mesmo do número de nós de dados no clúster ao qual o servidor MySQL se conectou.
+* `NdbReceiver`: The number and size of any `NdbReceiver` object that have been created. The number in the `created` column is the same as the number of data nodes in the cluster to which the MySQL server has connected.
 
-Nota
+Note
 
-`SHOW ENGINE NDB STATUS` retorna um resultado vazio se nenhuma operação envolvendo as tabelas `NDB` tiver sido realizada durante a sessão atual pelo cliente MySQL que está acessando o nó SQL em que essa declaração é executada.
+`SHOW ENGINE NDB STATUS` returns an empty result if no operations involving [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables have been performed during the current session by the MySQL client accessing the SQL node on which this statement is run.

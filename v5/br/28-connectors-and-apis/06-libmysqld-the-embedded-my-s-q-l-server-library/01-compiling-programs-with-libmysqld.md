@@ -1,20 +1,20 @@
-### 27.6.1 Compilando programas com o libmysqld
+### 27.6.1 Compiling Programs with libmysqld
 
-Em distribuições binárias pré-compiladas do MySQL que incluem o `libmysqld`, a biblioteca do servidor integrada, o MySQL compila a biblioteca usando o compilador do fornecedor apropriado, se houver um.
+In precompiled binary MySQL distributions that include `libmysqld`, the embedded server library, MySQL builds the library using the appropriate vendor compiler if there is one.
 
-Para obter a biblioteca `libmysqld` se você construir o MySQL a partir do código-fonte, você deve configurar o MySQL com a opção `-DWITH_EMBEDDED_SERVER=1`. Veja Seção 2.8.7, “Opções de Configuração de Código-Fonte do MySQL”.
+To get a `libmysqld` library if you build MySQL from source yourself, you should configure MySQL with the [`-DWITH_EMBEDDED_SERVER=1`](source-configuration-options.html#option_cmake_with_embedded_server) option. See [Section 2.8.7, “MySQL Source-Configuration Options”](source-configuration-options.html "2.8.7 MySQL Source-Configuration Options").
 
-Quando você vincula seu programa com o `libmysqld`, também deve incluir as bibliotecas específicas do sistema `pthread` e algumas bibliotecas que o servidor MySQL usa. Você pode obter a lista completa das bibliotecas executando **mysql_config --libmysqld-libs**.
+When you link your program with `libmysqld`, you must also include the system-specific `pthread` libraries and some libraries that the MySQL server uses. You can get the full list of libraries by executing [**mysql_config --libmysqld-libs**](mysql-config.html "4.7.1 mysql_config — Display Options for Compiling Clients").
 
-As flags corretas para compilar e vincular um programa com suporte a múltiplas threads devem ser usadas, mesmo que você não invocasse diretamente nenhuma função de thread em seu código.
+The correct flags for compiling and linking a threaded program must be used, even if you do not directly call any thread functions in your code.
 
-Para compilar um programa C que inclua os arquivos necessários para incorporar a biblioteca do servidor MySQL em uma versão executável de um programa, o compilador precisa saber onde encontrar vários arquivos e precisa de instruções sobre como compilar o programa. O exemplo a seguir mostra como um programa pode ser compilado a partir da linha de comando, assumindo que você está usando o **gcc**, use o compilador C GNU:
+To compile a C program to include the necessary files to embed the MySQL server library into an executable version of a program, the compiler needs to know where to find various files and needs instructions on how to compile the program. The following example shows how a program could be compiled from the command line, assuming that you are using **gcc**, use the GNU C compiler:
 
 ```sql
 gcc mysql_test.c -o mysql_test \
 `/usr/local/mysql/bin/mysql_config --include --libmysqld-libs`
 ```
 
-Imediatamente após o comando **gcc** está o nome do arquivo de código-fonte do programa C. Depois disso, a opção `-o` é dada para indicar que o nome do arquivo que segue é o nome que o compilador deve dar ao arquivo de saída, o programa compilado. A próxima linha de código instrui o compilador a obter a localização dos arquivos de inclusão e bibliotecas e outras configurações para o sistema em que ele é compilado. O comando **mysql_config** está contido entre aspas duplas, não aspas simples.
+Immediately following the **gcc** command is the name of the C program source file. After it, the `-o` option is given to indicate that the file name that follows is the name that the compiler is to give to the output file, the compiled program. The next line of code tells the compiler to obtain the location of the include files and libraries and other settings for the system on which it is compiled. The [**mysql_config**](mysql-config.html "4.7.1 mysql_config — Display Options for Compiling Clients") command is contained in backticks, not single quotation marks.
 
-Em algumas plataformas que não são do **gcc**, a biblioteca embutida depende das bibliotecas do tempo de execução do C++, e a vinculação contra a biblioteca embutida pode resultar em erros de símbolo ausente. Para resolver isso, vincule usando um compilador de C++ ou liste explicitamente as bibliotecas necessárias na linha de comando de vinculação.
+On some non-**gcc** platforms, the embedded library depends on C++ runtime libraries and linking against the embedded library might result in missing-symbol errors. To solve this, link using a C++ compiler or explicitly list the required libraries on the link command line.

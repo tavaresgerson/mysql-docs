@@ -1,40 +1,40 @@
-#### 13.2.10.4 Subconsultas com ALL
+#### 13.2.10.4 Subqueries with ALL
 
-Sintaxe:
+Syntax:
 
 ```sql
 operand comparison_operator ALL (subquery)
 ```
 
-A palavra `ALL`, que deve seguir um operador de comparação, significa “retorne `TRUE` se a comparação for `TRUE` para `ALL` dos valores na coluna que a subconsulta retorna”. Por exemplo:
+The word `ALL`, which must follow a comparison operator, means “return `TRUE` if the comparison is `TRUE` for `ALL` of the values in the column that the subquery returns.” For example:
 
 ```sql
 SELECT s1 FROM t1 WHERE s1 > ALL (SELECT s1 FROM t2);
 ```
 
-Suponha que haja uma linha na tabela `t1` contendo `(10)`. A expressão é `TRUE` se a tabela `t2` contiver `(-5,0,+5)` porque `10` é maior que todos os três valores em `t2`. A expressão é `FALSE` se a tabela `t2` contiver `(12,6,NULL,-100)` porque há um único valor `12` na tabela `t2` que é maior que `10`. A expressão é *desconhecida* (ou seja, `NULL`) se a tabela `t2` contiver `(0,NULL,1)`.
+Suppose that there is a row in table `t1` containing `(10)`. The expression is `TRUE` if table `t2` contains `(-5,0,+5)` because `10` is greater than all three values in `t2`. The expression is `FALSE` if table `t2` contains `(12,6,NULL,-100)` because there is a single value `12` in table `t2` that is greater than `10`. The expression is *unknown* (that is, `NULL`) if table `t2` contains `(0,NULL,1)`.
 
-Por fim, a expressão é `TRUE` se a tabela `t2` estiver vazia. Portanto, a seguinte expressão é `TRUE` quando a tabela `t2` estiver vazia:
+Finally, the expression is `TRUE` if table `t2` is empty. So, the following expression is `TRUE` when table `t2` is empty:
 
 ```sql
 SELECT * FROM t1 WHERE 1 > ALL (SELECT s1 FROM t2);
 ```
 
-Mas essa expressão é `NULL` quando a tabela `t2` está vazia:
+But this expression is `NULL` when table `t2` is empty:
 
 ```sql
 SELECT * FROM t1 WHERE 1 > (SELECT s1 FROM t2);
 ```
 
-Além disso, a seguinte expressão é `NULL` quando a tabela `t2` está vazia:
+In addition, the following expression is `NULL` when table `t2` is empty:
 
 ```sql
 SELECT * FROM t1 WHERE 1 > ALL (SELECT MAX(s1) FROM t2);
 ```
 
-Em geral, *tabelas com valores `NULL`* e *tabelas vazias* são casos de borda. Ao escrever subconsultas, sempre considere se você levou essas duas possibilidades em conta.
+In general, *tables containing `NULL` values* and *empty tables* are “edge cases.” When writing subqueries, always consider whether you have taken those two possibilities into account.
 
-`NOT IN` é um alias para `<> ALL`. Portanto, essas duas declarações são iguais:
+`NOT IN` is an alias for `<> ALL`. Thus, these two statements are the same:
 
 ```sql
 SELECT s1 FROM t1 WHERE s1 <> ALL (SELECT s1 FROM t2);

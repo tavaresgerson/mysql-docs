@@ -1,4 +1,4 @@
-#### 13.7.6.5. Declaração de carregamento de índice em cache
+#### 13.7.6.5 LOAD INDEX INTO CACHE Statement
 
 ```sql
 LOAD INDEX INTO CACHE
@@ -16,15 +16,15 @@ partition_list: {
 }
 ```
 
-A instrução `LOAD INDEX INTO CACHE` pré-carrega um índice de tabela no cache de chaves ao qual ele foi atribuído por uma instrução explícita `CACHE INDEX`, ou, caso contrário, no cache de chaves padrão.
+The [`LOAD INDEX INTO CACHE`](load-index.html "13.7.6.5 LOAD INDEX INTO CACHE Statement") statement preloads a table index into the key cache to which it has been assigned by an explicit [`CACHE INDEX`](cache-index.html "13.7.6.2 CACHE INDEX Statement") statement, or into the default key cache otherwise.
 
-`CARREGAR ÍNDICE NA CACHE` aplica-se apenas a tabelas `MyISAM`, incluindo tabelas `MyISAM` particionadas. Além disso, índices em tabelas particionadas podem ser pré-carregados para uma, várias ou todas as partições.
+[`LOAD INDEX INTO CACHE`](load-index.html "13.7.6.5 LOAD INDEX INTO CACHE Statement") applies only to `MyISAM` tables, including partitioned `MyISAM` tables. In addition, indexes on partitioned tables can be preloaded for one, several, or all partitions.
 
-O modificador `IGNORE LEAVES` faz com que apenas os blocos dos nós não-folha do índice sejam pré-carregados.
+The `IGNORE LEAVES` modifier causes only blocks for the nonleaf nodes of the index to be preloaded.
 
-O comando `IGNORE LEAVES` também é suportado para tabelas `MyISAM` particionadas.
+`IGNORE LEAVES` is also supported for partitioned `MyISAM` tables.
 
-A seguinte declaração pré-carrega os nós (blocos de índice) dos índices para as tabelas `t1` e `t2`:
+The following statement preloads nodes (index blocks) of indexes for the tables `t1` and `t2`:
 
 ```sql
 mysql> LOAD INDEX INTO CACHE t1, t2 IGNORE LEAVES;
@@ -36,18 +36,18 @@ mysql> LOAD INDEX INTO CACHE t1, t2 IGNORE LEAVES;
 +---------+--------------+----------+----------+
 ```
 
-Esta declaração pré-carrega todos os blocos de índice de `t1`. Ela pré-carrega apenas os blocos dos nós não-folha de `t2`.
+This statement preloads all index blocks from `t1`. It preloads only blocks for the nonleaf nodes from `t2`.
 
-A sintaxe de `LOAD INDEX INTO CACHE` permite que você especifique que apenas certos índices de uma tabela devem ser pré-carregados. No entanto, a implementação pré-carrega todos os índices da tabela no cache, então não há motivo para especificar nada além do nome da tabela.
+The syntax of [`LOAD INDEX INTO CACHE`](load-index.html "13.7.6.5 LOAD INDEX INTO CACHE Statement") enables you to specify that only particular indexes from a table should be preloaded. However, the implementation preloads all the table's indexes into the cache, so there is no reason to specify anything other than the table name.
 
-É possível pré-carregar índices em partições específicas de tabelas `MyISAM` particionadas. Por exemplo, das seguintes duas instruções, a primeira pré-carrega índices para a partição `p0` de uma tabela `pt` particionada, enquanto a segunda pré-carrega os índices para as partições `p1` e `p3` da mesma tabela:
+It is possible to preload indexes on specific partitions of partitioned `MyISAM` tables. For example, of the following 2 statements, the first preloads indexes for partition `p0` of a partitioned table `pt`, while the second preloads the indexes for partitions `p1` and `p3` of the same table:
 
 ```sql
 LOAD INDEX INTO CACHE pt PARTITION (p0);
 LOAD INDEX INTO CACHE pt PARTITION (p1, p3);
 ```
 
-Para pré-carregar os índices para todas as partições na tabela `pt`, você pode usar uma das duas seguintes instruções:
+To preload the indexes for all partitions in table `pt`, you can use either of the following two statements:
 
 ```sql
 LOAD INDEX INTO CACHE pt PARTITION (ALL);
@@ -55,8 +55,8 @@ LOAD INDEX INTO CACHE pt PARTITION (ALL);
 LOAD INDEX INTO CACHE pt;
 ```
 
-As duas declarações mostradas acima são equivalentes, e emitir qualquer uma delas tem exatamente o mesmo efeito. Em outras palavras, se você deseja pré-carregar índices para todas as partições de uma tabela particionada, a cláusula `PARTITION (ALL)` é opcional.
+The two statements just shown are equivalent, and issuing either one has exactly the same effect. In other words, if you wish to preload indexes for all partitions of a partitioned table, the `PARTITION (ALL)` clause is optional.
 
-Ao pré-carregar índices para múltiplas partições, as partições não precisam ser contínuas e você não precisa listar seus nomes em qualquer ordem específica.
+When preloading indexes for multiple partitions, the partitions need not be contiguous, and you need not list their names in any particular order.
 
-`LOAD INDEX INTO CACHE ... IGNORE LEAVES` falha a menos que todos os índices em uma tabela tenham o mesmo tamanho de bloco. Para determinar os tamanhos de bloco de índice para uma tabela, use **myisamchk -dv** e verifique a coluna `Blocksize`.
+[`LOAD INDEX INTO CACHE ... IGNORE LEAVES`](load-index.html "13.7.6.5 LOAD INDEX INTO CACHE Statement") fails unless all indexes in a table have the same block size. To determine index block sizes for a table, use [**myisamchk -dv**](myisamchk.html "4.6.3 myisamchk — MyISAM Table-Maintenance Utility") and check the `Blocksize` column.

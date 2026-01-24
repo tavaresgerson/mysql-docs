@@ -1,8 +1,8 @@
-## 12.18 Funções utilizadas com identificadores de transação global (GTIDs)
+## 12.18 Functions Used with Global Transaction Identifiers (GTIDs)
 
-As funções descritas nesta seção são usadas com replicação baseada em GTID. É importante ter em mente que todas essas funções aceitam representações de cadeias de conjuntos de GTID como argumentos. Como tal, os conjuntos de GTID devem ser sempre citados quando usados com eles. Consulte Conjuntos de GTID para obter mais informações.
+The functions described in this section are used with GTID-based replication. It is important to keep in mind that all of these functions take string representations of GTID sets as arguments. As such, the GTID sets must always be quoted when used with them. See GTID Sets for more information.
 
-A união de dois conjuntos de GTID é simplesmente suas representações como strings, unidas por uma vírgula interposta. Em outras palavras, você pode definir uma função muito simples para obter a união de dois conjuntos de GTID, semelhante àquela criada aqui:
+The union of two GTID sets is simply their representations as strings, joined together with an interposed comma. In other words, you can define a very simple function for obtaining the union of two GTID sets, similar to that created here:
 
 ```sql
 CREATE FUNCTION GTID_UNION(g1 TEXT, g2 TEXT)
@@ -10,17 +10,17 @@ CREATE FUNCTION GTID_UNION(g1 TEXT, g2 TEXT)
     RETURN CONCAT(g1,',',g2);
 ```
 
-Para obter mais informações sobre GTIDs e como essas funções de GTID são usadas na prática, consulte a Seção 16.1.3, “Replicação com Identificadores Globais de Transação”.
+For more information about GTIDs and how these GTID functions are used in practice, see Section 16.1.3, “Replication with Global Transaction Identifiers”.
 
-**Tabela 12.24 Funções GTID**
+**Table 12.24 GTID Functions**
 
-<table frame="box" rules="all" summary="Uma referência que lista as funções usadas com identificadores de transação global (GTIDs)."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>GTID_SUBSET()</code></td> <td>Retorne verdadeiro se todos os GTIDs no subconjunto também estiverem no conjunto; caso contrário, falso.</td> </tr><tr><td><code>GTID_SUBTRACT()</code></td> <td>Retorne todos os GTIDs em um conjunto que não estão em um subconjunto.</td> </tr><tr><td><code>WAIT_FOR_EXECUTED_GTID_SET()</code></td> <td>Aguarde até que os GTIDs fornecidos tenham sido executados na replica.</td> </tr><tr><td><code>WAIT_UNTIL_SQL_THREAD_AFTER_GTIDS()</code></td> <td>Use <code>WAIT_FOR_EXECUTED_GTID_SET()</code>.</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists functions used with global transaction identifiers (GTIDs)."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>GTID_SUBSET()</code></td> <td> Return true if all GTIDs in subset are also in set; otherwise false. </td> </tr><tr><td><code>GTID_SUBTRACT()</code></td> <td> Return all GTIDs in set that are not in subset. </td> </tr><tr><td><code>WAIT_FOR_EXECUTED_GTID_SET()</code></td> <td> Wait until the given GTIDs have executed on the replica. </td> </tr><tr><td><code>WAIT_UNTIL_SQL_THREAD_AFTER_GTIDS()</code></td> <td> Use <code>WAIT_FOR_EXECUTED_GTID_SET()</code>. </td> </tr></tbody></table>
 
-- `GTID_SUBSET(conjunto1, conjunto2)`
+* `GTID_SUBSET(set1,set2)`
 
-  Dado dois conjuntos de identificadores de transações globais *`set1`* e *`set2`*, retorna verdadeiro se todos os GTIDs em *`set1`* também estiverem em *`set2`*. Retorna falso caso contrário.
+  Given two sets of global transaction identifiers *`set1`* and *`set2`*, returns true if all GTIDs in *`set1`* are also in *`set2`*. Returns false otherwise.
 
-  Os conjuntos de GTID usados com essa função são representados como strings, conforme mostrado nos exemplos a seguir:
+  The GTID sets used with this function are represented as strings, as shown in the following examples:
 
   ```sql
   mysql> SELECT GTID_SUBSET('3E11FA47-71CA-11E1-9E33-C80AA9429562:23',
@@ -45,11 +45,11 @@ Para obter mais informações sobre GTIDs e como essas funções de GTID são us
   1 row in set (0.00 sec)
   ```
 
-- `GTID_SUBTRAIR(conjunto1, conjunto2)`
+* `GTID_SUBTRACT(set1,set2)`
 
-  Dadas duas coleções de identificadores de transações globais *`set1`* e *`set2`*, retorna apenas os GTIDs de *`set1`* que não estão em *`set2`*.
+  Given two sets of global transaction identifiers *`set1`* and *`set2`*, returns only those GTIDs from *`set1`* that are not in *`set2`*.
 
-  Todos os conjuntos de GTID usados com essa função são representados como strings e devem ser citados, conforme mostrado nesses exemplos:
+  All GTID sets used with this function are represented as strings and must be quoted, as shown in these examples:
 
   ```sql
   mysql> SELECT GTID_SUBTRACT('3E11FA47-71CA-11E1-9E33-C80AA9429562:21-57',
@@ -74,7 +74,7 @@ Para obter mais informações sobre GTIDs e como essas funções de GTID são us
   1 row in set (0.01 sec)
   ```
 
-  Subtrair um conjunto de GTID de si mesmo produz um conjunto vazio, como mostrado aqui:
+  Subtracting a GTID set from itself produces an empty set, as shown here:
 
   ```sql
   mysql> SELECT GTID_SUBTRACT('3E11FA47-71CA-11E1-9E33-C80AA9429562:21-57',
@@ -85,41 +85,41 @@ Para obter mais informações sobre GTIDs e como essas funções de GTID são us
   1 row in set (0.00 sec)
   ```
 
-- `WAIT_FOR_EXECUTED_GTID_SET(gtid_set[, timeout])`
+* `WAIT_FOR_EXECUTED_GTID_SET(gtid_set[, timeout])`
 
-  Aguarde até que o servidor tenha aplicado todas as transações cujos identificadores de transação global estejam contidos em *`gtid_set`*; ou seja, até que a condição GTID_SUBSET(*`gtid_subset`*, `@@GLOBAL.gtid_executed`) seja atendida. Consulte a Seção 16.1.3.1, “Formato e Armazenamento de GTID”, para uma definição dos conjuntos de GTID.
+  Wait until the server has applied all of the transactions whose global transaction identifiers are contained in *`gtid_set`*; that is, until the condition GTID_SUBSET(*`gtid_subset`*, `@@GLOBAL.gtid_executed`) holds. See Section 16.1.3.1, “GTID Format and Storage” for a definition of GTID sets.
 
-  Se um tempo de espera for especificado e *`timeout`* segundos se passarem antes que todas as transações no conjunto GTID tenham sido aplicadas, a função para de esperar. *`timeout`* é opcional e o tempo de espera padrão é 0 segundos, caso em que a função sempre espera até que todas as transações no conjunto GTID tenham sido aplicadas. *`timeout`* deve ser maior ou igual a 0; a partir do MySQL 5.7.18, ao ser executado no modo SQL rigoroso, um valor de *`timeout`* negativo é rejeitado imediatamente com um erro; caso contrário, a função retorna `NULL` e emite uma mensagem de aviso.
+  If a timeout is specified, and *`timeout`* seconds elapse before all of the transactions in the GTID set have been applied, the function stops waiting. *`timeout`* is optional, and the default timeout is 0 seconds, in which case the function always waits until all of the transactions in the GTID set have been applied. *`timeout`* must be greater than or equal to 0; as of MySQL 5.7.18, when running in strict SQL mode, a negative *`timeout`* value is immediately rejected with an error; otherwise the function returns `NULL`, and raises a warning.
 
-  `WAIT_FOR_EXECUTED_GTID_SET()` monitora todos os GTIDs aplicados no servidor, incluindo as transações que chegam de todos os canais de replicação e clientes de usuários. Ele não leva em consideração se os canais de replicação foram iniciados ou interrompidos.
+  `WAIT_FOR_EXECUTED_GTID_SET()` monitors all the GTIDs that are applied on the server, including transactions that arrive from all replication channels and user clients. It does not take into account whether replication channels have been started or stopped.
 
-  Para obter mais informações, consulte a Seção 16.1.3, “Replicação com Identificadores de Transação Global”.
+  For more information, see Section 16.1.3, “Replication with Global Transaction Identifiers”.
 
-  Os conjuntos de GTID usados com essa função são representados como strings e, portanto, devem ser entre aspas, conforme mostrado no exemplo a seguir:
+  GTID sets used with this function are represented as strings and so must be quoted as shown in the following example:
 
   ```sql
   mysql> SELECT WAIT_FOR_EXECUTED_GTID_SET('3E11FA47-71CA-11E1-9E33-C80AA9429562:1-5');
           -> 0
   ```
 
-  Para uma descrição da sintaxe dos conjuntos GTID, consulte a Seção 16.1.3.1, “Formato e Armazenamento do GTID”.
+  For a syntax description for GTID sets, see Section 16.1.3.1, “GTID Format and Storage”.
 
-  Para `WAIT_FOR_EXECUTED_GTID_SET()`, o valor de retorno é o estado da consulta, onde 0 representa sucesso e 1 representa o tempo limite. Qualquer outra falha gera um erro.
+  For `WAIT_FOR_EXECUTED_GTID_SET()`, the return value is the state of the query, where 0 represents success, and 1 represents timeout. Any other failures generate an error.
 
-  `gtid_mode` não pode ser alterado para OFF enquanto qualquer cliente estiver usando essa função para aguardar a aplicação dos GTIDs.
+  `gtid_mode` cannot be changed to OFF while any client is using this function to wait for GTIDs to be applied.
 
-- `WAIT_UNTIL_SQL_THREAD_AFTER_GTIDS(gtid_set[, timeout][,channel])`
+* `WAIT_UNTIL_SQL_THREAD_AFTER_GTIDS(gtid_set[, timeout][,channel])`
 
-  `WAIT_UNTIL_SQL_THREAD_AFTER_GTIDS()` é semelhante a `WAIT_FOR_EXECUTED_GTID_SET()` porque aguarda até que todas as transações cujos identificadores de transação global estejam contidos em *`gtid_set`* tenham sido aplicadas, ou até que *`timeout`* segundos tenham decorrido, o que ocorrer primeiro. No entanto, `WAIT_UNTIL_SQL_THREAD_AFTER_GTIDS()` se aplica a um canal de replicação específico e para para apenas depois que as transações tenham sido aplicadas no canal especificado, para o qual o aplicável deve estar em execução. Em contraste, `WAIT_FOR_EXECUTED_GTID_SET()` para após as transações terem sido aplicadas, independentemente de onde elas foram aplicadas (em qualquer canal de replicação ou em qualquer cliente de usuário), e se algum ou nenhum canal de replicação estiver em execução.
+  `WAIT_UNTIL_SQL_THREAD_AFTER_GTIDS()` is similar to `WAIT_FOR_EXECUTED_GTID_SET()` in that it waits until all of the transactions whose global transaction identifiers are contained in *`gtid_set`* have been applied, or until *`timeout`* seconds have elapsed, whichever occurs first. However, `WAIT_UNTIL_SQL_THREAD_AFTER_GTIDS()` applies to a specific replication channel, and stops only after the transactions have been applied on the specified channel, for which the applier must be running. In contrast, `WAIT_FOR_EXECUTED_GTID_SET()` stops after the transactions have been applied, regardless of where they were applied (on any replication channel or any user client), and whether or not any replication channels are running.
 
-  *`timeout`* deve ser maior ou igual a 0; a partir do MySQL 5.7.18, quando executado no modo SQL rigoroso, um valor negativo de *`timeout`* é imediatamente rejeitado com um erro (`ER_WRONG_ARGUMENTS`); caso contrário, `WAIT_UNTIL_SQL_THREAD_AFTER_GTIDS()` retorna `NULL` e gera uma mensagem de aviso.
+  *`timeout`* must be greater than or equal to 0; as of MySQL 5.7.18, when running in strict SQL mode, a negative *`timeout`* value is immediately rejected with an error (`ER_WRONG_ARGUMENTS`); otherwise `WAIT_UNTIL_SQL_THREAD_AFTER_GTIDS()` returns `NULL`, and raises a warning.
 
-  A opção `channel` nomeia o canal de replicação ao qual a função se aplica. Se nenhum canal tiver um nome e não houver outros canais além do canal de replicação padrão, a função se aplica ao canal de replicação padrão. Se houver vários canais de replicação, você deve especificar um canal, caso contrário, não será possível determinar qual canal de replicação a função se aplica. Consulte a Seção 16.2.2, “Canais de Replicação”, para obter mais informações sobre os canais de replicação.
+  The *`channel`* option names which replication channel the function applies to. If no channel is named and no channels other than the default replication channel exist, the function applies to the default replication channel. If multiple replication channels exist, you must specify a channel as otherwise it is not known which replication channel the function applies to. See Section 16.2.2, “Replication Channels” for more information on replication channels.
 
-  Nota
+  Note
 
-  Como o `WAIT_UNTIL_SQL_THREAD_AFTER_GTIDS()` se aplica a um canal de replicação específico, se uma transação esperada chegar em um canal de replicação diferente ou de um cliente de usuário, por exemplo, em uma situação de recuperação manual ou de falha, a função pode ficar indefinidamente suspensa se nenhum tempo limite for definido. Use `WAIT_FOR_EXECUTED_GTID_SET()` em vez disso para garantir o tratamento correto das transações nessas situações.
+  Because `WAIT_UNTIL_SQL_THREAD_AFTER_GTIDS()` applies to a specific replication channel, if an expected transaction arrives on a different replication channel or from a user client, for example in a failover or manual recovery situation, the function can hang indefinitely if no timeout is set. Use `WAIT_FOR_EXECUTED_GTID_SET()` instead to ensure correct handling of transactions in these situations.
 
-  Os conjuntos de GTID usados com `WAIT_UNTIL_SQL_THREAD_AFTER_GTIDS()` são representados como strings e devem ser entre aspas, da mesma forma que para `WAIT_FOR_EXECUTED_GTID_SET()`. Para `WAIT_UNTIL_SQL_THREAD_AFTER_GTIDS()`, o valor de retorno da função é um número positivo arbitrário. Se a replicação baseada em GTID não estiver ativa (ou seja, se o valor da variável `gtid_mode` for OFF), esse valor é indefinido e `WAIT_UNTIL_SQL_THREAD_AFTER_GTIDS()` retorna NULL. Se a replica não estiver em execução, a função também retorna NULL.
+  GTID sets used with `WAIT_UNTIL_SQL_THREAD_AFTER_GTIDS()` are represented as strings and must be quoted in the same way as for `WAIT_FOR_EXECUTED_GTID_SET()`. For `WAIT_UNTIL_SQL_THREAD_AFTER_GTIDS()`, the return value for the function is an arbitrary positive number. If GTID-based replication is not active (that is, if the value of the `gtid_mode` variable is OFF), then this value is undefined and `WAIT_UNTIL_SQL_THREAD_AFTER_GTIDS()` returns NULL. If the replica is not running then the function also returns NULL.
 
-  `gtid_mode` não pode ser alterado para OFF enquanto qualquer cliente estiver usando essa função para aguardar a aplicação dos GTIDs.
+  `gtid_mode` cannot be changed to OFF while any client is using this function to wait for GTIDs to be applied.

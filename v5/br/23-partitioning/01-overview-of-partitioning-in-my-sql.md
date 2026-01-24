@@ -1,38 +1,38 @@
-## 22.1 Visão geral da partição no MySQL
+## 22.1 Overview of Partitioning in MySQL
 
-Esta seção oferece uma visão conceitual da partição no MySQL 5.7.
+This section provides a conceptual overview of partitioning in MySQL 5.7.
 
-Para obter informações sobre restrições de particionamento e limitações de recursos, consulte Seção 22.6, “Restrições e Limitações de Particionamento”.
+For information on partitioning restrictions and feature limitations, see [Section 22.6, “Restrictions and Limitations on Partitioning”](partitioning-limitations.html "22.6 Restrictions and Limitations on Partitioning").
 
-O padrão SQL não oferece muita orientação sobre os aspectos físicos do armazenamento de dados. A própria linguagem SQL é projetada para funcionar de forma independente de quaisquer estruturas de dados ou mídias subjacentes aos esquemas, tabelas, linhas ou colunas com os quais ela trabalha. No entanto, a maioria dos sistemas avançados de gerenciamento de banco de dados evoluiu alguns meios para determinar a localização física a ser usada para armazenar peças específicas de dados em termos do sistema de arquivos, hardware ou até mesmo ambos. No MySQL, o mecanismo de armazenamento `InnoDB` há muito tempo suporta a noção de um espaço de tabelas, e o MySQL Server, mesmo antes da introdução da partição, podia ser configurado para empregar diferentes diretórios físicos para armazenar diferentes bancos de dados (veja Seção 8.12.3, “Usando Links Simbólicos”, para uma explicação de como isso é feito).
+The SQL standard does not provide much in the way of guidance regarding the physical aspects of data storage. The SQL language itself is intended to work independently of any data structures or media underlying the schemas, tables, rows, or columns with which it works. Nonetheless, most advanced database management systems have evolved some means of determining the physical location to be used for storing specific pieces of data in terms of the file system, hardware or even both. In MySQL, the `InnoDB` storage engine has long supported the notion of a tablespace, and the MySQL Server, even prior to the introduction of partitioning, could be configured to employ different physical directories for storing different databases (see [Section 8.12.3, “Using Symbolic Links”](symbolic-links.html "8.12.3 Using Symbolic Links"), for an explanation of how this is done).
 
-A partição leva essa noção um passo adiante, permitindo que você distribua porções de tabelas individuais em um sistema de arquivos de acordo com regras que você pode definir conforme necessário. Na verdade, diferentes porções de uma tabela são armazenadas como tabelas separadas em locais diferentes. A regra selecionada pelo usuário para realizar a divisão dos dados é conhecida como função de partição, que no MySQL pode ser o módulo, correspondência simples contra um conjunto de faixas ou listas de valores, uma função de hashing interna ou uma função de hashing linear. A função é selecionada de acordo com o tipo de partição especificado pelo usuário e recebe como parâmetro o valor de uma expressão fornecida pelo usuário. Essa expressão pode ser um valor de coluna, uma função que atua em um ou mais valores de coluna ou um conjunto de um ou mais valores de coluna, dependendo do tipo de partição utilizado.
+Partitioning takes this notion a step further, by enabling you to distribute portions of individual tables across a file system according to rules which you can set largely as needed. In effect, different portions of a table are stored as separate tables in different locations. The user-selected rule by which the division of data is accomplished is known as a partitioning function, which in MySQL can be the modulus, simple matching against a set of ranges or value lists, an internal hashing function, or a linear hashing function. The function is selected according to the partitioning type specified by the user, and takes as its parameter the value of a user-supplied expression. This expression can be a column value, a function acting on one or more column values, or a set of one or more column values, depending on the type of partitioning that is used.
 
-No caso da partição `RANGE`, `LIST` e `[`LINEAR`] `HASH`, o valor da coluna de partição é passado para a função de partição, que retorna um valor inteiro que representa o número da partição na qual o registro específico deve ser armazenado. Esta função deve ser não constante e não aleatória. Ela não pode conter consultas, mas pode usar uma expressão SQL válida no MySQL, desde que essa expressão retorne `NULL` ou um inteiro *`intval\`\* tal que
+In the case of `RANGE`, `LIST`, and [`LINEAR`] `HASH` partitioning, the value of the partitioning column is passed to the partitioning function, which returns an integer value representing the number of the partition in which that particular record should be stored. This function must be nonconstant and nonrandom. It may not contain any queries, but may use an SQL expression that is valid in MySQL, as long as that expression returns either `NULL` or an integer *`intval`* such that
 
 ```sql
 -MAXVALUE <= intval <= MAXVALUE
 ```
 
-(`MAXVALUE` é usado para representar o menor limite superior para o tipo de inteiro em questão. `-MAXVALUE` representa o maior limite inferior.)
+(`MAXVALUE` is used to represent the least upper bound for the type of integer in question. `-MAXVALUE` represents the greatest lower bound.)
 
-Para a partição por `LINEAR` `KEY`, `RANGE COLUMNS` e `LIST COLUMNS`, a expressão de partição consiste em uma lista de uma ou mais colunas.
+For [`LINEAR`] `KEY`, `RANGE COLUMNS`, and `LIST COLUMNS` partitioning, the partitioning expression consists of a list of one or more columns.
 
-Para a partição `LINEAR` `KEY`, a função de partição é fornecida pelo MySQL.
+For [`LINEAR`] `KEY` partitioning, the partitioning function is supplied by MySQL.
 
-Para obter mais informações sobre os tipos de coluna de particionamento permitidos e as funções de particionamento, consulte Seção 22.2, “Tipos de Particionamento”, bem como Seção 13.1.18, “Instrução CREATE TABLE”, que fornece descrições da sintaxe de particionamento e exemplos adicionais. Para informações sobre as restrições às funções de particionamento, consulte Seção 22.6.3, “Limitações de Particionamento Relacionadas a Funções”.
+For more information about permitted partitioning column types and partitioning functions, see [Section 22.2, “Partitioning Types”](partitioning-types.html "22.2 Partitioning Types"), as well as [Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement"), which provides partitioning syntax descriptions and additional examples. For information about restrictions on partitioning functions, see [Section 22.6.3, “Partitioning Limitations Relating to Functions”](partitioning-limitations-functions.html "22.6.3 Partitioning Limitations Relating to Functions").
 
-Isso é conhecido como particionamento horizontal, ou seja, diferentes linhas de uma tabela podem ser atribuídas a diferentes partições físicas. O MySQL 5.7 não suporta particionamento vertical, no qual diferentes colunas de uma tabela são atribuídas a diferentes partições físicas. Não há planos para introduzir o particionamento vertical no MySQL neste momento.
+This is known as horizontal partitioning—that is, different rows of a table may be assigned to different physical partitions. MySQL 5.7 does not support vertical partitioning, in which different columns of a table are assigned to different physical partitions. There are no plans at this time to introduce vertical partitioning into MySQL.
 
-Para obter informações sobre como determinar se o binário do seu servidor MySQL suporta partição definida pelo usuário, consulte [Capítulo 22, *Partição*] (partitioning.html).
+For information about determining whether your MySQL Server binary supports user-defined partitioning, see [Chapter 22, *Partitioning*](partitioning.html "Chapter 22 Partitioning").
 
-Para criar tabelas particionadas, você pode usar a maioria dos mecanismos de armazenamento suportados pelo seu servidor MySQL; o mecanismo de particionamento do MySQL funciona em uma camada separada e pode interagir com qualquer um deles. No MySQL 5.7, todas as partições da mesma tabela particionada devem usar o mesmo mecanismo de armazenamento; por exemplo, você não pode usar `MyISAM` para uma partição e `InnoDB` para outra. No entanto, não há nada que impeça você de usar diferentes mecanismos de armazenamento para diferentes tabelas particionadas no mesmo servidor MySQL ou até mesmo na mesma base de dados.
+For creating partitioned tables, you can use most storage engines that are supported by your MySQL server; the MySQL partitioning engine runs in a separate layer and can interact with any of these. In MySQL 5.7, all partitions of the same partitioned table must use the same storage engine; for example, you cannot use `MyISAM` for one partition and `InnoDB` for another. However, there is nothing preventing you from using different storage engines for different partitioned tables on the same MySQL server or even in the same database.
 
-A partição do MySQL não pode ser usada com os mecanismos de armazenamento `MERGE`, `CSV` ou `FEDERATED`.
+MySQL partitioning cannot be used with the `MERGE`, `CSV`, or `FEDERATED` storage engines.
 
-A partição por `KEY` ou `LINEAR KEY` é possível com `NDB`, mas outros tipos de partição definidos pelo usuário não são suportados para tabelas que utilizam esse mecanismo de armazenamento. Além disso, uma tabela `NDB` que emprega partição definida pelo usuário deve ter uma chave primária explícita, e quaisquer colunas referenciadas na expressão de partição da tabela devem fazer parte da chave primária. No entanto, se nenhuma coluna estiver listada na cláusula `PARTITION BY KEY` ou `PARTITION BY LINEAR KEY` da instrução `CREATE TABLE` ou `ALTER TABLE` usada para criar ou modificar uma tabela `NDB` com partição definida pelo usuário, então a tabela não precisa ter uma chave primária explícita. Para mais informações, consulte Seção 21.2.7.1, “Não conformidade com a sintaxe SQL no NDB Cluster”.
+Partitioning by `KEY` or `LINEAR KEY` is possible with [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6"), but other types of user-defined partitioning are not supported for tables using this storage engine. In addition, an [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table that employs user-defined partitioning must have an explicit primary key, and any columns referenced in the table's partitioning expression must be part of the primary key. However, if no columns are listed in the `PARTITION BY KEY` or `PARTITION BY LINEAR KEY` clause of the [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") or [`ALTER TABLE`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") statement used to create or modify a user-partitioned [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table, then the table is not required to have an explicit primary key. For more information, see [Section 21.2.7.1, “Noncompliance with SQL Syntax in NDB Cluster”](mysql-cluster-limitations-syntax.html "21.2.7.1 Noncompliance with SQL Syntax in NDB Cluster").
 
-Para utilizar um motor de armazenamento específico para uma tabela particionada, é necessário apenas usar a opção `[STORAGE] ENGINE`, assim como faria com uma tabela não particionada. No entanto, você deve ter em mente que `[STORAGE] ENGINE` (e outras opções de tabela) precisam ser listadas *antes* de quaisquer opções de particionamento serem usadas em uma declaração `[CREATE TABLE]` (create-table.html). Este exemplo mostra como criar uma tabela que é particionada por hash em 6 partições e que utiliza o motor de armazenamento `InnoDB`:
+To employ a particular storage engine for a partitioned table, it is necessary only to use the `[STORAGE] ENGINE` option just as you would for a nonpartitioned table. However, you should keep in mind that `[STORAGE] ENGINE` (and other table options) need to be listed *before* any partitioning options are used in a [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement. This example shows how to create a table that is partitioned by hash into 6 partitions and which uses the `InnoDB` storage engine:
 
 ```sql
 CREATE TABLE ti (id INT, amount DECIMAL(7,2), tr_date DATE)
@@ -41,19 +41,19 @@ CREATE TABLE ti (id INT, amount DECIMAL(7,2), tr_date DATE)
     PARTITIONS 6;
 ```
 
-Cada cláusula `PARTITION` pode incluir uma opção `[STORAGE] ENGINE`, mas no MySQL 5.7 isso não tem efeito.
+Each `PARTITION` clause can include a `[STORAGE] ENGINE` option, but in MySQL 5.7 this has no effect.
 
-Importante
+Important
 
-A partição se aplica a todos os dados e índices de uma tabela; você não pode particionar apenas os dados e não os índices, ou vice-versa, nem pode particionar apenas uma parte da tabela.
+Partitioning applies to all data and indexes of a table; you cannot partition only the data and not the indexes, or vice versa, nor can you partition only a portion of the table.
 
-Os dados e índices de cada partição podem ser atribuídos a um diretório específico usando as opções `DATA DIRECTORY` e `INDEX DIRECTORY` para a cláusula `PARTITION` da instrução `CREATE TABLE` (create-table.html) usada para criar a tabela particionada.
+Data and indexes for each partition can be assigned to a specific directory using the `DATA DIRECTORY` and `INDEX DIRECTORY` options for the `PARTITION` clause of the [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement used to create the partitioned table.
 
-`DATA DIRECTORY` e `INDEX DIRECTORY` não são suportados para partições individuais ou subpartições de tabelas `MyISAM` no Windows.
+`DATA DIRECTORY` and `INDEX DIRECTORY` are not supported for individual partitions or subpartitions of `MyISAM` tables on Windows.
 
-Apenas a opção `DATA DIRECTORY` é suportada para partições individuais e subpartições de tabelas `InnoDB`.
+Only the `DATA DIRECTORY` option is supported for individual partitions and subpartitions of `InnoDB` tables.
 
-Todas as colunas usadas na expressão de particionamento da tabela devem fazer parte de cada chave única que a tabela possa ter, incluindo qualquer chave primária. Isso significa que uma tabela como esta, criada pela seguinte instrução SQL, não pode ser particionada:
+All columns used in the table's partitioning expression must be part of every unique key that the table may have, including any primary key. This means that a table such as this one, created by the following SQL statement, cannot be partitioned:
 
 ```sql
 CREATE TABLE tnp (
@@ -65,18 +65,18 @@ CREATE TABLE tnp (
 );
 ```
 
-Como as chaves `pk` e `uk` não têm colunas em comum, não há colunas disponíveis para serem usadas em uma expressão de particionamento. Possíveis soluções para essa situação incluem adicionar a coluna `name` à chave primária da tabela, adicionar a coluna `id` a `uk`, ou simplesmente remover a chave única completamente. Consulte Seção 22.6.1, “Chaves de Partição, Chaves Primárias e Chaves Únicas” para obter mais informações.
+Because the keys `pk` and `uk` have no columns in common, there are no columns available for use in a partitioning expression. Possible workarounds in this situation include adding the `name` column to the table's primary key, adding the `id` column to `uk`, or simply removing the unique key altogether. See [Section 22.6.1, “Partitioning Keys, Primary Keys, and Unique Keys”](partitioning-limitations-partitioning-keys-unique-keys.html "22.6.1 Partitioning Keys, Primary Keys, and Unique Keys"), for more information.
 
-Além disso, `MAX_ROWS` e `MIN_ROWS` podem ser usados para determinar o número máximo e mínimo de linhas, respectivamente, que podem ser armazenadas em cada partição. Consulte Seção 22.3, “Gestão de Partições” para obter mais informações sobre essas opções.
+In addition, `MAX_ROWS` and `MIN_ROWS` can be used to determine the maximum and minimum numbers of rows, respectively, that can be stored in each partition. See [Section 22.3, “Partition Management”](partitioning-management.html "22.3 Partition Management"), for more information on these options.
 
-A opção `MAX_ROWS` também pode ser útil para criar tabelas do NDB Cluster com partições extras, permitindo assim um maior armazenamento de índices de hash. Consulte a documentação do parâmetro de configuração do nó de dados `DataMemory`, bem como a Seção 21.2.2, “Nodos do NDB Cluster, Grupos de Nodos, Replicas de Fragmento e Partições”, para obter mais informações.
+The `MAX_ROWS` option can also be useful for creating NDB Cluster tables with extra partitions, thus allowing for greater storage of hash indexes. See the documentation for the [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory) data node configuration parameter, as well as [Section 21.2.2, “NDB Cluster Nodes, Node Groups, Fragment Replicas, and Partitions”](mysql-cluster-nodes-groups.html "21.2.2 NDB Cluster Nodes, Node Groups, Fragment Replicas, and Partitions"), for more information.
 
-Algumas vantagens da partição estão listadas aqui:
+Some advantages of partitioning are listed here:
 
-- A partição permite armazenar mais dados em uma única tabela do que o que pode ser mantido em uma única partição de disco ou sistema de arquivos.
+* Partitioning makes it possible to store more data in one table than can be held on a single disk or file system partition.
 
-- Os dados que perdem sua utilidade podem ser facilmente removidos de uma tabela particionada ao descartar a(s) partição(ões) que contêm apenas esses dados. Por outro lado, o processo de adicionar novos dados pode, em alguns casos, ser muito facilitado ao adicionar uma ou mais novas partições para armazenar especificamente esses dados.
+* Data that loses its usefulness can often be easily removed from a partitioned table by dropping the partition (or partitions) containing only that data. Conversely, the process of adding new data can in some cases be greatly facilitated by adding one or more new partitions for storing specifically that data.
 
-- Algumas consultas podem ser muito otimizadas devido ao fato de que os dados que satisfazem uma cláusula `WHERE` específica podem ser armazenados apenas em uma ou mais partições, o que exclui automaticamente quaisquer partições restantes da pesquisa. Como as partições podem ser alteradas após a criação de uma tabela particionada, você pode reorganizar seus dados para melhorar consultas frequentes que podem não ter sido usadas com frequência quando o esquema de particionamento foi configurado pela primeira vez. Essa capacidade de excluir partições que não correspondem (e, portanto, quaisquer linhas que elas contenham) é frequentemente referida como poda de partição. Para mais informações, consulte Seção 22.4, “Poda de Partição”.
+* Some queries can be greatly optimized in virtue of the fact that data satisfying a given `WHERE` clause can be stored only on one or more partitions, which automatically excludes any remaining partitions from the search. Because partitions can be altered after a partitioned table has been created, you can reorganize your data to enhance frequent queries that may not have been often used when the partitioning scheme was first set up. This ability to exclude non-matching partitions (and thus any rows they contain) is often referred to as partition pruning. For more information, see [Section 22.4, “Partition Pruning”](partitioning-pruning.html "22.4 Partition Pruning").
 
-  Além disso, o MySQL suporta a seleção explícita de partições para consultas. Por exemplo, `SELECT * FROM t PARTITION (p0,p1) WHERE c < 5` seleciona apenas as linhas nas partições `p0` e `p1` que correspondem à condição `WHERE`. Neste caso, o MySQL não verifica outras partições da tabela `t`; isso pode acelerar muito as consultas quando você já sabe qual(is) partição(ões) deseja examinar. A seleção de partições também é suportada para as instruções de modificação de dados `DELETE`, `INSERT`, `REPLACE`, `UPDATE` e `LOAD DATA`, `LOAD XML`. Consulte as descrições dessas instruções para obter mais informações e exemplos.
+  In addition, MySQL supports explicit partition selection for queries. For example, [`SELECT * FROM t PARTITION (p0,p1) WHERE c < 5`](select.html "13.2.9 SELECT Statement") selects only those rows in partitions `p0` and `p1` that match the `WHERE` condition. In this case, MySQL does not check any other partitions of table `t`; this can greatly speed up queries when you already know which partition or partitions you wish to examine. Partition selection is also supported for the data modification statements [`DELETE`](delete.html "13.2.2 DELETE Statement"), [`INSERT`](insert.html "13.2.5 INSERT Statement"), [`REPLACE`](replace.html "13.2.8 REPLACE Statement"), [`UPDATE`](update.html "13.2.11 UPDATE Statement"), and [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement"), [`LOAD XML`](load-xml.html "13.2.7 LOAD XML Statement"). See the descriptions of these statements for more information and examples.

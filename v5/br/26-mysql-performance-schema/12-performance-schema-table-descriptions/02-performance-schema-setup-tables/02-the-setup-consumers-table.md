@@ -1,6 +1,6 @@
-#### 25.12.2.2 A tabela setup_consumers
+#### 25.12.2.2 The setup_consumers Table
 
-A tabela `setup_consumers` lista os tipos de consumidores para os quais as informações dos eventos podem ser armazenadas e que estão habilitados:
+The [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") table lists the types of consumers for which event information can be stored and which are enabled:
 
 ```sql
 mysql> SELECT * FROM performance_schema.setup_consumers;
@@ -25,18 +25,18 @@ mysql> SELECT * FROM performance_schema.setup_consumers;
 +----------------------------------+---------+
 ```
 
-As configurações de consumidor na tabela `setup_consumers` formam uma hierarquia de níveis mais altos para níveis mais baixos. Para informações detalhadas sobre o efeito de habilitar diferentes consumidores, consulte Seção 25.4.7, “Pré-filtragem por Consumidor”.
+The consumer settings in the [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") table form a hierarchy from higher levels to lower. For detailed information about the effect of enabling different consumers, see [Section 25.4.7, “Pre-Filtering by Consumer”](performance-schema-consumer-filtering.html "25.4.7 Pre-Filtering by Consumer").
 
-As modificações na tabela `setup_consumers` afetam o monitoramento imediatamente.
+Modifications to the [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") table affect monitoring immediately.
 
-A tabela `setup_consumers` tem as seguintes colunas:
+The [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") table has these columns:
 
-- `NOME`
+* `NAME`
 
-  O nome do consumidor.
+  The consumer name.
 
-- `ativado`
+* `ENABLED`
 
-  Se o consumidor está habilitado. O valor é `SIM` ou `NÃO`. Esta coluna pode ser modificada. Se você desabilitar um consumidor, o servidor não gasta tempo adicionando informações de eventos a ele.
+  Whether the consumer is enabled. The value is `YES` or `NO`. This column can be modified. If you disable a consumer, the server does not spend time adding event information to it.
 
-A operação `TRUNCATE TABLE` não é permitida para a tabela `setup_consumers`.
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is not permitted for the [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") table.

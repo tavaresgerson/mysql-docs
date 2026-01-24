@@ -1,53 +1,53 @@
-#### 13.7.6.4 Declaração de eliminação
+#### 13.7.6.4 KILL Statement
 
 ```sql
 KILL [CONNECTION | QUERY] processlist_id
 ```
 
-Cada conexão com **mysqld** é executada em um thread separado. Você pode matar um thread com a instrução `KILL processlist_id`.
+Each connection to [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") runs in a separate thread. You can kill a thread with the `KILL processlist_id` statement.
 
-Os identificadores do processo do `PROCESSLIST` podem ser determinados a partir da coluna `ID` da tabela `INFORMATION_SCHEMA `PROCESSLIST``, da coluna `Id` da saída do comando `SHOW PROCESSLIST` e da coluna `PROCESSLIST_ID` da tabela `threads` do Schema de Desempenho. O valor do processo atual é retornado pela função `CONNECTION_ID()` (funções de informações.html#function_connection-id).
+Thread processlist identifiers can be determined from the `ID` column of the `INFORMATION_SCHEMA` [`PROCESSLIST`](information-schema-processlist-table.html "24.3.18 The INFORMATION_SCHEMA PROCESSLIST Table") table, the `Id` column of [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement") output, and the `PROCESSLIST_ID` column of the Performance Schema [`threads`](performance-schema-threads-table.html "25.12.16.4 The threads Table") table. The value for the current thread is returned by the [`CONNECTION_ID()`](information-functions.html#function_connection-id) function.
 
-`KILL` permite um modificador opcional `CONNECTION` ou `QUERY`:
+[`KILL`](kill.html "13.7.6.4 KILL Statement") permits an optional `CONNECTION` or `QUERY` modifier:
 
-- `KILL CONNECTION` é o mesmo que `KILL` sem modificador: ele termina a conexão associada ao *`processlist_id`* fornecido, após encerrar qualquer instrução que a conexão esteja executando.
+* [`KILL CONNECTION`](kill.html "13.7.6.4 KILL Statement") is the same as [`KILL`](kill.html "13.7.6.4 KILL Statement") with no modifier: It terminates the connection associated with the given *`processlist_id`*, after terminating any statement the connection is executing.
 
-- `KILL QUERY` (kill.html) termina a instrução que a conexão está executando no momento, mas deixa a própria conexão intacta.
+* [`KILL QUERY`](kill.html "13.7.6.4 KILL Statement") terminates the statement the connection is currently executing, but leaves the connection itself intact.
 
-A capacidade de ver quais threads estão disponíveis para serem eliminadas depende do privilégio `PROCESSO`:
+The ability to see which threads are available to be killed depends on the [`PROCESS`](privileges-provided.html#priv_process) privilege:
 
-- Sem `PROCESSO`, você só pode ver suas próprias threads.
+* Without [`PROCESS`](privileges-provided.html#priv_process), you can see only your own threads.
 
-- Com `PROCESSO`, você pode ver todas as threads.
+* With [`PROCESS`](privileges-provided.html#priv_process), you can see all threads.
 
-A capacidade de matar threads e instruções depende do privilégio `SUPER`:
+The ability to kill threads and statements depends on the [`SUPER`](privileges-provided.html#priv_super) privilege:
 
-- Sem `SUPER`, você pode matar apenas suas próprias threads e instruções.
+* Without [`SUPER`](privileges-provided.html#priv_super), you can kill only your own threads and statements.
 
-- Com `SUPER`, você pode matar todas as threads e instruções.
+* With [`SUPER`](privileges-provided.html#priv_super), you can kill all threads and statements.
 
-Você também pode usar os comandos **mysqladmin processlist** e **mysqladmin kill** para examinar e matar threads.
+You can also use the [**mysqladmin processlist**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") and [**mysqladmin kill**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") commands to examine and kill threads.
 
-Nota
+Note
 
-Você não pode usar `KILL` com a biblioteca do Servidor MySQL embutido porque o servidor embutido funciona apenas dentro dos threads da aplicação hospedeira. Ele não cria seus próprios threads de conexão.
+You cannot use [`KILL`](kill.html "13.7.6.4 KILL Statement") with the Embedded MySQL Server library because the embedded server merely runs inside the threads of the host application. It does not create any connection threads of its own.
 
-Quando você usa `KILL`, uma bandeira de morte específica para a thread é definida. Na maioria dos casos, pode levar algum tempo para a thread morrer, pois a bandeira de morte é verificada apenas em intervalos específicos:
+When you use [`KILL`](kill.html "13.7.6.4 KILL Statement"), a thread-specific kill flag is set for the thread. In most cases, it might take some time for the thread to die because the kill flag is checked only at specific intervals:
 
-- Durante as operações de `SELECT`, para os loops `ORDER BY` e `GROUP BY`, a bandeira é verificada após a leitura de um bloco de linhas. Se a bandeira de exclusão estiver definida, a instrução é interrompida.
+* During [`SELECT`](select.html "13.2.9 SELECT Statement") operations, for `ORDER BY` and `GROUP BY` loops, the flag is checked after reading a block of rows. If the kill flag is set, the statement is aborted.
 
-- As operações de alteração de tabela `ALTER TABLE` que fazem uma cópia da tabela verificar a bandeira de exclusão periodicamente para cada algumas linhas copiadas lidas da tabela original. Se a bandeira de exclusão estiver definida, a instrução é interrompida e a tabela temporária é excluída.
+* [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") operations that make a table copy check the kill flag periodically for each few copied rows read from the original table. If the kill flag was set, the statement is aborted and the temporary table is deleted.
 
-  A instrução `KILL` retorna sem esperar confirmação, mas a verificação da bandeira `kill` interrompe a operação em um período de tempo razoavelmente curto. Interromper a operação para realizar a limpeza necessária também leva algum tempo.
+  The [`KILL`](kill.html "13.7.6.4 KILL Statement") statement returns without waiting for confirmation, but the kill flag check aborts the operation within a reasonably small amount of time. Aborting the operation to perform any necessary cleanup also takes some time.
 
-- Durante as operações de `UPDATE` ou `DELETE`, a bandeira de exclusão é verificada após cada bloco lido e após cada linha atualizada ou excluída. Se a bandeira de exclusão estiver definida, a instrução é abortada. Se você não estiver usando transações, as alterações não serão revertidas.
+* During [`UPDATE`](update.html "13.2.11 UPDATE Statement") or [`DELETE`](delete.html "13.2.2 DELETE Statement") operations, the kill flag is checked after each block read and after each updated or deleted row. If the kill flag is set, the statement is aborted. If you are not using transactions, the changes are not rolled back.
 
-- `GET_LOCK()` interrompe e retorna `NULL`.
+* [`GET_LOCK()`](locking-functions.html#function_get-lock) aborts and returns `NULL`.
 
-- Se o thread estiver no manipulador de bloqueio de tabela (estado: `Bloqueado`), o bloqueio de tabela será rapidamente abortado.
+* If the thread is in the table lock handler (state: `Locked`), the table lock is quickly aborted.
 
-- Se o thread estiver aguardando espaço livre no disco em uma chamada de escrita, a escrita será abortada com uma mensagem de erro "disco cheio".
+* If the thread is waiting for free disk space in a write call, the write is aborted with a “disk full” error message.
 
-Aviso
+Warning
 
-A execução de uma operação de `REPAIR TABLE` (reparo de tabela) ou `OPTIMIZE TABLE` (otimização de tabela) em uma tabela `MyISAM` resulta em uma tabela corrompida e inutilizável. Quaisquer leituras ou escritas em uma tabela desse tipo falham até que você a otimize ou repare novamente (sem interrupção).
+Killing a [`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement") or [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") operation on a `MyISAM` table results in a table that is corrupted and unusable. Any reads or writes to such a table fail until you optimize or repair it again (without interruption).

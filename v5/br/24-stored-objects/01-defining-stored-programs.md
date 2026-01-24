@@ -1,6 +1,6 @@
-## 23.1 Definindo Programas Armazenados
+## 23.1 Defining Stored Programs
 
-Cada programa armazenado contém um corpo que consiste em uma instrução SQL. Essa instrução pode ser uma instrução composta composta por várias instruções separadas por caracteres ponto e vírgula (`;`). Por exemplo, o seguinte procedimento armazenado tem um corpo composto por um bloco `BEGIN ... END` que contém uma instrução `SET` e um loop `REPEAT` que, por sua vez, contém outra instrução `SET`:
+Each stored program contains a body that consists of an SQL statement. This statement may be a compound statement made up of several statements separated by semicolon (`;`) characters. For example, the following stored procedure has a body made up of a `BEGIN ... END` block that contains a `SET` statement and a `REPEAT` loop that itself contains another `SET` statement:
 
 ```sql
 CREATE PROCEDURE dorepeat(p1 INT)
@@ -10,9 +10,9 @@ BEGIN
 END;
 ```
 
-Se você usar o programa cliente **mysql** para definir um programa armazenado contendo caracteres ponto e vírgula, surge um problema. Por padrão, o próprio **mysql** reconhece o ponto e vírgula como um delimitador de declaração, então você deve redefinir o delimitador temporariamente para fazer com que o **mysql** transmita toda a definição do programa armazenado para o servidor.
+If you use the **mysql** client program to define a stored program containing semicolon characters, a problem arises. By default, **mysql** itself recognizes the semicolon as a statement delimiter, so you must redefine the delimiter temporarily to cause **mysql** to pass the entire stored program definition to the server.
 
-Para redefinir o delimitador **mysql**, use o comando `delimiter`. O exemplo a seguir mostra como fazer isso para o procedimento `dorepeat()` mostrado anteriormente. O delimitador é alterado para `//` para permitir que toda a definição seja passada para o servidor como uma única instrução e, em seguida, restaurado para `;` antes de invocar o procedimento. Isso permite que o delimitador `;`, usado no corpo do procedimento, seja passado para o servidor em vez de ser interpretado pelo próprio **mysql**.
+To redefine the **mysql** delimiter, use the `delimiter` command. The following example shows how to do this for the `dorepeat()` procedure just shown. The delimiter is changed to `//` to enable the entire definition to be passed to the server as a single statement, and then restored to `;` before invoking the procedure. This enables the `;` delimiter used in the procedure body to be passed through to the server rather than being interpreted by **mysql** itself.
 
 ```sql
 mysql> delimiter //
@@ -39,9 +39,9 @@ mysql> SELECT @x;
 1 row in set (0.00 sec)
 ```
 
-Você pode redefinir o delimitador para uma string diferente de `//`, e o delimitador pode consistir em um único caractere ou em vários caracteres. Você deve evitar o uso do caractere barra invertida (`\`) porque ele é o caractere de escape para o MySQL.
+You can redefine the delimiter to a string other than `//`, and the delimiter can consist of a single character or multiple characters. You should avoid the use of the backslash (`\`) character because that is the escape character for MySQL.
 
-A seguir, há um exemplo de uma função que recebe um parâmetro, realiza uma operação usando uma função SQL e retorna o resultado. Neste caso, não é necessário usar `delimiter`, pois a definição da função não contém delimitadores de declaração interna `;`:
+The following is an example of a function that takes a parameter, performs an operation using an SQL function, and returns the result. In this case, it is unnecessary to use `delimiter` because the function definition contains no internal `;` statement delimiters:
 
 ```sql
 mysql> CREATE FUNCTION hello (s CHAR(20))

@@ -1,32 +1,32 @@
-#### 16.1.7.3 Ignorar transações
+#### 16.1.7.3 Skipping Transactions
 
-Se a replicação parar devido a um problema com um evento em uma transação replicada, você pode retomar a replicação ignorando a transação falha na replica. Antes de ignorar uma transação, certifique-se de que o thread de I/O de replicação e o thread de SQL de replicação também estejam parados.
+If replication stops due to an issue with an event in a replicated transaction, you can resume replication by skipping the failed transaction on the replica. Before skipping a transaction, ensure that the replication I/O thread is stopped as well as the replication SQL thread.
 
-Primeiro, você precisa identificar o evento replicado que causou o erro. Os detalhes do erro e a última transação aplicada com sucesso são registrados na tabela do Schema de Desempenho `replication_applier_status_by_worker`. Você pode usar **mysqlbinlog** para recuperar e exibir os eventos que foram registrados na época do erro. Para obter instruções sobre como fazer isso, consulte Seção 7.5, “Recuperação Ponto no Tempo (Incremental) ”. Alternativamente, você pode emitir `SHOW RELAYLOG EVENTS` na replica ou `SHOW BINLOG EVENTS` na fonte.
+First you need to identify the replicated event that caused the error. Details of the error and the last successfully applied transaction are recorded in the Performance Schema table [`replication_applier_status_by_worker`](performance-schema-replication-applier-status-by-worker-table.html "25.12.11.6 The replication_applier_status_by_worker Table"). You can use [**mysqlbinlog**](mysqlbinlog.html "4.6.7 mysqlbinlog — Utility for Processing Binary Log Files") to retrieve and display the events that were logged around the time of the error. For instructions to do this, see [Section 7.5, “Point-in-Time (Incremental) Recovery”](point-in-time-recovery.html "7.5 Point-in-Time (Incremental) Recovery"). Alternatively, you can issue [`SHOW RELAYLOG EVENTS`](show-relaylog-events.html "13.7.5.32 SHOW RELAYLOG EVENTS Statement") on the replica or [`SHOW BINLOG EVENTS`](show-binlog-events.html "13.7.5.2 SHOW BINLOG EVENTS Statement") on the source.
 
-Antes de pular a transação e reiniciar a replica, verifique os seguintes pontos:
+Before skipping the transaction and restarting the replica, check these points:
 
-- A transação que parou a replicação veio de uma fonte desconhecida ou não confiável? Se sim, investigue a causa, caso haja alguma consideração de segurança que indique que a replicação não deve ser reiniciada.
+* Is the transaction that stopped replication from an unknown or untrusted source? If so, investigate the cause in case there are any security considerations that indicate the replica should not be restarted.
 
-- A transação que interrompeu a replicação precisa ser aplicada na replica? Se sim, faça as correções necessárias e aplique novamente a transação ou reconcile manualmente os dados na replica.
+* Does the transaction that stopped replication need to be applied on the replica? If so, either make the appropriate corrections and reapply the transaction, or manually reconcile the data on the replica.
 
-- A transação que interrompeu a replicação precisou ser aplicada na fonte? Se não, desfaça a transação manualmente no servidor onde ela ocorreu originalmente.
+* Did the transaction that stopped replication need to be applied on the source? If not, undo the transaction manually on the server where it originally took place.
 
-Para pular a transação, escolha um dos seguintes métodos conforme apropriado:
+To skip the transaction, choose one of the following methods as appropriate:
 
-- Quando os GTIDs estão em uso (`gtid_mode` é `ON`), consulte Seção 16.1.7.3.1, “Ignorar Transações com GTIDs”.
+* When GTIDs are in use ([`gtid_mode`](replication-options-gtids.html#sysvar_gtid_mode) is `ON`), see [Section 16.1.7.3.1, “Skipping Transactions With GTIDs”](replication-administration-skip.html#replication-administration-skip-gtid "16.1.7.3.1 Skipping Transactions With GTIDs") .
 
-- Quando os GTIDs não estão em uso ou estão sendo implementados (`gtid_mode` é `OFF`, `OFF_PERMISSIVE` ou `ON_PERMISSIVE`), consulte Seção 16.1.7.3.2, “Ignorar Transações Sem GTIDs”.
+* When GTIDs are not in use or are being phased in ([`gtid_mode`](replication-options-gtids.html#sysvar_gtid_mode) is `OFF`, `OFF_PERMISSIVE`, or `ON_PERMISSIVE`), see [Section 16.1.7.3.2, “Skipping Transactions Without GTIDs”](replication-administration-skip.html#replication-administration-skip-nogtid "16.1.7.3.2 Skipping Transactions Without GTIDs").
 
-Para reiniciar a replicação após pular a transação, execute `START SLAVE`, com a cláusula `FOR CHANNEL` se a replica for uma replica de múltiplas fontes.
+To restart replication after skipping the transaction, issue [`START SLAVE`](start-slave.html "13.4.2.5 START SLAVE Statement"), with the `FOR CHANNEL` clause if the replica is a multi-source replica.
 
-##### 16.1.7.3.1 Ignorar Transações com GTIDs
+##### 16.1.7.3.1 Skipping Transactions With GTIDs
 
-Quando os GTIDs estão em uso (`gtid_mode` é `ON`), o GTID de uma transação confirmada é persistido na replica, mesmo que o conteúdo da transação seja filtrado. Esse recurso impede que uma replica recupere transações filtradas anteriormente quando se reconectar à fonte usando o autoposicionamento do GTID. Também pode ser usado para pular uma transação na replica, fechando uma transação vazia no lugar da transação que falhou.
+When GTIDs are in use ([`gtid_mode`](replication-options-gtids.html#sysvar_gtid_mode) is `ON`), the GTID for a committed transaction is persisted on the replica even if the content of the transaction is filtered out. This feature prevents a replica from retrieving previously filtered transactions when it reconnects to the source using GTID auto-positioning. It can also be used to skip a transaction on the replica, by committing an empty transaction in place of the failing transaction.
 
-Se a transação que falhou gerou um erro em um thread de trabalhador, você pode obter seu GTID diretamente do campo `APPLYING_TRANSACTION` na tabela do Schema de Desempenho `replication_applier_status_by_worker`. Para ver qual transação é, execute `[SHOW RELAYLOG EVENTS`]\(show-relaylog-events.html) na replica ou `[SHOW BINLOG EVENTS`]\(show-binlog-events.html) na fonte e procure na saída uma transação precedida por esse GTID.
+If the failing transaction generated an error in a worker thread, you can obtain its GTID directly from the `APPLYING_TRANSACTION` field in the Performance Schema table [`replication_applier_status_by_worker`](performance-schema-replication-applier-status-by-worker-table.html "25.12.11.6 The replication_applier_status_by_worker Table"). To see what the transaction is, issue [`SHOW RELAYLOG EVENTS`](show-relaylog-events.html "13.7.5.32 SHOW RELAYLOG EVENTS Statement") on the replica or [`SHOW BINLOG EVENTS`](show-binlog-events.html "13.7.5.2 SHOW BINLOG EVENTS Statement") on the source, and search the output for a transaction preceded by that GTID.
 
-Depois de avaliar a transação falha para tomar quaisquer outras ações apropriadas, conforme descrito anteriormente (como considerações de segurança), para ignorá-la, realize uma transação vazia na replica que tenha o mesmo GTID da transação falha. Por exemplo:
+When you have assessed the failing transaction for any other appropriate actions as described previously (such as security considerations), to skip it, commit an empty transaction on the replica that has the same GTID as the failing transaction. For example:
 
 ```sql
 SET GTID_NEXT='aaa-bbb-ccc-ddd:N';
@@ -35,62 +35,62 @@ COMMIT;
 SET GTID_NEXT='AUTOMATIC';
 ```
 
-A presença dessa transação vazia na replica significa que, quando você emite uma declaração `START SLAVE` para reiniciar a replicação, a replica usa a função de desvio automático para ignorar a transação falhando, porque ela vê que uma transação com esse GTID já foi aplicada. Se a replica for uma replica de múltiplas fontes, você não precisa especificar o nome do canal ao comprometer a transação vazia, mas você precisa especificar o nome do canal quando emitir a declaração `START SLAVE`.
+The presence of this empty transaction on the replica means that when you issue a [`START SLAVE`](start-slave.html "13.4.2.5 START SLAVE Statement") statement to restart replication, the replica uses the auto-skip function to ignore the failing transaction, because it sees a transaction with that GTID has already been applied. If the replica is a multi-source replica, you do not need to specify the channel name when you commit the empty transaction, but you do need to specify the channel name when you issue [`START SLAVE`](start-slave.html "13.4.2.5 START SLAVE Statement").
 
-Observe que, se o registro binário estiver em uso nesta réplica, a transação vazia entrará no fluxo de replicação se a réplica se tornar uma fonte ou primária no futuro. Se você precisar evitar essa possibilidade, considere esvaziar e purgar os logs binários da réplica, como neste exemplo:
+Note that if binary logging is in use on this replica, the empty transaction enters the replication stream if the replica becomes a source or primary in the future. If you need to avoid this possibility, consider flushing and purging the replica's binary logs, as in this example:
 
 ```sql
 FLUSH LOGS;
 PURGE BINARY LOGS TO 'binlog.000146';
 ```
 
-O GTID da transação vazia é persistido, mas a própria transação é removida ao purgar os arquivos de log binário.
+The GTID of the empty transaction is persisted, but the transaction itself is removed by purging the binary log files.
 
-##### 16.1.7.3.2 Ignorar Transações sem GTIDs
+##### 16.1.7.3.2 Skipping Transactions Without GTIDs
 
-Para pular transações que falham quando os GTIDs não estão em uso ou estão sendo implementados (`gtid_mode` é `OFF`, `OFF_PERMISSIVE` ou `ON_PERMISSIVE`), você pode pular um número especificado de eventos emitindo uma declaração `SET GLOBAL sql_slave_skip_counter`. Alternativamente, você pode pular um evento ou eventos emitindo uma declaração `CHANGE MASTER TO` para avançar a posição do log binário da fonte.
+To skip failing transactions when GTIDs are not in use or are being phased in ([`gtid_mode`](replication-options-gtids.html#sysvar_gtid_mode) is `OFF`, `OFF_PERMISSIVE`, or `ON_PERMISSIVE`), you can skip a specified number of events by issuing a `SET GLOBAL sql_slave_skip_counter` statement. Alternatively, you can skip past an event or events by issuing a [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") statement to move the source's binary log position forward.
 
-Ao usar esses métodos, é importante entender que você não está necessariamente ignorando uma transação completa, como sempre acontece com o método baseado no GTID descrito anteriormente. Esses métodos não baseados no GTID não estão cientes das transações como tal, mas operam em eventos. O log binário é organizado como uma sequência de grupos conhecidos como grupos de eventos, e cada grupo de eventos consiste em uma sequência de eventos.
+When you use these methods, it is important to understand that you are not necessarily skipping a complete transaction, as is always the case with the GTID-based method described previously. These non-GTID-based methods are not aware of transactions as such, but instead operate on events. The binary log is organized as a sequence of groups known as event groups, and each event group consists of a sequence of events.
 
-- Para tabelas transacionais, um grupo de eventos corresponde a uma transação.
+* For transactional tables, an event group corresponds to a transaction.
 
-- Para tabelas não transacionais, um grupo de eventos corresponde a uma única instrução SQL.
+* For nontransactional tables, an event group corresponds to a single SQL statement.
 
-Uma única transação pode conter alterações em tabelas tanto transacionais quanto não transacionais.
+A single transaction can contain changes to both transactional and nontransactional tables.
 
-Quando você usa uma instrução `SET GLOBAL sql_slave_skip_counter` para pular eventos e a posição resultante estiver no meio de um grupo de eventos, a replica continua a pular eventos até chegar ao final do grupo. A execução então começa com o próximo grupo de eventos. A instrução `CHANGE MASTER TO` não tem essa função, então você deve ter cuidado para identificar a localização correta para reiniciar a replicação no início de um grupo de eventos. No entanto, ao usar `CHANGE MASTER TO`, você não precisa contar os eventos que precisam ser pular, como faria com uma `SET GLOBAL sql_slave_skip_counter`, e, em vez disso, você pode simplesmente especificar a localização para reiniciar.
+When you use a `SET GLOBAL sql_slave_skip_counter` statement to skip events and the resulting position is in the middle of an event group, the replica continues to skip events until it reaches the end of the group. Execution then starts with the next event group. The [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") statement does not have this function, so you must be careful to identify the correct location to restart replication at the beginning of an event group. However, using [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") means you do not have to count the events that need to be skipped, as you do with a `SET GLOBAL sql_slave_skip_counter`, and instead you can just specify the location to restart.
 
-###### 16.1.7.3.2.1 Ignorar Transações com `SET GLOBAL sql_slave_skip_counter`
+###### 16.1.7.3.2.1 Skipping Transactions With `SET GLOBAL sql_slave_skip_counter`
 
-Depois de avaliar a transação falha para tomar quaisquer outras ações apropriadas, conforme descrito anteriormente (como considerações de segurança), conte o número de eventos que você precisa ignorar. Um evento normalmente corresponde a uma instrução SQL no log binário, mas observe que as instruções que usam `AUTO_INCREMENT` ou `LAST_INSERT_ID()` são contadas como dois eventos no log binário.
+When you have assessed the failing transaction for any other appropriate actions as described previously (such as security considerations), count the number of events that you need to skip. One event normally corresponds to one SQL statement in the binary log, but note that statements that use `AUTO_INCREMENT` or `LAST_INSERT_ID()` count as two events in the binary log.
 
-Se você quiser pular a transação completa, pode contar os eventos até o final da transação ou simplesmente pular o grupo de eventos relevante. Lembre-se de que, com `SET GLOBAL sql_slave_skip_counter`, a replica continua pular até o final de um grupo de eventos. Certifique-se de não pular muito para frente e ir para o próximo grupo de eventos ou transação, pois isso fará com que ele também seja ignorado.
+If you want to skip the complete transaction, you can count the events to the end of the transaction, or you can just skip the relevant event group. Remember that with `SET GLOBAL sql_slave_skip_counter`, the replica continues to skip to the end of an event group. Make sure you do not skip too far forward and go into the next event group or transaction, as this then causes it to be skipped as well.
 
-Emita a declaração `SET` da seguinte forma, onde *`N`* é o número de eventos da fonte a serem ignorados:
+Issue the `SET` statement as follows, where *`N`* is the number of events from the source to skip:
 
 ```sql
 SET GLOBAL sql_slave_skip_counter = N
 ```
 
-Esta declaração não pode ser emitida se [`gtid_mode=ON`](https://pt.wikipedia.org/wiki/Replicação_de_dados#Op%C3%A7%C3%B5es_de_gtids) estiver definido ou se as threads da replica estiverem em execução.
+This statement cannot be issued if [`gtid_mode=ON`](replication-options-gtids.html#sysvar_gtid_mode) is set, or if the replica threads are running.
 
-A instrução `SET GLOBAL sql_slave_skip_counter` não tem efeito imediato. Quando você emitir a instrução `START SLAVE` na próxima vez após essa instrução `SET`, o novo valor da variável de sistema `sql_slave_skip_counter` é aplicado e os eventos são ignorados. Essa instrução `START SLAVE` também define automaticamente o valor da variável de sistema de volta a
+The `SET GLOBAL sql_slave_skip_counter` statement has no immediate effect. When you issue the [`START SLAVE`](start-slave.html "13.4.2.5 START SLAVE Statement") statement for the next time following this `SET` statement, the new value for the system variable [`sql_slave_skip_counter`](replication-options-replica.html#sysvar_sql_slave_skip_counter) is applied, and the events are skipped. That [`START SLAVE`](start-slave.html "13.4.2.5 START SLAVE Statement") statement also automatically sets the value of the system variable back to
 
-0. Se a replica for uma replica de múltiplas fontes, quando você emitir a declaração `START SLAVE`, a cláusula `FOR CHANNEL` é necessária. Certifique-se de nomear o canal correto, caso contrário, os eventos serão ignorados no canal errado.
+0. If the replica is a multi-source replica, when you issue that [`START SLAVE`](start-slave.html "13.4.2.5 START SLAVE Statement") statement, the `FOR CHANNEL` clause is required. Make sure that you name the correct channel, otherwise events are skipped on the wrong channel.
 
-###### 16.1.7.3.2.2 Ignorar Transações com `ALTERAR MASTER PARA`
+###### 16.1.7.3.2.2 Skipping Transactions With `CHANGE MASTER TO`
 
-Depois de avaliar a transação falha para qualquer outra ação apropriada, conforme descrito anteriormente (como considerações de segurança), identifique as coordenadas (arquivo e posição) no log binário da fonte que representem uma posição adequada para reiniciar a replicação. Isso pode ser o início do grupo de eventos após o evento que causou o problema ou o início da próxima transação. O thread de I/O de replicação começa a ler a partir da fonte nessas coordenadas na próxima vez que o thread começar, ignorando o evento falhando. Certifique-se de que você identificou a posição com precisão, porque essa declaração não leva em conta os grupos de eventos.
+When you have assessed the failing transaction for any other appropriate actions as described previously (such as security considerations), identify the coordinates (file and position) in the source's binary log that represent a suitable position to restart replication. This can be the start of the event group following the event that caused the issue, or the start of the next transaction. The replication I/O thread begins reading from the source at these coordinates the next time the thread starts, skipping the failing event. Make sure that you have identified the position accurately, because this statement does not take event groups into account.
 
-Emita a declaração `CHANGE MASTER TO` da seguinte forma, onde *`source_log_name`* é o arquivo de log binário que contém a posição de reinício e *`source_log_pos`* é o número que representa a posição de reinício conforme declarado no arquivo de log binário:
+Issue the [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") statement as follows, where *`source_log_name`* is the binary log file that contains the restart position, and *`source_log_pos`* is the number representing the restart position as stated in the binary log file:
 
 ```sql
 CHANGE MASTER TO MASTER_LOG_FILE='source_log_name', MASTER_LOG_POS=source_log_pos;
 ```
 
-Se a replica for uma replica de múltiplas fontes, você deve usar a cláusula `FOR CHANNEL` para nomear o canal apropriado na declaração `CHANGE MASTER TO` (mudar o mestre para).
+If the replica is a multi-source replica, you must use the `FOR CHANNEL` clause to name the appropriate channel on the [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") statement.
 
-Esta declaração não pode ser emitida se `MASTER_AUTO_POSITION=1` estiver definido ou se os threads de replicação estiverem em execução. Se você precisar usar esse método de pular uma transação quando `MASTER_AUTO_POSITION=1` estiver normalmente definido, você pode alterar o ajuste para `MASTER_AUTO_POSITION=0` enquanto emite a declaração, depois alterá-lo de volta novamente. Por exemplo:
+This statement cannot be issued if `MASTER_AUTO_POSITION=1` is set, or if the replication threads are running. If you need to use this method of skipping a transaction when `MASTER_AUTO_POSITION=1` is normally set, you can change the setting to `MASTER_AUTO_POSITION=0` while issuing the statement, then change it back again afterwards. For example:
 
 ```sql
 CHANGE MASTER TO MASTER_AUTO_POSITION=0, MASTER_LOG_FILE='binlog.000145', MASTER_LOG_POS=235;

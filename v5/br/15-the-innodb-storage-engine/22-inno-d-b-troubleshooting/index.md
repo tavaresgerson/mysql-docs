@@ -1,31 +1,30 @@
-## 14.22 Solução de problemas do InnoDB
+## 14.22 InnoDB Troubleshooting
 
-14.22.1 Solução de problemas com problemas de I/O do InnoDB
+14.22.1 Troubleshooting InnoDB I/O Problems
 
-14.22.2 Forçar a recuperação do InnoDB
+14.22.2 Forcing InnoDB Recovery
 
-14.22.3 Solução de problemas das operações do dicionário de dados InnoDB
+14.22.3 Troubleshooting InnoDB Data Dictionary Operations
 
-14.22.4 Gerenciamento de Erros do InnoDB
+14.22.4 InnoDB Error Handling
 
-As seguintes diretrizes gerais se aplicam ao solução de problemas do `InnoDB`:
+The following general guidelines apply to troubleshooting `InnoDB` problems:
 
-- Quando uma operação falhar ou você suspeitar de um erro, consulte o log de erros do servidor MySQL (consulte a Seção 5.4.2, “O Log de Erros”). O Referência de Mensagens de Erro do Servidor fornece informações para solução de problemas para alguns dos erros específicos do `InnoDB` comuns que você pode encontrar.
+* When an operation fails or you suspect a bug, look at the MySQL server error log (see Section 5.4.2, “The Error Log”). Server Error Message Reference provides troubleshooting information for some of the common `InnoDB`-specific errors that you may encounter.
 
-- Se a falha estiver relacionada a um impasse, execute com a opção `innodb_print_all_deadlocks` habilitada para que detalhes sobre cada impasse sejam impressos no log de erro do servidor MySQL. Para obter informações sobre impasses, consulte a Seção 14.7.5, “Impasses no InnoDB”.
+* If the failure is related to a deadlock, run with the `innodb_print_all_deadlocks` option enabled so that details about each deadlock are printed to the MySQL server error log. For information about deadlocks, see Section 14.7.5, “Deadlocks in InnoDB”.
 
-- Os problemas relacionados ao dicionário de dados do `InnoDB` incluem declarações `CREATE TABLE` falhas (arquivos de tabela órfã), incapacidade de abrir arquivos `InnoDB` e erros de sistema não encontrando o caminho especificado. Para obter informações sobre esse tipo de problema e erro, consulte a Seção 14.22.3, “Solução de problemas de operações do dicionário de dados do InnoDB”.
+* Issues relating to the `InnoDB` data dictionary include failed `CREATE TABLE` statements (orphan table files), inability to open `InnoDB` files, and system cannot find the path specified errors. For information about these sorts of problems and errors, see Section 14.22.3, “Troubleshooting InnoDB Data Dictionary Operations”.
 
-- Ao resolver problemas, geralmente é melhor executar o servidor MySQL a partir do prompt de comando, em vez de usar o **mysqld_safe** ou como um serviço do Windows. Você pode então ver o que o **mysqld** imprime no console e, assim, ter uma melhor compreensão do que está acontecendo. No Windows, inicie o **mysqld** com a opção `--console` para direcionar a saída para a janela do console.
+* When troubleshooting, it is usually best to run the MySQL server from the command prompt, rather than through **mysqld_safe** or as a Windows service. You can then see what **mysqld** prints to the console, and so have a better grasp of what is going on. On Windows, start **mysqld** with the `--console` option to direct the output to the console window.
 
-- Ative os monitores do `InnoDB` para obter informações sobre um problema (consulte a Seção 14.18, “Monitores do InnoDB”). Se o problema estiver relacionado ao desempenho ou se o servidor parecer estar parado, você deve ativar o monitor padrão para imprimir informações sobre o estado interno do `InnoDB`. Se o problema estiver relacionado a bloqueios, ative o monitor de bloqueios. Se o problema estiver relacionado à criação de tabelas, aos espaços de tabelas ou às operações do dicionário de dados, consulte as tabelas do esquema de informações do InnoDB para examinar o conteúdo do dicionário de dados interno do `InnoDB`.
+* Enable the `InnoDB` Monitors to obtain information about a problem (see Section 14.18, “InnoDB Monitors”). If the problem is performance-related, or your server appears to be hung, you should enable the standard Monitor to print information about the internal state of `InnoDB`. If the problem is with locks, enable the Lock Monitor. If the problem is with table creation, tablespaces, or data dictionary operations, refer to the InnoDB Information Schema system tables to examine contents of the `InnoDB` internal data dictionary.
 
-  O `InnoDB` habilita temporariamente a saída padrão do Monitor `InnoDB` nas seguintes condições:
+  `InnoDB` temporarily enables standard `InnoDB` Monitor output under the following conditions:
 
-  - Uma longa espera por um semaforo
+  + A long semaphore wait
+  + `InnoDB` cannot find free blocks in the buffer pool
 
-  - `InnoDB` não consegue encontrar blocos livres no pool de buffer
+  + Over 67% of the buffer pool is occupied by lock heaps or the adaptive hash index
 
-  - Mais de 67% do pool de tampão está ocupado por pilhas de bloqueio ou pelo índice de hash adaptativo
-
-- Se você suspeitar que uma tabela está corrompida, execute `CHECK TABLE` naquela tabela.
+* If you suspect that a table is corrupt, run `CHECK TABLE` on that table.

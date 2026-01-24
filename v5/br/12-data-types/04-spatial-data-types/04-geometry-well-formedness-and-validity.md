@@ -1,25 +1,22 @@
-### 11.4.4 Geometria - Formação e Validade
+### 11.4.4 Geometry Well-Formedness and Validity
 
-Para os valores de geometria, o MySQL distingue entre os conceitos de sintaticamente bem formado e geometricamente válido.
+For geometry values, MySQL distinguishes between the concepts of syntactically well-formed and geometrically valid.
 
-Uma geometria é sintaticamente bem formada se atender a condições como as desta (não exaustiva) lista:
+A geometry is syntactically well-formed if it satisfies conditions such as those in this (nonexhaustive) list:
 
-- As linhas têm pelo menos dois pontos
+* Linestrings have at least two points
+* Polygons have at least one ring
+* Polygon rings are closed (first and last points the same)
+* Polygon rings have at least 4 points (minimum polygon is a triangle with first and last points the same)
 
-- Os polígonos têm pelo menos um anel
+* Collections are not empty (except `GeometryCollection`)
 
-- Os anéis poligonais são fechados (o primeiro e o último ponto são iguais)
+A geometry is geometrically valid if it is syntactically well-formed and satisfies conditions such as those in this (nonexhaustive) list:
 
-- Os anéis poligonais têm pelo menos 4 pontos (o polígono mínimo é um triângulo com os primeiros e últimos pontos iguais)
+* Polygons are not self-intersecting
+* Polygon interior rings are inside the exterior ring
+* Multipolygons do not have overlapping polygons
 
-- As coleções não estão vazias (exceto `GeometryCollection`)
+Spatial functions fail if a geometry is not syntactically well-formed. Spatial import functions that parse WKT or WKB values raise an error for attempts to create a geometry that is not syntactically well-formed. Syntactic well-formedness is also checked for attempts to store geometries into tables.
 
-Uma geometria é geométricamente válida se for sintaticamente bem formada e satisfazer condições como as desta (não exaustiva) lista:
-
-- Os polígonos não se intersectam mutuamente
-- Os anéis internos poligonais estão dentro do anel externo
-- Os polígonos multipoligonais não têm polígonos sobrepostos
-
-As funções espaciais falham se uma geometria não for sintaticamente bem formada. As funções de importação espacial que analisam valores WKT ou WKB geram um erro para tentativas de criar uma geometria que não seja sintaticamente bem formada. A formação sintática também é verificada para tentativas de armazenar geometrias em tabelas.
-
-É permitido inserir, selecionar e atualizar geometrias geometricamente inválidas, mas elas devem ser bem formadas sintaticamente. Devido ao custo computacional, o MySQL não verifica explicitamente a validade geométrica. Os cálculos espaciais podem detectar alguns casos de geometrias inválidas e gerar um erro, mas também podem retornar um resultado indefinido sem detectar a invalidade. Aplicações que exigem geometrias válidas geometricamente devem verificá-las usando a função `ST_IsValid()`.
+It is permitted to insert, select, and update geometrically invalid geometries, but they must be syntactically well-formed. Due to the computational expense, MySQL does not check explicitly for geometric validity. Spatial computations may detect some cases of invalid geometries and raise an error, but they may also return an undefined result without detecting the invalidity. Applications that require geometically valid geometries should check them using the `ST_IsValid()` function.

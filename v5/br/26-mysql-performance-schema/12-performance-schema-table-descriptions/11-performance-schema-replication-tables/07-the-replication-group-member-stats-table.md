@@ -1,43 +1,43 @@
-#### 25.12.11.7 Tabela replication_group_member_stats
+#### 25.12.11.7 The replication_group_member_stats Table
 
-Esta tabela mostra informações estatísticas para os membros da replicação em grupo do MySQL. Ela é preenchida apenas quando a replicação em grupo está em execução.
+This table shows statistical information for MySQL Group Replication members. It is populated only when Group Replication is running.
 
-A tabela `replication_group_member_stats` tem as seguintes colunas:
+The `replication_group_member_stats` table has these columns:
 
-- `NOME_CANAL`
+* `CHANNEL_NAME`
 
-  Nome do canal de replicação em grupo.
+  Name of the Group Replication channel.
 
-- `VIEW_ID`
+* `VIEW_ID`
 
-  Identificador de visualização atual para este grupo.
+  Current view identifier for this group.
 
-- `ID_ASSOCIAÇÃO`
+* `MEMBER_ID`
 
-  O UUID do servidor membro. Este tem um valor diferente para cada membro do grupo. Ele também serve como uma chave porque é único para cada membro.
+  The member server UUID. This has a different value for each member in the group. This also serves as a key because it is unique to each member.
 
-- `CONTAR_TRANSACOES_EM_FILA`
+* `COUNT_TRANSACTIONS_IN_QUEUE`
 
-  O número de transações na fila aguardando verificações de detecção de conflitos. Uma vez que as transações tenham sido verificadas quanto a conflitos, se passarem na verificação, elas também serão colocadas na fila para serem aplicadas.
+  The number of transactions in the queue pending conflict detection checks. Once the transactions have been checked for conflicts, if they pass the check, they are queued to be applied as well.
 
-- `CONTAR_TRANSACOES_VERIFICADAS`
+* `COUNT_TRANSACTIONS_CHECKED`
 
-  Número de transações que foram verificadas quanto a conflitos.
+  The number of transactions that have been checked for conflicts.
 
-- `CONTAR_CONFLITOS_DESCOBERTOS`
+* `COUNT_CONFLICTS_DETECTED`
 
-  O número de transações que não passaram na verificação de detecção de conflitos.
+  The number of transactions that have not passed the conflict detection check.
 
-- `CONTAR_LINHAS_DE_TRANSACOES_VALIDANDO`
+* `COUNT_TRANSACTIONS_ROWS_VALIDATING`
 
-  Número de linhas de transação que podem ser usadas para certificação, mas ainda não foram coletadas como lixo. Pode ser pensado como o tamanho atual do banco de dados de detecção de conflitos contra o qual cada transação é certificada.
+  Number of transaction rows which can be used for certification, but have not been garbage collected. Can be thought of as the current size of the conflict detection database against which each transaction is certified.
 
-- `TRANSACTIONS_COMMITTED_ALL_MEMBERS`
+* `TRANSACTIONS_COMMITTED_ALL_MEMBERS`
 
-  As transações que foram comprometidas com sucesso em todos os membros do grupo de replicação, mostradas como GTID Sets. Isso é atualizado em um intervalo de tempo fixo.
+  The transactions that have been successfully committed on all members of the replication group, shown as [GTID Sets](replication-gtids-concepts.html#replication-gtids-concepts-gtid-sets "GTID Sets"). This is updated at a fixed time interval.
 
-- `Última transação sem conflito`
+* `LAST_CONFLICT_FREE_TRANSACTION`
 
-  O identificador de transação do último registro de transação livre de conflitos que foi verificado.
+  The transaction identifier of the last conflict free transaction which was checked.
 
-A operação `TRUNCATE TABLE` não é permitida para a tabela `replication_group_member_stats`.
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is not permitted for the [`replication_group_member_stats`](performance-schema-replication-group-member-stats-table.html "25.12.11.7 The replication_group_member_stats Table") table.

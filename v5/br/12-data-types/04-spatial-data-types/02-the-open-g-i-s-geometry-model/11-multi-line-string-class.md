@@ -1,7 +1,7 @@
-#### 11.4.2.11 Classe MultiLineString
+#### 11.4.2.11 MultiLineString Class
 
-Uma `MultiLineString` é uma coleção de geometria `MultiCurve` composta por elementos `LineString`.
+A `MultiLineString` is a `MultiCurve` geometry collection composed of `LineString` elements.
 
-**Exemplos de `MultiLineString`**
+**`MultiLineString` Examples**
 
-- Em um mapa regional, uma `MultiLineString` pode representar um sistema de rios ou um sistema de rodovias.
+* On a region map, a `MultiLineString` could represent a river system or a highway system.

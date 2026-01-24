@@ -1,28 +1,28 @@
-## 12.14 Funções de bloqueio
+## 12.14 Locking Functions
 
-Esta seção descreve as funções usadas para manipular bloqueios de nível de usuário.
+This section describes functions used to manipulate user-level locks.
 
-**Tabela 12.19 Funções de bloqueio**
+**Table 12.19 Locking Functions**
 
-<table frame="box" rules="all" summary="Uma referência que lista as funções de bloqueio."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>GET_LOCK()</code></td> <td>Obtenha uma trava com nome</td> </tr><tr><td><code>IS_FREE_LOCK()</code></td> <td>Se a trava nomeada está livre</td> </tr><tr><td><code>IS_USED_LOCK()</code></td> <td>Se o bloqueio nomeado estiver em uso; retorne o identificador de conexão se for verdadeiro</td> </tr><tr><td><code>RELEASE_ALL_LOCKS()</code></td> <td>Liberar todas as trancas nomeadas atuais</td> </tr><tr><td><code>RELEASE_LOCK()</code></td> <td>Liberar o bloqueio nomeado</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists locking functions."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>GET_LOCK()</code></td> <td> Get a named lock </td> </tr><tr><td><code>IS_FREE_LOCK()</code></td> <td> Whether the named lock is free </td> </tr><tr><td><code>IS_USED_LOCK()</code></td> <td> Whether the named lock is in use; return connection identifier if true </td> </tr><tr><td><code>RELEASE_ALL_LOCKS()</code></td> <td> Release all current named locks </td> </tr><tr><td><code>RELEASE_LOCK()</code></td> <td> Release the named lock </td> </tr></tbody></table>
 
-- `GET_LOCK(str, timeout)`
+* `GET_LOCK(str,timeout)`
 
-  Tenta obter um bloqueio com um nome fornecido pela string *`str`*, usando um tempo de espera de *`timeout`* segundos. Um valor negativo de *`timeout`* significa tempo de espera infinito. O bloqueio é exclusivo. Enquanto estiver sendo mantido por uma sessão, outras sessões não podem obter um bloqueio com o mesmo nome.
+  Tries to obtain a lock with a name given by the string *`str`*, using a timeout of *`timeout`* seconds. A negative *`timeout`* value means infinite timeout. The lock is exclusive. While held by one session, other sessions cannot obtain a lock of the same name.
 
-  Retorna `1` se o bloqueio for obtido com sucesso, `0` se a tentativa expirar (por exemplo, porque outro cliente já bloqueou o nome anteriormente) ou `NULL` se ocorrer um erro (como esgotamento de memória ou o thread ser interrompido com **mysqladmin kill**).
+  Returns `1` if the lock was obtained successfully, `0` if the attempt timed out (for example, because another client has previously locked the name), or `NULL` if an error occurred (such as running out of memory or the thread was killed with **mysqladmin kill**).
 
-  Uma chave obtida com `GET_LOCK()` é liberada explicitamente ao executar `RELEASE_LOCK()` ou implicitamente quando sua sessão termina (normalmente ou anormalmente). Chaves obtidas com `GET_LOCK()` não são liberadas quando as transações são confirmadas ou revertidas.
+  A lock obtained with `GET_LOCK()` is released explicitly by executing `RELEASE_LOCK()` or implicitly when your session terminates (either normally or abnormally). Locks obtained with `GET_LOCK()` are not released when transactions commit or roll back.
 
-  No MySQL 5.7, o `GET_LOCK()` foi reimplementado usando o subsistema de bloqueio de metadados (MDL) e suas capacidades foram ampliadas. Vários bloqueios simultâneos podem ser adquiridos e o `GET_LOCK()` não libera nenhum bloqueio existente.
+  In MySQL 5.7, `GET_LOCK()` was reimplemented using the metadata locking (MDL) subsystem and its capabilities were extended. Multiple simultaneous locks can be acquired and `GET_LOCK()` does not release any existing locks.
 
-  É possível que uma sessão específica adquira múltiplas bloqueadoras para o mesmo nome. Outras sessões não podem adquirir uma bloqueadora com esse nome até que a sessão que está adquirindo libere todas as suas bloqueadoras para o nome.
+  It is even possible for a given session to acquire multiple locks for the same name. Other sessions cannot acquire a lock with that name until the acquiring session releases all its locks for the name.
 
-  Como resultado da reimplementação do MDL, as bloqueadoras com nomes únicos adquiridas com `GET_LOCK()` aparecem na tabela `metadata_locks` do Schema de Desempenho. A coluna `OBJECT_TYPE` diz `LOCK DE NÍVEL DE USUÁRIO` e a coluna `OBJECT_NAME` indica o nome da bloqueadora. No caso de múltiplas bloqueadoras serem adquiridas para o mesmo nome, apenas a primeira bloqueadora para o nome registra uma linha na tabela `metadata_locks`. Bloqueadoras subsequentes para o nome incrementam um contador na bloqueadora, mas não adquirem bloqueadoras de metadados adicionais. A linha `metadata_locks` para a bloqueadora é excluída quando a última instância da bloqueadora para o nome é liberada.
+  As a result of the MDL reimplementation, uniquely named locks acquired with `GET_LOCK()` appear in the Performance Schema `metadata_locks` table. The `OBJECT_TYPE` column says `USER LEVEL LOCK` and the `OBJECT_NAME` column indicates the lock name. In the case that multiple locks are acquired for the *same* name, only the first lock for the name registers a row in the `metadata_locks` table. Subsequent locks for the name increment a counter in the lock but do not acquire additional metadata locks. The `metadata_locks` row for the lock is deleted when the last lock instance on the name is released.
 
-  A capacidade de adquirir múltiplas bloqueadas significa que há a possibilidade de um impasse entre os clientes. Quando isso acontece, o servidor escolhe um chamador e termina sua solicitação de aquisição de bloqueio com um erro `ER_USER_LOCK_DEADLOCK`. Esse erro não faz com que as transações sejam revertidas.
+  The capability of acquiring multiple locks means there is the possibility of deadlock among clients. When this happens, the server chooses a caller and terminates its lock-acquisition request with an `ER_USER_LOCK_DEADLOCK` error. This error does not cause transactions to roll back.
 
-  Antes do MySQL 5.7, apenas um único bloqueio simultâneo poderia ser adquirido e o `GET_LOCK()` liberava qualquer bloqueio existente. A diferença no comportamento de aquisição de bloqueio a partir do MySQL 5.7 pode ser vista no seguinte exemplo. Suponha que você execute essas instruções:
+  Before MySQL 5.7, only a single simultaneous lock can be acquired and `GET_LOCK()` releases any existing lock. The difference in lock acquisition behavior as of MySQL 5.7 can be seen by the following example. Suppose that you execute these statements:
 
   ```sql
   SELECT GET_LOCK('lock1',10);
@@ -31,52 +31,52 @@ Esta seção descreve as funções usadas para manipular bloqueios de nível de 
   SELECT RELEASE_LOCK('lock1');
   ```
 
-  No MySQL 5.7 ou posterior, o segundo `GET_LOCK()` adquire um segundo bloqueio e ambas as chamadas `RELEASE_LOCK()` retornam 1 (sucesso). Antes do MySQL 5.7, o segundo `GET_LOCK()` libera o primeiro bloqueio (`'lock1')` e a segunda `RELEASE_LOCK()` retorna `NULL` (falha) porque não há `'lock1'` para ser liberado.
+  In MySQL 5.7 or later, the second `GET_LOCK()` acquires a second lock and both `RELEASE_LOCK()` calls return 1 (success). Before MySQL 5.7, the second `GET_LOCK()` releases the first lock (`'lock1')` and the second `RELEASE_LOCK()` returns `NULL` (failure) because there is no `'lock1'` to release.
 
-  O MySQL 5.7 e versões posteriores impõem um comprimento máximo de 64 caracteres para os nomes de bloqueio. Anteriormente, não havia limite.
+  MySQL 5.7 and later enforces a maximum length on lock names of 64 characters. Previously, no limit was enforced.
 
-  `GET_LOCK()` pode ser usado para implementar bloqueios de aplicativos ou para simular bloqueios de registros. Os nomes são bloqueados em nível de servidor. Se um nome tiver sido bloqueado em uma sessão, `GET_LOCK()` bloqueia qualquer solicitação de outra sessão para um bloqueio com o mesmo nome. Isso permite que clientes que concordam com um nome de bloqueio específico usem o nome para realizar bloqueios cooperativos de aconselhamento. Mas esteja ciente de que também permite que um cliente que não esteja no conjunto de clientes cooperantes bloqueie um nome, seja acidentalmente ou deliberadamente, e assim impeça que qualquer um dos clientes cooperantes bloqueie esse nome. Uma maneira de reduzir a probabilidade disso é usar nomes de bloqueio específicos do banco de dados ou específicos do aplicativo. Por exemplo, use nomes de bloqueio na forma de *`db_name.str`* ou *`app_name.str`*.
+  `GET_LOCK()` can be used to implement application locks or to simulate record locks. Names are locked on a server-wide basis. If a name has been locked within one session, `GET_LOCK()` blocks any request by another session for a lock with the same name. This enables clients that agree on a given lock name to use the name to perform cooperative advisory locking. But be aware that it also enables a client that is not among the set of cooperating clients to lock a name, either inadvertently or deliberately, and thus prevent any of the cooperating clients from locking that name. One way to reduce the likelihood of this is to use lock names that are database-specific or application-specific. For example, use lock names of the form *`db_name.str`* or *`app_name.str`*.
 
-  Se vários clientes estiverem aguardando por um bloqueio, a ordem em que eles o obtêm não é definida. As aplicações não devem assumir que os clientes obtêm o bloqueio na mesma ordem em que emitiram os pedidos de bloqueio.
+  If multiple clients are waiting for a lock, the order in which they acquire it is undefined. Applications should not assume that clients acquire the lock in the same order that they issued the lock requests.
 
-  `GET_LOCK()` é inseguro para a replicação baseada em instruções. Um aviso é registrado se você usar essa função quando `binlog_format` estiver definido como `STATEMENT`.
+  `GET_LOCK()` is unsafe for statement-based replication. A warning is logged if you use this function when `binlog_format` is set to `STATEMENT`.
 
-  Como o `GET_LOCK()` estabelece um bloqueio apenas em um único **mysqld**, ele não é adequado para uso com o NDB Cluster, que não tem como impor um bloqueio SQL em vários servidores MySQL. Consulte a Seção 21.2.7.10, “Limitações Relacionadas a Nodos Múltiplos do NDB Cluster”, para obter mais informações.
+  Since `GET_LOCK()` establishes a lock only on a single **mysqld**, it is not suitable for use with NDB Cluster, which has no way of enforcing an SQL lock across multiple MySQL servers. See Section 21.2.7.10, “Limitations Relating to Multiple NDB Cluster Nodes”, for more information.
 
-  Cuidado
+  Caution
 
-  Com a capacidade de adquirir múltiplas chaves nomeadas, é possível que uma única declaração adquira um grande número de chaves. Por exemplo:
+  With the capability of acquiring multiple named locks, it is possible for a single statement to acquire a large number of locks. For example:
 
   ```sql
   INSERT INTO ... SELECT GET_LOCK(t1.col_name) FROM t1;
   ```
 
-  Esses tipos de declarações podem ter certos efeitos adversos. Por exemplo, se a declaração falhar em algum momento e for revertida, as chaves adquiridas até o ponto de falha ainda existem. Se a intenção é que haja uma correspondência entre as linhas inseridas e as chaves adquiridas, essa intenção não é satisfeita. Além disso, se é importante que as chaves sejam concedidas em uma ordem específica, esteja ciente de que a ordem do conjunto de resultados pode diferir dependendo do plano de execução escolhido pelo otimizador. Por essas razões, pode ser melhor limitar as aplicações a uma única chamada de aquisição de chave por declaração.
+  These types of statements may have certain adverse effects. For example, if the statement fails part way through and rolls back, locks acquired up to the point of failure still exist. If the intent is for there to be a correspondence between rows inserted and locks acquired, that intent is not satisfied. Also, if it is important that locks are granted in a certain order, be aware that result set order may differ depending on which execution plan the optimizer chooses. For these reasons, it may be best to limit applications to a single lock-acquisition call per statement.
 
-  Uma interface de bloqueio diferente está disponível como um serviço de plugin ou um conjunto de funções carregáveis. Essa interface fornece namespaces de bloqueio e bloqueios de leitura e escrita distintos, ao contrário da interface fornecida pelo `GET_LOCK()` e funções relacionadas. Para detalhes, consulte a Seção 5.5.6.1, “O Serviço de Bloqueio”.
+  A different locking interface is available as either a plugin service or a set of loadable functions. This interface provides lock namespaces and distinct read and write locks, unlike the interface provided by `GET_LOCK()` and related functions. For details, see Section 5.5.6.1, “The Locking Service”.
 
-- `IS_FREE_LOCK(str)`
+* `IS_FREE_LOCK(str)`
 
-  Verifica se o bloqueio nomeado *`str`* está livre para uso (ou seja, não está bloqueado). Retorna `1` se o bloqueio estiver livre (ninguém estiver usando o bloqueio), `0` se o bloqueio estiver em uso e `NULL` se ocorrer um erro (como um argumento incorreto).
+  Checks whether the lock named *`str`* is free to use (that is, not locked). Returns `1` if the lock is free (no one is using the lock), `0` if the lock is in use, and `NULL` if an error occurs (such as an incorrect argument).
 
-  Essa função não é segura para a replicação baseada em instruções. Um aviso é registrado se você usar essa função quando o `binlog_format` estiver configurado para `STATEMENT`.
+  This function is unsafe for statement-based replication. A warning is logged if you use this function when `binlog_format` is set to `STATEMENT`.
 
-- `IS_USED_LOCK(str)`
+* `IS_USED_LOCK(str)`
 
-  Verifica se o bloqueio nomeado *`str`* está em uso (ou seja, bloqueado). Se estiver, ele retorna o identificador de conexão da sessão do cliente que detém o bloqueio. Caso contrário, ele retorna `NULL`.
+  Checks whether the lock named *`str`* is in use (that is, locked). If so, it returns the connection identifier of the client session that holds the lock. Otherwise, it returns `NULL`.
 
-  Essa função não é segura para a replicação baseada em instruções. Um aviso é registrado se você usar essa função quando o `binlog_format` estiver configurado para `STATEMENT`.
+  This function is unsafe for statement-based replication. A warning is logged if you use this function when `binlog_format` is set to `STATEMENT`.
 
-- `RELEASE_ALL_LOCKS()`
+* `RELEASE_ALL_LOCKS()`
 
-  Libera todas as chaves nomeadas mantidas pela sessão atual e retorna o número de chaves liberadas (0 se não houver nenhuma).
+  Releases all named locks held by the current session and returns the number of locks released (0 if there were none)
 
-  Essa função não é segura para a replicação baseada em instruções. Um aviso é registrado se você usar essa função quando o `binlog_format` estiver configurado para `STATEMENT`.
+  This function is unsafe for statement-based replication. A warning is logged if you use this function when `binlog_format` is set to `STATEMENT`.
 
-- `RELEASE_LOCK(str)`
+* `RELEASE_LOCK(str)`
 
-  Libera o bloqueio nomeado pela string *`str`* que foi obtido com `GET_LOCK()`. Retorna `1` se o bloqueio foi liberado, `0` se o bloqueio não foi estabelecido por este thread (neste caso, o bloqueio não é liberado) e `NULL` se o bloqueio nomeado não existia. O bloqueio não existe se ele nunca foi obtido por uma chamada a `GET_LOCK()` ou se ele já foi liberado anteriormente.
+  Releases the lock named by the string *`str`* that was obtained with `GET_LOCK()`. Returns `1` if the lock was released, `0` if the lock was not established by this thread (in which case the lock is not released), and `NULL` if the named lock did not exist. The lock does not exist if it was never obtained by a call to `GET_LOCK()` or if it has previously been released.
 
-  A instrução `DO` é conveniente para ser usada com `RELEASE_LOCK()`. Veja a Seção 13.2.3, “Instrução DO”.
+  The `DO` statement is convenient to use with `RELEASE_LOCK()`. See Section 13.2.3, “DO Statement”.
 
-  Essa função não é segura para a replicação baseada em instruções. Um aviso é registrado se você usar essa função quando o `binlog_format` estiver configurado para `STATEMENT`.
+  This function is unsafe for statement-based replication. A warning is logged if you use this function when `binlog_format` is set to `STATEMENT`.

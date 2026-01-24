@@ -1,104 +1,104 @@
-### 24.4.2 A tabela INFORMATION_SCHEMA INNODB_BUFFER_PAGE
+### 24.4.2 The INFORMATION_SCHEMA INNODB_BUFFER_PAGE Table
 
-A tabela [`INNODB_BUFFER_PAGE`](https://pt.wikipedia.org/wiki/Tabela_schema_de_informa%C3%A7%C3%A3o_InnoDB_buffer_page) fornece informações sobre cada [página](https://pt.wikipedia.org/wiki/Glos%C3%A1rio_\(pt-BR\)#glos_page) no `pool de buffer` do [InnoDB](https://pt.wikipedia.org/wiki/Glos%C3%A1rio_\(pt-BR\)#glos_buffer_pool).
+The [`INNODB_BUFFER_PAGE`](information-schema-innodb-buffer-page-table.html "24.4.2 The INFORMATION_SCHEMA INNODB_BUFFER_PAGE Table") table provides information about each [page](glossary.html#glos_page "page") in the `InnoDB` [buffer pool](glossary.html#glos_buffer_pool "buffer pool").
 
-Para informações de uso relacionadas e exemplos, consulte Seção 14.16.5, “Tabelas do Banco de Armazenamento do InnoDB INFORMATION_SCHEMA”.
+For related usage information and examples, see [Section 14.16.5, “InnoDB INFORMATION_SCHEMA Buffer Pool Tables”](innodb-information-schema-buffer-pool-tables.html "14.16.5 InnoDB INFORMATION_SCHEMA Buffer Pool Tables").
 
-Aviso
+Warning
 
-Consultar a tabela `INNODB_BUFFER_PAGE` pode afetar o desempenho. Não consulte essa tabela em um sistema de produção, a menos que você esteja ciente do impacto no desempenho e tenha determinado que ele é aceitável. Para evitar afetar o desempenho em um sistema de produção, reproduza o problema que você deseja investigar e consulte as estatísticas do pool de buffers em uma instância de teste.
+Querying the [`INNODB_BUFFER_PAGE`](information-schema-innodb-buffer-page-table.html "24.4.2 The INFORMATION_SCHEMA INNODB_BUFFER_PAGE Table") table can affect performance. Do not query this table on a production system unless you are aware of the performance impact and have determined it to be acceptable. To avoid impacting performance on a production system, reproduce the issue you want to investigate and query buffer pool statistics on a test instance.
 
-A tabela [`INNODB_BUFFER_PAGE`](https://pt.wikipedia.org/wiki/Tabela_schema_de_informa%C3%A7%C3%A3o_innodb_buffer_page) tem essas colunas:
+The [`INNODB_BUFFER_PAGE`](information-schema-innodb-buffer-page-table.html "24.4.2 The INFORMATION_SCHEMA INNODB_BUFFER_PAGE Table") table has these columns:
 
-- `POOL_ID`
+* `POOL_ID`
 
-  O ID do pool de buffers. Este é um identificador para distinguir entre múltiplas instâncias do pool de buffers.
+  The buffer pool ID. This is an identifier to distinguish between multiple buffer pool instances.
 
-- `BLOCK_ID`
+* `BLOCK_ID`
 
-  O ID do bloco do pool de tampão.
+  The buffer pool block ID.
 
-- `ESPACO`
+* `SPACE`
 
-  O ID do espaço de tabela; o mesmo valor que `INNODB_SYS_TABLES.SPACE`.
+  The tablespace ID; the same value as `INNODB_SYS_TABLES.SPACE`.
 
-- `NUMERO_Página`
+* `PAGE_NUMBER`
 
-  O número da página.
+  The page number.
 
-- `PAGE_TYPE`
+* `PAGE_TYPE`
 
-  O tipo de página. A tabela a seguir mostra os valores permitidos.
+  The page type. The following table shows the permitted values.
 
-  **Tabela 24.4 Valores de INNODB_BUFFER_PAGE.PAGE_TYPE**
+  **Table 24.4 INNODB_BUFFER_PAGE.PAGE_TYPE Values**
 
-  <table summary="Mapeamento para a interpretação dos valores de INNODB_BUFFER_PAGE.PAGE_TYPE."><col style="width: 30%"/><col style="width: 30%"/><thead><tr> <th>Tipo de página</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>PH_HTML_CODE_<code>INODE</code>]</td> <td>Página recém-atribuída</td> </tr><tr> <td>PH_HTML_CODE_<code>INODE</code>]</td> <td>Página BLOB não compactada</td> </tr><tr> <td>PH_HTML_CODE_<code>SYSTEM</code>]</td> <td>Página de comp BLOB subsequente</td> </tr><tr> <td>PH_HTML_CODE_<code>TRX_SYSTEM</code>]</td> <td>Primeira página compactada BLOB</td> </tr><tr> <td>PH_HTML_CODE_<code>UNDO_LOG</code>]</td> <td>Página de descrição do alcance</td> </tr><tr> <td>PH_HTML_CODE_<code>UNKNOWN</code>]</td> <td>Cabeçalho de espaço de arquivo</td> </tr><tr> <td><code>IBUF_BITMAP</code></td> <td>Insira a bitmap de buffer</td> </tr><tr> <td><code>IBUF_FREE_LIST</code></td> <td>Insira a lista de buffers livres</td> </tr><tr> <td><code>IBUF_INDEX</code></td> <td>Insira o índice do buffer</td> </tr><tr> <td><code>INDEX</code></td> <td>nó de árvore B</td> </tr><tr> <td><code>INODE</code></td> <td>Nó do índice</td> </tr><tr> <td><code>BLOB</code><code>INODE</code>]</td> <td>Índice R-tree</td> </tr><tr> <td><code>SYSTEM</code></td> <td>Página do sistema</td> </tr><tr> <td><code>TRX_SYSTEM</code></td> <td>Dados do sistema de transações</td> </tr><tr> <td><code>UNDO_LOG</code></td> <td>Desfazer página de log</td> </tr><tr> <td><code>UNKNOWN</code></td> <td>Desconhecido</td> </tr></tbody></table>
+  <table summary="Mapping for interpreting INNODB_BUFFER_PAGE.PAGE_TYPE values."><col style="width: 30%"/><col style="width: 30%"/><thead><tr> <th>Page Type</th> <th>Description</th> </tr></thead><tbody><tr> <td><code>ALLOCATED</code></td> <td>Freshly allocated page</td> </tr><tr> <td><code>BLOB</code></td> <td>Uncompressed BLOB page</td> </tr><tr> <td><code>COMPRESSED_BLOB2</code></td> <td>Subsequent comp BLOB page</td> </tr><tr> <td><code>COMPRESSED_BLOB</code></td> <td>First compressed BLOB page</td> </tr><tr> <td><code>EXTENT_DESCRIPTOR</code></td> <td>Extent descriptor page</td> </tr><tr> <td><code>FILE_SPACE_HEADER</code></td> <td>File space header</td> </tr><tr> <td><code>IBUF_BITMAP</code></td> <td>Insert buffer bitmap</td> </tr><tr> <td><code>IBUF_FREE_LIST</code></td> <td>Insert buffer free list</td> </tr><tr> <td><code>IBUF_INDEX</code></td> <td>Insert buffer index</td> </tr><tr> <td><code>INDEX</code></td> <td>B-tree node</td> </tr><tr> <td><code>INODE</code></td> <td>Index node</td> </tr><tr> <td><code>RTREE_INDEX</code></td> <td>R-tree index</td> </tr><tr> <td><code>SYSTEM</code></td> <td>System page</td> </tr><tr> <td><code>TRX_SYSTEM</code></td> <td>Transaction system data</td> </tr><tr> <td><code>UNDO_LOG</code></td> <td>Undo log page</td> </tr><tr> <td><code>UNKNOWN</code></td> <td>Unknown</td> </tr></tbody></table>
 
-- `FLUSH_TYPE`
+* `FLUSH_TYPE`
 
-  O tipo de descarga.
+  The flush type.
 
-- `FIX_COUNT`
+* `FIX_COUNT`
 
-  O número de threads que estão usando esse bloco dentro do pool de buffer. Quando é zero, o bloco está apto a ser removido.
+  The number of threads using this block within the buffer pool. When zero, the block is eligible to be evicted.
 
-- `IS_HASHED`
+* `IS_HASHED`
 
-  Se um índice de hash foi construído nesta página.
+  Whether a hash index has been built on this page.
 
-- `NOVA_ALTERAÇÃO`
+* `NEWEST_MODIFICATION`
 
-  O Número de Sequência de Registro da modificação mais recente.
+  The Log Sequence Number of the youngest modification.
 
-- `MAIOR IDADE DA MODIFICAÇÃO`
+* `OLDEST_MODIFICATION`
 
-  O Número de Sequência de Registro da modificação mais antiga.
+  The Log Sequence Number of the oldest modification.
 
-- `ACCESS_TIME`
+* `ACCESS_TIME`
 
-  Um número abstrato usado para julgar o tempo de acesso inicial da página.
+  An abstract number used to judge the first access time of the page.
 
-- `NOME_TABELA`
+* `TABLE_NAME`
 
-  O nome da tabela à qual a página pertence. Esta coluna é aplicável apenas a páginas com o valor `PAGE_TYPE` de `INDEX`.
+  The name of the table the page belongs to. This column is applicable only to pages with a `PAGE_TYPE` value of `INDEX`.
 
-- `INDEX_NAME`
+* `INDEX_NAME`
 
-  O nome do índice ao qual a página pertence. Isso pode ser o nome de um índice agrupado ou de um índice secundário. Esta coluna é aplicável apenas a páginas com o valor `PAGE_TYPE` de `INDEX`.
+  The name of the index the page belongs to. This can be the name of a clustered index or a secondary index. This column is applicable only to pages with a `PAGE_TYPE` value of `INDEX`.
 
-- `NÚMERO_RECORDS`
+* `NUMBER_RECORDS`
 
-  O número de registros na página.
+  The number of records within the page.
 
-- `DATA_SIZE`
+* `DATA_SIZE`
 
-  A soma dos tamanhos dos registros. Esta coluna é aplicável apenas a páginas com um valor de `PAGE_TYPE` de `INDEX`.
+  The sum of the sizes of the records. This column is applicable only to pages with a `PAGE_TYPE` value of `INDEX`.
 
-- `COMPRESSED_SIZE`
+* `COMPRESSED_SIZE`
 
-  O tamanho da página comprimida. `NULL` para páginas que não estão comprimidas.
+  The compressed page size. `NULL` for pages that are not compressed.
 
-- `PAGE_STATE`
+* `PAGE_STATE`
 
-  O estado da página. A tabela a seguir mostra os valores permitidos.
+  The page state. The following table shows the permitted values.
 
-  **Tabela 24.5 Valores de INNODB_BUFFER_PAGE.PAGE_STATE**
+  **Table 24.5 INNODB_BUFFER_PAGE.PAGE_STATE Values**
 
-  <table summary="Mapeamento para a interpretação dos valores de INNODB_BUFFER_PAGE.PAGE_STATE."><thead><tr> <th>Estado de Page</th> <th>Descrição</th> </tr></thead><tbody><tr> <td><code>FILE_PAGE</code></td> <td>Uma página de arquivo com buffer</td> </tr><tr> <td><code>MEMORY</code></td> <td>Contém um objeto de memória principal</td> </tr><tr> <td><code>NOT_USED</code></td> <td>Na lista gratuita</td> </tr><tr> <td><code>NULL</code></td> <td>Páginas compactadas limpas, páginas compactadas na lista de limpeza, páginas usadas como sentinelas de monitoramento do pool de buffer</td> </tr><tr> <td><code>READY_FOR_USE</code></td> <td>Uma página gratuita</td> </tr><tr> <td><code>REMOVE_HASH</code></td> <td>O índice de hash deve ser removido antes de ser colocado na lista gratuita</td> </tr></tbody></table>
+  <table summary="Mapping for interpreting INNODB_BUFFER_PAGE.PAGE_STATE values."><thead><tr> <th>Page State</th> <th>Description</th> </tr></thead><tbody><tr> <td><code>FILE_PAGE</code></td> <td>A buffered file page</td> </tr><tr> <td><code>MEMORY</code></td> <td>Contains a main memory object</td> </tr><tr> <td><code>NOT_USED</code></td> <td>In the free list</td> </tr><tr> <td><code>NULL</code></td> <td>Clean compressed pages, compressed pages in the flush list, pages used as buffer pool watch sentinels</td> </tr><tr> <td><code>READY_FOR_USE</code></td> <td>A free page</td> </tr><tr> <td><code>REMOVE_HASH</code></td> <td>Hash index should be removed before placing in the free list</td> </tr></tbody></table>
 
-- `IO_FIX`
+* `IO_FIX`
 
-  Se algum I/O estiver pendente para esta página: `IO_NONE` = nenhum I/O pendente, `IO_READ` = pendente de leitura, `IO_WRITE` = pendente de escrita.
+  Whether any I/O is pending for this page: `IO_NONE` = no pending I/O, `IO_READ` = read pending, `IO_WRITE` = write pending.
 
-- `IS_OLD`
+* `IS_OLD`
 
-  Se o bloco está na sublista de blocos antigos na lista LRU.
+  Whether the block is in the sublist of old blocks in the LRU list.
 
-- `FREE_PAGE_CLOCK`
+* `FREE_PAGE_CLOCK`
 
-  O valor do contador `freed_page_clock` quando o bloco foi o último colocado na cabeça da lista LRU. O contador `freed_page_clock` acompanha o número de blocos removidos do final da lista LRU.
+  The value of the `freed_page_clock` counter when the block was the last placed at the head of the LRU list. The `freed_page_clock` counter tracks the number of blocks removed from the end of the LRU list.
 
-#### Exemplo
+#### Example
 
 ```sql
 mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_BUFFER_PAGE LIMIT 1\G
@@ -125,12 +125,12 @@ OLDEST_MODIFICATION: 0
     FREE_PAGE_CLOCK: 66
 ```
 
-#### Notas
+#### Notes
 
-- Esta tabela é útil principalmente para o monitoramento de desempenho em nível de especialista, ou quando se desenvolvem extensões relacionadas ao desempenho para o MySQL.
+* This table is useful primarily for expert-level performance monitoring, or when developing performance-related extensions for MySQL.
 
-- Você deve ter o privilégio `PROCESSO` para consultar esta tabela.
+* You must have the [`PROCESS`](privileges-provided.html#priv_process) privilege to query this table.
 
-- Use a tabela `INFORMATION_SCHEMA` `COLUMNS` ou a instrução `SHOW COLUMNS` para visualizar informações adicionais sobre as colunas desta tabela, incluindo tipos de dados e valores padrão.
+* Use the `INFORMATION_SCHEMA` [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") table or the [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") statement to view additional information about the columns of this table, including data types and default values.
 
-- Quando tabelas, linhas de tabela, partições ou índices são excluídos, as páginas associadas permanecem no pool de buffer até que haja espaço necessário para outros dados. A tabela `INNODB_BUFFER_PAGE` relata informações sobre essas páginas até que sejam expulsas do pool de buffer. Para mais informações sobre como o `InnoDB` gerencia os dados do pool de buffer, consulte Seção 14.5.1, “Pool de Buffer”.
+* When tables, table rows, partitions, or indexes are deleted, associated pages remain in the buffer pool until space is required for other data. The [`INNODB_BUFFER_PAGE`](information-schema-innodb-buffer-page-table.html "24.4.2 The INFORMATION_SCHEMA INNODB_BUFFER_PAGE Table") table reports information about these pages until they are evicted from the buffer pool. For more information about how the `InnoDB` manages buffer pool data, see [Section 14.5.1, “Buffer Pool”](innodb-buffer-pool.html "14.5.1 Buffer Pool").

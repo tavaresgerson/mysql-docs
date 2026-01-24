@@ -1,14 +1,14 @@
-### 13.2.3 Declaração do DO
+### 13.2.3 DO Statement
 
 ```sql
 DO expr [, expr] ...
 ```
 
-`DO` executa as expressões, mas não retorna nenhum resultado. Na maioria dos casos, `DO` é uma abreviação de `SELECT expr, ...`, mas tem a vantagem de ser um pouco mais rápido quando você não se importa com o resultado.
+[`DO`](do.html "13.2.3 DO Statement") executes the expressions but does not return any results. In most respects, [`DO`](do.html "13.2.3 DO Statement") is shorthand for `SELECT expr, ...`, but has the advantage that it is slightly faster when you do not care about the result.
 
-`DO` é útil principalmente com funções que têm efeitos colaterais, como `RELEASE_LOCK()`.
+[`DO`](do.html "13.2.3 DO Statement") is useful primarily with functions that have side effects, such as [`RELEASE_LOCK()`](locking-functions.html#function_release-lock).
 
-Exemplo: A instrução `SELECT` pausa, mas também gera um conjunto de resultados:
+Example: This [`SELECT`](select.html "13.2.9 SELECT Statement") statement pauses, but also produces a result set:
 
 ```sql
 mysql> SELECT SLEEP(5);
@@ -20,13 +20,13 @@ mysql> SELECT SLEEP(5);
 1 row in set (5.02 sec)
 ```
 
-`DO`, por outro lado, pausa sem produzir um conjunto de resultados.:
+[`DO`](do.html "13.2.3 DO Statement"), on the other hand, pauses without producing a result set.:
 
 ```sql
 mysql> DO SLEEP(5);
 Query OK, 0 rows affected (4.99 sec)
 ```
 
-Isso pode ser útil, por exemplo, em uma função ou gatilho armazenado, que proíbem instruções que produzem conjuntos de resultados.
+This could be useful, for example in a stored function or trigger, which prohibit statements that produce result sets.
 
-`DO` executa apenas expressões. Não pode ser usado em todos os casos em que o `SELECT` pode ser usado. Por exemplo, `DO id FROM t1` é inválido porque faz referência a uma tabela.
+[`DO`](do.html "13.2.3 DO Statement") only executes expressions. It cannot be used in all cases where `SELECT` can be used. For example, `DO id FROM t1` is invalid because it references a table.

@@ -1,133 +1,131 @@
-#### 25.12.4.1 A tabela events_waits_current
+#### 25.12.4.1 The events_waits_current Table
 
-A tabela `events_waits_current` contém eventos de espera atuais. A tabela armazena uma linha por thread, mostrando o status atual do evento de espera mais recente monitorado da thread, portanto, não há uma variável do sistema para configurar o tamanho da tabela.
+The [`events_waits_current`](performance-schema-events-waits-current-table.html "25.12.4.1 The events_waits_current Table") table contains current wait events. The table stores one row per thread showing the current status of the thread's most recent monitored wait event, so there is no system variable for configuring the table size.
 
-Das tabelas que contêm linhas de eventos de espera, `events_waits_current` é a mais fundamental. Outras tabelas que contêm linhas de eventos de espera são logicamente derivadas dos eventos atuais. Por exemplo, as tabelas `events_waits_history` e `events_waits_history_long` são coleções dos eventos de espera mais recentes que terminaram, até um número máximo de linhas por thread e globalmente em todos os fios, respectivamente.
+Of the tables that contain wait event rows, [`events_waits_current`](performance-schema-events-waits-current-table.html "25.12.4.1 The events_waits_current Table") is the most fundamental. Other tables that contain wait event rows are logically derived from the current events. For example, the [`events_waits_history`](performance-schema-events-waits-history-table.html "25.12.4.2 The events_waits_history Table") and [`events_waits_history_long`](performance-schema-events-waits-history-long-table.html "25.12.4.3 The events_waits_history_long Table") tables are collections of the most recent wait events that have ended, up to a maximum number of rows per thread and globally across all threads, respectively.
 
-Para obter mais informações sobre a relação entre as três tabelas de eventos de espera, consulte Seção 25.9, "Tabelas do Schema de Desempenho para Eventos Atuais e Históricos".
+For more information about the relationship between the three wait event tables, see [Section 25.9, “Performance Schema Tables for Current and Historical Events”](performance-schema-event-tables.html "25.9 Performance Schema Tables for Current and Historical Events").
 
-Para obter informações sobre como configurar se os eventos de espera devem ser coletados, consulte Seção 25.12.4, "Tabelas de Eventos de Espera do Schema de Desempenho".
+For information about configuring whether to collect wait events, see [Section 25.12.4, “Performance Schema Wait Event Tables”](performance-schema-wait-tables.html "25.12.4 Performance Schema Wait Event Tables").
 
-A tabela `events_waits_current` tem as seguintes colunas:
+The [`events_waits_current`](performance-schema-events-waits-current-table.html "25.12.4.1 The events_waits_current Table") table has these columns:
 
-- `THREAD_ID`, `EVENT_ID`
+* `THREAD_ID`, `EVENT_ID`
 
-  O thread associado ao evento e o número do evento atual do thread quando o evento começa. Os valores `THREAD_ID` e `EVENT_ID` juntos identificam de forma única a linha. Nenhuma linha tem o mesmo par de valores.
+  The thread associated with the event and the thread current event number when the event starts. The `THREAD_ID` and `EVENT_ID` values taken together uniquely identify the row. No two rows have the same pair of values.
 
-- `END_EVENT_ID`
+* `END_EVENT_ID`
 
-  Essa coluna é definida como `NULL` quando o evento começa e atualizada para o número atual do evento do thread quando o evento termina.
+  This column is set to `NULL` when the event starts and updated to the thread current event number when the event ends.
 
-- `NOME_DO_Evento`
+* `EVENT_NAME`
 
-  O nome do instrumento que produziu o evento. Este é um valor `NOME` da tabela `setup_instruments`. Os nomes dos instrumentos podem ter várias partes e formar uma hierarquia, conforme discutido na Seção 25.6, “Convenções de Nomenclatura de Instrumentos do Schema de Desempenho”.
+  The name of the instrument that produced the event. This is a `NAME` value from the [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table. Instrument names may have multiple parts and form a hierarchy, as discussed in [Section 25.6, “Performance Schema Instrument Naming Conventions”](performance-schema-instrument-naming.html "25.6 Performance Schema Instrument Naming Conventions").
 
-- `FONTE`
+* `SOURCE`
 
-  O nome do arquivo fonte que contém o código instrumentado que produziu o evento e o número da linha no arquivo em que a instrumentação ocorre. Isso permite que você verifique a fonte para determinar exatamente qual código está envolvido. Por exemplo, se um mutex ou bloqueio estiver sendo bloqueado, você pode verificar o contexto em que isso ocorre.
+  The name of the source file containing the instrumented code that produced the event and the line number in the file at which the instrumentation occurs. This enables you to check the source to determine exactly what code is involved. For example, if a mutex or lock is being blocked, you can check the context in which this occurs.
 
-- `TIMER_START`, `TIMER_END`, `TIMER_WAIT`
+* `TIMER_START`, `TIMER_END`, `TIMER_WAIT`
 
-  Informações de temporização para o evento. A unidade desses valores é picosegundos (trilhésimos de segundo). Os valores `TIMER_START` e `TIMER_END` indicam quando o temporizador do evento começou e terminou. `TIMER_WAIT` é o tempo decorrido do evento (duração).
+  Timing information for the event. The unit for these values is picoseconds (trillionths of a second). The `TIMER_START` and `TIMER_END` values indicate when event timing started and ended. `TIMER_WAIT` is the event elapsed time (duration).
 
-  Se um evento ainda não tiver terminado, `TIMER_END` é o valor atual do temporizador e `TIMER_WAIT` é o tempo que já passou (`TIMER_END` − `TIMER_START`).
+  If an event has not finished, `TIMER_END` is the current timer value and `TIMER_WAIT` is the time elapsed so far (`TIMER_END` − `TIMER_START`).
 
-  Se um evento for gerado a partir de um instrumento que tem `TIMED = NO`, as informações de temporização não são coletadas, e `TIMER_START`, `TIMER_END` e `TIMER_WAIT` são todos `NULL`.
+  If an event is produced from an instrument that has `TIMED = NO`, timing information is not collected, and `TIMER_START`, `TIMER_END`, and `TIMER_WAIT` are all `NULL`.
 
-  Para discussão sobre picossegundos como unidade para tempos de eventos e fatores que afetam os valores de tempo, consulte Seção 25.4.1, “Cronometragem de Eventos do Schema de Desempenho”.
+  For discussion of picoseconds as the unit for event times and factors that affect time values, see [Section 25.4.1, “Performance Schema Event Timing”](performance-schema-timing.html "25.4.1 Performance Schema Event Timing").
 
-- `SPINS`
+* `SPINS`
 
-  Para um mutex, o número de rodadas de rotação. Se o valor for `NULL`, o código não usa rodadas de rotação ou a rotação não é instrumentada.
+  For a mutex, the number of spin rounds. If the value is `NULL`, the code does not use spin rounds or spinning is not instrumented.
 
-- `OBJECT_SCHEMA`, `OBJECT_NAME`, `OBJECT_TYPE`, `OBJECT_INSTANCE_BEGIN`
+* `OBJECT_SCHEMA`, `OBJECT_NAME`, `OBJECT_TYPE`, `OBJECT_INSTANCE_BEGIN`
 
-  Essas colunas identificam o objeto "sobre o qual está sendo realizada a ação". O que isso significa depende do tipo do objeto.
+  These columns identify the object “being acted on.” What that means depends on the object type.
 
-  Para um objeto de sincronização (`cond`, `mutex`, `rwlock`):
+  For a synchronization object (`cond`, `mutex`, `rwlock`):
 
-  - `OBJECT_SCHEMA`, `OBJECT_NAME` e `OBJECT_TYPE` estão `NULL`.
+  + `OBJECT_SCHEMA`, `OBJECT_NAME`, and `OBJECT_TYPE` are `NULL`.
 
-  - `OBJECT_INSTANCE_BEGIN` é o endereço do objeto de sincronização na memória.
+  + `OBJECT_INSTANCE_BEGIN` is the address of the synchronization object in memory.
 
-  Para um objeto de E/S de arquivo:
+  For a file I/O object:
 
-  - `OBJECT_SCHEMA` é `NULL`.
+  + `OBJECT_SCHEMA` is `NULL`.
 
-  - `OBJECT_NAME` é o nome do arquivo.
+  + `OBJECT_NAME` is the file name.
+  + `OBJECT_TYPE` is `FILE`.
 
-  - `OBJECT_TYPE` é `FILE`.
+  + `OBJECT_INSTANCE_BEGIN` is an address in memory.
 
-  - `OBJECT_INSTANCE_BEGIN` é um endereço na memória.
+  For a socket object:
 
-  Para um objeto socket:
+  + `OBJECT_NAME` is the `IP:PORT` value for the socket.
 
-  - `OBJECT_NAME` é o valor `IP:PORT` para o socket.
+  + `OBJECT_INSTANCE_BEGIN` is an address in memory.
 
-  - `OBJECT_INSTANCE_BEGIN` é um endereço na memória.
+  For a table I/O object:
 
-  Para um objeto de entrada/saída de tabela:
+  + `OBJECT_SCHEMA` is the name of the schema that contains the table.
 
-  - `OBJECT_SCHEMA` é o nome do esquema que contém a tabela.
+  + `OBJECT_NAME` is the table name.
+  + `OBJECT_TYPE` is `TABLE` for a persistent base table or `TEMPORARY TABLE` for a temporary table.
 
-  - `OBJECT_NAME` é o nome da tabela.
+  + `OBJECT_INSTANCE_BEGIN` is an address in memory.
 
-  - `OBJECT_TYPE` é `TABLE` para uma tabela de base persistente ou `TEMPORARY TABLE` para uma tabela temporária.
+  An `OBJECT_INSTANCE_BEGIN` value itself has no meaning, except that different values indicate different objects. `OBJECT_INSTANCE_BEGIN` can be used for debugging. For example, it can be used with `GROUP BY OBJECT_INSTANCE_BEGIN` to see whether the load on 1,000 mutexes (that protect, say, 1,000 pages or blocks of data) is spread evenly or just hitting a few bottlenecks. This can help you correlate with other sources of information if you see the same object address in a log file or another debugging or performance tool.
 
-  - `OBJECT_INSTANCE_BEGIN` é um endereço na memória.
+* `INDEX_NAME`
 
-  Um valor `OBJECT_INSTANCE_BEGIN` por si só não tem significado, exceto que diferentes valores indicam diferentes objetos. `OBJECT_INSTANCE_BEGIN` pode ser usado para depuração. Por exemplo, pode ser usado com `GROUP BY OBJECT_INSTANCE_BEGIN` para ver se a carga em 1.000 mutexes (que protegem, por exemplo, 1.000 páginas ou blocos de dados) está distribuída de forma uniforme ou apenas atingindo alguns gargalos. Isso pode ajudá-lo a correlacionar com outras fontes de informações se você vir o mesmo endereço de objeto em um arquivo de log ou em outra ferramenta de depuração ou desempenho.
+  The name of the index used. `PRIMARY` indicates the table primary index. `NULL` means that no index was used.
 
-- `INDEX_NAME`
+* `NESTING_EVENT_ID`
 
-  O nome do índice usado. `PRIMARY` indica o índice primário da tabela. `NULL` significa que nenhum índice foi usado.
+  The `EVENT_ID` value of the event within which this event is nested.
 
-- `NESTING_EVENT_ID`
+* `NESTING_EVENT_TYPE`
 
-  O valor `EVENT_ID` do evento dentro do qual este evento está aninhado.
+  The nesting event type. The value is `TRANSACTION`, `STATEMENT`, `STAGE`, or `WAIT`.
 
-- `NESTING_EVENT_TYPE`
+* `OPERATION`
 
-  O tipo de evento de nidificação. O valor é `TRANSACTION`, `STATEMENT`, `STAGE` ou `WAIT`.
+  The type of operation performed, such as `lock`, `read`, or `write`.
 
-- `OPERAÇÃO`
+* `NUMBER_OF_BYTES`
 
-  O tipo de operação realizada, como `lock`, `read` ou `write`.
+  The number of bytes read or written by the operation. For table I/O waits (events for the `wait/io/table/sql/handler` instrument), `NUMBER_OF_BYTES` indicates the number of rows. If the value is greater than 1, the event is for a batch I/O operation. The following discussion describes the difference between exclusively single-row reporting and reporting that reflects batch I/O.
 
-- `NUMÉRO_DE_BÁTONS`
-
-  O número de bytes lidos ou escritos pela operação. Para espera de I/O de tabela (eventos para o instrumento `wait/io/table/sql/handler`), `NUMBER_OF_BYTES` indica o número de linhas. Se o valor for maior que 1, o evento é para uma operação de I/O em lote. A discussão a seguir descreve a diferença entre relatórios de apenas uma linha exclusivamente e relatórios que refletem o I/O em lote.
-
-  O MySQL executa junções usando uma implementação de loop aninhado. O trabalho do instrumento do Schema de Desempenho é fornecer o número de linhas e o tempo de execução acumulado por tabela na junção. Suponha uma consulta de junção da seguinte forma, que é executada usando uma ordem de junção de tabelas `t1`, `t2`, `t3`:
+  MySQL executes joins using a nested-loop implementation. The job of the Performance Schema instrumentation is to provide row count and accumulated execution time per table in the join. Assume a join query of the following form that is executed using a table join order of `t1`, `t2`, `t3`:
 
   ```sql
   SELECT ... FROM t1 JOIN t2 ON ... JOIN t3 ON ...
   ```
 
-  A expressão "fanout" refere-se ao aumento ou diminuição no número de linhas ao adicionar uma tabela durante o processamento de junção. Se o fanout da tabela `t3` for maior que 1, a maioria das operações de recuperação de linhas será para essa tabela. Suponha que a junção acesse 10 linhas de `t1`, 20 linhas de `t2` por linha de `t1` e 30 linhas de `t3` por linha da tabela `t2`. Com relatórios de uma única linha, o número total de operações instrumentadas é:
+  Table “fanout” is the increase or decrease in number of rows from adding a table during join processing. If the fanout for table `t3` is greater than 1, the majority of row-fetch operations are for that table. Suppose that the join accesses 10 rows from `t1`, 20 rows from `t2` per row from `t1`, and 30 rows from `t3` per row of table `t2`. With single-row reporting, the total number of instrumented operations is:
 
   ```sql
   10 + (10 * 20) + (10 * 20 * 30) = 6210
   ```
 
-  Uma redução significativa no número de operações instrumentadas pode ser alcançada agregando-as por varredura (ou seja, por combinação única de linhas de `t1` e `t2`). Com o relatório de E/S em lote, o Schema de Desempenho produz um evento para cada varredura da tabela mais interna `t3`, em vez de para cada linha, e o número de operações de linha instrumentadas é reduzido para:
+  A significant reduction in the number of instrumented operations is achievable by aggregating them per scan (that is, per unique combination of rows from `t1` and `t2`). With batch I/O reporting, the Performance Schema produces an event for each scan of the innermost table `t3` rather than for each row, and the number of instrumented row operations reduces to:
 
   ```sql
   10 + (10 * 20) + (10 * 20) = 410
   ```
 
-  Isso representa uma redução de 93%, ilustrando como a estratégia de relatórios por lote reduz significativamente o overhead do Schema de Desempenho para o I/O de tabelas, reduzindo o número de chamadas de relatório. A compensação é uma menor precisão para o tempo de eventos. Em vez de tempo para uma operação de linha individual, como no relatório por linha, o tempo para o I/O por lote inclui o tempo gasto em operações como bufferização de junção, agregação e retorno de linhas ao cliente.
+  That is a reduction of 93%, illustrating how the batch-reporting strategy significantly reduces Performance Schema overhead for table I/O by reducing the number of reporting calls. The tradeoff is lesser accuracy for event timing. Rather than time for an individual row operation as in per-row reporting, timing for batch I/O includes time spent for operations such as join buffering, aggregation, and returning rows to the client.
 
-  Para que o relatório de I/O em lote ocorra, essas condições devem ser verdadeiras:
+  For batch I/O reporting to occur, these conditions must be true:
 
-  - A execução de consultas acessa a tabela mais interna de um bloco de consulta (para uma consulta de uma única tabela, essa tabela é considerada a mais interna)
+  + Query execution accesses the innermost table of a query block (for a single-table query, that table counts as innermost)
 
-  - A execução da consulta não solicita uma única linha da tabela (por exemplo, o acesso a `eq_ref` impede o uso de relatórios em lote)
+  + Query execution does not request a single row from the table (so, for example, [`eq_ref`](explain-output.html#jointype_eq_ref) access prevents use of batch reporting)
 
-  - A execução da consulta não avalia uma subconsulta que contém acesso à tabela
+  + Query execution does not evaluate a subquery containing table access for the table
 
-- `FLAGS`
+* `FLAGS`
 
-  Reservado para uso futuro.
+  Reserved for future use.
 
-A operação `TRUNCATE TABLE` é permitida para a tabela `events_waits_current`. Ela remove as linhas.
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is permitted for the [`events_waits_current`](performance-schema-events-waits-current-table.html "25.12.4.1 The events_waits_current Table") table. It removes the rows.

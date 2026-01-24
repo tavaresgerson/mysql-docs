@@ -1,27 +1,27 @@
-### 14.19.2 Recuperação do InnoDB
+### 14.19.2 InnoDB Recovery
 
-Esta seção descreve a recuperação do `InnoDB`. Os tópicos incluem:
+This section describes `InnoDB` recovery. Topics include:
 
-- Recuperação no Ponto de Tempo
-- Recuperação de corrupção de dados ou falha no disco
-- Recuperação de falha do InnoDB
-- Descoberta de Tablespace durante a recuperação de falhas
+* Point-in-Time Recovery
+* Recovery from Data Corruption or Disk Failure
+* InnoDB Crash Recovery
+* Tablespace Discovery During Crash Recovery
 
-#### Recuperação no Ponto de Tempo
+#### Point-in-Time Recovery
 
-Para recuperar um banco de dados `InnoDB` até o momento atual a partir do momento em que o backup físico foi feito, você deve executar o servidor MySQL com o registro binário habilitado, mesmo antes de fazer o backup. Para realizar a recuperação em um ponto específico após restaurar um backup, você pode aplicar as alterações do log binário que ocorreram após o backup ter sido feito. Veja a Seção 7.5, “Recuperação em Ponto Específico (Incremental)”).
+To recover an `InnoDB` database to the present from the time at which the physical backup was made, you must run MySQL server with binary logging enabled, even before taking the backup. To achieve point-in-time recovery after restoring a backup, you can apply changes from the binary log that occurred after the backup was made. See Section 7.5, “Point-in-Time (Incremental) Recovery” Recovery").
 
-#### Recuperação de corrupção de dados ou falha no disco
+#### Recovery from Data Corruption or Disk Failure
 
-Se o seu banco de dados ficar corrompido ou ocorrer uma falha no disco, você deve realizar a recuperação usando um backup. No caso de corrupção, primeiro encontre um backup que não esteja corrompido. Após restaurar o backup básico, realize uma recuperação em um ponto no tempo a partir dos arquivos de log binário usando **mysqlbinlog** e **mysql** para restaurar as alterações que ocorreram após a criação do backup.
+If your database becomes corrupted or disk failure occurs, you must perform the recovery using a backup. In the case of corruption, first find a backup that is not corrupted. After restoring the base backup, do a point-in-time recovery from the binary log files using **mysqlbinlog** and **mysql** to restore the changes that occurred after the backup was made.
 
-Em alguns casos de corrupção de banco de dados, é suficiente fazer o dump, drop e recriar uma ou algumas tabelas corrompidas. Você pode usar a instrução `CHECK TABLE` para verificar se uma tabela está corrompida, embora a `CHECK TABLE` naturalmente não possa detectar todos os tipos possíveis de corrupção.
+In some cases of database corruption, it is enough to dump, drop, and re-create one or a few corrupt tables. You can use the `CHECK TABLE` statement to check whether a table is corrupt, although `CHECK TABLE` naturally cannot detect every possible kind of corruption.
 
-Em alguns casos, a aparente corrupção da página do banco de dados é, na verdade, devido ao sistema operacional corromper seu próprio cache de arquivos, e os dados no disco podem estar em ordem. É melhor tentar reiniciar o computador primeiro. Isso pode eliminar erros que pareciam ser corrupção de página do banco de dados. Se o MySQL ainda tiver problemas para iniciar devido a problemas de consistência do `InnoDB`, consulte a Seção 14.22.2, “Forçar a Recuperação do InnoDB”, para obter etapas para iniciar a instância no modo de recuperação, o que permite que você faça o dump dos dados.
+In some cases, apparent database page corruption is actually due to the operating system corrupting its own file cache, and the data on disk may be okay. It is best to try restarting the computer first. Doing so may eliminate errors that appeared to be database page corruption. If MySQL still has trouble starting because of `InnoDB` consistency problems, see Section 14.22.2, “Forcing InnoDB Recovery” for steps to start the instance in recovery mode, which permits you to dump the data.
 
-#### Recuperação de falha do InnoDB
+#### InnoDB Crash Recovery
 
-Para se recuperar de uma inesperada saída do servidor MySQL, a única exigência é reiniciar o servidor MySQL. O `InnoDB` verifica automaticamente os logs e realiza um avanço no banco de dados até o momento atual. O `InnoDB` desfaz automaticamente as transações não confirmadas que estavam presentes no momento do crash. Durante a recuperação, o **mysqld** exibe uma saída semelhante à seguinte:
+To recover from an unexpected MySQL server exit, the only requirement is to restart the MySQL server. `InnoDB` automatically checks the logs and performs a roll-forward of the database to the present. `InnoDB` automatically rolls back uncommitted transactions that were present at the time of the crash. During recovery, **mysqld** displays output similar to this:
 
 ```sql
 InnoDB: Log scan progressed past the checkpoint lsn 369163704
@@ -56,62 +56,62 @@ InnoDB: 5.7.18 started; log sequence number 414724794
 ./mysqld: ready for connections.
 ```
 
-A recuperação de falhas do InnoDB consiste em várias etapas:
+`InnoDB` crash recovery consists of several steps:
 
-- Descoberta do espaço de tabela
+* Tablespace discovery
 
-  A descoberta do tablespace é o processo que o `InnoDB` usa para identificar os tablespaces que precisam da aplicação do log de redo. Veja Descoberta de Tablespace durante a Recuperação após Falha.
+  Tablespace discovery is the process that `InnoDB` uses to identify tablespaces that require redo log application. See Tablespace Discovery During Crash Recovery.
 
-- Aplicação de registro de refaça
+* Redo log application
 
-  A aplicação do log de refazer é realizada durante a inicialização, antes de aceitar quaisquer conexões. Se todas as alterações forem descarregadas do pool de buffer para os espaços de tabelas (`ibdata*` e arquivos `.ibd`) no momento do desligamento ou do crash, a aplicação do log de refazer é ignorada. O `InnoDB` também ignora a aplicação do log de refazer se os arquivos de log de refazer estiverem ausentes no momento do início.
+  Redo log application is performed during initialization, before accepting any connections. If all changes are flushed from the buffer pool to the tablespaces (`ibdata*` and `*.ibd` files) at the time of the shutdown or crash, redo log application is skipped. `InnoDB` also skips redo log application if redo log files are missing at startup.
 
-  Não é recomendado remover os registros de rollback para acelerar a recuperação, mesmo que a perda de dados seja aceitável. A remoção dos registros de rollback só deve ser considerada após um desligamento limpo, com `innodb_fast_shutdown` definido como `0` ou `1`.
+  Removing redo logs to speed up recovery is not recommended, even if some data loss is acceptable. Removing redo logs should only be considered after a clean shutdown, with `innodb_fast_shutdown` set to `0` or `1`.
 
-  Para obter informações sobre o processo que o `InnoDB` usa para identificar os tablespaces que exigem a aplicação do log de refazer, consulte "Descoberta de tablespace durante a recuperação após falha".
+  For information about the process that `InnoDB` uses to identify tablespaces that require redo log application, see Tablespace Discovery During Crash Recovery.
 
-- Reverter transações incompletas
+* Roll back of incomplete transactions
 
-  As transações incompletas são aquelas que estavam ativas no momento da saída inesperada ou do desligamento rápido. O tempo necessário para reverter uma transação incompleta pode ser três ou quatro vezes o tempo que a transação está ativa antes de ser interrompida, dependendo da carga do servidor.
+  Incomplete transactions are any transactions that were active at the time of unexpected exit or fast shutdown. The time it takes to roll back an incomplete transaction can be three or four times the amount of time a transaction is active before it is interrupted, depending on server load.
 
-  Você não pode cancelar transações que estão sendo revertidas. Em casos extremos, quando se espera que a reversão de transações leve um tempo excepcionalmente longo, pode ser mais rápido iniciar o `InnoDB` com um valor de configuração `innodb_force_recovery` de 3 ou superior. Consulte a Seção 14.22.2, “Forçando a Recuperação do InnoDB”.
+  You cannot cancel transactions that are being rolled back. In extreme cases, when rolling back transactions is expected to take an exceptionally long time, it may be faster to start `InnoDB` with an `innodb_force_recovery` setting of `3` or greater. See Section 14.22.2, “Forcing InnoDB Recovery”.
 
-- Mudar a fusão do buffer
+* Change buffer merge
 
-  Aplicar alterações do buffer de alterações (parte do espaço de tabela do sistema) às páginas de folha de índices secundários, à medida que as páginas do índice são lidas para o pool de buffer.
+  Applying changes from the change buffer (part of the system tablespace) to leaf pages of secondary indexes, as the index pages are read to the buffer pool.
 
-- Limpeza
+* Purge
 
-  Excluir registros marcados para exclusão que não são mais visíveis para transações ativas.
+  Deleting delete-marked records that are no longer visible to active transactions.
 
-Os passos que se seguem à aplicação do log de reversão não dependem do log de reversão (exceto para registrar as escritas) e são realizados em paralelo com o processamento normal. Desses, apenas o rollback de transações incompletas é específico para a recuperação de falhas. A fusão do buffer de inserção e a purga são realizadas durante o processamento normal.
+The steps that follow redo log application do not depend on the redo log (other than for logging the writes) and are performed in parallel with normal processing. Of these, only rollback of incomplete transactions is special to crash recovery. The insert buffer merge and the purge are performed during normal processing.
 
-Após a aplicação do log de refazer, o `InnoDB` tenta aceitar conexões o mais cedo possível, para reduzir o tempo de inatividade. Como parte da recuperação em caso de falha, o `InnoDB` desfaz transações que não foram confirmadas ou no estado `XA PREPARE` quando o servidor foi encerrado. O desfazimento é realizado por um thread de segundo plano, executado em paralelo com as transações de novas conexões. Até que a operação de desfazimento seja concluída, novas conexões podem encontrar conflitos de bloqueio com as transações recuperadas.
+After redo log application, `InnoDB` attempts to accept connections as early as possible, to reduce downtime. As part of crash recovery, `InnoDB` rolls back transactions that were not committed or in `XA PREPARE` state when the server exited. The rollback is performed by a background thread, executed in parallel with transactions from new connections. Until the rollback operation is completed, new connections may encounter locking conflicts with recovered transactions.
 
-Na maioria das situações, mesmo que o servidor MySQL tenha sido interrompido inesperadamente durante uma atividade intensa, o processo de recuperação acontece automaticamente e não é necessário que o DBA tome nenhuma ação. Se uma falha de hardware ou um erro grave no sistema corromper os dados do `InnoDB`, o MySQL pode se recusar a iniciar. Nesse caso, consulte a Seção 14.22.2, “Forçando a Recuperação do InnoDB”.
+In most situations, even if the MySQL server was killed unexpectedly in the middle of heavy activity, the recovery process happens automatically and no action is required of the DBA. If a hardware failure or severe system error corrupted `InnoDB` data, MySQL might refuse to start. In this case, see Section 14.22.2, “Forcing InnoDB Recovery”.
 
-Para obter informações sobre o registro binário e a recuperação de falhas do `InnoDB`, consulte a Seção 5.4.4, “O Registro Binário”.
+For information about the binary log and `InnoDB` crash recovery, see Section 5.4.4, “The Binary Log”.
 
-#### Descoberta de Tablespace durante a recuperação de falhas
+#### Tablespace Discovery During Crash Recovery
 
-Se, durante a recuperação, o `InnoDB` encontrar logs de refazer escritos desde o último ponto de verificação, os logs de refazer devem ser aplicados aos espaços de tabelas afetados. O processo que identifica os espaços de tabelas afetados durante a recuperação é chamado de *descoberta de espaço de tabela*.
+If, during recovery, `InnoDB` encounters redo logs written since the last checkpoint, the redo logs must be applied to affected tablespaces. The process that identifies affected tablespaces during recovery is referred to as *tablespace discovery*.
 
-A descoberta do espaço de tabela é realizada ao analisar os registros do log redo do último ponto de verificação até o final do log para `MLOG_FILE_NAME` que são escritos quando uma página do espaço de tabela é modificada. Um registro `MLOG_FILE_NAME` contém o ID do espaço de tabela e o nome do arquivo.
+Tablespace discovery is performed by scanning redo logs from the last checkpoint to the end of the log for `MLOG_FILE_NAME` records that are written when a tablespace page is modified. An `MLOG_FILE_NAME` record contains the tablespace space ID and file name.
 
-Ao iniciar, o `InnoDB` abre o espaço de tabela do sistema e o log de refazer. Se houver registros do log de refazer escritos desde o último ponto de verificação, os arquivos do espaço de tabela afetados são abertos com base nos registros `MLOG_FILE_NAME`.
+On startup, `InnoDB` opens the system tablespace and redo log. If there are redo log records written since the last checkpoint, affected tablespace files are opened based on `MLOG_FILE_NAME` records.
 
-Os registros `MLOG_FILE_NAME` são escritos para todos os tipos de espaço de tabela persistente, incluindo espaços de tabela por arquivo, espaços de tabela gerais, o espaço de tabela do sistema e espaços de log de desfazer.
+`MLOG_FILE_NAME` records are written for all persistent tablespace types including file-per-table tablespaces, general tablespaces, the system tablespace, and undo log tablespaces.
 
-A descoberta baseada em redo-log tem as seguintes características:
+Redo-log-based discovery has the following characteristics:
 
-- Apenas os arquivos de espaço de tabela `*.ibd` modificados desde o último ponto de verificação são acessados.
+* Only tablespace `*.ibd` files modified since the last checkpoint are accessed.
 
-- Os arquivos `*.ibd` do tablespace que não estão vinculados à instância do `InnoDB` são ignorados quando os logs de redo são aplicados.
+* Tablespace `*.ibd` files that are not attached to the `InnoDB` instance are ignored when redo logs are applied.
 
-- Se os registros `MLOG_FILE_NAME` das tabelas do espaço de sistema não corresponderem às configurações do servidor que afetam os nomes dos arquivos de dados do espaço de sistema, a recuperação falhará com um erro antes que os registros de redo sejam aplicados.
+* If `MLOG_FILE_NAME` records for the system tablespace do not match the server configuration affecting system tablespace data file names, recovery fails with an error before redo logs are applied.
 
-- Se os arquivos do tablespace referenciados na parte analisada do log estiverem ausentes, o início será recusado.
+* If tablespace files referenced in the scanned portion of the log are missing, startup is refused.
 
-- Os registros de refazer para arquivos de espaço de tabela ausentes `*.ibd` são ignorados apenas se houver um registro de log de refazer de exclusão de arquivo (`MLOG_FILE_DELETE`) no log. Por exemplo, uma falha de renomeação de tabela pode resultar em um arquivo `*.ibd` "ausente" sem um registro `MLOG_FILE_DELETE`. Nesse caso, você pode renomear manualmente o arquivo do espaço de tabela e reiniciar a recuperação de falhas, ou você pode reiniciar o servidor no modo de recuperação usando a opção `innodb_force_recovery`. Arquivos `*.ibd` ausentes são ignorados quando o servidor é iniciado no modo de recuperação.
+* Redo logs for missing tablespace `*.ibd` files are only disregarded if there is a file-delete redo log record (`MLOG_FILE_DELETE`) in the log. For example, a table rename failure could result in a “missing” `*.ibd` file without an `MLOG_FILE_DELETE` record. In this case, you could manually rename the tablespace file and restart crash recovery, or you could restart the server in recovery mode using the `innodb_force_recovery` option. Missing `*.ibd` files are ignored when the server is started in recovery mode.
 
-A descoberta baseada em logs de refazimento, introduzida no MySQL 5.7, substitui as varreduras de diretório que eram usadas em versões anteriores do MySQL para construir um mapa de "nome de arquivo de espaço ID para espaço de tabela" que era necessário para aplicar logs de refazimento.
+Redo-log-based discovery, introduced in MySQL 5.7, replaces directory scans that were used in earlier MySQL releases to construct a “space ID-to-tablespace file name” map that was required to apply redo logs.

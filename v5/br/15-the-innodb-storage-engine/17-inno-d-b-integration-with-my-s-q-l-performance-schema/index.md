@@ -1,18 +1,18 @@
-## 14.17 Integração InnoDB com o MySQL Performance Schema
+## 14.17 InnoDB Integration with MySQL Performance Schema
 
-14.17.1 Monitoramento do progresso da alteração de tabelas do InnoDB usando o Gerenciador de Desempenho
+14.17.1 Monitoring ALTER TABLE Progress for InnoDB Tables Using Performance Schema
 
-14.17.2 Monitoramento de Espera de Mutex InnoDB Usando o Schema de Desempenho
+14.17.2 Monitoring InnoDB Mutex Waits Using Performance Schema
 
-Esta seção fornece uma breve introdução à integração do `InnoDB` com o SGBD de Desempenho. Para obter documentação abrangente sobre o SGBD de Desempenho, consulte o Capítulo 25, *MySQL Performance Schema*.
+This section provides a brief introduction to `InnoDB` integration with Performance Schema. For comprehensive Performance Schema documentation, see Chapter 25, *MySQL Performance Schema*.
 
-Você pode perfiliar certas operações internas do `InnoDB` usando o recurso do MySQL Performance Schema. Esse tipo de ajuste é principalmente para usuários experientes que avaliam estratégias de otimização para superar gargalos de desempenho. Os administradores de banco de dados também podem usar esse recurso para planejamento de capacidade, para ver se sua carga de trabalho típica encontra algum gargalo de desempenho com uma combinação específica de CPU, RAM e armazenamento em disco; e, se sim, para julgar se o desempenho pode ser melhorado aumentando a capacidade de alguma parte do sistema.
+You can profile certain internal `InnoDB` operations using the MySQL Performance Schema feature. This type of tuning is primarily for expert users who evaluate optimization strategies to overcome performance bottlenecks. DBAs can also use this feature for capacity planning, to see whether their typical workload encounters any performance bottlenecks with a particular combination of CPU, RAM, and disk storage; and if so, to judge whether performance can be improved by increasing the capacity of some part of the system.
 
-Para usar essa funcionalidade para examinar o desempenho do `InnoDB`:
+To use this feature to examine `InnoDB` performance:
 
-- Você deve ter uma noção geral de como usar o recurso do Schema de Desempenho. Por exemplo, você deve saber como habilitar instrumentos e consumidores e como consultar as tabelas do `performance_schema` para recuperar dados. Para uma visão geral introdutória, consulte a Seção 25.1, “Início Rápido do Schema de Desempenho”.
+* You must be generally familiar with how to use the Performance Schema feature. For example, you should know how enable instruments and consumers, and how to query `performance_schema` tables to retrieve data. For an introductory overview, see Section 25.1, “Performance Schema Quick Start”.
 
-- Você deve estar familiarizado com os instrumentos do Schema de Desempenho disponíveis para o `InnoDB`. Para visualizar os instrumentos relacionados ao `InnoDB`, você pode consultar a tabela `setup_instruments` para nomes de instrumentos que contenham `innodb`.
+* You should be familiar with Performance Schema instruments that are available for `InnoDB`. To view `InnoDB`-related instruments, you can query the `setup_instruments` table for instrument names that contain '`innodb`'.
 
   ```sql
   mysql> SELECT *
@@ -58,18 +58,18 @@ Para usar essa funcionalidade para examinar o desempenho do `InnoDB`:
   155 rows in set (0.00 sec)
   ```
 
-  Para obter informações adicionais sobre os objetos instrumentados do `InnoDB`, você pode consultar as tabelas das instâncias do Schema de Desempenho, que fornecem informações adicionais sobre os objetos instrumentados. As tabelas de instâncias relevantes para o `InnoDB` incluem:
+  For additional information about the instrumented `InnoDB` objects, you can query Performance Schema instances tables, which provide additional information about instrumented objects. Instance tables relevant to `InnoDB` include:
 
-  - A tabela `mutex_instances`
-  - A tabela `rwlock_instances`
-  - A tabela `cond_instances`
-  - A tabela `file_instances`
+  + The `mutex_instances` table
+  + The `rwlock_instances` table
+  + The `cond_instances` table
+  + The `file_instances` table
 
-  Nota
+  Note
 
-  Os mútuos e bloqueios de escrita-leitura relacionados ao pool de buffers do `InnoDB` não estão incluídos nesta cobertura; o mesmo se aplica ao resultado do comando `SHOW ENGINE INNODB MUTEX`.
+  Mutexes and RW-locks related to the `InnoDB` buffer pool are not included in this coverage; the same applies to the output of the `SHOW ENGINE INNODB MUTEX` command.
 
-  Por exemplo, para visualizar informações sobre objetos de arquivo instrumentados `InnoDB` vistos pelo Gerenciamento de Desempenho ao executar a instrumentação de E/S de arquivo, você pode emitir a seguinte consulta:
+  For example, to view information about instrumented `InnoDB` file objects seen by the Performance Schema when executing file I/O instrumentation, you might issue the following query:
 
   ```sql
   mysql> SELECT *
@@ -94,12 +94,12 @@ Para usar essa funcionalidade para examinar o desempenho do `InnoDB`:
   ...
   ```
 
-- Você deve estar familiarizado com as tabelas `performance_schema` que armazenam dados de eventos do `InnoDB`. As tabelas relevantes para eventos relacionados ao `InnoDB` incluem:
+* You should be familiar with `performance_schema` tables that store `InnoDB` event data. Tables relevant to `InnoDB`-related events include:
 
-  - As tabelas de Eventos de Aguardar, que armazenam eventos de espera.
+  + The Wait Event tables, which store wait events.
 
-  - As tabelas de resumo, que fornecem informações agregadas para eventos terminados ao longo do tempo. As tabelas de resumo incluem tabelas de resumo de E/S de arquivos, que agregam informações sobre operações de E/S.
+  + The Summary tables, which provide aggregated information for terminated events over time. Summary tables include file I/O summary tables, which aggregate information about I/O operations.
 
-  - Tabelas de eventos de estágio, que armazenam dados de eventos para operações de `ALTER TABLE` e carregamento do pool de buffer do `InnoDB`. Para mais informações, consulte a Seção 14.17.1, “Monitoramento do progresso de ALTER TABLE para tabelas InnoDB usando o Gerenciador de Desempenho”, e Monitoramento do progresso de carregamento do pool de buffer usando o Gerenciador de Desempenho.
+  + Stage Event tables, which store event data for `InnoDB` `ALTER TABLE` and buffer pool load operations. For more information, see Section 14.17.1, “Monitoring ALTER TABLE Progress for InnoDB Tables Using Performance Schema”, and Monitoring Buffer Pool Load Progress Using Performance Schema.
 
-  Se você estiver interessado apenas nos objetos relacionados ao `InnoDB`, use a cláusula `WHERE EVENT_NAME LIKE '%innodb%'` ou `WHERE NAME LIKE '%innodb%'` (conforme necessário) ao fazer consultas nessas tabelas.
+  If you are only interested in `InnoDB`-related objects, use the clause `WHERE EVENT_NAME LIKE '%innodb%'` or `WHERE NAME LIKE '%innodb%'` (as required) when querying these tables.

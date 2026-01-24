@@ -1,28 +1,28 @@
-### 24.3.13 A tabela INFORMATION_SCHEMA ndb_transid_mysql_connection_map
+### 24.3.13 The INFORMATION_SCHEMA ndb_transid_mysql_connection_map Table
 
-A tabela `ndb_transid_mysql_connection_map` fornece uma associação entre as transações `NDB`, os coordenadores de transações `NDB` e os servidores MySQL ligados a um NDB Cluster como nós da API. Essas informações são usadas ao preencher as tabelas `server_operations` e `server_transactions` do banco de dados de informações do NDB Cluster `ndbinfo`.
+The `ndb_transid_mysql_connection_map` table provides a mapping between `NDB` transactions, `NDB` transaction coordinators, and MySQL Servers attached to an NDB Cluster as API nodes. This information is used when populating the [`server_operations`](mysql-cluster-ndbinfo-server-operations.html "21.6.15.34 The ndbinfo server_operations Table") and [`server_transactions`](mysql-cluster-ndbinfo-server-transactions.html "21.6.15.35 The ndbinfo server_transactions Table") tables of the [`ndbinfo`](mysql-cluster-ndbinfo.html "21.6.15 ndbinfo: The NDB Cluster Information Database") NDB Cluster information database.
 
-A tabela `ndb_transid_mysql_connection_map` tem as seguintes colunas:
+The [`ndb_transid_mysql_connection_map`](information-schema-ndb-transid-mysql-connection-map-table.html "24.3.13 The INFORMATION_SCHEMA ndb_transid_mysql_connection_map Table") table has these columns:
 
-- `mysql_connection_id`
+* `mysql_connection_id`
 
-  O ID de conexão do servidor MySQL.
+  The MySQL server connection ID.
 
-- `node_id`
+* `node_id`
 
-  O ID do nó do coordenador da transação.
+  The transaction coordinator node ID.
 
-- `ndb_transid`
+* `ndb_transid`
 
-  O ID de transação `NDB`.
+  The [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") transaction ID.
 
-#### Notas
+#### Notes
 
-O valor `mysql_connection_id` é o mesmo do ID de conexão ou sessão exibido na saída de `SHOW PROCESSLIST` (show-processlist.html).
+The `mysql_connection_id` value is the same as the connection or session ID shown in the output of [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement").
 
-Não há declarações `SHOW` associadas a esta tabela.
+There are no `SHOW` statements associated with this table.
 
-Esta é uma tabela não padrão, específica para o NDB Cluster. Ela é implementada como um plugin do `INFORMATION_SCHEMA`; você pode verificar se ela é suportada verificando a saída da instrução `SHOW PLUGINS`. Se o suporte ao `ndb_transid_mysql_connection_map` estiver habilitado, a saída dessa instrução inclui um plugin com esse nome, do tipo `INFORMATION SCHEMA`, e com status `ACTIVE`, conforme mostrado aqui (usando texto em negrito):
+This is a nonstandard table, specific to NDB Cluster. It is implemented as an `INFORMATION_SCHEMA` plugin; you can verify that it is supported by checking the output of [`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement"). If `ndb_transid_mysql_connection_map` support is enabled, the output from this statement includes a plugin having this name, of type `INFORMATION SCHEMA`, and having status `ACTIVE`, as shown here (using emphasized text):
 
 ```sql
 mysql> SHOW PLUGINS;
@@ -54,8 +54,8 @@ mysql> SHOW PLUGINS;
 22 rows in set (0.00 sec)
 ```
 
-O plugin está ativado por padrão. Você pode desativá-lo (ou forçar o servidor a não funcionar a menos que o plugin seja iniciado) iniciando o servidor com a opção `--ndb-transid-mysql-connection-map`. Se o plugin estiver desativado, o status será exibido por `SHOW PLUGINS` como `DESATIVADO`. O plugin não pode ser ativado ou desativado em tempo de execução.
+The plugin is enabled by default. You can disable it (or force the server not to run unless the plugin starts) by starting the server with the [`--ndb-transid-mysql-connection-map`](mysql-cluster-options-variables.html#option_mysqld_ndb-transid-mysql-connection-map) option. If the plugin is disabled, the status is shown by [`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement") as `DISABLED`. The plugin cannot be enabled or disabled at runtime.
 
-Embora os nomes desta tabela e de suas colunas sejam exibidos em letras minúsculas, você pode usar letras maiúsculas ou minúsculas ao se referir a eles em instruções SQL.
+Although the names of this table and its columns are displayed using lowercase, you can use uppercase or lowercase when referring to them in SQL statements.
 
-Para que essa tabela seja criada, o MySQL Server deve ser um binário fornecido com a distribuição do NDB Cluster ou um binário construído a partir das fontes do NDB Cluster com o suporte ao mecanismo de armazenamento `NDB`. Ele não está disponível no servidor padrão MySQL 5.7.
+For this table to be created, the MySQL Server must be a binary supplied with the NDB Cluster distribution, or one built from the NDB Cluster sources with [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine support enabled. It is not available in the standard MySQL 5.7 Server.

@@ -1,42 +1,42 @@
-### 15.7.2 Problemas com a tabela MERGE
+### 15.7.2 MERGE Table Problems
 
-Os problemas conhecidos com as tabelas `MERGE` são os seguintes:
+The following are known problems with `MERGE` tables:
 
-- As tabelas filhas `MERGE` são bloqueadas através da tabela pai. Se o pai for uma tabela temporária, ela não é bloqueada, e, portanto, as tabelas filhas também não são bloqueadas; isso significa que o uso paralelo das tabelas `MyISAM` subjacentes as corrompe.
+* `MERGE` child tables are locked through the parent table. If the parent is a temporary table, it is not locked, and thus the child tables are also not locked; this means that parallel use of the underlying `MyISAM` tables corrupts them.
 
-- Se você usar `ALTER TABLE` para alterar uma tabela `MERGE` para outro mecanismo de armazenamento, o mapeamento para as tabelas subjacentes é perdido. Em vez disso, as linhas das tabelas `MyISAM` subjacentes são copiadas para a tabela alterada, que então usa o mecanismo de armazenamento especificado.
+* If you use `ALTER TABLE` to change a `MERGE` table to another storage engine, the mapping to the underlying tables is lost. Instead, the rows from the underlying `MyISAM` tables are copied into the altered table, which then uses the specified storage engine.
 
-- A opção `INSERT_METHOD` da tabela `MERGE` indica qual tabela `MyISAM` subjacente deve ser usada para inserções na tabela `MERGE`. No entanto, o uso da opção `AUTO_INCREMENT` da tabela para essa tabela `MyISAM` não tem efeito para inserções na tabela `MERGE` até que pelo menos uma linha tenha sido inserida diretamente na tabela `MyISAM`.
+* The `INSERT_METHOD` table option for a `MERGE` table indicates which underlying `MyISAM` table to use for inserts into the `MERGE` table. However, use of the `AUTO_INCREMENT` table option for that `MyISAM` table has no effect for inserts into the `MERGE` table until at least one row has been inserted directly into the `MyISAM` table.
 
-- Uma tabela `MERGE` não pode manter restrições de unicidade sobre toda a tabela. Quando você executa um `INSERT`, os dados são inseridos na primeira ou última tabela `MyISAM` (conforme determinado pela opção `INSERT_METHOD`). O MySQL garante que os valores de chave únicos permaneçam únicos dentro dessa tabela `MyISAM`, mas não em todas as tabelas subjacentes da coleção.
+* A `MERGE` table cannot maintain uniqueness constraints over the entire table. When you perform an `INSERT`, the data goes into the first or last `MyISAM` table (as determined by the `INSERT_METHOD` option). MySQL ensures that unique key values remain unique within that `MyISAM` table, but not over all the underlying tables in the collection.
 
-- Como o motor `MERGE` não pode garantir a unicidade sobre o conjunto de tabelas subjacentes, o `REPLACE` não funciona conforme o esperado. Os dois fatos principais são:
+* Because the `MERGE` engine cannot enforce uniqueness over the set of underlying tables, `REPLACE` does not work as expected. The two key facts are:
 
-  - O `REPLACE` pode detectar violações de chave única apenas na tabela subjacente para a qual ele está prestes a escrever (o que é determinado pela opção `INSERT_METHOD`). Isso difere das violações na própria tabela `MERGE`.
+  + `REPLACE` can detect unique key violations only in the underlying table to which it is going to write (which is determined by the `INSERT_METHOD` option). This differs from violations in the `MERGE` table itself.
 
-  - Se o `REPLACE` detectar uma violação de chave única, ele altera apenas a linha correspondente na tabela subjacente a qual está escrevendo; ou seja, a primeira ou a última tabela, conforme determinado pela opção `INSERT_METHOD`.
+  + If `REPLACE` detects a unique key violation, it changes only the corresponding row in the underlying table it is writing to; that is, the first or last table, as determined by the `INSERT_METHOD` option.
 
-  Considerações semelhantes se aplicam para `INSERT ... ON DUPLICATE KEY UPDATE`.
+  Similar considerations apply for `INSERT ... ON DUPLICATE KEY UPDATE`.
 
-- As tabelas `MERGE` não suportam particionamento. Isso significa que você não pode particionar uma tabela `MERGE`, nem nenhuma das tabelas `MyISAM` subjacentes de uma tabela `MERGE`.
+* `MERGE` tables do not support partitioning. That is, you cannot partition a `MERGE` table, nor can any of a `MERGE` table's underlying `MyISAM` tables be partitioned.
 
-- Você não deve usar `ANALYZE TABLE`, `REPAIR TABLE`, `OPTIMIZE TABLE`, `ALTER TABLE`, `DROP TABLE`, `DELETE` sem uma cláusula `WHERE`, ou `TRUNCATE TABLE` em nenhuma das tabelas mapeadas para uma tabela `MERGE` aberta. Se você fizer isso, a tabela `MERGE` ainda pode se referir à tabela original e gerar resultados inesperados. Para contornar esse problema, certifique-se de que nenhuma tabela `MERGE` permaneça aberta, emitindo uma declaração `FLUSH TABLES` antes de realizar qualquer uma das operações nomeadas.
+* You should not use `ANALYZE TABLE`, `REPAIR TABLE`, `OPTIMIZE TABLE`, `ALTER TABLE`, `DROP TABLE`, `DELETE` without a `WHERE` clause, or `TRUNCATE TABLE` on any of the tables that are mapped into an open `MERGE` table. If you do so, the `MERGE` table may still refer to the original table and yield unexpected results. To work around this problem, ensure that no `MERGE` tables remain open by issuing a `FLUSH TABLES` statement prior to performing any of the named operations.
 
-  Os resultados inesperados incluem a possibilidade de que a operação na tabela `MERGE` informe corrupção de tabela. Se isso ocorrer após uma das operações nomeadas nas tabelas subjacentes `MyISAM`, a mensagem de corrupção é falsa. Para lidar com isso, execute uma declaração `FLUSH TABLES` após modificar as tabelas `MyISAM`.
+  The unexpected results include the possibility that the operation on the `MERGE` table reports table corruption. If this occurs after one of the named operations on the underlying `MyISAM` tables, the corruption message is spurious. To deal with this, issue a `FLUSH TABLES` statement after modifying the `MyISAM` tables.
 
-- A instrução `DROP TABLE` em uma tabela que está sendo usada por uma tabela `MERGE` não funciona no Windows porque o mapeamento de tabela do mecanismo de armazenamento `MERGE` é oculto para a camada superior do MySQL. O Windows não permite que arquivos abertos sejam excluídos, então você deve primeiro esvaziar todas as tabelas `MERGE` (com `FLUSH TABLES`) ou excluir a tabela `MERGE` antes de excluir a tabela.
+* `DROP TABLE` on a table that is in use by a `MERGE` table does not work on Windows because the `MERGE` storage engine's table mapping is hidden from the upper layer of MySQL. Windows does not permit open files to be deleted, so you first must flush all `MERGE` tables (with `FLUSH TABLES`) or drop the `MERGE` table before dropping the table.
 
-- A definição das tabelas `MyISAM` e da tabela `MERGE` é verificada quando as tabelas são acessadas (por exemplo, como parte de uma instrução `SELECT` ou `INSERT`). As verificações garantem que as definições das tabelas e da definição da tabela `MERGE` pai correspondem, comparando a ordem das colunas, os tipos, os tamanhos e os índices associados. Se houver uma diferença entre as tabelas, um erro é retornado e a instrução falha. Como essas verificações ocorrem quando as tabelas são abertas, quaisquer alterações na definição de uma única tabela, incluindo alterações de coluna, ordem de coluna e alterações no motor, fazem com que a instrução falhe.
+* The definition of the `MyISAM` tables and the `MERGE` table are checked when the tables are accessed (for example, as part of a `SELECT` or `INSERT` statement). The checks ensure that the definitions of the tables and the parent `MERGE` table definition match by comparing column order, types, sizes and associated indexes. If there is a difference between the tables, an error is returned and the statement fails. Because these checks take place when the tables are opened, any changes to the definition of a single table, including column changes, column ordering, and engine alterations causes the statement to fail.
 
-- A ordem dos índices na tabela `MERGE` e nas tabelas subjacentes deve ser a mesma. Se você usar `ALTER TABLE` para adicionar um índice `UNIQUE` a uma tabela usada em uma tabela `MERGE` e, em seguida, usar `ALTER TABLE` para adicionar um índice não exclusivo na tabela `MERGE`, a ordem dos índices será diferente para as tabelas se já houvesse um índice não exclusivo na tabela subjacente. (Isso acontece porque `ALTER TABLE` coloca índices `UNIQUE` antes dos índices não exclusivos para facilitar a rápida detecção de chaves duplicadas.) Consequentemente, as consultas em tabelas com tais índices podem retornar resultados inesperados.
+* The order of indexes in the `MERGE` table and its underlying tables should be the same. If you use `ALTER TABLE` to add a `UNIQUE` index to a table used in a `MERGE` table, and then use `ALTER TABLE` to add a nonunique index on the `MERGE` table, the index ordering is different for the tables if there was already a nonunique index in the underlying table. (This happens because `ALTER TABLE` puts `UNIQUE` indexes before nonunique indexes to facilitate rapid detection of duplicate keys.) Consequently, queries on tables with such indexes may return unexpected results.
 
-- Se você encontrar uma mensagem de erro semelhante ao ERRO 1017 (HY000): Não é possível encontrar o arquivo: '*`tbl_name`*.MRG' (errno: 2), geralmente isso indica que algumas das tabelas subjacentes não usam o mecanismo de armazenamento `MyISAM`. Confirme se todas essas tabelas são `MyISAM`.
+* If you encounter an error message similar to ERROR 1017 (HY000): Can't find file: '*`tbl_name`*.MRG' (errno: 2), it generally indicates that some of the underlying tables do not use the `MyISAM` storage engine. Confirm that all of these tables are `MyISAM`.
 
-- O número máximo de linhas em uma tabela `MERGE` é de 264 (\~1,844E+19; o mesmo que para uma tabela `MyISAM`). Não é possível combinar várias tabelas `MyISAM` em uma única tabela `MERGE` que tenha mais de esse número de linhas.
+* The maximum number of rows in a `MERGE` table is 264 (~1.844E+19; the same as for a `MyISAM` table). It is not possible to merge multiple `MyISAM` tables into a single `MERGE` table that would have more than this number of rows.
 
-- O uso de tabelas `MyISAM` subjacentes com formatos de linha diferentes e uma tabela `MERGE` pai atualmente é conhecido por falhar. Veja o Bug #32364.
+* Use of underlying `MyISAM` tables of differing row formats with a parent `MERGE` table is currently known to fail. See Bug #32364.
 
-- Você não pode alterar a lista de união de uma tabela `MERGE` não temporária quando o `LOCK TABLES` estiver em vigor. O seguinte *não* funciona:
+* You cannot change the union list of a nontemporary `MERGE` table when `LOCK TABLES` is in effect. The following does *not* work:
 
   ```sql
   CREATE TABLE m1 ... ENGINE=MRG_MYISAM ...;
@@ -44,15 +44,15 @@ Os problemas conhecidos com as tabelas `MERGE` são os seguintes:
   ALTER TABLE m1 ... UNION=(t1,t2) ...;
   ```
 
-  No entanto, você pode fazer isso com uma tabela `MERGE` temporária.
+  However, you can do this with a temporary `MERGE` table.
 
-- Você não pode criar uma tabela `MERGE` com `CREATE ... SELECT`, nem como uma tabela `MERGE` temporária, nem como uma tabela `MERGE` não temporária. Por exemplo:
+* You cannot create a `MERGE` table with `CREATE ... SELECT`, neither as a temporary `MERGE` table, nor as a nontemporary `MERGE` table. For example:
 
   ```sql
   CREATE TABLE m1 ... ENGINE=MRG_MYISAM ... SELECT ...;
   ```
 
-  Tentativas de fazer isso resultam em um erro: *`tbl_name`* não é `TABELA BÁSICA`.
+  Attempts to do this result in an error: *`tbl_name`* is not `BASE TABLE`.
 
-- Em alguns casos, valores diferentes das opções da tabela `PACK_KEYS` entre as tabelas `MERGE` e as tabelas subjacentes causam resultados inesperados se as tabelas subjacentes contiverem colunas `CHAR` ou `BINARY`. Como solução alternativa, use `ALTER TABLE` para garantir que todas as tabelas envolvidas tenham o mesmo valor de `PACK_KEYS`. (Bug
-  \#50646)
+* In some cases, differing `PACK_KEYS` table option values among the `MERGE` and underlying tables cause unexpected results if the underlying tables contain `CHAR` or `BINARY` columns. As a workaround, use `ALTER TABLE` to ensure that all involved tables have the same `PACK_KEYS` value. (Bug
+  #50646)

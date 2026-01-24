@@ -1,73 +1,73 @@
-#### 21.6.15.39 A tabela ndbinfo table_replicas
+#### 21.6.15.39 The ndbinfo table_replicas Table
 
-A tabela `table_replicas` fornece informações sobre a cópia, distribuição e checkpointing de fragmentos de tabela `NDB` e réplicas de fragmentos.
+The `table_replicas` table provides information about the copying, distribution, and checkpointing of `NDB` table fragments and fragment replicas.
 
-A tabela `table_replicas` contém as seguintes colunas:
+The `table_replicas` table contains the following columns:
 
-- `node_id`
+* `node_id`
 
-  ID do nó a partir do qual os dados são obtidos (`DIH` master)
+  ID of the node from which data is fetched ([`DIH`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbdih.html) master)
 
-- `table_id`
+* `table_id`
 
-  Tabela ID
+  Table ID
 
-- `fragment_id`
+* `fragment_id`
 
-  ID do fragmento
+  Fragment ID
 
-- `inicial_gci`
+* `initial_gci`
 
-  GCI inicial para a tabela
+  Initial GCI for table
 
-- `replica_node_id`
+* `replica_node_id`
 
-  ID do nó onde a replica do fragmento é armazenada
+  ID of node where fragment replica is stored
 
-- `is_lcp_ongoing`
+* `is_lcp_ongoing`
 
-  1 se o LCP estiver em andamento neste fragmento, 0 caso contrário
+  Is 1 if LCP is ongoing on this fragment, 0 otherwise
 
-- `num_crashed_replicas`
+* `num_crashed_replicas`
 
-  Número de instâncias de réplica de fragmentos quebras
+  Number of crashed fragment replica instances
 
-- `last_max_gci_started`
+* `last_max_gci_started`
 
-  O maior GCI começou no LCP mais recente
+  Highest GCI started in most recent LCP
 
-- `last_max_gci_completed`
+* `last_max_gci_completed`
 
-  Maior GCI concluído no LCP mais recente
+  Highest GCI completed in most recent LCP
 
-- `last_lcp_id`
+* `last_lcp_id`
 
-  ID do LCP mais recente
+  ID of most recent LCP
 
-- `prev_lcp_id`
+* `prev_lcp_id`
 
-  ID do LCP anterior
+  ID of previous LCP
 
-- `prev_max_gci_started`
+* `prev_max_gci_started`
 
-  O maior GCI começou no LCP anterior
+  Highest GCI started in previous LCP
 
-- `prev_max_gci_completed`
+* `prev_max_gci_completed`
 
-  Maior GCI concluído no LCP anterior
+  Highest GCI completed in previous LCP
 
-- `last_create_gci`
+* `last_create_gci`
 
-  Criar o último GCI da última instância de replica de fragmento que caiu
+  Last Create GCI of last crashed fragment replica instance
 
-- `last_replica_gci`
+* `last_replica_gci`
 
-  Última GCI da última instância de replica de fragmento que caiu
+  Last GCI of last crashed fragment replica instance
 
-- `is_replica_alive`
+* `is_replica_alive`
 
-  1 se essa réplica do fragmento estiver viva, 0 caso contrário
+  1 if this fragment replica is alive, 0 otherwise
 
-##### Notas
+##### Notes
 
-A tabela `table_replicas` foi adicionada no NDB 7.5.4.
+The `table_replicas` table was added in NDB 7.5.4.

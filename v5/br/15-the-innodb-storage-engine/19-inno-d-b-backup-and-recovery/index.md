@@ -1,11 +1,11 @@
-## 14.19. Backup e recuperação do InnoDB
+## 14.19 InnoDB Backup and Recovery
 
-14.19.1 Backup do InnoDB
+14.19.1 InnoDB Backup
 
-14.19.2 Recuperação do InnoDB
+14.19.2 InnoDB Recovery
 
-Esta seção abrange tópicos relacionados ao backup e recuperação do `InnoDB`.
+This section covers topics related to `InnoDB` backup and recovery.
 
-- Para obter informações sobre as técnicas de backup aplicáveis ao `InnoDB`, consulte a Seção 14.19.1, “Backup do InnoDB”.
+* For information about backup techniques applicable to `InnoDB`, see Section 14.19.1, “InnoDB Backup”.
 
-- Para obter informações sobre recuperação em um ponto específico, recuperação após falha ou corrupção de disco e como o `InnoDB` realiza a recuperação após falhas, consulte a Seção 14.19.2, “Recuperação do InnoDB”.
+* For information about point-in-time recovery, recovery from disk failure or corruption, and how `InnoDB` performs crash recovery, see Section 14.19.2, “InnoDB Recovery”.

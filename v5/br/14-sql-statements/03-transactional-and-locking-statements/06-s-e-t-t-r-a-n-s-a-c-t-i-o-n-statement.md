@@ -1,4 +1,4 @@
-### 13.3.6 Declaração SET TRANSACTION
+### 13.3.6 SET TRANSACTION Statement
 
 ```sql
 SET [GLOBAL | SESSION] TRANSACTION
@@ -22,57 +22,56 @@ access_mode: {
 }
 ```
 
-Esta declaração especifica as características da transação. Ela aceita uma lista de um ou mais valores de características separados por vírgulas. Cada valor de característica define o nível de isolamento da transação ou o modo de acesso. O nível de isolamento é usado para operações em tabelas de `InnoDB`. O modo de acesso especifica se as transações operam no modo de leitura/escrita ou apenas de leitura.
+This statement specifies [transaction](glossary.html#glos_transaction "transaction") characteristics. It takes a list of one or more characteristic values separated by commas. Each characteristic value sets the transaction [isolation level](glossary.html#glos_isolation_level "isolation level") or access mode. The isolation level is used for operations on [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") tables. The access mode specifies whether transactions operate in read/write or read-only mode.
 
-Além disso, `SET TRANSACTION` pode incluir a palavra-chave `GLOBAL` ou `SESSION` opcional para indicar o escopo da instrução.
+In addition, [`SET TRANSACTION`](set-transaction.html "13.3.6 SET TRANSACTION Statement") can include an optional `GLOBAL` or `SESSION` keyword to indicate the scope of the statement.
 
-- Níveis de Isolamento de Transações
-- Modo de acesso à transação
-- Âmbito da característica da transação
+* [Transaction Isolation Levels](set-transaction.html#set-transaction-isolation-level "Transaction Isolation Levels")
+* [Transaction Access Mode](set-transaction.html#set-transaction-access-mode "Transaction Access Mode")
+* [Transaction Characteristic Scope](set-transaction.html#set-transaction-scope "Transaction Characteristic Scope")
 
-#### Níveis de Isolamento de Transações
+#### Transaction Isolation Levels
 
-Para definir o nível de isolamento de transação, use uma cláusula `ISOLATION LEVEL level`. Não é permitido especificar múltiplas cláusulas `ISOLATION LEVEL` na mesma instrução `SET TRANSACTION`.
+To set the transaction isolation level, use an `ISOLATION LEVEL level` clause. It is not permitted to specify multiple `ISOLATION LEVEL` clauses in the same [`SET TRANSACTION`](set-transaction.html "13.3.6 SET TRANSACTION Statement") statement.
 
-O nível de isolamento padrão é `REPEATABLE READ`. Outros valores permitidos são `READ COMMITTED`, `READ UNCOMMITTED` e `SERIALIZABLE`. Para obter informações sobre esses níveis de isolamento, consulte Seção 14.7.2.1, “Níveis de Isolamento de Transações”.
+The default isolation level is [`REPEATABLE READ`](innodb-transaction-isolation-levels.html#isolevel_repeatable-read). Other permitted values are [`READ COMMITTED`](innodb-transaction-isolation-levels.html#isolevel_read-committed), [`READ UNCOMMITTED`](innodb-transaction-isolation-levels.html#isolevel_read-uncommitted), and [`SERIALIZABLE`](innodb-transaction-isolation-levels.html#isolevel_serializable). For information about these isolation levels, see [Section 14.7.2.1, “Transaction Isolation Levels”](innodb-transaction-isolation-levels.html "14.7.2.1 Transaction Isolation Levels").
 
-#### Modo de Acesso à Transação
+#### Transaction Access Mode
 
-Para definir o modo de acesso à transação, use uma cláusula `READ WRITE` ou `READ ONLY`. Não é permitido especificar múltiplas cláusulas de modo de acesso na mesma instrução `SET TRANSACTION`.
+To set the transaction access mode, use a `READ WRITE` or `READ ONLY` clause. It is not permitted to specify multiple access-mode clauses in the same [`SET TRANSACTION`](set-transaction.html "13.3.6 SET TRANSACTION Statement") statement.
 
-Por padrão, uma transação ocorre no modo de leitura/escrita, com permissão para leituras e escritas em tabelas usadas na transação. Esse modo pode ser especificado explicitamente usando `SET TRANSACTION` com um modo de acesso de `READ WRITE`.
+By default, a transaction takes place in read/write mode, with both reads and writes permitted to tables used in the transaction. This mode may be specified explicitly using [`SET TRANSACTION`](set-transaction.html "13.3.6 SET TRANSACTION Statement") with an access mode of `READ WRITE`.
 
-Se o modo de acesso à transação estiver configurado como `LEITURA SOMENTE`, as alterações nas tabelas serão proibidas. Isso pode permitir que os motores de armazenamento realizem melhorias de desempenho que são possíveis quando as escritas não são permitidas.
+If the transaction access mode is set to `READ ONLY`, changes to tables are prohibited. This may enable storage engines to make performance improvements that are possible when writes are not permitted.
 
-No modo de leitura somente, ainda é possível alterar tabelas criadas com a palavra-chave `TEMPORARY` usando instruções DML. As alterações feitas com instruções DDL não são permitidas, assim como com tabelas permanentes.
+In read-only mode, it remains possible to change tables created with the `TEMPORARY` keyword using DML statements. Changes made with DDL statements are not permitted, just as with permanent tables.
 
-Os modos de acesso `LEIA ESCRITA` e `LEIA SOMENTE` também podem ser especificados para uma transação individual usando a instrução `START TRANSACTION`.
+The `READ WRITE` and `READ ONLY` access modes also may be specified for an individual transaction using the [`START TRANSACTION`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") statement.
 
-#### Âmbito das características da transação
+#### Transaction Characteristic Scope
 
-Você pode definir as características da transação globalmente, para a sessão atual ou apenas para a próxima transação:
+You can set transaction characteristics globally, for the current session, or for the next transaction only:
 
-- Com a palavra-chave `GLOBAL`:
+* With the `GLOBAL` keyword:
 
-  - A declaração se aplica globalmente para todas as sessões subsequentes.
+  + The statement applies globally for all subsequent sessions.
 
-  - As sessões existentes não são afetadas.
+  + Existing sessions are unaffected.
+* With the `SESSION` keyword:
 
-- Com a palavra-chave `SESSION`:
+  + The statement applies to all subsequent transactions performed within the current session.
 
-  - A declaração se aplica a todas as transações subsequentes realizadas durante a sessão atual.
+  + The statement is permitted within transactions, but does not affect the current ongoing transaction.
 
-  - A declaração é permitida dentro das transações, mas não afeta a transação em andamento atual.
+  + If executed between transactions, the statement overrides any preceding statement that sets the next-transaction value of the named characteristics.
 
-  - Se executada entre transações, a declaração substitui qualquer declaração anterior que defina o valor da próxima transação das características nomeadas.
+* Without any `SESSION` or `GLOBAL` keyword:
 
-- Sem nenhuma palavra-chave `SESSION` ou `GLOBAL`:
+  + The statement applies only to the next single transaction performed within the session.
 
-  - A declaração se aplica apenas à próxima transação única realizada dentro da sessão.
+  + Subsequent transactions revert to using the session value of the named characteristics.
 
-  - As transações subsequentes retornam ao uso do valor da sessão das características nomeadas.
-
-  - A declaração não é permitida em transações:
+  + The statement is not permitted within transactions:
 
     ```sql
     mysql> START TRANSACTION;
@@ -83,13 +82,13 @@ Você pode definir as características da transação globalmente, para a sessã
     while a transaction is in progress
     ```
 
-Para alterar as características de transação global, é necessário o privilégio `SUPER`. Qualquer sessão pode alterar suas características de sessão (mesmo no meio de uma transação) ou as características para sua próxima transação (antes do início dessa transação).
+A change to global transaction characteristics requires the [`SUPER`](privileges-provided.html#priv_super) privilege. Any session is free to change its session characteristics (even in the middle of a transaction), or the characteristics for its next transaction (prior to the start of that transaction).
 
-Para definir o nível de isolamento global ao iniciar o servidor, use a opção `--transaction-isolation=level` na linha de comando ou em um arquivo de opções. Os valores de *`level`* para essa opção usam travessões em vez de espaços, portanto, os valores permitidos são `READ-UNCOMMITTED` (innodb-transaction-isolation-levels.html#isolevel_read-uncommitted), `READ-COMMITTED` (innodb-transaction-isolation-levels.html#isolevel_read-committed), `REPEATABLE-READ` (innodb-transaction-isolation-levels.html#isolevel_repeatable-read) ou `SERIALIZABLE` (innodb-transaction-isolation-levels.html#isolevel_serializable).
+To set the global isolation level at server startup, use the [`--transaction-isolation=level`](server-options.html#option_mysqld_transaction-isolation) option on the command line or in an option file. Values of *`level`* for this option use dashes rather than spaces, so the permissible values are [`READ-UNCOMMITTED`](innodb-transaction-isolation-levels.html#isolevel_read-uncommitted), [`READ-COMMITTED`](innodb-transaction-isolation-levels.html#isolevel_read-committed), [`REPEATABLE-READ`](innodb-transaction-isolation-levels.html#isolevel_repeatable-read), or [`SERIALIZABLE`](innodb-transaction-isolation-levels.html#isolevel_serializable).
 
-Da mesma forma, para definir o modo de acesso global de transações na inicialização do servidor, use a opção `--transaction-read-only`. O padrão é `OFF` (modo de leitura/escrita), mas o valor pode ser definido como `ON` para um modo de leitura apenas.
+Similarly, to set the global transaction access mode at server startup, use the [`--transaction-read-only`](server-options.html#option_mysqld_transaction-read-only) option. The default is `OFF` (read/write mode) but the value can be set to `ON` for a mode of read only.
 
-Por exemplo, para definir o nível de isolamento para `REPEATABLE READ` e o modo de acesso para `READ WRITE`, use essas linhas na seção `[mysqld]` de um arquivo de opções:
+For example, to set the isolation level to [`REPEATABLE READ`](innodb-transaction-isolation-levels.html#isolevel_repeatable-read) and the access mode to `READ WRITE`, use these lines in the `[mysqld]` section of an option file:
 
 ```sql
 [mysqld]
@@ -97,27 +96,27 @@ transaction-isolation = REPEATABLE-READ
 transaction-read-only = OFF
 ```
 
-No momento da execução, as características nos níveis de escopo global, sessão e próxima transação podem ser definidas indiretamente usando a instrução `SET TRANSACTION`, conforme descrito anteriormente. Elas também podem ser definidas diretamente usando a instrução `SET` para atribuir valores às variáveis de sistema `transaction_isolation` e `transaction_read_only`:
+At runtime, characteristics at the global, session, and next-transaction scope levels can be set indirectly using the [`SET TRANSACTION`](set-transaction.html "13.3.6 SET TRANSACTION Statement") statement, as described previously. They can also be set directly using the [`SET`](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment") statement to assign values to the [`transaction_isolation`](server-system-variables.html#sysvar_transaction_isolation) and [`transaction_read_only`](server-system-variables.html#sysvar_transaction_read_only) system variables:
 
-- `SET TRANSACTION` permite as palavras-chave `GLOBAL` e `SESSION` opcionais para definir as características da transação em diferentes níveis de escopo.
+* [`SET TRANSACTION`](set-transaction.html "13.3.6 SET TRANSACTION Statement") permits optional `GLOBAL` and `SESSION` keywords for setting transaction characteristics at different scope levels.
 
-- A instrução `SET` para atribuir valores às variáveis de sistema `transaction_isolation` e `transaction_read_only` tem sintaxes para definir essas variáveis em diferentes níveis de escopo.
+* The [`SET`](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment") statement for assigning values to the [`transaction_isolation`](server-system-variables.html#sysvar_transaction_isolation) and [`transaction_read_only`](server-system-variables.html#sysvar_transaction_read_only) system variables has syntaxes for setting these variables at different scope levels.
 
-As tabelas a seguir mostram o nível de escopo característico definido por cada sintaxe de `[SET TRANSACTION]` e atribuição de variáveis.
+The following tables show the characteristic scope level set by each [`SET TRANSACTION`](set-transaction.html "13.3.6 SET TRANSACTION Statement") and variable-assignment syntax.
 
-**Tabela 13.6 Sintaxe SET TRANSACTION para características de transação**
+**Table 13.6 SET TRANSACTION Syntax for Transaction Characteristics**
 
-<table summary="Sintaxe para definir características de transação usando SET TRANSACTION e escopo afetado."><col style="width: 60%"/><col style="width: 40%"/><thead><tr> <th>Sintaxe</th> <th>Âmbito da característica afetada</th> </tr></thead><tbody><tr> <td><code>SET GLOBAL TRANSACTION <em><code>transaction_characteristic</code></em></code></td> <td>Global</td> </tr><tr> <td><code>SET SESSION TRANSACTION <em><code>transaction_characteristic</code></em></code></td> <td>Sessão</td> </tr><tr> <td><code>SET TRANSACTION <em><code>transaction_characteristic</code></em></code></td> <td>Próxima transação apenas</td> </tr></tbody></table>
+<table summary="Syntax for setting transaction characteristics using SET TRANSACTION and affected scope."><col style="width: 60%"/><col style="width: 40%"/><thead><tr> <th>Syntax</th> <th>Affected Characteristic Scope</th> </tr></thead><tbody><tr> <td><code>SET GLOBAL TRANSACTION <em><code>transaction_characteristic</code></em></code></td> <td>Global</td> </tr><tr> <td><code>SET SESSION TRANSACTION <em><code>transaction_characteristic</code></em></code></td> <td>Session</td> </tr><tr> <td><code>SET TRANSACTION <em><code>transaction_characteristic</code></em></code></td> <td>Next transaction only</td> </tr></tbody></table>
 
-**Tabela 13.7 Sintaxe SET para características de transação**
+**Table 13.7 SET Syntax for Transaction Characteristics**
 
-<table summary="Sintaxe para definir características de transação usando SET e escopo afetado."><col style="width: 60%"/><col style="width: 40%"/><thead><tr> <th>Sintaxe</th> <th>Âmbito da característica afetada</th> </tr></thead><tbody><tr> <td>PH_HTML_CODE_<code>SET @@<em><code>var_name</code>]</em>=<em>PH_HTML_CODE_<code>SET @@<em><code>var_name</code>]</em></code></td> <td>Global</td> </tr><tr> <td><code>SET @@GLOBAL.<em><code>var_name</code></em>=<em><code>value</code></em></code></td> <td>Global</td> </tr><tr> <td><code>SET SESSION <em><code>var_name</code></em>=<em><code>value</code></em></code></td> <td>Sessão</td> </tr><tr> <td><code>SET @@SESSION.<em><code>var_name</code></em>=<em><code>value</code></em></code></td> <td>Sessão</td> </tr><tr> <td><code>SET <em><code>var_name</code></em>=<em><code>value</code></em></code></td> <td>Sessão</td> </tr><tr> <td><code>SET @@<em><code>var_name</code></em>=<em><code>value</code><code>SET @@<em><code>var_name</code>]</em></code></td> <td>Próxima transação apenas</td> </tr></tbody></table>
+<table summary="Syntax for setting transaction characteristics using SET and affected scope."><col style="width: 60%"/><col style="width: 40%"/><thead><tr> <th>Syntax</th> <th>Affected Characteristic Scope</th> </tr></thead><tbody><tr> <td><code>SET GLOBAL <em><code>var_name</code></em> = <em><code>value</code></em></code></td> <td>Global</td> </tr><tr> <td><code>SET @@GLOBAL.<em><code>var_name</code></em> = <em><code>value</code></em></code></td> <td>Global</td> </tr><tr> <td><code>SET SESSION <em><code>var_name</code></em> = <em><code>value</code></em></code></td> <td>Session</td> </tr><tr> <td><code>SET @@SESSION.<em><code>var_name</code></em> = <em><code>value</code></em></code></td> <td>Session</td> </tr><tr> <td><code>SET <em><code>var_name</code></em> = <em><code>value</code></em></code></td> <td>Session</td> </tr><tr> <td><code>SET @@<em><code>var_name</code></em> = <em><code>value</code></em></code></td> <td>Next transaction only</td> </tr></tbody></table>
 
-É possível verificar os valores globais e de sessão das características da transação em tempo de execução:
+It is possible to check the global and session values of transaction characteristics at runtime:
 
 ```sql
 SELECT @@GLOBAL.transaction_isolation, @@GLOBAL.transaction_read_only;
 SELECT @@SESSION.transaction_isolation, @@SESSION.transaction_read_only;
 ```
 
-Antes do MySQL 5.7.20, use `tx_isolation` e `tx_read_only` em vez de `transaction_isolation` e `transaction_read_only`.
+Prior to MySQL 5.7.20, use [`tx_isolation`](server-system-variables.html#sysvar_tx_isolation) and [`tx_read_only`](server-system-variables.html#sysvar_tx_read_only) rather than [`transaction_isolation`](server-system-variables.html#sysvar_transaction_isolation) and [`transaction_read_only`](server-system-variables.html#sysvar_transaction_read_only).

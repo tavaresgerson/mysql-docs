@@ -1,4 +1,4 @@
-#### 13.6.5.5 Declaração LOOP
+#### 13.6.5.5 LOOP Statement
 
 ```sql
 [begin_label:] LOOP
@@ -6,13 +6,13 @@
 END LOOP [end_label]
 ```
 
-`LOOP` implementa uma construção de loop simples, permitindo a execução repetida da lista de instruções, que consiste em uma ou mais instruções, cada uma terminada por um delimitador de instrução ponto e vírgula (`;`). As instruções dentro do loop são repetidas até que o loop seja encerrado. Normalmente, isso é feito com uma instrução `LEAVE`. Dentro de uma função armazenada, também pode ser usado `RETURN`, que sai completamente da função.
+[`LOOP`](loop.html "13.6.5.5 LOOP Statement") implements a simple loop construct, enabling repeated execution of the statement list, which consists of one or more statements, each terminated by a semicolon (`;`) statement delimiter. The statements within the loop are repeated until the loop is terminated. Usually, this is accomplished with a [`LEAVE`](leave.html "13.6.5.4 LEAVE Statement") statement. Within a stored function, [`RETURN`](return.html "13.6.5.7 RETURN Statement") can also be used, which exits the function entirely.
 
-Negligenciar a inclusão de uma declaração de término de laço resulta em um laço infinito.
+Neglecting to include a loop-termination statement results in an infinite loop.
 
-Uma declaração `LOOP` pode ser rotulada. Para as regras sobre o uso de rótulos, consulte Seção 13.6.2, “Rotulagem de Declarações”.
+A [`LOOP`](loop.html "13.6.5.5 LOOP Statement") statement can be labeled. For the rules regarding label use, see [Section 13.6.2, “Statement Labels”](statement-labels.html "13.6.2 Statement Labels").
 
-Exemplo:
+Example:
 
 ```sql
 CREATE PROCEDURE doiterate(p1 INT)

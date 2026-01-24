@@ -1,15 +1,15 @@
-#### 11.4.2.6 Classe de superfície
+#### 11.4.2.6 Surface Class
 
-Uma `Superfície` é uma geometria bidimensional. É uma classe não instanciável. Sua única subclasse instanciável é `Poligono`.
+A `Surface` is a two-dimensional geometry. It is a noninstantiable class. Its only instantiable subclass is `Polygon`.
 
-Superfícies simples no espaço tridimensional são isomórficas às superfícies planas.
+Simple surfaces in three-dimensional space are isomorphic to planar surfaces.
 
-As superfícies poliédricas são formadas “costurando” superfícies simples ao longo de seus limites. Em um espaço tridimensional, as superfícies poliédricas podem não ser planas como um todo.
+Polyhedral surfaces are formed by “stitching” together simple surfaces along their boundaries, polyhedral surfaces in three-dimensional space may not be planar as a whole.
 
-**Propriedades da Superfície**
+**`Surface` Properties**
 
-- Uma `Superfície` é definida como uma geometria bidimensional.
+* A `Surface` is defined as a two-dimensional geometry.
 
-- A especificação OpenGIS define uma superfície simples como uma geometria que consiste em um único "patch" associado a uma única borda externa e zero ou mais bordas internas.
+* The OpenGIS specification defines a simple `Surface` as a geometry that consists of a single “patch” that is associated with a single exterior boundary and zero or more interior boundaries.
 
-- A fronteira de uma superfície simples é o conjunto de curvas fechadas que correspondem aos seus limites externos e internos.
+* The boundary of a simple `Surface` is the set of closed curves corresponding to its exterior and interior boundaries.

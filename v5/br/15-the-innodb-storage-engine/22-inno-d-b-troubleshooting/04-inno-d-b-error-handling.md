@@ -1,19 +1,19 @@
-### 14.22.4 Gerenciamento de Erros do InnoDB
+### 14.22.4 InnoDB Error Handling
 
-Os itens a seguir descrevem como o `InnoDB` gerencia os erros. O `InnoDB` às vezes desfaz apenas a instrução que falhou, outras vezes desfaz toda a transação.
+The following items describe how `InnoDB` performs error handling. `InnoDB` sometimes rolls back only the statement that failed, other times it rolls back the entire transaction.
 
-- Se você ficar sem espaço em disco em um espaço de tabelas, um erro "Tabela está cheia" do MySQL ocorre e o `InnoDB` desfaz a instrução SQL.
+* If you run out of file space in a tablespace, a MySQL `Table is full` error occurs and `InnoDB` rolls back the SQL statement.
 
-- Um impasse de transação faz com que o `InnoDB` desfaça toda a transação. Tente a transação inteira quando isso acontecer.
+* A transaction deadlock causes `InnoDB` to roll back the entire transaction. Retry the entire transaction when this happens.
 
-  Um tempo de espera para bloqueio faz com que o `InnoDB` desfaça a declaração atual (a declaração que estava esperando pelo bloqueio e encontrou o tempo de espera). Para fazer com que toda a transação seja desfeita, inicie o servidor com `--innodb-rollback-on-timeout` habilitado. Repita a declaração se estiver usando o comportamento padrão ou toda a transação se `--innodb-rollback-on-timeout` estiver habilitado.
+  A lock wait timeout causes `InnoDB` to roll back the current statement (the statement that was waiting for the lock and encountered the timeout). To have the entire transaction roll back, start the server with `--innodb-rollback-on-timeout` enabled. Retry the statement if using the default behavior, or the entire transaction if `--innodb-rollback-on-timeout` is enabled.
 
-  Ambos os bloqueios e os timeout de espera de bloqueio são normais em servidores movimentados, e é necessário que as aplicações estejam cientes de que isso pode acontecer e lidem com isso tentando novamente. Você pode torná-los menos prováveis fazendo o menor trabalho possível entre a primeira alteração de dados durante uma transação e o commit, para que os bloqueios sejam mantidos por um tempo o mais curto possível e para o menor número possível de linhas. Às vezes, dividir o trabalho entre diferentes transações pode ser prático e útil.
+  Both deadlocks and lock wait timeouts are normal on busy servers and it is necessary for applications to be aware that they may happen and handle them by retrying. You can make them less likely by doing as little work as possible between the first change to data during a transaction and the commit, so the locks are held for the shortest possible time and for the smallest possible number of rows. Sometimes splitting work between different transactions may be practical and helpful.
 
-- Um erro de chave duplicada reverte a instrução SQL, se você não tiver especificado a opção `IGNORE` na sua instrução.
+* A duplicate-key error rolls back the SQL statement, if you have not specified the `IGNORE` option in your statement.
 
-- Um erro de "linha muito longa" desfaz a instrução SQL.
+* A `row too long error` rolls back the SQL statement.
 
-- Outros erros são detectados principalmente pela camada de código MySQL (acima do nível do mecanismo de armazenamento `InnoDB`), e eles revertem a declaração SQL correspondente. As bloqueadas não são liberadas em um rollback de uma única declaração SQL.
+* Other errors are mostly detected by the MySQL layer of code (above the `InnoDB` storage engine level), and they roll back the corresponding SQL statement. Locks are not released in a rollback of a single SQL statement.
 
-Durante rollback implícitos, bem como durante a execução de uma instrução SQL explícita `ROLLBACK`, o `SHOW PROCESSLIST` exibe "Rolling back" na coluna `Estado` para a conexão relevante.
+During implicit rollbacks, as well as during the execution of an explicit `ROLLBACK` SQL statement, `SHOW PROCESSLIST` displays `Rolling back` in the `State` column for the relevant connection.

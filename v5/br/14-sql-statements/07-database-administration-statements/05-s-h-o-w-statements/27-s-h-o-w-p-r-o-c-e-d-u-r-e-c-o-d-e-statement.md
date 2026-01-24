@@ -1,14 +1,14 @@
-#### 13.7.5.27. EXIBIR CÓDIGO DO PROCEDIMENTO Declaração
+#### 13.7.5.27 SHOW PROCEDURE CODE Statement
 
 ```sql
 SHOW PROCEDURE CODE proc_name
 ```
 
-Esta declaração é uma extensão do MySQL que está disponível apenas para servidores que foram construídos com suporte de depuração. Ela exibe uma representação da implementação interna do procedimento armazenado nomeado. Uma declaração semelhante, `SHOW FUNCTION CODE`, exibe informações sobre funções armazenadas (consulte Seção 13.7.5.19, “Declaração SHOW FUNCTION CODE”).
+This statement is a MySQL extension that is available only for servers that have been built with debugging support. It displays a representation of the internal implementation of the named stored procedure. A similar statement, [`SHOW FUNCTION CODE`](show-function-code.html "13.7.5.19 SHOW FUNCTION CODE Statement"), displays information about stored functions (see [Section 13.7.5.19, “SHOW FUNCTION CODE Statement”](show-function-code.html "13.7.5.19 SHOW FUNCTION CODE Statement")).
 
-Para usar qualquer uma dessas declarações, você deve ser o proprietário da rotina ou ter acesso ao `mysql.proc` tabela com `SELECT` (select.html).
+To use either statement, you must be the owner of the routine or have [`SELECT`](select.html "13.2.9 SELECT Statement") access to the `mysql.proc` table.
 
-Se a rotina nomeada estiver disponível, cada instrução gera um conjunto de resultados. Cada linha do conjunto de resultados corresponde a uma “instrução” na rotina. A primeira coluna é `Pos`, que é um número ordinal começando com 0. A segunda coluna é `Instrução`, que contém uma instrução SQL (geralmente alterada a partir da fonte original) ou uma diretiva que tem significado apenas para o manipulador da rotina armazenada.
+If the named routine is available, each statement produces a result set. Each row in the result set corresponds to one “instruction” in the routine. The first column is `Pos`, which is an ordinal number beginning with 0. The second column is `Instruction`, which contains an SQL statement (usually changed from the original source), or a directive which has meaning only to the stored-routine handler.
 
 ```sql
 mysql> DELIMITER //
@@ -47,4 +47,4 @@ mysql> SHOW FUNCTION CODE test.hello;
 1 row in set (0.00 sec)
 ```
 
-Neste exemplo, as instruções não executáveis `BEGIN` e `END` desapareceram, e para a instrução `DECLARE variable_name`, aparece apenas a parte executável (a parte onde o valor padrão é atribuído). Para cada instrução tirada da fonte, há uma palavra-código `stmt` seguida de um tipo (9 significa `DROP`, 5 significa `INSERT`, e assim por diante). A última linha contém uma instrução `jump 2`, o que significa `GOTO instrução #2`.
+In this example, the nonexecutable `BEGIN` and `END` statements have disappeared, and for the `DECLARE variable_name` statement, only the executable part appears (the part where the default is assigned). For each statement that is taken from source, there is a code word `stmt` followed by a type (9 means `DROP`, 5 means [`INSERT`](insert.html "13.2.5 INSERT Statement"), and so on). The final row contains an instruction `jump 2`, meaning `GOTO instruction #2`.

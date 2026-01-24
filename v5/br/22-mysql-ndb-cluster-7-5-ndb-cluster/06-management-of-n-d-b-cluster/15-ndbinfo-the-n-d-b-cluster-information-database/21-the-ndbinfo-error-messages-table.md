@@ -1,87 +1,62 @@
-#### 21.6.15.21 Tabela de mensagens de erro ndbinfo_messages
+#### 21.6.15.21 The ndbinfo error_messages Table
 
-A tabela `mensagens_de_erro` fornece informações sobre
+The `error_messages` table provides information about
 
-A tabela `error_messages` contém as seguintes colunas:
+The `error_messages` table contains the following columns:
 
-- `código_de_erro`
+* `error_code`
 
-  Código de erro numérico
+  Numeric error code
 
-- `descrição_do_erro`
+* `error_description`
 
-  Descrição do erro
+  Description of error
 
-- `status_erro`
+* `error_status`
 
-  Código de status de erro
+  Error status code
 
-- `classificação_de_erro`
+* `error_classification`
 
-  Código de classificação de erro
+  Error classification code
 
-##### Notas
+##### Notes
 
-`error_code` é um código de erro numérico do NDB. Este é o mesmo código de erro que pode ser fornecido ao **ndb_perror** ou ao **perror** `--ndb` (perror.html#option_perror_ndb).
+`error_code` is a numeric NDB error code. This is the same error code that can be supplied to [**ndb_perror**](mysql-cluster-programs-ndb-perror.html "21.5.17 ndb_perror — Obtain NDB Error Message Information") or [**perror**](perror.html "4.8.2 perror — Display MySQL Error Message Information") [`--ndb`](perror.html#option_perror_ndb).
 
-`error_description` fornece uma descrição básica da condição que está causando o erro.
+`error_description` provides a basic description of the condition causing the error.
 
-A coluna `error_status` fornece informações de status relacionadas ao erro. Os valores possíveis para esta coluna estão listados aqui:
+The `error_status` column provides status information relating to the error. Possible values for this column are listed here:
 
-- `Sem erro`
+* `No error`
+* `Illegal connect string`
+* `Illegal server handle`
+* `Illegal reply from server`
+* `Illegal number of nodes`
+* `Illegal node status`
+* `Out of memory`
+* `Management server not connected`
+* `Could not connect to socket`
+* `Start failed`
+* `Stop failed`
+* `Restart failed`
+* `Could not start backup`
+* `Could not abort backup`
+* `Could not enter single user mode`
+* `Could not exit single user mode`
+* `Failed to complete configuration change`
+* `Failed to get configuration`
+* `Usage error`
+* `Success`
+* `Permanent error`
+* `Temporary error`
+* `Unknown result`
+* `Temporary error, restart node`
+* `Permanent error, external action needed`
+* `Ndbd file system error, restart node initial`
 
-- `String de conexão ilegal`
+* `Unknown`
 
-- `Endereço de servidor ilegal`
+The error_classification column shows the error classification. See [NDB Error Classifications](/doc/ndbapi/en/ndb-error-classifications.html), for information about classification codes and their meanings.
 
-- "Resposta ilegal do servidor"
-
-- "Número ilegal de nós"
-
-- "Status de nó ilegal"
-
-- "Sem memória"
-
-- `Servidor de gerenciamento não conectado`
-
-- `Não consegui conectar ao soquete`
-
-- `Início falhou`
-
-- `A parada falhou`
-
-- `Reinício falhou`
-
-- `Não foi possível iniciar o backup`
-
-- `Não foi possível interromper o backup`
-
-- `Não foi possível entrar no modo de usuário único`
-
-- `Não foi possível sair do modo de usuário único`
-
-- `Não foi possível completar a alteração da configuração`
-
-- `Não foi possível obter a configuração`
-
-- Erro de uso
-
-- "Sucesso"
-
-- "Erro permanente"
-
-- "Erro temporário"
-
-- `Resultado desconhecido`
-
-- `Erro temporário, reinicie o nó`
-
-- `Erro permanente, ação externa necessária`
-
-- Erro do sistema de arquivos Ndbd, reinicie o nó inicial
-
-- "Desconhecido"
-
-A coluna error_classification mostra a classificação do erro. Consulte Classificações de Erros do NDB para obter informações sobre os códigos de classificação e seus significados.
-
-A tabela `error_messages` foi adicionada no NDB 7.6.
+The `error_messages` table was added in NDB 7.6.

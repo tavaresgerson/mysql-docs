@@ -1,12 +1,12 @@
-#### 26.4.4.24 O procedimento ps_truncate_all_tables()
+#### 26.4.4.24 The ps_truncate_all_tables() Procedure
 
-Trunca todas as tabelas de resumo do Schema de Desempenho, redefinindo toda a instrumentação agregada como um instantâneo. Produz um conjunto de resultados que indica quantos tabelas foram truncadas.
+Truncates all Performance Schema summary tables, resetting all aggregated instrumentation as a snapshot. Produces a result set indicating how many tables were truncated.
 
-##### Parâmetros
+##### Parameters
 
-- `in_verbose BOOLEAN`: Se deve exibir cada instrução `TRUNCATE TABLE` antes de executá-la.
+* `in_verbose BOOLEAN`: Whether to display each `TRUNCATE TABLE` statement before executing it.
 
-##### Exemplo
+##### Example
 
 ```sql
 mysql> CALL sys.ps_truncate_all_tables(FALSE);

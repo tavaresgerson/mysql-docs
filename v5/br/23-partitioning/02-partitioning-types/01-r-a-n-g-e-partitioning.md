@@ -1,6 +1,6 @@
-### 22.2.1 Partição de alcance
+### 22.2.1 RANGE Partitioning
 
-Uma tabela que é particionada por intervalo é particionada de forma que cada partição contenha linhas para as quais o valor da expressão de particionamento esteja dentro de um intervalo dado. Os intervalos devem ser contínuos, mas não sobrepostos, e são definidos usando o operador `MENOS QUE`. Para os próximos exemplos, suponha que você esteja criando uma tabela como a seguinte para armazenar registros de pessoal para uma cadeia de 20 lojas de vídeo, numeradas de 1 a 20:
+A table that is partitioned by range is partitioned in such a way that each partition contains rows for which the partitioning expression value lies within a given range. Ranges should be contiguous but not overlapping, and are defined using the `VALUES LESS THAN` operator. For the next few examples, suppose that you are creating a table such as the following to hold personnel records for a chain of 20 video stores, numbered 1 through 20:
 
 ```sql
 CREATE TABLE employees (
@@ -14,11 +14,11 @@ CREATE TABLE employees (
 );
 ```
 
-Nota
+Note
 
-A tabela `employees` usada aqui não tem chaves primárias ou únicas. Embora os exemplos funcionem conforme mostrado para os propósitos da presente discussão, você deve ter em mente que, na prática, as tabelas têm uma grande probabilidade de ter chaves primárias, chaves únicas ou ambas, e que as opções permitidas para a partição de colunas dependem das colunas usadas para essas chaves, se houver alguma presente. Para uma discussão sobre essas questões, consulte Seção 22.6.1, “Chaves de Partição, Chaves Primárias e Chaves Únicas”.
+The `employees` table used here has no primary or unique keys. While the examples work as shown for purposes of the present discussion, you should keep in mind that tables are extremely likely in practice to have primary keys, unique keys, or both, and that allowable choices for partitioning columns depend on the columns used for these keys, if any are present. For a discussion of these issues, see [Section 22.6.1, “Partitioning Keys, Primary Keys, and Unique Keys”](partitioning-limitations-partitioning-keys-unique-keys.html "22.6.1 Partitioning Keys, Primary Keys, and Unique Keys").
 
-Essa tabela pode ser particionada por intervalo de várias maneiras, dependendo das suas necessidades. Uma maneira seria usar a coluna `store_id`. Por exemplo, você pode decidir particionar a tabela de 4 maneiras, adicionando uma cláusula `PARTITION BY RANGE`, como mostrado aqui:
+This table can be partitioned by range in a number of ways, depending on your needs. One way would be to use the `store_id` column. For instance, you might decide to partition the table 4 ways by adding a `PARTITION BY RANGE` clause as shown here:
 
 ```sql
 CREATE TABLE employees (
@@ -38,9 +38,9 @@ PARTITION BY RANGE (store_id) (
 );
 ```
 
-Nesse esquema de particionamento, todas as linhas correspondentes a funcionários que trabalham nas lojas 1 a 5 são armazenadas na partição `p0`, aqueles empregados nas lojas 6 a 10 são armazenados na partição `p1`, e assim por diante. Observe que cada partição é definida em ordem, do menor para o maior. Esse é um requisito da sintaxe `PARTITION BY RANGE`; você pode pensar nisso como sendo análogo a uma série de instruções `if ... elseif ...` em C ou Java nesse sentido.
+In this partitioning scheme, all rows corresponding to employees working at stores 1 through 5 are stored in partition `p0`, to those employed at stores 6 through 10 are stored in partition `p1`, and so on. Note that each partition is defined in order, from lowest to highest. This is a requirement of the `PARTITION BY RANGE` syntax; you can think of it as being analogous to a series of `if ... elseif ...` statements in C or Java in this regard.
 
-É fácil determinar que uma nova linha contendo os dados `(72, 'Mitchell', 'Wilson', '1998-06-25', DEFAULT, 7, 13)` é inserida na partição `p2`, mas o que acontece quando sua cadeia adiciona uma 21ª loja? Sob este esquema, não há nenhuma regra que cubra uma linha cujo `store_id` é maior que 20, então ocorre um erro porque o servidor não sabe onde colocá-lo. Você pode evitar isso usando uma cláusula `VALUES MENOS QUE` de "catchall" na declaração `CREATE TABLE` que prevê todos os valores maiores que o valor mais alto explicitamente nomeado:
+It is easy to determine that a new row containing the data `(72, 'Mitchell', 'Wilson', '1998-06-25', DEFAULT, 7, 13)` is inserted into partition `p2`, but what happens when your chain adds a 21st store? Under this scheme, there is no rule that covers a row whose `store_id` is greater than 20, so an error results because the server does not know where to place it. You can keep this from occurring by using a “catchall” `VALUES LESS THAN` clause in the [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement that provides for all values greater than the highest value explicitly named:
 
 ```sql
 CREATE TABLE employees (
@@ -60,11 +60,11 @@ PARTITION BY RANGE (store_id) (
 );
 ```
 
-Outra maneira de evitar um erro quando não for encontrado um valor correspondente é usar a palavra-chave `IGNORE` como parte da instrução `INSERT`. Para um exemplo, veja Seção 22.2.2, “Divisão de LISTA”.
+Another way to avoid an error when no matching value is found is to use the `IGNORE` keyword as part of the [`INSERT`](insert.html "13.2.5 INSERT Statement") statement. For an example, see [Section 22.2.2, “LIST Partitioning”](partitioning-list.html "22.2.2 LIST Partitioning").
 
-`MAXVALUE` representa um valor inteiro que é sempre maior que o valor inteiro mais alto possível (em linguagem matemática, ele serve como um limite inferior). Agora, quaisquer linhas cujo valor na coluna `store_id` seja maior ou igual a 16 (o valor mais alto definido) são armazenadas na partição `p3`. Em algum momento no futuro — quando o número de lojas tiver aumentado para 25, 30 ou mais — você pode usar uma declaração `ALTER TABLE` (alter-table-partition-operations.html) para adicionar novas partições para as lojas 21-25, 26-30, e assim por diante (consulte Seção 22.3, “Gestão de Partições”, para detalhes de como fazer isso).
+`MAXVALUE` represents an integer value that is always greater than the largest possible integer value (in mathematical language, it serves as a least upper bound). Now, any rows whose `store_id` column value is greater than or equal to 16 (the highest value defined) are stored in partition `p3`. At some point in the future—when the number of stores has increased to 25, 30, or more—you can use an [`ALTER TABLE`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") statement to add new partitions for stores 21-25, 26-30, and so on (see [Section 22.3, “Partition Management”](partitioning-management.html "22.3 Partition Management"), for details of how to do this).
 
-Da mesma forma, você poderia particionar a tabela com base nos códigos de emprego dos funcionários — ou seja, com base em intervalos de valores da coluna `job_code`. Por exemplo, supondo que códigos de emprego de dois dígitos sejam usados para trabalhadores regulares (na loja), códigos de três dígitos sejam usados para pessoal de escritório e suporte, e códigos de quatro dígitos sejam usados para cargos de gestão — você poderia criar a tabela particionada usando a seguinte declaração:
+In much the same fashion, you could partition the table based on employee job codes—that is, based on ranges of `job_code` column values. For example—assuming that two-digit job codes are used for regular (in-store) workers, three-digit codes are used for office and support personnel, and four-digit codes are used for management positions—you could create the partitioned table using the following statement:
 
 ```sql
 CREATE TABLE employees (
@@ -83,11 +83,11 @@ PARTITION BY RANGE (job_code) (
 );
 ```
 
-Nesse caso, todas as linhas relacionadas aos funcionários da loja seriam armazenadas na partição `p0`, as relacionadas ao pessoal de escritório e suporte na `p1`, e as relacionadas aos gerentes na partição `p2`.
+In this instance, all rows relating to in-store workers would be stored in partition `p0`, those relating to office and support staff in `p1`, and those relating to managers in partition `p2`.
 
-Também é possível usar uma expressão nas cláusulas `VALUES MENOS QUE`. No entanto, o MySQL deve ser capaz de avaliar o valor de retorno da expressão como parte de uma comparação `MENOS QUE` (`<`).
+It is also possible to use an expression in `VALUES LESS THAN` clauses. However, MySQL must be able to evaluate the expression's return value as part of a `LESS THAN` (`<`) comparison.
 
-Em vez de dividir os dados da tabela de acordo com o número da loja, você pode usar uma expressão baseada em uma das duas colunas de `DATA`. Por exemplo, vamos supor que você deseja particionar com base no ano em que cada funcionário deixou a empresa; ou seja, o valor de `ANO(separado)`. Um exemplo de uma instrução `CREATE TABLE` que implementa um esquema de particionamento desse tipo é mostrado aqui:
+Rather than splitting up the table data according to store number, you can use an expression based on one of the two [`DATE`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") columns instead. For example, let us suppose that you wish to partition based on the year that each employee left the company; that is, the value of [`YEAR(separated)`](date-and-time-functions.html#function_year). An example of a [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement that implements such a partitioning scheme is shown here:
 
 ```sql
 CREATE TABLE employees (
@@ -107,9 +107,9 @@ PARTITION BY RANGE ( YEAR(separated) ) (
 );
 ```
 
-Nesse esquema, para todos os funcionários que saíram antes de 1991, as linhas são armazenadas na partição `p0`; para aqueles que saíram nos anos de 1991 a 1995, na `p1`; para aqueles que saíram nos anos de 1996 a 2000, na `p2`; e para quaisquer trabalhadores que saíram após o ano de 2000, na `p3`.
+In this scheme, for all employees who left before 1991, the rows are stored in partition `p0`; for those who left in the years 1991 through 1995, in `p1`; for those who left in the years 1996 through 2000, in `p2`; and for any workers who left after the year 2000, in `p3`.
 
-Também é possível particionar uma tabela por `RANGE`, com base no valor de uma coluna de tipo `[TIMESTAMP]` (datetime.html), usando a função `[UNIX_TIMESTAMP()` (date-and-time-functions.html#function_unix-timestamp), como mostrado neste exemplo:
+It is also possible to partition a table by `RANGE`, based on the value of a [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") column, using the [`UNIX_TIMESTAMP()`](date-and-time-functions.html#function_unix-timestamp) function, as shown in this example:
 
 ```sql
 CREATE TABLE quarterly_report_status (
@@ -131,21 +131,21 @@ PARTITION BY RANGE ( UNIX_TIMESTAMP(report_updated) ) (
 );
 ```
 
-Quaisquer outras expressões que envolvam valores de `TIMESTAMP` não são permitidas. (Veja o Bug #42849.)
+Any other expressions involving [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") values are not permitted. (See Bug #42849.)
 
-A partição de faixa é particularmente útil quando uma ou mais das seguintes condições são verdadeiras:
+Range partitioning is particularly useful when one or more of the following conditions is true:
 
-- Você deseja ou precisa deletar dados “antigos”. Se você estiver usando o esquema de particionamento mostrado anteriormente para a tabela `employees`, você pode simplesmente usar `ALTER TABLE employees DROP PARTITION p0;` para deletar todas as linhas relacionadas a funcionários que pararam de trabalhar para a empresa antes de 1991. (Veja Seção 13.1.8, “Instrução ALTER TABLE” e Seção 22.3, “Gestão de Partições” para mais informações.) Para uma tabela com muitas linhas, isso pode ser muito mais eficiente do que executar uma consulta de `DELETE` como `DELETE FROM employees WHERE YEAR(separated) <= 1990;`.
+* You want or need to delete “old” data. If you are using the partitioning scheme shown previously for the `employees` table, you can simply use `ALTER TABLE employees DROP PARTITION p0;` to delete all rows relating to employees who stopped working for the firm prior to 1991. (See [Section 13.1.8, “ALTER TABLE Statement”](alter-table.html "13.1.8 ALTER TABLE Statement"), and [Section 22.3, “Partition Management”](partitioning-management.html "22.3 Partition Management"), for more information.) For a table with a great many rows, this can be much more efficient than running a [`DELETE`](delete.html "13.2.2 DELETE Statement") query such as `DELETE FROM employees WHERE YEAR(separated) <= 1990;`.
 
-- Você deseja usar uma coluna que contenha valores de data ou hora ou valores provenientes de outras séries.
+* You want to use a column containing date or time values, or containing values arising from some other series.
 
-- Você executa frequentemente consultas que dependem diretamente da coluna usada para particionar a tabela. Por exemplo, ao executar uma consulta como `EXPLAIN SELECT COUNT(*) FROM employees WHERE separated BETWEEN '2000-01-01' AND '2000-12-31' GROUP BY store_id;`, o MySQL pode determinar rapidamente que apenas a partição `p2` precisa ser analisada, porque as partições restantes não podem conter nenhum registro que satisfaça a cláusula `WHERE`. Consulte Seção 22.4, “Pruning de Partições” para obter mais informações sobre como isso é feito.
+* You frequently run queries that depend directly on the column used for partitioning the table. For example, when executing a query such as [`EXPLAIN SELECT COUNT(*) FROM employees WHERE separated BETWEEN '2000-01-01' AND '2000-12-31' GROUP BY store_id;`](explain.html "13.8.2 EXPLAIN Statement"), MySQL can quickly determine that only partition `p2` needs to be scanned because the remaining partitions cannot contain any records satisfying the `WHERE` clause. See [Section 22.4, “Partition Pruning”](partitioning-pruning.html "22.4 Partition Pruning"), for more information about how this is accomplished.
 
-Uma variante deste tipo de particionamento é o particionamento por `RANGE COLUMNS`. O particionamento por `RANGE COLUMNS` permite o uso de múltiplas colunas para definir intervalos de particionamento que se aplicam tanto ao posicionamento das linhas nas partições quanto para determinar a inclusão ou exclusão de partições específicas ao realizar o corte de partições. Consulte Seção 22.2.3.1, “Particionamento por RANGE COLUMNS” para obter mais informações.
+A variant on this type of partitioning is `RANGE COLUMNS` partitioning. Partitioning by `RANGE COLUMNS` makes it possible to employ multiple columns for defining partitioning ranges that apply both to placement of rows in partitions and for determining the inclusion or exclusion of specific partitions when performing partition pruning. See [Section 22.2.3.1, “RANGE COLUMNS partitioning”](partitioning-columns-range.html "22.2.3.1 RANGE COLUMNS partitioning"), for more information.
 
-**Sistemas de partição baseados em intervalos de tempo.** Se você deseja implementar um sistema de partição baseado em faixas ou intervalos de tempo no MySQL 5.7, você tem duas opções:
+**Partitioning schemes based on time intervals.** If you wish to implement a partitioning scheme based on ranges or intervals of time in MySQL 5.7, you have two options:
 
-1. Divida a tabela por `RANGE` e, para a expressão de particionamento, utilize uma função que opere em uma coluna de `DATA`, `HORÁRIO` ou `DATA/HORÁRIO` e retorne um valor inteiro, conforme mostrado aqui:
+1. Partition the table by `RANGE`, and for the partitioning expression, employ a function operating on a [`DATE`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types"), [`TIME`](time.html "11.2.3 The TIME Type"), or [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") column and returning an integer value, as shown here:
 
    ```sql
    CREATE TABLE members (
@@ -164,7 +164,7 @@ Uma variante deste tipo de particionamento é o particionamento por `RANGE COLUM
    );
    ```
 
-   No MySQL 5.7, também é possível particionar uma tabela por `RANGE` com base no valor de uma coluna de tipo `[TIMESTAMP]` (datetime.html), usando a função `[UNIX_TIMESTAMP()` (date-and-time-functions.html#function_unix-timestamp), como mostrado neste exemplo:
+   In MySQL 5.7, it is also possible to partition a table by `RANGE` based on the value of a [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") column, using the [`UNIX_TIMESTAMP()`](date-and-time-functions.html#function_unix-timestamp) function, as shown in this example:
 
    ```sql
    CREATE TABLE quarterly_report_status (
@@ -186,13 +186,13 @@ Uma variante deste tipo de particionamento é o particionamento por `RANGE COLUM
    );
    ```
 
-   No MySQL 5.7, quaisquer outras expressões que envolvam valores de `TIMESTAMP` não são permitidas. (Veja o bug #42849.)
+   In MySQL 5.7, any other expressions involving [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") values are not permitted. (See Bug #42849.)
 
-   Nota
+   Note
 
-   Também é possível, no MySQL 5.7, usar `UNIX_TIMESTAMP(timestamp_column)` como uma expressão de partição para tabelas que são particionadas por `LIST`. No entanto, geralmente não é prático fazer isso.
+   It is also possible in MySQL 5.7 to use [`UNIX_TIMESTAMP(timestamp_column)`](date-and-time-functions.html#function_unix-timestamp) as a partitioning expression for tables that are partitioned by `LIST`. However, it is usually not practical to do so.
 
-2. Divida a tabela por `RANGE COLUMNS`, usando uma coluna `[DATA]` (datetime.html) ou `DATETIME` (datetime.html) como a coluna de particionamento. Por exemplo, a tabela `members` pode ser definida usando a coluna `joined` diretamente, como mostrado aqui:
+2. Partition the table by `RANGE COLUMNS`, using a [`DATE`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") or [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") column as the partitioning column. For example, the `members` table could be defined using the `joined` column directly, as shown here:
 
    ```sql
    CREATE TABLE members (
@@ -211,6 +211,6 @@ Uma variante deste tipo de particionamento é o particionamento por `RANGE COLUM
    );
    ```
 
-Nota
+Note
 
-O uso de colunas de partição que empregam tipos de data ou hora diferentes de `DATE` ou `DATETIME` não é suportado com `COLUMNS DE CAMADA DE RANGEMENTE`.
+The use of partitioning columns employing date or time types other than [`DATE`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") or [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") is not supported with `RANGE COLUMNS`.

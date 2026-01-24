@@ -1,43 +1,43 @@
-### 11.2.2 Tipos DATE, DATETIME e TIMESTAMP
+### 11.2.2 The DATE, DATETIME, and TIMESTAMP Types
 
-Os tipos `DATE`, `DATETIME` e `TIMESTAMP` estão relacionados. Esta seção descreve suas características, como eles são semelhantes e como eles diferem. O MySQL reconhece valores `DATE`, `DATETIME` e `TIMESTAMP` em vários formatos, descritos na Seção 9.1.3, “Literais de Data e Hora”. Para as descrições de intervalo de `DATE` e `DATETIME`, “suportável” significa que, embora valores anteriores possam funcionar, não há garantia.
+The `DATE`, `DATETIME`, and `TIMESTAMP` types are related. This section describes their characteristics, how they are similar, and how they differ. MySQL recognizes `DATE`, `DATETIME`, and `TIMESTAMP` values in several formats, described in Section 9.1.3, “Date and Time Literals”. For the `DATE` and `DATETIME` range descriptions, “supported” means that although earlier values might work, there is no guarantee.
 
-O tipo `DATE` é usado para valores com uma parte de data, mas sem uma parte de hora. O MySQL recupera e exibe os valores `DATE` no formato `'YYYY-MM-DD'`. A faixa suportada é `'1000-01-01'` a `'9999-12-31'`.
+The `DATE` type is used for values with a date part but no time part. MySQL retrieves and displays `DATE` values in `'YYYY-MM-DD'` format. The supported range is `'1000-01-01'` to `'9999-12-31'`.
 
-O tipo `DATETIME` é usado para valores que contêm partes de data e hora. O MySQL recupera e exibe valores `DATETIME` no formato `'YYYY-MM-DD hh:mm:ss'`. A faixa suportada é `'1000-01-01 00:00:00'` a `'9999-12-31 23:59:59'`.
+The `DATETIME` type is used for values that contain both date and time parts. MySQL retrieves and displays `DATETIME` values in `'YYYY-MM-DD hh:mm:ss'` format. The supported range is `'1000-01-01 00:00:00'` to `'9999-12-31 23:59:59'`.
 
-O tipo de dado `TIMESTAMP` é usado para valores que contêm partes de data e hora. `TIMESTAMP` tem um intervalo de `'1970-01-01 00:00:01'` UTC a `'2038-01-19 03:14:07'` UTC.
+The `TIMESTAMP` data type is used for values that contain both date and time parts. `TIMESTAMP` has a range of `'1970-01-01 00:00:01'` UTC to `'2038-01-19 03:14:07'` UTC.
 
-Um valor `DATETIME` ou `TIMESTAMP` pode incluir uma parte fracionária de segundos no final com precisão de até microsegundos (6 dígitos). Em particular, qualquer parte fracionária em um valor inserido em uma coluna `DATETIME` ou `TIMESTAMP` é armazenada em vez de ser descartada. Com a parte fracionária incluída, o formato para esses valores é `'YYYY-MM-DD hh:mm:ss[.fraction]'`, a faixa para valores `DATETIME` é `'1000-01-01 00:00:00.000000'` a `'9999-12-31 23:59:59.499999'` e a faixa para valores `TIMESTAMP` é `'1970-01-01 00:00:01.000000'` a `'2038-01-19 03:14:07.499999'`. A parte fracionária deve sempre ser separada do resto do tempo por um ponto decimal; nenhum outro delimitador de segundos fracionários é reconhecido. Para informações sobre o suporte a segundos fracionários no MySQL, consulte a Seção 11.2.7, “Segundos Fracionários em Valores de Tempo”.
+A `DATETIME` or `TIMESTAMP` value can include a trailing fractional seconds part in up to microseconds (6 digits) precision. In particular, any fractional part in a value inserted into a `DATETIME` or `TIMESTAMP` column is stored rather than discarded. With the fractional part included, the format for these values is `'YYYY-MM-DD hh:mm:ss[.fraction]'`, the range for `DATETIME` values is `'1000-01-01 00:00:00.000000'` to `'9999-12-31 23:59:59.499999'`, and the range for `TIMESTAMP` values is `'1970-01-01 00:00:01.000000'` to `'2038-01-19 03:14:07.499999'`. The fractional part should always be separated from the rest of the time by a decimal point; no other fractional seconds delimiter is recognized. For information about fractional seconds support in MySQL, see Section 11.2.7, “Fractional Seconds in Time Values”.
 
-Os tipos de dados `TIMESTAMP` e `DATETIME` oferecem inicialização e atualização automáticas para a data e hora atuais. Para mais informações, consulte a Seção 11.2.6, “Inicialização e Atualização Automática para TIMESTAMP e DATETIME”.
+The `TIMESTAMP` and `DATETIME` data types offer automatic initialization and updating to the current date and time. For more information, see Section 11.2.6, “Automatic Initialization and Updating for TIMESTAMP and DATETIME”.
 
-O MySQL converte os valores `TIMESTAMP` do fuso horário atual para UTC para armazenamento e de volta do UTC para o fuso horário atual para recuperação. (Isso não ocorre com outros tipos, como `DATETIME`.) Por padrão, o fuso horário atual para cada conexão é a hora do servidor. O fuso horário pode ser definido por conexão. Enquanto o ajuste do fuso horário permanecer constante, você receberá o mesmo valor que armazenou. Se você armazenar um valor `TIMESTAMP` e, em seguida, alterar o fuso horário e recuperar o valor, o valor recuperado será diferente do valor que você armazenou. Isso ocorre porque o mesmo fuso horário não foi usado para conversão em ambas as direções. O fuso horário atual está disponível como o valor da variável de sistema `time_zone`. Para mais informações, consulte a Seção 5.1.13, “Suporte ao Fuso Horário do MySQL Server”.
+MySQL converts `TIMESTAMP` values from the current time zone to UTC for storage, and back from UTC to the current time zone for retrieval. (This does not occur for other types such as `DATETIME`.) By default, the current time zone for each connection is the server's time. The time zone can be set on a per-connection basis. As long as the time zone setting remains constant, you get back the same value you store. If you store a `TIMESTAMP` value, and then change the time zone and retrieve the value, the retrieved value is different from the value you stored. This occurs because the same time zone was not used for conversion in both directions. The current time zone is available as the value of the `time_zone` system variable. For more information, see Section 5.1.13, “MySQL Server Time Zone Support”.
 
-Valores inválidos de `DATE`, `DATETIME` ou `TIMESTAMP` são convertidos para o valor “zero” do tipo apropriado (`'0000-00-00'` ou `'0000-00-00 00:00:00'`), se o modo SQL permitir essa conversão. O comportamento preciso depende de se o modo SQL rigoroso e o modo SQL `NO_ZERO_DATE` estão habilitados; consulte a Seção 5.1.10, “Modos SQL do Servidor”.
+Invalid `DATE`, `DATETIME`, or `TIMESTAMP` values are converted to the “zero” value of the appropriate type (`'0000-00-00'` or `'0000-00-00 00:00:00'`), if the SQL mode permits this conversion. The precise behavior depends on which if any of strict SQL mode and the `NO_ZERO_DATE` SQL mode are enabled; see Section 5.1.10, “Server SQL Modes”.
 
-Esteja ciente de certas propriedades da interpretação do valor de data no MySQL:
+Be aware of certain properties of date value interpretation in MySQL:
 
-- O MySQL permite um formato "relaxado" para valores especificados como strings, no qual qualquer caractere de pontuação pode ser usado como delimitador entre partes de data ou partes de hora. Em alguns casos, essa sintaxe pode ser enganosa. Por exemplo, um valor como `'10:11:12'` pode parecer um valor de hora devido ao `:`, mas é interpretado como o ano `'2010-11-12'` se for usado em contexto de data. O valor `'10:45:15'` é convertido para `'0000-00-00'` porque `'45'` não é um mês válido.
+* MySQL permits a “relaxed” format for values specified as strings, in which any punctuation character may be used as the delimiter between date parts or time parts. In some cases, this syntax can be deceiving. For example, a value such as `'10:11:12'` might look like a time value because of the `:`, but is interpreted as the year `'2010-11-12'` if used in date context. The value `'10:45:15'` is converted to `'0000-00-00'` because `'45'` is not a valid month.
 
-  O único delimitador reconhecido entre uma parte de data e hora e uma parte de segundos fracionários é o ponto decimal.
+  The only delimiter recognized between a date and time part and a fractional seconds part is the decimal point.
 
-- O servidor exige que os valores de mês e dia sejam válidos e não apenas dentro do intervalo de 1 a 12 e 1 a 31, respectivamente. Com o modo rigoroso desativado, datas inválidas como `'2004-04-31'` são convertidas em `'0000-00-00'` e um aviso é gerado. Com o modo rigoroso ativado, datas inválidas geram um erro. Para permitir tais datas, habilite `ALLOW_INVALID_DATES`. Consulte a Seção 5.1.10, “Modos SQL do Servidor”, para obter mais informações.
+* The server requires that month and day values be valid, and not merely in the range 1 to 12 and 1 to 31, respectively. With strict mode disabled, invalid dates such as `'2004-04-31'` are converted to `'0000-00-00'` and a warning is generated. With strict mode enabled, invalid dates generate an error. To permit such dates, enable `ALLOW_INVALID_DATES`. See Section 5.1.10, “Server SQL Modes”, for more information.
 
-- O MySQL não aceita valores `TIMESTAMP` que incluam um zero na coluna de dia ou mês ou valores que não sejam uma data válida. A única exceção a essa regra é o valor especial “zero” `'0000-00-00 00:00:00'`, se o modo SQL permitir esse valor. O comportamento preciso depende de qual (se houver) dos modos SQL estritos e do modo SQL `NO_ZERO_DATE` estiverem habilitados; consulte a Seção 5.1.10, “Modos SQL do Servidor”.
+* MySQL does not accept `TIMESTAMP` values that include a zero in the day or month column or values that are not a valid date. The sole exception to this rule is the special “zero” value `'0000-00-00 00:00:00'`, if the SQL mode permits this value. The precise behavior depends on which if any of strict SQL mode and the `NO_ZERO_DATE` SQL mode are enabled; see Section 5.1.10, “Server SQL Modes”.
 
-- As datas que contêm valores de ano de 2 dígitos são ambíguas porque o século é desconhecido. O MySQL interpreta valores de ano de 2 dígitos usando essas regras:
+* Dates containing 2-digit year values are ambiguous because the century is unknown. MySQL interprets 2-digit year values using these rules:
 
-  - Os valores do ano na faixa `00-69` se tornam `2000-2069`.
+  + Year values in the range `00-69` become `2000-2069`.
 
-  - Os valores do ano na faixa `70-99` se tornam `1970-1999`.
+  + Year values in the range `70-99` become `1970-1999`.
 
-  Veja também a Seção 11.2.10, “Anos de 2 dígitos em datas”.
+  See also Section 11.2.10, “2-Digit Years in Dates”.
 
-Nota
+Note
 
-O servidor MySQL pode ser executado com o modo SQL `MAXDB` habilitado. Nesse caso, `TIMESTAMP` é idêntico a `DATETIME`. Se esse modo for habilitado no momento em que uma tabela é criada, as colunas `TIMESTAMP` são criadas como colunas `DATETIME`. Como resultado, essas colunas usam o formato de exibição `DATETIME`, têm o mesmo intervalo de valores e não há inicialização ou atualização automática para a data e hora atuais. Veja a Seção 5.1.10, “Modos SQL do Servidor”.
+The MySQL server can be run with the `MAXDB` SQL mode enabled. In this case, `TIMESTAMP` is identical with `DATETIME`. If this mode is enabled at the time that a table is created, `TIMESTAMP` columns are created as `DATETIME` columns. As a result, such columns use `DATETIME` display format, have the same range of values, and there is no automatic initialization or updating to the current date and time. See Section 5.1.10, “Server SQL Modes”.
 
-Nota
+Note
 
-A partir do MySQL 5.7.22, o `MAXDB` está desatualizado; espere que ele seja removido em uma versão futura do MySQL.
+As of MySQL 5.7.22, `MAXDB` is deprecated; expect it to removed in a future version of MySQL.

@@ -1,45 +1,45 @@
-### 13.1.22 Declaração DROP DATABASE
+### 13.1.22 DROP DATABASE Statement
 
 ```sql
 DROP {DATABASE | SCHEMA} [IF EXISTS] db_name
 ```
 
-`DROP DATABASE` elimina todas as tabelas do banco de dados e exclui o banco de dados. Tenha *muito cuidado* com essa declaração! Para usar `DROP DATABASE`, você precisa do privilégio `DROP` no banco de dados. `DROP SCHEMA` é sinônimo de `DROP DATABASE`.
+[`DROP DATABASE`](drop-database.html "13.1.22 DROP DATABASE Statement") drops all tables in the database and deletes the database. Be *very* careful with this statement! To use [`DROP DATABASE`](drop-database.html "13.1.22 DROP DATABASE Statement"), you need the [`DROP`](privileges-provided.html#priv_drop) privilege on the database. [`DROP SCHEMA`](drop-database.html "13.1.22 DROP DATABASE Statement") is a synonym for [`DROP DATABASE`](drop-database.html "13.1.22 DROP DATABASE Statement").
 
-Importante
+Important
 
-Quando um banco de dados é excluído, os privilégios concedidos especificamente para o banco de dados não são *automaticamente* excluídos. Eles devem ser excluídos manualmente. Consulte Seção 13.7.1.4, "Instrução GRANT".
+When a database is dropped, privileges granted specifically for the database are *not* automatically dropped. They must be dropped manually. See [Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement").
 
-`IF EXISTS` é usado para evitar que um erro ocorra se a base de dados não existir.
+`IF EXISTS` is used to prevent an error from occurring if the database does not exist.
 
-Se o banco de dados padrão for excluído, o banco de dados padrão será desativado (a função `DATABASE()` retorna `NULL`).
+If the default database is dropped, the default database is unset (the [`DATABASE()`](information-functions.html#function_database) function returns `NULL`).
 
-Se você usar `DROP DATABASE` em um banco de dados vinculado simbolicamente, tanto o link quanto o banco de dados original serão excluídos.
+If you use [`DROP DATABASE`](drop-database.html "13.1.22 DROP DATABASE Statement") on a symbolically linked database, both the link and the original database are deleted.
 
-`DROP DATABASE` retorna o número de tabelas que foram removidas. Isso corresponde ao número de arquivos `.frm` removidos.
+[`DROP DATABASE`](drop-database.html "13.1.22 DROP DATABASE Statement") returns the number of tables that were removed. This corresponds to the number of `.frm` files removed.
 
-A instrução `DROP DATABASE` remove do diretório do banco de dados fornecido aqueles arquivos e diretórios que o próprio MySQL pode criar durante o funcionamento normal:
+The [`DROP DATABASE`](drop-database.html "13.1.22 DROP DATABASE Statement") statement removes from the given database directory those files and directories that MySQL itself may create during normal operation:
 
-- Todos os arquivos com as seguintes extensões:
+* All files with the following extensions:
 
-  - `.BAK`
-  - `.DAT`
-  - `.HSH`
-  - `.MRG`
-  - `.MYD`
-  - `.MYI`
-  - `.TRG`
-  - `.TRN`
-  - `.cfg`
-  - `.db`
-  - `.frm`
-  - `.ibd`
-  - `.ndb`
-  - `.par`
-- O arquivo `db.opt`, se existir.
+  + `.BAK`
+  + `.DAT`
+  + `.HSH`
+  + `.MRG`
+  + `.MYD`
+  + `.MYI`
+  + `.TRG`
+  + `.TRN`
+  + `.cfg`
+  + `.db`
+  + `.frm`
+  + `.ibd`
+  + `.ndb`
+  + `.par`
+* The `db.opt` file, if it exists.
 
-Se outros arquivos ou diretórios permanecerem no diretório do banco de dados após o MySQL remover os itens listados, o diretório do banco de dados não poderá ser removido. Nesse caso, você deve remover manualmente quaisquer arquivos ou diretórios restantes e emitir a instrução `DROP DATABASE` novamente.
+If other files or directories remain in the database directory after MySQL removes those just listed, the database directory cannot be removed. In this case, you must remove any remaining files or directories manually and issue the [`DROP DATABASE`](drop-database.html "13.1.22 DROP DATABASE Statement") statement again.
 
-A eliminação de um banco de dados não remove as tabelas `TEMPORARY` que foram criadas nesse banco de dados. As tabelas `TEMPORARY` são removidas automaticamente quando a sessão que as criou termina. Consulte Seção 13.1.18.2, “Instrução CREATE TEMPORARY TABLE”.
+Dropping a database does not remove any `TEMPORARY` tables that were created in that database. `TEMPORARY` tables are automatically removed when the session that created them ends. See [Section 13.1.18.2, “CREATE TEMPORARY TABLE Statement”](create-temporary-table.html "13.1.18.2 CREATE TEMPORARY TABLE Statement").
 
-Você também pode criar ou excluir bancos de dados com **mysqladmin**. Veja Seção 4.5.2, “mysqladmin — Um programa de administração do servidor MySQL”.
+You can also drop databases with [**mysqladmin**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program"). See [Section 4.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program").

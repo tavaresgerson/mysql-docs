@@ -1,6 +1,6 @@
-### 12.9.1 Pesquisas de Texto Completo em Linguagem Natural
+### 12.9.1 Natural Language Full-Text Searches
 
-Por padrão ou com o modificador `IN MODO DE LINGUAGEM NATURAL`, a função `MATCH()` realiza uma pesquisa em linguagem natural para uma string em uma coleção de texto. Uma coleção é um conjunto de uma ou mais colunas incluídas em um índice `FULLTEXT`. A string de pesquisa é fornecida como argumento para `AGAINST()`. Para cada linha da tabela, `MATCH()` retorna um valor de relevância; ou seja, uma medida de semelhança entre a string de pesquisa e o texto nessa linha nas colunas nomeadas na lista `MATCH()`.
+By default or with the `IN NATURAL LANGUAGE MODE` modifier, the `MATCH()` function performs a natural language search for a string against a text collection. A collection is a set of one or more columns included in a `FULLTEXT` index. The search string is given as the argument to `AGAINST()`. For each row in the table, `MATCH()` returns a relevance value; that is, a similarity measure between the search string and the text in that row in the columns named in the `MATCH()` list.
 
 ```sql
 mysql> CREATE TABLE articles (
@@ -33,25 +33,25 @@ mysql> SELECT * FROM articles
 2 rows in set (0.00 sec)
 ```
 
-Por padrão, a pesquisa é realizada de forma não sensível a maiúsculas e minúsculas. Para realizar uma pesquisa de texto completo sensível a maiúsculas e minúsculas, use uma codificação binária para as colunas indexadas. Por exemplo, uma coluna que usa o conjunto de caracteres `latin1` pode ser atribuída uma codificação de `latin1_bin` para torná-la sensível a maiúsculas e minúsculas para pesquisas de texto completo.
+By default, the search is performed in case-insensitive fashion. To perform a case-sensitive full-text search, use a binary collation for the indexed columns. For example, a column that uses the `latin1` character set of can be assigned a collation of `latin1_bin` to make it case-sensitive for full-text searches.
 
-Quando o `MATCH()` é usado em uma cláusula `WHERE`, como no exemplo mostrado anteriormente, as linhas retornadas são automaticamente ordenadas com a maior relevância em primeiro lugar, desde que as seguintes condições sejam atendidas:
+When `MATCH()` is used in a `WHERE` clause, as in the example shown earlier, the rows returned are automatically sorted with the highest relevance first as long as the following conditions are met:
 
-- Não deve haver nenhuma cláusula `ORDER BY` explícita.
+* There must be no explicit `ORDER BY` clause.
 
-- A pesquisa deve ser realizada usando uma varredura de índice de texto completo, em vez de uma varredura de tabela.
+* The search must be performed using a full-text index scan rather than a table scan.
 
-- Se a consulta fizer junção de tabelas, o varredura do índice de texto completo deve ser a tabela não constante mais à esquerda na junção.
+* If the query joins tables, the full-text index scan must be the leftmost non-constant table in the join.
 
-Dadas as condições listadas acima, geralmente é menos trabalhoso especificar uma ordem de classificação explícita usando `ORDER BY` quando isso for necessário ou desejado.
+Given the conditions just listed, it is usually less effort to specify using `ORDER BY` an explicit sort order when one is necessary or desired.
 
-Os valores de relevância são números de ponto flutuante não negativos. Zero relevância significa nenhuma semelhança. A relevância é calculada com base no número de palavras na linha (documento), no número de palavras únicas na linha, no número total de palavras na coleção e no número de linhas que contêm uma palavra específica.
+Relevance values are nonnegative floating-point numbers. Zero relevance means no similarity. Relevance is computed based on the number of words in the row (document), the number of unique words in the row, the total number of words in the collection, and the number of rows that contain a particular word.
 
-Nota
+Note
 
-O termo "documento" pode ser usado de forma intercambiável com o termo "linha", e ambos os termos se referem à parte indexada da linha. O termo "coleção" refere-se às colunas indexadas e abrange todas as linhas.
+The term “document” may be used interchangeably with the term “row”, and both terms refer to the indexed part of the row. The term “collection” refers to the indexed columns and encompasses all rows.
 
-Para simplesmente contar as partidas, você pode usar uma consulta como esta:
+To simply count matches, you could use a query like this:
 
 ```sql
 mysql> SELECT COUNT(*) FROM articles
@@ -65,7 +65,7 @@ mysql> SELECT COUNT(*) FROM articles
 1 row in set (0.00 sec)
 ```
 
-Você pode achar mais rápido reescrever a consulta da seguinte forma:
+You might find it quicker to rewrite the query as follows:
 
 ```sql
 mysql> SELECT
@@ -80,15 +80,15 @@ mysql> SELECT
 1 row in set (0.03 sec)
 ```
 
-A primeira consulta realiza um trabalho adicional (ordenando os resultados por relevância), mas também pode usar uma consulta de índice com base na cláusula `WHERE`. A consulta de índice pode tornar a primeira consulta mais rápida se a pesquisa corresponder a poucas linhas. A segunda consulta realiza uma varredura completa da tabela, o que pode ser mais rápido do que a consulta de índice se o termo de busca estiver presente na maioria das linhas.
+The first query does some extra work (sorting the results by relevance) but also can use an index lookup based on the `WHERE` clause. The index lookup might make the first query faster if the search matches few rows. The second query performs a full table scan, which might be faster than the index lookup if the search term was present in most rows.
 
-Para pesquisas de texto completo em linguagem natural, as colunas mencionadas na função `MATCH()` devem ser as mesmas colunas incluídas em algum índice `FULLTEXT` da sua tabela. Para a consulta anterior, as colunas mencionadas na função `MATCH()` (`title` e `body`) são as mesmas que as mencionadas na definição do índice `FULLTEXT` da tabela `article`. Para pesquisar o `title` ou `body` separadamente, você criaria índices `FULLTEXT` separados para cada coluna.
+For natural-language full-text searches, the columns named in the `MATCH()` function must be the same columns included in some `FULLTEXT` index in your table. For the preceding query, the columns named in the `MATCH()` function (`title` and `body`) are the same as those named in the definition of the `article` table's `FULLTEXT` index. To search the `title` or `body` separately, you would create separate `FULLTEXT` indexes for each column.
 
-Você também pode realizar uma pesquisa booleana ou uma pesquisa com expansão de consulta. Esses tipos de pesquisa são descritos na Seção 12.9.2, “Pesquisas de Texto Completo Booleanas”, e na Seção 12.9.3, “Pesquisas de Texto Completo com Expansão de Consulta”.
+You can also perform a boolean search or a search with query expansion. These search types are described in Section 12.9.2, “Boolean Full-Text Searches”, and Section 12.9.3, “Full-Text Searches with Query Expansion”.
 
-Uma pesquisa de texto completo que utiliza um índice pode nomear colunas apenas de uma única tabela na cláusula `MATCH()`, porque um índice não pode abranger múltiplas tabelas. Para tabelas `MyISAM`, uma pesquisa booleana pode ser realizada na ausência de um índice (embora mais lentamente), nesse caso, é possível nomear colunas de múltiplas tabelas.
+A full-text search that uses an index can name columns only from a single table in the `MATCH()` clause because an index cannot span multiple tables. For `MyISAM` tables, a boolean search can be done in the absence of an index (albeit more slowly), in which case it is possible to name columns from multiple tables.
 
-O exemplo anterior é uma ilustração básica que mostra como usar a função `MATCH()` onde as linhas são retornadas em ordem de relevância decrescente. O próximo exemplo mostra como recuperar os valores de relevância explicitamente. As linhas retornadas não são ordenadas porque a instrução `SELECT` não inclui cláusulas `WHERE` ou `ORDER BY`:
+The preceding example is a basic illustration that shows how to use the `MATCH()` function where rows are returned in order of decreasing relevance. The next example shows how to retrieve the relevance values explicitly. Returned rows are not ordered because the `SELECT` statement includes neither `WHERE` nor `ORDER BY` clauses:
 
 ```sql
 mysql> SELECT id, MATCH (title,body)
@@ -107,7 +107,7 @@ mysql> SELECT id, MATCH (title,body)
 6 rows in set (0.00 sec)
 ```
 
-O exemplo a seguir é mais complexo. A consulta retorna os valores de relevância e também ordena as linhas em ordem decrescente de relevância. Para obter esse resultado, especifique `MATCH()` duas vezes: uma na lista `SELECT` e uma na cláusula `WHERE`. Isso não causa sobrecarga adicional, porque o otimizador do MySQL percebe que os dois chamados `MATCH()` são idênticos e invoca o código de busca de texto completo apenas uma vez.
+The following example is more complex. The query returns the relevance values and it also sorts the rows in order of decreasing relevance. To achieve this result, specify `MATCH()` twice: once in the `SELECT` list and once in the `WHERE` clause. This causes no additional overhead, because the MySQL optimizer notices that the two `MATCH()` calls are identical and invokes the full-text search code only once.
 
 ```sql
 mysql> SELECT id, body, MATCH (title,body)
@@ -126,31 +126,31 @@ mysql> SELECT id, body, MATCH (title,body)
 2 rows in set (0.00 sec)
 ```
 
-Uma frase que está entre aspas duplas (`"`) corresponde apenas às linhas que contêm a frase *literalmente, como foi digitada*. O mecanismo de texto completo divide a frase em palavras e realiza uma pesquisa no índice `FULLTEXT` pelas palavras. Os caracteres não-palavras não precisam ser correspondidos exatamente: a pesquisa de frase exige apenas que as correspondências contenham exatamente as mesmas palavras que a frase e na mesma ordem. Por exemplo, `"test phrase"` corresponde a `"test, phrase"`. Se a frase não contiver palavras que estejam no índice, o resultado será vazio. Por exemplo, se todas as palavras forem palavras não-palavras ou tiverem menos de comprimento mínimo das palavras indexadas, o resultado será vazio.
+A phrase that is enclosed within double quote (`"`) characters matches only rows that contain the phrase *literally, as it was typed*. The full-text engine splits the phrase into words and performs a search in the `FULLTEXT` index for the words. Nonword characters need not be matched exactly: Phrase searching requires only that matches contain exactly the same words as the phrase and in the same order. For example, `"test phrase"` matches `"test, phrase"`. If the phrase contains no words that are in the index, the result is empty. For example, if all words are either stopwords or shorter than the minimum length of indexed words, the result is empty.
 
-A implementação do MySQL `FULLTEXT` considera qualquer sequência de caracteres verdadeiros de palavras (letras, dígitos e sublinhados) como uma palavra. Essa sequência também pode conter apóstrofos (`'`), mas não mais de um em sequência. Isso significa que `aaa'bbb` é considerado uma palavra, mas `aaa''bbb` é considerado duas palavras. Os apóstrofos no início ou no final de uma palavra são removidos pelo analisador `FULLTEXT`; `'aaa'bbb'` seria analisado como `aaa'bbb`.
+The MySQL `FULLTEXT` implementation regards any sequence of true word characters (letters, digits, and underscores) as a word. That sequence may also contain apostrophes (`'`), but not more than one in a row. This means that `aaa'bbb` is regarded as one word, but `aaa''bbb` is regarded as two words. Apostrophes at the beginning or the end of a word are stripped by the `FULLTEXT` parser; `'aaa'bbb'` would be parsed as `aaa'bbb`.
 
-O analisador `FULLTEXT` embutido determina onde as palavras começam e terminam, procurando certos caracteres de delimitador; por exemplo, (espaço), `,` (vírgula) e `.` (ponto). Se as palavras não forem separadas por delimitadores (como, por exemplo, no caso do chinês), o analisador `FULLTEXT` embutido não consegue determinar onde uma palavra começa ou termina. Para poder adicionar palavras ou outros termos indexados nessas línguas a um índice `FULLTEXT` que usa o analisador `FULLTEXT` embutido, você deve pré-processá-los para que sejam separados por algum delimitador arbitrário. Alternativamente, você pode criar índices `FULLTEXT` usando o plugin de analisador ngram (para chinês, japonês ou coreano) ou o plugin de analisador MeCab (para japonês).
+The built-in `FULLTEXT` parser determines where words start and end by looking for certain delimiter characters; for example,  (space), `,` (comma), and `.` (period). If words are not separated by delimiters (as in, for example, Chinese), the built-in `FULLTEXT` parser cannot determine where a word begins or ends. To be able to add words or other indexed terms in such languages to a `FULLTEXT` index that uses the built-in `FULLTEXT` parser, you must preprocess them so that they are separated by some arbitrary delimiter. Alternatively, you can create `FULLTEXT` indexes using the ngram parser plugin (for Chinese, Japanese, or Korean) or the MeCab parser plugin (for Japanese).
 
-É possível escrever um plugin que substitua o analisador de texto completo integrado. Para obter detalhes, consulte a API do plugin MySQL. Para obter o código-fonte do plugin analisador, consulte o diretório `plugin/fulltext` de uma distribuição de código-fonte MySQL.
+It is possible to write a plugin that replaces the built-in full-text parser. For details, see The MySQL Plugin API. For example parser plugin source code, see the `plugin/fulltext` directory of a MySQL source distribution.
 
-Algumas palavras são ignoradas em pesquisas de texto completo:
+Some words are ignored in full-text searches:
 
-- Qualquer palavra que seja muito curta é ignorada. O comprimento mínimo padrão das palavras encontradas por pesquisas de texto completo é de três caracteres para índices de pesquisa `InnoDB`, ou quatro caracteres para `MyISAM`. Você pode controlar o corte definindo uma opção de configuração antes de criar o índice: opção de configuração `innodb_ft_min_token_size` para índices de pesquisa `InnoDB`, ou `ft_min_word_len` para `MyISAM`.
+* Any word that is too short is ignored. The default minimum length of words that are found by full-text searches is three characters for `InnoDB` search indexes, or four characters for `MyISAM`. You can control the cutoff by setting a configuration option before creating the index: `innodb_ft_min_token_size` configuration option for `InnoDB` search indexes, or `ft_min_word_len` for `MyISAM`.
 
-  Nota
+  Note
 
-  Esse comportamento não se aplica a índices `FULLTEXT` que utilizam o analisador de ngrams. Para o analisador de ngrams, o comprimento do token é definido pela opção `ngram_token_size`.
+  This behavior does not apply to `FULLTEXT` indexes that use the ngram parser. For the ngram parser, token length is defined by the `ngram_token_size` option.
 
-- As palavras da lista de palavras-chave são ignoradas. Uma palavra-chave é uma palavra como “o” ou “algum” que é tão comum que é considerada ter um valor semântico nulo. Existe uma lista de palavras-chave embutida, mas ela pode ser substituída por uma lista definida pelo usuário. As listas de palavras-chave e as opções de configuração relacionadas são diferentes para índices de pesquisa `InnoDB` e `MyISAM`. O processamento de palavras-chave é controlado pelas opções de configuração `innodb_ft_enable_stopword`, `innodb_ft_server_stopword_table` e `innodb_ft_user_stopword_table` para índices de pesquisa `InnoDB`, e `ft_stopword_file` para `MyISAM`.
+* Words in the stopword list are ignored. A stopword is a word such as “the” or “some” that is so common that it is considered to have zero semantic value. There is a built-in stopword list, but it can be overridden by a user-defined list. The stopword lists and related configuration options are different for `InnoDB` search indexes and `MyISAM` ones. Stopword processing is controlled by the configuration options `innodb_ft_enable_stopword`, `innodb_ft_server_stopword_table`, and `innodb_ft_user_stopword_table` for `InnoDB` search indexes, and `ft_stopword_file` for `MyISAM` ones.
 
-Consulte a Seção 12.9.4, “Stopwords de Texto Completo”, para ver as listas de stopwords padrão e como alterá-las. O comprimento mínimo de palavra padrão pode ser alterado conforme descrito na Seção 12.9.6, “Ajuste Fina do Pesquisador de Texto Completo do MySQL”.
+See Section 12.9.4, “Full-Text Stopwords” to view default stopword lists and how to change them. The default minimum word length can be changed as described in Section 12.9.6, “Fine-Tuning MySQL Full-Text Search”.
 
-Cada palavra correta na coleção e na consulta é ponderada de acordo com sua importância na coleção ou consulta. Assim, uma palavra que está presente em muitos documentos tem um peso menor, porque tem um valor semântico menor nesta coleção específica. Por outro lado, se a palavra for rara, ela recebe um peso maior. Os pesos das palavras são combinados para calcular a relevância da linha. Essa técnica funciona melhor com grandes coleções.
+Every correct word in the collection and in the query is weighted according to its significance in the collection or query. Thus, a word that is present in many documents has a lower weight, because it has lower semantic value in this particular collection. Conversely, if the word is rare, it receives a higher weight. The weights of the words are combined to compute the relevance of the row. This technique works best with large collections.
 
-Limitação do MyISAM
+MyISAM Limitation
 
-Para tabelas muito pequenas, a distribuição das palavras não reflete adequadamente seu valor semântico, e este modelo pode, às vezes, produzir resultados bizarros para índices de pesquisa em tabelas `MyISAM`. Por exemplo, embora a palavra “MySQL” esteja presente em cada linha da tabela `articles` mostrada anteriormente, uma pesquisa pela palavra em um índice de pesquisa `MyISAM` não produz resultados:
+For very small tables, word distribution does not adequately reflect their semantic value, and this model may sometimes produce bizarre results for search indexes on `MyISAM` tables. For example, although the word “MySQL” is present in every row of the `articles` table shown earlier, a search for the word in a `MyISAM` search index produces no results:
 
 ```sql
 mysql> SELECT * FROM articles
@@ -159,6 +159,6 @@ mysql> SELECT * FROM articles
 Empty set (0.00 sec)
 ```
 
-O resultado da pesquisa está vazio porque a palavra “MySQL” está presente em pelo menos 50% das linhas e, portanto, é tratada como uma palavra-chave. Essa técnica de filtragem é mais adequada para conjuntos de dados grandes, onde você pode não querer que o conjunto de resultados retorne cada segunda linha de uma tabela de 1 GB, do que para conjuntos de dados pequenos, onde pode causar resultados ruins para termos populares.
+The search result is empty because the word “MySQL” is present in at least 50% of the rows, and so is effectively treated as a stopword. This filtering technique is more suitable for large data sets, where you might not want the result set to return every second row from a 1GB table, than for small data sets where it might cause poor results for popular terms.
 
-O limiar de 50% pode surpreender você quando você tentar pela primeira vez a pesquisa de texto completo para ver como ela funciona e torna as tabelas `InnoDB` mais adequadas para experimentação com pesquisas de texto completo. Se você criar uma tabela `MyISAM` e inserir apenas uma ou duas linhas de texto nela, cada palavra no texto ocorre em pelo menos 50% das linhas. Como resultado, nenhuma pesquisa retorna resultados até que a tabela contenha mais linhas. Usuários que precisam contornar a limitação de 50% podem criar índices de pesquisa em tabelas `InnoDB` ou usar o modo de busca booleana explicado na Seção 12.9.2, “Pesquisas de Texto Completo Booleanas”.
+The 50% threshold can surprise you when you first try full-text searching to see how it works, and makes `InnoDB` tables more suited to experimentation with full-text searches. If you create a `MyISAM` table and insert only one or two rows of text into it, every word in the text occurs in at least 50% of the rows. As a result, no search returns any results until the table contains more rows. Users who need to bypass the 50% limitation can build search indexes on `InnoDB` tables, or use the boolean search mode explained in Section 12.9.2, “Boolean Full-Text Searches”.

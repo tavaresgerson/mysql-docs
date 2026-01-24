@@ -1,38 +1,38 @@
-#### 21.6.15.26 Tabela ndbinfo memoryusage
+#### 21.6.15.26 The ndbinfo memoryusage Table
 
-A consulta a esta tabela fornece informações semelhantes às fornecidas pelo comando `ALL REPORT MemoryUsage` no cliente **ndb_mgm**, ou registradas pelo comando `ALL DUMP 1000`.
+Querying this table provides information similar to that provided by the [`ALL REPORT MemoryUsage`](mysql-cluster-mgm-client-commands.html#ndbclient-report) command in the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") client, or logged by [`ALL DUMP 1000`](/doc/ndb-internals/en/dump-command-1000.html).
 
-A tabela `memoryusage` contém as seguintes colunas:
+The `memoryusage` table contains the following columns:
 
-- `node_id`
+* `node_id`
 
-  O ID do nó deste nó de dados.
+  The node ID of this data node.
 
-- `tipo_memória`
+* `memory_type`
 
-  Uma das memórias de dados, memórias de índice ou buffer de mensagens longas.
+  One of `Data memory`, `Index memory`, or `Long message buffer`.
 
-- "usada"
+* `used`
 
-  Número de bytes atualmente utilizados para memória de dados ou memória de índice por este nó de dados.
+  Number of bytes currently used for data memory or index memory by this data node.
 
-- `used_pages`
+* `used_pages`
 
-  Número de páginas atualmente utilizadas para memória de dados ou memória de índice por este nó de dados; veja o texto.
+  Number of pages currently used for data memory or index memory by this data node; see text.
 
-- `total`
+* `total`
 
-  Número total de bytes de memória de dados ou memória de índice disponíveis para este nó de dados; veja o texto.
+  Total number of bytes of data memory or index memory available for this data node; see text.
 
-- `total_pages`
+* `total_pages`
 
-  Número total de páginas de memória disponíveis para memória de dados ou memória de índice neste nó de dados; veja o texto.
+  Total number of memory pages available for data memory or index memory on this data node; see text.
 
-##### Notas
+##### Notes
 
-A coluna `total` representa a quantidade total de memória em bytes disponível para o recurso dado (memória de dados ou memória de índice) em um nó de dados específico. Esse número deve ser aproximadamente igual ao valor do parâmetro de configuração correspondente no arquivo `config.ini`.
+The `total` column represents the total amount of memory in bytes available for the given resource (data memory or index memory) on a particular data node. This number should be approximately equal to the setting of the corresponding configuration parameter in the `config.ini` file.
 
-Suponha que o cluster tenha 2 nós de dados com IDs de nó `5` e `6`, e o arquivo `config.ini` contenha o seguinte:
+Suppose that the cluster has 2 data nodes having node IDs `5` and `6`, and the `config.ini` file contains the following:
 
 ```sql
 [ndbd default]
@@ -40,9 +40,9 @@ DataMemory = 1G
 IndexMemory = 1G
 ```
 
-Suponha também que o valor do parâmetro de configuração `LongMessageBuffer` seja permitido assumir seu valor padrão (64 MB).
+Suppose also that the value of the [`LongMessageBuffer`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-longmessagebuffer) configuration parameter is allowed to assume its default (64 MB).
 
-A consulta a seguir mostra valores aproximadamente iguais:
+The following query shows approximately the same values:
 
 ```sql
 mysql> SELECT node_id, memory_type, total
@@ -60,6 +60,6 @@ mysql> SELECT node_id, memory_type, total
 6 rows in set (0.00 sec)
 ```
 
-Neste caso, os valores da coluna `total` para a memória de índice são ligeiramente maiores do que o valor definido em `IndexMemory` devido à arredondamento interno.
+In this case, the `total` column values for index memory are slightly higher than the value set of [`IndexMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexmemory) due to internal rounding.
 
-Para as colunas `used_pages` e `total_pages`, os recursos são medidos em páginas, que têm 32K de tamanho para `DataMemory` e 8K para `IndexMemory`. Para a memória de buffer de mensagens longas, o tamanho da página é de 256 bytes.
+For the `used_pages` and `total_pages` columns, resources are measured in pages, which are 32K in size for [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory) and 8K for [`IndexMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexmemory). For long message buffer memory, the page size is 256 bytes.

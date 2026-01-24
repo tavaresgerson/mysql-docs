@@ -1,7 +1,7 @@
-#### 13.7.5.8. Declaração `SHOW CREATE FUNCTION`
+#### 13.7.5.8 SHOW CREATE FUNCTION Statement
 
 ```sql
 SHOW CREATE FUNCTION func_name
 ```
 
-Esta declaração é semelhante a `SHOW CREATE PROCEDURE`, mas para funções armazenadas. Veja Seção 13.7.5.9, "Declaração SHOW CREATE PROCEDURE".
+This statement is similar to [`SHOW CREATE PROCEDURE`](show-create-procedure.html "13.7.5.9 SHOW CREATE PROCEDURE Statement") but for stored functions. See [Section 13.7.5.9, “SHOW CREATE PROCEDURE Statement”](show-create-procedure.html "13.7.5.9 SHOW CREATE PROCEDURE Statement").

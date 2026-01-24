@@ -1,31 +1,31 @@
-### 24.3.27 A tabela INFORMATION_SCHEMA TABLE_CONSTRAINTS
+### 24.3.27 The INFORMATION_SCHEMA TABLE_CONSTRAINTS Table
 
-A tabela [`TABLE_CONSTRAINTS`](https://pt.wikipedia.org/wiki/Informa%C3%A7%C3%A3o-schema-table-constraints-table.html) descreve quais tabelas possuem restrições.
+The [`TABLE_CONSTRAINTS`](information-schema-table-constraints-table.html "24.3.27 The INFORMATION_SCHEMA TABLE_CONSTRAINTS Table") table describes which tables have constraints.
 
-A tabela `TABLE_CONSTRAINTS` tem as seguintes colunas:
+The [`TABLE_CONSTRAINTS`](information-schema-table-constraints-table.html "24.3.27 The INFORMATION_SCHEMA TABLE_CONSTRAINTS Table") table has these columns:
 
-- `CONSTRAINT_CATALOG`
+* `CONSTRAINT_CATALOG`
 
-  O nome do catálogo ao qual a restrição pertence. Esse valor é sempre `def`.
+  The name of the catalog to which the constraint belongs. This value is always `def`.
 
-- `CONSTRAINT_SCHEMA`
+* `CONSTRAINT_SCHEMA`
 
-  O nome do esquema (banco de dados) ao qual a restrição pertence.
+  The name of the schema (database) to which the constraint belongs.
 
-- `CONSTRAINT_NAME`
+* `CONSTRAINT_NAME`
 
-  O nome da restrição.
+  The name of the constraint.
 
-- `TABLE_SCHEMA`
+* `TABLE_SCHEMA`
 
-  O nome do esquema (banco de dados) ao qual a tabela pertence.
+  The name of the schema (database) to which the table belongs.
 
-- `NOME_TABELA`
+* `TABLE_NAME`
 
-  O nome da tabela.
+  The name of the table.
 
-- `CONSTRAINT_TYPE`
+* `CONSTRAINT_TYPE`
 
-  O tipo de restrição. O valor pode ser `UNIQUE`, `PRIMARY KEY`, `FOREIGN KEY` ou `CHECK`. Esta é uma coluna de tipo `[CHAR]` (não `[ENUM]` - enum.html). O valor `CHECK` não está disponível até que o MySQL suporte `CHECK`.
+  The type of constraint. The value can be `UNIQUE`, `PRIMARY KEY`, `FOREIGN KEY`, or `CHECK`. This is a [`CHAR`](char.html "11.3.2 The CHAR and VARCHAR Types") (not [`ENUM`](enum.html "11.3.5 The ENUM Type")) column. The `CHECK` value is not available until MySQL supports `CHECK`.
 
-  As informações `UNIQUE` e `PRIMARY KEY` são praticamente as mesmas que você obtém a partir da coluna `Key_name` no resultado do `SHOW INDEX` quando a coluna `Non_unique` é `0`.
+  The `UNIQUE` and `PRIMARY KEY` information is about the same as what you get from the `Key_name` column in the output from [`SHOW INDEX`](show-index.html "13.7.5.22 SHOW INDEX Statement") when the `Non_unique` column is `0`.

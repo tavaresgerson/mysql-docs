@@ -1,22 +1,22 @@
-#### 14.7.2.2 autocommit, Commit e Rollback
+#### 14.7.2.2 autocommit, Commit, and Rollback
 
-No `InnoDB`, toda a atividade do usuário ocorre dentro de uma transação. Se o modo `autocommit` estiver habilitado, cada instrução SQL forma uma única transação por si só. Por padrão, o MySQL inicia a sessão para cada nova conexão com `autocommit` habilitado, então o MySQL realiza um commit após cada instrução SQL se essa instrução não retornar um erro. Se uma instrução retornar um erro, o comportamento de commit ou rollback depende do erro. Veja a Seção 14.22.4, “Manipulação de Erros do InnoDB”.
+In `InnoDB`, all user activity occurs inside a transaction. If `autocommit` mode is enabled, each SQL statement forms a single transaction on its own. By default, MySQL starts the session for each new connection with `autocommit` enabled, so MySQL does a commit after each SQL statement if that statement did not return an error. If a statement returns an error, the commit or rollback behavior depends on the error. See Section 14.22.4, “InnoDB Error Handling”.
 
-Uma sessão que tenha o `autocommit` habilitado pode realizar uma transação de múltiplos comandos iniciando-a com uma declaração explícita `START TRANSACTION` ou `BEGIN` e encerrando-a com uma declaração `COMMIT` ou `ROLLBACK`. Veja a Seção 13.3.1, “Declarações `START TRANSACTION`, `COMMIT` e `ROLLBACK`”.
+A session that has `autocommit` enabled can perform a multiple-statement transaction by starting it with an explicit `START TRANSACTION` or `BEGIN` statement and ending it with a `COMMIT` or `ROLLBACK` statement. See Section 13.3.1, “START TRANSACTION, COMMIT, and ROLLBACK Statements”.
 
-Se o modo `autocommit` for desativado em uma sessão com `SET autocommit = 0`, a sessão sempre terá uma transação aberta. Uma instrução `COMMIT` ou `ROLLBACK` termina a transação atual e inicia uma nova.
+If `autocommit` mode is disabled within a session with `SET autocommit = 0`, the session always has a transaction open. A `COMMIT` or `ROLLBACK` statement ends the current transaction and a new one starts.
 
-Se uma sessão que tem `autocommit` desativado termina sem comprometer explicitamente a transação final, o MySQL desfaz essa transação.
+If a session that has `autocommit` disabled ends without explicitly committing the final transaction, MySQL rolls back that transaction.
 
-Algumas declarações implicitamente encerram uma transação, como se você tivesse executado um `COMMIT` antes de executar a declaração. Para obter detalhes, consulte a Seção 13.3.3, “Declarações que causam um commit implícito”.
+Some statements implicitly end a transaction, as if you had done a `COMMIT` before executing the statement. For details, see Section 13.3.3, “Statements That Cause an Implicit Commit”.
 
-Um `COMMIT` significa que as alterações feitas na transação atual são tornadas permanentes e tornam-se visíveis para outras sessões. Uma declaração `ROLLBACK`, por outro lado, cancela todas as modificações feitas pela transação atual. Tanto o `COMMIT` quanto o `ROLLBACK` liberam todos os bloqueios do `InnoDB` que foram definidos durante a transação atual.
+A `COMMIT` means that the changes made in the current transaction are made permanent and become visible to other sessions. A `ROLLBACK` statement, on the other hand, cancels all modifications made by the current transaction. Both `COMMIT` and `ROLLBACK` release all `InnoDB` locks that were set during the current transaction.
 
-##### Agrupamento de operações DML com transações
+##### Grouping DML Operations with Transactions
 
-Por padrão, a conexão com o servidor MySQL começa com o modo de autocommit ativado, que automaticamente confirma cada instrução SQL conforme você a executa. Esse modo de operação pode ser desconhecido se você tiver experiência com outros sistemas de banco de dados, onde é prática padrão emitir uma sequência de instruções DML e confirmar ou reverter todas juntas.
+By default, connection to the MySQL server begins with autocommit mode enabled, which automatically commits every SQL statement as you execute it. This mode of operation might be unfamiliar if you have experience with other database systems, where it is standard practice to issue a sequence of DML statements and commit them or roll them back all together.
 
-Para usar transações com múltiplas instruções, desative o autocommit com a instrução SQL `SET autocommit = 0` e termine cada transação com `COMMIT` ou `ROLLBACK`, conforme apropriado. Para deixar o autocommit ativado, comece cada transação com `START TRANSACTION` e termine com `COMMIT` ou `ROLLBACK`. O exemplo a seguir mostra duas transações. A primeira é confirmada; a segunda é revertida.
+To use multiple-statement transactions, switch autocommit off with the SQL statement `SET autocommit = 0` and end each transaction with `COMMIT` or `ROLLBACK` as appropriate. To leave autocommit on, begin each transaction with `START TRANSACTION` and end it with `COMMIT` or `ROLLBACK`. The following example shows two transactions. The first is committed; the second is rolled back.
 
 ```sql
 $> mysql test
@@ -54,6 +54,6 @@ mysql> SELECT * FROM customer;
 mysql>
 ```
 
-###### Transações em linguagens do lado do cliente
+###### Transactions in Client-Side Languages
 
-Em APIs como PHP, Perl DBI, JDBC, ODBC ou a interface de chamada padrão em C do MySQL, você pode enviar instruções de controle de transações, como `COMMIT`, para o servidor MySQL como strings, assim como qualquer outra instrução SQL, como `SELECT` ou `INSERT`. Algumas APIs também oferecem funções ou métodos separados para o commit e rollback de transações especiais.
+In APIs such as PHP, Perl DBI, JDBC, ODBC, or the standard C call interface of MySQL, you can send transaction control statements such as `COMMIT` to the MySQL server as strings just like any other SQL statements such as `SELECT` or `INSERT`. Some APIs also offer separate special transaction commit and rollback functions or methods.

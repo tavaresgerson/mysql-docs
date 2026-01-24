@@ -1,30 +1,30 @@
-### 24.3.22 A tabela INFORMATION_SCHEMA SCHEMATA
+### 24.3.22 The INFORMATION_SCHEMA SCHEMATA Table
 
-Um esquema é um banco de dados, então a tabela `SCHEMATA` fornece informações sobre os bancos de dados.
+A schema is a database, so the [`SCHEMATA`](information-schema-schemata-table.html "24.3.22 The INFORMATION_SCHEMA SCHEMATA Table") table provides information about databases.
 
-A tabela `SCHEMATA` tem essas colunas:
+The [`SCHEMATA`](information-schema-schemata-table.html "24.3.22 The INFORMATION_SCHEMA SCHEMATA Table") table has these columns:
 
-- `CATALOG_NAME`
+* `CATALOG_NAME`
 
-  O nome do catálogo ao qual o esquema pertence. Esse valor é sempre `def`.
+  The name of the catalog to which the schema belongs. This value is always `def`.
 
-- `SCHEMA_NAME`
+* `SCHEMA_NAME`
 
-  O nome do esquema.
+  The name of the schema.
 
-- `DEFAULT_CHARACTER_SET_NAME`
+* `DEFAULT_CHARACTER_SET_NAME`
 
-  O conjunto de caracteres padrão do esquema.
+  The schema default character set.
 
-- `DEFAULT_COLLATION_NAME`
+* `DEFAULT_COLLATION_NAME`
 
-  A concordância padrão do esquema.
+  The schema default collation.
 
-- `SQL_PATH`
+* `SQL_PATH`
 
-  Esse valor é sempre `NULL`.
+  This value is always `NULL`.
 
-Os nomes dos esquemas também estão disponíveis na instrução `SHOW DATABASES`. Veja Seção 13.7.5.14, “Instrução SHOW DATABASES”. As seguintes instruções são equivalentes:
+Schema names are also available from the [`SHOW DATABASES`](show-databases.html "13.7.5.14 SHOW DATABASES Statement") statement. See [Section 13.7.5.14, “SHOW DATABASES Statement”](show-databases.html "13.7.5.14 SHOW DATABASES Statement"). The following statements are equivalent:
 
 ```sql
 SELECT SCHEMA_NAME AS `Database`
@@ -35,8 +35,8 @@ SHOW DATABASES
   [LIKE 'wild']
 ```
 
-Você só verá os bancos de dados para os quais você tenha algum tipo de privilégio, a menos que você tenha o privilégio global `SHOW DATABASES`.
+You see only those databases for which you have some kind of privilege, unless you have the global [`SHOW DATABASES`](show-databases.html "13.7.5.14 SHOW DATABASES Statement") privilege.
 
-Cuidado
+Caution
 
-Como um privilégio global é considerado um privilégio para todas as bases de dados, *qualquer* privilégio global permite que um usuário veja todos os nomes de bases de dados com `SHOW DATABASES` ou examinando a tabela `INFORMATION_SCHEMA` `SCHEMATA`.
+Because a global privilege is considered a privilege for all databases, *any* global privilege enables a user to see all database names with [`SHOW DATABASES`](show-databases.html "13.7.5.14 SHOW DATABASES Statement") or by examining the `INFORMATION_SCHEMA` [`SCHEMATA`](information-schema-schemata-table.html "24.3.22 The INFORMATION_SCHEMA SCHEMATA Table") table.

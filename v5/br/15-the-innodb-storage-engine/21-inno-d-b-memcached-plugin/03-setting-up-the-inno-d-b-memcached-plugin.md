@@ -1,40 +1,40 @@
-### 14.21.3 Configurando o Plugin InnoDB memcached
+### 14.21.3 Setting Up the InnoDB memcached Plugin
 
-Esta seção descreve como configurar o plugin `daemon_memcached` em um servidor MySQL. Como o daemon **memcached** está intimamente integrado ao servidor MySQL para evitar o tráfego de rede e minimizar a latência, você realiza esse processo em cada instância MySQL que utiliza essa funcionalidade.
+This section describes how to set up the `daemon_memcached` plugin on a MySQL server. Because the **memcached** daemon is tightly integrated with the MySQL server to avoid network traffic and minimize latency, you perform this process on each MySQL instance that uses this feature.
 
-Nota
+Note
 
-Antes de configurar o plugin `daemon_memcached`, consulte a Seção 14.21.4, “Considerações de segurança para o plugin InnoDB memcached”, para entender os procedimentos de segurança necessários para prevenir o acesso não autorizado.
+Before setting up the `daemon_memcached` plugin, consult Section 14.21.4, “Security Considerations for the InnoDB memcached Plugin” to understand the security procedures required to prevent unauthorized access.
 
-#### Pré-requisitos
+#### Prerequisites
 
-- O plugin `daemon_memcached` é suportado apenas em plataformas Linux, Solaris e macOS. Outros sistemas operacionais não são suportados.
+* The `daemon_memcached` plugin is only supported on Linux, Solaris, and macOS platforms. Other operating systems are not supported.
 
-- Ao construir o MySQL a partir do código-fonte, você deve compilar com `-DWITH_INNODB_MEMCACHED=ON`. Esta opção de compilação gera duas bibliotecas compartilhadas no diretório do plugin MySQL (`plugin_dir`) que são necessárias para executar o plugin `daemon_memcached`:
+* When building MySQL from source, you must build with `-DWITH_INNODB_MEMCACHED=ON`. This build option generates two shared libraries in the MySQL plugin directory (`plugin_dir`) that are required to run the `daemon_memcached` plugin:
 
-  - `libmemcached.so`: o plugin do daemon **memcached** para MySQL.
+  + `libmemcached.so`: the **memcached** daemon plugin to MySQL.
 
-  - `innodb_engine.so`: um plugin da API `InnoDB` para **memcached**.
+  + `innodb_engine.so`: an `InnoDB` API plugin to **memcached**.
 
-- O `libevent` deve estar instalado.
+* `libevent` must be installed.
 
-  - Se você não construiu o MySQL a partir do código-fonte, a biblioteca `libevent` não está incluída na sua instalação. Use o método de instalação do seu sistema operacional para instalar `libevent` 1.4.12 ou posterior. Por exemplo, dependendo do sistema operacional, você pode usar `apt-get`, `yum` ou `port install`. Por exemplo, no Linux Ubuntu, use:
+  + If you did not build MySQL from source, the `libevent` library is not included in your installation. Use the installation method for your operating system to install `libevent` 1.4.12 or later. For example, depending on the operating system, you might use `apt-get`, `yum`, or `port install`. For example, on Ubuntu Linux, use:
 
     ```sql
     sudo apt-get install libevent-dev
     ```
 
-  - Se você instalou o MySQL a partir de uma versão de código-fonte, o `libevent` 1.4.12 está incluído no pacote e está localizado no nível superior do diretório de código-fonte do MySQL. Se você usar a versão incluída do `libevent`, não é necessário realizar nenhuma ação. Se você quiser usar uma versão do sistema local do `libevent`, você deve compilar o MySQL com a opção de compilação `-DWITH_LIBEVENT` definida como `system` ou `yes`.
+  + If you installed MySQL from a source code release, `libevent` 1.4.12 is bundled with the package and is located at the top level of the MySQL source code directory. If you use the bundled version of `libevent`, no action is required. If you want to use a local system version of `libevent`, you must build MySQL with the `-DWITH_LIBEVENT` build option set to `system` or `yes`.
 
-#### Instalando e configurando o plugin memcached do InnoDB
+#### Installing and Configuring the InnoDB memcached Plugin
 
-1. Configure o plugin `daemon_memcached` para que ele possa interagir com as tabelas `InnoDB` executando o script de configuração `innodb_memcached_config.sql`, que está localizado em `MYSQL_HOME/share`. Esse script instala o banco de dados `innodb_memcache` com três tabelas necessárias (`cache_policies`, `config_options` e `containers`). Ele também instala a tabela de exemplo `demo_test` no banco de dados `test`.
+1. Configure the `daemon_memcached` plugin so it can interact with `InnoDB` tables by running the `innodb_memcached_config.sql` configuration script, which is located in `MYSQL_HOME/share`. This script installs the `innodb_memcache` database with three required tables (`cache_policies`, `config_options`, and `containers`). It also installs the `demo_test` sample table in the `test` database.
 
    ```sql
    mysql> source MYSQL_HOME/share/innodb_memcached_config.sql
    ```
 
-   Executar o script `innodb_memcached_config.sql` é uma operação única. As tabelas permanecem no lugar se você desinstalar e reinstalar o plugin `daemon_memcached` posteriormente.
+   Running the `innodb_memcached_config.sql` script is a one-time operation. The tables remain in place if you later uninstall and re-install the `daemon_memcached` plugin.
 
    ```sql
    mysql> USE innodb_memcache;
@@ -56,9 +56,9 @@ Antes de configurar o plugin `daemon_memcached`, consulte a Seção 14.21.4, “
    +----------------+
    ```
 
-   Desses quadros, o quadro `innodb_memcache.containers` é o mais importante. As entradas no quadro `containers` fornecem uma correspondência com as colunas das tabelas `InnoDB`. Cada tabela `InnoDB` usada com o plugin `daemon_memcached` requer uma entrada no quadro `containers`.
+   Of these tables, the `innodb_memcache.containers` table is the most important. Entries in the `containers` table provide a mapping to `InnoDB` table columns. Each `InnoDB` table used with the `daemon_memcached` plugin requires an entry in the `containers` table.
 
-   O script `innodb_memcached_config.sql` insere uma única entrada na tabela `containers` que fornece uma correspondência para a tabela `demo_test`. Ele também insere uma única linha de dados na tabela `demo_test`. Esses dados permitem que você verifique imediatamente a instalação após a configuração estar concluída.
+   The `innodb_memcached_config.sql` script inserts a single entry in the `containers` table that provides a mapping for the `demo_test` table. It also inserts a single row of data into the `demo_test` table. This data allows you to immediately verify the installation after the setup is completed.
 
    ```sql
    mysql> SELECT * FROM innodb_memcache.containers\G
@@ -81,21 +81,21 @@ Antes de configurar o plugin `daemon_memcached`, consulte a Seção 14.21.4, “
    +----+------------------+------+------+------+
    ```
 
-   Para obter mais informações sobre as tabelas `innodb_memcache` e a tabela de exemplo `demo_test`, consulte a Seção 14.21.7, “Interna do Plugin InnoDB memcached”.
+   For more information about `innodb_memcache` tables and the `demo_test` sample table, see Section 14.21.7, “InnoDB memcached Plugin Internals”.
 
-2. Ative o plugin `daemon_memcached` executando a instrução `INSTALL PLUGIN`:
+2. Activate the `daemon_memcached` plugin by running the `INSTALL PLUGIN` statement:
 
    ```sql
    mysql> INSTALL PLUGIN daemon_memcached soname "libmemcached.so";
    ```
 
-   Depois que o plugin for instalado, ele será ativado automaticamente toda vez que o servidor MySQL for reiniciado.
+   Once the plugin is installed, it is automatically activated each time the MySQL server is restarted.
 
-#### Verificação da configuração do InnoDB e do memcached
+#### Verifying the InnoDB and memcached Setup
 
-Para verificar a configuração do plugin `daemon_memcached`, use uma sessão **telnet** para emitir comandos **memcached**. Por padrão, o daemon **memcached** escuta na porta 11211.
+To verify the `daemon_memcached` plugin setup, use a **telnet** session to issue **memcached** commands. By default, the **memcached** daemon listens on port 11211.
 
-1. Retorne os dados da tabela `test.demo_test`. A única linha de dados na tabela `demo_test` tem um valor de chave de `AA`.
+1. Retrieve data from the `test.demo_test` table. The single row of data in the `demo_test` table has a key value of `AA`.
 
    ```sql
    telnet localhost 11211
@@ -108,7 +108,7 @@ Para verificar a configuração do plugin `daemon_memcached`, use uma sessão **
    END
    ```
 
-2. Insira dados usando o comando `set`.
+2. Insert data using a `set` command.
 
    ```sql
    set BB 10 0 16
@@ -116,21 +116,19 @@ Para verificar a configuração do plugin `daemon_memcached`, use uma sessão **
    STORED
    ```
 
-   onde:
+   where:
 
-   - `set` é o comando para armazenar um valor
+   * `set` is the command to store a value
+   * `BB` is the key
+   * `10` is a flag for the operation; ignored by **memcached** but may be used by the client to indicate any type of information; specify `0` if unused
 
-   - `BB` é a chave
+   * `0` is the expiration time (TTL); specify `0` if unused
 
-   - `10` é uma bandeira para a operação; ignorada pelo **memcached**, mas pode ser usada pelo cliente para indicar qualquer tipo de informação; especifique `0` se não for usado
+   * `16` is the length of the supplied value block in bytes
 
-   - `0` é o tempo de expiração (TTL); especifique `0` se não for usado
+   * `GOODBYE, GOODBYE` is the value that is stored
 
-   - `16` é o comprimento do bloco de valor fornecido em bytes
-
-   - `GOODBYE, GOODBYE` é o valor que está armazenado
-
-3. Verifique se os dados inseridos estão armazenados no MySQL, conectando-se ao servidor MySQL e consultando a tabela `test.demo_test`.
+3. Verify that the data inserted is stored in MySQL by connecting to the MySQL server and querying the `test.demo_test` table.
 
    ```sql
    mysql> SELECT * FROM test.demo_test;
@@ -142,7 +140,7 @@ Para verificar a configuração do plugin `daemon_memcached`, use uma sessão **
    +----+------------------+------+------+------+
    ```
 
-4. Volte à sessão telnet e recupere os dados que você inseriu anteriormente usando a tecla `BB`.
+4. Return to the telnet session and retrieve the data that you inserted earlier using key `BB`.
 
    ```sql
    get BB
@@ -152,19 +150,19 @@ Para verificar a configuração do plugin `daemon_memcached`, use uma sessão **
    quit
    ```
 
-Se você desligar o servidor MySQL, que também desliga o servidor **memcached** integrado, as tentativas subsequentes de acessar os dados do **memcached** falharão com um erro de conexão. Normalmente, os dados do **memcached** também desaparecem nesse ponto, e você precisaria da lógica da aplicação para carregar os dados de volta à memória quando o **memcached** for reiniciado. No entanto, o plugin **memcached** do `InnoDB` automatiza esse processo para você.
+If you shut down the MySQL server, which also shuts off the integrated **memcached** server, further attempts to access the **memcached** data fail with a connection error. Normally, the **memcached** data also disappears at this point, and you would require application logic to load the data back into memory when **memcached** is restarted. However, the `InnoDB` **memcached** plugin automates this process for you.
 
-Quando você reinicia o MySQL, as operações `get` retornam novamente os pares chave-valor que você armazenou na sessão anterior do **memcached**. Quando uma chave é solicitada e o valor associado não está já no cache de memória, o valor é automaticamente pesquisado na tabela MySQL `test.demo_test`.
+When you restart MySQL, `get` operations once again return the key-value pairs you stored in the earlier **memcached** session. When a key is requested and the associated value is not already in the memory cache, the value is automatically queried from the MySQL `test.demo_test` table.
 
-#### Criando uma nova tabela e mapeamento de coluna
+#### Creating a New Table and Column Mapping
 
-Este exemplo mostra como configurar sua própria tabela `InnoDB` com o plugin `daemon_memcached`.
+This example shows how to setup your own `InnoDB` table with the `daemon_memcached` plugin.
 
-1. Crie uma tabela `InnoDB`. A tabela deve ter uma coluna chave com um índice único. A coluna chave da tabela `city` é `city_id`, que é definida como chave primária. A tabela também deve incluir colunas para os valores `flags`, `cas` e `expiry`. Pode haver uma ou mais colunas de valor. A tabela `city` tem três colunas de valor (`name`, `state`, `country`).
+1. Create an `InnoDB` table. The table must have a key column with a unique index. The key column of the city table is `city_id`, which is defined as the primary key. The table must also include columns for `flags`, `cas`, and `expiry` values. There may be one or more value columns. The `city` table has three value columns (`name`, `state`, `country`).
 
-   Nota
+   Note
 
-   Não há requisitos especiais em relação aos nomes das colunas, desde que um mapeamento válido seja adicionado à tabela `innodb_memcache.containers`.
+   There is no special requirement with respect to column names as along as a valid mapping is added to the `innodb_memcache.containers` table.
 
    ```sql
    mysql> CREATE TABLE city (
@@ -179,7 +177,7 @@ Este exemplo mostra como configurar sua própria tabela `InnoDB` com o plugin `d
           ) ENGINE=InnoDB;
    ```
 
-2. Adicione uma entrada à tabela `innodb_memcache.containers` para que o plugin `daemon_memcached` saiba como acessar a tabela `InnoDB`. A entrada deve satisfazer a definição da tabela `innodb_memcache.containers`. Para uma descrição de cada campo, consulte a Seção 14.21.7, “Interna do Plugin InnoDB memcached”.
+2. Add an entry to the `innodb_memcache.containers` table so that the `daemon_memcached` plugin knows how to access the `InnoDB` table. The entry must satisfy the `innodb_memcache.containers` table definition. For a description of each field, see Section 14.21.7, “InnoDB memcached Plugin Internals”.
 
    ```sql
    mysql> DESCRIBE innodb_memcache.containers;
@@ -198,7 +196,7 @@ Este exemplo mostra como configurar sua própria tabela `InnoDB` com o plugin `d
    +------------------------+--------------+------+-----+---------+-------+
    ```
 
-   A entrada da tabela `innodb_memcache.containers` para a tabela `cidade` é definida da seguinte forma:
+   The `innodb_memcache.containers` table entry for the city table is defined as:
 
    ```sql
    mysql> INSERT INTO `innodb_memcache`.`containers` (
@@ -208,13 +206,13 @@ Este exemplo mostra como configurar sua própria tabela `InnoDB` com o plugin `d
           'flags','cas','expiry','PRIMARY');
    ```
 
-   - `default` é especificado para a coluna `containers.name` para configurar a tabela `city` como a tabela `InnoDB` padrão a ser usada com o plugin `daemon_memcached`.
+   * `default` is specified for the `containers.name` column to configure the `city` table as the default `InnoDB` table to be used with the `daemon_memcached` plugin.
 
-   - Várias colunas da tabela `InnoDB` (`name`, `state`, `country`) são mapeadas para `containers.value_columns` usando um delimitador `|`.
+   * Multiple `InnoDB` table columns (`name`, `state`, `country`) are mapped to `containers.value_columns` using a “|” delimiter.
 
-   - Os campos `flags`, `cas_column` e `expire_time_column` da tabela `innodb_memcache.containers` geralmente não são significativos em aplicações que utilizam o plugin `daemon_memcached`. No entanto, é necessário um campo de tabela `InnoDB` designado para cada um deles. Ao inserir dados, especifique `0` para esses campos se eles não estiverem sendo utilizados.
+   * The `flags`, `cas_column`, and `expire_time_column` fields of the `innodb_memcache.containers` table are typically not significant in applications using the `daemon_memcached` plugin. However, a designated `InnoDB` table column is required for each. When inserting data, specify `0` for these columns if they are unused.
 
-3. Após atualizar a tabela `innodb_memcache.containers`, reinicie o plugin `daemon_memcache` para aplicar as alterações.
+3. After updating the `innodb_memcache.containers` table, restart the `daemon_memcache` plugin to apply the changes.
 
    ```sql
    mysql> UNINSTALL PLUGIN daemon_memcached;
@@ -222,7 +220,7 @@ Este exemplo mostra como configurar sua própria tabela `InnoDB` com o plugin `d
    mysql> INSTALL PLUGIN daemon_memcached soname "libmemcached.so";
    ```
 
-4. Usando o telnet, insira dados na tabela `city` usando um comando `set` do **memcached**.
+4. Using telnet, insert data into the `city` table using a **memcached** `set` command.
 
    ```sql
    telnet localhost 11211
@@ -234,7 +232,7 @@ Este exemplo mostra como configurar sua própria tabela `InnoDB` com o plugin `d
    STORED
    ```
 
-5. Use a consulta da tabela `test.city` no MySQL para verificar se os dados que você inseriu foram armazenados.
+5. Using MySQL, query the `test.city` table to verify that the data you inserted was stored.
 
    ```sql
    mysql> SELECT * FROM test.city;
@@ -245,7 +243,7 @@ Este exemplo mostra como configurar sua própria tabela `InnoDB` com o plugin `d
    +---------+-----------+-----------+---------+-------+------+--------+
    ```
 
-6. Use o MySQL para inserir dados adicionais na tabela `test.city`.
+6. Using MySQL, insert additional data into the `test.city` table.
 
    ```sql
    mysql> INSERT INTO city VALUES ('C','CHENNAI','TAMIL NADU','IN', 0, 0 ,0);
@@ -254,11 +252,11 @@ Este exemplo mostra como configurar sua própria tabela `InnoDB` com o plugin `d
    mysql> INSERT INTO city VALUES ('M','MUMBAI','MAHARASHTRA','IN', 0, 0, 0);
    ```
 
-   Nota
+   Note
 
-   Recomenda-se que você especifique um valor de `0` para os campos `flags`, `cas_column` e `expire_time_column` se eles não forem utilizados.
+   It is recommended that you specify a value of `0` for the `flags`, `cas_column`, and `expire_time_column` fields if they are unused.
 
-7. Use o telnet para emitir o comando **memcached** `get` para recuperar os dados que você inseriu usando o MySQL.
+7. Using telnet, issue a **memcached** `get` command to retrieve data you inserted using MySQL.
 
    ```sql
    get H
@@ -267,33 +265,33 @@ Este exemplo mostra como configurar sua própria tabela `InnoDB` com o plugin `d
    END
    ```
 
-#### Configurando o Plugin InnoDB memcached
+#### Configuring the InnoDB memcached Plugin
 
-As opções de configuração tradicionais do `memcached` podem ser especificadas em um arquivo de configuração MySQL ou em uma string de inicialização do **mysqld**, codificadas no argumento do parâmetro de configuração `daemon_memcached_option`. As opções de configuração do `memcached` entram em vigor quando o plugin é carregado, o que ocorre toda vez que o servidor MySQL é iniciado.
+Traditional `memcached` configuration options may be specified in a MySQL configuration file or a **mysqld** startup string, encoded in the argument of the `daemon_memcached_option` configuration parameter. `memcached` configuration options take effect when the plugin is loaded, which occurs each time the MySQL server is started.
 
-Por exemplo, para fazer com que o **memcached** ouça na porta 11222 em vez da porta padrão 11211, especifique `-p11222` como um argumento da opção de configuração `daemon_memcached_option`:
+For example, to make **memcached** listen on port 11222 instead of the default port 11211, specify `-p11222` as an argument of the `daemon_memcached_option` configuration option:
 
 ```sql
 mysqld .... --daemon_memcached_option="-p11222"
 ```
 
-Outras opções do **memcached** podem ser codificadas na string `daemon_memcached_option`. Por exemplo, você pode especificar opções para reduzir o número máximo de conexões simultâneas, alterar o tamanho máximo de memória para um par chave-valor ou habilitar mensagens de depuração para o log de erros, e assim por diante.
+Other **memcached** options can be encoded in the `daemon_memcached_option` string. For example, you can specify options to reduce the maximum number of simultaneous connections, change the maximum memory size for a key-value pair, or enable debugging messages for the error log, and so on.
 
-Há também opções de configuração específicas para o plugin `daemon_memcached`. Essas incluem:
+There are also configuration options specific to the `daemon_memcached` plugin. These include:
 
-- `daemon_memcached_engine_lib_name`: Especifica a biblioteca compartilhada que implementa o plugin **memcached** do **InnoDB**. O ajuste padrão é `innodb_engine.so`.
+* `daemon_memcached_engine_lib_name`: Specifies the shared library that implements the `InnoDB` **memcached** plugin. The default setting is `innodb_engine.so`.
 
-- `daemon_memcached_engine_lib_path`: O caminho do diretório que contém a biblioteca compartilhada que implementa o plugin **memcached** do **InnoDB**. O padrão é NULL, representando o diretório do plugin.
+* `daemon_memcached_engine_lib_path`: The path of the directory containing the shared library that implements the `InnoDB` **memcached** plugin. The default is NULL, representing the plugin directory.
 
-- `daemon_memcached_r_batch_size`: Define o tamanho do lote de commit para operações de leitura (`get`). Especifica o número de operações de leitura do **memcached** após as quais ocorre um commit. `daemon_memcached_r_batch_size` é definido como 1 por padrão, para que cada solicitação `get` acesse os dados mais recentemente comprometidos na tabela `InnoDB`, seja o dado atualizado através do **memcached** ou pelo SQL. Quando o valor for maior que 1, o contador de operações de leitura é incrementado a cada chamada `get`. Uma chamada `flush_all` redefiniu tanto os contadores de leitura quanto de escrita.
+* `daemon_memcached_r_batch_size`: Defines the batch commit size for read operations (`get`). It specifies the number of **memcached** read operations after which a commit occurs. `daemon_memcached_r_batch_size` is set to 1 by default so that every `get` request accesses the most recently committed data in the `InnoDB` table, whether the data was updated through **memcached** or by SQL. When the value is greater than 1, the counter for read operations is incremented with each `get` call. A `flush_all` call resets both read and write counters.
 
-- `daemon_memcached_w_batch_size`: Define o tamanho do lote de commit para operações de escrita (`set`, `replace`, `append`, `prepend`, `incr`, `decr`, e assim por diante). `daemon_memcached_w_batch_size` é definido como 1 por padrão, para que nenhum dado não comprometido seja perdido em caso de uma interrupção, e para que as consultas SQL na tabela subjacente acessem os dados mais recentes. Quando o valor for maior que 1, o contador de operações de escrita é incrementado para cada chamada de `add`, `set`, `incr`, `decr` e `delete`. Uma chamada `flush_all` redefiniu tanto os contadores de leitura quanto de escrita.
+* `daemon_memcached_w_batch_size`: Defines the batch commit size for write operations (`set`, `replace`, `append`, `prepend`, `incr`, `decr`, and so on). `daemon_memcached_w_batch_size` is set to 1 by default so that no uncommitted data is lost in case of an outage, and so that SQL queries on the underlying table access the most recent data. When the value is greater than 1, the counter for write operations is incremented for each `add`, `set`, `incr`, `decr`, and `delete` call. A `flush_all` call resets both read and write counters.
 
-Por padrão, você não precisa modificar `daemon_memcached_engine_lib_name` ou `daemon_memcached_engine_lib_path`. Você pode configurar essas opções se, por exemplo, quiser usar um motor de armazenamento diferente para **memcached** (como o motor **memcached** NDB).
+By default, you do not need to modify `daemon_memcached_engine_lib_name` or `daemon_memcached_engine_lib_path`. You might configure these options if, for example, you want to use a different storage engine for **memcached** (such as the NDB **memcached** engine).
 
-Os parâmetros de configuração do plugin `daemon_memcached` podem ser especificados no arquivo de configuração do MySQL ou em uma string de inicialização do **mysqld**. Eles entram em vigor quando você carrega o plugin `daemon_memcached`.
+`daemon_memcached` plugin configuration parameters may be specified in the MySQL configuration file or in a **mysqld** startup string. They take effect when you load the `daemon_memcached` plugin.
 
-Ao fazer alterações na configuração do plugin `daemon_memcached`, recarregue o plugin para aplicar as alterações. Para isso, execute as seguintes instruções:
+When making changes to `daemon_memcached` plugin configuration, reload the plugin to apply the changes. To do so, issue the following statements:
 
 ```sql
 mysql> UNINSTALL PLUGIN daemon_memcached;
@@ -301,6 +299,6 @@ mysql> UNINSTALL PLUGIN daemon_memcached;
 mysql> INSTALL PLUGIN daemon_memcached soname "libmemcached.so";
 ```
 
-As configurações, tabelas e dados necessários são preservados quando o plugin é reiniciado.
+Configuration settings, required tables, and data are preserved when the plugin is restarted.
 
-Para obter informações adicionais sobre como habilitar e desabilitar plugins, consulte a Seção 5.5.1, “Instalando e Desinstalando Plugins”.
+For additional information about enabling and disabling plugins, see Section 5.5.1, “Installing and Uninstalling Plugins”.

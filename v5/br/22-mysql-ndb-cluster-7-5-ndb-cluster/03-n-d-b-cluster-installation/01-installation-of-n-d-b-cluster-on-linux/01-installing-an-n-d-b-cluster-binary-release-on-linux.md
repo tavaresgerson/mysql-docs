@@ -1,31 +1,31 @@
-#### 21.3.1.1 Instalar uma versão binária de um cluster NDB no Linux
+#### 21.3.1.1 Installing an NDB Cluster Binary Release on Linux
 
-Esta seção abrange os passos necessários para instalar os executáveis corretos para cada tipo de nó do Cluster a partir de binários pré-compilados fornecidos pela Oracle.
+This section covers the steps necessary to install the correct executables for each type of Cluster node from precompiled binaries supplied by Oracle.
 
-Para configurar um clúster usando binários pré-compilados, o primeiro passo no processo de instalação de cada host do clúster é baixar o arquivo binário da página de downloads do [NDB Cluster](https://dev.mysql.com/downloads/cluster/). (Para a versão mais recente do NDB 7.6 de 64 bits, este é `mysql-cluster-gpl-7.6.35-linux-glibc2.12-x86_64.tar.gz`.) Assumemos que você colocou este arquivo no diretório `/var/tmp` de cada máquina.
+For setting up a cluster using precompiled binaries, the first step in the installation process for each cluster host is to download the binary archive from the [NDB Cluster downloads page](https://dev.mysql.com/downloads/cluster/). (For the most recent 64-bit NDB 7.6 release, this is `mysql-cluster-gpl-7.6.35-linux-glibc2.12-x86_64.tar.gz`.) We assume that you have placed this file in each machine's `/var/tmp` directory.
 
-Se você precisar de um binário personalizado, consulte Seção 2.8.5, “Instalando o MySQL usando uma árvore de fonte de desenvolvimento”.
+If you require a custom binary, see [Section 2.8.5, “Installing MySQL Using a Development Source Tree”](installing-development-tree.html "2.8.5 Installing MySQL Using a Development Source Tree").
 
-Nota
+Note
 
-Após concluir a instalação, ainda não inicie nenhum dos binários. Mostramos como fazer isso após a configuração dos nós (consulte Seção 21.3.3, “Configuração Inicial do NDB Cluster”).
+After completing the installation, do not yet start any of the binaries. We show you how to do so following the configuration of the nodes (see [Section 21.3.3, “Initial Configuration of NDB Cluster”](mysql-cluster-install-configuration.html "21.3.3 Initial Configuration of NDB Cluster")).
 
-**Nodos SQL.** Em cada uma das máquinas designadas para hospedar os nós SQL, execute as etapas a seguir como usuário `root` do sistema:
+**SQL nodes.** On each of the machines designated to host SQL nodes, perform the following steps as the system `root` user:
 
-1. Verifique seus arquivos `/etc/passwd` e `/etc/group` (ou use as ferramentas fornecidas pelo seu sistema operacional para gerenciar usuários e grupos) para ver se já existe um grupo `mysql` e um usuário `mysql` no sistema. Algumas distribuições do SO criam esses grupos como parte do processo de instalação do sistema operacional. Se eles ainda não estiverem presentes, crie um novo grupo de usuário `mysql` e, em seguida, adicione um usuário `mysql` a esse grupo:
+1. Check your `/etc/passwd` and `/etc/group` files (or use whatever tools are provided by your operating system for managing users and groups) to see whether there is already a `mysql` group and `mysql` user on the system. Some OS distributions create these as part of the operating system installation process. If they are not already present, create a new `mysql` user group, and then add a `mysql` user to this group:
 
    ```sql
    $> groupadd mysql
    $> useradd -g mysql -s /bin/false mysql
    ```
 
-   A sintaxe para **useradd** e **groupadd** pode variar ligeiramente em diferentes versões do Unix, ou eles podem ter nomes diferentes, como **adduser** e **addgroup**.
+   The syntax for **useradd** and **groupadd** may differ slightly on different versions of Unix, or they may have different names such as **adduser** and **addgroup**.
 
-2. Altere a localização para o diretório que contém o arquivo baixado, descompacte o arquivo e crie um link simbólico chamado `mysql` para o diretório `mysql`.
+2. Change location to the directory containing the downloaded file, unpack the archive, and create a symbolic link named `mysql` to the `mysql` directory.
 
-   Nota
+   Note
 
-   Os nomes dos arquivos e diretórios reais variam de acordo com o número da versão do NDB Cluster.
+   The actual file and directory names vary according to the NDB Cluster version number.
 
    ```sql
    $> cd /var/tmp
@@ -33,16 +33,16 @@ Após concluir a instalação, ainda não inicie nenhum dos binários. Mostramos
    $> ln -s /usr/local/mysql-cluster-gpl-7.6.35-linux-glibc2.12-x86_64 /usr/local/mysql
    ```
 
-3. Altere a localização para o diretório `mysql` e configure os bancos de dados do sistema usando **mysqld** `--initialize` conforme mostrado aqui:
+3. Change location to the `mysql` directory and set up the system databases using [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") [`--initialize`](server-options.html#option_mysqld_initialize) as shown here:
 
    ```sql
    $> cd mysql
    $> mysqld --initialize
    ```
 
-   Isso gera uma senha aleatória para a conta `root` do MySQL. Se você *não* quiser que a senha aleatória seja gerada, pode substituir a opção `--initialize-insecure` pelo `--initialize`. Em qualquer caso, você deve revisar Seção 2.9.1, “Inicializando o diretório de dados” para obter informações adicionais antes de realizar essa etapa. Veja também Seção 4.4.4, “mysql_secure_installation — Melhorar a segurança da instalação do MySQL”.
+   This generates a random password for the MySQL `root` account. If you do *not* want the random password to be generated, you can substitute the [`--initialize-insecure`](server-options.html#option_mysqld_initialize-insecure) option for `--initialize`. In either case, you should review [Section 2.9.1, “Initializing the Data Directory”](data-directory-initialization.html "2.9.1 Initializing the Data Directory"), for additional information before performing this step. See also [Section 4.4.4, “mysql_secure_installation — Improve MySQL Installation Security”](mysql-secure-installation.html "4.4.4 mysql_secure_installation — Improve MySQL Installation Security").
 
-4. Defina as permissões necessárias para o servidor MySQL e os diretórios de dados:
+4. Set the necessary permissions for the MySQL server and data directories:
 
    ```sql
    $> chown -R root .
@@ -50,7 +50,7 @@ Após concluir a instalação, ainda não inicie nenhum dos binários. Mostramos
    $> chgrp -R mysql .
    ```
 
-5. Copie o script de inicialização do MySQL para o diretório apropriado, torne-o executável e configure-o para iniciar quando o sistema operacional for inicializado:
+5. Copy the MySQL startup script to the appropriate directory, make it executable, and set it to start when the operating system is booted up:
 
    ```sql
    $> cp support-files/mysql.server /etc/rc.d/init.d/
@@ -58,17 +58,17 @@ Após concluir a instalação, ainda não inicie nenhum dos binários. Mostramos
    $> chkconfig --add mysql.server
    ```
 
-   (O diretório de scripts de inicialização pode variar dependendo do seu sistema operacional e versão — por exemplo, em algumas distribuições Linux, é `/etc/init.d`.
+   (The startup scripts directory may vary depending on your operating system and version—for example, in some Linux distributions, it is `/etc/init.d`.)
 
-   Aqui, usamos o **chkconfig** da Red Hat para criar links para os scripts de inicialização; use qualquer meio apropriado para esse propósito na sua plataforma, como **update-rc.d** no Debian.
+   Here we use Red Hat's **chkconfig** for creating links to the startup scripts; use whatever means is appropriate for this purpose on your platform, such as **update-rc.d** on Debian.
 
-Lembre-se de que as etapas anteriores devem ser repetidas em cada máquina onde um nó SQL deve residir.
+Remember that the preceding steps must be repeated on each machine where an SQL node is to reside.
 
-**Nodos de dados.** A instalação dos nós de dados do NDB Cluster não requer o binário **mysqld**. É necessário apenas o executável do nó de dados do NDB Cluster **ndbd** (monotático) ou **ndbmtd** (multitático). Esses binários também podem ser encontrados no arquivo `.tar.gz`. Novamente, assumimos que você colocou esse arquivo em `/var/tmp`.
+**Data nodes.** Installation of the data nodes does not require the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") binary. Only the NDB Cluster data node executable [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") (single-threaded) or [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") (multithreaded) is required. These binaries can also be found in the `.tar.gz` archive. Again, we assume that you have placed this archive in `/var/tmp`.
 
-Como administrador do sistema (ou seja, após usar **sudo**, **su root** ou o equivalente do seu sistema para assumir temporariamente os privilégios da conta de administrador do sistema), execute as etapas a seguir para instalar os binários do nó de dados nos hosts do nó de dados:
+As system `root` (that is, after using **sudo**, **su root**, or your system's equivalent for temporarily assuming the system administrator account's privileges), perform the following steps to install the data node binaries on the data node hosts:
 
-1. Altere a localização para o diretório `/var/tmp` e extraia os binários **ndbd** e **ndbmtd** do arquivo para um diretório adequado, como `/usr/local/bin`:
+1. Change location to the `/var/tmp` directory, and extract the [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") and [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") binaries from the archive into a suitable directory such as `/usr/local/bin`:
 
    ```sql
    $> cd /var/tmp
@@ -78,28 +78,28 @@ Como administrador do sistema (ou seja, após usar **sudo**, **su root** ou o eq
    $> cp bin/ndbmtd /usr/local/bin/ndbmtd
    ```
 
-   (Você pode excluir com segurança o diretório criado ao descompactar o arquivo baixado e os arquivos que ele contém, a partir de `/var/tmp`, assim que **ndb_mgm** e **ndb_mgmd** tiverem sido copiados para o diretório de executaveis.)
+   (You can safely delete the directory created by unpacking the downloaded archive, and the files it contains, from `/var/tmp` once [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") and [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") have been copied to the executables directory.)
 
-2. Altere a localização para o diretório no qual você copiou os arquivos e, em seguida, torne ambos executáveis:
+2. Change location to the directory into which you copied the files, and then make both of them executable:
 
    ```sql
    $> cd /usr/local/bin
    $> chmod +x ndb*
    ```
 
-As etapas anteriores devem ser repetidas em cada servidor de nó de dados.
+The preceding steps should be repeated on each data node host.
 
-Embora seja necessário apenas um dos executáveis do nó de dados para executar um nó de dados do NDB Cluster, mostramos como instalar tanto o **ndbd** quanto o **ndbmtd** nas instruções anteriores. Recomendamos que você faça isso ao instalar ou atualizar o NDB Cluster, mesmo que planeje usar apenas um deles, pois isso deve economizar tempo e problemas no caso de você decidir mudar de um para o outro mais tarde.
+Although only one of the data node executables is required to run an NDB Cluster data node, we have shown you how to install both [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") and [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") in the preceding instructions. We recommend that you do this when installing or upgrading NDB Cluster, even if you plan to use only one of them, since this should save time and trouble in the event that you later decide to change from one to the other.
 
-Nota
+Note
 
-O diretório de dados em cada máquina que hospeda um nó de dados é `/usr/local/mysql/data`. Essa informação é essencial ao configurar o nó de gerenciamento. (Veja Seção 21.3.3, “Configuração Inicial do NDB Cluster”).
+The data directory on each machine hosting a data node is `/usr/local/mysql/data`. This piece of information is essential when configuring the management node. (See [Section 21.3.3, “Initial Configuration of NDB Cluster”](mysql-cluster-install-configuration.html "21.3.3 Initial Configuration of NDB Cluster").)
 
-**Nodos de gerenciamento.** A instalação do nó de gerenciamento não requer o binário **mysqld**. É necessário apenas o servidor de gerenciamento do NDB Cluster (**ndb_mgmd**). Você provavelmente também deseja instalar o cliente de gerenciamento (**ndb_mgm**). Ambos os binários também podem ser encontrados no arquivo `.tar.gz`. Novamente, assumimos que você colocou esse arquivo em `/var/tmp`.
+**Management nodes.** Installation of the management node does not require the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") binary. Only the NDB Cluster management server ([**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")) is required; you most likely want to install the management client ([**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client")) as well. Both of these binaries also be found in the `.tar.gz` archive. Again, we assume that you have placed this archive in `/var/tmp`.
 
-Como sistema `root`, execute os seguintes passos para instalar **ndb_mgmd** e **ndb_mgm** no host do nó de gerenciamento:
+As system `root`, perform the following steps to install [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") and [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") on the management node host:
 
-1. Altere a localização para o diretório `/var/tmp` e extraia os arquivos **ndb_mgm** e **ndb_mgmd** do arquivo em um diretório adequado, como `/usr/local/bin`:
+1. Change location to the `/var/tmp` directory, and extract the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") and [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") from the archive into a suitable directory such as `/usr/local/bin`:
 
    ```sql
    $> cd /var/tmp
@@ -108,13 +108,13 @@ Como sistema `root`, execute os seguintes passos para instalar **ndb_mgmd** e **
    $> cp bin/ndb_mgm* /usr/local/bin
    ```
 
-   (Você pode excluir com segurança o diretório criado ao descompactar o arquivo baixado e os arquivos que ele contém, a partir de `/var/tmp`, assim que **ndb_mgm** e **ndb_mgmd** tiverem sido copiados para o diretório de executaveis.)
+   (You can safely delete the directory created by unpacking the downloaded archive, and the files it contains, from `/var/tmp` once [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") and [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") have been copied to the executables directory.)
 
-2. Altere a localização para o diretório no qual você copiou os arquivos e, em seguida, torne ambos executáveis:
+2. Change location to the directory into which you copied the files, and then make both of them executable:
 
    ```sql
    $> cd /usr/local/bin
    $> chmod +x ndb_mgm*
    ```
 
-Na Seção 21.3.3, “Configuração Inicial do NDB Cluster”, criamos arquivos de configuração para todos os nós do nosso exemplo de NDB Cluster.
+In [Section 21.3.3, “Initial Configuration of NDB Cluster”](mysql-cluster-install-configuration.html "21.3.3 Initial Configuration of NDB Cluster"), we create configuration files for all of the nodes in our example NDB Cluster.

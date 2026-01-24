@@ -1,46 +1,46 @@
-#### 12.16.7.1 Funções de Propriedade Geométrica Geral
+#### 12.16.7.1 General Geometry Property Functions
 
-As funções listadas nesta seção não restringem seu argumento e aceitam um valor de geometria de qualquer tipo.
+The functions listed in this section do not restrict their argument and accept a geometry value of any type.
 
-- `Dimensão (g)`
+* `Dimension(g)`
 
-  `ST_Dimension()` e `Dimension()` são sinônimos. Para mais informações, consulte a descrição de `ST_Dimension()`.
+  `ST_Dimension()` and `Dimension()` are synonyms. For more information, see the description of `ST_Dimension()`.
 
-  `Dimension()` está desatualizado; espere que ele seja removido em uma futura versão do MySQL. Use `ST_Dimension()` em vez disso.
+  `Dimension()` is deprecated; expect it to be removed in a future MySQL release. Use `ST_Dimension()` instead.
 
-- `Envelope(g)`
+* `Envelope(g)`
 
-  `ST_Envelope()` e `Envelope()` são sinônimos. Para mais informações, consulte a descrição de `ST_Envelope()`.
+  `ST_Envelope()` and `Envelope()` are synonyms. For more information, see the description of `ST_Envelope()`.
 
-  `Envelope()` está desatualizado; espere que ele seja removido em uma futura versão do MySQL. Use `ST_Envelope()` em vez disso.
+  `Envelope()` is deprecated; expect it to be removed in a future MySQL release. Use `ST_Envelope()` instead.
 
-- `GeometryType(g)`
+* `GeometryType(g)`
 
-  `ST_GeometryType()` e `GeometryType()` são sinônimos. Para mais informações, consulte a descrição de `ST_GeometryType()`.
+  `ST_GeometryType()` and `GeometryType()` are synonyms. For more information, see the description of `ST_GeometryType()`.
 
-  `GeometryType()` está desatualizado; espere que ele seja removido em uma futura versão do MySQL. Use `ST_GeometryType()` em vez disso.
+  `GeometryType()` is deprecated; expect it to be removed in a future MySQL release. Use `ST_GeometryType()` instead.
 
-- `IsEmpty(g)`
+* `IsEmpty(g)`
 
-  `ST_IsEmpty()` e `IsEmpty()` são sinônimos. Para mais informações, consulte a descrição de `ST_IsEmpty()`.
+  `ST_IsEmpty()` and `IsEmpty()` are synonyms. For more information, see the description of `ST_IsEmpty()`.
 
-  `IsEmpty()` está desatualizado; espere que ele seja removido em uma futura versão do MySQL. Use `ST_IsEmpty()` em vez disso.
+  `IsEmpty()` is deprecated; expect it to be removed in a future MySQL release. Use `ST_IsEmpty()` instead.
 
-- `IsSimple(g)`
+* `IsSimple(g)`
 
-  `ST_IsSimple()` e `IsSimple()` são sinônimos. Para mais informações, consulte a descrição de `ST_IsSimple()`.
+  `ST_IsSimple()` and `IsSimple()` are synonyms. For more information, see the description of `ST_IsSimple()`.
 
-  `IsSimple()` está desatualizado; espere que ele seja removido em uma futura versão do MySQL. Use `ST_IsSimple()` em vez disso.
+  `IsSimple()` is deprecated; expect it to be removed in a future MySQL release. Use `ST_IsSimple()` instead.
 
-- `SRID(g)`
+* `SRID(g)`
 
-  `ST_SRID()` e `SRID()` são sinônimos. Para mais informações, consulte a descrição de `ST_SRID()`.
+  `ST_SRID()` and `SRID()` are synonyms. For more information, see the description of `ST_SRID()`.
 
-  `SRID()` está desatualizado; espere que ele seja removido em uma futura versão do MySQL. Use `ST_SRID()` em vez disso.
+  `SRID()` is deprecated; expect it to be removed in a future MySQL release. Use `ST_SRID()` instead.
 
-- `ST_Dimension(g)`
+* `ST_Dimension(g)`
 
-  Retorna a dimensão inerente do valor de geometria *`g`*, ou `NULL` se o argumento for `NULL`. A dimensão pode ser -1, 0, 1 ou 2. O significado desses valores está descrito na Seção 11.4.2.2, “Classe de Geometria”.
+  Returns the inherent dimension of the geometry value *`g`*, or `NULL` if the argument is `NULL`. The dimension can be −1, 0, 1, or 2. The meaning of these values is given in Section 11.4.2.2, “Geometry Class”.
 
   ```sql
   mysql> SELECT ST_Dimension(ST_GeomFromText('LineString(1 1,2 2)'));
@@ -51,11 +51,11 @@ As funções listadas nesta seção não restringem seu argumento e aceitam um v
   +------------------------------------------------------+
   ```
 
-  `ST_Dimension()` e `Dimension()` são sinônimos.
+  `ST_Dimension()` and `Dimension()` are synonyms.
 
-- `ST_Envelope(g)`
+* `ST_Envelope(g)`
 
-  Retorna o retângulo de contorno mínimo (MBR) para o valor de geometria *`g`*, ou `NULL` se o argumento for `NULL`. O resultado é retornado como um valor `Polygon` definido pelos pontos de canto da caixa de contorno:
+  Returns the minimum bounding rectangle (MBR) for the geometry value *`g`*, or `NULL` if the argument is `NULL`. The result is returned as a `Polygon` value that is defined by the corner points of the bounding box:
 
   ```sql
   POLYGON((MINX MINY, MAXX MINY, MAXX MAXY, MINX MAXY, MINX MINY))
@@ -70,7 +70,7 @@ As funções listadas nesta seção não restringem seu argumento e aceitam um v
   +----------------------------------------------------------------+
   ```
 
-  Se o argumento for um ponto ou um segmento de linha vertical ou horizontal, o `ST_Envelope()` retorna o ponto ou o segmento de linha como seu MBR, em vez de retornar um polígono inválido:
+  If the argument is a point or a vertical or horizontal line segment, `ST_Envelope()` returns the point or the line segment as its MBR rather than returning an invalid polygon:
 
   ```sql
   mysql> SELECT ST_AsText(ST_Envelope(ST_GeomFromText('LineString(1 1,1 2)')));
@@ -81,11 +81,11 @@ As funções listadas nesta seção não restringem seu argumento e aceitam um v
   +----------------------------------------------------------------+
   ```
 
-  `ST_Envelope()` e `Envelope()` são sinônimos.
+  `ST_Envelope()` and `Envelope()` are synonyms.
 
-- `ST_GeometryType(g)`
+* `ST_GeometryType(g)`
 
-  Retorna uma string binária que indica o nome do tipo de geometria do qual a instância de geometria *`g`* é membro, ou `NULL` se o argumento for `NULL`. O nome corresponde a uma das subclasses instanciáveis de `Geometry`.
+  Returns a binary string indicating the name of the geometry type of which the geometry instance *`g`* is a member, or `NULL` if the argument is `NULL`. The name corresponds to one of the instantiable `Geometry` subclasses.
 
   ```sql
   mysql> SELECT ST_GeometryType(ST_GeomFromText('POINT(1 1)'));
@@ -96,27 +96,27 @@ As funções listadas nesta seção não restringem seu argumento e aceitam um v
   +------------------------------------------------+
   ```
 
-  `ST_GeometryType()` e `GeometryType()` são sinônimos.
+  `ST_GeometryType()` and `GeometryType()` are synonyms.
 
-- `ST_IsEmpty(g)`
+* `ST_IsEmpty(g)`
 
-  Essa função é um marcador que retorna 0 para qualquer valor de geometria válido, 1 para qualquer valor de geometria inválido ou `NULL` se o argumento for `NULL`.
+  This function is a placeholder that returns 0 for any valid geometry value, 1 for any invalid geometry value, or `NULL` if the argument is `NULL`.
 
-  O MySQL não suporta valores `EMPTY` do SIG, como `POINT EMPTY`.
+  MySQL does not support GIS `EMPTY` values such as `POINT EMPTY`.
 
-  `ST_IsEmpty()` e `IsEmpty()` são sinônimos.
+  `ST_IsEmpty()` and `IsEmpty()` are synonyms.
 
-- `ST_IsSimple(g)`
+* `ST_IsSimple(g)`
 
-  Retorna 1 se o valor de geometria *`g`* não tiver pontos geométricos anômalos, como autointersecção ou autotangência. `ST_IsSimple()` retorna 0 se o argumento não for simples e `NULL` se o argumento for `NULL`.
+  Returns 1 if the geometry value *`g`* has no anomalous geometric points, such as self-intersection or self-tangency. `ST_IsSimple()` returns 0 if the argument is not simple, and `NULL` if the argument is `NULL`.
 
-  As descrições das classes geométricas instanciáveis fornecidas na Seção 11.4.2, “O Modelo de Geometria OpenGIS”, incluem as condições específicas que fazem com que as instâncias da classe sejam classificadas como não simples.
+  The descriptions of the instantiable geometric classes given under Section 11.4.2, “The OpenGIS Geometry Model” includes the specific conditions that cause class instances to be classified as not simple.
 
-  `ST_IsSimple()` e `IsSimple()` são sinônimos.
+  `ST_IsSimple()` and `IsSimple()` are synonyms.
 
-- `ST_SRID(g)`
+* `ST_SRID(g)`
 
-  Retorna um inteiro que indica o ID do sistema de referência espacial associado ao valor de geometria *`g`*, ou `NULL` se o argumento for `NULL`.
+  Returns an integer indicating the spatial reference system ID associated with the geometry value *`g`*, or `NULL` if the argument is `NULL`.
 
   ```sql
   mysql> SELECT ST_SRID(ST_GeomFromText('LineString(1 1,2 2)',101));
@@ -127,4 +127,4 @@ As funções listadas nesta seção não restringem seu argumento e aceitam um v
   +-----------------------------------------------------+
   ```
 
-  `ST_SRID()` e `SRID()` são sinônimos.
+  `ST_SRID()` and `SRID()` are synonyms.

@@ -1,13 +1,13 @@
-### 21.6.7 Adicionando nós de dados do NDB Cluster Online
+### 21.6.7 Adding NDB Cluster Data Nodes Online
 
-21.6.7.1 Adicionando nós de dados do NDB Cluster Online: Problemas gerais
+[21.6.7.1 Adding NDB Cluster Data Nodes Online: General Issues](mysql-cluster-online-add-node-remarks.html)
 
-21.6.7.2 Adicionando nós de dados do NDB Cluster Online: procedimento básico
+[21.6.7.2 Adding NDB Cluster Data Nodes Online: Basic procedure](mysql-cluster-online-add-node-basics.html)
 
-21.6.7.3 Adicionando nós de dados do NDB Cluster Online: Exemplo detalhado
+[21.6.7.3 Adding NDB Cluster Data Nodes Online: Detailed Example](mysql-cluster-online-add-node-example.html)
 
-Esta seção descreve como adicionar os nós de dados do NDB Cluster "online", ou seja, sem precisar desligar completamente o cluster e reiniciá-lo como parte do processo.
+This section describes how to add NDB Cluster data nodes “online”—that is, without needing to shut down the cluster completely and restart it as part of the process.
 
-Importante
+Important
 
-Atualmente, você deve adicionar novos nós de dados a um NDB Cluster como parte de um novo grupo de nós. Além disso, não é possível alterar o número de réplicas de fragmentação (ou o número de nós por grupo de nós) online.
+Currently, you must add new data nodes to an NDB Cluster as part of a new node group. In addition, it is not possible to change the number of fragment replicas (or the number of nodes per node group) online.

@@ -1,9 +1,9 @@
-#### 13.4.3.1 Declaração do grupo de início de replicação
+#### 13.4.3.1 START GROUP_REPLICATION Statement
 
 ```sql
 START GROUP_REPLICATION
 ```
 
-Começa a replicação em grupo nesta instância do servidor. Esta declaração requer o privilégio `SUPER`. Se `super_read_only=ON` e o membro deve se juntar como primário, `super_read_only` é definido como `OFF` assim que a replicação em grupo começar com sucesso.
+Starts Group Replication on this server instance. This statement requires the [`SUPER`](privileges-provided.html#priv_super) privilege. If [`super_read_only=ON`](server-system-variables.html#sysvar_super_read_only) and the member should join as a primary, [`super_read_only`](server-system-variables.html#sysvar_super_read_only) is set to `OFF` once Group Replication successfully starts.
 
-Um servidor que participa de um grupo no modo único primário deve usar `skip_replica_start=ON`. Caso contrário, o servidor não poderá se juntar a um grupo como secundário.
+A server that participates in a group in single-primary mode should use [`skip_replica_start=ON`](/doc/refman/8.0/en/replication-options-replica.html#sysvar_skip_replica_start). Otherwise, the server is not allowed to join a group as a secondary.

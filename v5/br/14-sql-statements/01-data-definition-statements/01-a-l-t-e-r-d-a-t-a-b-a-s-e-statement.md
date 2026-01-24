@@ -1,4 +1,4 @@
-### 13.1.1 Declaração ALTER DATABASE
+### 13.1.1 ALTER DATABASE Statement
 
 ```sql
 ALTER {DATABASE | SCHEMA} [db_name]
@@ -12,41 +12,41 @@ alter_option: {
 }
 ```
 
-`ALTER DATABASE` permite que você altere as características gerais de um banco de dados. Essas características são armazenadas no arquivo `db.opt` no diretório do banco de dados. Esta declaração requer o privilégio `ALTER` no banco de dados. `ALTER SCHEMA` é um sinônimo de `ALTER DATABASE`.
+[`ALTER DATABASE`](alter-database.html "13.1.1 ALTER DATABASE Statement") enables you to change the overall characteristics of a database. These characteristics are stored in the `db.opt` file in the database directory. This statement requires the [`ALTER`](privileges-provided.html#priv_alter) privilege on the database. [`ALTER SCHEMA`](alter-database.html "13.1.1 ALTER DATABASE Statement") is a synonym for [`ALTER DATABASE`](alter-database.html "13.1.1 ALTER DATABASE Statement").
 
-O nome do banco de dados pode ser omitido da primeira sintaxe, caso em que a declaração se aplica ao banco de dados padrão. Um erro ocorre se não houver um banco de dados padrão.
+The database name can be omitted from the first syntax, in which case the statement applies to the default database. An error occurs if there is no default database.
 
-- Conjunto de caracteres e opções de cotação
-- Atualização a partir de versões mais antigas do MySQL 5.1
+* [Character Set and Collation Options](alter-database.html#alter-database-charset "Character Set and Collation Options")
+* [Upgrading from Versions Older than MySQL 5.1](alter-database.html#alter-database-upgrading "Upgrading from Versions Older than MySQL 5.1")
 
-#### Conjunto de caracteres e opções de cotação
+#### Character Set and Collation Options
 
-A cláusula `CHARACTER SET` altera o conjunto de caracteres padrão do banco de dados. A cláusula `COLLATE` altera a concordância padrão do banco de dados. Para obter informações sobre os nomes dos conjuntos de caracteres e concordâncias, consulte [Capítulo 10, *Caracteres, Concordâncias, Unicode*] (charset.html).
+The `CHARACTER SET` clause changes the default database character set. The `COLLATE` clause changes the default database collation. For information about character set and collation names, see [Chapter 10, *Character Sets, Collations, Unicode*](charset.html "Chapter 10 Character Sets, Collations, Unicode").
 
-Para ver os conjuntos de caracteres e as codificações disponíveis, use as instruções `SHOW CHARACTER SET` e `SHOW COLLATION`, respectivamente. Veja Seção 13.7.5.3, “Instrução SHOW CHARACTER SET” e Seção 13.7.5.4, “Instrução SHOW COLLATION”.
+To see the available character sets and collations, use the [`SHOW CHARACTER SET`](show-character-set.html "13.7.5.3 SHOW CHARACTER SET Statement") and [`SHOW COLLATION`](show-collation.html "13.7.5.4 SHOW COLLATION Statement") statements, respectively. See [Section 13.7.5.3, “SHOW CHARACTER SET Statement”](show-character-set.html "13.7.5.3 SHOW CHARACTER SET Statement"), and [Section 13.7.5.4, “SHOW COLLATION Statement”](show-collation.html "13.7.5.4 SHOW COLLATION Statement").
 
-Uma rotina armazenada que usa os padrões do banco de dados quando a rotina é criada inclui esses padrões como parte de sua definição. (Em uma rotina armazenada, variáveis com tipos de dados de caracteres usam os padrões do banco de dados se o conjunto de caracteres ou a ordenação não forem especificados explicitamente. Veja Seção 13.1.16, “Instruções CREATE PROCEDURE e CREATE FUNCTION”.) Se você alterar o conjunto de caracteres padrão ou a ordenação de um banco de dados, todas as rotinas armazenadas que devem usar os novos padrões devem ser excluídas e recriadas.
+A stored routine that uses the database defaults when the routine is created includes those defaults as part of its definition. (In a stored routine, variables with character data types use the database defaults if the character set or collation are not specified explicitly. See [Section 13.1.16, “CREATE PROCEDURE and CREATE FUNCTION Statements”](create-procedure.html "13.1.16 CREATE PROCEDURE and CREATE FUNCTION Statements").) If you change the default character set or collation for a database, any stored routines that are to use the new defaults must be dropped and recreated.
 
-#### Atualizando versões mais antigas do MySQL 5.1
+#### Upgrading from Versions Older than MySQL 5.1
 
-A sintaxe que inclui a cláusula `UPGRADE DATA DIRECTORY NAME` atualiza o nome do diretório associado ao banco de dados para usar a codificação implementada no MySQL 5.1 para mapear nomes de bancos de dados a nomes de diretórios de bancos de dados (consulte Seção 9.2.4, “Mapeamento de Identificadores a Nomes de Arquivos”). Esta cláusula é para uso sob estas condições:
+The syntax that includes the `UPGRADE DATA DIRECTORY NAME` clause updates the name of the directory associated with the database to use the encoding implemented in MySQL 5.1 for mapping database names to database directory names (see [Section 9.2.4, “Mapping of Identifiers to File Names”](identifier-mapping.html "9.2.4 Mapping of Identifiers to File Names")). This clause is for use under these conditions:
 
-- É necessário fazer isso ao atualizar o MySQL para a versão 5.1 ou superior a versões mais antigas.
+* It is intended when upgrading MySQL to 5.1 or later from older versions.
 
-- O objetivo é atualizar o nome do diretório do banco de dados para o formato de codificação atual, se o nome contiver caracteres especiais que precisam de codificação.
+* It is intended to update a database directory name to the current encoding format if the name contains special characters that need encoding.
 
-- A declaração é usada pelo **mysqlcheck** (como invocado pelo **mysql_upgrade**).
+* The statement is used by [**mysqlcheck**](mysqlcheck.html "4.5.3 mysqlcheck — A Table Maintenance Program") (as invoked by [**mysql_upgrade**](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables")).
 
-Por exemplo, se um banco de dados no MySQL 5.0 tiver o nome `a-b-c`, o nome contém instâncias do caractere `-` (barra). No MySQL 5.0, o diretório do banco de dados também é chamado `a-b-c`, o que não é necessariamente seguro para todos os sistemas de arquivos. No MySQL 5.1 e versões posteriores, o mesmo nome do banco de dados é codificado como `a@002db@002dc` para produzir um nome de diretório neutro em relação ao sistema de arquivos.
+For example, if a database in MySQL 5.0 has the name `a-b-c`, the name contains instances of the `-` (dash) character. In MySQL 5.0, the database directory is also named `a-b-c`, which is not necessarily safe for all file systems. In MySQL 5.1 and later, the same database name is encoded as `a@002db@002dc` to produce a file system-neutral directory name.
 
-Quando uma instalação do MySQL é atualizada para o MySQL 5.1 ou posterior a partir de uma versão mais antiga, o servidor exibe um nome como `a-b-c` (que está no formato antigo) como `#mysql50#a-b-c`, e você deve referenciar o nome usando o prefixo `#mysql50#`. Use `UPGRADE DATA DIRECTORY NAME` neste caso para informar explicitamente ao servidor para re-codificar o nome do diretório do banco de dados para o formato de codificação atual:
+When a MySQL installation is upgraded to MySQL 5.1 or later from an older version,the server displays a name such as `a-b-c` (which is in the old format) as `#mysql50#a-b-c`, and you must refer to the name using the `#mysql50#` prefix. Use `UPGRADE DATA DIRECTORY NAME` in this case to explicitly tell the server to re-encode the database directory name to the current encoding format:
 
 ```sql
 ALTER DATABASE `#mysql50#a-b-c` UPGRADE DATA DIRECTORY NAME;
 ```
 
-Após executar essa declaração, você pode se referir ao banco de dados como `a-b-c` sem o prefixo especial `#mysql50#`.
+After executing this statement, you can refer to the database as `a-b-c` without the special `#mysql50#` prefix.
 
-Nota
+Note
 
-A cláusula `UPGRADE DATA DIRECTORY NAME` é desaconselhada no MySQL 5.7 e removida no MySQL 8.0. Se for necessário converter nomes de bancos de dados ou tabelas do MySQL 5.0, uma solução alternativa é atualizar uma instalação do MySQL 5.0 para o MySQL 5.1 antes de fazer a atualização para o MySQL 8.0.
+The `UPGRADE DATA DIRECTORY NAME` clause is deprecated in MySQL 5.7 and removed in MySQL 8.0. If it is necessary to convert MySQL 5.0 database or table names, a workaround is to upgrade a MySQL 5.0 installation to MySQL 5.1 before upgrading to MySQL 8.0.

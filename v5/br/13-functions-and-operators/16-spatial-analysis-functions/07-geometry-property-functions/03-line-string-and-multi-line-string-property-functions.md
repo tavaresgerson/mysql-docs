@@ -1,42 +1,42 @@
-#### 12.16.7.3 Funções de Propriedade de LineString e MultiLineString
+#### 12.16.7.3 LineString and MultiLineString Property Functions
 
-Uma `LineString` é composta por valores de `Point`. Você pode extrair pontos específicos de uma `LineString`, contar o número de pontos que ela contém ou obter sua extensão.
+A `LineString` consists of `Point` values. You can extract particular points of a `LineString`, count the number of points that it contains, or obtain its length.
 
-Algumas funções nesta seção também funcionam para valores de `MultiLineString`.
+Some functions in this section also work for `MultiLineString` values.
 
-- `EndPoint(ls)`
+* `EndPoint(ls)`
 
-  `ST_EndPoint()` e `EndPoint()` são sinônimos. Para mais informações, consulte a descrição de `ST_EndPoint()`.
+  `ST_EndPoint()` and `EndPoint()` are synonyms. For more information, see the description of `ST_EndPoint()`.
 
-  `EndPoint()` está desatualizado; espere que ele seja removido em uma futura versão do MySQL. Use `ST_EndPoint()` em vez disso.
+  `EndPoint()` is deprecated; expect it to be removed in a future MySQL release. Use `ST_EndPoint()` instead.
 
-- `GLength(ls)`
+* `GLength(ls)`
 
-  `GLength()` é um nome não padrão. Ele corresponde à função OpenGIS `ST_Length()`. (Existe uma função SQL existente `Length()` que calcula o comprimento dos valores de string.)
+  `GLength()` is a nonstandard name. It corresponds to the OpenGIS `ST_Length()` function. (There is an existing SQL function `Length()` that calculates the length of string values.)
 
-  `GLength()` está desatualizado; espere que ele seja removido em uma futura versão do MySQL. Use `ST_Length()` em vez disso.
+  `GLength()` is deprecated; expect it to be removed in a future MySQL release. Use `ST_Length()` instead.
 
-- `IsClosed(ls)`
+* `IsClosed(ls)`
 
-  `ST_IsClosed()` e `IsClosed()` são sinônimos. Para mais informações, consulte a descrição de `ST_IsClosed()`.
+  `ST_IsClosed()` and `IsClosed()` are synonyms. For more information, see the description of `ST_IsClosed()`.
 
-  `IsClosed()` está desatualizado; espere que ele seja removido em uma futura versão do MySQL. Use `ST_IsClosed()` em vez disso.
+  `IsClosed()` is deprecated; expect it to be removed in a future MySQL release. Use `ST_IsClosed()` instead.
 
-- `NumPoints(ls)`
+* `NumPoints(ls)`
 
-  `ST_NumPoints()` e `NumPoints()` são sinônimos. Para mais informações, consulte a descrição de `ST_NumPoints()`.
+  `ST_NumPoints()` and `NumPoints()` are synonyms. For more information, see the description of `ST_NumPoints()`.
 
-  `NumPoints()` está desatualizado; espere que ele seja removido em uma futura versão do MySQL. Use `ST_NumPoints()` em vez disso.
+  `NumPoints()` is deprecated; expect it to be removed in a future MySQL release. Use `ST_NumPoints()` instead.
 
-- `PontoN(ls, N)`
+* `PointN(ls, N)`
 
-  `ST_PointN()` e `PointN()` são sinônimos. Para mais informações, consulte a descrição de `ST_PointN()`.
+  `ST_PointN()` and `PointN()` are synonyms. For more information, see the description of `ST_PointN()`.
 
-  `PointN()` está desatualizado; espere que ele seja removido em uma futura versão do MySQL. Use `ST_PointN()` em vez disso.
+  `PointN()` is deprecated; expect it to be removed in a future MySQL release. Use `ST_PointN()` instead.
 
-- `ST_EndPoint(ls)`
+* `ST_EndPoint(ls)`
 
-  Retorna o `Ponto` que é o ponto final do valor `LineString` *`ls`*. Se o argumento for `NULL` ou uma geometria vazia, o valor de retorno será `NULL`.
+  Returns the `Point` that is the endpoint of the `LineString` value *`ls`*. If the argument is `NULL` or an empty geometry, the return value is `NULL`.
 
   ```sql
   mysql> SET @ls = 'LineString(1 1,2 2,3 3)';
@@ -48,15 +48,15 @@ Algumas funções nesta seção também funcionam para valores de `MultiLineStri
   +----------------------------------------------+
   ```
 
-  `ST_EndPoint()` e `EndPoint()` são sinônimos.
+  `ST_EndPoint()` and `EndPoint()` are synonyms.
 
-- `ST_IsClosed(ls)`
+* `ST_IsClosed(ls)`
 
-  Para um valor de `LineString` *`ls`*, `ST_IsClosed()` retorna 1 se *`ls`* for fechado (ou seja, seus valores de `ST_StartPoint()` e `ST_EndPoint()` forem os mesmos). Se o argumento for `NULL` ou uma geometria vazia, o valor de retorno é `NULL`.
+  For a `LineString` value *`ls`*, `ST_IsClosed()` returns 1 if *`ls`* is closed (that is, its `ST_StartPoint()` and `ST_EndPoint()` values are the same). If the argument is `NULL` or an empty geometry, the return value is `NULL`.
 
-  Para um valor de `MultiLineString` *`ls`*, `ST_IsClosed()` retorna 1 se *`ls`* estiver fechado (ou seja, os valores de `ST_StartPoint()` e `ST_EndPoint()` forem os mesmos para cada `LineString` em *`ls`*).
+  For a `MultiLineString` value *`ls`*, `ST_IsClosed()` returns 1 if *`ls`* is closed (that is, the `ST_StartPoint()` and `ST_EndPoint()` values are the same for each `LineString` in *`ls`*).
 
-  `ST_IsClosed()` retorna 0 se o *`ls`* não estiver fechado.
+  `ST_IsClosed()` returns 0 if *`ls`* is not closed.
 
   ```sql
   mysql> SET @ls1 = 'LineString(1 1,2 2,3 3,2 2)';
@@ -86,11 +86,11 @@ Algumas funções nesta seção também funcionam para valores de `MultiLineStri
   +------------------------------------+
   ```
 
-  `ST_IsClosed()` e `IsClosed()` são sinônimos.
+  `ST_IsClosed()` and `IsClosed()` are synonyms.
 
-- `ST_Length(ls)`
+* `ST_Length(ls)`
 
-  Retorna um número de ponto flutuante duplo que indica a extensão da linha `LineString` ou `MultiLineString` *`ls`* no seu sistema de referência espacial associado. A extensão de um valor `MultiLineString` é igual à soma das extensões dos seus elementos. Se o argumento for `NULL` ou uma geometria vazia, o valor de retorno é `NULL`.
+  Returns a double-precision number indicating the length of the `LineString` or `MultiLineString` value *`ls`* in its associated spatial reference system. The length of a `MultiLineString` value is equal to the sum of the lengths of its elements. If the argument is `NULL` or an empty geometry, the return value is `NULL`.
 
   ```sql
   mysql> SET @ls = 'LineString(1 1,2 2,3 3)';
@@ -110,11 +110,11 @@ Algumas funções nesta seção também funcionam para valores de `MultiLineStri
   +----------------------------------+
   ```
 
-  `ST_Length()` deve ser usado em preferência a `GLength()`, que tem um nome não padrão.
+  `ST_Length()` should be used in preference to `GLength()`, which has a nonstandard name.
 
-- `ST_NumPoints(ls)`
+* `ST_NumPoints(ls)`
 
-  Retorna o número de objetos `Point` no valor `LineString` *`ls`*. Se o argumento for `NULL` ou uma geometria vazia, o valor de retorno será `NULL`.
+  Returns the number of `Point` objects in the `LineString` value *`ls`*. If the argument is `NULL` or an empty geometry, the return value is `NULL`.
 
   ```sql
   mysql> SET @ls = 'LineString(1 1,2 2,3 3)';
@@ -126,11 +126,11 @@ Algumas funções nesta seção também funcionam para valores de `MultiLineStri
   +------------------------------------+
   ```
 
-  `ST_NumPoints()` e `NumPoints()` são sinônimos.
+  `ST_NumPoints()` and `NumPoints()` are synonyms.
 
-- `ST_PointN(ls, N)`
+* `ST_PointN(ls, N)`
 
-  Retorna o *`N`*-ésimo `Ponto` no valor `Linestring` *`ls`*. Os pontos são numerados a partir do 1. Se algum argumento for `NULL` ou o argumento de geometria for uma geometria vazia, o valor de retorno é `NULL`.
+  Returns the *`N`*-th `Point` in the `Linestring` value *`ls`*. Points are numbered beginning with 1. If any argument is `NULL` or the geometry argument is an empty geometry, the return value is `NULL`.
 
   ```sql
   mysql> SET @ls = 'LineString(1 1,2 2,3 3)';
@@ -142,11 +142,11 @@ Algumas funções nesta seção também funcionam para valores de `MultiLineStri
   +----------------------------------------------+
   ```
 
-  `ST_PointN()` e `PointN()` são sinônimos.
+  `ST_PointN()` and `PointN()` are synonyms.
 
-- `ST_StartPoint(ls)`
+* `ST_StartPoint(ls)`
 
-  Retorna o `Ponto` que é o ponto de início do valor `LineString` *`ls`*. Se o argumento for `NULL` ou uma geometria vazia, o valor de retorno é `NULL`.
+  Returns the `Point` that is the start point of the `LineString` value *`ls`*. If the argument is `NULL` or an empty geometry, the return value is `NULL`.
 
   ```sql
   mysql> SET @ls = 'LineString(1 1,2 2,3 3)';
@@ -158,10 +158,10 @@ Algumas funções nesta seção também funcionam para valores de `MultiLineStri
   +------------------------------------------------+
   ```
 
-  `ST_StartPoint()` e `StartPoint()` são sinônimos.
+  `ST_StartPoint()` and `StartPoint()` are synonyms.
 
-- `StartPoint(ls)`
+* `StartPoint(ls)`
 
-  `ST_StartPoint()` e `StartPoint()` são sinônimos. Para mais informações, consulte a descrição de `ST_StartPoint()`.
+  `ST_StartPoint()` and `StartPoint()` are synonyms. For more information, see the description of `ST_StartPoint()`.
 
-  `StartPoint()` está desatualizado; espere que ele seja removido em uma futura versão do MySQL. Use `ST_StartPoint()` em vez disso.
+  `StartPoint()` is deprecated; expect it to be removed in a future MySQL release. Use `ST_StartPoint()` instead.

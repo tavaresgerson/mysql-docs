@@ -1,61 +1,60 @@
-### 15.2.1 Opções de inicialização do MyISAM
+### 15.2.1 MyISAM Startup Options
 
-As seguintes opções para **mysqld** podem ser usadas para alterar o comportamento das tabelas `MyISAM`. Para obter informações adicionais, consulte a Seção 5.1.6, “Opções de comando do servidor”.
+The following options to **mysqld** can be used to change the behavior of `MyISAM` tables. For additional information, see Section 5.1.6, “Server Command Options”.
 
-**Tabela 15.3 Opção MyISAM e Referência de Variável**
+**Table 15.3 MyISAM Option and Variable Reference**
 
-<table frame="box" rules="all" summary="Referência para as opções de linha de comando do MyISAM e variáveis do sistema."><col style="width: 20%"/><col style="width: 15%"/><col style="width: 15%"/><col style="width: 15%"/><col style="width: 15%"/><col style="width: 15%"/><col style="width: 15%"/><thead><tr><th>Nome</th> <th>Linha de comando</th> <th>Arquivo de Opções</th> <th>Sistema Var</th> <th>Status Var</th> <th>Var Scope</th> <th>Dinâmico</th> </tr></thead><tbody><tr><th>tamanho_buffer_de_inserção_em_massa</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Ambos</td> <td>Sim</td> </tr><tr><th>concurrent_insert</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>delay_key_write</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>have_rtree_keys</th> <td></td> <td></td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>tamanho_buffer_chave</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>log-isam</th> <td>Sim</td> <td>Sim</td> <td></td> <td></td> <td></td> <td></td> </tr><tr><th>tamanho_bloco_myisam</th> <td>Sim</td> <td>Sim</td> <td></td> <td></td> <td></td> <td></td> </tr><tr><th>myisam_data_pointer_size</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>myisam_max_sort_file_size</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>myisam_mmap_size</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>opções de recuperação do myisam</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Não</td> </tr><tr><th>myisam_repair_threads</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Ambos</td> <td>Sim</td> </tr><tr><th>tamanho_buffer_de_sorteio_myisam</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Ambos</td> <td>Sim</td> </tr><tr><th>myisam_stats_method</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Ambos</td> <td>Sim</td> </tr><tr><th>myisam_use_mmap</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Global</td> <td>Sim</td> </tr><tr><th>tmp_table_size</th> <td>Sim</td> <td>Sim</td> <td>Sim</td> <td></td> <td>Ambos</td> <td>Sim</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Reference for MyISAM command-line options and system variables."><col style="width: 20%"/><col style="width: 15%"/><col style="width: 15%"/><col style="width: 15%"/><col style="width: 15%"/><col style="width: 15%"/><col style="width: 15%"/><thead><tr><th>Name</th> <th>Cmd-Line</th> <th>Option File</th> <th>System Var</th> <th>Status Var</th> <th>Var Scope</th> <th>Dynamic</th> </tr></thead><tbody><tr><th>bulk_insert_buffer_size</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Both</td> <td>Yes</td> </tr><tr><th>concurrent_insert</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>delay_key_write</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>have_rtree_keys</th> <td></td> <td></td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>key_buffer_size</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>log-isam</th> <td>Yes</td> <td>Yes</td> <td></td> <td></td> <td></td> <td></td> </tr><tr><th>myisam-block-size</th> <td>Yes</td> <td>Yes</td> <td></td> <td></td> <td></td> <td></td> </tr><tr><th>myisam_data_pointer_size</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>myisam_max_sort_file_size</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>myisam_mmap_size</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>myisam_recover_options</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>No</td> </tr><tr><th>myisam_repair_threads</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Both</td> <td>Yes</td> </tr><tr><th>myisam_sort_buffer_size</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Both</td> <td>Yes</td> </tr><tr><th>myisam_stats_method</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Both</td> <td>Yes</td> </tr><tr><th>myisam_use_mmap</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Global</td> <td>Yes</td> </tr><tr><th>tmp_table_size</th> <td>Yes</td> <td>Yes</td> <td>Yes</td> <td></td> <td>Both</td> <td>Yes</td> </tr></tbody></table>
 
-As seguintes variáveis de sistema afetam o comportamento das tabelas `MyISAM`. Para obter informações adicionais, consulte a Seção 5.1.7, “Variáveis do Sistema do Servidor”.
+The following system variables affect the behavior of `MyISAM` tables. For additional information, see Section 5.1.7, “Server System Variables”.
 
-- `tamanho_buffer_de_inserção_em_massa`
+* `bulk_insert_buffer_size`
 
-  O tamanho do cache de árvores usado na otimização de inserção em massa.
+  The size of the tree cache used in bulk insert optimization.
 
-  Nota
+  Note
 
-  Este é um limite *por thread*!
+  This is a limit *per thread*!
 
-- `delay_key_write=ALL`
+* `delay_key_write=ALL`
 
-  Não descarte tampões de chave entre os registros para qualquer tabela `MyISAM`.
+  Don't flush key buffers between writes for any `MyISAM` table.
 
-  Nota
+  Note
 
-  Se você fizer isso, não deve acessar tabelas `MyISAM` de outro programa (como de outro servidor MySQL ou com **myisamchk**) quando as tabelas estiverem em uso. Isso pode comprometer o índice. O uso de `--external-locking` não elimina esse risco.
+  If you do this, you should not access `MyISAM` tables from another program (such as from another MySQL server or with **myisamchk**) when the tables are in use. Doing so risks index corruption. Using `--external-locking` does not eliminate this risk.
 
-- `myisam_max_sort_file_size`
+* `myisam_max_sort_file_size`
 
-  O tamanho máximo do arquivo temporário que o MySQL é permitido usar enquanto recria um índice `MyISAM` (durante `REPAIR TABLE`, `ALTER TABLE` ou `LOAD DATA`). Se o tamanho do arquivo for maior que esse valor, o índice é criado usando o cache de chaves em vez disso, o que é mais lento. O valor é dado em bytes.
+  The maximum size of the temporary file that MySQL is permitted to use while re-creating a `MyISAM` index (during `REPAIR TABLE`, `ALTER TABLE`, or `LOAD DATA`). If the file size would be larger than this value, the index is created using the key cache instead, which is slower. The value is given in bytes.
 
-- `myisam_recover_options=mode`
+* `myisam_recover_options=mode`
 
-  Defina o modo para recuperação automática de tabelas `MyISAM` que entraram em colapso.
+  Set the mode for automatic recovery of crashed `MyISAM` tables.
 
-- `myisam_sort_buffer_size`
+* `myisam_sort_buffer_size`
 
-  Defina o tamanho do buffer usado ao recuperar tabelas.
+  Set the size of the buffer used when recovering tables.
 
-A recuperação automática é ativada se você iniciar o **mysqld** com a variável de sistema `myisam_recover_options` definida. Nesse caso, quando o servidor abre uma tabela `MyISAM`, ele verifica se a tabela está marcada como falha ou se a variável de contagem de abertura da tabela não for 0 e você estiver executando o servidor com o bloqueio externo desativado. Se uma dessas condições for verdadeira, o seguinte acontece:
+Automatic recovery is activated if you start **mysqld** with the `myisam_recover_options` system variable set. In this case, when the server opens a `MyISAM` table, it checks whether the table is marked as crashed or whether the open count variable for the table is not 0 and you are running the server with external locking disabled. If either of these conditions is true, the following happens:
 
-- O servidor verifica a tabela em busca de erros.
+* The server checks the table for errors.
+* If the server finds an error, it tries to do a fast table repair (with sorting and without re-creating the data file).
 
-- Se o servidor encontrar um erro, ele tentará realizar uma rápida reparação da tabela (com ordenação e sem recriação do arquivo de dados).
+* If the repair fails because of an error in the data file (for example, a duplicate-key error), the server tries again, this time re-creating the data file.
 
-- Se a reparação falhar devido a um erro no arquivo de dados (por exemplo, um erro de chave duplicada), o servidor tenta novamente, desta vez recriando o arquivo de dados.
+* If the repair still fails, the server tries once more with the old repair option method (write row by row without sorting). This method should be able to repair any type of error and has low disk space requirements.
 
-- Se a reparação ainda falhar, o servidor tenta novamente com o método da opção de reparação antiga (escrever linha por linha sem ordenar). Esse método deve ser capaz de reparar qualquer tipo de erro e tem requisitos de espaço em disco baixos.
-
-Se a recuperação não conseguir recuperar todas as linhas de declarações concluídas anteriormente e você não especificar `FORCE` no valor da variável de sistema `myisam_recover_options`, a reparação automática será interrompida com uma mensagem de erro no log de erros:
+If the recovery wouldn't be able to recover all rows from previously completed statements and you didn't specify `FORCE` in the value of the `myisam_recover_options` system variable, automatic repair aborts with an error message in the error log:
 
 ```sql
 Error: Couldn't repair table: test.g00pages
 ```
 
-Se você especificar `FORCE`, uma mensagem de aviso como esta será escrita:
+If you specify `FORCE`, a warning like this is written instead:
 
 ```sql
 Warning: Found 344 of 354 rows when repairing ./test/g00pages
 ```
 
-Se o valor de recuperação automática incluir `BACKUP`, o processo de recuperação criará arquivos com nomes do tipo `tbl_name-datetime.BAK`. Você deve ter um script **cron** que mova automaticamente esses arquivos dos diretórios do banco de dados para os meios de backup.
+If the automatic recovery value includes `BACKUP`, the recovery process creates files with names of the form `tbl_name-datetime.BAK`. You should have a **cron** script that automatically moves these files from the database directories to backup media.

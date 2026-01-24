@@ -1,4 +1,4 @@
-#### 13.6.7.1 DECLARAR ... Instrução de condição
+#### 13.6.7.1 DECLARE ... CONDITION Statement
 
 ```sql
 DECLARE condition_name CONDITION FOR condition_value
@@ -9,23 +9,23 @@ condition_value: {
 }
 ```
 
-A declaração `DECLARE ... CONDITION` declara uma condição de erro nomeada, associando um nome a uma condição que precisa de um tratamento específico. O nome pode ser referido numa declaração subsequente `DECLARE ... HANDLER` (ver Seção 13.6.7.2, “Declaração ... HANDLER”).
+The [`DECLARE ... CONDITION`](declare-condition.html "13.6.7.1 DECLARE ... CONDITION Statement") statement declares a named error condition, associating a name with a condition that needs specific handling. The name can be referred to in a subsequent [`DECLARE ... HANDLER`](declare-handler.html "13.6.7.2 DECLARE ... HANDLER Statement") statement (see [Section 13.6.7.2, “DECLARE ... HANDLER Statement”](declare-handler.html "13.6.7.2 DECLARE ... HANDLER Statement")).
 
-As declarações de condição devem aparecer antes das declarações de cursor ou manipulador.
+Condition declarations must appear before cursor or handler declarations.
 
-O `valor_condição` para `DECLARE ... CONDITION` indica a condição específica ou a classe de condições a serem associadas ao nome da condição. Ele pode assumir as seguintes formas:
+The *`condition_value`* for [`DECLARE ... CONDITION`](declare-condition.html "13.6.7.1 DECLARE ... CONDITION Statement") indicates the specific condition or class of conditions to associate with the condition name. It can take the following forms:
 
-- *`mysql_error_code`*: Um literal inteiro que indica um código de erro do MySQL.
+* *`mysql_error_code`*: An integer literal indicating a MySQL error code.
 
-  Não use o código de erro do MySQL 0, pois ele indica sucesso em vez de uma condição de erro. Para uma lista de códigos de erro do MySQL, consulte Referência de Mensagem de Erro do Servidor.
+  Do not use MySQL error code 0 because that indicates success rather than an error condition. For a list of MySQL error codes, see [Server Error Message Reference](/doc/mysql-errors/5.7/en/server-error-reference.html).
 
-- SQLSTATE [VALOR] *`sqlstate_value`*: Uma literal de cadeia de caracteres de 5 caracteres que indica um valor SQLSTATE.
+* SQLSTATE [VALUE] *`sqlstate_value`*: A 5-character string literal indicating an SQLSTATE value.
 
-  Não use valores SQLSTATE que comecem com `'00'`, pois esses indicam sucesso em vez de uma condição de erro. Para uma lista de valores SQLSTATE, consulte Referência de Mensagem de Erro do Servidor.
+  Do not use SQLSTATE values that begin with `'00'` because those indicate success rather than an error condition. For a list of SQLSTATE values, see [Server Error Message Reference](/doc/mysql-errors/5.7/en/server-error-reference.html).
 
-Os nomes de condição referidos em `SIGNAL` ou use as instruções `RESIGNAL` devem ser associados a valores SQLSTATE, não a códigos de erro do MySQL.
+Condition names referred to in [`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement") or use [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement") statements must be associated with SQLSTATE values, not MySQL error codes.
 
-Usar nomes para condições pode ajudar a tornar o código do programa armazenado mais claro. Por exemplo, este manipulador se aplica a tentativas de excluir uma tabela inexistente, mas isso só fica claro se você souber que o código de erro MySQL 1051 é para "tabela desconhecida":
+Using names for conditions can help make stored program code clearer. For example, this handler applies to attempts to drop a nonexistent table, but that is apparent only if you know that 1051 is the MySQL error code for “unknown table”:
 
 ```sql
 DECLARE CONTINUE HANDLER FOR 1051
@@ -34,7 +34,7 @@ DECLARE CONTINUE HANDLER FOR 1051
   END;
 ```
 
-Ao declarar um nome para a condição, o propósito do manipulador é mais facilmente compreendido:
+By declaring a name for the condition, the purpose of the handler is more readily seen:
 
 ```sql
 DECLARE no_such_table CONDITION FOR 1051;
@@ -44,7 +44,7 @@ DECLARE CONTINUE HANDLER FOR no_such_table
   END;
 ```
 
-Aqui está uma condição nomeada para a mesma condição, mas com base no valor correspondente do SQLSTATE, em vez do código de erro do MySQL:
+Here is a named condition for the same condition, but based on the corresponding SQLSTATE value rather than the MySQL error code:
 
 ```sql
 DECLARE no_such_table CONDITION FOR SQLSTATE '42S02';

@@ -1,3 +1,3 @@
-## 27.8 API MySQL PHP
+## 27.8 MySQL PHP API
 
-O manual da API MySQL PHP agora está publicado na forma independente, e não como parte do Manual de Referência MySQL. Veja MySQL e PHP.
+The MySQL PHP API manual is now published in standalone form, not as part of the MySQL Reference Manual. See [MySQL and PHP](/doc/apis-php/en/).

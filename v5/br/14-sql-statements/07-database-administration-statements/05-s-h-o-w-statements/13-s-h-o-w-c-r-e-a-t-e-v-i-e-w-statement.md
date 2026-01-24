@@ -1,10 +1,10 @@
-#### 13.7.5.13 Declaração `SHOW CREATE VIEW`
+#### 13.7.5.13 SHOW CREATE VIEW Statement
 
 ```sql
 SHOW CREATE VIEW view_name
 ```
 
-Esta declaração mostra a declaração `CREATE VIEW` que cria a visualização nomeada.
+This statement shows the [`CREATE VIEW`](create-view.html "13.1.21 CREATE VIEW Statement") statement that creates the named view.
 
 ```sql
 mysql> SHOW CREATE VIEW v\G
@@ -18,13 +18,13 @@ character_set_client: utf8
 collation_connection: utf8_general_ci
 ```
 
-`character_set_client` é o valor da sessão da variável de sistema `character_set_client` quando a visualização foi criada. `collation_connection` é o valor da sessão da variável de sistema `collation_connection` quando a visualização foi criada.
+`character_set_client` is the session value of the [`character_set_client`](server-system-variables.html#sysvar_character_set_client) system variable when the view was created. `collation_connection` is the session value of the [`collation_connection`](server-system-variables.html#sysvar_collation_connection) system variable when the view was created.
 
-O uso de `SHOW CREATE VIEW` requer o privilégio `SHOW VIEW` e o privilégio `SELECT` para a vista em questão.
+Use of [`SHOW CREATE VIEW`](show-create-view.html "13.7.5.13 SHOW CREATE VIEW Statement") requires the [`SHOW VIEW`](privileges-provided.html#priv_show-view) privilege, and the [`SELECT`](privileges-provided.html#priv_select) privilege for the view in question.
 
-As informações também estão disponíveis na tabela `INFORMATION_SCHEMA` `VIEWS`. Consulte Seção 24.3.31, “A Tabela VIEWS do INFORMATION_SCHEMA”.
+View information is also available from the `INFORMATION_SCHEMA` [`VIEWS`](information-schema-views-table.html "24.3.31 The INFORMATION_SCHEMA VIEWS Table") table. See [Section 24.3.31, “The INFORMATION_SCHEMA VIEWS Table”](information-schema-views-table.html "24.3.31 The INFORMATION_SCHEMA VIEWS Table").
 
-O MySQL permite que você use diferentes configurações de `sql_mode` para informar ao servidor o tipo de sintaxe SQL a ser suportado. Por exemplo, você pode usar o modo SQL `ANSI` para garantir que o MySQL interprete corretamente o operador de concatenação SQL padrão, a barra dupla (`||`), em suas consultas. Se você criar uma visualização que concatena itens, você pode se preocupar que alterar a configuração de `sql_mode` para um valor diferente de `ANSI` possa fazer com que a visualização se torne inválida. Mas isso não é o caso. Independentemente de como você escreve a definição de uma visualização, o MySQL sempre a armazena da mesma maneira, em uma forma canônica. Aqui está um exemplo que mostra como o servidor altera um operador de concatenação de barra dupla para uma função `CONCAT`:
+MySQL lets you use different [`sql_mode`](server-system-variables.html#sysvar_sql_mode) settings to tell the server the type of SQL syntax to support. For example, you might use the [`ANSI`](sql-mode.html#sqlmode_ansi) SQL mode to ensure MySQL correctly interprets the standard SQL concatenation operator, the double bar (`||`), in your queries. If you then create a view that concatenates items, you might worry that changing the [`sql_mode`](server-system-variables.html#sysvar_sql_mode) setting to a value different from [`ANSI`](sql-mode.html#sqlmode_ansi) could cause the view to become invalid. But this is not the case. No matter how you write out a view definition, MySQL always stores it the same way, in a canonical form. Here is an example that shows how the server changes a double bar concatenation operator to a [`CONCAT()`](string-functions.html#function_concat) function:
 
 ```sql
 mysql> SET sql_mode = 'ANSI';
@@ -41,4 +41,4 @@ mysql> SHOW CREATE VIEW test.v\G
 1 row in set (0.00 sec)
 ```
 
-A vantagem de armazenar uma definição de visualização em forma canônica é que alterações feitas posteriormente no valor de `sql_mode` não afetam os resultados da visualização. No entanto, uma consequência adicional é que os comentários anteriores a `SELECT` são removidos da definição pelo servidor.
+The advantage of storing a view definition in canonical form is that changes made later to the value of [`sql_mode`](server-system-variables.html#sysvar_sql_mode) does not affect the results from the view. However an additional consequence is that comments prior to [`SELECT`](select.html "13.2.9 SELECT Statement") are stripped from the definition by the server.

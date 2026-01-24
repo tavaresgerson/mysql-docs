@@ -1,43 +1,43 @@
-#### 16.4.1.33 Replicação e Transações
+#### 16.4.1.33 Replication and Transactions
 
-**Misturar declarações transacionais e não transacionais na mesma transação.** Em geral, você deve evitar transações que atualizem tanto tabelas transacionais quanto não transacionais em um ambiente de replicação. Além disso, você deve evitar usar qualquer declaração que acesse tanto tabelas transacionais (ou temporárias) quanto não transacionais e escreva em qualquer uma delas.
+**Mixing transactional and nontransactional statements within the same transaction.** In general, you should avoid transactions that update both transactional and nontransactional tables in a replication environment. You should also avoid using any statement that accesses both transactional (or temporary) and nontransactional tables and writes to any of them.
 
-O servidor utiliza essas regras para o registro binário:
+The server uses these rules for binary logging:
 
-- Se as declarações iniciais de uma transação não forem transacionais, elas são escritas imediatamente no log binário. As declarações restantes da transação são armazenadas em cache e não são escritas no log binário até que a transação seja confirmada. (Se a transação for revertida, as declarações armazenadas em cache são escritas no log binário apenas se elas fizerem alterações não transacionais que não possam ser revertidas. Caso contrário, elas são descartadas.)
+* If the initial statements in a transaction are nontransactional, they are written to the binary log immediately. The remaining statements in the transaction are cached and not written to the binary log until the transaction is committed. (If the transaction is rolled back, the cached statements are written to the binary log only if they make nontransactional changes that cannot be rolled back. Otherwise, they are discarded.)
 
-- Para o registro baseado em declarações, o registro de declarações não transacionais é afetado pela variável de sistema `binlog_direct_non_transactional_updates`. Quando essa variável está em `OFF` (o padrão), o registro é feito conforme descrito acima. Quando essa variável está em `ON`, o registro ocorre imediatamente para declarações não transacionais que ocorrem em qualquer lugar da transação (não apenas declarações não transacionais iniciais). Outras declarações são mantidas no cache da transação e registradas quando a transação é confirmada. O `binlog_direct_non_transactional_updates` não tem efeito para o registro binário em formato de linha ou misto.
+* For statement-based logging, logging of nontransactional statements is affected by the [`binlog_direct_non_transactional_updates`](replication-options-binary-log.html#sysvar_binlog_direct_non_transactional_updates) system variable. When this variable is `OFF` (the default), logging is as just described. When this variable is `ON`, logging occurs immediately for nontransactional statements occurring anywhere in the transaction (not just initial nontransactional statements). Other statements are kept in the transaction cache and logged when the transaction commits. [`binlog_direct_non_transactional_updates`](replication-options-binary-log.html#sysvar_binlog_direct_non_transactional_updates) has no effect for row-format or mixed-format binary logging.
 
-**Declarações transacionais, não transacionais e mistas.** Para aplicar essas regras, o servidor considera uma declaração não transacional se ela alterar apenas tabelas não transacionais e transacional se ela alterar apenas tabelas transacionais. Uma declaração que faz referência a tabelas não transacionais e transacionais e atualiza *qualquer* das tabelas envolvidas é considerada uma declaração "mista". (Em algumas versões anteriores do MySQL, apenas uma declaração que atualizava *ambas* as tabelas não transacionais e transacionais era considerada mista.) As declarações mistas, como as declarações transacionais, são armazenadas em cache e registradas quando a transação é confirmada.
+**Transactional, nontransactional, and mixed statements.** To apply those rules, the server considers a statement nontransactional if it changes only nontransactional tables, and transactional if it changes only transactional tables. A statement that references both nontransactional and transactional tables and updates *any* of the tables involved, is considered a “mixed” statement. (In some past MySQL versions, only a statement that updated *both* nontransactional and transactional tables was considered mixed.) Mixed statements, like transactional statements, are cached and logged when the transaction commits.
 
-Uma declaração mista que atualiza uma tabela transacional é considerada insegura se a declaração também realizar uma das seguintes ações:
+A mixed statement that updates a transactional table is considered unsafe if the statement also performs either of the following actions:
 
-- Atualiza ou lê uma tabela temporária
-- Leitura de uma tabela não transacional e o nível de isolamento de transação é menor que REPEATABLE_READ
+* Updates or reads a temporary table
+* Reads a nontransactional table and the transaction isolation level is less than REPEATABLE_READ
 
-Uma declaração mista após a atualização de uma tabela transacional dentro de uma transação é considerada insegura se ela realizar qualquer uma das seguintes ações:
+A mixed statement following the update of a transactional table within a transaction is considered unsafe if it performs either of the following actions:
 
-- Atualiza qualquer tabela e lê de qualquer tabela temporária
-- Atualiza uma tabela não transacional e `binlog_direct_non_transactional_updates` está desativado (replicação-opções-binary-log.html#sysvar_binlog_direct_non_transactional_updates)
+* Updates any table and reads from any temporary table
+* Updates a nontransactional table and [`binlog_direct_non_transactional_updates`](replication-options-binary-log.html#sysvar_binlog_direct_non_transactional_updates) is OFF
 
-Para mais informações, consulte Seção 16.2.1.3, “Determinação de declarações seguras e inseguras no registro binário”.
+For more information, see [Section 16.2.1.3, “Determination of Safe and Unsafe Statements in Binary Logging”](replication-rbr-safe-unsafe.html "16.2.1.3 Determination of Safe and Unsafe Statements in Binary Logging").
 
-Nota
+Note
 
-Uma declaração mista não está relacionada ao formato de registro binário misto.
+A mixed statement is unrelated to mixed binary logging format.
 
-Em situações em que as transações misturam atualizações de tabelas transacionais e não transacionais, a ordem das declarações no log binário está correta e todas as declarações necessárias são escritas no log binário, mesmo em caso de uma `ROLLBACK`. No entanto, quando uma segunda conexão atualiza a tabela não transakcional antes que a transação da primeira conexão seja concluída, as declarações podem ser registradas fora da ordem, porque a atualização da segunda conexão é escrita imediatamente após ser realizada, independentemente do estado da transação realizada pela primeira conexão.
+In situations where transactions mix updates to transactional and nontransactional tables, the order of statements in the binary log is correct, and all needed statements are written to the binary log even in case of a [`ROLLBACK`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements"). However, when a second connection updates the nontransactional table before the first connection transaction is complete, statements can be logged out of order because the second connection update is written immediately after it is performed, regardless of the state of the transaction being performed by the first connection.
 
-**Usando diferentes motores de armazenamento na fonte e na replica.** É possível replicar tabelas transacionais na fonte usando tabelas não transacionais na replica. Por exemplo, você pode replicar uma tabela de origem `InnoDB` como uma tabela de replica `MyISAM`. No entanto, se você fizer isso, haverá problemas se a replica for interrompida no meio de um bloco `BEGIN` ... `COMMIT` porque a replica reinicia no início do bloco `BEGIN`.
+**Using different storage engines on source and replica.** It is possible to replicate transactional tables on the source using nontransactional tables on the replica. For example, you can replicate an `InnoDB` source table as a `MyISAM` replica table. However, if you do this, there are problems if the replica is stopped in the middle of a [`BEGIN`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") ... [`COMMIT`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") block because the replica restarts at the beginning of the [`BEGIN`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") block.
 
-Também é seguro replicar transações de tabelas de `MyISAM` na fonte para tabelas transacionais, como tabelas que usam o mecanismo de armazenamento `InnoDB`, na replica. Nesse caso, uma declaração `AUTOCOMMIT=1` emitida na fonte é replicada, aplicando assim o modo `AUTOCOMMIT` na replica.
+It is also safe to replicate transactions from [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine") tables on the source to transactional tables, such as tables that use the [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") storage engine, on the replica. In such cases, an [`AUTOCOMMIT=1`](server-system-variables.html#sysvar_autocommit) statement issued on the source is replicated, thus enforcing `AUTOCOMMIT` mode on the replica.
 
-Quando o tipo de mecanismo de armazenamento da replica não for transacional, as transações na fonte que misturam atualizações de tabelas transacionais e não transacionais devem ser evitadas, pois elas podem causar inconsistência dos dados entre a tabela transacional da fonte e a tabela não transacional da replica. Isso significa que tais transações podem levar a comportamentos específicos do mecanismo de armazenamento da fonte, com o possível efeito de a replicação sair de sincronia. O MySQL não emite um aviso sobre isso atualmente, portanto, deve-se ter cuidado extra ao replicar tabelas transacionais da fonte para tabelas não transacionais nas réplicas.
+When the storage engine type of the replica is nontransactional, transactions on the source that mix updates of transactional and nontransactional tables should be avoided because they can cause inconsistency of the data between the source transactional table and the replica nontransactional table. That is, such transactions can lead to source storage engine-specific behavior with the possible effect of replication going out of synchrony. MySQL does not issue a warning about this currently, so extra care should be taken when replicating transactional tables from the source to nontransactional tables on the replicas.
 
-**Mudando o formato de registro binário dentro das transações.** As variáveis de sistema [`binlog_format`](https://pt.wikipedia.org/wiki/Replicação_de_transações#Op%C3%A7%C3%B5es_bin%C3%A1rias_de_registro) e [`binlog_checksum`](https://pt.wikipedia.org/wiki/Replicação_de_transações#Op%C3%A7%C3%B5es_bin%C3%A1rias_de_registro) são somente de leitura enquanto uma transação estiver em andamento.
+**Changing the binary logging format within transactions.** The [`binlog_format`](replication-options-binary-log.html#sysvar_binlog_format) and [`binlog_checksum`](replication-options-binary-log.html#sysvar_binlog_checksum) system variables are read-only as long as a transaction is in progress.
 
-Cada transação (incluindo as transações de `autocommit` é registrada no log binário como se começasse com uma declaração de `BEGIN` e termine com uma declaração de `COMMIT` ou `ROLLBACK`. Isso vale mesmo para declarações que afetam tabelas que usam um motor de armazenamento não transacional (como `MyISAM`).
+Every transaction (including [`autocommit`](server-system-variables.html#sysvar_autocommit) transactions) is recorded in the binary log as though it starts with a [`BEGIN`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") statement, and ends with either a [`COMMIT`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") or a [`ROLLBACK`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") statement. This is even true for statements affecting tables that use a nontransactional storage engine (such as [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine")).
 
-Nota
+Note
 
-Para as restrições que se aplicam especificamente às transações XA, consulte Seção 13.3.7.3, “Restrições em Transações XA”.
+For restrictions that apply specifically to XA transactions, see [Section 13.3.7.3, “Restrictions on XA Transactions”](xa-restrictions.html "13.3.7.3 Restrictions on XA Transactions").

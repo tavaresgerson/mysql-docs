@@ -1,37 +1,37 @@
-#### 21.6.15.15 Tabela ndbinfo dict_obj_info
+#### 21.6.15.15 The ndbinfo dict_obj_info Table
 
-A tabela `dict_obj_info` fornece informações sobre objetos do dicionário de dados `NDB` (`DICT`), como tabelas e índices. (A tabela `dict_obj_types` ([mysql-cluster-ndbinfo-dict-obj-types.html]) pode ser consultada para obter uma lista de todos os tipos.) Essas informações incluem o tipo do objeto, o estado, o objeto pai (se houver) e o nome totalmente qualificado.
+The `dict_obj_info` table provides information about `NDB` data dictionary ([`DICT`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbdict.html)) objects such as tables and indexes. (The [`dict_obj_types`](mysql-cluster-ndbinfo-dict-obj-types.html "21.6.15.16 The ndbinfo dict_obj_types Table") table can be queried for a list of all the types.) This information includes the object's type, state, parent object (if any), and fully qualified name.
 
-A tabela `dict_obj_info` contém as seguintes colunas:
+The `dict_obj_info` table contains the following columns:
 
-- `tipo`
+* `type`
 
-  Tipo do objeto `DICT`; faça uma junção no `dict_obj_types` para obter o nome
+  Type of [`DICT`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbdict.html) object; join on [`dict_obj_types`](mysql-cluster-ndbinfo-dict-obj-types.html "21.6.15.16 The ndbinfo dict_obj_types Table") to obtain the name
 
-- `id`
+* `id`
 
-  Identificador do objeto; para arquivos de registro de desfazer de dados de disco e arquivos de dados, este é o mesmo valor exibido na coluna `LOGFILE_GROUP_NUMBER` da tabela do esquema de informações `FILES`
+  Object identifier; for Disk Data undo log files and data files, this is the same as the value shown in the `LOGFILE_GROUP_NUMBER` column of the Information Schema [`FILES`](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table") table
 
-- `versão`
+* `version`
 
-  Versão do objeto
+  Object version
 
-- "estado"
+* `state`
 
-  Estado do objeto
+  Object state
 
-- `parent_obj_type`
+* `parent_obj_type`
 
-  Tipo do objeto pai (um ID de tipo `dict_obj_types`); 0 indica que o objeto não tem pai
+  Parent object's type (a `dict_obj_types` type ID); 0 indicates that the object has no parent
 
-- `parent_obj_id`
+* `parent_obj_id`
 
-  ID do objeto pai (como uma tabela base); 0 indica que o objeto não tem pai
+  Parent object ID (such as a base table); 0 indicates that the object has no parent
 
-- `fq_name`
+* `fq_name`
 
-  Nome de objeto totalmente qualificado; para uma tabela, este tem a forma `database_name/def/table_name`, para uma chave primária, a forma é `sys/def/table_id/PRIMARY`, e para uma chave única é `sys/def/table_id/uk_name$unique`
+  Fully qualified object name; for a table, this has the form `database_name/def/table_name`, for a primary key, the form is `sys/def/table_id/PRIMARY`, and for a unique key it is `sys/def/table_id/uk_name$unique`
 
-##### Notas
+##### Notes
 
-Esta tabela foi adicionada no NDB 7.5.4.
+This table was added in NDB 7.5.4.

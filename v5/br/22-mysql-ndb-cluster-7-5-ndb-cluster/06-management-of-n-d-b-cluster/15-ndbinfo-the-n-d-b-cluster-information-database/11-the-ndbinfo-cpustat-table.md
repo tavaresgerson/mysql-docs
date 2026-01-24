@@ -1,53 +1,53 @@
-#### 21.6.15.11 Tabela ndbinfo cpustat
+#### 21.6.15.11 The ndbinfo cpustat Table
 
-A tabela `cpustat` fornece estatísticas de CPU por thread coletadas a cada segundo, para cada thread que está rodando no kernel `NDB`.
+The `cpustat` table provides per-thread CPU statistics gathered each second, for each thread running in the `NDB` kernel.
 
-A tabela `cpustat` contém as seguintes colunas:
+The `cpustat` table contains the following columns:
 
-- `node_id`
+* `node_id`
 
-  ID do nó onde o thread está sendo executado
+  ID of the node where the thread is running
 
-- `thr_no`
+* `thr_no`
 
-  ID do thread (específico para este nó)
+  Thread ID (specific to this node)
 
-- `OS_user`
+* `OS_user`
 
-  Tempo de uso do sistema operacional
+  OS user time
 
-- `OS_system`
+* `OS_system`
 
-  Horário do sistema do OS
+  OS system time
 
-- `OS_idle`
+* `OS_idle`
 
-  Tempo de inatividade
+  OS idle time
 
-- `thread_exec`
+* `thread_exec`
 
-  Tempo de execução do thread
+  Thread execution time
 
-- `thread_sleeping`
+* `thread_sleeping`
 
-  Tempo de sono do thread
+  Thread sleep time
 
-- `thread_spinning`
+* `thread_spinning`
 
-  Tempo de rotação do thread
+  Thread spin time
 
-- `thread_send`
+* `thread_send`
 
-  Tempo de envio do thread
+  Thread send time
 
-- `thread_buffer_full`
+* `thread_buffer_full`
 
-  Buffer de thread em tempo integral
+  Thread buffer full time
 
-- `tempo_transcorrido`
+* `elapsed_time`
 
-  Tempo decorrido
+  Elapsed time
 
-##### Notas
+##### Notes
 
-Esta tabela foi adicionada no NDB 7.5.2.
+This table was added in NDB 7.5.2.

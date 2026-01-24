@@ -1,21 +1,21 @@
-#### 16.1.5.7 Redefinir réplicas de múltiplas fontes
+#### 16.1.5.7 Resetting Multi-Source Replicas
 
-A instrução `RESET SLAVE` pode ser usada para reiniciar uma replica de múltiplas fontes. Por padrão, se você usar a instrução `RESET SLAVE` em uma replica de múltiplas fontes, todos os canais são reiniciados. Opcionalmente, use a cláusula `FOR CHANNEL channel` para reiniciar apenas um canal específico.
+The [`RESET SLAVE`](reset-slave.html "13.4.2.3 RESET SLAVE Statement") statement can be used to reset a multi-source replica. By default, if you use the [`RESET SLAVE`](reset-slave.html "13.4.2.3 RESET SLAVE Statement") statement on a multi-source replica all channels are reset. Optionally, use the `FOR CHANNEL channel` clause to reset only a specific channel.
 
-- Para redefinir todos os canais de replicação configurados atualmente:
+* To reset all currently configured replication channels:
 
   ```sql
   RESET SLAVE;
   ```
 
-- Para redefinir apenas um canal nomeado, use uma cláusula `FOR CHANNEL channel`:
+* To reset only a named channel, use a `FOR CHANNEL channel` clause:
 
   ```sql
   RESET SLAVE FOR CHANNEL "source_1";
   ```
 
-Para a replicação baseada em GTID, observe que `RESET SLAVE` não tem efeito no histórico de execução do GTID da replica. Se você quiser limpar isso, execute `RESET MASTER` na replica.
+For GTID-based replication, note that [`RESET SLAVE`](reset-slave.html "13.4.2.3 RESET SLAVE Statement") has no effect on the replica's GTID execution history. If you want to clear this, issue [`RESET MASTER`](reset-master.html "13.4.1.2 RESET MASTER Statement") on the replica.
 
-O comando `RESET SLAVE` faz com que a réplica esqueça sua posição de replicação e limpe o log do relay, mas não altera nenhum parâmetro de conexão de replicação, como o nome do host da fonte. Se você quiser remover esses parâmetros para um canal, execute `RESET SLAVE ALL`.
+[`RESET SLAVE`](reset-slave.html "13.4.2.3 RESET SLAVE Statement") makes the replica forget its replication position, and clears the relay log, but it does not change any replication connection parameters, such as the source's host name. If you want to remove these for a channel, issue `RESET SLAVE ALL`.
 
-Para a sintaxe completa do comando `RESET SLAVE` e outras opções disponíveis, consulte Seção 13.4.2.3, “Instrução RESET SLAVE”.
+For the full syntax of the [`RESET SLAVE`](reset-slave.html "13.4.2.3 RESET SLAVE Statement") command and other available options, see [Section 13.4.2.3, “RESET SLAVE Statement”](reset-slave.html "13.4.2.3 RESET SLAVE Statement").

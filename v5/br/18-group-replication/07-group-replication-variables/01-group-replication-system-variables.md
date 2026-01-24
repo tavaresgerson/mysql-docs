@@ -1,430 +1,430 @@
-### 17.7.1 Variáveis do Sistema de Replicação em Grupo
+### 17.7.1 Group Replication System Variables
 
-Esta seção lista as variáveis do sistema que são específicas do plugin de replicação de grupo.
+This section lists the system variables that are specific to the Group Replication plugin.
 
-O nome de cada variável do sistema de replicação em grupo é precedido por `group_replication_`.
+The name of each Group Replication system variable is prefixed with `group_replication_`.
 
-A maioria das variáveis do sistema para a Replicação em Grupo é descrita como dinâmica, e seus valores podem ser alterados enquanto o servidor estiver em execução. No entanto, na maioria dos casos, a alteração só entra em vigor após você parar e reiniciar a Replicação em Grupo no membro do grupo usando uma declaração `STOP GROUP_REPLICATION` seguida por uma declaração `START GROUP_REPLICATION`. As alterações nas seguintes variáveis do sistema entram em vigor sem parar e reiniciar a Replicação em Grupo:
+Most system variables for Group Replication are described as dynamic, and their values can be changed while the server is running. However, in most cases, the change only takes effect after you stop and restart Group Replication on the group member using a [`STOP GROUP_REPLICATION`](stop-group-replication.html "13.4.3.2 STOP GROUP_REPLICATION Statement") statement followed by a [`START GROUP_REPLICATION`](start-group-replication.html "13.4.3.1 START GROUP_REPLICATION Statement") statement. Changes to the following system variables take effect without stopping and restarting Group Replication:
 
-- `grupo_replication_exit_state_action`
-- `grupo_replication_flow_control_applier_threshold`
-- `grupo_replication_flow_control_certifier_threshold`
-- `group_replication_flow_control_hold_percent`
-- `grupo_replication_flow_control_max_quota`
-- `grupo_replicação_controle_fluxo_membro_quota_percent`
-- `grupo_replicação_controle_fluxo_min_quota`
-- `grupo_replicação_controle_fluxo_min_quota_recuperação`
-- `grupo_replication_flow_control_mode`
-- `group_replication_force_members`
-- [`group_replication_member_weight`](https://pt.wikipedia.org/wiki/Sistema_de_replicação_por_grupo#variáveis_do_sistema)
-- `grupo_replication_transaction_size_limit`
-- `group_replication_unreachable_majority_timeout`
+* [`group_replication_exit_state_action`](group-replication-system-variables.html#sysvar_group_replication_exit_state_action)
+* [`group_replication_flow_control_applier_threshold`](group-replication-system-variables.html#sysvar_group_replication_flow_control_applier_threshold)
+* [`group_replication_flow_control_certifier_threshold`](group-replication-system-variables.html#sysvar_group_replication_flow_control_certifier_threshold)
+* [`group_replication_flow_control_hold_percent`](group-replication-system-variables.html#sysvar_group_replication_flow_control_hold_percent)
+* [`group_replication_flow_control_max_quota`](group-replication-system-variables.html#sysvar_group_replication_flow_control_max_quota)
+* [`group_replication_flow_control_member_quota_percent`](group-replication-system-variables.html#sysvar_group_replication_flow_control_member_quota_percent)
+* [`group_replication_flow_control_min_quota`](group-replication-system-variables.html#sysvar_group_replication_flow_control_min_quota)
+* [`group_replication_flow_control_min_recovery_quota`](group-replication-system-variables.html#sysvar_group_replication_flow_control_min_recovery_quota)
+* [`group_replication_flow_control_mode`](group-replication-system-variables.html#sysvar_group_replication_flow_control_mode)
+* [`group_replication_force_members`](group-replication-system-variables.html#sysvar_group_replication_force_members)
+* [`group_replication_member_weight`](group-replication-system-variables.html#sysvar_group_replication_member_weight)
+* [`group_replication_transaction_size_limit`](group-replication-system-variables.html#sysvar_group_replication_transaction_size_limit)
+* [`group_replication_unreachable_majority_timeout`](group-replication-system-variables.html#sysvar_group_replication_unreachable_majority_timeout)
 
-A maioria das variáveis de sistema para a Replicação em Grupo pode ter valores diferentes em diferentes membros do grupo. Para as seguintes variáveis de sistema, é aconselhável definir o mesmo valor em todos os membros de um grupo para evitar o descarte desnecessário de transações, a falha na entrega de mensagens ou a falha na recuperação de mensagens:
+Most system variables for Group Replication can have different values on different group members. For the following system variables, it is advisable to set the same value on all members of a group in order to avoid unnecessary rollback of transactions, failure of message delivery, or failure of message recovery:
 
-- `grupo_replicação_auto_incremento_incremento`
-- `grupo_replicação_compressão_limite`
-- `grupo_replication_transaction_size_limit`
+* [`group_replication_auto_increment_increment`](group-replication-system-variables.html#sysvar_group_replication_auto_increment_increment)
+* [`group_replication_compression_threshold`](group-replication-system-variables.html#sysvar_group_replication_compression_threshold)
+* [`group_replication_transaction_size_limit`](group-replication-system-variables.html#sysvar_group_replication_transaction_size_limit)
 
-Algumas variáveis de sistema em um membro do grupo de replicação em grupo, incluindo algumas variáveis de sistema específicas da Group Replication e algumas variáveis de sistema gerais, são configurações de nível de grupo. Essas variáveis de sistema devem ter o mesmo valor em todos os membros do grupo, não podem ser alteradas enquanto a Group Replication estiver em execução e exigem um reinício completo do grupo (um bootstrap por um servidor com `group_replication_bootstrap_group=ON`) para que a alteração do valor seja efetiva. Essas condições se aplicam às seguintes variáveis de sistema:
+Some system variables on a Group Replication group member, including some Group Replication-specific system variables and some general system variables, are group-wide configuration settings. These system variables must have the same value on all group members, cannot be changed while Group Replication is running, and require a full reboot of the group (a bootstrap by a server with [`group_replication_bootstrap_group=ON`](group-replication-system-variables.html#sysvar_group_replication_bootstrap_group)) in order for the value change to take effect. These conditions apply to the following system variables:
 
-- `grupo_replicação_modo_único_primário`
-- `group_replication_enforce_update_everywhere_checks`
-- `group_replication_gtid_assignment_block_size`
-- `default_table_encryption`
-- `lower_case_table_names`
-- [`transaction_write_set_extraction`](https://replication-options-binary-log.html#sysvar_transaction_write_set_extraction)
+* [`group_replication_single_primary_mode`](group-replication-system-variables.html#sysvar_group_replication_single_primary_mode)
+* [`group_replication_enforce_update_everywhere_checks`](group-replication-system-variables.html#sysvar_group_replication_enforce_update_everywhere_checks)
+* [`group_replication_gtid_assignment_block_size`](group-replication-system-variables.html#sysvar_group_replication_gtid_assignment_block_size)
+* [`default_table_encryption`](/doc/refman/8.0/en/server-system-variables.html#sysvar_default_table_encryption)
+* [`lower_case_table_names`](server-system-variables.html#sysvar_lower_case_table_names)
+* [`transaction_write_set_extraction`](replication-options-binary-log.html#sysvar_transaction_write_set_extraction)
 
-Importante
+Important
 
-- Várias variáveis de sistema para a Replicação em Grupo não são completamente validadas durante o início do servidor se forem passadas como argumentos na linha de comando para o servidor. Essas variáveis de sistema incluem `group_replication_group_name`, `group_replication_single_primary_mode`, `group_replication_force_members`, as variáveis SSL e as variáveis do sistema de controle de fluxo. Elas só são totalmente validadas após o servidor ter sido iniciado.
+* A number of system variables for Group Replication are not completely validated during server startup if they are passed as command line arguments to the server. These system variables include [`group_replication_group_name`](group-replication-system-variables.html#sysvar_group_replication_group_name), [`group_replication_single_primary_mode`](group-replication-system-variables.html#sysvar_group_replication_single_primary_mode), [`group_replication_force_members`](group-replication-system-variables.html#sysvar_group_replication_force_members), the SSL variables, and the flow control system variables. They are only fully validated after the server has started.
 
-- As variáveis do sistema para a Replicação em Grupo que especificam endereços IP ou nomes de host para os membros do grupo não são validadas até que uma declaração `START GROUP_REPLICATION` seja emitida. O Sistema de Comunicação do Grupo (GCS) da Replicação em Grupo não está disponível para validar os valores até esse ponto.
+* System variables for Group Replication that specify IP addresses or host names for group members are not validated until a [`START GROUP_REPLICATION`](start-group-replication.html "13.4.3.1 START GROUP_REPLICATION Statement") statement is issued. Group Replication's Group Communication System (GCS) is not available to validate the values until that point.
 
-As variáveis do sistema específicas do plugin de replicação em grupo são as seguintes:
+The system variables that are specific to the Group Replication plugin are as follows:
 
-- `group_replication_allow_local_disjoint_gtids_join`
+* [`group_replication_allow_local_disjoint_gtids_join`](group-replication-system-variables.html#sysvar_group_replication_allow_local_disjoint_gtids_join)
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_allow_local_disjoint_gtids_join"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-allow-local-disjoint-gtids-join[={OFF|ON}]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.17</td> </tr><tr><th>Desatualizado</th> <td>5.7.21</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_allow_local_disjoint_gtids_join</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for group_replication_allow_local_disjoint_gtids_join"><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-allow-local-disjoint-gtids-join[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>Deprecated</th> <td>5.7.21</td> </tr><tr><th>System Variable</th> <td><code>group_replication_allow_local_disjoint_gtids_join</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  Desatualizado na versão 5.7.21 e previsto para ser removido em uma versão futura. Permite que o servidor se junte ao grupo, mesmo que ele tenha transações locais que não estejam presentes no grupo.
+  Deprecated in version 5.7.21 and scheduled for removal in a future version. Allows the server to join the group even if it has local transactions that are not present in the group.
 
-  Aviso
+  Warning
 
-  Tenha cuidado ao habilitar essa opção, pois o uso incorreto pode causar conflitos no grupo e o cancelamento de transações. A opção deve ser habilitada apenas como um método de último recurso para permitir que um servidor que tenha transações locais se junte a um grupo existente, e só se as transações locais não afetarem os dados que são gerenciados pelo grupo (por exemplo, uma ação administrativa que foi escrita no log binário). A opção não deve ser deixada habilitada em todos os membros do grupo.
+  Use caution when enabling this option as incorrect usage can lead to conflicts in the group and rollback of transactions. The option should only be enabled as a last resort method to allow a server that has local transactions to join an existing group, and then only if the local transactions do not affect the data that is handled by the group (for example, an administrative action that was written to the binary log). The option should not be left enabled on all group members.
 
-- `group_replication_allow_local_lower_version_join`
+* [`group_replication_allow_local_lower_version_join`](group-replication-system-variables.html#sysvar_group_replication_allow_local_lower_version_join)
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_allow_local_lower_version_join"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-allow-local-lower-version-join[={OFF|ON}]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.17</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_allow_local_lower_version_join</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for group_replication_allow_local_lower_version_join"><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-allow-local-lower-version-join[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>group_replication_allow_local_lower_version_join</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  Permite que o servidor atual se junte ao grupo, mesmo que ele tenha uma versão maior que a do grupo. Com a configuração padrão `OFF`, os servidores não são permitidos a se juntar a um grupo de replicação se tiverem uma versão maior que a dos membros existentes do grupo. Por exemplo, um servidor MySQL 5.7 não pode se juntar a um grupo que consiste em servidores MySQL 8.0. Essa política padrão garante que todos os membros de um grupo possam trocar mensagens e aplicar transações. Defina `group_replication_allow_local_lower_version_join` para `ON` apenas nos seguintes cenários:
+  Allows the current server to join the group even if it has a lower major version than the group. With the default setting `OFF`, servers are not permitted to join a replication group if they have a lower major version than the existing group members. For example, a MySQL 5.7 server cannot join a group that consists of MySQL 8.0 servers. This standard policy ensures that all members of a group are able to exchange messages and apply transactions. Set [`group_replication_allow_local_lower_version_join`](group-replication-system-variables.html#sysvar_group_replication_allow_local_lower_version_join) to `ON` only in the following scenarios:
 
-  - Em caso de emergência, é necessário adicionar um servidor ao grupo para melhorar a tolerância a falhas do grupo, e apenas versões mais antigas estão disponíveis.
+  + A server must be added to the group in an emergency in order to improve the group's fault tolerance, and only older versions are available.
 
-  - Você deseja realizar uma redução do grupo de replicação sem desligar o grupo inteiro e reiniciá-lo.
+  + You want to carry out a downgrade of the replication group members without shutting down the whole group and bootstrapping it again.
 
-  Aviso
+  Warning
 
-  Definir essa opção para `ON` não torna o novo membro compatível com o grupo e permite que ele se junte ao grupo sem quaisquer salvaguardas contra comportamentos incompatíveis dos membros existentes. Para garantir o funcionamento correto do novo membro, tome *ambas* das seguintes precauções:
+  Setting this option to `ON` does not make the new member compatible with the group, and allows it to join the group without any safeguards against incompatible behaviors by the existing members. To ensure the new member's correct operation, take *both* of the following precautions:
 
-  1. Antes que o servidor com a versão principal menor se junte ao grupo, pare todas as gravações nesse servidor.
+  1. Before the server with the lower major version joins the group, stop all writes on that server.
 
-  2. A partir do ponto em que o servidor com a versão principal mais baixa se junta ao grupo, pare todas as gravações nos outros servidores do grupo.
+  2. From the point where the server with the lower major version joins the group, stop all writes on the other servers in the group.
 
-  Sem essas precauções, o servidor com a versão principal mais baixa provavelmente enfrentará dificuldades e terminará com um erro.
+  Without these precautions, the server with the lower major version is likely to experience difficulties and terminate with an error.
 
-- `grupo_replicação_auto_incremento_incremento`
+* [`group_replication_auto_increment_increment`](group-replication-system-variables.html#sysvar_group_replication_auto_increment_increment)
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_auto_increment_increment"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-auto-increment-increment=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.17</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_auto_increment_increment</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>7</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for group_replication_auto_increment_increment"><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-auto-increment-increment=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>group_replication_auto_increment_increment</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>7</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>
 
-  Determina o intervalo entre os valores sucessivos das colunas para as transações que são executadas nesta instância do servidor. Esta variável de sistema deve ter o mesmo valor em todos os membros do grupo. Quando a Replicação de Grupo é iniciada em um servidor, o valor da variável de sistema do servidor `auto_increment_increment` é alterado para este valor, e o valor da variável de sistema do servidor `auto_increment_offset` é alterado para o ID do servidor. Essas configurações evitam a seleção de valores duplicados de auto-incremento para escritas nos membros do grupo, o que causa o rollback das transações. As alterações são revertidas quando a Replicação de Grupo é parada. Essas alterações são feitas e revertidas apenas se `auto_increment_increment` e `auto_increment_offset` tenham seus valores padrão de 1. Se seus valores já tiverem sido modificados do padrão, a Replicação de Grupo não os altera.
+  Determines the interval between successive column values for transactions that execute on this server instance. This system variable should have the same value on all group members. When Group Replication is started on a server, the value of the server system variable [`auto_increment_increment`](replication-options-source.html#sysvar_auto_increment_increment) is changed to this value, and the value of the server system variable [`auto_increment_offset`](replication-options-source.html#sysvar_auto_increment_offset) is changed to the server ID. These settings avoid the selection of duplicate auto-increment values for writes on group members, which causes rollback of transactions. The changes are reverted when Group Replication is stopped. These changes are only made and reverted if [`auto_increment_increment`](replication-options-source.html#sysvar_auto_increment_increment) and [`auto_increment_offset`](replication-options-source.html#sysvar_auto_increment_offset) each have their default value of 1. If their values have already been modified from the default, Group Replication does not alter them.
 
-  O valor padrão de 7 representa um equilíbrio entre o número de valores utilizáveis e o tamanho máximo permitido de um grupo de replicação (9 membros). Se o seu grupo tiver mais ou menos membros, você pode definir essa variável de sistema para corresponder ao número esperado de membros do grupo antes de o Replicação de Grupo ser iniciado. Você não pode alterar a configuração enquanto o Replicação de Grupo estiver em execução.
+  The default value of 7 represents a balance between the number of usable values and the permitted maximum size of a replication group (9 members). If your group has more or fewer members, you can set this system variable to match the expected number of group members before Group Replication is started. You cannot change the setting while Group Replication is running.
 
-  Importante
+  Important
 
-  Definir `group_replication_auto_increment_increment` não tem efeito quando `group_replication_single_primary_mode` está definido como `ON`.
+  Setting `group_replication_auto_increment_increment` has no effect when [`group_replication_single_primary_mode`](group-replication-system-variables.html#sysvar_group_replication_single_primary_mode) is `ON`.
 
-- `grupo_replicação_bootstrap_grupo`
+* [`group_replication_bootstrap_group`](group-replication-system-variables.html#sysvar_group_replication_bootstrap_group)
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_bootstrap_group"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-bootstrap-group[={OFF|ON}]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.17</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_bootstrap_group</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for group_replication_bootstrap_group"><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-bootstrap-group[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>group_replication_bootstrap_group</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  Configure este servidor para inicializar o grupo. Esta opção deve ser definida apenas em um servidor e apenas ao iniciar o grupo pela primeira vez ou reiniciá-lo completamente. Após o grupo ter sido inicializado, defina esta opção para `OFF`. Deve ser definida para `OFF` tanto dinamicamente quanto nos arquivos de configuração. Iniciar dois servidores ou reiniciar um servidor com esta opção definida enquanto o grupo estiver em execução pode levar a uma situação de cérebro artificial, onde dois grupos independentes com o mesmo nome são inicializados.
+  Configure this server to bootstrap the group. This option must only be set on one server and only when starting the group for the first time or restarting the entire group. After the group has been bootstrapped, set this option to `OFF`. It should be set to `OFF` both dynamically and in the configuration files. Starting two servers or restarting one server with this option set while the group is running may lead to an artificial split brain situation, where two independent groups with the same name are bootstrapped.
 
-- `group_replication_components_stop_timeout`
+* [`group_replication_components_stop_timeout`](group-replication-system-variables.html#sysvar_group_replication_components_stop_timeout)
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_components_stop_timeout"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-components-stop-timeout=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.17</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_components_stop_timeout</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>31536000</code></td> </tr><tr><th>Valor mínimo</th> <td><code>2</code></td> </tr><tr><th>Valor máximo</th> <td><code>31536000</code></td> </tr><tr><th>Unidade</th> <td>segundos</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for group_replication_components_stop_timeout"><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-components-stop-timeout=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>group_replication_components_stop_timeout</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>31536000</code></td> </tr><tr><th>Minimum Value</th> <td><code>2</code></td> </tr><tr><th>Maximum Value</th> <td><code>31536000</code></td> </tr><tr><th>Unit</th> <td>seconds</td> </tr></tbody></table>
 
-  Tempo de espera, em segundos, que a Replicação em Grupo aguarda para cada um dos componentes ao desligar.
+  Timeout, in seconds, that Group Replication waits for each of the components when shutting down.
 
-- `grupo_replicação_compressão_limite`
+* [`group_replication_compression_threshold`](group-replication-system-variables.html#sysvar_group_replication_compression_threshold)
 
-  <table frame="box" rules="all" summary="Propriedades para grupo_replication_compression_threshold"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-compression-threshold=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.17</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_compression_threshold</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1000000</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for group_replication_compression_threshold"><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-compression-threshold=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>group_replication_compression_threshold</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1000000</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr><tr><th>Unit</th> <td>bytes</td> </tr></tbody></table>
 
-  O valor limite em bytes acima do qual a compressão é aplicada às mensagens enviadas entre os membros do grupo. Se essa variável de sistema for definida como zero, a compressão será desativada. O valor de `group_replication_compression_threshold` deve ser o mesmo em todos os membros do grupo.
+  The threshold value in bytes above which compression is applied to messages sent between group members. If this system variable is set to zero, compression is disabled. The value of [`group_replication_compression_threshold`](group-replication-system-variables.html#sysvar_group_replication_compression_threshold) should be the same on all group members.
 
-  A replicação em grupo usa o algoritmo de compressão LZ4 para comprimir as mensagens enviadas no grupo. Observe que o tamanho máximo de entrada suportado pelo algoritmo de compressão LZ4 é de 2113929216 bytes. Esse limite é menor que o valor máximo possível para a variável de sistema `group_replication_compression_threshold`, que é igual ao tamanho máximo de mensagem aceito pelo XCom. Com o algoritmo de compressão LZ4, não defina um valor maior que 2113929216 bytes para `group_replication_compression_threshold`, porque as transações acima desse tamanho não podem ser confirmadas quando a compressão de mensagens está habilitada.
+  Group Replication uses the LZ4 compression algorithm to compress messages sent in the group. Note that the maximum supported input size for the LZ4 compression algorithm is 2113929216 bytes. This limit is lower than the maximum possible value for the [`group_replication_compression_threshold`](group-replication-system-variables.html#sysvar_group_replication_compression_threshold) system variable, which is matched to the maximum message size accepted by XCom. With the LZ4 compression algorithm, do not set a value greater than 2113929216 bytes for [`group_replication_compression_threshold`](group-replication-system-variables.html#sysvar_group_replication_compression_threshold), because transactions above this size cannot be committed when message compression is enabled.
 
-  Para mais informações, consulte Seção 17.9.7.2, “Compressão de Mensagens”.
+  For more information, see [Section 17.9.7.2, “Message Compression”](group-replication-message-compression.html "17.9.7.2 Message Compression").
 
-- `group_replication_enforce_update_everywhere_checks`
+* [`group_replication_enforce_update_everywhere_checks`](group-replication-system-variables.html#sysvar_group_replication_enforce_update_everywhere_checks)
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_enforce_update_everywhere_checks"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-enforce-update-everywhere-checks[={OFF|ON}]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.17</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_enforce_update_everywhere_checks</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for group_replication_enforce_update_everywhere_checks"><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-enforce-update-everywhere-checks[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>group_replication_enforce_update_everywhere_checks</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  Ative ou desative verificações de consistência estritas para atualização multi-primária em todos os lugares. O padrão é que as verificações estejam desativadas. No modo de único primário, essa opção deve ser desativada em todos os membros do grupo. No modo multi-primário, quando essa opção estiver ativada, as declarações serão verificadas da seguinte forma para garantir que sejam compatíveis com o modo multi-primário:
+  Enable or disable strict consistency checks for multi-primary update everywhere. The default is that checks are disabled. In single-primary mode, this option must be disabled on all group members. In multi-primary mode, when this option is enabled, statements are checked as follows to ensure they are compatible with multi-primary mode:
 
-  - Se uma transação for executada com o nível de isolamento `SERIALIZABLE`, seu commit falhará ao se sincronizar com o grupo.
+  + If a transaction is executed under the `SERIALIZABLE` isolation level, then its commit fails when synchronizing itself with the group.
 
-  - Se uma transação for executada contra uma tabela que possui chaves estrangeiras com restrições em cascata, então a transação não consegue ser confirmada ao se sincronizar com o grupo.
+  + If a transaction executes against a table that has foreign keys with cascading constraints, then the transaction fails to commit when synchronizing itself with the group.
 
-  Essa variável de sistema é uma configuração de nível de grupo. Ela deve ter o mesmo valor em todos os membros do grupo, não pode ser alterada enquanto a Replicação de Grupo estiver em execução e exige um reinício completo do grupo (um bootstrap por um servidor com `group_replication_bootstrap_group=ON`) para que a alteração do valor seja efetiva.
+  This system variable is a group-wide configuration setting. It must have the same value on all group members, cannot be changed while Group Replication is running, and requires a full reboot of the group (a bootstrap by a server with [`group_replication_bootstrap_group=ON`](group-replication-system-variables.html#sysvar_group_replication_bootstrap_group)) in order for the value change to take effect.
 
-- `grupo_replication_exit_state_action`
+* [`group_replication_exit_state_action`](group-replication-system-variables.html#sysvar_group_replication_exit_state_action)
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_exit_state_action"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-exit-state-action=value</code></td> </tr><tr><th>Introduzido</th> <td>5.7.24</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_exit_state_action</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão</th> <td><code>READ_ONLY</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>ABORT_SERVER</code></p><p><code>READ_ONLY</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for group_replication_exit_state_action"><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-exit-state-action=value</code></td> </tr><tr><th>Introduced</th> <td>5.7.24</td> </tr><tr><th>System Variable</th> <td><code>group_replication_exit_state_action</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value</th> <td><code>READ_ONLY</code></td> </tr><tr><th>Valid Values</th> <td><p><code>ABORT_SERVER</code></p><p><code>READ_ONLY</code></p></td> </tr></tbody></table>
 
-  Configura como a Replicação em Grupo se comporta quando uma instância do servidor deixa o grupo involuntariamente, por exemplo, após encontrar um erro de aplicável, ou no caso de uma perda da maioria, ou quando outro membro do grupo o expulsa devido a uma suspeita de tempo excedido. O período de tempo para um membro deixar o grupo no caso de uma perda da maioria é definido pela variável de sistema `group_replication_unreachable_majority_timeout`. Observe que um membro expulso do grupo não sabe que foi expulso até se reconectar ao grupo, portanto, a ação especificada só é realizada se o membro conseguir se reconectar ou se o membro levantar uma suspeita sobre si mesmo e se expulsar.
+  Configures how Group Replication behaves when a server instance leaves the group unintentionally, for example after encountering an applier error, or in the case of a loss of majority, or when another member of the group expels it due to a suspicion timing out. The timeout period for a member to leave the group in the case of a loss of majority is set by the [`group_replication_unreachable_majority_timeout`](group-replication-system-variables.html#sysvar_group_replication_unreachable_majority_timeout) system variable. Note that an expelled group member does not know that it was expelled until it reconnects to the group, so the specified action is only taken if the member manages to reconnect, or if the member raises a suspicion on itself and expels itself.
 
-  Quando `group_replication_exit_state_action` está definido como `ABORT_SERVER`, se o membro sair do grupo acidentalmente, a instância desativa o MySQL.
+  When [`group_replication_exit_state_action`](group-replication-system-variables.html#sysvar_group_replication_exit_state_action) is set to `ABORT_SERVER`, if the member exits the group unintentionally, the instance shuts down MySQL.
 
-  Quando `group_replication_exit_state_action` está definido como `READ_ONLY`, se o membro sair do grupo acidentalmente, a instância altera o MySQL para o modo de leitura super-somente (definindo a variável de sistema `super_read_only` como `ON`). Esse ajuste é o padrão no MySQL 5.7.
+  When [`group_replication_exit_state_action`](group-replication-system-variables.html#sysvar_group_replication_exit_state_action) is set to `READ_ONLY`, if the member exits the group unintentionally, the instance switches MySQL to super read only mode (by setting the system variable [`super_read_only`](server-system-variables.html#sysvar_super_read_only) to `ON`). This setting is the default in MySQL 5.7.
 
-  Importante
+  Important
 
-  Se uma falha ocorrer antes que o membro tenha se juntado com sucesso ao grupo, a ação de saída especificada *não é executada*. Esse é o caso se houver uma falha durante a verificação da configuração local ou se houver uma incompatibilidade entre a configuração do membro que está se juntando e a configuração do grupo. Nessas situações, a variável de sistema `super_read_only` é deixada com seu valor original, e o servidor não desativa o MySQL. Para garantir que o servidor não aceite atualizações quando a Replicação de Grupo não foi iniciada, recomendamos que `super_read_only=ON` seja definido no arquivo de configuração do servidor ao iniciar, o que a Replicação de Grupo altera para `OFF` nos membros primários após ser iniciada com sucesso. Essa proteção é particularmente importante quando o servidor é configurado para iniciar a Replicação de Grupo ao inicializar o servidor (`group_replication_start_on_boot=ON`), mas também é útil quando a Replicação de Grupo é iniciada manualmente usando um comando `START GROUP_REPLICATION`.
+  If a failure occurs before the member has successfully joined the group, the specified exit action *is not taken*. This is the case if there is a failure during the local configuration check, or a mismatch between the configuration of the joining member and the configuration of the group. In these situations, the [`super_read_only`](server-system-variables.html#sysvar_super_read_only) system variable is left with its original value, and the server does not shut down MySQL. To ensure that the server cannot accept updates when Group Replication did not start, we therefore recommend that [`super_read_only=ON`](server-system-variables.html#sysvar_super_read_only) is set in the server's configuration file at startup, which Group Replication changes to `OFF` on primary members after it has been started successfully. This safeguard is particularly important when the server is configured to start Group Replication on server boot ([`group_replication_start_on_boot=ON`](group-replication-system-variables.html#sysvar_group_replication_start_on_boot)), but it is also useful when Group Replication is started manually using a [`START GROUP_REPLICATION`](start-group-replication.html "13.4.3.1 START GROUP_REPLICATION Statement") command.
 
-  Se ocorrer um erro após o membro ter se juntado com sucesso ao grupo, a ação de saída especificada *é realizada*. Esse é o caso se houver um erro de aplicação, se o membro for expulso do grupo ou se o membro for definido para expirar na hipótese de uma maioria inacessível. Nessas situações, se `READ_ONLY` for a ação de saída, a variável de sistema `super_read_only` é definida como `ON`, ou se `ABORT_SERVER` for a ação de saída, o servidor desativa o MySQL.
+  If a failure occurs after the member has successfully joined the group, the specified exit action *is taken*. This is the case if there is an applier error, if the member is expelled from the group, or if the member is set to time out in the event of an unreachable majority. In these situations, if `READ_ONLY` is the exit action, the [`super_read_only`](server-system-variables.html#sysvar_super_read_only) system variable is set to `ON`, or if `ABORT_SERVER` is the exit action, the server shuts down MySQL.
 
-  **Tabela 17.5 Ações de saída em situações de falha na replicação em grupo**
+  **Table 17.5 Exit actions in Group Replication failure situations**
 
-  <table frame="all" summary="Resume como a ação de saída selecionada funciona ou não funciona, dependendo da situação de falha"><col align="left" style="width: 33%"/><col align="left" style="width: 33%"/><col align="left" style="width: 33%"/><thead><tr> <th><p>Situação de falha</p></th> <th><p>A replicação em grupo começou com <code>START GROUP_REPLICATION</code></p></th> <th><p>A replicação em grupo começou com <code>group_replication_start_on_boot =ON</code></p></th> </tr></thead><tbody><tr> <th><p>O membro falha na verificação de configuração local</p><p>OU</p><p>Desajuste entre o membro que está se juntando e a configuração do grupo</p></th> <td><p><code>super_read_only</code> sem alterações</p><p>MySQL continua funcionando</p><p>Defina <code>super_read_only=ON</code> no momento do início para impedir as atualizações</p></td> <td><p><code>super_read_only</code> inalterado</p><p>MySQL continua funcionando</p><p>Defina <code>super_read_only=ON</code> no momento do início para impedir atualizações (Importante)</p></td> </tr><tr> <th><p>Erro de aplicação no membro</p><p>OU</p><p>Membro expulso do grupo</p><p>OU</p><p>Tempo de espera para maioria inacessível</p></th> <td><p><code>super_read_only</code> definido para <code>ON</code></p><p>OU</p><p>MySQL é desligado</p></td> <td><p><code>super_read_only</code> definido para <code>ON</code></p><p>OU</p><p>MySQL é desligado</p></td> </tr></tbody></table>
+  <table frame="all" summary="Summarizes how the selected exit action does or does not operate depending on the failure situation"><col align="left" style="width: 33%"/><col align="left" style="width: 33%"/><col align="left" style="width: 33%"/><thead><tr> <th><p> Failure situation </p></th> <th><p> Group Replication started with <code>START GROUP_REPLICATION</code> </p></th> <th><p> Group Replication started with <code>group_replication_start_on_boot =ON</code> </p></th> </tr></thead><tbody><tr> <th><p> Member fails local configuration check </p><p> OR </p><p> Mismatch between joining member and group configuration </p></th> <td><p> <code>super_read_only</code> unchanged </p><p> MySQL continues running </p><p> Set <code>super_read_only=ON</code> at startup to prevent updates </p></td> <td><p> <code>super_read_only</code> unchanged </p><p> MySQL continues running </p><p> Set <code>super_read_only=ON</code> at startup to prevent updates (Important) </p></td> </tr><tr> <th><p> Applier error on member </p><p> OR </p><p> Member expelled from group </p><p> OR </p><p> Unreachable majority timeout </p></th> <td><p> <code>super_read_only</code> set to <code>ON</code> </p><p> OR </p><p> MySQL shuts down </p></td> <td><p> <code>super_read_only</code> set to <code>ON</code> </p><p> OR </p><p> MySQL shuts down </p></td> </tr></tbody></table>
 
-- `grupo_replication_flow_control_applier_threshold`
+* [`group_replication_flow_control_applier_threshold`](group-replication-system-variables.html#sysvar_group_replication_flow_control_applier_threshold)
 
-  <table frame="box" rules="all" summary="Propriedades para grupo_replication_flow_control_applier_threshold"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-flow-control-applier-threshold=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.17</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_flow_control_applier_threshold</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>25000</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>2147483647</code></td> </tr><tr><th>Unidade</th> <td>transações</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for group_replication_flow_control_applier_threshold"><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-flow-control-applier-threshold=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>group_replication_flow_control_applier_threshold</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>25000</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>2147483647</code></td> </tr><tr><th>Unit</th> <td>transactions</td> </tr></tbody></table>
 
-  Especifica o número de transações pendentes na fila de aplicador que acionam o controle de fluxo. Essa variável pode ser alterada sem reiniciar a Replicação por Grupo.
+  Specifies the number of waiting transactions in the applier queue that trigger flow control. This variable can be changed without resetting Group Replication.
 
-- `grupo_replication_flow_control_certifier_threshold`
+* [`group_replication_flow_control_certifier_threshold`](group-replication-system-variables.html#sysvar_group_replication_flow_control_certifier_threshold)
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_allow_local_lower_version_join"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-allow-local-lower-version-join[={OFF|ON}]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.17</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_allow_local_lower_version_join</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for group_replication_allow_local_lower_version_join"><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-allow-local-lower-version-join[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>group_replication_allow_local_lower_version_join</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  Especifica o número de transações pendentes na fila de certificação que acionam o controle de fluxo. Essa variável pode ser alterada sem reiniciar a Replicação por Grupo.
+  Specifies the number of waiting transactions in the certifier queue that trigger flow control. This variable can be changed without resetting Group Replication.
 
-- `group_replication_flow_control_hold_percent`
+* [`group_replication_flow_control_hold_percent`](group-replication-system-variables.html#sysvar_group_replication_flow_control_hold_percent)
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_allow_local_lower_version_join"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-allow-local-lower-version-join[={OFF|ON}]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.17</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_allow_local_lower_version_join</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for group_replication_allow_local_lower_version_join"><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-allow-local-lower-version-join[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>group_replication_allow_local_lower_version_join</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  Define a porcentagem do quociente do grupo que permanece não utilizada para permitir que um grupo sob controle de fluxo recupere o atraso. Um valor de 0 implica que nenhuma parte do quociente é reservada para recuperar o atraso no trabalho.
+  Defines what percentage of the group quota remains unused to allow a cluster under flow control to catch up on backlog. A value of 0 implies that no part of the quota is reserved for catching up on the work backlog.
 
-- `grupo_replication_flow_control_max_quota`
+* [`group_replication_flow_control_max_quota`](group-replication-system-variables.html#sysvar_group_replication_flow_control_max_quota)
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_allow_local_lower_version_join"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-allow-local-lower-version-join[={OFF|ON}]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.17</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_allow_local_lower_version_join</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for group_replication_allow_local_lower_version_join"><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-allow-local-lower-version-join[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>group_replication_allow_local_lower_version_join</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  Define a quota máxima de controle de fluxo do grupo ou a quota máxima disponível para qualquer período enquanto o controle de fluxo estiver habilitado. Um valor de 0 implica que não há cotas máximas definidas. Não pode ser menor que `group_replication_flow_control_min_quota` e `group_replication_flow_control_min_recovery_quota`.
+  Defines the maximum flow control quota of the group, or the maximum available quota for any period while flow control is enabled. A value of 0 implies that there is no maximum quota set. Cannot be smaller than [`group_replication_flow_control_min_quota`](group-replication-system-variables.html#sysvar_group_replication_flow_control_min_quota) and `group_replication_flow_control_min_recovery_quota`.
 
-- `grupo_replicação_controle_fluxo_membro_quota_percent`
+* [`group_replication_flow_control_member_quota_percent`](group-replication-system-variables.html#sysvar_group_replication_flow_control_member_quota_percent)
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_allow_local_lower_version_join"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-allow-local-lower-version-join[={OFF|ON}]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.17</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_allow_local_lower_version_join</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for group_replication_allow_local_lower_version_join"><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-allow-local-lower-version-join[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>group_replication_allow_local_lower_version_join</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  Define a porcentagem da quota que um membro deve assumir como disponível para si mesmo ao calcular as cotas. Um valor de 0 implica que a quota deve ser dividida igualmente entre os membros que foram escritores no último período.
+  Defines the percentage of the quota that a member should assume is available for itself when calculating the quotas. A value of 0 implies that the quota should be split equally between members that were writers in the last period.
 
-- `grupo_replicação_controle_fluxo_min_quota`
+* [`group_replication_flow_control_min_quota`](group-replication-system-variables.html#sysvar_group_replication_flow_control_min_quota)
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_allow_local_lower_version_join"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-allow-local-lower-version-join[={OFF|ON}]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.17</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_allow_local_lower_version_join</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for group_replication_allow_local_lower_version_join"><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-allow-local-lower-version-join[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>group_replication_allow_local_lower_version_join</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  Controla a quota de controle de fluxo mais baixa que pode ser atribuída a um membro, independentemente da quota mínima calculada executada no último período. Um valor de 0 implica que não há quota mínima. Não pode ser maior que `group_replication_flow_control_max_quota`.
+  Controls the lowest flow control quota that can be assigned to a member, independently of the calculated minimum quota executed in the last period. A value of 0 implies that there is no minimum quota. Cannot be larger than [`group_replication_flow_control_max_quota`](group-replication-system-variables.html#sysvar_group_replication_flow_control_max_quota).
 
-- `grupo_replicação_controle_fluxo_min_quota_recuperação`
+* [`group_replication_flow_control_min_recovery_quota`](group-replication-system-variables.html#sysvar_group_replication_flow_control_min_recovery_quota)
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_allow_local_lower_version_join"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-allow-local-lower-version-join[={OFF|ON}]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.17</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_allow_local_lower_version_join</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for group_replication_allow_local_lower_version_join"><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-allow-local-lower-version-join[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>group_replication_allow_local_lower_version_join</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  Controla a cotas mais baixas que podem ser atribuídas a um membro devido a outro membro em recuperação no grupo, independentemente da cotas mínimas calculadas executadas no último período. Um valor de 0 implica que não há cotas mínimas. Não pode ser maior que `group_replication_flow_control_max_quota`.
+  Controls the lowest quota that can be assigned to a member because of another recovering member in the group, independently of the calculated minimum quota executed in the last period. A value of 0 implies that there is no minimum quota. Cannot be larger than `group_replication_flow_control_max_quota`.
 
-- `grupo_replication_flow_control_mode`
+* [`group_replication_flow_control_mode`](group-replication-system-variables.html#sysvar_group_replication_flow_control_mode)
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_allow_local_lower_version_join"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-allow-local-lower-version-join[={OFF|ON}]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.17</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_allow_local_lower_version_join</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for group_replication_allow_local_lower_version_join"><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-allow-local-lower-version-join[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>group_replication_allow_local_lower_version_join</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  Especifica o modo usado para o controle de fluxo. Essa variável pode ser alterada sem reiniciar a Replicação de Grupo.
+  Specifies the mode used for flow control. This variable can be changed without resetting Group Replication.
 
-- `group_replication_force_members`
+* [`group_replication_force_members`](group-replication-system-variables.html#sysvar_group_replication_force_members)
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_allow_local_lower_version_join"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-allow-local-lower-version-join[={OFF|ON}]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.17</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_allow_local_lower_version_join</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for group_replication_allow_local_lower_version_join"><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-allow-local-lower-version-join[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>group_replication_allow_local_lower_version_join</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  Uma lista de endereços de pares como uma lista separada por vírgula, como `host1:port1`, `host2:port2`. Esta opção é usada para forçar uma nova adesão ao grupo, na qual os membros excluídos não recebem uma nova visualização e são bloqueados. (Você precisa matar manualmente os servidores excluídos.) Quaisquer nomes de host inválidos na lista podem causar o falha desta ação, pois podem bloquear a adesão ao grupo. Para uma descrição do procedimento a seguir, consulte Seção 17.5.3, “Divisão de Rede”.
+  A list of peer addresses as a comma separated list such as `host1:port1`,`host2:port2`. This option is used to force a new group membership, in which the excluded members do not receive a new view and are blocked. (You need to manually kill the excluded servers.) Any invalid host names in the list could cause this action to fail because they could block group membership. For a description of the procedure to follow, see [Section 17.5.3, “Network Partitioning”](group-replication-network-partitioning.html "17.5.3 Network Partitioning").
 
-  Você deve especificar o endereço ou o nome do host e o número de porta conforme fornecidos na opção `group_replication_local_address` para cada membro. Por exemplo:
+  You must specify the address or host name and port as they are given in the [`group_replication_local_address`](group-replication-system-variables.html#sysvar_group_replication_local_address) option for each member. For example:
 
   ```sql
   "198.51.100.44:33061,example.org:33061"
   ```
 
-  Depois de usar a variável de sistema `group_replication_force_members` para forçar com sucesso uma nova adesão ao grupo e desbloquear o grupo, certifique-se de limpar a variável de sistema. A variável de sistema `group_replication_force_members` deve estar vazia para emitir uma declaração de `START GROUP_REPLICATION`.
+  After you have used the [`group_replication_force_members`](group-replication-system-variables.html#sysvar_group_replication_force_members) system variable to successfully force a new group membership and unblock the group, ensure that you clear the system variable. [`group_replication_force_members`](group-replication-system-variables.html#sysvar_group_replication_force_members) must be empty in order to issue a [`START GROUP_REPLICATION`](start-group-replication.html "13.4.3.1 START GROUP_REPLICATION Statement") statement.
 
-- `grupo_replication_group_name`
+* [`group_replication_group_name`](group-replication-system-variables.html#sysvar_group_replication_group_name)
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_allow_local_lower_version_join"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-allow-local-lower-version-join[={OFF|ON}]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.17</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_allow_local_lower_version_join</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for group_replication_allow_local_lower_version_join"><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-allow-local-lower-version-join[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>group_replication_allow_local_lower_version_join</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  O nome do grupo ao qual essa instância do servidor pertence. Deve ser um UUID válido. Esse UUID é usado internamente ao definir GTIDs para eventos de Replicação de Grupo no log binário.
+  The name of the group which this server instance belongs to. Must be a valid UUID. This UUID is used internally when setting GTIDs for Group Replication events in the binary log.
 
-  Importante
+  Important
 
-  Deve-se usar um UUID único.
+  A unique UUID must be used.
 
-- `grupo_replicação_grupo_sementes`
+* [`group_replication_group_seeds`](group-replication-system-variables.html#sysvar_group_replication_group_seeds)
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_allow_local_lower_version_join"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-allow-local-lower-version-join[={OFF|ON}]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.17</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_allow_local_lower_version_join</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for group_replication_allow_local_lower_version_join"><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-allow-local-lower-version-join[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>group_replication_allow_local_lower_version_join</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  Uma lista de membros do grupo para os quais um membro que se junta pode se conectar para obter detalhes de todos os membros atuais do grupo. O membro que se junta usa esses detalhes para selecionar e se conectar a um membro do grupo para obter os dados necessários para a sincronização com o grupo. A lista consiste nos endereços de rede do membro inicial especificados como uma lista separada por vírgula, como `host1:port1`, `host2:port2`.
+  A list of group members to which a joining member can connect to obtain details of all the current group members. The joining member uses these details to select and connect to a group member to obtain the data needed for synchrony with the group. The list consists of the seed member's network addresses specified as a comma separated list, such as `host1:port1`,`host2:port2`.
 
-  Importante
+  Important
 
-  Esses endereços não devem ser o nome do host e a porta do membro no SQL.
+  These addresses must not be the member's SQL hostname and port.
 
-  Observe que o valor especificado para essa variável não é validado até que uma instrução `START GROUP_REPLICATION` seja emitida e o Sistema de Comunicação de Grupo (GCS) estiver disponível.
+  Note that the value you specify for this variable is not validated until a [`START GROUP_REPLICATION`](start-group-replication.html "13.4.3.1 START GROUP_REPLICATION Statement") statement is issued and the Group Communication System (GCS) is available.
 
-  Normalmente, essa lista consiste em todos os membros do grupo, mas você pode escolher um subconjunto dos membros do grupo para serem as sementes. A lista deve conter pelo menos um endereço de membro válido. Cada endereço é validado ao iniciar a Replicação do Grupo. Se a lista não contiver nenhum nome de host válido, a emissão de `START GROUP_REPLICATION` falhará.
+  Usually this list consists of all members of the group, but you can choose a subset of the group members to be seeds. The list must contain at least one valid member address. Each address is validated when starting Group Replication. If the list does not contain any valid host names, issuing [`START GROUP_REPLICATION`](start-group-replication.html "13.4.3.1 START GROUP_REPLICATION Statement") fails.
 
-- `group_replication_gtid_assignment_block_size`
+* [`group_replication_gtid_assignment_block_size`](group-replication-system-variables.html#sysvar_group_replication_gtid_assignment_block_size)
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_auto_increment_increment"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-auto-increment-increment=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.17</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_auto_increment_increment</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>7</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for group_replication_auto_increment_increment"><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-auto-increment-increment=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>group_replication_auto_increment_increment</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>7</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>
 
-  O número de GTIDs consecutivos reservados para cada membro. Cada membro consome seus blocos e reserva mais quando necessário.
+  The number of consecutive GTIDs that are reserved for each member. Each member consumes its blocks and reserves more when needed.
 
-  Essa variável de sistema é uma configuração de nível de grupo. Ela deve ter o mesmo valor em todos os membros do grupo, não pode ser alterada enquanto a Replicação de Grupo estiver em execução e exige um reinício completo do grupo (um bootstrap por um servidor com `group_replication_bootstrap_group=ON`) para que a alteração do valor seja efetiva.
+  This system variable is a group-wide configuration setting. It must have the same value on all group members, cannot be changed while Group Replication is running, and requires a full reboot of the group (a bootstrap by a server with [`group_replication_bootstrap_group=ON`](group-replication-system-variables.html#sysvar_group_replication_bootstrap_group)) in order for the value change to take effect.
 
-- `grupo_replication_ip_whitelist`
+* [`group_replication_ip_whitelist`](group-replication-system-variables.html#sysvar_group_replication_ip_whitelist)
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_auto_increment_increment"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-auto-increment-increment=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.17</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_auto_increment_increment</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>7</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for group_replication_auto_increment_increment"><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-auto-increment-increment=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>group_replication_auto_increment_increment</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>7</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>
 
-  Especifica a lista de permissão de hosts que são permitidos para se conectar ao grupo. O endereço que você especificar para cada membro do grupo em `group_replication_local_address` deve estar na lista de permissão dos outros servidores no grupo de replicação. Observe que o valor que você especificar para essa variável não é validado até que uma declaração `START GROUP_REPLICATION` seja emitida e o Sistema de Comunicação do Grupo (GCS) esteja disponível.
+  Specifies the allowlist of hosts that are permitted to connect to the group. The address that you specify for each group member in [`group_replication_local_address`](group-replication-system-variables.html#sysvar_group_replication_local_address) must be allowlisted on the other servers in the replication group. Note that the value you specify for this variable is not validated until a [`START GROUP_REPLICATION`](start-group-replication.html "13.4.3.1 START GROUP_REPLICATION Statement") statement is issued and the Group Communication System (GCS) is available.
 
-  Por padrão, essa variável de sistema é definida como `AUTOMATIC`, o que permite conexões de subredes privadas ativas no host. O motor de comunicação em grupo (XCom) escaneia automaticamente as interfaces ativas no host e identifica aquelas com endereços em subredes privadas. Esses endereços e o endereço IP `localhost` para IPv4 são usados para criar a lista de permissões de replicação em grupo. Para uma lista dos intervalos a partir dos quais os endereços são automaticamente permitidos, consulte Seção 17.6.1, “Permissões de Endereço IP de Replicação em Grupo”.
+  By default, this system variable is set to `AUTOMATIC`, which permits connections from private subnetworks active on the host. The group communication engine (XCom) automatically scans active interfaces on the host, and identifies those with addresses on private subnetworks. These addresses and the `localhost` IP address for IPv4 are used to create the Group Replication allowlist. For a list of the ranges from which addresses are automatically allowlisted, see [Section 17.6.1, “Group Replication IP Address Allowlisting”](group-replication-ip-address-permissions.html "17.6.1 Group Replication IP Address Allowlisting").
 
-  A lista de endereços privados permitidos automaticamente não pode ser usada para conexões de servidores externos à rede privada. Para conexões de replicação em grupo entre instâncias de servidor em máquinas diferentes, você deve fornecer endereços IP públicos e especificá-los como uma lista de permissão explícita. Se você especificar qualquer entrada na lista de permissão, os endereços privados não serão adicionados automaticamente, portanto, se você usar qualquer um deles, você deve especificá-los explicitamente. O endereço IP `localhost` é adicionado automaticamente.
+  The automatic allowlist of private addresses cannot be used for connections from servers outside the private network. For Group Replication connections between server instances that are on different machines, you must provide public IP addresses and specify these as an explicit allowlist. If you specify any entries for the allowlist, the private addresses are not added automatically, so if you use any of these, you must specify them explicitly. The `localhost` IP address is added automatically.
 
-  Como o valor da opção `group_replication_ip_whitelist`, você pode especificar qualquer combinação dos seguintes:
+  As the value of the [`group_replication_ip_whitelist`](group-replication-system-variables.html#sysvar_group_replication_ip_whitelist) option, you can specify any combination of the following:
 
-  - Endereços IPv4 (por exemplo, `198.51.100.44`)
+  + IPv4 addresses (for example, `198.51.100.44`)
 
-  - Endereços IPv4 com notação CIDR (por exemplo, `192.0.2.21/24`)
+  + IPv4 addresses with CIDR notation (for example, `192.0.2.21/24`)
 
-  - Nomes de host, a partir do MySQL 5.7.21 (por exemplo, `example.org`)
+  + Host names, from MySQL 5.7.21 (for example, `example.org`)
 
-  - Nomes de host com notação CIDR, a partir do MySQL 5.7.21 (por exemplo, `www.example.com/24`)
+  + Host names with CIDR notation, from MySQL 5.7.21 (for example, `www.example.com/24`)
 
-  Os endereços IPv6 e os nomes de host que resolvem para endereços IPv6 não são suportados no MySQL 5.7. Você pode usar a notação CIDR em combinação com nomes de host ou endereços IP para permitir um bloco de endereços IP com um prefixo de rede específico, mas certifique-se de que todos os endereços IP na sub-rede especificada estejam sob seu controle.
+  IPv6 addresses, and host names that resolve to IPv6 addresses, are not supported in MySQL 5.7. You can use CIDR notation in combination with host names or IP addresses to allowlist a block of IP addresses with a particular network prefix, but do ensure that all the IP addresses in the specified subnet are under your control.
 
-  Uma vírgula deve separar cada entrada na allowlist. Por exemplo:
+  A comma must separate each entry in the allowlist. For example:
 
   ```sql
   192.0.2.22,198.51.100.0/24,example.org,www.example.com/24
   ```
 
-  É possível configurar diferentes listas de permissões em diferentes membros do grupo de acordo com os requisitos de segurança, por exemplo, para manter sub-redes diferentes separadas. No entanto, isso pode causar problemas quando um grupo é reconfigurado. Se você não tiver um requisito de segurança específico para fazer o contrário, use a mesma lista de permissões em todos os membros de um grupo. Para mais detalhes, consulte Seção 17.6.1, “Permissões de Endereços IP de Replicação de Grupo”.
+  It is possible to configure different allowlists on different group members according to your security requirements, for example, in order to keep different subnets separate. However, this can cause issues when a group is reconfigured. If you do not have a specific security requirement to do otherwise, use the same allowlist on all members of a group. For more details, see [Section 17.6.1, “Group Replication IP Address Allowlisting”](group-replication-ip-address-permissions.html "17.6.1 Group Replication IP Address Allowlisting").
 
-  Para os nomes de host, a resolução de nomes ocorre apenas quando um pedido de conexão é feito por outro servidor. Um nome de host que não pode ser resolvido não é considerado para validação da lista de permissão, e uma mensagem de aviso é escrita no log de erros. A verificação de DNS reversa confirmada (FCrDNS) é realizada para nomes de host resolvidos.
+  For host names, name resolution takes place only when a connection request is made by another server. A host name that cannot be resolved is not considered for allowlist validation, and a warning message is written to the error log. Forward-confirmed reverse DNS (FCrDNS) verification is carried out for resolved host names.
 
-  Aviso
+  Warning
 
-  Os nomes de host são inerentemente menos seguros do que os endereços IP em uma lista de permissão. A verificação do FCrDNS oferece um bom nível de proteção, mas pode ser comprometida por certos tipos de ataque. Especifique os nomes de host em sua lista de permissão apenas quando estritamente necessário e garanta que todos os componentes usados para resolução de nomes, como servidores DNS, estejam sob seu controle. Você também pode implementar a resolução de nomes localmente usando o arquivo hosts, para evitar o uso de componentes externos.
+  Host names are inherently less secure than IP addresses in an allowlist. FCrDNS verification provides a good level of protection, but can be compromised by certain types of attack. Specify host names in your allowlist only when strictly necessary, and ensure that all components used for name resolution, such as DNS servers, are maintained under your control. You can also implement name resolution locally using the hosts file, to avoid the use of external components.
 
-- `grupo_replicação_endereço_local`
+* [`group_replication_local_address`](group-replication-system-variables.html#sysvar_group_replication_local_address)
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_auto_increment_increment"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-auto-increment-increment=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.17</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_auto_increment_increment</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>7</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for group_replication_auto_increment_increment"><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-auto-increment-increment=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>group_replication_auto_increment_increment</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>7</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>
 
-  O endereço de rede fornecido pelo membro para conexões de outros membros, especificado como uma string formatada `host:port`. Esse endereço deve ser acessível por todos os membros do grupo, pois é usado pelo motor de comunicação do grupo para a Replicação em Grupo (XCom, uma variante do Paxos) para comunicação TCP entre instâncias remotas do XCom. A comunicação com a instância local é feita por meio de um canal de entrada usando memória compartilhada.
+  The network address which the member provides for connections from other members, specified as a `host:port` formatted string. This address must be reachable by all members of the group because it is used by the group communication engine for Group Replication (XCom, a Paxos variant) for TCP communication between remote XCom instances. Communication with the local instance is over an input channel using shared memory.
 
-  Aviso
+  Warning
 
-  Não use este endereço para comunicação com o membro.
+  Do not use this address for communication with the member.
 
-  Outros membros da replicação em grupo contatam este membro através deste `host:port` para toda a comunicação interna do grupo. Este não é o host e o port do protocolo SQL do servidor MySQL.
+  Other Group Replication members contact this member through this `host:port` for all internal group communication. This is not the MySQL server SQL protocol host and port.
 
-  O endereço ou nome de host que você especifica em `group_replication_local_address` é usado pelo Grupo de Replicação como identificador único para um membro do grupo dentro do grupo de replicação. Você pode usar a mesma porta para todos os membros de um grupo de replicação, desde que os nomes de host ou endereços IP sejam diferentes, e você pode usar o mesmo nome de host ou endereço IP para todos os membros, desde que as portas sejam diferentes. A porta recomendada para `group_replication_local_address` é 33061. Note que o valor que você especifica para essa variável não é validado até que a instrução `START GROUP_REPLICATION` seja emitida e o Sistema de Comunicação do Grupo (GCS) esteja disponível.
+  The address or host name that you specify in [`group_replication_local_address`](group-replication-system-variables.html#sysvar_group_replication_local_address) is used by Group Replication as the unique identifier for a group member within the replication group. You can use the same port for all members of a replication group as long as the host names or IP addresses are all different, and you can use the same host name or IP address for all members as long as the ports are all different. The recommended port for [`group_replication_local_address`](group-replication-system-variables.html#sysvar_group_replication_local_address) is 33061. Note that the value you specify for this variable is not validated until the [`START GROUP_REPLICATION`](start-group-replication.html "13.4.3.1 START GROUP_REPLICATION Statement") statement is issued and the Group Communication System (GCS) is available.
 
-- [`group_replication_member_weight`](https://pt.wikipedia.org/wiki/Sistema_de_replicação_por_grupo#variáveis_do_sistema)
+* [`group_replication_member_weight`](group-replication-system-variables.html#sysvar_group_replication_member_weight)
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_auto_increment_increment"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-auto-increment-increment=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.17</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_auto_increment_increment</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>7</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for group_replication_auto_increment_increment"><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-auto-increment-increment=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>group_replication_auto_increment_increment</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>7</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>
 
-  Um peso percentual que pode ser atribuído aos membros para influenciar a chance de o membro ser eleito como primário em caso de falha, por exemplo, quando o primário existente deixa um grupo de primário único. Atribua pesos numéricos aos membros para garantir que membros específicos sejam eleitos, por exemplo, durante a manutenção programada do primário ou para garantir que certos equipamentos sejam priorizados em caso de falha.
+  A percentage weight that can be assigned to members to influence the chance of the member being elected as primary in the event of failover, for example when the existing primary leaves a single-primary group. Assign numeric weights to members to ensure that specific members are elected, for example during scheduled maintenance of the primary or to ensure certain hardware is prioritized in the event of failover.
 
-  Para um grupo com membros configurados da seguinte forma:
+  For a group with members configured as follows:
 
-  - `member-1`: grupo_replication_member_weight=30, servidor_uuid=aaaa
+  + `member-1`: group_replication_member_weight=30, server_uuid=aaaa
 
-  - `member-2`: grupo_replication_member_weight=40, servidor_uuid=bbbb
+  + `member-2`: group_replication_member_weight=40, server_uuid=bbbb
 
-  - `member-3`: grupo_replication_member_weight=40, server_uuid=cccc
+  + `member-3`: group_replication_member_weight=40, server_uuid=cccc
 
-  - `member-4`: grupo_replication_member_weight=40, server_uuid=dddd
+  + `member-4`: group_replication_member_weight=40, server_uuid=dddd
 
-  Durante a eleição de uma nova primária, os membros acima seriam classificados como `member-2`, `member-3`, `member-4` e `member-1`. Isso resulta em `member`-2 sendo escolhido como a nova primária em caso de falha. Para mais informações, consulte Seção 17.5.1.1, “Modo Primário Único”.
+  during election of a new primary the members above would be sorted as `member-2`, `member-3`, `member-4`, and `member-1`. This results in `member`-2 being chosen as the new primary in the event of failover. For more information, see [Section 17.5.1.1, “Single-Primary Mode”](group-replication-single-primary-mode.html "17.5.1.1 Single-Primary Mode").
 
-- `grupo_replication_poll_spin_loops`
+* [`group_replication_poll_spin_loops`](group-replication-system-variables.html#sysvar_group_replication_poll_spin_loops)
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_auto_increment_increment"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-auto-increment-increment=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.17</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_auto_increment_increment</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>7</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for group_replication_auto_increment_increment"><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-auto-increment-increment=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>group_replication_auto_increment_increment</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>7</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>
 
-  O número de vezes que o thread de comunicação do grupo aguarda pelo mutex do motor de comunicação ser liberado antes que o thread espere por mais mensagens de rede recebidas.
+  The number of times the group communication thread waits for the communication engine mutex to be released before the thread waits for more incoming network messages.
 
-- `grupo_replication_recovery_complete_at`
+* [`group_replication_recovery_complete_at`](group-replication-system-variables.html#sysvar_group_replication_recovery_complete_at)
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_auto_increment_increment"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-auto-increment-increment=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.17</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_auto_increment_increment</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>7</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for group_replication_auto_increment_increment"><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-auto-increment-increment=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>group_replication_auto_increment_increment</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>7</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>
 
-  Políticas de recuperação ao lidar com transações armazenadas em cache após a transferência de estado. Esta opção especifica se um membro é marcado como online após receber todas as transações que ele perdeu antes de se juntar ao grupo (`TRANSACTIONS_CERTIFIED`) ou após recebê-las e aplicá-las (`TRANSACTIONS_APPLIED`).
+  Recovery policies when handling cached transactions after state transfer. This option specifies whether a member is marked online after it has received all transactions that it missed before it joined the group (`TRANSACTIONS_CERTIFIED`) or after it has received and applied them (`TRANSACTIONS_APPLIED`).
 
-- `grupo_replication_recovery_retry_count`
+* [`group_replication_recovery_retry_count`](group-replication-system-variables.html#sysvar_group_replication_recovery_retry_count)
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_auto_increment_increment"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-auto-increment-increment=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.17</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_auto_increment_increment</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>7</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for group_replication_auto_increment_increment"><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-auto-increment-increment=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>group_replication_auto_increment_increment</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>7</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>
 
-  O número de vezes que o membro que está se conectando tenta se conectar aos doadores disponíveis antes de desistir.
+  The number of times that the member that is joining tries to connect to the available donors before giving up.
 
-- `intervalo_de_reconexão_de_recuperação_de_replicação_por_grupo`
+* [`group_replication_recovery_reconnect_interval`](group-replication-system-variables.html#sysvar_group_replication_recovery_reconnect_interval)
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_auto_increment_increment"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-auto-increment-increment=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.17</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_auto_increment_increment</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>7</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for group_replication_auto_increment_increment"><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-auto-increment-increment=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>group_replication_auto_increment_increment</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>7</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>
 
-  O tempo de sono, em segundos, entre as tentativas de reconexão quando nenhum doador foi encontrado no grupo.
+  The sleep time, in seconds, between reconnection attempts when no donor was found in the group.
 
-- `grupo_replication_recovery_ssl_ca`
+* [`group_replication_recovery_ssl_ca`](group-replication-system-variables.html#sysvar_group_replication_recovery_ssl_ca)
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_auto_increment_increment"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-auto-increment-increment=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.17</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_auto_increment_increment</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>7</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for group_replication_auto_increment_increment"><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-auto-increment-increment=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>group_replication_auto_increment_increment</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>7</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>
 
-  O caminho para um arquivo que contém uma lista de autoridades de certificação SSL confiáveis.
+  The path to a file that contains a list of trusted SSL certificate authorities.
 
-- `group_replication_recovery_ssl_capath`
+* [`group_replication_recovery_ssl_capath`](group-replication-system-variables.html#sysvar_group_replication_recovery_ssl_capath)
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_auto_increment_increment"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-auto-increment-increment=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.17</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_auto_increment_increment</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>7</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>65535</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for group_replication_auto_increment_increment"><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-auto-increment-increment=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>group_replication_auto_increment_increment</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>7</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>65535</code></td> </tr></tbody></table>
 
-  O caminho para um diretório que contém certificados de autoridade de certificação SSL confiáveis.
+  The path to a directory that contains trusted SSL certificate authority certificates.
 
-- `grupo_replication_recovery_ssl_cert`
+* [`group_replication_recovery_ssl_cert`](group-replication-system-variables.html#sysvar_group_replication_recovery_ssl_cert)
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_bootstrap_group"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-bootstrap-group[={OFF|ON}]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.17</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_bootstrap_group</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for group_replication_bootstrap_group"><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-bootstrap-group[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>group_replication_bootstrap_group</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  O nome do arquivo de certificado SSL a ser usado para estabelecer uma conexão segura.
+  The name of the SSL certificate file to use for establishing a secure connection.
 
-- `grupo_replication_recovery_ssl_key`
+* [`group_replication_recovery_ssl_key`](group-replication-system-variables.html#sysvar_group_replication_recovery_ssl_key)
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_bootstrap_group"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-bootstrap-group[={OFF|ON}]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.17</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_bootstrap_group</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for group_replication_bootstrap_group"><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-bootstrap-group[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>group_replication_bootstrap_group</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  O nome do arquivo de chave SSL a ser usado para estabelecer uma conexão segura.
+  The name of the SSL key file to use for establishing a secure connection.
 
-- `group_replication_recovery_ssl_cipher`
+* [`group_replication_recovery_ssl_cipher`](group-replication-system-variables.html#sysvar_group_replication_recovery_ssl_cipher)
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_bootstrap_group"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-bootstrap-group[={OFF|ON}]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.17</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_bootstrap_group</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for group_replication_bootstrap_group"><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-bootstrap-group[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>group_replication_bootstrap_group</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  A lista de cifra permitida para criptografia SSL.
+  The list of permissible ciphers for SSL encryption.
 
-- `grupo_replication_recovery_ssl_crl`
+* [`group_replication_recovery_ssl_crl`](group-replication-system-variables.html#sysvar_group_replication_recovery_ssl_crl)
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_bootstrap_group"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-bootstrap-group[={OFF|ON}]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.17</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_bootstrap_group</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for group_replication_bootstrap_group"><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-bootstrap-group[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>group_replication_bootstrap_group</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  O caminho para um diretório que contém arquivos contendo listas de revogação de certificados.
+  The path to a directory that contains files containing certificate revocation lists.
 
-- `group_replication_recovery_ssl_crlpath`
+* [`group_replication_recovery_ssl_crlpath`](group-replication-system-variables.html#sysvar_group_replication_recovery_ssl_crlpath)
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_bootstrap_group"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-bootstrap-group[={OFF|ON}]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.17</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_bootstrap_group</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for group_replication_bootstrap_group"><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-bootstrap-group[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>group_replication_bootstrap_group</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  O caminho para um diretório que contém arquivos contendo listas de revogação de certificados.
+  The path to a directory that contains files containing certificate revocation lists.
 
-- `group_replication_recovery_ssl_verify_server_cert`
+* [`group_replication_recovery_ssl_verify_server_cert`](group-replication-system-variables.html#sysvar_group_replication_recovery_ssl_verify_server_cert)
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_bootstrap_group"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-bootstrap-group[={OFF|ON}]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.17</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_bootstrap_group</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for group_replication_bootstrap_group"><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-bootstrap-group[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>group_replication_bootstrap_group</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  Na verificação do processo de recuperação, verifique o valor do Nome Comum do servidor no certificado enviado pelo doador.
+  Make the recovery process check the server's Common Name value in the donor sent certificate.
 
-- `group_replication_recovery_use_ssl`
+* [`group_replication_recovery_use_ssl`](group-replication-system-variables.html#sysvar_group_replication_recovery_use_ssl)
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_bootstrap_group"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-bootstrap-group[={OFF|ON}]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.17</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_bootstrap_group</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for group_replication_bootstrap_group"><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-bootstrap-group[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>group_replication_bootstrap_group</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  Se a conexão de recuperação da replicação em grupo deve usar SSL ou
+  Whether Group Replication recovery connection should use SSL or not.
 
-- `grupo_replicação_modo_único_primário`
+* [`group_replication_single_primary_mode`](group-replication-system-variables.html#sysvar_group_replication_single_primary_mode)
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_bootstrap_group"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-bootstrap-group[={OFF|ON}]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.17</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_bootstrap_group</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for group_replication_bootstrap_group"><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-bootstrap-group[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>group_replication_bootstrap_group</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  Nota
+  Note
 
-  Essa variável de sistema é uma configuração de nível de grupo e uma reinicialização completa do grupo de replicação é necessária para que a mudança entre em vigor.
+  This system variable is a group-wide configuration setting, and a full reboot of the replication group is required for a change to take effect.
 
-  `group_replication_single_primary_mode` instrui o grupo a escolher automaticamente um único servidor para ser o responsável pela carga de trabalho de leitura/escrita. Esse servidor é o primário e todos os outros são secundários.
+  [`group_replication_single_primary_mode`](group-replication-system-variables.html#sysvar_group_replication_single_primary_mode) instructs the group to pick a single server automatically to be the one that handles read/write workload. This server is the primary and all others are secondaries.
 
-  Essa variável de sistema é uma configuração de nível de grupo. Ela deve ter o mesmo valor em todos os membros do grupo, não pode ser alterada enquanto a Replicação de Grupo estiver em execução e requer um reinício completo do grupo (um bootstrap por um servidor com `group_replication_bootstrap_group=ON`) para que a alteração do valor seja efetiva. Para obter instruções sobre como bootstrapar um grupo de forma segura, onde as transações foram executadas e certificadas, consulte Seção 17.5.4, “Reinício de um Grupo”.
+  This system variable is a group-wide configuration setting. It must have the same value on all group members, cannot be changed while Group Replication is running, and requires a full reboot of the group (a bootstrap by a server with [`group_replication_bootstrap_group=ON`](group-replication-system-variables.html#sysvar_group_replication_bootstrap_group)) in order for the value change to take effect. For instructions to safely bootstrap a group where transactions have been executed and certified, see [Section 17.5.4, “Restarting a Group”](group-replication-restarting-group.html "17.5.4 Restarting a Group").
 
-  Se o grupo tiver um valor definido para essa variável do sistema, e um membro que está se juntando tiver um valor diferente definido para a variável do sistema, o membro que está se juntando não poderá se juntar ao grupo até que o valor seja alterado para se alinhar. Se os membros do grupo tiverem um valor definido para essa variável do sistema, e o membro que está se juntando não suportar a variável do sistema, ele não poderá se juntar ao grupo.
+  If the group has a value set for this system variable, and a joining member has a different value set for the system variable, the joining member cannot join the group until the value is changed to match. If the group members have a value set for this system variable, and the joining member does not support the system variable, it cannot join the group.
 
-  Definir essa variável como `ON` faz com que qualquer configuração para `group_replication_auto_increment_increment` seja ignorada.
+  Setting this variable `ON` causes any setting for [`group_replication_auto_increment_increment`](group-replication-system-variables.html#sysvar_group_replication_auto_increment_increment) to be ignored.
 
-- `grupo_replication_ssl_mode`
+* [`group_replication_ssl_mode`](group-replication-system-variables.html#sysvar_group_replication_ssl_mode)
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_bootstrap_group"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-bootstrap-group[={OFF|ON}]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.17</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_bootstrap_group</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for group_replication_bootstrap_group"><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-bootstrap-group[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>group_replication_bootstrap_group</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  Especifica o estado de segurança da conexão entre os membros da replicação em grupo.
+  Specifies the security state of the connection between Group Replication members.
 
-- `group_replication_start_on_boot`
+* [`group_replication_start_on_boot`](group-replication-system-variables.html#sysvar_group_replication_start_on_boot)
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_bootstrap_group"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-bootstrap-group[={OFF|ON}]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.17</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_bootstrap_group</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for group_replication_bootstrap_group"><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-bootstrap-group[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>group_replication_bootstrap_group</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  Se o servidor deve iniciar a Replicação em Grupo ou não durante o início do servidor.
+  Whether the server should start Group Replication or not during server start.
 
-- `grupo_replication_transaction_size_limit`
+* [`group_replication_transaction_size_limit`](group-replication-system-variables.html#sysvar_group_replication_transaction_size_limit)
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_components_stop_timeout"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-components-stop-timeout=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.17</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_components_stop_timeout</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>31536000</code></td> </tr><tr><th>Valor mínimo</th> <td><code>2</code></td> </tr><tr><th>Valor máximo</th> <td><code>31536000</code></td> </tr><tr><th>Unidade</th> <td>segundos</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for group_replication_components_stop_timeout"><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-components-stop-timeout=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>group_replication_components_stop_timeout</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>31536000</code></td> </tr><tr><th>Minimum Value</th> <td><code>2</code></td> </tr><tr><th>Maximum Value</th> <td><code>31536000</code></td> </tr><tr><th>Unit</th> <td>seconds</td> </tr></tbody></table>
 
-  Configura o tamanho máximo da transação em bytes que o grupo de replicação aceita. Transações maiores que esse tamanho são revertidas pelo membro receptor e não são transmitidas para o grupo. Transações grandes podem causar problemas para um grupo de replicação em termos de alocação de memória, o que pode fazer com que o sistema desacelere, ou em termos de consumo de largura de banda da rede, o que pode fazer com que um membro seja suspeito de ter falhado porque está ocupado processando a transação grande.
+  Configures the maximum transaction size in bytes which the replication group accepts. Transactions larger than this size are rolled back by the receiving member and are not broadcast to the group. Large transactions can cause problems for a replication group in terms of memory allocation, which can cause the system to slow down, or in terms of network bandwidth consumption, which can cause a member to be suspected of having failed because it is busy processing the large transaction.
 
-  Quando essa variável de sistema é definida como 0, não há limite para o tamanho das transações que o grupo aceita. Nas versões até e incluindo o MySQL 5.7.37, o ajuste padrão para essa variável de sistema é 0. A partir do MySQL 5.7.38 e no MySQL 8.0, o ajuste padrão é de 150000000 bytes (aproximadamente 143 MB). Ajuste o valor dessa variável de sistema de acordo com o tamanho máximo de mensagem que o grupo precisa tolerar, tendo em mente que o tempo necessário para processar uma transação é proporcional ao seu tamanho. O valor de `group_replication_transaction_size_limit` deve ser o mesmo em todos os membros do grupo. Para obter estratégias adicionais de mitigação para transações grandes, consulte Seção 17.3.2, “Limitações da Replicação em Grupo”.
+  When this system variable is set to 0, there is no limit to the size of transactions the group accepts. In releases up to and including MySQL 5.7.37, the default setting for this system variable is 0. From MySQL 5.7.38, and in MySQL 8.0, the default setting is 150000000 bytes (approximately 143 MB). Adjust the value of this system variable depending on the maximum message size that you need the group to tolerate, bearing in mind that the time taken to process a transaction is proportional to its size. The value of [`group_replication_transaction_size_limit`](group-replication-system-variables.html#sysvar_group_replication_transaction_size_limit) should be the same on all group members. For further mitigation strategies for large transactions, see [Section 17.3.2, “Group Replication Limitations”](group-replication-limitations.html "17.3.2 Group Replication Limitations").
 
-- `group_replication_unreachable_majority_timeout`
+* [`group_replication_unreachable_majority_timeout`](group-replication-system-variables.html#sysvar_group_replication_unreachable_majority_timeout)
 
-  <table frame="box" rules="all" summary="Propriedades para group_replication_components_stop_timeout"><tbody><tr><th>Formato de linha de comando</th> <td><code>--group-replication-components-stop-timeout=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.17</td> </tr><tr><th>Variável do sistema</th> <td><code>group_replication_components_stop_timeout</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>31536000</code></td> </tr><tr><th>Valor mínimo</th> <td><code>2</code></td> </tr><tr><th>Valor máximo</th> <td><code>31536000</code></td> </tr><tr><th>Unidade</th> <td>segundos</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for group_replication_components_stop_timeout"><tbody><tr><th>Command-Line Format</th> <td><code>--group-replication-components-stop-timeout=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.17</td> </tr><tr><th>System Variable</th> <td><code>group_replication_components_stop_timeout</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>31536000</code></td> </tr><tr><th>Minimum Value</th> <td><code>2</code></td> </tr><tr><th>Maximum Value</th> <td><code>31536000</code></td> </tr><tr><th>Unit</th> <td>seconds</td> </tr></tbody></table>
 
-  Configura quanto tempo os membros que sofrem uma partição de rede e não conseguem se conectar à maioria devem esperar antes de sair do grupo.
+  Configures how long members that suffer a network partition and cannot connect to the majority wait before leaving the group.
 
-  Em um grupo de 5 servidores (S1, S2, S3, S4, S5), se houver uma desconexão entre (S1, S2) e (S3, S4, S5), há uma partição de rede. O primeiro grupo (S1, S2) agora está em minoria porque não pode entrar em contato com mais da metade do grupo. Enquanto o grupo maioritário (S3, S4, S5) permanece em funcionamento, o grupo minoritário aguarda o tempo especificado para uma reconexão de rede. Quaisquer transações processadas pelo grupo minoritário são bloqueadas até que a Replicação de Grupo seja interrompida usando `STOP GROUP REPLICATION` nos membros do grupo minoritário. Note que `group_replication_unreachable_majority_timeout` não tem efeito se for definido nos servidores do grupo minoritário após a detecção da perda da maioria.
+  In a group of 5 servers (S1,S2,S3,S4,S5), if there is a disconnection between (S1,S2) and (S3,S4,S5) there is a network partition. The first group (S1,S2) is now in a minority because it cannot contact more than half of the group. While the majority group (S3,S4,S5) remains running, the minority group waits for the specified time for a network reconnection. Any transactions processed by the minority group are blocked until Group Replication is stopped using [`STOP GROUP REPLICATION`](stop-group-replication.html "13.4.3.2 STOP GROUP_REPLICATION Statement") on the members of the minority. Note that [`group_replication_unreachable_majority_timeout`](group-replication-system-variables.html#sysvar_group_replication_unreachable_majority_timeout) has no effect if it is set on the servers in the minority group after the loss of majority has been detected.
 
-  Por padrão, essa variável de sistema é definida como 0, o que significa que os membros que se encontram em minoria devido a uma partição de rede aguardam para sair do grupo para sempre. Se configurada para um número de segundos, os membros aguardam esse tempo após perderem contato com a maioria dos membros antes de sair do grupo. Quando o tempo especificado passa, todas as transações pendentes processadas pela minoria são revertidas e os servidores na partição da minoria passam para o estado `ERROR`. Esses servidores, então, seguem a ação especificada pela variável de sistema `group_replication_exit_state_action`, que pode ser definir-se no modo de leitura apenas super ou desligar o MySQL.
+  By default, this system variable is set to 0, which means that members that find themselves in a minority due to a network partition wait forever to leave the group. If configured to a number of seconds, members wait for this amount of time after losing contact with the majority of members before leaving the group. When the specified time elapses, all pending transactions processed by the minority are rolled back, and the servers in the minority partition move to the `ERROR` state. These servers then follow the action specified by the system variable [`group_replication_exit_state_action`](group-replication-system-variables.html#sysvar_group_replication_exit_state_action), which can be to set themselves to super read only mode or shut down MySQL.
 
-  Aviso
+  Warning
 
-  Quando você tem um grupo simétrico, com apenas dois membros, por exemplo (S0, S2), se houver uma partição de rede e não houver maioria, após o tempo limite configurado, todos os membros entram no estado `ERROR`.
+  When you have a symmetric group, with just two members for example (S0,S2), if there is a network partition and there is no majority, after the configured timeout all members enter `ERROR` state.

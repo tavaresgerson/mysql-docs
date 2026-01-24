@@ -1,8 +1,8 @@
-### 22.3.1 Gestão de Partições RANGE e LIST
+### 22.3.1 Management of RANGE and LIST Partitions
 
-A adição e a remoção de partições de intervalo e de lista são tratadas de maneira semelhante, portanto, discutiremos a gestão de ambos os tipos de particionamento nesta seção. Para obter informações sobre o trabalho com tabelas particionadas por hash ou chave, consulte Seção 22.3.2, “Gestão de Partições HASH e KEY”.
+Adding and dropping of range and list partitions are handled in a similar fashion, so we discuss the management of both sorts of partitioning in this section. For information about working with tables that are partitioned by hash or key, see [Section 22.3.2, “Management of HASH and KEY Partitions”](partitioning-management-hash-key.html "22.3.2 Management of HASH and KEY Partitions").
 
-A remoção de uma partição de uma tabela que está particionada por `RANGE` ou por `LIST` pode ser realizada usando a instrução `ALTER TABLE` com a opção `DROP PARTITION`. Suponha que você tenha criado uma tabela particionada por intervalo e depois preenchida com 10 registros usando as seguintes instruções de `CREATE TABLE`]\(create-table.html) e `INSERT`]\(insert.html):
+Dropping a partition from a table that is partitioned by either `RANGE` or by `LIST` can be accomplished using the [`ALTER TABLE`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") statement with the `DROP PARTITION` option. Suppose that you have created a table that is partitioned by range and then populated with 10 records using the following [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") and [`INSERT`](insert.html "13.2.5 INSERT Statement") statements:
 
 ```sql
 mysql> CREATE TABLE tr (id INT, name VARCHAR(50), purchased DATE)
@@ -31,7 +31,7 @@ Query OK, 10 rows affected (0.05 sec)
 Records: 10  Duplicates: 0  Warnings: 0
 ```
 
-Você pode ver quais itens deveriam ter sido inseridos na partição `p2`, conforme mostrado aqui:
+You can see which items should have been inserted into partition `p2` as shown here:
 
 ```sql
 mysql> SELECT * FROM tr
@@ -45,7 +45,7 @@ mysql> SELECT * FROM tr
 2 rows in set (0.00 sec)
 ```
 
-Você também pode obter essas informações usando a seleção de partições, como mostrado aqui:
+You can also get this information using partition selection, as shown here:
 
 ```sql
 mysql> SELECT * FROM tr PARTITION (p2);
@@ -58,20 +58,20 @@ mysql> SELECT * FROM tr PARTITION (p2);
 2 rows in set (0.00 sec)
 ```
 
-Consulte Seção 22.5, “Seleção de Partição” para obter mais informações.
+See [Section 22.5, “Partition Selection”](partitioning-selection.html "22.5 Partition Selection"), for more information.
 
-Para excluir a partição chamada `p2`, execute o seguinte comando:
+To drop the partition named `p2`, execute the following command:
 
 ```sql
 mysql> ALTER TABLE tr DROP PARTITION p2;
 Query OK, 0 rows affected (0.03 sec)
 ```
 
-Nota
+Note
 
-O mecanismo de armazenamento `NDBCLUSTER` não suporta a opção `ALTER TABLE ... DROP PARTITION`. No entanto, ele suporta as outras extensões relacionadas à partição de `ALTER TABLE` (alter-table-partition-operations.html) descritas neste capítulo.
+The [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine does not support `ALTER TABLE ... DROP PARTITION`. It does, however, support the other partitioning-related extensions to [`ALTER TABLE`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") that are described in this chapter.
 
-É muito importante lembrar que, *quando você exclui uma partição, você também exclui todos os dados que estavam armazenados nessa partição*. Você pode ver que isso é o caso ao executar novamente a consulta anterior `SELECT`:
+It is very important to remember that, *when you drop a partition, you also delete all the data that was stored in that partition*. You can see that this is the case by re-running the previous [`SELECT`](select.html "13.2.9 SELECT Statement") query:
 
 ```sql
 mysql> SELECT * FROM tr WHERE purchased
@@ -79,13 +79,13 @@ mysql> SELECT * FROM tr WHERE purchased
 Empty set (0.00 sec)
 ```
 
-Por isso, você deve ter o privilégio `DROP` para uma tabela antes de poder executar `ALTER TABLE ... DROP PARTITION` nessa tabela.
+Because of this, you must have the [`DROP`](privileges-provided.html#priv_drop) privilege for a table before you can execute `ALTER TABLE ... DROP PARTITION` on that table.
 
-Se você deseja excluir todos os dados de todas as partições, preservando a definição da tabela e seu esquema de particionamento, use a instrução `TRUNCATE TABLE`. (Veja Seção 13.1.34, “Instrução TRUNCATE TABLE”.)
+If you wish to drop all data from all partitions while preserving the table definition and its partitioning scheme, use the [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") statement. (See [Section 13.1.34, “TRUNCATE TABLE Statement”](truncate-table.html "13.1.34 TRUNCATE TABLE Statement").)
 
-Se você pretende alterar a partição de uma tabela *sem* perder dados, use `ALTER TABLE ... REORGANIZE PARTITION` em vez disso. Consulte abaixo ou em Seção 13.1.8, “Instrução ALTER TABLE” para obter informações sobre `REORGANIZE PARTITION`.
+If you intend to change the partitioning of a table *without* losing data, use `ALTER TABLE ... REORGANIZE PARTITION` instead. See below or in [Section 13.1.8, “ALTER TABLE Statement”](alter-table.html "13.1.8 ALTER TABLE Statement"), for information about `REORGANIZE PARTITION`.
 
-Se você executar agora uma instrução `SHOW CREATE TABLE` (show-create-table.html), você poderá ver como a estrutura de partição da tabela foi alterada:
+If you now execute a [`SHOW CREATE TABLE`](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement") statement, you can see how the partitioning makeup of the table has been changed:
 
 ```sql
 mysql> SHOW CREATE TABLE tr\G
@@ -105,7 +105,7 @@ Create Table: CREATE TABLE `tr` (
 1 row in set (0.00 sec)
 ```
 
-Quando você inserir novas linhas na tabela alterada com valores na coluna `purchased` entre `'1995-01-01'` e `'2004-12-31'` inclusive, essas linhas são armazenadas na partição `p3`. Você pode verificar isso da seguinte forma:
+When you insert new rows into the changed table with `purchased` column values between `'1995-01-01'` and `'2004-12-31'` inclusive, those rows are stored in partition `p3`. You can verify this as follows:
 
 ```sql
 mysql> INSERT INTO tr VALUES (11, 'pencil holder', '1995-07-12');
@@ -129,11 +129,11 @@ mysql> SELECT * FROM tr WHERE purchased
 Empty set (0.00 sec)
 ```
 
-O número de linhas excluídas da tabela como resultado da instrução `ALTER TABLE ... DROP PARTITION` não é reportado pelo servidor da mesma forma que seria com a consulta equivalente `DELETE`.
+The number of rows dropped from the table as a result of `ALTER TABLE ... DROP PARTITION` is not reported by the server as it would be by the equivalent [`DELETE`](delete.html "13.2.2 DELETE Statement") query.
 
-A remoção das partições `LIST` usa exatamente a mesma sintaxe de `ALTER TABLE ... DROP PARTITION` usada para a remoção de partições `RANGE`. No entanto, há uma diferença importante no efeito que isso tem no uso da tabela posteriormente: você não pode mais inserir na tabela quaisquer linhas que tenham algum dos valores que foram incluídos na lista de valores que definem a partição excluída. (Veja Seção 22.2.2, “Partição LIST”, para um exemplo.)
+Dropping `LIST` partitions uses exactly the same `ALTER TABLE ... DROP PARTITION` syntax as used for dropping `RANGE` partitions. However, there is one important difference in the effect this has on your use of the table afterward: You can no longer insert into the table any rows having any of the values that were included in the value list defining the deleted partition. (See [Section 22.2.2, “LIST Partitioning”](partitioning-list.html "22.2.2 LIST Partitioning"), for an example.)
 
-Para adicionar uma nova faixa ou partição de lista a uma tabela previamente particionada, use a instrução `ALTER TABLE ... ADD PARTITION`. Para tabelas que são particionadas por `RANGE`, isso pode ser usado para adicionar uma nova faixa ao final da lista de partições existentes. Suponha que você tenha uma tabela particionada que contém dados de associação para sua organização, definida da seguinte forma:
+To add a new range or list partition to a previously partitioned table, use the `ALTER TABLE ... ADD PARTITION` statement. For tables which are partitioned by `RANGE`, this can be used to add a new range to the end of the list of existing partitions. Suppose that you have a partitioned table containing membership data for your organization, which is defined as follows:
 
 ```sql
 CREATE TABLE members (
@@ -149,13 +149,13 @@ PARTITION BY RANGE( YEAR(dob) ) (
 );
 ```
 
-Suponha, ainda, que a idade mínima para os membros seja de 16 anos. À medida que o calendário se aproxima do final de 2015, você percebe que em breve vai admitir membros que nasceram em 2000 (e depois). Você pode modificar a tabela `membros` para acomodar novos membros nascidos nos anos de 2000 a 2010, conforme mostrado aqui:
+Suppose further that the minimum age for members is 16. As the calendar approaches the end of 2015, you realize that you are soon going to be admitting members who were born in 2000 (and later). You can modify the `members` table to accommodate new members born in the years 2000 to 2010 as shown here:
 
 ```sql
 ALTER TABLE members ADD PARTITION (PARTITION p3 VALUES LESS THAN (2010));
 ```
 
-Com tabelas que são particionadas por intervalo, você pode usar `ADD PARTITION` para adicionar novas particionações apenas no final da lista de particionações. Tentar adicionar uma nova particionação dessa maneira entre ou antes das particionações existentes resulta em um erro, conforme mostrado aqui:
+With tables that are partitioned by range, you can use `ADD PARTITION` to add new partitions to the high end of the partitions list only. Trying to add a new partition in this manner between or before existing partitions results in an error as shown here:
 
 ```sql
 mysql> ALTER TABLE members
@@ -165,7 +165,7 @@ ERROR 1463 (HY000): VALUES LESS THAN value must be strictly »
    increasing for each partition
 ```
 
-Você pode resolver esse problema reorganizando a primeira partição em duas novas que dividam a faixa entre elas, como este:
+You can work around this problem by reorganizing the first partition into two new ones that split the range between them, like this:
 
 ```sql
 ALTER TABLE members
@@ -175,7 +175,7 @@ ALTER TABLE members
 );
 ```
 
-Usando `SHOW CREATE TABLE`, você pode ver que a instrução `ALTER TABLE` teve o efeito desejado:
+Using [`SHOW CREATE TABLE`](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement") you can see that the `ALTER TABLE` statement has had the desired effect:
 
 ```sql
 mysql> SHOW CREATE TABLE members\G
@@ -196,9 +196,9 @@ Create Table: CREATE TABLE `members` (
 1 row in set (0.00 sec)
 ```
 
-Veja também Seção 13.1.8.1, “Operações de Partição de Tabela ALTER”.
+See also [Section 13.1.8.1, “ALTER TABLE Partition Operations”](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations").
 
-Você também pode usar `ALTER TABLE ... ADD PARTITION` para adicionar novas partições a uma tabela que está particionada por `LIST`. Suponha que uma tabela `tt` seja definida usando a seguinte instrução `CREATE TABLE` (create-table.html):
+You can also use `ALTER TABLE ... ADD PARTITION` to add new partitions to a table that is partitioned by `LIST`. Suppose a table `tt` is defined using the following [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement:
 
 ```sql
 CREATE TABLE tt (
@@ -211,13 +211,13 @@ PARTITION BY LIST(data) (
 );
 ```
 
-Você pode adicionar uma nova partição para armazenar linhas com os valores da coluna `data` de `7`, `14` e `21`, conforme mostrado:
+You can add a new partition in which to store rows having the `data` column values `7`, `14`, and `21` as shown:
 
 ```sql
 ALTER TABLE tt ADD PARTITION (PARTITION p2 VALUES IN (7, 14, 21));
 ```
 
-Tenha em mente que você *não pode* adicionar uma nova partição `LIST` que abranja quaisquer valores que já estejam incluídos na lista de valores de uma partição existente. Se você tentar fazer isso, um erro será gerado:
+Keep in mind that you *cannot* add a new `LIST` partition encompassing any values that are already included in the value list of an existing partition. If you attempt to do so, an error results:
 
 ```sql
 mysql> ALTER TABLE tt ADD PARTITION
@@ -226,9 +226,9 @@ ERROR 1465 (HY000): Multiple definition of same constant »
                     in list partitioning
 ```
 
-Como todas as linhas com o valor da coluna `data` igual a `12` já foram atribuídas à partição `p1`, você não pode criar uma nova partição na tabela `tt` que inclua `12` em sua lista de valores. Para isso, você poderia excluir `p1` e adicionar `np` e, em seguida, um novo `p1` com uma definição modificada. No entanto, como discutido anteriormente, isso resultaria na perda de todos os dados armazenados em `p1` — e muitas vezes isso não é o que você realmente deseja fazer. Outra solução pode parecer ser fazer uma cópia da tabela com a nova partição e copiar os dados nela usando `CREATE TABLE ... SELECT ...`, depois excluir a tabela antiga e renomear a nova, mas isso pode ser muito demorado ao lidar com grandes quantidades de dados. Isso também pode não ser viável em situações em que a alta disponibilidade é um requisito.
+Because any rows with the `data` column value `12` have already been assigned to partition `p1`, you cannot create a new partition on table `tt` that includes `12` in its value list. To accomplish this, you could drop `p1`, and add `np` and then a new `p1` with a modified definition. However, as discussed earlier, this would result in the loss of all data stored in `p1`—and it is often the case that this is not what you really want to do. Another solution might appear to be to make a copy of the table with the new partitioning and to copy the data into it using [`CREATE TABLE ... SELECT ...`](create-table.html "13.1.18 CREATE TABLE Statement"), then drop the old table and rename the new one, but this could be very time-consuming when dealing with a large amounts of data. This also might not be feasible in situations where high availability is a requirement.
 
-Você pode adicionar múltiplas partições em uma única instrução `ALTER TABLE ... ADD PARTITION`, como mostrado aqui:
+You can add multiple partitions in a single `ALTER TABLE ... ADD PARTITION` statement as shown here:
 
 ```sql
 CREATE TABLE employees (
@@ -250,7 +250,7 @@ ALTER TABLE employees ADD PARTITION (
 );
 ```
 
-Felizmente, a implementação de particionamento do MySQL oferece maneiras de redefinir particionamentos sem perder dados. Vamos primeiro analisar alguns exemplos simples envolvendo particionamento `RANGE`. Lembre-se da tabela `members`, que agora está definida como mostrado aqui:
+Fortunately, MySQL's partitioning implementation provides ways to redefine partitions without losing data. Let us look first at a couple of simple examples involving `RANGE` partitioning. Recall the `members` table which is now defined as shown here:
 
 ```sql
 mysql> SHOW CREATE TABLE members\G
@@ -271,7 +271,7 @@ Create Table: CREATE TABLE `members` (
 1 row in set (0.00 sec)
 ```
 
-Suponha que você queira mover todas as linhas que representam membros nascidos antes de 1960 para uma partição separada. Como já vimos, isso não pode ser feito usando `ALTER TABLE ... ADD PARTITION`. No entanto, você pode usar outra extensão relacionada a partições no `ALTER TABLE` para realizar isso:
+Suppose that you would like to move all rows representing members born before 1960 into a separate partition. As we have already seen, this cannot be done using [`ALTER TABLE ... ADD PARTITION`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations"). However, you can use another partition-related extension to [`ALTER TABLE`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") to accomplish this:
 
 ```sql
 ALTER TABLE members REORGANIZE PARTITION n0 INTO (
@@ -280,9 +280,9 @@ ALTER TABLE members REORGANIZE PARTITION n0 INTO (
 );
 ```
 
-Na verdade, este comando divide a partição `n0` em duas novas partições `s0` e `s1`. Ele também move os dados que estavam armazenados em `n0` para as novas partições de acordo com as regras incorporadas nas duas cláusulas `PARTITION ... VALUES ...`, de modo que `s0` contém apenas os registros para os quais `YEAR(dob)` é menor que 1960 e `s1` contém as linhas nas quais `YEAR(dob)` é maior ou igual a 1960, mas menor que 1970.
+In effect, this command splits partition `n0` into two new partitions `s0` and `s1`. It also moves the data that was stored in `n0` into the new partitions according to the rules embodied in the two `PARTITION ... VALUES ...` clauses, so that `s0` contains only those records for which [`YEAR(dob)`](date-and-time-functions.html#function_year) is less than 1960 and `s1` contains those rows in which [`YEAR(dob)`](date-and-time-functions.html#function_year) is greater than or equal to 1960 but less than 1970.
 
-Uma cláusula `REORGANIZE PARTITION` também pode ser usada para a fusão de partições adjacentes. Você pode reverter o efeito da declaração anterior na tabela `members` como mostrado aqui:
+A `REORGANIZE PARTITION` clause may also be used for merging adjacent partitions. You can reverse the effect of the previous statement on the `members` table as shown here:
 
 ```sql
 ALTER TABLE members REORGANIZE PARTITION s0,s1 INTO (
@@ -290,9 +290,9 @@ ALTER TABLE members REORGANIZE PARTITION s0,s1 INTO (
 );
 ```
 
-Nenhum dado é perdido ao dividir ou unir partições usando `REORGANIZE PARTITION`. Ao executar a declaração acima, o MySQL move todos os registros que estavam armazenados nas partições `s0` e `s1` para a partição `p0`.
+No data is lost in splitting or merging partitions using `REORGANIZE PARTITION`. In executing the above statement, MySQL moves all of the records that were stored in partitions `s0` and `s1` into partition `p0`.
 
-A sintaxe geral para `REORGANIZE PARTITION` é mostrada aqui:
+The general syntax for `REORGANIZE PARTITION` is shown here:
 
 ```sql
 ALTER TABLE tbl_name
@@ -300,7 +300,7 @@ ALTER TABLE tbl_name
     INTO (partition_definitions);
 ```
 
-Aqui, *`tbl_name`* é o nome da tabela particionada e *`partition_list`* é uma lista separada por vírgula de nomes de uma ou mais partições existentes que serão alteradas. *`partition_definitions`* é uma lista separada por vírgula de novas definições de partição, que seguem as mesmas regras que as listadas em *`partition_definitions`* usadas em `CREATE TABLE`. Ao usar `REORGANIZE PARTITION`, você não está limitado a fundir várias partições em uma ou a dividir uma partição em várias. Por exemplo, você pode reorganizar todas as quatro partições da tabela `members` em duas, da seguinte forma:
+Here, *`tbl_name`* is the name of the partitioned table, and *`partition_list`* is a comma-separated list of names of one or more existing partitions to be changed. *`partition_definitions`* is a comma-separated list of new partition definitions, which follow the same rules as for the *`partition_definitions`* list used in [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement"). You are not limited to merging several partitions into one, or to splitting one partition into many, when using `REORGANIZE PARTITION`. For example, you can reorganize all four partitions of the `members` table into two, like this:
 
 ```sql
 ALTER TABLE members REORGANIZE PARTITION p0,p1,p2,p3 INTO (
@@ -309,7 +309,7 @@ ALTER TABLE members REORGANIZE PARTITION p0,p1,p2,p3 INTO (
 );
 ```
 
-Você também pode usar `REORGANIZE PARTITION` com tabelas que são particionadas por `LIST`. Vamos voltar ao problema de adicionar uma nova partição à tabela `tt` particionada por `LIST` e falhar porque a nova partição tinha um valor que já estava presente na lista de valores de uma das partições existentes. Podemos resolver isso adicionando uma partição que contenha apenas valores não conflitantes e, em seguida, reorganizando a nova partição e a existente para que o valor que foi armazenado na existente agora seja movido para a nova:
+You can also use `REORGANIZE PARTITION` with tables that are partitioned by `LIST`. Let us return to the problem of adding a new partition to the list-partitioned `tt` table and failing because the new partition had a value that was already present in the value-list of one of the existing partitions. We can handle this by adding a partition that contains only nonconflicting values, and then reorganizing the new partition and the existing one so that the value which was stored in the existing one is now moved to the new one:
 
 ```sql
 ALTER TABLE tt ADD PARTITION (PARTITION np VALUES IN (4, 8));
@@ -319,21 +319,21 @@ ALTER TABLE tt REORGANIZE PARTITION p1,np INTO (
 );
 ```
 
-Aqui estão alguns pontos importantes a serem lembrados ao usar `ALTER TABLE ... REORGANIZE PARTITION` para repartir tabelas que são particionadas por `RANGE` ou `LIST`:
+Here are some key points to keep in mind when using `ALTER TABLE ... REORGANIZE PARTITION` to repartition tables that are partitioned by `RANGE` or `LIST`:
 
-- As opções `PARTITION` usadas para determinar o novo esquema de particionamento estão sujeitas às mesmas regras que as usadas com uma declaração `CREATE TABLE` (create-table.html).
+* The `PARTITION` options used to determine the new partitioning scheme are subject to the same rules as those used with a [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement.
 
-  Um novo esquema de particionamento `RANGE` não pode ter nenhum intervalo sobreposto; um novo esquema de particionamento `LIST` não pode ter nenhum conjunto de valores sobreposto.
+  A new `RANGE` partitioning scheme cannot have any overlapping ranges; a new `LIST` partitioning scheme cannot have any overlapping sets of values.
 
-- A combinação das partições na lista *`partition_definitions`* deve considerar o mesmo intervalo ou conjunto de valores em geral que as partições combinadas nomeadas na *`partition_list`*.
+* The combination of partitions in the *`partition_definitions`* list should account for the same range or set of values overall as the combined partitions named in the *`partition_list`*.
 
-  Por exemplo, as partições `p1` e `p2` cobrem juntos os anos de 1980 a 1999 na tabela `members` usada como exemplo nesta seção. Qualquer reorganização dessas duas partições deve cobrir o mesmo intervalo de anos no geral.
+  For example, partitions `p1` and `p2` together cover the years 1980 through 1999 in the `members` table used as an example in this section. Any reorganization of these two partitions should cover the same range of years overall.
 
-- Para tabelas particionadas por `RANGE`, você pode reorganizar apenas as partições adjacentes; não é possível pular partições de intervalo.
+* For tables partitioned by `RANGE`, you can reorganize only adjacent partitions; you cannot skip range partitions.
 
-  Por exemplo, você não poderia reorganizar a tabela `members` usando uma instrução que comece com `ALTER TABLE members REORGANIZE PARTITION p0,p2 INTO ...`, porque `p0` abrange os anos anteriores a 1970 e `p2` os anos de 1990 a 1999, inclusive, então essas não são partições adjacentes. (Você não pode pular a partição `p1` neste caso.)
+  For instance, you could not reorganize the example `members` table using a statement beginning with `ALTER TABLE members REORGANIZE PARTITION p0,p2 INTO ...` because `p0` covers the years prior to 1970 and `p2` the years from 1990 through 1999 inclusive, so these are not adjacent partitions. (You cannot skip partition `p1` in this case.)
 
-- Você não pode usar `REORGANIZE PARTITION` para alterar o tipo de particionamento usado pela tabela (por exemplo, você não pode alterar particionamentos `RANGE` para particionamentos `HASH` ou vice-versa). Você também não pode usar essa instrução para alterar a expressão de particionamento ou coluna. Para realizar qualquer uma dessas tarefas sem descartar e recriar a tabela, você pode usar `ALTER TABLE ... PARTITION BY ...`, como mostrado aqui:
+* You cannot use `REORGANIZE PARTITION` to change the type of partitioning used by the table (for example, you cannot change `RANGE` partitions to `HASH` partitions or the reverse). You also cannot use this statement to change the partitioning expression or column. To accomplish either of these tasks without dropping and re-creating the table, you can use [`ALTER TABLE ... PARTITION BY ...`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations"), as shown here:
 
   ```sql
   ALTER TABLE members

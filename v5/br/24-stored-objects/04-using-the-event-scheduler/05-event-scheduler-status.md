@@ -1,8 +1,8 @@
-### 23.4.5 Status do Cronômetro de Eventos
+### 23.4.5 Event Scheduler Status
 
-O Agendamento de Eventos escreve informações sobre a execução de eventos que terminam com um erro ou aviso no log de erro do Servidor MySQL. Veja a Seção 23.4.6, “O Agendamento de Eventos e os Privilegios do MySQL”, para um exemplo.
+The Event Scheduler writes information about event execution that terminates with an error or warning to the MySQL Server's error log. See Section 23.4.6, “The Event Scheduler and MySQL Privileges” for an example.
 
-Para obter informações sobre o estado do Agendamento de Eventos para fins de depuração e solução de problemas, execute **mysqladmin debug** (consulte a Seção 4.5.2, “mysqladmin — Um programa de administração do servidor MySQL”); após executar esse comando, o log de erros do servidor contém saída relacionada ao Agendamento de Eventos, semelhante ao que é mostrado aqui:
+To obtain information about the state of the Event Scheduler for debugging and troubleshooting purposes, run **mysqladmin debug** (see Section 4.5.2, “mysqladmin — A MySQL Server Administration Program”); after running this command, the server's error log contains output relating to the Event Scheduler, similar to what is shown here:
 
 ```sql
 Events status:
@@ -29,4 +29,4 @@ WOC             : NO
 Next activation : never
 ```
 
-Em declarações que ocorrem como parte de eventos executados pelo Agendamento de Eventos, mensagens de diagnóstico (não apenas erros, mas também avisos) são escritas no log de erros e, no Windows, no log de eventos da aplicação. Para eventos executados com frequência, isso pode resultar em muitas mensagens registradas. Por exemplo, para declarações `SELECT ... INTO var_list`, se a consulta não retornar nenhuma linha, um aviso com o código de erro 1329 ocorre (`Nenhum dado`) e os valores das variáveis permanecem inalterados. Se a consulta retornar várias linhas, ocorre o erro 1172 (`O resultado consistiu em mais de uma linha`). Para qualquer uma dessas condições, é possível evitar que os avisos sejam registrados ao declarar um manipulador de condição; veja a Seção 13.6.7.2, “Declaração ... HANDLER”. Para declarações que podem recuperar várias linhas, outra estratégia é usar `LIMIT 1` para limitar o conjunto de resultados a uma única linha.
+In statements that occur as part of events executed by the Event Scheduler, diagnostics messages (not only errors, but also warnings) are written to the error log, and, on Windows, to the application event log. For frequently executed events, it is possible for this to result in many logged messages. For example, for `SELECT ... INTO var_list` statements, if the query returns no rows, a warning with error code 1329 occurs (`No data`), and the variable values remain unchanged. If the query returns multiple rows, error 1172 occurs (`Result consisted of more than one row`). For either condition, you can avoid having the warnings be logged by declaring a condition handler; see Section 13.6.7.2, “DECLARE ... HANDLER Statement”. For statements that may retrieve multiple rows, another strategy is to use `LIMIT 1` to limit the result set to a single row.

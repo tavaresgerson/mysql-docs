@@ -1,24 +1,24 @@
-### 24.4.18 A tabela INFORMATION_SCHEMA INNODB_SYS_DATAFILES
+### 24.4.18 The INFORMATION_SCHEMA INNODB_SYS_DATAFILES Table
 
-A tabela [`INNODB_SYS_DATAFILES`](https://pt.wikipedia.org/wiki/Tabela_SYS_DATAFILES) fornece informações sobre o caminho dos arquivos de dados para os espaços de tabela por arquivo `InnoDB` e espaços de tabela gerais, equivalentes às informações na tabela `SYS_DATAFILES` no dicionário de dados `InnoDB`.
+The [`INNODB_SYS_DATAFILES`](information-schema-innodb-sys-datafiles-table.html "24.4.18 The INFORMATION_SCHEMA INNODB_SYS_DATAFILES Table") table provides data file path information for `InnoDB` file-per-table and general tablespaces, equivalent to the information in the `SYS_DATAFILES` table in the `InnoDB` data dictionary.
 
-Para informações de uso relacionadas e exemplos, consulte Seção 14.16.3, “Tabelas do Sistema InnoDB INFORMATION_SCHEMA”.
+For related usage information and examples, see [Section 14.16.3, “InnoDB INFORMATION_SCHEMA System Tables”](innodb-information-schema-system-tables.html "14.16.3 InnoDB INFORMATION_SCHEMA System Tables").
 
-Nota
+Note
 
-A tabela `INFORMATION_SCHEMA` `FILES` relata metadados para todos os tipos de espaço de tabela `InnoDB`, incluindo espaços de tabela por arquivo, espaços de tabela gerais, o espaço de tabela do sistema, o espaço de tabela temporário e os espaços de tabela de rollback, se presentes.
+The `INFORMATION_SCHEMA` [`FILES`](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table") table reports metadata for all `InnoDB` tablespace types including file-per-table tablespaces, general tablespaces, the system tablespace, the temporary tablespace, and undo tablespaces, if present.
 
-A tabela [`INNODB_SYS_DATAFILES`](https://pt.wikipedia.org/wiki/Tabela_information-schema-innodb-sys-datafiles) tem as seguintes colunas:
+The [`INNODB_SYS_DATAFILES`](information-schema-innodb-sys-datafiles-table.html "24.4.18 The INFORMATION_SCHEMA INNODB_SYS_DATAFILES Table") table has these columns:
 
-- `ESPACO`
+* `SPACE`
 
-  O ID do espaço de tabelas.
+  The tablespace ID.
 
-- `PATH`
+* `PATH`
 
-  Caminho do arquivo de dados do espaço de tabelas. Se um espaço de tabela file-per-table for criado em um local fora do diretório de dados do MySQL, o valor do caminho é um caminho de diretório totalmente qualificado. Caso contrário, o caminho é relativo ao diretório de dados.
+  The tablespace data file path. If a [file-per-table](glossary.html#glos_file_per_table "file-per-table") tablespace is created in a location outside the MySQL data directory, the path value is a fully qualified directory path. Otherwise, the path is relative to the data directory.
 
-#### Exemplo
+#### Example
 
 ```sql
 mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_SYS_DATAFILES WHERE SPACE = 57\G
@@ -27,8 +27,8 @@ SPACE: 57
  PATH: ./test/t1.ibd
 ```
 
-#### Notas
+#### Notes
 
-- Você deve ter o privilégio `PROCESSO` para consultar esta tabela.
+* You must have the [`PROCESS`](privileges-provided.html#priv_process) privilege to query this table.
 
-- Use a tabela `INFORMATION_SCHEMA` `COLUMNS` ou a instrução `SHOW COLUMNS` para visualizar informações adicionais sobre as colunas desta tabela, incluindo tipos de dados e valores padrão.
+* Use the `INFORMATION_SCHEMA` [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") table or the [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") statement to view additional information about the columns of this table, including data types and default values.

@@ -1,35 +1,35 @@
-### 16.1.5 Replicação de múltiplas fontes do MySQL
+### 16.1.5 MySQL Multi-Source Replication
 
-16.1.5.1 Configurando a Replicação de Múltiplas Fontes
+[16.1.5.1 Configuring Multi-Source Replication](replication-multi-source-configuration.html)
 
-16.1.5.2 Configuração de uma Replicação de Múltiplas Fontes para Replicação Baseada em GTID
+[16.1.5.2 Provisioning a Multi-Source Replica for GTID-Based Replication](replication-multi-source-provision-replica.html)
 
-16.1.5.3 Adicionando fontes baseadas em GTID a uma réplica de múltiplas fontes
+[16.1.5.3 Adding GTID-Based Sources to a Multi-Source Replica](replication-multi-source-adding-gtid-master.html)
 
-16.1.5.4 Adicionando uma Fonte de Log de Binário a uma Replicação de Múltiplas Fontes
+[16.1.5.4 Adding a Binary Log Based Source to a Multi-Source Replica](replication-multi-source-adding-binlog-master.html)
 
-16.1.5.5 Começar Replicas de Múltiplos Fontes
+[16.1.5.5 Starting Multi-Source Replicas](replication-multi-source-start-replica.html)
 
-16.1.5.6 Parar réplicas de múltiplas fontes
+[16.1.5.6 Stopping Multi-Source Replicas](replication-multi-source-stop-replica.html)
 
-16.1.5.7 Redefinindo Replicas de Múltiplas Fontes
+[16.1.5.7 Resetting Multi-Source Replicas](replication-multi-source-reset-replica.html)
 
-16.1.5.8 Monitoramento da Replicação de Múltiplas Fontes
+[16.1.5.8 Multi-Source Replication Monitoring](replication-multi-source-monitoring.html)
 
-A replicação multi-fonte do MySQL permite que uma replica receba transações de múltiplas fontes imediatas em paralelo. Em uma topologia de replicação multi-fonte, uma replica cria um canal de replicação para cada fonte da qual deve receber transações. Para mais informações sobre como os canais de replicação funcionam, consulte Seção 16.2.2, “Canais de Replicação”.
+MySQL multi-source replication enables a replica to receive transactions from multiple immediate sources in parallel. In a multi-source replication topology, a replica creates a replication channel for each source that it should receive transactions from. For more information on how replication channels function, see [Section 16.2.2, “Replication Channels”](replication-channels.html "16.2.2 Replication Channels").
 
-Você pode optar por implementar a replicação de múltiplas fontes para alcançar objetivos como esses:
+You might choose to implement multi-source replication to achieve goals like these:
 
-- Fazer backup de vários servidores para um único servidor.
-- Unindo fragmentos de mesa.
-- Consolidação de dados de vários servidores para um único servidor.
+* Backing up multiple servers to a single server.
+* Merging table shards.
+* Consolidating data from multiple servers to a single server.
 
-A replicação de múltiplas fontes não implementa detecção ou resolução de conflitos ao aplicar transações, e essas tarefas são deixadas para o aplicativo, se necessário.
+Multi-source replication does not implement any conflict detection or resolution when applying transactions, and those tasks are left to the application if required.
 
-Nota
+Note
 
-Cada canal em uma replica multi-fonte deve replicar a partir de uma fonte diferente. Você não pode configurar múltiplos canais de replicação a partir de uma única replica para uma única fonte. Isso ocorre porque os IDs dos servidores das réplicas devem ser únicos em uma topologia de replicação. A fonte distingue as réplicas apenas por seus IDs de servidor, não pelos nomes dos canais de replicação, então ela não pode reconhecer diferentes canais de replicação da mesma replica.
+Each channel on a multi-source replica must replicate from a different source. You cannot set up multiple replication channels from a single replica to a single source. This is because the server IDs of replicas must be unique in a replication topology. The source distinguishes replicas only by their server IDs, not by the names of the replication channels, so it cannot recognize different replication channels from the same replica.
 
-Uma replica de múltiplas fontes também pode ser configurada como uma replica multisserial, definindo a variável de sistema `slave_parallel_workers` para um valor maior que 0. Quando você faz isso em uma replica de múltiplas fontes, cada canal da replica tem o número especificado de threads do aplicável, além de uma thread de coordenador para gerenciá-las. Você não pode configurar o número de threads do aplicável para canais individuais.
+A multi-source replica can also be set up as a multi-threaded replica, by setting the [`slave_parallel_workers`](replication-options-replica.html#sysvar_slave_parallel_workers) system variable to a value greater than 0. When you do this on a multi-source replica, each channel on the replica has the specified number of applier threads, plus a coordinator thread to manage them. You cannot configure the number of applier threads for individual channels.
 
-Esta seção fornece tutoriais sobre como configurar fontes e réplicas para replicação de múltiplas fontes, como iniciar, parar e reiniciar réplicas de múltiplas fontes e como monitorar a replicação de múltiplas fontes.
+This section provides tutorials on how to configure sources and replicas for multi-source replication, how to start, stop and reset multi-source replicas, and how to monitor multi-source replication.

@@ -1,14 +1,14 @@
-### 25.4.6 Pré-filtragem por Fio
+### 25.4.6 Pre-Filtering by Thread
 
-A tabela `threads` contém uma linha para cada thread do servidor. Cada linha contém informações sobre uma thread e indica se o monitoramento está habilitado para ela. Para que o Schema de Desempenho possa monitorar uma thread, essas coisas devem ser verdadeiras:
+The [`threads`](performance-schema-threads-table.html "25.12.16.4 The threads Table") table contains a row for each server thread. Each row contains information about a thread and indicates whether monitoring is enabled for it. For the Performance Schema to monitor a thread, these things must be true:
 
-- O consumidor `thread_instrumentation` na tabela `setup_consumers` (performance-schema-setup-consumers-table.html) deve ser `YES`.
+* The `thread_instrumentation` consumer in the [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") table must be `YES`.
 
-- A coluna `threads.INSTRUMENTED` deve ser `YES`.
+* The `threads.INSTRUMENTED` column must be `YES`.
 
-- O monitoramento ocorre apenas para os eventos de thread gerados a partir de instrumentos que estão habilitados na tabela `setup_instruments` (performance-schema-setup-instruments-table.html).
+* Monitoring occurs only for those thread events produced from instruments that are enabled in the [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table.
 
-A tabela `threads` também indica para cada thread do servidor se deve realizar o registro de eventos históricos. Isso inclui eventos de espera, estágio, declaração e transação e afeta o registro nessas tabelas:
+The [`threads`](performance-schema-threads-table.html "25.12.16.4 The threads Table") table also indicates for each server thread whether to perform historical event logging. This includes wait, stage, statement, and transaction events and affects logging to these tables:
 
 ```sql
 events_waits_history
@@ -21,19 +21,19 @@ events_transactions_history
 events_transactions_history_long
 ```
 
-Para que o registro de eventos históricos ocorra, essas coisas devem ser verdadeiras:
+For historical event logging to occur, these things must be true:
 
-- Os consumidores apropriados relacionados à história na tabela `setup_consumers` devem estar habilitados. Por exemplo, para registrar eventos de espera na tabela `events_waits_history` e na tabela `events_waits_history_long`, é necessário que os consumidores `events_waits_history` e `events_waits_history_long` correspondentes estejam configurados como `YES`.
+* The appropriate history-related consumers in the [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") table must be enabled. For example, wait event logging in the [`events_waits_history`](performance-schema-events-waits-history-table.html "25.12.4.2 The events_waits_history Table") and [`events_waits_history_long`](performance-schema-events-waits-history-long-table.html "25.12.4.3 The events_waits_history_long Table") tables requires the corresponding `events_waits_history` and `events_waits_history_long` consumers to be `YES`.
 
-- A coluna `threads.HISTORY` deve ser `YES`.
+* The `threads.HISTORY` column must be `YES`.
 
-- O registro ocorre apenas para aqueles eventos de thread gerados a partir de instrumentos que estão habilitados na tabela `setup_instruments` (performance-schema-setup-instruments-table.html).
+* Logging occurs only for those thread events produced from instruments that are enabled in the [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table.
 
-Para os threads de primeiro plano (resultantes de conexões de clientes), os valores iniciais das colunas `INSTRUMENTED` e `HISTORY` nas linhas da tabela `threads` são determinados pelo fato de a conta de usuário associada a um thread corresponder a qualquer linha da tabela `setup_actors`. Os valores vêm das colunas `ENABLED` e `HISTORY` da linha de correspondência da tabela `setup_actors`.
+For foreground threads (resulting from client connections), the initial values of the `INSTRUMENTED` and `HISTORY` columns in [`threads`](performance-schema-threads-table.html "25.12.16.4 The threads Table") table rows are determined by whether the user account associated with a thread matches any row in the [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table") table. The values come from the `ENABLED` and `HISTORY` columns of the matching [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table") table row.
 
-Para os threads de plano de fundo, não há um usuário associado. `INSTRUMENTED` e `HISTORY` são `YES` por padrão e `setup_actors` não é consultado.
+For background threads, there is no associated user. `INSTRUMENTED` and `HISTORY` are `YES` by default and [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table") is not consulted.
 
-O conteúdo inicial do `setup_actors` parece assim:
+The initial [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table") contents look like this:
 
 ```sql
 mysql> SELECT * FROM performance_schema.setup_actors;
@@ -44,33 +44,33 @@ mysql> SELECT * FROM performance_schema.setup_actors;
 +------+------+------+---------+---------+
 ```
 
-As colunas `HOST` e `USER` devem conter um nome de host ou usuário literal ou `%'` para corresponder a qualquer nome.
+The `HOST` and `USER` columns should contain a literal host or user name, or `'%'` to match any name.
 
-As colunas `ENABLED` e `HISTORY` indicam se a instrumentação e o registro de eventos históricos devem ser habilitados para os threads correspondentes, conforme as outras condições descritas anteriormente.
+The `ENABLED` and `HISTORY` columns indicate whether to enable instrumentation and historical event logging for matching threads, subject to the other conditions described previously.
 
-Quando o Schema de Desempenho verifica uma correspondência para cada novo thread em primeiro plano em `setup_actors`, ele tenta encontrar correspondências mais específicas primeiro, usando as colunas `USER` e `HOST` (`ROLE` é inutilizado):
+When the Performance Schema checks for a match for each new foreground thread in `setup_actors`, it tries to find more specific matches first, using the `USER` and `HOST` columns (`ROLE` is unused):
 
-- Linhas com `USER='literal'` e `HOST='literal'`.
+* Rows with `USER='literal'` and `HOST='literal'`.
 
-- Linhas com `USER='literal'` e `HOST='%'`.
+* Rows with `USER='literal'` and `HOST='%'`.
 
-- Linhas com `USER='%'` e `HOST='literal'`.
+* Rows with `USER='%'` and `HOST='literal'`.
 
-- Linhas com `USER='%'` e `HOST='%'`.
+* Rows with `USER='%'` and `HOST='%'`.
 
-A ordem em que a correspondência ocorre é importante porque diferentes linhas da configuração de `setup_actors` podem ter diferentes valores de `USER` e `HOST`. Isso permite que a instrumentação e o registro de eventos históricos sejam aplicados seletivamente por host, usuário ou conta (combinação de usuário e host), com base nos valores das colunas `ENABLED` e `HISTORY`:
+The order in which matching occurs matters because different matching [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table") rows can have different `USER` and `HOST` values. This enables instrumenting and historical event logging to be applied selectively per host, user, or account (user and host combination), based on the `ENABLED` and `HISTORY` column values:
 
-- Quando a melhor correspondência é uma linha com `ENABLED=YES`, o valor `INSTRUMENTED` para o thread se torna `YES`. Quando a melhor correspondência é uma linha com `HISTORY=YES`, o valor `HISTORY` para o thread se torna `YES`.
+* When the best match is a row with `ENABLED=YES`, the `INSTRUMENTED` value for the thread becomes `YES`. When the best match is a row with `HISTORY=YES`, the `HISTORY` value for the thread becomes `YES`.
 
-- Quando a melhor correspondência é uma linha com `ENABLED=NO`, o valor `INSTRUMENTED` para o thread se torna `NO`. Quando a melhor correspondência é uma linha com `HISTORY=NO`, o valor `HISTORY` para o thread se torna `NO`.
+* When the best match is a row with `ENABLED=NO`, the `INSTRUMENTED` value for the thread becomes `NO`. When the best match is a row with `HISTORY=NO`, the `HISTORY` value for the thread becomes `NO`.
 
-- Quando não é encontrada nenhuma correspondência, os valores `INSTRUMENTED` e `HISTORY` para o thread se tornam `NO`.
+* When no match is found, the `INSTRUMENTED` and `HISTORY` values for the thread become `NO`.
 
-As colunas `ENABLED` e `HISTORY` nas linhas de `setup_actors` podem ser definidas como `YES` ou `NO`, independentemente uma da outra. Isso significa que você pode habilitar a instrumentação separadamente da coleta de eventos históricos.
+The `ENABLED` and `HISTORY` columns in [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table") rows can be set to `YES` or `NO` independent of one another. This means you can enable instrumentation separately from whether you collect historical events.
 
-Por padrão, o monitoramento e a coleta de eventos históricos estão habilitados para todos os novos threads em primeiro plano, pois a tabela `setup_actors` inicialmente contém uma linha com `'%'` para `HOST` e `USER`. Para realizar uma correspondência mais limitada, como habilitar o monitoramento apenas para alguns threads em primeiro plano, você deve alterar essa linha, pois ela corresponde a qualquer conexão, e adicionar linhas para combinações mais específicas de `HOST`/`USER`.
+By default, monitoring and historical event collection are enabled for all new foreground threads because the [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table") table initially contains a row with `'%'` for both `HOST` and `USER`. To perform more limited matching such as to enable monitoring only for some foreground threads, you must change this row because it matches any connection, and add rows for more specific `HOST`/`USER` combinations.
 
-Suponha que você modifique `setup_actors` da seguinte forma:
+Suppose that you modify [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table") as follows:
 
 ```sql
 UPDATE performance_schema.setup_actors
@@ -87,18 +87,18 @@ INSERT INTO performance_schema.setup_actors
 VALUES('%','sam','%','NO','YES');
 ```
 
-A declaração `UPDATE` altera a correspondência padrão para desabilitar a instrumentação e a coleta de eventos históricos. As declarações `INSERT` adicionam linhas para correspondências mais específicas.
+The [`UPDATE`](update.html "13.2.11 UPDATE Statement") statement changes the default match to disable instrumentation and historical event collection. The [`INSERT`](insert.html "13.2.5 INSERT Statement") statements add rows for more specific matches.
 
-Agora, o Schema de Desempenho determina como definir os valores `INSTRUMENTED` e `HISTORY` para novos threads de conexão da seguinte forma:
+Now the Performance Schema determines how to set the `INSTRUMENTED` and `HISTORY` values for new connection threads as follows:
 
-- Se `joe` se conectar a partir do host local, a conexão corresponderá à primeira linha inserida. Os valores `INSTRUMENTED` e `HISTORY` para o thread se tornarão `YES`.
+* If `joe` connects from the local host, the connection matches the first inserted row. The `INSTRUMENTED` and `HISTORY` values for the thread become `YES`.
 
-- Se `joe` se conectar a partir de `hosta.example.com`, a conexão corresponderá à segunda linha inserida. O valor `INSTRUMENTED` para o thread se tornará `YES` e o valor `HISTORY` se tornará `NO`.
+* If `joe` connects from `hosta.example.com`, the connection matches the second inserted row. The `INSTRUMENTED` value for the thread becomes `YES` and the `HISTORY` value becomes `NO`.
 
-- Se `joe` se conectar a qualquer outro host, não há correspondência. Os valores `INSTRUMENTED` e `HISTORY` para o thread se tornam `NO`.
+* If `joe` connects from any other host, there is no match. The `INSTRUMENTED` and `HISTORY` values for the thread become `NO`.
 
-- Se o `sam` se conectar a qualquer host, a conexão corresponderá à terceira linha inserida. O valor `INSTRUMENTED` para o thread se tornará `NO` e o valor `HISTORY` se tornará `YES`.
+* If `sam` connects from any host, the connection matches the third inserted row. The `INSTRUMENTED` value for the thread becomes `NO` and the `HISTORY` value becomes `YES`.
 
-- Para qualquer outra conexão, a linha com `HOST` e `USER` definidos como `'%'` corresponde. Essa linha agora tem `ENABLED` e `HISTORY` definidos como `NO`, então os valores `INSTRUMENTED` e `HISTORY` para o thread se tornam `NO`.
+* For any other connection, the row with `HOST` and `USER` set to `'%'` matches. This row now has `ENABLED` and `HISTORY` set to `NO`, so the `INSTRUMENTED` and `HISTORY` values for the thread become `NO`.
 
-As modificações na tabela `setup_actors` afetam apenas os threads de primeiro plano criados após a modificação, e não os threads existentes. Para afetar os threads existentes, modifique as colunas `INSTRUMENTED` e `HISTORY` das linhas da tabela `[threads]` (performance-schema-threads-table.html).
+Modifications to the [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table") table affect only foreground threads created subsequent to the modification, not existing threads. To affect existing threads, modify the `INSTRUMENTED` and `HISTORY` columns of [`threads`](performance-schema-threads-table.html "25.12.16.4 The threads Table") table rows.

@@ -1,44 +1,44 @@
-### 24.4.7 As tabelas INFORMATION_SCHEMA INNODB_CMP_PER_INDEX e INNODB_CMP_PER_INDEX_RESET
+### 24.4.7 The INFORMATION_SCHEMA INNODB_CMP_PER_INDEX and INNODB_CMP_PER_INDEX_RESET Tables
 
-As tabelas [`INNODB_CMP_PER_INDEX`](https://pt.wikipedia.org/wiki/T%C3%A1bula_INNODB_CMP_PER_INDEX) e [`INNODB_CMP_PER_INDEX_RESET`](https://pt.wikipedia.org/wiki/T%C3%A1bula_INNODB_CMP_PER_INDEX_RESET) fornecem informações de status sobre operações relacionadas a tabelas e índices `InnoDB` compactados, com estatísticas separadas para cada combinação de banco de dados, tabela e índice, para ajudá-lo a avaliar o desempenho e a utilidade da compactação para tabelas específicas.
+The [`INNODB_CMP_PER_INDEX`](information-schema-innodb-cmp-per-index-table.html "24.4.7 The INFORMATION_SCHEMA INNODB_CMP_PER_INDEX and INNODB_CMP_PER_INDEX_RESET Tables") and [`INNODB_CMP_PER_INDEX_RESET`](information-schema-innodb-cmp-per-index-table.html "24.4.7 The INFORMATION_SCHEMA INNODB_CMP_PER_INDEX and INNODB_CMP_PER_INDEX_RESET Tables") tables provide status information on operations related to [compressed](glossary.html#glos_compression "compression") `InnoDB` tables and indexes, with separate statistics for each combination of database, table, and index, to help you evaluate the performance and usefulness of compression for specific tables.
 
-Para uma tabela `InnoDB` compactada, tanto os dados da tabela quanto todos os índices secundários são compactados. Nesse contexto, os dados da tabela são tratados como apenas outro índice, que por acaso contém todas as colunas: o índice agrupado.
+For a compressed `InnoDB` table, both the table data and all the [secondary indexes](glossary.html#glos_secondary_index "secondary index") are compressed. In this context, the table data is treated as just another index, one that happens to contain all the columns: the [clustered index](glossary.html#glos_clustered_index "clustered index").
 
-As tabelas [`INNODB_CMP_PER_INDEX`](https://pt.wikipedia.org/wiki/Tabela_information-schema-innodb-cmp-per-index) e [`INNODB_CMP_PER_INDEX_RESET`](https://pt.wikipedia.org/wiki/Tabela_information-schema-innodb-cmp-per-index) possuem as seguintes colunas:
+The [`INNODB_CMP_PER_INDEX`](information-schema-innodb-cmp-per-index-table.html "24.4.7 The INFORMATION_SCHEMA INNODB_CMP_PER_INDEX and INNODB_CMP_PER_INDEX_RESET Tables") and [`INNODB_CMP_PER_INDEX_RESET`](information-schema-innodb-cmp-per-index-table.html "24.4.7 The INFORMATION_SCHEMA INNODB_CMP_PER_INDEX and INNODB_CMP_PER_INDEX_RESET Tables") tables have these columns:
 
-- `DATABASE_NAME`
+* `DATABASE_NAME`
 
-  O esquema (banco de dados) que contém a tabela aplicável.
+  The schema (database) containing the applicable table.
 
-- `NOME_TABELA`
+* `TABLE_NAME`
 
-  A tabela para monitorar as estatísticas de compressão.
+  The table to monitor for compression statistics.
 
-- `INDEX_NAME`
+* `INDEX_NAME`
 
-  O índice para monitorar as estatísticas de compressão.
+  The index to monitor for compression statistics.
 
-- `COMPRESS_OPS`
+* `COMPRESS_OPS`
 
-  O número de operações de compressão realizadas. As páginas Pages são comprimidas sempre que uma página vazia é criada ou quando o espaço para o log de modificação não comprimido esgota-se.
+  The number of compression operations attempted. [Pages](glossary.html#glos_page "page") are compressed whenever an empty page is created or the space for the uncompressed modification log runs out.
 
-- `COMPRESS_OPS_OK`
+* `COMPRESS_OPS_OK`
 
-  O número de operações de compressão bem-sucedidas. Subtraia do valor `COMPRESS_OPS` para obter o número de falhas de compressão. Divida pelo valor `COMPRESS_OPS` para obter a porcentagem de falhas de compressão.
+  The number of successful compression operations. Subtract from the `COMPRESS_OPS` value to get the number of [compression failures](glossary.html#glos_compression_failure "compression failure"). Divide by the `COMPRESS_OPS` value to get the percentage of compression failures.
 
-- `COMPRESS_TIME`
+* `COMPRESS_TIME`
 
-  O tempo total em segundos usado para comprimir os dados neste índice.
+  The total time in seconds used for compressing data in this index.
 
-- `UNCOMPRESS_OPS`
+* `UNCOMPRESS_OPS`
 
-  O número de operações de descompactação realizadas. As páginas compactadas do `InnoDB` são descompactadas sempre que a compactação falha, ou pela primeira vez que uma página compactada é acessada no buffer pool e a página descompactada não existe.
+  The number of uncompression operations performed. Compressed `InnoDB` pages are uncompressed whenever compression [fails](glossary.html#glos_compression_failure "compression failure"), or the first time a compressed page is accessed in the [buffer pool](glossary.html#glos_buffer_pool "buffer pool") and the uncompressed page does not exist.
 
-- `UNCOMPRESS_TIME`
+* `UNCOMPRESS_TIME`
 
-  O tempo total em segundos usado para descompactação dos dados neste índice.
+  The total time in seconds used for uncompressing data in this index.
 
-#### Exemplo
+#### Example
 
 ```sql
 mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_CMP_PER_INDEX\G
@@ -62,14 +62,14 @@ compress_ops_ok: 0
 uncompress_time: 0
 ```
 
-#### Notas
+#### Notes
 
-- Use essas tabelas para medir a eficácia da tabela `InnoDB` compressão para tabelas específicas, índices ou ambas.
+* Use these tables to measure the effectiveness of `InnoDB` table [compression](glossary.html#glos_compression "compression") for specific tables, indexes, or both.
 
-- Você deve ter o privilégio `PROCESSO` para consultar essas tabelas.
+* You must have the [`PROCESS`](privileges-provided.html#priv_process) privilege to query these tables.
 
-- Use a tabela `INFORMATION_SCHEMA `COLUMNS` ou a instrução `SHOW COLUMNS\` para visualizar informações adicionais sobre as colunas dessas tabelas, incluindo tipos de dados e valores padrão.
+* Use the `INFORMATION_SCHEMA` [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") table or the [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") statement to view additional information about the columns of these tables, including data types and default values.
 
-- Como a coleta de medições separadas para cada índice impõe um custo de desempenho substancial, as estatísticas `INNODB_CMP_PER_INDEX` e `INNODB_CMP_PER_INDEX_RESET` não são coletadas por padrão. Você deve habilitar a variável de sistema `innodb_cmp_per_index_enabled` antes de realizar as operações em tabelas compactadas que você deseja monitorar.
+* Because collecting separate measurements for every index imposes substantial performance overhead, [`INNODB_CMP_PER_INDEX`](information-schema-innodb-cmp-per-index-table.html "24.4.7 The INFORMATION_SCHEMA INNODB_CMP_PER_INDEX and INNODB_CMP_PER_INDEX_RESET Tables") and [`INNODB_CMP_PER_INDEX_RESET`](information-schema-innodb-cmp-per-index-table.html "24.4.7 The INFORMATION_SCHEMA INNODB_CMP_PER_INDEX and INNODB_CMP_PER_INDEX_RESET Tables") statistics are not gathered by default. You must enable the [`innodb_cmp_per_index_enabled`](innodb-parameters.html#sysvar_innodb_cmp_per_index_enabled) system variable before performing the operations on compressed tables that you want to monitor.
 
-- Para informações sobre uso, consulte Seção 14.9.1.4, “Monitoramento da Compressão de Tabelas InnoDB em Tempo Real” e Seção 14.16.1.3, “Uso das Tabelas do Esquema de Informações de Compressão”. Para informações gerais sobre a compressão de tabelas `InnoDB`, consulte Seção 14.9, “Compressão de Tabelas e Páginas InnoDB”.
+* For usage information, see [Section 14.9.1.4, “Monitoring InnoDB Table Compression at Runtime”](innodb-compression-tuning-monitoring.html "14.9.1.4 Monitoring InnoDB Table Compression at Runtime") and [Section 14.16.1.3, “Using the Compression Information Schema Tables”](innodb-information-schema-examples-compression-sect.html "14.16.1.3 Using the Compression Information Schema Tables"). For general information about `InnoDB` table compression, see [Section 14.9, “InnoDB Table and Page Compression”](innodb-compression.html "14.9 InnoDB Table and Page Compression").

@@ -1,37 +1,37 @@
-### 16.1.3 Replicação com Identificadores de Transação Global
+### 16.1.3 Replication with Global Transaction Identifiers
 
-16.1.3.1 Formato e Armazenamento do GTID
+[16.1.3.1 GTID Format and Storage](replication-gtids-concepts.html)
 
-16.1.3.2 Ciclo de vida do GTID
+[16.1.3.2 GTID Life Cycle](replication-gtids-lifecycle.html)
 
-16.1.3.3 GTID Auto-posicionamento
+[16.1.3.3 GTID Auto-Positioning](replication-gtids-auto-positioning.html)
 
-16.1.3.4 Configurando a replicação usando GTIDs
+[16.1.3.4 Setting Up Replication Using GTIDs](replication-gtids-howto.html)
 
-16.1.3.5 Uso de GTIDs para Failover e Scaleout
+[16.1.3.5 Using GTIDs for Failover and Scaleout](replication-gtids-failover.html)
 
-16.1.3.6 Restrições à replicação com GTIDs
+[16.1.3.6 Restrictions on Replication with GTIDs](replication-gtids-restrictions.html)
 
-16.1.3.7 Exemplos de funções armazenadas para manipular GTIDs
+[16.1.3.7 Stored Function Examples to Manipulate GTIDs](replication-gtids-functions.html)
 
-Esta seção explica a replicação baseada em transações usando identificadores de transação global (GTIDs). Ao usar GTIDs, cada transação pode ser identificada e rastreada à medida que é comprometida no servidor de origem e aplicada por quaisquer réplicas; isso significa que não é necessário, ao usar GTIDs, referir-se a arquivos de log ou posições dentro desses arquivos ao iniciar uma nova réplica ou ao fazer uma transição para uma nova fonte, o que simplifica muito essas tarefas. Como a replicação baseada em GTIDs é completamente baseada em transações, é simples determinar se as fontes e réplicas estão consistentes; desde que todas as transações comprometidas em uma fonte também estejam comprometidas em uma réplica, a consistência entre as duas é garantida. Você pode usar a replicação baseada em declarações ou baseada em linhas com GTIDs (consulte Seção 16.2.1, “Formatos de Replicação”); no entanto, para obter os melhores resultados, recomendamos que você use o formato baseado em linhas.
+This section explains transaction-based replication using global transaction identifiers (GTIDs). When using GTIDs, each transaction can be identified and tracked as it is committed on the originating server and applied by any replicas; this means that it is not necessary when using GTIDs to refer to log files or positions within those files when starting a new replica or failing over to a new source, which greatly simplifies these tasks. Because GTID-based replication is completely transaction-based, it is simple to determine whether sources and replicas are consistent; as long as all transactions committed on a source are also committed on a replica, consistency between the two is guaranteed. You can use either statement-based or row-based replication with GTIDs (see [Section 16.2.1, “Replication Formats”](replication-formats.html "16.2.1 Replication Formats")); however, for best results, we recommend that you use the row-based format.
 
-Os GTIDs são sempre preservados entre a fonte e a réplica. Isso significa que você sempre pode determinar a fonte de qualquer transação aplicada em qualquer réplica ao examinar seu log binário. Além disso, uma vez que uma transação com um GTID específico seja confirmada em um servidor específico, qualquer transação subsequente com o mesmo GTID será ignorada por esse servidor. Assim, uma transação confirmada na fonte pode ser aplicada no máximo uma vez na réplica, o que ajuda a garantir a consistência.
+GTIDs are always preserved between source and replica. This means that you can always determine the source for any transaction applied on any replica by examining its binary log. In addition, once a transaction with a given GTID is committed on a given server, any subsequent transaction having the same GTID is ignored by that server. Thus, a transaction committed on the source can be applied no more than once on the replica, which helps to guarantee consistency.
 
-Esta seção discute os seguintes tópicos:
+This section discusses the following topics:
 
-- Como os GTIDs são definidos e criados, e como são representados em um servidor MySQL (consulte Seção 16.1.3.1, “Formato e Armazenamento de GTID”).
+* How GTIDs are defined and created, and how they are represented in a MySQL server (see [Section 16.1.3.1, “GTID Format and Storage”](replication-gtids-concepts.html "16.1.3.1 GTID Format and Storage")).
 
-- O ciclo de vida de um GTID (ver Seção 16.1.3.2, “Ciclo de Vida do GTID”).
+* The life cycle of a GTID (see [Section 16.1.3.2, “GTID Life Cycle”](replication-gtids-lifecycle.html "16.1.3.2 GTID Life Cycle")).
 
-- A função de autoposicionamento para sincronizar uma réplica e uma fonte que utilizam GTIDs (consulte Seção 16.1.3.3, “Autoposicionamento de GTID”).
+* The auto-positioning function for synchronizing a replica and source that use GTIDs (see [Section 16.1.3.3, “GTID Auto-Positioning”](replication-gtids-auto-positioning.html "16.1.3.3 GTID Auto-Positioning")).
 
-- Um procedimento geral para configurar e iniciar a replicação baseada em GTIDs (consulte Seção 16.1.3.4, “Configuração da Replicação Usando GTIDs”).
+* A general procedure for setting up and starting GTID-based replication (see [Section 16.1.3.4, “Setting Up Replication Using GTIDs”](replication-gtids-howto.html "16.1.3.4 Setting Up Replication Using GTIDs")).
 
-- Métodos sugeridos para provisionamento de novos servidores de replicação ao usar GTIDs (consulte Seção 16.1.3.5, “Uso de GTIDs para Failover e Scaleout”).
+* Suggested methods for provisioning new replication servers when using GTIDs (see [Section 16.1.3.5, “Using GTIDs for Failover and Scaleout”](replication-gtids-failover.html "16.1.3.5 Using GTIDs for Failover and Scaleout")).
 
-- Restrições e limitações que você deve estar ciente ao usar a replicação baseada em GTID (consulte Seção 16.1.3.6, “Restrições na replicação com GTIDs”).
+* Restrictions and limitations that you should be aware of when using GTID-based replication (see [Section 16.1.3.6, “Restrictions on Replication with GTIDs”](replication-gtids-restrictions.html "16.1.3.6 Restrictions on Replication with GTIDs")).
 
-- Funções armazenadas que você pode usar para trabalhar com GTIDs (veja Seção 16.1.3.7, “Exemplos de Função Armazenada para Manipular GTIDs”).
+* Stored functions that you can use to work with GTIDs (see [Section 16.1.3.7, “Stored Function Examples to Manipulate GTIDs”](replication-gtids-functions.html "16.1.3.7 Stored Function Examples to Manipulate GTIDs")).
 
-Para obter informações sobre as opções e variáveis do MySQL Server relacionadas à replicação baseada em GTID, consulte Seção 16.1.6.5, “Variáveis do Sistema de ID de Transação Global”. Veja também Seção 12.18, “Funções Usadas com Identificadores de Transação Global (GTIDs)”, que descreve as funções SQL suportadas pelo MySQL 5.7 para uso com GTIDs.
+For information about MySQL Server options and variables relating to GTID-based replication, see [Section 16.1.6.5, “Global Transaction ID System Variables”](replication-options-gtids.html "16.1.6.5 Global Transaction ID System Variables"). See also [Section 12.18, “Functions Used with Global Transaction Identifiers (GTIDs)”](gtid-functions.html "12.18 Functions Used with Global Transaction Identifiers (GTIDs)"), which describes SQL functions supported by MySQL 5.7 for use with GTIDs.

@@ -1,26 +1,26 @@
-## 12.11 Funções XML
+## 12.11 XML Functions
 
-**Tabela 12.16 Funções XML**
+**Table 12.16 XML Functions**
 
-<table frame="box" rules="all" summary="Uma referência que lista as funções XML."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>ExtractValue()</code></td> <td>Extrair um valor de uma string XML usando a notação XPath</td> </tr><tr><td><code>UpdateXML()</code></td> <td>Retorno substituiu o fragmento XML</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists XML functions."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>ExtractValue()</code></td> <td> Extract a value from an XML string using XPath notation </td> </tr><tr><td><code>UpdateXML()</code></td> <td> Return replaced XML fragment </td> </tr></tbody></table>
 
-Esta seção discute o XML e as funcionalidades relacionadas no MySQL.
+This section discusses XML and related functionality in MySQL.
 
-Nota
+Note
 
-É possível obter saída formatada em XML do MySQL nos clientes **mysql** e **mysqldump** ao invocá-los com a opção `--xml`. Veja a Seção 4.5.1, “mysql — O Cliente de Linha de Comando do MySQL”, e a Seção 4.5.4, “mysqldump — Um Programa de Backup de Banco de Dados”.
+It is possible to obtain XML-formatted output from MySQL in the **mysql** and **mysqldump** clients by invoking them with the `--xml` option. See Section 4.5.1, “mysql — The MySQL Command-Line Client”, and Section 4.5.4, “mysqldump — A Database Backup Program”.
 
-Dois recursos que oferecem funcionalidades básicas do XPath 1.0 (Linguagem de Caminho XML, versão 1.0) estão disponíveis. Algumas informações básicas sobre a sintaxe e o uso do XPath são fornecidas mais adiante nesta seção; no entanto, uma discussão aprofundada desses tópicos está além do escopo deste manual, e você deve consultar o padrão XML Path Language (XPath) 1.0 para obter informações definitivas. Um recurso útil para aqueles que são novos no XPath ou que desejam um reforço nos conceitos básicos é o Zvon.org XPath Tutorial, que está disponível em vários idiomas.
+Two functions providing basic XPath 1.0 (XML Path Language, version 1.0) capabilities are available. Some basic information about XPath syntax and usage is provided later in this section; however, an in-depth discussion of these topics is beyond the scope of this manual, and you should refer to the XML Path Language (XPath) 1.0 standard for definitive information. A useful resource for those new to XPath or who desire a refresher in the basics is the Zvon.org XPath Tutorial, which is available in several languages.
 
-Nota
+Note
 
-Essas funções continuam em desenvolvimento. Continuamos a melhorar essas e outros aspectos da funcionalidade do XML e XPath no MySQL 5.7 e em versões posteriores. Você pode discutir essas funcionalidades, fazer perguntas sobre elas e obter ajuda de outros usuários no [Fórum de Usuários de XML do MySQL](https://forums.mysql.com/list.php?44).
+These functions remain under development. We continue to improve these and other aspects of XML and XPath functionality in MySQL 5.7 and onwards. You may discuss these, ask questions about them, and obtain help from other users with them in the [MySQL XML User Forum](https://forums.mysql.com/list.php?44).
 
-As expressões XPath usadas com essas funções suportam variáveis de usuário e variáveis de programas armazenados localmente. As variáveis de usuário são verificadas de forma fraca; as variáveis locais dos programas armazenados são verificadas de forma forte (consulte também o bug #26518):
+XPath expressions used with these functions support user variables and local stored program variables. User variables are weakly checked; variables local to stored programs are strongly checked (see also Bug #26518):
 
-- **Variáveis de usuário (verificação fraca).** As variáveis que usam a sintaxe `$@variable_name` (ou seja, variáveis de usuário) não são verificadas. O servidor não emite avisos ou erros se uma variável tiver o tipo errado ou não tiver sido atribuído um valor anteriormente. Isso também significa que o usuário é totalmente responsável por quaisquer erros tipográficos, pois não são emitidos avisos se, por exemplo, `$@myvairable` for usado onde `$@myvariable` foi intencional.
+* **User variables (weak checking).** Variables using the syntax `$@variable_name` (that is, user variables) are not checked. No warnings or errors are issued by the server if a variable has the wrong type or has previously not been assigned a value. This also means the user is fully responsible for any typographical errors, since no warnings are given if (for example) `$@myvairable` is used where `$@myvariable` was intended.
 
-  Exemplo:
+  Example:
 
   ```sql
   mysql> SET @xml = '<a><b>X</b><b>Y</b></a>';
@@ -54,9 +54,9 @@ As expressões XPath usadas com essas funções suportam variáveis de usuário 
   1 row in set (0.00 sec)
   ```
 
-- **Variáveis em programas armazenados (verificação rigorosa).** Variáveis que utilizam a sintaxe `$nome_da_variável` podem ser declaradas e usadas com essas funções quando chamadas dentro de programas armazenados. Essas variáveis são locais para o programa armazenado em que são definidas e são verificadas rigorosamente quanto ao tipo e ao valor.
+* **Variables in stored programs (strong checking).** Variables using the syntax `$variable_name` can be declared and used with these functions when they are called inside stored programs. Such variables are local to the stored program in which they are defined, and are strongly checked for type and value.
 
-  Exemplo:
+  Example:
 
   ```sql
   mysql> DELIMITER |
@@ -98,25 +98,25 @@ As expressões XPath usadas com essas funções suportam variáveis de usuário 
   1 row in set (0.01 sec)
   ```
 
-  **Parâmetros.** As variáveis usadas em expressões XPath dentro de rotinas armazenadas que são passadas como parâmetros também estão sujeitas a verificações rigorosas.
+  **Parameters.** Variables used in XPath expressions inside stored routines that are passed in as parameters are also subject to strong checking.
 
-As expressões que contêm variáveis de usuário ou variáveis locais de programas armazenados devem, de outra forma (exceto para notação), seguir as regras para expressões XPath que contêm variáveis, conforme especificado na especificação do XPath 1.0.
+Expressions containing user variables or variables local to stored programs must otherwise (except for notation) conform to the rules for XPath expressions containing variables as given in the XPath 1.0 specification.
 
-Nota
+Note
 
-Uma variável de usuário usada para armazenar uma expressão XPath é tratada como uma string vazia. Por isso, não é possível armazenar uma expressão XPath como uma variável de usuário. (Bug #32911)
+A user variable used to store an XPath expression is treated as an empty string. Because of this, it is not possible to store an XPath expression as a user variable. (Bug #32911)
 
-- `ExtractValue(xml_frag, xpath_expr)`
+* `ExtractValue(xml_frag, xpath_expr)`
 
-  `ExtractValue()` recebe dois argumentos de string, um fragmento de marcação XML *`xml_frag`* e uma expressão XPath *`xpath_expr`* (também conhecida como localizador); ele retorna o texto (`CDATA`) do primeiro nó de texto que é um filho do elemento ou elementos correspondidos pela expressão XPath.
+  `ExtractValue()` takes two string arguments, a fragment of XML markup *`xml_frag`* and an XPath expression *`xpath_expr`* (also known as a locator); it returns the text (`CDATA`) of the first text node which is a child of the element or elements matched by the XPath expression.
 
-  Usar essa função é equivalente a realizar uma correspondência usando o *`xpath_expr`* após a adição de `/text()`. Em outras palavras, `ExtractValue('<a><b>Sakila</b></a>', '/a/b')` e `ExtractValue('<a><b>Sakila</b></a>', '/a/b/text()')` produzem o mesmo resultado.
+  Using this function is the equivalent of performing a match using the *`xpath_expr`* after appending `/text()`. In other words, `ExtractValue('<a><b>Sakila</b></a>', '/a/b')` and `ExtractValue('<a><b>Sakila</b></a>', '/a/b/text()')` produce the same result.
 
-  Se forem encontrados vários resultados, o conteúdo do primeiro nó de texto de um elemento correspondente é retornado (na ordem em que foram encontrados) como uma única string separada por espaços.
+  If multiple matches are found, the content of the first child text node of each matching element is returned (in the order matched) as a single, space-delimited string.
 
-  Se não for encontrado nenhum nó de texto correspondente à expressão (incluindo o implícito `/text()`) — por qualquer motivo, desde que *`xpath_expr`* seja válido e *`xml_frag`* consista em elementos corretamente aninhados e fechados — uma string vazia é retornada. Não há distinção entre uma correspondência em um elemento vazio e nenhuma correspondência. Isso é por design.
+  If no matching text node is found for the expression (including the implicit `/text()`)—for whatever reason, as long as *`xpath_expr`* is valid, and *`xml_frag`* consists of elements which are properly nested and closed—an empty string is returned. No distinction is made between a match on an empty element and no match at all. This is by design.
 
-  Se você precisar determinar se nenhum elemento correspondente foi encontrado em *`xml_frag`* ou se um elemento foi encontrado, mas não continha nenhum nó de texto filho, você deve testar o resultado de uma expressão que usa a função XPath `count()`. Por exemplo, ambas as seguintes declarações retornam uma string vazia, como mostrado aqui:
+  If you need to determine whether no matching element was found in *`xml_frag`* or such an element was found but contained no child text nodes, you should test the result of an expression that uses the XPath `count()` function. For example, both of these statements return an empty string, as shown here:
 
   ```sql
   mysql> SELECT ExtractValue('<a><b/></a>', '/a/b');
@@ -136,7 +136,7 @@ Uma variável de usuário usada para armazenar uma expressão XPath é tratada c
   1 row in set (0.00 sec)
   ```
 
-  No entanto, você pode determinar se realmente havia um elemento correspondente usando o seguinte:
+  However, you can determine whether there was actually a matching element using the following:
 
   ```sql
   mysql> SELECT ExtractValue('<a><b/></a>', 'count(/a/b)');
@@ -156,9 +156,9 @@ Uma variável de usuário usada para armazenar uma expressão XPath é tratada c
   1 row in set (0.01 sec)
   ```
 
-  Importante
+  Important
 
-  `ExtractValue()` retorna apenas `CDATA` e não retorna nenhuma tag que possa estar contida em uma tag correspondente, nem nenhum de seus conteúdos (veja o resultado retornado como `val1` no exemplo a seguir).
+  `ExtractValue()` returns only `CDATA`, and does not return any tags that might be contained within a matching tag, nor any of their content (see the result returned as `val1` in the following example).
 
   ```sql
   mysql> SELECT
@@ -175,11 +175,11 @@ Uma variável de usuário usada para armazenar uma expressão XPath é tratada c
   +------+------+------+------+---------+
   ```
 
-  Essa função usa a collation SQL atual para fazer comparações com `contains()`, realizando a mesma agregação de collation que outras funções de string (como `CONCAT()`), levando em consideração a coercibilidade da collation de seus argumentos; consulte a Seção 10.8.4, “Coercibilidade de Collation em Expressões”, para uma explicação das regras que regem esse comportamento.
+  This function uses the current SQL collation for making comparisons with `contains()`, performing the same collation aggregation as other string functions (such as `CONCAT()`), in taking into account the collation coercibility of their arguments; see Section 10.8.4, “Collation Coercibility in Expressions”, for an explanation of the rules governing this behavior.
 
-  (Anteriormente, a comparação binária — ou seja, sensível ao caso — sempre era usada.)
+  (Previously, binary—that is, case-sensitive—comparison was always used.)
 
-  `NULL` é retornado se *`xml_frag`* contiver elementos que não estão corretamente aninhados ou fechados, e uma mensagem de aviso é gerada, como mostrado neste exemplo:
+  `NULL` is returned if *`xml_frag`* contains elements which are not properly nested or closed, and a warning is generated, as shown in this example:
 
   ```sql
   mysql> SELECT ExtractValue('<a>c</a><b', '//a');
@@ -207,11 +207,11 @@ Uma variável de usuário usada para armazenar uma expressão XPath é tratada c
   1 row in set (0.00 sec)
   ```
 
-- `UpdateXML(xml_target, xpath_expr, new_xml)`
+* `UpdateXML(xml_target, xpath_expr, new_xml)`
 
-  Essa função substitui uma única parte de um fragmento dado de marcação XML *`xml_target`* por um novo fragmento XML *`new_xml`*, e depois retorna o XML alterado. A parte de *`xml_target`* que é substituída corresponde a uma expressão XPath *`xpath_expr`* fornecida pelo usuário.
+  This function replaces a single portion of a given fragment of XML markup *`xml_target`* with a new XML fragment *`new_xml`*, and then returns the changed XML. The portion of *`xml_target`* that is replaced matches an XPath expression *`xpath_expr`* supplied by the user.
 
-  Se não for encontrado nenhum expressão que corresponda a *`xpath_expr`*, ou se forem encontrados vários correspondentes, a função retorna o fragmento XML original de *`xml_target`*. Todos os três argumentos devem ser strings.
+  If no expression matching *`xpath_expr`* is found, or if multiple matches are found, the function returns the original *`xml_target`* XML fragment. All three arguments should be strings.
 
   ```sql
   mysql> SELECT
@@ -230,37 +230,37 @@ Uma variável de usuário usada para armazenar uma expressão XPath é tratada c
   val5: <a><d></d><b>ccc</b><d></d></a>
   ```
 
-Nota
+Note
 
-Uma discussão aprofundada sobre a sintaxe e o uso do XPath está além do escopo deste manual. Consulte a especificação do XML Path Language (XPath) 1.0 para obter informações definitivas. Um recurso útil para aqueles que são novos no XPath ou que desejam um reforço nos conceitos básicos é o Zvon.org XPath Tutorial, que está disponível em vários idiomas.
+A discussion in depth of XPath syntax and usage are beyond the scope of this manual. Please see the XML Path Language (XPath) 1.0 specification for definitive information. A useful resource for those new to XPath or who are wishing a refresher in the basics is the Zvon.org XPath Tutorial, which is available in several languages.
 
-Segue abaixo descrições e exemplos de algumas expressões básicas do XPath:
+Descriptions and examples of some basic XPath expressions follow:
 
-- /tag
+* `/tag`
 
-  Converte `<tag/>` em correspondência se e somente se `<tag/>` for o elemento raiz.
+  Matches `<tag/>` if and only if `<tag/>` is the root element.
 
-  Exemplo: `/a` tem uma correspondência em `<a><b/></a>` porque corresponde à tag mais externa (raiz). Não corresponde ao elemento `*a`` interno em `<b><a/></b>\` porque, neste caso, é filho de outro elemento.
+  Example: `/a` has a match in `<a><b/></a>` because it matches the outermost (root) tag. It does not match the inner *`a`* element in `<b><a/></b>` because in this instance it is the child of another element.
 
-- `/tag1/tag2`
+* `/tag1/tag2`
 
-  Converte elementos `<tag2/>` se e somente se forem filhos de `<tag1/>`, e `<tag1/>` é o elemento raiz.
+  Matches `<tag2/>` if and only if it is a child of `<tag1/>`, and `<tag1/>` is the root element.
 
-  Exemplo: `/a/b` corresponde ao elemento *`b`* no fragmento XML `<a><b/></a>` porque é um filho do elemento raiz *`a`*. Não há correspondência em `<b><a/></b>` porque, neste caso, *`b`* é o elemento raiz (e, portanto, filho de nenhum outro elemento). A expressão XPath também não tem correspondência em `<a><c><b/></c></a>`; aqui, *`b`* é um descendente de *`a`*, mas não é realmente um filho de *`a`*.
+  Example: `/a/b` matches the *`b`* element in the XML fragment `<a><b/></a>` because it is a child of the root element *`a`*. It does not have a match in `<b><a/></b>` because in this case, *`b`* is the root element (and hence the child of no other element). Nor does the XPath expression have a match in `<a><c><b/></c></a>`; here, *`b`* is a descendant of *`a`*, but not actually a child of *`a`*.
 
-  Esse construto pode ser estendido para três ou mais elementos. Por exemplo, a expressão XPath `/a/b/c` corresponde ao elemento *`c`* no fragmento `<a><b><c/></b></a>`.
+  This construct is extendable to three or more elements. For example, the XPath expression `/a/b/c` matches the *`c`* element in the fragment `<a><b><c/></b></a>`.
 
-- `//tag`
+* `//tag`
 
-  Converte qualquer instância de `<tag>`.
+  Matches any instance of `<tag>`.
 
-  Exemplo: `//a` corresponde ao elemento *`a`* em qualquer um dos seguintes: `<a><b><c/></b></a>`; `<c><a><b/></a></b>`; `<c><b><a/></b></c>`.
+  Example: `//a` matches the *`a`* element in any of the following: `<a><b><c/></b></a>`; `<c><a><b/></a></b>`; `<c><b><a/></b></c>`.
 
-  `//` pode ser combinado com `/`. Por exemplo, `//a/b` corresponde ao elemento *`b`* em qualquer um dos fragmentos `<a><b/></a>` ou `<c><a><b/></a></c>`.
+  `//` can be combined with `/`. For example, `//a/b` matches the *`b`* element in either of the fragments `<a><b/></a>` or `<c><a><b/></a></c>`.
 
-  Nota
+  Note
 
-  `//tag` é equivalente a `/descendant-or-self::*/tag`. Um erro comum é confundir isso com `/descendant-or-self::tag`, embora a expressão última possa levar a resultados muito diferentes, como pode ser visto aqui:
+  `//tag` is the equivalent of `/descendant-or-self::*/tag`. A common error is to confuse this with `/descendant-or-self::tag`, although the latter expression can actually lead to very different results, as can be seen here:
 
   ```sql
   mysql> SET @xml = '<a><b><c>w</c><b>x</b><d>y</d>z</b></a>';
@@ -324,27 +324,27 @@ Segue abaixo descrições e exemplos de algumas expressões básicas do XPath:
   1 row in set (0.00 sec)
   ```
 
-- O operador `*` atua como um "caractere curinga" que corresponde a qualquer elemento. Por exemplo, a expressão `/*/b` corresponde ao elemento `*``b`\* em qualquer um dos fragmentos XML `<a><b/></a>` ou `<c><b/></c>`. No entanto, a expressão não produz uma correspondência no fragmento `<b><a/></b>` porque `*``b`\* deve ser um filho de algum outro elemento. O caractere curinga pode ser usado em qualquer posição: a expressão `/*/b/*` corresponde a qualquer filho de um elemento `*``b`\* que não seja ele mesmo o elemento raiz.
+* The `*` operator acts as a “wildcard” that matches any element. For example, the expression `/*/b` matches the *`b`* element in either of the XML fragments `<a><b/></a>` or `<c><b/></c>`. However, the expression does not produce a match in the fragment `<b><a/></b>` because *`b`* must be a child of some other element. The wildcard may be used in any position: The expression `/*/b/*` matches any child of a *`b`* element that is itself not the root element.
 
-- Você pode combinar qualquer um dos vários localizadores usando o operador `|` (`UNION`). Por exemplo, a expressão `//b|//c` combina todos os elementos *`b`* e *`c`* no alvo XML.
+* You can match any of several locators using the `|` (`UNION`) operator. For example, the expression `//b|//c` matches all *`b`* and *`c`* elements in the XML target.
 
-- Também é possível combinar um elemento com base no valor de um ou mais de seus atributos. Isso é feito usando a sintaxe `tag[@attribute="value"]`. Por exemplo, a expressão `//b[@id="idB"]` combina o segundo elemento *b* no fragmento `<a><b id="idA"/><c/><b id="idB"/></a>`. Para combinar com *qualquer* elemento que tenha `attribute="value"`, use a expressão XPath `//*[attribute="value"]`.
+* It is also possible to match an element based on the value of one or more of its attributes. This done using the syntax `tag[@attribute="value"]`. For example, the expression `//b[@id="idB"]` matches the second *`b`* element in the fragment `<a><b id="idA"/><c/><b id="idB"/></a>`. To match against *any* element having `attribute="value"`, use the XPath expression `//*[attribute="value"]`.
 
-  Para filtrar múltiplos valores de atributo, basta usar múltiplas cláusulas de comparação de atributo em sequência. Por exemplo, a expressão `//b[@c="x"][@d="y"]` corresponde ao elemento `<b c="x" d="y"/>` que ocorre em qualquer lugar de um fragmento XML dado.
+  To filter multiple attribute values, simply use multiple attribute-comparison clauses in succession. For example, the expression `//b[@c="x"][@d="y"]` matches the element `<b c="x" d="y"/>` occurring anywhere in a given XML fragment.
 
-  Para encontrar elementos para os quais o mesmo atributo corresponda a qualquer um dos vários valores, você pode usar múltiplos locatores unidos pelo operador `|`. Por exemplo, para corresponder a todos os elementos `*b*` cujos atributos `*c*` tenham qualquer um dos valores 23 ou 17, use a expressão `//b[@c="23"]|//b[@c="17"]`. Você também pode usar o operador lógico `ou` para esse propósito: `//b[@c="23" or @c="17"]`.
+  To find elements for which the same attribute matches any of several values, you can use multiple locators joined by the `|` operator. For example, to match all *`b`* elements whose *`c`* attributes have either of the values 23 or 17, use the expression `//b[@c="23"]|//b[@c="17"]`. You can also use the logical `or` operator for this purpose: `//b[@c="23" or @c="17"]`.
 
-  Nota
+  Note
 
-  A diferença entre `or` e `|` é que `or` une condições, enquanto `|` une conjuntos de resultados.
+  The difference between `or` and `|` is that `or` joins conditions, while `|` joins result sets.
 
-**Limitações do XPath.** A sintaxe XPath suportada por essas funções está atualmente sujeita às seguintes limitações:
+**XPath Limitations.** The XPath syntax supported by these functions is currently subject to the following limitations:
 
-- A comparação entre conjuntos de nós (como `'/a/b[@c=@d]'`) não é suportada.
+* Nodeset-to-nodeset comparison (such as `'/a/b[@c=@d]'`) is not supported.
 
-- Todos os operadores de comparação padrão do XPath são suportados. (Bug #22823)
+* All of the standard XPath comparison operators are supported. (Bug #22823)
 
-- As expressões de localizador relativo são resolvidas no contexto do nó raiz. Por exemplo, considere a seguinte consulta e resultado:
+* Relative locator expressions are resolved in the context of the root node. For example, consider the following query and result:
 
   ```sql
   mysql> SELECT ExtractValue(
@@ -359,9 +359,9 @@ Segue abaixo descrições e exemplos de algumas expressões básicas do XPath:
   1 row in set (0.03 sec)
   ```
 
-  Neste caso, o localizador `a/b` resolve-se em `/a/b`.
+  In this case, the locator `a/b` resolves to `/a/b`.
 
-  Os localizadores relativos também são suportados dentro dos predicados. No exemplo a seguir, `d[../@c="1"]` é resolvido como `/a/b[@c="1"]/d`:
+  Relative locators are also supported within predicates. In the following example, `d[../@c="1"]` is resolved as `/a/b[@c="1"]/d`:
 
   ```sql
   mysql> SELECT ExtractValue(
@@ -379,16 +379,16 @@ Segue abaixo descrições e exemplos de algumas expressões básicas do XPath:
   1 row in set (0.00 sec)
   ```
 
-- Os localizadores prefixados com expressões que avaliam como valores escalares — incluindo referências de variáveis, literais, números e chamadas de funções escalares — não são permitidos e seu uso resulta em um erro.
+* Locators prefixed with expressions that evaluate as scalar values—including variable references, literals, numbers, and scalar function calls—are not permitted, and their use results in an error.
 
-- O operador `::` não é suportado em combinação com tipos de nó, como os seguintes:
+* The `::` operator is not supported in combination with node types such as the following:
 
-  - `axis::comment()`
-  - `axis::text()`
-  - `axis::processamento-instruções()`
-  - `axis::node()`
+  + `axis::comment()`
+  + `axis::text()`
+  + `axis::processing-instructions()`
+  + `axis::node()`
 
-  No entanto, os testes de nome (como `axis::name` e `axis::*`) são suportados, como mostrado nesses exemplos:
+  However, name tests (such as `axis::name` and `axis::*`) are supported, as shown in these examples:
 
   ```sql
   mysql> SELECT ExtractValue('<a><b>x</b><c>y</c></a>','/a/child::b');
@@ -408,30 +408,29 @@ Segue abaixo descrições e exemplos de algumas expressões básicas do XPath:
   1 row in set (0.01 sec)
   ```
 
-- A navegação “para cima e para baixo” não é suportada em casos em que o caminho levaria “acima” do elemento raiz. Ou seja, você não pode usar expressões que correspondem a descendentes de ancestrais de um determinado elemento, onde um ou mais dos ancestrais do elemento atual também são ancestrais do elemento raiz (veja o Bug #16321).
+* “Up-and-down” navigation is not supported in cases where the path would lead “above” the root element. That is, you cannot use expressions which match on descendants of ancestors of a given element, where one or more of the ancestors of the current element is also an ancestor of the root element (see Bug #16321).
 
-- As seguintes funções do XPath não são suportadas ou têm problemas conhecidos, conforme indicado:
+* The following XPath functions are not supported, or have known issues as indicated:
 
-  - `id()`
-  - `lang()`
-  - `local-name()`
-  - `nome()`
-  - `namespace-uri()`
-  - `normalizar-espaço()`
-  - `começa com()`
-  - `string()`
-  - `substring-after()`
-  - `substring-before()`
-  - `translate()`
+  + `id()`
+  + `lang()`
+  + `local-name()`
+  + `name()`
+  + `namespace-uri()`
+  + `normalize-space()`
+  + `starts-with()`
+  + `string()`
+  + `substring-after()`
+  + `substring-before()`
+  + `translate()`
+* The following axes are not supported:
 
-- Os seguintes eixos não são suportados:
+  + `following-sibling`
+  + `following`
+  + `preceding-sibling`
+  + `preceding`
 
-  - `following-sibling`
-  - `seguindo`
-  - `precedente-irmão`
-  - precedente
-
-As expressões XPath passadas como argumentos para `ExtractValue()` e `UpdateXML()` podem conter o caractere colon (`:`) em seletores de elementos, o que permite seu uso com marcação que utiliza a notação de namespaces XML. Por exemplo:
+XPath expressions passed as arguments to `ExtractValue()` and `UpdateXML()` may contain the colon character (`:`) in element selectors, which enables their use with markup employing XML namespaces notation. For example:
 
 ```sql
 mysql> SET @xml = '<a>111<b:c>222<d>333</d><e:f>444</e:f></b:c></a>';
@@ -454,16 +453,16 @@ mysql> SELECT UpdateXML(@xml, '//b:c', '<g:h>555</g:h>');
 1 row in set (0.00 sec)
 ```
 
-Isso é semelhante, em alguns aspectos, ao que é permitido pelo Apache Xalan e por alguns outros analisadores, e é muito mais simples do que exigir declarações de namespace ou o uso das funções `namespace-uri()` e `local-name()`.
+This is similar in some respects to what is permitted by Apache Xalan and some other parsers, and is much simpler than requiring namespace declarations or the use of the `namespace-uri()` and `local-name()` functions.
 
-**Tratamento de erros.** Para tanto o `ExtractValue()` quanto o `UpdateXML()`, o localizador XPath utilizado deve ser válido e o XML a ser pesquisado deve conter elementos corretamente aninhados e fechados. Se o localizador for inválido, um erro será gerado:
+**Error handling.** For both `ExtractValue()` and `UpdateXML()`, the XPath locator used must be valid and the XML to be searched must consist of elements which are properly nested and closed. If the locator is invalid, an error is generated:
 
 ```sql
 mysql> SELECT ExtractValue('<a>c</a><b/>', '/&a');
 ERROR 1105 (HY000): XPATH syntax error: '&a'
 ```
 
-Se *`xml_frag`* não contiver elementos corretamente aninhados e fechados, `NULL` é retornado e uma mensagem de aviso é gerada, como mostrado neste exemplo:
+If *`xml_frag`* does not consist of elements which are properly nested and closed, `NULL` is returned and a warning is generated, as shown in this example:
 
 ```sql
 mysql> SELECT ExtractValue('<a>c</a><b', '//a');
@@ -491,25 +490,25 @@ mysql> SELECT ExtractValue('<a>c</a><b/>', '//a');
 1 row in set (0.00 sec)
 ```
 
-Importante
+Important
 
-O XML de substituição usado como o terceiro argumento para `UpdateXML()` *não* é verificado para determinar se ele consiste apenas em elementos que estão corretamente aninhados e fechados.
+The replacement XML used as the third argument to `UpdateXML()` is *not* checked to determine whether it consists solely of elements which are properly nested and closed.
 
-**Injeção de XPath.** A injeção de código ocorre quando um código malicioso é introduzido no sistema para obter acesso não autorizado a privilégios e dados. Ela se baseia na exploração de suposições feitas pelos desenvolvedores sobre o tipo e o conteúdo dos dados inseridos pelos usuários. O XPath não é exceção a essa regra.
+**XPath Injection.** code injection occurs when malicious code is introduced into the system to gain unauthorized access to privileges and data. It is based on exploiting assumptions made by developers about the type and content of data input from users. XPath is no exception in this regard.
 
-Um cenário comum em que isso pode acontecer é o caso de aplicativos que lidam com a autorização ao combinar a combinação de um nome de login e senha com as encontradas em um arquivo XML, usando uma expressão XPath como esta:
+A common scenario in which this can happen is the case of application which handles authorization by matching the combination of a login name and password with those found in an XML file, using an XPath expression like this one:
 
 ```sql
 //user[login/text()='neapolitan' and password/text()='1c3cr34m']/attribute::id
 ```
 
-Este é o equivalente do XPath a uma declaração SQL como esta:
+This is the XPath equivalent of an SQL statement like this one:
 
 ```sql
 SELECT id FROM users WHERE login='neapolitan' AND password='1c3cr34m';
 ```
 
-Uma aplicação PHP que utiliza XPath pode gerenciar o processo de login da seguinte forma:
+A PHP application employing XPath might handle the login process like this:
 
 ```sql
 <?php
@@ -536,37 +535,36 @@ Uma aplicação PHP que utiliza XPath pode gerenciar o processo de login da segu
 ?>
 ```
 
-Não são realizados nenhum tipo de verificação na entrada. Isso significa que um usuário malicioso pode "quebrar o circuito" do teste ao inserir `' ou 1=1` tanto para o nome de login quanto para a senha, resultando na avaliação do `$xpath` conforme mostrado aqui:
+No checks are performed on the input. This means that a malevolent user can “short-circuit” the test by entering `' or 1=1` for both the login name and password, resulting in `$xpath` being evaluated as shown here:
 
 ```sql
 //user[login/text()='' or 1=1 and password/text()='' or 1=1]/attribute::id
 ```
 
-Como a expressão dentro dos colchetes sempre avalia como `true`, ela é efetivamente a mesma que esta, que corresponde ao atributo `id` de todos os elementos `user` no documento XML:
+Since the expression inside the square brackets always evaluates as `true`, it is effectively the same as this one, which matches the `id` attribute of every `user` element in the XML document:
 
 ```sql
 //user/attribute::id
 ```
 
-Uma maneira de contornar esse ataque específico é simplesmente citar os nomes das variáveis a serem interpoladas na definição de `$xpath`, forçando que os valores passados de um formulário da Web sejam convertidos em strings:
+One way in which this particular attack can be circumvented is simply by quoting the variable names to be interpolated in the definition of `$xpath`, forcing the values passed from a Web form to be converted to strings:
 
 ```sql
 $xpath = "//user[login/text()='$login' and password/text()='$password']/attribute::id";
 ```
 
-Essa é a mesma estratégia que é frequentemente recomendada para prevenir ataques de injeção SQL. Em geral, as práticas que você deve seguir para prevenir ataques de injeção XPath são as mesmas que para prevenir ataques de injeção SQL:
+This is the same strategy that is often recommended for preventing SQL injection attacks. In general, the practices you should follow for preventing XPath injection attacks are the same as for preventing SQL injection:
 
-- Nunca aceitou dados não testados dos usuários em sua aplicação.
+* Never accepted untested data from users in your application.
+* Check all user-submitted data for type; reject or convert data that is of the wrong type
 
-- Verifique todos os dados enviados pelos usuários quanto ao tipo; rejeite ou converta os dados que estejam no tipo errado
+* Test numeric data for out of range values; truncate, round, or reject values that are out of range. Test strings for illegal characters and either strip them out or reject input containing them.
 
-- Teste os dados numéricos para valores fora do intervalo; trunque, arredonde ou rejeite valores que estejam fora do intervalo. Teste as strings para caracteres ilegais e remova-os ou rejeite a entrada que os contenha.
+* Do not output explicit error messages that might provide an unauthorized user with clues that could be used to compromise the system; log these to a file or database table instead.
 
-- Não exiba mensagens de erro explícitas que possam fornecer pistas a um usuário não autorizado para comprometer o sistema; registre essas informações em um arquivo ou tabela de banco de dados.
+Just as SQL injection attacks can be used to obtain information about database schemas, so can XPath injection be used to traverse XML files to uncover their structure, as discussed in Amit Klein's paper Blind XPath Injection (PDF file, 46KB).
 
-Assim como os ataques de injeção SQL podem ser usados para obter informações sobre esquemas de banco de dados, a injeção XPath também pode ser usada para percorrer arquivos XML e descobrir sua estrutura, conforme discutido no artigo de Amit Klein, "Blind XPath Injection" (arquivo PDF, 46KB).
-
-Também é importante verificar a saída que está sendo enviada de volta ao cliente. Considere o que pode acontecer quando usamos a função `ExtractValue()` do MySQL:
+It is also important to check the output being sent back to the client. Consider what can happen when we use the MySQL `ExtractValue()` function:
 
 ```sql
 mysql> SELECT ExtractValue(
@@ -581,7 +579,7 @@ mysql> SELECT ExtractValue(
 1 row in set (0.01 sec)
 ```
 
-Como o `ExtractValue()` retorna múltiplos resultados como uma única string separada por espaços, esse ataque de injeção fornece a cada usuário todas as IDs válidas contidas em `users.xml` como uma única linha de saída. Como uma proteção extra, você também deve testar a saída antes de devolvê-la ao usuário. Aqui está um exemplo simples:
+Because `ExtractValue()` returns multiple matches as a single space-delimited string, this injection attack provides every valid ID contained within `users.xml` to the user as a single row of output. As an extra safeguard, you should also test output before returning it to the user. Here is a simple example:
 
 ```sql
 mysql> SELECT @id = ExtractValue(
@@ -603,7 +601,7 @@ mysql> SELECT IF(
 1 row in set (0.00 sec)
 ```
 
-Em geral, as diretrizes para devolver dados aos usuários de forma segura são as mesmas que para aceitar a entrada do usuário. Essas diretrizes podem ser resumidas da seguinte forma:
+In general, the guidelines for returning data to users securely are the same as for accepting user input. These can be summed up as:
 
-- Sempre teste os dados de saída quanto ao tipo e aos valores permitidos.
-- Nunca permita que usuários não autorizados vejam mensagens de erro que possam fornecer informações sobre o aplicativo que possam ser usadas para explorá-lo.
+* Always test outgoing data for type and permissible values.
+* Never permit unauthorized users to view error messages that might provide information about the application that could be used to exploit it.

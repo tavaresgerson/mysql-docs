@@ -1,25 +1,25 @@
-#### 25.12.9.1 Tabela session_account_connect_attrs
+#### 25.12.9.1 The session_account_connect_attrs Table
 
-Os programas de aplicação podem fornecer atributos de conexão de chave-valor para serem passados ao servidor no momento da conexão. Para descrições de atributos comuns, consulte Seção 25.12.9, “Tabelas de Atributos de Conexão do Schema de Desempenho”.
+Application programs can provide key-value connection attributes to be passed to the server at connect time. For descriptions of common attributes, see [Section 25.12.9, “Performance Schema Connection Attribute Tables”](performance-schema-connection-attribute-tables.html "25.12.9 Performance Schema Connection Attribute Tables").
 
-A tabela `session_account_connect_attrs` contém atributos de conexão apenas para a sessão atual e outras sessões associadas à conta de sessão. Para ver os atributos de conexão para todas as sessões, use a tabela `session_connect_attrs`.
+The [`session_account_connect_attrs`](performance-schema-session-account-connect-attrs-table.html "25.12.9.1 The session_account_connect_attrs Table") table contains connection attributes only for the current session, and other sessions associated with the session account. To see connection attributes for all sessions, use the [`session_connect_attrs`](performance-schema-session-connect-attrs-table.html "25.12.9.2 The session_connect_attrs Table") table.
 
-A tabela `session_account_connect_attrs` tem as seguintes colunas:
+The [`session_account_connect_attrs`](performance-schema-session-account-connect-attrs-table.html "25.12.9.1 The session_account_connect_attrs Table") table has these columns:
 
-- `PROCESSLIST_ID`
+* `PROCESSLIST_ID`
 
-  O identificador de conexão para a sessão.
+  The connection identifier for the session.
 
-- `ATTR_NAME`
+* `ATTR_NAME`
 
-  O nome do atributo.
+  The attribute name.
 
-- `ATTR_VALUE`
+* `ATTR_VALUE`
 
-  O valor do atributo.
+  The attribute value.
 
-- `ORDINAL_POSITION`
+* `ORDINAL_POSITION`
 
-  A ordem em que o atributo foi adicionado ao conjunto de atributos de conexão.
+  The order in which the attribute was added to the set of connection attributes.
 
-A operação `TRUNCATE TABLE` não é permitida para a tabela `session_account_connect_attrs`.
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is not permitted for the [`session_account_connect_attrs`](performance-schema-session-account-connect-attrs-table.html "25.12.9.1 The session_account_connect_attrs Table") table.

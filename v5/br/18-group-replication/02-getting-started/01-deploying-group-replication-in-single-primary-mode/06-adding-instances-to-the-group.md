@@ -1,10 +1,10 @@
-#### 17.2.1.6 Adicionar instâncias ao grupo
+#### 17.2.1.6 Adding Instances to the Group
 
-Neste ponto, o grupo tem um membro, o servidor s1, que contém alguns dados. Agora é hora de expandir o grupo adicionando os outros dois servidores configurados anteriormente.
+At this point, the group has one member in it, server s1, which has some data in it. It is now time to expand the group by adding the other two servers configured previously.
 
-##### 17.2.1.6.1 Adicionando uma Segunda Instância
+##### 17.2.1.6.1 Adding a Second Instance
 
-Para adicionar uma segunda instância, s2, primeiro crie o arquivo de configuração para ela. A configuração é semelhante à usada para o servidor s1, exceto por coisas como o `server_id`.
+In order to add a second instance, server s2, first create the configuration file for it. The configuration is similar to the one used for server s1, except for things such as the [`server_id`](replication-options.html#sysvar_server_id).
 
 ```sql
 [mysqld]
@@ -38,7 +38,7 @@ group_replication_group_seeds= "s1:33061,s2:33061,s3:33061"
 group_replication_bootstrap_group= off
 ```
 
-Semelhante ao procedimento para o servidor s1, com a opção de arquivo em uso, você inicia o servidor. Em seguida, configure as credenciais de recuperação da seguinte forma. Os comandos são os mesmos usados ao configurar o servidor s1, pois o usuário é compartilhado dentro do grupo. Este membro precisa ter o mesmo usuário de replicação configurado em Seção 17.2.1.3, “Credenciais de Usuário”. Se você está confiando na recuperação distribuída para configurar o usuário em todos os membros, quando o s2 se conectar ao s1 de origem, o usuário de replicação é re-replicado para o s1. Se você não tinha o registro binário habilitado quando configurou as credenciais de usuário no s1, você deve criar o usuário de replicação no s2. Nesse caso, conecte-se ao s2 e execute:
+Similar to the procedure for server s1, with the option file in place you launch the server. Then configure the recovery credentials as follows. The commands are the same as used when setting up server s1 as the user is shared within the group. This member needs to have the same replication user configured in [Section 17.2.1.3, “User Credentials”](group-replication-user-credentials.html "17.2.1.3 User Credentials"). If you are relying on distributed recovery to configure the user on all members, when s2 connects to the seed s1 the replication user is relicated to s1. If you did not have binary logging enabled when you configured the user credentials on s1, you must create the replication user on s2. In this case, connect to s2 and issue:
 
 ```sql
 SET SQL_LOG_BIN=0;
@@ -49,21 +49,21 @@ CHANGE MASTER TO MASTER_USER='rpl_user', MASTER_PASSWORD='password' \\
 	FOR CHANNEL 'group_replication_recovery';
 ```
 
-Se necessário, instale o plugin de replicação de grupo, consulte Seção 17.2.1.4, “Lançamento da replicação de grupo”.
+If necessary, install the Group Replication plugin, see [Section 17.2.1.4, “Launching Group Replication”](group-replication-launching.html "17.2.1.4 Launching Group Replication").
 
-Inicie a replicação em grupo e o s2 inicia o processo de junção ao grupo.
+Start Group Replication and s2 starts the process of joining the group.
 
 ```sql
 mysql> START GROUP_REPLICATION;
 ```
 
-Ao contrário das etapas anteriores, que eram as mesmas executadas no s1, aqui há uma diferença: você *não* precisa bootstrapizar o grupo porque o grupo já existe. Em outras palavras, no s2 `group_replication_bootstrap_group` está definido como off, e você não emite `SET GLOBAL group_replication_bootstrap_group=ON;` antes de iniciar a Replicação de Grupo, porque o grupo já foi criado e bootstrapizado pelo servidor s1. Neste ponto, o servidor s2 só precisa ser adicionado ao grupo já existente.
+Unlike the previous steps that were the same as those executed on s1, here there is a difference in that you do *not* need to boostrap the group because the group already exiists. In other words on s2 [`group_replication_bootstrap_group`](group-replication-system-variables.html#sysvar_group_replication_bootstrap_group) is set to off, and you do not issue `SET GLOBAL group_replication_bootstrap_group=ON;` before starting Group Replication, because the group has already been created and bootstrapped by server s1. At this point server s2 only needs to be added to the already existing group.
 
-Dica
+Tip
 
-Quando a Replicação em Grupo começa com sucesso e o servidor se junta ao grupo, ele verifica a variável `super_read_only`. Ao definir `super_read_only` para ON no arquivo de configuração do membro, você pode garantir que os servidores que falham ao iniciar a Replicação em Grupo por qualquer motivo não aceitem transações. Se o servidor deve se juntar ao grupo como uma instância de leitura/escrita, por exemplo, como o primário em um grupo de primário único ou como um membro de um grupo de múltiplos primários, quando a variável `super_read_only` é definida para ON, ela é definida para OFF ao se juntar ao grupo.
+When Group Replication starts successfully and the server joins the group it checks the [`super_read_only`](server-system-variables.html#sysvar_super_read_only) variable. By setting [`super_read_only`](server-system-variables.html#sysvar_super_read_only) to ON in the member's configuration file, you can ensure that servers which fail when starting Group Replication for any reason do not accept transactions. If the server should join the group as read-write instance, for example as the primary in a single-primary group or as a member of a multi-primary group, when the [`super_read_only`](server-system-variables.html#sysvar_super_read_only) variable is set to ON then it is set to OFF upon joining the group.
 
-Verificar a tabela `performance_schema.replication_group_members` novamente mostra que agora há dois servidores *ONLINE* no grupo.
+Checking the [`performance_schema.replication_group_members`](performance-schema-replication-group-members-table.html "25.12.11.8 The replication_group_members Table") table again shows that there are now two *ONLINE* servers in the group.
 
 ```sql
 mysql> SELECT * FROM performance_schema.replication_group_members;
@@ -75,7 +75,7 @@ mysql> SELECT * FROM performance_schema.replication_group_members;
 +---------------------------+--------------------------------------+-------------+-------------+---------------+
 ```
 
-Quando o s2 tentou se juntar ao grupo, Seção 17.9.5, “Recuperação Distribuída” garantiu que o s2 aplicasse as mesmas transações que o s1 havia aplicado. Uma vez que esse processo foi concluído, o s2 pôde se juntar ao grupo como membro, e, neste ponto, ele é marcado como ONLINE. Em outras palavras, ele deve ter se atualizado automaticamente com o servidor s1. Uma vez que o s2 esteja ONLINE, ele então começa a processar transações com o grupo. Verifique se o s2 realmente se sincronizou com o servidor s1 da seguinte forma.
+When s2 attempted to join the group, [Section 17.9.5, “Distributed Recovery”](group-replication-distributed-recovery.html "17.9.5 Distributed Recovery") ensured that s2 applied the same transactions which s1 had applied. Once this process completed, s2 could join the group as a member, and at this point it is marked as ONLINE. In other words it must have already caught up with server s1 automatically. Once s2 is ONLINE, it then begins to process transactions with the group. Verify that s2 has indeed synchronized with server s1 as follows.
 
 ```sql
 mysql> SHOW DATABASES LIKE 'test';
@@ -118,13 +118,13 @@ mysql> SHOW BINLOG EVENTS;
 +---------------+------+----------------+-----------+-------------+--------------------------------------------------------------------+
 ```
 
-Como visto acima, o segundo servidor foi adicionado ao grupo e replicou automaticamente as alterações do servidor s1 usando a recuperação distribuída. Em outras palavras, as transações aplicadas em s1 até o momento em que s2 se juntou ao grupo foram replicadas para s2.
+As seen above, the second server has been added to the group and it has replicated the changes from server s1 automatically using distributed recovery. In other words, the transactions applied on s1 up to the point in time that s2 joined the group have been replicated to s2.
 
-##### 17.2.1.6.2 Adicionar instâncias adicionais
+##### 17.2.1.6.2 Adding Additional Instances
 
-Adicionar instâncias adicionais ao grupo é essencialmente a mesma sequência de etapas que adicionar o segundo servidor, exceto que a configuração precisa ser alterada, como foi necessário para o servidor s2. Para resumir os comandos necessários:
+Adding additional instances to the group is essentially the same sequence of steps as adding the second server, except that the configuration has to be changed as it had to be for server s2. To summarise the required commands:
 
-*1. Crie o arquivo de configuração*
+*1. Create the configuration file*
 
 ```sql
 [mysqld]
@@ -157,7 +157,7 @@ group_replication_group_seeds= "s1:33061,s2:33061,s3:33061"
 group_replication_bootstrap_group= off
 ```
 
-*2. Inicie o servidor e conecte-se a ele. Configure as credenciais de recuperação para o canal group_replication_recovery.*
+*2. Start the server and connect to it. Configure the recovery credentials for the group_replication_recovery channel.*
 
 ```sql
 SET SQL_LOG_BIN=0;
@@ -169,14 +169,14 @@ CHANGE MASTER TO MASTER_USER='rpl_user', MASTER_PASSWORD='password'  \\
 FOR CHANNEL 'group_replication_recovery';
 ```
 
-*4. Instale o plugin de replicação de grupo e inicie-o.*
+*4. Install the Group Replication plugin and start it.*
 
 ```sql
 INSTALL PLUGIN group_replication SONAME 'group_replication.so';
 START GROUP_REPLICATION;
 ```
 
-Neste ponto, o servidor s3 foi inicializado e está em execução, se juntou ao grupo e alcançou os outros servidores do grupo. Consultar a tabela `performance_schema.replication_group_members` novamente confirma que este é o caso.
+At this point server s3 is booted and running, has joined the group and caught up with the other servers in the group. Consulting the [`performance_schema.replication_group_members`](performance-schema-replication-group-members-table.html "25.12.11.8 The replication_group_members Table") table again confirms this is the case.
 
 ```sql
 mysql> SELECT * FROM performance_schema.replication_group_members;
@@ -189,7 +189,7 @@ mysql> SELECT * FROM performance_schema.replication_group_members;
 +---------------------------+--------------------------------------+-------------+-------------+---------------+
 ```
 
-Ao emitir a mesma consulta no servidor s2 ou no servidor s1, o resultado é o mesmo. Além disso, você pode verificar que o servidor s3 já está atualizado:
+Issuing this same query on server s2 or server s1 yields the same result. Also, you can verify that server s3 has caught up:
 
 ```sql
 mysql> SHOW DATABASES LIKE 'test';

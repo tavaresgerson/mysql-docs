@@ -1,42 +1,42 @@
-#### 14.6.3.2 Espaços de tabela por arquivo
+#### 14.6.3.2 File-Per-Table Tablespaces
 
-Um espaço de tabela por arquivo contém dados e índices para uma única tabela `InnoDB` e é armazenado no sistema de arquivos em um único arquivo de dados.
+A file-per-table tablespace contains data and indexes for a single `InnoDB` table, and is stored on the file system in a single data file.
 
-As características do espaço de tabela por arquivo são descritas nos tópicos a seguir nesta seção:
+File-per-table tablespace characteristics are described under the following topics in this section:
 
-- Configuração do espaço de tabela por arquivo
-- Arquivos de dados do espaço de tabela por tabela
-- Vantagens do espaço de tabela por arquivo
-- Desvantagens do espaço de tabela por arquivo
+* File-Per-Table Tablespace Configuration
+* File-Per-Table Tablespace Data Files
+* File-Per-Table Tablespace Advantages
+* File-Per-Table Tablespace Disadvantages
 
-##### Configuração do espaço de tabela por arquivo
+##### File-Per-Table Tablespace Configuration
 
-O `InnoDB` cria tabelas em espaços de tabelas por arquivo por padrão. Esse comportamento é controlado pela variável `innodb_file_per_table`. Desativar `innodb_file_per_table` faz com que o `InnoDB` crie tabelas no espaço de tabelas do sistema.
+`InnoDB` creates tables in file-per-table tablespaces by default. This behavior is controlled by the `innodb_file_per_table` variable. Disabling `innodb_file_per_table` causes `InnoDB` to create tables in the system tablespace.
 
-Uma configuração `innodb_file_per_table` pode ser especificada em um arquivo de opções ou configurada em tempo de execução usando uma instrução `SET GLOBAL`. Alterar a configuração em tempo de execução requer privilégios suficientes para definir variáveis de sistema globais. Consulte a Seção 5.1.8.1, “Privilégios de Variáveis de Sistema”.
+An `innodb_file_per_table` setting can be specified in an option file or configured at runtime using a `SET GLOBAL` statement. Changing the setting at runtime requires privileges sufficient to set global system variables. See Section 5.1.8.1, “System Variable Privileges”.
 
-Arquivo de opção:
+Option file:
 
 ```sql
 [mysqld]
 innodb_file_per_table=ON
 ```
 
-Usando `SET GLOBAL` no tempo de execução:
+Using `SET GLOBAL` at runtime:
 
 ```sql
 mysql> SET GLOBAL innodb_file_per_table=ON;
 ```
 
-`innodb_file_per_table` está habilitado por padrão no MySQL 5.6 e versões posteriores. Você pode considerar desabilitá-lo se a compatibilidade reversa com versões anteriores do MySQL for uma preocupação.
+`innodb_file_per_table` is enabled by default in MySQL 5.6 and higher. You might consider disabling it if backward compatibility with earlier versions of MySQL is a concern.
 
-Aviso
+Warning
 
-Desativar `innodb_file_per_table` impede que operações de cópia de tabela `ALTER TABLE` mudem implicitamente uma tabela que reside no espaço de tabelas do sistema para um espaço de tabelas por arquivo. Uma operação de cópia de tabela `ALTER TABLE` recria a tabela usando a configuração atual de `innodb_file_per_table`. Esse comportamento não se aplica ao adicionar ou excluir índices secundários, nem se aplica a operações de `ALTER TABLE` que usam o algoritmo `INPLACE`, ou a tabelas adicionadas ao espaço de tabelas do sistema usando a sintaxe `CREATE TABLE ... TABLESPACE` ou `ALTER TABLE ... TABLESPACE`.
+Disabling `innodb_file_per_table` prevents table-copying `ALTER TABLE` operations from implicitly moving a table that resides in the system tablespace to a file-per-table tablespace. A table-copying `ALTER TABLE` operation recreates the table using the current `innodb_file_per_table` setting. This behavior does not apply when adding or dropping secondary indexes, nor does it apply to `ALTER TABLE` operations that use the `INPLACE` algorithm, or to tables added to the system tablespace using `CREATE TABLE ... TABLESPACE` or `ALTER TABLE ... TABLESPACE` syntax.
 
-##### Arquivos de dados do espaço de tabela por tabela
+##### File-Per-Table Tablespace Data Files
 
-Um espaço de tabela por arquivo é criado em um arquivo de dados `.ibd` em um diretório de esquema sob o diretório de dados do MySQL. O arquivo `.ibd` é nomeado para a tabela (`table_name.ibd`). Por exemplo, o arquivo de dados para a tabela `test.t1` é criado no diretório `test` sob o diretório de dados do MySQL:
+A file-per-table tablespace is created in an `.ibd` data file in a schema directory under the MySQL data directory. The `.ibd` file is named for the table (`table_name.ibd`). For example, the data file for table `test.t1` is created in the `test` directory under the MySQL data directory:
 
 ```sql
 mysql> USE test;
@@ -51,48 +51,48 @@ $> ls
 t1.ibd
 ```
 
-Você pode usar a cláusula `DATA DIRECTORY` da instrução `CREATE TABLE` para criar implicitamente um arquivo de dados do espaço de tabelas por arquivo fora do diretório de dados. Para obter mais informações, consulte a Seção 14.6.1.2, “Criando tabelas externamente”.
+You can use the `DATA DIRECTORY` clause of the `CREATE TABLE` statement to implicitly create a file-per-table tablespace data file outside of the data directory. For more information, see Section 14.6.1.2, “Creating Tables Externally”.
 
-##### Vantagens do espaço de tabela por arquivo
+##### File-Per-Table Tablespace Advantages
 
-Os espaços de tabela por arquivo têm as seguintes vantagens em relação aos espaços de tabela compartilhados, como o espaço de tabela do sistema ou os espaços de tabela gerais.
+File-per-table tablespaces have the following advantages over shared tablespaces such as the system tablespace or general tablespaces.
 
-- O espaço em disco é devolvido ao sistema operacional após a truncação ou remoção de uma tabela criada em um espaço de tabelas por arquivo. A truncação ou remoção de uma tabela armazenada em um espaço de tabelas compartilhado cria espaço livre dentro do arquivo de dados do espaço de tabelas compartilhado, que só pode ser usado para dados do `InnoDB`. Em outras palavras, um arquivo de dados de um espaço de tabelas compartilhado não diminui de tamanho após a truncação ou remoção de uma tabela.
+* Disk space is returned to the operating system after truncating or dropping a table created in a file-per-table tablespace. Truncating or dropping a table stored in a shared tablespace creates free space within the shared tablespace data file, which can only be used for `InnoDB` data. In other words, a shared tablespace data file does not shrink in size after a table is truncated or dropped.
 
-- Uma operação de cópia de tabela `ALTER TABLE` em uma tabela que reside em um espaço de tabelas compartilhado pode aumentar a quantidade de espaço em disco ocupada pelo espaço de tabelas. Tais operações podem exigir tanto espaço adicional quanto os dados da tabela mais os índices. Esse espaço não é liberado de volta ao sistema operacional, como acontece com os espaços de tabelas por arquivo.
+* A table-copying `ALTER TABLE` operation on a table that resides in a shared tablespace can increase the amount of disk space occupied by the tablespace. Such operations may require as much additional space as the data in the table plus indexes. This space is not released back to the operating system as it is for file-per-table tablespaces.
 
-- O desempenho da instrução `TRUNCATE TABLE` é melhor quando executada em tabelas que residem em espaços de tabelas por arquivo.
+* `TRUNCATE TABLE` performance is better when executed on tables that reside in file-per-table tablespaces.
 
-- Os arquivos de dados do espaço de tabela por arquivo podem ser criados em dispositivos de armazenamento separados para otimização de I/O, gerenciamento de espaço ou fins de backup. Consulte a Seção 14.6.1.2, “Criando Tabelas Externamente”.
+* File-per-table tablespace data files can be created on separate storage devices for I/O optimization, space management, or backup purposes. See Section 14.6.1.2, “Creating Tables Externally”.
 
-- Você pode importar uma tabela que reside em um espaço de tabelas por arquivo para outra instância do MySQL. Consulte a Seção 14.6.1.3, “Importando Tabelas InnoDB”.
+* You can import a table that resides in a file-per-table tablespace from another MySQL instance. See Section 14.6.1.3, “Importing InnoDB Tables”.
 
-- As tabelas criadas em espaços de tabelas por arquivo usam o formato de arquivo Barracuda. Consulte a Seção 14.10, “Gerenciamento do Formato de Arquivo InnoDB”. O formato de arquivo Barracuda permite recursos associados aos formatos de linha `DINÂMICA` e `COMPREENSO`. Consulte a Seção 14.11, “Formatos de Linha InnoDB”.
+* Tables created in file-per-table tablespaces use the Barracuda file format. See Section 14.10, “InnoDB File-Format Management”. The Barracuda file format enables features associated with `DYNAMIC` and `COMPRESSED` row formats. See Section 14.11, “InnoDB Row Formats”.
 
-- As tabelas armazenadas em arquivos de dados de espaço de tabela individual podem economizar tempo e melhorar as chances de recuperação bem-sucedida quando ocorre corrupção de dados, quando os backups ou logs binários estão indisponíveis ou quando a instância do servidor MySQL não pode ser reiniciada.
+* Tables stored in individual tablespace data files can save time and improve chances for a successful recovery when data corruption occurs, when backups or binary logs are unavailable, or when the MySQL server instance cannot be restarted.
 
-- Você pode fazer backup ou restaurar tabelas criadas em espaços de tabelas por arquivo rapidamente usando o MySQL Enterprise Backup, sem interromper o uso de outras tabelas `InnoDB`. Isso é benéfico para tabelas com cronogramas de backup variados ou que exigem backup com menos frequência. Veja Fazendo um Backup Parcial para obter detalhes.
+* You can backup or restore tables created in file-per-table tablespaces quickly using MySQL Enterprise Backup, without interrupting the use of other `InnoDB` tables. This is beneficial for tables on varying backup schedules or that require backup less frequently. See Making a Partial Backup for details.
 
-- Os espaços de tabela por arquivo permitem monitorar o tamanho da tabela no sistema de arquivos, monitorando o tamanho do arquivo de dados do espaço de tabela.
+* File-per-table tablespaces permit monitoring table size on the file system by monitoring the size of the tablespace data file.
 
-- Os sistemas de arquivos comuns do Linux não permitem gravações concorrentes em um único arquivo, como um arquivo de dados de um espaço de tabelas compartilhado, quando o `innodb_flush_method` está configurado para `O_DIRECT`. Como resultado, há possíveis melhorias de desempenho ao usar espaços de tabelas por arquivo em conjunto com essa configuração.
+* Common Linux file systems do not permit concurrent writes to a single file such as a shared tablespace data file when `innodb_flush_method` is set to `O_DIRECT`. As a result, there are possible performance improvements when using file-per-table tablespaces in conjunction with this setting.
 
-- As tabelas em um espaço de tabelas compartilhado têm um limite de tamanho de 64 TB. Em comparação, cada espaço de tabela por arquivo tem um limite de tamanho de 64 TB, o que oferece bastante espaço para que as tabelas individuais cresçam em tamanho.
+* Tables in a shared tablespace are limited in size by the 64TB tablespace size limit. By comparison, each file-per-table tablespace has a 64TB size limit, which provides plenty of room for individual tables to grow in size.
 
-##### Desvantagens do espaço de tabela por arquivo
+##### File-Per-Table Tablespace Disadvantages
 
-Os espaços de tabela por arquivo têm as seguintes desvantagens em comparação com os espaços de tabela compartilhados, como o espaço de tabela do sistema ou os espaços de tabela gerais.
+File-per-table tablespaces have the following disadvantages compared to shared tablespaces such as the system tablespace or general tablespaces.
 
-- Com os espaços de tabelas por arquivo, cada tabela pode ter espaço não utilizado que só pode ser utilizado por linhas da mesma tabela, o que pode levar a um desperdício de espaço se não for gerenciado adequadamente.
+* With file-per-table tablespaces, each table may have unused space that can only be utilized by rows of the same table, which can lead to wasted space if not properly managed.
 
-- As operações `fsync` são realizadas em múltiplos arquivos por tabela em vez de um único arquivo de dados do espaço de tabelas compartilhado. Como as operações `fsync` são por arquivo, as operações de escrita para múltiplas tabelas não podem ser combinadas, o que pode resultar em um número total maior de operações `fsync`.
+* `fsync` operations are performed on multiple file-per-table data files instead of a single shared tablespace data file. Because `fsync` operations are per file, write operations for multiple tables cannot be combined, which can result in a higher total number of `fsync` operations.
 
-- O **mysqld** deve manter uma abertura de arquivo para cada espaço de tabela por arquivo, o que pode afetar o desempenho se você tiver várias tabelas em espaços de tabela por arquivo.
+* **mysqld** must keep an open file handle for each file-per-table tablespace, which may impact performance if you have numerous tables in file-per-table tablespaces.
 
-- São necessários mais descritores de arquivo quando cada tabela tem seu próprio arquivo de dados.
+* More file descriptors are required when each table has its own data file.
 
-- Há potencial para mais fragmentação, o que pode prejudicar o desempenho da instrução `DROP TABLE` e da varredura da tabela. No entanto, se a fragmentação for gerenciada, os espaços de tabela por arquivo podem melhorar o desempenho dessas operações.
+* There is potential for more fragmentation, which can impede `DROP TABLE` and table scan performance. However, if fragmentation is managed, file-per-table tablespaces can improve performance for these operations.
 
-- O pool de tampão é verificado ao excluir uma tabela que esteja em um espaço de tabela por arquivo, o que pode levar vários segundos para pools de tampão grandes. A verificação é realizada com um bloqueio interno amplo, o que pode atrasar outras operações.
+* The buffer pool is scanned when dropping a table that resides in a file-per-table tablespace, which can take several seconds for large buffer pools. The scan is performed with a broad internal lock, which may delay other operations.
 
-- A variável `innodb_autoextend_increment`, que define o tamanho do incremento para a expansão do tamanho de um arquivo de espaço de tabela compartilhado que se autoexpande quando ele fica cheio, não se aplica aos arquivos de espaço de tabela por arquivo, que se autoexpande independentemente da configuração `innodb_autoextend_increment`. As primeiras expansões de espaço de tabela por arquivo são em pequenas quantidades, após as quais as expansões ocorrem em incrementos de 4 MB.
+* The `innodb_autoextend_increment` variable, which defines the increment size for extending the size of an auto-extending shared tablespace file when it becomes full, does not apply to file-per-table tablespace files, which are auto-extending regardless of the `innodb_autoextend_increment` setting. Initial file-per-table tablespace extensions are by small amounts, after which extensions occur in increments of 4MB.

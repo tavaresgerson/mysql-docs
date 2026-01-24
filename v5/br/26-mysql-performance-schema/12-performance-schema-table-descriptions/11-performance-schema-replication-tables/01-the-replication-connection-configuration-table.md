@@ -1,69 +1,69 @@
-#### 25.12.11.1 Tabela de configuração de conexão de replicação
+#### 25.12.11.1 The replication_connection_configuration Table
 
-Esta tabela mostra os parâmetros de configuração usados pela replica para se conectar à fonte. Os parâmetros armazenados na tabela podem ser alterados em tempo de execução com a instrução `CHANGE MASTER TO`, conforme indicado nas descrições das colunas.
+This table shows the configuration parameters used by the replica for connecting to the source. Parameters stored in the table can be changed at runtime with the [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") statement, as indicated in the column descriptions.
 
-Em comparação com a tabela `replication_connection_status`, a tabela `replication_connection_configuration` muda com menos frequência. Ela contém valores que definem como a replica se conecta à fonte e que permanecem constantes durante a conexão, enquanto a tabela `replication_connection_status` contém valores que mudam durante a conexão.
+Compared to the [`replication_connection_status`](performance-schema-replication-connection-status-table.html "25.12.11.2 The replication_connection_status Table") table, [`replication_connection_configuration`](performance-schema-replication-connection-configuration-table.html "25.12.11.1 The replication_connection_configuration Table") changes less frequently. It contains values that define how the replica connects to the source and that remain constant during the connection, whereas [`replication_connection_status`](performance-schema-replication-connection-status-table.html "25.12.11.2 The replication_connection_status Table") contains values that change during the connection.
 
-A tabela `replication_connection_configuration` tem as seguintes colunas. As descrições das colunas indicam as opções correspondentes `CHANGE MASTER TO` das quais os valores das colunas são obtidos, e a tabela fornecida mais adiante nesta seção mostra a correspondência entre as colunas da tabela `replication_connection_configuration` e as colunas da tabela `SHOW SLAVE STATUS` (show-slave-status.html).
+The [`replication_connection_configuration`](performance-schema-replication-connection-configuration-table.html "25.12.11.1 The replication_connection_configuration Table") table has the following columns. The column descriptions indicate the corresponding `CHANGE MASTER TO` options from which the column values are taken, and the table given later in this section shows the correspondence between [`replication_connection_configuration`](performance-schema-replication-connection-configuration-table.html "25.12.11.1 The replication_connection_configuration Table") columns and [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") columns.
 
-- `NOME_CANAL`
+* `CHANNEL_NAME`
 
-  O canal de replicação que esta linha está exibindo. Há sempre um canal de replicação padrão, e mais canais de replicação podem ser adicionados. Consulte Seção 16.2.2, “Canais de Replicação” para obter mais informações. (`Opção CHANGE MASTER TO`: `FOR CHANNEL`)
+  The replication channel which this row is displaying. There is always a default replication channel, and more replication channels can be added. See [Section 16.2.2, “Replication Channels”](replication-channels.html "16.2.2 Replication Channels") for more information. (`CHANGE MASTER TO` option: `FOR CHANNEL`)
 
-- `HOST`
+* `HOST`
 
-  O servidor de origem de replicação ao qual a replica está conectada. (`Opção CHANGE MASTER TO`: `MASTER_HOST`)
+  The replication source server that the replica is connected to. (`CHANGE MASTER TO` option: `MASTER_HOST`)
 
-- `PORT`
+* `PORT`
 
-  O porto usado para se conectar ao servidor de origem da replicação. (`Opção CHANGE MASTER TO`: `MASTER_PORT`)
+  The port used to connect to the replication source server. (`CHANGE MASTER TO` option: `MASTER_PORT`)
 
-- `USUARIO`
+* `USER`
 
-  O nome de usuário da conta usada para se conectar ao servidor de origem de replicação. (`Opção ALTERAR MASTER PARA`: `MASTER_USER`)
+  The user name of the account used to connect to the replication source server. (`CHANGE MASTER TO` option: `MASTER_USER`)
 
-- `NETWORK_INTERFACE`
+* `NETWORK_INTERFACE`
 
-  A interface de rede à qual a replica está vinculada, se houver. (`Opção ALTERAR MASTER PARA`: `MASTER_BIND`)
+  The network interface that the replica is bound to, if any. (`CHANGE MASTER TO` option: `MASTER_BIND`)
 
-- `AUTO_POSITION`
+* `AUTO_POSITION`
 
-  1 se o autoposicionamento estiver em uso; caso contrário, 0. (`Opção CHANGE MASTER TO`: `MASTER_AUTO_POSITION`)
+  1 if autopositioning is in use; otherwise 0. (`CHANGE MASTER TO` option: `MASTER_AUTO_POSITION`)
 
-- `SSL_ALLOWED`, `SSL_CA_FILE`, `SSL_CA_PATH`, `SSL_CERTIFICATE`, `SSL_CIPHER`, `SSL_KEY`, `SSL_VERIFY_SERVER_CERTIFICATE`, `SSL_CRL_FILE`, `SSL_CRL_PATH`
+* `SSL_ALLOWED`, `SSL_CA_FILE`, `SSL_CA_PATH`, `SSL_CERTIFICATE`, `SSL_CIPHER`, `SSL_KEY`, `SSL_VERIFY_SERVER_CERTIFICATE`, `SSL_CRL_FILE`, `SSL_CRL_PATH`
 
-  Essas colunas mostram os parâmetros SSL usados pela replica para se conectar ao servidor de origem de replicação, se houver.
+  These columns show the SSL parameters used by the replica to connect to the replication source server, if any.
 
-  `SSL_ALLOWED` tem esses valores:
+  `SSL_ALLOWED` has these values:
 
-  - Sim, se uma conexão SSL para a fonte for permitida
+  + `Yes` if an SSL connection to the source is permitted
 
-  - `Não` se uma conexão SSL para a fonte não for permitida
+  + `No` if an SSL connection to the source is not permitted
 
-  - `Ignorado` se uma conexão SSL for permitida, mas a réplica não tiver o suporte SSL habilitado
+  + `Ignored` if an SSL connection is permitted but the replica does not have SSL support enabled
 
-  Opções `ALTERAR MASTER PARA` para as outras colunas SSL: `MASTER_SSL_CA`, `MASTER_SSL_CAPATH`, `MASTER_SSL_CERT`, `MASTER_SSL_CIPHER`, `MASTER_SSL_CRL`, `MASTER_SSL_CRLPATH`, `MASTER_SSL_KEY`, `MASTER_SSL_VERIFY_SERVER_CERT`.
+  `CHANGE MASTER TO` options for the other SSL columns: `MASTER_SSL_CA`, `MASTER_SSL_CAPATH`, `MASTER_SSL_CERT`, `MASTER_SSL_CIPHER`, `MASTER_SSL_CRL`, `MASTER_SSL_CRLPATH`, `MASTER_SSL_KEY`, `MASTER_SSL_VERIFY_SERVER_CERT`.
 
-- `INTERVALO_DE_RECOMANDO_DE_CONEXÃO`
+* `CONNECTION_RETRY_INTERVAL`
 
-  O número de segundos entre as tentativas de conexão. (`Opção ALTERAR MASTER PARA`: `MASTER_CONNECT_RETRY`)
+  The number of seconds between connect retries. (`CHANGE MASTER TO` option: `MASTER_CONNECT_RETRY`)
 
-- `CONNECTION_RETRY_COUNT`
+* `CONNECTION_RETRY_COUNT`
 
-  O número de vezes que a réplica pode tentar se reconectar à fonte em caso de perda de conexão. (`Opção ALTERAR MASTER PARA`: `MASTER_RETRY_COUNT`)
+  The number of times the replica can attempt to reconnect to the source in the event of a lost connection. (`CHANGE MASTER TO` option: `MASTER_RETRY_COUNT`)
 
-- `HEARTBEAT_INTERVAL`
+* `HEARTBEAT_INTERVAL`
 
-  O intervalo de batida de replicação em uma replica, medido em segundos. (`Opção CHANGE MASTER TO`: `MASTER_HEARTBEAT_PERIOD`)
+  The replication heartbeat interval on a replica, measured in seconds. (`CHANGE MASTER TO` option: `MASTER_HEARTBEAT_PERIOD`)
 
-- `TLS_VERSION`
+* `TLS_VERSION`
 
-  A versão TLS usada na fonte. Para informações sobre a versão TLS, consulte Seção 6.3.2, “Protocolos e cifra de conexão encriptada”. (`Opção CHANGE MASTER TO`: `MASTER_TLS_VERSION`)
+  The TLS version used on the source. For TLS version information, see [Section 6.3.2, “Encrypted Connection TLS Protocols and Ciphers”](encrypted-connection-protocols-ciphers.html "6.3.2 Encrypted Connection TLS Protocols and Ciphers"). (`CHANGE MASTER TO` option: `MASTER_TLS_VERSION`)
 
-  Esta coluna foi adicionada no MySQL 5.7.10.
+  This column was added in MySQL 5.7.10.
 
-A operação `TRUNCATE TABLE` não é permitida para a tabela `replication_connection_configuration`.
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is not permitted for the [`replication_connection_configuration`](performance-schema-replication-connection-configuration-table.html "25.12.11.1 The replication_connection_configuration Table") table.
 
-A tabela a seguir mostra a correspondência entre as colunas da tabela `replication_connection_configuration` e as colunas da consulta `SHOW SLAVE STATUS`.
+The following table shows the correspondence between [`replication_connection_configuration`](performance-schema-replication-connection-configuration-table.html "25.12.11.1 The replication_connection_configuration Table") columns and [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") columns.
 
-<table summary="Correspondência entre as colunas replication_connection_configuration e SHOW SLAVE STATUS"><col style="width: 60%"/><col style="width: 40%"/><thead><tr> <th>PH_HTML_CODE_<code>NETWORK_INTERFACE</code>] Coluna</th> <th>PH_HTML_CODE_<code>NETWORK_INTERFACE</code>] Coluna</th> </tr></thead><tbody><tr> <td>PH_HTML_CODE_<code>AUTO_POSITION</code>]</td> <td>PH_HTML_CODE_<code>Auto_Position</code>]</td> </tr><tr> <td>PH_HTML_CODE_<code>SSL_ALLOWED</code>]</td> <td>PH_HTML_CODE_<code>Master_SSL_Allowed</code>]</td> </tr><tr> <td>PH_HTML_CODE_<code>SSL_CA_FILE</code>]</td> <td>PH_HTML_CODE_<code>Master_SSL_CA_File</code>]</td> </tr><tr> <td>PH_HTML_CODE_<code>SSL_CA_PATH</code>]</td> <td>PH_HTML_CODE_<code>Master_SSL_CA_Path</code>]</td> </tr><tr> <td><code>NETWORK_INTERFACE</code></td> <td><code>SHOW SLAVE STATUS</code><code>NETWORK_INTERFACE</code>]</td> </tr><tr> <td><code>AUTO_POSITION</code></td> <td><code>Auto_Position</code></td> </tr><tr> <td><code>SSL_ALLOWED</code></td> <td><code>Master_SSL_Allowed</code></td> </tr><tr> <td><code>SSL_CA_FILE</code></td> <td><code>Master_SSL_CA_File</code></td> </tr><tr> <td><code>SSL_CA_PATH</code></td> <td><code>Master_SSL_CA_Path</code></td> </tr><tr> <td><code>CHANNEL_NAME</code><code>NETWORK_INTERFACE</code>]</td> <td><code>CHANNEL_NAME</code><code>NETWORK_INTERFACE</code>]</td> </tr><tr> <td><code>CHANNEL_NAME</code><code>AUTO_POSITION</code>]</td> <td><code>CHANNEL_NAME</code><code>Auto_Position</code>]</td> </tr><tr> <td><code>CHANNEL_NAME</code><code>SSL_ALLOWED</code>]</td> <td><code>CHANNEL_NAME</code><code>Master_SSL_Allowed</code>]</td> </tr><tr> <td><code>CHANNEL_NAME</code><code>SSL_CA_FILE</code>]</td> <td><code>CHANNEL_NAME</code><code>Master_SSL_CA_File</code>]</td> </tr><tr> <td><code>CHANNEL_NAME</code><code>SSL_CA_PATH</code>]</td> <td><code>CHANNEL_NAME</code><code>Master_SSL_CA_Path</code>]</td> </tr><tr> <td><code>Channel_name</code><code>NETWORK_INTERFACE</code>]</td> <td><code>Channel_name</code><code>NETWORK_INTERFACE</code>]</td> </tr><tr> <td><code>Channel_name</code><code>AUTO_POSITION</code>]</td> <td><code>Channel_name</code><code>Auto_Position</code>]</td> </tr><tr> <td><code>Channel_name</code><code>SSL_ALLOWED</code>]</td> <td><code>Channel_name</code><code>Master_SSL_Allowed</code>]</td> </tr><tr> <td><code>Channel_name</code><code>SSL_CA_FILE</code>]</td> <td>Nenhum</td> </tr><tr> <td><code>Channel_name</code><code>Master_SSL_CA_File</code>]</td> <td><code>Channel_name</code><code>SSL_CA_PATH</code>]</td> </tr></tbody></table>
+<table summary="Correspondence between replication_connection_configuration columns and SHOW SLAVE STATUS columns"><col style="width: 60%"/><col style="width: 40%"/><thead><tr> <th><code>replication_connection_configuration</code> Column</th> <th><code>SHOW SLAVE STATUS</code> Column</th> </tr></thead><tbody><tr> <td><code>CHANNEL_NAME</code></td> <td><code>Channel_name</code></td> </tr><tr> <td><code>HOST</code></td> <td><code>Master_Host</code></td> </tr><tr> <td><code>PORT</code></td> <td><code>Master_Port</code></td> </tr><tr> <td><code>USER</code></td> <td><code>Master_User</code></td> </tr><tr> <td><code>NETWORK_INTERFACE</code></td> <td><code>Master_Bind</code></td> </tr><tr> <td><code>AUTO_POSITION</code></td> <td><code>Auto_Position</code></td> </tr><tr> <td><code>SSL_ALLOWED</code></td> <td><code>Master_SSL_Allowed</code></td> </tr><tr> <td><code>SSL_CA_FILE</code></td> <td><code>Master_SSL_CA_File</code></td> </tr><tr> <td><code>SSL_CA_PATH</code></td> <td><code>Master_SSL_CA_Path</code></td> </tr><tr> <td><code>SSL_CERTIFICATE</code></td> <td><code>Master_SSL_Cert</code></td> </tr><tr> <td><code>SSL_CIPHER</code></td> <td><code>Master_SSL_Cipher</code></td> </tr><tr> <td><code>SSL_KEY</code></td> <td><code>Master_SSL_Key</code></td> </tr><tr> <td><code>SSL_VERIFY_SERVER_CERTIFICATE</code></td> <td><code>Master_SSL_Verify_Server_Cert</code></td> </tr><tr> <td><code>SSL_CRL_FILE</code></td> <td><code>Master_SSL_Crl</code></td> </tr><tr> <td><code>SSL_CRL_PATH</code></td> <td><code>Master_SSL_Crlpath</code></td> </tr><tr> <td><code>CONNECTION_RETRY_INTERVAL</code></td> <td><code>Connect_Retry</code></td> </tr><tr> <td><code>CONNECTION_RETRY_COUNT</code></td> <td><code>Master_Retry_Count</code></td> </tr><tr> <td><code>HEARTBEAT_INTERVAL</code></td> <td>None</td> </tr><tr> <td><code>TLS_VERSION</code></td> <td><code>Master_TLS_Version</code></td> </tr></tbody></table>

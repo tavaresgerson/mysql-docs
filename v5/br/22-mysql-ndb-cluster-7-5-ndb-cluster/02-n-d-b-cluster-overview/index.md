@@ -1,41 +1,41 @@
-## 21.2 Visão geral do cluster do BND
+## 21.2 NDB Cluster Overview
 
-21.2.1 Conceitos Básicos do Núcleo do NDB Cluster
+[21.2.1 NDB Cluster Core Concepts](mysql-cluster-basics.html)
 
-21.2.2 Nodos do clúster do NDB, Grupos de nós, Replicas de fragmentos e Partições
+[21.2.2 NDB Cluster Nodes, Node Groups, Fragment Replicas, and Partitions](mysql-cluster-nodes-groups.html)
 
-21.2.3 Requisitos de hardware, software e de rede do cluster NDB
+[21.2.3 NDB Cluster Hardware, Software, and Networking Requirements](mysql-cluster-overview-requirements.html)
 
-21.2.4 O que há de novo no MySQL NDB Cluster
+[21.2.4 What is New in MySQL NDB Cluster](mysql-cluster-what-is-new.html)
 
-21.2.5 NDB: Opções, variáveis e parâmetros adicionados, descontinuados e removidos
+[21.2.5 NDB: Added, Deprecated, and Removed Options, Variables, and Parameters](mysql-cluster-added-deprecated-removed.html)
 
-21.2.6 Servidor MySQL Usando InnoDB Comparado com NDB Cluster
+[21.2.6 MySQL Server Using InnoDB Compared with NDB Cluster](mysql-cluster-compared.html)
 
-21.2.7 Limitações Conhecidas do NDB Cluster
+[21.2.7 Known Limitations of NDB Cluster](mysql-cluster-limitations.html)
 
-O NDB Cluster é uma tecnologia que permite a aglomeração de bancos de dados em memória em um sistema sem nada compartilhado. A arquitetura sem nada compartilhado permite que o sistema trabalhe com hardware muito econômico e com um mínimo de requisitos específicos para hardware ou software.
+NDB Cluster is a technology that enables clustering of in-memory databases in a shared-nothing system. The shared-nothing architecture enables the system to work with very inexpensive hardware, and with a minimum of specific requirements for hardware or software.
 
-O NDB Cluster foi projetado para não ter nenhum ponto único de falha. Em um sistema sem nada compartilhado, espera-se que cada componente tenha sua própria memória e disco, e o uso de mecanismos de armazenamento compartilhado, como compartilhamentos de rede, sistemas de arquivos de rede e SANs, não é recomendado ou suportado.
+NDB Cluster is designed not to have any single point of failure. In a shared-nothing system, each component is expected to have its own memory and disk, and the use of shared storage mechanisms such as network shares, network file systems, and SANs is not recommended or supported.
 
-O NDB Cluster integra o servidor padrão MySQL com um motor de armazenamento em cluster de memória chamado `NDB` (que significa “*N*etwork *D*ata*B*ase“). Em nossa documentação, o termo `NDB` refere-se à parte da configuração que é específica do motor de armazenamento, enquanto “MySQL NDB Cluster” refere-se à combinação de um ou mais servidores MySQL com o motor de armazenamento `NDB`.
+NDB Cluster integrates the standard MySQL server with an in-memory clustered storage engine called [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") (which stands for “*N*etwork *D*ata*B*ase”). In our documentation, the term [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") refers to the part of the setup that is specific to the storage engine, whereas “MySQL NDB Cluster” refers to the combination of one or more MySQL servers with the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine.
 
-Um NDB Cluster é composto por um conjunto de computadores, conhecidos como hosts, cada um executando um ou mais processos. Esses processos, conhecidos como nós, podem incluir servidores MySQL (para acesso aos dados do NDB), nós de dados (para armazenamento dos dados), um ou mais servidores de gerenciamento e, possivelmente, outros programas especializados de acesso a dados. A relação desses componentes em um NDB Cluster é mostrada aqui:
+An NDB Cluster consists of a set of computers, known as hosts, each running one or more processes. These processes, known as nodes, may include MySQL servers (for access to NDB data), data nodes (for storage of the data), one or more management servers, and possibly other specialized data access programs. The relationship of these components in an NDB Cluster is shown here:
 
-**Figura 21.1 Componentes do Cluster NDB**
+**Figure 21.1 NDB Cluster Components**
 
-![Neste cluster, três servidores MySQL (programa mysqld) são nós SQL que fornecem acesso a quatro nós de dados (programa ndbd) que armazenam dados. Os nós SQL e os nós de dados estão sob o controle de um servidor de gerenciamento NDB (programa ndb_mgmd). Vários clientes e APIs podem interagir com os nós SQL - o cliente mysql, a API C do MySQL, PHP, Connector/J e Connector/NET. Clientes personalizados também podem ser criados usando a API NDB para interagir com os nós de dados ou o servidor de gerenciamento NDB. O cliente de gerenciamento NDB (programa ndb_mgm) interage com o servidor de gerenciamento NDB.](images/cluster-components-1.png)
+![In this cluster, three MySQL servers (mysqld program) are SQL nodes that provide access to four data nodes (ndbd program) that store data. The SQL nodes and data nodes are under the control of an NDB management server (ndb_mgmd program). Various clients and APIs can interact with the SQL nodes - the mysql client, the MySQL C API, PHP, Connector/J, and Connector/NET. Custom clients can also be created using the NDB API to interact with the data nodes or the NDB management server. The NDB management client (ndb_mgm program) interacts with the NDB management server.](images/cluster-components-1.png)
 
-Todos esses programas trabalham juntos para formar um NDB Cluster (veja Seção 21.5, “Programas de NDB Cluster”. Quando os dados são armazenados pelo mecanismo de armazenamento `NDB`, as tabelas (e os dados das tabelas) são armazenadas nos nós de dados. Essas tabelas são diretamente acessíveis a partir de todos os outros servidores MySQL (nós SQL) no cluster. Assim, em um aplicativo de folha de pagamento que armazena dados em um cluster, se um aplicativo atualizar o salário de um funcionário, todos os outros servidores MySQL que consultam esses dados podem ver essa mudança imediatamente.
+All these programs work together to form an NDB Cluster (see [Section 21.5, “NDB Cluster Programs”](mysql-cluster-programs.html "21.5 NDB Cluster Programs"). When data is stored by the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine, the tables (and table data) are stored in the data nodes. Such tables are directly accessible from all other MySQL servers (SQL nodes) in the cluster. Thus, in a payroll application storing data in a cluster, if one application updates the salary of an employee, all other MySQL servers that query this data can see this change immediately.
 
-Embora um nó do NDB Cluster SQL use o daemon do servidor **mysqld**, ele difere em vários aspectos críticos do binário **mysqld** fornecido com as distribuições do MySQL 5.7, e as duas versões do **mysqld** não são intercambiáveis.
+Although an NDB Cluster SQL node uses the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") server daemon, it differs in a number of critical respects from the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") binary supplied with the MySQL 5.7 distributions, and the two versions of [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") are not interchangeable.
 
-Além disso, um servidor MySQL que não está conectado a um NDB Cluster não pode usar o mecanismo de armazenamento `NDB` e não pode acessar nenhum dado do NDB Cluster.
+In addition, a MySQL server that is not connected to an NDB Cluster cannot use the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine and cannot access any NDB Cluster data.
 
-Os dados armazenados nos nós de dados do NDB Cluster podem ser espelhados; o clúster pode lidar com falhas de nós de dados individuais sem outro impacto além de um pequeno número de transações serem abortadas devido à perda do estado da transação. Como se espera que as aplicações transacionais lidem com falhas de transação, isso não deve ser uma fonte de problemas.
+The data stored in the data nodes for NDB Cluster can be mirrored; the cluster can handle failures of individual data nodes with no other impact than that a small number of transactions are aborted due to losing the transaction state. Because transactional applications are expected to handle transaction failure, this should not be a source of problems.
 
-Os nós individuais podem ser parados e reiniciados e, em seguida, podem se reiniciar no sistema (clã). Reinicializações em rotação (nas quais todos os nós são reiniciados em ordem) são usadas para fazer alterações de configuração e atualizações de software (veja Seção 21.6.5, “Realizando uma Reinicialização em Rotação de um Clã NDB”). Reinicializações em rotação também são usadas como parte do processo de adição de novos nós de dados online (veja Seção 21.6.7, “Adição de Nodos de Dados de Clã NDB Online”). Para mais informações sobre nós de dados, como eles são organizados em um Clã NDB e como eles lidam e armazenam dados do Clã NDB, veja Seção 21.2.2, “Nodos do Clã NDB, Grupos de Nó, Replicas de Fragmento e Partições”.
+Individual nodes can be stopped and restarted, and can then rejoin the system (cluster). Rolling restarts (in which all nodes are restarted in turn) are used in making configuration changes and software upgrades (see [Section 21.6.5, “Performing a Rolling Restart of an NDB Cluster”](mysql-cluster-rolling-restart.html "21.6.5 Performing a Rolling Restart of an NDB Cluster")). Rolling restarts are also used as part of the process of adding new data nodes online (see [Section 21.6.7, “Adding NDB Cluster Data Nodes Online”](mysql-cluster-online-add-node.html "21.6.7 Adding NDB Cluster Data Nodes Online")). For more information about data nodes, how they are organized in an NDB Cluster, and how they handle and store NDB Cluster data, see [Section 21.2.2, “NDB Cluster Nodes, Node Groups, Fragment Replicas, and Partitions”](mysql-cluster-nodes-groups.html "21.2.2 NDB Cluster Nodes, Node Groups, Fragment Replicas, and Partitions").
 
-A cópia de segurança e a restauração de bancos de dados do NDB Cluster podem ser realizadas usando a funcionalidade nativa do `NDB` encontrada no cliente de gerenciamento do NDB Cluster e no programa **ndb_restore** incluído na distribuição do NDB Cluster. Para mais informações, consulte Seção 21.6.8, “Backup Online do NDB Cluster” e Seção 21.5.24, “ndb_restore — Restaurar um Backup do NDB Cluster”. Você também pode usar a funcionalidade padrão do MySQL fornecida para esse propósito no **mysqldump** e no servidor MySQL. Consulte Seção 4.5.4, “mysqldump — Um Programa de Backup de Banco de Dados” para mais informações.
+Backing up and restoring NDB Cluster databases can be done using the `NDB`-native functionality found in the NDB Cluster management client and the [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") program included in the NDB Cluster distribution. For more information, see [Section 21.6.8, “Online Backup of NDB Cluster”](mysql-cluster-backup.html "21.6.8 Online Backup of NDB Cluster"), and [Section 21.5.24, “ndb_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup"). You can also use the standard MySQL functionality provided for this purpose in [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") and the MySQL server. See [Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program"), for more information.
 
-Os nós do cluster do NDB podem utilizar diferentes mecanismos de transporte para comunicações entre nós; o TCP/IP sobre hardware Ethernet padrão de 100 Mbps ou mais rápido é utilizado na maioria das implantações do mundo real.
+NDB Cluster nodes can employ different transport mechanisms for inter-node communications; TCP/IP over standard 100 Mbps or faster Ethernet hardware is used in most real-world deployments.

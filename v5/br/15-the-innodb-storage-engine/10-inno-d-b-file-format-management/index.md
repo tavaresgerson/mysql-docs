@@ -1,36 +1,36 @@
-## 14.10 Gerenciamento do formato de arquivo InnoDB
+## 14.10 InnoDB File-Format Management
 
-14.10.1 Habilitar formatos de arquivo
+14.10.1 Enabling File Formats
 
-14.10.1 Verificar a compatibilidade com o formato de arquivo
+14.10.2 Verifying File Format Compatibility
 
-14.10.3 Identificação do formato de arquivo em uso
+14.10.3 Identifying the File Format in Use
 
-14.10.4 Modificando o formato do arquivo
+14.10.4 Modifying the File Format
 
-À medida que o `InnoDB` evolui, formatos de arquivo de dados que não são compatíveis com versões anteriores do `InnoDB` são, às vezes, necessários para suportar novos recursos. Para ajudar a gerenciar a compatibilidade em situações de atualização e downgrade, e em sistemas que executam diferentes versões do MySQL, o `InnoDB` utiliza formatos de arquivo nomeados. O `InnoDB` atualmente suporta dois formatos de arquivo nomeados, Antelope e Barracuda.
+As `InnoDB` evolves, data file formats that are not compatible with prior versions of `InnoDB` are sometimes required to support new features. To help manage compatibility in upgrade and downgrade situations, and systems that run different versions of MySQL, `InnoDB` uses named file formats. `InnoDB` currently supports two named file formats, Antelope and Barracuda.
 
-- Antelope é o formato de arquivo original do `InnoDB`, que anteriormente não tinha um nome. Ele suporta os formatos de linha COMPACT e REDUNDANT para tabelas `InnoDB`.
+* Antelope is the original `InnoDB` file format, which previously did not have a name. It supports the COMPACT and REDUNDANT row formats for `InnoDB` tables.
 
-- O Barracuda é o formato de arquivo mais recente. Ele suporta todos os formatos de linha `InnoDB`, incluindo os novos formatos COMPRESSED e DYNAMIC. As características associadas aos formatos de linha COMPRESSED e DYNAMIC incluem tabelas compactadas, armazenamento eficiente de colunas fora da página e prefixos de chaves de índice de até 3072 bytes (`innodb_large_prefix`). Veja a Seção 14.11, “Formatos de Linha InnoDB”.
+* Barracuda is the newest file format. It supports all `InnoDB` row formats including the newer COMPRESSED and DYNAMIC row formats. The features associated with COMPRESSED and DYNAMIC row formats include compressed tables, efficient storage of off-page columns, and index key prefixes up to 3072 bytes (`innodb_large_prefix`). See Section 14.11, “InnoDB Row Formats”.
 
-Esta seção discute a habilitação dos formatos de arquivo do InnoDB para novas tabelas do InnoDB, a verificação da compatibilidade dos diferentes formatos de arquivo entre as versões do MySQL e a identificação do formato de arquivo em uso.
+This section discusses enabling `InnoDB` file formats for new `InnoDB` tables, verifying compatibility of different file formats between MySQL releases, and identifying the file format in use.
 
-As configurações do formato de arquivo InnoDB não se aplicam às tabelas armazenadas em espaços de tabelas gerais. Os espaços de tabelas gerais fornecem suporte para todos os formatos de linha e recursos associados. Para obter mais informações, consulte a Seção 14.6.3.3, “Espaços de Tabelas Gerais”.
+InnoDB file format settings do not apply to tables stored in general tablespaces. General tablespaces provide support for all row formats and associated features. For more information, see Section 14.6.3.3, “General Tablespaces”.
 
-Nota
+Note
 
-Os seguintes parâmetros de configuração do formato de arquivo têm novos valores padrão:
+The following file format configuration parameters have new default values:
 
-- O valor padrão de `innodb_file_format` foi alterado para `Barracuda`. O valor padrão anterior era `Antelope`.
+* The `innodb_file_format` default value was changed to `Barracuda`. The previous default value was `Antelope`.
 
-- O valor padrão `innodb_large_prefix` foi alterado para `ON`. O valor padrão anterior era `OFF`.
+* The `innodb_large_prefix` default value was changed to `ON`. The previous default was `OFF`.
 
-Os seguintes parâmetros de configuração de formato de arquivo são desatualizados e podem ser removidos em uma versão futura:
+The following file format configuration parameters are deprecated in and may be removed in a future release:
 
-- `innodb_file_format`
-- `innodb_file_format_check`
-- `innodb_file_format_max`
-- `innodb_large_prefix`
+* `innodb_file_format`
+* `innodb_file_format_check`
+* `innodb_file_format_max`
+* `innodb_large_prefix`
 
-Os parâmetros de configuração do formato de arquivo foram fornecidos para criar tabelas compatíveis com versões anteriores do `InnoDB` no MySQL 5.1. Agora que o MySQL 5.1 atingiu o fim de seu ciclo de vida do produto, os parâmetros não são mais necessários.
+The file format configuration parameters were provided for creating tables compatible with earlier versions of `InnoDB` in MySQL 5.1. Now that MySQL 5.1 has reached the end of its product lifecycle, the parameters are no longer required.

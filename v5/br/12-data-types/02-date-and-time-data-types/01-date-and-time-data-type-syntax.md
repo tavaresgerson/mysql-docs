@@ -1,74 +1,74 @@
-### 11.2.1 Tipo de dados de data e hora Sintaxe
+### 11.2.1 Date and Time Data Type Syntax
 
-Os tipos de dados de data e hora para representar valores temporais são `DATE`, `TIME`, `DATETIME`, `TIMESTAMP` e `YEAR`.
+The date and time data types for representing temporal values are `DATE`, `TIME`, `DATETIME`, `TIMESTAMP`, and `YEAR`.
 
-Para as descrições de intervalo de `DATE` e `DATETIME`, "compatível" significa que, embora valores anteriores possam funcionar, não há garantia.
+For the `DATE` and `DATETIME` range descriptions, “supported” means that although earlier values might work, there is no guarantee.
 
-O MySQL permite frações de segundo para valores de `TIME`, `DATETIME` e `TIMESTAMP`, com precisão de até microsegundos (6 dígitos). Para definir uma coluna que inclua uma parte de frações de segundo, use a sintaxe `type_name(fsp)`, onde *`type_name`* é `TIME`, `DATETIME` ou `TIMESTAMP`, e *`fsp`* é a precisão de frações de segundo. Por exemplo:
+MySQL permits fractional seconds for `TIME`, `DATETIME`, and `TIMESTAMP` values, with up to microseconds (6 digits) precision. To define a column that includes a fractional seconds part, use the syntax `type_name(fsp)`, where *`type_name`* is `TIME`, `DATETIME`, or `TIMESTAMP`, and *`fsp`* is the fractional seconds precision. For example:
 
 ```sql
 CREATE TABLE t1 (t TIME(3), dt DATETIME(6), ts TIMESTAMP(0));
 ```
 
-O valor *`fsp`*, se fornecido, deve estar no intervalo de 0 a 6. Um valor de 0 significa que não há parte fracionária. Se omitido, a precisão padrão é 0. (Isso difere do padrão padrão do SQL padrão de 6, para compatibilidade com versões anteriores do MySQL.)
+The *`fsp`* value, if given, must be in the range 0 to 6. A value of 0 signifies that there is no fractional part. If omitted, the default precision is 0. (This differs from the standard SQL default of 6, for compatibility with previous MySQL versions.)
 
-Qualquer coluna `TIMESTAMP` ou `DATETIME` em uma tabela pode ter propriedades de inicialização e atualização automáticas; consulte a Seção 11.2.6, “Inicialização e Atualização Automática para TIMESTAMP e DATETIME”.
+Any `TIMESTAMP` or `DATETIME` column in a table can have automatic initialization and updating properties; see Section 11.2.6, “Automatic Initialization and Updating for TIMESTAMP and DATETIME”.
 
-- `DATA`
+* `DATE`
 
-  Uma data. A faixa de valores suportada é `'1000-01-01'` a `'9999-12-31'`. O MySQL exibe os valores `DATE` no formato `'YYYY-MM-DD'`, mas permite a atribuição de valores às colunas `DATE` usando strings ou números.
+  A date. The supported range is `'1000-01-01'` to `'9999-12-31'`. MySQL displays `DATE` values in `'YYYY-MM-DD'` format, but permits assignment of values to `DATE` columns using either strings or numbers.
 
-- `DATETIME[(fsp)]`
+* `DATETIME[(fsp)]`
 
-  Uma combinação de data e hora. O intervalo suportado é `'1000-01-01 00:00:00.000000'` a `'9999-12-31 23:59:59.499999'`. O MySQL exibe valores `DATETIME` no formato `'YYYY-MM-DD hh:mm:ss[.fraction]'`, mas permite a atribuição de valores às colunas `DATETIME` usando strings ou números.
+  A date and time combination. The supported range is `'1000-01-01 00:00:00.000000'` to `'9999-12-31 23:59:59.499999'`. MySQL displays `DATETIME` values in `'YYYY-MM-DD hh:mm:ss[.fraction]'` format, but permits assignment of values to `DATETIME` columns using either strings or numbers.
 
-  Um valor opcional *`fsp`* no intervalo de 0 a 6 pode ser fornecido para especificar a precisão de segundos fracionários. Um valor de 0 significa que não há parte fracionária. Se omitido, a precisão padrão é 0.
+  An optional *`fsp`* value in the range from 0 to 6 may be given to specify fractional seconds precision. A value of 0 signifies that there is no fractional part. If omitted, the default precision is 0.
 
-  A inicialização automática e a atualização para a data e hora atuais para as colunas `DATETIME` podem ser especificadas usando as cláusulas de definição de coluna `DEFAULT` e `ON UPDATE`, conforme descrito na Seção 11.2.6, “Inicialização e Atualização Automática para TIMESTAMP e DATETIME”.
+  Automatic initialization and updating to the current date and time for `DATETIME` columns can be specified using `DEFAULT` and `ON UPDATE` column definition clauses, as described in Section 11.2.6, “Automatic Initialization and Updating for TIMESTAMP and DATETIME”.
 
-- `TIMESTAMP[(fsp)]`
+* `TIMESTAMP[(fsp)]`
 
-  Um timestamp. A faixa é de `'1970-01-01 00:00:01.000000'` UTC a `'2038-01-19 03:14:07.499999'` UTC. Os valores `TIMESTAMP` são armazenados como o número de segundos desde a época (`'1970-01-01 00:00:00'` UTC). Um `TIMESTAMP` não pode representar o valor `'1970-01-01 00:00:00'` porque isso é equivalente a 0 segundos desde a época e o valor 0 é reservado para representar `'0000-00-00 00:00:00'`, o valor `TIMESTAMP` "zero".
+  A timestamp. The range is `'1970-01-01 00:00:01.000000'` UTC to `'2038-01-19 03:14:07.499999'` UTC. `TIMESTAMP` values are stored as the number of seconds since the epoch (`'1970-01-01 00:00:00'` UTC). A `TIMESTAMP` cannot represent the value `'1970-01-01 00:00:00'` because that is equivalent to 0 seconds from the epoch and the value 0 is reserved for representing `'0000-00-00 00:00:00'`, the “zero” `TIMESTAMP` value.
 
-  Um valor opcional *`fsp`* no intervalo de 0 a 6 pode ser fornecido para especificar a precisão de segundos fracionários. Um valor de 0 significa que não há parte fracionária. Se omitido, a precisão padrão é 0.
+  An optional *`fsp`* value in the range from 0 to 6 may be given to specify fractional seconds precision. A value of 0 signifies that there is no fractional part. If omitted, the default precision is 0.
 
-  A forma como o servidor lida com as definições de `TIMESTAMP` depende do valor da variável de sistema `explicit_defaults_for_timestamp` (consulte a Seção 5.1.7, “Variáveis de sistema do servidor”).
+  The way the server handles `TIMESTAMP` definitions depends on the value of the `explicit_defaults_for_timestamp` system variable (see Section 5.1.7, “Server System Variables”).
 
-  Se `explicit_defaults_for_timestamp` estiver habilitado, não há atribuição automática dos atributos `DEFAULT CURRENT_TIMESTAMP` ou `ON UPDATE CURRENT_TIMESTAMP` a qualquer coluna `TIMESTAMP`. Eles devem ser incluídos explicitamente na definição da coluna. Além disso, qualquer `TIMESTAMP` não declarado explicitamente como `NOT NULL` permite valores `NULL`.
+  If `explicit_defaults_for_timestamp` is enabled, there is no automatic assignment of the `DEFAULT CURRENT_TIMESTAMP` or `ON UPDATE CURRENT_TIMESTAMP` attributes to any `TIMESTAMP` column. They must be included explicitly in the column definition. Also, any `TIMESTAMP` not explicitly declared as `NOT NULL` permits `NULL` values.
 
-  Se `explicit_defaults_for_timestamp` estiver desativado, o servidor trata o `TIMESTAMP` da seguinte forma:
+  If `explicit_defaults_for_timestamp` is disabled, the server handles `TIMESTAMP` as follows:
 
-  A menos que especificado de outra forma, a primeira coluna `TIMESTAMP` em uma tabela é definida para ser automaticamente configurada para a data e hora da última modificação, se não for explicitamente atribuído um valor. Isso torna o `TIMESTAMP` útil para registrar o timestamp de uma operação de `INSERT` ou `UPDATE`. Você também pode configurar qualquer coluna `TIMESTAMP` para a data e hora atuais, atribuindo-lhe um valor `NULL`, a menos que tenha sido definida com o atributo `NULL` para permitir valores `NULL`.
+  Unless specified otherwise, the first `TIMESTAMP` column in a table is defined to be automatically set to the date and time of the most recent modification if not explicitly assigned a value. This makes `TIMESTAMP` useful for recording the timestamp of an `INSERT` or `UPDATE` operation. You can also set any `TIMESTAMP` column to the current date and time by assigning it a `NULL` value, unless it has been defined with the `NULL` attribute to permit `NULL` values.
 
-  A inicialização automática e a atualização para a data e hora atuais podem ser especificadas usando as cláusulas de definição de coluna `DEFAULT CURRENT_TIMESTAMP` e `ON UPDATE CURRENT_TIMESTAMP`. Por padrão, a primeira coluna `TIMESTAMP` possui essas propriedades, conforme mencionado anteriormente. No entanto, qualquer coluna `TIMESTAMP` em uma tabela pode ser definida para ter essas propriedades.
+  Automatic initialization and updating to the current date and time can be specified using `DEFAULT CURRENT_TIMESTAMP` and `ON UPDATE CURRENT_TIMESTAMP` column definition clauses. By default, the first `TIMESTAMP` column has these properties, as previously noted. However, any `TIMESTAMP` column in a table can be defined to have these properties.
 
-- `TIME[(fsp)]`
+* `TIME[(fsp)]`
 
-  Um horário. A faixa é de `'-838:59:59.000000'` a `'838:59:59.000000'`. O MySQL exibe os valores `TIME` no formato `'hh:mm:ss[.fraction]'`, mas permite a atribuição de valores às colunas `TIME` usando strings ou números.
+  A time. The range is `'-838:59:59.000000'` to `'838:59:59.000000'`. MySQL displays `TIME` values in `'hh:mm:ss[.fraction]'` format, but permits assignment of values to `TIME` columns using either strings or numbers.
 
-  Um valor opcional *`fsp`* no intervalo de 0 a 6 pode ser fornecido para especificar a precisão de segundos fracionários. Um valor de 0 significa que não há parte fracionária. Se omitido, a precisão padrão é 0.
+  An optional *`fsp`* value in the range from 0 to 6 may be given to specify fractional seconds precision. A value of 0 signifies that there is no fractional part. If omitted, the default precision is 0.
 
-- `YEAR[(4)]`
+* `YEAR[(4)]`
 
-  Um ano no formato de 4 dígitos. O MySQL exibe os valores de `YEAR` no formato *`YYYY`*, mas permite a atribuição de valores às colunas `YEAR` usando strings ou números. Os valores são exibidos como `1901` a `2155`, ou `0000`.
+  A year in 4-digit format. MySQL displays `YEAR` values in *`YYYY`* format, but permits assignment of values to `YEAR` columns using either strings or numbers. Values display as `1901` to `2155`, or `0000`.
 
-  Nota
+  Note
 
-  O tipo de dados `YEAR(2)` está desatualizado e o suporte a ele foi removido no MySQL 5.7.5. Para converter colunas `YEAR(2)` de 2 dígitos em colunas `YEAR` de 4 dígitos, consulte a Seção 11.2.5, "Limitações de `YEAR(2)` de 2 dígitos e migração para `YEAR` de 4 dígitos" e "Migração para `YEAR` de 4 dígitos").
+  The `YEAR(2)` data type is deprecated and support for it is removed in MySQL 5.7.5. To convert 2-digit `YEAR(2)` columns to 4-digit `YEAR` columns, see Section 11.2.5, “2-Digit YEAR(2) Limitations and Migrating to 4-Digit YEAR” Limitations and Migrating to 4-Digit YEAR").
 
-  Para obter informações adicionais sobre o formato de exibição `YEAR` e a interpretação dos valores de entrada, consulte a Seção 11.2.4, “O Tipo YEAR”.
+  For additional information about `YEAR` display format and interpretation of input values, see Section 11.2.4, “The YEAR Type”.
 
-As funções agregadoras `SUM()` e `AVG()` não funcionam com valores temporais. (Elas convertem os valores em números, perdendo tudo após o primeiro caractere não numérico.) Para contornar esse problema, converta para unidades numéricas, realize a operação agregadora e converta de volta para um valor temporal. Exemplos:
+The `SUM()` and `AVG()` aggregate functions do not work with temporal values. (They convert the values to numbers, losing everything after the first nonnumeric character.) To work around this problem, convert to numeric units, perform the aggregate operation, and convert back to a temporal value. Examples:
 
 ```sql
 SELECT SEC_TO_TIME(SUM(TIME_TO_SEC(time_col))) FROM tbl_name;
 SELECT FROM_DAYS(SUM(TO_DAYS(date_col))) FROM tbl_name;
 ```
 
-Nota
+Note
 
-O servidor MySQL pode ser executado com o modo SQL `MAXDB` habilitado. Nesse caso, `TIMESTAMP` é idêntico a `DATETIME`. Se esse modo for habilitado no momento em que uma tabela é criada, as colunas `TIMESTAMP` são criadas como colunas `DATETIME`. Como resultado, essas colunas usam o formato de exibição `DATETIME`, têm o mesmo intervalo de valores e não há inicialização ou atualização automática para a data e hora atuais. Veja a Seção 5.1.10, “Modos SQL do Servidor”.
+The MySQL server can be run with the `MAXDB` SQL mode enabled. In this case, `TIMESTAMP` is identical with `DATETIME`. If this mode is enabled at the time that a table is created, `TIMESTAMP` columns are created as `DATETIME` columns. As a result, such columns use `DATETIME` display format, have the same range of values, and there is no automatic initialization or updating to the current date and time. See Section 5.1.10, “Server SQL Modes”.
 
-Nota
+Note
 
-A partir do MySQL 5.7.22, o `MAXDB` está desatualizado; espere que ele seja removido em uma versão futura do MySQL.
+As of MySQL 5.7.22, `MAXDB` is deprecated; expect it to removed in a future version of MySQL.

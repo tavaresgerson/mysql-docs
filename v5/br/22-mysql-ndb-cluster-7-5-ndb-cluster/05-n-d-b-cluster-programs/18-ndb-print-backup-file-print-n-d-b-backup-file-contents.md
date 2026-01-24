@@ -1,17 +1,17 @@
-### 21.5.18 ndb_print_backup_file — Imprimir o conteúdo do arquivo de backup do NDB
+### 21.5.18 ndb_print_backup_file — Print NDB Backup File Contents
 
-**ndb_print_backup_file** obtém informações de diagnóstico de um arquivo de backup de cluster.
+[**ndb_print_backup_file**](mysql-cluster-programs-ndb-print-backup-file.html "21.5.18 ndb_print_backup_file — Print NDB Backup File Contents") obtains diagnostic information from a cluster backup file.
 
-#### Uso
+#### Usage
 
 ```sql
 ndb_print_backup_file file_name
 ```
 
-*`file_name`* é o nome de um arquivo de backup de cluster. Pode ser qualquer um dos arquivos (`.Data`, `.ctl` ou `.log`) encontrados em um diretório de backup de cluster. Esses arquivos são encontrados no diretório de backup do nó de dados sob o subdiretório `BACKUP-#`, onde *`#`* é o número de sequência do backup. Para mais informações sobre arquivos de backup de cluster e seus conteúdos, consulte Seção 21.6.8.1, “Conceitos de Backup de Cluster NDB”.
+*`file_name`* is the name of a cluster backup file. This can be any of the files (`.Data`, `.ctl`, or `.log` file) found in a cluster backup directory. These files are found in the data node's backup directory under the subdirectory `BACKUP-#`, where *`#`* is the sequence number for the backup. For more information about cluster backup files and their contents, see [Section 21.6.8.1, “NDB Cluster Backup Concepts”](mysql-cluster-backup-concepts.html "21.6.8.1 NDB Cluster Backup Concepts").
 
-Assim como **ndb_print_schema_file** e **ndb_print_sys_file** (e ao contrário da maioria das outras ferramentas de `NDB` (mysql-cluster.html) que são destinadas a serem executadas em um servidor de gerenciamento ou para se conectar a um servidor de gerenciamento), **ndb_print_backup_file** deve ser executado em um nó de dados do cluster, pois ele acessa diretamente o sistema de arquivos do nó de dados. Como ele não faz uso do servidor de gerenciamento, essa ferramenta pode ser usada quando o servidor de gerenciamento não está em execução e até mesmo quando o cluster foi completamente desligado.
+Like [**ndb_print_schema_file**](mysql-cluster-programs-ndb-print-schema-file.html "21.5.21 ndb_print_schema_file — Print NDB Schema File Contents") and [**ndb_print_sys_file**](mysql-cluster-programs-ndb-print-sys-file.html "21.5.22 ndb_print_sys_file — Print NDB System File Contents") (and unlike most of the other [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") utilities that are intended to be run on a management server host or to connect to a management server) [**ndb_print_backup_file**](mysql-cluster-programs-ndb-print-backup-file.html "21.5.18 ndb_print_backup_file — Print NDB Backup File Contents") must be run on a cluster data node, since it accesses the data node file system directly. Because it does not make use of the management server, this utility can be used when the management server is not running, and even when the cluster has been completely shut down.
 
-#### Opções adicionais
+#### Additional Options
 
-Nenhum.
+None.

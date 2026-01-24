@@ -1,133 +1,134 @@
-#### 21.4.3.10 Conexões de cluster NDB TCP/IP
+#### 21.4.3.10 NDB Cluster TCP/IP Connections
 
-O TCP/IP é o mecanismo de transporte padrão para todas as conexões entre os nós de um NDB Cluster. Normalmente, não é necessário definir conexões TCP/IP; o NDB Cluster configura automaticamente essas conexões para todos os nós de dados, nós de gerenciamento e nós de SQL ou API.
+TCP/IP is the default transport mechanism for all connections between nodes in an NDB Cluster. Normally it is not necessary to define TCP/IP connections; NDB Cluster automatically sets up such connections for all data nodes, management nodes, and SQL or API nodes.
 
-Nota
+Note
 
-Para uma exceção a essa regra, consulte Seção 21.4.3.11, "Conexões de TCP/IP do NDB Cluster usando Conexões Direitas".
+For an exception to this rule, see [Section 21.4.3.11, “NDB Cluster TCP/IP Connections Using Direct Connections”](mysql-cluster-tcp-definition-direct.html "21.4.3.11 NDB Cluster TCP/IP Connections Using Direct Connections").
 
-Para substituir os parâmetros de conexão padrão, é necessário definir uma conexão usando uma ou mais seções `[tcp]` no arquivo `config.ini`. Cada seção `[tcp]` define explicitamente uma conexão TCP/IP entre dois nós do NDB Cluster e deve conter, no mínimo, os parâmetros `[NodeId1]` (mysql-cluster-tcp-definition.html#ndbparam-tcp-nodeid1) e `[NodeId2]` (mysql-cluster-tcp-definition.html#ndbparam-tcp-nodeid2), além de quaisquer parâmetros de conexão a serem substituídos.
+To override the default connection parameters, it is necessary to define a connection using one or more `[tcp]` sections in the `config.ini` file. Each `[tcp]` section explicitly defines a TCP/IP connection between two NDB Cluster nodes, and must contain at a minimum the parameters [`NodeId1`](mysql-cluster-tcp-definition.html#ndbparam-tcp-nodeid1) and [`NodeId2`](mysql-cluster-tcp-definition.html#ndbparam-tcp-nodeid2), as well as any connection parameters to override.
 
-É também possível alterar os valores padrão desses parâmetros, definindo-os na seção `[tcp default]`.
+It is also possible to change the default values for these parameters by setting them in the `[tcp default]` section.
 
-Importante
+Important
 
-Quaisquer seções `[tcp]` no arquivo `config.ini` devem ser listadas *últimas*, seguidas de todas as outras seções no arquivo. No entanto, essa não é uma exigência para uma seção `[tcp default]`. Essa exigência é um problema conhecido sobre a forma como o servidor de gerenciamento do NDB Cluster lê o arquivo `config.ini`.
+Any `[tcp]` sections in the `config.ini` file should be listed *last*, following all other sections in the file. However, this is not required for a `[tcp default]` section. This requirement is a known issue with the way in which the `config.ini` file is read by the NDB Cluster management server.
 
-Os parâmetros de conexão que podem ser configurados nas seções `[tcp]` e `[tcp default]` do arquivo `config.ini` estão listados aqui:
+Connection parameters which can be set in `[tcp]` and `[tcp default]` sections of the `config.ini` file are listed here:
 
-- `Checksum`
+* `Checksum`
 
-  <table frame="box" rules="all" summary="Verifique o tipo e o valor dos parâmetros de configuração do checksum TCP" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>booleano</td> </tr><tr> <th>Padrão</th> <td>falsa</td> </tr><tr> <th>Gama</th> <td>verdadeiro, falso</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Checksum TCP configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>boolean</td> </tr><tr> <th>Default</th> <td>false</td> </tr><tr> <th>Range</th> <td>true, false</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro é um parâmetro booleano (ativado definindo-o como `Y` ou `1`, desativado definindo-o como `N` ou `0`). Ele é desativado por padrão. Quando ativado, os checksums de todas as mensagens são calculados antes de serem colocados no buffer de envio. Esse recurso garante que as mensagens não sejam corrompidas enquanto aguardam no buffer de envio ou pelo mecanismo de transporte.
+  This parameter is a boolean parameter (enabled by setting it to `Y` or `1`, disabled by setting it to `N` or `0`). It is disabled by default. When it is enabled, checksums for all messages are calculated before they placed in the send buffer. This feature ensures that messages are not corrupted while waiting in the send buffer, or by the transport mechanism.
 
-- `Grupo`
+* `Group`
 
-  Quando o `ndb_optimized_node_selection` está habilitado, a proximidade do nó é usada em alguns casos para selecionar qual nó conectar. Este parâmetro pode ser usado para influenciar a proximidade, definindo-o para um valor menor, que é interpretado como “mais próximo”. Veja a descrição da variável do sistema para obter mais informações.
+  When [`ndb_optimized_node_selection`](mysql-cluster-options-variables.html#sysvar_ndb_optimized_node_selection) is enabled, node proximity is used in some cases to select which node to connect to. This parameter can be used to influence proximity by setting it to a lower value, which is interpreted as “closer”. See the description of the system variable for more information.
 
-- `HostName1`
+* `HostName1`
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração HostName1 TCP" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome ou endereço IP</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="HostName1 TCP configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name or IP address</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Os parâmetros `HostName1` e `HostName2` podem ser usados para especificar interfaces de rede específicas a serem utilizadas para uma conexão TCP específica entre dois nós. Os valores usados para esses parâmetros podem ser nomes de host ou endereços IP.
+  The `HostName1` and [`HostName2`](mysql-cluster-tcp-definition.html#ndbparam-tcp-hostname2) parameters can be used to specify specific network interfaces to be used for a given TCP connection between two nodes. The values used for these parameters can be host names or IP addresses.
 
-- `HostName2`
+* `HostName2`
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração HostName2 TCP" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome ou endereço IP</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="HostName2 TCP configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name or IP address</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Os parâmetros ``HostName1`` e `HostName2` podem ser usados para especificar interfaces de rede específicas a serem usadas para uma conexão TCP específica entre dois nós. Os valores usados para esses parâmetros podem ser nomes de host ou endereços IP.
+  The [`HostName1`](mysql-cluster-tcp-definition.html#ndbparam-tcp-hostname1) and `HostName2` parameters can be used to specify specific network interfaces to be used for a given TCP connection between two nodes. The values used for these parameters can be host names or IP addresses.
 
-- `NodeId1`
+* `NodeId1`
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração NodeId1 TCP" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>numérico</td> </tr><tr> <th>Padrão</th> <td>[nenhum]</td> </tr><tr> <th>Gama</th> <td>1 - 255</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="NodeId1 TCP configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>numeric</td> </tr><tr> <th>Default</th> <td>[none]</td> </tr><tr> <th>Range</th> <td>1 - 255</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Para identificar uma conexão entre dois nós, é necessário fornecer seus IDs de nó na seção `[tcp]` do arquivo de configuração como os valores de `NodeId1` e `NodeId2`. Estes são os mesmos valores de `Id` únicos para cada um desses nós, conforme descrito em Seção 21.4.3.7, “Definindo nós SQL e outros nós de API em um NDB Cluster”.
+  To identify a connection between two nodes it is necessary to provide their node IDs in the `[tcp]` section of the configuration file as the values of `NodeId1` and [`NodeId2`](mysql-cluster-tcp-definition.html#ndbparam-tcp-nodeid2). These are the same unique `Id` values for each of these nodes as described in [Section 21.4.3.7, “Defining SQL and Other API Nodes in an NDB Cluster”](mysql-cluster-api-definition.html "21.4.3.7 Defining SQL and Other API Nodes in an NDB Cluster").
 
-- `NodeId2`
+* `NodeId2`
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração NodeId2 TCP" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>numérico</td> </tr><tr> <th>Padrão</th> <td>[nenhum]</td> </tr><tr> <th>Gama</th> <td>1 - 255</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="NodeId2 TCP configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>numeric</td> </tr><tr> <th>Default</th> <td>[none]</td> </tr><tr> <th>Range</th> <td>1 - 255</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Para identificar uma conexão entre dois nós, é necessário fornecer seus IDs de nó na seção `[tcp]` do arquivo de configuração como os valores de `NodeId1` e `NodeId2`. Estes são os mesmos valores de `Id` únicos para cada um desses nós, conforme descrito na Seção 21.4.3.7, “Definindo nós SQL e outros nós de API em um NDB Cluster”.
+  To identify a connection between two nodes it is necessary to provide their node IDs in the `[tcp]` section of the configuration file as the values of [`NodeId1`](mysql-cluster-tcp-definition.html#ndbparam-tcp-nodeid1) and `NodeId2`. These are the same unique `Id` values for each of these nodes as described in [Section 21.4.3.7, “Defining SQL and Other API Nodes in an NDB Cluster”](mysql-cluster-api-definition.html "21.4.3.7 Defining SQL and Other API Nodes in an NDB Cluster").
 
-- `NodeIdServer`
+* [`NodeIdServer`](mysql-cluster-tcp-definition.html#ndbparam-tcp-nodeidserver)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do NodeIdServer TCP" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>numérico</td> </tr><tr> <th>Padrão</th> <td>[nenhum]</td> </tr><tr> <th>Gama</th> <td>1 - 63</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="NodeIdServer TCP configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>numeric</td> </tr><tr> <th>Default</th> <td>[none]</td> </tr><tr> <th>Range</th> <td>1 - 63</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Configure o lado do servidor de uma conexão TCP.
+  Set the server side of a TCP connection.
 
-- `Limite de sobrecarga`
+* `OverloadLimit`
 
-  <table frame="box" rules="all" summary="Tipo e valor de parâmetro de configuração OverloadLimit TCP" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>bytes</td> </tr><tr> <th>Padrão</th> <td>0</td> </tr><tr> <th>Gama</th> <td>0 - 4294967039 (0xFFFFFEFF)</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="OverloadLimit TCP configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>bytes</td> </tr><tr> <th>Default</th> <td>0</td> </tr><tr> <th>Range</th> <td>0 - 4294967039 (0xFFFFFEFF)</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Quando há mais de esse número de bytes não enviados no buffer de envio, a conexão é considerada sobrecarregada.
+  When more than this many unsent bytes are in the send buffer, the connection is considered overloaded.
 
-  Este parâmetro pode ser usado para determinar a quantidade de dados não enviados que devem estar presentes no buffer de envio antes que a conexão seja considerada sobrecarregada. Consulte Seção 21.4.3.13, “Configurando Parâmetros do Buffer de Envio do NDB Cluster” para obter mais informações.
+  This parameter can be used to determine the amount of unsent data that must be present in the send buffer before the connection is considered overloaded. See [Section 21.4.3.13, “Configuring NDB Cluster Send Buffer Parameters”](mysql-cluster-config-send-buffers.html "21.4.3.13 Configuring NDB Cluster Send Buffer Parameters"), for more information.
 
-- `PortNumber` (*OBSOLETE*)
+* `PortNumber` (*OBSOLETE*)
 
-  Este parâmetro especificava anteriormente o número de porta a ser usado para ouvir conexões de outros nós. Ele está sendo descontinuado (e removido no NDB Cluster 7.5); use o parâmetro de configuração do nó de dados `ServerPort` para esse propósito (Bug #77405, Bug #21280456).
+  This parameter formerly specified the port number to be used for listening for connections from other nodes. It is now deprecated (and removed in NDB Cluster 7.5); use the [`ServerPort`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-serverport) data node configuration parameter for this purpose instead (Bug
+  #77405, Bug #21280456).
 
-- `PreSendChecksum`
+* [`PreSendChecksum`](mysql-cluster-tcp-definition.html#ndbparam-tcp-presendchecksum)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração PreSendChecksum TCP" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.6.6</td> </tr><tr> <th>Tipo ou unidades</th> <td>booleano</td> </tr><tr> <th>Padrão</th> <td>falsa</td> </tr><tr> <th>Gama</th> <td>verdadeiro, falso</td> </tr><tr> <th>Adicionei</th> <td>NDB 7.6.6</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="PreSendChecksum TCP configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.6.6</td> </tr><tr> <th>Type or units</th> <td>boolean</td> </tr><tr> <th>Default</th> <td>false</td> </tr><tr> <th>Range</th> <td>true, false</td> </tr><tr> <th>Added</th> <td>NDB 7.6.6</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Se este parâmetro e `Checksum` estiverem habilitados, realize verificações de checksum pré-envio e verifique todos os sinais TCP entre os nós em busca de erros. Não tem efeito se `Checksum` não estiver habilitado.
+  If this parameter and [`Checksum`](mysql-cluster-tcp-definition.html#ndbparam-tcp-checksum) are both enabled, perform pre-send checksum checks, and check all TCP signals between nodes for errors. Has no effect if `Checksum` is not also enabled.
 
-- `Proxy`
+* [`Proxy`](mysql-cluster-tcp-definition.html#ndbparam-tcp-proxy)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do TCP proxy" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>string</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Proxy TCP configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>string</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Defina um proxy para a conexão TCP.
+  Set a proxy for the TCP connection.
 
-- `ReceiveBufferMemory`
+* [`ReceiveBufferMemory`](mysql-cluster-tcp-definition.html#ndbparam-tcp-receivebuffermemory)
 
-  <table frame="box" rules="all" summary="Informações sobre o tipo e o valor do parâmetro de configuração ReceiveBufferMemory TCP" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>bytes</td> </tr><tr> <th>Padrão</th> <td>2M</td> </tr><tr> <th>Gama</th> <td>16K - 4294967039 (0xFFFFFEFF)</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ReceiveBufferMemory TCP configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>bytes</td> </tr><tr> <th>Default</th> <td>2M</td> </tr><tr> <th>Range</th> <td>16K - 4294967039 (0xFFFFFEFF)</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Especifica o tamanho do buffer usado ao receber dados do socket TCP/IP.
+  Specifies the size of the buffer used when receiving data from the TCP/IP socket.
 
-  O valor padrão deste parâmetro é de 2 MB. O valor mínimo possível é de 16 KB; o valor máximo teórico é de 4 GB.
+  The default value of this parameter is 2MB. The minimum possible value is 16KB; the theoretical maximum is 4GB.
 
-- `SendBufferMemory`
+* [`SendBufferMemory`](mysql-cluster-tcp-definition.html#ndbparam-tcp-sendbuffermemory)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração HostName1 TCP" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome ou endereço IP</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="HostName1 TCP configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name or IP address</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Os transportadores TCP utilizam um buffer para armazenar todas as mensagens antes de realizar a chamada de envio ao sistema operacional. Quando esse buffer atinge 64 KB, seus conteúdos são enviados; eles também são enviados quando uma rodada de mensagens é executada. Para lidar com situações de sobrecarga temporária, também é possível definir um buffer de envio maior.
+  TCP transporters use a buffer to store all messages before performing the send call to the operating system. When this buffer reaches 64KB its contents are sent; these are also sent when a round of messages have been executed. To handle temporary overload situations it is also possible to define a bigger send buffer.
 
-  Se este parâmetro for definido explicitamente, a memória não será dedicada a cada transportador; em vez disso, o valor utilizado indica o limite máximo de memória (da memória total disponível, ou seja, `TotalSendBufferMemory`) que pode ser usada por um único transportador. Para obter mais informações sobre a configuração da alocação dinâmica de memória de buffer de envio de transportadores no NDB Cluster, consulte Seção 21.4.3.13, “Configurando Parâmetros de Buffer de Envio do NDB Cluster”.
+  If this parameter is set explicitly, then the memory is not dedicated to each transporter; instead, the value used denotes the hard limit for how much memory (out of the total available memory—that is, `TotalSendBufferMemory`) that may be used by a single transporter. For more information about configuring dynamic transporter send buffer memory allocation in NDB Cluster, see [Section 21.4.3.13, “Configuring NDB Cluster Send Buffer Parameters”](mysql-cluster-config-send-buffers.html "21.4.3.13 Configuring NDB Cluster Send Buffer Parameters").
 
-  O tamanho padrão do buffer de envio é de 2 MB, que é o tamanho recomendado na maioria das situações. O tamanho mínimo é de 64 KB; o tamanho máximo teórico é de 4 GB.
+  The default size of the send buffer is 2MB, which is the size recommended in most situations. The minimum size is 64 KB; the theoretical maximum is 4 GB.
 
-- `SendSignalId`
+* `SendSignalId`
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração HostName1 TCP" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome ou endereço IP</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="HostName1 TCP configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name or IP address</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Para poder rastrear um datagrama de mensagem distribuída, é necessário identificar cada mensagem. Quando este parâmetro é definido como `Y`, os IDs das mensagens são transportados pela rede. Este recurso é desativado por padrão em builds de produção e ativado em builds de `-debug`.
+  To be able to retrace a distributed message datagram, it is necessary to identify each message. When this parameter is set to `Y`, message IDs are transported over the network. This feature is disabled by default in production builds, and enabled in `-debug` builds.
 
-- `TcpBind_INADDR_ANY`
+* `TcpBind_INADDR_ANY`
 
-  Definir este parâmetro para `TRUE` ou `1` vincula `IP_ADDR_ANY` para que as conexões possam ser feitas de qualquer lugar (para conexões geradas automaticamente). O padrão é `FALSE` (`0`).
+  Setting this parameter to `TRUE` or `1` binds `IP_ADDR_ANY` so that connections can be made from anywhere (for autogenerated connections). The default is `FALSE` (`0`).
 
-- `TCP_MAXSEG_SIZE`
+* [`TCP_MAXSEG_SIZE`](mysql-cluster-tcp-definition.html#ndbparam-tcp-tcp_maxseg_size)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração HostName1 TCP" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome ou endereço IP</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="HostName1 TCP configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name or IP address</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Determina o tamanho do conjunto de memória durante a inicialização do transportador TCP. O valor padrão é recomendado para a maioria dos casos de uso comuns.
+  Determines the size of the memory set during TCP transporter initialization. The default is recommended for most common usage cases.
 
-- `TCP_RCV_BUF_SIZE`
+* [`TCP_RCV_BUF_SIZE`](mysql-cluster-tcp-definition.html#ndbparam-tcp-tcp_rcv_buf_size)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração HostName1 TCP" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome ou endereço IP</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="HostName1 TCP configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name or IP address</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Determina o tamanho do buffer de recebimento definido durante a inicialização do transportador TCP. O valor padrão e mínimo é 0, o que permite que o sistema operacional ou a plataforma definam esse valor. O valor padrão é recomendado para a maioria dos casos de uso comuns.
+  Determines the size of the receive buffer set during TCP transporter initialization. The default and minimum value is 0, which allows the operating system or platform to set this value. The default is recommended for most common usage cases.
 
-- `TCP_SND_BUF_SIZE`
+* [`TCP_SND_BUF_SIZE`](mysql-cluster-tcp-definition.html#ndbparam-tcp-tcp_snd_buf_size)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração HostName1 TCP" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome ou endereço IP</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="HostName1 TCP configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name or IP address</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Determina o tamanho do buffer de envio definido durante a inicialização do transportador TCP. O valor padrão e mínimo é 0, o que permite que o sistema operacional ou a plataforma definam esse valor. O valor padrão é recomendado para a maioria dos casos de uso comuns.
+  Determines the size of the send buffer set during TCP transporter initialization. The default and minimum value is 0, which allows the operating system or platform to set this value. The default is recommended for most common usage cases.
 
-**Tipos de reinício.** As informações sobre os tipos de reinício utilizados pelas descrições dos parâmetros nesta seção estão mostradas na tabela a seguir:
+**Restart types.** Information about the restart types used by the parameter descriptions in this section is shown in the following table:
 
-**Tabela 21.19 Tipos de reinício de cluster do NDB**
+**Table 21.19 NDB Cluster restart types**
 
-<table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração HostName1 TCP" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome ou endereço IP</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="HostName1 TCP configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name or IP address</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>

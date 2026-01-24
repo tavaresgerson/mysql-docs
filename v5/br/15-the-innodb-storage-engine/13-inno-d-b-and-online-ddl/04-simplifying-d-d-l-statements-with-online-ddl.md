@@ -1,15 +1,15 @@
-### 14.13.4 Simplificando declarações DDL com DDL online
+### 14.13.4 Simplifying DDL Statements with Online DDL
 
-Antes da introdução do DDL online, era comum combinar várias operações de DDL em uma única instrução `ALTER TABLE`. Como cada instrução `ALTER TABLE` envolvia a cópia e a reconstrução da tabela, era mais eficiente fazer várias alterações na mesma tabela de uma vez, pois essas alterações poderiam ser todas feitas com uma única operação de reconstrução da tabela. O inconveniente era que o código SQL envolvendo operações de DDL era mais difícil de manter e reutilizar em diferentes scripts. Se as alterações específicas fossem diferentes a cada vez, você poderia ter que construir uma nova e complexa instrução `ALTER TABLE` para cada cenário ligeiramente diferente.
+Before the introduction of online DDL, it was common practice to combine many DDL operations into a single `ALTER TABLE` statement. Because each `ALTER TABLE` statement involved copying and rebuilding the table, it was more efficient to make several changes to the same table at once, since those changes could all be done with a single rebuild operation for the table. The downside was that SQL code involving DDL operations was harder to maintain and to reuse in different scripts. If the specific changes were different each time, you might have to construct a new complex `ALTER TABLE` for each slightly different scenario.
 
-Para operações DDL que podem ser realizadas in situ, você pode separá-las em declarações individuais de `ALTER TABLE` para facilitar o script e a manutenção, sem sacrificar a eficiência. Por exemplo, você pode tomar uma declaração complicada como:
+For DDL operations that can be done in place, you can separate them into individual `ALTER TABLE` statements for easier scripting and maintenance, without sacrificing efficiency. For example, you might take a complicated statement such as:
 
 ```sql
 ALTER TABLE t1 ADD INDEX i1(c1), ADD UNIQUE INDEX i2(c2),
   CHANGE c4_old_name c4_new_name INTEGER UNSIGNED;
 ```
 
-e divida-o em partes mais simples que possam ser testadas e executadas de forma independente, como:
+and break it down into simpler parts that can be tested and performed independently, such as:
 
 ```sql
 ALTER TABLE t1 ADD INDEX i1(c1);
@@ -17,12 +17,12 @@ ALTER TABLE t1 ADD UNIQUE INDEX i2(c2);
 ALTER TABLE t1 CHANGE c4_old_name c4_new_name INTEGER UNSIGNED NOT NULL;
 ```
 
-Você ainda pode usar declarações `ALTER TABLE` de várias partes para:
+You might still use multi-part `ALTER TABLE` statements for:
 
-- Operações que devem ser realizadas em uma sequência específica, como criar um índice seguido de uma restrição de chave estrangeira que utilize esse índice.
+* Operations that must be performed in a specific sequence, such as creating an index followed by a foreign key constraint that uses that index.
 
-- As operações utilizam a mesma cláusula `LOCK` específica, que você deseja que seja bem-sucedida ou falha como um grupo.
+* Operations all using the same specific `LOCK` clause, that you want to either succeed or fail as a group.
 
-- Operações que não podem ser realizadas no local, ou seja, que ainda utilizam o método de cópia de tabela.
+* Operations that cannot be performed in place, that is, that still use the table-copy method.
 
-- Operações para as quais você especificar `ALGORITHM=COPY` ou `old_alter_table=1`, para forçar o comportamento de cópia da tabela, se necessário, para compatibilidade reversa precisa em cenários especializados.
+* Operations for which you specify `ALGORITHM=COPY` or `old_alter_table=1`, to force the table-copying behavior if needed for precise backward-compatibility in specialized scenarios.

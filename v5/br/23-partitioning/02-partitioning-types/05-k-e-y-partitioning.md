@@ -1,12 +1,12 @@
-### 22.2.5 Partição de chave
+### 22.2.5 KEY Partitioning
 
-A partição por chave é semelhante à partição por hash, exceto que, enquanto a partição por hash emprega uma expressão definida pelo usuário, a função de hashing para a partição por chave é fornecida pelo servidor MySQL. O NDB Cluster usa `MD5()` para esse propósito; para tabelas que usam outros motores de armazenamento, o servidor emprega sua própria função de hashing interna, que é baseada no mesmo algoritmo que `PASSWORD()`.
+Partitioning by key is similar to partitioning by hash, except that where hash partitioning employs a user-defined expression, the hashing function for key partitioning is supplied by the MySQL server. NDB Cluster uses [`MD5()`](encryption-functions.html#function_md5) for this purpose; for tables using other storage engines, the server employs its own internal hashing function which is based on the same algorithm as [`PASSWORD()`](encryption-functions.html#function_password).
 
-As regras de sintaxe para `CREATE TABLE ... PARTITION BY KEY` são semelhantes às regras para criar uma tabela que é particionada por hash. As principais diferenças estão listadas aqui:
+The syntax rules for `CREATE TABLE ... PARTITION BY KEY` are similar to those for creating a table that is partitioned by hash. The major differences are listed here:
 
-- `KEY` é usado em vez de `HASH`.
+* `KEY` is used rather than `HASH`.
 
-- `KEY` aceita apenas uma lista de zero ou mais nomes de coluna. Quaisquer colunas usadas como chave de particionamento devem compor parte ou toda a chave primária da tabela, se a tabela tiver uma. Se nenhum nome de coluna for especificado como chave de particionamento, a chave primária da tabela será usada, se houver uma. Por exemplo, a seguinte instrução `CREATE TABLE` é válida no MySQL 5.7:
+* `KEY` takes only a list of zero or more column names. Any columns used as the partitioning key must comprise part or all of the table's primary key, if the table has one. Where no column name is specified as the partitioning key, the table's primary key is used, if there is one. For example, the following [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement is valid in MySQL 5.7:
 
   ```sql
   CREATE TABLE k1 (
@@ -17,7 +17,7 @@ As regras de sintaxe para `CREATE TABLE ... PARTITION BY KEY` são semelhantes �
   PARTITIONS 2;
   ```
 
-  Se não houver uma chave primária, mas houver uma chave única, então a chave única será usada como chave de partição:
+  If there is no primary key but there is a unique key, then the unique key is used for the partitioning key:
 
   ```sql
   CREATE TABLE k1 (
@@ -29,11 +29,11 @@ As regras de sintaxe para `CREATE TABLE ... PARTITION BY KEY` são semelhantes �
   PARTITIONS 2;
   ```
 
-  No entanto, se a coluna de chave única não fosse definida como `NOT NULL`, a declaração anterior falharia.
+  However, if the unique key column were not defined as `NOT NULL`, then the previous statement would fail.
 
-  Em ambos os casos, a chave de partição é a coluna `id`, mesmo que ela não esteja exibida na saída de `SHOW CREATE TABLE` ou na coluna `PARTITION_EXPRESSION` da tabela do esquema de informações `PARTITIONS`.
+  In both of these cases, the partitioning key is the `id` column, even though it is not shown in the output of [`SHOW CREATE TABLE`](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement") or in the `PARTITION_EXPRESSION` column of the Information Schema [`PARTITIONS`](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table") table.
 
-  Ao contrário do que ocorre com outros tipos de particionamento, as colunas usadas para particionar por `KEY` não são restritas a valores inteiros ou `NULL`. Por exemplo, a seguinte instrução `CREATE TABLE` é válida:
+  Unlike the case with other partitioning types, columns used for partitioning by `KEY` are not restricted to integer or `NULL` values. For example, the following [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement is valid:
 
   ```sql
   CREATE TABLE tm1 (
@@ -43,25 +43,25 @@ As regras de sintaxe para `CREATE TABLE ... PARTITION BY KEY` são semelhantes �
   PARTITIONS 10;
   ```
 
-  A afirmação anterior não seria válida se um tipo de particionamento diferente fosse especificado. (Neste caso, simplesmente usar `PARTITION BY KEY()` também seria válido e teria o mesmo efeito que `PARTITION BY KEY(s1)`, uma vez que `s1` é a chave primária da tabela.)
+  The preceding statement would *not* be valid, were a different partitioning type to be specified. (In this case, simply using `PARTITION BY KEY()` would also be valid and have the same effect as `PARTITION BY KEY(s1)`, since `s1` is the table's primary key.)
 
-  Para obter informações adicionais sobre este assunto, consulte Seção 22.6, “Restrições e Limitações de Partição”.
+  For additional information about this issue, see [Section 22.6, “Restrictions and Limitations on Partitioning”](partitioning-limitations.html "22.6 Restrictions and Limitations on Partitioning").
 
-  Colunas com prefixos de índice não são suportadas em chaves de particionamento. Isso significa que as colunas `CHAR`, `VARCHAR`, `BINARY` e `VARBINARY` podem ser usadas em uma chave de particionamento, desde que não utilizem prefixos; porque um prefixo deve ser especificado para as colunas `BLOB` e `TEXT` nas definições de índice, não é possível usar colunas desses dois tipos em chaves de particionamento. No MySQL 5.7, colunas que usam prefixos são permitidas ao criar, alterar ou atualizar tabelas particionadas, mesmo que não estejam incluídas na chave de particionamento da tabela. Esse é um problema conhecido no MySQL 5.7, que é resolvido no MySQL 8.0, onde esse comportamento permissivo é desaconselhado, e o servidor exibe avisos ou erros apropriados ao tentar usar essas colunas nesses casos. Consulte Prefixos de índice de coluna não suportados para particionamento de chave para obter mais informações e exemplos.
+  Columns with index prefixes are not supported in partitioning keys. This means that [`CHAR`](char.html "11.3.2 The CHAR and VARCHAR Types"), [`VARCHAR`](char.html "11.3.2 The CHAR and VARCHAR Types"), [`BINARY`](binary-varbinary.html "11.3.3 The BINARY and VARBINARY Types"), and [`VARBINARY`](binary-varbinary.html "11.3.3 The BINARY and VARBINARY Types") columns can be used in a partitioning key, as long as they do not employ prefixes; because a prefix must be specified for [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") and [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") columns in index definitions, it is not possible to use columns of these two types in partitioning keys. In MySQL 5.7, columns using prefixes are permitted when creating, altering, or upgrading partitioned tables, even though they are not included in the table's partitioning key. This is a known issue in MySQL 5.7 which is addressed in MySQL 8.0, where this permissive behavior is deprecated, and the server displays appropriate warnings or errors when attempting to use such columns in these cases. See [Column index prefixes not supported for key partitioning](partitioning-limitations.html#partitioning-limitations-prefixes "Column index prefixes not supported for key partitioning"), for more information and examples.
 
-  Nota
+  Note
 
-  As tabelas que utilizam o mecanismo de armazenamento `NDB` são implicitamente particionadas por `KEY`, usando a chave primária da tabela como chave de particionamento (como acontece com outros mecanismos de armazenamento do MySQL). No caso de a tabela do NDB Cluster não ter uma chave primária explícita, a chave primária "oculta" gerada pelo mecanismo de armazenamento `NDB` para cada tabela do NDB Cluster é usada como chave de particionamento.
+  Tables using the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine are implicitly partitioned by `KEY`, using the table's primary key as the partitioning key (as with other MySQL storage engines). In the event that the NDB Cluster table has no explicit primary key, the “hidden” primary key generated by the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine for each NDB Cluster table is used as the partitioning key.
 
-  Se você definir um esquema de particionamento explícito para uma tabela de `NDB`, a tabela deve ter uma chave primária explícita, e quaisquer colunas usadas na expressão de particionamento devem fazer parte dessa chave. No entanto, se a tabela usar uma expressão de particionamento "vazia" — ou seja, `PARTITION BY KEY()` sem referências de colunas — então não é necessário uma chave primária explícita.
+  If you define an explicit partitioning scheme for an [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table, the table must have an explicit primary key, and any columns used in the partitioning expression must be part of this key. However, if the table uses an “empty” partitioning expression—that is, `PARTITION BY KEY()` with no column references—then no explicit primary key is required.
 
-  Você pode observar essa partição usando o utilitário **ndb_desc** (com a opção `-p`).
+  You can observe this partitioning using the [**ndb_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables") utility (with the `-p` option).
 
-  Importante
+  Important
 
-  Para uma tabela com partição por chave, você não pode executar a instrução `ALTER TABLE DROP PRIMARY KEY`, pois isso gera o erro ERROR 1466 (HY000): Campo na lista de campos para a função de partição não encontrado na tabela. Esse não é um problema para tabelas do NDB Cluster que são particionadas por `KEY`; nesse caso, a tabela é reorganizada usando a chave primária "oculta" como a nova chave de partição da tabela. Veja Capítulo 21, *MySQL NDB Cluster 7.5 e NDB Cluster 7.6*.
+  For a key-partitioned table, you cannot execute an `ALTER TABLE DROP PRIMARY KEY`, as doing so generates the error ERROR 1466 (HY000): Field in list of fields for partition function not found in table. This is not an issue for NDB Cluster tables which are partitioned by `KEY`; in such cases, the table is reorganized using the “hidden” primary key as the table's new partitioning key. See [Chapter 21, *MySQL NDB Cluster 7.5 and NDB Cluster 7.6*](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6").
 
-É também possível particionar uma tabela por chave linear. Aqui está um exemplo simples:
+It is also possible to partition a table by linear key. Here is a simple example:
 
 ```sql
 CREATE TABLE tk (
@@ -73,4 +73,4 @@ PARTITION BY LINEAR KEY (col1)
 PARTITIONS 3;
 ```
 
-O uso de `LINEAR` tem o mesmo efeito na partição de `KEY` que na partição de `HASH`, com o número de partição sendo derivado usando um algoritmo de potências de dois em vez de aritmética de módulo. Consulte Seção 22.2.4.1, “Partição LINEAR HASH” para uma descrição desse algoritmo e suas implicações.
+Using `LINEAR` has the same effect on `KEY` partitioning as it does on `HASH` partitioning, with the partition number being derived using a powers-of-two algorithm rather than modulo arithmetic. See [Section 22.2.4.1, “LINEAR HASH Partitioning”](partitioning-linear-hash.html "22.2.4.1 LINEAR HASH Partitioning"), for a description of this algorithm and its implications.

@@ -1,45 +1,43 @@
-### B.3.1 Como determinar o que está causando um problema
+### B.3.1 How to Determine What Is Causing a Problem
 
-Quando você encontrar um problema, a primeira coisa que você deve fazer é descobrir qual programa ou peça de equipamento está causando isso:
+When you run into a problem, the first thing you should do is to find out which program or piece of equipment is causing it:
 
-- Se você tiver um dos seguintes sintomas, provavelmente é um problema de hardware (como memória, placa-mãe, CPU ou disco rígido) ou um problema no kernel:
+* If you have one of the following symptoms, then it is probably a hardware problems (such as memory, motherboard, CPU, or hard disk) or kernel problem:
 
-  - O teclado não funciona. Isso geralmente pode ser verificado pressionando a tecla Caps Lock. Se a luz do Caps Lock não mudar, você deve substituir o teclado. (Antes de fazer isso, tente reiniciar o computador e verifique todos os cabos do teclado.)
+  + The keyboard does not work. This can normally be checked by pressing the Caps Lock key. If the Caps Lock light does not change, you have to replace your keyboard. (Before doing this, you should try to restart your computer and check all cables to the keyboard.)
 
-  - O ponteiro do mouse não se move.
+  + The mouse pointer does not move.
+  + The machine does not answer to a remote machine's pings.
+  + Other programs that are not related to MySQL do not behave correctly.
 
-  - A máquina não responde aos pings de uma máquina remota.
+  + Your system restarted unexpectedly. (A faulty user-level program should never be able to take down your system.)
 
-  - Outros programas que não estão relacionados ao MySQL não funcionam corretamente.
+  In this case, you should start by checking all your cables and run some diagnostic tool to check your hardware! You should also check whether there are any patches, updates, or service packs for your operating system that could likely solve your problem. Check also that all your libraries (such as `glibc`) are up to date.
 
-  - Seu sistema reiniciou inesperadamente. (Um programa de nível de usuário com defeito nunca deveria ser capaz de derrubar seu sistema.)
+  It is always good to use a machine with ECC memory to discover memory problems early.
 
-  Nesse caso, você deve começar verificando todos os seus cabos e executando uma ferramenta de diagnóstico para verificar seu hardware! Você também deve verificar se há algum patch, atualização ou pacote de serviço para o seu sistema operacional que possa resolver o problema. Verifique também se todas as suas bibliotecas (como `glibc`) estão atualizadas.
+* If your keyboard is locked up, you may be able to recover by logging in to your machine from another machine and executing `kbd_mode -a`.
 
-  É sempre bom usar uma máquina com memória ECC para descobrir problemas de memória precocemente.
+* Please examine your system log file (`/var/log/messages` or similar) for reasons for your problem. If you think the problem is in MySQL, you should also examine MySQL's log files. See [Section 5.4, “MySQL Server Logs”](server-logs.html "5.4 MySQL Server Logs").
 
-- Se o seu teclado estiver bloqueado, você poderá recuperá-lo ao fazer login na sua máquina de outra máquina e executar `kbd_mode -a`.
+* If you do not think you have hardware problems, you should try to find out which program is causing problems. Try using **top**, **ps**, Task Manager, or some similar program, to check which program is taking all CPU or is locking the machine.
 
-- Por favor, examine seu arquivo de log do sistema (`/var/log/messages` ou semelhante) para encontrar as razões do seu problema. Se você acha que o problema está no MySQL, você também deve examinar os arquivos de log do MySQL. Veja [Seção 5.4, “Logs do Servidor MySQL”](server-logs.html).
+* Use **top**, **df**, or a similar program to check whether you are out of memory, disk space, file descriptors, or some other critical resource.
 
-- Se você não acha que tem problemas de hardware, tente descobrir qual programa está causando os problemas. Tente usar **top**, **ps**, o Gerenciador de Tarefas ou algum programa semelhante para verificar qual programa está usando toda a CPU ou bloqueando a máquina.
+* If the problem is some runaway process, you can always try to kill it. If it does not want to die, there is probably a bug in the operating system.
 
-- Use **top**, **df** ou um programa semelhante para verificar se você está sem memória, espaço em disco, descritores de arquivo ou algum outro recurso crítico.
+If you have examined all other possibilities and concluded that the MySQL server or a MySQL client is causing the problem, it is time to create a bug report, see [Section 1.5, “How to Report Bugs or Problems”](bug-reports.html "1.5 How to Report Bugs or Problems"). In the bug report, try to give a complete description of how the system is behaving and what you think is happening. Also state why you think that MySQL is causing the problem. Take into consideration all the situations described in this chapter. State any problems exactly how they appear when you examine your system. Use the “copy and paste” method for any output and error messages from programs and log files.
 
-- Se o problema for um processo descontrolado, você sempre pode tentar matá-lo. Se ele não quiser morrer, provavelmente há um bug no sistema operacional.
+Try to describe in detail which program is not working and all symptoms you see. We have in the past received many bug reports that state only “the system does not work.” This provides us with no information about what could be the problem.
 
-Se você examinou todas as outras possibilidades e concluiu que o servidor MySQL ou um cliente MySQL está causando o problema, é hora de criar um relatório de erro, veja [Seção 1.5, “Como Relatar Erros ou Problemas”](bug-reports.html). No relatório de erro, tente fornecer uma descrição completa de como o sistema está se comportando e o que você acha que está acontecendo. Além disso, explique por que você acha que o MySQL está causando o problema. Considere todas as situações descritas neste capítulo. Descreva quaisquer problemas exatamente como eles aparecem quando você examina seu sistema. Use o método “copiar e colar” para qualquer saída e mensagens de erro de programas e arquivos de log.
+If a program fails, it is always useful to know the following information:
 
-Tente descrever em detalhes qual programa não está funcionando e todos os sintomas que você observa. No passado, recebemos muitos relatórios de erros que afirmam apenas “o sistema não funciona”. Isso não nos fornece nenhuma informação sobre o que poderia ser o problema.
+* Has the program in question made a segmentation fault (did it dump core)?
 
-Se um programa falhar, é sempre útil saber as seguintes informações:
+* Is the program taking up all available CPU time? Check with **top**. Let the program run for a while, it may simply be evaluating something computationally intensive.
 
-- O programa em questão causou uma falha de segmentação (o programa travou)?
+* If the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") server is causing problems, can you get any response from it with [**mysqladmin -u root ping**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") or [**mysqladmin -u root processlist**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program")?
 
-- O programa está ocupando todo o tempo de CPU disponível? Verifique com o **top**. Deixe o programa rodar por um tempo, pode ser que ele esteja apenas avaliando algo intensivo em termos de processamento.
+* What does a client program say when you try to connect to the MySQL server? (Try with [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client"), for example.) Does the client jam? Do you get any output from the program?
 
-- Se o servidor [**mysqld**](mysqld.html) estiver causando problemas, você consegue obter alguma resposta dele com [**mysqladmin -u root ping**](mysqladmin.html) ou [**mysqladmin -u root processlist**](mysqladmin.html)?
-
-- O que um programa cliente diz quando você tenta se conectar ao servidor MySQL? (Tente com [**mysql**]\(mysql.html], por exemplo.) O cliente travam? Você obtém algum tipo de saída do programa?
-
-Ao enviar um relatório de erro, você deve seguir o esquema descrito em [Seção 1.5, “Como relatar erros ou problemas”](bug-reports.html).
+When sending a bug report, you should follow the outline described in [Section 1.5, “How to Report Bugs or Problems”](bug-reports.html "1.5 How to Report Bugs or Problems").

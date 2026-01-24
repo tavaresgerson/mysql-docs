@@ -1,45 +1,45 @@
-#### 26.4.3.6 As visualizações host_summary_by_statement_type e x$host_summary_by_statement_type
+#### 26.4.3.6 The host_summary_by_statement_type and x$host_summary_by_statement_type Views
 
-Essas visualizações resumem informações sobre declarações executadas, agrupadas por host e tipo de declaração. Por padrão, as linhas são ordenadas por host e latência total decrescente.
+These views summarize informaion about statements executed, grouped by host and statement type. By default, rows are sorted by host and descending total latency.
 
-As views `host_summary_by_statement_type` e `x$host_summary_by_statement_type` possuem essas colunas:
+The `host_summary_by_statement_type` and `x$host_summary_by_statement_type` views have these columns:
 
-- `host`
+* `host`
 
-  O host a partir do qual o cliente se conectou. As linhas para as quais a coluna `HOST` na tabela subjacente do Gerenciamento de Desempenho é `NULL` são assumidas como pertencentes a threads de segundo plano e são relatadas com o nome do host `background`.
+  The host from which the client connected. Rows for which the `HOST` column in the underlying Performance Schema table is `NULL` are assumed to be for background threads and are reported with a host name of `background`.
 
-- `declaração`
+* `statement`
 
-  O componente final do nome do evento da declaração.
+  The final component of the statement event name.
 
-- `total`
+* `total`
 
-  O número total de ocorrências do evento de declaração para o host.
+  The total number of occurrences of the statement event for the host.
 
-- `total_latency`
+* `total_latency`
 
-  O tempo total de espera de ocorrências temporizadas do evento de declaração para o host.
+  The total wait time of timed occurrences of the statement event for the host.
 
-- `max_latency`
+* `max_latency`
 
-  O tempo de espera máximo de uma única ocorrência temporizada do evento de declaração para o host.
+  The maximum single wait time of timed occurrences of the statement event for the host.
 
-- `lock_latency`
+* `lock_latency`
 
-  O tempo total de espera por bloqueios por ocorrências temporizadas do evento de declaração para o host.
+  The total time waiting for locks by timed occurrences of the statement event for the host.
 
-- `rows_sent`
+* `rows_sent`
 
-  O número total de linhas retornadas por ocorrências do evento de declaração para o host.
+  The total number of rows returned by occurrences of the statement event for the host.
 
-- `rows_examined`
+* `rows_examined`
 
-  O número total de linhas lidas dos motores de armazenamento por ocorrências do evento de declaração para o host.
+  The total number of rows read from storage engines by occurrences of the statement event for the host.
 
-- `rows_affected`
+* `rows_affected`
 
-  O número total de linhas afetadas por ocorrências do evento de declaração para o host.
+  The total number of rows affected by occurrences of the statement event for the host.
 
-- `full_scans`
+* `full_scans`
 
-  O número total de varreduras completas da tabela por ocorrências do evento de declaração para o host.
+  The total number of full table scans by occurrences of the statement event for the host.

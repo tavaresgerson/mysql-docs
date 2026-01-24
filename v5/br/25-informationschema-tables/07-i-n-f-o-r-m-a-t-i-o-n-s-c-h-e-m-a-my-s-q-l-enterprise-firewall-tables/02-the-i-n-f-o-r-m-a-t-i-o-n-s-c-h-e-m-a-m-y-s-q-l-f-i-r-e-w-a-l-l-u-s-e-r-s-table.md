@@ -1,13 +1,13 @@
-### 24.7.2 A tabela INFORMATION_SCHEMA MYSQL_FIREWALL_USERS
+### 24.7.2 The INFORMATION_SCHEMA MYSQL_FIREWALL_USERS Table
 
-A tabela `MYSQL_FIREWALL_USERS` oferece uma visão do cache de dados em memória para o MySQL Enterprise Firewall. Ela lista nomes e modos operacionais dos perfis de contas de firewall registrados. Ela é usada em conjunto com a tabela `mysql.firewall_users` do sistema, que fornece armazenamento persistente dos dados do firewall; veja Tabelas do MySQL Enterprise Firewall.
+The [`MYSQL_FIREWALL_USERS`](information-schema-mysql-firewall-users-table.html "24.7.2 The INFORMATION_SCHEMA MYSQL_FIREWALL_USERS Table") table provides a view into the in-memory data cache for MySQL Enterprise Firewall. It lists names and operational modes of registered firewall account profiles. It is used in conjunction with the `mysql.firewall_users` system table that provides persistent storage of firewall data; see [MySQL Enterprise Firewall Tables](firewall-reference.html#firewall-tables "MySQL Enterprise Firewall Tables").
 
-A tabela `MYSQL_FIREWALL_USERS` tem as seguintes colunas:
+The [`MYSQL_FIREWALL_USERS`](information-schema-mysql-firewall-users-table.html "24.7.2 The INFORMATION_SCHEMA MYSQL_FIREWALL_USERS Table") table has these columns:
 
-- `USERHOST`
+* `USERHOST`
 
-  O nome do perfil da conta. Cada nome de conta tem o formato `user_name@host_name`.
+  The account profile name. Each account name has the format `user_name@host_name`.
 
-- `MODO`
+* `MODE`
 
-  O modo operacional atual para o perfil. Os valores permitidos para o modo são `OFF`, `DETECTING`, `PROTECTING`, `RECORDING` e `RESET`. Para obter detalhes sobre seus significados, consulte Conceitos de Firewall.
+  The current operational mode for the profile. Permitted mode values are `OFF`, `DETECTING`, `PROTECTING`, `RECORDING`, and `RESET`. For details about their meanings, see [Firewall Concepts](firewall-usage.html#firewall-concepts "Firewall Concepts").

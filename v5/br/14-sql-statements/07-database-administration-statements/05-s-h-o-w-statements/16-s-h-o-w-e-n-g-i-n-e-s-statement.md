@@ -1,12 +1,12 @@
-#### 13.7.5.16. DECLARAÇÃO DOS MOTORES DE EXIBIÇÃO
+#### 13.7.5.16 SHOW ENGINES Statement
 
 ```sql
 SHOW [STORAGE] ENGINES
 ```
 
-`SHOW ENGINES` exibe informações de status sobre os motores de armazenamento do servidor. Isso é particularmente útil para verificar se um motor de armazenamento é suportado ou para ver qual é o motor padrão.
+[`SHOW ENGINES`](show-engines.html "13.7.5.16 SHOW ENGINES Statement") displays status information about the server's storage engines. This is particularly useful for checking whether a storage engine is supported, or to see what the default engine is.
 
-Para obter informações sobre os motores de armazenamento do MySQL, consulte o [Capítulo 14, *O Motor de Armazenamento InnoDB*] (innodb-storage-engine.html) e o [Capítulo 15, *Motores de Armazenamento Alternativos*] (storage-engines.html).
+For information about MySQL storage engines, see [Chapter 14, *The InnoDB Storage Engine*](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine"), and [Chapter 15, *Alternative Storage Engines*](storage-engines.html "Chapter 15 Alternative Storage Engines").
 
 ```sql
 mysql> SHOW ENGINES\G
@@ -75,42 +75,42 @@ Transactions: NO
   Savepoints: NO
 ```
 
-A saída do `SHOW ENGINES` pode variar de acordo com a versão do MySQL utilizada e outros fatores.
+The output from [`SHOW ENGINES`](show-engines.html "13.7.5.16 SHOW ENGINES Statement") may vary according to the MySQL version used and other factors.
 
-A saída `SHOW ENGINES` tem essas colunas:
+[`SHOW ENGINES`](show-engines.html "13.7.5.16 SHOW ENGINES Statement") output has these columns:
 
-- Motor
+* `Engine`
 
-  O nome do motor de armazenamento.
+  The name of the storage engine.
 
-- Suporte
+* `Support`
 
-  O nível de suporte do servidor para o motor de armazenamento, conforme mostrado na tabela a seguir.
+  The server's level of support for the storage engine, as shown in the following table.
 
-  <table summary="Valores para a coluna Support na saída da declaração SHOW ENGINES."><col style="width: 15%"/><col style="width: 85%"/><thead><tr> <th>Valor</th> <th>Significado</th> </tr></thead><tbody><tr> <td><code>YES</code></td> <td>O motor é suportado e está ativo</td> </tr><tr> <td><code>DEFAULT</code></td> <td>Como <code>YES</code>, além disso, este é o motor padrão</td> </tr><tr> <td><code>NO</code></td> <td>O motor não é suportado</td> </tr><tr> <td><code>DISABLED</code></td> <td>O motor é suportado, mas foi desativado</td> </tr></tbody></table>
+  <table summary="Values for the Support column in the output of the SHOW ENGINES statement."><col style="width: 15%"/><col style="width: 85%"/><thead><tr> <th>Value</th> <th>Meaning</th> </tr></thead><tbody><tr> <td><code>YES</code></td> <td>The engine is supported and is active</td> </tr><tr> <td><code>DEFAULT</code></td> <td>Like <code>YES</code>, plus this is the default engine</td> </tr><tr> <td><code>NO</code></td> <td>The engine is not supported</td> </tr><tr> <td><code>DISABLED</code></td> <td>The engine is supported but has been disabled</td> </tr></tbody></table>
 
-  Um valor de `NO` significa que o servidor foi compilado sem suporte para o motor, portanto, ele não pode ser habilitado em tempo de execução.
+  A value of `NO` means that the server was compiled without support for the engine, so it cannot be enabled at runtime.
 
-  Um valor de `DESABILITADO` ocorre porque o servidor foi iniciado com uma opção que desabilita o motor ou porque não foram fornecidas todas as opções necessárias para ativá-lo. Neste último caso, o log de erro deve conter uma razão que indique por que a opção está desabilitada. Consulte Seção 5.4.2, “O Log de Erro”.
+  A value of `DISABLED` occurs either because the server was started with an option that disables the engine, or because not all options required to enable it were given. In the latter case, the error log should contain a reason indicating why the option is disabled. See [Section 5.4.2, “The Error Log”](error-log.html "5.4.2 The Error Log").
 
-  Você também pode ver `DESABILITADO` para um motor de armazenamento se o servidor foi compilado para suportar, mas foi iniciado com uma opção `--skip-engine_name`. Para o motor de armazenamento `NDB`, `DESABILITADO` significa que o servidor foi compilado com suporte para NDB Cluster, mas não foi iniciado com a opção `--ndbcluster`]\(mysql-cluster-options-variables.html#option_mysqld_ndbcluster).
+  You might also see `DISABLED` for a storage engine if the server was compiled to support it, but was started with a `--skip-engine_name` option. For the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine, `DISABLED` means the server was compiled with support for NDB Cluster, but was not started with the [`--ndbcluster`](mysql-cluster-options-variables.html#option_mysqld_ndbcluster) option.
 
-  Todos os servidores MySQL suportam tabelas `MyISAM`. Não é possível desabilitar `MyISAM`.
+  All MySQL servers support `MyISAM` tables. It is not possible to disable `MyISAM`.
 
-- `Comentário`
+* `Comment`
 
-  Uma breve descrição do motor de armazenamento.
+  A brief description of the storage engine.
 
-- "Transações"
+* `Transactions`
 
-  Se o mecanismo de armazenamento suporta transações.
+  Whether the storage engine supports transactions.
 
-- `XA`
+* `XA`
 
-  Se o mecanismo de armazenamento suporta transações XA.
+  Whether the storage engine supports XA transactions.
 
-- `Pontos de salvamento`
+* `Savepoints`
 
-  Se o mecanismo de armazenamento suporta savepoints.
+  Whether the storage engine supports savepoints.
 
-As informações do mecanismo de armazenamento também estão disponíveis na tabela `INFORMATION_SCHEMA` `ENGINES`. Veja Seção 24.3.7, “A Tabela INFORMATION_SCHEMA ENGINES”.
+Storage engine information is also available from the `INFORMATION_SCHEMA` [`ENGINES`](information-schema-engines-table.html "24.3.7 The INFORMATION_SCHEMA ENGINES Table") table. See [Section 24.3.7, “The INFORMATION_SCHEMA ENGINES Table”](information-schema-engines-table.html "24.3.7 The INFORMATION_SCHEMA ENGINES Table").

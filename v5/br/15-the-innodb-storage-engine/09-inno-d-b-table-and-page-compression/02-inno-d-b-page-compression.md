@@ -1,98 +1,90 @@
-### 14.9.2 Compressão de Páginas do InnoDB
+### 14.9.2 InnoDB Page Compression
 
-O `InnoDB` suporta a compressão de nível de página para tabelas que residem em espaços de tabelas por arquivo. Esse recurso é conhecido como *Compressão de Página Transparente*. A compressão de página é habilitada especificando o atributo `COMPRESSION` com `CREATE TABLE` ou `ALTER TABLE`. Os algoritmos de compressão suportados incluem `Zlib` e `LZ4`.
+`InnoDB` supports page-level compression for tables that reside in file-per-table tablespaces. This feature is referred to as *Transparent Page Compression*. Page compression is enabled by specifying the `COMPRESSION` attribute with `CREATE TABLE` or `ALTER TABLE`. Supported compression algorithms include `Zlib` and `LZ4`.
 
-#### Plataformas suportadas
+#### Supported Platforms
 
-A compressão de páginas requer suporte para arquivos esparsos e perfuração de buracos. A compressão de páginas é suportada no Windows com NTFS e nas seguintes plataformas Linux suportadas pelo MySQL, onde o nível do kernel oferece suporte à perfuração de buracos:
+Page compression requires sparse file and hole punching support. Page compression is supported on Windows with NTFS, and on the following subset of MySQL-supported Linux platforms where the kernel level provides hole punching support:
 
-- RHEL 7 e distribuições derivadas que utilizam a versão do kernel 3.10.0-123 ou superior
+* RHEL 7 and derived distributions that use kernel version 3.10.0-123 or higher
 
-- Versão do kernel OEL 5.10 (UEK2) 2.6.39 ou superior
+* OEL 5.10 (UEK2) kernel version 2.6.39 or higher
+* OEL 6.5 (UEK3) kernel version 3.8.13 or higher
+* OEL 7.0 kernel version 3.8.13 or higher
+* SLE11 kernel version 3.0-x
+* SLE12 kernel version 3.12-x
+* OES11 kernel version 3.0-x
+* Ubuntu 14.0.4 LTS kernel version 3.13 or higher
+* Ubuntu 12.0.4 LTS kernel version 3.2 or higher
+* Debian 7 kernel version 3.2 or higher
 
-- Versão do kernel OEL 6.5 (UEK3) 3.8.13 ou superior
+Note
 
-- Versão do kernel OEL 7.0 3.8.13 ou superior
+All of the available file systems for a given Linux distribution may not support hole punching.
 
-- Versão do kernel SLE11 3.0-x
+#### How Page Compression Works
 
-- Versão do kernel SLE12 3.12-x
+When a page is written, it is compressed using the specified compression algorithm. The compressed data is written to disk, where the hole punching mechanism releases empty blocks from the end of the page. If compression fails, data is written out as-is.
 
-- Versão do kernel OES11 3.0-x
+#### Hole Punch Size on Linux
 
-- Versão do kernel do Ubuntu 14.0.4 LTS 3.13 ou superior
+On Linux systems, the file system block size is the unit size used for hole punching. Therefore, page compression only works if page data can be compressed to a size that is less than or equal to the `InnoDB` page size minus the file system block size. For example, if `innodb_page_size=16K` and the file system block size is 4K, page data must compress to less than or equal to 12K to make hole punching possible.
 
-- Versão do kernel do Ubuntu 12.0.4 LTS 3.2 ou superior
+#### Hole Punch Size on Windows
 
-- Versão do kernel do Debian 7 3.2 ou superior
+On Windows systems, the underlying infrastructure for sparse files is based on NTFS compression. Hole punching size is the NTFS compression unit, which is 16 times the NTFS cluster size. Cluster sizes and their compression units are shown in the following table:
 
-Nota
+**Table 14.8 Windows NTFS Cluster Size and Compression Units**
 
-Nem todos os sistemas de arquivos disponíveis para uma determinada distribuição Linux podem suportar o perfuração de buracos.
+<table frame="all" summary="Windows NTFS cluster size and compression units."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Cluster Size</th> <th>Compression Unit</th> </tr></thead><tbody><tr> <td>512 Bytes</td> <td>8 KB</td> </tr><tr> <td>1 KB</td> <td>16 KB</td> </tr><tr> <td>2 KB</td> <td>32 KB</td> </tr><tr> <td>4 KB</td> <td>64 KB</td> </tr></tbody></table>
 
-#### Como funciona a compressão de páginas
+Page compression on Windows systems only works if page data can be compressed to a size that is less than or equal to the `InnoDB` page size minus the compression unit size.
 
-Quando uma página é escrita, ela é compactada usando o algoritmo de compactação especificado. Os dados compactados são escritos em disco, onde o mecanismo de perfuração de buracos libera blocos vazios do final da página. Se a compactação falhar, os dados são escritos tal como estão.
+The default NTFS cluster size is 4KB, for which the compression unit size is 64KB. This means that page compression has no benefit for an out-of-the box Windows NTFS configuration, as the maximum `innodb_page_size` is also 64KB.
 
-#### Tamanho do furo no Linux
+For page compression to work on Windows, the file system must be created with a cluster size smaller than 4K, and the `innodb_page_size` must be at least twice the size of the compression unit. For example, for page compression to work on Windows, you could build the file system with a cluster size of 512 Bytes (which has a compression unit of 8KB) and initialize `InnoDB` with an `innodb_page_size` value of 16K or greater.
 
-Nos sistemas Linux, o tamanho do bloco do sistema de arquivos é o tamanho da unidade usado para perfuração de furos. Portanto, a compressão de páginas só funciona se os dados das páginas puderem ser comprimidos para um tamanho menor ou igual ao tamanho da página do `InnoDB` menos o tamanho do bloco do sistema de arquivos. Por exemplo, se `innodb_page_size=16K` e o tamanho do bloco do sistema de arquivos é de 4K, os dados das páginas devem ser comprimidos para menos ou igual a 12K para possibilitar a perfuração de furos.
+#### Enabling Page Compression
 
-#### Tamanho do furo no Windows
-
-Nos sistemas Windows, a infraestrutura subjacente para arquivos esparsos é baseada na compressão NTFS. O tamanho do furo de perfuração é a unidade de compressão NTFS, que é 16 vezes o tamanho do clúster NTFS. Os tamanhos dos clústeres e suas unidades de compressão estão mostrados na tabela a seguir:
-
-**Tabela 14.8 Tamanho do clúster NTFS e unidades de compressão do Windows**
-
-<table frame="all" summary="Tamanho do clúster do NTFS do Windows e unidades de compressão."><col style="width: 50%"/><col style="width: 50%"/><thead><tr> <th>Tamanho do cluster</th> <th>Unidade de compressão</th> </tr></thead><tbody><tr> <td>512 bytes</td> <td>8 KB</td> </tr><tr> <td>1 KB</td> <td>16 KB</td> </tr><tr> <td>2 KB</td> <td>32 KB</td> </tr><tr> <td>4 KB</td> <td>64 KB</td> </tr></tbody></table>
-
-A compressão de páginas em sistemas Windows só funciona se os dados da página puderem ser comprimidos para um tamanho menor ou igual ao tamanho da página do `InnoDB` menos o tamanho da unidade de compressão.
-
-O tamanho padrão do clúster NTFS é de 4 KB, para o qual o tamanho da unidade de compressão é de 64 KB. Isso significa que a compressão de página não traz nenhum benefício para uma configuração básica do Windows NTFS, pois o tamanho máximo de `innodb_page_size` também é de 64 KB.
-
-Para que a compressão de páginas funcione no Windows, o sistema de arquivos deve ser criado com um tamanho de cluster menor que 4K, e o `innodb_page_size` deve ser pelo menos o dobro do tamanho da unidade de compressão. Por exemplo, para que a compressão de páginas funcione no Windows, você pode construir o sistema de arquivos com um tamanho de cluster de 512 bytes (que tem uma unidade de compressão de 8 KB) e inicializar o `InnoDB` com um valor de `innodb_page_size` de 16 K ou maior.
-
-#### Ativar a Compressão de Página
-
-Para habilitar a compressão de página, especifique o atributo `COMPRESSION` na instrução `CREATE TABLE`. Por exemplo:
+To enable page compression, specify the `COMPRESSION` attribute in the `CREATE TABLE` statement. For example:
 
 ```sql
 CREATE TABLE t1 (c1 INT) COMPRESSION="zlib";
 ```
 
-Você também pode habilitar a compressão de páginas em uma instrução `ALTER TABLE`. No entanto, `ALTER TABLE ... COMPRESSION` atualiza apenas o atributo de compressão do tablespace. As escritas no tablespace que ocorrem após a definição do novo algoritmo de compressão usam o novo ajuste, mas para aplicar o novo algoritmo de compressão a páginas existentes, você deve reconstruir a tabela usando `OPTIMIZE TABLE`.
+You can also enable page compression in an `ALTER TABLE` statement. However, `ALTER TABLE ... COMPRESSION` only updates the tablespace compression attribute. Writes to the tablespace that occur after setting the new compression algorithm use the new setting, but to apply the new compression algorithm to existing pages, you must rebuild the table using `OPTIMIZE TABLE`.
 
 ```sql
 ALTER TABLE t1 COMPRESSION="zlib";
 OPTIMIZE TABLE t1;
 ```
 
-#### Desativar a Compressão de Página
+#### Disabling Page Compression
 
-Para desativar a compressão de páginas, defina `COMPRESSION=None` usando `ALTER TABLE`. As escritas nos espaços de tabela que ocorrem após a definição de `COMPRESSION=None` não usam mais a compressão de páginas. Para descomprimir páginas existentes, você deve reconstruir a tabela usando `OPTIMIZE TABLE` após a definição de `COMPRESSION=None`.
+To disable page compression, set `COMPRESSION=None` using `ALTER TABLE`. Writes to the tablespace that occur after setting `COMPRESSION=None` no longer use page compression. To uncompress existing pages, you must rebuild the table using `OPTIMIZE TABLE` after setting `COMPRESSION=None`.
 
 ```sql
 ALTER TABLE t1 COMPRESSION="None";
 OPTIMIZE TABLE t1;
 ```
 
-#### Metadados de Compressão de Página
+#### Page Compression Metadata
 
-Os metadados de compressão de página estão na tabela do esquema de informações `INNODB_SYS_TABLESPACES`, nas seguintes colunas:
+Page compression metadata is found in the Information Schema `INNODB_SYS_TABLESPACES` table, in the following columns:
 
-- `FS_BLOCK_SIZE`: O tamanho do bloco do sistema de arquivos, que é o tamanho da unidade usada para perfuração de furos.
+* `FS_BLOCK_SIZE`: The file system block size, which is the unit size used for hole punching.
 
-- `FILE_SIZE`: O tamanho aparente do arquivo, que representa o tamanho máximo do arquivo, não comprimido.
+* `FILE_SIZE`: The apparent size of the file, which represents the maximum size of the file, uncompressed.
 
-- `ALLOCATED_SIZE`: O tamanho real do arquivo, que é a quantidade de espaço alocado no disco.
+* `ALLOCATED_SIZE`: The actual size of the file, which is the amount of space allocated on disk.
 
-Nota
+Note
 
-Em sistemas semelhantes ao Unix, `ls -l tablespace_name.ibd` mostra o tamanho aparente do arquivo (equivalente a `FILE_SIZE`) em bytes. Para ver a quantidade real de espaço alocado no disco (equivalente a `ALLOCATED_SIZE`), use `du --block-size=1 tablespace_name.ibd`. A opção `--block-size=1` imprime o espaço alocado em bytes, em vez de blocos, para que possa ser comparado ao resultado do `ls -l`.
+On Unix-like systems, `ls -l tablespace_name.ibd` shows the apparent file size (equivalent to `FILE_SIZE`) in bytes. To view the actual amount of space allocated on disk (equivalent to `ALLOCATED_SIZE`), use `du --block-size=1 tablespace_name.ibd`. The `--block-size=1` option prints the allocated space in bytes instead of blocks, so that it can be compared to `ls -l` output.
 
-Use `SHOW CREATE TABLE` para visualizar a configuração atual de compressão da página (`Zlib`, `Lz4` ou `None`). Uma tabela pode conter uma mistura de páginas com diferentes configurações de compressão.
+Use `SHOW CREATE TABLE` to view the current page compression setting (`Zlib`, `Lz4`, or `None`). A table may contain a mix of pages with different compression settings.
 
-No exemplo a seguir, os metadados de compressão de página para a tabela de funcionários são recuperados da tabela do esquema de informações `INNODB_SYS_TABLESPACES`.
+In the following example, page compression metadata for the employees table is retrieved from the Information Schema `INNODB_SYS_TABLESPACES` table.
 
 ```sql
 # Create the employees table with Zlib page compression
@@ -121,11 +113,11 @@ FILE_SIZE: 23068672
 ALLOCATED_SIZE: 19415040
 ```
 
-Os metadados de compressão de página para a tabela de funcionários mostram que o tamanho aparente do arquivo é de 23068672 bytes, enquanto o tamanho real do arquivo (com compressão de página) é de 19415040 bytes. O tamanho do bloco do sistema de arquivos é de 4096 bytes, que é o tamanho do bloco usado para perfuração de furos.
+Page compression metadata for the employees table shows that the apparent file size is 23068672 bytes while the actual file size (with page compression) is 19415040 bytes. The file system block size is 4096 bytes, which is the block size used for hole punching.
 
-#### Identificação de tabelas usando compressão de página
+#### Identifying Tables Using Page Compression
 
-Para identificar as tabelas para as quais a compressão de página está habilitada, você pode consultar a coluna `CREATE_OPTIONS` da tabela do esquema de informações `TABLES` para tabelas definidas com o atributo `COMPRESSION`:
+To identify tables for which page compression is enabled, you can query the Information Schema `TABLES` table's `CREATE_OPTIONS` column for tables defined with the `COMPRESSION` attribute:
 
 ```sql
 mysql> SELECT TABLE_NAME, TABLE_SCHEMA, CREATE_OPTIONS FROM INFORMATION_SCHEMA.TABLES
@@ -137,32 +129,30 @@ mysql> SELECT TABLE_NAME, TABLE_SCHEMA, CREATE_OPTIONS FROM INFORMATION_SCHEMA.T
 +------------+--------------+--------------------+
 ```
 
-A consulta `SHOW CREATE TABLE` também exibe o atributo `COMPRESSION`, se utilizado.
+`SHOW CREATE TABLE` also shows the `COMPRESSION` attribute, if used.
 
-#### Limitações de compressão de página e notas de uso
+#### Page Compression Limitations and Usage Notes
 
-- A compressão de páginas é desativada se o tamanho do bloco do sistema de arquivos (ou tamanho da unidade de compressão no Windows) \* 2 > `innodb_page_size`.
+* Page compression is disabled if the file system block size (or compression unit size on Windows) \* 2 > `innodb_page_size`.
 
-- A compactação de páginas não é suportada para tabelas que estão localizadas em espaços de tabelas compartilhados, que incluem o espaço de tabela do sistema, o espaço de tabela temporário e os espaços de tabela gerais.
+* Page compression is not supported for tables that reside in shared tablespaces, which include the system tablespace, the temporary tablespace, and general tablespaces.
 
-- A compactação de páginas não é suportada para os espaços de log de registro de desfazer.
+* Page compression is not supported for undo log tablespaces.
+* Page compression is not supported for redo log pages.
+* R-tree pages, which are used for spatial indexes, are not compressed.
 
-- A compactação de páginas não é suportada para páginas do log de refazer.
+* Pages that belong to compressed tables (`ROW_FORMAT=COMPRESSED`) are left as-is.
 
-- As páginas do R-tree, que são usadas para índices espaciais, não são compactadas.
+* During recovery, updated pages are written out in an uncompressed form.
 
-- As páginas que pertencem a tabelas compactadas (`ROW_FORMAT=COMPRESSED`) são deixadas como estão.
+* Loading a page-compressed tablespace on a server that does not support the compression algorithm that was used causes an I/O error.
 
-- Durante a recuperação, as páginas atualizadas são escritas em um formato não compactado.
+* Before downgrading to an earlier version of MySQL that does not support page compression, uncompress the tables that use the page compression feature. To uncompress a table, run `ALTER TABLE ... COMPRESSION=None` and `OPTIMIZE TABLE`.
 
-- Carregar um espaço de tabela compactado em um servidor que não suporta o algoritmo de compactação utilizado causa um erro de E/S.
+* Page-compressed tablespaces can be copied between Linux and Windows servers if the compression algorithm that was used is available on both servers.
 
-- Antes de fazer uma atualização para uma versão anterior do MySQL que não suporte compressão de páginas, descomprima as tabelas que utilizam o recurso de compressão de páginas. Para descomprimir uma tabela, execute `ALTER TABLE ... COMPRESSION=None` e `OPTIMIZE TABLE`.
+* Preserving page compression when moving a page-compressed tablespace file from one host to another requires a utility that preserves sparse files.
 
-- Os espaços de tabela compactados em páginas podem ser copiados entre servidores Linux e Windows se o algoritmo de compactação utilizado estiver disponível em ambos os servidores.
+* Better page compression may be achieved on Fusion-io hardware with NVMFS than on other platforms, as NVMFS is designed to take advantage of punch hole functionality.
 
-- Para preservar a compressão de páginas ao mover um arquivo de espaço de tabela compactado para outro hospedeiro, é necessário um utilitário que preserve arquivos esparsos.
-
-- A melhor compressão de páginas pode ser alcançada no hardware Fusion-io com NVMFS do que em outras plataformas, pois o NVMFS foi projetado para aproveitar a funcionalidade de furos de punho.
-
-- O uso da função de compactação de página com um tamanho de página `InnoDB` grande e um tamanho de bloco do sistema de arquivos relativamente pequeno pode resultar em amplificação de escrita. Por exemplo, um tamanho máximo de página `InnoDB` de 64 KB com um tamanho de bloco do sistema de arquivos de 4 KB pode melhorar a compactação, mas também pode aumentar a demanda pelo pool de buffers, levando a um aumento no I/O e potencial amplificação de escrita.
+* Using the page compression feature with a large `InnoDB` page size and relatively small file system block size could result in write amplification. For example, a maximum `InnoDB` page size of 64KB with a 4KB file system block size may improve compression but may also increase demand on the buffer pool, leading to increased I/O and potential write amplification.

@@ -1,37 +1,37 @@
-#### 26.4.3.7 As visualizações innodb_buffer_stats_by_schema e x$innodb_buffer_stats_by_schema
+#### 26.4.3.7 The innodb_buffer_stats_by_schema and x$innodb_buffer_stats_by_schema Views
 
-Esses pontos resumem as informações na tabela `INFORMATION_SCHEMA` `INNODB_BUFFER_PAGE`, agrupadas por esquema. Por padrão, as linhas são ordenadas em ordem decrescente de tamanho do buffer.
+These views summarize the information in the `INFORMATION_SCHEMA` `INNODB_BUFFER_PAGE` table, grouped by schema. By default, rows are sorted by descending buffer size.
 
-Aviso
+Warning
 
-Consultar vistas que acessam a tabela `INNODB_BUFFER_PAGE` pode afetar o desempenho. Não consulte essas vistas em um sistema de produção, a menos que você esteja ciente do impacto no desempenho e tenha determinado que ele é aceitável. Para evitar afetar o desempenho em um sistema de produção, reproduza o problema que você deseja investigar e consulte as estatísticas do pool de buffers em uma instância de teste.
+Querying views that access the `INNODB_BUFFER_PAGE` table can affect performance. Do not query these views on a production system unless you are aware of the performance impact and have determined it to be acceptable. To avoid impacting performance on a production system, reproduce the issue you want to investigate and query buffer pool statistics on a test instance.
 
-As vistas `innodb_buffer_stats_by_schema` e `x$innodb_buffer_stats_by_schema` possuem as seguintes colunas:
+The `innodb_buffer_stats_by_schema` and `x$innodb_buffer_stats_by_schema` views have these columns:
 
-- `objeto_esquema`
+* `object_schema`
 
-  O nome do esquema para o objeto, ou `InnoDB System` se a tabela pertencer ao mecanismo de armazenamento `InnoDB`.
+  The schema name for the object, or `InnoDB System` if the table belongs to the `InnoDB` storage engine.
 
-- "atribuído"
+* `allocated`
 
-  O número total de bytes alocados para o esquema.
+  The total number of bytes allocated for the schema.
 
-- `dados`
+* `data`
 
-  O número total de bytes de dados alocados para o esquema.
+  The total number of data bytes allocated for the schema.
 
-- `pages`
+* `pages`
 
-  O número total de páginas alocadas para o esquema.
+  The total number of pages allocated for the schema.
 
-- `pages_hashed`
+* `pages_hashed`
 
-  O número total de páginas hash alocadas para o esquema.
+  The total number of hashed pages allocated for the schema.
 
-- `pages_old`
+* `pages_old`
 
-  O número total de páginas antigas alocadas para o esquema.
+  The total number of old pages allocated for the schema.
 
-- `rows_cached`
+* `rows_cached`
 
-  O número total de linhas armazenadas em cache para o esquema.
+  The total number of cached rows for the schema.

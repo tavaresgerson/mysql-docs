@@ -1,13 +1,13 @@
-#### 21.6.15.16 Tabela ndbinfo dict_obj_types
+#### 21.6.15.16 The ndbinfo dict_obj_types Table
 
-A tabela `dict_obj_types` é uma tabela estática que lista os possíveis tipos de objetos de dicionário usados no kernel NDB. Estes são os mesmos tipos definidos por `Object::Type` na API NDB.
+The `dict_obj_types` table is a static table listing possible dictionary object types used in the NDB kernel. These are the same types defined by [`Object::Type`](/doc/ndbapi/en/ndb-object.html#ndb-object-type) in the NDB API.
 
-A tabela `dict_obj_types` contém as seguintes colunas:
+The `dict_obj_types` table contains the following columns:
 
-- `type_id`
+* `type_id`
 
-  O ID de tipo para este tipo
+  The type ID for this type
 
-- `nome_tipo`
+* `type_name`
 
-  O nome deste tipo
+  The name of this type

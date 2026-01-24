@@ -1,16 +1,16 @@
-#### 26.4.5.18 A função quote_identifier()
+#### 26.4.5.18 The quote_identifier() Function
 
-Dada uma string como argumento, essa função gera um identificador com aspas, adequado para inclusão em instruções SQL. Isso é útil quando um valor a ser usado como identificador é uma palavra reservada ou contém caracteres de backtick (\`\`\`). Foi adicionado no MySQL 5.7.14.
+Given a string argument, this function produces a quoted identifier suitable for inclusion in SQL statements. This is useful when a value to be used as an identifier is a reserved word or contains backtick (`` ` ``) characters. It was added in MySQL 5.7.14.
 
-##### Parâmetros
+##### Parameters
 
-`in_identifier TEXT`: O identificador a ser citado.
+`in_identifier TEXT`: The identifier to quote.
 
-##### Valor de retorno
+##### Return Value
 
-Um valor `TEXT`.
+A `TEXT` value.
 
-##### Exemplo
+##### Example
 
 ```sql
 mysql> SELECT sys.quote_identifier('plain');

@@ -1,11 +1,11 @@
-#### 13.7.5.1 Declaração de registro binário de exibição
+#### 13.7.5.1 SHOW BINARY LOGS Statement
 
 ```sql
 SHOW BINARY LOGS
 SHOW MASTER LOGS
 ```
 
-Lista os arquivos de log binário no servidor. Esta declaração é usada como parte do procedimento descrito na Seção 13.4.1.1, “Declaração PURGE BINARY LOGS”, que mostra como determinar quais logs podem ser excluídos. Um usuário com o privilégio `SUPER` ou `REPLICATION CLIENT` pode executar esta declaração.
+Lists the binary log files on the server. This statement is used as part of the procedure described in [Section 13.4.1.1, “PURGE BINARY LOGS Statement”](purge-binary-logs.html "13.4.1.1 PURGE BINARY LOGS Statement"), that shows how to determine which logs can be purged. A user with the [`SUPER`](privileges-provided.html#priv_super) or [`REPLICATION CLIENT`](privileges-provided.html#priv_replication-client) privilege may execute this statement.
 
 ```sql
 mysql> SHOW BINARY LOGS;
@@ -17,4 +17,4 @@ mysql> SHOW BINARY LOGS;
 +---------------+-----------+
 ```
 
-`SHOW MASTER LOGS` é equivalente a `SHOW BINARY LOGS`.
+[`SHOW MASTER LOGS`](show-binary-logs.html "13.7.5.1 SHOW BINARY LOGS Statement") is equivalent to [`SHOW BINARY LOGS`](show-binary-logs.html "13.7.5.1 SHOW BINARY LOGS Statement").

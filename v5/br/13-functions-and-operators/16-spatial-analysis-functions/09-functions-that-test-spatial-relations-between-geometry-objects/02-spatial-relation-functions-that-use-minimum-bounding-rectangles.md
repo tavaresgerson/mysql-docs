@@ -1,12 +1,12 @@
-#### 12.16.9.2 Funções de Relação Espacial que Utilizam Rectângulos de Limite Mínimos
+#### 12.16.9.2 Spatial Relation Functions That Use Minimum Bounding Rectangles
 
-O MySQL oferece várias funções específicas do MySQL que testam a relação entre os retângulos de contorno mínimo (MBRs) de duas geómetrias *`g1`* e *`g2`*. Os valores de retorno 1 e 0 indicam verdadeiro e falso, respectivamente.
+MySQL provides several MySQL-specific functions that test the relationship between minimum bounding rectangles (MBRs) of two geometries *`g1`* and *`g2`*. The return values 1 and 0 indicate true and false, respectively.
 
-Um conjunto correspondente de funções de MBR definido de acordo com a especificação OpenGIS é descrito mais adiante nesta seção.
+A corresponding set of MBR functions defined according to the OpenGIS specification is described later in this section.
 
-- `MBRContains(g1, g2)`
+* `MBRContains(g1, g2)`
 
-  Retorna 1 ou 0 para indicar se o retângulo de contorno mínimo de *`g1`* contém o retângulo de contorno mínimo de *`g2`*. Isso testa a relação oposta à `MBRWithin()`.
+  Returns 1 or 0 to indicate whether the minimum bounding rectangle of *`g1`* contains the minimum bounding rectangle of *`g2`*. This tests the opposite relationship as `MBRWithin()`.
 
   ```sql
   mysql> SET @g1 = ST_GeomFromText('Polygon((0 0,0 3,3 3,3 0,0 0))');
@@ -19,19 +19,19 @@ Um conjunto correspondente de funções de MBR definido de acordo com a especifi
   +----------------------+--------------------+
   ```
 
-  `MBRContains()` e `Contains()` são sinônimos.
+  `MBRContains()` and `Contains()` are synonyms.
 
-- `MBRCobertoPor(g1, g2)`
+* `MBRCoveredBy(g1, g2)`
 
-  Retorna 1 ou 0 para indicar se o retângulo de contorno mínimo de *`g1`* está coberto pelo retângulo de contorno mínimo de *`g2`*. Isso testa a relação oposta à `MBRCovers()`.
+  Returns 1 or 0 to indicate whether the minimum bounding rectangle of *`g1`* is covered by the minimum bounding rectangle of *`g2`*. This tests the opposite relationship as `MBRCovers()`.
 
-  `MBRCoveredBy()` lida com seus argumentos da seguinte forma:
+  `MBRCoveredBy()` handles its arguments as follows:
 
-  - Se qualquer argumento for `NULL` ou uma geometria vazia, o valor de retorno será `NULL`.
+  + If either argument is `NULL` or an empty geometry, the return value is `NULL`.
 
-  - Se qualquer argumento não for uma cadeia de bytes de geometria sintaticamente bem formada, ocorrerá um erro `ER_GIS_INVALID_DATA`.
+  + If either argument is not a syntactically well-formed geometry byte string, an `ER_GIS_INVALID_DATA` error occurs.
 
-  - Caso contrário, o valor de retorno não é `NULL`.
+  + Otherwise, the return value is non-`NULL`.
 
   ```sql
   mysql> SET @g1 = ST_GeomFromText('Polygon((0 0,0 3,3 3,3 0,0 0))');
@@ -50,59 +50,59 @@ Um conjunto correspondente de funções de MBR definido de acordo com a especifi
   +--------------------+-----------------------+
   ```
 
-- `MBRCovers(g1, g2)`
+* `MBRCovers(g1, g2)`
 
-  Retorna 1 ou 0 para indicar se o retângulo de contorno mínimo de *`g1`* cobre o retângulo de contorno mínimo de *`g2`*. Isso testa a relação oposta à `MBRCoveredBy()`. Veja a descrição de `MBRCoveredBy()` para exemplos.
+  Returns 1 or 0 to indicate whether the minimum bounding rectangle of *`g1`* covers the minimum bounding rectangle of *`g2`*. This tests the opposite relationship as `MBRCoveredBy()`. See the description of `MBRCoveredBy()` for examples.
 
-  `MBRCovers()` lida com seus argumentos da seguinte forma:
+  `MBRCovers()` handles its arguments as follows:
 
-  - Se qualquer argumento for `NULL` ou uma geometria vazia, o valor de retorno será `NULL`.
+  + If either argument is `NULL` or an empty geometry, the return value is `NULL`.
 
-  - Se qualquer argumento não for uma cadeia de bytes de geometria sintaticamente bem formada, ocorrerá um erro `ER_GIS_INVALID_DATA`.
+  + If either argument is not a syntactically well-formed geometry byte string, an `ER_GIS_INVALID_DATA` error occurs.
 
-  - Caso contrário, o valor de retorno não é `NULL`.
+  + Otherwise, the return value is non-`NULL`.
 
-- `MBRDisjoint(g1, g2)`
+* `MBRDisjoint(g1, g2)`
 
-  Retorna 1 ou 0 para indicar se os retângulos de contorno mínimos das duas geometrias *`g1`* e *`g2`* são disjuntos (não se intersectam).
+  Returns 1 or 0 to indicate whether the minimum bounding rectangles of the two geometries *`g1`* and *`g2`* are disjoint (do not intersect).
 
-  `MBRDisjoint()` e `Disjoint()` são sinônimos.
+  `MBRDisjoint()` and `Disjoint()` are synonyms.
 
-- `MBREqual(g1, g2)`
+* `MBREqual(g1, g2)`
 
-  Retorna 1 ou 0 para indicar se os retângulos de contorno mínimos das duas geometrias *`g1`* e *`g2`* são os mesmos.
+  Returns 1 or 0 to indicate whether the minimum bounding rectangles of the two geometries *`g1`* and *`g2`* are the same.
 
-  `MBREqual()` está desatualizado; espere que ele seja removido em uma futura versão do MySQL. Use `MBREquals()`.
+  `MBREqual()` is deprecated; expect it to be removed in a future MySQL release. Use `MBREquals()` instead.
 
-- `MBREquals(g1, g2)`
+* `MBREquals(g1, g2)`
 
-  Retorna 1 ou 0 para indicar se os retângulos de contorno mínimos das duas geometrias *`g1`* e *`g2`* são os mesmos.
+  Returns 1 or 0 to indicate whether the minimum bounding rectangles of the two geometries *`g1`* and *`g2`* are the same.
 
-  `MBREquals()`, `MBREqual()` e `Equals()` são sinônimos.
+  `MBREquals()`, `MBREqual()`, and `Equals()` are synonyms.
 
-- `MBRIntersects(g1, g2)`
+* `MBRIntersects(g1, g2)`
 
-  Retorna 1 ou 0 para indicar se os retângulos de contorno mínimos das duas geometrias *`g1`* e *`g2`* se intersectam.
+  Returns 1 or 0 to indicate whether the minimum bounding rectangles of the two geometries *`g1`* and *`g2`* intersect.
 
-  `MBRIntersects()` e `Intersects()` são sinônimos.
+  `MBRIntersects()` and `Intersects()` are synonyms.
 
-- `MBROverlaps(g1, g2)`
+* `MBROverlaps(g1, g2)`
 
-  Duas geometrias *se sobrepõem espacialmente* se intersectam e sua interseção resulta em uma geometria da mesma dimensão, mas não igual a nenhuma das geometrias dadas.
+  Two geometries *spatially overlap* if they intersect and their intersection results in a geometry of the same dimension but not equal to either of the given geometries.
 
-  Essa função retorna 1 ou 0 para indicar se os retângulos de contorno mínimos das duas geometrias *`g1`* e *`g2`* se sobrepõem.
+  This function returns 1 or 0 to indicate whether the minimum bounding rectangles of the two geometries *`g1`* and *`g2`* overlap.
 
-  `MBROverlaps()` e `Overlaps()` são sinônimos.
+  `MBROverlaps()` and `Overlaps()` are synonyms.
 
-- `MBRTouches(g1, g2)`
+* `MBRTouches(g1, g2)`
 
-  Duas geometrias *tocam-se espacialmente* se seus interiores não se intersectam, mas a borda de uma das geometrias intersecta a borda ou o interior da outra.
+  Two geometries *spatially touch* if their interiors do not intersect, but the boundary of one of the geometries intersects either the boundary or the interior of the other.
 
-  Essa função retorna 1 ou 0 para indicar se os retângulos de contorno mínimos das duas geometrias *`g1`* e *`g2`* se tocam.
+  This function returns 1 or 0 to indicate whether the minimum bounding rectangles of the two geometries *`g1`* and *`g2`* touch.
 
-- `MBRWithin(g1, g2)`
+* `MBRWithin(g1, g2)`
 
-  Retorna 1 ou 0 para indicar se o retângulo de contorno mínimo de *`g1`* está dentro do retângulo de contorno mínimo de *`g2`*. Isso testa a relação oposta à `MBRContains()`.
+  Returns 1 or 0 to indicate whether the minimum bounding rectangle of *`g1`* is within the minimum bounding rectangle of *`g2`*. This tests the opposite relationship as `MBRContains()`.
 
   ```sql
   mysql> SET @g1 = ST_GeomFromText('Polygon((0 0,0 3,3 3,3 0,0 0))');
@@ -115,44 +115,44 @@ Um conjunto correspondente de funções de MBR definido de acordo com a especifi
   +--------------------+--------------------+
   ```
 
-  `MBRWithin()` e `Within()` são sinônimos.
+  `MBRWithin()` and `Within()` are synonyms.
 
-A especificação OpenGIS define as seguintes funções que testam a relação entre dois valores de geometria *`g1`* e *`g2`*. A implementação do MySQL usa retângulos de delimitação mínima, portanto, essas funções retornam o mesmo resultado que as funções baseadas em MBR descritas anteriormente nesta seção. Os valores de retorno 1 e 0 indicam verdadeiro e falso, respectivamente.
+The OpenGIS specification defines the following functions that test the relationship between two geometry values *`g1`* and *`g2`*. The MySQL implementation uses minimum bounding rectangles, so these functions return the same result as the corresponding MBR-based functions described earlier in this section. The return values 1 and 0 indicate true and false, respectively.
 
-Essas funções suportam todas as combinações de tipos de argumento, exceto aquelas que não são aplicáveis de acordo com a especificação do Open Geospatial Consortium.
+These functions support all argument type combinations except those that are inapplicable according to the Open Geospatial Consortium specification.
 
-- `Contains(g1, g2)`
+* `Contains(g1, g2)`
 
-  `MBRContains()` e `Contains()` são sinônimos. Para mais informações, consulte a descrição de `MBRContains()`.
+  `MBRContains()` and `Contains()` are synonyms. For more information, see the description of `MBRContains()`.
 
-  `Contains()` está desatualizado; espere que ele seja removido em uma futura versão do MySQL. Use `MBRContains()` em vez disso.
+  `Contains()` is deprecated; expect it to be removed in a future MySQL release. Use `MBRContains()` instead.
 
-- `Disjoint(g1, g2)`
+* `Disjoint(g1, g2)`
 
-  `MBRDisjoint()` e `Disjoint()` são sinônimos. Para mais informações, consulte a descrição de `MBRDisjoint()`.
+  `MBRDisjoint()` and `Disjoint()` are synonyms. For more information, see the description of `MBRDisjoint()`.
 
-  `Disjoint()` está desatualizado; espere que ele seja removido em uma futura versão do MySQL. Use `MBRDisjoint()` em vez disso.
+  `Disjoint()` is deprecated; expect it to be removed in a future MySQL release. Use `MBRDisjoint()` instead.
 
-- `Equals(g1, g2)`
+* `Equals(g1, g2)`
 
-  `MBREquals()` e `Equals()` são sinônimos. Para mais informações, consulte a descrição de `MBREquals()`.
+  `MBREquals()` and `Equals()` are synonyms. For more information, see the description of `MBREquals()`.
 
-  `Equals()` está desatualizado; espere que ele seja removido em uma futura versão do MySQL. Use `MBREquals()` em vez disso.
+  `Equals()` is deprecated; expect it to be removed in a future MySQL release. Use `MBREquals()` instead.
 
-- `Intersects(g1, g2)`
+* `Intersects(g1, g2)`
 
-  `MBRIntersects()` e `Intersects()` são sinônimos. Para mais informações, consulte a descrição de `MBRIntersects()`.
+  `MBRIntersects()` and `Intersects()` are synonyms. For more information, see the description of `MBRIntersects()`.
 
-  `Intersects()` está desatualizado; espere que ele seja removido em uma futura versão do MySQL. Use `MBRIntersects()` em vez disso.
+  `Intersects()` is deprecated; expect it to be removed in a future MySQL release. Use `MBRIntersects()` instead.
 
-- `Overlaps(g1, g2)`
+* `Overlaps(g1, g2)`
 
-  `MBROverlaps()` e `Overlaps()` são sinônimos. Para mais informações, consulte a descrição de `MBROverlaps()`.
+  `MBROverlaps()` and `Overlaps()` are synonyms. For more information, see the description of `MBROverlaps()`.
 
-  `Overlaps()` está desatualizado; espere que ele seja removido em uma futura versão do MySQL. Use `MBROverlaps()` em vez disso.
+  `Overlaps()` is deprecated; expect it to be removed in a future MySQL release. Use `MBROverlaps()` instead.
 
-- `Dentro(g1, g2)`
+* `Within(g1, g2)`
 
-  `MBRWithin()` e `Within()` são sinônimos. Para mais informações, consulte a descrição de `MBRWithin()`.
+  `MBRWithin()` and `Within()` are synonyms. For more information, see the description of `MBRWithin()`.
 
-  `Within()` está desatualizado; espere que ele seja removido em uma futura versão do MySQL. Use `MBRWithin()` em vez disso.
+  `Within()` is deprecated; expect it to be removed in a future MySQL release. Use `MBRWithin()` instead.

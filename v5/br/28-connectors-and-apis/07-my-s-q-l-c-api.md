@@ -1,3 +1,3 @@
-## 27.7 API C para MySQL
+## 27.7 MySQL C API
 
-O Guia do Desenvolvedor da API C do MySQL é publicado de forma independente, não como parte do Manual de Referência do MySQL. Consulte Guia do Desenvolvedor da API C do MySQL 5.7.
+The MySQL C API Developer Guide is published in standalone form, not as part of the MySQL Reference Manual. See [MySQL 5.7 C API Developer Guide](/doc/c-api/5.7/en/).

@@ -1,14 +1,14 @@
-## 12.15 Funções de Informação
+## 12.15 Information Functions
 
-**Tabela 12.20 Funções de Informação**
+**Table 12.20 Information Functions**
 
-<table frame="box" rules="all" summary="Uma referência que lista as funções de informação."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td>PH_HTML_CODE_<code>ROW_COUNT()</code>]</td> <td>Execute repetidamente uma expressão</td> </tr><tr><td>PH_HTML_CODE_<code>ROW_COUNT()</code>]</td> <td>Retorne o conjunto de caracteres do argumento</td> </tr><tr><td>PH_HTML_CODE_<code>SESSION_USER()</code>]</td> <td>Retorne o valor de coercibilidade de ordenação do argumento string</td> </tr><tr><td>PH_HTML_CODE_<code>SYSTEM_USER()</code>]</td> <td>Retorne a ordenação do argumento de string</td> </tr><tr><td>PH_HTML_CODE_<code>USER()</code>]</td> <td>Retorne o ID de conexão (ID de thread) para a conexão</td> </tr><tr><td>PH_HTML_CODE_<code>VERSION()</code>], <code>CURRENT_USER</code></td> <td>O nome do usuário autenticado e o nome do host</td> </tr><tr><td><code>DATABASE()</code></td> <td>Retorne o nome do banco de dados padrão (atual)</td> </tr><tr><td><code>FOUND_ROWS()</code></td> <td>Para uma consulta SELECT com uma cláusula LIMIT, o número de linhas que seriam retornadas se não houvesse a cláusula LIMIT</td> </tr><tr><td><code>LAST_INSERT_ID()</code></td> <td>Valor da coluna AUTOINCREMENT para a última inserção</td> </tr><tr><td><code>ROW_COUNT()</code></td> <td>O número de linhas atualizadas</td> </tr><tr><td><code>CHARSET()</code><code>ROW_COUNT()</code>]</td> <td>Sinônimo de DATABASE()</td> </tr><tr><td><code>SESSION_USER()</code></td> <td>Sinônimo de USER()</td> </tr><tr><td><code>SYSTEM_USER()</code></td> <td>Sinônimo de USER()</td> </tr><tr><td><code>USER()</code></td> <td>O nome de usuário e o nome do host fornecidos pelo cliente</td> </tr><tr><td><code>VERSION()</code></td> <td>Retorne uma string que indique a versão do servidor MySQL</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists information functions."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>BENCHMARK()</code></td> <td> Repeatedly execute an expression </td> </tr><tr><td><code>CHARSET()</code></td> <td> Return the character set of the argument </td> </tr><tr><td><code>COERCIBILITY()</code></td> <td> Return the collation coercibility value of the string argument </td> </tr><tr><td><code>COLLATION()</code></td> <td> Return the collation of the string argument </td> </tr><tr><td><code>CONNECTION_ID()</code></td> <td> Return the connection ID (thread ID) for the connection </td> </tr><tr><td><code>CURRENT_USER()</code>, <code>CURRENT_USER</code></td> <td> The authenticated user name and host name </td> </tr><tr><td><code>DATABASE()</code></td> <td> Return the default (current) database name </td> </tr><tr><td><code>FOUND_ROWS()</code></td> <td> For a SELECT with a LIMIT clause, the number of rows that would be returned were there no LIMIT clause </td> </tr><tr><td><code>LAST_INSERT_ID()</code></td> <td> Value of the AUTOINCREMENT column for the last INSERT </td> </tr><tr><td><code>ROW_COUNT()</code></td> <td> The number of rows updated </td> </tr><tr><td><code>SCHEMA()</code></td> <td> Synonym for DATABASE() </td> </tr><tr><td><code>SESSION_USER()</code></td> <td> Synonym for USER() </td> </tr><tr><td><code>SYSTEM_USER()</code></td> <td> Synonym for USER() </td> </tr><tr><td><code>USER()</code></td> <td> The user name and host name provided by the client </td> </tr><tr><td><code>VERSION()</code></td> <td> Return a string that indicates the MySQL server version </td> </tr></tbody></table>
 
-- `BENCHMARK(contagem, expr)`
+* `BENCHMARK(count,expr)`
 
-  A função `BENCHMARK()` executa a expressão *`expr`* repetidamente *`count`* vezes. Ela pode ser usada para medir o tempo que o MySQL leva para processar a expressão. O valor de resultado é `0`, ou `NULL` para argumentos inadequados, como um `NULL` ou um número de repetições negativo.
+  The `BENCHMARK()` function executes the expression *`expr`* repeatedly *`count`* times. It may be used to time how quickly MySQL processes the expression. The result value is `0`, or `NULL` for inappropriate arguments such as a `NULL` or negative repeat count.
 
-  O uso pretendido é a partir do cliente **mysql**, que relata os tempos de execução das consultas:
+  The intended use is from within the **mysql** client, which reports query execution times:
 
   ```sql
   mysql> SELECT BENCHMARK(1000000,AES_ENCRYPT('hello','goodbye'));
@@ -20,17 +20,17 @@
   1 row in set (4.74 sec)
   ```
 
-  O tempo relatado é o tempo gasto no cliente, não o tempo da CPU no servidor. É aconselhável executar o `BENCHMARK()` várias vezes e interpretar o resultado com base na carga pesada da máquina do servidor.
+  The time reported is elapsed time on the client end, not CPU time on the server end. It is advisable to execute `BENCHMARK()` several times, and to interpret the result with regard to how heavily loaded the server machine is.
 
-  O `BENCHMARK()` é destinado a medir o desempenho de execução de expressões escalares, o que tem algumas implicações significativas sobre a forma como você o usa e interpreta os resultados:
+  `BENCHMARK()` is intended for measuring the runtime performance of scalar expressions, which has some significant implications for the way that you use it and interpret the results:
 
-  - Apenas expressões escalares podem ser usadas. Embora a expressão possa ser uma subconsulta, ela deve retornar uma única coluna e, no máximo, uma única linha. Por exemplo, `BENCHMARK(10, (SELECT * FROM t))` falha se a tabela `t` tiver mais de uma coluna ou mais de uma linha.
+  + Only scalar expressions can be used. Although the expression can be a subquery, it must return a single column and at most a single row. For example, `BENCHMARK(10, (SELECT * FROM t))` fails if the table `t` has more than one column or more than one row.
 
-  - Executar uma instrução `SELECT expr` *`N`* vezes difere da execução de `SELECT BENCHMARK(N, expr)` em termos da quantidade de overhead envolvida. Os dois têm perfis de execução muito diferentes e você não deve esperar que eles levem o mesmo tempo. O primeiro envolve o analisador, otimizador, bloqueio de tabela e avaliação dinâmica *`N`* vezes cada. O segundo envolve apenas a avaliação dinâmica *`N`* vezes, e todos os outros componentes apenas uma vez. As estruturas de memória já alocadas são reutilizadas, e otimizações dinâmicas, como o cache local de resultados já avaliados para funções agregadas, podem alterar os resultados. O uso de `BENCHMARK()` mede, portanto, o desempenho do componente dinâmico, dando mais peso a esse componente e removendo o "ruído" introduzido pela rede, analisador, otimizador e assim por diante.
+  + Executing a `SELECT expr` statement *`N`* times differs from executing `SELECT BENCHMARK(N, expr)` in terms of the amount of overhead involved. The two have very different execution profiles and you should not expect them to take the same amount of time. The former involves the parser, optimizer, table locking, and runtime evaluation *`N`* times each. The latter involves only runtime evaluation *`N`* times, and all the other components just once. Memory structures already allocated are reused, and runtime optimizations such as local caching of results already evaluated for aggregate functions can alter the results. Use of `BENCHMARK()` thus measures performance of the runtime component by giving more weight to that component and removing the “noise” introduced by the network, parser, optimizer, and so forth.
 
-- `CHARSET(str)`
+* `CHARSET(str)`
 
-  Retorna o conjunto de caracteres da string de argumento.
+  Returns the character set of the string argument.
 
   ```sql
   mysql> SELECT CHARSET('abc');
@@ -41,9 +41,9 @@
           -> 'utf8'
   ```
 
-- `COERCIBILITY(str)`
+* `COERCIBILITY(str)`
 
-  Retorna o valor de coercibilidade de ordenação da string.
+  Returns the collation coercibility value of the string argument.
 
   ```sql
   mysql> SELECT COERCIBILITY('abc' COLLATE latin1_swedish_ci);
@@ -56,15 +56,15 @@
           -> 5
   ```
 
-  Os valores de retorno têm os significados mostrados na tabela a seguir. Valores menores têm precedência maior.
+  The return values have the meanings shown in the following table. Lower values have higher precedence.
 
-  <table summary="Valores de retorno da coercibilidade da collation, o significado de cada valor e um exemplo de cada um."><col style="width: 15%"/><col style="width: 15%"/><col style="width: 70%"/><thead><tr> <th>Coercibilidade</th> <th>Significado</th> <th>Exemplo</th> </tr></thead><tbody><tr> <th>PH_HTML_CODE_<code>NULL</code>]</th> <td>Ordenação explícita</td> <td>Valor com cláusula PH_HTML_CODE_<code>NULL</code>]</td> </tr><tr> <th><code>1</code></th> <td>Sem classificação</td> <td>Concatenação de cadeias de caracteres com diferentes codificações</td> </tr><tr> <th><code>2</code></th> <td>Ordenação implícita</td> <td>Valor da coluna, parâmetro de rotina armazenado ou variável local</td> </tr><tr> <th><code>3</code></th> <td>Sistema constante</td> <td><code>USER()</code>valor de retorno</td> </tr><tr> <th><code>4</code></th> <td>Coercível</td> <td>String literal</td> </tr><tr> <th><code>5</code></th> <td>Numérico</td> <td>Valor numérico ou temporal</td> </tr><tr> <th><code>6</code></th> <td>Ignorável</td> <td><code>NULL</code> ou uma expressão derivada de <code>NULL</code></td> </tr></tbody></table>
+  <table summary="Collation coercibility return values, the meaning of each value, and an example of each."><col style="width: 15%"/><col style="width: 15%"/><col style="width: 70%"/><thead><tr> <th>Coercibility</th> <th>Meaning</th> <th>Example</th> </tr></thead><tbody><tr> <th><code>0</code></th> <td>Explicit collation</td> <td>Value with <code>COLLATE</code> clause</td> </tr><tr> <th><code>1</code></th> <td>No collation</td> <td>Concatenation of strings with different collations</td> </tr><tr> <th><code>2</code></th> <td>Implicit collation</td> <td>Column value, stored routine parameter or local variable</td> </tr><tr> <th><code>3</code></th> <td>System constant</td> <td><code>USER()</code> return value</td> </tr><tr> <th><code>4</code></th> <td>Coercible</td> <td>Literal string</td> </tr><tr> <th><code>5</code></th> <td>Numeric</td> <td>Numeric or temporal value</td> </tr><tr> <th><code>6</code></th> <td>Ignorable</td> <td><code>NULL</code> or an expression derived from <code>NULL</code></td> </tr></tbody></table>
 
-  Para mais informações, consulte a Seção 10.8.4, “Coercitividade da Collation em Expressões”.
+  For more information, see Section 10.8.4, “Collation Coercibility in Expressions”.
 
-- `COLLATE(str)`
+* `COLLATION(str)`
 
-  Retorna a ordenação da string de argumento.
+  Returns the collation of the string argument.
 
   ```sql
   mysql> SELECT COLLATION('abc');
@@ -73,26 +73,26 @@
           -> 'utf8_general_ci'
   ```
 
-- `ID_CONEXÃO()`
+* `CONNECTION_ID()`
 
-  Retorna o ID de conexão (ID de thread) para a conexão. Cada conexão tem um ID que é único entre o conjunto de clientes conectados atualmente.
+  Returns the connection ID (thread ID) for the connection. Every connection has an ID that is unique among the set of currently connected clients.
 
-  O valor retornado por `CONNECTION_ID()` é do mesmo tipo de valor exibido na coluna `ID` da tabela `PROCESSLIST` do Schema de Informações, na coluna `Id` da saída `SHOW PROCESSLIST` e na coluna `PROCESSLIST_ID` da tabela `threads` do Schema de Desempenho.
+  The value returned by `CONNECTION_ID()` is the same type of value as displayed in the `ID` column of the Information Schema `PROCESSLIST` table, the `Id` column of `SHOW PROCESSLIST` output, and the `PROCESSLIST_ID` column of the Performance Schema `threads` table.
 
   ```sql
   mysql> SELECT CONNECTION_ID();
           -> 23786
   ```
 
-  Aviso
+  Warning
 
-  Alterar o valor da variável de sistema `pseudo_thread_id` muda o valor retornado pela função `CONNECTION_ID()`.
+  Changing the session value of the `pseudo_thread_id` system variable changes the value returned by the `CONNECTION_ID()` function.
 
-- `USUARIO_CORRENTE`, `USUARIO_CORRENTE()`
+* `CURRENT_USER`, `CURRENT_USER()`
 
-  Retorna a combinação de nome de usuário e nome do host para a conta MySQL que o servidor usou para autenticar o cliente atual. Essa conta determina seus privilégios de acesso. O valor de retorno é uma string no conjunto de caracteres `utf8`.
+  Returns the user name and host name combination for the MySQL account that the server used to authenticate the current client. This account determines your access privileges. The return value is a string in the `utf8` character set.
 
-  O valor de `CURRENT_USER()` pode diferir do valor de `USER()`.
+  The value of `CURRENT_USER()` can differ from the value of `USER()`.
 
   ```sql
   mysql> SELECT USER();
@@ -104,43 +104,43 @@
           -> '@localhost'
   ```
 
-  O exemplo ilustra que, embora o cliente tenha especificado um nome de usuário de `davida` (como indicado pelo valor da função `USER()`), o servidor autenticou o cliente usando uma conta de usuário anônima (como visto pela parte vazia do nome de usuário da função `CURRENT_USER()`). Uma maneira de isso ocorrer é que não há uma conta listada nas tabelas de concessão para `davida`.
+  The example illustrates that although the client specified a user name of `davida` (as indicated by the value of the `USER()` function), the server authenticated the client using an anonymous user account (as seen by the empty user name part of the `CURRENT_USER()` value). One way this might occur is that there is no account listed in the grant tables for `davida`.
 
-  Dentro de um programa ou visual armazenado, `CURRENT_USER()` retorna a conta do usuário que definiu o objeto (conforme especificado pelo valor `DEFINER`), a menos que seja definido com a característica `SQL SECURITY INVOKER`. Nesse último caso, `CURRENT_USER()` retorna o invocador do objeto.
+  Within a stored program or view, `CURRENT_USER()` returns the account for the user who defined the object (as given by its `DEFINER` value) unless defined with the `SQL SECURITY INVOKER` characteristic. In the latter case, `CURRENT_USER()` returns the object's invoker.
 
-  Os gatilhos e eventos não têm a opção de definir a característica `SQL SECURITY`, então, para esses objetos, `CURRENT_USER()` retorna a conta do usuário que definiu o objeto. Para retornar o invocante, use `USER()` ou `SESSION_USER()`.
+  Triggers and events have no option to define the `SQL SECURITY` characteristic, so for these objects, `CURRENT_USER()` returns the account for the user who defined the object. To return the invoker, use `USER()` or `SESSION_USER()`.
 
-  As seguintes declarações apoiam o uso da função `CURRENT_USER()` para substituir o nome (e, possivelmente, o endereço de um host) de um usuário afetado ou de um definidor; nesses casos, `CURRENT_USER()` é expandido onde e como necessário:
+  The following statements support use of the `CURRENT_USER()` function to take the place of the name of (and, possibly, a host for) an affected user or a definer; in such cases, `CURRENT_USER()` is expanded where and as needed:
 
-  - `DROP USER`
-  - `RENOMEAR USUÁRIO`
-  - `CONCEDER`
-  - REVOGAR
-  - `CREATE FUNCTION`
-  - `CREATE PROCEDURE`
-  - `CREATE TRIGGER`
-  - `Crie evento`
-  - `CREATE VIEW`
-  - `ALTERAR EVENTO`
-  - `ALTER VIEW`
-  - `DEFINIR SENHA`
+  + `DROP USER`
+  + `RENAME USER`
+  + `GRANT`
+  + `REVOKE`
+  + `CREATE FUNCTION`
+  + `CREATE PROCEDURE`
+  + `CREATE TRIGGER`
+  + `CREATE EVENT`
+  + `CREATE VIEW`
+  + `ALTER EVENT`
+  + `ALTER VIEW`
+  + `SET PASSWORD`
 
-  Para obter informações sobre as implicações dessa expansão do `CURRENT_USER()` para a replicação, consulte a Seção 16.4.1.8, “Replicação do CURRENT_USER()”).
+  For information about the implications that this expansion of `CURRENT_USER()` has for replication, see Section 16.4.1.8, “Replication of CURRENT_USER()”").
 
-- `DATABASE()`
+* `DATABASE()`
 
-  Retorna o nome do banco de dados padrão (atual) como uma string no conjunto de caracteres `utf8`. Se não houver um banco de dados padrão, o `DATABASE()` retorna `NULL`. Dentro de uma rotina armazenada, o banco de dados padrão é o banco de dados com o qual a rotina está associada, o que nem sempre é o mesmo do banco de dados padrão no contexto de chamada.
+  Returns the default (current) database name as a string in the `utf8` character set. If there is no default database, `DATABASE()` returns `NULL`. Within a stored routine, the default database is the database that the routine is associated with, which is not necessarily the same as the database that is the default in the calling context.
 
   ```sql
   mysql> SELECT DATABASE();
           -> 'test'
   ```
 
-  Se não houver um banco de dados padrão, o `DATABASE()` retorna `NULL`.
+  If there is no default database, `DATABASE()` returns `NULL`.
 
-- `FOUND_ROWS()`
+* `FOUND_ROWS()`
 
-  Uma instrução `SELECT` pode incluir uma cláusula `LIMIT` para restringir o número de linhas que o servidor retorna ao cliente. Em alguns casos, é desejável saber quantas linhas a instrução teria retornado sem a cláusula `LIMIT`, mas sem executar a instrução novamente. Para obter esse número de linhas, inclua a opção `SQL_CALC_FOUND_ROWS` na instrução `SELECT` e, em seguida, invocando `FOUND_ROWS()` posteriormente:
+  A `SELECT` statement may include a `LIMIT` clause to restrict the number of rows the server returns to the client. In some cases, it is desirable to know how many rows the statement would have returned without the `LIMIT`, but without running the statement again. To obtain this row count, include an `SQL_CALC_FOUND_ROWS` option in the `SELECT` statement, and then invoke `FOUND_ROWS()` afterward:
 
   ```sql
   mysql> SELECT SQL_CALC_FOUND_ROWS * FROM tbl_name
@@ -148,69 +148,69 @@
   mysql> SELECT FOUND_ROWS();
   ```
 
-  A segunda `SELECT` retorna um número que indica quantos registros a primeira `SELECT` teria retornado se tivesse sido escrita sem a cláusula `LIMIT`.
+  The second `SELECT` returns a number indicating how many rows the first `SELECT` would have returned had it been written without the `LIMIT` clause.
 
-  Na ausência da opção `SQL_CALC_FOUND_ROWS` na declaração `SELECT` mais recente com sucesso, `FOUND_ROWS()` retorna o número de linhas no conjunto de resultados retornado por essa declaração. Se a declaração incluir uma cláusula `LIMIT`, `FOUND_ROWS()` retorna o número de linhas até o limite. Por exemplo, `FOUND_ROWS()` retorna 10 ou 60, respectivamente, se a declaração incluir `LIMIT 10` ou `LIMIT 50, 10`.
+  In the absence of the `SQL_CALC_FOUND_ROWS` option in the most recent successful `SELECT` statement, `FOUND_ROWS()` returns the number of rows in the result set returned by that statement. If the statement includes a `LIMIT` clause, `FOUND_ROWS()` returns the number of rows up to the limit. For example, `FOUND_ROWS()` returns 10 or 60, respectively, if the statement includes `LIMIT 10` or `LIMIT 50, 10`.
 
-  O número de linhas disponível através de `FOUND_ROWS()` é transitório e não deve ser acessado após a instrução que segue a instrução `SELECT SQL_CALC_FOUND_ROWS`. Se você precisar referenciar o valor posteriormente, salve-o:
+  The row count available through `FOUND_ROWS()` is transient and not intended to be available past the statement following the `SELECT SQL_CALC_FOUND_ROWS` statement. If you need to refer to the value later, save it:
 
   ```sql
   mysql> SELECT SQL_CALC_FOUND_ROWS * FROM ... ;
   mysql> SET @rows = FOUND_ROWS();
   ```
 
-  Se você estiver usando `SELECT SQL_CALC_FOUND_ROWS`, o MySQL deve calcular quantas linhas estão no conjunto de resultados completo. No entanto, isso é mais rápido do que executar a consulta novamente sem `LIMIT`, porque o conjunto de resultados não precisa ser enviado ao cliente.
+  If you are using `SELECT SQL_CALC_FOUND_ROWS`, MySQL must calculate how many rows are in the full result set. However, this is faster than running the query again without `LIMIT`, because the result set need not be sent to the client.
 
-  `SQL_CALC_FOUND_ROWS` e `FOUND_ROWS()` podem ser úteis em situações em que você deseja restringir o número de linhas que uma consulta retorna, mas também determinar o número de linhas no conjunto de resultados completo sem executar a consulta novamente. Um exemplo é um script da Web que apresenta uma exibição em páginas contendo links para as páginas que mostram outras seções de um resultado de pesquisa. Usar `FOUND_ROWS()` permite determinar quantas outras páginas são necessárias para o restante do resultado.
+  `SQL_CALC_FOUND_ROWS` and `FOUND_ROWS()` can be useful in situations when you want to restrict the number of rows that a query returns, but also determine the number of rows in the full result set without running the query again. An example is a Web script that presents a paged display containing links to the pages that show other sections of a search result. Using `FOUND_ROWS()` enables you to determine how many other pages are needed for the rest of the result.
 
-  O uso de `SQL_CALC_FOUND_ROWS` e `FOUND_ROWS()` é mais complexo para as instruções `UNION` do que para as instruções simples `SELECT`, porque o `LIMIT` pode ocorrer em vários pontos de uma `UNION`. Ele pode ser aplicado a instruções `SELECT` individuais na `UNION`, ou globalmente ao resultado da `UNION` como um todo.
+  The use of `SQL_CALC_FOUND_ROWS` and `FOUND_ROWS()` is more complex for `UNION` statements than for simple `SELECT` statements, because `LIMIT` may occur at multiple places in a `UNION`. It may be applied to individual `SELECT` statements in the `UNION`, or global to the `UNION` result as a whole.
 
-  A intenção do `SQL_CALC_FOUND_ROWS` para `UNION` é que ele retorne o número de linhas que seria retornado sem um `LIMIT` global. As condições para o uso do `SQL_CALC_FOUND_ROWS` com `UNION` são:
+  The intent of `SQL_CALC_FOUND_ROWS` for `UNION` is that it should return the row count that would be returned without a global `LIMIT`. The conditions for use of `SQL_CALC_FOUND_ROWS` with `UNION` are:
 
-  - A palavra-chave `SQL_CALC_FOUND_ROWS` deve aparecer no primeiro `SELECT` da `UNION`.
+  + The `SQL_CALC_FOUND_ROWS` keyword must appear in the first `SELECT` of the `UNION`.
 
-  - O valor de `FOUND_ROWS()` é exato apenas se o `UNION ALL` for usado. Se o `UNION` sem `ALL` for usado, a remoção de duplicatas ocorre e o valor de `FOUND_ROWS()` é apenas aproximado.
+  + The value of `FOUND_ROWS()` is exact only if `UNION ALL` is used. If `UNION` without `ALL` is used, duplicate removal occurs and the value of `FOUND_ROWS()` is only approximate.
 
-  - Se não houver um `LIMIT` na `UNION`, o `SQL_CALC_FOUND_ROWS` é ignorado e retorna o número de linhas na tabela temporária criada para processar a `UNION`.
+  + If no `LIMIT` is present in the `UNION`, `SQL_CALC_FOUND_ROWS` is ignored and returns the number of rows in the temporary table that is created to process the `UNION`.
 
-  Além dos casos descritos aqui, o comportamento do `FOUND_ROWS()` é indefinido (por exemplo, seu valor após uma instrução `SELECT` que falha com um erro).
+  Beyond the cases described here, the behavior of `FOUND_ROWS()` is undefined (for example, its value following a `SELECT` statement that fails with an error).
 
-  Importante
+  Important
 
-  `FOUND_ROWS()` não é replicado de forma confiável usando a replicação baseada em instruções. Essa função é replicada automaticamente usando a replicação baseada em linhas.
+  `FOUND_ROWS()` is not replicated reliably using statement-based replication. This function is automatically replicated using row-based replication.
 
-- `LAST_INSERT_ID()`, `LAST_INSERT_ID(expr)`
+* `LAST_INSERT_ID()`, `LAST_INSERT_ID(expr)`
 
-  Sem argumento, `LAST_INSERT_ID()` retorna um valor `BIGINT UNSIGNED` (64 bits) que representa o primeiro valor gerado automaticamente inserido com sucesso para uma coluna `AUTO_INCREMENT` como resultado da instrução `INSERT` executada mais recentemente. O valor de `LAST_INSERT_ID()` permanece inalterado se nenhuma linha for inserida com sucesso.
+  With no argument, `LAST_INSERT_ID()` returns a `BIGINT UNSIGNED` (64-bit) value representing the first automatically generated value successfully inserted for an `AUTO_INCREMENT` column as a result of the most recently executed `INSERT` statement. The value of `LAST_INSERT_ID()` remains unchanged if no rows are successfully inserted.
 
-  Com um argumento, `LAST_INSERT_ID()` retorna um inteiro não assinado.
+  With an argument, `LAST_INSERT_ID()` returns an unsigned integer.
 
-  Por exemplo, após inserir uma linha que gera um valor `AUTO_INCREMENT`, você pode obter o valor da seguinte forma:
+  For example, after inserting a row that generates an `AUTO_INCREMENT` value, you can get the value like this:
 
   ```sql
   mysql> SELECT LAST_INSERT_ID();
           -> 195
   ```
 
-  A declaração atualmente em execução não afeta o valor de `LAST_INSERT_ID()`. Suponha que você gere um valor `AUTO_INCREMENT` com uma declaração e, em seguida, faça referência a `LAST_INSERT_ID()` em uma declaração `INSERT` de múltiplas linhas que insere linhas em uma tabela com sua própria coluna `AUTO_INCREMENT`. O valor de `LAST_INSERT_ID()` permanece estável na segunda declaração; seu valor para as segunda e linhas subsequentes não é afetado pelas inserções das linhas anteriores. (No entanto, se você misturar referências a `LAST_INSERT_ID()` e `LAST_INSERT_ID(expr)`, o efeito é indefinido.)
+  The currently executing statement does not affect the value of `LAST_INSERT_ID()`. Suppose that you generate an `AUTO_INCREMENT` value with one statement, and then refer to `LAST_INSERT_ID()` in a multiple-row `INSERT` statement that inserts rows into a table with its own `AUTO_INCREMENT` column. The value of `LAST_INSERT_ID()` remains stable in the second statement; its value for the second and later rows is not affected by the earlier row insertions. (However, if you mix references to `LAST_INSERT_ID()` and `LAST_INSERT_ID(expr)`, the effect is undefined.)
 
-  Se a declaração anterior retornou um erro, o valor de `LAST_INSERT_ID()` é indefinido. Para tabelas transacionais, se a declaração for revertida devido a um erro, o valor de `LAST_INSERT_ID()` permanece indefinido. Para um `ROLLBACK` manual, o valor de `LAST_INSERT_ID()` não é restaurado para o valor anterior à transação; ele permanece como estava no momento do `ROLLBACK`.
+  If the previous statement returned an error, the value of `LAST_INSERT_ID()` is undefined. For transactional tables, if the statement is rolled back due to an error, the value of `LAST_INSERT_ID()` is left undefined. For manual `ROLLBACK`, the value of `LAST_INSERT_ID()` is not restored to that before the transaction; it remains as it was at the point of the `ROLLBACK`.
 
-  Dentro do corpo de uma rotina armazenada (procedimento ou função) ou de um gatilho, o valor de `LAST_INSERT_ID()` muda da mesma maneira que para instruções executadas fora do corpo desses tipos de objetos. O efeito de uma rotina armazenada ou gatilho sobre o valor de `LAST_INSERT_ID()` que é visto ao seguir instruções depende do tipo de rotina:
+  Within the body of a stored routine (procedure or function) or a trigger, the value of `LAST_INSERT_ID()` changes the same way as for statements executed outside the body of these kinds of objects. The effect of a stored routine or trigger upon the value of `LAST_INSERT_ID()` that is seen by following statements depends on the kind of routine:
 
-  - Se um procedimento armazenado executar instruções que alterem o valor de `LAST_INSERT_ID()`, o valor alterado será visto por instruções que seguem a chamada do procedimento.
+  + If a stored procedure executes statements that change the value of `LAST_INSERT_ID()`, the changed value is seen by statements that follow the procedure call.
 
-  - Para funções e gatilhos armazenados que alteram o valor, o valor é restaurado quando a função ou o gatilho termina, então as instruções que os seguem não veem um valor alterado.
+  + For stored functions and triggers that change the value, the value is restored when the function or trigger ends, so statements following them do not see a changed value.
 
-  O ID gerado é mantido no servidor de forma *por conexão*. Isso significa que o valor retornado pela função para um cliente específico é o primeiro valor `AUTO_INCREMENT` gerado para a declaração mais recente que afeta uma coluna `AUTO_INCREMENT` *por esse cliente*. Esse valor não pode ser afetado por outros clientes, mesmo que eles gerem seus próprios valores `AUTO_INCREMENT`. Esse comportamento garante que cada cliente possa recuperar seu próprio ID sem preocupação com a atividade de outros clientes, e sem a necessidade de bloqueios ou transações.
+  The ID that was generated is maintained in the server on a *per-connection basis*. This means that the value returned by the function to a given client is the first `AUTO_INCREMENT` value generated for most recent statement affecting an `AUTO_INCREMENT` column *by that client*. This value cannot be affected by other clients, even if they generate `AUTO_INCREMENT` values of their own. This behavior ensures that each client can retrieve its own ID without concern for the activity of other clients, and without the need for locks or transactions.
 
-  O valor de `LAST_INSERT_ID()` não é alterado se você definir a coluna `AUTO_INCREMENT` de uma linha para um valor não "mágico" (ou seja, um valor que não é `NULL` e não é `0`).
+  The value of `LAST_INSERT_ID()` is not changed if you set the `AUTO_INCREMENT` column of a row to a non-“magic” value (that is, a value that is not `NULL` and not `0`).
 
-  Importante
+  Important
 
-  Se você inserir várias linhas usando uma única instrução `INSERT`, `LAST_INSERT_ID()` retorna o valor gerado para a *primeira* linha inserida *apenas*. A razão para isso é permitir que você reproduza facilmente a mesma instrução `INSERT` em outro servidor.
+  If you insert multiple rows using a single `INSERT` statement, `LAST_INSERT_ID()` returns the value generated for the *first* inserted row *only*. The reason for this is to make it possible to reproduce easily the same `INSERT` statement against some other server.
 
-  Por exemplo:
+  For example:
 
   ```sql
   mysql> USE test;
@@ -257,9 +257,9 @@
   +------------------+
   ```
 
-  Embora a segunda instrução `INSERT` tenha inserido três novas linhas em `t`, o ID gerado para a primeira dessas linhas foi `2`, e é esse valor que é retornado por `LAST_INSERT_ID()` para a instrução `SELECT` seguinte.
+  Although the second `INSERT` statement inserted three new rows into `t`, the ID generated for the first of these rows was `2`, and it is this value that is returned by `LAST_INSERT_ID()` for the following `SELECT` statement.
 
-  Se você usar `INSERT IGNORE` e a linha for ignorada, o `LAST_INSERT_ID()` permanece inalterado em relação ao valor atual (ou 0 é retornado se a conexão ainda não tiver realizado uma `INSERT` bem-sucedida) e, para tabelas não transacionais, o contador `AUTO_INCREMENT` não é incrementado. Para tabelas `InnoDB`, o contador `AUTO_INCREMENT` é incrementado se `innodb_autoinc_lock_mode` estiver definido como `1` ou `2`, como demonstrado no exemplo a seguir:
+  If you use `INSERT IGNORE` and the row is ignored, the `LAST_INSERT_ID()` remains unchanged from the current value (or 0 is returned if the connection has not yet performed a successful `INSERT`) and, for non-transactional tables, the `AUTO_INCREMENT` counter is not incremented. For `InnoDB` tables, the `AUTO_INCREMENT` counter is incremented if `innodb_autoinc_lock_mode` is set to `1` or `2`, as demonstrated in the following example:
 
   ```sql
   mysql> USE test;
@@ -334,49 +334,49 @@
   +------------------+
   ```
 
-  Para obter mais informações, consulte a Seção 14.6.1.6, “Tratamento do AUTO_INCREMENT no InnoDB”.
+  For more information, see Section 14.6.1.6, “AUTO_INCREMENT Handling in InnoDB”.
 
-  Se *`expr`* for fornecido como argumento para `LAST_INSERT_ID()`, o valor do argumento é retornado pela função e é lembrado como o próximo valor a ser retornado por `LAST_INSERT_ID()`. Isso pode ser usado para simular sequências:
+  If *`expr`* is given as an argument to `LAST_INSERT_ID()`, the value of the argument is returned by the function and is remembered as the next value to be returned by `LAST_INSERT_ID()`. This can be used to simulate sequences:
 
-  1. Crie uma tabela para armazenar o contador de sequência e inicie-a:
+  1. Create a table to hold the sequence counter and initialize it:
 
      ```sql
      mysql> CREATE TABLE sequence (id INT NOT NULL);
      mysql> INSERT INTO sequence VALUES (0);
      ```
 
-  2. Use a tabela para gerar números de sequência da seguinte forma:
+  2. Use the table to generate sequence numbers like this:
 
      ```sql
      mysql> UPDATE sequence SET id=LAST_INSERT_ID(id+1);
      mysql> SELECT LAST_INSERT_ID();
      ```
 
-     A instrução `UPDATE` incrementa o contador de sequência e faz com que o próximo chamado para `LAST_INSERT_ID()` retorne o valor atualizado. A instrução `SELECT` recupera esse valor. A função C API `mysql_insert_id()` também pode ser usada para obter o valor. Veja mysql_insert_id().
+     The `UPDATE` statement increments the sequence counter and causes the next call to `LAST_INSERT_ID()` to return the updated value. The `SELECT` statement retrieves that value. The `mysql_insert_id()` C API function can also be used to get the value. See mysql_insert_id().
 
-  Você pode gerar sequências sem chamar `LAST_INSERT_ID()`, mas a utilidade de usar a função dessa maneira é que o valor do ID é mantido no servidor como o último valor gerado automaticamente. É seguro para múltiplos usuários, pois vários clientes podem emitir a instrução `UPDATE` e obter seu próprio valor de sequência com a instrução `SELECT` (ou `mysql_insert_id()`), sem afetar ou ser afetado por outros clientes que geram seus próprios valores de sequência.
+  You can generate sequences without calling `LAST_INSERT_ID()`, but the utility of using the function this way is that the ID value is maintained in the server as the last automatically generated value. It is multi-user safe because multiple clients can issue the `UPDATE` statement and get their own sequence value with the `SELECT` statement (or `mysql_insert_id()`), without affecting or being affected by other clients that generate their own sequence values.
 
-  Observe que `mysql_insert_id()` só é atualizado após os comandos `INSERT` e `UPDATE`, então você não pode usar a função da API C para recuperar o valor para `LAST_INSERT_ID(expr)` após executar outros comandos SQL como `SELECT` ou `SET`.
+  Note that `mysql_insert_id()` is only updated after `INSERT` and `UPDATE` statements, so you cannot use the C API function to retrieve the value for `LAST_INSERT_ID(expr)` after executing other SQL statements like `SELECT` or `SET`.
 
-- `ROW_COUNT()`
+* `ROW_COUNT()`
 
-  `ROW_COUNT()` retorna um valor da seguinte forma:
+  `ROW_COUNT()` returns a value as follows:
 
-  - Declarações DDL: 0. Isso se aplica a declarações como `CREATE TABLE` ou `DROP TABLE`.
+  + DDL statements: 0. This applies to statements such as `CREATE TABLE` or `DROP TABLE`.
 
-  - Declarações DML, exceto `SELECT`: O número de linhas afetadas. Isso se aplica a declarações como `UPDATE`, `INSERT` ou `DELETE` (como antes), mas agora também a declarações como `ALTER TABLE` e `LOAD DATA`.
+  + DML statements other than `SELECT`: The number of affected rows. This applies to statements such as `UPDATE`, `INSERT`, or `DELETE` (as before), but now also to statements such as `ALTER TABLE` and `LOAD DATA`.
 
-  - `SELECT`: -1 se a instrução retornar um conjunto de resultados, ou o número de linhas “afetadas” se não retornar. Por exemplo, para `SELECT * FROM t1`, `ROW_COUNT()` retorna -1. Para `SELECT * FROM t1 INTO OUTFILE 'file_name'`, `ROW_COUNT()` retorna o número de linhas escritas no arquivo.
+  + `SELECT`: -1 if the statement returns a result set, or the number of rows “affected” if it does not. For example, for `SELECT * FROM t1`, `ROW_COUNT()` returns -1. For `SELECT * FROM t1 INTO OUTFILE 'file_name'`, `ROW_COUNT()` returns the number of rows written to the file.
 
-  - Declarações `SIGNAL`: 0.
+  + `SIGNAL` statements: 0.
 
-  Para as instruções `UPDATE`, o valor affected-rows, por padrão, é o número de linhas realmente alteradas. Se você especificar a flag `CLIENT_FOUND_ROWS` para `mysql_real_connect()` ao se conectar ao **mysqld**, o valor affected-rows é o número de linhas "encontradas", ou seja, correspondentes à cláusula `WHERE`.
+  For `UPDATE` statements, the affected-rows value by default is the number of rows actually changed. If you specify the `CLIENT_FOUND_ROWS` flag to `mysql_real_connect()` when connecting to **mysqld**, the affected-rows value is the number of rows “found”; that is, matched by the `WHERE` clause.
 
-  Para as instruções `REPLACE`, o valor affected-rows é 2 se a nova linha substituir uma linha antiga, porque, neste caso, uma linha foi inserida após a duplicata ter sido excluída.
+  For `REPLACE` statements, the affected-rows value is 2 if the new row replaced an old row, because in this case, one row was inserted after the duplicate was deleted.
 
-  Para as instruções `INSERT ... ON DUPLICATE KEY UPDATE`, o valor de `affected-rows` por linha é 1 se a linha for inserida como uma nova linha, 2 se uma linha existente for atualizada e 0 se uma linha existente for definida com seus valores atuais. Se você especificar a bandeira `CLIENT_FOUND_ROWS`, o valor de `affected-rows` é 1 (e não 0) se uma linha existente for definida com seus valores atuais.
+  For `INSERT ... ON DUPLICATE KEY UPDATE` statements, the affected-rows value per row is 1 if the row is inserted as a new row, 2 if an existing row is updated, and 0 if an existing row is set to its current values. If you specify the `CLIENT_FOUND_ROWS` flag, the affected-rows value is 1 (not 0) if an existing row is set to its current values.
 
-  O valor de `ROW_COUNT()` é semelhante ao valor da função C API `mysql_affected_rows()` e ao número de linhas exibido pelo cliente **mysql** após a execução da instrução.
+  The `ROW_COUNT()` value is similar to the value from the `mysql_affected_rows()` C API function and the row count that the **mysql** client displays following statement execution.
 
   ```sql
   mysql> INSERT INTO t VALUES(1),(2),(3);
@@ -403,38 +403,38 @@
   1 row in set (0.00 sec)
   ```
 
-  Importante
+  Important
 
-  A função `ROW_COUNT()` não é replicada de forma confiável com a replicação baseada em instruções. Essa função é replicada automaticamente com a replicação baseada em linhas.
+  `ROW_COUNT()` is not replicated reliably using statement-based replication. This function is automatically replicated using row-based replication.
 
-- `SCHEMA()`
+* `SCHEMA()`
 
-  Essa função é sinônima de `DATABASE()`.
+  This function is a synonym for `DATABASE()`.
 
-- `SESSION_USER()`
+* `SESSION_USER()`
 
-  `SESSION_USER()` é sinônimo de `USER()`.
+  `SESSION_USER()` is a synonym for `USER()`.
 
-- `SISTEMA_USUARIO()`
+* `SYSTEM_USER()`
 
-  `SYSTEM_USER()` é um sinônimo de `USER()`.
+  `SYSTEM_USER()` is a synonym for `USER()`.
 
-- `USUARIO()`
+* `USER()`
 
-  Retorna o nome atual do usuário e o nome do host do MySQL como uma string no conjunto de caracteres `utf8`.
+  Returns the current MySQL user name and host name as a string in the `utf8` character set.
 
   ```sql
   mysql> SELECT USER();
           -> 'davida@localhost'
   ```
 
-  O valor indica o nome de usuário que você especificou ao se conectar ao servidor e o host do cliente a partir do qual você se conectou. O valor pode ser diferente do de `CURRENT_USER()`.
+  The value indicates the user name you specified when connecting to the server, and the client host from which you connected. The value can be different from that of `CURRENT_USER()`.
 
-- `VERSÃO()`
+* `VERSION()`
 
-  Retorna uma string que indica a versão do servidor MySQL. A string utiliza o conjunto de caracteres `utf8`. O valor pode ter um sufixo além do número da versão. Veja a descrição da variável de sistema `version` na Seção 5.1.7, “Variáveis de sistema do servidor”.
+  Returns a string that indicates the MySQL server version. The string uses the `utf8` character set. The value might have a suffix in addition to the version number. See the description of the `version` system variable in Section 5.1.7, “Server System Variables”.
 
-  Essa função não é segura para a replicação baseada em instruções. Um aviso é registrado se você usar essa função quando o `binlog_format` estiver configurado para `STATEMENT`.
+  This function is unsafe for statement-based replication. A warning is logged if you use this function when `binlog_format` is set to `STATEMENT`.
 
   ```sql
   mysql> SELECT VERSION();

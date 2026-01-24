@@ -1,60 +1,57 @@
-## 14.2 InnoDB e o Modelo ACID
+## 14.2 InnoDB and the ACID Model
 
-O modelo ACID é um conjunto de princípios de design de banco de dados que enfatizam aspectos da confiabilidade que são importantes para dados de negócios e aplicações críticas para a missão. O MySQL inclui componentes como o motor de armazenamento `InnoDB` que aderem de perto ao modelo ACID, para que os dados não sejam corrompidos e os resultados não sejam distorcidos por condições excepcionais, como falhas de software e mau funcionamento do hardware. Quando você confia em recursos compatíveis com ACID, não precisa reinventar a roda da verificação de consistência e dos mecanismos de recuperação de falhas. Em casos em que você tem proteções de software adicionais, hardware ultra-confiável ou uma aplicação que pode tolerar uma pequena quantidade de perda de dados ou inconsistência, você pode ajustar as configurações do MySQL para trocar parte da confiabilidade ACID por maior desempenho ou capacidade de processamento.
+The ACID model is a set of database design principles that emphasize aspects of reliability that are important for business data and mission-critical applications. MySQL includes components such as the `InnoDB` storage engine that adhere closely to the ACID model so that data is not corrupted and results are not distorted by exceptional conditions such as software crashes and hardware malfunctions. When you rely on ACID-compliant features, you do not need to reinvent the wheel of consistency checking and crash recovery mechanisms. In cases where you have additional software safeguards, ultra-reliable hardware, or an application that can tolerate a small amount of data loss or inconsistency, you can adjust MySQL settings to trade some of the ACID reliability for greater performance or throughput.
 
-As seções a seguir discutem como os recursos do MySQL, em particular o mecanismo de armazenamento `InnoDB`, interagem com as categorias do modelo ACID:
+The following sections discuss how MySQL features, in particular the `InnoDB` storage engine, interact with the categories of the ACID model:
 
-- **A**: atomicidade.
-- **C**: consistência.
-- **Eu:**: isolamento.
-- **D**: durabilidade.
+* **A**: atomicity.
+* **C**: consistency.
+* **I:**: isolation.
+* **D**: durability.
 
 ### Atomicity
 
-O aspecto de **atomicity** do modelo ACID envolve principalmente as transações do `InnoDB`. As características relacionadas do MySQL incluem:
+The **atomicity** aspect of the ACID model mainly involves `InnoDB` transactions. Related MySQL features include:
 
-- A configuração `autocommit`.
-- A instrução `COMMIT`.
-- A declaração `ROLLBACK`.
+* The `autocommit` setting.
+* The `COMMIT` statement.
+* The `ROLLBACK` statement.
 
-### Consistência
+### Consistency
 
-O aspecto de **consistência** do modelo ACID envolve principalmente o processamento interno do `InnoDB` para proteger os dados de falhas. As características relacionadas do MySQL incluem:
+The **consistency** aspect of the ACID model mainly involves internal `InnoDB` processing to protect data from crashes. Related MySQL features include:
 
-- O buffer de escrita dupla do `InnoDB`. Veja a Seção 14.6.5, “Buffer de Escrita Dupla”.
+* The `InnoDB` doublewrite buffer. See Section 14.6.5, “Doublewrite Buffer”.
 
-- Recuperação de falhas do `InnoDB`. Veja Recuperação de falhas do InnoDB.
+* `InnoDB` crash recovery. See InnoDB Crash Recovery.
 
-### Isolamento
+### Isolation
 
-O aspecto de **isolamento** do modelo ACID envolve principalmente as transações do `InnoDB`, em particular o nível de isolamento que se aplica a cada transação. As funcionalidades relacionadas do MySQL incluem:
+The **isolation** aspect of the ACID model mainly involves `InnoDB` transactions, in particular the isolation level that applies to each transaction. Related MySQL features include:
 
-- A configuração `autocommit`.
+* The `autocommit` setting.
+* Transaction isolation levels and the `SET TRANSACTION` statement. See Section 14.7.2.1, “Transaction Isolation Levels”.
 
-- Níveis de isolamento de transações e a instrução `SET TRANSACTION`. Consulte a Seção 14.7.2.1, “Níveis de Isolamento de Transações”.
+* The low-level details of `InnoDB` locking. Details can be viewed in the `INFORMATION_SCHEMA` tables. See Section 14.16.2, “InnoDB INFORMATION_SCHEMA Transaction and Locking Information”.
 
-- Os detalhes de nível baixo do bloqueio do `InnoDB`. Os detalhes podem ser visualizados nas tabelas do `INFORMATION_SCHEMA`. Veja a Seção 14.16.2, “Informações de Transação e Bloqueio do INFORMATION_SCHEMA do InnoDB”.
+### Durability
 
-### Durabilidade
+The **durability** aspect of the ACID model involves MySQL software features interacting with your particular hardware configuration. Because of the many possibilities depending on the capabilities of your CPU, network, and storage devices, this aspect is the most complicated to provide concrete guidelines for. (And those guidelines might take the form of “buy new hardware”.) Related MySQL features include:
 
-O aspecto de **durabilidade** do modelo ACID envolve as funcionalidades do software MySQL interagindo com a sua configuração de hardware específica. Devido às muitas possibilidades dependendo das capacidades da sua CPU, rede e dispositivos de armazenamento, este aspecto é o mais complicado de fornecer diretrizes concretas para. (E essas diretrizes podem assumir a forma de "comprar novo hardware"). As funcionalidades relacionadas do MySQL incluem:
+* The `InnoDB` doublewrite buffer. See Section 14.6.5, “Doublewrite Buffer”.
 
-- O buffer de escrita dupla do `InnoDB`. Veja a Seção 14.6.5, “Buffer de Escrita Dupla”.
+* The `innodb_flush_log_at_trx_commit` variable.
 
-- A variável `innodb_flush_log_at_trx_commit`.
+* The `sync_binlog` variable.
+* The `innodb_file_per_table` variable.
 
-- A variável `sync_binlog`.
+* The write buffer in a storage device, such as a disk drive, SSD, or RAID array.
 
-- A variável `innodb_file_per_table`.
+* A battery-backed cache in a storage device.
+* The operating system used to run MySQL, in particular its support for the `fsync()` system call.
 
-- O buffer de escrita em um dispositivo de armazenamento, como uma unidade de disco, SSD ou matriz RAID.
+* An uninterruptible power supply (UPS) protecting the electrical power to all computer servers and storage devices that run MySQL servers and store MySQL data.
 
-- Um cache com bateria em um dispositivo de armazenamento.
+* Your backup strategy, such as frequency and types of backups, and backup retention periods.
 
-- O sistema operacional usado para executar o MySQL, em particular seu suporte à chamada de sistema `fsync()`.
-
-- Um sistema de alimentação ininterrupta (UPS) que protege a energia elétrica de todos os servidores de computador e dispositivos de armazenamento que executam servidores MySQL e armazenam dados MySQL.
-
-- Sua estratégia de backup, como a frequência e os tipos de backups, e os períodos de retenção dos backups.
-
-- Para aplicações de dados distribuídos ou hospedadas, as características específicas dos centros de dados onde o hardware dos servidores MySQL está localizado e as conexões de rede entre os centros de dados.
+* For distributed or hosted data applications, the particular characteristics of the data centers where the hardware for the MySQL servers is located, and network connections between the data centers.

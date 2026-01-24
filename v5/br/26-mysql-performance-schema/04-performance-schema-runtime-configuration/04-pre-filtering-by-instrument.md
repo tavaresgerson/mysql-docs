@@ -1,6 +1,6 @@
-### 25.4.4 Pré-filtragem por instrumento
+### 25.4.4 Pre-Filtering by Instrument
 
-A tabela `setup_instruments` lista os instrumentos disponíveis:
+The [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table lists the available instruments:
 
 ```sql
 mysql> SELECT * FROM performance_schema.setup_instruments;
@@ -35,24 +35,24 @@ mysql> SELECT * FROM performance_schema.setup_instruments;
 ...
 ```
 
-Para controlar se um instrumento está habilitado, defina a coluna `ENABLED` como `YES` ou `NO`. Para configurar se as informações de temporização devem ser coletadas para um instrumento habilitado, defina o valor `TIMED` como `YES` ou `NO`. A definição da coluna `TIMED` afeta o conteúdo da tabela do Schema de Desempenho, conforme descrito em Seção 25.4.1, “Temporização de Eventos do Schema de Desempenho”.
+To control whether an instrument is enabled, set its `ENABLED` column to `YES` or `NO`. To configure whether to collect timing information for an enabled instrument, set its `TIMED` value to `YES` or `NO`. Setting the `TIMED` column affects Performance Schema table contents as described in [Section 25.4.1, “Performance Schema Event Timing”](performance-schema-timing.html "25.4.1 Performance Schema Event Timing").
 
-As modificações na maioria das linhas de `setup_instruments` afetam o monitoramento imediatamente. Para alguns instrumentos, as modificações só são eficazes ao iniciar o servidor; alterá-las em tempo de execução não tem efeito. Isso afeta principalmente mútues, condições e rwlocks no servidor, embora possa haver outros instrumentos para os quais isso seja verdade.
+Modifications to most [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") rows affect monitoring immediately. For some instruments, modifications are effective only at server startup; changing them at runtime has no effect. This affects primarily mutexes, conditions, and rwlocks in the server, although there may be other instruments for which this is true.
 
-A tabela `setup_instruments` fornece a forma mais básica de controle sobre a produção de eventos. Para refinar ainda mais a produção de eventos com base no tipo de objeto ou thread sendo monitorado, outras tabelas podem ser usadas conforme descrito em Seção 25.4.3, “Pré-filtragem de Eventos”.
+The [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table provides the most basic form of control over event production. To further refine event production based on the type of object or thread being monitored, other tables may be used as described in [Section 25.4.3, “Event Pre-Filtering”](performance-schema-pre-filtering.html "25.4.3 Event Pre-Filtering").
 
-Os exemplos a seguir demonstram possíveis operações na tabela `setup_instruments`. Essas alterações, assim como outras operações de pré-filtragem, afetam todos os usuários. Algumas dessas consultas usam o operador `LIKE` e uma correspondência de padrões com nomes de instrumentos. Para obter informações adicionais sobre como especificar padrões para selecionar instrumentos, consulte Seção 25.4.9, “Nomeando Instrumentos ou Consumidores para Operações de Filtragem”.
+The following examples demonstrate possible operations on the [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table. These changes, like other pre-filtering operations, affect all users. Some of these queries use the [`LIKE`](string-comparison-functions.html#operator_like) operator and a pattern match instrument names. For additional information about specifying patterns to select instruments, see [Section 25.4.9, “Naming Instruments or Consumers for Filtering Operations”](performance-schema-filtering-names.html "25.4.9 Naming Instruments or Consumers for Filtering Operations").
 
-- Desative todos os instrumentos:
+* Disable all instruments:
 
   ```sql
   UPDATE performance_schema.setup_instruments
   SET ENABLED = 'NO';
   ```
 
-  Agora, nenhum evento é coletado.
+  Now no events are collected.
 
-- Desative todos os instrumentos de arquivo, adicionando-os ao conjunto atual de instrumentos desativados:
+* Disable all file instruments, adding them to the current set of disabled instruments:
 
   ```sql
   UPDATE performance_schema.setup_instruments
@@ -60,21 +60,21 @@ Os exemplos a seguir demonstram possíveis operações na tabela `setup_instrume
   WHERE NAME LIKE 'wait/io/file/%';
   ```
 
-- Desative apenas os instrumentos de arquivo, habilite todos os outros instrumentos:
+* Disable only file instruments, enable all other instruments:
 
   ```sql
   UPDATE performance_schema.setup_instruments
   SET ENABLED = IF(NAME LIKE 'wait/io/file/%', 'NO', 'YES');
   ```
 
-- Ative todos, exceto esses instrumentos, na biblioteca `mysys`:
+* Enable all but those instruments in the `mysys` library:
 
   ```sql
   UPDATE performance_schema.setup_instruments
   SET ENABLED = CASE WHEN NAME LIKE '%/mysys/%' THEN 'YES' ELSE 'NO' END;
   ```
 
-- Desativar um instrumento específico:
+* Disable a specific instrument:
 
   ```sql
   UPDATE performance_schema.setup_instruments
@@ -82,7 +82,7 @@ Os exemplos a seguir demonstram possíveis operações na tabela `setup_instrume
   WHERE NAME = 'wait/synch/mutex/mysys/TMPDIR_mutex';
   ```
 
-- Para alternar o estado de um instrumento, "inverte" seu valor `ENABLED`:
+* To toggle the state of an instrument, “flip” its `ENABLED` value:
 
   ```sql
   UPDATE performance_schema.setup_instruments
@@ -90,7 +90,7 @@ Os exemplos a seguir demonstram possíveis operações na tabela `setup_instrume
   WHERE NAME = 'wait/synch/mutex/mysys/TMPDIR_mutex';
   ```
 
-- Desative o temporizador para todos os eventos:
+* Disable timing for all events:
 
   ```sql
   UPDATE performance_schema.setup_instruments

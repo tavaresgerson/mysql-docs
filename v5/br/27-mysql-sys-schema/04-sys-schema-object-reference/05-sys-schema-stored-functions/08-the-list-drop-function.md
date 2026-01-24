@@ -1,13 +1,13 @@
-#### 26.4.5.8 A função list_drop()
+#### 26.4.5.8 The list_drop() Function
 
-Remove um valor de uma lista de valores separados por vírgula e retorna o resultado. Para mais informações, consulte a descrição da função `list_add()"`)
+Removes a value from a comma-separated list of values and returns the result. For more information, see the description of `list_add()` Function")
 
-##### Parâmetros
+##### Parameters
 
-- `in_list TEXT`: A lista a ser modificada.
+* `in_list TEXT`: The list to be modified.
 
-- `in_drop_value TEXT`: O valor a ser excluído da lista.
+* `in_drop_value TEXT`: The value to drop from the list.
 
-##### Valor de retorno
+##### Return Value
 
-Um valor `TEXT`.
+A `TEXT` value.

@@ -1,10 +1,10 @@
-#### 13.7.5.10 Mostrar a declaração CREATE TABLE
+#### 13.7.5.10 SHOW CREATE TABLE Statement
 
 ```sql
 SHOW CREATE TABLE tbl_name
 ```
 
-Mostra a instrução `CREATE TABLE` que cria a tabela nomeada. Para usar essa instrução, você deve ter algum privilégio para a tabela. Essa instrução também funciona com visualizações.
+Shows the [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement that creates the named table. To use this statement, you must have some privilege for the table. This statement also works with views.
 
 ```sql
 mysql> SHOW CREATE TABLE t\G
@@ -17,9 +17,9 @@ Create Table: CREATE TABLE `t` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
 ```
 
-`SHOW CREATE TABLE` cita os nomes da tabela e das colunas de acordo com o valor da opção `sql_quote_show_create`. Veja Seção 5.1.7, “Variáveis do Sistema do Servidor”.
+[`SHOW CREATE TABLE`](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement") quotes table and column names according to the value of the [`sql_quote_show_create`](server-system-variables.html#sysvar_sql_quote_show_create) option. See [Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables").
 
-Ao alterar o motor de armazenamento de uma tabela, as opções da tabela que não são aplicáveis ao novo motor de armazenamento são mantidas na definição da tabela para permitir a reversão da tabela com suas opções previamente definidas para o motor de armazenamento original, se necessário. Por exemplo, ao alterar o motor de armazenamento de InnoDB para MyISAM, as opções específicas do InnoDB, como `ROW_FORMAT=COMPACT`, são mantidas.
+When altering the storage engine of a table, table options that are not applicable to the new storage engine are retained in the table definition to enable reverting the table with its previously defined options to the original storage engine, if necessary. For example, when changing the storage engine from InnoDB to MyISAM, InnoDB-specific options such as `ROW_FORMAT=COMPACT` are retained.
 
 ```sql
 mysql> CREATE TABLE t1 (c1 INT PRIMARY KEY) ROW_FORMAT=COMPACT ENGINE=InnoDB;
@@ -33,4 +33,4 @@ Create Table: CREATE TABLE `t1` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 ROW_FORMAT=COMPACT
 ```
 
-Ao criar uma tabela com o modo estrito desativado, o formato de linha padrão do mecanismo de armazenamento é usado se o formato de linha especificado não for suportado. O formato de linha real da tabela é relatado na coluna `Row_format` em resposta à consulta `SHOW TABLE STATUS` (show-table-status.html). A consulta `SHOW CREATE TABLE` (show-create-table.html) mostra o formato de linha que foi especificado na instrução `CREATE TABLE` (create-table.html).
+When creating a table with [strict mode](glossary.html#glos_strict_mode "strict mode") disabled, the storage engine's default row format is used if the specified row format is not supported. The actual row format of the table is reported in the `Row_format` column in response to [`SHOW TABLE STATUS`](show-table-status.html "13.7.5.36 SHOW TABLE STATUS Statement"). [`SHOW CREATE TABLE`](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement") shows the row format that was specified in the [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement.

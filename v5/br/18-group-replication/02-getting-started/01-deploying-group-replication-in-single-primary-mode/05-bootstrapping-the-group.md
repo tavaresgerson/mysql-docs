@@ -1,6 +1,6 @@
-#### 17.2.1.5 Autofinanciamento do Grupo
+#### 17.2.1.5 Bootstrapping the Group
 
-O processo de criação de um grupo pela primeira vez é chamado de bootstrapping. Você usa a variável de sistema `group_replication_bootstrap_group` para iniciar um grupo. O bootstrapping deve ser feito apenas por um único servidor, aquele que inicia o grupo e apenas uma vez. É por isso que o valor da opção `group_replication_bootstrap_group` não foi armazenado no arquivo de opções da instância. Se for salvo no arquivo de opções, ao reiniciar o servidor, ele automaticamente inicia um segundo grupo com o mesmo nome. Isso resultaria em dois grupos distintos com o mesmo nome. O mesmo raciocínio se aplica ao desligar e reiniciar o plugin com essa opção definida como `ON`. Portanto, para iniciar o grupo de forma segura, conecte-se ao s1 e execute:
+The process of starting a group for the first time is called bootstrapping. You use the [`group_replication_bootstrap_group`](group-replication-system-variables.html#sysvar_group_replication_bootstrap_group) system variable to bootstrap a group. The bootstrap should only be done by a single server, the one that starts the group and only once. This is why the value of the [`group_replication_bootstrap_group`](group-replication-system-variables.html#sysvar_group_replication_bootstrap_group) option was not stored in the instance's option file. If it is saved in the option file, upon restart the server automatically bootstraps a second group with the same name. This would result in two distinct groups with the same name. The same reasoning applies to stopping and restarting the plugin with this option set to `ON`. Therefore to safely bootstrap the group, connect to s1 and issue:
 
 ```sql
 mysql> SET GLOBAL group_replication_bootstrap_group=ON;
@@ -8,7 +8,7 @@ mysql> START GROUP_REPLICATION;
 mysql> SET GLOBAL group_replication_bootstrap_group=OFF;
 ```
 
-Depois que a instrução `START GROUP_REPLICATION` retornar, o grupo foi iniciado. Você pode verificar se o grupo foi criado e se há um membro nele:
+Once the [`START GROUP_REPLICATION`](start-group-replication.html "13.4.3.1 START GROUP_REPLICATION Statement") statement returns, the group has been started. You can check that the group is now created and that there is one member in it:
 
 ```sql
 mysql> SELECT * FROM performance_schema.replication_group_members;
@@ -19,9 +19,9 @@ mysql> SELECT * FROM performance_schema.replication_group_members;
 +---------------------------+--------------------------------------+-------------+-------------+---------------+
 ```
 
-As informações nesta tabela confirmam que há um membro no grupo com o identificador único `ce9be252-2b71-11e6-b8f4-00212844f856`, que está `ONLINE` e está ouvindo conexões de clientes na porta `3306`.
+The information in this table confirms that there is a member in the group with the unique identifier `ce9be252-2b71-11e6-b8f4-00212844f856`, that it is `ONLINE` and is at `s1` listening for client connections on port `3306`.
 
-Para demonstrar que o servidor está de fato em um grupo e que ele consegue lidar com a carga, crie uma tabela e adicione algum conteúdo nela.
+For the purpose of demonstrating that the server is indeed in a group and that it is able to handle load, create a table and add some content to it.
 
 ```sql
 mysql> CREATE DATABASE test;
@@ -30,7 +30,7 @@ mysql> CREATE TABLE t1 (c1 INT PRIMARY KEY, c2 TEXT NOT NULL);
 mysql> INSERT INTO t1 VALUES (1, 'Luis');
 ```
 
-Verifique o conteúdo da tabela `t1` e do log binário.
+Check the content of table `t1` and the binary log.
 
 ```sql
 mysql> SELECT * FROM t1;
@@ -62,4 +62,4 @@ mysql> SHOW BINLOG EVENTS;
 +---------------+-----+----------------+-----------+-------------+--------------------------------------------------------------------+
 ```
 
-Como visto acima, o banco de dados e os objetos da tabela foram criados e suas declarações DDL correspondentes foram escritas no log binário. Além disso, os dados foram inseridos na tabela e escritos no log binário. A importância das entradas do log binário é ilustrada na seção seguinte, quando o grupo cresce e a recuperação distribuída é executada, à medida que novos membros tentam se atualizar e entrar online.
+As seen above, the database and the table objects were created and their corresponding DDL statements were written to the binary log. Also, the data was inserted into the table and written to the binary log. The importance of the binary log entries is illustrated in the following section when the group grows and distributed recovery is executed as new members try to catch up and become online.

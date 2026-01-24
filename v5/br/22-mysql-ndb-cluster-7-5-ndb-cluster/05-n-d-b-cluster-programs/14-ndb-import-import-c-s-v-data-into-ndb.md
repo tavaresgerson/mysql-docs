@@ -1,22 +1,22 @@
-### 21.5.14 ndb_import — Importar dados CSV no NDB
+### 21.5.14 ndb_import — Import CSV Data Into NDB
 
-**ndb_import** importa dados formatados em CSV, como os produzidos pelo **mysqldump**, diretamente no `NDB` usando a API NDB. **ndb_import** requer uma conexão com um servidor de gerenciamento NDB (**ndb_mgmd**) para funcionar; ele não requer uma conexão com um servidor MySQL.
+[**ndb_import**](mysql-cluster-programs-ndb-import.html "21.5.14 ndb_import — Import CSV Data Into NDB") imports CSV-formatted data, such as that produced by [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") [`--tab`](mysqldump.html#option_mysqldump_tab), directly into `NDB` using the NDB API. [**ndb_import**](mysql-cluster-programs-ndb-import.html "21.5.14 ndb_import — Import CSV Data Into NDB") requires a connection to an NDB management server ([**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")) to function; it does not require a connection to a MySQL Server.
 
-#### Uso
+#### Usage
 
 ```sql
 ndb_import db_name file_name options
 ```
 
-**ndb_import** requer dois argumentos. *`db_name`* é o nome do banco de dados onde a tabela para a qual os dados serão importados está localizada; *`file_name`* é o nome do arquivo CSV a partir do qual os dados serão lidos; este deve incluir o caminho para esse arquivo, se ele não estiver no diretório atual. O nome do arquivo deve corresponder ao da tabela; a extensão do arquivo, se houver, não é considerada. As opções suportadas por **ndb_import** incluem as para especificar separadores de campo, escapamentos e terminadores de linha, e são descritas mais adiante nesta seção.
+[**ndb_import**](mysql-cluster-programs-ndb-import.html "21.5.14 ndb_import — Import CSV Data Into NDB") requires two arguments. *`db_name`* is the name of the database where the table into which to import the data is found; *`file_name`* is the name of the CSV file from which to read the data; this must include the path to this file if it is not in the current directory. The name of the file must match that of the table; the file's extension, if any, is not taken into consideration. Options supported by [**ndb_import**](mysql-cluster-programs-ndb-import.html "21.5.14 ndb_import — Import CSV Data Into NDB") include those for specifying field separators, escapes, and line terminators, and are described later in this section.
 
-**ndb_import** rejeita quaisquer linhas vazias lidas do arquivo CSV.
+[**ndb_import**](mysql-cluster-programs-ndb-import.html "21.5.14 ndb_import — Import CSV Data Into NDB") rejects any empty lines read from the CSV file.
 
-**ndb_import** deve ser capaz de se conectar a um servidor de gerenciamento do NDB Cluster; por essa razão, deve haver um slot `[api]` não utilizado no arquivo `config.ini` do cluster.
+[**ndb_import**](mysql-cluster-programs-ndb-import.html "21.5.14 ndb_import — Import CSV Data Into NDB") must be able to connect to an NDB Cluster management server; for this reason, there must be an unused `[api]` slot in the cluster `config.ini` file.
 
-Para duplicar uma tabela existente que utiliza um motor de armazenamento diferente, como `InnoDB`, como uma tabela `NDB`, use o cliente **mysql** para executar uma declaração `**SELECT INTO OUTFILE** para exportar a tabela existente para um arquivo CSV, depois execute uma declaração `**CREATE TABLE LIKE** para criar uma nova tabela com a mesma estrutura da tabela existente, depois execute `**ALTER TABLE ... ENGINE=NDB** na nova tabela; depois disso, do shell do sistema, invoque **ndb_import** para carregar os dados na nova tabela `NDB`. Por exemplo, uma tabela `InnoDB`existente chamada`myinnodb_table`em um banco de dados chamado`myinnodb`pode ser exportada para uma tabela`NDB`chamada`myndb_table`em um banco de dados chamado`myndb\`, como mostrado aqui, assumindo que você já está logado como um usuário MySQL com os privilégios apropriados:
+To duplicate an existing table that uses a different storage engine, such as [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine"), as an `NDB` table, use the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client to perform a [`SELECT INTO OUTFILE`](select-into.html "13.2.9.1 SELECT ... INTO Statement") statement to export the existing table to a CSV file, then to execute a [`CREATE TABLE LIKE`](create-table-like.html "13.1.18.3 CREATE TABLE ... LIKE Statement") statement to create a new table having the same structure as the existing table, then perform [`ALTER TABLE ... ENGINE=NDB`](alter-table.html "13.1.8 ALTER TABLE Statement") on the new table; after this, from the system shell, invoke [**ndb_import**](mysql-cluster-programs-ndb-import.html "21.5.14 ndb_import — Import CSV Data Into NDB") to load the data into the new `NDB` table. For example, an existing `InnoDB` table named `myinnodb_table` in a database named `myinnodb` can be exported into an `NDB` table named `myndb_table` in a database named `myndb` as shown here, assuming that you are already logged in as a MySQL user with the appropriate privileges:
 
-1. No cliente **mysql**:
+1. In the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client:
 
    ```sql
    mysql> USE myinnodb;
@@ -39,9 +39,9 @@ Para duplicar uma tabela existente que utiliza um motor de armazenamento diferen
    $>
    ```
 
-   Depois que o banco de dados e a tabela de destino forem criados, não será mais necessário manter um **mysqld** em execução. Você pode interromper ele usando **mysqladmin shutdown** ou outro método, se desejar, antes de prosseguir.
+   Once the target database and table have been created, a running [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") is no longer required. You can stop it using [**mysqladmin shutdown**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") or another method before proceeding, if you wish.
 
-2. Na janela do sistema:
+2. In the system shell:
 
    ```sql
    # if you are not already in the MySQL bin directory:
@@ -51,7 +51,7 @@ Para duplicar uma tabela existente que utiliza um motor de armazenamento diferen
        --fields-terminated-by="," --fields-escaped-by='\\'
    ```
 
-   A saída deve se assemelhar ao que está mostrado aqui:
+   The output should resemble what is shown here:
 
    ```sql
    job-1 import myndb.myndb_table from /tmp/myndb_table.csv
@@ -62,394 +62,393 @@ Para duplicar uma tabela existente que utiliza um motor de armazenamento diferen
    $>
    ```
 
-As opções que podem ser usadas com **ndb_import** estão mostradas na tabela a seguir. Descrições adicionais seguem a tabela.
+Options that can be used with [**ndb_import**](mysql-cluster-programs-ndb-import.html "21.5.14 ndb_import — Import CSV Data Into NDB") are shown in the following table. Additional descriptions follow the table.
 
-**Tabela 21.33 Opções de linha de comando usadas com o programa ndb_import**
+**Table 21.33 Command-line options used with the program ndb_import**
 
-<table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Formato</th> <th>Descrição</th> <th>Adicionado, Descontinuado ou Removido</th> </tr></thead><tbody><tr> <th><p> PH_HTML_CODE_<code> --continue </code>] </p></th> <td>Arrume o núcleo para qualquer erro fatal; usado para depuração</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> PH_HTML_CODE_<code> --continue </code>] </p></th> <td>Para uma tabela com PK oculto, especifique o incremento de autoincremento. Veja o mysqld</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> PH_HTML_CODE_<code> --csvopt=opts </code>] </p></th> <td>Para uma tabela com PK oculto, especifique o deslocamento de autoincremento. Veja o mysqld</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> PH_HTML_CODE_<code> --db-workers=# </code>] </p></th> <td>Para uma tabela com PK oculto, especifique o número de valores de autoincremento que serão pré-carregados. Veja o mysqld</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> PH_HTML_CODE_<code> --defaults-extra-file=path </code>] </p></th> <td>Diretório contendo conjuntos de caracteres</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> PH_HTML_CODE_<code> --defaults-file=path </code>] </p></th> <td>Número de vezes para tentar a conexão novamente antes de desistir</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> PH_HTML_CODE_<code> --defaults-group-suffix=string </code>] </p></th> <td>Número de segundos para esperar entre as tentativas de contato com o servidor de gerenciamento</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p>PH_HTML_CODE_<code> --errins-type=name </code>],</p><p> PH_HTML_CODE_<code> --errins-delay=# </code>] </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> PH_HTML_CODE_<code> --fields-enclosed-by=char </code>] </p></th> <td>Número de conexões de cluster a criar</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code> --continue </code> </p></th> <td>Quando o trabalho falhar, continue para o próximo trabalho</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code> --ai-increment=# </code><code> --continue </code>] </p></th> <td>Escreva o arquivo de núcleo em erro; usado no depuração</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code> --csvopt=opts </code> </p></th> <td>Opção abreviada para definir valores típicos de opções CSV. Consulte a documentação para sintaxe e outras informações</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code> --db-workers=# </code> </p></th> <td>Número de threads, por nó de dados, executando operações de banco de dados</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-extra-file=path </code> </p></th> <td>Leia o arquivo fornecido após os arquivos globais terem sido lidos</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-file=path </code> </p></th> <td>Ler opções padrão a partir do arquivo fornecido apenas</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-group-suffix=string </code> </p></th> <td>Leia também grupos com concatenação(grupo, sufixo)</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code> --errins-type=name </code> </p></th> <td>Erro: tipo de inserção, para fins de teste; use "lista" para obter todos os valores possíveis</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code> --errins-delay=# </code> </p></th> <td>Atraso no inserimento de erro em milissegundos; variação aleatória é adicionada</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code> --fields-enclosed-by=char </code> </p></th> <td>O mesmo que a opção FIELDS ENCLOSED BY para as instruções LOAD DATA. Para entrada de CSV, isso é o mesmo que usar a opção --fields-enclosed-optionally-by</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code> --ai-offset=# </code><code> --continue </code>] </p></th> <td>Igual à opção FIELDS ESCAPED BY para as instruções LOAD DATA</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code> --ai-offset=# </code><code> --continue </code>] </p></th> <td>O mesmo que a opção FIELDS opcionalmente incluída na opção para instruções LOAD DATA</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code> --ai-offset=# </code><code> --csvopt=opts </code>] </p></th> <td>O mesmo que a opção TERMINADOS POR CAMPOS para as instruções LOAD DATA</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p><code> --ai-offset=# </code><code> --db-workers=# </code>],</p><p> <code> --ai-offset=# </code><code> --defaults-extra-file=path </code>] </p></th> <td>Exibir texto de ajuda e sair</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code> --ai-offset=# </code><code> --defaults-file=path </code>] </p></th> <td>Número de milissegundos para dormir enquanto espera mais tarefas para fazer</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code> --ai-offset=# </code><code> --defaults-group-suffix=string </code>] </p></th> <td>Número de vezes para tentar novamente antes de idlesleep</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code> --ai-offset=# </code><code> --errins-type=name </code>] </p></th> <td>Ignore as primeiras linhas do arquivo de entrada. Usado para ignorar um cabeçalho não de dados</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code> --ai-offset=# </code><code> --errins-delay=# </code>] </p></th> <td>Tipo de entrada: aleatório ou csv</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code> --ai-offset=# </code><code> --fields-enclosed-by=char </code>] </p></th> <td>Número de threads processando a entrada. Deve ser 2 ou mais se --input-type for csv</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code> --ai-prefetch-sz=# </code><code> --continue </code>] </p></th> <td>Os arquivos de estado (exceto arquivos *.rej não vazios) são normalmente removidos após a conclusão do trabalho. Ao usar essa opção, todos os arquivos de estado são preservados em vez disso.</td> <td><p>ADICIONADO: NDB 7.6.4</p></td> </tr></tbody><tbody><tr> <th><p> <code> --ai-prefetch-sz=# </code><code> --continue </code>] </p></th> <td>O mesmo que a opção LINHAS TERMINADAS POR para as instruções LOAD DATA</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code> --ai-prefetch-sz=# </code><code> --csvopt=opts </code>] </p></th> <td>Leia o caminho fornecido a partir do arquivo de login</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code> --ai-prefetch-sz=# </code><code> --db-workers=# </code>] </p></th> <td>Importe apenas esse número de linhas de dados de entrada; o padrão é 0, que importa todas as linhas</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code> --ai-prefetch-sz=# </code><code> --defaults-extra-file=path </code>] </p></th> <td>Imprima periodicamente o status do trabalho em execução se algo tiver mudado (status, linhas rejeitadas, erros temporários). O valor 0 desabilita. O valor 1 imprime qualquer mudança observada. Valores mais altos reduzem a impressão do status exponencialmente até um limite pré-definido</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p><code> --ai-prefetch-sz=# </code><code> --defaults-file=path </code>],</p><p> <code> --ai-prefetch-sz=# </code><code> --defaults-group-suffix=string </code>] </p></th> <td>Defina a string de conexão para se conectar ao ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:por<code> --continue </code>". Substitui as entradas no NDB_CONNECTSTRING e no my.cnf</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p><code> --ai-prefetch-sz=# </code><code> --errins-type=name </code>],</p><p> <code> --ai-prefetch-sz=# </code><code> --errins-delay=# </code>] </p></th> <td>O mesmo que --ndb-connectstring</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code> --ai-prefetch-sz=# </code><code> --fields-enclosed-by=char </code>] </p></th> <td>Defina o ID do nó para este nó, substituindo qualquer ID definida pela opção --ndb-connectstring</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code> --character-sets-dir=path </code><code> --continue </code>] </p></th> <td>Ative as otimizações para a seleção de nós para transações. Ativado por padrão; use --skip-ndb-optimized-node-selection para desativá-lo</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> --character-sets-dir=path </code><code> --continue </code>] </p></th> <td>Execute operações de banco de dados em lotes, em transações únicas</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code> --character-sets-dir=path </code><code> --csvopt=opts </code>] </p></th> <td>Não leia as opções padrão de nenhum arquivo de opção, exceto o arquivo de login</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code> --character-sets-dir=path </code><code> --db-workers=# </code>] </p></th> <td>Informe ao coordenador de transações que não deve usar a dica de chave de distribuição ao selecionar o nó de dados</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code> --character-sets-dir=path </code><code> --defaults-extra-file=path </code>] </p></th> <td>Um lote de execução de banco de dados é um conjunto de transações e operações enviadas ao kernel NDB. Esta opção limita as operações do NDB (incluindo operações de blob) em um lote de execução de banco de dados. Portanto, também limita o número de transações assíncronas. O valor 0 não é válido</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code> --character-sets-dir=path </code><code> --defaults-file=path </code>] </p></th> <td>Limitar bytes no lote de execução (padrão 0 = sem limite)</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code> --character-sets-dir=path </code><code> --defaults-group-suffix=string </code>] </p></th> <td>Tipo de saída: ndb é padrão, nulo é usado para testes</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code> --character-sets-dir=path </code><code> --errins-type=name </code>] </p></th> <td>Número de threads processando saída ou repassando operações de banco de dados</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code> --character-sets-dir=path </code><code> --errins-delay=# </code>] </p></th> <td>Alinhe os buffers de entrada/saída ao tamanho especificado</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code> --character-sets-dir=path </code><code> --fields-enclosed-by=char </code>] </p></th> <td>Tamanho dos buffers de E/S como múltiplo do tamanho da página. O trabalhador de entrada CSV aloca um buffer do dobro do tamanho</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-retries=# </code><code> --continue </code>] </p></th> <td>Tempo de espera por pesquisa para transações assíncronas concluídas; a pesquisa continua até que todas as pesquisas sejam concluídas ou ocorrer um erro</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-retries=# </code><code> --continue </code>] </p></th> <td>Imprimir a lista de argumentos do programa e sair</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-retries=# </code><code> --csvopt=opts </code>] </p></th> <td>Limite o número de linhas rejeitadas (linhas com erro permanente) na carga de dados. O padrão é 0, o que significa que qualquer linha rejeitada causa um erro fatal. A linha que exceder o limite também é adicionada ao *.rej</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-retries=# </code><code> --db-workers=# </code>] </p></th> <td>Se o trabalho for abortado (erro temporário, usuário interrompe), retome com as linhas ainda não processadas</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-retries=# </code><code> --defaults-extra-file=path </code>] </p></th> <td>Limitar linhas em filas de linhas (padrão 0 = sem limite); deve ser 1 ou mais se --input-type for aleatório</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-retries=# </code><code> --defaults-file=path </code>] </p></th> <td>Limitar bytes nas filas de linha (0 = sem limite)</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-retries=# </code><code> --defaults-group-suffix=string </code>] </p></th> <td>Onde escrever arquivos de estado; o diretório atual é o padrão</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-retries=# </code><code> --errins-type=name </code>] </p></th> <td>Salve as opções relacionadas ao desempenho e as estatísticas internas em arquivos *.sto e *.stt. Esses arquivos são mantidos após a conclusão bem-sucedida, mesmo que a opção --keep-state não seja usada.</td> <td><p>ADICIONADO: NDB 7.6.4</p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-retries=# </code><code> --errins-delay=# </code>] </p></th> <td>Número de milissegundos para dormir entre erros temporários</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-retries=# </code><code> --fields-enclosed-by=char </code>] </p></th> <td>Número de vezes que uma transação pode falhar devido a um erro temporário, por lote de execução; 0 significa que qualquer erro temporário é fatal. Esses erros não fazem com que nenhuma linha seja escrita no arquivo .rej</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p><code> --connect-retry-delay=# </code><code> --continue </code>],</p><p> <code> --connect-retry-delay=# </code><code> --continue </code>] </p></th> <td>Exibir texto de ajuda e sair; o mesmo que --help</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p><code> --connect-retry-delay=# </code><code> --csvopt=opts </code>],</p><p> <code> --connect-retry-delay=# </code><code> --db-workers=# </code>] </p></th> <td>Ative a saída detalhada</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody><tbody><tr> <th><p><code> --connect-retry-delay=# </code><code> --defaults-extra-file=path </code>],</p><p> <code> --connect-retry-delay=# </code><code> --defaults-file=path </code>] </p></th> <td>Exibir informações da versão e sair</td> <td><p>ADICIONADO: NDB 7.6.2</p></td> </tr></tbody></table>
+<table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Format</th> <th>Description</th> <th>Added, Deprecated, or Removed</th> </tr></thead><tbody><tr> <th><p> <code> --abort-on-error </code> </p></th> <td>Dump core on any fatal error; used for debugging</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --ai-increment=# </code> </p></th> <td>For table with hidden PK, specify autoincrement increment. See mysqld</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --ai-offset=# </code> </p></th> <td>For table with hidden PK, specify autoincrement offset. See mysqld</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --ai-prefetch-sz=# </code> </p></th> <td>For table with hidden PK, specify number of autoincrement values that are prefetched. See mysqld</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --character-sets-dir=path </code> </p></th> <td>Directory containing character sets</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-retries=# </code> </p></th> <td>Number of times to retry connection before giving up</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --connect-retry-delay=# </code> </p></th> <td>Number of seconds to wait between attempts to contact management server</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code>--connect-string=connection_string</code>, </p><p> <code> -c connection_string </code> </p></th> <td>Same as --ndb-connectstring</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --connections=# </code> </p></th> <td>Number of cluster connections to create</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --continue </code> </p></th> <td>When job fails, continue to next job</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --core-file </code> </p></th> <td>Write core file on error; used in debugging</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --csvopt=opts </code> </p></th> <td>Shorthand option for setting typical CSV option values. See documentation for syntax and other information</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --db-workers=# </code> </p></th> <td>Number of threads, per data node, executing database operations</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-extra-file=path </code> </p></th> <td>Read given file after global files are read</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-file=path </code> </p></th> <td>Read default options from given file only</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-group-suffix=string </code> </p></th> <td>Also read groups with concat(group, suffix)</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --errins-type=name </code> </p></th> <td>Error insert type, for testing purposes; use "list" to obtain all possible values</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --errins-delay=# </code> </p></th> <td>Error insert delay in milliseconds; random variation is added</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --fields-enclosed-by=char </code> </p></th> <td>Same as FIELDS ENCLOSED BY option for LOAD DATA statements. For CSV input this is same as using --fields-optionally-enclosed-by</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --fields-escaped-by=char </code> </p></th> <td>Same as FIELDS ESCAPED BY option for LOAD DATA statements</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --fields-optionally-enclosed-by=char </code> </p></th> <td>Same as FIELDS OPTIONALLY ENCLOSED BY option for LOAD DATA statements</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --fields-terminated-by=char </code> </p></th> <td>Same as FIELDS TERMINATED BY option for LOAD DATA statements</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code>--help</code>, </p><p> <code> -? </code> </p></th> <td>Display help text and exit</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --idlesleep=# </code> </p></th> <td>Number of milliseconds to sleep waiting for more to do</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --idlespin=# </code> </p></th> <td>Number of times to retry before idlesleep</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --ignore-lines=# </code> </p></th> <td>Ignore first # lines in input file. Used to skip a non-data header</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --input-type=name </code> </p></th> <td>Input type: random or csv</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --input-workers=# </code> </p></th> <td>Number of threads processing input. Must be 2 or more if --input-type is csv</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --keep-state </code> </p></th> <td>State files (except non-empty *.rej files) are normally removed on job completion. Using this option causes all state files to be preserved instead</td> <td><p> ADDED: NDB 7.6.4 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --lines-terminated-by=char </code> </p></th> <td>Same as LINES TERMINATED BY option for LOAD DATA statements</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --login-path=path </code> </p></th> <td>Read given path from login file</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --max-rows=# </code> </p></th> <td>Import only this number of input data rows; default is 0, which imports all rows</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --monitor=# </code> </p></th> <td>Periodically print status of running job if something has changed (status, rejected rows, temporary errors). Value 0 disables. Value 1 prints any change seen. Higher values reduce status printing exponentially up to some pre-defined limit</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-connectstring=connection_string</code>, </p><p> <code> -c connection_string </code> </p></th> <td>Set connect string for connecting to ndb_mgmd. Syntax: "[nodeid=id;][host=]hostname[:port]". Overrides entries in NDB_CONNECTSTRING and my.cnf</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code>--ndb-mgmd-host=connection_string</code>, </p><p> <code> -c connection_string </code> </p></th> <td>Same as --ndb-connectstring</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --ndb-nodeid=# </code> </p></th> <td>Set node ID for this node, overriding any ID set by --ndb-connectstring</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --ndb-optimized-node-selection </code> </p></th> <td>Enable optimizations for selection of nodes for transactions. Enabled by default; use --skip-ndb-optimized-node-selection to disable</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --no-asynch </code> </p></th> <td>Run database operations as batches, in single transactions</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --no-defaults </code> </p></th> <td>Do not read default options from any option file other than login file</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --no-hint </code> </p></th> <td>Tells transaction coordinator not to use distribution key hint when selecting data node</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --opbatch=# </code> </p></th> <td>A db execution batch is a set of transactions and operations sent to NDB kernel. This option limits NDB operations (including blob operations) in a db execution batch. Therefore it also limits number of asynch transactions. Value 0 is not valid</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --opbytes=# </code> </p></th> <td>Limit bytes in execution batch (default 0 = no limit)</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --output-type=name </code> </p></th> <td>Output type: ndb is default, null used for testing</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --output-workers=# </code> </p></th> <td>Number of threads processing output or relaying database operations</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --pagesize=# </code> </p></th> <td>Align I/O buffers to given size</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --pagecnt=# </code> </p></th> <td>Size of I/O buffers as multiple of page size. CSV input worker allocates double-sized buffer</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --polltimeout=# </code> </p></th> <td>Timeout per poll for completed asynchonous transactions; polling continues until all polls are completed, or error occurs</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --print-defaults </code> </p></th> <td>Print program argument list and exit</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --rejects=# </code> </p></th> <td>Limit number of rejected rows (rows with permanent error) in data load. Default is 0 which means that any rejected row causes a fatal error. The row exceeding the limit is also added to *.rej</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --resume </code> </p></th> <td>If job aborted (temporary error, user interrupt), resume with rows not yet processed</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --rowbatch=# </code> </p></th> <td>Limit rows in row queues (default 0 = no limit); must be 1 or more if --input-type is random</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --rowbytes=# </code> </p></th> <td>Limit bytes in row queues (0 = no limit)</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --state-dir=path </code> </p></th> <td>Where to write state files; currect directory is default</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --stats </code> </p></th> <td>Save performance related options and internal statistics in *.sto and *.stt files. These files are kept on successful completion even if --keep-state is not used</td> <td><p> ADDED: NDB 7.6.4 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --tempdelay=# </code> </p></th> <td>Number of milliseconds to sleep between temporary errors</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --temperrors=# </code> </p></th> <td>Number of times a transaction can fail due to a temporary error, per execution batch; 0 means any temporary error is fatal. Such errors do not cause any rows to be written to .rej file</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code>--usage</code>, </p><p> <code> -? </code> </p></th> <td>Display help text and exit; same as --help</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code>--verbose[=#]</code>, </p><p> <code> -v [#] </code> </p></th> <td>Enable verbose output</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody><tbody><tr> <th><p> <code>--version</code>, </p><p> <code> -V </code> </p></th> <td>Display version information and exit</td> <td><p> ADDED: NDB 7.6.2 </p></td> </tr></tbody></table>
 
-- `--abort-on-error`
+* `--abort-on-error`
 
-  <table frame="box" rules="all" summary="Propriedades para abort-on-error"><tbody><tr><th>Formato de linha de comando</th> <td><code>--abort-on-error</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for abort-on-error"><tbody><tr><th>Command-Line Format</th> <td><code>--abort-on-error</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
 
-  Arrume o núcleo para qualquer erro fatal; usado apenas para depuração.
+  Dump core on any fatal error; used for debugging only.
 
-- `--ai-increment=*#`\*
+* `--ai-increment`=*`#`*
 
-  <table frame="box" rules="all" summary="Propriedades para ai-increment"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-increment=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ai-increment"><tbody><tr><th>Command-Line Format</th> <td><code>--ai-increment=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  Para uma tabela com uma chave primária oculta, especifique o incremento de autoincremento, como a variável de sistema `auto_increment_increment` faz no MySQL Server.
+  For a table with a hidden primary key, specify the autoincrement increment, like the [`auto_increment_increment`](replication-options-source.html#sysvar_auto_increment_increment) system variable does in the MySQL Server.
 
-- `--ai-offset=*`#\`\*
+* `--ai-offset`=*`#`*
 
-  <table frame="box" rules="all" summary="Propriedades para ai-offset"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-offset=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ai-offset"><tbody><tr><th>Command-Line Format</th> <td><code>--ai-offset=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  Para uma tabela com chave primária oculta, especifique o deslocamento de autoincremento. Semelhante à variável de sistema `auto_increment_offset`.
+  For a table with hidden primary key, specify the autoincrement offset. Similar to the [`auto_increment_offset`](replication-options-source.html#sysvar_auto_increment_offset) system variable.
 
-- `--ai-prefetch-sz=*#`
+* `--ai-prefetch-sz`=*`#`*
 
-  <table frame="box" rules="all" summary="Propriedades para ai-prefetch-sz"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-prefetch-sz=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1024</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ai-prefetch-sz"><tbody><tr><th>Command-Line Format</th> <td><code>--ai-prefetch-sz=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1024</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  Para uma tabela com uma chave primária oculta, especifique o número de valores de autoincremento pré-carregados. Funciona da mesma forma que a variável de sistema `ndb_autoincrement_prefetch_sz` faz no MySQL Server.
+  For a table with a hidden primary key, specify the number of autoincrement values that are prefetched. Behaves like the [`ndb_autoincrement_prefetch_sz`](mysql-cluster-options-variables.html#sysvar_ndb_autoincrement_prefetch_sz) system variable does in the MySQL Server.
 
-- `--character-sets-dir`
+* `--character-sets-dir`
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
 
-  Diretório contendo conjuntos de caracteres.
+  Directory containing character sets.
 
-- `--connect-retries`
+* `--connect-retries`
 
-  <table frame="box" rules="all" summary="Propriedades para tentativas de conexão de reposição"><tbody><tr><th>Formato de linha de comando</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>12</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>12</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>12</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>12</code></td> </tr></tbody></table>
 
-  Número de vezes para tentar a conexão novamente antes de desistir.
+  Number of times to retry connection before giving up.
 
-- `--connect-retry-delay`
+* `--connect-retry-delay`
 
-  <table frame="box" rules="all" summary="Propriedades para connect-retry-delay"><tbody><tr><th>Formato de linha de comando</th> <td><code>--connect-retry-delay=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>5</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>5</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-retry-delay"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retry-delay=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>5</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>5</code></td> </tr></tbody></table>
 
-  Número de segundos para esperar entre as tentativas de contato com o servidor de gerenciamento.
+  Number of seconds to wait between attempts to contact management server.
 
-- `--connections`=*`#`*
+* `--connections`=*`#`*
 
-  <table frame="box" rules="all" summary="Propriedades para conexões"><tbody><tr><th>Formato de linha de comando</th> <td><code>--connections=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connections"><tbody><tr><th>Command-Line Format</th> <td><code>--connections=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  Número de conexões de cluster a criar.
+  Number of cluster connections to create.
 
-- `--connect-string`
+* `--connect-string`
 
-  <table frame="box" rules="all" summary="Propriedades para a string de conexão"><tbody><tr><th>Formato de linha de comando</th> <td><code>--connect-string=connection_string</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Tipo</th> <td>String</td> </tr><tr><th>Valor padrão</th> <td><code>[none]</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for connect-string"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-string=connection_string</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Type</th> <td>String</td> </tr><tr><th>Default Value</th> <td><code>[none]</code></td> </tr></tbody></table>
 
-  O mesmo que `--ndb-connectstring`.
+  Same as [`--ndb-connectstring`](mysql-cluster-programs-ndb-import.html#option_ndb_import_ndb-connectstring).
 
-- `--continue`
+* `--continue`
 
-  <table frame="box" rules="all" summary="Propriedades para abort-on-error"><tbody><tr><th>Formato de linha de comando</th> <td><code>--abort-on-error</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for abort-on-error"><tbody><tr><th>Command-Line Format</th> <td><code>--abort-on-error</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
 
-  Quando um trabalho falhar, continue para o próximo trabalho.
+  When a job fails, continue to the next job.
 
-- `--core-file`
+* `--core-file`
 
-  <table frame="box" rules="all" summary="Propriedades para abort-on-error"><tbody><tr><th>Formato de linha de comando</th> <td><code>--abort-on-error</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for abort-on-error"><tbody><tr><th>Command-Line Format</th> <td><code>--abort-on-error</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
 
-  Escreva o arquivo de núcleo em erro; usado no depuração.
+  Write core file on error; used in debugging.
 
-- `--csvopt=*`string\`\*
+* `--csvopt`=*`string`*
 
-  <table frame="box" rules="all" summary="Propriedades para abort-on-error"><tbody><tr><th>Formato de linha de comando</th> <td><code>--abort-on-error</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for abort-on-error"><tbody><tr><th>Command-Line Format</th> <td><code>--abort-on-error</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
 
-  Fornece um método de atalho para definir opções típicas de importação de CSV. O argumento desta opção é uma string que consiste em um ou mais dos seguintes parâmetros:
+  Provides a shortcut method for setting typical CSV import options. The argument to this option is a string consisting of one or more of the following parameters:
 
-  - `c`: Campos terminados por vírgula
+  + `c`: Fields terminated by comma
+  + `d`: Use defaults, except where overridden by another parameter
 
-  - `d`: Use os padrões, exceto quando sobrescrito por outro parâmetro
+  + `n`: Lines terminated by `\n`
 
-  - `n`: Linhas terminadas por `\n`
+  + `q`: Fields optionally enclosed by double quote characters (`"`)
 
-  - `q`: Campos opcionalmente fechados por caracteres de aspas duplas (`"`)
+  + `r`: Line terminated by `\r`
 
-  - `r`: Linha terminada por `\r`
+  The order of the parameters makes no difference, except that if both `n` and `r` are specified, the one occurring last is the parameter which takes effect.
 
-  A ordem dos parâmetros não faz diferença, exceto que, se tanto `n` quanto `r` forem especificados, o último será o parâmetro que terá efeito.
+  This option is intended for use in testing under conditions in which it is difficult to transmit escapes or quotation marks.
 
-  Esta opção é destinada ao uso em testes em condições nas quais é difícil transmitir escapamentos ou aspas.
+* `--db-workers`=*`#`*
 
-- `--db-workers=*`#\`\*
+  <table frame="box" rules="all" summary="Properties for abort-on-error"><tbody><tr><th>Command-Line Format</th> <td><code>--abort-on-error</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para abort-on-error"><tbody><tr><th>Formato de linha de comando</th> <td><code>--abort-on-error</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
+  Number of threads, per data node, executing database operations.
 
-  Número de threads, por nó de dados, executando operações de banco de dados.
+* `--defaults-extra-file`
 
-- `--defaults-extra-file`
+  <table frame="box" rules="all" summary="Properties for abort-on-error"><tbody><tr><th>Command-Line Format</th> <td><code>--abort-on-error</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para abort-on-error"><tbody><tr><th>Formato de linha de comando</th> <td><code>--abort-on-error</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
+  Read given file after global files are read.
 
-  Leia o arquivo fornecido após a leitura dos arquivos globais.
+* `--defaults-file`
 
-- `--defaults-file`
+  <table frame="box" rules="all" summary="Properties for abort-on-error"><tbody><tr><th>Command-Line Format</th> <td><code>--abort-on-error</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para abort-on-error"><tbody><tr><th>Formato de linha de comando</th> <td><code>--abort-on-error</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
+  Read default options from given file only.
 
-  Leia as opções padrão do arquivo fornecido.
+* `--defaults-group-suffix`
 
-- `--defaults-group-suffix`
+  <table frame="box" rules="all" summary="Properties for abort-on-error"><tbody><tr><th>Command-Line Format</th> <td><code>--abort-on-error</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para abort-on-error"><tbody><tr><th>Formato de linha de comando</th> <td><code>--abort-on-error</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
+  Also read groups with concat(group, suffix).
 
-  Leia também grupos com concatenação (grupo, sufixo).
+* `--errins-type`=*`name`*
 
-- `--errins-type=*`nome\`\*
+  <table frame="box" rules="all" summary="Properties for abort-on-error"><tbody><tr><th>Command-Line Format</th> <td><code>--abort-on-error</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para abort-on-error"><tbody><tr><th>Formato de linha de comando</th> <td><code>--abort-on-error</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
+  Error insert type; use `list` as the *`name`* value to obtain all possible values. This option is used for testing purposes only.
 
-  Erro: tipo de inserção; use `list` como o valor de *`name`* para obter todos os valores possíveis. Esta opção é usada apenas para fins de teste.
+* `--errins-delay`=*`#`*
 
-- `--errins-delay=*`#\`\*
+  <table frame="box" rules="all" summary="Properties for abort-on-error"><tbody><tr><th>Command-Line Format</th> <td><code>--abort-on-error</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para abort-on-error"><tbody><tr><th>Formato de linha de comando</th> <td><code>--abort-on-error</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
+  Error insert delay in milliseconds; random variation is added. This option is used for testing purposes only.
 
-  Atraso de inserção de erro em milissegundos; variação aleatória é adicionada. Esta opção é usada apenas para fins de teste.
+* `--fields-enclosed-by`=*`char`*
 
-- `--fields-enclosed-by`=*`char`*
+  <table frame="box" rules="all" summary="Properties for abort-on-error"><tbody><tr><th>Command-Line Format</th> <td><code>--abort-on-error</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para abort-on-error"><tbody><tr><th>Formato de linha de comando</th> <td><code>--abort-on-error</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
+  This works in the same way as the `FIELDS ENCLOSED BY` option does for the [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") statement, specifying a character to be interpeted as quoting field values. For CSV input, this is the same as [`--fields-optionally-enclosed-by`](mysql-cluster-programs-ndb-import.html#option_ndb_import_fields-optionally-enclosed-by).
 
-  Isso funciona da mesma maneira que a opção `FIELDS ENCLOSED BY` para a instrução `LOAD DATA`, especificando um caractere a ser interpretado como delimitador de valores de campo. Para entrada CSV, isso é o mesmo que `--fields-optionally-enclosed-by`.
+* `--fields-escaped-by`=*`name`*
 
-- `--fields-escaped-by=*`nome\`\*
+  <table frame="box" rules="all" summary="Properties for ai-increment"><tbody><tr><th>Command-Line Format</th> <td><code>--ai-increment=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para ai-increment"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-increment=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  Specify an escape character in the same way as the `FIELDS ESCAPED BY` option does for the SQL [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") statement.
 
-  Especifique um caractere de escape da mesma maneira que a opção `FIELDS ESCAPED BY` faz para a instrução SQL `LOAD DATA`.
+* `--fields-optionally-enclosed-by`=*`char`*
 
-- `--fields-optionally-enclosed-by`=*`char`*
+  <table frame="box" rules="all" summary="Properties for ai-increment"><tbody><tr><th>Command-Line Format</th> <td><code>--ai-increment=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para ai-increment"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-increment=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  This works in the same way as the `FIELDS OPTIONALLY ENCLOSED BY` option does for the [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") statement, specifying a character to be interpeted as optionally quoting field values. For CSV input, this is the same as [`--fields-enclosed-by`](mysql-cluster-programs-ndb-import.html#option_ndb_import_fields-enclosed-by).
 
-  Isso funciona da mesma maneira que a opção `FIELDS OPTIONALLY ENCLOSED BY` para a instrução `LOAD DATA`, especificando um caractere a ser interpretado como citação opcional de valores de campo. Para entrada CSV, isso é o mesmo que `--fields-enclosed-by`.
+* `--fields-terminated-by`=*`char`*
 
-- `--fields-terminated-by`=*`char`*
+  <table frame="box" rules="all" summary="Properties for ai-increment"><tbody><tr><th>Command-Line Format</th> <td><code>--ai-increment=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para ai-increment"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-increment=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  This works in the same way as the `FIELDS TERMINATED BY` option does for the [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") statement, specifying a character to be interpeted as the field separator.
 
-  Isso funciona da mesma maneira que a opção `FIELDS TERMINATED BY` para a instrução `LOAD DATA`, especificando um caractere a ser interpretado como o separador de campos.
+* `--help`
 
-- `--help`
+  <table frame="box" rules="all" summary="Properties for ai-increment"><tbody><tr><th>Command-Line Format</th> <td><code>--ai-increment=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para ai-increment"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-increment=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  Display help text and exit.
 
-  Exibir texto de ajuda e sair.
+* `--idlesleep`=*`#`*
 
-- `--idlesleep=*`#\`\*
+  <table frame="box" rules="all" summary="Properties for ai-increment"><tbody><tr><th>Command-Line Format</th> <td><code>--ai-increment=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para ai-increment"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-increment=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  Number of milliseconds to sleep waiting for more work to perform.
 
-  Número de milissegundos para dormir enquanto espera para realizar mais trabalho.
+* `--idlespin`=*`#`*
 
-- `--idlespin=*`#\`\*
+  <table frame="box" rules="all" summary="Properties for ai-increment"><tbody><tr><th>Command-Line Format</th> <td><code>--ai-increment=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para ai-increment"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-increment=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  Number of times to retry before sleeping.
 
-  Número de vezes para tentar novamente antes de dormir.
+* `--ignore-lines`=*`#`*
 
-- `--ignore-lines=*`#\`\*
+  <table frame="box" rules="all" summary="Properties for ai-increment"><tbody><tr><th>Command-Line Format</th> <td><code>--ai-increment=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para ai-increment"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-increment=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  Cause ndb_import to ignore the first *`#`* lines of the input file. This can be employed to skip a file header that does not contain any data.
 
-  Faça com que o ndb_import ignore as primeiras linhas `#` do arquivo de entrada. Isso pode ser usado para ignorar o cabeçalho de um arquivo que não contém dados.
+* `--input-type`=*`name`*
 
-- `--input-type=*`nome\`\*
+  <table frame="box" rules="all" summary="Properties for ai-increment"><tbody><tr><th>Command-Line Format</th> <td><code>--ai-increment=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para ai-increment"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-increment=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  Set the type of input type. The default is `csv`; `random` is intended for testing purposes only. .
 
-  Defina o tipo de entrada. O padrão é `csv`; `random` é destinado apenas para fins de teste.
+* `--input-workers`=*`#`*
 
-- `--input-workers=*`#\`\*
+  <table frame="box" rules="all" summary="Properties for ai-increment"><tbody><tr><th>Command-Line Format</th> <td><code>--ai-increment=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para ai-increment"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-increment=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  Set the number of threads processing input.
 
-  Defina o número de threads que processarão a entrada.
+* `--keep-state`
 
-- `--keep-state`
+  <table frame="box" rules="all" summary="Properties for ai-increment"><tbody><tr><th>Command-Line Format</th> <td><code>--ai-increment=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para ai-increment"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-increment=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  By default, ndb_import removes all state files (except non-empty `*.rej` files) when it completes a job. Specify this option (nor argument is required) to force the program to retain all state files instead.
 
-  Por padrão, o ndb_import remove todos os arquivos de estado (exceto arquivos `*.rej` não vazios) quando conclui uma tarefa. Especifique esta opção (não é necessário fornecer argumento) para forçar o programa a reter todos os arquivos de estado.
+* `--lines-terminated-by`=*`name`*
 
-- `--lines-terminated-by=*`nome\`\*
+  <table frame="box" rules="all" summary="Properties for ai-offset"><tbody><tr><th>Command-Line Format</th> <td><code>--ai-offset=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para ai-offset"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-offset=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  This works in the same way as the `LINES TERMINATED BY` option does for the [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") statement, specifying a character to be interpeted as end-of-line.
 
-  Isso funciona da mesma maneira que a opção `LINHAS TERMINADAS POR` para a instrução `LOAD DATA`, especificando um caractere a ser interpretado como o final da linha.
+* `--login-path`
 
-- `--login-path`
+  <table frame="box" rules="all" summary="Properties for ai-offset"><tbody><tr><th>Command-Line Format</th> <td><code>--ai-offset=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para ai-offset"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-offset=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  Read given path from login file.
 
-  Leia o caminho fornecido a partir do arquivo de login.
+* `--log-level`=*`#`*
 
-- `--log-level=*`#\`\*
+  <table frame="box" rules="all" summary="Properties for ai-offset"><tbody><tr><th>Command-Line Format</th> <td><code>--ai-offset=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para ai-offset"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-offset=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  Performs internal logging at the given level. This option is intended primarily for internal and development use.
 
-  Realiza registro interno no nível especificado. Esta opção é destinada principalmente para uso interno e de desenvolvimento.
+  In debug builds of NDB only, the logging level can be set using this option to a maximum of 4.
 
-  Nas compilações de depuração apenas do NDB, o nível de registro pode ser definido usando essa opção até um máximo de 4.
+* `--max-rows`=*`#`*
 
-- `--max-rows=*`#\`\*
+  <table frame="box" rules="all" summary="Properties for ai-offset"><tbody><tr><th>Command-Line Format</th> <td><code>--ai-offset=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para ai-offset"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-offset=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  Import only this number of input data rows; the default is 0, which imports all rows.
 
-  Importe apenas esse número de linhas de dados de entrada; o padrão é 0, que importa todas as linhas.
+* `--monitor`=*`#`*
 
-- `--monitor`=*`#`*
+  <table frame="box" rules="all" summary="Properties for ai-offset"><tbody><tr><th>Command-Line Format</th> <td><code>--ai-offset=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para ai-offset"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-offset=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  Periodically print the status of a running job if something has changed (status, rejected rows, temporary errors). Set to 0 to disable this reporting. Setting to 1 prints any change that is seen. Higher values reduce the frequency of this status reporting.
 
-  Imprima periodicamente o status de um trabalho em execução se algo tiver mudado (status, linhas rejeitadas, erros temporários). Defina para 0 para desabilitar essa notificação. Definir para 1 imprime qualquer mudança que for vista. Valores mais altos reduzem a frequência dessa notificação de status.
+* `--ndb-connectstring`
 
-- `--ndb-connectstring`
+  <table frame="box" rules="all" summary="Properties for ai-offset"><tbody><tr><th>Command-Line Format</th> <td><code>--ai-offset=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para ai-offset"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-offset=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  Set connect string for connecting to ndb_mgmd. Syntax: "[nodeid=id;][host=]hostname[:port]". Overrides entries in NDB_CONNECTSTRING and my.cnf.
 
-  Defina a string de conexão para se conectar ao ndb_mgmd. Sintaxe: "[nodeid=id;][host=]hostname[:port]". Oculte entradas no NDB_CONNECTSTRING e no my.cnf.
+* `--ndb-mgmd-host`
 
-- `--ndb-mgmd-host`
+  <table frame="box" rules="all" summary="Properties for ai-offset"><tbody><tr><th>Command-Line Format</th> <td><code>--ai-offset=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para ai-offset"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-offset=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  Same as [`--ndb-connectstring`](mysql-cluster-programs-ndb-import.html#option_ndb_import_ndb-connectstring).
 
-  O mesmo que `--ndb-connectstring`.
+* `--ndb-nodeid`
 
-- `--ndb-nodeid`
+  <table frame="box" rules="all" summary="Properties for ai-offset"><tbody><tr><th>Command-Line Format</th> <td><code>--ai-offset=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para ai-offset"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-offset=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  Set node ID for this node, overriding any ID set by [`--ndb-connectstring`](mysql-cluster-programs-ndb-import.html#option_ndb_import_ndb-connectstring).
 
-  Defina o ID do nó para este nó, substituindo qualquer ID definida por `--ndb-connectstring`.
+* `--ndb-optimized-node-selection`
 
-- `--ndb-optimized-node-selection`
+  <table frame="box" rules="all" summary="Properties for ai-offset"><tbody><tr><th>Command-Line Format</th> <td><code>--ai-offset=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para ai-offset"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-offset=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  Enable optimizations for selection of nodes for transactions. Enabled by default; use `--skip-ndb-optimized-node-selection` to disable.
 
-  Ative as otimizações para a seleção de nós para transações. Ativado por padrão; use `--skip-ndb-optimized-node-selection` para desativá-lo.
+* `--no-asynch`
 
-- `--no-asynch`
+  <table frame="box" rules="all" summary="Properties for ai-offset"><tbody><tr><th>Command-Line Format</th> <td><code>--ai-offset=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para ai-offset"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-offset=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  Run database operations as batches, in single transactions.
 
-  Execute operações de banco de dados em lotes, em transações únicas.
+* `--no-defaults`
 
-- `--no-defaults`
+  <table frame="box" rules="all" summary="Properties for ai-prefetch-sz"><tbody><tr><th>Command-Line Format</th> <td><code>--ai-prefetch-sz=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1024</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para ai-prefetch-sz"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-prefetch-sz=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1024</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  Do not read default options from any option file other than login file.
 
-  Não leia as opções padrão de nenhum arquivo de opção, exceto o arquivo de login.
+* `--no-hint`
 
-- `--no-hint`
+  <table frame="box" rules="all" summary="Properties for ai-prefetch-sz"><tbody><tr><th>Command-Line Format</th> <td><code>--ai-prefetch-sz=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1024</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para ai-prefetch-sz"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-prefetch-sz=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1024</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  Do not use distribution key hinting to select a data node.
 
-  Não use a chave de distribuição para indicar a seleção de um nó de dados.
+* `--opbatch`=*`#`*
 
-- \`--opbatch=*#*
+  <table frame="box" rules="all" summary="Properties for ai-prefetch-sz"><tbody><tr><th>Command-Line Format</th> <td><code>--ai-prefetch-sz=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1024</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para ai-prefetch-sz"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-prefetch-sz=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1024</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  Set a limit on the number of operations (including blob operations), and thus the number of asynchronous transactions, per execution batch.
 
-  Defina um limite para o número de operações (incluindo operações de blob) e, assim, para o número de transações assíncronas por lote de execução.
+* `--opbytes`=*`#`*
 
-- `--opbytes=*`#\`\*
+  <table frame="box" rules="all" summary="Properties for ai-prefetch-sz"><tbody><tr><th>Command-Line Format</th> <td><code>--ai-prefetch-sz=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1024</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para ai-prefetch-sz"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-prefetch-sz=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1024</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  Set a limit on the number of bytes per execution batch. Use 0 for no limit.
 
-  Defina um limite para o número de bytes por lote de execução. Use 0 para sem limite.
+* `--output-type`=*`name`*
 
-- `--output-type=*`nome\`\*
+  <table frame="box" rules="all" summary="Properties for ai-prefetch-sz"><tbody><tr><th>Command-Line Format</th> <td><code>--ai-prefetch-sz=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1024</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para ai-prefetch-sz"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-prefetch-sz=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1024</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  Set the output type. `ndb` is the default. `null` is used only for testing.
 
-  Defina o tipo de saída. `ndb` é o padrão. `null` é usado apenas para testes.
+* `--output-workers`=*`#`*
 
-- `--output-workers=*`#\`\*
+  <table frame="box" rules="all" summary="Properties for ai-prefetch-sz"><tbody><tr><th>Command-Line Format</th> <td><code>--ai-prefetch-sz=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1024</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para ai-prefetch-sz"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-prefetch-sz=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1024</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  Set the number of threads processing output or relaying database operations.
 
-  Defina o número de threads que processam a saída ou retransmitem operações de banco de dados.
+* `--pagesize`=*`#`*
 
-- `--pagesize`=*`#`*
+  <table frame="box" rules="all" summary="Properties for ai-prefetch-sz"><tbody><tr><th>Command-Line Format</th> <td><code>--ai-prefetch-sz=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1024</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para ai-prefetch-sz"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-prefetch-sz=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1024</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  Align I/O buffers to the given size.
 
-  Alinhe os buffers de entrada/saída ao tamanho especificado.
+* `--pagecnt`=*`#`*
 
-- `--pagecnt=*`#\`\*
+  <table frame="box" rules="all" summary="Properties for ai-prefetch-sz"><tbody><tr><th>Command-Line Format</th> <td><code>--ai-prefetch-sz=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1024</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para ai-prefetch-sz"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-prefetch-sz=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1024</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  Set the size of I/O buffers as multiple of page size. The CSV input worker allocates buffer that is doubled in size.
 
-  Defina o tamanho dos buffers de E/S como múltiplo do tamanho da página. O trabalhador de entrada CSV aloca um buffer do dobro do tamanho.
+* `--polltimeout`=*`#`*
 
-- `--polltimeout=*`#\`\*
+  <table frame="box" rules="all" summary="Properties for ai-prefetch-sz"><tbody><tr><th>Command-Line Format</th> <td><code>--ai-prefetch-sz=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1024</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para ai-prefetch-sz"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-prefetch-sz=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1024</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  Set a timeout per poll for completed asynchonous transactions; polling continues until all polls are completed, or until an error occurs.
 
-  Defina um tempo limite por pesquisa para transações assíncronas concluídas; a pesquisa continua até que todas as pesquisas sejam concluídas ou até que ocorra um erro.
+* `--print-defaults`
 
-- `--print-defaults`
+  <table frame="box" rules="all" summary="Properties for ai-prefetch-sz"><tbody><tr><th>Command-Line Format</th> <td><code>--ai-prefetch-sz=#</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1024</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para ai-prefetch-sz"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ai-prefetch-sz=#</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1024</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  Print program argument list and exit.
 
-  Imprima a lista de argumentos do programa e saia.
+* `--rejects`=*`#`*
 
-- `--rejects=*`#\`\*
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
+  Limit the number of rejected rows (rows with permanent errors) in the data load. The default is 0, which means that any rejected row causes a fatal error. Any rows causing the limit to be exceeded are added to the `.rej` file.
 
-  Limite o número de linhas rejeitadas (linhas com erros permanentes) na carga de dados. O padrão é 0, o que significa que qualquer linha rejeitada causa um erro fatal. Quaisquer linhas que excedam o limite são adicionadas ao arquivo `.rej`.
+  The limit imposed by this option is effective for the duration of the current run. A run restarted using [`--resume`](mysql-cluster-programs-ndb-import.html#option_ndb_import_resume) is considered a “new” run for this purpose.
 
-  O limite imposto por essa opção é válido durante a execução atual. Uma execução reiniciada usando `--resume` é considerada uma "nova" execução para esse propósito.
+* `--resume`
 
-- `--resume`
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
+  If a job is aborted (due to a temporary db error or when interrupted by the user), resume with any rows not yet processed.
 
-  Se um trabalho for abortado (devido a um erro temporário no banco de dados ou quando interrompido pelo usuário), continue com todas as linhas que ainda não foram processadas.
+* `--rowbatch`=*`#`*
 
-- `--rowbatch=*`#\`\*
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
+  Set a limit on the number of rows per row queue. Use 0 for no limit.
 
-  Defina um limite para o número de linhas por fila de linhas. Use 0 para sem limite.
+* `--rowbytes`=*`#`*
 
-- `--rowbytes`=*`#`*
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
+  Set a limit on the number of bytes per row queue. Use 0 for no limit.
 
-  Defina um limite para o número de bytes por fila de linha. Use 0 para sem limite.
+* `--stats`
 
-- `--stats`
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
+  Save information about options related to performance and other internal statistics in files named `*.sto` and `*.stt`. These files are always kept on successful completion (even if [`--keep-state`](mysql-cluster-programs-ndb-import.html#option_ndb_import_keep-state) is not also specified).
 
-  Salve informações sobre opções relacionadas ao desempenho e outras estatísticas internas em arquivos com nomes `*.sto` e `*.stt`. Esses arquivos são sempre mantidos após a conclusão bem-sucedida (mesmo que `--keep-state` não seja especificado também).
+* `--state-dir`=*`name`*
 
-- `--state-dir=*`nome\`\*
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
+  Where to write the state files (`tbl_name.map`, `tbl_name.rej`, `tbl_name.res`, and `tbl_name.stt`) produced by a run of the program; the default is the current directory.
 
-  Onde escrever os arquivos do estado (`tbl_name.map`, `tbl_name.rej`, `tbl_name.res` e `tbl_name.stt`) produzidos por uma execução do programa; o padrão é o diretório atual.
+* `--tempdelay`=*`#`*
 
-- `--tempdelay=*`#\`\*
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
+  Number of milliseconds to sleep between temporary errors.
 
-  Número de milissegundos para dormir entre erros temporários.
+* `--temperrors`=*`#`*
 
-- `--temperrors`=*`#`*
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
+  Number of times a transaction can fail due to a temporary error, per execution batch. The default is 0, which means that any temporary error is fatal. Temporary errors do not cause any rows to be added to the `.rej` file.
 
-  Número de vezes que uma transação pode falhar devido a um erro temporário, por lote de execução. O padrão é 0, o que significa que qualquer erro temporário é fatal. Erros temporários não fazem com que nenhuma linha seja adicionada ao arquivo `.rej`.
+* `--usage`
 
-- `--usage`
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
+  Display help text and exit; same as [`--help`](mysql-cluster-programs-ndb-import.html#option_ndb_import_help).
 
-  Exibir texto de ajuda e sair; o mesmo que `--help`.
+* `--verbose`, `-v`
 
-- `--verbose`, `-v`
+  <table frame="box" rules="all" summary="Properties for character-sets-dir"><tbody><tr><th>Command-Line Format</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Introduced</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para character-sets-dir"><tbody><tr><th>Formato de linha de comando</th> <td><code>--character-sets-dir=path</code></td> </tr><tr><th>Introduzido</th> <td>5.7.18-ndb-7.6.2</td> </tr></tbody></table>
+  Enable verbose output.
 
-  Ative a saída detalhada.
+  Note
 
-  Nota
+  Previously, this option controlled the internal logging level for debugging messages. In NDB 7.6, use the [`--log-level`](mysql-cluster-programs-ndb-import.html#option_ndb_import_log-level) option for this purpose instead.
 
-  Anteriormente, essa opção controlava o nível de registro interno para mensagens de depuração. No NDB 7.6, use a opção `--log-level` para esse propósito.
+* `--version`
 
-- `--version`
+  <table frame="box" rules="all" summary="Properties for connect-retries"><tbody><tr><th>Command-Line Format</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>12</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>12</code></td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Propriedades para tentativas de conexão de reposição"><tbody><tr><th>Formato de linha de comando</th> <td><code>--connect-retries=#</code></td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>12</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>12</code></td> </tr></tbody></table>
+  Display version information and exit.
 
-  Exibir informações da versão e sair.
+As with [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement"), options for field and line formatting much match those used to create the CSV file, whether this was done using [`SELECT INTO ... OUTFILE`](select-into.html "13.2.9.1 SELECT ... INTO Statement"), or by some other means. There is no equivalent to the [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") statement `STARTING WITH` option.
 
-Assim como no caso de `LOAD DATA`, as opções para formatação de campos e linhas devem corresponder às usadas para criar o arquivo CSV, seja isso feito usando `SELECT INTO ... OUTFILE` ou por algum outro meio. Não há uma opção equivalente à da instrução `STARTING WITH` do `LOAD DATA`.
-
-**ndb_import** foi adicionado no NDB 7.6.
+[**ndb_import**](mysql-cluster-programs-ndb-import.html "21.5.14 ndb_import — Import CSV Data Into NDB") was added in NDB 7.6.

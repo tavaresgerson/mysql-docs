@@ -1,31 +1,31 @@
-#### 13.1.18.9 Definindo as Opções de Comentário do NDB
+#### 13.1.18.9 Setting NDB Comment Options
 
-- NDB_COLUMN Opções
-- Opções do NDB_TABLE
+* [NDB_COLUMN Options](create-table-ndb-comment-options.html#create-table-ndb-comment-column-options "NDB_COLUMN Options")
+* [NDB_TABLE Options](create-table-ndb-comment-options.html#create-table-ndb-comment-table-options "NDB_TABLE Options")
 
-É possível definir uma série de opções específicas para o NDB Cluster na tabela de comentários ou nos comentários das colunas de uma tabela `NDB`. As opções de nível de tabela para controlar a leitura de qualquer replica e o equilíbrio de partições podem ser incorporadas em um comentário de tabela usando `NDB_TABLE`.
+It is possible to set a number of options specific to NDB Cluster in the table comment or column comments of an [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table. Table-level options for controlling read from any replica and partition balance can be embedded in a table comment using `NDB_TABLE`.
 
-`NDB_COLUMN` pode ser usado em um comentário de coluna para definir o tamanho da coluna da tabela de partes do blob usada para armazenar partes dos valores do blob pelo `NDB` em seu máximo. Isso funciona para as colunas `BLOB`, `MEDIUMBLOB`, `LONGBLOB`, `TEXT`, `MEDIUMTEXT`, `LONGTEXT` e `JSON`.
+`NDB_COLUMN` can be used in a column comment to set the size of the blob parts table column used for storing parts of blob values by `NDB` to its maximum. This works for [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types"), `MEDIUMBLOB`, `LONGBLOB`, [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types"), `MEDIUMTEXT`, `LONGTEXT`, and [`JSON`](json.html "11.5 The JSON Data Type") columns.
 
-`NDB_TABLE` pode ser usado em um comentário de tabela para definir opções relacionadas ao equilíbrio das partições e se a tabela é replicada totalmente, entre outras.
+`NDB_TABLE` can be used in a table comment to set options relating to partition balance and whether the table is fully replicated, among others.
 
-O restante desta seção descreve essas opções e seu uso.
+The remainder of this section describes these options and their use.
 
-##### Opções de NDB_COLUMN
+##### NDB_COLUMN Options
 
-No NDB Cluster, um comentário de coluna em uma declaração `CREATE TABLE` ou `ALTER TABLE` também pode ser usado para especificar uma opção `NDB_COLUMN`. O NDB 7.5 e 7.6 suportam uma única opção de comentário de coluna `MAX_BLOB_PART_SIZE`; a sintaxe para essa opção é mostrada aqui:
+In NDB Cluster, a column comment in a `CREATE TABLE` or [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statement can also be used to specify an `NDB_COLUMN` option. NDB 7.5 and 7.6 support a single column comment option `MAX_BLOB_PART_SIZE`; syntax for this option is shown here:
 
 ```sql
 COMMENT 'NDB_COLUMN=MAX_BLOB_PART_SIZE[={0|1}]'
 ```
 
-O sinal `=` e o valor que o segue são opcionais. O uso de qualquer valor diferente de 0 ou 1 resulta em um erro de sintaxe.
+The `=` sign and the value following it are optional. Using any value other than 0 or 1 results in a syntax error.
 
-O efeito de usar `MAX_BLOB_PART_SIZE` em um comentário de coluna é definir o tamanho da parte do blob de uma coluna `TEXT` ou `BLOB` para o número máximo de bytes suportado por `NDB` (13948). Esta opção pode ser aplicada a qualquer tipo de coluna blob suportado pelo MySQL, exceto `TINYBLOB` ou `TINYTEXT` (`BLOB`, `MEDIUMBLOB`, `LONGBLOB`, `TEXT`, `MEDIUMTEXT`, `LONGTEXT`). `MAX_BLOB_PART_SIZE` não tem efeito em colunas `JSON`.
+The effect of using `MAX_BLOB_PART_SIZE` in a column comment is to set the blob part size of a [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") or [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") column to the maximum number of bytes supported for this by `NDB` (13948). This option can be applied to any blob column type supported by MySQL except `TINYBLOB` or `TINYTEXT` (`BLOB`, `MEDIUMBLOB`, `LONGBLOB`, `TEXT`, `MEDIUMTEXT`, `LONGTEXT`). `MAX_BLOB_PART_SIZE` has no effect on `JSON` columns.
 
-Além disso, lembre-se, especialmente ao trabalhar com colunas `TEXT`, que o valor definido por `MAX_BLOB_PART_SIZE` representa o tamanho da coluna em bytes. Isso não indica o número de caracteres, que varia de acordo com o conjunto de caracteres e a ordenação usados pela coluna.
+You should also keep in mind, especially when working with `TEXT` columns, that the value set by `MAX_BLOB_PART_SIZE` represents column size in bytes. It does not indicate the number of characters, which varies according to the character set and collation used by the column.
 
-Para ver os efeitos dessa opção, primeiro executamos a seguinte instrução SQL no cliente **mysql** para criar uma tabela com duas colunas `BLOB`, uma (`c1`) sem opções extras e outra (`c2`) com `MAX_BLOB_PART_SIZE`:
+To see the effects of this option, we first run the following SQL statement in the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client to create a table with two `BLOB` columns, one (`c1`) with no extra options, and another (`c2`) with `MAX_BLOB_PART_SIZE`:
 
 ```sql
 mysql> CREATE TABLE test.t (
@@ -36,7 +36,7 @@ mysql> CREATE TABLE test.t (
 Query OK, 0 rows affected (0.32 sec)
 ```
 
-No shell do sistema, execute o utilitário **ndb_desc** para obter informações sobre a tabela recém-criada, conforme mostrado neste exemplo:
+From the system shell, run the [**ndb_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables") utility to obtain information about the table just created, as shown in this example:
 
 ```sql
 $> ndb_desc -d test t
@@ -68,9 +68,9 @@ PRIMARY KEY(p) - UniqueHashIndex
 PRIMARY(p) - OrderedIndex
 ```
 
-As informações da coluna na saída estão listadas sob `Atributos`; para as colunas `c1` e `c2`, elas são exibidas aqui em texto em negrito. Para `c1`, o tamanho da parte do blob é de 2000, o valor padrão; para `c2`, é de 13948, conforme definido por `MAX_BLOB_PART_SIZE`.
+Column information in the output is listed under `Attributes`; for columns `c1` and `c2` it is displayed here in emphasized text. For `c1`, the blob part size is 2000, the default value; for `c2`, it is 13948, as set by `MAX_BLOB_PART_SIZE`.
 
-Você pode alterar o tamanho da parte do blob para uma coluna de blob específica de uma tabela `NDB` usando uma instrução `ALTER TABLE`, como esta, e verificar as alterações posteriormente usando `SHOW CREATE TABLE`:
+You can change the blob part size for a given blob column of an `NDB` table using an `ALTER TABLE` statement such as this one, and verifying the changes afterwards using [`SHOW CREATE TABLE`](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement"):
 
 ```sql
 mysql> ALTER TABLE test.t
@@ -95,7 +95,7 @@ mysql> EXIT
 Bye
 ```
 
-A saída do **ndb_desc** mostra que os tamanhos das partes de blob das colunas foram alterados conforme esperado:
+The output of [**ndb_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables") shows that the blob part sizes of the columns have been changed as expected:
 
 ```sql
 $> ndb_desc -d test t
@@ -129,13 +129,13 @@ PRIMARY(p) - OrderedIndex
 NDBT_ProgramExit: 0 - OK
 ```
 
-Para alterar o tamanho da parte blob de uma coluna, é necessário usar uma cópia do comando `ALTER TABLE`; essa operação não pode ser realizada online (consulte Seção 21.6.12, “Operações online com ALTER TABLE no NDB Cluster”).
+Changing a column's blob part size must be done using a copying `ALTER TABLE`; this operation cannot be performed online (see [Section 21.6.12, “Online Operations with ALTER TABLE in NDB Cluster”](mysql-cluster-online-operations.html "21.6.12 Online Operations with ALTER TABLE in NDB Cluster")).
 
-Para obter mais informações sobre como o `NDB` armazena colunas de tipos blob, consulte Requisitos de armazenamento do tipo String.
+For more information about how [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") stores columns of blob types, see [String Type Storage Requirements](storage-requirements.html#data-types-storage-reqs-strings "String Type Storage Requirements").
 
-##### Opções da Tabela NDB
+##### NDB_TABLE Options
 
-Para uma tabela de um cluster NDB, o comentário da tabela em uma instrução `CREATE TABLE` ou `ALTER TABLE` também pode ser usado para especificar uma opção `NDB_TABLE`, que consiste em um ou mais pares nome-valor, separados por vírgulas, se necessário, seguindo a string `NDB_TABLE=`. A sintaxe completa para nomes e valores é mostrada aqui:
+For an NDB Cluster table, the table comment in a `CREATE TABLE` or [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statement can also be used to specify an `NDB_TABLE` option, which consists of one or more name-value pairs, separated by commas if need be, following the string `NDB_TABLE=`. Complete syntax for names and values syntax is shown here:
 
 ```sql
 COMMENT="NDB_TABLE=ndb_table_option[,ndb_table_option[,..."
@@ -150,19 +150,20 @@ ndb_table_option: {
 }
 ```
 
-Espaços não são permitidos dentro da string entre aspas. A string é case-insensitive.
+Spaces are not permitted within the quoted string. The string is case-insensitive.
 
-As quatro opções da tabela `NDB` que podem ser definidas como parte de um comentário dessa forma são descritas com mais detalhes nos próximos parágrafos.
+The four `NDB` table options that can be set as part of a comment in this way are described in more detail in the next few paragraphs.
 
-`NOLOGGING`: Por padrão, as tabelas `NDB` são registradas e configuradas com pontos de verificação. Isso as torna resistentes a falhas de todo o clúster. Ao usar `NOLOGGING` ao criar ou alterar uma tabela, significa que essa tabela não é registrada novamente ou incluída em pontos de verificação locais. Nesse caso, a tabela ainda é replicada em todos os nós de dados para alta disponibilidade e atualizada usando transações, mas as alterações feitas nela não são registradas nos logs de registro do nó de dados e seu conteúdo não é configurado em pontos de verificação no disco; ao recuperar de uma falha de clúster, o clúster retém a definição da tabela, mas nenhuma de suas linhas — ou seja, a tabela está vazia.
+`NOLOGGING`: By default, `NDB` tables are logged, and checkpointed. This makes them durable to whole cluster failures. Using `NOLOGGING` when creating or altering a table means that this table is not redo logged or included in local checkpoints. In this case, the table is still replicated across the data nodes for high availability, and updated using transactions, but changes made to it are not recorded in the data node's redo logs, and its content is not checkpointed to disk; when recovering from a cluster failure, the cluster retains the table definition, but none of its rows—that is, the table is empty.
 
-O uso de tabelas sem registro dessas reduz as demandas do nó de dados em I/O de disco e armazenamento, além da CPU para o checkpointing da CPU. Isso pode ser adequado para dados de curta duração que são frequentemente atualizados e onde a perda de todos os dados no improvável caso de falha total do cluster é aceitável.
+Using such nonlogging tables reduces the data node's demands on disk I/O and storage, as well as CPU for checkpointing CPU. This may be suitable for short-lived data which is frequently updated, and where the loss of all data in the unlikely event of a total cluster failure is acceptable.
 
-Também é possível usar a variável de sistema `ndb_table_no_logging` para fazer com que quaisquer tabelas NDB criadas ou alteradas enquanto essa variável estiver em vigor se comportem como se tivessem sido criadas com o comentário `NOLOGGING`. Ao contrário do uso direto do comentário, não há nada no caso de saída de `SHOW CREATE TABLE` para indicar que é uma tabela não de log. Recomenda-se o uso da abordagem com o comentário da tabela, pois oferece controle por tabela da funcionalidade, e esse aspecto do esquema da tabela está embutido na declaração de criação da tabela, onde pode ser facilmente encontrado por ferramentas baseadas em SQL.
+It is also possible to use the [`ndb_table_no_logging`](mysql-cluster-options-variables.html#sysvar_ndb_table_no_logging) system variable to cause any NDB tables created or altered while this variable is in effect to behave as though it had been created with the `NOLOGGING` comment. Unlike when using the comment directly, there is nothing in this case in the output of [`SHOW CREATE TABLE`](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement") to indicate that it is a nonlogging table. Using the table comment approach is recommended since it offers per-table control of the feature, and this aspect of the table schema is embedded in the table creation statement where it can be found easily by SQL-based tools.
 
-`READ_BACKUP`: Definir essa opção para 1 tem o mesmo efeito que se o `ndb_read_backup` estivesse habilitado; permite a leitura de qualquer replica. Isso melhora significativamente o desempenho das leituras da tabela, com um custo relativamente baixo no desempenho da escrita.
+`READ_BACKUP`: Setting this option to 1 has the same effect as though [`ndb_read_backup`](mysql-cluster-options-variables.html#sysvar_ndb_read_backup) were enabled; enables reading from any replica. Doing so greatly improves the performance of reads from the table at a relatively small cost to write performance.
 
-A partir do MySQL NDB Cluster 7.5.3, você pode definir `READ_BACKUP` para uma tabela existente online (Bug #80858, Bug #23001617), usando uma instrução `ALTER TABLE` semelhante àquelas mostradas aqui:
+Starting with MySQL NDB Cluster 7.5.3, you can set `READ_BACKUP` for an existing table online (Bug
+#80858, Bug #23001617), using an `ALTER TABLE` statement similar to one of those shown here:
 
 ```sql
 ALTER TABLE ... ALGORITHM=INPLACE, COMMENT="NDB_TABLE=READ_BACKUP=1";
@@ -170,60 +171,62 @@ ALTER TABLE ... ALGORITHM=INPLACE, COMMENT="NDB_TABLE=READ_BACKUP=1";
 ALTER TABLE ... ALGORITHM=INPLACE, COMMENT="NDB_TABLE=READ_BACKUP=0";
 ```
 
-Antes do MySQL NDB Cluster 7.5.4, definir `READ_BACKUP` para 1 também fazia com que `FRAGMENT_COUNT_TYPE` fosse definido como `ONE_PER_LDM_PER_NODE_GROUP`.
+Prior to MySQL NDB Cluster 7.5.4, setting `READ_BACKUP` to 1 also caused `FRAGMENT_COUNT_TYPE` to be set to `ONE_PER_LDM_PER_NODE_GROUP`.
 
-Para obter mais informações sobre a opção `ALGORITHM` para `ALTER TABLE`, consulte Seção 21.6.12, “Operações online com ALTER TABLE no NDB Cluster”.
+For more information about the `ALGORITHM` option for `ALTER TABLE`, see [Section 21.6.12, “Online Operations with ALTER TABLE in NDB Cluster”](mysql-cluster-online-operations.html "21.6.12 Online Operations with ALTER TABLE in NDB Cluster").
 
-`PARTITION_BALANCE`: Oferece controle adicional sobre a atribuição e o posicionamento das partições. Os seguintes quatro esquemas são suportados:
+`PARTITION_BALANCE`: Provides additional control over assignment and placement of partitions. The following four schemes are supported:
 
-1. `FOR_RP_BY_NODE`: Uma partição por nó.
+1. `FOR_RP_BY_NODE`: One partition per node.
 
-   Apenas um LDM em cada nó armazena uma partição primária. Cada partição é armazenada no mesmo LDM (mesma ID) em todos os nós.
+   Only one LDM on each node stores a primary partition. Each partition is stored in the same LDM (same ID) on all nodes.
 
-2. `FOR_RA_BY_NODE`: Uma partição por grupo de nós.
+2. `FOR_RA_BY_NODE`: One partition per node group.
 
-   Cada nó armazena uma única partição, que pode ser uma replica primária ou uma replica de backup. Cada partição é armazenada no mesmo LDM em todos os nós.
+   Each node stores a single partition, which can be either a primary replica or a backup replica. Each partition is stored in the same LDM on all nodes.
 
-3. `FOR_RP_BY_LDM`: Uma partição para cada LDM em cada nó; o padrão.
+3. `FOR_RP_BY_LDM`: One partition for each LDM on each node; the default.
 
-   Esse é o mesmo comportamento do que antes do MySQL NDB Cluster 7.5.2, exceto por uma mapeia ligeiramente diferente das partições para os LDM, começando com o LDM 0 e colocando uma partição por grupo de nós, depois passando para o próximo LDM.
+   This is the same behavior as prior to MySQL NDB Cluster 7.5.2, except for a slightly different mapping of partitions to LDMs, starting with LDM 0 and placing one partition per node group, then moving on to the next LDM.
 
-   No MySQL NDB Cluster 7.5.4 e versões posteriores, essa é a configuração usada se `READ_BACKUP` estiver definido como 1. (Bug #82634, Bug #24482114)
+   In MySQL NDB Cluster 7.5.4 and later, this is the setting used if `READ_BACKUP` is set to 1. (Bug
+   #82634, Bug #24482114)
 
-4. `FOR_RA_BY_LDM`: Uma partição por LDM em cada grupo de nós.
+4. `FOR_RA_BY_LDM`: One partition per LDM in each node group.
 
-   Essas partições podem ser primárias ou de backup.
+   These partitions can be primary or backup partitions.
 
-   Antes do MySQL NDB Cluster 7.5.4, essa era a configuração usada se o `READ_BACKUP` estivesse definido como 1.
+   Prior to MySQL NDB Cluster 7.5.4, this was the setting used if `READ_BACKUP` was set to 1.
 
-5. `FOR_RA_BY_LDM_X_2`: Duas partições por LDM em cada grupo de nós.
+5. `FOR_RA_BY_LDM_X_2`: Two partitions per LDM in each node group.
 
-   Essas partições podem ser primárias ou de backup.
+   These partitions can be primary or backup partitions.
 
-   Essa configuração foi adicionada no NDB 7.5.4.
+   This setting was added in NDB 7.5.4.
 
-6. `FOR_RA_BY_LDM_X_3`: Três partições por LDM em cada grupo de nós.
+6. `FOR_RA_BY_LDM_X_3`: Three partitions per LDM in each node group.
 
-   Essas partições podem ser primárias ou de backup.
+   These partitions can be primary or backup partitions.
 
-   Essa configuração foi adicionada no NDB 7.5.4.
+   This setting was added in NDB 7.5.4.
 
-7. `FOR_RA_BY_LDM_X_4`: Quatro partições por LDM em cada grupo de nós.
+7. `FOR_RA_BY_LDM_X_4`: Four partitions per LDM in each node group.
 
-   Essas partições podem ser primárias ou de backup.
+   These partitions can be primary or backup partitions.
 
-   Essa configuração foi adicionada no NDB 7.5.4.
+   This setting was added in NDB 7.5.4.
 
-A partir da versão NDB 7.5.4, `PARTITION_BALANCE` é a interface preferida para definir o número de partições por tabela. O uso de `MAX_ROWS` para forçar o número de partições é desaconselhado a partir da versão NDB 7.5.4, continua a ser suportado na versão 7.6 do NDB Cluster para compatibilidade com versões anteriores, mas está sujeito à remoção em uma futura versão do MySQL NDB Cluster. (Bug #81759, Bug #23544301)
+Beginning with NDB 7.5.4, `PARTITION_BALANCE` is the preferred interface for setting the number of partitions per table. Using `MAX_ROWS` to force the number of partitions is deprecated as of NDB 7.5.4, continues to be supported in NDB 7.6 for backward compatibility, but is subject to removal in a future release of MySQL NDB Cluster. (Bug
+#81759, Bug #23544301)
 
-Antes do MySQL NDB Cluster 7.5.4, `PARTITION_BALANCE` era chamado de `FRAGMENT_COUNT_TYPE` e aceita como seu valor um dos seguintes (na mesma ordem que a lista mostrada acima): `ONE_PER_NODE`, `ONE_PER_NODE_GROUP`, `ONE_PER_LDM_PER_NODE` ou `ONE_PER_LDM_PER_NODE_GROUP`. (Bug #81761, Bug
-\#23547525)
+Prior to MySQL NDB Cluster 7.5.4, `PARTITION_BALANCE` was named `FRAGMENT_COUNT_TYPE`, and accepted as its value one of (in the same order as that of the listing just shown) `ONE_PER_NODE`, `ONE_PER_NODE_GROUP`, `ONE_PER_LDM_PER_NODE`, or `ONE_PER_LDM_PER_NODE_GROUP`. (Bug #81761, Bug
+#23547525)
 
-`FULLY_REPLICATED` controla se a tabela está totalmente replicada, ou seja, se cada nó de dados tem uma cópia completa da tabela. Para habilitar a replicação completa da tabela, use `FULLY_REPLICATED=1`.
+`FULLY_REPLICATED` controls whether the table is fully replicated, that is, whether each data node has a complete copy of the table. To enable full replication of the table, use `FULLY_REPLICATED=1`.
 
-Essa configuração também pode ser controlada usando a variável de sistema `ndb_fully_replicated`. Definindo-a como `ON`, a opção é ativada por padrão para todas as novas tabelas `NDB`; o padrão é `OFF`, que mantém o comportamento anterior (como no MySQL NDB Cluster 7.5.1 e versões anteriores, antes da introdução do suporte para tabelas totalmente replicadas). A variável de sistema `ndb_data_node_neighbour` também é usada para tabelas totalmente replicadas, para garantir que, quando uma tabela totalmente replicada é acessada, acessemos o nó de dados que é local deste servidor MySQL.
+This setting can also be controlled using the `ndb_fully_replicated` system variable. Setting it to `ON` enables the option by default for all new `NDB` tables; the default is `OFF`, which maintains the previous behavior (as in MySQL NDB Cluster 7.5.1 and earlier, before support for fully replicated tables was introduced). The [`ndb_data_node_neighbour`](mysql-cluster-options-variables.html#sysvar_ndb_data_node_neighbour) system variable is also used for fully replicated tables, to ensure that when a fully replicated table is accessed, we access the data node which is local to this MySQL Server.
 
-Um exemplo de uma instrução `CREATE TABLE` usando um comentário assim ao criar uma tabela `NDB` é mostrado aqui:
+An example of a `CREATE TABLE` statement using such a comment when creating an `NDB` table is shown here:
 
 ```sql
 mysql> CREATE TABLE t1 (
@@ -235,7 +238,7 @@ mysql> CREATE TABLE t1 (
 COMMENT="NDB_TABLE=READ_BACKUP=0,PARTITION_BALANCE=FOR_RP_BY_NODE";
 ```
 
-O comentário é exibido como parte do resultado do `SHOW CREATE TABLE`. O texto do comentário também está disponível ao consultar a tabela do Esquema de Informações do MySQL `TABLES`, como neste exemplo:
+The comment is displayed as part of the ouput of [`SHOW CREATE TABLE`](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement"). The text of the comment is also available from querying the MySQL Information Schema [`TABLES`](information-schema-tables-table.html "24.3.25 The INFORMATION_SCHEMA TABLES Table") table, as in this example:
 
 ```sql
 mysql> SELECT TABLE_NAME, TABLE_SCHEMA, TABLE_COMMENT
@@ -247,7 +250,7 @@ TABLE_COMMENT: NDB_TABLE=READ_BACKUP=0,PARTITION_BALANCE=FOR_RP_BY_NODE
 1 row in set (0.01 sec)
 ```
 
-Essa sintaxe de comentário também é suportada com as instruções `ALTER TABLE` para tabelas `NDB`, como mostrado aqui:
+This comment syntax is also supported with [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statements for `NDB` tables, as shown here:
 
 ```sql
 mysql> ALTER TABLE t1 COMMENT="NDB_TABLE=PARTITION_BALANCE=FOR_RA_BY_NODE";
@@ -255,7 +258,7 @@ Query OK, 0 rows affected (0.40 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 ```
 
-A partir da versão NDB 7.6.15, a coluna `TABLE_COMMENT` exibe o comentário necessário para recriar a tabela, conforme a instrução `ALTER TABLE`, da seguinte forma:
+Beginning with NDB 7.6.15, the `TABLE_COMMENT` column displays the comment that is required to re-create the table as it is following the `ALTER TABLE` statement, like this:
 
 ```sql
 mysql> SELECT TABLE_NAME, TABLE_SCHEMA, TABLE_COMMENT
@@ -279,7 +282,7 @@ mysql> SELECT TABLE_NAME, TABLE_SCHEMA, TABLE_COMMENT
 2 rows in set (0.01 sec)
 ```
 
-Tenha em mente que um comentário de tabela usado com `ALTER TABLE` substitui qualquer comentário existente que a tabela possa ter.
+Keep in mind that a table comment used with `ALTER TABLE` replaces any existing comment which the table might have.
 
 ```sql
 mysql> ALTER TABLE t1 COMMENT="NDB_TABLE=PARTITION_BALANCE=FOR_RA_BY_NODE";
@@ -297,6 +300,6 @@ mysql> SELECT TABLE_NAME, TABLE_SCHEMA, TABLE_COMMENT
 2 rows in set (0.01 sec)
 ```
 
-Antes da NDB 7.6.15, o comentário da tabela usado com `ALTER TABLE` substituía qualquer comentário existente que a tabela pudesse ter tido. Isso significava que, por exemplo, o valor `READ_BACKUP` não era transferido para o novo comentário definido pela instrução `ALTER TABLE`, e que quaisquer valores não especificados retornavam aos seus valores padrão. (BUG#30428829) Assim, não havia mais nenhuma maneira de usar o SQL para recuperar o valor previamente definido para o comentário. Para evitar que os valores dos comentários retornem aos seus valores padrão, era necessário preservar quaisquer desses valores da string de comentário existente e incluí-los no comentário passado para `ALTER TABLE`.
+Prior to NDB 7.6.15, the table comment used with `ALTER TABLE` replaced any existing comment which the table might have had. This meant that (for example) the `READ_BACKUP` value was not carried over to the new comment set by the `ALTER TABLE` statement, and that any unspecified values reverted to their defaults. (BUG#30428829) There was thus no longer any way using SQL to retrieve the value previously set for the comment. To keep comment values from reverting to their defaults, it was necessry to preserve any such values from the existing comment string and include them in the comment passed to `ALTER TABLE`.
 
-Você também pode ver o valor da opção `PARTITION_BALANCE` na saída do **ndb_desc**. **ndb_desc** também mostra se as opções `READ_BACKUP` e `FULLY_REPLICATED` estão definidas para a tabela. Consulte a descrição deste programa para obter mais informações.
+You can also see the value of the `PARTITION_BALANCE` option in the output of [**ndb_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables"). [**ndb_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables") also shows whether the `READ_BACKUP` and `FULLY_REPLICATED` options are set for the table. See the description of this program for more information.

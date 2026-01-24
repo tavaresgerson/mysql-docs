@@ -1,30 +1,30 @@
-### 24.3.30 A tabela INFORMATION_SCHEMA USER_PRIVILEGES
+### 24.3.30 The INFORMATION_SCHEMA USER_PRIVILEGES Table
 
-A tabela [`USER_PRIVILEGES`](https://pt.wikipedia.org/wiki/Tabela_de_informa%C3%A7%C3%A3o_sobre_usu%C3%A1rios_com_privilegios) fornece informações sobre privilégios globais. Ela obtém seus valores da tabela `mysql.user` do sistema.
+The [`USER_PRIVILEGES`](information-schema-user-privileges-table.html "24.3.30 The INFORMATION_SCHEMA USER_PRIVILEGES Table") table provides information about global privileges. It takes its values from the `mysql.user` system table.
 
-A tabela `USER_PRIVILEGES` tem as seguintes colunas:
+The [`USER_PRIVILEGES`](information-schema-user-privileges-table.html "24.3.30 The INFORMATION_SCHEMA USER_PRIVILEGES Table") table has these columns:
 
-- `GARANTE`
+* `GRANTEE`
 
-  O nome da conta a qual o privilégio é concedido, no formato `'user_name'@'host_name'`.
+  The name of the account to which the privilege is granted, in `'user_name'@'host_name'` format.
 
-- `TABLE_CATALOG`
+* `TABLE_CATALOG`
 
-  O nome do catálogo. Esse valor é sempre `def`.
+  The name of the catalog. This value is always `def`.
 
-- `PRIVILEGE_TYPE`
+* `PRIVILEGE_TYPE`
 
-  O privilégio concedido. O valor pode ser qualquer privilégio que possa ser concedido a nível global; veja Seção 13.7.1.4, "Declaração GRANT". Cada linha lista um único privilégio, portanto, há uma linha por privilégio global detido pelo beneficiário.
+  The privilege granted. The value can be any privilege that can be granted at the global level; see [Section 13.7.1.4, “GRANT Statement”](grant.html "13.7.1.4 GRANT Statement"). Each row lists a single privilege, so there is one row per global privilege held by the grantee.
 
-- `IS_GRANTABLE`
+* `IS_GRANTABLE`
 
-  `SIM` se o usuário tiver o privilégio `GRANT OPTION`, `NÃO` caso contrário. A saída não lista `GRANT OPTION` como uma linha separada com `PRIVILEGE_TYPE='GRANT OPTION'`.
+  `YES` if the user has the [`GRANT OPTION`](privileges-provided.html#priv_grant-option) privilege, `NO` otherwise. The output does not list [`GRANT OPTION`](privileges-provided.html#priv_grant-option) as a separate row with `PRIVILEGE_TYPE='GRANT OPTION'`.
 
-#### Notas
+#### Notes
 
-- `USER_PRIVILEGES` é uma tabela `INFORMATION_SCHEMA` não padrão.
+* [`USER_PRIVILEGES`](information-schema-user-privileges-table.html "24.3.30 The INFORMATION_SCHEMA USER_PRIVILEGES Table") is a nonstandard `INFORMATION_SCHEMA` table.
 
-As seguintes afirmações *não* são equivalentes:
+The following statements are *not* equivalent:
 
 ```sql
 SELECT ... FROM INFORMATION_SCHEMA.USER_PRIVILEGES

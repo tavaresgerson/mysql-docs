@@ -1,4 +1,4 @@
-#### 13.7.3.1 Declaração CREATE FUNCTION para funções carregáveis
+#### 13.7.3.1 CREATE FUNCTION Statement for Loadable Functions
 
 ```sql
 CREATE [AGGREGATE] FUNCTION function_name
@@ -6,20 +6,20 @@ CREATE [AGGREGATE] FUNCTION function_name
     SONAME shared_library_name
 ```
 
-Esta declaração carrega a função carregável nomeada *`function_name`*. (`CREATE FUNCTION` também é usado para criar funções armazenadas; veja Seção 13.1.16, “Instruções CREATE PROCEDURE e CREATE FUNCTION”.)
+This statement loads the loadable function named *`function_name`*. (`CREATE FUNCTION` is also used to created stored functions; see [Section 13.1.16, “CREATE PROCEDURE and CREATE FUNCTION Statements”](create-procedure.html "13.1.16 CREATE PROCEDURE and CREATE FUNCTION Statements").)
 
-Uma função carregável é uma maneira de estender o MySQL com uma nova função que funciona como uma função nativa (integrada) do MySQL, como [`ABS()`](https://pt.wikipedia.org/wiki/ABS_\(fun%C3%A7%C3%A3o_matem%C3%A1tica\)) ou [`CONCAT()`](https://pt.wikipedia.org/wiki/CONCAT_\(fun%C3%A7%C3%A3o_de_string\)). Veja Adicionar uma Função Carregável.
+A loadable function is a way to extend MySQL with a new function that works like a native (built-in) MySQL function such as [`ABS()`](mathematical-functions.html#function_abs) or [`CONCAT()`](string-functions.html#function_concat). See [Adding a Loadable Function](/doc/extending-mysql/5.7/en/adding-loadable-function.html).
 
-*`nome_da_função`* é o nome que deve ser usado nas instruções SQL para invocar a função. A cláusula `RETURNS` indica o tipo do valor de retorno da função. `DECIMAL` é um valor válido após `RETURNS`, mas atualmente as funções `DECIMAL` retornam valores de string e devem ser escritas como funções `STRING`.
+*`function_name`* is the name that should be used in SQL statements to invoke the function. The `RETURNS` clause indicates the type of the function's return value. `DECIMAL` is a legal value after `RETURNS`, but currently `DECIMAL` functions return string values and should be written like `STRING` functions.
 
-A palavra-chave `AGGREGATE`, se fornecida, indica que a função é uma função agregada (grupo). Uma função agregada funciona exatamente como uma função agregada nativa do MySQL, como `SUM()` ou `COUNT()`.
+The `AGGREGATE` keyword, if given, signifies that the function is an aggregate (group) function. An aggregate function works exactly like a native MySQL aggregate function such as [`SUM()`](aggregate-functions.html#function_sum) or [`COUNT()`](aggregate-functions.html#function_count).
 
-*`shared_library_name`* é o nome base do arquivo de biblioteca compartilhada que contém o código que implementa a função. O arquivo deve estar localizado no diretório do plugin. Esse diretório é fornecido pelo valor da variável de sistema `plugin_dir`. Para mais informações, consulte a Seção 5.6.1, “Instalando e Desinstalando Funções Carregáveis”.
+*`shared_library_name`* is the base name of the shared library file containing the code that implements the function. The file must be located in the plugin directory. This directory is given by the value of the [`plugin_dir`](server-system-variables.html#sysvar_plugin_dir) system variable. For more information, see [Section 5.6.1, “Installing and Uninstalling Loadable Functions”](function-loading.html "5.6.1 Installing and Uninstalling Loadable Functions").
 
-A função `CREATE FUNCTION` requer o privilégio `INSERT` para o banco de dados do sistema `mysql`, pois adiciona uma linha à tabela do sistema `mysql.func` para registrar a função.
+[`CREATE FUNCTION`](create-function-loadable.html "13.7.3.1 CREATE FUNCTION Statement for Loadable Functions") requires the [`INSERT`](privileges-provided.html#priv_insert) privilege for the `mysql` system database because it adds a row to the `mysql.func` system table to register the function.
 
-Durante a sequência normal de inicialização, o servidor carrega as funções registradas na tabela `mysql.func`. Se o servidor for iniciado com a opção `--skip-grant-tables`, as funções registradas na tabela não são carregadas e ficam indisponíveis.
+During the normal startup sequence, the server loads functions registered in the `mysql.func` table. If the server is started with the [`--skip-grant-tables`](server-options.html#option_mysqld_skip-grant-tables) option, functions registered in the table are not loaded and are unavailable.
 
-Nota
+Note
 
-Para atualizar a biblioteca compartilhada associada a uma função carregável, execute uma declaração de `DROP FUNCTION`, atualize a biblioteca compartilhada e, em seguida, execute uma declaração de `CREATE FUNCTION`. Se você atualizar a biblioteca compartilhada primeiro e, em seguida, usar `DROP FUNCTION`, o servidor pode ser desligado inesperadamente.
+To upgrade the shared library associated with a loadable function, issue a [`DROP FUNCTION`](drop-function-loadable.html "13.7.3.2 DROP FUNCTION Statement for Loadable Functions") statement, upgrade the shared library, and then issue a [`CREATE FUNCTION`](create-function-loadable.html "13.7.3.1 CREATE FUNCTION Statement for Loadable Functions") statement. If you upgrade the shared library first and then use [`DROP FUNCTION`](drop-function-loadable.html "13.7.3.2 DROP FUNCTION Statement for Loadable Functions"), the server may unexpectedly shut down.

@@ -1,4 +1,4 @@
-### 13.2.6 Declaração de carregamento de dados
+### 13.2.6 LOAD DATA Statement
 
 ```sql
 LOAD DATA
@@ -24,169 +24,164 @@ LOAD DATA
         [, col_name={expr | DEFAULT}] ...]
 ```
 
-A instrução `LOAD DATA` lê linhas de um arquivo de texto em uma tabela em alta velocidade. O arquivo pode ser lido do host do servidor ou do host do cliente, dependendo se o modificador `LOCAL` é fornecido. `LOCAL` também afeta a interpretação dos dados e o tratamento de erros.
+The [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") statement reads rows from a text file into a table at a very high speed. The file can be read from the server host or the client host, depending on whether the `LOCAL` modifier is given. `LOCAL` also affects data interpretation and error handling.
 
-`LOAD DATA` é o complemento de `SELECT ... INTO OUTFILE`. (Veja Seção 13.2.9.1, “Instrução SELECT ... INTO”.) Para escrever dados de uma tabela em um arquivo, use `SELECT ... INTO OUTFILE`. Para ler o arquivo de volta para uma tabela, use `LOAD DATA`. A sintaxe das cláusulas `FIELDS` e `LINES` é a mesma para ambas as instruções.
+[`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") is the complement of [`SELECT ... INTO OUTFILE`](select-into.html "13.2.9.1 SELECT ... INTO Statement"). (See [Section 13.2.9.1, “SELECT ... INTO Statement”](select-into.html "13.2.9.1 SELECT ... INTO Statement").) To write data from a table to a file, use [`SELECT ... INTO OUTFILE`](select-into.html "13.2.9.1 SELECT ... INTO Statement"). To read the file back into a table, use [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement"). The syntax of the `FIELDS` and `LINES` clauses is the same for both statements.
 
-O utilitário **mysqlimport** oferece outra maneira de carregar arquivos de dados; ele funciona enviando uma instrução `LOAD DATA` para o servidor. Veja Seção 4.5.5, “mysqlimport — Um Programa de Importação de Dados”.
+The [**mysqlimport**](mysqlimport.html "4.5.5 mysqlimport — A Data Import Program") utility provides another way to load data files; it operates by sending a [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") statement to the server. See [Section 4.5.5, “mysqlimport — A Data Import Program”](mysqlimport.html "4.5.5 mysqlimport — A Data Import Program").
 
-Para obter informações sobre a eficiência de `INSERT` em comparação com `LOAD DATA` e sobre a aceleração de `LOAD DATA`, consulte Seção 8.2.4.1, “Otimização de Instruções INSERT”.
+For information about the efficiency of [`INSERT`](insert.html "13.2.5 INSERT Statement") versus [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") and speeding up [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement"), see [Section 8.2.4.1, “Optimizing INSERT Statements”](insert-optimization.html "8.2.4.1 Optimizing INSERT Statements").
 
-- Operação LOCAL versus OPERAÇÃO NÃO LOCAL
-- Conjunto de caracteres do arquivo de entrada
-- Localização do arquivo de entrada
-- Requisitos de segurança
-- Tratamento de Erros e Chave Duplicada
-- Gerenciamento de índice
-- Manipulação de Campo e Linha
-- Especificação da Lista de Colunas
-- Pré-processamento de entrada
-- Atribuição de valor de coluna
-- Suporte para tabelas particionadas
-- Considerações sobre Concorrência
-- Informações sobre o resultado da declaração
-- Considerações sobre replicação
-- Tópicos Diversos
+* [Non-LOCAL Versus LOCAL Operation](load-data.html#load-data-local "Non-LOCAL Versus LOCAL Operation")
+* [Input File Character Set](load-data.html#load-data-character-set "Input File Character Set")
+* [Input File Location](load-data.html#load-data-file-location "Input File Location")
+* [Security Requirements](load-data.html#load-data-security-requirements "Security Requirements")
+* [Duplicate-Key and Error Handling](load-data.html#load-data-error-handling "Duplicate-Key and Error Handling")
+* [Index Handling](load-data.html#load-data-index-handling "Index Handling")
+* [Field and Line Handling](load-data.html#load-data-field-line-handling "Field and Line Handling")
+* [Column List Specification](load-data.html#load-data-column-list "Column List Specification")
+* [Input Preprocessing](load-data.html#load-data-input-preprocessing "Input Preprocessing")
+* [Column Value Assignment](load-data.html#load-data-column-assignments "Column Value Assignment")
+* [Partitioned Table Support](load-data.html#load-data-partitioning-support "Partitioned Table Support")
+* [Concurrency Considerations](load-data.html#load-data-concurrency "Concurrency Considerations")
+* [Statement Result Information](load-data.html#load-data-statement-result-information "Statement Result Information")
+* [Replication Considerations](load-data.html#load-data-replication "Replication Considerations")
+* [Miscellaneous Topics](load-data.html#load-data-miscellaneous "Miscellaneous Topics")
 
-#### Operação Não LOCAL versus OPERAÇÃO LOCAL
+#### Non-LOCAL Versus LOCAL Operation
 
-O modificador `LOCAL` afeta esses aspectos da instrução `LOAD DATA` em comparação com a operação sem `LOCAL`:
+The `LOCAL` modifier affects these aspects of [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement"), compared to non-`LOCAL` operation:
 
-- Ele altera a localização esperada do arquivo de entrada; veja Localização do arquivo de entrada.
+* It changes the expected location of the input file; see [Input File Location](load-data.html#load-data-file-location "Input File Location").
 
-- Ele altera os requisitos de segurança da declaração; veja Requisitos de Segurança.
+* It changes the statement security requirements; see [Security Requirements](load-data.html#load-data-security-requirements "Security Requirements").
 
-- A menos que `REPLACE` também seja especificado, `LOCAL` tem o mesmo efeito que o modificador `IGNORE` na interpretação do conteúdo do arquivo de entrada e no tratamento de erros; veja Tratamento de Erros e Duplicatas de Chave e Atribuição de Valor de Coluna.
+* Unless `REPLACE` is also specified, `LOCAL` has the same effect as the `IGNORE` modifier on the interpretation of input file contents and error handling; see [Duplicate-Key and Error Handling](load-data.html#load-data-error-handling "Duplicate-Key and Error Handling"), and [Column Value Assignment](load-data.html#load-data-column-assignments "Column Value Assignment").
 
-`LOCAL` só funciona se o servidor e o cliente estiverem configurados para permitir isso. Por exemplo, se o **mysqld** foi iniciado com a variável de sistema `**local_infile** desativada, `LOCAL\` produz um erro. Veja Seção 6.1.6, “Considerações de Segurança para LOAD DATA LOCAL”.
+`LOCAL` works only if the server and your client both have been configured to permit it. For example, if [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") was started with the [`local_infile`](server-system-variables.html#sysvar_local_infile) system variable disabled, `LOCAL` produces an error. See [Section 6.1.6, “Security Considerations for LOAD DATA LOCAL”](load-data-local-security.html "6.1.6 Security Considerations for LOAD DATA LOCAL").
 
-#### Conjunto de caracteres do arquivo de entrada
+#### Input File Character Set
 
-O nome do arquivo deve ser fornecido como uma string literal. No Windows, especifique barras invertidas em nomes de caminho como barras inclinadas ou barras invertidas duplas. O servidor interpreta o nome do arquivo usando o conjunto de caracteres indicado pela variável de sistema `character_set_filesystem`.
+The file name must be given as a literal string. On Windows, specify backslashes in path names as forward slashes or doubled backslashes. The server interprets the file name using the character set indicated by the [`character_set_filesystem`](server-system-variables.html#sysvar_character_set_filesystem) system variable.
 
-Por padrão, o servidor interpreta o conteúdo do arquivo usando o conjunto de caracteres indicado pela variável de sistema `character_set_database`. Se o conteúdo do arquivo usar um conjunto de caracteres diferente desse padrão, é uma boa ideia especificar esse conjunto de caracteres usando a cláusula `CHARACTER SET`. Um conjunto de caracteres de `binary` especifica “sem conversão”.
+By default, the server interprets the file contents using the character set indicated by the [`character_set_database`](server-system-variables.html#sysvar_character_set_database) system variable. If the file contents use a character set different from this default, it is a good idea to specify that character set by using the `CHARACTER SET` clause. A character set of `binary` specifies “no conversion.”
 
-As opções `SET NAMES` e a configuração de `character_set_client` não afetam a interpretação do conteúdo do arquivo.
+[`SET NAMES`](set-names.html "13.7.4.3 SET NAMES Statement") and the setting of [`character_set_client`](server-system-variables.html#sysvar_character_set_client) do not affect interpretation of file contents.
 
-`LOAD DATA` interpreta todos os campos do arquivo como tendo o mesmo conjunto de caracteres, independentemente dos tipos de dados das colunas para as quais os valores dos campos são carregados. Para uma interpretação adequada do arquivo, você deve garantir que ele foi escrito com o conjunto de caracteres correto. Por exemplo, se você escrever um arquivo de dados com **mysqldump -T** ou emitir uma declaração `SELECT ... INTO OUTFILE` em **mysql**, certifique-se de usar a opção `--default-character-set` para escrever a saída no conjunto de caracteres a ser usado quando o arquivo for carregado com `LOAD DATA`.
+[`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") interprets all fields in the file as having the same character set, regardless of the data types of the columns into which field values are loaded. For proper interpretation of the file, you must ensure that it was written with the correct character set. For example, if you write a data file with [**mysqldump -T**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") or by issuing a [`SELECT ... INTO OUTFILE`](select-into.html "13.2.9.1 SELECT ... INTO Statement") statement in [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client"), be sure to use a [`--default-character-set`](mysql-command-options.html#option_mysql_default-character-set) option to write output in the character set to be used when the file is loaded with [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement").
 
-Nota
+Note
 
-Não é possível carregar arquivos de dados que utilizam o conjunto de caracteres `ucs2`, `utf16`, `utf16le` ou `utf32`.
+It is not possible to load data files that use the `ucs2`, `utf16`, `utf16le`, or `utf32` character set.
 
-#### Localização do arquivo de entrada
+#### Input File Location
 
-Essas regras determinam a localização do arquivo de entrada `LOAD DATA`:
+These rules determine the [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") input file location:
 
-- Se `LOCAL` não for especificado, o arquivo deve estar localizado no host do servidor. O servidor lê o arquivo diretamente, localizando-o da seguinte forma:
+* If `LOCAL` is not specified, the file must be located on the server host. The server reads the file directly, locating it as follows:
 
-  - Se o nome do arquivo for um nome de caminho absoluto, o servidor o usa conforme fornecido.
+  + If the file name is an absolute path name, the server uses it as given.
 
-  - Se o nome do arquivo for um nome de caminho relativo com componentes iniciais, o servidor procura o arquivo em relação ao diretório de dados.
+  + If the file name is a relative path name with leading components, the server looks for the file relative to its data directory.
 
-  - Se o nome do arquivo não tiver componentes no início, o servidor procura o arquivo no diretório do banco de dados padrão.
+  + If the file name has no leading components, the server looks for the file in the database directory of the default database.
 
-- Se `LOCAL` for especificado, o arquivo deve estar localizado no host do cliente. O programa cliente lê o arquivo, localizando-o da seguinte forma:
+* If `LOCAL` is specified, the file must be located on the client host. The client program reads the file, locating it as follows:
 
-  - Se o nome do arquivo for um nome de caminho absoluto, o programa cliente o usa conforme fornecido.
+  + If the file name is an absolute path name, the client program uses it as given.
 
-  - Se o nome do arquivo for um nome de caminho relativo, o programa cliente procura o arquivo em relação ao diretório de invocação.
+  + If the file name is a relative path name, the client program looks for the file relative to its invocation directory.
 
-  Quando o `LOCAL` é usado, o programa cliente lê o arquivo e envia seu conteúdo para o servidor. O servidor cria uma cópia do arquivo no diretório onde armazena arquivos temporários. Veja Seção B.3.3.5, “Onde o MySQL Armazena Arquivos Temporários”. A falta de espaço suficiente para a cópia neste diretório pode fazer com que a instrução `LOAD DATA LOCAL` falhe.
+  When `LOCAL` is used, the client program reads the file and sends its contents to the server. The server creates a copy of the file in the directory where it stores temporary files. See [Section B.3.3.5, “Where MySQL Stores Temporary Files”](temporary-files.html "B.3.3.5 Where MySQL Stores Temporary Files"). Lack of sufficient space for the copy in this directory can cause the [`LOAD DATA LOCAL`](load-data.html "13.2.6 LOAD DATA Statement") statement to fail.
 
-As regras que não são `LOCAL` significam que o servidor lê um arquivo chamado `./myfile.txt` em relação ao seu diretório de dados, enquanto lê um arquivo chamado `myfile.txt` do diretório de banco de dados do banco de dados padrão. Por exemplo, se a seguinte instrução `LOAD DATA` for executada enquanto `db1` é o banco de dados padrão, o servidor lê o arquivo `data.txt` do diretório de banco de dados para `db1`, mesmo que a instrução carregue explicitamente o arquivo em uma tabela no banco de dados `db2`:
+The non-`LOCAL` rules mean that the server reads a file named as `./myfile.txt` relative to its data directory, whereas it reads a file named as `myfile.txt` from the database directory of the default database. For example, if the following [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") statement is executed while `db1` is the default database, the server reads the file `data.txt` from the database directory for `db1`, even though the statement explicitly loads the file into a table in the `db2` database:
 
 ```sql
 LOAD DATA INFILE 'data.txt' INTO TABLE db2.my_table;
 ```
 
-#### Requisitos de segurança
+#### Security Requirements
 
-Para uma operação de carregamento que não seja `LOCAL`, o servidor lê um arquivo de texto localizado no host do servidor, portanto, esses requisitos de segurança devem ser atendidos:
+For a non-`LOCAL` load operation, the server reads a text file located on the server host, so these security requirements must be satisified:
 
-- Você deve ter o privilégio `FILE`. Veja Seção 6.2.2, “Privilégios Fornecidos pelo MySQL”.
+* You must have the [`FILE`](privileges-provided.html#priv_file) privilege. See [Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL").
 
-- A operação está sujeita à configuração da variável de sistema `secure_file_priv`:
+* The operation is subject to the [`secure_file_priv`](server-system-variables.html#sysvar_secure_file_priv) system variable setting:
 
-  - Se o valor da variável for um nome de diretório não vazio, o arquivo deve estar localizado nesse diretório.
+  + If the variable value is a nonempty directory name, the file must be located in that directory.
 
-  - Se o valor da variável estiver vazio (o que é inseguro), o arquivo só precisa ser legível pelo servidor.
+  + If the variable value is empty (which is insecure), the file need only be readable by the server.
 
-Para uma operação de carregamento `LOCAL`, o programa cliente lê um arquivo de texto localizado no host do cliente. Como o conteúdo do arquivo é enviado pela conexão do cliente para o servidor, usar `LOCAL` é um pouco mais lento do que quando o servidor acessa o arquivo diretamente. Por outro lado, você não precisa do privilégio `FILE` e o arquivo pode estar localizado em qualquer diretório que o programa cliente possa acessar.
+For a `LOCAL` load operation, the client program reads a text file located on the client host. Because the file contents are sent over the connection by the client to the server, using `LOCAL` is a bit slower than when the server accesses the file directly. On the other hand, you do not need the [`FILE`](privileges-provided.html#priv_file) privilege, and the file can be located in any directory the client program can access.
 
-#### Tratamento de chaves duplicadas e erros
+#### Duplicate-Key and Error Handling
 
-Os modificadores `REPLACE` e `IGNORE` controlam o tratamento de novas (entrada) linhas que duplicam linhas de tabela existentes com valores de chave única (`PRIMARY KEY` ou valores de índice `UNIQUE`):
+The `REPLACE` and `IGNORE` modifiers control handling of new (input) rows that duplicate existing table rows on unique key values (`PRIMARY KEY` or `UNIQUE` index values):
 
-- Com `REPLACE`, novas linhas que têm o mesmo valor que um valor de chave única em uma linha existente substituem a linha existente. Veja Seção 13.2.8, “Instrução REPLACE”.
+* With `REPLACE`, new rows that have the same value as a unique key value in an existing row replace the existing row. See [Section 13.2.8, “REPLACE Statement”](replace.html "13.2.8 REPLACE Statement").
 
-- Com `IGNORE`, novas linhas que duplicam uma linha existente com um valor de chave único são descartadas. Para mais informações, consulte O efeito de IGNORE na execução da declaração.
+* With `IGNORE`, new rows that duplicate an existing row on a unique key value are discarded. For more information, see [The Effect of IGNORE on Statement Execution](sql-mode.html#ignore-effect-on-execution "The Effect of IGNORE on Statement Execution").
 
-A menos que `REPLACE` também seja especificado, o modificador `LOCAL` tem o mesmo efeito que `IGNORE`. Isso ocorre porque o servidor não tem como interromper a transmissão do arquivo durante a operação.
+Unless `REPLACE` is also specified, the `LOCAL` modifier has the same effect as `IGNORE`. This occurs because the server has no way to stop transmission of the file in the middle of the operation.
 
-Se nenhum dos parâmetros `REPLACE`, `IGNORE` ou `LOCAL` for especificado, ocorrerá um erro quando um valor de chave duplicado for encontrado, e o restante do arquivo de texto será ignorado.
+If none of `REPLACE`, `IGNORE`, or `LOCAL` is specified, an error occurs when a duplicate key value is found, and the rest of the text file is ignored.
 
-Além de afetar o tratamento de chaves duplicadas, conforme descrito acima, `IGNORE` e `LOCAL` também afetam o tratamento de erros:
+In addition to affecting duplicate-key handling as just described, `IGNORE` and `LOCAL` also affect error handling:
 
-- Quando não são especificados `IGNORE` ou `LOCAL`, os erros de interpretação de dados encerram a operação.
+* When neither `IGNORE` nor `LOCAL` is specified, data-interpretation errors terminate the operation.
 
-- Quando `IGNORE`—ou `LOCAL` sem `REPLACE`—é especificado, erros de interpretação de dados tornam-se avisos e a operação de carregamento continua, mesmo que o modo SQL seja restritivo. Para exemplos, consulte Atribuição de Valor de Coluna.
+* When `IGNORE`—or `LOCAL` without `REPLACE`—is specified, data interpretation errors become warnings and the load operation continues, even if the SQL mode is restrictive. For examples, see [Column Value Assignment](load-data.html#load-data-column-assignments "Column Value Assignment").
 
-#### Gerenciamento de índice
+#### Index Handling
 
-Para ignorar as restrições de chave estrangeira durante a operação de carregamento, execute uma instrução `SET foreign_key_checks = 0` antes de executar `LOAD DATA`.
+To ignore foreign key constraints during the load operation, execute a `SET foreign_key_checks = 0` statement before executing [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement").
 
-Se você usar `LOAD DATA` em uma tabela `MyISAM` vazia, todos os índices não únicos são criados em um lote separado (como no caso de `REPAIR TABLE`). Normalmente, isso torna `LOAD DATA` muito mais rápido quando você tem muitos índices. Em alguns casos extremos, você pode criar os índices ainda mais rápido, desabilitando-os com `ALTER TABLE ... DISABLE KEYS` antes de carregar o arquivo na tabela e recriar os índices com `ALTER TABLE ... ENABLE KEYS` após carregar o arquivo. Veja Seção 8.2.4.1, “Otimizando Instruções INSERT”.
+If you use [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") on an empty `MyISAM` table, all nonunique indexes are created in a separate batch (as for [`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement")). Normally, this makes [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") much faster when you have many indexes. In some extreme cases, you can create the indexes even faster by turning them off with [`ALTER TABLE ... DISABLE KEYS`](alter-table.html "13.1.8 ALTER TABLE Statement") before loading the file into the table and re-creating the indexes with [`ALTER TABLE ... ENABLE KEYS`](alter-table.html "13.1.8 ALTER TABLE Statement") after loading the file. See [Section 8.2.4.1, “Optimizing INSERT Statements”](insert-optimization.html "8.2.4.1 Optimizing INSERT Statements").
 
-#### Manipulação de campo e linha
+#### Field and Line Handling
 
-Tanto para as instruções `LOAD DATA` quanto `SELECT ... INTO OUTFILE`, a sintaxe das cláusulas `FIELDS` e `LINES` é a mesma. Ambas as cláusulas são opcionais, mas `FIELDS` deve preceder `LINES` se ambas forem especificadas.
+For both the [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") and [`SELECT ... INTO OUTFILE`](select-into.html "13.2.9.1 SELECT ... INTO Statement") statements, the syntax of the `FIELDS` and `LINES` clauses is the same. Both clauses are optional, but `FIELDS` must precede `LINES` if both are specified.
 
-Se você especificar uma cláusula `FIELDS`, cada uma de suas subcláusulas (`TERMINATED BY`, `[OPTIONALLY] ENCLOSED BY` e `ESCAPED BY`) também é opcional, exceto que você deve especificar pelo menos uma delas. Os argumentos dessas cláusulas podem conter apenas caracteres ASCII.
+If you specify a `FIELDS` clause, each of its subclauses (`TERMINATED BY`, `[OPTIONALLY] ENCLOSED BY`, and `ESCAPED BY`) is also optional, except that you must specify at least one of them. Arguments to these clauses are permitted to contain only ASCII characters.
 
-Se você não especificar nenhuma cláusula `FIELDS` ou `LINES`, os valores padrão serão os mesmos se você tivesse escrito o seguinte:
+If you specify no `FIELDS` or `LINES` clause, the defaults are the same as if you had written this:
 
 ```sql
 FIELDS TERMINATED BY '\t' ENCLOSED BY '' ESCAPED BY '\\'
 LINES TERMINATED BY '\n' STARTING BY ''
 ```
 
-O backslash é o caractere de escape do MySQL dentro das strings nas instruções SQL. Assim, para especificar um backslash literal, você deve especificar dois backslashes para que o valor seja interpretado como um único backslash. As sequências de escape `'\t'` e `'\n'` especificam caracteres de tabulação e nova linha, respectivamente.
+Backslash is the MySQL escape character within strings in SQL statements. Thus, to specify a literal backslash, you must specify two backslashes for the value to be interpreted as a single backslash. The escape sequences `'\t'` and `'\n'` specify tab and newline characters, respectively.
 
-Em outras palavras, os defeitos fazem com que `LOAD DATA` aja da seguinte maneira ao ler a entrada:
+In other words, the defaults cause [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") to act as follows when reading input:
 
-- Procure os limites das linhas em novas linhas.
+* Look for line boundaries at newlines.
+* Do not skip any line prefix.
+* Break lines into fields at tabs.
+* Do not expect fields to be enclosed within any quoting characters.
 
-- Não ignore nenhum prefixo de linha.
+* Interpret characters preceded by the escape character `\` as escape sequences. For example, `\t`, `\n`, and `\\` signify tab, newline, and backslash, respectively. See the discussion of `FIELDS ESCAPED BY` later for the full list of escape sequences.
 
-- Divida as linhas em campos em guias.
+Conversely, the defaults cause [`SELECT ... INTO OUTFILE`](select-into.html "13.2.9.1 SELECT ... INTO Statement") to act as follows when writing output:
 
-- Não espere que os campos estejam dentro de quaisquer caracteres de citação.
+* Write tabs between fields.
+* Do not enclose fields within any quoting characters.
+* Use `\` to escape instances of tab, newline, or `\` that occur within field values.
 
-- Interprete caracteres precedidos pelo caractere de escape `\` como sequências de escape. Por exemplo, `\t`, `\n` e `\\` significam tabulação, nova linha e barra invertida, respectivamente. Consulte a discussão sobre `FIELDS ESCAPED BY` mais adiante para obter a lista completa das sequências de escape.
+* Write newlines at the ends of lines.
 
-Por outro lado, os defeitos fazem com que `SELECT ... INTO OUTFILE` funcione da seguinte maneira ao escrever a saída:
+Note
 
-- Escreva separadores de tabulação entre os campos.
+For a text file generated on a Windows system, proper file reading might require `LINES TERMINATED BY '\r\n'` because Windows programs typically use two characters as a line terminator. Some programs, such as **WordPad**, might use `\r` as a line terminator when writing files. To read such files, use `LINES TERMINATED BY '\r'`.
 
-- Não inclua campos dentro de quaisquer caracteres de citação.
-
-- Use `\` para escapar de instâncias de tabulação, nova linha ou `\` que ocorrem dentro dos valores do campo.
-
-- Escreva novas linhas no final das linhas.
-
-Nota
-
-Para um arquivo de texto gerado em um sistema Windows, a leitura adequada do arquivo pode exigir `LINHAS TERMINADAS POR '\r\n'`, pois os programas do Windows geralmente usam dois caracteres como finalizador de linha. Alguns programas, como o **WordPad**, podem usar `\r` como finalizador de linha ao gravar arquivos. Para ler esses arquivos, use `LINHAS TERMINADAS POR '\r'`.
-
-Se todas as linhas de entrada tiverem um prefixo comum que você deseja ignorar, você pode usar `LINHAS COMEÇANDO COM 'prefix_string'` para ignorar o prefixo *e qualquer coisa antes dele*. Se uma linha não incluir o prefixo, toda a linha é ignorada. Suponha que você emita a seguinte declaração:
+If all the input lines have a common prefix that you want to ignore, you can use `LINES STARTING BY 'prefix_string'` to skip the prefix *and anything before it*. If a line does not include the prefix, the entire line is skipped. Suppose that you issue the following statement:
 
 ```sql
 LOAD DATA INFILE '/tmp/test.txt' INTO TABLE test
   FIELDS TERMINATED BY ','  LINES STARTING BY 'xxx';
 ```
 
-Se o arquivo de dados tiver a seguinte aparência:
+If the data file looks like this:
 
 ```sql
 xxx"abc",1
@@ -194,15 +189,15 @@ something xxx"def",2
 "ghi",3
 ```
 
-As linhas resultantes são `("abc",1)` e `("def",2)`. A terceira linha do arquivo é ignorada porque não contém o prefixo.
+The resulting rows are `("abc",1)` and `("def",2)`. The third row in the file is skipped because it does not contain the prefix.
 
-A cláusula `IGNORE número LINES` pode ser usada para ignorar linhas no início do arquivo. Por exemplo, você pode usar `IGNORE 1 LINES` para pular uma linha de cabeçalho inicial que contém os nomes das colunas:
+The `IGNORE number LINES` clause can be used to ignore lines at the start of the file. For example, you can use `IGNORE 1 LINES` to skip an initial header line containing column names:
 
 ```sql
 LOAD DATA INFILE '/tmp/test.txt' INTO TABLE test IGNORE 1 LINES;
 ```
 
-Quando você usa `SELECT ... INTO OUTFILE` em conjunto com `LOAD DATA` para escrever dados de um banco de dados em um arquivo e, em seguida, ler o arquivo de volta para o banco de dados mais tarde, as opções de manipulação de campos e linhas para ambas as instruções devem corresponder. Caso contrário, o `LOAD DATA` não interpreta corretamente o conteúdo do arquivo. Suponha que você use `SELECT ... INTO OUTFILE` para escrever um arquivo com campos delimitados por vírgulas:
+When you use [`SELECT ... INTO OUTFILE`](select-into.html "13.2.9.1 SELECT ... INTO Statement") in tandem with [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") to write data from a database into a file and then read the file back into the database later, the field- and line-handling options for both statements must match. Otherwise, [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") does not interpret the contents of the file properly. Suppose that you use [`SELECT ... INTO OUTFILE`](select-into.html "13.2.9.1 SELECT ... INTO Statement") to write a file with fields delimited by commas:
 
 ```sql
 SELECT * INTO OUTFILE 'data.txt'
@@ -210,23 +205,23 @@ SELECT * INTO OUTFILE 'data.txt'
   FROM table2;
 ```
 
-Para ler o arquivo separado por vírgula, a declaração correta é:
+To read the comma-delimited file, the correct statement is:
 
 ```sql
 LOAD DATA INFILE 'data.txt' INTO TABLE table2
   FIELDS TERMINATED BY ',';
 ```
 
-Se, em vez disso, você tentasse ler o arquivo com a declaração mostrada a seguir, isso não funcionaria, pois instrui o `LOAD DATA` a procurar tabulações entre campos:
+If instead you tried to read the file with the statement shown following, it would not work because it instructs [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") to look for tabs between fields:
 
 ```sql
 LOAD DATA INFILE 'data.txt' INTO TABLE table2
   FIELDS TERMINATED BY '\t';
 ```
 
-O resultado provável é que cada linha de entrada seria interpretada como um único campo.
+The likely result is that each input line would be interpreted as a single field.
 
-`LOAD DATA` pode ser usado para ler arquivos obtidos de fontes externas. Por exemplo, muitos programas podem exportar dados no formato de valores separados por vírgula (CSV), de modo que as linhas tenham campos separados por vírgulas e encerrados entre aspas duplas, com uma linha inicial de nomes de colunas. Se as linhas desse arquivo forem terminadas por pares de retorno de carro/nova linha, a declaração mostrada aqui ilustra as opções de manipulação de campos e linhas que você usaria para carregar o arquivo:
+[`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") can be used to read files obtained from external sources. For example, many programs can export data in comma-separated values (CSV) format, such that lines have fields separated by commas and enclosed within double quotation marks, with an initial line of column names. If the lines in such a file are terminated by carriage return/newline pairs, the statement shown here illustrates the field- and line-handling options you would use to load the file:
 
 ```sql
 LOAD DATA INFILE 'data.txt' INTO TABLE tbl_name
@@ -235,11 +230,11 @@ LOAD DATA INFILE 'data.txt' INTO TABLE tbl_name
   IGNORE 1 LINES;
 ```
 
-Se os valores de entrada não estiverem necessariamente entre aspas, use `OPÇÕES` antes da opção `ENCLOSED BY`.
+If the input values are not necessarily enclosed within quotation marks, use `OPTIONALLY` before the `ENCLOSED BY` option.
 
-Qualquer uma das opções de manipulação de campos ou linhas pode especificar uma string vazia (`''`). Se não for vazia, os valores `FIELDS [OPÇÕES] ENCLOSED BY` e `FIELDS ESCAPED BY` devem ser um único caractere. Os valores `FIELDS TERMINATED BY`, `LINES STARTING BY` e `LINES TERMINATED BY` podem ser mais de um caractere. Por exemplo, para escrever linhas terminadas por pares de retorno de carro/reinício de linha, ou para ler um arquivo contendo tais linhas, especifique uma cláusula `LINES TERMINATED BY '\r\n'`.
+Any of the field- or line-handling options can specify an empty string (`''`). If not empty, the `FIELDS [OPTIONALLY] ENCLOSED BY` and `FIELDS ESCAPED BY` values must be a single character. The `FIELDS TERMINATED BY`, `LINES STARTING BY`, and `LINES TERMINATED BY` values can be more than one character. For example, to write lines that are terminated by carriage return/linefeed pairs, or to read a file containing such lines, specify a `LINES TERMINATED BY '\r\n'` clause.
 
-Para ler um arquivo contendo piadas separadas por linhas que consistem em `%%`, você pode fazer isso
+To read a file containing jokes that are separated by lines consisting of `%%`, you can do this
 
 ```sql
 CREATE TABLE jokes
@@ -250,7 +245,7 @@ LOAD DATA INFILE '/tmp/jokes.txt' INTO TABLE jokes
   LINES TERMINATED BY '\n%%\n' (joke);
 ```
 
-`FIELDS [OPÇÕES] ENCASADOS POR` controla a citação de campos. Para saída (`SELECT ... INTO OUTFILE`), se você omitir a palavra `OPÇÕES`, todos os campos são enquadrados pelo caractere `ENCASADOS POR`. Um exemplo de tal saída (usando uma vírgula como delimitador de campo) é mostrado aqui:
+`FIELDS [OPTIONALLY] ENCLOSED BY` controls quoting of fields. For output ([`SELECT ... INTO OUTFILE`](select-into.html "13.2.9.1 SELECT ... INTO Statement")), if you omit the word `OPTIONALLY`, all fields are enclosed by the `ENCLOSED BY` character. An example of such output (using a comma as the field delimiter) is shown here:
 
 ```sql
 "1","a string","100.20"
@@ -259,7 +254,7 @@ LOAD DATA INFILE '/tmp/jokes.txt' INTO TABLE jokes
 "4","a string containing a \", quote and comma","102.20"
 ```
 
-Se você especificar `OPTIONALLY`, o caractere `ENCLOSED BY` é usado apenas para encerrar valores de colunas que têm um tipo de dados de string (como `CHAR`, `BINARY`, `TEXT` ou `ENUM`):
+If you specify `OPTIONALLY`, the `ENCLOSED BY` character is used only to enclose values from columns that have a string data type (such as [`CHAR`](char.html "11.3.2 The CHAR and VARCHAR Types"), [`BINARY`](binary-varbinary.html "11.3.3 The BINARY and VARBINARY Types"), [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types"), or [`ENUM`](enum.html "11.3.5 The ENUM Type")):
 
 ```sql
 1,"a string",100.20
@@ -268,7 +263,7 @@ Se você especificar `OPTIONALLY`, o caractere `ENCLOSED BY` é usado apenas par
 4,"a string containing a \", quote and comma",102.20
 ```
 
-Ocorrência do caractere `ENCLOSED BY` dentro de um valor de campo é escapado prefixando-o com o caractere `ESCAPED BY`. Além disso, se você especificar um valor `ESCAPED BY` vazio, é possível gerar inadvertidamente uma saída que não pode ser lida corretamente pelo `LOAD DATA`. Por exemplo, a saída anterior mostrada anteriormente apareceria da seguinte forma se o caractere de escape fosse vazio. Observe que o segundo campo na quarta linha contém uma vírgula após a citação, que (erradamente) parece terminar o campo:
+Occurrences of the `ENCLOSED BY` character within a field value are escaped by prefixing them with the `ESCAPED BY` character. Also, if you specify an empty `ESCAPED BY` value, it is possible to inadvertently generate output that cannot be read properly by [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement"). For example, the preceding output just shown would appear as follows if the escape character is empty. Observe that the second field in the fourth line contains a comma following the quote, which (erroneously) appears to terminate the field:
 
 ```sql
 1,"a string",100.20
@@ -277,9 +272,9 @@ Ocorrência do caractere `ENCLOSED BY` dentro de um valor de campo é escapado p
 4,"a string containing a ", quote and comma",102.20
 ```
 
-Para a entrada, o caractere `ENCLOSED BY`, se presente, é removido das extremidades dos valores de campo. (Isso é verdadeiro independentemente de a opção `OPTIONALLY` ser especificada; a `OPTIONALLY` não tem efeito na interpretação da entrada.) Ocorrências do caractere `ENCLOSED BY`, precedido pelo caractere `ESCAPED BY`, são interpretadas como parte do valor atual do campo.
+For input, the `ENCLOSED BY` character, if present, is stripped from the ends of field values. (This is true regardless of whether `OPTIONALLY` is specified; `OPTIONALLY` has no effect on input interpretation.) Occurrences of the `ENCLOSED BY` character preceded by the `ESCAPED BY` character are interpreted as part of the current field value.
 
-Se o campo começar com o caractere `ENCLOSED BY`, as ocorrências desse caractere são reconhecidas como o final de um valor de campo apenas se forem seguidas pela sequência de campo ou linha `TERMINATED BY`. Para evitar ambiguidade, as ocorrências do caractere `ENCLOSED BY` dentro de um valor de campo podem ser duplicadas e são interpretadas como uma única ocorrência do caractere. Por exemplo, se `ENCLOSED BY '"'` for especificado, as aspas são tratadas conforme mostrado aqui:
+If the field begins with the `ENCLOSED BY` character, instances of that character are recognized as terminating a field value only if followed by the field or line `TERMINATED BY` sequence. To avoid ambiguity, occurrences of the `ENCLOSED BY` character within a field value can be doubled and are interpreted as a single instance of the character. For example, if `ENCLOSED BY '"'` is specified, quotation marks are handled as shown here:
 
 ```sql
 "The ""BIG"" boss"  -> The "BIG" boss
@@ -287,88 +282,87 @@ The "BIG" boss      -> The "BIG" boss
 The ""BIG"" boss    -> The ""BIG"" boss
 ```
 
-`FIELDS ESCAPED BY` controla como ler ou escrever caracteres especiais:
+`FIELDS ESCAPED BY` controls how to read or write special characters:
 
-- Para entrada, se o caractere `FIELDS ESCAPED BY` não estiver vazio, as ocorrências desse caractere são removidas e o caractere seguinte é lido literalmente como parte do valor de um campo. Algumas sequências de dois caracteres que são exceções, onde o primeiro caractere é o caractere de escape. Essas sequências estão mostradas na tabela a seguir (usando `\` para o caractere de escape). As regras para o tratamento de `NULL` são descritas mais adiante nesta seção.
+* For input, if the `FIELDS ESCAPED BY` character is not empty, occurrences of that character are stripped and the following character is taken literally as part of a field value. Some two-character sequences that are exceptions, where the first character is the escape character. These sequences are shown in the following table (using `\` for the escape character). The rules for `NULL` handling are described later in this section.
 
-  <table summary="Sequências de dois caracteres, nas quais o primeiro caractere (a \) é o caractere de escape."><col style="width: 15%"/><col style="width: 85%"/><thead><tr> <th>Personagem</th> <th>Sequência de fuga</th> </tr></thead><tbody><tr> <td><code>\0</code></td> <td>Um caractere ASCII NUL (<code>X'00'</code>)</td> </tr><tr> <td><code>\b</code></td> <td>Um caractere de retrocesso</td> </tr><tr> <td><code>\n</code></td> <td>Um caractere de nova linha (linefeed)</td> </tr><tr> <td><code>\r</code></td> <td>Um caractere de retorno de carro</td> </tr><tr> <td><code>\t</code></td> <td>Um caractere de tabulação.</td> </tr><tr> <td><code>\Z</code></td> <td>ASCII 26 (Ctrl+Z)</td> </tr><tr> <td><code>\N</code></td> <td>NULL</td> </tr></tbody></table>
+  <table summary="Two-character sequences for which the first character (a \) is the escape character."><col style="width: 15%"/><col style="width: 85%"/><thead><tr> <th>Character</th> <th>Escape Sequence</th> </tr></thead><tbody><tr> <td><code>\0</code></td> <td>An ASCII NUL (<code>X'00'</code>) character</td> </tr><tr> <td><code>\b</code></td> <td>A backspace character</td> </tr><tr> <td><code>\n</code></td> <td>A newline (linefeed) character</td> </tr><tr> <td><code>\r</code></td> <td>A carriage return character</td> </tr><tr> <td><code>\t</code></td> <td>A tab character.</td> </tr><tr> <td><code>\Z</code></td> <td>ASCII 26 (Control+Z)</td> </tr><tr> <td><code>\N</code></td> <td>NULL</td> </tr></tbody></table>
 
-  Para obter mais informações sobre a sintaxe de escape de `\` (barra invertida), consulte Seção 9.1.1, “Literal de String”.
+  For more information about `\`-escape syntax, see [Section 9.1.1, “String Literals”](string-literals.html "9.1.1 String Literals").
 
-  Se o caractere `FIELDS ESCAPED BY` estiver vazio, a interpretação da sequência de escape não ocorrerá.
+  If the `FIELDS ESCAPED BY` character is empty, escape-sequence interpretation does not occur.
 
-- Em relação à saída, se o caractere `FIELDS ESCAPED BY` não estiver vazio, ele é usado para prefixar os caracteres seguintes na saída:
+* For output, if the `FIELDS ESCAPED BY` character is not empty, it is used to prefix the following characters on output:
 
-  - O caractere `FIELDS ESCAPED BY`.
+  + The `FIELDS ESCAPED BY` character.
+  + The `FIELDS [OPTIONALLY] ENCLOSED BY` character.
 
-  - O caractere `FIELDS [OPÇÕES] ENCLOSED BY`.
+  + The first character of the `FIELDS TERMINATED BY` and `LINES TERMINATED BY` values, if the `ENCLOSED BY` character is empty or unspecified.
 
-  - O primeiro caractere dos valores `FIELDS TERMINATED BY` e `LINES TERMINATED BY`, se o caractere `ENCLOSED BY` estiver vazio ou não especificado.
+  + ASCII `0` (what is actually written following the escape character is ASCII `0`, not a zero-valued byte).
 
-  - ASCII `0` (o que é realmente escrito após o caractere de escape é ASCII `0`, não um byte de valor zero).
+  If the `FIELDS ESCAPED BY` character is empty, no characters are escaped and `NULL` is output as `NULL`, not `\N`. It is probably not a good idea to specify an empty escape character, particularly if field values in your data contain any of the characters in the list just given.
 
-  Se o caractere `FIELDS ESCAPED BY` estiver vazio, nenhum caractere será escavado e `NULL` será exibido como `NULL`, não como `\N`. Provavelmente não é uma boa ideia especificar um caractere de escape vazio, especialmente se os valores dos campos em seus dados contiverem algum dos caracteres da lista que acabamos de fornecer.
+In certain cases, field- and line-handling options interact:
 
-Em certos casos, as opções de manipulação de campo e linha interagem:
+* If `LINES TERMINATED BY` is an empty string and `FIELDS TERMINATED BY` is nonempty, lines are also terminated with `FIELDS TERMINATED BY`.
 
-- Se `LINHAS TERMINADAS POR` for uma string vazia e `CAMPOS TERMINADOS POR` for não-vazio, as linhas também serão terminadas com `CAMPOS TERMINADOS POR`.
+* If the `FIELDS TERMINATED BY` and `FIELDS ENCLOSED BY` values are both empty (`''`), a fixed-row (nondelimited) format is used. With fixed-row format, no delimiters are used between fields (but you can still have a line terminator). Instead, column values are read and written using a field width wide enough to hold all values in the field. For [`TINYINT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), [`SMALLINT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), [`MEDIUMINT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), [`INT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), and [`BIGINT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), the field widths are 4, 6, 8, 11, and 20, respectively, no matter what the declared display width is.
 
-- Se os valores `FIELDS TERMINATED BY` e `FIELDS ENCLOSED BY` estiverem vazios (`''`), será usado um formato de linha fixa (não delimitado). Com o formato de linha fixa, não são usados delimitadores entre os campos (mas você ainda pode ter um finalizador de linha). Em vez disso, os valores das colunas são lidos e escritos usando uma largura de campo o suficiente para conter todos os valores do campo. Para `TINYINT`, `SMALLINT`, `MEDIUMINT`, `INT` e `BIGINT`, as larguras dos campos são, respectivamente, 4, 6, 8, 11 e 20, independentemente da largura de exibição declarada.
+  `LINES TERMINATED BY` is still used to separate lines. If a line does not contain all fields, the rest of the columns are set to their default values. If you do not have a line terminator, you should set this to `''`. In this case, the text file must contain all fields for each row.
 
-  `LINHAS TERMINADAS POR` ainda é usado para separar as linhas. Se uma linha não contiver todos os campos, o resto das colunas será definido com seus valores padrão. Se você não tiver um finalizador de linha, deve definir isso para `''`. Nesse caso, o arquivo de texto deve conter todos os campos para cada linha.
+  Fixed-row format also affects handling of `NULL` values, as described later.
 
-  O formato de linha fixa também afeta o tratamento dos valores `NULL`, conforme descrito mais adiante.
+  Note
 
-  Nota
+  Fixed-size format does not work if you are using a multibyte character set.
 
-  O formato de tamanho fixo não funciona se você estiver usando um conjunto de caracteres multibyte.
+Handling of `NULL` values varies according to the `FIELDS` and `LINES` options in use:
 
-O tratamento de valores `NULL` varia de acordo com as opções `FIELDS` e `LINES` em uso:
+* For the default `FIELDS` and `LINES` values, `NULL` is written as a field value of `\N` for output, and a field value of `\N` is read as `NULL` for input (assuming that the `ESCAPED BY` character is `\`).
 
-- Para os valores padrão `FIELDS` e `LINES`, `NULL` é escrito como um valor de campo de `\N` para saída e um valor de campo de `\N` é lido como `NULL` para entrada (assumindo que o caractere `ESCAPED BY` é `\`).
+* If `FIELDS ENCLOSED BY` is not empty, a field containing the literal word `NULL` as its value is read as a `NULL` value. This differs from the word `NULL` enclosed within `FIELDS ENCLOSED BY` characters, which is read as the string `'NULL'`.
 
-- Se `CAMPOS ENCASADOS POR` não estiver vazio, um campo que contenha a palavra literal `NULL` como seu valor é lido como um valor `NULL`. Isso difere da palavra `NULL` enquadrada entre os caracteres `CAMPOS ENCASADOS POR`, que é lida como a string `'NULL'`.
+* If `FIELDS ESCAPED BY` is empty, `NULL` is written as the word `NULL`.
 
-- Se `CAMPOS ESCAPADOS POR` estiver vazio, `NULL` é escrito como a palavra `NULL`.
+* With fixed-row format (which is used when `FIELDS TERMINATED BY` and `FIELDS ENCLOSED BY` are both empty), `NULL` is written as an empty string. This causes both `NULL` values and empty strings in the table to be indistinguishable when written to the file because both are written as empty strings. If you need to be able to tell the two apart when reading the file back in, you should not use fixed-row format.
 
-- Com o formato de linha fixa (que é usado quando `FIELDS TERMINATED BY` e `FIELDS ENCLOSED BY` estão ambos vazios), `NULL` é escrito como uma string vazia. Isso faz com que tanto os valores `NULL` quanto as strings vazias na tabela sejam indistinguíveis quando escritos no arquivo, porque ambos são escritos como strings vazias. Se você precisar ser capaz de distinguir os dois ao ler o arquivo novamente, você não deve usar o formato de linha fixa.
+An attempt to load `NULL` into a `NOT NULL` column produces either a warning or an error according to the rules described in [Column Value Assignment](load-data.html#load-data-column-assignments "Column Value Assignment").
 
-Uma tentativa de carregar `NULL` em uma coluna `NOT NULL` produz um aviso ou um erro de acordo com as regras descritas em Atribuição de Valor de Coluna.
+Some cases are not supported by [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement"):
 
-Alguns casos não são suportados pelo `LOAD DATA`:
+* Fixed-size rows (`FIELDS TERMINATED BY` and `FIELDS ENCLOSED BY` both empty) and [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") or [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") columns.
 
-- Linhas de tamanho fixo (`FIELDS TERMINATED BY` e `FIELDS ENCLOSED BY` ambos vazios) e colunas de tipo `BLOB` ou `TEXT`.
-
-- Se você especificar um separador que é o mesmo ou um prefixo de outro, o `LOAD DATA` não consegue interpretar a entrada corretamente. Por exemplo, a seguinte cláusula `FIELDS` causaria problemas:
+* If you specify one separator that is the same as or a prefix of another, [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") cannot interpret the input properly. For example, the following `FIELDS` clause would cause problems:
 
   ```sql
   FIELDS TERMINATED BY '"' ENCLOSED BY '"'
   ```
 
-- Se `FIELDS ESCAPED BY` estiver vazio, um valor de campo que contém uma ocorrência de `FIELDS ENCLOSED BY` ou `LINES TERMINATED BY` seguida do valor `FIELDS TERMINATED BY` faz com que `LOAD DATA` pare de ler um campo ou linha muito cedo. Isso acontece porque `LOAD DATA` não consegue determinar corretamente onde o valor do campo ou linha termina.
+* If `FIELDS ESCAPED BY` is empty, a field value that contains an occurrence of `FIELDS ENCLOSED BY` or `LINES TERMINATED BY` followed by the `FIELDS TERMINATED BY` value causes [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") to stop reading a field or line too early. This happens because [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") cannot properly determine where the field or line value ends.
 
-#### Especificação da Lista de Colunas
+#### Column List Specification
 
-O exemplo a seguir carrega todas as colunas da tabela `persondata`:
+The following example loads all columns of the `persondata` table:
 
 ```sql
 LOAD DATA INFILE 'persondata.txt' INTO TABLE persondata;
 ```
 
-Por padrão, quando não é fornecida uma lista de colunas no final da instrução `LOAD DATA`, as linhas de entrada devem conter um campo para cada coluna da tabela. Se você deseja carregar apenas algumas colunas de uma tabela, especifique uma lista de colunas:
+By default, when no column list is provided at the end of the [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") statement, input lines are expected to contain a field for each table column. If you want to load only some of a table's columns, specify a column list:
 
 ```sql
 LOAD DATA INFILE 'persondata.txt' INTO TABLE persondata
 (col_name_or_user_var [, col_name_or_user_var] ...);
 ```
 
-Você também deve especificar uma lista de colunas se a ordem dos campos no arquivo de entrada for diferente da ordem das colunas na tabela. Caso contrário, o MySQL não saberá como combinar os campos de entrada com as colunas da tabela.
+You must also specify a column list if the order of the fields in the input file differs from the order of the columns in the table. Otherwise, MySQL cannot tell how to match input fields with table columns.
 
-#### Pré-processamento de entrada
+#### Input Preprocessing
 
-Cada instância de *`col_name_or_user_var`* na sintaxe de `LOAD DATA` é ou o nome de uma coluna ou uma variável de usuário. Com variáveis de usuário, a cláusula `SET` permite que você realize transformações de pré-processamento em seus valores antes de atribuir o resultado às colunas.
+Each instance of *`col_name_or_user_var`* in [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") syntax is either a column name or a user variable. With user variables, the `SET` clause enables you to perform preprocessing transformations on their values before assigning the result to columns.
 
-As variáveis de usuário na cláusula `SET` podem ser usadas de várias maneiras. O exemplo a seguir usa a primeira coluna de entrada diretamente para o valor de `t1.column1` e atribui a segunda coluna de entrada a uma variável de usuário que é submetida a uma operação de divisão antes de ser usada para o valor de `t1.column2`:
+User variables in the `SET` clause can be used in several ways. The following example uses the first input column directly for the value of `t1.column1`, and assigns the second input column to a user variable that is subjected to a division operation before being used for the value of `t1.column2`:
 
 ```sql
 LOAD DATA INFILE 'file.txt'
@@ -377,7 +371,7 @@ LOAD DATA INFILE 'file.txt'
   SET column2 = @var1/100;
 ```
 
-A cláusula `SET` pode ser usada para fornecer valores que não são derivados do arquivo de entrada. A seguinte declaração define `column3` para a data e hora atuais:
+The `SET` clause can be used to supply values not derived from the input file. The following statement sets `column3` to the current date and time:
 
 ```sql
 LOAD DATA INFILE 'file.txt'
@@ -386,7 +380,7 @@ LOAD DATA INFILE 'file.txt'
   SET column3 = CURRENT_TIMESTAMP;
 ```
 
-Você também pode descartar um valor de entrada atribuindo-o a uma variável do usuário e não atribuindo a variável a nenhuma coluna da tabela:
+You can also discard an input value by assigning it to a user variable and not assigning the variable to any table column:
 
 ```sql
 LOAD DATA INFILE 'file.txt'
@@ -394,73 +388,71 @@ LOAD DATA INFILE 'file.txt'
   (column1, @dummy, column2, @dummy, column3);
 ```
 
-O uso da lista de colunas/variáveis e da cláusula `SET` está sujeito às seguintes restrições:
+Use of the column/variable list and `SET` clause is subject to the following restrictions:
 
-- As atribuições na cláusula `SET` devem ter apenas nomes de colunas do lado esquerdo dos operadores de atribuição.
+* Assignments in the `SET` clause should have only column names on the left hand side of assignment operators.
 
-- Você pode usar subconsultas no lado direito das atribuições de `SET`. Uma subconsulta que retorna um valor para ser atribuído a uma coluna pode ser apenas uma subconsulta escalar. Além disso, você não pode usar uma subconsulta para selecionar da tabela que está sendo carregada.
+* You can use subqueries in the right hand side of `SET` assignments. A subquery that returns a value to be assigned to a column may be a scalar subquery only. Also, you cannot use a subquery to select from the table that is being loaded.
 
-- As linhas ignoradas por uma cláusula `IGNORE number LINES` não são processadas para a lista de colunas/variáveis ou a cláusula `SET`.
+* Lines ignored by an `IGNORE number LINES` clause are not processed for the column/variable list or `SET` clause.
 
-- As variáveis do usuário não podem ser usadas ao carregar dados com formato de linha fixa, porque as variáveis do usuário não têm largura de exibição.
+* User variables cannot be used when loading data with fixed-row format because user variables do not have a display width.
 
-#### Atribuição de valor à coluna
+#### Column Value Assignment
 
-Para processar uma linha de entrada, `LOAD DATA` a divide em campos e usa os valores de acordo com a lista de colunas/variáveis e a cláusula `SET`, se estiverem presentes. Em seguida, a linha resultante é inserida na tabela. Se houver gatilhos `BEFORE INSERT` ou `AFTER INSERT` para a tabela, eles são ativados antes ou depois de inserir a linha, respectivamente.
+To process an input line, [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") splits it into fields and uses the values according to the column/variable list and the `SET` clause, if they are present. Then the resulting row is inserted into the table. If there are `BEFORE INSERT` or `AFTER INSERT` triggers for the table, they are activated before or after inserting the row, respectively.
 
-A interpretação dos valores de campo e a atribuição às colunas da tabela dependem desses fatores:
+Interpretation of field values and assignment to table columns depends on these factors:
 
-- O modo SQL (o valor da variável de sistema `sql_mode`). O modo pode ser não restritivo ou restritivo de várias maneiras. Por exemplo, o modo SQL estrito pode ser ativado, ou o modo pode incluir valores como `NO_ZERO_DATE` ou `NO_ZERO_IN_DATE`.
+* The SQL mode (the value of the [`sql_mode`](server-system-variables.html#sysvar_sql_mode) system variable). The mode can be nonstrictive, or restrictive in various ways. For example, strict SQL mode can be enabled, or the mode can include values such as [`NO_ZERO_DATE`](sql-mode.html#sqlmode_no_zero_date) or [`NO_ZERO_IN_DATE`](sql-mode.html#sqlmode_no_zero_in_date).
 
-- Presença ou ausência dos modificadores `IGNORE` e `LOCAL`.
+* Presence or absence of the `IGNORE` and `LOCAL` modifiers.
 
-Esses fatores combinam para produzir uma interpretação de dados restritiva ou não restritiva pelo `LOAD DATA`:
+Those factors combine to produce restrictive or nonrestrictive data interpretation by [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement"):
 
-- A interpretação dos dados é restritiva se o modo SQL for restritivo e nenhum dos modificadores `IGNORE` ou `LOCAL` for especificado. Os erros encerram a operação de carregamento.
+* Data interpretation is restrictive if the SQL mode is restrictive and neither the `IGNORE` nor the `LOCAL` modifier is specified. Errors terminate the load operation.
 
-- A interpretação dos dados não é restritiva se o modo SQL não for restritivo ou se o modificador `IGNORE` ou `LOCAL` for especificado. (Em particular, qualquer um desses modificadores, se especificado, *anula* um modo SQL restritivo.) Os erros se tornam avisos e a operação de carregamento continua.
+* Data interpretation is nonrestrictive if the SQL mode is nonrestrictive or the `IGNORE` or `LOCAL` modifier is specified. (In particular, either modifier if specified *overrides* a restrictive SQL mode.) Errors become warnings and the load operation continues.
 
-A interpretação restritiva dos dados utiliza essas regras:
+Restrictive data interpretation uses these rules:
 
-- Muitos ou poucos campos resultam em um erro.
+* Too many or too few fields results an error.
+* Assigning `NULL` (that is, `\N`) to a non-`NULL` column results in an error.
 
-- Atribuir `NULL` (ou seja, `\N`) a uma coluna que não é `NULL` resulta em um erro.
+* A value that is out of range for the column data type results in an error.
 
-- Um valor fora do intervalo para o tipo de dados da coluna resulta em um erro.
+* Invalid values produce errors. For example, a value such as `'x'` for a numeric column results in an error, not conversion to 0.
 
-- Valores inválidos produzem erros. Por exemplo, um valor como `'x'` para uma coluna numérica resulta em um erro, não em conversão para 0.
+By contrast, nonrestrictive data interpretation uses these rules:
 
-Em contraste, a interpretação de dados não restritiva utiliza essas regras:
+* If an input line has too many fields, the extra fields are ignored and the number of warnings is incremented.
 
-- Se uma linha de entrada tiver muitos campos, os campos extras são ignorados e o número de avisos é incrementado.
+* If an input line has too few fields, the columns for which input fields are missing are assigned their default values. Default value assignment is described in [Section 11.6, “Data Type Default Values”](data-type-defaults.html "11.6 Data Type Default Values").
 
-- Se uma linha de entrada tiver poucos campos, as colunas que não possuem campos de entrada receberão seus valores padrão. A atribuição de valores padrão é descrita em Seção 11.6, “Valores padrão de tipo de dados”.
+* Assigning `NULL` (that is, `\N`) to a non-`NULL` column results in assignment of the implicit default value for the column data type. Implicit default values are described in [Section 11.6, “Data Type Default Values”](data-type-defaults.html "11.6 Data Type Default Values").
 
-- Atribuir `NULL` (ou seja, `\N`) a uma coluna que não é `NULL` resulta na atribuição do valor padrão implícito para o tipo de dados da coluna. Os valores padrão implícitos são descritos em Seção 11.6, “Valores padrão de tipo de dados”.
+* Invalid values produce warnings rather than errors, and are converted to the “closest” valid value for the column data type. Examples:
 
-- Valores inválidos produzem avisos em vez de erros e são convertidos para o valor “mais próximo” válido para o tipo de dados da coluna. Exemplos:
+  + A value such as `'x'` for a numeric column results in conversion to 0.
 
-  - Um valor como `'x'` para uma coluna numérica resulta em conversão para 0.
+  + An out-of-range numeric or temporal value is clipped to the closest endpoint of the range for the column data type.
 
-  - Um valor numérico ou temporal fora do intervalo é recortado para o ponto final mais próximo do intervalo para o tipo de dados da coluna.
+  + An invalid value for a `DATETIME`, `DATE`, or `TIME` column is inserted as the implicit default value, regardless of the SQL mode [`NO_ZERO_DATE`](sql-mode.html#sqlmode_no_zero_date) setting. The implicit default is the appropriate “zero” value for the type (`'0000-00-00 00:00:00'`, `'0000-00-00'`, or `'00:00:00'`). See [Section 11.2, “Date and Time Data Types”](date-and-time-types.html "11.2 Date and Time Data Types").
 
-  - Um valor inválido para uma coluna `DATETIME`, `DATE` ou `TIME` é inserido como o valor padrão implícito, independentemente da configuração do modo SQL `NO_ZERO_DATE`. O valor padrão implícito é o valor apropriado “zero” para o tipo (`'0000-00-00 00:00:00'`, `'0000-00-00'`, ou `'00:00:00'`). Veja Seção 11.2, “Tipos de Dados de Data e Hora”.
+* [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") interprets an empty field value differently from a missing field:
 
-- `LOAD DATA` interpreta um valor de campo vazio de maneira diferente de um campo ausente:
+  + For string types, the column is set to the empty string.
+  + For numeric types, the column is set to `0`.
 
-  - Para os tipos de string, a coluna é definida como uma string vazia.
+  + For date and time types, the column is set to the appropriate “zero” value for the type. See [Section 11.2, “Date and Time Data Types”](date-and-time-types.html "11.2 Date and Time Data Types").
 
-  - Para os tipos numéricos, a coluna é definida como `0`.
+  These are the same values that result if you assign an empty string explicitly to a string, numeric, or date or time type explicitly in an [`INSERT`](insert.html "13.2.5 INSERT Statement") or [`UPDATE`](update.html "13.2.11 UPDATE Statement") statement.
 
-  - Para os tipos de data e hora, a coluna é definida com o valor apropriado de “zero” para o tipo. Consulte Seção 11.2, “Tipos de dados de data e hora”.
+[`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") columns are set to the current date and time only if there is a `NULL` value for the column (that is, `\N`) and the column is not declared to permit `NULL` values, or if the [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") column default value is the current timestamp and it is omitted from the field list when a field list is specified.
 
-  Estes são os mesmos valores que resultam se você atribuir uma string vazia explicitamente a um tipo de string, numérico, data ou hora explicitamente em uma instrução `INSERT` ou `UPDATE`.
+[`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") regards all input as strings, so you cannot use numeric values for [`ENUM`](enum.html "11.3.5 The ENUM Type") or [`SET`](set.html "11.3.6 The SET Type") columns the way you can with [`INSERT`](insert.html "13.2.5 INSERT Statement") statements. All [`ENUM`](enum.html "11.3.5 The ENUM Type") and [`SET`](set.html "11.3.6 The SET Type") values must be specified as strings.
 
-As colunas `[TIMESTAMP]` (data e hora) são definidas para a data e hora atuais apenas se houver um valor `NULL` para a coluna (ou seja, `\N`) e a coluna não for declarada para permitir valores `NULL`, ou se o valor padrão da coluna `[TIMESTAMP]` (data e hora) for o timestamp atual e ele for omitido da lista de campos quando uma lista de campos é especificada.
-
-`LOAD DATA` considera todos os dados como strings, portanto, você não pode usar valores numéricos para as colunas `ENUM` (enum.html) ou `SET` (set.html) da mesma maneira que pode fazer com as instruções `INSERT` (insert.html). Todos os valores de `ENUM` (enum.html) e `SET` (set.html) devem ser especificados como strings.
-
-Os valores de `BIT` não podem ser carregados diretamente usando notação binária (por exemplo, `b'011010'`). Para contornar isso, use a cláusula `SET` para remover o caractere `b'` no início e o caractere `'` no final e realize uma conversão de base-2 para base-10 para que o MySQL carregue os valores na coluna `BIT` corretamente:
+[`BIT`](bit-type.html "11.1.5 Bit-Value Type - BIT") values cannot be loaded directly using binary notation (for example, `b'011010'`). To work around this, use the `SET` clause to strip off the leading `b'` and trailing `'` and perform a base-2 to base-10 conversion so that MySQL loads the values into the [`BIT`](bit-type.html "11.1.5 Bit-Value Type - BIT") column properly:
 
 ```sql
 $> cat /tmp/bit_test.txt
@@ -483,45 +475,45 @@ mysql> SELECT BIN(b+0) FROM bit_test;
 2 rows in set (0.00 sec)
 ```
 
-Para valores de ``BIT` na notação binária `0b`(por exemplo,`0b011010`), use esta cláusula `SET`em vez disso para remover o`0b\` inicial:
+For [`BIT`](bit-type.html "11.1.5 Bit-Value Type - BIT") values in `0b` binary notation (for example, `0b011010`), use this `SET` clause instead to strip off the leading `0b`:
 
 ```sql
 SET b = CAST(CONV(MID(@var1, 3, LENGTH(@var1)-2), 2, 10) AS UNSIGNED)
 ```
 
-#### Suporte para Tabelas Partidas
+#### Partitioned Table Support
 
-`LOAD DATA` suporta a seleção explícita de partições usando a cláusula `PARTITION` com uma lista de um ou mais nomes de partições, subpartições ou ambos, separados por vírgula. Quando essa cláusula é usada, se houver linhas no arquivo que não puderem ser inseridas em nenhuma das partições ou subpartições listadas, a instrução falhará com o erro "Encontrou uma linha que não corresponde ao conjunto de partições fornecido". Para mais informações e exemplos, consulte Seção 22.5, "Seleção de Partições".
+[`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") supports explicit partition selection using the `PARTITION` clause with a list of one or more comma-separated names of partitions, subpartitions, or both. When this clause is used, if any rows from the file cannot be inserted into any of the partitions or subpartitions named in the list, the statement fails with the error Found a row not matching the given partition set. For more information and examples, see [Section 22.5, “Partition Selection”](partitioning-selection.html "22.5 Partition Selection").
 
-Para tabelas particionadas que utilizam motores de armazenamento que empregam bloqueios de tabela, como `MyISAM`, `LOAD DATA` não pode eliminar quaisquer bloqueios de partição. Isso não se aplica a tabelas que utilizam motores de armazenamento que empregam bloqueio de nível de linha, como `InnoDB`. Para mais informações, consulte Seção 22.6.4, “Particionamento e Bloqueio”.
+For partitioned tables using storage engines that employ table locks, such as [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine"), [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") cannot prune any partition locks. This does not apply to tables using storage engines that employ row-level locking, such as [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine"). For more information, see [Section 22.6.4, “Partitioning and Locking”](partitioning-limitations-locking.html "22.6.4 Partitioning and Locking").
 
-#### Considerações sobre Concorrência
+#### Concurrency Considerations
 
-Com o modificador `LOW_PRIORITY`, a execução da instrução `LOAD DATA` é adiada até que nenhum outro cliente esteja lendo da tabela. Isso afeta apenas os motores de armazenamento que usam apenas bloqueio de nível de tabela (como `MyISAM`, `MEMORY` e `MERGE`).
+With the `LOW_PRIORITY` modifier, execution of the [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") statement is delayed until no other clients are reading from the table. This affects only storage engines that use only table-level locking (such as `MyISAM`, `MEMORY`, and `MERGE`).
 
-Com o modificador `CONCURRENT` e uma tabela `MyISAM` que atende à condição para inserções concorrentes (ou seja, não contém blocos livres no meio), outros threads podem recuperar dados da tabela enquanto o `LOAD DATA` está sendo executado. Esse modificador afeta um pouco o desempenho do `LOAD DATA`, mesmo que nenhum outro thread esteja usando a tabela ao mesmo tempo.
+With the `CONCURRENT` modifier and a `MyISAM` table that satisfies the condition for concurrent inserts (that is, it contains no free blocks in the middle), other threads can retrieve data from the table while [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") is executing. This modifier affects the performance of [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") a bit, even if no other thread is using the table at the same time.
 
-#### Informações sobre o resultado da declaração
+#### Statement Result Information
 
-Quando a instrução `LOAD DATA` terminar, ela retorna uma string de informações no seguinte formato:
+When the [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") statement finishes, it returns an information string in the following format:
 
 ```sql
 Records: 1  Deleted: 0  Skipped: 0  Warnings: 0
 ```
 
-As advertências ocorrem nas mesmas circunstâncias em que os valores são inseridos usando a instrução `INSERT` (veja Seção 13.2.5, “Instrução INSERT”), exceto que `LOAD DATA` também gera advertências quando há muitos ou poucos campos na linha de entrada.
+Warnings occur under the same circumstances as when values are inserted using the [`INSERT`](insert.html "13.2.5 INSERT Statement") statement (see [Section 13.2.5, “INSERT Statement”](insert.html "13.2.5 INSERT Statement")), except that [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") also generates warnings when there are too few or too many fields in the input row.
 
-Você pode usar `SHOW WARNINGS` para obter uma lista dos primeiros `[max_error_count`]\(server-system-variables.html#sysvar_max_error_count) avisos como informações sobre o que deu errado. Veja Seção 13.7.5.40, “Instrução SHOW WARNINGS”.
+You can use [`SHOW WARNINGS`](show-warnings.html "13.7.5.40 SHOW WARNINGS Statement") to get a list of the first [`max_error_count`](server-system-variables.html#sysvar_max_error_count) warnings as information about what went wrong. See [Section 13.7.5.40, “SHOW WARNINGS Statement”](show-warnings.html "13.7.5.40 SHOW WARNINGS Statement").
 
-Se você estiver usando a API C, pode obter informações sobre a declaração chamando a função `mysql_info()`. Veja mysql_info().
+If you are using the C API, you can get information about the statement by calling the [`mysql_info()`](/doc/c-api/5.7/en/mysql-info.html) function. See [mysql_info()](/doc/c-api/5.7/en/mysql-info.html).
 
-#### Considerações sobre a replicação
+#### Replication Considerations
 
-Para informações sobre `LOAD DATA` em relação à replicação, consulte Seção 16.4.1.18, “Replicação e LOAD DATA”.
+For information about [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") in relation to replication, see [Section 16.4.1.18, “Replication and LOAD DATA”](replication-features-load-data.html "16.4.1.18 Replication and LOAD DATA").
 
-#### Tópicos variados
+#### Miscellaneous Topics
 
-No Unix, se você precisar de `LOAD DATA` para ler de uma tubulação, você pode usar a seguinte técnica (o exemplo carrega uma lista do diretório `/` na tabela `db1.t1`):
+On Unix, if you need [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") to read from a pipe, you can use the following technique (the example loads a listing of the `/` directory into the table `db1.t1`):
 
 ```sql
 mkfifo /mysql/data/db1/ls.dat
@@ -530,4 +522,4 @@ find / -ls > /mysql/data/db1/ls.dat &
 mysql -e "LOAD DATA INFILE 'ls.dat' INTO TABLE t1" db1
 ```
 
-Aqui, você deve executar o comando que gera os dados a serem carregados e os comandos **mysql** em terminais separados ou executar o processo de geração de dados em segundo plano (como mostrado no exemplo anterior). Se você não fizer isso, o tubo fica bloqueado até que os dados sejam lidos pelo processo **mysql**.
+Here you must run the command that generates the data to be loaded and the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") commands either on separate terminals, or run the data generation process in the background (as shown in the preceding example). If you do not do this, the pipe blocks until data is read by the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") process.

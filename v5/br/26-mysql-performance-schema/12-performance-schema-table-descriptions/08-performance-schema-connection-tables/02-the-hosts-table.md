@@ -1,17 +1,17 @@
-#### 25.12.8.2 A tabela de anfitriões
+#### 25.12.8.2 The hosts Table
 
-A tabela `hosts` contém uma linha para cada host a partir do qual os clientes se conectaram ao servidor MySQL. Para cada nome de host, a tabela conta o número atual e total de conexões. O tamanho da tabela é dimensionado automaticamente ao iniciar o servidor. Para definir explicitamente o tamanho da tabela, defina a variável de sistema `performance_schema_hosts_size` ao iniciar o servidor. Para desabilitar as estatísticas de host, defina essa variável para 0.
+The [`hosts`](performance-schema-hosts-table.html "25.12.8.2 The hosts Table") table contains a row for each host from which clients have connected to the MySQL server. For each host name, the table counts the current and total number of connections. The table size is autosized at server startup. To set the table size explicitly, set the [`performance_schema_hosts_size`](performance-schema-system-variables.html#sysvar_performance_schema_hosts_size) system variable at server startup. To disable host statistics, set this variable to 0.
 
-A tabela `hosts` possui as seguintes colunas. Para uma descrição de como o Schema de Desempenho mantém as linhas nesta tabela, incluindo o efeito do `TRUNCATE TABLE`, consulte Seção 25.12.8, “Tabelas de Conexão do Schema de Desempenho”.
+The [`hosts`](performance-schema-hosts-table.html "25.12.8.2 The hosts Table") table has the following columns. For a description of how the Performance Schema maintains rows in this table, including the effect of [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement"), see [Section 25.12.8, “Performance Schema Connection Tables”](performance-schema-connection-tables.html "25.12.8 Performance Schema Connection Tables").
 
-- `HOST`
+* `HOST`
 
-  O host a partir do qual o cliente se conectou. Isso é `NULL` para um thread interno ou para uma sessão de usuário que não conseguiu se autenticar.
+  The host from which the client connected. This is `NULL` for an internal thread, or for a user session that failed to authenticate.
 
-- `CONEXÕES APRESENTADAS`
+* `CURRENT_CONNECTIONS`
 
-  O número atual de conexões para o host.
+  The current number of connections for the host.
 
-- `TOTAL_CONEXÕES`
+* `TOTAL_CONNECTIONS`
 
-  O número total de conexões para o host.
+  The total number of connections for the host.

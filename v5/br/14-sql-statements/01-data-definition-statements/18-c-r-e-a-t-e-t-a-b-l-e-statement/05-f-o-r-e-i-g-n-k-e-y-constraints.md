@@ -1,10 +1,10 @@
-#### 13.1.18.5 Restrições de Chave Estrangeira
+#### 13.1.18.5 FOREIGN KEY Constraints
 
-O MySQL suporta chaves estrangeiras, que permitem a referência cruzada de dados relacionados entre tabelas, e restrições de chave estrangeira, que ajudam a manter os dados relacionados consistentes.
+MySQL supports foreign keys, which permit cross-referencing related data across tables, and foreign key constraints, which help keep the related data consistent.
 
-Uma relação de chave estrangeira envolve uma tabela pai que contém os valores iniciais da coluna e uma tabela filho com valores de coluna que fazem referência aos valores da coluna pai. Uma restrição de chave estrangeira é definida na tabela filho.
+A foreign key relationship involves a parent table that holds the initial column values, and a child table with column values that reference the parent column values. A foreign key constraint is defined on the child table.
 
-A sintaxe essencial para definir uma restrição de chave estrangeira em uma instrução `CREATE TABLE` ou `ALTER TABLE` inclui o seguinte:
+The essential syntax for a defining a foreign key constraint in a [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") or [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statement includes the following:
 
 ```sql
 [CONSTRAINT [symbol FOREIGN KEY
@@ -17,109 +17,110 @@ reference_option:
     RESTRICT | CASCADE | SET NULL | NO ACTION | SET DEFAULT
 ```
 
-O uso de restrições de chave estrangeira é descrito nos seguintes tópicos desta seção:
+Foreign key constraint usage is described under the following topics in this section:
 
-- Identificadores
-- Condições e Restrições
-- Ações Referenciais
-- Exemplos de restrições de chave estrangeira
-- Adicionar restrições de chave estrangeira
-- Excluir restrições de chave estrangeira
-- Verificação de Chaves Estrangeiras
-- Definições de Chaves Estrangeiras e Metadados
-- Erros de Chave Estrangeira
+* [Identifiers](create-table-foreign-keys.html#foreign-key-identifiers "Identifiers")
+* [Conditions and Restrictions](create-table-foreign-keys.html#foreign-key-restrictions "Conditions and Restrictions")
+* [Referential Actions](create-table-foreign-keys.html#foreign-key-referential-actions "Referential Actions")
+* [Foreign Key Constraint Examples](create-table-foreign-keys.html#foreign-key-examples "Foreign Key Constraint Examples")
+* [Adding Foreign Key Constraints](create-table-foreign-keys.html#foreign-key-adding "Adding Foreign Key Constraints")
+* [Dropping Foreign Key Constraints](create-table-foreign-keys.html#foreign-key-dropping "Dropping Foreign Key Constraints")
+* [Foreign Key Checks](create-table-foreign-keys.html#foreign-key-checks "Foreign Key Checks")
+* [Foreign Key Definitions and Metadata](create-table-foreign-keys.html#foreign-key-metadata "Foreign Key Definitions and Metadata")
+* [Foreign Key Errors](create-table-foreign-keys.html#foreign-key-errors "Foreign Key Errors")
 
-##### Identificador(es)
+##### Identifiers
 
-A nomenclatura das restrições de chave estrangeira é regida pelas seguintes regras:
+Foreign key constraint naming is governed by the following rules:
 
-- O valor do símbolo `CONSTRAINT` *`symbol`* é usado, se definido.
+* The `CONSTRAINT` *`symbol`* value is used, if defined.
 
-- Se a cláusula `CONSTRAINT` *`símbolo`* não for definida ou se um símbolo não for incluído após a palavra-chave `CONSTRAINT`:
+* If the `CONSTRAINT` *`symbol`* clause is not defined, or a symbol is not included following the `CONSTRAINT` keyword:
 
-  - Para as tabelas do InnoDB, um nome de restrição é gerado automaticamente.
+  + For `InnoDB` tables, a constraint name is generated automatically.
 
-  - Para as tabelas `NDB`, o valor `FOREIGN KEY *` `index_name`\* é usado, se definido. Caso contrário, um nome de restrição é gerado automaticamente.
+  + For `NDB` tables, the `FOREIGN KEY` *`index_name`* value is used, if defined. Otherwise, a constraint name is generated automatically.
 
-- O valor do símbolo `CONSTRAINT`, se definido, deve ser único no banco de dados. Um símbolo *duplicado* resulta em um erro semelhante ao seguinte: ERRO 1005 (HY000): Não é possível criar a tabela 'test.fk1' (erro de número 121).
+* The `CONSTRAINT symbol` value, if defined, must be unique in the database. A duplicate *`symbol`* results in an error similar to: ERROR 1005 (HY000): Can't create table 'test.fk1' (errno: 121).
 
-Os identificadores de tabela e coluna em uma cláusula `FOREIGN KEY ... REFERENCES` podem ser citados dentro de aspas duplas (\`\`\`). Alternativamente, aspas duplas (`"`) podem ser usadas se o modo SQL `ANSI_QUOTES` estiver habilitado. A configuração da variável de sistema `lower_case_table_names` também é levada em consideração.
+Table and column identifiers in a `FOREIGN KEY ... REFERENCES` clause can be quoted within backticks (`` ` ``). Alternatively, double quotation marks (`"`) can be used if the [`ANSI_QUOTES`](sql-mode.html#sqlmode_ansi_quotes) SQL mode is enabled. The [`lower_case_table_names`](server-system-variables.html#sysvar_lower_case_table_names) system variable setting is also taken into account.
 
-##### Condições e Restrições
+##### Conditions and Restrictions
 
-As restrições de chave estrangeira estão sujeitas às seguintes condições e restrições:
+Foreign key constraints are subject to the following conditions and restrictions:
 
-- As tabelas pai e filho devem usar o mesmo mecanismo de armazenamento e não podem ser definidas como tabelas temporárias.
+* Parent and child tables must use the same storage engine, and they cannot be defined as temporary tables.
 
-- Para criar uma restrição de chave estrangeira, é necessário o privilégio `REFERENCES` na tabela pai.
+* Creating a foreign key constraint requires the [`REFERENCES`](privileges-provided.html#priv_references) privilege on the parent table.
 
-- As colunas correspondentes na chave estrangeira e na chave referenciada devem ter tipos de dados semelhantes. *O tamanho e o sinal dos tipos de precisão fixa, como `INTEGER` e `DECIMAL`, devem ser os mesmos*. O comprimento dos tipos de string não precisa ser o mesmo. Para colunas de string não binárias (caracteres), o conjunto de caracteres e a ordenação devem ser os mesmos.
+* Corresponding columns in the foreign key and the referenced key must have similar data types. *The size and sign of fixed precision types such as [`INTEGER`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") and [`DECIMAL`](fixed-point-types.html "11.1.3 Fixed-Point Types (Exact Value) - DECIMAL, NUMERIC") must be the same*. The length of string types need not be the same. For nonbinary (character) string columns, the character set and collation must be the same.
 
-- O MySQL suporta referências de chave estrangeira entre uma coluna e outra dentro de uma tabela. (Uma coluna não pode ter uma referência de chave estrangeira para si mesma.) Nesses casos, um "registro de tabela filho" refere-se a um registro dependente na mesma tabela.
+* MySQL supports foreign key references between one column and another within a table. (A column cannot have a foreign key reference to itself.) In these cases, a “child table record” refers to a dependent record within the same table.
 
-- O MySQL requer índices em chaves estrangeiras e chaves referenciadas para que as verificações de chave estrangeira possam ser rápidas e não exijam uma varredura da tabela. Na tabela de referência, deve haver um índice onde as colunas da chave estrangeira estejam listadas como as *primeiras* colunas na mesma ordem. Esse índice é criado automaticamente na tabela de referência se ela não existir. Esse índice pode ser removido silenciosamente mais tarde se você criar outro índice que possa ser usado para impor a restrição de chave estrangeira. *`index_name`*, se fornecido, é usado conforme descrito anteriormente.
+* MySQL requires indexes on foreign keys and referenced keys so that foreign key checks can be fast and not require a table scan. In the referencing table, there must be an index where the foreign key columns are listed as the *first* columns in the same order. Such an index is created on the referencing table automatically if it does not exist. This index might be silently dropped later if you create another index that can be used to enforce the foreign key constraint. *`index_name`*, if given, is used as described previously.
 
-- O `InnoDB` permite que uma chave estrangeira faça referência a qualquer coluna de índice ou grupo de colunas. No entanto, na tabela referenciada, deve haver um índice onde as colunas referenciadas sejam as *primeiras* colunas na mesma ordem. As colunas ocultas que o `InnoDB` adiciona a um índice também são consideradas (veja Seção 14.6.2.1, “Indekses Clusterizados e Secundários”).
+* `InnoDB` permits a foreign key to reference any index column or group of columns. However, in the referenced table, there must be an index where the referenced columns are the *first* columns in the same order. Hidden columns that `InnoDB` adds to an index are also considered (see [Section 14.6.2.1, “Clustered and Secondary Indexes”](innodb-index-types.html "14.6.2.1 Clustered and Secondary Indexes")).
 
-  O `NDB` exige uma chave única explícita (ou chave primária) em qualquer coluna referenciada como chave estrangeira. O `InnoDB` não exige isso, o que é uma extensão do SQL padrão.
+  `NDB` requires an explicit unique key (or primary key) on any column referenced as a foreign key. `InnoDB` does not, which is an extension of standard SQL.
 
-- Os prefixos de índice em colunas de chave estrangeira não são suportados. Consequentemente, as colunas `BLOB` e `TEXT` não podem ser incluídas em uma chave estrangeira porque os índices nessas colunas devem sempre incluir um comprimento de prefixo.
+* Index prefixes on foreign key columns are not supported. Consequently, [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") and [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") columns cannot be included in a foreign key because indexes on those columns must always include a prefix length.
 
-- O `InnoDB` atualmente não suporta chaves estrangeiras para tabelas com particionamento definido pelo usuário. Isso inclui tanto as tabelas pai quanto as tabelas filho.
+* [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") does not currently support foreign keys for tables with user-defined partitioning. This includes both parent and child tables.
 
-  Essa restrição não se aplica às tabelas `NDB` que são particionadas por `KEY` ou `LINEAR KEY` (os únicos tipos de particionamento de usuário suportados pelo motor de armazenamento `NDB`); essas podem ter referências de chave estrangeira ou serem os alvos dessas referências.
+  This restriction does not apply for [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables that are partitioned by `KEY` or `LINEAR KEY` (the only user partitioning types supported by the `NDB` storage engine); these may have foreign key references or be the targets of such references.
 
-- Uma tabela em uma relação de chave estrangeira não pode ser alterada para usar outro mecanismo de armazenamento. Para alterar o mecanismo de armazenamento, você deve primeiro descartar quaisquer restrições de chave estrangeira.
+* A table in a foreign key relationship cannot be altered to use another storage engine. To change the storage engine, you must drop any foreign key constraints first.
 
-- Uma restrição de chave estrangeira não pode referenciar uma coluna gerada virtualmente.
+* A foreign key constraint cannot reference a virtual generated column.
 
-- Antes da versão 5.7.16, uma restrição de chave estrangeira não pode referenciar um índice secundário definido em uma coluna gerada virtualmente.
+* Prior to 5.7.16, a foreign key constraint cannot reference a secondary index defined on a virtual generated column.
 
-Para obter informações sobre como a implementação do MySQL de restrições de chave estrangeira difere do padrão SQL, consulte Seção 1.6.2.3, “Diferenças nas Restrições FOREIGN KEY”.
+For information about how the MySQL implementation of foreign key constraints differs from the SQL standard, see [Section 1.6.2.3, “FOREIGN KEY Constraint Differences”](ansi-diff-foreign-keys.html "1.6.2.3 FOREIGN KEY Constraint Differences").
 
-##### Ações Referenciais
+##### Referential Actions
 
-Quando uma operação de `UPDATE` ou `DELETE` afeta um valor de chave na tabela pai que tem linhas correspondentes na tabela filho, o resultado depende da ação referencial especificada pelos subcláusulas `ON UPDATE` e `ON DELETE` da cláusula `FOREIGN KEY`. As ações referenciais incluem:
+When an [`UPDATE`](update.html "13.2.11 UPDATE Statement") or [`DELETE`](delete.html "13.2.2 DELETE Statement") operation affects a key value in the parent table that has matching rows in the child table, the result depends on the *referential action* specified by `ON UPDATE` and `ON DELETE` subclauses of the `FOREIGN KEY` clause. Referential actions include:
 
-- `CASCADE`: Exclua ou atualize a linha da tabela pai e exclua ou atualize automaticamente as linhas correspondentes na tabela filho. Ambos os `ON DELETE CASCADE` e `ON UPDATE CASCADE` são suportados. Entre duas tabelas, não defina várias cláusulas `ON UPDATE CASCADE` que atuem na mesma coluna na tabela pai ou na tabela filho.
+* `CASCADE`: Delete or update the row from the parent table and automatically delete or update the matching rows in the child table. Both `ON DELETE CASCADE` and `ON UPDATE CASCADE` are supported. Between two tables, do not define several `ON UPDATE CASCADE` clauses that act on the same column in the parent table or in the child table.
 
-  Se uma cláusula `FOREIGN KEY` for definida em ambas as tabelas em uma relação de chave estrangeira, tornando ambas as tabelas pai e filho, uma subcláusula `ON UPDATE CASCADE` ou `ON DELETE CASCADE` definida para uma cláusula `FOREIGN KEY` deve ser definida para a outra para que as operações em cascata sejam bem-sucedidas. Se uma subcláusula `ON UPDATE CASCADE` ou `ON DELETE CASCADE` for definida apenas para uma cláusula `FOREIGN KEY`, as operações em cascata falharão com um erro.
+  If a `FOREIGN KEY` clause is defined on both tables in a foreign key relationship, making both tables a parent and child, an `ON UPDATE CASCADE` or `ON DELETE CASCADE` subclause defined for one `FOREIGN KEY` clause must be defined for the other in order for cascading operations to succeed. If an `ON UPDATE CASCADE` or `ON DELETE CASCADE` subclause is only defined for one `FOREIGN KEY` clause, cascading operations fail with an error.
 
-  Nota
+  Note
 
-  As ações de chave estrangeira em cascata não ativam gatilhos.
+  Cascaded foreign key actions do not activate triggers.
 
-- `SET NULL`: Exclua ou atualize a linha da tabela pai e defina a(s) coluna(s) da chave estrangeira na tabela filha para `NULL`. As cláusulas `ON DELETE SET NULL` e `ON UPDATE SET NULL` são suportadas.
+* `SET NULL`: Delete or update the row from the parent table and set the foreign key column or columns in the child table to `NULL`. Both `ON DELETE SET NULL` and `ON UPDATE SET NULL` clauses are supported.
 
-  Se você especificar uma ação `SET NULL`, *tenha certeza de que não declarou as colunas da tabela filha como `NOT NULL`*.
+  If you specify a `SET NULL` action, *make sure that you have not declared the columns in the child table as `NOT NULL`*.
 
-- `RESTRICT`: Rejeita a operação de exclusão ou atualização para a tabela pai. Especificar `RESTRICT` (ou `NO ACTION`) é o mesmo que omitir a cláusula `ON DELETE` ou `ON UPDATE`.
+* `RESTRICT`: Rejects the delete or update operation for the parent table. Specifying `RESTRICT` (or `NO ACTION`) is the same as omitting the `ON DELETE` or `ON UPDATE` clause.
 
-- `NO ACTION`: Uma palavra-chave do SQL padrão. Para o `InnoDB`, isso é equivalente a `RESTRICT`; a operação de exclusão ou atualização para a tabela pai é imediatamente rejeitada se houver um valor de chave estrangeira relacionada na tabela referenciada. O `NDB` suporta verificações diferidas, e `NO ACTION` especifica uma verificação diferida; quando isso é usado, as verificações de restrição não são realizadas até o momento do commit. Note que, para tabelas `NDB`, isso faz com que todas as verificações de chave estrangeira feitas tanto para as tabelas pai quanto para as tabelas filho sejam diferidas.
+* `NO ACTION`: A keyword from standard SQL. For [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine"), this is equivalent to `RESTRICT`; the delete or update operation for the parent table is immediately rejected if there is a related foreign key value in the referenced table. [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") supports deferred checks, and `NO ACTION` specifies a deferred check; when this is used, constraint checks are not performed until commit time. Note that for `NDB` tables, this causes all foreign key checks made for both parent and child tables to be deferred.
 
-- `SET DEFAULT`: Esta ação é reconhecida pelo analisador MySQL, mas tanto o `InnoDB` quanto o `NDB` rejeitam definições de tabelas que contêm cláusulas `ON DELETE SET DEFAULT` ou `ON UPDATE SET DEFAULT`.
+* `SET DEFAULT`: This action is recognized by the MySQL parser, but both [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") and [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") reject table definitions containing `ON DELETE SET DEFAULT` or `ON UPDATE SET DEFAULT` clauses.
 
-Para os motores de armazenamento que suportam chaves estrangeiras, o MySQL rejeita qualquer operação de `INSERT` ou `UPDATE` que tente criar um valor de chave estrangeira em uma tabela filha se não houver um valor de chave candidata correspondente na tabela pai.
+For storage engines that support foreign keys, MySQL rejects any [`INSERT`](insert.html "13.2.5 INSERT Statement") or [`UPDATE`](update.html "13.2.11 UPDATE Statement") operation that attempts to create a foreign key value in a child table if there is no matching candidate key value in the parent table.
 
-Para uma ação `ON DELETE` ou `ON UPDATE` que não seja especificada, a ação padrão é sempre `RESTRICT`.
+For an `ON DELETE` or `ON UPDATE` that is not specified, the default action is always `RESTRICT`.
 
-Para tabelas de `NDB`, o `ON UPDATE CASCADE` não é suportado quando a referência é à chave primária da tabela pai.
+For [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables, `ON UPDATE CASCADE` is not supported where the reference is to the parent table's primary key.
 
-A partir da NDB 7.5.14 e da NDB 7.6.10: Para as tabelas `NDB` (`mysql-cluster.html`), o `ON DELETE CASCADE` não é suportado quando a tabela filha contém uma ou mais colunas de qualquer um dos tipos `TEXT` (`blob.html`) ou `BLOB` (`blob.html`). (Bug #89511, Bug #27484882)
+As of NDB 7.5.14 and NDB 7.6.10: For [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables, `ON DELETE CASCADE` is not supported where the child table contains one or more columns of any of the [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") or [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") types. (Bug #89511, Bug
+#27484882)
 
-O `InnoDB` executa operações em cascata usando um algoritmo de busca em primeira instância nos registros do índice que corresponde à restrição de chave estrangeira.
+`InnoDB` performs cascading operations using a depth-first search algorithm on the records of the index that corresponds to the foreign key constraint.
 
-Uma restrição de chave estrangeira em uma coluna gerada armazenada não pode usar `CASCADE`, `SET NULL` ou `SET DEFAULT` como ações referenciais `ON UPDATE`, nem pode usar `SET NULL` ou `SET DEFAULT` como ações referenciais `ON DELETE`.
+A foreign key constraint on a stored generated column cannot use `CASCADE`, `SET NULL`, or `SET DEFAULT` as `ON UPDATE` referential actions, nor can it use `SET NULL` or `SET DEFAULT` as `ON DELETE` referential actions.
 
-Uma restrição de chave estrangeira na coluna base de uma coluna gerada armazenada não pode usar `CASCADE`, `SET NULL` ou `SET DEFAULT` como ações referenciais `ON UPDATE` ou `ON DELETE`.
+A foreign key constraint on the base column of a stored generated column cannot use `CASCADE`, `SET NULL`, or `SET DEFAULT` as `ON UPDATE` or `ON DELETE` referential actions.
 
-No MySQL 5.7.13 e versões anteriores, o `InnoDB` não permite definir uma restrição de chave estrangeira com uma ação de referência em cascata na coluna base de uma coluna virtual gerada com índice. Essa restrição é removida no MySQL 5.7.14.
+In MySQL 5.7.13 and earlier, `InnoDB` does not permit defining a foreign key constraint with a cascading referential action on the [base column](glossary.html#glos_base_column "base column") of an indexed virtual generated column. This restriction is lifted in MySQL 5.7.14.
 
-No MySQL 5.7.13 e versões anteriores, o `InnoDB` não permite definir ações de referência em cascata em colunas de chave estrangeira não virtual que estejam explicitamente incluídas em um índice virtual. Essa restrição é removida no MySQL 5.7.14.
+In MySQL 5.7.13 and earlier, `InnoDB` does not permit defining cascading referential actions on non-virtual foreign key columns that are explicitly included in a [virtual index](glossary.html#glos_virtual_index "virtual index"). This restriction is lifted in MySQL 5.7.14.
 
-##### Exemplos de restrição de chave estrangeira
+##### Foreign Key Constraint Examples
 
-Este exemplo simples relaciona as tabelas `parent` e `child` por meio de uma chave estrangeira de uma única coluna:
+This simple example relates `parent` and `child` tables through a single-column foreign key:
 
 ```sql
 CREATE TABLE parent (
@@ -137,7 +138,7 @@ CREATE TABLE child (
 ) ENGINE=INNODB;
 ```
 
-Este é um exemplo mais complexo, no qual uma tabela `product_order` possui chaves estrangeiras para duas outras tabelas. Uma chave estrangeira faz referência a um índice de duas colunas na tabela `product`. A outra faz referência a um índice de uma coluna na tabela `customer`:
+This is a more complex example in which a `product_order` table has foreign keys for two other tables. One foreign key references a two-column index in the `product` table. The other references a single-column index in the `customer` table:
 
 ```sql
 CREATE TABLE product (
@@ -170,9 +171,9 @@ CREATE TABLE product_order (
 )   ENGINE=INNODB;
 ```
 
-##### Adicionar restrições de chave estrangeira
+##### Adding Foreign Key Constraints
 
-Você pode adicionar uma restrição de chave estrangeira a uma tabela existente usando a seguinte sintaxe de `ALTER TABLE` (alter-table.html):
+You can add a foreign key constraint to an existing table using the following [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") syntax:
 
 ```sql
 ALTER TABLE tbl_name
@@ -183,17 +184,17 @@ ALTER TABLE tbl_name
     [ON UPDATE reference_option]
 ```
 
-A chave estrangeira pode ser auto-referencial (referindo-se à mesma tabela). Quando você adiciona uma restrição de chave estrangeira a uma tabela usando `ALTER TABLE`, *não se esqueça de criar um índice primeiro nas colunas referenciadas pela chave estrangeira.*
+The foreign key can be self referential (referring to the same table). When you add a foreign key constraint to a table using [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement"), *remember to first create an index on the column(s) referenced by the foreign key.*
 
-##### Deixar de aplicar restrições de chave estrangeira
+##### Dropping Foreign Key Constraints
 
-Você pode descartar uma restrição de chave estrangeira usando a seguinte sintaxe de `ALTER TABLE` (alter-table.html):
+You can drop a foreign key constraint using the following [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") syntax:
 
 ```sql
 ALTER TABLE tbl_name DROP FOREIGN KEY fk_symbol;
 ```
 
-Se a cláusula `FOREIGN KEY` definiu um nome de `CONSTRAINT` quando você criou a restrição, você pode referenciar esse nome para descartar a restrição de chave estrangeira. Caso contrário, um nome de restrição foi gerado internamente, e você deve usar esse valor. Para determinar o nome da restrição de chave estrangeira, use `SHOW CREATE TABLE`:
+If the `FOREIGN KEY` clause defined a `CONSTRAINT` name when you created the constraint, you can refer to that name to drop the foreign key constraint. Otherwise, a constraint name was generated internally, and you must use that value. To determine the foreign key constraint name, use [`SHOW CREATE TABLE`](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement"):
 
 ```sql
 mysql> SHOW CREATE TABLE child\G
@@ -210,45 +211,45 @@ Create Table: CREATE TABLE `child` (
 mysql> ALTER TABLE child DROP FOREIGN KEY `child_ibfk_1`;
 ```
 
-A adição e a remoção de uma chave estrangeira na mesma instrução `ALTER TABLE` são suportadas para `ALTER TABLE ... ALGORITHM=INPLACE`. Não são suportadas para `ALTER TABLE ... ALGORITHM=COPY`.
+Adding and dropping a foreign key in the same [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statement is supported for [`ALTER TABLE ... ALGORITHM=INPLACE`](alter-table.html "13.1.8 ALTER TABLE Statement"). It is not supported for [`ALTER TABLE ... ALGORITHM=COPY`](alter-table.html "13.1.8 ALTER TABLE Statement").
 
-##### Verificação de Chaves Estrangeiras
+##### Foreign Key Checks
 
-Nas tabelas MySQL, as tabelas InnoDB e NDB suportam a verificação de restrições de chave estrangeira. A verificação de chave estrangeira é controlada pela variável `foreign_key_checks`, que está habilitada por padrão. Normalmente, você deixa essa variável habilitada durante o funcionamento normal para impor a integridade referencial. A variável `foreign_key_checks` tem o mesmo efeito nas tabelas `NDB` que nas tabelas `InnoDB`.
+In MySQL, InnoDB and NDB tables support checking of foreign key constraints. Foreign key checking is controlled by the [`foreign_key_checks`](server-system-variables.html#sysvar_foreign_key_checks) variable, which is enabled by default. Typically, you leave this variable enabled during normal operation to enforce referential integrity. The [`foreign_key_checks`](server-system-variables.html#sysvar_foreign_key_checks) variable has the same effect on [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables as it does for [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") tables.
 
-A variável `foreign_key_checks` é dinâmica e suporta escopos globais e de sessão. Para obter informações sobre o uso de variáveis de sistema, consulte Seção 5.1.8, “Usando Variáveis de Sistema”.
+The [`foreign_key_checks`](server-system-variables.html#sysvar_foreign_key_checks) variable is dynamic and supports both global and session scopes. For information about using system variables, see [Section 5.1.8, “Using System Variables”](using-system-variables.html "5.1.8 Using System Variables").
 
-Desativar a verificação de chave estrangeira é útil quando:
+Disabling foreign key checking is useful when:
 
-- Excluir uma tabela que é referenciada por uma restrição de chave estrangeira. Uma tabela referenciada só pode ser excluída após a desativação de `foreign_key_checks`. Ao excluir uma tabela, as restrições definidas na tabela também são excluídas.
+* Dropping a table that is referenced by a foreign key constraint. A referenced table can only be dropped after [`foreign_key_checks`](server-system-variables.html#sysvar_foreign_key_checks) is disabled. When you drop a table, constraints defined on the table are also dropped.
 
-- Recarregar tabelas em uma ordem diferente da exigida por suas relações de chave estrangeira. Por exemplo, **mysqldump** produz definições corretas das tabelas no arquivo de dump, incluindo restrições de chave estrangeira para tabelas filhas. Para facilitar o recarregamento dos arquivos de dump para tabelas com relações de chave estrangeira, o **mysqldump** inclui automaticamente uma declaração na saída do dump que desabilita `foreign_key_checks`. Isso permite que você importe as tabelas em qualquer ordem, caso o arquivo de dump contenha tabelas que não estejam corretamente ordenadas para chaves estrangeiras. Desabilitar `foreign_key_checks` também acelera a operação de importação, evitando verificações de chave estrangeira.
+* Reloading tables in different order than required by their foreign key relationships. For example, [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") produces correct definitions of tables in the dump file, including foreign key constraints for child tables. To make it easier to reload dump files for tables with foreign key relationships, [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") automatically includes a statement in the dump output that disables [`foreign_key_checks`](server-system-variables.html#sysvar_foreign_key_checks). This enables you to import the tables in any order in case the dump file contains tables that are not correctly ordered for foreign keys. Disabling [`foreign_key_checks`](server-system-variables.html#sysvar_foreign_key_checks) also speeds up the import operation by avoiding foreign key checks.
 
-- Execute as operações de `LOAD DATA` para evitar a verificação de chaves estrangeiras.
+* Executing [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") operations, to avoid foreign key checking.
 
-- Realizar uma operação de alteração de tabela (`ALTER TABLE`) em uma tabela que possui uma relação de chave estrangeira.
+* Performing an [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") operation on a table that has a foreign key relationship.
 
-Quando `foreign_key_checks` está desativado, as restrições de chave estrangeira são ignoradas, com as seguintes exceções:
+When [`foreign_key_checks`](server-system-variables.html#sysvar_foreign_key_checks) is disabled, foreign key constraints are ignored, with the following exceptions:
 
-- Recriar uma tabela que foi previamente excluída retorna um erro se a definição da tabela não estiver em conformidade com as restrições de chave estrangeira que fazem referência à tabela. A tabela deve ter os nomes e tipos de coluna corretos. Deve também ter índices nas chaves referenciadas. Se esses requisitos não forem atendidos, o MySQL retorna o erro 1005, que se refere ao erro: 150 na mensagem de erro, o que significa que uma restrição de chave estrangeira não foi formada corretamente.
+* Recreating a table that was previously dropped returns an error if the table definition does not conform to the foreign key constraints that reference the table. The table must have the correct column names and types. It must also have indexes on the referenced keys. If these requirements are not satisfied, MySQL returns Error 1005 that refers to errno: 150 in the error message, which means that a foreign key constraint was not correctly formed.
 
-- Altere uma tabela e será exibido um erro (errno: 150) se a definição de chave estrangeira não estiver corretamente formada para a tabela alterada.
+* Altering a table returns an error (errno: 150) if a foreign key definition is incorrectly formed for the altered table.
 
-- Remover um índice exigido por uma restrição de chave estrangeira. A restrição de chave estrangeira deve ser removida antes de remover o índice.
+* Dropping an index required by a foreign key constraint. The foreign key constraint must be removed before dropping the index.
 
-- Criar uma restrição de chave estrangeira onde uma coluna faz referência a um tipo de coluna que não corresponde.
+* Creating a foreign key constraint where a column references a nonmatching column type.
 
-Desativar `foreign_key_checks` tem essas implicações adicionais:
+Disabling [`foreign_key_checks`](server-system-variables.html#sysvar_foreign_key_checks) has these additional implications:
 
-- É permitido excluir um banco de dados que contenha tabelas com chaves estrangeiras que são referenciadas por tabelas fora do banco de dados.
+* It is permitted to drop a database that contains tables with foreign keys that are referenced by tables outside the database.
 
-- É permitido excluir uma tabela com chaves estrangeiras referenciadas por outras tabelas.
+* It is permitted to drop a table with foreign keys referenced by other tables.
 
-- Ativar `foreign_key_checks` não dispara uma varredura dos dados da tabela, o que significa que as linhas adicionadas a uma tabela enquanto `foreign_key_checks` está desativado não são verificadas quanto à consistência quando `foreign_key_checks` é reativado.
+* Enabling [`foreign_key_checks`](server-system-variables.html#sysvar_foreign_key_checks) does not trigger a scan of table data, which means that rows added to a table while [`foreign_key_checks`](server-system-variables.html#sysvar_foreign_key_checks) is disabled are not checked for consistency when [`foreign_key_checks`](server-system-variables.html#sysvar_foreign_key_checks) is re-enabled.
 
-##### Definições de Chave Estrangeira e Metadados
+##### Foreign Key Definitions and Metadata
 
-Para visualizar a definição de uma chave estrangeira, use `SHOW CREATE TABLE`:
+To view a foreign key definition, use [`SHOW CREATE TABLE`](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement"):
 
 ```sql
 mysql> SHOW CREATE TABLE child\G
@@ -263,7 +264,7 @@ Create Table: CREATE TABLE `child` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
 ```
 
-Você pode obter informações sobre chaves estrangeiras a partir da tabela do esquema de informações `KEY_COLUMN_USAGE`. Um exemplo de consulta contra essa tabela é mostrado aqui:
+You can obtain information about foreign keys from the Information Schema [`KEY_COLUMN_USAGE`](information-schema-key-column-usage-table.html "24.3.12 The INFORMATION_SCHEMA KEY_COLUMN_USAGE Table") table. An example of a query against this table is shown here:
 
 ```sql
 mysql> SELECT TABLE_SCHEMA, TABLE_NAME, COLUMN_NAME, CONSTRAINT_NAME
@@ -276,7 +277,7 @@ mysql> SELECT TABLE_SCHEMA, TABLE_NAME, COLUMN_NAME, CONSTRAINT_NAME
 +--------------+------------+-------------+-----------------+
 ```
 
-Você pode obter informações específicas sobre as chaves estrangeiras `InnoDB` nas tabelas `INNODB_SYS_FOREIGN` e `INNODB_SYS_FOREIGN_COLS`. Exemplos de consultas estão aqui:
+You can obtain information specific to `InnoDB` foreign keys from the [`INNODB_SYS_FOREIGN`](information-schema-innodb-sys-foreign-table.html "24.4.20 The INFORMATION_SCHEMA INNODB_SYS_FOREIGN Table") and [`INNODB_SYS_FOREIGN_COLS`](information-schema-innodb-sys-foreign-cols-table.html "24.4.21 The INFORMATION_SCHEMA INNODB_SYS_FOREIGN_COLS Table") tables. Example queries are show here:
 
 ```sql
 mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_SYS_FOREIGN \G
@@ -295,9 +296,9 @@ REF_COL_NAME: id
          POS: 0
 ```
 
-##### Erros de Chave Estrangeira
+##### Foreign Key Errors
 
-Em caso de erro de chave estrangeira envolvendo tabelas `InnoDB` (geralmente o erro 150 no MySQL Server), as informações sobre o último erro de chave estrangeira podem ser obtidas verificando a saída de `SHOW ENGINE INNODB STATUS`.
+In the event of a foreign key error involving `InnoDB` tables (usually Error 150 in the MySQL Server), information about the latest foreign key error can be obtained by checking [`SHOW ENGINE INNODB STATUS`](show-engine.html "13.7.5.15 SHOW ENGINE Statement") output.
 
 ```sql
 mysql> SHOW ENGINE INNODB STATUS\G
@@ -336,6 +337,6 @@ PHYSICAL RECORD: n_fields 3; compact format; info bits 0
 ...
 ```
 
-Aviso
+Warning
 
-Os mensagens de erro `ER_NO_REFERENCED_ROW_2` e `ER_ROW_IS_REFERENCED_2` para operações de chave estrangeira exibem informações sobre as tabelas pai, mesmo que o usuário não tenha privilégios de acesso à tabela pai. Para ocultar informações sobre as tabelas pai, inclua os manipuladores de condição apropriados no código do aplicativo e nos programas armazenados.
+[`ER_NO_REFERENCED_ROW_2`](/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_no_referenced_row_2) and [`ER_ROW_IS_REFERENCED_2`](/doc/mysql-errors/5.7/en/server-error-reference.html#error_er_row_is_referenced_2) error messages for foreign key operations expose information about parent tables, even if the user has no parent table access privileges. To hide information about parent tables, include the appropriate condition handlers in application code and stored programs.

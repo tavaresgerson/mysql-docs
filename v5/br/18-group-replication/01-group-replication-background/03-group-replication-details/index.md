@@ -1,9 +1,9 @@
-### 17.1.3 Detalhes da Replicação em Grupo
+### 17.1.3 Group Replication Details
 
-17.1.3.1 Membros do grupo
+[17.1.3.1 Group Membership](group-replication-group-membership.html)
 
-17.1.3.2 Detecção de falhas
+[17.1.3.2 Failure Detection](group-replication-failure-detection.html)
 
-17.1.3.3 Tolerância a falhas
+[17.1.3.3 Fault-tolerance](group-replication-fault-tolerance.html)
 
-Esta seção apresenta detalhes sobre alguns dos serviços que a Replicação em Grupo é baseada.
+This section presents details about some of the services that Group Replication builds on.

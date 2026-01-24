@@ -1,15 +1,15 @@
-#### 13.7.3.2 Declaração da função DROP para funções carregáveis
+#### 13.7.3.2 DROP FUNCTION Statement for Loadable Functions
 
 ```sql
 DROP FUNCTION [IF EXISTS] function_name
 ```
 
-Essa declaração exclui a função carregável chamada *`nome_da_função`*. (`DROP FUNCTION` também é usado para excluir funções armazenadas; veja Seção 13.1.27, “Instruções DROP PROCEDURE e DROP FUNCTION”.)
+This statement drops the loadable function named *`function_name`*. (`DROP FUNCTION` is also used to drop stored functions; see [Section 13.1.27, “DROP PROCEDURE and DROP FUNCTION Statements”](drop-procedure.html "13.1.27 DROP PROCEDURE and DROP FUNCTION Statements").)
 
-`DROP FUNCTION` é o complemento de `CREATE FUNCTION`. Ele requer o privilégio `DELETE` para o banco de dados do sistema `mysql`, pois remove a linha da tabela do sistema `mysql.func` que registra a função.
+[`DROP FUNCTION`](drop-function-loadable.html "13.7.3.2 DROP FUNCTION Statement for Loadable Functions") is the complement of [`CREATE FUNCTION`](create-function-loadable.html "13.7.3.1 CREATE FUNCTION Statement for Loadable Functions"). It requires the [`DELETE`](privileges-provided.html#priv_delete) privilege for the `mysql` system database because it removes the row from the `mysql.func` system table that registers the function.
 
-Durante a sequência normal de inicialização, o servidor carrega as funções registradas na tabela `mysql.func`. Como o `DROP FUNCTION` remove a linha `mysql.func` da função que foi removida, o servidor não carrega a função durante reinicializações subsequentes.
+During the normal startup sequence, the server loads functions registered in the `mysql.func` table. Because [`DROP FUNCTION`](drop-function-loadable.html "13.7.3.2 DROP FUNCTION Statement for Loadable Functions") removes the `mysql.func` row for the dropped function, the server does not load the function during subsequent restarts.
 
-Nota
+Note
 
-Para atualizar a biblioteca compartilhada associada a uma função carregável, execute uma declaração de `DROP FUNCTION`, atualize a biblioteca compartilhada e, em seguida, execute uma declaração de `CREATE FUNCTION`. Se você atualizar a biblioteca compartilhada primeiro e, em seguida, usar `DROP FUNCTION`, o servidor pode ser desligado inesperadamente.
+To upgrade the shared library associated with a loadable function, issue a [`DROP FUNCTION`](drop-function-loadable.html "13.7.3.2 DROP FUNCTION Statement for Loadable Functions") statement, upgrade the shared library, and then issue a [`CREATE FUNCTION`](create-function-loadable.html "13.7.3.1 CREATE FUNCTION Statement for Loadable Functions") statement. If you upgrade the shared library first and then use [`DROP FUNCTION`](drop-function-loadable.html "13.7.3.2 DROP FUNCTION Statement for Loadable Functions"), the server may unexpectedly shut down.

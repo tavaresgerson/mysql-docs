@@ -1,18 +1,18 @@
-#### 22.2.3.1 Partição de colunas de intervalo
+#### 22.2.3.1 RANGE COLUMNS partitioning
 
-A partição por intervalo de colunas é semelhante à partição por intervalo, mas permite que você defina partições usando intervalos baseados em múltiplos valores de coluna. Além disso, você pode definir os intervalos usando colunas de tipos diferentes dos inteiros.
+Range columns partitioning is similar to range partitioning, but enables you to define partitions using ranges based on multiple column values. In addition, you can define the ranges using columns of types other than integer types.
 
-A partição `RANGE COLUMNS` difere significativamente da partição `RANGE` das seguintes maneiras:
+`RANGE COLUMNS` partitioning differs significantly from `RANGE` partitioning in the following ways:
 
-- `RANGE COLUMNS` não aceita expressões, apenas nomes de colunas.
+* `RANGE COLUMNS` does not accept expressions, only names of columns.
 
-- `RANGE COLUMNS` aceita uma lista de uma ou mais colunas.
+* `RANGE COLUMNS` accepts a list of one or more columns.
 
-  As partições `RANGE COLUMNS` são baseadas em comparações entre tuplas (listas de valores de coluna) e não em comparações entre valores escalares. O posicionamento das linhas nas partições `RANGE COLUMNS` também é baseado em comparações entre tuplas; isso é discutido mais adiante nesta seção.
+  `RANGE COLUMNS` partitions are based on comparisons between tuples (lists of column values) rather than comparisons between scalar values. Placement of rows in `RANGE COLUMNS` partitions is also based on comparisons between tuples; this is discussed further later in this section.
 
-- As colunas de particionamento `RANGE COLUMNS` não são restritas a colunas inteiras; colunas de texto, `DATE` e `DATETIME` também podem ser usadas como colunas de particionamento. (Veja Seção 22.2.3, “COLUNAS DE PARTICIONAMENTO”, para detalhes.)
+* `RANGE COLUMNS` partitioning columns are not restricted to integer columns; string, [`DATE`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") and [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") columns can also be used as partitioning columns. (See [Section 22.2.3, “COLUMNS Partitioning”](partitioning-columns.html "22.2.3 COLUMNS Partitioning"), for details.)
 
-A sintaxe básica para criar uma tabela particionada por `COLUNAS DE CAMPO` está mostrada aqui:
+The basic syntax for creating a table partitioned by `RANGE COLUMNS` is shown here:
 
 ```sql
 CREATE TABLE table_name
@@ -29,13 +29,13 @@ value_list:
     value[, value][, ...]
 ```
 
-Nota
+Note
 
-Nem todas as opções de `CREATE TABLE` que podem ser usadas ao criar tabelas particionadas estão mostradas aqui. Para informações completas, consulte Seção 13.1.18, “Instrução CREATE TABLE”.
+Not all [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") options that can be used when creating partitioned tables are shown here. For complete information, see [Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement").
 
-Na sintaxe mostrada acima, *`column_list`* é uma lista de uma ou mais colunas (às vezes chamada de lista de colunas de particionamento) e *`value_list`* é uma lista de valores (ou seja, é uma lista de valores de definição de particionamento). Uma *`value_list`* deve ser fornecida para cada definição de particionamento e cada *`value_list`* deve ter o mesmo número de valores que a *`column_list`* tem colunas. De forma geral, se você usar *`N`* colunas na cláusula `COLUMNS`, então cada cláusula `VALUES LESS THAN` também deve ser fornecida com uma lista de *`N`* valores.
+In the syntax just shown, *`column_list`* is a list of one or more columns (sometimes called a partitioning column list), and *`value_list`* is a list of values (that is, it is a partition definition value list). A *`value_list`* must be supplied for each partition definition, and each *`value_list`* must have the same number of values as the *`column_list`* has columns. Generally speaking, if you use *`N`* columns in the `COLUMNS` clause, then each `VALUES LESS THAN` clause must also be supplied with a list of *`N`* values.
 
-Os elementos na coluna de partição da lista e na lista de valores que definem cada partição devem ocorrer na mesma ordem. Além disso, cada elemento na lista de valores deve ser do mesmo tipo de dado que o elemento correspondente na lista de colunas. No entanto, a ordem dos nomes das colunas na lista de colunas de partição e nas listas de valores não precisa ser a mesma que a ordem das definições de colunas da tabela na parte principal da declaração `CREATE TABLE`. Assim como na partição da tabela por `RANGE`, você pode usar `MAXVALUE` para representar um valor de modo que qualquer valor legal inserido em uma coluna dada seja sempre menor que esse valor. Aqui está um exemplo de uma declaração `CREATE TABLE` que ajuda a ilustrar todos esses pontos:
+The elements in the partitioning column list and in the value list defining each partition must occur in the same order. In addition, each element in the value list must be of the same data type as the corresponding element in the column list. However, the order of the column names in the partitioning column list and the value lists does not have to be the same as the order of the table column definitions in the main part of the [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement. As with table partitioned by `RANGE`, you can use `MAXVALUE` to represent a value such that any legal value inserted into a given column is always less than this value. Here is an example of a [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement that helps to illustrate all of these points:
 
 ```sql
 mysql> CREATE TABLE rcx (
@@ -53,11 +53,11 @@ mysql> CREATE TABLE rcx (
 Query OK, 0 rows affected (0.15 sec)
 ```
 
-A tabela `rcx` contém as colunas `a`, `b`, `c`, `d`. A lista de colunas de partição fornecida na cláusula `COLUMNS` usa 3 dessas colunas, na ordem `a`, `d`, `c`. Cada lista de valores usada para definir uma partição contém 3 valores na mesma ordem; ou seja, cada tupla da lista de valores tem a forma (`INT`, `INT`, `CHAR(3)`), o que corresponde aos tipos de dados usados pelas colunas `a`, `d` e `c` (naquela ordem).
+Table `rcx` contains the columns `a`, `b`, `c`, `d`. The partitioning column list supplied to the `COLUMNS` clause uses 3 of these columns, in the order `a`, `d`, `c`. Each value list used to define a partition contains 3 values in the same order; that is, each value list tuple has the form (`INT`, `INT`, `CHAR(3)`), which corresponds to the data types used by columns `a`, `d`, and `c` (in that order).
 
-A colocação de linhas em partições é determinada pela comparação do tuplo de uma linha a ser inserida que corresponde à lista de colunas na cláusula `COLUMNS` com os tuplos usados nas cláusulas `VALUES LESS THAN` para definir as partições da tabela. Como estamos comparando tuplos (ou seja, listas ou conjuntos de valores) em vez de valores escalares, a semântica de `VALUES LESS THAN` quando usada com partições `RANGE COLUMNS` difere um pouco do caso com partições simples `RANGE`. Na partição `RANGE`, uma linha que gera um valor de expressão que é igual a um valor limite em uma `VALUES LESS THAN` nunca é colocada na partição correspondente; no entanto, ao usar a partição `RANGE COLUMNS`, às vezes é possível que uma linha cujo primeiro elemento da lista de colunas de partição tenha o mesmo valor que o primeiro elemento em uma lista de valores `VALUES LESS THAN` seja colocada na partição correspondente.
+Placement of rows into partitions is determined by comparing the tuple from a row to be inserted that matches the column list in the `COLUMNS` clause with the tuples used in the `VALUES LESS THAN` clauses to define partitions of the table. Because we are comparing tuples (that is, lists or sets of values) rather than scalar values, the semantics of `VALUES LESS THAN` as used with `RANGE COLUMNS` partitions differs somewhat from the case with simple `RANGE` partitions. In `RANGE` partitioning, a row generating an expression value that is equal to a limiting value in a `VALUES LESS THAN` is never placed in the corresponding partition; however, when using `RANGE COLUMNS` partitioning, it is sometimes possible for a row whose partitioning column list's first element is equal in value to the that of the first element in a `VALUES LESS THAN` value list to be placed in the corresponding partition.
 
-Considere a tabela `RANGE` particionada criada por esta declaração:
+Consider the `RANGE` partitioned table created by this statement:
 
 ```sql
 CREATE TABLE r1 (
@@ -70,7 +70,7 @@ PARTITION BY RANGE (a)  (
 );
 ```
 
-Se inserirmos 3 linhas nesta tabela de modo que o valor da coluna para `a` seja `5` para cada linha, todas as 3 linhas serão armazenadas na partição `p1` porque o valor da coluna `a` em cada caso não é menor que 5, como podemos ver ao executar a consulta adequada na tabela do Schema de Informações `PARTITIONS`:
+If we insert 3 rows into this table such that the column value for `a` is `5` for each row, all 3 rows are stored in partition `p1` because the `a` column value is in each case not less than 5, as we can see by executing the proper query against the Information Schema [`PARTITIONS`](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table") table:
 
 ```sql
 mysql> INSERT INTO r1 VALUES (5,10), (5,11), (5,12);
@@ -89,7 +89,7 @@ mysql> SELECT PARTITION_NAME, TABLE_ROWS
 2 rows in set (0.00 sec)
 ```
 
-Agora, considere uma tabela semelhante `rc1` que usa a partição `RANGE COLUMNS` com ambas as colunas `a` e `b` referenciadas na cláusula `COLUMNS`, criada conforme mostrado aqui:
+Now consider a similar table `rc1` that uses `RANGE COLUMNS` partitioning with both columns `a` and `b` referenced in the `COLUMNS` clause, created as shown here:
 
 ```sql
 CREATE TABLE rc1 (
@@ -102,7 +102,7 @@ PARTITION BY RANGE COLUMNS(a, b) (
 );
 ```
 
-Se inserirmos exatamente as mesmas linhas em `rc1` que acabamos de inserir em `r1`, a distribuição das linhas será bastante diferente:
+If we insert exactly the same rows into `rc1` as we just inserted into `r1`, the distribution of the rows is quite different:
 
 ```sql
 mysql> INSERT INTO rc1 VALUES (5,10), (5,11), (5,12);
@@ -121,7 +121,7 @@ mysql> SELECT PARTITION_NAME, TABLE_ROWS
 2 rows in set (0.00 sec)
 ```
 
-Isso ocorre porque estamos comparando linhas em vez de valores escalares. Podemos comparar os valores das linhas inseridos com o valor máximo da linha da cláusula `VALUES THAN LESS THAN` usada para definir a partição `p0` na tabela `rc1`, da seguinte forma:
+This is because we are comparing rows rather than scalar values. We can compare the row values inserted with the limiting row value from the `VALUES THAN LESS THAN` clause used to define partition `p0` in table `rc1`, like this:
 
 ```sql
 mysql> SELECT (5,10) < (5,12), (5,11) < (5,12), (5,12) < (5,12);
@@ -133,17 +133,17 @@ mysql> SELECT (5,10) < (5,12), (5,11) < (5,12), (5,12) < (5,12);
 1 row in set (0.00 sec)
 ```
 
-Os tuplos `(5,10)` e `(5,11)` são avaliados como menores que `(5,12)`, então eles são armazenados na partição `p0`. Como 5 não é menor que 5 e 12 não é menor que 12, `(5,12)` é considerado não menor que `(5,12)`, e é armazenado na partição `p1`.
+The 2 tuples `(5,10)` and `(5,11)` evaluate as less than `(5,12)`, so they are stored in partition `p0`. Since 5 is not less than 5 and 12 is not less than 12, `(5,12)` is considered not less than `(5,12)`, and is stored in partition `p1`.
 
-A instrução `SELECT` no exemplo anterior também poderia ter sido escrita usando construtores de linha explícitos, como este:
+The [`SELECT`](select.html "13.2.9 SELECT Statement") statement in the preceding example could also have been written using explicit row constructors, like this:
 
 ```sql
 SELECT ROW(5,10) < ROW(5,12), ROW(5,11) < ROW(5,12), ROW(5,12) < ROW(5,12);
 ```
 
-Para obter mais informações sobre o uso de construtores de linhas no MySQL, consulte Seção 13.2.10.5, “Subconsultas de Linhas”.
+For more information about the use of row constructors in MySQL, see [Section 13.2.10.5, “Row Subqueries”](row-subqueries.html "13.2.10.5 Row Subqueries").
 
-Para uma tabela particionada por `COLUMNS DE CAMPO DE CAMADA DE GRUPO` usando apenas uma única coluna de particionamento, o armazenamento de linhas nas partições é o mesmo que o de uma tabela equivalente que é particionada por `RANGE`. A seguinte instrução `CREATE TABLE` cria uma tabela particionada por `COLUMNS DE CAMPO DE CAMADA DE GRUPO` usando 1 coluna de particionamento:
+For a table partitioned by `RANGE COLUMNS` using only a single partitioning column, the storing of rows in partitions is the same as that of an equivalent table that is partitioned by `RANGE`. The following `CREATE TABLE` statement creates a table partitioned by `RANGE COLUMNS` using 1 partitioning column:
 
 ```sql
 CREATE TABLE rx (
@@ -156,7 +156,7 @@ PARTITION BY RANGE COLUMNS (a)  (
 );
 ```
 
-Se inserirmos as linhas `(5,10)`, `(5,11)` e `(5,12)` nesta tabela, podemos ver que seu posicionamento é o mesmo do que para a tabela `r` que criamos e preenchimos anteriormente:
+If we insert the rows `(5,10)`, `(5,11)`, and `(5,12)` into this table, we can see that their placement is the same as it is for the table `r` we created and populated earlier:
 
 ```sql
 mysql> INSERT INTO rx VALUES (5,10), (5,11), (5,12);
@@ -175,7 +175,7 @@ mysql> SELECT PARTITION_NAME,TABLE_ROWS
 2 rows in set (0.00 sec)
 ```
 
-Também é possível criar tabelas particionadas por `COLUMNS RANGE` onde os valores de limite para uma ou mais colunas são repetidos em definições de particionamento sucessivas. Você pode fazer isso desde que os tuplos de valores de coluna usados para definir as particionações sejam estritamente crescentes. Por exemplo, cada uma das seguintes instruções de `CREATE TABLE` (create-table.html) é válida:
+It is also possible to create tables partitioned by `RANGE COLUMNS` where limiting values for one or more columns are repeated in successive partition definitions. You can do this as long as the tuples of column values used to define the partitions are strictly increasing. For example, each of the following [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statements is valid:
 
 ```sql
 CREATE TABLE rc2 (
@@ -203,7 +203,7 @@ PARTITION BY RANGE COLUMNS(a,b) (
  );
 ```
 
-A seguinte declaração também é válida, embora possa parecer, à primeira vista, que não seria, uma vez que o valor limite da coluna `b` é de 25 para a partição `p0` e de 20 para a partição `p1`, e o valor limite da coluna `c` é de 100 para a partição `p1` e de 50 para a partição `p2`:
+The following statement also succeeds, even though it might appear at first glance that it would not, since the limiting value of column `b` is 25 for partition `p0` and 20 for partition `p1`, and the limiting value of column `c` is 100 for partition `p1` and 50 for partition `p2`:
 
 ```sql
 CREATE TABLE rc4 (
@@ -219,7 +219,7 @@ PARTITION BY RANGE COLUMNS(a,b,c) (
  );
 ```
 
-Ao projetar tabelas particionadas por `COLUNAS DE CAMPO DE Variação`, você sempre pode testar definições de particionamento sucessivas comparando os tuplos desejados usando o cliente **mysql**, da seguinte maneira:
+When designing tables partitioned by `RANGE COLUMNS`, you can always test successive partition definitions by comparing the desired tuples using the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client, like this:
 
 ```sql
 mysql> SELECT (0,25,50) < (10,20,100), (10,20,100) < (10,30,50);
@@ -231,7 +231,7 @@ mysql> SELECT (0,25,50) < (10,20,100), (10,20,100) < (10,30,50);
 1 row in set (0.00 sec)
 ```
 
-Se uma instrução `CREATE TABLE` contiver definições de partição que não estejam em ordem estritamente crescente, ela falhará com um erro, como mostrado neste exemplo:
+If a [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement contains partition definitions that are not in strictly increasing order, it fails with an error, as shown in this example:
 
 ```sql
 mysql> CREATE TABLE rcf (
@@ -248,7 +248,7 @@ mysql> CREATE TABLE rcf (
 ERROR 1493 (HY000): VALUES LESS THAN value must be strictly increasing for each partition
 ```
 
-Quando você recebe esse erro, pode deduzir quais definições de partição são inválidas fazendo comparações de “menor que” entre suas listas de colunas. Neste caso, o problema está com a definição da partição `p2`, porque o tuplo usado para defini-la não é menor que o tuplo usado para definir a partição `p3`, como mostrado aqui:
+When you get such an error, you can deduce which partition definitions are invalid by making “less than” comparisons between their column lists. In this case, the problem is with the definition of partition `p2` because the tuple used to define it is not less than the tuple used to define partition `p3`, as shown here:
 
 ```sql
 mysql> SELECT (0,25,50) < (20,20,100), (20,20,100) < (10,30,50);
@@ -260,9 +260,9 @@ mysql> SELECT (0,25,50) < (20,20,100), (20,20,100) < (10,30,50);
 1 row in set (0.00 sec)
 ```
 
-Também é possível que `MAXVALUE` apareça para a mesma coluna em mais de uma cláusula `VALUES LESS THAN` ao usar `RANGE COLUMNS`. No entanto, os valores limitantes para colunas individuais em definições de partição consecutivas devem ser, de outra forma, crescentes, não deve haver mais de uma partição definida onde `MAXVALUE` é usado como o limite superior para todos os valores de coluna, e essa definição de partição deve aparecer na última posição na lista de cláusulas `PARTITION ... VALUES LESS THAN`. Além disso, você não pode usar `MAXVALUE` como o valor limitante para a primeira coluna em mais de uma definição de partição.
+It is also possible for `MAXVALUE` to appear for the same column in more than one `VALUES LESS THAN` clause when using `RANGE COLUMNS`. However, the limiting values for individual columns in successive partition definitions should otherwise be increasing, there should be no more than one partition defined where `MAXVALUE` is used as the upper limit for all column values, and this partition definition should appear last in the list of `PARTITION ... VALUES LESS THAN` clauses. In addition, you cannot use `MAXVALUE` as the limiting value for the first column in more than one partition definition.
 
-Como mencionado anteriormente, também é possível usar colunas não inteiras como colunas de particionamento com o particionamento por `RANGE COLUMNS` (Consulte Seção 22.2.3, “Particionamento de COLUNAS” para uma lista completa dessas). Considere uma tabela chamada `employees` (que não está particionada), criada usando a seguinte declaração:
+As stated previously, it is also possible with `RANGE COLUMNS` partitioning to use non-integer columns as partitioning columns. (See [Section 22.2.3, “COLUMNS Partitioning”](partitioning-columns.html "22.2.3 COLUMNS Partitioning"), for a complete listing of these.) Consider a table named `employees` (which is not partitioned), created using the following statement:
 
 ```sql
 CREATE TABLE employees (
@@ -276,7 +276,7 @@ CREATE TABLE employees (
 );
 ```
 
-Usando a partição `RANGE COLUMNS`, você pode criar uma versão dessa tabela que armazena cada linha em uma das quatro partições com base no sobrenome do funcionário, como este:
+Using `RANGE COLUMNS` partitioning, you can create a version of this table that stores each row in one of four partitions based on the employee's last name, like this:
 
 ```sql
 CREATE TABLE employees_by_lname (
@@ -296,7 +296,7 @@ PARTITION BY RANGE COLUMNS (lname)  (
 );
 ```
 
-Como alternativa, você pode fazer com que a tabela `employees`, criada anteriormente, seja particionada usando esse esquema, executando a seguinte instrução `ALTER TABLE`:
+Alternatively, you could cause the `employees` table as created previously to be partitioned using this scheme by executing the following [`ALTER TABLE`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") statement:
 
 ```sql
 ALTER TABLE employees PARTITION BY RANGE COLUMNS (lname)  (
@@ -307,13 +307,13 @@ ALTER TABLE employees PARTITION BY RANGE COLUMNS (lname)  (
 );
 ```
 
-Nota
+Note
 
-Como diferentes conjuntos de caracteres e codificações têm ordens de classificação diferentes, os conjuntos de caracteres e codificações em uso podem afetar em qual partição de uma tabela particionada por `COLUNAS DE CAMPO` uma determinada linha é armazenada ao usar colunas de texto como colunas de particionamento. Além disso, alterar o conjunto de caracteres ou a codificação de um banco de dados, tabela ou coluna específico após a criação de uma tabela pode causar alterações na forma como as linhas são distribuídas. Por exemplo, ao usar uma codificação sensível a maiúsculas e minúsculas, `'and'` é classificado antes de `'Andersen'`, mas ao usar uma codificação que é sensível a maiúsculas e minúsculas, o inverso é verdadeiro.
+Because different character sets and collations have different sort orders, the character sets and collations in use may effect which partition of a table partitioned by `RANGE COLUMNS` a given row is stored in when using string columns as partitioning columns. In addition, changing the character set or collation for a given database, table, or column after such a table is created may cause changes in how rows are distributed. For example, when using a case-sensitive collation, `'and'` sorts before `'Andersen'`, but when using a collation that is case-insensitive, the reverse is true.
 
-Para obter informações sobre como o MySQL lida com conjuntos de caracteres e colatações, consulte [Capítulo 10, *Conjunto de caracteres, colatações, Unicode*] (charset.html).
+For information about how MySQL handles character sets and collations, see [Chapter 10, *Character Sets, Collations, Unicode*](charset.html "Chapter 10 Character Sets, Collations, Unicode").
 
-Da mesma forma, você pode fazer com que a tabela `employees` seja particionada de tal forma que cada linha seja armazenada em uma das várias partições com base na década em que o funcionário correspondente foi contratado, usando a instrução `ALTER TABLE` mostrada aqui:
+Similarly, you can cause the `employees` table to be partitioned in such a way that each row is stored in one of several partitions based on the decade in which the corresponding employee was hired using the [`ALTER TABLE`](alter-table-partition-operations.html "13.1.8.1 ALTER TABLE Partition Operations") statement shown here:
 
 ```sql
 ALTER TABLE employees PARTITION BY RANGE COLUMNS (hired)  (
@@ -326,4 +326,4 @@ ALTER TABLE employees PARTITION BY RANGE COLUMNS (hired)  (
 );
 ```
 
-Consulte Seção 13.1.18, “Instrução CREATE TABLE” para obter informações adicionais sobre a sintaxe `PARTITION BY RANGE COLUMNS`.
+See [Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement"), for additional information about `PARTITION BY RANGE COLUMNS` syntax.

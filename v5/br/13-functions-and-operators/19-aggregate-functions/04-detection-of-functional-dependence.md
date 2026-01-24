@@ -1,28 +1,25 @@
-### 12.19.4 Detecção de Dependência Funcional
+### 12.19.4 Detection of Functional Dependence
 
-A discussão a seguir apresenta vários exemplos das maneiras pelas quais o MySQL detecta dependências funcionais. Os exemplos utilizam essa notação:
+The following discussion provides several examples of the ways in which MySQL detects functional dependencies. The examples use this notation:
 
 ```sql
 {X} -> {Y}
 ```
 
-Entenda isso como “*`X`* determina *`Y`* de forma única”, o que também significa que *`Y`* depende funcionalmente de *`X`*.
+Understand this as “*`X`* uniquely determines *`Y`*,” which also means that *`Y`* is functionally dependent on *`X`*.
 
-Os exemplos utilizam o banco de dados `world`, que pode ser baixado em <https://dev.mysql.com/doc/index-other.html>. Você pode encontrar detalhes sobre como instalar o banco de dados na mesma página.
+The examples use the `world` database, which can be downloaded from https://dev.mysql.com/doc/index-other.html. You can find details on how to install the database on the same page.
 
-- Dependências Funcionais Derivadas de Chaves
+* Functional Dependencies Derived from Keys
+* Functional Dependencies Derived from Multiple-Column Keys and from Equalities
 
-- Dependências Funcionais Derivadas de Chaves de Múltiplos Colunas e de Igualdades
+* Functional Dependency Special Cases
+* Functional Dependencies and Views
+* Combinations of Functional Dependencies
 
-- Dependência Funcional Casos Especiais
+#### Functional Dependencies Derived from Keys
 
-- Dependências Funcionais e Visualizações
-
-- Combinações de Dependências Funcionais
-
-#### Dependências Funcionais Derivadas de Chaves
-
-A consulta a seguir seleciona, para cada país, um número de idiomas falados:
+The following query selects, for each country, a count of spoken languages:
 
 ```sql
 SELECT co.Name, COUNT(*)
@@ -31,19 +28,19 @@ WHERE cl.CountryCode = co.Code
 GROUP BY co.Code;
 ```
 
-`co.Code` é uma chave primária de `co`, portanto, todas as colunas de `co` dependem funcionalmente dela, conforme expresso usando essa notação:
+`co.Code` is a primary key of `co`, so all columns of `co` are functionally dependent on it, as expressed using this notation:
 
 ```sql
 {co.Code} -> {co.*}
 ```
 
-Assim, `co.name` é funcionalmente dependente das colunas `GROUP BY` e a consulta é válida.
+Thus, `co.name` is functionally dependent on `GROUP BY` columns and the query is valid.
 
-Um índice `UNIQUE` sobre uma coluna `NOT NULL` poderia ser usado em vez de uma chave primária e a mesma dependência funcional se aplicaria. (Isso não é verdade para um índice `UNIQUE` que permite valores `NULL`, pois permite múltiplos valores `NULL` e, nesse caso, a singularidade é perdida.)
+A `UNIQUE` index over a `NOT NULL` column could be used instead of a primary key and the same functional dependence would apply. (This is not true for a `UNIQUE` index that permits `NULL` values because it permits multiple `NULL` values and in that case uniqueness is lost.)
 
-#### Dependências Funcionais Derivadas de Chaves de Múltiplos Colunas e de Igualdades
+#### Functional Dependencies Derived from Multiple-Column Keys and from Equalities
 
-Essa consulta seleciona, para cada país, uma lista de todas as línguas faladas e quantas pessoas as falam:
+This query selects, for each country, a list of all spoken languages and how many people speak them:
 
 ```sql
 SELECT co.Name, cl.Language,
@@ -53,35 +50,35 @@ WHERE cl.CountryCode = co.Code
 GROUP BY cl.CountryCode, cl.Language;
 ```
 
-O par (`cl.CountryCode`, `cl.Language`) é uma chave primária composta de duas colunas de `cl`, de modo que esse par de colunas determina de forma única todas as colunas de `cl`:
+The pair (`cl.CountryCode`, `cl.Language`) is a two-column composite primary key of `cl`, so that column pair uniquely determines all columns of `cl`:
 
 ```sql
 {cl.CountryCode, cl.Language} -> {cl.*}
 ```
 
-Além disso, devido à igualdade na cláusula `WHERE`:
+Moreover, because of the equality in the `WHERE` clause:
 
 ```sql
 {cl.CountryCode} -> {co.Code}
 ```
 
-E, como `co.Code` é a chave primária de `co`:
+And, because `co.Code` is primary key of `co`:
 
 ```sql
 {co.Code} -> {co.*}
 ```
 
-As relações que são “determinadas de forma única” são transitivas, portanto:
+“Uniquely determines” relationships are transitive, therefore:
 
 ```sql
 {cl.CountryCode, cl.Language} -> {cl.*,co.*}
 ```
 
-Como resultado, a consulta é válida.
+As a result, the query is valid.
 
-Assim como no exemplo anterior, uma chave `UNIQUE` sobre colunas `NOT NULL` poderia ser usada em vez de uma chave primária.
+As with the previous example, a `UNIQUE` key over `NOT NULL` columns could be used instead of a primary key.
 
-Uma condição de `INNER JOIN` pode ser usada em vez de `WHERE`. As mesmas dependências funcionais se aplicam:
+An `INNER JOIN` condition can be used instead of `WHERE`. The same functional dependencies apply:
 
 ```sql
 SELECT co.Name, cl.Language,
@@ -91,11 +88,11 @@ ON cl.CountryCode = co.Code
 GROUP BY cl.CountryCode, cl.Language;
 ```
 
-#### Dependência Funcional Casos Especiais
+#### Functional Dependency Special Cases
 
-Enquanto um teste de igualdade em uma condição `WHERE` ou em uma condição `INNER JOIN` é simétrico, um teste de igualdade em uma condição de junção externa não é, porque as tabelas desempenham papéis diferentes.
+Whereas an equality test in a `WHERE` condition or `INNER JOIN` condition is symmetric, an equality test in an outer join condition is not, because tables play different roles.
 
-Suponha que a integridade referencial tenha sido acidentalmente quebrada e exista uma linha de `countrylanguage` sem uma linha correspondente em `country`. Considere a mesma consulta do exemplo anterior, mas com uma `LEFT JOIN`:
+Assume that referential integrity has been accidentally broken and there exists a row of `countrylanguage` without a corresponding row in `country`. Consider the same query as in the previous example, but with a `LEFT JOIN`:
 
 ```sql
 SELECT co.Name, cl.Language,
@@ -105,29 +102,29 @@ ON cl.CountryCode = co.Code
 GROUP BY cl.CountryCode, cl.Language;
 ```
 
-Para um valor dado de `cl.CountryCode`, o valor de `co.Code` no resultado da junção é encontrado em uma linha correspondente (determinado por `cl.CountryCode`) ou é complementado com `NULL` se não houver correspondência (também determinado por `cl.CountryCode`). Em cada caso, essa relação se aplica:
+For a given value of `cl.CountryCode`, the value of `co.Code` in the join result is either found in a matching row (determined by `cl.CountryCode`) or is `NULL`-complemented if there is no match (also determined by `cl.CountryCode`). In each case, this relationship applies:
 
 ```sql
 {cl.CountryCode} -> {co.Code}
 ```
 
-`cl.CountryCode` é funcionalmente dependente de {`cl.CountryCode`, `cl.Language`}, que é uma chave primária.
+`cl.CountryCode` is itself functionally dependent on {`cl.CountryCode`, `cl.Language`} which is a primary key.
 
-Se, no resultado da junção, `co.Code` for `NULL`, `co.Name` também será. Se `co.Code` não for complementado com `NULL`, então, como `co.Code` é uma chave primária, ele determina `co.Name`. Portanto, em todos os casos:
+If in the join result `co.Code` is `NULL`-complemented, `co.Name` is as well. If `co.Code` is not `NULL`-complemented, then because `co.Code` is a primary key, it determines `co.Name`. Therefore, in all cases:
 
 ```sql
 {co.Code} -> {co.Name}
 ```
 
-O que gera:
+Which yields:
 
 ```sql
 {cl.CountryCode, cl.Language} -> {cl.*,co.*}
 ```
 
-Como resultado, a consulta é válida.
+As a result, the query is valid.
 
-No entanto, suponha que as tabelas sejam trocadas, como nesta consulta:
+However, suppose that the tables are swapped, as in this query:
 
 ```sql
 SELECT co.Name, cl.Language,
@@ -137,19 +134,19 @@ ON cl.CountryCode = co.Code
 GROUP BY cl.CountryCode, cl.Language;
 ```
 
-Agora, essa relação *não* se aplica:
+Now this relationship does *not* apply:
 
 ```sql
 {cl.CountryCode, cl.Language} -> {cl.*,co.*}
 ```
 
-Todas as linhas `NULL` complementadas para `cl` são colocadas em um único grupo (elas têm ambas as colunas `GROUP BY` iguais a `NULL`), e dentro deste grupo, o valor de `co.Name` pode variar. A consulta é inválida e o MySQL a rejeita.
+All `NULL`-complemented rows made for `cl` are put into a single group (they have both `GROUP BY` columns equal to `NULL`), and inside this group the value of `co.Name` can vary. The query is invalid and MySQL rejects it.
 
-A dependência funcional em junções externas está, portanto, ligada à questão de se as colunas determinantes pertencem ao lado esquerdo ou direito da `LEFT JOIN`. A determinação da dependência funcional se torna mais complexa se houver junções externas aninhadas ou se a condição de junção não consistir inteiramente em comparações de igualdade.
+Functional dependence in outer joins is thus linked to whether determinant columns belong to the left or right side of the `LEFT JOIN`. Determination of functional dependence becomes more complex if there are nested outer joins or the join condition does not consist entirely of equality comparisons.
 
-#### Dependências Funcionais e Visualizações
+#### Functional Dependencies and Views
 
-Suponha que uma visão sobre os países produza seu código, seu nome em maiúsculas e quantas línguas oficiais diferentes eles têm:
+Suppose that a view on countries produces their code, their name in uppercase, and how many different official languages they have:
 
 ```sql
 CREATE VIEW country2 AS
@@ -161,21 +158,21 @@ WHERE cl.isOfficial = 'T'
 GROUP BY co.Code;
 ```
 
-Essa definição é válida porque:
+This definition is valid because:
 
 ```sql
 {co.Code} -> {co.*}
 ```
 
-No resultado da visualização, a primeira coluna selecionada é `co.Code`, que também é a coluna de grupo e, portanto, determina todas as outras expressões selecionadas:
+In the view result, the first selected column is `co.Code`, which is also the group column and thus determines all other selected expressions:
 
 ```sql
 {country2.Code} -> {country2.*}
 ```
 
-O MySQL entende isso e usa essas informações, conforme descrito a seguir.
+MySQL understands this and uses this information, as described following.
 
-Essa consulta exibe os países, quantas línguas oficiais diferentes eles têm e quantas cidades eles têm, ao unir a visualização com a tabela `cidade`:
+This query displays countries, how many different official languages they have, and how many cities they have, by joining the view with the `city` table:
 
 ```sql
 SELECT co2.Code, co2.UpperName, co2.OfficialLanguages,
@@ -185,13 +182,13 @@ ON ci.CountryCode = co2.Code
 GROUP BY co2.Code;
 ```
 
-Essa consulta é válida porque, como visto anteriormente:
+This query is valid because, as seen previously:
 
 ```sql
 {co2.Code} -> {co2.*}
 ```
 
-O MySQL consegue descobrir uma dependência funcional no resultado de uma visualização e usá-la para validar uma consulta que utiliza a visualização. O mesmo aconteceria se `country2` fosse uma tabela derivada, como:
+MySQL is able to discover a functional dependency in the result of a view and use that to validate a query which uses the view. The same would be true if `country2` were a derived table, as in:
 
 ```sql
 SELECT co2.Code, co2.UpperName, co2.OfficialLanguages,
@@ -209,6 +206,6 @@ JOIN city ci ON ci.CountryCode = co2.Code
 GROUP BY co2.Code;
 ```
 
-#### Combinações de Dependências Funcionais
+#### Combinations of Functional Dependencies
 
-O MySQL é capaz de combinar todos os tipos de dependências funcionais anteriores (baseadas em chave, baseadas em igualdade e baseadas em visualização) para validar consultas mais complexas.
+MySQL is able to combine all of the preceding types of functional dependencies (key based, equality based, view based) to validate more complex queries.

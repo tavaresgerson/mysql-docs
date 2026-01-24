@@ -1,17 +1,17 @@
-## 13.3 Declarações Transacionais e de Bloqueio
+## 13.3 Transactional and Locking Statements
 
-13.3.1 Declarações de início de transação, commit e rollback
+[13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements](commit.html)
 
-13.3.2 Declarações que não podem ser revertidas
+[13.3.2 Statements That Cannot Be Rolled Back](cannot-roll-back.html)
 
-13.3.3 Declarações que causam um compromisso implícito
+[13.3.3 Statements That Cause an Implicit Commit](implicit-commit.html)
 
-13.3.4 Declarações SAVEPOINT, ROLLBACK TO SAVEPOINT e RELEASE SAVEPOINT
+[13.3.4 SAVEPOINT, ROLLBACK TO SAVEPOINT, and RELEASE SAVEPOINT Statements](savepoint.html)
 
-13.3.5 Declarações LOCK TABLES e UNLOCK TABLES
+[13.3.5 LOCK TABLES and UNLOCK TABLES Statements](lock-tables.html)
 
-13.3.6 Declaração SET TRANSACTION
+[13.3.6 SET TRANSACTION Statement](set-transaction.html)
 
-13.3.7 Transações XA
+[13.3.7 XA Transactions](xa.html)
 
-O MySQL suporta transações locais (dentro de uma sessão de cliente específica) por meio de instruções como `SET autocommit`, `START TRANSACTION`, `COMMIT` e `ROLLBACK`. Veja Seção 13.3.1, “Instruções START TRANSACTION, COMMIT e ROLLBACK”. O suporte para transações XA permite que o MySQL também participe de transações distribuídas. Veja Seção 13.3.7, “Transações XA”.
+MySQL supports local transactions (within a given client session) through statements such as [`SET autocommit`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements"), [`START TRANSACTION`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements"), [`COMMIT`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements"), and [`ROLLBACK`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements"). See [Section 13.3.1, “START TRANSACTION, COMMIT, and ROLLBACK Statements”](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements"). XA transaction support enables MySQL to participate in distributed transactions as well. See [Section 13.3.7, “XA Transactions”](xa.html "13.3.7 XA Transactions").

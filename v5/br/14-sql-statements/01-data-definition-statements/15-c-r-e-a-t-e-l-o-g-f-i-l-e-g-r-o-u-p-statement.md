@@ -1,4 +1,4 @@
-### 13.1.15 Declaração CREATE LOGFILE GROUP
+### 13.1.15 CREATE LOGFILE GROUP Statement
 
 ```sql
 CREATE LOGFILE GROUP logfile_group
@@ -12,25 +12,25 @@ CREATE LOGFILE GROUP logfile_group
     ENGINE [=] engine_name
 ```
 
-Essa declaração cria um novo grupo de arquivo de registro chamado *`logfile_group`* com um único arquivo `UNDO` chamado '*`undo_file`*'. Uma declaração `CREATE LOGFILE GROUP` tem uma e apenas uma cláusula `ADD UNDOFILE`. Para regras que cobrem a nomenclatura dos grupos de arquivos de registro, consulte Seção 9.2, “Nomes de Objetos do Esquema”.
+This statement creates a new log file group named *`logfile_group`* having a single `UNDO` file named '*`undo_file`*'. A [`CREATE LOGFILE GROUP`](create-logfile-group.html "13.1.15 CREATE LOGFILE GROUP Statement") statement has one and only one `ADD UNDOFILE` clause. For rules covering the naming of log file groups, see [Section 9.2, “Schema Object Names”](identifiers.html "9.2 Schema Object Names").
 
-Nota
+Note
 
-Todos os objetos de disco de dados do NDB Cluster compartilham o mesmo namespace. Isso significa que *cada objeto de dados de disco* deve ter um nome único (e não apenas cada objeto de dados de disco de um determinado tipo). Por exemplo, você não pode ter um espaço de tabelas e um grupo de arquivos de log com o mesmo nome, ou um espaço de tabelas e um arquivo de dados com o mesmo nome.
+All NDB Cluster Disk Data objects share the same namespace. This means that *each Disk Data object* must be uniquely named (and not merely each Disk Data object of a given type). For example, you cannot have a tablespace and a log file group with the same name, or a tablespace and a data file with the same name.
 
-Há apenas um grupo de arquivos de registro por instância do NDB Cluster a qualquer momento.
+There can be only one log file group per NDB Cluster instance at any given time.
 
-O parâmetro opcional `INITIAL_SIZE` define o tamanho inicial do arquivo `UNDO`; se não for especificado, ele tem como padrão `128M` (128 megabytes). O parâmetro opcional `UNDO_BUFFER_SIZE` define o tamanho usado pelo buffer `UNDO` para o grupo de arquivos de log; o valor padrão para `UNDO_BUFFER_SIZE` é `8M` (oito megabytes); esse valor não pode exceder a quantidade de memória do sistema disponível. Ambos os parâmetros são especificados em bytes. Você pode opcionalmente seguir um ou ambos desses parâmetros com uma abreviação de uma letra para uma ordem de grandeza, semelhante às usadas em `my.cnf`. Geralmente, essa é uma das letras `M` (para megabytes) ou `G` (para gigabytes).
+The optional `INITIAL_SIZE` parameter sets the `UNDO` file's initial size; if not specified, it defaults to `128M` (128 megabytes). The optional `UNDO_BUFFER_SIZE` parameter sets the size used by the `UNDO` buffer for the log file group; The default value for `UNDO_BUFFER_SIZE` is `8M` (eight megabytes); this value cannot exceed the amount of system memory available. Both of these parameters are specified in bytes. You may optionally follow either or both of these with a one-letter abbreviation for an order of magnitude, similar to those used in `my.cnf`. Generally, this is one of the letters `M` (for megabytes) or `G` (for gigabytes).
 
-A memória usada para `UNDO_BUFFER_SIZE` vem do pool global, cujo tamanho é determinado pelo valor do parâmetro de configuração do nó de dados `SharedGlobalMemory`. Isso inclui qualquer valor padrão implícito para esta opção pelo ajuste do parâmetro de configuração do nó de dados `InitialLogFileGroup`.
+Memory used for `UNDO_BUFFER_SIZE` comes from the global pool whose size is determined by the value of the [`SharedGlobalMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-sharedglobalmemory) data node configuration parameter. This includes any default value implied for this option by the setting of the [`InitialLogFileGroup`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-initiallogfilegroup) data node configuration parameter.
 
-O máximo permitido para `UNDO_BUFFER_SIZE` é 629145600 (600 MB).
+The maximum permitted for `UNDO_BUFFER_SIZE` is 629145600 (600 MB).
 
-Em sistemas de 32 bits, o valor máximo suportado para `INITIAL_SIZE` é 4294967296 (4 GB). (Bug #29186)
+On 32-bit systems, the maximum supported value for `INITIAL_SIZE` is 4294967296 (4 GB). (Bug #29186)
 
-O valor mínimo permitido para `INITIAL_SIZE` é 1048576 (1 MB).
+The minimum allowed value for `INITIAL_SIZE` is 1048576 (1 MB).
 
-A opção `ENGINE` determina o motor de armazenamento a ser utilizado por este grupo de arquivos de registro, sendo que `engine_name` é o nome do motor de armazenamento. No MySQL 5.7, isso deve ser `NDB` (ou `NDBCLUSTER`). Se `ENGINE` não for definido, o MySQL tenta usar o motor especificado pela variável de sistema `default_storage_engine` (anteriormente `storage_engine`). Em qualquer caso, se o motor não for especificado como `NDB` ou `NDBCLUSTER`, a instrução `CREATE LOGFILE GROUP` parece ter sucesso, mas na verdade não cria o grupo de arquivos de registro, como mostrado aqui:
+The `ENGINE` option determines the storage engine to be used by this log file group, with *`engine_name`* being the name of the storage engine. In MySQL 5.7, this must be [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") (or [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6")). If `ENGINE` is not set, MySQL tries to use the engine specified by the [`default_storage_engine`](server-system-variables.html#sysvar_default_storage_engine) server system variable (formerly `storage_engine`). In any case, if the engine is not specified as [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") or [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6"), the `CREATE LOGFILE GROUP` statement appears to succeed but actually fails to create the log file group, as shown here:
 
 ```sql
 mysql> CREATE LOGFILE GROUP lg1
@@ -54,11 +54,11 @@ mysql> CREATE LOGFILE GROUP lg1
 Query OK, 0 rows affected (2.97 sec)
 ```
 
-O fato de que a instrução `CREATE LOGFILE GROUP` não retorna realmente um erro quando um mecanismo de armazenamento que não é `NDB` é nomeado, mas parece ter sucesso, é um problema conhecido que esperamos resolver em uma futura versão do NDB Cluster.
+The fact that the `CREATE LOGFILE GROUP` statement does not actually return an error when a non-`NDB` storage engine is named, but rather appears to succeed, is a known issue which we hope to address in a future release of NDB Cluster.
 
-*`REDO_BUFFER_SIZE`*, `NODEGROUP`\*, `WAIT` e `COMMENT` são analisados, mas ignorados, e, portanto, não têm efeito no MySQL 5.7. Essas opções são destinadas à expansão futura.
+*`REDO_BUFFER_SIZE`*, `NODEGROUP`, `WAIT`, and `COMMENT` are parsed but ignored, and so have no effect in MySQL 5.7. These options are intended for future expansion.
 
-Quando usado com `ENGINE [=] NDB`, um grupo de arquivos de log e o arquivo de log `UNDO` associado são criados em cada nó de dados do cluster. Você pode verificar se os arquivos `UNDO` foram criados e obter informações sobre eles consultando a tabela do esquema de informações `FILES`. Por exemplo:
+When used with `ENGINE [=] NDB`, a log file group and associated `UNDO` log file are created on each Cluster data node. You can verify that the `UNDO` files were created and obtain information about them by querying the Information Schema [`FILES`](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table") table. For example:
 
 ```sql
 mysql> SELECT LOGFILE_GROUP_NAME, LOGFILE_GROUP_NUMBER, EXTRA
@@ -73,4 +73,4 @@ mysql> SELECT LOGFILE_GROUP_NAME, LOGFILE_GROUP_NUMBER, EXTRA
 2 rows in set (0.06 sec)
 ```
 
-`CREATE LOGFILE GROUP` é útil apenas com o armazenamento de dados de disco para o NDB Cluster. Veja Seção 21.6.11, “Tabelas de Dados de Disco do NDB Cluster”.
+[`CREATE LOGFILE GROUP`](create-logfile-group.html "13.1.15 CREATE LOGFILE GROUP Statement") is useful only with Disk Data storage for NDB Cluster. See [Section 21.6.11, “NDB Cluster Disk Data Tables”](mysql-cluster-disk-data.html "21.6.11 NDB Cluster Disk Data Tables").

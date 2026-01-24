@@ -1,14 +1,14 @@
-#### 16.4.1.15 Replicação e funções do sistema
+#### 16.4.1.15 Replication and System Functions
 
-Algumas funções não se replicam bem sob certas condições:
+Certain functions do not replicate well under some conditions:
 
-- As funções `USER()`, `CURRENT_USER()` (ou `CURRENT_USER`), `UUID()`, `VERSION()` e `LOAD_FILE()` são replicadas sem alterações e, portanto, não funcionam de forma confiável na replica, a menos que a replicação baseada em linhas seja habilitada. (Veja Seção 16.2.1, “Formatos de Replicação”.)
+* The [`USER()`](information-functions.html#function_user), [`CURRENT_USER()`](information-functions.html#function_current-user) (or [`CURRENT_USER`](information-functions.html#function_current-user)), [`UUID()`](miscellaneous-functions.html#function_uuid), [`VERSION()`](information-functions.html#function_version), and [`LOAD_FILE()`](string-functions.html#function_load-file) functions are replicated without change and thus do not work reliably on the replica unless row-based replication is enabled. (See [Section 16.2.1, “Replication Formats”](replication-formats.html "16.2.1 Replication Formats").)
 
-  `USER()` e `CURRENT_USER()` são replicados automaticamente usando replicação baseada em linhas quando o modo `MIXED` é usado, e geram um aviso no modo `STATEMENT`. (Veja também Seção 16.4.1.8, “Replicação de CURRENT_USER()”.) Isso também é verdadeiro para `VERSION()` e `RAND()`.
+  [`USER()`](information-functions.html#function_user) and [`CURRENT_USER()`](information-functions.html#function_current-user) are automatically replicated using row-based replication when using `MIXED` mode, and generate a warning in `STATEMENT` mode. (See also [Section 16.4.1.8, “Replication of CURRENT_USER()”](replication-features-current-user.html "16.4.1.8 Replication of CURRENT_USER()").) This is also true for [`VERSION()`](information-functions.html#function_version) and [`RAND()`](mathematical-functions.html#function_rand).
 
-- Para `NOW()`, o log binário inclui o timestamp. Isso significa que o valor *como retornado pela chamada a essa função na fonte* é replicado para a replica. Para evitar resultados inesperados ao replicar entre servidores MySQL em diferentes fusos horários, defina o fuso horário tanto na fonte quanto na replica. Para mais informações, consulte Seção 16.4.1.31, “Replicação e Fusos Horários”.
+* For [`NOW()`](date-and-time-functions.html#function_now), the binary log includes the timestamp. This means that the value *as returned by the call to this function on the source* is replicated to the replica. To avoid unexpected results when replicating between MySQL servers in different time zones, set the time zone on both source and replica. For more information, see [Section 16.4.1.31, “Replication and Time Zones”](replication-features-timezone.html "16.4.1.31 Replication and Time Zones").
 
-  Para explicar os possíveis problemas ao replicar entre servidores que estão em fusos horários diferentes, vamos supor que a fonte esteja localizada em Nova York, a replica esteja localizada em Estocolmo e ambos os servidores estejam usando o horário local. Suponha também que, na fonte, você crie uma tabela `mytable`, execute uma instrução `INSERT` (insert.html) nesta tabela e, em seguida, selecione a tabela, como mostrado aqui:
+  To explain the potential problems when replicating between servers which are in different time zones, suppose that the source is located in New York, the replica is located in Stockholm, and both servers are using local time. Suppose further that, on the source, you create a table `mytable`, perform an [`INSERT`](insert.html "13.2.5 INSERT Statement") statement on this table, and then select from the table, as shown here:
 
   ```sql
   mysql> CREATE TABLE mytable (mycol TEXT);
@@ -26,7 +26,7 @@ Algumas funções não se replicam bem sob certas condições:
   1 row in set (0.00 sec)
   ```
 
-  A hora local em Estocolmo está 6 horas à frente da de Nova York; portanto, se você emitir `SELECT NOW()` na replica nesse mesmo instante exato, o valor `2009-09-01 18:00:00` será retornado. Por essa razão, se você selecionar a cópia da replica de `mytable` após as instruções `CREATE TABLE` e `INSERT` mostradas terem sido replicadas, você pode esperar que `mycol` contenha o valor `2009-09-01 18:00:00`. No entanto, isso não é o caso; quando você seleciona a cópia da replica de `mytable`, você obtém exatamente o mesmo resultado que na fonte:
+  Local time in Stockholm is 6 hours later than in New York; so, if you issue `SELECT NOW()` on the replica at that exact same instant, the value `2009-09-01 18:00:00` is returned. For this reason, if you select from the replica's copy of `mytable` after the [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") and [`INSERT`](insert.html "13.2.5 INSERT Statement") statements just shown have been replicated, you might expect `mycol` to contain the value `2009-09-01 18:00:00`. However, this is not the case; when you select from the replica's copy of `mytable`, you obtain exactly the same result as on the source:
 
   ```sql
   mysql> SELECT * FROM mytable;
@@ -38,64 +38,65 @@ Algumas funções não se replicam bem sob certas condições:
   1 row in set (0.00 sec)
   ```
 
-  Ao contrário de `NOW()`, a função `SYSDATE()` não é segura para replicação porque não é afetada por instruções `SET TIMESTAMP` no log binário e é não determinística se o registro baseado em instruções for usado. Isso não é um problema se o registro baseado em linhas for usado.
+  Unlike [`NOW()`](date-and-time-functions.html#function_now), the [`SYSDATE()`](date-and-time-functions.html#function_sysdate) function is not replication-safe because it is not affected by `SET TIMESTAMP` statements in the binary log and is nondeterministic if statement-based logging is used. This is not a problem if row-based logging is used.
 
-  Uma alternativa é usar a opção `--sysdate-is-now` para fazer com que `SYSDATE()` seja um alias para `NOW()`. Isso deve ser feito tanto na fonte quanto na replica para funcionar corretamente. Nesse caso, a função ainda emite uma mensagem de aviso, mas pode ser ignorada com segurança, desde que a opção `--sysdate-is-now` seja usada tanto na fonte quanto na replica.
+  An alternative is to use the [`--sysdate-is-now`](server-options.html#option_mysqld_sysdate-is-now) option to cause [`SYSDATE()`](date-and-time-functions.html#function_sysdate) to be an alias for [`NOW()`](date-and-time-functions.html#function_now). This must be done on the source and the replica to work correctly. In such cases, a warning is still issued by this function, but can safely be ignored as long as [`--sysdate-is-now`](server-options.html#option_mysqld_sysdate-is-now) is used on both the source and the replica.
 
-  `SYSDATE()` é replicado automaticamente usando a replicação baseada em linhas quando o modo `MIXED` é usado, e gera uma mensagem de aviso no modo `STATEMENT`.
+  [`SYSDATE()`](date-and-time-functions.html#function_sysdate) is automatically replicated using row-based replication when using `MIXED` mode, and generates a warning in `STATEMENT` mode.
 
-  Veja também Seção 16.4.1.31, “Replicação e Fuso Horários”.
+  See also [Section 16.4.1.31, “Replication and Time Zones”](replication-features-timezone.html "16.4.1.31 Replication and Time Zones").
 
-- *A seguinte restrição se aplica apenas à replicação baseada em declarações, não à replicação baseada em linhas.* As funções `GET_LOCK()`, `RELEASE_LOCK()`, `IS_FREE_LOCK()` e `IS_USED_LOCK()` que lidam com bloqueios de nível de usuário são replicadas sem que a réplica saiba o contexto de concorrência na fonte. Portanto, essas funções não devem ser usadas para inserir em uma tabela de origem porque o conteúdo na réplica seria diferente. Por exemplo, não execute uma declaração como `INSERT INTO mytable VALUES(GET_LOCK(...))`.
+* *The following restriction applies to statement-based replication only, not to row-based replication.* The [`GET_LOCK()`](locking-functions.html#function_get-lock), [`RELEASE_LOCK()`](locking-functions.html#function_release-lock), [`IS_FREE_LOCK()`](locking-functions.html#function_is-free-lock), and [`IS_USED_LOCK()`](locking-functions.html#function_is-used-lock) functions that handle user-level locks are replicated without the replica knowing the concurrency context on the source. Therefore, these functions should not be used to insert into a source table because the content on the replica would differ. For example, do not issue a statement such as `INSERT INTO mytable VALUES(GET_LOCK(...))`.
 
-  Essas funções são replicadas automaticamente usando a replicação baseada em linhas quando o modo `MIXED` é usado, e geram um aviso no modo `STATEMENT`.
+  These functions are automatically replicated using row-based replication when using `MIXED` mode, and generate a warning in `STATEMENT` mode.
 
-Como uma solução para as limitações anteriores quando a replicação baseada em declarações está em vigor, você pode usar a estratégia de salvar o resultado da função problemática em uma variável do usuário e referenciar a variável em uma declaração posterior. Por exemplo, a seguinte única linha de `[INSERT]` (insert.html) é problemática devido à referência à função `[UUID]` (functions.html#function_uuid):
+As a workaround for the preceding limitations when statement-based replication is in effect, you can use the strategy of saving the problematic function result in a user variable and referring to the variable in a later statement. For example, the following single-row [`INSERT`](insert.html "13.2.5 INSERT Statement") is problematic due to the reference to the [`UUID()`](miscellaneous-functions.html#function_uuid) function:
 
 ```sql
 INSERT INTO t VALUES(UUID());
 ```
 
-Para resolver o problema, faça o seguinte:
+To work around the problem, do this instead:
 
 ```sql
 SET @my_uuid = UUID();
 INSERT INTO t VALUES(@my_uuid);
 ```
 
-Essa sequência de declarações é replicada porque o valor de `@my_uuid` é armazenado no log binário como um evento de variável do usuário antes da declaração `INSERT` e está disponível para uso na declaração `INSERT`.
+That sequence of statements replicates because the value of `@my_uuid` is stored in the binary log as a user-variable event prior to the [`INSERT`](insert.html "13.2.5 INSERT Statement") statement and is available for use in the [`INSERT`](insert.html "13.2.5 INSERT Statement").
 
-A mesma ideia se aplica a inserções de várias linhas, mas é mais complicada de usar. Para uma inserção de duas linhas, você pode fazer isso:
+The same idea applies to multiple-row inserts, but is more cumbersome to use. For a two-row insert, you can do this:
 
 ```sql
 SET @my_uuid1 = UUID(); @my_uuid2 = UUID();
 INSERT INTO t VALUES(@my_uuid1),(@my_uuid2);
 ```
 
-No entanto, se o número de linhas for grande ou desconhecido, a solução alternativa é difícil ou inviável. Por exemplo, você não pode converter a seguinte declaração em uma em que uma variável de usuário específica é associada a cada linha:
+However, if the number of rows is large or unknown, the workaround is difficult or impracticable. For example, you cannot convert the following statement to one in which a given individual user variable is associated with each row:
 
 ```sql
 INSERT INTO t2 SELECT UUID(), * FROM t1;
 ```
 
-Dentro de uma função armazenada, [`RAND()`](https://pt.wikipedia.org/wiki/Fun%C3%A7%C3%A3o_aleat%C3%ADria) é replicado corretamente, desde que seja invocado apenas uma vez durante a execução da função. (Você pode considerar o timestamp de execução da função e a semente de número aleatório como entradas implícitas que são idênticas na fonte e na réplica.)
+Within a stored function, [`RAND()`](mathematical-functions.html#function_rand) replicates correctly as long as it is invoked only once during the execution of the function. (You can consider the function execution timestamp and random number seed as implicit inputs that are identical on the source and replica.)
 
-As funções [`FOUND_ROWS()`](https://pt.wikipedia.org/wiki/FOUND_ROWS) e [`ROW_COUNT()`](https://pt.wikipedia.org/wiki/ROW_COUNT) não são replicadas de forma confiável usando a replicação baseada em instruções. Uma solução é armazenar o resultado da chamada da função em uma variável do usuário e, em seguida, usar isso na instrução [`INSERT`](https://pt.wikipedia.org/wiki/INSERT). Por exemplo, se você deseja armazenar o resultado em uma tabela chamada `mytable`, você pode fazer isso normalmente assim:
+The [`FOUND_ROWS()`](information-functions.html#function_found-rows) and [`ROW_COUNT()`](information-functions.html#function_row-count) functions are not replicated reliably using statement-based replication. A workaround is to store the result of the function call in a user variable, and then use that in the [`INSERT`](insert.html "13.2.5 INSERT Statement") statement. For example, if you wish to store the result in a table named `mytable`, you might normally do so like this:
 
 ```sql
 SELECT SQL_CALC_FOUND_ROWS FROM mytable LIMIT 1;
 INSERT INTO mytable VALUES( FOUND_ROWS() );
 ```
 
-No entanto, se você estiver replicando `mytable`, você deve usar `SELECT ... INTO` e, em seguida, armazenar a variável na tabela, assim:
+However, if you are replicating `mytable`, you should use [`SELECT ... INTO`](select-into.html "13.2.9.1 SELECT ... INTO Statement"), and then store the variable in the table, like this:
 
 ```sql
 SELECT SQL_CALC_FOUND_ROWS INTO @found_rows FROM mytable LIMIT 1;
 INSERT INTO mytable VALUES(@found_rows);
 ```
 
-Dessa forma, a variável de usuário é replicada como parte do contexto e aplicada corretamente na replica.
+In this way, the user variable is replicated as part of the context, and applied on the replica correctly.
 
-Essas funções são replicadas automaticamente usando a replicação baseada em linhas quando o modo `MIXED` é usado, e geram um aviso no modo `STATEMENT`. (Bug #12092, Bug #30244)
+These functions are automatically replicated using row-based replication when using `MIXED` mode, and generate a warning in `STATEMENT` mode. (Bug
+#12092, Bug #30244)
 
-Antes do MySQL 5.7.3, o valor de `LAST_INSERT_ID()` não era replicado corretamente se quaisquer opções de filtragem, como `--replicate-ignore-db` e `--replicate-do-table` estivessem habilitadas na replica. (Bug #17234370, BUG# 69861)
+Prior to MySQL 5.7.3, the value of [`LAST_INSERT_ID()`](information-functions.html#function_last-insert-id) was not replicated correctly if any filtering options such as [`--replicate-ignore-db`](replication-options-replica.html#option_mysqld_replicate-ignore-db) and [`--replicate-do-table`](replication-options-replica.html#option_mysqld_replicate-do-table) were enabled on the replica. (Bug #17234370, BUG# 69861)

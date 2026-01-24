@@ -1,18 +1,16 @@
-## 25.17 Modelo de Alocação de Memória do Schema de Desempenho
+## 25.17 The Performance Schema Memory-Allocation Model
 
-O Schema de Desempenho utiliza este modelo de alocação de memória:
+The Performance Schema uses this memory allocation model:
 
-- Pode alocar memória na inicialização do servidor
+* May allocate memory at server startup
+* May allocate additional memory during server operation
+* Never free memory during server operation (although it might be recycled)
 
-- Pode alocar memória adicional durante a operação do servidor
+* Free all memory used at shutdown
 
-- Nunca libere memória durante a operação do servidor (embora possa ser reciclada)
+The result is to relax memory constraints so that the Performance Schema can be used with less configuration, and to decrease the memory footprint so that consumption scales with server load. Memory used depends on the load actually seen, not the load estimated or explicitly configured for.
 
-- Liberar toda a memória usada ao desligar
-
-O resultado é relaxar as restrições de memória para que o Schema de Desempenho possa ser usado com menos configuração e diminuir a pegada de memória para que o consumo aumente com a carga do servidor. A memória usada depende da carga realmente observada, não da carga estimada ou explicitamente configurada.
-
-Vários parâmetros de dimensionamento do Schema de Desempenho são escalonados automaticamente e não precisam ser configurados explicitamente, a menos que você queira estabelecer um limite explícito para a alocação de memória:
+Several Performance Schema sizing parameters are autoscaled and need not be configured explicitly unless you want to establish an explicit limit on memory allocation:
 
 ```sql
 performance_schema_accounts_size
@@ -33,29 +31,29 @@ performance_schema_max_thread_instances
 performance_schema_users_size
 ```
 
-Para um parâmetro autoescalonado, a configuração funciona da seguinte maneira:
+For an autoscaled parameter, configuration works like this:
 
-- Com o valor definido como -1 (padrão), o parâmetro é escalado automaticamente:
+* With the value set to -1 (the default), the parameter is autoscaled:
 
-  - O buffer interno correspondente está inicialmente vazio e nenhuma memória é alocada.
+  + The corresponding internal buffer is empty initially and no memory is allocated.
 
-  - À medida que o Schema de Desempenho coleta dados, a memória é alocada no buffer correspondente. O tamanho do buffer é ilimitado e pode aumentar com a carga.
+  + As the Performance Schema collects data, memory is allocated in the corresponding buffer. The buffer size is unbounded, and may grow with the load.
 
-- Com o valor definido como 0:
+* With the value set to 0:
 
-  - O buffer interno correspondente está inicialmente vazio e nenhuma memória é alocada.
+  + The corresponding internal buffer is empty initially and no memory is allocated.
 
-- Com o valor definido como *`N`* > 0:
+* With the value set to *`N`* > 0:
 
-  - O buffer interno correspondente está inicialmente vazio e nenhuma memória é alocada.
+  + The corresponding internal buffer is empty initially and no memory is allocated.
 
-  - À medida que o Schema de Desempenho coleta dados, a memória é alocada no buffer correspondente, até que o tamanho do buffer atinja *`N`*.
+  + As the Performance Schema collects data, memory is allocated in the corresponding buffer, until the buffer size reaches *`N`*.
 
-  - Quando o tamanho do buffer atinge *`N`*, mais memória não é alocada. Os dados coletados pelo Schema de Desempenho para este buffer são perdidos e quaisquer contadores correspondentes de "instância perdida" são incrementados.
+  + Once the buffer size reaches *`N`*, no more memory is allocated. Data collected by the Performance Schema for this buffer is lost, and any corresponding “lost instance” counters are incremented.
 
-Para ver quanto memória o Schema de Desempenho está usando, verifique os instrumentos projetados para esse propósito. O Schema de Desempenho aloca memória internamente e associa cada buffer a um instrumento dedicado, para que o consumo de memória possa ser rastreado até os buffers individuais. Os instrumentos com o prefixo `memory/performance_schema/` mostram quanto memória está alocada para esses buffers internos. Os buffers são globais para o servidor, então os instrumentos são exibidos apenas na tabela `memory_summary_global_by_event_name`, e não em outras tabelas `memory_summary_by_xxx_by_event_name`.
+To see how much memory the Performance Schema is using, check the instruments designed for that purpose. The Performance Schema allocates memory internally and associates each buffer with a dedicated instrument so that memory consumption can be traced to individual buffers. Instruments named with the prefix `memory/performance_schema/` expose how much memory is allocated for these internal buffers. The buffers are global to the server, so the instruments are displayed only in the [`memory_summary_global_by_event_name`](performance-schema-memory-summary-tables.html "25.12.15.9 Memory Summary Tables") table, and not in other `memory_summary_by_xxx_by_event_name` tables.
 
-Esta consulta mostra as informações associadas aos instrumentos de memória:
+This query shows the information associated with the memory instruments:
 
 ```sql
 SELECT * FROM performance_schema.memory_summary_global_by_event_name

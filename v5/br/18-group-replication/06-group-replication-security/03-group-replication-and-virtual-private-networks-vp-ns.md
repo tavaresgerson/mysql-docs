@@ -1,3 +1,3 @@
-### 17.6.3 Replicação em grupo e redes privadas virtuais (VPNs)
+### 17.6.3 Group Replication and Virtual Private Networks (VPNs)
 
-Não há nada que impeça a Replicação em Grupo de funcionar em uma rede privada virtual. No seu cerne, ele simplesmente depende de um soquete IPv4 para estabelecer conexões entre servidores com o propósito de propagar mensagens entre eles.
+There is nothing preventing Group Replication from operating over a virtual private network. At its core, it just relies on an IPv4 socket to establish connections between servers for the purpose of propagating messages between them.

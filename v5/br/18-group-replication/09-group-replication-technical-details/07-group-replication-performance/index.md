@@ -1,9 +1,9 @@
-### 17.9.7 Desempenho da Replicação em Grupo
+### 17.9.7 Group Replication Performance
 
-17.9.7.1 Ajuste fino do tópico de comunicação de grupo
+[17.9.7.1 Fine Tuning the Group Communication Thread](group-replication-fine-tuning-the-group-communication-thread.html)
 
-17.9.7.2 Compressão de Mensagens
+[17.9.7.2 Message Compression](group-replication-message-compression.html)
 
-17.9.7.3 Controle de fluxo
+[17.9.7.3 Flow Control](group-replication-flow-control.html)
 
-Esta seção explica como usar as opções de configuração disponíveis para obter o melhor desempenho do seu grupo.
+This section explains how to use the available configuration options to gain the best performance from your group.

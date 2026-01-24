@@ -1,11 +1,11 @@
-### 14.7.2 Modelo de Transação InnoDB
+### 14.7.2 InnoDB Transaction Model
 
-14.7.2.1 Níveis de Isolamento de Transações
+14.7.2.1 Transaction Isolation Levels
 
-14.7.2.2 autocommit, Commit e Rollback
+14.7.2.2 autocommit, Commit, and Rollback
 
-14.7.2.3 Leitura consistente sem bloqueio
+14.7.2.3 Consistent Nonlocking Reads
 
-14.7.2.4 Leitura de bloqueio
+14.7.2.4 Locking Reads
 
-O modelo de transação `InnoDB` visa combinar as melhores propriedades de um banco de dados de múltiplas versões com o bloqueio tradicional de duas fases. O `InnoDB` realiza o bloqueio no nível da linha e executa consultas como leituras consistentes sem bloqueio, por padrão, no estilo do Oracle. As informações de bloqueio no `InnoDB` são armazenadas de forma eficiente em termos de espaço, de modo que a escalada de bloqueio não seja necessária. Normalmente, vários usuários são autorizados a bloquear cada linha nas tabelas `InnoDB`, ou qualquer subconjunto aleatório das linhas, sem causar o esgotamento da memória do `InnoDB`.
+The `InnoDB` transaction model aims combine the best properties of a multi-versioning database with traditional two-phase locking. `InnoDB` performs locking at the row level and runs queries as nonlocking consistent reads by default, in the style of Oracle. The lock information in `InnoDB` is stored space-efficiently so that lock escalation is not needed. Typically, several users are permitted to lock every row in `InnoDB` tables, or any random subset of the rows, without causing `InnoDB` memory exhaustion.

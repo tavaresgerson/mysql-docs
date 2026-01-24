@@ -1,29 +1,29 @@
-#### 21.6.15.24 Tabela ndbinfo logspaces
+#### 21.6.15.24 The ndbinfo logspaces Table
 
-Esta tabela fornece informações sobre o uso do espaço de log do NDB Cluster.
+This table provides information about NDB Cluster log space usage.
 
-A tabela `logspaces` contém as seguintes colunas:
+The `logspaces` table contains the following columns:
 
-- `node_id`
+* `node_id`
 
-  O ID deste nó de dados.
+  The ID of this data node.
 
-- `log_type`
+* `log_type`
 
-  Tipo de log; um dos seguintes: `REDO` ou `DD-UNDO`.
+  Type of log; one of: `REDO` or `DD-UNDO`.
 
-- `log_id`
+* `log_id`
 
-  O ID do log; para arquivos de log de restauração de dados do disco, este é o mesmo valor exibido na coluna `LOGFILE_GROUP_NUMBER` da tabela do esquema de informações `FILES` e também o valor exibido na coluna `log_id` da tabela `ndbinfo` `logbuffers`
+  The log ID; for Disk Data undo log files, this is the same as the value shown in the `LOGFILE_GROUP_NUMBER` column of the Information Schema [`FILES`](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table") table as well as the value shown for the `log_id` column of the `ndbinfo` [`logbuffers`](mysql-cluster-ndbinfo-logbuffers.html "21.6.15.23 The ndbinfo logbuffers Table") table
 
-- `log_part`
+* `log_part`
 
-  O número do item do log.
+  The log part number.
 
-- `total`
+* `total`
 
-  Espaço total disponível para este log.
+  Total space available for this log.
 
-- "usada"
+* `used`
 
-  Espaço utilizado por este log.
+  Space used by this log.

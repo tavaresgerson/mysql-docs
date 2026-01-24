@@ -1,33 +1,33 @@
-## 23.4 Usando o Agendamento de Eventos
+## 23.4 Using the Event Scheduler
 
-23.4.1 Visão geral do Agendamento de Eventos
+23.4.1 Event Scheduler Overview
 
-23.4.2 Configuração do Agendador de Eventos
+23.4.2 Event Scheduler Configuration
 
-23.4.3 Sintaxe de eventos
+23.4.3 Event Syntax
 
-23.4.4 Metadados do evento
+23.4.4 Event Metadata
 
-23.4.5 Status do Cronômetro de Eventos
+23.4.5 Event Scheduler Status
 
-23.4.6 O Agendamento de Eventos e Permissões do MySQL
+23.4.6 The Event Scheduler and MySQL Privileges
 
-O Agendamento de Eventos do MySQL gerencia a programação e execução de eventos, ou seja, tarefas que são executadas de acordo com um cronograma. A discussão a seguir aborda o Agendamento de Eventos e é dividida nas seguintes seções:
+The MySQL Event Scheduler manages the scheduling and execution of events, that is, tasks that run according to a schedule. The following discussion covers the Event Scheduler and is divided into the following sections:
 
-- A Seção 23.4.1, “Visão Geral do Cronômetro de Eventos”, fornece uma introdução e uma visão conceitual dos Eventos do MySQL.
+* Section 23.4.1, “Event Scheduler Overview”, provides an introduction to and conceptual overview of MySQL Events.
 
-- A Seção 23.4.3, “Sintaxe de Eventos”, discute as instruções SQL para criar, alterar e excluir eventos do MySQL.
+* Section 23.4.3, “Event Syntax”, discusses the SQL statements for creating, altering, and dropping MySQL Events.
 
-- A seção 23.4.4, “Metadados do evento”, mostra como obter informações sobre eventos e como essas informações são armazenadas pelo MySQL Server.
+* Section 23.4.4, “Event Metadata”, shows how to obtain information about events and how this information is stored by the MySQL Server.
 
-- A seção 23.4.6, “O Agendamento de Eventos e os Privilegios do MySQL”, discute os privilégios necessários para trabalhar com eventos e as ramificações que os eventos têm em relação aos privilégios durante a execução.
+* Section 23.4.6, “The Event Scheduler and MySQL Privileges”, discusses the privileges required to work with events and the ramifications that events have with regard to privileges when executing.
 
-As rotinas armazenadas exigem a tabela `event` no banco de dados `mysql`. Esta tabela é criada durante o procedimento de instalação do MySQL 5.7. Se você estiver atualizando para o MySQL 5.7 a partir de uma versão anterior, certifique-se de atualizar suas tabelas de concessão para garantir que a tabela `event` exista. Consulte a Seção 2.10, “Atualizando o MySQL”.
+Stored routines require the `event` table in the `mysql` database. This table is created during the MySQL 5.7 installation procedure. If you are upgrading to MySQL 5.7 from an earlier version, be sure to update your grant tables to make sure that the `event` table exists. See Section 2.10, “Upgrading MySQL”.
 
-### Recursos adicionais
+### Additional Resources
 
-- Há algumas restrições sobre o uso de eventos; veja a Seção 23.8, “Restrições sobre Programas Armazenados”.
+* There are some restrictions on the use of events; see Section 23.8, “Restrictions on Stored Programs”.
 
-- O registro binário para eventos ocorre conforme descrito na Seção 23.7, “Registro Binário de Programas Armazenados”.
+* Binary logging for events takes place as described in Section 23.7, “Stored Program Binary Logging”.
 
-- Você também pode achar os [Fóruns de Usuários do MySQL](https://forums.mysql.com/list.php?20) úteis.
+* You may also find the [MySQL User Forums](https://forums.mysql.com/list.php?20) to be helpful.

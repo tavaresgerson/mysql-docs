@@ -1,26 +1,25 @@
-### 13.6.6 Cursoros
+### 13.6.6 Cursors
 
-13.6.6.1 Declaração de cursor CLOSE
+[13.6.6.1 Cursor CLOSE Statement](close.html)
 
-13.6.6.2 Declaração Cursor DECLARE
+[13.6.6.2 Cursor DECLARE Statement](declare-cursor.html)
 
-13.6.6.3 Declaração de cursor FETCH
+[13.6.6.3 Cursor FETCH Statement](fetch.html)
 
-13.6.6.4 Declaração de cursor OPEN
+[13.6.6.4 Cursor OPEN Statement](open.html)
 
-13.6.6.5 Restrições para cursors no lado do servidor
+[13.6.6.5 Restrictions on Server-Side Cursors](cursor-restrictions.html)
 
-O MySQL suporta cursor dentro de programas armazenados. A sintaxe é a mesma da SQL embutida. Os cursors têm essas propriedades:
+MySQL supports cursors inside stored programs. The syntax is as in embedded SQL. Cursors have these properties:
 
-- Inativo: O servidor pode ou não fazer uma cópia da sua tabela de resultados
+* Asensitive: The server may or may not make a copy of its result table
 
-- Apenas para leitura: Não atualizável
+* Read only: Not updatable
+* Nonscrollable: Can be traversed only in one direction and cannot skip rows
 
-- Não rolagem: Pode ser percorrida apenas em uma direção e não pode pular linhas
+Cursor declarations must appear before handler declarations and after variable and condition declarations.
 
-As declarações de cursor devem aparecer antes das declarações de manipulador e após as declarações de variáveis e condições.
-
-Exemplo:
+Example:
 
 ```sql
 CREATE PROCEDURE curdemo()

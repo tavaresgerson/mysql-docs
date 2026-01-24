@@ -1,27 +1,27 @@
-### 13.6.7 Tratamento de Condições
+### 13.6.7 Condition Handling
 
-13.6.7.1 DECLARE ... CONDITION Statement
+[13.6.7.1 DECLARE ... CONDITION Statement](declare-condition.html)
 
-13.6.7.2 DECLARE ... HANDLER Statement
+[13.6.7.2 DECLARE ... HANDLER Statement](declare-handler.html)
 
-13.6.7.3 Declaração de DIAGNÓSTICOS
+[13.6.7.3 GET DIAGNOSTICS Statement](get-diagnostics.html)
 
-13.6.7.4 Declaração RESIGNAL
+[13.6.7.4 RESIGNAL Statement](resignal.html)
 
-13.6.7.5 Declaração de SINAL
+[13.6.7.5 SIGNAL Statement](signal.html)
 
-13.6.7.6 Regras de escopo para manipuladores
+[13.6.7.6 Scope Rules for Handlers](handler-scope.html)
 
-13.6.7.7 Área de Diagnóstico do MySQL
+[13.6.7.7 The MySQL Diagnostics Area](diagnostics-area.html)
 
-13.6.7.8 Gerenciamento de Condições e Parâmetros OUT ou INOUT
+[13.6.7.8 Condition Handling and OUT or INOUT Parameters](conditions-and-parameters.html)
 
-13.6.7.9 Restrições para o manuseio de condições
+[13.6.7.9 Restrictions on Condition Handling](condition-handling-restrictions.html)
 
-Durante a execução de programas armazenados, podem surgir condições que exigem um tratamento especial, como sair do bloco de programa atual ou continuar a execução. Podem ser definidos manipuladores para condições gerais, como avisos ou exceções, ou para condições específicas, como um código de erro particular. Condições específicas podem receber nomes e serem referenciadas dessa forma nos manipuladores.
+Conditions may arise during stored program execution that require special handling, such as exiting the current program block or continuing execution. Handlers can be defined for general conditions such as warnings or exceptions, or for specific conditions such as a particular error code. Specific conditions can be assigned names and referred to that way in handlers.
 
-Para nomear uma condição, use a declaração `DECLARE ... CONDITION`. Para declarar um manipulador, use a declaração `DECLARE ... HANDLER`. Veja Seção 13.6.7.1, “Declaração ... CONDITION” e Seção 13.6.7.2, “Declaração ... HANDLER”. Para obter informações sobre como o servidor escolhe manipuladores quando uma condição ocorre, veja Seção 13.6.7.6, “Regras de escopo para manipuladores”.
+To name a condition, use the [`DECLARE ... CONDITION`](declare-condition.html "13.6.7.1 DECLARE ... CONDITION Statement") statement. To declare a handler, use the [`DECLARE ... HANDLER`](declare-handler.html "13.6.7.2 DECLARE ... HANDLER Statement") statement. See [Section 13.6.7.1, “DECLARE ... CONDITION Statement”](declare-condition.html "13.6.7.1 DECLARE ... CONDITION Statement"), and [Section 13.6.7.2, “DECLARE ... HANDLER Statement”](declare-handler.html "13.6.7.2 DECLARE ... HANDLER Statement"). For information about how the server chooses handlers when a condition occurs, see [Section 13.6.7.6, “Scope Rules for Handlers”](handler-scope.html "13.6.7.6 Scope Rules for Handlers").
 
-Para criar uma condição, use a instrução `SIGNAL`. Para modificar as informações da condição dentro de um manipulador de condição, use `RESIGNAL`. Veja Seção 13.6.7.1, “Instrução DECLARE ... CONDITION” e Seção 13.6.7.2, “Instrução DECLARE ... HANDLER”.
+To raise a condition, use the [`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement") statement. To modify condition information within a condition handler, use [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement"). See [Section 13.6.7.1, “DECLARE ... CONDITION Statement”](declare-condition.html "13.6.7.1 DECLARE ... CONDITION Statement"), and [Section 13.6.7.2, “DECLARE ... HANDLER Statement”](declare-handler.html "13.6.7.2 DECLARE ... HANDLER Statement").
 
-Para recuperar informações da área de diagnóstico, use a instrução `GET DIAGNOSTICS` (consulte Seção 13.6.7.3, “Instrução GET DIAGNOSTICS”). Para informações sobre a área de diagnóstico, consulte Seção 13.6.7.7, “A Área de Diagnóstico do MySQL”.
+To retrieve information from the diagnostics area, use the [`GET DIAGNOSTICS`](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement") statement (see [Section 13.6.7.3, “GET DIAGNOSTICS Statement”](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement")). For information about the diagnostics area, see [Section 13.6.7.7, “The MySQL Diagnostics Area”](diagnostics-area.html "13.6.7.7 The MySQL Diagnostics Area").

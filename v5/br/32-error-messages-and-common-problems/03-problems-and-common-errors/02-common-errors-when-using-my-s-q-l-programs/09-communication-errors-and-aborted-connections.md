@@ -1,51 +1,47 @@
-#### B.3.2.9 Erros de comunicação e conexões interrompidas
+#### B.3.2.9 Communication Errors and Aborted Connections
 
-Se ocorrerem problemas de conexão, como erros de comunicação ou conexões abortadas, use essas fontes de informações para diagnosticar os problemas:
+If connection problems occur such as communication errors or aborted connections, use these sources of information to diagnose problems:
 
-- O log de erros. Veja [Seção 5.4.2, “O Log de Erros”](error-log.html).
+* The error log. See [Section 5.4.2, “The Error Log”](error-log.html "5.4.2 The Error Log").
+* The general query log. See [Section 5.4.3, “The General Query Log”](query-log.html "5.4.3 The General Query Log").
+* The `Aborted_xxx` and `Connection_errors_xxx` status variables. See [Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables").
 
-- O log de consultas gerais. Consulte [Seção 5.4.3, “O log de consultas gerais”](query-log.html).
+* The host cache, which is accessible using the Performance Schema [`host_cache`](performance-schema-host-cache-table.html "25.12.16.1 The host_cache Table") table. See [Section 5.1.11.2, “DNS Lookups and the Host Cache”](host-cache.html "5.1.11.2 DNS Lookups and the Host Cache"), and [Section 25.12.16.1, “The host_cache Table”](performance-schema-host-cache-table.html "25.12.16.1 The host_cache Table").
 
-- As variáveis de status `Aborted_xxx` e `Connection_errors_xxx`. Consulte [Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html).
-
-- O cache do host, que é acessível usando a tabela do Schema de Desempenho [`host_cache`](performance-schema-host-cache-table.html). Veja [Seção 5.1.11.2, “Consultas DNS e o Cache do Host”](host-cache.html) e [Seção 25.12.16.1, “A Tabela host_cache”](performance-schema-host-cache-table.html).
-
-Se a variável de sistema [`log_error_verbosity`](server-system-variables.html#sysvar_log_error_verbosity) estiver definida como 3, você pode encontrar mensagens como esta no seu log de erros:
+If the [`log_error_verbosity`](server-system-variables.html#sysvar_log_error_verbosity) system variable is set to 3, you might find messages like this in your error log:
 
 ```sql
 [Note] Aborted connection 854 to db: 'employees' user: 'josh'
 ```
 
-Se um cliente não conseguir se conectar, o servidor incrementa a variável de status [`Aborted_connects`](server-status-variables.html#statvar_Aborted_connects). As tentativas de conexão não bem-sucedidas podem ocorrer por várias razões:
+If a client is unable even to connect, the server increments the [`Aborted_connects`](server-status-variables.html#statvar_Aborted_connects) status variable. Unsuccessful connection attempts can occur for the following reasons:
 
-- Um cliente tenta acessar um banco de dados, mas não tem privilégios para isso.
+* A client attempts to access a database but has no privileges for it.
 
-- Um cliente usa uma senha incorreta.
+* A client uses an incorrect password.
+* A connection packet does not contain the right information.
 
-- Um pacote de conexão não contém as informações corretas.
+* It takes more than [`connect_timeout`](server-system-variables.html#sysvar_connect_timeout) seconds to obtain a connect packet. See [Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables").
 
-- Leva mais de [`connect_timeout`]\(server-system-variables.html#sysvar_connect_timeout] segundos para obter um pacote de conexão. Veja [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html).
+If these kinds of things happen, it might indicate that someone is trying to break into your server! If the general query log is enabled, messages for these types of problems are logged to it.
 
-Se esse tipo de coisa acontecer, pode indicar que alguém está tentando invadir seu servidor! Se o log de consulta geral estiver ativado, as mensagens desses tipos de problemas serão registradas nele.
+If a client successfully connects but later disconnects improperly or is terminated, the server increments the [`Aborted_clients`](server-status-variables.html#statvar_Aborted_clients) status variable, and logs an Aborted connection message to the error log. The cause can be any of the following:
 
-Se um cliente se conectar com sucesso, mas depois se desconectar de forma inadequada ou for encerrado, o servidor incrementa a variável de status [`Aborted_clients`](server-status-variables.html#statvar_Aborted_clients) e registra uma mensagem de conexão Abortada no log de erros. A causa pode ser qualquer uma das seguintes:
+* The client program did not call [`mysql_close()`](/doc/c-api/5.7/en/mysql-close.html) before exiting.
 
-- O programa cliente não chamou [`mysql_close()`](/doc/c-api/5.7/pt-BR/mysql-close.html) antes de sair.
+* The client had been sleeping more than [`wait_timeout`](server-system-variables.html#sysvar_wait_timeout) or [`interactive_timeout`](server-system-variables.html#sysvar_interactive_timeout) seconds without issuing any requests to the server. See [Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables").
 
-- O cliente havia dormido mais de [`wait_timeout`]\(server-system-variables.html#sysvar_wait_timeout] ou [`interactive_timeout`]\(server-system-variables.html#sysvar_interactive_timeout] segundos sem emitir quaisquer solicitações ao servidor. Veja [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html).
+* The client program ended abruptly in the middle of a data transfer.
 
-- O programa cliente terminou abruptamente no meio de uma transferência de dados.
+Other reasons for problems with aborted connections or aborted clients:
 
-Outras razões para problemas com conexões interrompidas ou clientes interrompidos:
+* The [`max_allowed_packet`](server-system-variables.html#sysvar_max_allowed_packet) variable value is too small or queries require more memory than you have allocated for [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"). See [Section B.3.2.8, “Packet Too Large”](packet-too-large.html "B.3.2.8 Packet Too Large").
 
-- O valor da variável [`max_allowed_packet`](server-system-variables.html#sysvar_max_allowed_packet) é muito pequeno ou as consultas exigem mais memória do que a alocada para o [**mysqld**](mysqld.html). Veja [Seção B.3.2.8, “Pacote muito grande”](packet-too-large.html).
+* Use of Ethernet protocol with Linux, both half and full duplex. Some Linux Ethernet drivers have this bug. You should test for this bug by transferring a huge file using FTP between the client and server machines. If a transfer goes in burst-pause-burst-pause mode, you are experiencing a Linux duplex syndrome. Switch the duplex mode for both your network card and hub/switch to either full duplex or to half duplex and test the results to determine the best setting.
 
-- Uso do protocolo Ethernet com Linux, tanto em modo half quanto em modo full duplex. Alguns drivers de Ethernet do Linux têm esse bug. Você deve testar esse bug transferindo um arquivo enorme usando FTP entre as máquinas cliente e servidor. Se uma transferência ocorrer no modo burst-pause-burst-pause, você está experimentando uma síndrome de duplex Linux. Mude o modo de duplex tanto para o seu cartão de rede quanto para o hub/switch para full duplex ou para half duplex e teste os resultados para determinar o melhor ajuste.
+* A problem with the thread library that causes interrupts on reads.
 
-- Um problema com a biblioteca de threads que causa interrupções nas leituras.
+* Badly configured TCP/IP.
+* Faulty Ethernets, hubs, switches, cables, and so forth. This can be diagnosed properly only by replacing hardware.
 
-- TCP/IP mal configurado.
-
-- Ethernet defeituosos, hubs, switches, cabos, e assim por diante. Isso só pode ser diagnosticado corretamente substituindo o hardware.
-
-Veja também [Seção B.3.2.7, “O servidor MySQL desapareceu”](gone-away.html).
+See also [Section B.3.2.7, “MySQL server has gone away”](gone-away.html "B.3.2.7 MySQL server has gone away").

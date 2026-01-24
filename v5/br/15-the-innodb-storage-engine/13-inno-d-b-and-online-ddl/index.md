@@ -1,37 +1,37 @@
-## 14.13 InnoDB e DDL Online
+## 14.13 InnoDB and Online DDL
 
-14.13.1 Operações de DDL Online
+14.13.1 Online DDL Operations
 
-14.13.2 Desempenho e Concorrência de DDL Online
+14.13.2 Online DDL Performance and Concurrency
 
-14.13.3 Requisitos de Espaço para DDL Online
+14.13.3 Online DDL Space Requirements
 
-14.13.4 Simplificando declarações DDL com DDL online
+14.13.4 Simplifying DDL Statements with Online DDL
 
-14.13.5 Condições de falha do DDL online
+14.13.5 Online DDL Failure Conditions
 
-14.13.6 Limitações do DDL online
+14.13.6 Online DDL Limitations
 
-O recurso DDL online oferece suporte para alterações de tabelas in-place e DML concorrente. Os benefícios desse recurso incluem:
+The online DDL feature provides support for in-place table alterations and concurrent DML. Benefits of this feature include:
 
-- Melhor resposta e disponibilidade em ambientes de produção movimentados, onde deixar uma tabela indisponível por minutos ou horas não é prático.
+* Improved responsiveness and availability in busy production environments, where making a table unavailable for minutes or hours is not practical.
 
-- A capacidade de ajustar o equilíbrio entre desempenho e concorrência durante operações DDL usando a cláusula `LOCK`. Veja a cláusula LOCK.
+* The ability to adjust the balance between performance and concurrency during DDL operations using the `LOCK` clause. See The LOCK clause.
 
-- Menos uso de espaço em disco e sobrecarga de I/O do que o método de cópia de tabela.
+* Less disk space usage and I/O overhead than the table-copy method.
 
-Normalmente, você não precisa fazer nada de especial para habilitar o DDL online. Por padrão, o MySQL executa a operação no local, conforme permitido, com o menor bloqueio possível.
+Typically, you do not need to do anything special to enable online DDL. By default, MySQL performs the operation in place, as permitted, with as little locking as possible.
 
-Você pode controlar aspectos de uma operação DDL usando as cláusulas `ALGORITHM` e `LOCK` da instrução `ALTER TABLE`. Essas cláusulas são colocadas no final da instrução, separadas das especificações da tabela e das colunas por vírgulas. Por exemplo:
+You can control aspects of a DDL operation using the `ALGORITHM` and `LOCK` clauses of the `ALTER TABLE` statement. These clauses are placed at the end of the statement, separated from the table and column specifications by commas. For example:
 
 ```sql
 ALTER TABLE tbl_name ADD PRIMARY KEY (column), ALGORITHM=INPLACE, LOCK=NONE;
 ```
 
-A cláusula `LOCK` é útil para ajustar o grau de acesso concorrente à tabela. A cláusula `ALGORITHM` é destinada principalmente para comparações de desempenho e como uma opção de fallback para o comportamento mais antigo de cópia de tabela, caso você encontre algum problema. Por exemplo:
+The `LOCK` clause is useful for fine-tuning the degree of concurrent access to the table. The `ALGORITHM` clause is primarily intended for performance comparisons and as a fallback to the older table-copying behavior in case you encounter any issues. For example:
 
-- Para evitar que a tabela seja indisponível para leituras, escritas ou ambas, especifique uma cláusula na instrução `ALTER TABLE`, como `LOCK=NONE` (permitir leituras e escritas) ou `LOCK=SHARED` (permitir leituras). A operação é interrompida imediatamente se o nível de concorrência solicitado não estiver disponível.
+* To avoid accidentally making the table unavailable for reads, writes, or both, specify a clause on the `ALTER TABLE` statement such as `LOCK=NONE` (permit reads and writes) or `LOCK=SHARED` (permit reads). The operation halts immediately if the requested level of concurrency is not available.
 
-- Para comparar o desempenho entre algoritmos, execute uma instrução com `ALGORITHM=INPLACE` e `ALGORITHM=COPY`. Alternativamente, execute uma instrução com a opção de configuração `old_alter_table` desabilitada e habilitada.
+* To compare performance between algorithms, run a statement with `ALGORITHM=INPLACE` and `ALGORITHM=COPY`. Alternatively, run a statement with the `old_alter_table` configuration option disabled and enabled.
 
-- Para evitar o bloqueio do servidor com uma operação `ALTER TABLE` que copia a tabela, inclua `ALGORITHM=INPLACE`. A instrução pára imediatamente se não puder usar o mecanismo de implantação.
+* To avoid tying up the server with an `ALTER TABLE` operation that copies the table, include `ALGORITHM=INPLACE`. The statement halts immediately if it cannot use the in-place mechanism.

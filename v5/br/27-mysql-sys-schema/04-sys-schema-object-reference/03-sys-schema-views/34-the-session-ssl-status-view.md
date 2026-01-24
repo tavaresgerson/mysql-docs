@@ -1,21 +1,21 @@
-#### 26.4.3.34 A visualização session_ssl_status
+#### 26.4.3.34 The session_ssl_status View
 
-Para cada conexão, essa visualização exibe a versão SSL, o cifrador e o número de sessões SSL reutilizadas.
+For each connection, this view displays the SSL version, cipher, and count of reused SSL sessions.
 
-A visualização `session_ssl_status` tem essas colunas:
+The `session_ssl_status` view has these columns:
 
-- `thread_id`
+* `thread_id`
 
-  O ID do thread para a conexão.
+  The thread ID for the connection.
 
-- `ssl_version`
+* `ssl_version`
 
-  A versão do SSL usada para a conexão.
+  The version of SSL used for the connection.
 
-- `ssl_cipher`
+* `ssl_cipher`
 
-  O algoritmo de criptografia SSL usado para a conexão.
+  The SSL cipher used for the connection.
 
-- `ssl_sessions_reused`
+* `ssl_sessions_reused`
 
-  O número de sessões SSL reutilizadas para a conexão.
+  The number of reused SSL sessions for the connection.

@@ -1,8 +1,8 @@
-#### 21.3.2.3 Inicialização inicial do NDB Cluster no Windows
+#### 21.3.2.3 Initial Startup of NDB Cluster on Windows
 
-Depois que os executáveis do NDB Cluster e os arquivos de configuração necessários estiverem instalados, iniciar o cluster é simplesmente uma questão de iniciar os executáveis do NDB Cluster em todos os nós do cluster. Cada processo do nó do cluster deve ser iniciado separadamente, no computador hospedeiro onde ele reside. O nó de gerenciamento deve ser iniciado primeiro, seguido pelos nós de dados e, finalmente, pelos nós SQL.
+Once the NDB Cluster executables and needed configuration files are in place, performing an initial start of the cluster is simply a matter of starting the NDB Cluster executables for all nodes in the cluster. Each cluster node process must be started separately, and on the host computer where it resides. The management node should be started first, followed by the data nodes, and then finally by any SQL nodes.
 
-1. No nó de gerenciamento, execute o seguinte comando na linha de comando para iniciar o processo do nó de gerenciamento. A saída deve parecer semelhante à que está mostrada aqui:
+1. On the management node host, issue the following command from the command line to start the management node process. The output should appear similar to what is shown here:
 
    ```sql
    C:\mysql\bin> ndb_mgmd
@@ -10,26 +10,26 @@ Depois que os executáveis do NDB Cluster e os arquivos de configuração necess
    2010-06-23 07:53:34 [MgmtSrvr] INFO -- Reading cluster configuration from 'config.ini'
    ```
 
-   O processo do nó de gerenciamento continua a imprimir a saída de registro no console. Isso é normal, porque o nó de gerenciamento não está rodando como um serviço do Windows. (Se você usou o NDB Cluster em uma plataforma semelhante ao Unix, como o Linux, você pode notar que o comportamento padrão do nó de gerenciamento nesse sentido no Windows é efetivamente o oposto do seu comportamento em sistemas Unix, onde ele roda por padrão como um processo de daemon do Unix. Esse comportamento também é verdadeiro para os processos de nó de dados do NDB Cluster rodando no Windows.) Por essa razão, não feche a janela na qual o **ndb_mgmd.exe** está rodando; fazer isso mata o processo do nó de gerenciamento. (Veja Seção 21.3.2.4, “Instalando Processos do NDB Cluster como Serviços do Windows”, onde mostramos como instalar e rodar os processos do NDB Cluster como serviços do Windows.)
+   The management node process continues to print logging output to the console. This is normal, because the management node is not running as a Windows service. (If you have used NDB Cluster on a Unix-like platform such as Linux, you may notice that the management node's default behavior in this regard on Windows is effectively the opposite of its behavior on Unix systems, where it runs by default as a Unix daemon process. This behavior is also true of NDB Cluster data node processes running on Windows.) For this reason, do not close the window in which [**ndb_mgmd.exe**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") is running; doing so kills the management node process. (See [Section 21.3.2.4, “Installing NDB Cluster Processes as Windows Services”](mysql-cluster-install-windows-service.html "21.3.2.4 Installing NDB Cluster Processes as Windows Services"), where we show how to install and run NDB Cluster processes as Windows services.)
 
-   A opção `-f` necessária indica ao nó de gerenciamento onde encontrar o arquivo de configuração global (`config.ini`). A forma longa desta opção é `--config-file`.
+   The required `-f` option tells the management node where to find the global configuration file (`config.ini`). The long form of this option is [`--config-file`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_config-file).
 
-   Importante
+   Important
 
-   Um nó de gerenciamento de cluster do NDB armazena em cache os dados de configuração que lê do `config.ini`; uma vez que ele cria um cache de configuração, ele ignora o arquivo `config.ini` em inicializações subsequentes, a menos que seja forçado a fazer o contrário. Isso significa que, se o nó de gerenciamento não conseguir iniciar devido a um erro neste arquivo, você deve fazer o nó de gerenciamento reler `config.ini` depois de corrigir quaisquer erros nele. Você pode fazer isso iniciando **ndb_mgmd.exe** com a opção `--reload` ou `--initial` na linha de comando. Qualquer uma dessas opções funciona para atualizar o cache de configuração.
+   An NDB Cluster management node caches the configuration data that it reads from `config.ini`; once it has created a configuration cache, it ignores the `config.ini` file on subsequent starts unless forced to do otherwise. This means that, if the management node fails to start due to an error in this file, you must make the management node re-read `config.ini` after you have corrected any errors in it. You can do this by starting [**ndb_mgmd.exe**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") with the [`--reload`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_reload) or [`--initial`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_initial) option on the command line. Either of these options works to refresh the configuration cache.
 
-   Não é necessário nem aconselhável usar nenhuma dessas opções no arquivo `my.ini` do nó de gerenciamento.
+   It is not necessary or advisable to use either of these options in the management node's `my.ini` file.
 
-2. Em cada um dos hosts dos nós de dados, execute o comando mostrado aqui para iniciar os processos do nó de dados:
+2. On each of the data node hosts, run the command shown here to start the data node processes:
 
    ```sql
    C:\mysql\bin> ndbd
    2010-06-23 07:53:46 [ndbd] INFO -- Configuration fetched from 'localhost:1186', generation: 1
    ```
 
-   Em cada caso, a primeira linha de saída do processo do nó de dados deve se assemelhar ao que é mostrado no exemplo anterior, seguida por linhas adicionais de saída de registro. Como no processo do nó de gerenciamento, isso é normal, porque o nó de dados não está sendo executado como um serviço do Windows. Por essa razão, não feche a janela do console na qual o processo do nó de dados está sendo executado; isso mata o **ndbd.exe**. (Para mais informações, consulte Seção 21.3.2.4, “Instalando Processos do NDB Cluster como Serviços do Windows”).
+   In each case, the first line of output from the data node process should resemble what is shown in the preceding example, and is followed by additional lines of logging output. As with the management node process, this is normal, because the data node is not running as a Windows service. For this reason, do not close the console window in which the data node process is running; doing so kills [**ndbd.exe**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon"). (For more information, see [Section 21.3.2.4, “Installing NDB Cluster Processes as Windows Services”](mysql-cluster-install-windows-service.html "21.3.2.4 Installing NDB Cluster Processes as Windows Services").)
 
-3. Não inicie o nó SQL ainda; ele não pode se conectar ao clúster até que os nós de dados tenham terminado de iniciar, o que pode levar algum tempo. Em vez disso, em uma nova janela do console no host do nó de gerenciamento, inicie o cliente de gerenciamento do NDB Cluster **ndb_mgm.exe**, que deve estar em `C:\mysql\bin` no host do nó de gerenciamento. (Não tente reutilizar a janela do console onde **ndb_mgmd.exe** está em execução digitando **CTRL**+**C**, pois isso interrompe o nó de gerenciamento.) A saída resultante deve parecer assim:
+3. Do not start the SQL node yet; it cannot connect to the cluster until the data nodes have finished starting, which may take some time. Instead, in a new console window on the management node host, start the NDB Cluster management client [**ndb_mgm.exe**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client"), which should be in `C:\mysql\bin` on the management node host. (Do not try to re-use the console window where [**ndb_mgmd.exe**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") is running by typing **CTRL**+**C**, as this kills the management node.) The resulting output should look like this:
 
    ```sql
    C:\mysql\bin> ndb_mgm
@@ -37,7 +37,7 @@ Depois que os executáveis do NDB Cluster e os arquivos de configuração necess
    ndb_mgm>
    ```
 
-   Quando o prompt `ndb_mgm>` aparecer, isso indica que o cliente de gerenciamento está pronto para receber comandos de gerenciamento do NDB Cluster. Você pode observar o status dos nós de dados ao iniciar a entrada de `ALL STATUS` no prompt do cliente de gerenciamento. Esse comando gera um relatório em execução da sequência de inicialização dos nós de dados, que deve parecer algo como isso:
+   When the prompt `ndb_mgm>` appears, this indicates that the management client is ready to receive NDB Cluster management commands. You can observe the status of the data nodes as they start by entering [`ALL STATUS`](mysql-cluster-mgm-client-commands.html#ndbclient-status) at the management client prompt. This command causes a running report of the data nodes's startup sequence, which should look something like this:
 
    ```sql
    ndb_mgm> ALL STATUS
@@ -54,25 +54,25 @@ Depois que os executáveis do NDB Cluster e os arquivos de configuração necess
    ndb_mgm>
    ```
 
-   Nota
+   Note
 
-   Os comandos emitidos no cliente de gerenciamento não são sensíveis ao caso; usamos maiúsculas como a forma canônica desses comandos, mas você não precisa seguir essa convenção ao inseri-los no cliente **ndb_mgm**. Para mais informações, consulte Seção 21.6.1, “Comandos no Cliente de Gerenciamento do NDB Cluster”.
+   Commands issued in the management client are not case-sensitive; we use uppercase as the canonical form of these commands, but you are not required to observe this convention when inputting them into the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") client. For more information, see [Section 21.6.1, “Commands in the NDB Cluster Management Client”](mysql-cluster-mgm-client-commands.html "21.6.1 Commands in the NDB Cluster Management Client").
 
-   A saída produzida por `ALL STATUS` provavelmente variará do que é mostrado aqui, de acordo com a velocidade com que os nós de dados conseguem iniciar, o número da versão de lançamento do software NDB Cluster que você está usando e outros fatores. O que é significativo é que, quando você ver que ambos os nós de dados iniciaram, você está pronto para iniciar o nó SQL.
+   The output produced by [`ALL STATUS`](mysql-cluster-mgm-client-commands.html#ndbclient-status) is likely to vary from what is shown here, according to the speed at which the data nodes are able to start, the release version number of the NDB Cluster software you are using, and other factors. What is significant is that, when you see that both data nodes have started, you are ready to start the SQL node.
 
-   Você pode deixar o **ndb_mgm.exe** rodando; ele não tem impacto negativo no desempenho do NDB Cluster, e o usaremos no próximo passo para verificar se o nó SQL está conectado ao cluster depois de tê-lo iniciado.
+   You can leave [**ndb_mgm.exe**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") running; it has no negative impact on the performance of the NDB Cluster, and we use it in the next step to verify that the SQL node is connected to the cluster after you have started it.
 
-4. No computador designado como anfitrião do nó SQL, abra uma janela de console e navegue até o diretório onde você desempacotou os binários do NDB Cluster (se você estiver seguindo nosso exemplo, este é `C:\mysql\bin`).
+4. On the computer designated as the SQL node host, open a console window and navigate to the directory where you unpacked the NDB Cluster binaries (if you are following our example, this is `C:\mysql\bin`).
 
-   Inicie o nó SQL invocando **mysqld.exe** a partir da linha de comando, conforme mostrado aqui:
+   Start the SQL node by invoking [**mysqld.exe**](mysqld.html "4.3.1 mysqld — The MySQL Server") from the command line, as shown here:
 
    ```sql
    C:\mysql\bin> mysqld --console
    ```
 
-   A opção `--console` faz com que as informações de registro sejam escritas no console, o que pode ser útil em caso de problemas. (Depois de garantir que o nó SQL esteja funcionando de maneira satisfatória, você pode interromper e reiniciar sem a opção `--console`, para que o registro seja realizado normalmente.)
+   The [`--console`](server-options.html#option_mysqld_console) option causes logging information to be written to the console, which can be helpful in the event of problems. (Once you are satisfied that the SQL node is running in a satisfactory manner, you can stop it and restart it out without the [`--console`](server-options.html#option_mysqld_console) option, so that logging is performed normally.)
 
-   Na janela do console onde o cliente de gerenciamento (**ndb_mgm.exe**) está rodando no host do nó de gerenciamento, insira o comando `SHOW`, que deve produzir uma saída semelhante à mostrada aqui:
+   In the console window where the management client ([**ndb_mgm.exe**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client")) is running on the management node host, enter the [`SHOW`](mysql-cluster-mgm-client-commands.html#ndbclient-show) command, which should produce output similar to what is shown here:
 
    ```sql
    ndb_mgm> SHOW
@@ -90,8 +90,8 @@ Depois que os executáveis do NDB Cluster e os arquivos de configuração necess
    id=4    @198.51.100.20  (Version: 5.7.44-ndb-7.6.36)
    ```
 
-   Você também pode verificar se o nó SQL está conectado ao NDB Cluster no cliente **mysql** (**mysql.exe**) usando a instrução `SHOW ENGINE NDB STATUS`.
+   You can also verify that the SQL node is connected to the NDB Cluster in the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client ([**mysql.exe**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client")) using the [`SHOW ENGINE NDB STATUS`](show-engine.html#show-engine-ndb-status "SHOW ENGINE NDB STATUS") statement.
 
-Agora você deve estar pronto para trabalhar com objetos de banco de dados e dados usando o mecanismo de armazenamento do NDB Cluster `NDBCLUSTER`. Consulte Seção 21.3.5, “Exemplo de NDB Cluster com Tabelas e Dados” para obter mais informações e exemplos.
+You should now be ready to work with database objects and data using NDB Cluster 's [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine. See [Section 21.3.5, “NDB Cluster Example with Tables and Data”](mysql-cluster-install-example-data.html "21.3.5 NDB Cluster Example with Tables and Data"), for more information and examples.
 
-Você também pode instalar **ndb_mgmd.exe**, **ndbd.exe** e **ndbmtd.exe** como serviços do Windows. Para obter informações sobre como fazer isso, consulte Seção 21.3.2.4, “Instalando processos do NDB Cluster como serviços do Windows”).
+You can also install [**ndb_mgmd.exe**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon"), [**ndbd.exe**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon"), and [**ndbmtd.exe**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") as Windows services. For information on how to do this, see [Section 21.3.2.4, “Installing NDB Cluster Processes as Windows Services”](mysql-cluster-install-windows-service.html "21.3.2.4 Installing NDB Cluster Processes as Windows Services")).

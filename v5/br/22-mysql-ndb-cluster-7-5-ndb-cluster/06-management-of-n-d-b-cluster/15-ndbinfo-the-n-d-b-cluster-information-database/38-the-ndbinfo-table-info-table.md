@@ -1,49 +1,49 @@
-#### 21.6.15.38 A tabela ndbinfo table_info
+#### 21.6.15.38 The ndbinfo table_info Table
 
-A tabela `table_info` fornece informações sobre opções de registro, verificação de ponto de controle, distribuição e armazenamento em vigor para tabelas individuais de `NDB`.
+The `table_info` table provides information about logging, checkpointing, distribution, and storage options in effect for individual `NDB` tables.
 
-A tabela `table_info` contém as seguintes colunas:
+The `table_info` table contains the following columns:
 
-- `table_id`
+* `table_id`
 
-  Tabela ID
+  Table ID
 
-- `logged_table`
+* `logged_table`
 
-  Se a tabela está registrada (1) ou não (0)
+  Whether table is logged (1) or not (0)
 
-- `row_contains_gci`
+* `row_contains_gci`
 
-  Se as linhas da tabela contêm GCI (1 verdadeiro, 0 falso)
+  Whether table rows contain GCI (1 true, 0 false)
 
-- `row_contains_checksum`
+* `row_contains_checksum`
 
-  Se as linhas da tabela contêm o checksum (1 verdadeiro, 0 falso)
+  Whether table rows contain checksum (1 true, 0 false)
 
-- `read_backup`
+* `read_backup`
 
-  Se as réplicas de fragmentos de backup forem lidas, o valor será 1; caso contrário, será 0
+  If backup fragment replicas are read this is 1, otherwise 0
 
-- `completamente_replicado`
+* `fully_replicated`
 
-  Se a tabela for totalmente replicada, o valor é 1; caso contrário, é 0
+  If table is fully replicated this is 1, otherwise 0
 
-- `tipo_de_armazenamento`
+* `storage_type`
 
-  Tipo de armazenamento de tabela; uma das opções `MEMORY` ou `DISK`
+  Table storage type; one of `MEMORY` or `DISK`
 
-- `hashmap_id`
+* `hashmap_id`
 
-  ID do Hashmap
+  Hashmap ID
 
-- `partição_balanço`
+* `partition_balance`
 
-  Balanço de partições (tipo de contagem de fragmentos) usado para a tabela; um dos `FOR_RP_BY_NODE`, `FOR_RA_BY_NODE`, `FOR_RP_BY_LDM` ou `FOR_RA_BY_LDM`
+  Partition balance (fragment count type) used for table; one of `FOR_RP_BY_NODE`, `FOR_RA_BY_NODE`, `FOR_RP_BY_LDM`, or `FOR_RA_BY_LDM`
 
-- `create_gci`
+* `create_gci`
 
-  GCI em que tabela foi criada
+  GCI in which table was created
 
-##### Notas
+##### Notes
 
-A tabela `table_info` foi adicionada no NDB 7.5.4.
+The `table_info` table was added in NDB 7.5.4.

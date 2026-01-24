@@ -1,18 +1,18 @@
-#### B.3.2.13 Ignorar o usuário
+#### B.3.2.13 Ignoring user
 
-Se você receber o seguinte erro, isso significa que, quando o [**mysqld**](mysqld.html) foi iniciado ou quando ele recarregou as tabelas de concessão, ele encontrou uma conta na tabela `user` com uma senha inválida.
+If you get the following error, it means that when [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") was started or when it reloaded the grant tables, it found an account in the `user` table that had an invalid password.
 
-`Senha incorreta encontrada para o usuário 'some_user'@'some_host'; ignorando o usuário`
+`Found wrong password for user 'some_user'@'some_host'; ignoring user`
 
-Como resultado, a conta é simplesmente ignorada pelo sistema de permissões.
+As a result, the account is simply ignored by the permission system.
 
-A lista a seguir indica as possíveis causas e as soluções para esse problema:
+The following list indicates possible causes of and fixes for this problem:
 
-- Você pode estar executando uma nova versão do [**mysqld**](mysqld.html) com uma tabela `user` antiga. Verifique se a coluna `Password` dessa tabela tem menos de 16 caracteres. Se sim, corrija essa condição executando [**mysql_upgrade**](mysql-upgrade.html).
+* You may be running a new version of [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") with an old `user` table. Check whether the `Password` column of that table is shorter than 16 characters. If so, correct this condition by running [**mysql_upgrade**](mysql-upgrade.html "4.4.7 mysql_upgrade — Check and Upgrade MySQL Tables").
 
-- A conta tem uma senha antiga (com oito caracteres). Atualize a conta na tabela `user` para ter uma nova senha.
+* The account has an old password (eight characters long). Update the account in the `user` table to have a new password.
 
-- Você especificou uma senha na tabela `user` sem usar a função [`PASSWORD()`](encryption-functions.html#function_password). Use [**mysql**](mysql.html) para atualizar a conta na tabela `user` com uma nova senha, garantindo que você use a função [`PASSWORD()`](encryption-functions.html#function_password):
+* You have specified a password in the `user` table without using the [`PASSWORD()`](encryption-functions.html#function_password) function. Use [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") to update the account in the `user` table with a new password, making sure to use the [`PASSWORD()`](encryption-functions.html#function_password) function:
 
   ```sql
   mysql> UPDATE user SET Password=PASSWORD('new_password')

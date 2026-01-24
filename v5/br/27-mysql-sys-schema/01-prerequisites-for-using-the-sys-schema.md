@@ -1,33 +1,33 @@
-## 26.1 Pré-requisitos para usar o esquema sys
+## 26.1 Prerequisites for Using the sys Schema
 
-Antes de usar o esquema `sys`, os pré-requisitos descritos nesta seção devem ser atendidos.
+Before using the `sys` schema, the prerequisites described in this section must be satisfied.
 
-Como o esquema `sys` oferece uma maneira alternativa de acessar o Schema de Desempenho, o Schema de Desempenho deve ser habilitado para que o esquema `sys` funcione. Veja a Seção 25.3, “Configuração de Inicialização do Schema de Desempenho”.
+Because the `sys` schema provides an alternative means of accessing the Performance Schema, the Performance Schema must be enabled for the `sys` schema to work. See Section 25.3, “Performance Schema Startup Configuration”.
 
-Para ter acesso total ao esquema `sys`, o usuário deve ter esses privilégios:
+For full access to the `sys` schema, a user must have these privileges:
 
-- `SELECT` em todas as tabelas e visualizações `sys`
+* `SELECT` on all `sys` tables and views
 
-- `EXECUTE` em todos os procedimentos e funções armazenadas `sys`
+* `EXECUTE` on all `sys` stored procedures and functions
 
-- `INSERT` e `UPDATE` para a tabela `sys_config`, se forem feitas alterações nela
+* `INSERT` and `UPDATE` for the `sys_config` table, if changes are to be made to it
 
-- Privilégios adicionais para certos procedimentos e funções do esquema `sys`, conforme observado em suas descrições (por exemplo, o procedimento `ps_setup_save()`).
+* Additional privileges for certain `sys` schema stored procedures and functions, as noted in their descriptions (for example, the `ps_setup_save()` Procedure") procedure)
 
-Também é necessário ter privilégios para os objetos que estão por trás dos objetos do esquema `sys`:
+It is also necessary to have privileges for the objects underlying the `sys` schema objects:
 
-- `SELECT` em quaisquer tabelas do Schema de Desempenho acessadas por objetos do esquema `sys`, e `UPDATE` para quaisquer tabelas que devam ser atualizadas usando objetos do esquema `sys`
+* `SELECT` on any Performance Schema tables accessed by `sys` schema objects, and `UPDATE` for any tables to be updated using `sys` schema objects
 
-- `PROCESSO` para a tabela `INFORMATION_SCHEMA` `INNODB_BUFFER_PAGE`
+* `PROCESS` for the `INFORMATION_SCHEMA` `INNODB_BUFFER_PAGE` table
 
-Certos instrumentos e consumidores do esquema de desempenho devem ser habilitados e (para os instrumentos) sincronizados para aproveitar ao máximo as capacidades do esquema `sys`:
+Certain Performance Schema instruments and consumers must be enabled and (for instruments) timed to take full advantage of `sys` schema capabilities:
 
-- Todos os instrumentos de espera
-- Todos os instrumentos de `stage`
-- Todos os instrumentos de `declaração`
-- Consumidores `xxx_current` e `xxx_history_long` para todos os eventos
+* All `wait` instruments
+* All `stage` instruments
+* All `statement` instruments
+* `xxx_current` and `xxx_history_long` consumers for all events
 
-Você pode usar o próprio esquema `sys` para habilitar todos os instrumentos e consumidores adicionais:
+You can use the `sys` schema itself to enable all of the additional instruments and consumers:
 
 ```sql
 CALL sys.ps_setup_enable_instrument('wait');
@@ -37,9 +37,9 @@ CALL sys.ps_setup_enable_consumer('current');
 CALL sys.ps_setup_enable_consumer('history_long');
 ```
 
-Nota
+Note
 
-Para muitas utilizações do esquema `sys`, o esquema de desempenho padrão é suficiente para a coleta de dados. Ativação de todos os instrumentos e consumidores mencionados acima tem um impacto no desempenho, portanto, é preferível ativar apenas a configuração adicional necessária. Além disso, lembre-se de que, se você ativar a configuração adicional, pode facilmente restaurar a configuração padrão da seguinte forma:
+For many uses of the `sys` schema, the default Performance Schema is sufficient for data collection. Enabling all the instruments and consumers just mentioned has a performance impact, so it is preferable to enable only the additional configuration you need. Also, remember that if you enable additional configuration, you can easily restore the default configuration like this:
 
 ```sql
 CALL sys.ps_setup_reset_to_default(TRUE);

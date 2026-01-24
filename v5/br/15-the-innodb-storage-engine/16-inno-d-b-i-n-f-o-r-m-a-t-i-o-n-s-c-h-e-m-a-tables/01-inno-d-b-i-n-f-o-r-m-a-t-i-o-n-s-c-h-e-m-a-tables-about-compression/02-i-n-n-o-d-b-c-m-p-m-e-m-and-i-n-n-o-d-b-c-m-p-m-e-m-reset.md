@@ -1,11 +1,11 @@
-#### 14.16.1.2 INNODB_CMPMEM e INNODB_CMPMEM_RESET
+#### 14.16.1.2 INNODB_CMPMEM and INNODB_CMPMEM_RESET
 
-As tabelas `INNODB_CMPMEM` e `INNODB_CMPMEM_RESET` fornecem informações de status sobre as páginas compactadas que residem no pool de buffer. Consulte a Seção 14.9, “Compressão de Tabelas e Páginas InnoDB”, para obter mais informações sobre tabelas compactadas e o uso do pool de buffer. As tabelas `INNODB_CMP` e `INNODB_CMP_RESET` devem fornecer estatísticas mais úteis sobre a compressão.
+The `INNODB_CMPMEM` and `INNODB_CMPMEM_RESET` tables provide status information about compressed pages that reside in the buffer pool. Please consult Section 14.9, “InnoDB Table and Page Compression” for further information on compressed tables and the use of the buffer pool. The `INNODB_CMP` and `INNODB_CMP_RESET` tables should provide more useful statistics on compression.
 
-##### Detalhes internos
+##### Internal Details
 
-O `InnoDB` utiliza um sistema de alocador de amigos para gerenciar a memória alocada para páginas de vários tamanhos, de 1 KB a 16 KB. Cada linha das duas tabelas descritas aqui corresponde a um único tamanho de página.
+`InnoDB` uses a buddy allocator system to manage memory allocated to pages of various sizes, from 1KB to 16KB. Each row of the two tables described here corresponds to a single page size.
 
-As tabelas `INNODB_CMPMEM` e `INNODB_CMPMEM_RESET` têm conteúdos idênticos, mas a leitura de `INNODB_CMPMEM_RESET` redefiniu as estatísticas sobre operações de realocação. Por exemplo, se você arquivasse a saída de `INNODB_CMPMEM_RESET` a cada 60 minutos, ela mostraria as estatísticas horárias. Se você nunca tivesse lido `INNODB_CMPMEM_RESET` e tivesse monitorado a saída de `INNODB_CMPMEM` em vez disso, ela mostraria as estatísticas acumuladas desde que o `InnoDB` foi iniciado.
+The `INNODB_CMPMEM` and `INNODB_CMPMEM_RESET` tables have identical contents, but reading from `INNODB_CMPMEM_RESET` resets the statistics on relocation operations. For example, if every 60 minutes you archived the output of `INNODB_CMPMEM_RESET`, it would show the hourly statistics. If you never read `INNODB_CMPMEM_RESET` and monitored the output of `INNODB_CMPMEM` instead, it would show the cumulative statistics since `InnoDB` was started.
 
-Para a definição da tabela, consulte a Seção 24.4.6, “As tabelas INFORMATION_SCHEMA INNODB_CMPMEM e INNODB_CMPMEM_RESET”.
+For the table definition, see Section 24.4.6, “The INFORMATION_SCHEMA INNODB_CMPMEM and INNODB_CMPMEM_RESET Tables”.

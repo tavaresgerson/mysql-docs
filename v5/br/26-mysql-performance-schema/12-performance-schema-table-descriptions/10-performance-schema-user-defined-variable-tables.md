@@ -1,19 +1,19 @@
-### 25.12.10 Tabelas de variáveis definidas pelo usuário do esquema de desempenho
+### 25.12.10 Performance Schema User-Defined Variable Tables
 
-O Schema de Desempenho fornece uma tabela `user_variables_by_thread` que expõe variáveis definidas pelo usuário. Essas são variáveis definidas dentro de uma sessão específica e incluem um caractere `@` antes do nome; veja Seção 9.4, “Variáveis Definidas pelo Usuário”.
+The Performance Schema provides a [`user_variables_by_thread`](performance-schema-user-variable-tables.html "25.12.10 Performance Schema User-Defined Variable Tables") table that exposes user-defined variables. These are variables defined within a specific session and include a `@` character preceding the name; see [Section 9.4, “User-Defined Variables”](user-variables.html "9.4 User-Defined Variables").
 
-A tabela `user_variables_by_thread` tem as seguintes colunas:
+The [`user_variables_by_thread`](performance-schema-user-variable-tables.html "25.12.10 Performance Schema User-Defined Variable Tables") table has these columns:
 
-- `THREAD_ID`
+* `THREAD_ID`
 
-  O identificador do thread da sessão em que a variável é definida.
+  The thread identifier of the session in which the variable is defined.
 
-- `VARIAVEL_NOME`
+* `VARIABLE_NAME`
 
-  O nome da variável, sem o caractere inicial `@`.
+  The variable name, without the leading `@` character.
 
-- `VARIABLE_VALUE`
+* `VARIABLE_VALUE`
 
-  O valor variável.
+  The variable value.
 
-A operação `TRUNCATE TABLE` não é permitida para a tabela `user_variables_by_thread`.
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is not permitted for the [`user_variables_by_thread`](performance-schema-user-variable-tables.html "25.12.10 Performance Schema User-Defined Variable Tables") table.

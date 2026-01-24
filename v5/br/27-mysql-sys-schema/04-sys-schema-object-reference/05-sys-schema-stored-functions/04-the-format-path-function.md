@@ -1,6 +1,6 @@
-#### 26.4.5.4 A função format_path()
+#### 26.4.5.4 The format_path() Function
 
-Dada um nome de caminho, retorna o nome de caminho modificado após a substituição de subcaminhos que correspondem aos valores das seguintes variáveis do sistema, na ordem:
+Given a path name, returns the modified path name after replacing subpaths that match the values of the following system variables, in order:
 
 ```sql
 datadir
@@ -12,19 +12,19 @@ innodb_undo_directory
 basedir
 ```
 
-Um valor que corresponde ao valor da variável do sistema *`sysvar`* é substituído pela string `@@GLOBAL.sysvar`.
+A value that matches the value of system variable *`sysvar`* is replaced with the string `@@GLOBAL.sysvar`.
 
-Antes do MySQL 5.7.14, os backslashes nos nomes de caminho do Windows são convertidos em barras inclinadas no resultado.
+Prior to MySQL 5.7.14, backslashes in Windows path names are converted to forward slashes in the result.
 
-##### Parâmetros
+##### Parameters
 
-- `path VARCHAR(512)`: O nome do caminho a ser formatado.
+* `path VARCHAR(512)`: The path name to format.
 
-##### Valor de retorno
+##### Return Value
 
-Um valor `VARCHAR(512) CHARACTER SET utf8`.
+A `VARCHAR(512) CHARACTER SET utf8` value.
 
-##### Exemplo
+##### Example
 
 ```sql
 mysql> SELECT sys.format_path('/usr/local/mysql/data/world/City.ibd');

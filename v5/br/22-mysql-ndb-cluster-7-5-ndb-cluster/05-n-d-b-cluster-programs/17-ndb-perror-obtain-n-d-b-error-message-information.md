@@ -1,28 +1,28 @@
-### 21.5.17 ndb_perror — Obter informações da mensagem de erro do NDB
+### 21.5.17 ndb_perror — Obtain NDB Error Message Information
 
-**ndb_perror** mostra informações sobre um erro do NDB, dado seu código de erro. Isso inclui a mensagem de erro, o tipo de erro e se o erro é permanente ou temporário. Adicionada à distribuição do MySQL NDB Cluster no NDB 7.6, é destinada a ser uma substituição direta para **perror**.
+[**ndb_perror**](mysql-cluster-programs-ndb-perror.html "21.5.17 ndb_perror — Obtain NDB Error Message Information") shows information about an NDB error, given its error code. This includes the error message, the type of error, and whether the error is permanent or temporary. Added to the MySQL NDB Cluster distribution in NDB 7.6, it is intended as a drop-in replacement for [**perror**](perror.html "4.8.2 perror — Display MySQL Error Message Information") [`--ndb`](perror.html#option_perror_ndb).
 
-#### Uso
+#### Usage
 
 ```sql
 ndb_perror [options] error_code
 ```
 
-**ndb_perror** não precisa acessar um NDB Cluster em execução ou qualquer nó (incluindo nós SQL). Para visualizar informações sobre um erro específico do NDB, invocando o programa, use o código de erro como argumento, da seguinte forma:
+[**ndb_perror**](mysql-cluster-programs-ndb-perror.html "21.5.17 ndb_perror — Obtain NDB Error Message Information") does not need to access a running NDB Cluster, or any nodes (including SQL nodes). To view information about a given NDB error, invoke the program, using the error code as an argument, like this:
 
 ```sql
 $> ndb_perror 323
 NDB error code 323: Invalid nodegroup id, nodegroup already existing: Permanent error: Application error
 ```
 
-Para exibir apenas a mensagem de erro, invoque **ndb_perror** com a opção `--silent` (forma abreviada `-s`), conforme mostrado aqui:
+To display only the error message, invoke [**ndb_perror**](mysql-cluster-programs-ndb-perror.html "21.5.17 ndb_perror — Obtain NDB Error Message Information") with the [`--silent`](mysql-cluster-programs-ndb-perror.html#option_ndb_perror_silent) option (short form `-s`), as shown here:
 
 ```sql
 $> ndb_perror -s 323
 Invalid nodegroup id, nodegroup already existing: Permanent error: Application error
 ```
 
-Assim como **perror**, **ndb_perror** aceita vários códigos de erro:
+Like [**perror**](perror.html "4.8.2 perror — Display MySQL Error Message Information"), [**ndb_perror**](mysql-cluster-programs-ndb-perror.html "21.5.17 ndb_perror — Obtain NDB Error Message Information") accepts multiple error codes:
 
 ```sql
 $> ndb_perror 321 1001
@@ -30,44 +30,44 @@ NDB error code 321: Invalid nodegroup id: Permanent error: Application error
 NDB error code 1001: Illegal connect string
 ```
 
-Outras opções de programas para **ndb_perror** são descritas mais adiante nesta seção.
+Additional program options for [**ndb_perror**](mysql-cluster-programs-ndb-perror.html "21.5.17 ndb_perror — Obtain NDB Error Message Information") are described later in this section.
 
-**ndb_perror** substitui **perror** `--ndb`, que está desatualizado no NDB 7.6 e está sujeito à remoção em uma futura versão do MySQL NDB Cluster. Para facilitar a substituição em scripts e outras aplicações que possam depender de **perror** para obter informações de erro do NDB, **ndb_perror** suporta sua própria opção “falsa” `--ndb`, que não faz nada.
+[**ndb_perror**](mysql-cluster-programs-ndb-perror.html "21.5.17 ndb_perror — Obtain NDB Error Message Information") replaces [**perror**](perror.html "4.8.2 perror — Display MySQL Error Message Information") `--ndb`, which is deprecated in NDB 7.6 and subject to removal in a future release of MySQL NDB Cluster. To make substitution easier in scripts and other applications that might depend on [**perror**](perror.html "4.8.2 perror — Display MySQL Error Message Information") for obtaining NDB error information, [**ndb_perror**](mysql-cluster-programs-ndb-perror.html "21.5.17 ndb_perror — Obtain NDB Error Message Information") supports its own “dummy” [`--ndb`](mysql-cluster-programs-ndb-perror.html#option_ndb_perror_ndb) option, which does nothing.
 
-A tabela a seguir inclui todas as opções específicas do programa NDB Cluster **ndb_perror**. Descrições adicionais seguem a tabela.
+The following table includes all options that are specific to the NDB Cluster program [**ndb_perror**](mysql-cluster-programs-ndb-perror.html "21.5.17 ndb_perror — Obtain NDB Error Message Information"). Additional descriptions follow the table.
 
-**Tabela 21.36 Opções de linha de comando usadas com o programa ndb_perror**
+**Table 21.36 Command-line options used with the program ndb_perror**
 
-<table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Formato</th> <th>Descrição</th> <th>Adicionado, Descontinuado ou Removido</th> </tr></thead><tbody><tr> <th><p> PH_HTML_CODE_<code> -s </code>] </p></th> <td>Leia o arquivo fornecido após os arquivos globais terem sido lidos</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> PH_HTML_CODE_<code> -s </code>] </p></th> <td>Ler opções padrão a partir do arquivo fornecido apenas</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> PH_HTML_CODE_<code> -V </code>] </p></th> <td>Leia também grupos com concatenação(grupo, sufixo)</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p>PH_HTML_CODE_<code>--verbose</code>],</p><p> PH_HTML_CODE_<code> -v </code>] </p></th> <td>Exibir texto de ajuda</td> <td><p>ADICIONADO: NDB 7.6.4</p></td> </tr></tbody><tbody><tr> <th><p> <code> --login-path=path </code> </p></th> <td>Leia o caminho fornecido a partir do arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> --ndb </code> </p></th> <td>Para compatibilidade com aplicativos que dependem de versões antigas do perror; não faz nada</td> <td><p>ADICIONADO: NDB 7.6.4</p></td> </tr></tbody><tbody><tr> <th><p> <code> --no-defaults </code> </p></th> <td>Não leia as opções padrão de nenhum arquivo de opção, exceto o arquivo de login</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p> <code> --print-defaults </code> </p></th> <td>Imprimir a lista de argumentos do programa e sair</td> <td><p>(Suportado em todas as versões do NDB com base no MySQL 5.7)</p></td> </tr></tbody><tbody><tr> <th><p><code>--silent</code>,</p><p> <code> -s </code> </p></th> <td>Mostrar apenas a mensagem de erro</td> <td><p>ADICIONADO: NDB 7.6.4</p></td> </tr></tbody><tbody><tr> <th><p><code> --defaults-file=path </code><code> -s </code>],</p><p> <code> -V </code> </p></th> <td>Imprimir as informações da versão do programa e sair</td> <td><p>ADICIONADO: NDB 7.6.4</p></td> </tr></tbody><tbody><tr> <th><p><code>--verbose</code>,</p><p> <code> -v </code> </p></th> <td>Saída verbose; desative com --silent</td> <td><p>ADICIONADO: NDB 7.6.4</p></td> </tr></tbody></table>
+<table frame="box" rules="all"><col style="width: 33%"/><col style="width: 34%"/><col style="width: 33%"/><thead><tr> <th>Format</th> <th>Description</th> <th>Added, Deprecated, or Removed</th> </tr></thead><tbody><tr> <th><p> <code> --defaults-extra-file=path </code> </p></th> <td>Read given file after global files are read</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-file=path </code> </p></th> <td>Read default options from given file only</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --defaults-group-suffix=string </code> </p></th> <td>Also read groups with concat(group, suffix)</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--help</code>, </p><p> <code> -? </code> </p></th> <td>Display help text</td> <td><p> ADDED: NDB 7.6.4 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --login-path=path </code> </p></th> <td>Read given path from login file</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --ndb </code> </p></th> <td>For compatibility with applications depending on old versions of perror; does nothing</td> <td><p> ADDED: NDB 7.6.4 </p></td> </tr></tbody><tbody><tr> <th><p> <code> --no-defaults </code> </p></th> <td>Do not read default options from any option file other than login file</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code> --print-defaults </code> </p></th> <td>Print program argument list and exit</td> <td><p> (Supported in all NDB releases based on MySQL 5.7) </p></td> </tr></tbody><tbody><tr> <th><p> <code>--silent</code>, </p><p> <code> -s </code> </p></th> <td>Show error message only</td> <td><p> ADDED: NDB 7.6.4 </p></td> </tr></tbody><tbody><tr> <th><p> <code>--version</code>, </p><p> <code> -V </code> </p></th> <td>Print program version information and exit</td> <td><p> ADDED: NDB 7.6.4 </p></td> </tr></tbody><tbody><tr> <th><p> <code>--verbose</code>, </p><p> <code> -v </code> </p></th> <td>Verbose output; disable with --silent</td> <td><p> ADDED: NDB 7.6.4 </p></td> </tr></tbody></table>
 
-#### Opções adicionais
+#### Additional Options
 
-- `--help`, `-?`
+* `--help`, `-?`
 
-  <table frame="box" rules="all" summary="Propriedades para ajuda"><tbody><tr><th>Formato de linha de comando</th> <td><code>--help</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.4</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for help"><tbody><tr><th>Command-Line Format</th> <td><code>--help</code></td> </tr><tr><th>Introduced</th> <td>5.7.19-ndb-7.6.4</td> </tr></tbody></table>
 
-  Exibir o texto de ajuda do programa e sair.
+  Display program help text and exit.
 
-- `--ndb`
+* `--ndb`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.4</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb</code></td> </tr><tr><th>Introduced</th> <td>5.7.19-ndb-7.6.4</td> </tr></tbody></table>
 
-  Para compatibilidade com aplicativos que dependem de versões antigas do **perror** que utilizam a opção `--ndb` desse programa. A opção, quando usada com **ndb_perror**, não faz nada e é ignorada por ele.
+  For compatibility with applications depending on old versions of [**perror**](perror.html "4.8.2 perror — Display MySQL Error Message Information") that use that program's [`--ndb`](perror.html#option_perror_ndb) option. The option when used with [**ndb_perror**](mysql-cluster-programs-ndb-perror.html "21.5.17 ndb_perror — Obtain NDB Error Message Information") does nothing, and is ignored by it.
 
-- `--silent`, `-s`
+* `--silent`, `-s`
 
-  <table frame="box" rules="all" summary="Propriedades para silencioso"><tbody><tr><th>Formato de linha de comando</th> <td><code>--silent</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.4</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for silent"><tbody><tr><th>Command-Line Format</th> <td><code>--silent</code></td> </tr><tr><th>Introduced</th> <td>5.7.19-ndb-7.6.4</td> </tr></tbody></table>
 
-  Mostrar apenas a mensagem de erro.
+  Show error message only.
 
-- `--version`, `-V`
+* `--version`, `-V`
 
-  <table frame="box" rules="all" summary="Propriedades para a versão"><tbody><tr><th>Formato de linha de comando</th> <td><code>--version</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.4</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for version"><tbody><tr><th>Command-Line Format</th> <td><code>--version</code></td> </tr><tr><th>Introduced</th> <td>5.7.19-ndb-7.6.4</td> </tr></tbody></table>
 
-  Imprima as informações da versão do programa e saia.
+  Print program version information and exit.
 
-- `--verbose`, `-v`
+* `--verbose`, `-v`
 
-  <table frame="box" rules="all" summary="Propriedades para verbose"><tbody><tr><th>Formato de linha de comando</th> <td><code>--verbose</code></td> </tr><tr><th>Introduzido</th> <td>5.7.19-ndb-7.6.4</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for verbose"><tbody><tr><th>Command-Line Format</th> <td><code>--verbose</code></td> </tr><tr><th>Introduced</th> <td>5.7.19-ndb-7.6.4</td> </tr></tbody></table>
 
-  Saída verbose; desative com `--silent`.
+  Verbose output; disable with [`--silent`](mysql-cluster-programs-ndb-perror.html#option_ndb_perror_silent).

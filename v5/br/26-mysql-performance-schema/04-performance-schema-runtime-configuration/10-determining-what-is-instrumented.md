@@ -1,6 +1,6 @@
-### 25.4.10 Determinar o que é instrumentado
+### 25.4.10 Determining What Is Instrumented
 
-É sempre possível determinar quais instrumentos o Schema de Desempenho inclui, verificando a tabela `setup_instruments`. Por exemplo, para ver quais eventos relacionados a arquivos estão instrumentados para o motor de armazenamento `InnoDB`, use esta consulta:
+It is always possible to determine what instruments the Performance Schema includes by checking the [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table. For example, to see what file-related events are instrumented for the `InnoDB` storage engine, use this query:
 
 ```sql
 mysql> SELECT * FROM performance_schema.setup_instruments
@@ -14,10 +14,10 @@ mysql> SELECT * FROM performance_schema.setup_instruments
 +--------------------------------------+---------+-------+
 ```
 
-Uma descrição exaustiva do que exatamente está instrumentado não é fornecida nesta documentação, por várias razões:
+An exhaustive description of precisely what is instrumented is not given in this documentation, for several reasons:
 
-- O que é instrumentado é o código do servidor. As alterações neste código ocorrem frequentemente, o que também afeta o conjunto de instrumentos.
+* What is instrumented is the server code. Changes to this code occur often, which also affects the set of instruments.
 
-- Não é prático listar todos os instrumentos, pois há centenas deles.
+* It is not practical to list all the instruments because there are hundreds of them.
 
-- Como descrito anteriormente, é possível descobrir isso consultando a tabela `setup_instruments`. Essas informações estão sempre atualizadas para a sua versão do MySQL, incluem também a instrumentação para plugins instrumentados que você pode ter instalado e que não fazem parte do servidor principal, e podem ser usadas por ferramentas automatizadas.
+* As described earlier, it is possible to find out by querying the [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table. This information is always up to date for your version of MySQL, also includes instrumentation for instrumented plugins you might have installed that are not part of the core server, and can be used by automated tools.

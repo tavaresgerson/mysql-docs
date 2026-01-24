@@ -1,4 +1,4 @@
-#### 13.7.5.36 Declaração de Status da Tabela
+#### 13.7.5.36 SHOW TABLE STATUS Statement
 
 ```sql
 SHOW TABLE STATUS
@@ -6,77 +6,77 @@ SHOW TABLE STATUS
     [LIKE 'pattern' | WHERE expr]
 ```
 
-`SHOW TABLE STATUS` funciona como `SHOW TABLES`, mas fornece uma grande quantidade de informações sobre cada tabela que não é `TEMPORARY`. Você também pode obter essa lista usando o comando **mysqlshow --status *`db_name`***. A cláusula `LIKE` (funções de comparação de strings#operador_like), se presente, indica quais nomes de tabela devem ser correspondidos. A cláusula `WHERE` pode ser usada para selecionar linhas com condições mais gerais, conforme discutido em Seção 24.8, “Extensões para Declarações SHOW”.
+[`SHOW TABLE STATUS`](show-table-status.html "13.7.5.36 SHOW TABLE STATUS Statement") works likes [`SHOW TABLES`](show-tables.html "13.7.5.37 SHOW TABLES Statement"), but provides a lot of information about each non-`TEMPORARY` table. You can also get this list using the [**mysqlshow --status *`db_name`***](mysqlshow.html "4.5.7 mysqlshow — Display Database, Table, and Column Information") command. The [`LIKE`](string-comparison-functions.html#operator_like) clause, if present, indicates which table names to match. The `WHERE` clause can be given to select rows using more general conditions, as discussed in [Section 24.8, “Extensions to SHOW Statements”](extended-show.html "24.8 Extensions to SHOW Statements").
 
-Essa declaração também exibe informações sobre visualizações.
+This statement also displays information about views.
 
-A saída `SHOW TABLE STATUS` tem essas colunas:
+[`SHOW TABLE STATUS`](show-table-status.html "13.7.5.36 SHOW TABLE STATUS Statement") output has these columns:
 
-- `Nome`
+* `Name`
 
-  O nome da tabela.
+  The name of the table.
 
-- Motor
+* `Engine`
 
-  O mecanismo de armazenamento para a tabela. Veja Capítulo 14, *O Mecanismo de Armazenamento InnoDB* e Capítulo 15, *Mecanismos de Armazenamento Alternativos*.
+  The storage engine for the table. See [Chapter 14, *The InnoDB Storage Engine*](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine"), and [Chapter 15, *Alternative Storage Engines*](storage-engines.html "Chapter 15 Alternative Storage Engines").
 
-  Para tabelas particionadas, o `Engine` mostra o nome do motor de armazenamento usado por todas as partições.
+  For partitioned tables, `Engine` shows the name of the storage engine used by all partitions.
 
-- `Versão`
+* `Version`
 
-  O número da versão do arquivo `.frm` da tabela.
+  The version number of the table's `.frm` file.
 
-- `Row_format`
+* `Row_format`
 
-  O formato de armazenamento em linha (`Fixed`, `Dynamic`, `Compressed`, `Redundant`, `Compact`). Para as tabelas `MyISAM`, `Dynamic` corresponde ao que o **myisamchk -dvv** relata como `Packed`. O formato de tabela `InnoDB` é `Redundant` ou `Compact` ao usar o formato de arquivo `Antelope`, ou `Compressed` ou `Dynamic` ao usar o formato de arquivo `Barracuda`.
+  The row-storage format (`Fixed`, `Dynamic`, `Compressed`, `Redundant`, `Compact`). For `MyISAM` tables, `Dynamic` corresponds to what [**myisamchk -dvv**](myisamchk.html "4.6.3 myisamchk — MyISAM Table-Maintenance Utility") reports as `Packed`. `InnoDB` table format is either `Redundant` or `Compact` when using the `Antelope` file format, or `Compressed` or `Dynamic` when using the `Barracuda` file format.
 
-- `Linhas`
+* `Rows`
 
-  O número de linhas. Alguns motores de armazenamento, como `MyISAM`, armazenam o número exato. Para outros motores de armazenamento, como `InnoDB`, esse valor é uma aproximação e pode variar de até 40% a 50% do valor real. Nesses casos, use `SELECT COUNT(*)` para obter um contagem precisa.
+  The number of rows. Some storage engines, such as `MyISAM`, store the exact count. For other storage engines, such as `InnoDB`, this value is an approximation, and may vary from the actual value by as much as 40% to 50%. In such cases, use `SELECT COUNT(*)` to obtain an accurate count.
 
-  O valor `Rows` é `NULL` para as tabelas do `INFORMATION_SCHEMA`.
+  The `Rows` value is `NULL` for `INFORMATION_SCHEMA` tables.
 
-  Para as tabelas de `InnoDB`, o número de linhas é apenas uma estimativa aproximada usada na otimização do SQL. (Isso também é verdadeiro se a tabela de `InnoDB` estiver particionada.)
+  For [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") tables, the row count is only a rough estimate used in SQL optimization. (This is also true if the [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") table is partitioned.)
 
-- `Avg_row_length`
+* `Avg_row_length`
 
-  O comprimento médio da linha.
+  The average row length.
 
-  Consulte as notas no final desta seção para obter informações relacionadas.
+  Refer to the notes at the end of this section for related information.
 
-- `Data_length`
+* `Data_length`
 
-  Para `MyISAM`, `Data_length` é o comprimento do arquivo de dados, em bytes.
+  For `MyISAM`, `Data_length` is the length of the data file, in bytes.
 
-  Para o `InnoDB`, `Data_length` é a quantidade aproximada de espaço alocada para o índice agrupado, em bytes. Especificamente, é o tamanho do índice agrupado, em páginas, multiplicado pelo tamanho da página do `InnoDB`.
+  For `InnoDB`, `Data_length` is the approximate amount of space allocated for the clustered index, in bytes. Specifically, it is the clustered index size, in pages, multiplied by the `InnoDB` page size.
 
-  Consulte as notas no final desta seção para obter informações sobre outros motores de armazenamento.
+  Refer to the notes at the end of this section for information regarding other storage engines.
 
-- `Max_data_length`
+* `Max_data_length`
 
-  Para `MyISAM`, `Max_data_length` é o comprimento máximo do arquivo de dados. Esse é o número total de bytes de dados que podem ser armazenados na tabela, considerando o tamanho do ponteiro de dados utilizado.
+  For `MyISAM`, `Max_data_length` is maximum length of the data file. This is the total number of bytes of data that can be stored in the table, given the data pointer size used.
 
-  Não utilizado para `InnoDB`.
+  Unused for `InnoDB`.
 
-  Consulte as notas no final desta seção para obter informações sobre outros motores de armazenamento.
+  Refer to the notes at the end of this section for information regarding other storage engines.
 
-- `Index_length`
+* `Index_length`
 
-  Para `MyISAM`, `Index_length` é o comprimento do arquivo de índice, em bytes.
+  For `MyISAM`, `Index_length` is the length of the index file, in bytes.
 
-  Para o `InnoDB`, `Index_length` é a quantidade aproximada de espaço alocada para índices não agrupados, em bytes. Especificamente, é a soma dos tamanhos dos índices não agrupados, em páginas, multiplicada pelo tamanho da página do `InnoDB`.
+  For `InnoDB`, `Index_length` is the approximate amount of space allocated for non-clustered indexes, in bytes. Specifically, it is the sum of non-clustered index sizes, in pages, multiplied by the `InnoDB` page size.
 
-  Consulte as notas no final desta seção para obter informações sobre outros motores de armazenamento.
+  Refer to the notes at the end of this section for information regarding other storage engines.
 
-- `Data_free`
+* `Data_free`
 
-  O número de bytes alocados, mas não utilizados.
+  The number of allocated but unused bytes.
 
-  As tabelas `InnoDB` relatam o espaço livre do tablespace ao qual a tabela pertence. Para uma tabela localizada no tablespace compartilhado, esse é o espaço livre do tablespace compartilhado. Se você estiver usando vários tablespaces e a tabela tiver seu próprio tablespace, o espaço livre é apenas para essa tabela. Espaço livre significa o número de bytes em extensões completamente livres, menos uma margem de segurança. Mesmo que o espaço livre seja exibido como 0, pode ser possível inserir linhas, desde que novas extensões não precisem ser alocadas.
+  `InnoDB` tables report the free space of the tablespace to which the table belongs. For a table located in the shared tablespace, this is the free space of the shared tablespace. If you are using multiple tablespaces and the table has its own tablespace, the free space is for only that table. Free space means the number of bytes in completely free extents minus a safety margin. Even if free space displays as 0, it may be possible to insert rows as long as new extents need not be allocated.
 
-  Para o NDB Cluster, `Data_free` mostra o espaço alocado no disco para, mas não utilizado por, uma tabela ou fragmento de dados de disco. (O uso do recurso de dados em memória é relatado pela coluna `Data_length`.)
+  For NDB Cluster, `Data_free` shows the space allocated on disk for, but not used by, a Disk Data table or fragment on disk. (In-memory data resource usage is reported by the `Data_length` column.)
 
-  Para tabelas particionadas, esse valor é apenas uma estimativa e pode não ser absolutamente correto. Um método mais preciso de obter essas informações nesses casos é consultar a tabela `INFORMATION_SCHEMA [`PARTITIONS\`]\(information-schema-partitions-table.html), conforme mostrado neste exemplo:
+  For partitioned tables, this value is only an estimate and may not be absolutely correct. A more accurate method of obtaining this information in such cases is to query the `INFORMATION_SCHEMA` [`PARTITIONS`](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table") table, as shown in this example:
 
   ```sql
   SELECT SUM(DATA_FREE)
@@ -85,66 +85,66 @@ A saída `SHOW TABLE STATUS` tem essas colunas:
       AND   TABLE_NAME   = 'mytable';
   ```
 
-  Para mais informações, consulte Seção 24.3.16, “A Tabela INFORMATION_SCHEMA PARTITIONS”.
+  For more information, see [Section 24.3.16, “The INFORMATION_SCHEMA PARTITIONS Table”](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table").
 
-- `Auto_increment`
+* `Auto_increment`
 
-  O próximo valor `AUTO_INCREMENT`.
+  The next `AUTO_INCREMENT` value.
 
-- `Create_time`
+* `Create_time`
 
-  Quando a tabela foi criada.
+  When the table was created.
 
-- `Update_time`
+* `Update_time`
 
-  Quando o arquivo de dados foi atualizado pela última vez. Para alguns motores de armazenamento, esse valor é `NULL`. Por exemplo, o `InnoDB` armazena várias tabelas em seu espaço de tabelas do sistema e o timestamp do arquivo de dados não se aplica. Mesmo com o modo arquivo por tabela com cada tabela `InnoDB` em um arquivo `.ibd` separado, a alteração de bufferização pode atrasar a escrita no arquivo de dados, então o tempo de modificação do arquivo é diferente do tempo da última inserção, atualização ou exclusão. Para o `MyISAM`, o timestamp do arquivo de dados é usado; no entanto, no Windows, o timestamp não é atualizado por atualizações, então o valor é impreciso.
+  When the data file was last updated. For some storage engines, this value is `NULL`. For example, `InnoDB` stores multiple tables in its [system tablespace](glossary.html#glos_system_tablespace "system tablespace") and the data file timestamp does not apply. Even with [file-per-table](glossary.html#glos_file_per_table "file-per-table") mode with each `InnoDB` table in a separate `.ibd` file, [change buffering](glossary.html#glos_change_buffering "change buffering") can delay the write to the data file, so the file modification time is different from the time of the last insert, update, or delete. For `MyISAM`, the data file timestamp is used; however, on Windows the timestamp is not updated by updates, so the value is inaccurate.
 
-  `Update_time` exibe um valor de marcação de tempo para a última atualização (`UPDATE`) (`update.html`), (`INSERT`) (`insert.html`) ou (`DELETE`) realizada em tabelas `InnoDB` que não estão particionadas. Para o MVCC, o valor de marcação de tempo reflete o horário do `COMMIT` (`commit.html`), que é considerado o último horário de atualização. Os timestamps não são persistidos quando o servidor é reiniciado ou quando a tabela é removida do cache do dicionário de dados `InnoDB`.
+  `Update_time` displays a timestamp value for the last [`UPDATE`](update.html "13.2.11 UPDATE Statement"), [`INSERT`](insert.html "13.2.5 INSERT Statement"), or [`DELETE`](delete.html "13.2.2 DELETE Statement") performed on `InnoDB` tables that are not partitioned. For MVCC, the timestamp value reflects the [`COMMIT`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") time, which is considered the last update time. Timestamps are not persisted when the server is restarted or when the table is evicted from the `InnoDB` data dictionary cache.
 
-  A coluna `Update_time` também exibe essa informação para tabelas `InnoDB` particionadas.
+  The `Update_time` column also shows this information for partitioned `InnoDB` tables.
 
-- `Check_time`
+* `Check_time`
 
-  Quando a tabela foi verificada pela última vez. Nem todos os motores de armazenamento são atualizados dessa vez, caso contrário, o valor é sempre `NULL`.
+  When the table was last checked. Not all storage engines update this time, in which case, the value is always `NULL`.
 
-  Para tabelas particionadas de `InnoDB`, `Check_time` é sempre `NULL`.
+  For partitioned [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") tables, `Check_time` is always `NULL`.
 
-- `Colaboração`
+* `Collation`
 
-  A collation padrão da tabela. A saída não lista explicitamente o conjunto de caracteres padrão da tabela, mas o nome da collation começa com o nome do conjunto de caracteres.
+  The table default collation. The output does not explicitly list the table default character set, but the collation name begins with the character set name.
 
-- `Checksum`
+* `Checksum`
 
-  O valor do checksum ao vivo, se houver.
+  The live checksum value, if any.
 
-- `Create_options`
+* `Create_options`
 
-  Opções extras usadas com `CREATE TABLE`.
+  Extra options used with [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement").
 
-  `Create_options` mostra `partitioned` para uma tabela particionada.
+  `Create_options` shows `partitioned` for a partitioned table.
 
-  `Create_options` exibe a opção `ENCRYPTION` especificada ao criar ou alterar um espaço de tabela por arquivo.
+  `Create_options` shows the `ENCRYPTION` option specified when creating or altering a file-per-table tablespace.
 
-  Ao criar uma tabela com o modo estrito desativado, o formato de linha padrão do mecanismo de armazenamento é usado se o formato de linha especificado não for suportado. O formato de linha real da tabela é relatado na coluna `Row_format`. `Create_options` mostra o formato de linha que foi especificado na instrução `CREATE TABLE`.
+  When creating a table with [strict mode](glossary.html#glos_strict_mode "strict mode") disabled, the storage engine's default row format is used if the specified row format is not supported. The actual row format of the table is reported in the `Row_format` column. `Create_options` shows the row format that was specified in the [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement.
 
-  Ao alterar o motor de armazenamento de uma tabela, as opções da tabela que não são aplicáveis ao novo motor de armazenamento são mantidas na definição da tabela para permitir a reversão da tabela com suas opções previamente definidas para o motor de armazenamento original, se necessário. `Create_options` pode exibir opções retidas.
+  When altering the storage engine of a table, table options that are not applicable to the new storage engine are retained in the table definition to enable reverting the table with its previously defined options to the original storage engine, if necessary. `Create_options` may show retained options.
 
-- `Comentário`
+* `Comment`
 
-  O comentário usado ao criar a tabela (ou informações sobre o motivo pelo qual o MySQL não conseguiu acessar as informações da tabela).
+  The comment used when creating the table (or information as to why MySQL could not access the table information).
 
-##### Notas
+##### Notes
 
-- Para as tabelas do `InnoDB`, o comando `SHOW TABLE STATUS` não fornece estatísticas precisas, exceto pelo tamanho físico reservado pela tabela. O número de linhas é apenas uma estimativa aproximada usada na otimização do SQL.
+* For `InnoDB` tables, [`SHOW TABLE STATUS`](show-table-status.html "13.7.5.36 SHOW TABLE STATUS Statement") does not give accurate statistics except for the physical size reserved by the table. The row count is only a rough estimate used in SQL optimization.
 
-- Para as tabelas `NDB`, o resultado desta declaração mostra valores apropriados para as colunas `Avg_row_length` e `Data_length`, com a exceção de que as colunas `BLOB` não são consideradas.
+* For [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables, the output of this statement shows appropriate values for the `Avg_row_length` and `Data_length` columns, with the exception that [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") columns are not taken into account.
 
-- Para as tabelas ``NDB`, `Data_length`inclui dados armazenados apenas na memória principal; as colunas`Max_data_length`e`Data_free\` se aplicam aos dados em disco.
+* For [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables, `Data_length` includes data stored in main memory only; the `Max_data_length` and `Data_free` columns apply to Disk Data.
 
-- Para as tabelas de dados de disco do NDB Cluster, o `Max_data_length` mostra o espaço alocado para a parte de disco de uma tabela ou fragmento de Dados de disco. (O uso do recurso de dados em memória é relatado pela coluna `Data_length`.)
+* For NDB Cluster Disk Data tables, `Max_data_length` shows the space allocated for the disk part of a Disk Data table or fragment. (In-memory data resource usage is reported by the `Data_length` column.)
 
-- Para as tabelas `MEMORY`, os valores `Data_length`, `Max_data_length` e `Index_length` aproximam a quantidade real de memória alocada. O algoritmo de alocação reserva memória em grandes quantidades para reduzir o número de operações de alocação.
+* For `MEMORY` tables, the `Data_length`, `Max_data_length`, and `Index_length` values approximate the actual amount of allocated memory. The allocation algorithm reserves memory in large amounts to reduce the number of allocation operations.
 
-- Para as visualizações, todas as colunas exibidas por `SHOW TABLE STATUS` são `NULL`, exceto que `Nome` indica o nome da visualização e `Comentário` diz `VISUALIZAÇÃO`.
+* For views, all columns displayed by [`SHOW TABLE STATUS`](show-table-status.html "13.7.5.36 SHOW TABLE STATUS Statement") are `NULL` except that `Name` indicates the view name and `Comment` says `VIEW`.
 
-As informações sobre as tabelas também estão disponíveis na tabela `INFORMATION_SCHEMA` `TABLES`. Veja Seção 24.3.25, “A Tabela INFORMATION_SCHEMA TABLES”.
+Table information is also available from the `INFORMATION_SCHEMA` [`TABLES`](information-schema-tables-table.html "24.3.25 The INFORMATION_SCHEMA TABLES Table") table. See [Section 24.3.25, “The INFORMATION_SCHEMA TABLES Table”](information-schema-tables-table.html "24.3.25 The INFORMATION_SCHEMA TABLES Table").

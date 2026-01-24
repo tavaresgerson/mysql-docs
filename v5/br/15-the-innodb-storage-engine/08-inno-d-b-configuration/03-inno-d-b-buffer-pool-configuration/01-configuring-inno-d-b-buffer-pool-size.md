@@ -1,14 +1,14 @@
-#### 14.8.3.1 Configurando o tamanho do pool de buffers do InnoDB
+#### 14.8.3.1 Configuring InnoDB Buffer Pool Size
 
-Você pode configurar o tamanho do pool de buffers do InnoDB offline ou enquanto o servidor estiver em execução. O comportamento descrito nesta seção se aplica a ambos os métodos. Para obter informações adicionais sobre a configuração do tamanho do pool de buffers online, consulte Configurando o Tamanho do Pool de Buffers do InnoDB Online.
+You can configure `InnoDB` buffer pool size offline or while the server is running. Behavior described in this section applies to both methods. For additional information about configuring buffer pool size online, see Configuring InnoDB Buffer Pool Size Online.
 
-Ao aumentar ou diminuir o `innodb_buffer_pool_size`, a operação é realizada em partes. O tamanho da parte é definido pela opção de configuração `innodb_buffer_pool_chunk_size`, que tem um valor padrão de `128M`. Para mais informações, consulte Configurando o Tamanho da Parte do Pool de Buffer do InnoDB.
+When increasing or decreasing `innodb_buffer_pool_size`, the operation is performed in chunks. Chunk size is defined by the `innodb_buffer_pool_chunk_size` configuration option, which has a default of `128M`. For more information, see Configuring InnoDB Buffer Pool Chunk Size.
 
-O tamanho do pool de tampão deve sempre ser igual ou múltiplo de `innodb_buffer_pool_chunk_size` \* `innodb_buffer_pool_instances`. Se você configurar `innodb_buffer_pool_size` para um valor que não é igual ou múltiplo de `innodb_buffer_pool_chunk_size` \* `innodb_buffer_pool_instances`, o tamanho do pool de tampão será ajustado automaticamente para um valor que é igual ou múltiplo de `innodb_buffer_pool_chunk_size` \* `innodb_buffer_pool_instances`.
+Buffer pool size must always be equal to or a multiple of `innodb_buffer_pool_chunk_size` \* `innodb_buffer_pool_instances`. If you configure `innodb_buffer_pool_size` to a value that is not equal to or a multiple of `innodb_buffer_pool_chunk_size` \* `innodb_buffer_pool_instances`, buffer pool size is automatically adjusted to a value that is equal to or a multiple of `innodb_buffer_pool_chunk_size` \* `innodb_buffer_pool_instances`.
 
-No exemplo a seguir, `innodb_buffer_pool_size` está definido como `8G` e `innodb_buffer_pool_instances` está definido como `16`. `innodb_buffer_pool_chunk_size` é `128M`, que é o valor padrão.
+In the following example, `innodb_buffer_pool_size` is set to `8G`, and `innodb_buffer_pool_instances` is set to `16`. `innodb_buffer_pool_chunk_size` is `128M`, which is the default value.
 
-`8G` é um valor válido para `innodb_buffer_pool_size`, pois `8G` é um múltiplo de `innodb_buffer_pool_instances=16` \* `innodb_buffer_pool_chunk_size=128M`, que é `2G`.
+`8G` is a valid `innodb_buffer_pool_size` value because `8G` is a multiple of `innodb_buffer_pool_instances=16` \* `innodb_buffer_pool_chunk_size=128M`, which is `2G`.
 
 ```sql
 $> mysqld --innodb-buffer-pool-size=8G --innodb-buffer-pool-instances=16
@@ -23,7 +23,7 @@ mysql> SELECT @@innodb_buffer_pool_size/1024/1024/1024;
 +------------------------------------------+
 ```
 
-Neste exemplo, `innodb_buffer_pool_size` está definido como `9G`, e `innodb_buffer_pool_instances` está definido como `16`. `innodb_buffer_pool_chunk_size` é `128M`, que é o valor padrão. Neste caso, `9G` não é um múltiplo de `innodb_buffer_pool_instances=16` \* `innodb_buffer_pool_chunk_size=128M`, então `innodb_buffer_pool_size` é ajustado para `10G`, que é um múltiplo de `innodb_buffer_pool_chunk_size` \* `innodb_buffer_pool_instances`.
+In this example, `innodb_buffer_pool_size` is set to `9G`, and `innodb_buffer_pool_instances` is set to `16`. `innodb_buffer_pool_chunk_size` is `128M`, which is the default value. In this case, `9G` is not a multiple of `innodb_buffer_pool_instances=16` \* `innodb_buffer_pool_chunk_size=128M`, so `innodb_buffer_pool_size` is adjusted to `10G`, which is a multiple of `innodb_buffer_pool_chunk_size` \* `innodb_buffer_pool_instances`.
 
 ```sql
 $> mysqld --innodb-buffer-pool-size=9G --innodb-buffer-pool-instances=16
@@ -38,28 +38,28 @@ mysql> SELECT @@innodb_buffer_pool_size/1024/1024/1024;
 +------------------------------------------+
 ```
 
-##### Configurando o tamanho do bloco do pool de buffer do InnoDB
+##### Configuring InnoDB Buffer Pool Chunk Size
 
-`innodb_buffer_pool_chunk_size` pode ser aumentado ou diminuído em unidades de 1 MB (1048576 bytes), mas só pode ser modificado durante a inicialização, em uma string de linha de comando ou em um arquivo de configuração do MySQL.
+`innodb_buffer_pool_chunk_size` can be increased or decreased in 1MB (1048576 byte) units but can only be modified at startup, in a command line string or in a MySQL configuration file.
 
-Linha de comando:
+Command line:
 
 ```sql
 $> mysqld --innodb-buffer-pool-chunk-size=134217728
 ```
 
-Arquivo de configuração:
+Configuration file:
 
 ```sql
 [mysqld]
 innodb_buffer_pool_chunk_size=134217728
 ```
 
-As seguintes condições se aplicam ao alterar `innodb_buffer_pool_chunk_size`:
+The following conditions apply when altering `innodb_buffer_pool_chunk_size`:
 
-- Se o novo valor de `innodb_buffer_pool_chunk_size` \* `innodb_buffer_pool_instances` for maior que o tamanho atual do buffer pool quando o buffer pool for inicializado, `innodb_buffer_pool_chunk_size` será truncado para `innodb_buffer_pool_size` / `innodb_buffer_pool_instances`.
+* If the new `innodb_buffer_pool_chunk_size` value \* `innodb_buffer_pool_instances` is larger than the current buffer pool size when the buffer pool is initialized, `innodb_buffer_pool_chunk_size` is truncated to `innodb_buffer_pool_size` / `innodb_buffer_pool_instances`.
 
-  Por exemplo, se o pool de buffers for inicializado com um tamanho de `2GB` (2147483648 bytes), `4` instâncias do pool de buffers e um tamanho de bloco de `1GB` (1073741824 bytes), o tamanho do bloco é truncado para um valor igual a `innodb_buffer_pool_size` / `innodb_buffer_pool_instances`, conforme mostrado abaixo:
+  For example, if the buffer pool is initialized with a size of `2GB` (2147483648 bytes), `4` buffer pool instances, and a chunk size of `1GB` (1073741824 bytes), chunk size is truncated to a value equal to `innodb_buffer_pool_size` / `innodb_buffer_pool_instances`, as shown below:
 
   ```sql
   $> mysqld --innodb-buffer-pool-size=2147483648 --innodb-buffer-pool-instances=4
@@ -92,7 +92,7 @@ As seguintes condições se aplicam ao alterar `innodb_buffer_pool_chunk_size`:
   +---------------------------------+
   ```
 
-- O tamanho do pool de tampão deve sempre ser igual ou múltiplo de `innodb_buffer_pool_chunk_size` \* `innodb_buffer_pool_instances`. Se você alterar `innodb_buffer_pool_chunk_size`, `innodb_buffer_pool_size` será automaticamente ajustado para um valor que é igual ou múltiplo de `innodb_buffer_pool_chunk_size` \* `innodb_buffer_pool_instances`. O ajuste ocorre quando o pool de tampão é inicializado. Esse comportamento é demonstrado no exemplo a seguir:
+* Buffer pool size must always be equal to or a multiple of `innodb_buffer_pool_chunk_size` \* `innodb_buffer_pool_instances`. If you alter `innodb_buffer_pool_chunk_size`, `innodb_buffer_pool_size` is automatically adjusted to a value that is equal to or a multiple of `innodb_buffer_pool_chunk_size` \* `innodb_buffer_pool_instances`. The adjustment occurs when the buffer pool is initialized. This behavior is demonstrated in the following example:
 
   ```sql
   # The buffer pool has a default size of 128MB (134217728 bytes)
@@ -146,7 +146,7 @@ As seguintes condições se aplicam ao alterar `innodb_buffer_pool_chunk_size`:
   +---------------------------+
   ```
 
-  Este exemplo demonstra o mesmo comportamento, mas com múltiplas instâncias do pool de buffers:
+  This example demonstrates the same behavior but with multiple buffer pool instances:
 
   ```sql
   # The buffer pool has a default size of 2GB (2147483648 bytes)
@@ -200,33 +200,33 @@ As seguintes condições se aplicam ao alterar `innodb_buffer_pool_chunk_size`:
   +---------------------------+
   ```
 
-  É preciso ter cuidado ao alterar `innodb_buffer_pool_chunk_size`, pois alterar esse valor pode aumentar o tamanho do pool de buffers, como mostrado nos exemplos acima. Antes de alterar `innodb_buffer_pool_chunk_size`, calcule o efeito no `innodb_buffer_pool_size` para garantir que o tamanho do pool de buffers resultante seja aceitável.
+  Care should be taken when changing `innodb_buffer_pool_chunk_size`, as changing this value can increase the size of the buffer pool, as shown in the examples above. Before you change `innodb_buffer_pool_chunk_size`, calculate the effect on `innodb_buffer_pool_size` to ensure that the resulting buffer pool size is acceptable.
 
-Nota
+Note
 
-Para evitar possíveis problemas de desempenho, o número de fragmentos (`innodb_buffer_pool_size` / `innodb_buffer_pool_chunk_size`) não deve exceder 1000.
+To avoid potential performance issues, the number of chunks (`innodb_buffer_pool_size` / `innodb_buffer_pool_chunk_size`) should not exceed 1000.
 
-##### Configurando o tamanho do pool de buffers do InnoDB online
+##### Configuring InnoDB Buffer Pool Size Online
 
-A opção de configuração `innodb_buffer_pool_size` pode ser definida dinamicamente usando uma instrução `SET`, permitindo que você redimensione o pool de buffers sem precisar reiniciar o servidor. Por exemplo:
+The `innodb_buffer_pool_size` configuration option can be set dynamically using a `SET` statement, allowing you to resize the buffer pool without restarting the server. For example:
 
 ```sql
 mysql> SET GLOBAL innodb_buffer_pool_size=402653184;
 ```
 
-Nota
+Note
 
-O tamanho do pool de tampão deve ser igual ou múltiplo de `innodb_buffer_pool_chunk_size` \* `innodb_buffer_pool_instances`. Para alterar esses ajustes de variáveis, é necessário reiniciar o servidor.
+The buffer pool size must be equal to or a multiple of `innodb_buffer_pool_chunk_size` \* `innodb_buffer_pool_instances`. Changing those variable settings requires restarting the server.
 
-As transações e operações ativas realizadas por meio das APIs do `InnoDB` devem ser concluídas antes de redimensionar o pool de buffers. Ao iniciar uma operação de redimensionamento, a operação só começa quando todas as transações ativas são concluídas. Uma vez que a operação de redimensionamento estiver em andamento, novas transações e operações que exigem acesso ao pool de buffers devem esperar até que a operação de redimensionamento termine. A exceção à regra é que o acesso concorrente ao pool de buffers é permitido enquanto o pool de buffers estiver sendo desfragmentado e páginas forem retiradas quando o tamanho do pool de buffers for reduzido. Uma desvantagem de permitir o acesso concorrente é que isso pode resultar em uma escassez temporária de páginas disponíveis enquanto as páginas estão sendo retiradas.
+Active transactions and operations performed through `InnoDB` APIs should be completed before resizing the buffer pool. When initiating a resizing operation, the operation does not start until all active transactions are completed. Once the resizing operation is in progress, new transactions and operations that require access to the buffer pool must wait until the resizing operation finishes. The exception to the rule is that concurrent access to the buffer pool is permitted while the buffer pool is defragmented and pages are withdrawn when buffer pool size is decreased. A drawback of allowing concurrent access is that it could result in a temporary shortage of available pages while pages are being withdrawn.
 
-Nota
+Note
 
-As transações aninhadas podem falhar se iniciadas após o início da operação de redimensionamento do pool de buffers.
+Nested transactions could fail if initiated after the buffer pool resizing operation begins.
 
-##### Monitoramento do progresso de redimensionamento do Pool de tampão online
+##### Monitoring Online Buffer Pool Resizing Progress
 
-O `Innodb_buffer_pool_resize_status` relata o progresso da redimensionamento do pool de buffers. Por exemplo:
+The `Innodb_buffer_pool_resize_status` reports buffer pool resizing progress. For example:
 
 ```sql
 mysql> SHOW STATUS WHERE Variable_name='InnoDB_buffer_pool_resize_status';
@@ -237,7 +237,7 @@ mysql> SHOW STATUS WHERE Variable_name='InnoDB_buffer_pool_resize_status';
 +----------------------------------+----------------------------------+
 ```
 
-O progresso da redimensionamento do pool de buffers também é registrado no log de erros do servidor. Este exemplo mostra as notas registradas ao aumentar o tamanho do pool de buffers:
+Buffer pool resizing progress is also logged in the server error log. This example shows notes that are logged when increasing the size of the buffer pool:
 
 ```sql
 [Note] InnoDB: Resizing buffer pool from 134217728 to 4294967296. (unit=134217728)
@@ -249,7 +249,7 @@ O progresso da redimensionamento do pool de buffers também é registrado no log
 [Note] InnoDB: re-enabled adaptive hash index.
 ```
 
-Este exemplo mostra as notas registradas quando o tamanho do pool de buffer é reduzido:
+This example shows notes that are logged when decreasing the size of the buffer pool:
 
 ```sql
 [Note] InnoDB: Resizing buffer pool from 4294967296 to 134217728. (unit=134217728)
@@ -265,24 +265,23 @@ Este exemplo mostra as notas registradas quando o tamanho do pool de buffer é r
 [Note] InnoDB: re-enabled adaptive hash index.
 ```
 
-##### Interna do redimensionamento do Pool de Buffer Online
+##### Online Buffer Pool Resizing Internals
 
-A operação de redimensionamento é realizada por uma thread em segundo plano. Ao aumentar o tamanho do pool de buffers, a operação de redimensionamento:
+The resizing operation is performed by a background thread. When increasing the size of the buffer pool, the resizing operation:
 
-- Adiciona páginas em `chunks` (o tamanho do bloco é definido por `innodb_buffer_pool_chunk_size`)
+* Adds pages in `chunks` (chunk size is defined by `innodb_buffer_pool_chunk_size`)
 
-- Converte tabelas de hash, listas e ponteiros para usar novos endereços na memória
+* Converts hash tables, lists, and pointers to use new addresses in memory
 
-- Adicione novas páginas à lista gratuita
+* Adds new pages to the free list
 
-Enquanto essas operações estão em andamento, outros threads são bloqueados de acessar o pool de buffers.
+While these operations are in progress, other threads are blocked from accessing the buffer pool.
 
-Ao diminuir o tamanho do pool de buffer, a operação de redimensionamento:
+When decreasing the size of the buffer pool, the resizing operation:
 
-- Desfragmenta o pool de buffers e retira (libera) páginas
+* Defragments the buffer pool and withdraws (frees) pages
+* Removes pages in `chunks` (chunk size is defined by `innodb_buffer_pool_chunk_size`)
 
-- Remove páginas em `chunks` (o tamanho do bloco é definido por `innodb_buffer_pool_chunk_size`)
+* Converts hash tables, lists, and pointers to use new addresses in memory
 
-- Converte tabelas de hash, listas e ponteiros para usar novos endereços na memória
-
-Destas operações, apenas a desfragmentação do pool de buffers e a retirada de páginas permitem que outros threads acessem o pool de buffers simultaneamente.
+Of these operations, only defragmenting the buffer pool and withdrawing pages allow other threads to access to the buffer pool concurrently.

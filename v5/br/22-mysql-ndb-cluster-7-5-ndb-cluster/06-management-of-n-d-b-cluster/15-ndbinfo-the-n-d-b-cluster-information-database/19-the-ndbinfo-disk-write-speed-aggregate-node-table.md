@@ -1,33 +1,33 @@
-#### 21.6.15.19 Tabela ndbinfo disk_write_speed_aggregate_node
+#### 21.6.15.19 The ndbinfo disk_write_speed_aggregate_node Table
 
-A tabela `disk_write_speed_aggregate_node` fornece informações agregadas por nó sobre a velocidade de escrita em discos durante operações de LCP, backup e restauração.
+The `disk_write_speed_aggregate_node` table provides aggregated information per node about the speed of disk writes during LCP, backup, and restore operations.
 
-A tabela `disk_write_speed_aggregate_node` contém as seguintes colunas:
+The `disk_write_speed_aggregate_node` table contains the following columns:
 
-- `node_id`
+* `node_id`
 
-  ID do nó deste nó
+  Node ID of this node
 
-- `backup_lcp_speed_last_sec`
+* `backup_lcp_speed_last_sec`
 
-  Número de bytes escritos no disco pelos processos de backup e LCP no último segundo
+  Number of bytes written to disk by backup and LCP processes in the last second
 
-- `redo_speed_last_sec`
+* `redo_speed_last_sec`
 
-  Número de bytes escritos no log de refazer na última segundo
+  Number of bytes written to the redo log in the last second
 
-- `backup_lcp_speed_last_10sec`
+* `backup_lcp_speed_last_10sec`
 
-  Número de bytes escritos no disco pelos processos de backup e LCP por segundo, calculado em média nos últimos 10 segundos
+  Number of bytes written to disk by backup and LCP processes per second, averaged over the last 10 seconds
 
-- `redo_speed_last_10sec`
+* `redo_speed_last_10sec`
 
-  Número de bytes escritos no log de refazer a cada segundo, calculado em média nos últimos 10 segundos
+  Number of bytes written to the redo log each second, averaged over the last 10 seconds
 
-- `backup_lcp_speed_last_60sec`
+* `backup_lcp_speed_last_60sec`
 
-  Número de bytes escritos no disco pelos processos de backup e LCP por segundo, calculado em média nos últimos 60 segundos
+  Number of bytes written to disk by backup and LCP processes per second, averaged over the last 60 seconds
 
-- `redo_speed_last_60sec`
+* `redo_speed_last_60sec`
 
-  Número de bytes escritos no log de refazer a cada segundo, calculado em média nos últimos 60 segundos
+  Number of bytes written to the redo log each second, averaged over the last 60 seconds

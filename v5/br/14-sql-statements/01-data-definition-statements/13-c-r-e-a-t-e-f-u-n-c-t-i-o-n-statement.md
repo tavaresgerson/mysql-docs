@@ -1,7 +1,7 @@
-### 13.1.13 Declaração CREATE FUNCTION
+### 13.1.13 CREATE FUNCTION Statement
 
-A instrução `CREATE FUNCTION` é usada para criar funções armazenadas e funções carregáveis:
+The [`CREATE FUNCTION`](create-function.html "13.1.13 CREATE FUNCTION Statement") statement is used to create stored functions and loadable functions:
 
-- Para obter informações sobre a criação de funções armazenadas, consulte Seção 13.1.16, “Instruções CREATE PROCEDURE e CREATE FUNCTION”.
+* For information about creating stored functions, see [Section 13.1.16, “CREATE PROCEDURE and CREATE FUNCTION Statements”](create-procedure.html "13.1.16 CREATE PROCEDURE and CREATE FUNCTION Statements").
 
-- Para obter informações sobre como criar funções carregáveis, consulte Seção 13.7.3.1, “Instrução CREATE FUNCTION para Funções Carregáveis”.
+* For information about creating loadable functions, see [Section 13.7.3.1, “CREATE FUNCTION Statement for Loadable Functions”](create-function-loadable.html "13.7.3.1 CREATE FUNCTION Statement for Loadable Functions").

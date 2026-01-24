@@ -1,12 +1,12 @@
-### 12.17.5 Funções que retornam atributos de valor JSON
+### 12.17.5 Functions That Return JSON Value Attributes
 
-As funções nesta seção retornam atributos de valores JSON.
+The functions in this section return attributes of JSON values.
 
-- `JSON_DEPTH(json_doc)`
+* `JSON_DEPTH(json_doc)`
 
-  Retorna a profundidade máxima de um documento JSON. Retorna `NULL` se o argumento for `NULL`. Um erro ocorre se o argumento não for um documento JSON válido.
+  Returns the maximum depth of a JSON document. Returns `NULL` if the argument is `NULL`. An error occurs if the argument is not a valid JSON document.
 
-  Um array vazio, um objeto vazio ou um valor escalar tem profundidade 1. Um array não vazio que contém apenas elementos de profundidade 1 ou um objeto não vazio que contém apenas valores de membro de profundidade 1 tem profundidade 2. Caso contrário, um documento JSON tem profundidade maior que 2.
+  An empty array, empty object, or scalar value has depth 1. A nonempty array containing only elements of depth 1 or nonempty object containing only member values of depth 1 has depth 2. Otherwise, a JSON document has depth greater than 2.
 
   ```sql
   mysql> SELECT JSON_DEPTH('{}'), JSON_DEPTH('[]'), JSON_DEPTH('true');
@@ -29,16 +29,16 @@ As funções nesta seção retornam atributos de valores JSON.
   +-------------------------------+
   ```
 
-- `JSON_LENGTH(json_doc[, path])`
+* `JSON_LENGTH(json_doc[, path])`
 
-  Retorna o comprimento de um documento JSON, ou, se um argumento *`path`* for fornecido, o comprimento do valor dentro do documento identificado pelo caminho. Retorna `NULL` se qualquer argumento for `NULL` ou se o argumento *`path`* não identificar um valor no documento. Um erro ocorre se o argumento *`json_doc`* não for um documento JSON válido ou se o argumento *`path`* não for uma expressão de caminho válida ou contiver um caractere curinga \*`*` ou `**`.
+  Returns the length of a JSON document, or, if a *`path`* argument is given, the length of the value within the document identified by the path. Returns `NULL` if any argument is `NULL` or the *`path`* argument does not identify a value in the document. An error occurs if the *`json_doc`* argument is not a valid JSON document or the *`path`* argument is not a valid path expression or contains a `*` or `**` wildcard.
 
-  O comprimento de um documento é determinado da seguinte forma:
+  The length of a document is determined as follows:
 
-  - O comprimento de um escalar é 1.
-  - O comprimento de um array é o número de elementos do array.
-  - O comprimento de um objeto é o número de membros do objeto.
-  - O comprimento não conta o comprimento de arrays ou objetos aninhados.
+  + The length of a scalar is 1.
+  + The length of an array is the number of array elements.
+  + The length of an object is the number of object members.
+  + The length does not count the length of nested arrays or objects.
 
   ```sql
   mysql> SELECT JSON_LENGTH('[1, 2, {"a": 3}]');
@@ -61,9 +61,9 @@ As funções nesta seção retornam atributos de valores JSON.
   +------------------------------------------------+
   ```
 
-- `JSON_TYPE(json_val)`
+* `JSON_TYPE(json_val)`
 
-  Retorna uma string `utf8mb4` que indica o tipo de um valor JSON. Isso pode ser um objeto, um array ou um tipo escalar, conforme mostrado aqui:
+  Returns a `utf8mb4` string indicating the type of a JSON value. This can be an object, an array, or a scalar type, as shown here:
 
   ```sql
   mysql> SET @j = '{"a": [10, true]}';
@@ -93,7 +93,7 @@ As funções nesta seção retornam atributos de valores JSON.
   +---------------------------------------+
   ```
 
-  `JSON_TYPE()` retorna `NULL` se o argumento for `NULL`:
+  `JSON_TYPE()` returns `NULL` if the argument is `NULL`:
 
   ```sql
   mysql> SELECT JSON_TYPE(NULL);
@@ -104,7 +104,7 @@ As funções nesta seção retornam atributos de valores JSON.
   +-----------------+
   ```
 
-  Um erro ocorre se o argumento não for um valor JSON válido:
+  An error occurs if the argument is not a valid JSON value:
 
   ```sql
   mysql> SELECT JSON_TYPE(1);
@@ -112,51 +112,47 @@ As funções nesta seção retornam atributos de valores JSON.
   to function json_type; a JSON string or JSON type is required.
   ```
 
-  Para um resultado não `NULL` e não com erro, a lista a seguir descreve os possíveis valores de retorno da função `JSON_TYPE()`:
+  For a non-`NULL`, non-error result, the following list describes the possible `JSON_TYPE()` return values:
 
-  - Tipos puramente JSON:
+  + Purely JSON types:
 
-    - `OBJETO`: Objetos JSON
+    - `OBJECT`: JSON objects
+    - `ARRAY`: JSON arrays
+    - `BOOLEAN`: The JSON true and false literals
 
-    - `ARRAY`: Arrays JSON
+    - `NULL`: The JSON null literal
+  + Numeric types:
 
-    - `BOOLEAN`: Os literais `true` e `false` do JSON
+    - `INTEGER`: MySQL `TINYINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), `SMALLINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), `MEDIUMINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") and `INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") and `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") scalars
 
-    - `NULL`: O literal nulo JSON
+    - `DOUBLE`: MySQL `DOUBLE` - FLOAT, DOUBLE") `FLOAT` - FLOAT, DOUBLE") scalars
 
-  - Tipos numéricos:
+    - `DECIMAL`: MySQL `DECIMAL` - DECIMAL, NUMERIC") and `NUMERIC` - DECIMAL, NUMERIC") scalars
 
-    - `INTEGER`: MySQL `TINYINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), `SMALLINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT"), `MEDIUMINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") e `INT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") e `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") escalares
+  + Temporal types:
 
-    - `DOUBLE`: escalares `DOUBLE` - FLOAT, DOUBLE") `FLOAT` - FLOAT, DOUBLE") no MySQL
+    - `DATETIME`: MySQL `DATETIME` and `TIMESTAMP` scalars
 
-    - `DECIMAL`: escalares `DECIMAL` - `DECIMAL`, `NUMERIC`") e `NUMERIC` - `DECIMAL`, `NUMERIC`")
+    - `DATE`: MySQL `DATE` scalars
 
-  - Tipos temporais:
+    - `TIME`: MySQL `TIME` scalars
 
-    - `DATETIME`: escalares `DATETIME` e `TIMESTAMP` do MySQL
+  + String types:
 
-    - `DATE`: escalares `DATE` do MySQL
+    - `STRING`: MySQL `utf8` character type scalars: `CHAR`, `VARCHAR`, `TEXT`, `ENUM`, and `SET`
 
-    - `TIME`: escalares `TIME` do MySQL
+  + Binary types:
 
-  - Tipos de strings:
+    - `BLOB`: MySQL binary type scalars: `BINARY`, `VARBINARY`, `BLOB`
 
-    - `STRING`: Escalares do tipo caractere `utf8` do MySQL: `CHAR`, `VARCHAR`, `TEXT`, `ENUM` e `SET`
+    - `BIT`: MySQL `BIT` scalars
 
-  - Tipos binários:
+  + All other types:
 
-    - `BLOB`: escalares do tipo binário MySQL: `BINARY`, `VARBINARY`, `BLOB`
+    - `OPAQUE` (raw bits)
+* `JSON_VALID(val)`
 
-    - `BIT`: escalares `BIT` do MySQL
-
-  - Todos os outros tipos:
-
-    - `OPAQUE` (bits brutos)
-
-- `JSON_VALID(val)`
-
-  Retorna 0 ou 1 para indicar se um valor é JSON válido. Retorna `NULL` se o argumento for `NULL`.
+  Returns 0 or 1 to indicate whether a value is valid JSON. Returns `NULL` if the argument is `NULL`.
 
   ```sql
   mysql> SELECT JSON_VALID('{"a": 1}');

@@ -1,13 +1,13 @@
-#### 14.7.5.2 Detecção de Congelamento
+#### 14.7.5.2 Deadlock Detection
 
-Quando a detecção de impasses está habilitada (o padrão), o `InnoDB` detecta automaticamente impasses de transações e desfaz uma ou mais transações para quebrar o impasse. O `InnoDB` tenta desfazer transações pequenas, onde o tamanho de uma transação é determinado pelo número de linhas inseridas, atualizadas ou excluídas.
+When deadlock detection is enabled (the default), `InnoDB` automatically detects transaction deadlocks and rolls back a transaction or transactions to break the deadlock. `InnoDB` tries to pick small transactions to roll back, where the size of a transaction is determined by the number of rows inserted, updated, or deleted.
 
-O `InnoDB` está ciente das blocações de tabela se `innodb_table_locks = 1` (o padrão) e `autocommit = 0`, e a camada MySQL acima dele sabe sobre blocações de nível de linha. Caso contrário, o `InnoDB` não consegue detectar deadlocks quando um conjunto de bloqueio de tabela definido por uma instrução `LOCK TABLES` do MySQL ou um conjunto de bloqueio definido por um mecanismo de armazenamento diferente do `InnoDB` está envolvido. Resolva essas situações definindo o valor da variável de sistema `innodb_lock_wait_timeout`.
+`InnoDB` is aware of table locks if `innodb_table_locks = 1` (the default) and `autocommit = 0`, and the MySQL layer above it knows about row-level locks. Otherwise, `InnoDB` cannot detect deadlocks where a table lock set by a MySQL `LOCK TABLES` statement or a lock set by a storage engine other than `InnoDB` is involved. Resolve these situations by setting the value of the `innodb_lock_wait_timeout` system variable.
 
-Se a seção `Última Ocultação de Engarrafamento` do Monitor do `InnoDB` incluir uma mensagem que diz: “PESQUISA EXTREMAMENTE PROFUNDA OU LONGA NA TÁBUA DE LOCK WAITS-FOR AGORA, REVERTIREMOS A TRANSACÇÃO”, isso indica que o número de transações na lista de espera atingiu um limite de 200. Uma lista de espera que exceda 200 transações é tratada como um engarrafamento e a transação que tenta verificar a lista de espera é revertida. O mesmo erro também pode ocorrer se o thread de bloqueio precisar consultar mais de 1.000.000 de bloqueios detidos por transações na lista de espera.
+If the `LATEST DETECTED DEADLOCK` section of `InnoDB` Monitor output includes a message stating, “TOO DEEP OR LONG SEARCH IN THE LOCK TABLE WAITS-FOR GRAPH, WE WILL ROLL BACK FOLLOWING TRANSACTION,” this indicates that the number of transactions on the wait-for list has reached a limit of 200. A wait-for list that exceeds 200 transactions is treated as a deadlock and the transaction attempting to check the wait-for list is rolled back. The same error may also occur if the locking thread must look at more than 1,000,000 locks owned by transactions on the wait-for list.
 
-Para técnicas de organização das operações de banco de dados para evitar deadlocks, consulte a Seção 14.7.5, “Deadlocks no InnoDB”.
+For techniques to organize database operations to avoid deadlocks, see Section 14.7.5, “Deadlocks in InnoDB”.
 
-##### Desativando a detecção de deadlocks
+##### Disabling Deadlock Detection
 
-Em sistemas de alta concorrência, a detecção de travamento pode causar um atraso quando vários threads aguardam o mesmo bloqueio. Às vezes, pode ser mais eficiente desabilitar a detecção de travamento e confiar no ajuste `innodb_lock_wait_timeout` para o rollback de transações quando ocorre um travamento. A detecção de travamento pode ser desativada usando a variável `innodb_deadlock_detect`.
+On high concurrency systems, deadlock detection can cause a slowdown when numerous threads wait for the same lock. At times, it may be more efficient to disable deadlock detection and rely on the `innodb_lock_wait_timeout` setting for transaction rollback when a deadlock occurs. Deadlock detection can be disabled using the `innodb_deadlock_detect` variable.

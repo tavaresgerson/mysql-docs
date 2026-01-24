@@ -1,34 +1,34 @@
-## 12.7 Funções de data e hora
+## 12.7 Date and Time Functions
 
-Esta seção descreve as funções que podem ser usadas para manipular valores temporais. Consulte a Seção 11.2, “Tipos de dados de data e hora”, para obter uma descrição da faixa de valores de cada tipo de data e hora e dos formatos válidos nos quais os valores podem ser especificados.
+This section describes the functions that can be used to manipulate temporal values. See Section 11.2, “Date and Time Data Types”, for a description of the range of values each date and time type has and the valid formats in which values may be specified.
 
-**Tabela 12.11 Funções de data e hora**
+**Table 12.11 Date and Time Functions**
 
-<table frame="box" rules="all" summary="Uma referência que lista funções de data e hora."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td>PH_HTML_CODE_<code>CURTIME()</code>]</td> <td>Adicione valores de tempo (intervalos) a um valor de data</td> </tr><tr><td>PH_HTML_CODE_<code>CURTIME()</code>]</td> <td>Adicione tempo</td> </tr><tr><td>PH_HTML_CODE_<code>DATE_ADD()</code>]</td> <td>Converter de um fuso horário para outro</td> </tr><tr><td>PH_HTML_CODE_<code>DATE_FORMAT()</code>]</td> <td>Retorne a data atual</td> </tr><tr><td>PH_HTML_CODE_<code>DATE_SUB()</code>], PH_HTML_CODE_<code>DATEDIFF()</code>]</td> <td>Sinônimos para CURDATE()</td> </tr><tr><td>PH_HTML_CODE_<code>DAY()</code>], PH_HTML_CODE_<code>DAYNAME()</code>]</td> <td>Sinônimos para CURTIME()</td> </tr><tr><td>PH_HTML_CODE_<code>DAYOFMONTH()</code>], PH_HTML_CODE_<code>DAYOFWEEK()</code>]</td> <td>Sinônimos para NOW()</td> </tr><tr><td><code>CURTIME()</code></td> <td>Retorne a hora atual</td> </tr><tr><td><code>ADDTIME()</code><code>CURTIME()</code>]</td> <td>Extrair a parte da data de uma expressão de data ou datetime</td> </tr><tr><td><code>DATE_ADD()</code></td> <td>Adicione valores de tempo (intervalos) a um valor de data</td> </tr><tr><td><code>DATE_FORMAT()</code></td> <td>Formatar a data conforme especificado</td> </tr><tr><td><code>DATE_SUB()</code></td> <td>Subtraia um valor de tempo (intervalo) de uma data</td> </tr><tr><td><code>DATEDIFF()</code></td> <td>Subtraia duas datas</td> </tr><tr><td><code>DAY()</code></td> <td>Sinônimo de DAYOFMONTH()</td> </tr><tr><td><code>DAYNAME()</code></td> <td>Retorne o nome do dia da semana</td> </tr><tr><td><code>DAYOFMONTH()</code></td> <td>Retorne o dia do mês (0-31)</td> </tr><tr><td><code>DAYOFWEEK()</code></td> <td>Retorne o índice de dia da semana do argumento</td> </tr><tr><td><code>CONVERT_TZ()</code><code>CURTIME()</code>]</td> <td>Retorne o dia do ano (1-366)</td> </tr><tr><td><code>CONVERT_TZ()</code><code>CURTIME()</code>]</td> <td>Extrair parte de uma data</td> </tr><tr><td><code>CONVERT_TZ()</code><code>DATE_ADD()</code>]</td> <td>Converter um número de dia em uma data</td> </tr><tr><td><code>CONVERT_TZ()</code><code>DATE_FORMAT()</code>]</td> <td>Formatar o timestamp Unix como uma data</td> </tr><tr><td><code>CONVERT_TZ()</code><code>DATE_SUB()</code>]</td> <td>Retorne uma string de formato de data</td> </tr><tr><td><code>CONVERT_TZ()</code><code>DATEDIFF()</code>]</td> <td>Extraia a hora</td> </tr><tr><td><code>CONVERT_TZ()</code><code>DAY()</code>]</td> <td>Retorne o último dia do mês para o argumento</td> </tr><tr><td><code>CONVERT_TZ()</code><code>DAYNAME()</code>], <code>CONVERT_TZ()</code><code>DAYOFMONTH()</code>]</td> <td>Sinônimo de NOW()</td> </tr><tr><td><code>CONVERT_TZ()</code><code>DAYOFWEEK()</code>], <code>CURDATE()</code><code>CURTIME()</code>]</td> <td>Sinônimo de NOW()</td> </tr><tr><td><code>CURDATE()</code><code>CURTIME()</code>]</td> <td>Crie uma data a partir do ano e do dia do ano</td> </tr><tr><td><code>CURDATE()</code><code>DATE_ADD()</code>]</td> <td>Crie tempo a partir de hora, minuto e segundo</td> </tr><tr><td><code>CURDATE()</code><code>DATE_FORMAT()</code>]</td> <td>Retorne os microsegundos do argumento</td> </tr><tr><td><code>CURDATE()</code><code>DATE_SUB()</code>]</td> <td>Devolva o minuto da discussão</td> </tr><tr><td><code>CURDATE()</code><code>DATEDIFF()</code>]</td> <td>Retorne o mês da data passada</td> </tr><tr><td><code>CURDATE()</code><code>DAY()</code>]</td> <td>Retorne o nome do mês</td> </tr><tr><td><code>CURDATE()</code><code>DAYNAME()</code>]</td> <td>Retorne a data e hora atuais</td> </tr><tr><td><code>CURDATE()</code><code>DAYOFMONTH()</code>]</td> <td>Adicione um ponto final a um ano-mês</td> </tr><tr><td><code>CURDATE()</code><code>DAYOFWEEK()</code>]</td> <td>Retorne o número de meses entre os períodos</td> </tr><tr><td><code>CURRENT_DATE()</code><code>CURTIME()</code>]</td> <td>Retorne o quarto de um argumento de data</td> </tr><tr><td><code>CURRENT_DATE()</code><code>CURTIME()</code>]</td> <td>Converte segundos para o formato 'hh:mm:ss'</td> </tr><tr><td><code>CURRENT_DATE()</code><code>DATE_ADD()</code>]</td> <td>Retorne o segundo (0-59)</td> </tr><tr><td><code>CURRENT_DATE()</code><code>DATE_FORMAT()</code>]</td> <td>Converter uma string em uma data</td> </tr><tr><td><code>CURRENT_DATE()</code><code>DATE_SUB()</code>]</td> <td>Sinônimo de DATE_SUB() quando invocado com três argumentos</td> </tr><tr><td><code>CURRENT_DATE()</code><code>DATEDIFF()</code>]</td> <td>Subtraia vezes</td> </tr><tr><td><code>CURRENT_DATE()</code><code>DAY()</code>]</td> <td>Retorne o momento em que a função é executada</td> </tr><tr><td><code>CURRENT_DATE()</code><code>DAYNAME()</code>]</td> <td>Extraia a porção de tempo da expressão passada</td> </tr><tr><td><code>CURRENT_DATE()</code><code>DAYOFMONTH()</code>]</td> <td>Formato como tempo</td> </tr><tr><td><code>CURRENT_DATE()</code><code>DAYOFWEEK()</code>]</td> <td>Retorne o argumento convertido em segundos</td> </tr><tr><td><code>CURRENT_DATE</code><code>CURTIME()</code>]</td> <td>Subtraia o tempo</td> </tr><tr><td><code>CURRENT_DATE</code><code>CURTIME()</code>]</td> <td>Com um único argumento, essa função retorna a expressão de data ou datetime; com dois argumentos, a soma dos argumentos.</td> </tr><tr><td><code>CURRENT_DATE</code><code>DATE_ADD()</code>]</td> <td>Adicione um intervalo a uma expressão de data e hora</td> </tr><tr><td><code>CURRENT_DATE</code><code>DATE_FORMAT()</code>]</td> <td>Retorne a diferença entre duas expressões de data e hora, usando as unidades especificadas</td> </tr><tr><td><code>CURRENT_DATE</code><code>DATE_SUB()</code>]</td> <td>Retorne o argumento de data convertido em dias</td> </tr><tr><td><code>CURRENT_DATE</code><code>DATEDIFF()</code>]</td> <td>Retorne o argumento de data ou datetime convertido em segundos desde o ano 0</td> </tr><tr><td><code>CURRENT_DATE</code><code>DAY()</code>]</td> <td>Retorne um timestamp Unix</td> </tr><tr><td><code>CURRENT_DATE</code><code>DAYNAME()</code>]</td> <td>Retorne a data atual UTC</td> </tr><tr><td><code>CURRENT_DATE</code><code>DAYOFMONTH()</code>]</td> <td>Retorne a hora atual UTC</td> </tr><tr><td><code>CURRENT_DATE</code><code>DAYOFWEEK()</code>]</td> <td>Retorne a data e hora atuais em UTC</td> </tr><tr><td><code>CURRENT_TIME()</code><code>CURTIME()</code>]</td> <td>Retorne o número da semana</td> </tr><tr><td><code>CURRENT_TIME()</code><code>CURTIME()</code>]</td> <td>Retorne o índice do dia da semana</td> </tr><tr><td><code>CURRENT_TIME()</code><code>DATE_ADD()</code>]</td> <td>Retorne a semana do calendário da data (1-53)</td> </tr><tr><td><code>CURRENT_TIME()</code><code>DATE_FORMAT()</code>]</td> <td>Retorne o ano</td> </tr><tr><td><code>CURRENT_TIME()</code><code>DATE_SUB()</code>]</td> <td>Retorne o ano e a semana</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists date and time functions."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>ADDDATE()</code></td> <td> Add time values (intervals) to a date value </td> </tr><tr><td><code>ADDTIME()</code></td> <td> Add time </td> </tr><tr><td><code>CONVERT_TZ()</code></td> <td> Convert from one time zone to another </td> </tr><tr><td><code>CURDATE()</code></td> <td> Return the current date </td> </tr><tr><td><code>CURRENT_DATE()</code>, <code>CURRENT_DATE</code></td> <td> Synonyms for CURDATE() </td> </tr><tr><td><code>CURRENT_TIME()</code>, <code>CURRENT_TIME</code></td> <td> Synonyms for CURTIME() </td> </tr><tr><td><code>CURRENT_TIMESTAMP()</code>, <code>CURRENT_TIMESTAMP</code></td> <td> Synonyms for NOW() </td> </tr><tr><td><code>CURTIME()</code></td> <td> Return the current time </td> </tr><tr><td><code>DATE()</code></td> <td> Extract the date part of a date or datetime expression </td> </tr><tr><td><code>DATE_ADD()</code></td> <td> Add time values (intervals) to a date value </td> </tr><tr><td><code>DATE_FORMAT()</code></td> <td> Format date as specified </td> </tr><tr><td><code>DATE_SUB()</code></td> <td> Subtract a time value (interval) from a date </td> </tr><tr><td><code>DATEDIFF()</code></td> <td> Subtract two dates </td> </tr><tr><td><code>DAY()</code></td> <td> Synonym for DAYOFMONTH() </td> </tr><tr><td><code>DAYNAME()</code></td> <td> Return the name of the weekday </td> </tr><tr><td><code>DAYOFMONTH()</code></td> <td> Return the day of the month (0-31) </td> </tr><tr><td><code>DAYOFWEEK()</code></td> <td> Return the weekday index of the argument </td> </tr><tr><td><code>DAYOFYEAR()</code></td> <td> Return the day of the year (1-366) </td> </tr><tr><td><code>EXTRACT()</code></td> <td> Extract part of a date </td> </tr><tr><td><code>FROM_DAYS()</code></td> <td> Convert a day number to a date </td> </tr><tr><td><code>FROM_UNIXTIME()</code></td> <td> Format Unix timestamp as a date </td> </tr><tr><td><code>GET_FORMAT()</code></td> <td> Return a date format string </td> </tr><tr><td><code>HOUR()</code></td> <td> Extract the hour </td> </tr><tr><td><code>LAST_DAY</code></td> <td> Return the last day of the month for the argument </td> </tr><tr><td><code>LOCALTIME()</code>, <code>LOCALTIME</code></td> <td> Synonym for NOW() </td> </tr><tr><td><code>LOCALTIMESTAMP</code>, <code>LOCALTIMESTAMP()</code></td> <td> Synonym for NOW() </td> </tr><tr><td><code>MAKEDATE()</code></td> <td> Create a date from the year and day of year </td> </tr><tr><td><code>MAKETIME()</code></td> <td> Create time from hour, minute, second </td> </tr><tr><td><code>MICROSECOND()</code></td> <td> Return the microseconds from argument </td> </tr><tr><td><code>MINUTE()</code></td> <td> Return the minute from the argument </td> </tr><tr><td><code>MONTH()</code></td> <td> Return the month from the date passed </td> </tr><tr><td><code>MONTHNAME()</code></td> <td> Return the name of the month </td> </tr><tr><td><code>NOW()</code></td> <td> Return the current date and time </td> </tr><tr><td><code>PERIOD_ADD()</code></td> <td> Add a period to a year-month </td> </tr><tr><td><code>PERIOD_DIFF()</code></td> <td> Return the number of months between periods </td> </tr><tr><td><code>QUARTER()</code></td> <td> Return the quarter from a date argument </td> </tr><tr><td><code>SEC_TO_TIME()</code></td> <td> Converts seconds to 'hh:mm:ss' format </td> </tr><tr><td><code>SECOND()</code></td> <td> Return the second (0-59) </td> </tr><tr><td><code>STR_TO_DATE()</code></td> <td> Convert a string to a date </td> </tr><tr><td><code>SUBDATE()</code></td> <td> Synonym for DATE_SUB() when invoked with three arguments </td> </tr><tr><td><code>SUBTIME()</code></td> <td> Subtract times </td> </tr><tr><td><code>SYSDATE()</code></td> <td> Return the time at which the function executes </td> </tr><tr><td><code>TIME()</code></td> <td> Extract the time portion of the expression passed </td> </tr><tr><td><code>TIME_FORMAT()</code></td> <td> Format as time </td> </tr><tr><td><code>TIME_TO_SEC()</code></td> <td> Return the argument converted to seconds </td> </tr><tr><td><code>TIMEDIFF()</code></td> <td> Subtract time </td> </tr><tr><td><code>TIMESTAMP()</code></td> <td> With a single argument, this function returns the date or datetime expression; with two arguments, the sum of the arguments </td> </tr><tr><td><code>TIMESTAMPADD()</code></td> <td> Add an interval to a datetime expression </td> </tr><tr><td><code>TIMESTAMPDIFF()</code></td> <td> Return the difference of two datetime expressions, using the units specified </td> </tr><tr><td><code>TO_DAYS()</code></td> <td> Return the date argument converted to days </td> </tr><tr><td><code>TO_SECONDS()</code></td> <td> Return the date or datetime argument converted to seconds since Year 0 </td> </tr><tr><td><code>UNIX_TIMESTAMP()</code></td> <td> Return a Unix timestamp </td> </tr><tr><td><code>UTC_DATE()</code></td> <td> Return the current UTC date </td> </tr><tr><td><code>UTC_TIME()</code></td> <td> Return the current UTC time </td> </tr><tr><td><code>UTC_TIMESTAMP()</code></td> <td> Return the current UTC date and time </td> </tr><tr><td><code>WEEK()</code></td> <td> Return the week number </td> </tr><tr><td><code>WEEKDAY()</code></td> <td> Return the weekday index </td> </tr><tr><td><code>WEEKOFYEAR()</code></td> <td> Return the calendar week of the date (1-53) </td> </tr><tr><td><code>YEAR()</code></td> <td> Return the year </td> </tr><tr><td><code>YEARWEEK()</code></td> <td> Return the year and week </td> </tr></tbody></table>
 
-Aqui está um exemplo que usa funções de data. A consulta a seguir seleciona todas as linhas com um valor de `date_col` nos últimos 30 dias:
+Here is an example that uses date functions. The following query selects all rows with a *`date_col`* value from within the last 30 days:
 
 ```sql
 mysql> SELECT something FROM tbl_name
     -> WHERE DATE_SUB(CURDATE(),INTERVAL 30 DAY) <= date_col;
 ```
 
-A consulta também seleciona linhas com datas que estão no futuro.
+The query also selects rows with dates that lie in the future.
 
-Funções que esperam valores de data geralmente aceitam valores datetime e ignoram a parte de hora. Funções que esperam valores de hora geralmente aceitam valores datetime e ignoram a parte de data.
+Functions that expect date values usually accept datetime values and ignore the time part. Functions that expect time values usually accept datetime values and ignore the date part.
 
-As funções que retornam a data ou hora atuais são avaliadas apenas uma vez por consulta no início da execução da consulta. Isso significa que múltiplas referências a uma função, como `NOW()`, dentro de uma única consulta sempre produzem o mesmo resultado. (Para nossos propósitos, uma única consulta também inclui uma chamada a um programa armazenado (rotina armazenada, gatilho ou evento) e todos os subprogramas chamados por esse programa.) Esse princípio também se aplica a `CURDATE()`, `CURTIME()`, `UTC_DATE()`, `UTC_TIME()`, `UTC_TIMESTAMP()` e a quaisquer de seus sinônimos.
+Functions that return the current date or time each are evaluated only once per query at the start of query execution. This means that multiple references to a function such as `NOW()` within a single query always produce the same result. (For our purposes, a single query also includes a call to a stored program (stored routine, trigger, or event) and all subprograms called by that program.) This principle also applies to `CURDATE()`, `CURTIME()`, `UTC_DATE()`, `UTC_TIME()`, `UTC_TIMESTAMP()`, and to any of their synonyms.
 
-As funções `CURRENT_TIMESTAMP()`, `CURRENT_TIME()`, `CURRENT_DATE()` e `FROM_UNIXTIME()` retornam valores no fuso horário da sessão atual, que está disponível como o valor da sessão da variável de sistema `time_zone`. Além disso, `UNIX_TIMESTAMP()` assume que seu argumento é um valor datetime no fuso horário da sessão. Veja a Seção 5.1.13, “Suporte ao Fuso Horário do MySQL Server”.
+The `CURRENT_TIMESTAMP()`, `CURRENT_TIME()`, `CURRENT_DATE()`, and `FROM_UNIXTIME()` functions return values in the current session time zone, which is available as the session value of the `time_zone` system variable. In addition, `UNIX_TIMESTAMP()` assumes that its argument is a datetime value in the session time zone. See Section 5.1.13, “MySQL Server Time Zone Support”.
 
-Algumas funções de data podem ser usadas com datas "zero" ou datas incompletas, como `'2001-11-00'`, enquanto outras não podem. Funções que extraem partes de datas geralmente funcionam com datas incompletas e, portanto, podem retornar 0 quando você poderia esperar um valor diferente de zero. Por exemplo:
+Some date functions can be used with “zero” dates or incomplete dates such as `'2001-11-00'`, whereas others cannot. Functions that extract parts of dates typically work with incomplete dates and thus can return 0 when you might otherwise expect a nonzero value. For example:
 
 ```sql
 mysql> SELECT DAYOFMONTH('2001-11-00'), MONTH('2005-00-00');
         -> 0, 0
 ```
 
-Outras funções esperam datas completas e retornam `NULL` para datas incompletas. Essas incluem funções que realizam cálculos de data ou que mapeiam partes de datas para nomes. Por exemplo:
+Other functions expect complete dates and return `NULL` for incomplete dates. These include functions that perform date arithmetic or that map parts of dates to names. For example:
 
 ```sql
 mysql> SELECT DATE_ADD('2006-05-00',INTERVAL 1 DAY);
@@ -37,13 +37,13 @@ mysql> SELECT DAYNAME('2006-05-00');
         -> NULL
 ```
 
-Várias funções são rígidas quando passam um valor da função `DATE()` como argumento e rejeitam datas incompletas com uma parte do dia de zero: `CONVERT_TZ()`, `DATE_ADD()`, `DATE_SUB()`, `DAYOFYEAR()`, `TIMESTAMPDIFF()`, `TO_DAYS()`, `TO_SECONDS()`, `WEEK()`, `WEEKDAY()`, `WEEKOFYEAR()`, `YEARWEEK()`.
+Several functions are strict when passed a `DATE()` function value as their argument and reject incomplete dates with a day part of zero: `CONVERT_TZ()`, `DATE_ADD()`, `DATE_SUB()`, `DAYOFYEAR()`, `TIMESTAMPDIFF()`, `TO_DAYS()`, `TO_SECONDS()`, `WEEK()`, `WEEKDAY()`, `WEEKOFYEAR()`, `YEARWEEK()`.
 
-Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são suportados, com precisão de até microsegundos. Funções que aceitam argumentos temporais aceitam valores com segundos fracionários. Os valores de retorno das funções temporais incluem segundos fracionários conforme apropriado.
+Fractional seconds for `TIME`, `DATETIME`, and `TIMESTAMP` values are supported, with up to microsecond precision. Functions that take temporal arguments accept values with fractional seconds. Return values from temporal functions include fractional seconds as appropriate.
 
-- `ADDDATE(data, INTERVAL expr unit)`, `ADDDATE(expr, dias)`
+* `ADDDATE(date,INTERVAL expr unit)`, `ADDDATE(expr,days)`
 
-  Quando invocado com a forma `INTERVAL` do segundo argumento, `ADDDATE()` é sinônimo de `DATE_ADD()`. A função relacionada `SUBDATE()` é sinônimo de `DATE_SUB()`. Para informações sobre o argumento `INTERVAL` *`unit`*, consulte Intervalos Temporais.
+  When invoked with the `INTERVAL` form of the second argument, `ADDDATE()` is a synonym for `DATE_ADD()`. The related function `SUBDATE()` is a synonym for `DATE_SUB()`. For information on the `INTERVAL` *`unit`* argument, see Temporal Intervals.
 
   ```sql
   mysql> SELECT DATE_ADD('2008-01-02', INTERVAL 31 DAY);
@@ -52,16 +52,16 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
           -> '2008-02-02'
   ```
 
-  Quando invocado com a forma *`days`* do segundo argumento, o MySQL o trata como um número inteiro de dias a ser adicionado a *`expr`*.
+  When invoked with the *`days`* form of the second argument, MySQL treats it as an integer number of days to be added to *`expr`*.
 
   ```sql
   mysql> SELECT ADDDATE('2008-01-02', 31);
           -> '2008-02-02'
   ```
 
-- `ADDTIME(expr1, expr2)`
+* `ADDTIME(expr1,expr2)`
 
-  `ADDTIME()` adiciona *`expr2`* a *`expr1`* e retorna o resultado. *`expr1`* é uma expressão de hora ou data e hora, e *`expr2`* é uma expressão de hora.
+  `ADDTIME()` adds *`expr2`* to *`expr1`* and returns the result. *`expr1`* is a time or datetime expression, and *`expr2`* is a time expression.
 
   ```sql
   mysql> SELECT ADDTIME('2007-12-31 23:59:59.999999', '1 1:1:1.000002');
@@ -70,11 +70,11 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
           -> '03:00:01.999997'
   ```
 
-- `CONVERT_TZ(dt, from_tz, to_tz)`
+* `CONVERT_TZ(dt,from_tz,to_tz)`
 
-  `CONVERT_TZ()` converte um valor de data e hora *`dt`* do fuso horário especificado por *`from_tz`* para o fuso horário especificado por *`to_tz`* e retorna o valor resultante. Os fusos horários são especificados conforme descrito na Seção 5.1.13, “Suporte de Fuso Horário do MySQL Server”. Esta função retorna `NULL` se os argumentos forem inválidos.
+  `CONVERT_TZ()` converts a datetime value *`dt`* from the time zone given by *`from_tz`* to the time zone given by *`to_tz`* and returns the resulting value. Time zones are specified as described in Section 5.1.13, “MySQL Server Time Zone Support”. This function returns `NULL` if the arguments are invalid.
 
-  Se o valor sair do intervalo suportado do tipo `TIMESTAMP` ao ser convertido de `from_tz` para UTC, não ocorrerá nenhuma conversão. O intervalo do `TIMESTAMP` é descrito na Seção 11.2.1, “Sintaxe do Tipo de Dados de Data e Hora”.
+  If the value falls out of the supported range of the `TIMESTAMP` type when converted from *`from_tz`* to UTC, no conversion occurs. The `TIMESTAMP` range is described in Section 11.2.1, “Date and Time Data Type Syntax”.
 
   ```sql
   mysql> SELECT CONVERT_TZ('2004-01-01 12:00:00','GMT','MET');
@@ -83,13 +83,13 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
           -> '2004-01-01 22:00:00'
   ```
 
-  Nota
+  Note
 
-  Para usar fusos horários nomeados, como `'MET'` ou `'Europe/Amsterdam'`, as tabelas de fusos horários devem ser configuradas corretamente. Para obter instruções, consulte a Seção 5.1.13, “Suporte ao Fuso Horário do MySQL Server”.
+  To use named time zones such as `'MET'` or `'Europe/Amsterdam'`, the time zone tables must be properly set up. For instructions, see Section 5.1.13, “MySQL Server Time Zone Support”.
 
-- `CURDATE()`
+* `CURDATE()`
 
-  Retorna a data atual como um valor no formato `'YYYY-MM-DD'` ou *`YYYYMMDD`*, dependendo se a função é usada em contexto de string ou numérico.
+  Returns the current date as a value in `'YYYY-MM-DD'` or *`YYYYMMDD`* format, depending on whether the function is used in string or numeric context.
 
   ```sql
   mysql> SELECT CURDATE();
@@ -98,23 +98,23 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
           -> 20080613
   ```
 
-- `DATA_ATUAL`, `DATA_ATUAL()`
+* `CURRENT_DATE`, `CURRENT_DATE()`
 
-  `CURRENT_DATE` e `CURRENT_DATE()` são sinônimos de `CURDATE()`.
+  `CURRENT_DATE` and `CURRENT_DATE()` are synonyms for `CURDATE()`.
 
-- `CURRENT_TIME`, `CURRENT_TIME([fsp])`
+* `CURRENT_TIME`, `CURRENT_TIME([fsp])`
 
-  `CURRENT_TIME` e `CURRENT_TIME()` são sinônimos de `CURTIME()`.
+  `CURRENT_TIME` and `CURRENT_TIME()` are synonyms for `CURTIME()`.
 
-- `CURRENT_TIMESTAMP`, `CURRENT_TIMESTAMP([fsp])`
+* `CURRENT_TIMESTAMP`, `CURRENT_TIMESTAMP([fsp])`
 
-  `CURRENT_TIMESTAMP` e `CURRENT_TIMESTAMP()` são sinônimos de `NOW()`.
+  `CURRENT_TIMESTAMP` and `CURRENT_TIMESTAMP()` are synonyms for `NOW()`.
 
-- `CURTIME([fsp])`
+* `CURTIME([fsp])`
 
-  Retorna a hora atual como um valor no formato *`'hh:mm:ss'`* ou *`hhmmss`*, dependendo se a função é usada em contexto de string ou numérico. O valor é expresso no fuso horário da sessão.
+  Returns the current time as a value in *`'hh:mm:ss'`* or *`hhmmss`* format, depending on whether the function is used in string or numeric context. The value is expressed in the session time zone.
 
-  Se o argumento *`fsp`* for fornecido para especificar uma precisão de segundos fracionários de 0 a 6, o valor de retorno inclui uma parte de segundos fracionários com tantos dígitos quanto especificado.
+  If the *`fsp`* argument is given to specify a fractional seconds precision from 0 to 6, the return value includes a fractional seconds part of that many digits.
 
   ```sql
   mysql> SELECT CURTIME();
@@ -123,18 +123,18 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
           -> 235026.000000
   ```
 
-- `DATE(expr)`
+* `DATE(expr)`
 
-  Extrai a parte da data da expressão de data ou datetime *`expr`*.
+  Extracts the date part of the date or datetime expression *`expr`*.
 
   ```sql
   mysql> SELECT DATE('2003-12-31 01:02:03');
           -> '2003-12-31'
   ```
 
-- `DATEDIFF(expr1, expr2)`
+* `DATEDIFF(expr1,expr2)`
 
-  `DATEDIFF()` retorna *`expr1`* − *`expr2`* expresso como um valor em dias entre uma data e outra. *`expr1`* e *`expr2`* são expressões de data ou data e hora. Apenas as partes de data dos valores são usadas no cálculo.
+  `DATEDIFF()` returns *`expr1`* − *`expr2`* expressed as a value in days from one date to the other. *`expr1`* and *`expr2`* are date or date-and-time expressions. Only the date parts of the values are used in the calculation.
 
   ```sql
   mysql> SELECT DATEDIFF('2007-12-31 23:59:59','2007-12-30');
@@ -143,21 +143,21 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
           -> -31
   ```
 
-- `DATE_ADD(data, INTERVAL expr unidade)` e `DATE_SUB(data, INTERVAL expr unidade)`
+* `DATE_ADD(date,INTERVAL expr unit)`, `DATE_SUB(date,INTERVAL expr unit)`
 
-  Essas funções realizam operações aritméticas com datas. O argumento *`data`* especifica a data ou o valor de data e hora inicial. *`expr`* é uma expressão que especifica o valor do intervalo a ser adicionado ou subtraído da data inicial. *`expr`* é avaliado como uma string; ele pode começar com um `-` para intervalos negativos. *`unidade`* é uma palavra-chave que indica as unidades nas quais a expressão deve ser interpretada.
+  These functions perform date arithmetic. The *`date`* argument specifies the starting date or datetime value. *`expr`* is an expression specifying the interval value to be added or subtracted from the starting date. *`expr`* is evaluated as a string; it may start with a `-` for negative intervals. *`unit`* is a keyword indicating the units in which the expression should be interpreted.
 
-  Para obter mais informações sobre a sintaxe de intervalos temporais, incluindo uma lista completa dos especificadores de *`unit`*, a forma esperada do argumento *`expr`* para cada valor de *`unit`* e as regras para a interpretação dos operandos em aritmética temporal, consulte Intervalos Temporais.
+  For more information about temporal interval syntax, including a full list of *`unit`* specifiers, the expected form of the *`expr`* argument for each *`unit`* value, and rules for operand interpretation in temporal arithmetic, see Temporal Intervals.
 
-  O valor de retorno depende dos argumentos:
+  The return value depends on the arguments:
 
-  - `DATE` se o argumento *`data`* for um valor `DATE` e seus cálculos envolvam apenas as partes `ANO`, `MÊS` e `DIA` (ou seja, sem partes de hora).
+  + `DATE` if the *`date`* argument is a `DATE` value and your calculations involve only `YEAR`, `MONTH`, and `DAY` parts (that is, no time parts).
 
-  - `DATETIME` se o primeiro argumento for um valor `DATETIME` (ou `TIMESTAMP`) ou se o primeiro argumento for uma `DATE` e o valor de \*`unit`` for `HOURS`, `MINUTES`ou`SECONDS\`.
+  + `DATETIME` if the first argument is a `DATETIME` (or `TIMESTAMP`) value, or if the first argument is a `DATE` and the *`unit`* value uses `HOURS`, `MINUTES`, or `SECONDS`.
 
-  - Outro caso,
+  + String otherwise.
 
-  Para garantir que o resultado seja `DATETIME`, você pode usar `CAST()` para converter o primeiro argumento para `DATETIME`.
+  To ensure that the result is `DATETIME`, you can use `CAST()` to convert the first argument to `DATETIME`.
 
   ```sql
   mysql> SELECT DATE_ADD('2018-05-01',INTERVAL 1 DAY);
@@ -186,7 +186,7 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
           -> '1993-01-01 00:00:01.000001'
   ```
 
-  Ao adicionar um intervalo `MONTH` a um valor `DATE` ou `DATETIME`, e a data resultante incluir um dia que não existe no mês fornecido, o dia é ajustado para o último dia do mês, como mostrado aqui:
+  When adding a `MONTH` interval to a `DATE` or `DATETIME` value, and the resulting date includes a day that does not exist in the given month, the day is adjusted to the last day of the month, as shown here:
 
   ```sql
   mysql> SELECT DATE_ADD('2024-03-30', INTERVAL 1 MONTH) AS d1,
@@ -199,21 +199,21 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
   1 row in set (0.00 sec)
   ```
 
-- `DATE_FORMAT(data, formato)`
+* `DATE_FORMAT(date,format)`
 
-  Formata o valor de *`date`* de acordo com a string *`format`*.
+  Formats the *`date`* value according to the *`format`* string.
 
-  Os especificadores mostrados na tabela a seguir podem ser usados na string *`format`*. O caractere `%` é necessário antes dos caracteres do especificador de formato. Os especificadores se aplicam também a outras funções: `STR_TO_DATE()`, `TIME_FORMAT()` e `UNIX_TIMESTAMP()`.
+  The specifiers shown in the following table may be used in the *`format`* string. The `%` character is required before format specifier characters. The specifiers apply to other functions as well: `STR_TO_DATE()`, `TIME_FORMAT()`, `UNIX_TIMESTAMP()`.
 
-  <table summary="Caracteres especificadores para a função DATE_FORMAT que podem ser usados na string de formato e fornece uma descrição de cada caractere especificador."><col style="width: 20%"/><col style="width: 70%"/><thead><tr> <th>Especificador</th> <th>Descrição</th> </tr></thead><tbody><tr> <td>PH_HTML_CODE_<code>0th</code>]</td> <td>Nome abreviado do dia da semana (PH_HTML_CODE_<code>0th</code>]..PH_HTML_CODE_<code>2nd</code>])</td> </tr><tr> <td>PH_HTML_CODE_<code>3rd</code>]</td> <td>Nome do mês abreviado (PH_HTML_CODE_<code>%d</code>]..PH_HTML_CODE_<code>00</code>])</td> </tr><tr> <td>PH_HTML_CODE_<code>31</code>]</td> <td>Mês, numérico (PH_HTML_CODE_<code>%e</code>]..PH_HTML_CODE_<code>0</code>])</td> </tr><tr> <td>PH_HTML_CODE_<code>31</code>]</td> <td>Dia do mês com sufixo em inglês (<code>0th</code>, <code>Sun</code><code>0th</code>], <code>2nd</code>, <code>3rd</code>, …)</td> </tr><tr> <td><code>%d</code></td> <td>Dia do mês, numérico (<code>00</code>..<code>31</code>)</td> </tr><tr> <td><code>%e</code></td> <td>Dia do mês, numérico (<code>0</code>..<code>31</code>)</td> </tr><tr> <td><code>Sat</code><code>0th</code>]</td> <td>Microssegundos (<code>Sat</code><code>0th</code>]..<code>Sat</code><code>2nd</code>])</td> </tr><tr> <td><code>Sat</code><code>3rd</code>]</td> <td>Hora (<code>Sat</code><code>%d</code>]..<code>Sat</code><code>00</code>])</td> </tr><tr> <td><code>Sat</code><code>31</code>]</td> <td>Hora (<code>Sat</code><code>%e</code>]..<code>Sat</code><code>0</code>])</td> </tr><tr> <td><code>Sat</code><code>31</code>]</td> <td>Hora (<code>%b</code><code>0th</code>]..<code>%b</code><code>0th</code>])</td> </tr><tr> <td><code>%b</code><code>2nd</code>]</td> <td>Minutos, numéricos (<code>%b</code><code>3rd</code>]..<code>%b</code><code>%d</code>])</td> </tr><tr> <td><code>%b</code><code>00</code>]</td> <td>Dia do ano (<code>%b</code><code>31</code>]..<code>%b</code><code>%e</code>])</td> </tr><tr> <td><code>%b</code><code>0</code>]</td> <td>Hora (<code>%b</code><code>31</code>]..<code>Jan</code><code>0th</code>])</td> </tr><tr> <td><code>Jan</code><code>0th</code>]</td> <td>Hora (<code>Jan</code><code>2nd</code>]..<code>Jan</code><code>3rd</code>])</td> </tr><tr> <td><code>Jan</code><code>%d</code>]</td> <td>Nome do mês (<code>Jan</code><code>00</code>]..<code>Jan</code><code>31</code>])</td> </tr><tr> <td><code>Jan</code><code>%e</code>]</td> <td>Mês, numérico (<code>Jan</code><code>0</code>]..<code>Jan</code><code>31</code>])</td> </tr><tr> <td><code>Dec</code><code>0th</code>]</td> <td><code>Dec</code><code>0th</code>] ou <code>Dec</code><code>2nd</code>]</td> </tr><tr> <td><code>Dec</code><code>3rd</code>]</td> <td>Hora, 12 horas (<em><code>Dec</code><code>%d</code>]</em>seguido por <code>Dec</code><code>00</code>] ou <code>Dec</code><code>31</code>])</td> </tr><tr> <td><code>Dec</code><code>%e</code>]</td> <td>Segundos (<code>Dec</code><code>0</code>]..<code>Dec</code><code>31</code>])</td> </tr><tr> <td><code>%c</code><code>0th</code>]</td> <td>Segundos (<code>%c</code><code>0th</code>]..<code>%c</code><code>2nd</code>])</td> </tr><tr> <td><code>%c</code><code>3rd</code>]</td> <td>Tempo, 24 horas (<em><code>%c</code><code>%d</code>]</em>)</td> </tr><tr> <td><code>%c</code><code>00</code>]</td> <td>Semana (<code>%c</code><code>31</code>]..<code>%c</code><code>%e</code>]), onde o domingo é o primeiro dia da semana;<code>%c</code><code>0</code>]modo 0</td> </tr><tr> <td><code>%c</code><code>31</code>]</td> <td>Semana (<code>0</code><code>0th</code>]..<code>0</code><code>0th</code>]), onde segunda-feira é o primeiro dia da semana;<code>0</code><code>2nd</code>]modo 1</td> </tr><tr> <td><code>0</code><code>3rd</code>]</td> <td>Semana (<code>0</code><code>%d</code>]..<code>0</code><code>00</code>]), onde o domingo é o primeiro dia da semana;<code>0</code><code>31</code>]modo 2; usado com <code>0</code><code>%e</code>]</td> </tr><tr> <td><code>0</code><code>0</code>]</td> <td>Semana (<code>0</code><code>31</code>]..<code>12</code><code>0th</code>]), onde segunda-feira é o primeiro dia da semana;<code>12</code><code>0th</code>]modo 3; usado com <code>12</code><code>2nd</code>]</td> </tr><tr> <td><code>12</code><code>3rd</code>]</td> <td>Nome do dia da semana (<code>12</code><code>%d</code>]..<code>12</code><code>00</code>])</td> </tr><tr> <td><code>12</code><code>31</code>]</td> <td>Dia da semana (<code>12</code><code>%e</code>]=Domingo..<code>12</code><code>0</code>]=Sábado)</td> </tr><tr> <td><code>12</code><code>31</code>]</td> <td>Ano da semana em que o domingo é o primeiro dia da semana, numérico, quatro dígitos; usado com <code>%D</code><code>0th</code>]</td> </tr><tr> <td><code>%D</code><code>0th</code>]</td> <td>Ano da semana, onde segunda-feira é o primeiro dia da semana, numérico, quatro dígitos; usado com <code>%D</code><code>2nd</code>]</td> </tr><tr> <td><code>%D</code><code>3rd</code>]</td> <td>Ano, número, quatro dígitos</td> </tr><tr> <td><code>%D</code><code>%d</code>]</td> <td>Ano, numérico (dois dígitos)</td> </tr><tr> <td><code>%D</code><code>00</code>]</td> <td>Um caractere literal <code>%D</code><code>31</code>]</td> </tr><tr> <td><code>%D</code><code>%e</code>]</em></code></td> <td><em><code>%D</code><code>0</code>]</em>, para qualquer<span class="quote">“<span class="quote"><em><code>%D</code><code>31</code>]</em></span>”</span>não listado acima</td> </tr></tbody></table>
+  <table summary="Specifier characters for the DATE_FORMAT function that may be used in the format string and provides a description of each specifier character."><col style="width: 20%"/><col style="width: 70%"/><thead><tr> <th>Specifier</th> <th>Description</th> </tr></thead><tbody><tr> <td><code>%a</code></td> <td>Abbreviated weekday name (<code>Sun</code>..<code>Sat</code>)</td> </tr><tr> <td><code>%b</code></td> <td>Abbreviated month name (<code>Jan</code>..<code>Dec</code>)</td> </tr><tr> <td><code>%c</code></td> <td>Month, numeric (<code>0</code>..<code>12</code>)</td> </tr><tr> <td><code>%D</code></td> <td>Day of the month with English suffix (<code>0th</code>, <code>1st</code>, <code>2nd</code>, <code>3rd</code>, …)</td> </tr><tr> <td><code>%d</code></td> <td>Day of the month, numeric (<code>00</code>..<code>31</code>)</td> </tr><tr> <td><code>%e</code></td> <td>Day of the month, numeric (<code>0</code>..<code>31</code>)</td> </tr><tr> <td><code>%f</code></td> <td>Microseconds (<code>000000</code>..<code>999999</code>)</td> </tr><tr> <td><code>%H</code></td> <td>Hour (<code>00</code>..<code>23</code>)</td> </tr><tr> <td><code>%h</code></td> <td>Hour (<code>01</code>..<code>12</code>)</td> </tr><tr> <td><code>%I</code></td> <td>Hour (<code>01</code>..<code>12</code>)</td> </tr><tr> <td><code>%i</code></td> <td>Minutes, numeric (<code>00</code>..<code>59</code>)</td> </tr><tr> <td><code>%j</code></td> <td>Day of year (<code>001</code>..<code>366</code>)</td> </tr><tr> <td><code>%k</code></td> <td>Hour (<code>0</code>..<code>23</code>)</td> </tr><tr> <td><code>%l</code></td> <td>Hour (<code>1</code>..<code>12</code>)</td> </tr><tr> <td><code>%M</code></td> <td>Month name (<code>January</code>..<code>December</code>)</td> </tr><tr> <td><code>%m</code></td> <td>Month, numeric (<code>00</code>..<code>12</code>)</td> </tr><tr> <td><code>%p</code></td> <td><code>AM</code> or <code>PM</code></td> </tr><tr> <td><code>%r</code></td> <td>Time, 12-hour (<em><code>hh:mm:ss</code></em> followed by <code>AM</code> or <code>PM</code>)</td> </tr><tr> <td><code>%S</code></td> <td>Seconds (<code>00</code>..<code>59</code>)</td> </tr><tr> <td><code>%s</code></td> <td>Seconds (<code>00</code>..<code>59</code>)</td> </tr><tr> <td><code>%T</code></td> <td>Time, 24-hour (<em><code>hh:mm:ss</code></em>)</td> </tr><tr> <td><code>%U</code></td> <td>Week (<code>00</code>..<code>53</code>), where Sunday is the first day of the week; <code>WEEK()</code> mode 0</td> </tr><tr> <td><code>%u</code></td> <td>Week (<code>00</code>..<code>53</code>), where Monday is the first day of the week; <code>WEEK()</code> mode 1</td> </tr><tr> <td><code>%V</code></td> <td>Week (<code>01</code>..<code>53</code>), where Sunday is the first day of the week; <code>WEEK()</code> mode 2; used with <code>%X</code></td> </tr><tr> <td><code>%v</code></td> <td>Week (<code>01</code>..<code>53</code>), where Monday is the first day of the week; <code>WEEK()</code> mode 3; used with <code>%x</code></td> </tr><tr> <td><code>%W</code></td> <td>Weekday name (<code>Sunday</code>..<code>Saturday</code>)</td> </tr><tr> <td><code>%w</code></td> <td>Day of the week (<code>0</code>=Sunday..<code>6</code>=Saturday)</td> </tr><tr> <td><code>%X</code></td> <td>Year for the week where Sunday is the first day of the week, numeric, four digits; used with <code>%V</code></td> </tr><tr> <td><code>%x</code></td> <td>Year for the week, where Monday is the first day of the week, numeric, four digits; used with <code>%v</code></td> </tr><tr> <td><code>%Y</code></td> <td>Year, numeric, four digits</td> </tr><tr> <td><code>%y</code></td> <td>Year, numeric (two digits)</td> </tr><tr> <td><code>%%</code></td> <td>A literal <code>%</code> character</td> </tr><tr> <td><code>%<em><code>x</code></em></code></td> <td><em><code>x</code></em>, for any <span class="quote">“<span class="quote"><em><code>x</code></em></span>”</span> not listed above</td> </tr></tbody></table>
 
-  Os intervalos para os especificadores de mês e dia começam com zero, devido ao fato de que o MySQL permite o armazenamento de datas incompletas, como `'2014-00-00'`.
+  Ranges for the month and day specifiers begin with zero due to the fact that MySQL permits the storing of incomplete dates such as `'2014-00-00'`.
 
-  O idioma usado para nomes de dia e mês e abreviações é controlado pelo valor da variável de sistema `lc_time_names` (Seção 10.16, “Suporte de Localização do Servidor MySQL”).
+  The language used for day and month names and abbreviations is controlled by the value of the `lc_time_names` system variable (Section 10.16, “MySQL Server Locale Support”).
 
-  Para os especificadores `%U`, `%u`, `%V` e `%v`, consulte a descrição da função `WEEK()` para obter informações sobre os valores do modo. O modo afeta a forma como a numeração da semana ocorre.
+  For the `%U`, `%u`, `%V`, and `%v` specifiers, see the description of the `WEEK()` function for information about the mode values. The mode affects how week numbering occurs.
 
-  `DATE_FORMAT()` retorna uma string com um conjunto de caracteres e uma ordenação definidos por `character_set_connection` e `collation_connection`, para que possa retornar nomes de mês e dia da semana contendo caracteres não ASCII.
+  `DATE_FORMAT()` returns a string with a character set and collation given by `character_set_connection` and `collation_connection` so that it can return month and weekday names containing non-ASCII characters.
 
   ```sql
   mysql> SELECT DATE_FORMAT('2009-10-04 22:23:00', '%W %M %Y');
@@ -232,53 +232,53 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
           -> '00'
   ```
 
-- `DATE_SUB(data, INTERVAL expr unidade)`
+* `DATE_SUB(date,INTERVAL expr unit)`
 
-  Veja a descrição de `DATE_ADD()`.
+  See the description for `DATE_ADD()`.
 
-- `DIA(data)`
+* `DAY(date)`
 
-  `DAY()` é um sinônimo de `DAYOFMONTH()`.
+  `DAY()` is a synonym for `DAYOFMONTH()`.
 
-- `DAYNAME(data)`
+* `DAYNAME(date)`
 
-  Retorna o nome do dia da semana para *`date`*. A linguagem usada para o nome é controlada pelo valor da variável de sistema `lc_time_names` (Seção 10.16, “Suporte de Localização do Servidor MySQL”).
+  Returns the name of the weekday for *`date`*. The language used for the name is controlled by the value of the `lc_time_names` system variable (Section 10.16, “MySQL Server Locale Support”).
 
   ```sql
   mysql> SELECT DAYNAME('2007-02-03');
           -> 'Saturday'
   ```
 
-- `DAYOFMONTH(data)`
+* `DAYOFMONTH(date)`
 
-  Retorna o dia do mês para *`data`*, no intervalo de `1` a `31`, ou `0` para datas como `'0000-00-00'` ou `'2008-00-00'` que têm uma parte do dia zero.
+  Returns the day of the month for *`date`*, in the range `1` to `31`, or `0` for dates such as `'0000-00-00'` or `'2008-00-00'` that have a zero day part.
 
   ```sql
   mysql> SELECT DAYOFMONTH('2007-02-03');
           -> 3
   ```
 
-- `DAYOFWEEK(data)`
+* `DAYOFWEEK(date)`
 
-  Retorna o índice do dia da semana para *`data`* (`1` = domingo, `2` = segunda-feira, …, `7` = sábado). Esses valores de índice correspondem ao padrão ODBC.
+  Returns the weekday index for *`date`* (`1` = Sunday, `2` = Monday, …, `7` = Saturday). These index values correspond to the ODBC standard.
 
   ```sql
   mysql> SELECT DAYOFWEEK('2007-02-03');
           -> 7
   ```
 
-- `DAYOFYEAR(data)`
+* `DAYOFYEAR(date)`
 
-  Retorna o dia do ano para *`data`*, no intervalo de `1` a `366`.
+  Returns the day of the year for *`date`*, in the range `1` to `366`.
 
   ```sql
   mysql> SELECT DAYOFYEAR('2007-02-03');
           -> 34
   ```
 
-- `EXTRACT(unidade DE data)`
+* `EXTRACT(unit FROM date)`
 
-  A função `EXTRACT()` usa os mesmos tipos de especificadores de *`unidade`* que `DATE_ADD()` ou `DATE_SUB()`, mas extrai partes da data em vez de realizar operações aritméticas com datas. Para obter informações sobre o argumento *`unidade`*, consulte Intervalos Temporais.
+  The `EXTRACT()` function uses the same kinds of *`unit`* specifiers as `DATE_ADD()` or `DATE_SUB()`, but extracts parts from the date rather than performing date arithmetic. For information on the *`unit`* argument, see Temporal Intervals.
 
   ```sql
   mysql> SELECT EXTRACT(YEAR FROM '2019-07-02');
@@ -292,26 +292,26 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
           -> 123
   ```
 
-- `DE_DIAS(N)`
+* `FROM_DAYS(N)`
 
-  Dado um número de dia *`N`*, retorna um valor `DATE`.
+  Given a day number *`N`*, returns a `DATE` value.
 
   ```sql
   mysql> SELECT FROM_DAYS(730669);
           -> '2000-07-03'
   ```
 
-  Use `FROM_DAYS()` com cautela em datas antigas. Não é destinado para uso com valores que precedem o advento do calendário gregoriano (1582). Consulte a Seção 11.2.8, “Qual calendário é usado pelo MySQL?”.
+  Use `FROM_DAYS()` with caution on old dates. It is not intended for use with values that precede the advent of the Gregorian calendar (1582). See Section 11.2.8, “What Calendar Is Used By MySQL?”.
 
-- `FROM_UNIXTIME(unix_timestamp[, format])`
+* `FROM_UNIXTIME(unix_timestamp[,format])`
 
-  Retorna uma representação de *`unix_timestamp`* como um valor de data/hora ou string de caracteres. O valor retornado é expresso usando o fuso horário da sessão. (Os clientes podem definir o fuso horário da sessão conforme descrito na Seção 5.1.13, “Suporte ao Fuso Horário do MySQL Server”.) *`unix_timestamp`* é um valor de timestamp interno que representa segundos desde `'1970-01-01 00:00:00'` UTC, como produzido pela função `UNIX_TIMESTAMP()`.
+  Returns a representation of *`unix_timestamp`* as a datetime or character string value. The value returned is expressed using the session time zone. (Clients can set the session time zone as described in Section 5.1.13, “MySQL Server Time Zone Support”.) *`unix_timestamp`* is an internal timestamp value representing seconds since `'1970-01-01 00:00:00'` UTC, such as produced by the `UNIX_TIMESTAMP()` function.
 
-  Se o `format` for omitido, essa função retorna um valor `DATETIME`.
+  If *`format`* is omitted, this function returns a `DATETIME` value.
 
-  Se *`unix_timestamp`* for um inteiro, a precisão de fração de segundo do `DATETIME` é zero. Quando *`unix_timestamp`* for um valor decimal, a precisão de fração de segundo do `DATETIME` será a mesma da precisão do valor decimal, até um máximo de 6. Quando *`unix_timestamp`* for um número de ponto flutuante, a precisão de fração de segundo do `DATETIME` será de 6.
+  If *`unix_timestamp`* is an integer, the fractional seconds precision of the `DATETIME` is zero. When *`unix_timestamp`* is a decimal value, the fractional seconds precision of the `DATETIME` is the same as the precision of the decimal value, up to a maximum of 6. When *`unix_timestamp`* is a floating point number, the fractional seconds precision of the datetime is 6.
 
-  O *`format`* é usado para formatar o resultado da mesma maneira que a string de formato usada para a função `DATE_FORMAT()`. Se o *`format`* for fornecido, o valor retornado é um `VARCHAR`.
+  *`format`* is used to format the result in the same way as the format string used for the `DATE_FORMAT()` function. If *`format`* is supplied, the value returned is a `VARCHAR`.
 
   ```sql
   mysql> SELECT FROM_UNIXTIME(1447430881);
@@ -323,19 +323,19 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
           -> '2015 13th November 10:08:01 2015'
   ```
 
-  Nota
+  Note
 
-  Se você usar `UNIX_TIMESTAMP()` e `FROM_UNIXTIME()` para converter entre valores em um fuso horário não UTC e valores de timestamp Unix, a conversão é perda de dados porque a correspondência não é um para um em ambas as direções. Para obter detalhes, consulte a descrição da função `UNIX_TIMESTAMP()`.
+  If you use `UNIX_TIMESTAMP()` and `FROM_UNIXTIME()` to convert between values in a non-UTC time zone and Unix timestamp values, the conversion is lossy because the mapping is not one-to-one in both directions. For details, see the description of the `UNIX_TIMESTAMP()` function.
 
-- `GET_FORMAT({DATA|HORA|DATA_HORÁRIA}, {'EUR'|'EUA'|'JIS'|'ISO'|'INTERNO'})`
+* `GET_FORMAT({DATE|TIME|DATETIME}, {'EUR'|'USA'|'JIS'|'ISO'|'INTERNAL'})`
 
-  Retorna uma string de formato. Esta função é útil em combinação com as funções `DATE_FORMAT()` e `STR_TO_DATE()`.
+  Returns a format string. This function is useful in combination with the `DATE_FORMAT()` and the `STR_TO_DATE()` functions.
 
-  Os possíveis valores para o primeiro e segundo argumentos resultam em várias strings de formato possíveis (para os especificadores usados, consulte a tabela na descrição da função `DATE_FORMAT()`). O formato ISO refere-se à ISO 9715, não à ISO 8601.
+  The possible values for the first and second arguments result in several possible format strings (for the specifiers used, see the table in the `DATE_FORMAT()` function description). ISO format refers to ISO 9075, not ISO 8601.
 
-  <table summary="As funções solicitam a função GET_FORMAT, juntamente com os resultados de cada chamada de função."><col style="width: 60%"/><col style="width: 40%"/><thead><tr> <th>Chamada de função</th> <th>Resultado</th> </tr></thead><tbody><tr> <td>PH_HTML_CODE_<code>GET_FORMAT(DATETIME,'USA')</code>]</td> <td>PH_HTML_CODE_<code>GET_FORMAT(DATETIME,'USA')</code>]</td> </tr><tr> <td>PH_HTML_CODE_<code>GET_FORMAT(DATETIME,'JIS')</code>]</td> <td>PH_HTML_CODE_<code>'%Y-%m-%d %H:%i:%s'</code>]</td> </tr><tr> <td>PH_HTML_CODE_<code>GET_FORMAT(DATETIME,'ISO')</code>]</td> <td>PH_HTML_CODE_<code>'%Y-%m-%d %H:%i:%s'</code>]</td> </tr><tr> <td>PH_HTML_CODE_<code>GET_FORMAT(DATETIME,'EUR')</code>]</td> <td>PH_HTML_CODE_<code>'%Y-%m-%d %H.%i.%s'</code>]</td> </tr><tr> <td>PH_HTML_CODE_<code>GET_FORMAT(DATETIME,'INTERNAL')</code>]</td> <td>PH_HTML_CODE_<code>'%Y%m%d%H%i%s'</code>]</td> </tr><tr> <td><code>GET_FORMAT(DATETIME,'USA')</code></td> <td><code>'%m.%d.%Y'</code><code>GET_FORMAT(DATETIME,'USA')</code>]</td> </tr><tr> <td><code>GET_FORMAT(DATETIME,'JIS')</code></td> <td><code>'%Y-%m-%d %H:%i:%s'</code></td> </tr><tr> <td><code>GET_FORMAT(DATETIME,'ISO')</code></td> <td><code>'%Y-%m-%d %H:%i:%s'</code></td> </tr><tr> <td><code>GET_FORMAT(DATETIME,'EUR')</code></td> <td><code>'%Y-%m-%d %H.%i.%s'</code></td> </tr><tr> <td><code>GET_FORMAT(DATETIME,'INTERNAL')</code></td> <td><code>'%Y%m%d%H%i%s'</code></td> </tr><tr> <td><code>GET_FORMAT(DATE,'JIS')</code><code>GET_FORMAT(DATETIME,'USA')</code>]</td> <td><code>GET_FORMAT(DATE,'JIS')</code><code>GET_FORMAT(DATETIME,'USA')</code>]</td> </tr><tr> <td><code>GET_FORMAT(DATE,'JIS')</code><code>GET_FORMAT(DATETIME,'JIS')</code>]</td> <td><code>GET_FORMAT(DATE,'JIS')</code><code>'%Y-%m-%d %H:%i:%s'</code>]</td> </tr><tr> <td><code>GET_FORMAT(DATE,'JIS')</code><code>GET_FORMAT(DATETIME,'ISO')</code>]</td> <td><code>GET_FORMAT(DATE,'JIS')</code><code>'%Y-%m-%d %H:%i:%s'</code>]</td> </tr><tr> <td><code>GET_FORMAT(DATE,'JIS')</code><code>GET_FORMAT(DATETIME,'EUR')</code>]</td> <td><code>GET_FORMAT(DATE,'JIS')</code><code>'%Y-%m-%d %H.%i.%s'</code>]</td> </tr><tr> <td><code>GET_FORMAT(DATE,'JIS')</code><code>GET_FORMAT(DATETIME,'INTERNAL')</code>]</td> <td><code>GET_FORMAT(DATE,'JIS')</code><code>'%Y%m%d%H%i%s'</code>]</td> </tr></tbody></table>
+  <table summary="Function calls for the GET_FORMAT function along with results for each function call."><col style="width: 60%"/><col style="width: 40%"/><thead><tr> <th>Function Call</th> <th>Result</th> </tr></thead><tbody><tr> <td><code>GET_FORMAT(DATE,'USA')</code></td> <td><code>'%m.%d.%Y'</code></td> </tr><tr> <td><code>GET_FORMAT(DATE,'JIS')</code></td> <td><code>'%Y-%m-%d'</code></td> </tr><tr> <td><code>GET_FORMAT(DATE,'ISO')</code></td> <td><code>'%Y-%m-%d'</code></td> </tr><tr> <td><code>GET_FORMAT(DATE,'EUR')</code></td> <td><code>'%d.%m.%Y'</code></td> </tr><tr> <td><code>GET_FORMAT(DATE,'INTERNAL')</code></td> <td><code>'%Y%m%d'</code></td> </tr><tr> <td><code>GET_FORMAT(DATETIME,'USA')</code></td> <td><code>'%Y-%m-%d %H.%i.%s'</code></td> </tr><tr> <td><code>GET_FORMAT(DATETIME,'JIS')</code></td> <td><code>'%Y-%m-%d %H:%i:%s'</code></td> </tr><tr> <td><code>GET_FORMAT(DATETIME,'ISO')</code></td> <td><code>'%Y-%m-%d %H:%i:%s'</code></td> </tr><tr> <td><code>GET_FORMAT(DATETIME,'EUR')</code></td> <td><code>'%Y-%m-%d %H.%i.%s'</code></td> </tr><tr> <td><code>GET_FORMAT(DATETIME,'INTERNAL')</code></td> <td><code>'%Y%m%d%H%i%s'</code></td> </tr><tr> <td><code>GET_FORMAT(TIME,'USA')</code></td> <td><code>'%h:%i:%s %p'</code></td> </tr><tr> <td><code>GET_FORMAT(TIME,'JIS')</code></td> <td><code>'%H:%i:%s'</code></td> </tr><tr> <td><code>GET_FORMAT(TIME,'ISO')</code></td> <td><code>'%H:%i:%s'</code></td> </tr><tr> <td><code>GET_FORMAT(TIME,'EUR')</code></td> <td><code>'%H.%i.%s'</code></td> </tr><tr> <td><code>GET_FORMAT(TIME,'INTERNAL')</code></td> <td><code>'%H%i%s'</code></td> </tr></tbody></table>
 
-  `TIMESTAMP` também pode ser usado como o primeiro argumento de `GET_FORMAT()`, nesse caso, a função retorna os mesmos valores que para `DATETIME`.
+  `TIMESTAMP` can also be used as the first argument to `GET_FORMAT()`, in which case the function returns the same values as for `DATETIME`.
 
   ```sql
   mysql> SELECT DATE_FORMAT('2003-10-03',GET_FORMAT(DATE,'EUR'));
@@ -344,9 +344,9 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
           -> '2003-10-31'
   ```
 
-- `HOUR(hora)`
+* `HOUR(time)`
 
-  Retorna a hora para *`time`*. O intervalo do valor de retorno é de `0` a `23` para valores de hora do dia. No entanto, o intervalo dos valores de `TIME` é muito maior, então `HOUR` pode retornar valores maiores que `23`.
+  Returns the hour for *`time`*. The range of the return value is `0` to `23` for time-of-day values. However, the range of `TIME` values actually is much larger, so `HOUR` can return values greater than `23`.
 
   ```sql
   mysql> SELECT HOUR('10:05:03');
@@ -355,9 +355,9 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
           -> 272
   ```
 
-- `Último dia(data)`
+* `LAST_DAY(date)`
 
-  Toma um valor de data ou datetime e retorna o valor correspondente para o último dia do mês. Retorna `NULL` se o argumento for inválido.
+  Takes a date or datetime value and returns the corresponding value for the last day of the month. Returns `NULL` if the argument is invalid.
 
   ```sql
   mysql> SELECT LAST_DAY('2003-02-05');
@@ -370,17 +370,17 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
           -> NULL
   ```
 
-- `LOCALTIME`, `LOCALTIME([fsp])`
+* `LOCALTIME`, `LOCALTIME([fsp])`
 
-  `LOCALTIME` e `LOCALTIME()` são sinônimos de `NOW()`.
+  `LOCALTIME` and `LOCALTIME()` are synonyms for `NOW()`.
 
-- `LOCALTIMESTAMP`, `LOCALTIMESTAMP([fsp])`
+* `LOCALTIMESTAMP`, `LOCALTIMESTAMP([fsp])`
 
-  `LOCALTIMESTAMP` e `LOCALTIMESTAMP()` são sinônimos de `NOW()`.
+  `LOCALTIMESTAMP` and `LOCALTIMESTAMP()` are synonyms for `NOW()`.
 
-- `MAKEDATE(ano, dia do ano)`
+* `MAKEDATE(year,dayofyear)`
 
-  Retorna uma data, com base em valores de ano e dia do ano. *`dayofyear`* deve ser maior que 0 ou o resultado será `NULL`.
+  Returns a date, given year and day-of-year values. *`dayofyear`* must be greater than 0 or the result is `NULL`.
 
   ```sql
   mysql> SELECT MAKEDATE(2011,31), MAKEDATE(2011,32);
@@ -391,20 +391,20 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
           -> NULL
   ```
 
-- `MAKETIME(hora, minuto, segundo)`
+* `MAKETIME(hour,minute,second)`
 
-  Retorna um valor de tempo calculado a partir dos argumentos *`hora`*, *`minuto`* e *`segundo`*.
+  Returns a time value calculated from the *`hour`*, *`minute`*, and *`second`* arguments.
 
-  O argumento *`segundo`* pode ter uma parte fracionária.
+  The *`second`* argument can have a fractional part.
 
   ```sql
   mysql> SELECT MAKETIME(12,15,30);
           -> '12:15:30'
   ```
 
-- `MICROSEGUNDO(expr)`
+* `MICROSECOND(expr)`
 
-  Retorna os microsegundos a partir da expressão de data e hora *`expr`* como um número no intervalo de `0` a `999999`.
+  Returns the microseconds from the time or datetime expression *`expr`* as a number in the range from `0` to `999999`.
 
   ```sql
   mysql> SELECT MICROSECOND('12:00:00.123456');
@@ -413,38 +413,38 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
           -> 10
   ```
 
-- `MINUTE(hora)`
+* `MINUTE(time)`
 
-  Retorna o minuto de *`time`*, no intervalo de `0` a `59`.
+  Returns the minute for *`time`*, in the range `0` to `59`.
 
   ```sql
   mysql> SELECT MINUTE('2008-02-03 10:05:03');
           -> 5
   ```
 
-- `MÊS(data)`
+* `MONTH(date)`
 
-  Retorna o mês de *`data`*, no intervalo de `1` a `12` para janeiro a dezembro, ou `0` para datas como `'0000-00-00'` ou `'2008-00-00'` que têm uma parte de mês zero.
+  Returns the month for *`date`*, in the range `1` to `12` for January to December, or `0` for dates such as `'0000-00-00'` or `'2008-00-00'` that have a zero month part.
 
   ```sql
   mysql> SELECT MONTH('2008-02-03');
           -> 2
   ```
 
-- `MONTHNAME(data)`
+* `MONTHNAME(date)`
 
-  Retorna o nome completo do mês para *`date`*. A linguagem usada para o nome é controlada pelo valor da variável de sistema `lc_time_names` (Seção 10.16, “Suporte de Localização do Servidor MySQL”).
+  Returns the full name of the month for *`date`*. The language used for the name is controlled by the value of the `lc_time_names` system variable (Section 10.16, “MySQL Server Locale Support”).
 
   ```sql
   mysql> SELECT MONTHNAME('2008-02-03');
           -> 'February'
   ```
 
-- `NOW([fsp])`
+* `NOW([fsp])`
 
-  Retorna a data e hora atuais como um valor no formato `'YYYY-MM-DD hh:mm:ss'` ou *`YYYYMMDDhhmmss`* dependendo se a função é usada em contexto de string ou numérico. O valor é expresso no fuso horário da sessão.
+  Returns the current date and time as a value in `'YYYY-MM-DD hh:mm:ss'` or *`YYYYMMDDhhmmss`* format, depending on whether the function is used in string or numeric context. The value is expressed in the session time zone.
 
-  Se o argumento *`fsp`* for fornecido para especificar uma precisão de segundos fracionários de 0 a 6, o valor de retorno inclui uma parte de segundos fracionários com tantos dígitos quanto especificado.
+  If the *`fsp`* argument is given to specify a fractional seconds precision from 0 to 6, the return value includes a fractional seconds part of that many digits.
 
   ```sql
   mysql> SELECT NOW();
@@ -453,7 +453,7 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
           -> 20071215235026.000000
   ```
 
-  `NOW()` retorna um tempo constante que indica a hora em que a instrução começou a ser executada. (Dentro de uma função ou gatilho armazenado, `NOW()` retorna a hora em que a função ou a instrução de gatilho começou a ser executada.) Isso difere do comportamento da função `SYSDATE()`, que retorna o tempo exato em que ela é executada.
+  `NOW()` returns a constant time that indicates the time at which the statement began to execute. (Within a stored function or trigger, `NOW()` returns the time at which the function or triggering statement began to execute.) This differs from the behavior for `SYSDATE()`, which returns the exact time at which it executes.
 
   ```sql
   mysql> SELECT NOW(), SLEEP(2), NOW();
@@ -471,53 +471,53 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
   +---------------------+----------+---------------------+
   ```
 
-  Além disso, a instrução `SET TIMESTAMP` afeta o valor retornado por `NOW()` mas não por `SYSDATE()`. Isso significa que as configurações de marcação de tempo no log binário não têm efeito nas chamadas de `SYSDATE()`. Definir o timestamp para um valor não nulo faz com que cada chamada subsequente de `NOW()` retorne esse valor. Definir o timestamp para zero cancela esse efeito, de modo que `NOW()` novamente retorne a data e a hora atuais.
+  In addition, the `SET TIMESTAMP` statement affects the value returned by `NOW()` but not by `SYSDATE()`. This means that timestamp settings in the binary log have no effect on invocations of `SYSDATE()`. Setting the timestamp to a nonzero value causes each subsequent invocation of `NOW()` to return that value. Setting the timestamp to zero cancels this effect so that `NOW()` once again returns the current date and time.
 
-  Consulte a descrição da função `SYSDATE()` para obter informações adicionais sobre as diferenças entre as duas funções.
+  See the description for `SYSDATE()` for additional information about the differences between the two functions.
 
-- `PERIOD_ADD(P, N)`
+* `PERIOD_ADD(P,N)`
 
-  Aumenta *`N`* meses ao período *`P`* (no formato *`YYMM`* ou *`YYYYMM`*). Retorna um valor no formato *`YYYYMM`*.
+  Adds *`N`* months to period *`P`* (in the format *`YYMM`* or *`YYYYMM`*). Returns a value in the format *`YYYYMM`*.
 
-  Nota
+  Note
 
-  O argumento de período *`P`* *não* é um valor de data.
+  The period argument *`P`* is *not* a date value.
 
   ```sql
   mysql> SELECT PERIOD_ADD(200801,2);
           -> 200803
   ```
 
-- `PERIOD_DIFF(P1, P2)`
+* `PERIOD_DIFF(P1,P2)`
 
-  Retorna o número de meses entre os períodos *`P1`* e *`P2`*. *`P1`* e *`P2`* devem estar no formato *`YYMM`* ou *`YYYYMM`*. Observe que os argumentos de período *`P1`* e *`P2`* *não* são valores de data.
+  Returns the number of months between periods *`P1`* and *`P2`*. *`P1`* and *`P2`* should be in the format *`YYMM`* or *`YYYYMM`*. Note that the period arguments *`P1`* and *`P2`* are *not* date values.
 
   ```sql
   mysql> SELECT PERIOD_DIFF(200802,200703);
           -> 11
   ```
 
-- `QUARTO(data)`
+* `QUARTER(date)`
 
-  Retorna o trimestre do ano para *`data`*, na faixa de `1` a `4`.
+  Returns the quarter of the year for *`date`*, in the range `1` to `4`.
 
   ```sql
   mysql> SELECT QUARTER('2008-04-01');
           -> 2
   ```
 
-- `SECOND(time)`
+* `SECOND(time)`
 
-  Retorna o segundo para *`time`*, na faixa de `0` a `59`.
+  Returns the second for *`time`*, in the range `0` to `59`.
 
   ```sql
   mysql> SELECT SECOND('10:05:03');
           -> 3
   ```
 
-- `SEC_TO_TIME(segundos)`
+* `SEC_TO_TIME(seconds)`
 
-  Retorna o argumento *`seconds`*, convertido em horas, minutos e segundos, como um valor `TIME`. A faixa do resultado é limitada à do tipo de dados `TIME`. Um aviso é exibido se o argumento corresponder a um valor fora dessa faixa.
+  Returns the *`seconds`* argument, converted to hours, minutes, and seconds, as a `TIME` value. The range of the result is constrained to that of the `TIME` data type. A warning occurs if the argument corresponds to a value outside that range.
 
   ```sql
   mysql> SELECT SEC_TO_TIME(2378);
@@ -526,11 +526,11 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
           -> 3938
   ```
 
-- `STR_TO_DATE(str, format)`
+* `STR_TO_DATE(str,format)`
 
-  Este é o inverso da função `DATE_FORMAT()`. Ele recebe uma string *`str`* e uma string de formato *`format`*. `STR_TO_DATE()` retorna um valor `DATETIME` se a string de formato contiver partes de data e hora, ou um valor `DATE` ou `TIME` se a string contiver apenas partes de data ou hora. Se *`str`* ou *`format`* for `NULL`, a função retorna `NULL`. Se o valor de data, hora ou datetime extraído de *`str`* não puder ser analisado de acordo com as regras seguidas pelo servidor, `STR_TO_DATE()` retorna `NULL` e produz um aviso.
+  This is the inverse of the `DATE_FORMAT()` function. It takes a string *`str`* and a format string *`format`*. `STR_TO_DATE()` returns a `DATETIME` value if the format string contains both date and time parts, or a `DATE` or `TIME` value if the string contains only date or time parts. If *`str`* or *`format`* is `NULL`, the function returns `NULL`. If the date, time, or datetime value extracted from *`str`* cannot be parsed according to the rules followed by the server, `STR_TO_DATE()` returns `NULL` and produces a warning.
 
-  O servidor verifica *`str`* tentando combinar *`format`* com ele. A string de formato pode conter caracteres literais e especificadores de formato que começam com `%`. Os caracteres literais em *`format`* devem corresponder literalmente em *`str`*. Os especificadores de formato em *`format`* devem corresponder a uma parte de data ou hora em *`str`*. Para os especificadores que podem ser usados em *`format`*, consulte a descrição da função `DATE_FORMAT()`.
+  The server scans *`str`* attempting to match *`format`* to it. The format string can contain literal characters and format specifiers beginning with `%`. Literal characters in *`format`* must match literally in *`str`*. Format specifiers in *`format`* must match a date or time part in *`str`*. For the specifiers that can be used in *`format`*, see the `DATE_FORMAT()` function description.
 
   ```sql
   mysql> SELECT STR_TO_DATE('01,5,2013','%d,%m,%Y');
@@ -539,7 +539,7 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
           -> '2013-05-01'
   ```
 
-  A varredura começa no início de *`str`* e falha se *`format`* não corresponder. Os caracteres extras no final de *`str`* são ignorados.
+  Scanning starts at the beginning of *`str`* and fails if *`format`* is found not to match. Extra characters at the end of *`str`* are ignored.
 
   ```sql
   mysql> SELECT STR_TO_DATE('a09:30:17','a%h:%i:%s');
@@ -550,7 +550,7 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
           -> '09:30:17'
   ```
 
-  As partes de data ou hora não especificadas têm um valor de 0, portanto, valores incompletamente especificados em *`str`* produzem um resultado com algumas ou todas as partes definidas como 0:
+  Unspecified date or time parts have a value of 0, so incompletely specified values in *`str`* produce a result with some or all parts set to 0:
 
   ```sql
   mysql> SELECT STR_TO_DATE('abc','abc');
@@ -561,7 +561,7 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
           -> '00:00:09'
   ```
 
-  A verificação de intervalo das partes dos valores de data é conforme descrito na Seção 11.2.2, “Os tipos DATE, DATETIME e TIMESTAMP”. Isso significa, por exemplo, que datas “zero” ou datas com valores de parte de 0 são permitidas, a menos que o modo SQL esteja configurado para não permitir tais valores.
+  Range checking on the parts of date values is as described in Section 11.2.2, “The DATE, DATETIME, and TIMESTAMP Types”. This means, for example, that “zero” dates or dates with part values of 0 are permitted unless the SQL mode is set to disallow such values.
 
   ```sql
   mysql> SELECT STR_TO_DATE('00/00/0000', '%m/%d/%Y');
@@ -570,7 +570,7 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
           -> '2004-04-31'
   ```
 
-  Se o modo SQL `NO_ZERO_DATE` estiver habilitado, datas nulos não serão permitidas. Nesse caso, `STR_TO_DATE()` retorna `NULL` e gera uma mensagem de aviso:
+  If the `NO_ZERO_DATE` SQL mode is enabled, zero dates are disallowed. In that case, `STR_TO_DATE()` returns `NULL` and generates a warning:
 
   ```sql
   mysql> SET sql_mode = '';
@@ -594,22 +594,22 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
   Message: Incorrect datetime value: '00/00/0000' for function str_to_date
   ```
 
-  Antes do MySQL 5.7.44, era possível passar uma string de data inválida, como `'2021-11-31'`, para essa função. No MySQL 5.7.44 e versões posteriores, o `STR_TO_DATE()` realiza uma verificação completa da faixa e levanta um erro se a data após a conversão for inválida.
+  Prior to MySQL 5.7.44, it was possible to pass an invalid date string such as `'2021-11-31'` to this function. In MySQL 5.7.44 and later, `STR_TO_DATE()` performs complete range checking and raises an error if the date after conversion would be invalid.
 
-  Nota
+  Note
 
-  Você não pode usar o formato `%X%V` para converter uma string de ano-semana em uma data, porque a combinação de um ano e uma semana não identifica de forma única um ano e um mês se a semana atravessar uma fronteira de mês. Para converter um ano-semana em uma data, você também deve especificar o dia da semana:
+  You cannot use format `"%X%V"` to convert a year-week string to a date because the combination of a year and week does not uniquely identify a year and month if the week crosses a month boundary. To convert a year-week to a date, you should also specify the weekday:
 
   ```sql
   mysql> SELECT STR_TO_DATE('200442 Monday', '%X%V %W');
           -> '2004-10-18'
   ```
 
-  Você também deve estar ciente de que, para datas e partes da data de valores datetime, `STR_TO_DATE()` verifica (apenas) o ano, mês e dia do mês individuais para validade. Mais precisamente, isso significa que o ano é verificado para garantir que esteja no intervalo de 0-9999, inclusive, o mês é verificado para garantir que esteja no intervalo de 1-12, inclusive, e o dia do mês é verificado para garantir que esteja no intervalo de 1-31, inclusive, mas o servidor não verifica os valores em combinação. Por exemplo, `SELECT STR_TO_DATE('23-2-31', '%Y-%m-%d')` retorna `2023-02-31`. Ativação ou desativação do modo SQL do servidor `ALLOW_INVALID_DATES` não tem efeito sobre esse comportamento. Consulte a Seção 11.2.2, “Os tipos DATE, DATETIME e TIMESTAMP”, para obter mais informações.
+  You should also be aware that, for dates and the date portions of datetime values, `STR_TO_DATE()` checks (only) the individual year, month, and day of month values for validity. More precisely, this means that the year is checked to be sure that it is in the range 0-9999 inclusive, the month is checked to ensure that it is in the range 1-12 inclusive, and the day of month is checked to make sure that it is in the range 1-31 inclusive, but the server does not check the values in combination. For example, `SELECT STR_TO_DATE('23-2-31', '%Y-%m-%d')` returns `2023-02-31`. Enabling or disabling the `ALLOW_INVALID_DATES` server SQL mode has no effect on this behavior. See Section 11.2.2, “The DATE, DATETIME, and TIMESTAMP Types”, for more information.
 
-- `SUBDATE(data, INTERVAL expr unit)`, `SUBDATE(expr, dias)`
+* `SUBDATE(date,INTERVAL expr unit)`, `SUBDATE(expr,days)`
 
-  Quando invocado com a forma `INTERVAL` do segundo argumento, `SUBDATE()` é sinônimo de `DATE_SUB()`. Para informações sobre o argumento `INTERVAL *`unidade`, consulte a discussão sobre `DATE_ADD()\`.
+  When invoked with the `INTERVAL` form of the second argument, `SUBDATE()` is a synonym for `DATE_SUB()`. For information on the `INTERVAL` *`unit`* argument, see the discussion for `DATE_ADD()`.
 
   ```sql
   mysql> SELECT DATE_SUB('2008-01-02', INTERVAL 31 DAY);
@@ -618,16 +618,16 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
           -> '2007-12-02'
   ```
 
-  A segunda forma permite o uso de um valor inteiro para *`days`*. Nesse caso, ele é interpretado como o número de dias a serem subtraídos da expressão de data ou datetime *`expr`*.
+  The second form enables the use of an integer value for *`days`*. In such cases, it is interpreted as the number of days to be subtracted from the date or datetime expression *`expr`*.
 
   ```sql
   mysql> SELECT SUBDATE('2008-01-02 12:00:00', 31);
           -> '2007-12-02 12:00:00'
   ```
 
-- `SUBTIME(expr1, expr2)`
+* `SUBTIME(expr1,expr2)`
 
-  `SUBTIME()` retorna *`expr1`* − *`expr2`* expresso como um valor no mesmo formato que *`expr1`*. *`expr1`* é uma expressão de hora ou data e hora, e *`expr2`* é uma expressão de hora.
+  `SUBTIME()` returns *`expr1`* − *`expr2`* expressed as a value in the same format as *`expr1`*. *`expr1`* is a time or datetime expression, and *`expr2`* is a time expression.
 
   ```sql
   mysql> SELECT SUBTIME('2007-12-31 23:59:59.999999','1 1:1:1.000002');
@@ -636,13 +636,13 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
           -> '-00:59:59.999999'
   ```
 
-- `SYSDATE([fsp])`
+* `SYSDATE([fsp])`
 
-  Retorna a data e a hora atuais como um valor no formato `'YYYY-MM-DD hh:mm:ss'` ou *`YYYYMMDDhhmmss`*, dependendo se a função é usada em contexto de string ou numérico.
+  Returns the current date and time as a value in `'YYYY-MM-DD hh:mm:ss'` or *`YYYYMMDDhhmmss`* format, depending on whether the function is used in string or numeric context.
 
-  Se o argumento *`fsp`* for fornecido para especificar uma precisão de segundos fracionários de 0 a 6, o valor de retorno inclui uma parte de segundos fracionários com tantos dígitos quanto especificado.
+  If the *`fsp`* argument is given to specify a fractional seconds precision from 0 to 6, the return value includes a fractional seconds part of that many digits.
 
-  `SYSDATE()` retorna a hora em que é executado. Isso difere do comportamento da função `NOW()`, que retorna uma hora constante que indica a hora em que a instrução começou a ser executada. (Dentro de uma função armazenada ou um gatilho, `NOW()` retorna a hora em que a função ou a instrução de gatilho começou a ser executada.)
+  `SYSDATE()` returns the time at which it executes. This differs from the behavior for `NOW()`, which returns a constant time that indicates the time at which the statement began to execute. (Within a stored function or trigger, `NOW()` returns the time at which the function or triggering statement began to execute.)
 
   ```sql
   mysql> SELECT NOW(), SLEEP(2), NOW();
@@ -660,19 +660,19 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
   +---------------------+----------+---------------------+
   ```
 
-  Além disso, a instrução `SET TIMESTAMP` afeta o valor retornado por `NOW()` mas não por `SYSDATE()`. Isso significa que as configurações de data e hora no log binário não têm efeito nas chamadas de `SYSDATE()`.
+  In addition, the `SET TIMESTAMP` statement affects the value returned by `NOW()` but not by `SYSDATE()`. This means that timestamp settings in the binary log have no effect on invocations of `SYSDATE()`.
 
-  Como o `SYSDATE()` pode retornar valores diferentes mesmo dentro da mesma instrução e não é afetado pelo `SET TIMESTAMP`, ele é não determinístico e, portanto, inseguro para a replicação se o registro binário baseado em instruções for usado. Se isso for um problema, você pode usar o registro baseado em linhas.
+  Because `SYSDATE()` can return different values even within the same statement, and is not affected by `SET TIMESTAMP`, it is nondeterministic and therefore unsafe for replication if statement-based binary logging is used. If that is a problem, you can use row-based logging.
 
-  Alternativamente, você pode usar a opção `--sysdate-is-now` para fazer com que `SYSDATE()` seja um alias para `NOW()`. Isso funciona se a opção for usada tanto na fonte quanto na replica.
+  Alternatively, you can use the `--sysdate-is-now` option to cause `SYSDATE()` to be an alias for `NOW()`. This works if the option is used on both the source and the replica.
 
-  A natureza não determinística de `SYSDATE()` também significa que os índices não podem ser usados para avaliar expressões que se referem a ele.
+  The nondeterministic nature of `SYSDATE()` also means that indexes cannot be used for evaluating expressions that refer to it.
 
-- `TIME(expr)`
+* `TIME(expr)`
 
-  Extrai a parte de tempo da expressão de data e hora *`expr`* e retorna como uma string.
+  Extracts the time part of the time or datetime expression *`expr`* and returns it as a string.
 
-  Essa função não é segura para a replicação baseada em instruções. Um aviso é registrado se você usar essa função quando o `binlog_format` estiver configurado para `STATEMENT`.
+  This function is unsafe for statement-based replication. A warning is logged if you use this function when `binlog_format` is set to `STATEMENT`.
 
   ```sql
   mysql> SELECT TIME('2003-12-31 01:02:03');
@@ -681,11 +681,11 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
           -> '01:02:03.000123'
   ```
 
-- `TIMEDIFF(expr1, expr2)`
+* `TIMEDIFF(expr1,expr2)`
 
-  `TIMEDIFF()` retorna *`expr1`* − *`expr2`* expresso como um valor de tempo. *`expr1`* e *`expr2`* são strings que são convertidas em expressões `TIME` ou `DATETIME`; essas devem ser do mesmo tipo após a conversão.
+  `TIMEDIFF()` returns *`expr1`* − *`expr2`* expressed as a time value. *`expr1`* and *`expr2`* are strings which are converted to `TIME` or `DATETIME` expressions; these must be of the same type following conversion.
 
-  O resultado retornado pelo `TIMEDIFF()` está limitado ao intervalo permitido para valores de `TIME`. Alternativamente, você pode usar qualquer uma das funções `TIMESTAMPDIFF()` ou `UNIX_TIMESTAMP()`, ambas que retornam inteiros.
+  The result returned by `TIMEDIFF()` is limited to the range allowed for `TIME` values. Alternatively, you can use either of the functions `TIMESTAMPDIFF()` and `UNIX_TIMESTAMP()`, both of which return integers.
 
   ```sql
   mysql> SELECT TIMEDIFF('2000:01:01 00:00:00',
@@ -696,9 +696,9 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
           -> '46:58:57.999999'
   ```
 
-- `TIMESTAMP(expr)`, `TIMESTAMP(expr1, expr2)`
+* `TIMESTAMP(expr)`, `TIMESTAMP(expr1,expr2)`
 
-  Com um único argumento, essa função retorna a expressão de data ou datetime *`expr`* como um valor datetime. Com dois argumentos, ela adiciona a expressão de hora *`expr2`* à expressão de data ou datetime *`expr1`* e retorna o resultado como um valor datetime.
+  With a single argument, this function returns the date or datetime expression *`expr`* as a datetime value. With two arguments, it adds the time expression *`expr2`* to the date or datetime expression *`expr1`* and returns the result as a datetime value.
 
   ```sql
   mysql> SELECT TIMESTAMP('2003-12-31');
@@ -707,11 +707,11 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
           -> '2004-01-01 00:00:00'
   ```
 
-- `TIMESTAMPADD(unidade, intervalo, expressão_data_hora)`
+* `TIMESTAMPADD(unit,interval,datetime_expr)`
 
-  A soma da expressão inteira *`interval`* com a expressão de data ou hora *`datetime_expr`*. A unidade para *`interval`* é fornecida pelo argumento *`unit`*, que deve ser um dos seguintes valores: `MICROSECOND` (microsegundos), `SECOND` (segundo), `MINUTE` (minuto), `HOUR` (hora), `DAY` (dia), `WEEK` (semana), `MONTH` (mês), `QUARTER` (trimestre) ou `YEAR` (ano).
+  Adds the integer expression *`interval`* to the date or datetime expression *`datetime_expr`*. The unit for *`interval`* is given by the *`unit`* argument, which should be one of the following values: `MICROSECOND` (microseconds), `SECOND`, `MINUTE`, `HOUR`, `DAY`, `WEEK`, `MONTH`, `QUARTER`, or `YEAR`.
 
-  O valor *`unit`* pode ser especificado usando uma das palavras-chave conforme mostrado, ou com um prefixo de `SQL_TSI_`. Por exemplo, `DAY` e `SQL_TSI_DAY` são ambos válidos.
+  The *`unit`* value may be specified using one of keywords as shown, or with a prefix of `SQL_TSI_`. For example, `DAY` and `SQL_TSI_DAY` both are legal.
 
   ```sql
   mysql> SELECT TIMESTAMPADD(MINUTE,1,'2003-01-02');
@@ -720,7 +720,7 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
           -> '2003-01-09'
   ```
 
-  Ao adicionar um intervalo `MONTH` a um valor `DATE` ou `DATETIME`, e a data resultante incluir um dia que não existe no mês fornecido, o dia é ajustado para o último dia do mês, como mostrado aqui:
+  When adding a `MONTH` interval to a `DATE` or `DATETIME` value, and the resulting date includes a day that does not exist in the given month, the day is adjusted to the last day of the month, as shown here:
 
   ```sql
   mysql> SELECT TIMESTAMPADD(MONTH, 1, DATE '2024-03-30') AS t1,
@@ -733,9 +733,9 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
   1 row in set (0.00 sec)
   ```
 
-- `TIMESTAMPDIFF(unidade, datetime_expr1, datetime_expr2)`
+* `TIMESTAMPDIFF(unit,datetime_expr1,datetime_expr2)`
 
-  Retorna *`datetime_expr2`* − *`datetime_expr1`*, onde *`datetime_expr1`* e *`datetime_expr2`* são expressões de data ou datetime. Uma expressão pode ser uma data e a outra um datetime; um valor de data é tratado como um datetime com a parte horária `'00:00:00'` quando necessário. A unidade do resultado (um inteiro) é determinada pelo argumento *`unit`*. Os valores legais para *`unit`* são os mesmos listados na descrição da função `TIMESTAMPADD()`.
+  Returns *`datetime_expr2`* − *`datetime_expr1`*, where *`datetime_expr1`* and *`datetime_expr2`* are date or datetime expressions. One expression may be a date and the other a datetime; a date value is treated as a datetime having the time part `'00:00:00'` where necessary. The unit for the result (an integer) is given by the *`unit`* argument. The legal values for *`unit`* are the same as those listed in the description of the `TIMESTAMPADD()` function.
 
   ```sql
   mysql> SELECT TIMESTAMPDIFF(MONTH,'2003-02-01','2003-05-01');
@@ -746,24 +746,24 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
           -> 128885
   ```
 
-  Nota
+  Note
 
-  A ordem dos argumentos de data ou datetime para essa função é o oposto da usada com a função `TIMESTAMP()` quando invocada com 2 argumentos.
+  The order of the date or datetime arguments for this function is the opposite of that used with the `TIMESTAMP()` function when invoked with 2 arguments.
 
-- `TIME_FORMAT(hora, formato)`
+* `TIME_FORMAT(time,format)`
 
-  Isto é usado da mesma forma que a função `DATE_FORMAT()`, mas a string *`format`* pode conter especificadores de formato apenas para horas, minutos, segundos e microsegundos. Outros especificadores produzem um valor `NULL` ou `0`.
+  This is used like the `DATE_FORMAT()` function, but the *`format`* string may contain format specifiers only for hours, minutes, seconds, and microseconds. Other specifiers produce a `NULL` value or `0`.
 
-  Se o valor de *`time`* contiver uma parte de hora maior que `23`, os especificadores de formato de hora `%H` e `%k` produzem um valor maior que o intervalo usual de `0..23`. Os outros especificadores de formato de hora produzem o valor da hora módulo 12.
+  If the *`time`* value contains an hour part that is greater than `23`, the `%H` and `%k` hour format specifiers produce a value larger than the usual range of `0..23`. The other hour format specifiers produce the hour value modulo 12.
 
   ```sql
   mysql> SELECT TIME_FORMAT('100:00:00', '%H %k %h %I %l');
           -> '100 100 04 04 4'
   ```
 
-- `TIME_TO_SEC(tempo)`
+* `TIME_TO_SEC(time)`
 
-  Retorna o argumento *`time`*, convertido em segundos.
+  Returns the *`time`* argument, converted to seconds.
 
   ```sql
   mysql> SELECT TIME_TO_SEC('22:23:00');
@@ -772,9 +772,9 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
           -> 2378
   ```
 
-- `TO_DAYS(data)`
+* `TO_DAYS(date)`
 
-  Dado uma data *`date`*, retorna um número de dia (o número de dias desde o ano 0).
+  Given a date *`date`*, returns a day number (the number of days since year 0).
 
   ```sql
   mysql> SELECT TO_DAYS(950501);
@@ -783,16 +783,16 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
           -> 733321
   ```
 
-  `TO_DAYS()` não é destinado para uso com valores que precedem o advento do calendário gregoriano (1582), porque ele não leva em conta os dias que foram perdidos quando o calendário foi alterado. Para datas anteriores a 1582 (e possivelmente um ano posterior em outros locais), os resultados dessa função não são confiáveis. Consulte a Seção 11.2.8, “Qual calendário é usado pelo MySQL?”, para obter detalhes.
+  `TO_DAYS()` is not intended for use with values that precede the advent of the Gregorian calendar (1582), because it does not take into account the days that were lost when the calendar was changed. For dates before 1582 (and possibly a later year in other locales), results from this function are not reliable. See Section 11.2.8, “What Calendar Is Used By MySQL?”, for details.
 
-  Lembre-se de que o MySQL converte valores de ano de duas casas decimais em datas para a forma de quatro casas decimais usando as regras na Seção 11.2, “Tipos de Dados de Data e Hora”. Por exemplo, `'2008-10-07'` e `'08-10-07'` são vistos como datas idênticas:
+  Remember that MySQL converts two-digit year values in dates to four-digit form using the rules in Section 11.2, “Date and Time Data Types”. For example, `'2008-10-07'` and `'08-10-07'` are seen as identical dates:
 
   ```sql
   mysql> SELECT TO_DAYS('2008-10-07'), TO_DAYS('08-10-07');
           -> 733687, 733687
   ```
 
-  No MySQL, a data zero é definida como `'0000-00-00'`, embora essa data seja considerada inválida. Isso significa que, para `'0000-00-00'` e `'0000-01-01'`, o `TO_DAYS()` retorna os valores mostrados aqui:
+  In MySQL, the zero date is defined as `'0000-00-00'`, even though this date is itself considered invalid. This means that, for `'0000-00-00'` and `'0000-01-01'`, `TO_DAYS()` returns the values shown here:
 
   ```sql
   mysql> SELECT TO_DAYS('0000-00-00');
@@ -821,11 +821,11 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
   1 row in set (0.00 sec)
   ```
 
-  Isso é verdade, independentemente de o modo SQL Server `ALLOW_INVALID_DATES` estar habilitado ou
+  This is true whether or not the `ALLOW_INVALID_DATES` SQL server mode is enabled.
 
-- `TO_SECONDS(expr)`
+* `TO_SECONDS(expr)`
 
-  Dado uma data ou datetime *`expr`*, retorna o número de segundos desde o ano 0. Se *`expr`* não for um valor de data ou datetime válido, retorna `NULL`.
+  Given a date or datetime *`expr`*, returns the number of seconds since the year 0. If *`expr`* is not a valid date or datetime value, returns `NULL`.
 
   ```sql
   mysql> SELECT TO_SECONDS(950501);
@@ -838,11 +838,11 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
           -> 63426721458
   ```
 
-  Assim como `TO_DAYS()`, `TO_SECONDS()` não é destinado para uso com valores que precedem a adoção do calendário gregoriano (1582), pois ele não leva em conta os dias perdidos quando o calendário foi alterado. Para datas anteriores a 1582 (e possivelmente um ano posterior em outros locais), os resultados dessa função não são confiáveis. Consulte a Seção 11.2.8, “Qual calendário é usado pelo MySQL?”, para obter detalhes.
+  Like `TO_DAYS()`, `TO_SECONDS()` is not intended for use with values that precede the advent of the Gregorian calendar (1582), because it does not take into account the days that were lost when the calendar was changed. For dates before 1582 (and possibly a later year in other locales), results from this function are not reliable. See Section 11.2.8, “What Calendar Is Used By MySQL?”, for details.
 
-  Assim como `TO_DAYS()`, `TO_SECONDS()` converte valores de ano de duas casas decimais em datas para a forma de quatro casas decimais usando as regras na Seção 11.2, “Tipos de dados de data e hora”.
+  Like `TO_DAYS()`, `TO_SECONDS()`, converts two-digit year values in dates to four-digit form using the rules in Section 11.2, “Date and Time Data Types”.
 
-  No MySQL, a data zero é definida como `'0000-00-00'`, embora essa data seja considerada inválida. Isso significa que, para `'0000-00-00'` e `'0000-01-01'`, o `TO_SECONDS()` retorna os valores mostrados aqui:
+  In MySQL, the zero date is defined as `'0000-00-00'`, even though this date is itself considered invalid. This means that, for `'0000-00-00'` and `'0000-01-01'`, `TO_SECONDS()` returns the values shown here:
 
   ```sql
   mysql> SELECT TO_SECONDS('0000-00-00');
@@ -871,19 +871,19 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
   1 row in set (0.00 sec)
   ```
 
-  Isso é verdade, independentemente de o modo SQL Server `ALLOW_INVALID_DATES` estar habilitado ou
+  This is true whether or not the `ALLOW_INVALID_DATES` SQL server mode is enabled.
 
-- `UNIX_TIMESTAMP([data])`
+* `UNIX_TIMESTAMP([date])`
 
-  Se `UNIX_TIMESTAMP()` for chamado sem o argumento *`date`*, ele retornará um timestamp Unix que representa segundos desde `'1970-01-01 00:00:00'` UTC.
+  If `UNIX_TIMESTAMP()` is called with no *`date`* argument, it returns a Unix timestamp representing seconds since `'1970-01-01 00:00:00'` UTC.
 
-  Se `UNIX_TIMESTAMP()` for chamado com um argumento `*``data``, ele retorna o valor do argumento em segundos desde `'1970-01-01 00:00:00'` UTC. O servidor interpreta *`data`* como um valor no fuso horário da sessão e o converte em um valor de timestamp Unix interno em UTC. (Os clientes podem definir o fuso horário da sessão conforme descrito na Seção 5.1.13, “Suporte ao Fuso Horário do MySQL Server”.) O argumento *`data`* pode ser uma string `DATE`, `DATETIME`ou`TIMESTAMP`, ou um número no formato *`YYMMDD`*, *`YYMMDDhhmmss`*, *`YYYYMMDD`* ou *`YYYYMMDDhhmmss\`\*. Se o argumento incluir uma parte de hora, ele pode opcionalmente incluir uma parte de segundos fracionários.
+  If `UNIX_TIMESTAMP()` is called with a *`date`* argument, it returns the value of the argument as seconds since `'1970-01-01 00:00:00'` UTC. The server interprets *`date`* as a value in the session time zone and converts it to an internal Unix timestamp value in UTC. (Clients can set the session time zone as described in Section 5.1.13, “MySQL Server Time Zone Support”.) The *`date`* argument may be a `DATE`, `DATETIME`, or `TIMESTAMP` string, or a number in *`YYMMDD`*, *`YYMMDDhhmmss`*, *`YYYYMMDD`*, or *`YYYYMMDDhhmmss`* format. If the argument includes a time part, it may optionally include a fractional seconds part.
 
-  O valor de retorno é um inteiro se nenhum argumento for fornecido ou se o argumento não incluir uma parte de segundos fracionários, ou `DECIMAL` - `DECIMAL`, `NUMERIC`)\` se um argumento for fornecido que inclua uma parte de segundos fracionários.
+  The return value is an integer if no argument is given or the argument does not include a fractional seconds part, or `DECIMAL` - DECIMAL, NUMERIC") if an argument is given that includes a fractional seconds part.
 
-  Quando o argumento `date` é uma coluna `TIMESTAMP`, o `UNIX_TIMESTAMP()` retorna o valor do timestamp interno diretamente, sem a conversão implícita de "string para timestamp Unix".
+  When the *`date`* argument is a `TIMESTAMP` column, `UNIX_TIMESTAMP()` returns the internal timestamp value directly, with no implicit “string-to-Unix-timestamp” conversion.
 
-  A faixa válida de valores de argumento é a mesma do tipo de dados `TIMESTAMP`: de `'1970-01-01 00:00:01.000000'` UTC a `'2038-01-19 03:14:07.999999'` UTC. Se você passar uma data fora da faixa para `UNIX_TIMESTAMP()`, ele retornará `0`.
+  The valid range of argument values is the same as for the `TIMESTAMP` data type: `'1970-01-01 00:00:01.000000'` UTC to `'2038-01-19 03:14:07.999999'` UTC. If you pass an out-of-range date to `UNIX_TIMESTAMP()`, it returns `0`.
 
   ```sql
   mysql> SELECT UNIX_TIMESTAMP();
@@ -894,7 +894,7 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
           -> 1447431619.012
   ```
 
-  Se você usar `UNIX_TIMESTAMP()` e `FROM_UNIXTIME()` para converter entre valores em um fuso horário não UTC e valores de timestamp Unix, a conversão é perda de dados porque a correspondência não é um para um em ambas as direções. Por exemplo, devido a convenções para mudanças de fuso horário local, como o horário de verão (DST), é possível que `UNIX_TIMESTAMP()` mapeie dois valores que são distintos em um fuso horário não UTC para o mesmo valor de timestamp Unix. `FROM_UNIXTIME()` mapeia esse valor de volta apenas para um dos valores originais. Aqui está um exemplo, usando valores que são distintos no fuso horário `MET`:
+  If you use `UNIX_TIMESTAMP()` and `FROM_UNIXTIME()` to convert between values in a non-UTC time zone and Unix timestamp values, the conversion is lossy because the mapping is not one-to-one in both directions. For example, due to conventions for local time zone changes such as Daylight Saving Time (DST), it is possible for `UNIX_TIMESTAMP()` to map two values that are distinct in a non-UTC time zone to the same Unix timestamp value. `FROM_UNIXTIME()` maps that value back to only one of the original values. Here is an example, using values that are distinct in the `MET` time zone:
 
   ```sql
   mysql> SET time_zone = 'MET';
@@ -918,56 +918,56 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
   +---------------------------+
   ```
 
-  Nota
+  Note
 
-  Para usar fusos horários nomeados, como `'MET'` ou `'Europe/Amsterdam'`, as tabelas de fusos horários devem ser configuradas corretamente. Para obter instruções, consulte a Seção 5.1.13, “Suporte ao Fuso Horário do MySQL Server”.
+  To use named time zones such as `'MET'` or `'Europe/Amsterdam'`, the time zone tables must be properly set up. For instructions, see Section 5.1.13, “MySQL Server Time Zone Support”.
 
-  Se você quiser subtrair colunas `UNIX_TIMESTAMP()`, talvez queira castá-las para inteiros assinados. Veja a Seção 12.10, “Funções e Operadores de Cast”.
+  If you want to subtract `UNIX_TIMESTAMP()` columns, you might want to cast them to signed integers. See Section 12.10, “Cast Functions and Operators”.
 
-- `UTC_DATE`, `UTC_DATE()`
+* `UTC_DATE`, `UTC_DATE()`
 
-  Retorna a data atual UTC como um valor no formato `'YYYY-MM-DD'` ou *`YYYYMMDD`*, dependendo se a função é usada em contexto de string ou numérico.
+  Returns the current UTC date as a value in `'YYYY-MM-DD'` or *`YYYYMMDD`* format, depending on whether the function is used in string or numeric context.
 
   ```sql
   mysql> SELECT UTC_DATE(), UTC_DATE() + 0;
           -> '2003-08-14', 20030814
   ```
 
-- `UTC_TIME`, `UTC_TIME([fsp])`
+* `UTC_TIME`, `UTC_TIME([fsp])`
 
-  Retorna a hora UTC atual como um valor no formato *`'hh:mm:ss'`* ou *`hhmmss`*, dependendo se a função é usada em contexto de string ou numérico.
+  Returns the current UTC time as a value in *`'hh:mm:ss'`* or *`hhmmss`* format, depending on whether the function is used in string or numeric context.
 
-  Se o argumento *`fsp`* for fornecido para especificar uma precisão de segundos fracionários de 0 a 6, o valor de retorno inclui uma parte de segundos fracionários com tantos dígitos quanto especificado.
+  If the *`fsp`* argument is given to specify a fractional seconds precision from 0 to 6, the return value includes a fractional seconds part of that many digits.
 
   ```sql
   mysql> SELECT UTC_TIME(), UTC_TIME() + 0;
           -> '18:07:53', 180753.000000
   ```
 
-- `UTC_TIMESTAMP`, `UTC_TIMESTAMP([fsp])`
+* `UTC_TIMESTAMP`, `UTC_TIMESTAMP([fsp])`
 
-  Retorna a data e hora atuais em UTC como um valor no formato `'YYYY-MM-DD hh:mm:ss'` ou *`YYYYMMDDhhmmss`*, dependendo se a função é usada em contexto de string ou numérico.
+  Returns the current UTC date and time as a value in `'YYYY-MM-DD hh:mm:ss'` or *`YYYYMMDDhhmmss`* format, depending on whether the function is used in string or numeric context.
 
-  Se o argumento *`fsp`* for fornecido para especificar uma precisão de segundos fracionários de 0 a 6, o valor de retorno inclui uma parte de segundos fracionários com tantos dígitos quanto especificado.
+  If the *`fsp`* argument is given to specify a fractional seconds precision from 0 to 6, the return value includes a fractional seconds part of that many digits.
 
   ```sql
   mysql> SELECT UTC_TIMESTAMP(), UTC_TIMESTAMP() + 0;
           -> '2003-08-14 18:08:04', 20030814180804.000000
   ```
 
-- `WEEK(data[, modo])`
+* `WEEK(date[,mode])`
 
-  Essa função retorna o número da semana para *`data`*. A forma de dois argumentos da função `WEEK()` permite que você especifique se a semana começa no domingo ou no domingo e se o valor de retorno deve estar no intervalo de `0` a `53` ou de `1` a `53`. Se o argumento *`mode`* for omitido, o valor da variável de sistema `default_week_format` é usado. Veja a Seção 5.1.7, “Variáveis do Sistema do Servidor”.
+  This function returns the week number for *`date`*. The two-argument form of `WEEK()` enables you to specify whether the week starts on Sunday or Monday and whether the return value should be in the range from `0` to `53` or from `1` to `53`. If the *`mode`* argument is omitted, the value of the `default_week_format` system variable is used. See Section 5.1.7, “Server System Variables”.
 
-  A tabela a seguir descreve como o argumento *`mode`* funciona.
+  The following table describes how the *`mode`* argument works.
 
-  <table summary="Agora o argumento de modo da função WEEK funciona. Para cada valor de modo, a tabela lista o primeiro dia da semana, a faixa e uma descrição da semana 1."><col style="width: 10%"/><col style="width: 20%"/><col style="width: 20%"/><col style="width: 50%"/><thead><tr> <th>Modo</th> <th>Primeiro dia da semana</th> <th>Gama</th> <th>A primeira semana é a primeira semana...</th> </tr></thead><tbody><tr> <th>0</th> <td>Domingo</td> <td>0-53</td> <td>com um domingo neste ano</td> </tr><tr> <th>1</th> <td>Segunda-feira</td> <td>0-53</td> <td>com 4 ou mais dias este ano</td> </tr><tr> <th>2</th> <td>Domingo</td> <td>1-53</td> <td>com um domingo neste ano</td> </tr><tr> <th>3</th> <td>Segunda-feira</td> <td>1-53</td> <td>com 4 ou mais dias este ano</td> </tr><tr> <th>4</th> <td>Domingo</td> <td>0-53</td> <td>com 4 ou mais dias este ano</td> </tr><tr> <th>5</th> <td>Segunda-feira</td> <td>0-53</td> <td>com um domingo neste ano</td> </tr><tr> <th>6</th> <td>Domingo</td> <td>1-53</td> <td>com 4 ou mais dias este ano</td> </tr><tr> <th>7</th> <td>Segunda-feira</td> <td>1-53</td> <td>com um domingo neste ano</td> </tr></tbody></table>
+  <table summary="Now the mode argument of the WEEK function works. For each mode value, the table lists the first day of the week, the range, and a description of week 1."><col style="width: 10%"/><col style="width: 20%"/><col style="width: 20%"/><col style="width: 50%"/><thead><tr> <th>Mode</th> <th>First day of week</th> <th>Range</th> <th>Week 1 is the first week …</th> </tr></thead><tbody><tr> <th>0</th> <td>Sunday</td> <td>0-53</td> <td>with a Sunday in this year</td> </tr><tr> <th>1</th> <td>Monday</td> <td>0-53</td> <td>with 4 or more days this year</td> </tr><tr> <th>2</th> <td>Sunday</td> <td>1-53</td> <td>with a Sunday in this year</td> </tr><tr> <th>3</th> <td>Monday</td> <td>1-53</td> <td>with 4 or more days this year</td> </tr><tr> <th>4</th> <td>Sunday</td> <td>0-53</td> <td>with 4 or more days this year</td> </tr><tr> <th>5</th> <td>Monday</td> <td>0-53</td> <td>with a Monday in this year</td> </tr><tr> <th>6</th> <td>Sunday</td> <td>1-53</td> <td>with 4 or more days this year</td> </tr><tr> <th>7</th> <td>Monday</td> <td>1-53</td> <td>with a Monday in this year</td> </tr></tbody></table>
 
-  Para os valores de *`mode`* com o significado de “com 4 ou mais dias este ano”, as semanas são numeradas de acordo com a ISO 8601:1988:
+  For *`mode`* values with a meaning of “with 4 or more days this year,” weeks are numbered according to ISO 8601:1988:
 
-  - Se a semana que contém o dia 1 de janeiro tiver 4 dias ou mais no novo ano, ela será a semana 1.
+  + If the week containing January 1 has 4 or more days in the new year, it is week 1.
 
-  - Caso contrário, é a última semana do ano anterior, e a próxima semana é a semana 1.
+  + Otherwise, it is the last week of the previous year, and the next week is week 1.
 
   ```sql
   mysql> SELECT WEEK('2008-02-20');
@@ -980,23 +980,23 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
           -> 53
   ```
 
-  Se uma data cair na última semana do ano anterior, o MySQL retorna `0` se você não usar `2`, `3`, `6` ou `7` como o argumento opcional *`mode`*:
+  If a date falls in the last week of the previous year, MySQL returns `0` if you do not use `2`, `3`, `6`, or `7` as the optional *`mode`* argument:
 
   ```sql
   mysql> SELECT YEAR('2000-01-01'), WEEK('2000-01-01',0);
           -> 2000, 0
   ```
 
-  Pode-se argumentar que `WEEK()` deveria retornar `52`, porque a data fornecida ocorre na 52ª semana de 1999. No entanto, `WEEK()` retorna `0`, de modo que o valor de retorno seja “o número da semana no ano fornecido”. Isso torna o uso da função `WEEK()` confiável quando combinada com outras funções que extraem uma parte da data de uma data.
+  One might argue that `WEEK()` should return `52` because the given date actually occurs in the 52nd week of 1999. `WEEK()` returns `0` instead so that the return value is “the week number in the given year.” This makes use of the `WEEK()` function reliable when combined with other functions that extract a date part from a date.
 
-  Se você preferir um resultado avaliado em relação ao ano que contém o primeiro dia da semana para a data fornecida, use `0`, `2`, `5` ou `7` como o argumento opcional *`mode`*.
+  If you prefer a result evaluated with respect to the year that contains the first day of the week for the given date, use `0`, `2`, `5`, or `7` as the optional *`mode`* argument.
 
   ```sql
   mysql> SELECT WEEK('2000-01-01',2);
           -> 52
   ```
 
-  Alternativamente, use a função `YEARWEEK()`:
+  Alternatively, use the `YEARWEEK()` function:
 
   ```sql
   mysql> SELECT YEARWEEK('2000-01-01');
@@ -1005,9 +1005,9 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
           -> '52'
   ```
 
-- `WEEKDAY(data)`
+* `WEEKDAY(date)`
 
-  Retorna o índice do dia da semana para *`data`* (`0` = Segunda-feira, `1` = Terça-feira, … `6` = Domingo).
+  Returns the weekday index for *`date`* (`0` = Monday, `1` = Tuesday, … `6` = Sunday).
 
   ```sql
   mysql> SELECT WEEKDAY('2008-02-03 22:23:00');
@@ -1016,33 +1016,33 @@ Os segundos fracionários para os valores `TIME`, `DATETIME` e `TIMESTAMP` são 
           -> 1
   ```
 
-- `WEEKOFYEAR(data)`
+* `WEEKOFYEAR(date)`
 
-  Retorna a semana do calendário da data como um número no intervalo de `1` a `53`. `WEEKOFYEAR()` é uma função de compatibilidade que é equivalente a `WEEK(data, 3)`.
+  Returns the calendar week of the date as a number in the range from `1` to `53`. `WEEKOFYEAR()` is a compatibility function that is equivalent to `WEEK(date,3)`.
 
   ```sql
   mysql> SELECT WEEKOFYEAR('2008-02-20');
           -> 8
   ```
 
-- `YEAR(data)`
+* `YEAR(date)`
 
-  Retorna o ano para *`data`*, no intervalo de `1000` a `9999`, ou `0` para a data "zero".
+  Returns the year for *`date`*, in the range `1000` to `9999`, or `0` for the “zero” date.
 
   ```sql
   mysql> SELECT YEAR('1987-01-01');
           -> 1987
   ```
 
-- `YEARWEEK(data)`, `YEARWEEK(data, modo)`
+* `YEARWEEK(date)`, `YEARWEEK(date,mode)`
 
-  Retorna o ano e a semana para uma data. O ano no resultado pode ser diferente do ano no argumento de data para a primeira e a última semana do ano.
+  Returns year and week for a date. The year in the result may be different from the year in the date argument for the first and the last week of the year.
 
-  O argumento *`mode`* funciona exatamente como o argumento *`mode`* da função *`WEEK()`*. Para a sintaxe de um único argumento, um valor de *`mode`* de 0 é usado. Ao contrário de \*`WEEK()`, o valor de \*`default_week_format` não influencia *`YEARWEEK()`*.
+  The *`mode`* argument works exactly like the *`mode`* argument to `WEEK()`. For the single-argument syntax, a *`mode`* value of 0 is used. Unlike `WEEK()`, the value of `default_week_format` does not influence `YEARWEEK()`.
 
   ```sql
   mysql> SELECT YEARWEEK('1987-01-01');
           -> 198652
   ```
 
-  O número da semana é diferente do que a função `WEEK()` retornaria (`0`) para argumentos opcionais `0` ou `1`, pois `WEEK()` então retorna a semana no contexto do ano dado.
+  The week number is different from what the `WEEK()` function would return (`0`) for optional arguments `0` or `1`, as `WEEK()` then returns the week in the context of the given year.

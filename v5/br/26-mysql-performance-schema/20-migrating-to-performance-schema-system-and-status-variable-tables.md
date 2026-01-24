@@ -1,19 +1,19 @@
-## 25.20 Migrando para o Sistema de Schema de Desempenho e Tabelas de Variáveis de Status
+## 25.20 Migrating to Performance Schema System and Status Variable Tables
 
-O `INFORMATION_SCHEMA` possui tabelas que contêm informações sobre variáveis de sistema e status (veja Seção 24.3.11, “As tabelas GLOBAL_VARIABLES e SESSION_VARIABLES do INFORMATION_SCHEMA”, e Seção 24.3.10, “As tabelas GLOBAL_STATUS e SESSION_STATUS do INFORMATION_SCHEMA”). O Schema de Desempenho também contém tabelas de variáveis de sistema e status (veja Seção 25.12.13, “Tabelas de variáveis de sistema do Schema de Desempenho”, e Seção 25.12.14, “Tabelas de variáveis de status do Schema de Desempenho”). As tabelas do Schema de Desempenho são destinadas a substituir as tabelas do `INFORMATION_SCHEMA`, que são desaconselhadas a partir do MySQL 5.7.6 e serão removidas no MySQL 8.0.
+The `INFORMATION_SCHEMA` has tables that contain system and status variable information (see [Section 24.3.11, “The INFORMATION_SCHEMA GLOBAL_VARIABLES and SESSION_VARIABLES Tables”](information-schema-variables-table.html "24.3.11 The INFORMATION_SCHEMA GLOBAL_VARIABLES and SESSION_VARIABLES Tables"), and [Section 24.3.10, “The INFORMATION_SCHEMA GLOBAL_STATUS and SESSION_STATUS Tables”](information-schema-status-table.html "24.3.10 The INFORMATION_SCHEMA GLOBAL_STATUS and SESSION_STATUS Tables")). The Performance Schema also contains system and status variable tables (see [Section 25.12.13, “Performance Schema System Variable Tables”](performance-schema-system-variable-tables.html "25.12.13 Performance Schema System Variable Tables"), and [Section 25.12.14, “Performance Schema Status Variable Tables”](performance-schema-status-variable-tables.html "25.12.14 Performance Schema Status Variable Tables")). The Performance Schema tables are intended to replace the `INFORMATION_SCHEMA` tables, which are deprecated as of MySQL 5.7.6 and are removed in MySQL 8.0.
 
-Esta seção descreve o caminho de migração previsto para se afastar das tabelas de variáveis do sistema `INFORMATION_SCHEMA` e das variáveis de status para as tabelas correspondentes do Schema de Desempenho. Os desenvolvedores de aplicativos devem usar essas informações como orientação sobre as alterações necessárias para acessar as variáveis de sistema e status no MySQL 5.7.6 e versões posteriores, à medida que as tabelas `INFORMATION_SCHEMA` se tornam desatualizadas e, eventualmente, serão removidas.
+This section describes the intended migration path away from the `INFORMATION_SCHEMA` system and status variable tables to the corresponding Performance Schema tables. Application developers should use this information as guidance regarding the changes required to access system and status variables in MySQL 5.7.6 and up as the `INFORMATION_SCHEMA` tables become deprecated and eventually are removed.
 
 **MySQL 5.6**
 
-No MySQL 5.6, as informações das variáveis de sistema e status estão disponíveis a partir dessas instruções `SHOW`:
+In MySQL 5.6, system and status variable information is available from these `SHOW` statements:
 
 ```sql
 SHOW VARIABLES
 SHOW STATUS
 ```
 
-E a partir dessas tabelas `INFORMATION_SCHEMA`:
+And from these `INFORMATION_SCHEMA` tables:
 
 ```sql
 INFORMATION_SCHEMA.GLOBAL_VARIABLES
@@ -25,7 +25,7 @@ INFORMATION_SCHEMA.SESSION_STATUS
 
 **MySQL 5.7**
 
-A partir do MySQL 5.7.6, o Gerenciamento de Desempenho inclui essas tabelas como novas fontes de informações sobre variáveis de sistema e status:
+As of MySQL 5.7.6, the Performance Schema includes these tables as new sources of system and status variable information:
 
 ```sql
 performance_schema.global_variables
@@ -40,29 +40,29 @@ performance_schema.status_by_host
 performance_schema.status_by_user
 ```
 
-O MySQL 5.7.6 também adiciona uma variável de sistema `show_compatibility_56` para controlar como o servidor disponibiliza informações de variáveis de sistema e status.
+MySQL 5.7.6 also adds a [`show_compatibility_56`](server-system-variables.html#sysvar_show_compatibility_56) system variable to control how the server makes system and status variable information available.
 
-Quando `show_compatibility_56` está ativado, a compatibilidade com o MySQL 5.6 é habilitada. As fontes de variáveis de sistema e status mais antigas (`instruções SHOW`, tabelas `INFORMATION_SCHEMA`) estão disponíveis com semântica idêntica ao MySQL 5.6. As aplicações devem ser executadas como estão, sem alterações no código, e devem exibir os mesmos nomes e valores de variáveis que no MySQL 5.6. As advertências ocorrem nessas circunstâncias:
+When [`show_compatibility_56`](server-system-variables.html#sysvar_show_compatibility_56) is `ON`, compatibility with MySQL 5.6 is enabled. The older system and status variable sources (`SHOW` statements, `INFORMATION_SCHEMA` tables) are available with semantics identical to MySQL 5.6. Applications should run as is, with no code changes, and should see the same variable names and values as in MySQL 5.6. Warnings occur under these circumstances:
 
-- Um aviso de depreciação é exibido ao selecionar as tabelas do `INFORMATION_SCHEMA`.
+* A deprecation warning is raised when selecting from the `INFORMATION_SCHEMA` tables.
 
-- No MySQL 5.7.6 e 5.7.7, um aviso de depreciação é exibido ao usar uma cláusula `WHERE` com as instruções `SHOW`. Esse comportamento não ocorre a partir do MySQL 5.7.8.
+* In MySQL 5.7.6 and 5.7.7, a deprecation warning is raised when using a `WHERE` clause with the `SHOW` statements. This behavior does not occur as of MySQL 5.7.8.
 
-Quando `show_compatibility_56` está em `OFF`, a compatibilidade com o MySQL 5.6 é desativada e várias alterações são realizadas. As aplicações devem ser revisadas da seguinte forma para funcionar corretamente:
+When [`show_compatibility_56`](server-system-variables.html#sysvar_show_compatibility_56) is `OFF`, compatibility with MySQL 5.6 is disabled and several changes result. Applications must be revised as follows to run properly:
 
-- A seleção das tabelas do `INFORMATION_SCHEMA` produz um erro. As aplicações que acessam as tabelas do `INFORMATION_SCHEMA` devem ser revisadas para usar as tabelas correspondentes do Performance Schema.
+* Selecting from the `INFORMATION_SCHEMA` tables produces an error. Applications that access the `INFORMATION_SCHEMA` tables should be revised to use the corresponding Performance Schema tables instead.
 
-  Antes do MySQL 5.7.9, a seleção das tabelas do `INFORMATION_SCHEMA` produz um conjunto de resultados vazio, além de um aviso de depreciação. Isso não foi um aviso suficiente para sinalizar a necessidade de migrar para as tabelas correspondentes do sistema Performance Schema e das variáveis de status, no caso de `show_compatibility_56=OFF`. Produzir um erro no MySQL 5.7.9 e versões posteriores torna mais evidente que uma aplicação está operando em condições que exigem modificações, bem como onde está o problema.
+  Before MySQL 5.7.9, selecting from the `INFORMATION_SCHEMA` tables produces an empty result set plus a deprecation warning. This was not sufficient notice to signal the need to migrate to the corresponding Performance Schema system and status variable tables for the case that [`show_compatibility_56=OFF`](server-system-variables.html#sysvar_show_compatibility_56). Producing an error in MySQL 5.7.9 and higher makes it more evident that an application is operating under conditions that require modification, as well as where the problem lies.
 
-  Nos MySQL 5.7.6 e 5.7.7, as tabelas `session_variables` (performance-schema-system-variable-tables.html) e `session_status` (performance-schema-status-variable-tables.html) do Schema de Desempenho não refletem completamente todos os valores de variáveis em vigor para a sessão atual; elas não incluem linhas para variáveis globais que não têm contraparte de sessão. Isso é corrigido no MySQL 5.7.8.
+  In MySQL 5.7.6 and 5.7.7, the Performance Schema [`session_variables`](performance-schema-system-variable-tables.html "25.12.13 Performance Schema System Variable Tables") and [`session_status`](performance-schema-status-variable-tables.html "25.12.14 Performance Schema Status Variable Tables") tables do not fully reflect all variable values in effect for the current session; they include no rows for global variables that have no session counterpart. This is corrected in MySQL 5.7.8.
 
-- A saída das declarações `SHOW` é gerada a partir das tabelas do Gerenciamento de Desempenho subjacente. As aplicações que são escritas para usar essas declarações ainda podem usá-las, mas é melhor usar o MySQL 5.7.8 ou superior. No MySQL 5.7.6 e 5.7.7, os resultados podem ser diferentes:
+* Output for the `SHOW` statements is produced using the underlying Performance Schema tables. Applications written to use these statements can still use them, but it is best to use MySQL 5.7.8 or higher. In MySQL 5.7.6 and 5.7.7, the results may differ:
 
-  - A saída `SHOW [SESSION] VARIABLES` não inclui variáveis globais que não têm correspondência em sessão.
+  + `SHOW [SESSION] VARIABLES` output does not include global variables that have no session counterpart.
 
-  - Usar uma cláusula `WHERE` com as instruções `SHOW` produz um erro.
+  + Using a `WHERE` clause with the `SHOW` statements produces an error.
 
-- Essas variáveis de status `Slave_xxx` tornam-se indisponíveis através de `SHOW STATUS` (show-status.html):
+* These `Slave_xxx` status variables become unavailable through [`SHOW STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"):
 
   ```sql
   Slave_heartbeat_period
@@ -72,18 +72,18 @@ Quando `show_compatibility_56` está em `OFF`, a compatibilidade com o MySQL 5.6
   Slave_running
   ```
 
-  As aplicações que utilizam essas variáveis de status devem ser revisadas para obter essas informações usando as tabelas do Schema de Desempenho relacionadas à replicação. Para obter detalhes, consulte Efeito do show_compatibility_56 nas variáveis de status do Slave.
+  Applications that use these status variables should be revised to obtain this information using the replication-related Performance Schema tables. For details, see [Effect of show_compatibility_56 on Slave Status Variables](server-system-variables.html#sysvar_show_compatibility_56_slave_status "Effect of show_compatibility_56 on Slave Status Variables").
 
-- O Schema de Desempenho não coleta estatísticas para as variáveis de status `Com_xxx` nas tabelas de variáveis de status. Para obter contagem de execução de declarações globais e por sessão, use as tabelas `events_statements_summary_global_by_event_name` e `events_statements_summary_by_thread_by_event_name`, respectivamente.
+* The Performance Schema does not collect statistics for `Com_xxx` status variables in the status variable tables. To obtain global and per-session statement execution counts, use the [`events_statements_summary_global_by_event_name`](performance-schema-statement-summary-tables.html "25.12.15.3 Statement Summary Tables") and [`events_statements_summary_by_thread_by_event_name`](performance-schema-statement-summary-tables.html "25.12.15.3 Statement Summary Tables") tables, respectively.
 
-**Migração e privilégios**
+**Migration and Privileges**
 
-Inicialmente, com a introdução do sistema Performance Schema e das tabelas de variáveis de status no MySQL 5.7.6, o acesso a essas tabelas exigia o privilégio `SELECT`, assim como para outras tabelas do Performance Schema. No entanto, isso teve a consequência de que, quando `show_compatibility_56=OFF`, as instruções `SHOW VARIABLES` e `SHOW STATUS` também exigiam o privilégio `SELECT`: Com a compatibilidade desativada, a saída dessas instruções era tirada das tabelas do Performance Schema `global_variables`, `session_variables`, `global_status` e `session_status`.
+Initially, with the introduction of Performance Schema system and status variable tables in MySQL 5.7.6, access to those tables required the [`SELECT`](privileges-provided.html#priv_select) privilege, just as for other Performance Schema tables. However, this had the consequence that when [`show_compatibility_56=OFF`](server-system-variables.html#sysvar_show_compatibility_56), the [`SHOW VARIABLES`](show-variables.html "13.7.5.39 SHOW VARIABLES Statement") and [`SHOW STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") statements also required the [`SELECT`](privileges-provided.html#priv_select) privilege: With compatibility disabled, output for those statements was taken from the Performance Schema [`global_variables`](performance-schema-system-variable-tables.html "25.12.13 Performance Schema System Variable Tables"), [`session_variables`](performance-schema-system-variable-tables.html "25.12.13 Performance Schema System Variable Tables"), [`global_status`](performance-schema-status-variable-tables.html "25.12.14 Performance Schema Status Variable Tables"), and [`session_status`](performance-schema-status-variable-tables.html "25.12.14 Performance Schema Status Variable Tables") tables.
 
-A partir do MySQL 5.7.9, essas tabelas do Schema de Desempenho são legíveis por todo o mundo e acessíveis sem o privilégio `SELECT`. Consequentemente, `SHOW VARIABLES` e `SHOW STATUS` não exigem privilégios nas tabelas subjacentes do Schema de Desempenho a partir das quais sua saída é produzida quando `show_compatibility_56=OFF`.
+As of MySQL 5.7.9, those Performance Schema tables are world readable and accessible without the [`SELECT`](privileges-provided.html#priv_select) privilege. Consequently, [`SHOW VARIABLES`](show-variables.html "13.7.5.39 SHOW VARIABLES Statement") and [`SHOW STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") do not require privileges on the underlying Performance Schema tables from which their output is produced when [`show_compatibility_56=OFF`](server-system-variables.html#sysvar_show_compatibility_56).
 
-**Além do MySQL 5.7**
+**Beyond MySQL 5.7**
 
-No MySQL 8.0, as tabelas variáveis `INFORMATION_SCHEMA` e a variável de sistema `show_compatibility_56` são removidas, e o resultado das instruções `SHOW` sempre é baseado nas tabelas do Schema de Desempenho subjacente.
+In a MySQL 8.0, the `INFORMATION_SCHEMA` variable tables and the [`show_compatibility_56`](server-system-variables.html#sysvar_show_compatibility_56) system variable are removed, and output from the `SHOW` statements is always based on the underlying Performance Schema tables.
 
-Aplicações que foram revisadas para funcionar no MySQL 5.7 quando `show_compatibility_56=OFF` devem funcionar sem alterações adicionais, exceto que não é possível testar ou definir `show_compatibility_56` porque ele não existe.
+Applications that have been revised to work in MySQL 5.7 when [`show_compatibility_56=OFF`](server-system-variables.html#sysvar_show_compatibility_56) should work without further changes, except that it is not possible to test or set [`show_compatibility_56`](server-system-variables.html#sysvar_show_compatibility_56) because it does not exist.

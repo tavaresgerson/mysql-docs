@@ -1,57 +1,57 @@
-#### 21.6.15.36 A tabela ndbinfo table_distribution_status
+#### 21.6.15.36 The ndbinfo table_distribution_status Table
 
-A tabela `table_distribution_status` fornece informações sobre o progresso da distribuição de tabelas para tabelas `NDB`.
+The `table_distribution_status` table provides information about the progress of table distribution for `NDB` tables.
 
-A tabela `table_distribution_status` contém as seguintes colunas:
+The `table_distribution_status` table contains the following columns:
 
-- `node_id`
+* `node_id`
 
-  ID do nó
+  Node id
 
-- `table_id`
+* `table_id`
 
-  Tabela ID
+  Table ID
 
-- `tab_copy_status`
+* `tab_copy_status`
 
-  Status da cópia dos dados de distribuição da tabela para o disco; uma das opções `IDLE`, `SR_PHASE1_READ_PAGES`, `SR_PHASE2_READ_TABLE`, `SR_PHASE3_COPY_TABLE`, `REMOVE_NODE`, `LCP_READ_TABLE`, `COPY_TAB_REQ`, `COPY_NODE_STATE`, `ADD_TABLE_MASTER`, `ADD_TABLE_SLAVE`, `INVALIDATE_NODE_LCP`, `ALTER_TABLE`, `COPY_TO_SAVE` ou `GET_TABINFO`
+  Status of copying of table distribution data to disk; one of `IDLE`, `SR_PHASE1_READ_PAGES`, `SR_PHASE2_READ_TABLE`, `SR_PHASE3_COPY_TABLE`, `REMOVE_NODE`, `LCP_READ_TABLE`, `COPY_TAB_REQ`, `COPY_NODE_STATE`, `ADD_TABLE_MASTER`, `ADD_TABLE_SLAVE`, `INVALIDATE_NODE_LCP`, `ALTER_TABLE`, `COPY_TO_SAVE`, or `GET_TABINFO`
 
-- `tab_update_status`
+* `tab_update_status`
 
-  Status da atualização dos dados de distribuição da tabela; um dos `IDLE`, `LOCAL_CHECKPOINT`, `LOCAL_CHECKPOINT_QUEUED`, `REMOVE_NODE`, `COPY_TAB_REQ`, `ADD_TABLE_MASTER`, `ADD_TABLE_SLAVE`, `INVALIDATE_NODE_LCP` ou `CALLBACK`
+  Status of updating of table distribution data; one of `IDLE`, `LOCAL_CHECKPOINT`, `LOCAL_CHECKPOINT_QUEUED`, `REMOVE_NODE`, `COPY_TAB_REQ`, `ADD_TABLE_MASTER`, `ADD_TABLE_SLAVE`, `INVALIDATE_NODE_LCP`, or `CALLBACK`
 
-- `tab_lcp_status`
+* `tab_lcp_status`
 
-  Status da tabela LCP; um dos valores `ATIVO` (esperando por o ponto de verificação local ser executado), `ESCREVENDO NO ARQUIVO` (o ponto de verificação foi executado, mas ainda não foi escrito no disco) ou `CONCLUSO` (o ponto de verificação foi executado e persistido no disco)
+  Status of table LCP; one of `ACTIVE` (waiting for local checkpoint to be performed), `WRITING_TO_FILE` (checkpoint performed but not yet written to disk), or `COMPLETED` (checkpoint performed and persisted to disk)
 
-- `tab_status`
+* `tab_status`
 
-  Status interno da tabela; uma das opções `ATIVO` (a tabela existe), `CRIANDO` (a tabela está sendo criada) ou `DESCARTANDO` (a tabela está sendo descartada)
+  Table internal status; one of `ACTIVE` (table exists), `CREATING` (table is being created), or `DROPPING` (table is being dropped)
 
-- `tab_storage`
+* `tab_storage`
 
-  Recuperabilidade da tabela; uma das opções é `NORMAL` (totalmente recuperável com registro de redo e checkpointing), `NOLOGGING` (recuperável após o desligamento do nó, após o desligamento do cluster) ou `TEMPORARY` (não recuperável)
+  Table recoverability; one of `NORMAL` (fully recoverable with redo logging and checkpointing), `NOLOGGING` (recoverable from node crash, empty following cluster crash), or `TEMPORARY` (not recoverable)
 
-- `tab_partitions`
+* `tab_partitions`
 
-  Número de partições na tabela
+  Number of partitions in table
 
-- `tab_fragments`
+* `tab_fragments`
 
-  Número de fragmentos na tabela; normalmente igual a `tab_partitions`; para tabelas totalmente replicadas iguais a `tab_partitions * [número de grupos de nós]`
+  Number of fragments in table; normally same as `tab_partitions`; for fully replicated tables equal to `tab_partitions * [number of node groups]`
 
-- `contagem_de_varredura_atual`
+* `current_scan_count`
 
-  Número atual de varreduras ativas
+  Current number of active scans
 
-- `scan_count_wait`
+* `scan_count_wait`
 
-  Número atual de varreduras aguardando para serem executadas antes que a `ALTER TABLE` possa ser concluída.
+  Current number of scans waiting to be performed before `ALTER TABLE` can complete.
 
-- `is_reorg_ongoing`
+* `is_reorg_ongoing`
 
-  Se a tabela está sendo reorganizada atualmente (1 se verdadeiro)
+  Whether table is currently being reorganized (1 if true)
 
-##### Notas
+##### Notes
 
-A tabela `table_distribution_status` foi adicionada no NDB 7.5.4.
+The `table_distribution_status` table was added in NDB 7.5.4.

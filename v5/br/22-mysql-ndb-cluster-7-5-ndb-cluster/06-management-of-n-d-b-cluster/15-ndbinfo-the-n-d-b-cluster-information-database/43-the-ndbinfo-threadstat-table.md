@@ -1,85 +1,85 @@
-#### 21.6.15.43 A tabela Threadstat do ndbinfo
+#### 21.6.15.43 The ndbinfo threadstat Table
 
-A tabela `threadstat` fornece um instantâneo aproximado das estatísticas dos threads que estão em execução no kernel `NDB`.
+The `threadstat` table provides a rough snapshot of statistics for threads running in the `NDB` kernel.
 
-A tabela `threadstat` contém as seguintes colunas:
+The `threadstat` table contains the following columns:
 
-- `node_id`
+* `node_id`
 
-  ID do nó
+  Node ID
 
-- `thr_no`
+* `thr_no`
 
-  ID do thread
+  Thread ID
 
-- `thr_nm`
+* `thr_nm`
 
-  Nome do thread
+  Thread name
 
-- `c_loop`
+* `c_loop`
 
-  Número de loops no loop principal
+  Number of loops in main loop
 
-- `c_exec`
+* `c_exec`
 
-  Número de sinais executados
+  Number of signals executed
 
-- `c_wait`
+* `c_wait`
 
-  Número de vezes que você precisa esperar por uma entrada adicional
+  Number of times waiting for additional input
 
-- `c_l_sent_prioa`
+* `c_l_sent_prioa`
 
-  Número de sinais de prioridade A enviados para o próprio nó
+  Number of priority A signals sent to own node
 
-- `c_l_sent_priob`
+* `c_l_sent_priob`
 
-  Número de sinais de prioridade B enviados para o próprio nó
+  Number of priority B signals sent to own node
 
-- `c_r_sent_prioa`
+* `c_r_sent_prioa`
 
-  Número de sinais de prioridade A enviados para o nó remoto
+  Number of priority A signals sent to remote node
 
-- `c_r_sent_priob`
+* `c_r_sent_priob`
 
-  Número de sinais de prioridade B enviados para o nó remoto
+  Number of priority B signals sent to remote node
 
-- `os_tid`
+* `os_tid`
 
-  ID do thread do sistema operacional
+  OS thread ID
 
-- `os_now`
+* `os_now`
 
-  Tempo do sistema operacional (ms)
+  OS time (ms)
 
-- `os_ru_utime`
+* `os_ru_utime`
 
-  Tempo de CPU do usuário do OS (µs)
+  OS user CPU time (µs)
 
-- `os_ru_stime`
+* `os_ru_stime`
 
-  Tempo de CPU do sistema operacional (µs)
+  OS system CPU time (µs)
 
-- `os_ru_minflt`
+* `os_ru_minflt`
 
-  Reclamações de página (falhas de página suaves)
+  OS page reclaims (soft page faults)
 
-- `os_ru_majflt`
+* `os_ru_majflt`
 
-  Falhas de página (falhas de página pesada)
+  OS page faults (hard page faults)
 
-- `os_ru_nvcsw`
+* `os_ru_nvcsw`
 
-  Os comutações voluntárias do contexto
+  OS voluntary context switches
 
-- `os_ru_nivcsw`
+* `os_ru_nivcsw`
 
-  OS trocas involuntárias de contexto
+  OS involuntary context switches
 
-##### Notas
+##### Notes
 
-`os_time` usa a chamada `gettimeofday()` do sistema.
+`os_time` uses the system `gettimeofday()` call.
 
-Os valores das colunas `os_ru_utime`, `os_ru_stime`, `os_ru_minflt`, `os_ru_majflt`, `os_ru_nvcsw` e `os_ru_nivcsw` são obtidos usando a chamada do sistema `getrusage()` ou o equivalente.
+The values of the `os_ru_utime`, `os_ru_stime`, `os_ru_minflt`, `os_ru_majflt`, `os_ru_nvcsw`, and `os_ru_nivcsw` columns are obtained using the system `getrusage()` call, or the equivalent.
 
-Como esta tabela contém contagens coletadas em um determinado momento, para obter os melhores resultados, é necessário consultar essa tabela periodicamente e armazenar os resultados em uma ou mais tabelas intermediárias. O Cronômetro de Eventos do MySQL Server pode ser utilizado para automatizar esse monitoramento. Para obter mais informações, consulte Seção 23.4, “Usando o Cronômetro de Eventos”.
+Since this table contains counts taken at a given point in time, for best results it is necessary to query this table periodically and store the results in an intermediate table or tables. The MySQL Server's Event Scheduler can be employed to automate such monitoring. For more information, see [Section 23.4, “Using the Event Scheduler”](event-scheduler.html "23.4 Using the Event Scheduler").

@@ -1,118 +1,118 @@
-#### 21.4.3.7 Definindo nós SQL e outros nós de API em um cluster NDB
+#### 21.4.3.7 Defining SQL and Other API Nodes in an NDB Cluster
 
-As seções `[mysqld]` e `[api]` no arquivo `config.ini` definem o comportamento dos servidores MySQL (nós SQL) e de outras aplicações (nós API) usados para acessar os dados do cluster. Nenhum dos parâmetros mostrados é obrigatório. Se nenhum nome de computador ou host for fornecido, qualquer host pode usar esse nó SQL ou API.
+The `[mysqld]` and `[api]` sections in the `config.ini` file define the behavior of the MySQL servers (SQL nodes) and other applications (API nodes) used to access cluster data. None of the parameters shown is required. If no computer or host name is provided, any host can use this SQL or API node.
 
-De modo geral, uma seção `[mysqld]` é usada para indicar um servidor MySQL que fornece uma interface SQL para o clúster, e uma seção `[api]` é usada para aplicações que não são processos do **mysqld** acessando dados do clúster, mas as duas designações são, na verdade, sinônimas; você pode, por exemplo, listar parâmetros para um servidor MySQL que atua como um nó SQL em uma seção `[api]`.
+Generally speaking, a `[mysqld]` section is used to indicate a MySQL server providing an SQL interface to the cluster, and an `[api]` section is used for applications other than [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") processes accessing cluster data, but the two designations are actually synonymous; you can, for instance, list parameters for a MySQL server acting as an SQL node in an `[api]` section.
 
-Nota
+Note
 
-Para uma discussão sobre as opções do servidor MySQL para o NDB Cluster, consulte Seção 21.4.3.9.1, “Opções do Servidor MySQL para NDB Cluster”. Para informações sobre as variáveis do sistema do servidor MySQL relacionadas ao NDB Cluster, consulte Seção 21.4.3.9.2, “Variáveis de Sistema do NDB Cluster”.
+For a discussion of MySQL server options for NDB Cluster, see [Section 21.4.3.9.1, “MySQL Server Options for NDB Cluster”](mysql-cluster-options-variables.html#mysql-cluster-program-options-mysqld "21.4.3.9.1 MySQL Server Options for NDB Cluster"). For information about MySQL server system variables relating to NDB Cluster, see [Section 21.4.3.9.2, “NDB Cluster System Variables”](mysql-cluster-options-variables.html#mysql-cluster-system-variables "21.4.3.9.2 NDB Cluster System Variables").
 
-- `Id`
+* `Id`
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó da API" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>não assinado</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>1 - 255</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do sistema:</strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir debackup, e, em seguida, reinicie o clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Id API node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>1 - 255</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requires a complete shutdown of the cluster, wiping and restoring the cluster file system from a backup, and then restarting the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  O `Id` é um valor inteiro usado para identificar o nó em todas as mensagens internas do cluster. O intervalo permitido de valores é de 1 a 255, inclusive. Esse valor deve ser único para cada nó no cluster, independentemente do tipo de nó.
+  The `Id` is an integer value used to identify the node in all cluster internal messages. The permitted range of values is 1 to 255 inclusive. This value must be unique for each node in the cluster, regardless of the type of node.
 
-  Nota
+  Note
 
-  Os IDs dos nós de dados devem ser menores que 49, independentemente da versão do NDB Cluster utilizada. Se você planeja implantar um grande número de nós de dados, é uma boa ideia limitar os IDs dos nós para os nós da API (e nós de gerenciamento) para valores maiores que 48.
+  Data node IDs must be less than 49, regardless of the NDB Cluster version used. If you plan to deploy a large number of data nodes, it is a good idea to limit the node IDs for API nodes (and management nodes) to values greater than 48.
 
-  `NodeId` é o nome de parâmetro preferido a ser usado ao identificar nós da API. (`Id` continua sendo suportado para compatibilidade com versões anteriores, mas agora é desaconselhado e gera uma mensagem de aviso quando usado. Ele também está sujeito à remoção futura.)
+  [`NodeId`](mysql-cluster-api-definition.html#ndbparam-api-nodeid) is the preferred parameter name to use when identifying API nodes. (`Id` continues to be supported for backward compatibility, but is now deprecated and generates a warning when used. It is also subject to future removal.)
 
-- `ConnectionMap`
+* `ConnectionMap`
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó da API ConnectionMap" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>string</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ConnectionMap API node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>string</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Especifica quais nós de dados devem ser conectados.
+  Specifies which data nodes to connect.
 
-- `NodeId`
+* `NodeId`
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó da API NodeId" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>não assinado</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>1 - 255</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do sistema:</strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir debackup, e, em seguida, reinicie o clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="NodeId API node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>1 - 255</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requires a complete shutdown of the cluster, wiping and restoring the cluster file system from a backup, and then restarting the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  O `NodeId` é um valor inteiro usado para identificar o nó em todas as mensagens internas do cluster. O intervalo permitido de valores é de 1 a 255, inclusive. Esse valor deve ser único para cada nó no cluster, independentemente do tipo de nó.
+  The `NodeId` is an integer value used to identify the node in all cluster internal messages. The permitted range of values is 1 to 255 inclusive. This value must be unique for each node in the cluster, regardless of the type of node.
 
-  Nota
+  Note
 
-  Os IDs dos nós de dados devem ser menores que 49, independentemente da versão do NDB Cluster utilizada. Se você planeja implantar um grande número de nós de dados, é uma boa ideia limitar os IDs dos nós para os nós da API (e nós de gerenciamento) para valores maiores que 48.
+  Data node IDs must be less than 49, regardless of the NDB Cluster version used. If you plan to deploy a large number of data nodes, it is a good idea to limit the node IDs for API nodes (and management nodes) to values greater than 48.
 
-  `NodeId` é o nome de parâmetro preferido a ser usado ao identificar os nós de gerenciamento. Um alias, `Id`, foi usado para esse propósito em versões muito antigas do NDB Cluster e continua sendo suportado para compatibilidade reversa; ele já está desatualizado e gera uma mensagem de aviso quando usado e está sujeito à remoção em uma futura versão do NDB Cluster.
+  [`NodeId`](mysql-cluster-api-definition.html#ndbparam-api-nodeid) is the preferred parameter name to use when identifying management nodes. An alias, `Id`, was used for this purpose in very old versions of NDB Cluster, and continues to be supported for backward compatibility; it is now deprecated and generates a warning when used, and is subject to removal in a future release of NDB Cluster.
 
-- `ExecuteOnComputer`
+* `ExecuteOnComputer`
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó da API ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer API node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Isso se refere ao conjunto `Id` para um dos computadores (hosts) definidos em uma seção `[computer]` do arquivo de configuração.
+  This refers to the `Id` set for one of the computers (hosts) defined in a `[computer]` section of the configuration file.
 
-  Importante
+  Important
 
-  Este parâmetro é desaconselhável a partir da NDB 7.5.0 e está sujeito à remoção em uma futura versão. Use o parâmetro `HostName` em vez disso.
+  This parameter is deprecated as of NDB 7.5.0, and is subject to removal in a future release. Use the [`HostName`](mysql-cluster-api-definition.html#ndbparam-api-hostname) parameter instead.
 
-- `HostName`
+* `HostName`
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó da API HostName" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome ou endereço IP</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="HostName API node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name or IP address</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Especificar este parâmetro define o nome do host do computador em que o nó SQL (nó de API) deve residir.
+  Specifying this parameter defines the host name of the computer on which the SQL node (API node) is to reside.
 
-  Se não for especificado um `HostName` em uma seção específica de `[mysql]` ou `[api]` no arquivo `config.ini`, então um nó SQL ou API pode se conectar usando o "slot" correspondente de qualquer host que possa estabelecer uma conexão de rede com a máquina do servidor de gerenciamento. *Isso difere do comportamento padrão para nós de dados, onde `localhost` é assumido para `HostName`, a menos que especificado de outra forma*.
+  If no `HostName` is specified in a given `[mysql]` or `[api]` section of the `config.ini` file, then an SQL or API node may connect using the corresponding “slot” from any host which can establish a network connection to the management server host machine. *This differs from the default behavior for data nodes, where `localhost` is assumed for `HostName` unless otherwise specified*.
 
-- `LocationDomainId`
+* [`LocationDomainId`](mysql-cluster-api-definition.html#ndbparam-api-locationdomainid)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó da API LocationDomainId" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.6.4</td> </tr><tr> <th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr> <th>Padrão</th> <td>0</td> </tr><tr> <th>Gama</th> <td>0 - 16</td> </tr><tr> <th>Adicionei</th> <td>NDB 7.6.4</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="LocationDomainId API node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.6.4</td> </tr><tr> <th>Type or units</th> <td>integer</td> </tr><tr> <th>Default</th> <td>0</td> </tr><tr> <th>Range</th> <td>0 - 16</td> </tr><tr> <th>Added</th> <td>NDB 7.6.4</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Atribui um nó SQL ou outro nó de API a um domínio de disponibilidade específico (também conhecido como zona de disponibilidade) dentro de uma nuvem. Ao informar o `NDB` quais nós estão em quais domínios de disponibilidade, o desempenho pode ser melhorado em um ambiente de nuvem das seguintes maneiras:
+  Assigns an SQL or other API node to a specific [availability domain](https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/regions.htm) (also known as an availability zone) within a cloud. By informing `NDB` which nodes are in which availability domains, performance can be improved in a cloud environment in the following ways:
 
-  - Se os dados solicitados não forem encontrados no mesmo nó, as leituras podem ser direcionadas para outro nó no mesmo domínio de disponibilidade.
+  + If requested data is not found on the same node, reads can be directed to another node in the same availability domain.
 
-  - A comunicação entre nós em diferentes domínios de disponibilidade é garantida para usar o suporte de WAN dos transportadores `NDB` sem qualquer intervenção manual adicional.
+  + Communication between nodes in different availability domains are guaranteed to use `NDB` transporters' WAN support without any further manual intervention.
 
-  - O número do grupo do transportador pode ser baseado no domínio de disponibilidade utilizado, de modo que, sempre que possível, os nós SQL e outros nós de API também se comuniquem com os nós de dados locais no mesmo domínio de disponibilidade.
+  + The transporter's group number can be based on which availability domain is used, such that also SQL and other API nodes communicate with local data nodes in the same availability domain whenever possible.
 
-  - O árbitro pode ser selecionado a partir de um domínio de disponibilidade no qual não há nós de dados, ou, se tal domínio de disponibilidade não puder ser encontrado, de um terceiro domínio de disponibilidade.
+  + The arbitrator can be selected from an availability domain in which no data nodes are present, or, if no such availability domain can be found, from a third availability domain.
 
-  `LocationDomainId` recebe um valor inteiro entre 0 e 16, inclusive, com 0 sendo o valor padrão; usar 0 é o mesmo que deixar o parâmetro sem definição.
+  `LocationDomainId` takes an integer value between 0 and 16 inclusive, with 0 being the default; using 0 is the same as leaving the parameter unset.
 
-- `ArbitrationRank`
+* `ArbitrationRank`
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó da API ArbitrationRank" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>0-2</td> </tr><tr> <th>Padrão</th> <td>0</td> </tr><tr> <th>Gama</th> <td>0 a 2</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ArbitrationRank API node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>0-2</td> </tr><tr> <th>Default</th> <td>0</td> </tr><tr> <th>Range</th> <td>0 - 2</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro define quais nós podem atuar como árbitros. Tanto os nós de gerenciamento quanto os nós SQL podem ser árbitros. Um valor de 0 significa que o nó fornecido nunca é usado como árbitro, um valor de 1 dá ao nó alta prioridade como árbitro e um valor de 2 dá a ele baixa prioridade. Uma configuração normal usa o servidor de gerenciamento como árbitro, definindo seu `ArbitrationRank` para 1 (o padrão para nós de gerenciamento) e os de todos os nós SQL para 0 (o padrão para nós SQL).
+  This parameter defines which nodes can act as arbitrators. Both management nodes and SQL nodes can be arbitrators. A value of 0 means that the given node is never used as an arbitrator, a value of 1 gives the node high priority as an arbitrator, and a value of 2 gives it low priority. A normal configuration uses the management server as arbitrator, setting its `ArbitrationRank` to 1 (the default for management nodes) and those for all SQL nodes to 0 (the default for SQL nodes).
 
-  Ao definir `ArbitrationRank` para 0 em todos os nós de gerenciamento e SQL, você pode desativar a arbitragem completamente. Você também pode controlar a arbitragem sobrescrevendo este parâmetro; para fazer isso, defina o parâmetro `Arbitration` na seção `[ndbd default]` do arquivo de configuração global `config.ini`.
+  By setting `ArbitrationRank` to 0 on all management and SQL nodes, you can disable arbitration completely. You can also control arbitration by overriding this parameter; to do so, set the [`Arbitration`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-arbitration) parameter in the `[ndbd default]` section of the `config.ini` global configuration file.
 
-- `Atraso na arbitragem`
+* `ArbitrationDelay`
 
-  <table frame="box" rules="all" summary="Parâmetro de configuração do nó da API de arbitragem: tipo e valor de informação" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>milissegundos</td> </tr><tr> <th>Padrão</th> <td>0</td> </tr><tr> <th>Gama</th> <td>0 - 4294967039 (0xFFFFFEFF)</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ArbitrationDelay API node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>milliseconds</td> </tr><tr> <th>Default</th> <td>0</td> </tr><tr> <th>Range</th> <td>0 - 4294967039 (0xFFFFFEFF)</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Definir este parâmetro para qualquer outro valor que não 0 (o padrão) significa que as respostas do árbitro às solicitações de arbitragem são atrasadas pelo número especificado de milissegundos. Geralmente, não é necessário alterar esse valor.
+  Setting this parameter to any other value than 0 (the default) means that responses by the arbitrator to arbitration requests are delayed by the stated number of milliseconds. It is usually not necessary to change this value.
 
-- `BatchByteSize`
+* [`BatchByteSize`](mysql-cluster-api-definition.html#ndbparam-api-batchbytesize)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó da API BatchByteSize" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>bytes</td> </tr><tr> <th>Padrão</th> <td>16K</td> </tr><tr> <th>Gama</th> <td>1K - 1M</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="BatchByteSize API node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>bytes</td> </tr><tr> <th>Default</th> <td>16K</td> </tr><tr> <th>Range</th> <td>1K - 1M</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Para consultas que são traduzidas em varreduras completas da tabela ou varreduras de intervalo em índices, é importante obter os registros em lotes de tamanho adequado para obter o melhor desempenho. É possível definir o tamanho adequado tanto em termos de número de registros (`BatchSize`) quanto em termos de bytes (`BatchByteSize`). O tamanho do lote real é limitado por ambos os parâmetros.
+  For queries that are translated into full table scans or range scans on indexes, it is important for best performance to fetch records in properly sized batches. It is possible to set the proper size both in terms of number of records ([`BatchSize`](mysql-cluster-api-definition.html#ndbparam-api-batchsize)) and in terms of bytes (`BatchByteSize`). The actual batch size is limited by both parameters.
 
-  A velocidade com que as consultas são realizadas pode variar em mais de 40% dependendo da configuração deste parâmetro.
+  The speed at which queries are performed can vary by more than 40% depending upon how this parameter is set.
 
-  Este parâmetro é medido em bytes. O valor padrão é 16K.
+  This parameter is measured in bytes. The default value is 16K.
 
-- `BatchSize`
+* [`BatchSize`](mysql-cluster-api-definition.html#ndbparam-api-batchsize)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó da API BatchSize" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>registros</td> </tr><tr> <th>Padrão</th> <td>256</td> </tr><tr> <th>Gama</th> <td>1 - 992</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="BatchSize API node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>records</td> </tr><tr> <th>Default</th> <td>256</td> </tr><tr> <th>Range</th> <td>1 - 992</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro é medido em número de registros e, por padrão, é definido para 256. O tamanho máximo é de 992.
+  This parameter is measured in number of records and is by default set to 256. The maximum size is 992.
 
-- `ExtraSendBufferMemory`
+* [`ExtraSendBufferMemory`](mysql-cluster-api-definition.html#ndbparam-api-extrasendbuffermemory)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó da API ConnectionMap" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>string</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ConnectionMap API node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>string</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro especifica a quantidade de memória de buffer de envio do transportador a ser alocada, além da que foi definida usando `TotalSendBufferMemory`, `SendBufferMemory` ou ambas.
+  This parameter specifies the amount of transporter send buffer memory to allocate in addition to any that has been set using [`TotalSendBufferMemory`](mysql-cluster-api-definition.html#ndbparam-api-totalsendbuffermemory), [`SendBufferMemory`](mysql-cluster-tcp-definition.html#ndbparam-tcp-sendbuffermemory), or both.
 
-- `HeartbeatThreadPriority`
+* [`HeartbeatThreadPriority`](mysql-cluster-api-definition.html#ndbparam-api-heartbeatthreadpriority)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó da API ConnectionMap" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>string</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ConnectionMap API node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>string</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Use este parâmetro para definir a política de agendamento e a prioridade das threads de batida de coração para nós de gerenciamento e API. A sintaxe para definir este parâmetro é mostrada aqui:
+  Use this parameter to set the scheduling policy and priority of heartbeat threads for management and API nodes. The syntax for setting this parameter is shown here:
 
   ```sql
   HeartbeatThreadPriority = policy[, priority]
@@ -121,85 +121,85 @@ Para uma discussão sobre as opções do servidor MySQL para o NDB Cluster, cons
     {FIFO | RR}
   ```
 
-  Ao definir este parâmetro, você deve especificar uma política. Isso é um dos `FIFO` (primeiro a entrar, primeiro a sair) ou `RR` (round robin). Isso pode ser seguido opcionalmente pela prioridade (um número inteiro).
+  When setting this parameter, you must specify a policy. This is one of `FIFO` (first in, first in) or `RR` (round robin). This followed optionally by the priority (an integer).
 
-- `MaxScanBatchSize`
+* [`MaxScanBatchSize`](mysql-cluster-api-definition.html#ndbparam-api-maxscanbatchsize)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó da API ConnectionMap" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>string</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ConnectionMap API node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>string</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  O tamanho do lote é o tamanho de cada lote enviado a partir de cada nó de dados. A maioria das varreduras é realizada em paralelo para proteger o servidor MySQL de receber muitos dados de muitos nós em paralelo; este parâmetro define um limite para o tamanho total do lote em todos os nós.
+  The batch size is the size of each batch sent from each data node. Most scans are performed in parallel to protect the MySQL Server from receiving too much data from many nodes in parallel; this parameter sets a limit to the total batch size over all nodes.
 
-  O valor padrão deste parâmetro é definido em 256 KB. Seu tamanho máximo é de 16 MB.
+  The default value of this parameter is set to 256KB. Its maximum size is 16MB.
 
-- `TotalSendBufferMemory`
+* `TotalSendBufferMemory`
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó da API ConnectionMap" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>string</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ConnectionMap API node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>string</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro é usado para determinar a quantidade total de memória a ser alocada neste nó para a memória do buffer de envio compartilhado entre todos os transportadores configurados.
+  This parameter is used to determine the total amount of memory to allocate on this node for shared send buffer memory among all configured transporters.
 
-  Se este parâmetro for definido, seu valor mínimo permitido é de 256 KB; 0 indica que o parâmetro não foi definido. Para obter informações mais detalhadas, consulte Seção 21.4.3.13, “Configurando Parâmetros de Buffer de Envio do NDB Cluster”.
+  If this parameter is set, its minimum permitted value is 256KB; 0 indicates that the parameter has not been set. For more detailed information, see [Section 21.4.3.13, “Configuring NDB Cluster Send Buffer Parameters”](mysql-cluster-config-send-buffers.html "21.4.3.13 Configuring NDB Cluster Send Buffer Parameters").
 
-- `AutoReconnect`
+* [`AutoReconnect`](mysql-cluster-api-definition.html#ndbparam-api-autoreconnect)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó da API ConnectionMap" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>string</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ConnectionMap API node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>string</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro é `false` por padrão. Isso obriga os nós da API desconectados (incluindo servidores MySQL que atuam como nós SQL) a usar uma nova conexão com o clúster em vez de tentar reutilizar uma existente, pois a reutilização de conexões pode causar problemas ao usar IDs de nós alocados dinamicamente. (Bug #45921)
+  This parameter is `false` by default. This forces disconnected API nodes (including MySQL Servers acting as SQL nodes) to use a new connection to the cluster rather than attempting to re-use an existing one, as re-use of connections can cause problems when using dynamically-allocated node IDs. (Bug #45921)
 
-  Nota
+  Note
 
-  Este parâmetro pode ser sobrescrito usando a API NDB. Para mais informações, consulte Ndb_cluster_connection::set_auto_reconnect() e Ndb_cluster_connection::get_auto_reconnect().
+  This parameter can be overridden using the NDB API. For more information, see [Ndb_cluster_connection::set_auto_reconnect()](/doc/ndbapi/en/ndb-ndb-cluster-connection.html#ndb-ndb-cluster-connection-set-auto-reconnect), and [Ndb_cluster_connection::get_auto_reconnect()](/doc/ndbapi/en/ndb-ndb-cluster-connection.html#ndb-ndb-cluster-connection-get-auto-reconnect).
 
-- `DefaultOperationRedoProblemAction`
+* [`DefaultOperationRedoProblemAction`](mysql-cluster-api-definition.html#ndbparam-api-defaultoperationredoproblemaction)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó da API ConnectionMap" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>string</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ConnectionMap API node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>string</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro (junto com `RedoOverCommitLimit` e `RedoOverCommitCounter`) controla a forma como o nó de dados lida com as operações quando leva muito tempo para limpar os logs de refazer no disco. Isso ocorre quando uma limpeza de log de refazer específico leva mais de `RedoOverCommitLimit` segundos, mais de `RedoOverCommitCounter` vezes, fazendo com que quaisquer transações pendentes sejam abortadas.
+  This parameter (along with [`RedoOverCommitLimit`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-redoovercommitlimit) and [`RedoOverCommitCounter`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-redoovercommitcounter)) controls the data node's handling of operations when too much time is taken flushing redo logs to disk. This occurs when a given redo log flush takes longer than [`RedoOverCommitLimit`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-redoovercommitlimit) seconds, more than [`RedoOverCommitCounter`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-redoovercommitcounter) times, causing any pending transactions to be aborted.
 
-  Quando isso acontece, o nó pode responder de duas maneiras, de acordo com o valor de `DefaultOperationRedoProblemAction`, listado aqui:
+  When this happens, the node can respond in either of two ways, according to the value of `DefaultOperationRedoProblemAction`, listed here:
 
-  - `ABORT`: Qualquer operação pendente de transações abortadas também é abortada.
+  + `ABORT`: Any pending operations from aborted transactions are also aborted.
 
-  - `QUEUE`: As operações pendentes de transações que foram abortadas são colocadas em fila para serem re-providas. Isso é o padrão. As operações pendentes ainda são abortadas quando o log de reverso fica sem espaço — ou seja, quando ocorrem erros P_TAIL_PROBLEM.
+  + `QUEUE`: Pending operations from transactions that were aborted are queued up to be re-tried. This the default. Pending operations are still aborted when the redo log runs out of space—that is, when P_TAIL_PROBLEM errors occur.
 
-- `DefaultHashMapSize`
+* [`DefaultHashMapSize`](mysql-cluster-api-definition.html#ndbparam-api-defaulthashmapsize)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó da API ConnectionMap" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>string</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ConnectionMap API node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>string</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  O tamanho dos mapas de hash da tabela usados pelo `NDB` é configurável usando este parâmetro. `DefaultHashMapSize` pode assumir qualquer um dos três valores possíveis (0, 240, 3840).
+  The size of the table hash maps used by [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") is configurable using this parameter. `DefaultHashMapSize` can take any of three possible values (0, 240, 3840).
 
-  O uso original previsto para este parâmetro era facilitar as atualizações e, especialmente, as desatualizações para e a partir de versões muito antigas com tamanhos de mapa de hash padrão diferentes. Isso não é um problema ao atualizar o NDB Cluster 7.3 (ou versões posteriores).
+  The original intended use for this parameter was to facilitate upgrades and especially downgrades to and from very old releases with differing default hash map sizes. This is not an issue when upgrading from NDB Cluster 7.3 (or later) to later versions.
 
-  Atualmente, não é possível diminuir esse parâmetro online após a criação ou modificação de tabelas com o valor de `DefaultHashMapSize` igual a 3840.
+  Decreasing this parameter online after any tables have been created or modified with `DefaultHashMapSize` equal to 3840 is not currently supported.
 
-- `Wan`
+* [`Wan`](mysql-cluster-api-definition.html#ndbparam-api-wan)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó da API ConnectionMap" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>string</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ConnectionMap API node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>string</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Use a configuração WAN TCP como padrão.
+  Use WAN TCP setting as default.
 
-- `ConnectBackoffMaxTime`
+* [`ConnectBackoffMaxTime`](mysql-cluster-api-definition.html#ndbparam-api-connectbackoffmaxtime)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó da API ConnectionMap" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>string</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ConnectionMap API node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>string</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Em um NDB Cluster com muitos nós de dados não iniciados, o valor deste parâmetro pode ser aumentado para contornar tentativas de conexão com nós de dados que ainda não começaram a funcionar no cluster, além de moderar o tráfego alto nos nós de gerenciamento. Enquanto o nó da API não estiver conectado a nenhum novo nó de dados, o valor do parâmetro `StartConnectBackoffMaxTime` será aplicado; caso contrário, o `ConnectBackoffMaxTime` será usado para determinar o tempo em milissegundos a ser aguardado entre as tentativas de conexão.
+  In an NDB Cluster with many unstarted data nodes, the value of this parameter can be raised to circumvent connection attempts to data nodes which have not yet begun to function in the cluster, as well as moderate high traffic to management nodes. As long as the API node is not connected to any new data nodes, the value of the [`StartConnectBackoffMaxTime`](mysql-cluster-api-definition.html#ndbparam-api-startconnectbackoffmaxtime) parameter is applied; otherwise, `ConnectBackoffMaxTime` is used to determine the length of time in milliseconds to wait between connection attempts.
 
-  O tempo decorrido *durante* as tentativas de conexão do nó não é considerado ao calcular o tempo decorrido para este parâmetro. O tempo de espera é aplicado com uma resolução de aproximadamente 100 ms, começando com um atraso de 100 ms; para cada tentativa subsequente, o comprimento deste período é duplicado até atingir `ConnectBackoffMaxTime` milissegundos, até um máximo de 100000 ms (100s).
+  Time elapsed *during* node connection attempts is not taken into account when calculating elapsed time for this parameter. The timeout is applied with approximately 100 ms resolution, starting with a 100 ms delay; for each subsequent attempt, the length of this period is doubled until it reaches `ConnectBackoffMaxTime` milliseconds, up to a maximum of 100000 ms (100s).
 
-  Uma vez que o nó da API esteja conectado a um nó de dados e esse nó informe (em uma mensagem de batida de coração) que se conectou a outros nós de dados, as tentativas de conexão com esses nós de dados não serão mais afetadas por esse parâmetro e serão feitas a cada 100 ms em seguida, até que sejam conectadas. Uma vez que um nó de dados tenha iniciado, ele pode levar `HeartbeatIntervalDbApi` para que o nó da API seja notificado de que isso ocorreu.
+  Once the API node is connected to a data node and that node reports (in a heartbeat message) that it has connected to other data nodes, connection attempts to those data nodes are no longer affected by this parameter, and are made every 100 ms thereafter until connected. Once a data node has started, it can take up [`HeartbeatIntervalDbApi`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-heartbeatintervaldbapi) for the API node to be notified that this has occurred.
 
-- `StartConnectBackoffMaxTime`
+* [`StartConnectBackoffMaxTime`](mysql-cluster-api-definition.html#ndbparam-api-startconnectbackoffmaxtime)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó da API ConnectionMap" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>string</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ConnectionMap API node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>string</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Em um NDB Cluster com muitos nós de dados não iniciados, o valor deste parâmetro pode ser aumentado para contornar tentativas de conexão com nós de dados que ainda não começaram a funcionar no cluster, além de moderar o tráfego alto nos nós de gerenciamento. Enquanto o nó da API não estiver conectado a nenhum novo nó de dados, o valor do parâmetro `StartConnectBackoffMaxTime` é aplicado; caso contrário, `ConnectBackoffMaxTime` é usado para determinar o tempo em milissegundos a ser aguardado entre as tentativas de conexão.
+  In an NDB Cluster with many unstarted data nodes, the value of this parameter can be raised to circumvent connection attempts to data nodes which have not yet begun to function in the cluster, as well as moderate high traffic to management nodes. As long as the API node is not connected to any new data nodes, the value of the `StartConnectBackoffMaxTime` parameter is applied; otherwise, [`ConnectBackoffMaxTime`](mysql-cluster-api-definition.html#ndbparam-api-connectbackoffmaxtime) is used to determine the length of time in milliseconds to wait between connection attempts.
 
-  O tempo decorrido *durante* as tentativas de conexão do nó não é considerado ao calcular o tempo decorrido para este parâmetro. O tempo de espera é aplicado com uma resolução de aproximadamente 100 ms, começando com um atraso de 100 ms; para cada tentativa subsequente, o comprimento deste período é duplicado até atingir `StartConnectBackoffMaxTime` milissegundos, até um máximo de 100000 ms (100s).
+  Time elapsed *during* node connection attempts is not taken into account when calculating elapsed time for this parameter. The timeout is applied with approximately 100 ms resolution, starting with a 100 ms delay; for each subsequent attempt, the length of this period is doubled until it reaches `StartConnectBackoffMaxTime` milliseconds, up to a maximum of 100000 ms (100s).
 
-  Uma vez que o nó da API esteja conectado a um nó de dados e esse nó informe (em uma mensagem de batida de coração) que se conectou a outros nós de dados, as tentativas de conexão com esses nós de dados não serão mais afetadas por esse parâmetro e serão feitas a cada 100 ms em seguida, até que sejam conectadas. Uma vez que um nó de dados tenha iniciado, ele pode levar `HeartbeatIntervalDbApi` para que o nó da API seja notificado de que isso ocorreu.
+  Once the API node is connected to a data node and that node reports (in a heartbeat message) that it has connected to other data nodes, connection attempts to those data nodes are no longer affected by this parameter, and are made every 100 ms thereafter until connected. Once a data node has started, it can take up [`HeartbeatIntervalDbApi`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-heartbeatintervaldbapi) for the API node to be notified that this has occurred.
 
-**Parâmetros de depuração do nó da API.** Você pode usar o parâmetro de configuração `ApiVerbose` para habilitar a saída de depuração de um nó da API específico. Esse parâmetro aceita um valor inteiro. 0 é o padrão e desabilita a depuração; 1 habilita a saída de depuração no log do cluster; 2 adiciona a saída de depuração do `DBDICT`. (Bug #20638450) Veja também DUMP 1229.
+**API Node Debugging Parameters.** You can use the `ApiVerbose` configuration parameter to enable debugging output from a given API node. This parameter takes an integer value. 0 is the default, and disables such debugging; 1 enables debugging output to the cluster log; 2 adds [`DBDICT`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbdict.html) debugging output as well. (Bug #20638450) See also [DUMP 1229](/doc/ndb-internals/en/dump-command-1229.html).
 
-Você também pode obter informações de um servidor MySQL que está rodando como um nó SQL do NDB Cluster usando `SHOW STATUS` no cliente **mysql**, conforme mostrado aqui:
+You can also obtain information from a MySQL server running as an NDB Cluster SQL node using [`SHOW STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") in the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client, as shown here:
 
 ```sql
 mysql> SHOW STATUS LIKE 'ndb%';
@@ -214,16 +214,16 @@ mysql> SHOW STATUS LIKE 'ndb%';
 4 rows in set (0.02 sec)
 ```
 
-Para obter informações sobre as variáveis de status que aparecem na saída desta declaração, consulte Seção 21.4.3.9.3, “Variáveis de Status do NDB Cluster”.
+For information about the status variables appearing in the output from this statement, see [Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables").
 
-Nota
+Note
 
-Para adicionar novos nós SQL ou API à configuração de um NDB Cluster em execução, é necessário realizar um reinício contínuo de todos os nós do cluster após adicionar novas seções `[mysqld]` ou `[api]` ao arquivo `config.ini` (ou arquivos, se você estiver usando mais de um servidor de gerenciamento). Isso deve ser feito antes que os novos nós SQL ou API possam se conectar ao cluster.
+To add new SQL or API nodes to the configuration of a running NDB Cluster, it is necessary to perform a rolling restart of all cluster nodes after adding new `[mysqld]` or `[api]` sections to the `config.ini` file (or files, if you are using more than one management server). This must be done before the new SQL or API nodes can connect to the cluster.
 
-Não é *necessário* reiniciar o clúster se novos nós SQL ou API puderem utilizar slots de API anteriormente não utilizados na configuração do clúster para se conectarem ao clúster.
+It is *not* necessary to perform any restart of the cluster if new SQL or API nodes can employ previously unused API slots in the cluster configuration to connect to the cluster.
 
-**Tipos de reinício.** As informações sobre os tipos de reinício utilizados pelas descrições dos parâmetros nesta seção estão mostradas na tabela a seguir:
+**Restart types.** Information about the restart types used by the parameter descriptions in this section is shown in the following table:
 
-**Tabela 21.16 Tipos de reinício de cluster do NDB**
+**Table 21.16 NDB Cluster restart types**
 
-<table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó da API NodeId" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>não assinado</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>1 - 255</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do sistema:</strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir debackup, e, em seguida, reinicie o clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="NodeId API node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>1 - 255</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requires a complete shutdown of the cluster, wiping and restoring the cluster file system from a backup, and then restarting the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>

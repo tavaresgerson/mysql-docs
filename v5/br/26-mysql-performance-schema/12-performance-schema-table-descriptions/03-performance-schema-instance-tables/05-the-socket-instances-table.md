@@ -1,6 +1,6 @@
-#### 25.12.3.5 A tabela socket_instances
+#### 25.12.3.5 The socket_instances Table
 
-A tabela `socket_instances` fornece um instantâneo em tempo real das conexões ativas ao servidor MySQL. A tabela contém uma linha por conexão de arquivo de socket TCP/IP ou Unix. As informações disponíveis nesta tabela fornecem um instantâneo em tempo real das conexões ativas ao servidor. (Informações adicionais estão disponíveis em tabelas de resumo de sockets, incluindo atividade de rede, como operações de socket e número de bytes transmitidos e recebidos; consulte Seção 25.12.15.8, “Tabelas de Resumo de Sockets”).
+The [`socket_instances`](performance-schema-socket-instances-table.html "25.12.3.5 The socket_instances Table") table provides a real-time snapshot of the active connections to the MySQL server. The table contains one row per TCP/IP or Unix socket file connection. Information available in this table provides a real-time snapshot of the active connections to the server. (Additional information is available in socket summary tables, including network activity such as socket operations and number of bytes transmitted and received; see [Section 25.12.15.8, “Socket Summary Tables”](performance-schema-socket-summary-tables.html "25.12.15.8 Socket Summary Tables")).
 
 ```sql
 mysql> SELECT * FROM performance_schema.socket_instances\G
@@ -30,56 +30,56 @@ OBJECT_INSTANCE_BEGIN: 4316699040
                 STATE: ACTIVE
 ```
 
-Os instrumentos de soquete têm nomes na forma `wait/io/socket/sql/socket_type` e são usados da seguinte maneira:
+Socket instruments have names of the form `wait/io/socket/sql/socket_type` and are used like this:
 
-1. O servidor possui uma porta de escuta para cada protocolo de rede que ele suporta. Os instrumentos associados às portas de escuta para conexões de arquivos de socket TCP/IP ou Unix têm um valor de *`socket_type`* de `server_tcpip_socket` ou `server_unix_socket`, respectivamente.
+1. The server has a listening socket for each network protocol that it supports. The instruments associated with listening sockets for TCP/IP or Unix socket file connections have a *`socket_type`* value of `server_tcpip_socket` or `server_unix_socket`, respectively.
 
-2. Quando uma porta de escuta detecta uma conexão, o servidor transfere a conexão para uma nova porta gerenciada por um thread separado. O instrumento para o novo thread de conexão tem um valor de *`socket_type`* de `client_connection`.
+2. When a listening socket detects a connection, the server transfers the connection to a new socket managed by a separate thread. The instrument for the new connection thread has a *`socket_type`* value of `client_connection`.
 
-3. Quando uma conexão é encerrada, a linha na tabela `socket_instances` correspondente a ela é excluída.
+3. When a connection terminates, the row in [`socket_instances`](performance-schema-socket-instances-table.html "25.12.3.5 The socket_instances Table") corresponding to it is deleted.
 
-A tabela `socket_instances` tem as seguintes colunas:
+The [`socket_instances`](performance-schema-socket-instances-table.html "25.12.3.5 The socket_instances Table") table has these columns:
 
-- `NOME_DO_Evento`
+* `EVENT_NAME`
 
-  O nome do instrumento `wait/io/socket/*` que produziu o evento. Este é um valor `NAME` da tabela `setup_instruments`. Os nomes dos instrumentos podem ter várias partes e formar uma hierarquia, conforme discutido na Seção 25.6, “Convenções de Nomenclatura de Instrumentos do Schema de Desempenho”.
+  The name of the `wait/io/socket/*` instrument that produced the event. This is a `NAME` value from the [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table. Instrument names may have multiple parts and form a hierarchy, as discussed in [Section 25.6, “Performance Schema Instrument Naming Conventions”](performance-schema-instrument-naming.html "25.6 Performance Schema Instrument Naming Conventions").
 
-- `OBJECT_INSTANCE_BEGIN`
+* `OBJECT_INSTANCE_BEGIN`
 
-  Esta coluna identifica de forma única o soquete. O valor é o endereço de um objeto na memória.
+  This column uniquely identifies the socket. The value is the address of an object in memory.
 
-- `THREAD_ID`
+* `THREAD_ID`
 
-  O identificador de thread interno atribuído pelo servidor. Cada soquete é gerenciado por um único thread, então cada soquete pode ser mapeado para um thread que pode ser mapeado para um processo do servidor.
+  The internal thread identifier assigned by the server. Each socket is managed by a single thread, so each socket can be mapped to a thread which can be mapped to a server process.
 
-- `SOCKET_ID`
+* `SOCKET_ID`
 
-  O identificador de arquivo interno atribuído ao soquete.
+  The internal file handle assigned to the socket.
 
-- `IP`
+* `IP`
 
-  O endereço IP do cliente. O valor pode ser um endereço IPv4 ou IPv6, ou pode estar em branco para indicar uma conexão por arquivo de soquete Unix.
+  The client IP address. The value may be either an IPv4 or IPv6 address, or blank to indicate a Unix socket file connection.
 
-- `PORT`
+* `PORT`
 
-  O número de porta TCP/IP, no intervalo de 0 a 65535.
+  The TCP/IP port number, in the range from 0 to 65535.
 
-- `ESTADO`
+* `STATE`
 
-  O status da porta, `IDLE` ou `ACTIVE`. Os tempos de espera para portas ativas são rastreados usando o instrumento de porta correspondente. Os tempos de espera para portas ociosas são rastreados usando o instrumento `idle`.
+  The socket status, either `IDLE` or `ACTIVE`. Wait times for active sockets are tracked using the corresponding socket instrument. Wait times for idle sockets are tracked using the `idle` instrument.
 
-  Um soquete está inativo se estiver aguardando uma solicitação do cliente. Quando um soquete fica inativo, a linha de evento na tabela `socket_instances` que está rastreando o soquete muda de status de `ACTIVE` para `IDLE`. O valor `EVENT_NAME` permanece `wait/io/socket/*`, mas o temporizador do instrumento é suspenso. Em vez disso, um evento é gerado na tabela `events_waits_current` com um valor `EVENT_NAME` de `idle`.
+  A socket is idle if it is waiting for a request from the client. When a socket becomes idle, the event row in [`socket_instances`](performance-schema-socket-instances-table.html "25.12.3.5 The socket_instances Table") that is tracking the socket switches from a status of `ACTIVE` to `IDLE`. The `EVENT_NAME` value remains `wait/io/socket/*`, but timing for the instrument is suspended. Instead, an event is generated in the [`events_waits_current`](performance-schema-events-waits-current-table.html "25.12.4.1 The events_waits_current Table") table with an `EVENT_NAME` value of `idle`.
 
-  Quando o próximo pedido for recebido, o evento `idle` é encerrado, a instância de socket muda de `IDLE` para `ACTIVE` e o cronometramento do instrumento de socket é retomado.
+  When the next request is received, the `idle` event terminates, the socket instance switches from `IDLE` to `ACTIVE`, and timing of the socket instrument resumes.
 
-A operação `TRUNCATE TABLE` não é permitida para a tabela `socket_instances`.
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is not permitted for the [`socket_instances`](performance-schema-socket-instances-table.html "25.12.3.5 The socket_instances Table") table.
 
-O valor da combinação da coluna `IP:PORT` identifica a conexão. Esse valor de combinação é usado na coluna `OBJECT_NAME` das tabelas `events_waits_xxx`, para identificar a conexão de onde os eventos de soquete vêm:
+The `IP:PORT` column combination value identifies the connection. This combination value is used in the `OBJECT_NAME` column of the `events_waits_xxx` tables, to identify the connection from which socket events come:
 
-- Para o soquete de escuta de domínio Unix (`server_unix_socket`), a porta é 0 e o IP é `''`.
+* For the Unix domain listener socket (`server_unix_socket`), the port is 0, and the IP is `''`.
 
-- Para conexões de clientes via o ouvinte de domínio Unix (`client_connection`), a porta é 0 e o IP é `''`.
+* For client connections via the Unix domain listener (`client_connection`), the port is 0, and the IP is `''`.
 
-- Para o socket de escuta do servidor TCP/IP (`server_tcpip_socket`), a porta é sempre a porta mestre (por exemplo, 3306) e o IP é sempre `0.0.0.0`.
+* For the TCP/IP server listener socket (`server_tcpip_socket`), the port is always the master port (for example, 3306), and the IP is always `0.0.0.0`.
 
-- Para conexões de clientes via o ouvinte TCP/IP (`client_connection`), a porta é a que o servidor atribui, mas nunca 0. O IP é o IP do host de origem (`127.0.0.1` ou `::1` para o host local)
+* For client connections via the TCP/IP listener (`client_connection`), the port is whatever the server assigns, but never 0. The IP is the IP of the originating host (`127.0.0.1` or `::1` for the local host)

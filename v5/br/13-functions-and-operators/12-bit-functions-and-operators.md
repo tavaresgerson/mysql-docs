@@ -1,38 +1,38 @@
-## 12.12 Funções e operadores de bits
+## 12.12 Bit Functions and Operators
 
-**Tabela 12.17 Funções e Operadores de Bits**
+**Table 12.17 Bit Functions and Operators**
 
-<table frame="box" rules="all" summary="Uma referência que lista funções e operadores de bits."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td><code>&amp;</code></td> <td>E AND bit a bit</td> </tr><tr><td><code>&gt;&gt;</code></td> <td>Deslocamento para a direita</td> </tr><tr><td><code>&lt;&lt;</code></td> <td>Deslocamento para a esquerda</td> </tr><tr><td><code>^</code></td> <td>XOR bit a bit</td> </tr><tr><td><code>BIT_COUNT()</code></td> <td>Retorne o número de bits definidos</td> </tr><tr><td><code>|</code></td> <td>Bitwise OU</td> </tr><tr><td><code>~</code></td> <td>Inversão bit a bit</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists bit functions and operators."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>&amp;</code></td> <td> Bitwise AND </td> </tr><tr><td><code>&gt;&gt;</code></td> <td> Right shift </td> </tr><tr><td><code>&lt;&lt;</code></td> <td> Left shift </td> </tr><tr><td><code>^</code></td> <td> Bitwise XOR </td> </tr><tr><td><code>BIT_COUNT()</code></td> <td> Return the number of bits that are set </td> </tr><tr><td><code>|</code></td> <td> Bitwise OR </td> </tr><tr><td><code>~</code></td> <td> Bitwise inversion </td> </tr></tbody></table>
 
-A lista a seguir descreve as funções e operadores de bits disponíveis:
+The following list describes available bit functions and operators:
 
-- `|`
+* `|`
 
-  Bitwise OU.
+  Bitwise OR.
 
-  O resultado é um inteiro de 64 bits não assinado.
+  The result is an unsigned 64-bit integer.
 
   ```sql
   mysql> SELECT 29 | 15;
           -> 31
   ```
 
-- `&`
+* `&`
 
-  E AND bit a bit.
+  Bitwise AND.
 
-  O resultado é um inteiro de 64 bits não assinado.
+  The result is an unsigned 64-bit integer.
 
   ```sql
   mysql> SELECT 29 & 15;
           -> 13
   ```
 
-- `^`
+* `^`
 
-  XOR bit a bit.
+  Bitwise XOR.
 
-  O resultado é um inteiro de 64 bits não assinado.
+  The result is an unsigned 64-bit integer.
 
   ```sql
   mysql> SELECT 1 ^ 1;
@@ -43,53 +43,53 @@ A lista a seguir descreve as funções e operadores de bits disponíveis:
           -> 8
   ```
 
-- <<
+* `<<`
 
-  Desloca um número longo (`BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT)) para a esquerda.
+  Shifts a longlong (`BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT")) number to the left.
 
-  O resultado é um inteiro de 64 bits não assinado. O valor é truncado para 64 bits. Em particular, se o número de deslocamento for maior ou igual à largura de um número de 64 bits não assinado, o resultado é zero.
+  The result is an unsigned 64-bit integer. The value is truncated to 64 bits. In particular, if the shift count is greater or equal to the width of an unsigned 64-bit number, the result is zero.
 
   ```sql
   mysql> SELECT 1 << 2;
           -> 4
   ```
 
-- `>>`
+* `>>`
 
-  Desloca um número longo (`BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT)) para a direita.
+  Shifts a longlong (`BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT")) number to the right.
 
-  O resultado é um inteiro de 64 bits não assinado. O valor é truncado para 64 bits. Em particular, se o número de deslocamento for maior ou igual à largura de um número de 64 bits não assinado, o resultado é zero.
+  The result is an unsigned 64-bit integer. The value is truncated to 64 bits. In particular, if the shift count is greater or equal to the width of an unsigned 64-bit number, the result is zero.
 
   ```sql
   mysql> SELECT 4 >> 2;
           -> 1
   ```
 
-- `~`
+* `~`
 
-  Inverter todos os bits.
+  Invert all bits.
 
-  O resultado é um inteiro de 64 bits não assinado.
+  The result is an unsigned 64-bit integer.
 
   ```sql
   mysql> SELECT 5 & ~1;
           -> 4
   ```
 
-- `BIT_COUNT(N)`
+* `BIT_COUNT(N)`
 
-  Retorna o número de bits definidos no argumento *`N`* como um inteiro de 64 bits sem sinal, ou `NULL` se o argumento for `NULL`.
+  Returns the number of bits that are set in the argument *`N`* as an unsigned 64-bit integer, or `NULL` if the argument is `NULL`.
 
   ```sql
   mysql> SELECT BIT_COUNT(29), BIT_COUNT(b'101010');
           -> 4, 3
   ```
 
-As funções e operadores de bits incluem `BIT_COUNT()`, `BIT_AND()`, `BIT_OR()`, `BIT_XOR()`, `&`, `|`, `^`, `~`, `<<` e `>>`. (As funções `BIT_AND()`, `BIT_OR()` e `BIT_XOR()` são funções agregadas descritas na Seção 12.19.1, “Descrição de Funções Agregadas”). Atualmente, as funções e operadores de bits exigem argumentos `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") e retornam valores `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") , portanto, têm um alcance máximo de 64 bits. Argumentos de outros tipos são convertidos em `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") e pode ocorrer truncação.
+Bit functions and operators comprise `BIT_COUNT()`, `BIT_AND()`, `BIT_OR()`, `BIT_XOR()`, `&`, `|`, `^`, `~`, `<<`, and `>>`. (The `BIT_AND()`, `BIT_OR()`, and `BIT_XOR()` functions are aggregate functions described at Section 12.19.1, “Aggregate Function Descriptions”.) Currently, bit functions and operators require `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") (64-bit integer) arguments and return `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") values, so they have a maximum range of 64 bits. Arguments of other types are converted to `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") and truncation might occur.
 
-Uma extensão para o MySQL 8.0 altera o comportamento da conversão de tipos para `BIGINT` - `INTEGER`, `INT`, `SMALLINT`, `TINYINT`, `MEDIUMINT`, `BIGINT") : as funções e operadores de bits permitem argumentos de tipos de string binária (`BINARY`, `VARBINARY`e os tipos`BLOB\`), permitindo que eles recebam argumentos e produzam valores de retorno maiores que 64 bits. Consequentemente, as operações de bits em argumentos binários no MySQL 5.7 podem produzir resultados diferentes no MySQL 8.0. Para fornecer aviso antecipado sobre essa possível mudança de comportamento, o servidor produz avisos a partir do MySQL 5.7.11 para operações de bits para as quais os argumentos binários não são convertidos para inteiro no MySQL 8.0. Esses avisos oferecem uma oportunidade de reescrever as declarações afetadas. Para produzir o comportamento do MySQL 5.7 explicitamente de uma maneira que não mude após a atualização para 8.0, converta os argumentos binários de operações de bits para converter-os para inteiro.
+An extension for MySQL 8.0 changes this cast-to-`BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") behavior: Bit functions and operators permit binary string type arguments (`BINARY`, `VARBINARY`, and the `BLOB` types), enabling them to take arguments and produce return values larger than 64 bits. Consequently, bit operations on binary arguments in MySQL 5.7 might produce different results in MySQL 8.0. To provide advance notice about this potential change in behavior, the server produces warnings as of MySQL 5.7.11 for bit operations for which binary arguments are not converted to integer in MySQL 8.0. These warnings afford an opportunity to rewrite affected statements. To produce MySQL 5.7 behavior explicitly in a way that does not change after an upgrade to 8.0, cast bit-operation binary arguments to convert them to integer.
 
-Os cinco tipos de expressões problemáticas a serem observados são:
+The five problematic expression types to watch out for are:
 
 ```sql
 nonliteral_binary { & | ^ } binary
@@ -99,19 +99,19 @@ nonliteral_binary { << >> } anything
 AGGR_BIT_FUNC(nonliteral_binary)
 ```
 
-Essas expressões retornam `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") no MySQL 5.7, string binária no 8.0.
+Those expressions return `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") in MySQL 5.7, binary string in 8.0.
 
-Explicação da notação:
+Explanation of notation:
 
-- `{ op1 op2 ... }`: Lista de operadores que se aplicam ao tipo de expressão fornecido.
+* `{ op1 op2 ... }`: List of operators that apply to the given expression type.
 
-- *`binary`*: Qualquer tipo de argumento de string binária, incluindo um literal hexadecimal, literal de bit ou literal `NULL`.
+* *`binary`*: Any kind of binary string argument, including a hexadecimal literal, bit literal, or `NULL` literal.
 
-- *`nonliteral_binary`*: Um argumento que é um valor de cadeia binária diferente de um literal hexadecimal, literal de bit ou literal `NULL`.
+* *`nonliteral_binary`*: An argument that is a binary string value other than a hexadecimal literal, bit literal, or `NULL` literal.
 
-- *`AGGR_BIT_FUNC`*: Uma função agregada que aceita argumentos de valor de bit: `BIT_AND()`, `BIT_OR()`, `BIT_XOR()`.
+* *`AGGR_BIT_FUNC`*: An aggregate function that takes bit-value arguments: `BIT_AND()`, `BIT_OR()`, `BIT_XOR()`.
 
-O servidor emite um único aviso para cada expressão problemática em uma declaração, e não um aviso para cada linha processada. Suponha que uma declaração que contém duas expressões problemáticas selecione três linhas de uma tabela. O número de avisos por execução da declaração é de dois, e não seis. O exemplo a seguir ilustra isso.
+The server produces a single warning for each problematic expression in a statement, not a warning for each row processed. Suppose that a statement containing two problematic expressions selects three rows from a table. The number of warnings per statement execution is two, not six. The following example illustrates this.
 
 ```sql
 mysql> CREATE TABLE t(vbin1 VARBINARY(32), vbin2 VARBINARY(32));
@@ -147,7 +147,7 @@ Message: Bitwise operations on BINARY will change behavior in a future
 2 rows in set (0.00 sec)
 ```
 
-Para evitar que uma declaração afetada produza um resultado diferente após uma atualização para o MySQL 8.0, reescreva-a para que não gere avisos de operações de bits. Para fazer isso, defina pelo menos um argumento binário para `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") com `CAST(... COMO UNSIGNED)`. Isso torna o cast binário implícito do MySQL 5.7 explícito:
+To avoid having an affected statement produce a different result after an upgrade to MySQL 8.0, rewrite it so that it generates no bit-operation warnings. To do this, cast at least one binary argument to `BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") with `CAST(... AS UNSIGNED)`. This makes the MySQL 5.7 implicit binary-to-integer cast explicit:
 
 ```sql
 mysql> SELECT HEX(CAST(vbin1 AS UNSIGNED) & CAST(vbin2 AS UNSIGNED)) AS op1,
@@ -166,10 +166,10 @@ mysql> SHOW WARNINGS\G
 Empty set (0.00 sec)
 ```
 
-Com a declaração reescrita conforme mostrado, o MySQL 8.0 respeita a intenção de tratar os argumentos binários como inteiros e produz o mesmo resultado que no 5.7. Além disso, replicar a declaração do MySQL 5.7 para o 8.0 não produz resultados diferentes em servidores diferentes.
+With the statement rewritten as shown, MySQL 8.0 respects the intention to treat the binary arguments as integers and produces the same result as in 5.7. Also, replicating the statement from MySQL 5.7 to 8.0 does not produce different results on different servers.
 
-Uma declaração afetada que não pode ser reescrita está sujeita a esses problemas potenciais em relação a atualizações e replicação:
+An affected statement that cannot be rewritten is subject to these potential problems with respect to upgrades and replication:
 
-- A declaração pode retornar um resultado diferente após uma atualização para o MySQL 8.0.
+* The statement might return a different result after an upgrade to MySQL 8.0.
 
-- A replicação para o MySQL 8.0 a partir de versões mais antigas pode falhar para o registro binário baseado em instruções e de formato misto. Isso também é verdadeiro para a reprodução de logs binários mais antigos em um servidor 8.0 (por exemplo, usando **mysqlbinlog**). Para evitar isso, mude para o registro binário baseado em linhas no servidor de origem mais antigo.
+* Replication to MySQL 8.0 from older versions might fail for statement-based and mixed-format binary logging. This is also true for replaying older binary logs on an 8.0 server (for example, using **mysqlbinlog**). To avoid this, switch to row-based binary logging on the older source server.

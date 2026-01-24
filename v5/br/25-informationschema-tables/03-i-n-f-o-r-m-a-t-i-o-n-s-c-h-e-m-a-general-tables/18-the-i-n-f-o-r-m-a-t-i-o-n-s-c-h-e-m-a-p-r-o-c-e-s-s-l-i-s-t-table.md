@@ -1,52 +1,52 @@
-### 24.3.18 A tabela INFORMATION_SCHEMA PROCESSLIST
+### 24.3.18 The INFORMATION_SCHEMA PROCESSLIST Table
 
-A lista de processos do MySQL indica as operações atualmente realizadas pelo conjunto de threads que estão sendo executadas no servidor. A tabela `PROCESSLIST` é uma fonte de informações sobre os processos. Para uma comparação desta tabela com outras fontes, consulte Fontes de Informações sobre Processos.
+The MySQL process list indicates the operations currently being performed by the set of threads executing within the server. The [`PROCESSLIST`](information-schema-processlist-table.html "24.3.18 The INFORMATION_SCHEMA PROCESSLIST Table") table is one source of process information. For a comparison of this table with other sources, see [Sources of Process Information](processlist-access.html#processlist-sources "Sources of Process Information").
 
-A tabela `PROCESSLIST` tem as seguintes colunas:
+The [`PROCESSLIST`](information-schema-processlist-table.html "24.3.18 The INFORMATION_SCHEMA PROCESSLIST Table") table has these columns:
 
-- `ID`
+* `ID`
 
-  O identificador de conexão. Este é o mesmo valor exibido na coluna `Id` da declaração `SHOW PROCESSLIST` (show-processlist.html), exibida na coluna `PROCESSLIST_ID` da tabela do Schema de Desempenho `threads` (performance-schema-threads-table.html) e retornada pela função `CONNECTION_ID()` (information-functions.html#function_connection-id) dentro do thread.
+  The connection identifier. This is the same value displayed in the `Id` column of the [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement") statement, displayed in the `PROCESSLIST_ID` column of the Performance Schema [`threads`](performance-schema-threads-table.html "25.12.16.4 The threads Table") table, and returned by the [`CONNECTION_ID()`](information-functions.html#function_connection-id) function within the thread.
 
-- `USUARIO`
+* `USER`
 
-  O usuário MySQL que emitiu a declaração. Um valor de `usuário do sistema` refere-se a um thread não cliente gerado pelo servidor para lidar com tarefas internamente, por exemplo, um thread de manipulador de linha atrasada ou um thread de I/O ou SQL usado em hosts replicados. Para `usuário do sistema`, não há um host especificado na coluna `Host`. `usuário não autenticado` refere-se a um thread que se associou a uma conexão de cliente, mas para o qual a autenticação do usuário do cliente ainda não ocorreu. `event_scheduler` refere-se ao thread que monitora eventos agendados (veja Seção 23.4, “Usando o Agendamento de Eventos”).
+  The MySQL user who issued the statement. A value of `system user` refers to a nonclient thread spawned by the server to handle tasks internally, for example, a delayed-row handler thread or an I/O or SQL thread used on replica hosts. For `system user`, there is no host specified in the `Host` column. `unauthenticated user` refers to a thread that has become associated with a client connection but for which authentication of the client user has not yet occurred. `event_scheduler` refers to the thread that monitors scheduled events (see [Section 23.4, “Using the Event Scheduler”](event-scheduler.html "23.4 Using the Event Scheduler")).
 
-- `HOST`
+* `HOST`
 
-  O nome do host do cliente que emite a declaração (exceto para o `usuário do sistema`, para o qual não há nenhum host). O nome do host para conexões TCP/IP é relatado no formato `host_name:client_port` para facilitar a determinação de qual cliente está fazendo o que.
+  The host name of the client issuing the statement (except for `system user`, for which there is no host). The host name for TCP/IP connections is reported in `host_name:client_port` format to make it easier to determine which client is doing what.
 
-- `DB`
+* `DB`
 
-  O banco de dados padrão para o tópico, ou `NULL` se nenhum tiver sido selecionado.
+  The default database for the thread, or `NULL` if none has been selected.
 
-- `COMANDO`
+* `COMMAND`
 
-  O tipo de comando que o thread está executando em nome do cliente, ou `Sleep` se a sessão estiver inativa. Para descrições dos comandos do thread, consulte Seção 8.14, “Examinando Informações do Thread (Processo) do Servidor”. O valor desta coluna corresponde aos comandos `COM_xxx` do protocolo cliente/servidor e às variáveis de status `Com_xxx`. Consulte Seção 5.1.9, “Variáveis de Status do Servidor”.
+  The type of command the thread is executing on behalf of the client, or `Sleep` if the session is idle. For descriptions of thread commands, see [Section 8.14, “Examining Server Thread (Process) Information”](thread-information.html "8.14 Examining Server Thread (Process) Information"). The value of this column corresponds to the `COM_xxx` commands of the client/server protocol and `Com_xxx` status variables. See [Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables").
 
-- `TIME`
+* `TIME`
 
-  O tempo em segundos que o thread esteve em seu estado atual. Para um thread de replicação SQL, o valor é o número de segundos entre o timestamp do último evento replicado e o horário real do host da replica. Veja Seção 16.2.3, “Fios de Replicação”.
+  The time in seconds that the thread has been in its current state. For a replica SQL thread, the value is the number of seconds between the timestamp of the last replicated event and the real time of the replica host. See [Section 16.2.3, “Replication Threads”](replication-threads.html "16.2.3 Replication Threads").
 
-- `ESTADO`
+* `STATE`
 
-  Uma ação, evento ou estado que indica o que o thread está fazendo. Para descrições dos valores de `STATE`, consulte Seção 8.14, “Examinando Informações do Fio do Servidor (Processo”.
+  An action, event, or state that indicates what the thread is doing. For descriptions of `STATE` values, see [Section 8.14, “Examining Server Thread (Process) Information”](thread-information.html "8.14 Examining Server Thread (Process) Information").
 
-  A maioria dos estados corresponde a operações muito rápidas. Se um thread permanecer em um determinado estado por muitos segundos, pode haver um problema que precisa ser investigado.
+  Most states correspond to very quick operations. If a thread stays in a given state for many seconds, there might be a problem that needs to be investigated.
 
-- `INFO`
+* `INFO`
 
-  A declaração que o thread está executando, ou `NULL` se não estiver executando nenhuma declaração. A declaração pode ser a enviada ao servidor ou uma declaração mais interna se a declaração executar outras declarações. Por exemplo, se uma declaração `CALL` executar um procedimento armazenado que está executando uma declaração `SELECT`, o valor `INFO` mostrará a declaração `SELECT`.
+  The statement the thread is executing, or `NULL` if it is executing no statement. The statement might be the one sent to the server, or an innermost statement if the statement executes other statements. For example, if a `CALL` statement executes a stored procedure that is executing a [`SELECT`](select.html "13.2.9 SELECT Statement") statement, the `INFO` value shows the [`SELECT`](select.html "13.2.9 SELECT Statement") statement.
 
-#### Notas
+#### Notes
 
-- `PROCESSLIST` é uma tabela `INFORMATION_SCHEMA` não padrão.
+* [`PROCESSLIST`](information-schema-processlist-table.html "24.3.18 The INFORMATION_SCHEMA PROCESSLIST Table") is a nonstandard `INFORMATION_SCHEMA` table.
 
-- Assim como a saída da instrução `SHOW PROCESSLIST`, a tabela `PROCESSLIST` fornece informações sobre todos os threads, mesmo aqueles pertencentes a outros usuários, se você tiver o privilégio `PROCESS`. Caso contrário (sem o privilégio `PROCESS`), os usuários não anônimos têm acesso às informações sobre seus próprios threads, mas não sobre os threads de outros usuários, e os usuários anônimos não têm acesso às informações dos threads.
+* Like the output from the [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement") statement, the [`PROCESSLIST`](information-schema-processlist-table.html "24.3.18 The INFORMATION_SCHEMA PROCESSLIST Table") table provides information about all threads, even those belonging to other users, if you have the [`PROCESS`](privileges-provided.html#priv_process) privilege. Otherwise (without the [`PROCESS`](privileges-provided.html#priv_process) privilege), nonanonymous users have access to information about their own threads but not threads for other users, and anonymous users have no access to thread information.
 
-- Se uma instrução SQL se refere à tabela `PROCESSLIST`, o MySQL popula toda a tabela uma vez, quando a execução da instrução começa, garantindo assim a consistência de leitura durante a execução da instrução. Não há consistência de leitura para uma transação com múltiplas instruções.
+* If an SQL statement refers to the [`PROCESSLIST`](information-schema-processlist-table.html "24.3.18 The INFORMATION_SCHEMA PROCESSLIST Table") table, MySQL populates the entire table once, when statement execution begins, so there is read consistency during the statement. There is no read consistency for a multi-statement transaction.
 
-As seguintes afirmações são equivalentes:
+The following statements are equivalent:
 
 ```sql
 SELECT * FROM INFORMATION_SCHEMA.PROCESSLIST

@@ -1,19 +1,19 @@
-## 11.3 Tipos de dados de cadeia
+## 11.3 String Data Types
 
-11.3.1 Sintaxe do Tipo de Dados String
+11.3.1 String Data Type Syntax
 
-11.3.2 Tipos CHAR e VARCHAR
+11.3.2 The CHAR and VARCHAR Types
 
-11.3.3 Os tipos BINARY e VARBINARY
+11.3.3 The BINARY and VARBINARY Types
 
-11.3.4 Os tipos BLOB e TEXTO
+11.3.4 The BLOB and TEXT Types
 
-11.3.5 O Tipo ENUM
+11.3.5 The ENUM Type
 
-11.3.6 O Tipo SET
+11.3.6 The SET Type
 
-Os tipos de dados de cadeia são `CHAR`, `VARCHAR`, `BINARY`, `VARBINARY`, `BLOB`, `TEXT`, `ENUM` e `SET`.
+The string data types are `CHAR`, `VARCHAR`, `BINARY`, `VARBINARY`, `BLOB`, `TEXT`, `ENUM`, and `SET`.
 
-Para obter informações sobre os requisitos de armazenamento dos tipos de dados de string, consulte a Seção 11.7, “Requisitos de Armazenamento de Tipos de Dados”.
+For information about storage requirements of the string data types, see Section 11.7, “Data Type Storage Requirements”.
 
-Para descrições de funções que operam em valores de string, consulte a Seção 12.8, “Funções e Operadores de String”.
+For descriptions of functions that operate on string values, see Section 12.8, “String Functions and Operators”.

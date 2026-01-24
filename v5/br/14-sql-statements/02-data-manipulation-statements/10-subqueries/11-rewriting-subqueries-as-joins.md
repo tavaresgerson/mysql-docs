@@ -1,27 +1,27 @@
-#### 13.2.10.11 Reescrever subconsultas como junções
+#### 13.2.10.11 Rewriting Subqueries as Joins
 
-Às vezes, existem outras maneiras de testar a pertença a um conjunto de valores do que usar uma subconsulta. Além disso, em algumas ocasiões, não é apenas possível reescrever uma consulta sem uma subconsulta, mas pode ser mais eficiente utilizar algumas dessas técnicas em vez de usar subconsultas. Uma delas é o construtor `IN()`:
+Sometimes there are other ways to test membership in a set of values than by using a subquery. Also, on some occasions, it is not only possible to rewrite a query without a subquery, but it can be more efficient to make use of some of these techniques rather than to use subqueries. One of these is the `IN()` construct:
 
-Por exemplo, esta consulta:
+For example, this query:
 
 ```sql
 SELECT * FROM t1 WHERE id IN (SELECT id FROM t2);
 ```
 
-Pode ser reescrito como:
+Can be rewritten as:
 
 ```sql
 SELECT DISTINCT t1.* FROM t1, t2 WHERE t1.id=t2.id;
 ```
 
-As consultas:
+The queries:
 
 ```sql
 SELECT * FROM t1 WHERE id NOT IN (SELECT id FROM t2);
 SELECT * FROM t1 WHERE NOT EXISTS (SELECT id FROM t2 WHERE t1.id=t2.id);
 ```
 
-Pode ser reescrito como:
+Can be rewritten as:
 
 ```sql
 SELECT table1.*
@@ -29,6 +29,6 @@ SELECT table1.*
   WHERE table2.id IS NULL;
 ```
 
-Uma `JOIN [OUTER] LEFT` pode ser mais rápida do que uma subconsulta equivalente, pois o servidor pode ser capaz de otimizá-la melhor — um fato que não é específico apenas para o MySQL Server. Antes do SQL-92, as junções externas não existiam, então as subconsultas eram a única maneira de fazer certas coisas. Hoje, o MySQL Server e muitos outros sistemas de banco de dados modernos oferecem uma ampla gama de tipos de junção externa.
+A `LEFT [OUTER] JOIN` can be faster than an equivalent subquery because the server might be able to optimize it better—a fact that is not specific to MySQL Server alone. Prior to SQL-92, outer joins did not exist, so subqueries were the only way to do certain things. Today, MySQL Server and many other modern database systems offer a wide range of outer join types.
 
-O MySQL Server suporta múltiplas instruções `DELETE` de tabela que podem ser usadas para excluir eficientemente linhas com base em informações de uma tabela ou até mesmo de muitas tabelas ao mesmo tempo. As instruções de atualização de múltiplas tabelas também são suportadas. Veja Seção 13.2.2, “Instrução DELETE” e Seção 13.2.11, “Instrução UPDATE”.
+MySQL Server supports multiple-table [`DELETE`](delete.html "13.2.2 DELETE Statement") statements that can be used to efficiently delete rows based on information from one table or even from many tables at the same time. Multiple-table [`UPDATE`](update.html "13.2.11 UPDATE Statement") statements are also supported. See [Section 13.2.2, “DELETE Statement”](delete.html "13.2.2 DELETE Statement"), and [Section 13.2.11, “UPDATE Statement”](update.html "13.2.11 UPDATE Statement").

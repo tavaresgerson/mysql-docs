@@ -1,12 +1,12 @@
-#### 21.4.3.12 Conexões de Memória Compartilhada do NDB Cluster
+#### 21.4.3.12 NDB Cluster Shared Memory Connections
 
-As comunicações entre os nós do cluster do NDB são normalmente gerenciadas usando TCP/IP. O transportador de memória compartilhada (SHM) se destaca pelo fato de que os sinais são transmitidos escrevendo na memória em vez de em uma conexão de soquete. O transportador de memória compartilhada (SHM) pode melhorar o desempenho ao negar até 20% do overhead necessário por uma conexão TCP ao executar um nó de API (geralmente um nó SQL) e um nó de dados juntos no mesmo host. Você pode habilitar uma conexão de memória compartilhada de duas das maneiras listadas aqui:
+Communications between NDB cluster nodes are normally handled using TCP/IP. The shared memory (SHM) transporter is distinguished by the fact that signals are transmitted by writing in memory rather than on a socket. The shared-memory transporter (SHM) can improve performance by negating up to 20% of the overhead required by a TCP connection when running an API node (usually an SQL node) and a data node together on the same host. You can enable a shared memory connection in either of the two ways listed here:
 
-- Ao definir o parâmetro de configuração do nó de dados `UseShm` para `1` e definir `HostName` para o nó de dados e `HostName` para o nó da API para o mesmo valor.
+* By setting the [`UseShm`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-useshm) data node configuration parameter to `1`, and setting [`HostName`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-hostname) for the data node and [`HostName`](mysql-cluster-api-definition.html#ndbparam-api-hostname) for the API node to the same value.
 
-- Ao usar as seções `[shm]` no arquivo de configuração do cluster, cada uma contendo configurações para `[NodeId1]` (mysql-cluster-shm-definition.html#ndbparam-shm-nodeid1) e `[NodeId2]` (mysql-cluster-shm-definition.html#ndbparam-shm-nodeid2). Esse método é descrito com mais detalhes mais adiante nesta seção.
+* By using `[shm]` sections in the cluster configuration file, each containing settings for [`NodeId1`](mysql-cluster-shm-definition.html#ndbparam-shm-nodeid1) and [`NodeId2`](mysql-cluster-shm-definition.html#ndbparam-shm-nodeid2). This method is described in more detail later in this section.
 
-Suponha que um clúster esteja executando um nó de dados que tem o ID de nó 1 e um nó SQL com o ID de nó 51 no mesmo computador host em 10.0.0.1. Para habilitar uma conexão SHM entre esses dois nós, tudo o que é necessário é garantir que as seguintes entradas estejam incluídas no arquivo de configuração do clúster:
+Suppose a cluster is running a data node which has node ID 1 and an SQL node having node ID 51 on the same host computer at 10.0.0.1. To enable an SHM connection between these two nodes, all that is necessary is to insure that the following entries are included in the cluster configuration file:
 
 ```sql
 [ndbd]
@@ -19,33 +19,33 @@ NodeId=51
 HostName=10.0.0.1
 ```
 
-Importante
+Important
 
-As duas entradas mostradas acima estão além de quaisquer outras entradas e configurações de parâmetros necessárias pelo clúster. Um exemplo mais completo é mostrado mais adiante nesta seção.
+The two entries just shown are in addition to any other entries and parameter settings needed by the cluster. A more complete example is shown later in this section.
 
-Antes de iniciar nós de dados que utilizam conexões SHM, também é necessário garantir que o sistema operacional de cada computador que hospeda um desses nós de dados tenha memória suficiente alocada para os segmentos de memória compartilhada. Consulte a documentação da sua plataforma operacional para obter informações sobre isso. Em configurações em que vários hosts estão executando cada um um nó de dados e um nó de API, é possível habilitar a memória compartilhada em todos esses hosts, configurando `UseShm` na seção `[ndbd default]` do arquivo de configuração. Isso é mostrado no exemplo mais adiante nesta seção.
+Before starting data nodes that use SHM connections, it is also necessary to make sure that the operating system on each computer hosting such a data node has sufficient memory allocated to shared memory segments. See the documentation for your operating platform for information regarding this. In setups where multiple hosts are each running a data node and an API node, it is possible to enable shared memory on all such hosts by setting `UseShm` in the `[ndbd default]` section of the configuration file. This is shown in the example later in this section.
 
-Embora não seja estritamente necessário, o ajuste para todas as conexões SHM no clúster pode ser feito definindo um ou mais dos seguintes parâmetros na seção `[shm default]` do arquivo de configuração do clúster (`config.ini`):
+While not strictly required, tuning for all SHM connections in the cluster can be done by setting one or more of the following parameters in the `[shm default]` section of the cluster configuration (`config.ini`) file:
 
-- `ShmSize`: Tamanho da memória compartilhada
+* [`ShmSize`](mysql-cluster-shm-definition.html#ndbparam-shm-shmsize): Shared memory size
 
-- `ShmSpinTime`: Tempo em µs para girar antes de dormir
+* [`ShmSpinTime`](mysql-cluster-shm-definition.html#ndbparam-shm-shmspintime): Time in µs to spin before sleeping
 
-- `SendBufferMemory`: Tamanho do buffer para sinais enviados a partir deste nó, em bytes.
+* [`SendBufferMemory`](mysql-cluster-shm-definition.html#ndbparam-shm-sendbuffermemory): Size of buffer for signals sent from this node, in bytes.
 
-- `SendSignalId`: Indica que uma ID de sinal está incluída em cada sinal enviado através do transportador.
+* [`SendSignalId`](mysql-cluster-shm-definition.html#ndbparam-shm-sendsignalid): Indicates that a signal ID is included in each signal sent through the transporter.
 
-- `Checksum`: Indica que um checksum está incluído em cada sinal enviado através do transportador.
+* [`Checksum`](mysql-cluster-shm-definition.html#ndbparam-shm-checksum): Indicates that a checksum is included in each signal sent through the transporter.
 
-- `PreSendChecksum`: As verificações do checksum são feitas antes de enviar o sinal; o checksum também deve estar habilitado para que isso funcione
+* [`PreSendChecksum`](mysql-cluster-shm-definition.html#ndbparam-shm-presendchecksum): Checks of the checksum are made prior to sending the signal; Checksum must also be enabled for this to work
 
-Este exemplo mostra uma configuração simples com conexões SHM definidas em vários hosts, em um NDB Cluster usando 3 computadores listados aqui por nome de host, hospedando os tipos de nó mostrados:
+This example shows a simple setup with SHM connections definied on multiple hosts, in an NDB Cluster using 3 computers listed here by host name, hosting the node types shown:
 
-1. `10.0.0.0`: O servidor de gerenciamento
-2. `10.0.0.1`: Um nó de dados e um nó de SQL
-3. `10.0.0.2`: Um nó de dados e um nó de SQL
+1. `10.0.0.0`: The management server
+2. `10.0.0.1`: A data node and an SQL node
+3. `10.0.0.2`: A data node and an SQL node
 
-Nesse cenário, cada nó de dados comunica-se tanto com o servidor de gerenciamento quanto com o outro nó de dados usando transportadores TCP; cada nó SQL usa um transportador de memória compartilhada para se comunicar com os nós de dados locais e um transportador TCP para se comunicar com o nó de dados remoto. Uma configuração básica que reflete essa configuração é ativada pelo arquivo config.ini, cujos conteúdos são mostrados aqui:
+In this scenario, each data node communicates with both the management server and the other data node using TCP transporters; each SQL node uses a shared memory transporter to communicate with the data nodes that is local to it, and a TCP transporter to communicate with the remote data node. A basic configuration reflecting this setup is enabled by the config.ini file whose contents are shown here:
 
 ```sql
 [ndbd default]
@@ -87,120 +87,120 @@ Hostname=10.0.0.2
 [api]
 ```
 
-Os parâmetros que afetam todos os transportadores de memória compartilhada são definidos na seção `[shm default]`; esses parâmetros podem ser substituídos individualmente para cada conexão em uma ou mais seções `[shm]`. Cada seção deve ser associada a uma conexão SHM específica usando `NodeId1` e `NodeId2`; os valores necessários para esses parâmetros são os IDs dos nós dos dois nós conectados pelo transportador. Você também pode identificar os nós pelo nome do host usando `HostName1` e `HostName2`, mas esses parâmetros não são obrigatórios.
+Parameters affecting all shared memory transporters are set in the `[shm default]` section; these can be overridden on a per-connection basis in one or more `[shm]` sections. Each such section must be associated with a given SHM connection using [`NodeId1`](mysql-cluster-shm-definition.html#ndbparam-shm-nodeid1) and [`NodeId2`](mysql-cluster-shm-definition.html#ndbparam-shm-nodeid2); the values required for these parameters are the node IDs of the two nodes connected by the transporter. You can also identify the nodes by host name using [`HostName1`](mysql-cluster-shm-definition.html#ndbparam-shm-hostname1) and [`HostName2`](mysql-cluster-shm-definition.html#ndbparam-shm-hostname2), but these parameters are not required.
 
-Os nós da API para os quais não são definidos nomes de host usam o transportador TCP para se comunicar com os nós de dados independentemente dos hosts nos quais são iniciados; os parâmetros e valores definidos na seção `[tcp default]` do arquivo de configuração se aplicam a todos os transportadores TCP no clúster.
+The API nodes for which no host names are set use the TCP transporter to communicate with data nodes independent of the hosts on which they are started; the parameters and values set in the `[tcp default]` section of the configuration file apply to all TCP transporters in the cluster.
 
-Para um desempenho ótimo, você pode definir um tempo de rotação para o transportador SHM (parâmetro `ShmSpinTime`) Isso afeta tanto o thread de recebimento do nó de dados quanto o proprietário da solicitação de pesquisa (thread de recebimento ou thread de usuário) no `NDB`.
+For optimum performance, you can define a spin time for the SHM transporter ([`ShmSpinTime`](mysql-cluster-shm-definition.html#ndbparam-shm-shmspintime) parameter); this affects both the data node receiver thread and the poll owner (receive thread or user thread) in `NDB`.
 
-- `Checksum`
+* `Checksum`
 
-  <table frame="box" rules="all" summary="Tipo e valor da informação do parâmetro de configuração da memória de verificação compartilhada" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>booleano</td> </tr><tr> <th>Padrão</th> <td>verdadeiro</td> </tr><tr> <th>Gama</th> <td>verdadeiro, falso</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Checksum shared memory configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>boolean</td> </tr><tr> <th>Default</th> <td>true</td> </tr><tr> <th>Range</th> <td>true, false</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro é um parâmetro booleano (`Y`/`N`) que está desativado por padrão. Quando ativado, os checksums de todas as mensagens são calculados antes de serem colocados no buffer de envio.
+  This parameter is a boolean (`Y`/`N`) parameter which is disabled by default. When it is enabled, checksums for all messages are calculated before being placed in the send buffer.
 
-  Esse recurso impede que as mensagens sejam corrompidas enquanto aguardam no buffer de envio. Ele também serve como uma verificação contra a corrupção dos dados durante o transporte.
+  This feature prevents messages from being corrupted while waiting in the send buffer. It also serves as a check against data being corrupted during transport.
 
-- `Grupo`
+* `Group`
 
-  <table frame="box" rules="all" summary="Tipo e valor de parâmetro de configuração da memória em grupo" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>não assinado</td> </tr><tr> <th>Padrão</th> <td>35</td> </tr><tr> <th>Gama</th> <td>0 - 200</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Group shared memory configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>35</td> </tr><tr> <th>Range</th> <td>0 - 200</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Determina a proximidade do grupo; um valor menor é interpretado como estando mais próximo. O valor padrão é suficiente para a maioria das condições.
+  Determines the group proximity; a smaller value is interpreted as being closer. The default value is sufficient for most conditions.
 
-- `HostName1`
+* `HostName1`
 
-  <table frame="box" rules="all" summary="Tipo e valor da informação do parâmetro de configuração da memória HostName1" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome ou endereço IP</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="HostName1 shared memory configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name or IP address</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Os parâmetros `HostName1` e `HostName2` podem ser usados para especificar interfaces de rede específicas a serem utilizadas para uma conexão SHM específica entre dois nós. Os valores usados para esses parâmetros podem ser nomes de host ou endereços IP.
+  The `HostName1` and [`HostName2`](mysql-cluster-shm-definition.html#ndbparam-shm-hostname2) parameters can be used to specify specific network interfaces to be used for a given SHM connection between two nodes. The values used for these parameters can be host names or IP addresses.
 
-- `HostName2`
+* `HostName2`
 
-  <table frame="box" rules="all" summary="Tipo e valor de parâmetro de configuração de memória hospedeira HostName2" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome ou endereço IP</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="HostName2 shared memory configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name or IP address</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Os parâmetros ``HostName1`` e `HostName2` podem ser usados para especificar interfaces de rede específicas a serem usadas para uma conexão SHM específica entre dois nós. Os valores usados para esses parâmetros podem ser nomes de host ou endereços IP.
+  The [`HostName1`](mysql-cluster-shm-definition.html#ndbparam-shm-hostname1) and `HostName2` parameters can be used to specify specific network interfaces to be used for a given SHM connection between two nodes. The values used for these parameters can be host names or IP addresses.
 
-- `NodeId1`
+* `NodeId1`
 
-  <table frame="box" rules="all" summary="Tipo e valor da informação do parâmetro de configuração da memória de nó Id1" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>numérico</td> </tr><tr> <th>Padrão</th> <td>[nenhum]</td> </tr><tr> <th>Gama</th> <td>1 - 255</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="NodeId1 shared memory configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>numeric</td> </tr><tr> <th>Default</th> <td>[none]</td> </tr><tr> <th>Range</th> <td>1 - 255</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Para identificar uma conexão entre dois nós, é necessário fornecer os identificadores de nó para cada um deles, como `NodeId1` e `NodeId2`.
+  To identify a connection between two nodes it is necessary to provide node identifiers for each of them, as `NodeId1` and [`NodeId2`](mysql-cluster-shm-definition.html#ndbparam-shm-nodeid2).
 
-- `NodeId2`
+* `NodeId2`
 
-  <table frame="box" rules="all" summary="Tipo e valor da informação do parâmetro de configuração da memória compartilhada NodeId2" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>numérico</td> </tr><tr> <th>Padrão</th> <td>[nenhum]</td> </tr><tr> <th>Gama</th> <td>1 - 255</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="NodeId2 shared memory configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>numeric</td> </tr><tr> <th>Default</th> <td>[none]</td> </tr><tr> <th>Range</th> <td>1 - 255</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Para identificar uma conexão entre dois nós, é necessário fornecer os identificadores de nó para cada um deles, como `NodeId1` e `NodeId2` (mysql-cluster-shm-definition.html#ndbparam-shm-nodeid1).
+  To identify a connection between two nodes it is necessary to provide node identifiers for each of them, as [`NodeId1`](mysql-cluster-shm-definition.html#ndbparam-shm-nodeid1) and `NodeId2`.
 
-- `NodeIdServer`
+* `NodeIdServer`
 
-  <table frame="box" rules="all" summary="Tipo e valor da informação do parâmetro de configuração da memória compartilhada NodeIdServer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>numérico</td> </tr><tr> <th>Padrão</th> <td>[nenhum]</td> </tr><tr> <th>Gama</th> <td>1 - 63</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="NodeIdServer shared memory configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>numeric</td> </tr><tr> <th>Default</th> <td>[none]</td> </tr><tr> <th>Range</th> <td>1 - 63</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Identifique o final do servidor de uma conexão de memória compartilhada. Por padrão, este é o ID do nó do nó de dados.
+  Identify the server end of a shared memory connection. By default, this is the node ID of the data node.
 
-- `Limite de sobrecarga`
+* `OverloadLimit`
 
-  <table frame="box" rules="all" summary="Tipo e valor da informação do parâmetro de configuração de memória de sobrecarga do OverloadLimit" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>bytes</td> </tr><tr> <th>Padrão</th> <td>0</td> </tr><tr> <th>Gama</th> <td>0 - 4294967039 (0xFFFFFEFF)</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="OverloadLimit shared memory configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>bytes</td> </tr><tr> <th>Default</th> <td>0</td> </tr><tr> <th>Range</th> <td>0 - 4294967039 (0xFFFFFEFF)</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Quando há mais de esse número de bytes não enviados no buffer de envio, a conexão é considerada sobrecarregada.
+  When more than this many unsent bytes are in the send buffer, the connection is considered overloaded.
 
-  Este parâmetro pode ser usado para determinar a quantidade de dados não enviados que devem estar presentes no buffer de envio antes que a conexão seja considerada sobrecarregada. Consulte Seção 21.4.3.13, “Configurando Parâmetros do Buffer de Envio do NDB Cluster” e Seção 21.6.15.44, “A Tabela de Transportadores ndbinfo” para obter mais informações.
+  This parameter can be used to determine the amount of unsent data that must be present in the send buffer before the connection is considered overloaded. See [Section 21.4.3.13, “Configuring NDB Cluster Send Buffer Parameters”](mysql-cluster-config-send-buffers.html "21.4.3.13 Configuring NDB Cluster Send Buffer Parameters"), and [Section 21.6.15.44, “The ndbinfo transporters Table”](mysql-cluster-ndbinfo-transporters.html "21.6.15.44 The ndbinfo transporters Table"), for more information.
 
-- `PortNumber`
+* [`PortNumber`](mysql-cluster-shm-definition.html#ndbparam-shm-portnumber)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração de memória compartilhada PortNumber" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>não assinado</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>0 - 64K</td> </tr><tr> <th>Removido</th> <td>NDB 7.5.1</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="PortNumber shared memory configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>0 - 64K</td> </tr><tr> <th>Removed</th> <td>NDB 7.5.1</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Defina o porto a ser usado pelo transportador SHM.
+  Set the port to be used by the SHM transporter.
 
-- `PreSendChecksum`
+* [`PreSendChecksum`](mysql-cluster-shm-definition.html#ndbparam-shm-presendchecksum)
 
-  <table frame="box" rules="all" summary="Parâmetro de configuração de memória compartilhada PreSendChecksum tipo e informações de valor" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.6.6</td> </tr><tr> <th>Tipo ou unidades</th> <td>booleano</td> </tr><tr> <th>Padrão</th> <td>falsa</td> </tr><tr> <th>Gama</th> <td>verdadeiro, falso</td> </tr><tr> <th>Adicionei</th> <td>NDB 7.6.6</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="PreSendChecksum shared memory configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.6.6</td> </tr><tr> <th>Type or units</th> <td>boolean</td> </tr><tr> <th>Default</th> <td>false</td> </tr><tr> <th>Range</th> <td>true, false</td> </tr><tr> <th>Added</th> <td>NDB 7.6.6</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Se este parâmetro e `Checksum` estiverem habilitados, realize verificações de checksum pré-envio e verifique todos os sinais SHM entre os nós em busca de erros. Não tem efeito se `Checksum` não estiver habilitado.
+  If this parameter and [`Checksum`](mysql-cluster-shm-definition.html#ndbparam-shm-checksum) are both enabled, perform pre-send checksum checks, and check all SHM signals between nodes for errors. Has no effect if `Checksum` is not also enabled.
 
-- `SendBufferMemory`
+* [`SendBufferMemory`](mysql-cluster-shm-definition.html#ndbparam-shm-sendbuffermemory)
 
-  <table frame="box" rules="all" summary="Tipo e valor de parâmetro de configuração da memória em grupo" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>não assinado</td> </tr><tr> <th>Padrão</th> <td>35</td> </tr><tr> <th>Gama</th> <td>0 - 200</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Group shared memory configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>35</td> </tr><tr> <th>Range</th> <td>0 - 200</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Tamanho (em bytes) do buffer de memória compartilhada para sinais enviados a partir deste nó usando uma conexão de memória compartilhada.
+  Size (in bytes) of the shared memory buffer for signals sent from this node using a shared memory connection.
 
-- `SendSignalId`
+* `SendSignalId`
 
-  <table frame="box" rules="all" summary="Tipo e valor de parâmetro de configuração da memória em grupo" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>não assinado</td> </tr><tr> <th>Padrão</th> <td>35</td> </tr><tr> <th>Gama</th> <td>0 - 200</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Group shared memory configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>35</td> </tr><tr> <th>Range</th> <td>0 - 200</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Para rastrear o caminho de uma mensagem distribuída, é necessário atribuir um identificador único a cada mensagem. Definir esse parâmetro como `Y` faz com que esses IDs de mensagem sejam transportados pela rede também. Esse recurso é desativado por padrão em builds de produção e ativado em builds de `-debug`.
+  To retrace the path of a distributed message, it is necessary to provide each message with a unique identifier. Setting this parameter to `Y` causes these message IDs to be transported over the network as well. This feature is disabled by default in production builds, and enabled in `-debug` builds.
 
-- `ShmKey`
+* [`ShmKey`](mysql-cluster-shm-definition.html#ndbparam-shm-shmkey)
 
-  <table frame="box" rules="all" summary="Tipo e valor de parâmetro de configuração da memória em grupo" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>não assinado</td> </tr><tr> <th>Padrão</th> <td>35</td> </tr><tr> <th>Gama</th> <td>0 - 200</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Group shared memory configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>35</td> </tr><tr> <th>Range</th> <td>0 - 200</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Ao configurar segmentos de memória compartilhada, um ID de nó, expresso como um inteiro, é usado para identificar de forma única o segmento de memória compartilhada a ser utilizado para a comunicação. Não há um valor padrão. Se `UseShm` estiver habilitado, a chave de memória compartilhada é calculada automaticamente pelo `NDB`.
+  When setting up shared memory segments, a node ID, expressed as an integer, is used to identify uniquely the shared memory segment to use for the communication. There is no default value. If [`UseShm`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-useshm) is enabled, the shared memory key is calculated automatically by `NDB`.
 
-- `ShmSize`
+* [`ShmSize`](mysql-cluster-shm-definition.html#ndbparam-shm-shmsize)
 
-  <table frame="box" rules="all" summary="Tipo e valor de parâmetro de configuração da memória em grupo" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>não assinado</td> </tr><tr> <th>Padrão</th> <td>35</td> </tr><tr> <th>Gama</th> <td>0 - 200</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Group shared memory configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>35</td> </tr><tr> <th>Range</th> <td>0 - 200</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Cada conexão SHM tem um segmento de memória compartilhada onde as mensagens entre os nós são colocadas pelo remetente e lidas pelo leitor. O tamanho desse segmento é definido por `ShmSize`. O valor padrão no NDB 7.6 é de 4 MB.
+  Each SHM connection has a shared memory segment where messages between nodes are placed by the sender and read by the reader. The size of this segment is defined by [`ShmSize`](mysql-cluster-shm-definition.html#ndbparam-shm-shmsize). The default value in NDB 7.6 is 4MB.
 
-- `ShmSpinTime`
+* [`ShmSpinTime`](mysql-cluster-shm-definition.html#ndbparam-shm-shmspintime)
 
-  <table frame="box" rules="all" summary="Tipo e valor de parâmetro de configuração da memória em grupo" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>não assinado</td> </tr><tr> <th>Padrão</th> <td>35</td> </tr><tr> <th>Gama</th> <td>0 - 200</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Group shared memory configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>35</td> </tr><tr> <th>Range</th> <td>0 - 200</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Ao receber, o tempo de espera antes de dormir, em microsegundos.
+  When receiving, the time to wait before sleeping, in microseconds.
 
-- `SigNum`
+* [`SigNum`](mysql-cluster-shm-definition.html#ndbparam-shm-signum)
 
-  <table frame="box" rules="all" summary="Tipo e valor de parâmetro de configuração da memória em grupo" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>não assinado</td> </tr><tr> <th>Padrão</th> <td>35</td> </tr><tr> <th>Gama</th> <td>0 - 200</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Group shared memory configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>35</td> </tr><tr> <th>Range</th> <td>0 - 200</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro não é mais usado no NDB 7.6, no qual qualquer configuração para ele é ignorada.
+  This parameter is no longer used in NDB 7.6, in which any setting for it is ignored.
 
-  O seguinte se aplica apenas no NDB 7.5 (e versões anteriores):
+  The following applies only in NDB 7.5 (and earlier):
 
-  Ao usar o transportador de memória compartilhada, um processo envia um sinal ao sistema operacional quando há novos dados disponíveis na memória compartilhada. Se esse sinal entrar em conflito com um sinal existente, esse parâmetro pode ser usado para alterá-lo. Essa é uma possibilidade ao usar o SHM devido ao fato de que diferentes sistemas operacionais usam números de sinal diferentes.
+  When using the shared memory transporter, a process sends an operating system signal to the other process when there is new data available in the shared memory. Should that signal conflict with an existing signal, this parameter can be used to change it. This is a possibility when using SHM due to the fact that different operating systems use different signal numbers.
 
-  O valor padrão de `SigNum` é 0; portanto, ele deve ser definido para evitar erros no log do cluster ao usar o transportador de memória compartilhada. Normalmente, este parâmetro é definido para 10 na seção `[shm default]` do arquivo `config.ini`.
+  The default value of [`SigNum`](mysql-cluster-shm-definition.html#ndbparam-shm-signum) is 0; therefore, it must be set to avoid errors in the cluster log when using the shared memory transporter. Typically, this parameter is set to 10 in the `[shm default]` section of the `config.ini` file.
 
-**Tipos de reinício.** As informações sobre os tipos de reinício utilizados pelas descrições dos parâmetros nesta seção estão mostradas na tabela a seguir:
+**Restart types.** Information about the restart types used by the parameter descriptions in this section is shown in the following table:
 
-**Tabela 21.20 Tipos de reinício de cluster do NDB**
+**Table 21.20 NDB Cluster restart types**
 
-<table frame="box" rules="all" summary="Tipo e valor de parâmetro de configuração da memória em grupo" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>não assinado</td> </tr><tr> <th>Padrão</th> <td>35</td> </tr><tr> <th>Gama</th> <td>0 - 200</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="Group shared memory configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>35</td> </tr><tr> <th>Range</th> <td>0 - 200</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>

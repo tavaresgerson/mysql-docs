@@ -1,24 +1,24 @@
-### 21.3.4 Inicialização inicial do NDB Cluster
+### 21.3.4 Initial Startup of NDB Cluster
 
-Iniciar o clúster não é muito difícil depois que ele é configurado. Cada processo do nó do clúster deve ser iniciado separadamente, no host onde ele reside. O nó de gerenciamento deve ser iniciado primeiro, seguido pelos nós de dados e, finalmente, pelos nós SQL:
+Starting the cluster is not very difficult after it has been configured. Each cluster node process must be started separately, and on the host where it resides. The management node should be started first, followed by the data nodes, and then finally by any SQL nodes:
 
-1. No host de gerenciamento, execute o seguinte comando na shell do sistema para iniciar o processo do nó de gerenciamento:
+1. On the management host, issue the following command from the system shell to start the management node process:
 
    ```sql
    $> ndb_mgmd --initial -f /var/lib/mysql-cluster/config.ini
    ```
 
-   Na primeira vez que ele for iniciado, **ndb_mgmd** deve ser informado onde encontrar seu arquivo de configuração, usando a opção `-f` ou `--config-file`. Essa opção exige que `--initial` ou `--reload` também sejam especificados; veja Seção 21.5.4, “ndb_mgmd — O Daemon do Servidor de Gerenciamento do NDB Cluster”, para detalhes.
+   The first time that it is started, [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") must be told where to find its configuration file, using the `-f` or [`--config-file`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_config-file) option. This option requires that [`--initial`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_initial) or [`--reload`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_reload) also be specified; see [Section 21.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon"), for details.
 
-2. Em cada um dos hosts dos nós de dados, execute este comando para iniciar o processo **ndbd**:
+2. On each of the data node hosts, run this command to start the [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") process:
 
    ```sql
    $> ndbd
    ```
 
-3. Se você usou arquivos RPM para instalar o MySQL no host do clúster onde o nó SQL deve residir, você pode (e deve) usar o script de inicialização fornecido para iniciar o processo do servidor MySQL no nó SQL.
+3. If you used RPM files to install MySQL on the cluster host where the SQL node is to reside, you can (and should) use the supplied startup script to start the MySQL server process on the SQL node.
 
-Se tudo tiver corrido bem e o clúster tiver sido configurado corretamente, ele agora deve estar operacional. Você pode testar isso invocando o cliente do nó de gerenciamento **ndb_mgm**. A saída deve parecer como a mostrada aqui, embora você possa ver algumas pequenas diferenças na saída, dependendo da versão exata do MySQL que você está usando:
+If all has gone well, and the cluster has been set up correctly, the cluster should now be operational. You can test this by invoking the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") management node client. The output should look like that shown here, although you might see some slight differences in the output depending upon the exact version of MySQL that you are using:
 
 ```sql
 $> ndb_mgm
@@ -38,10 +38,10 @@ id=1    @198.51.100.10  (Version: 5.7.44-ndb-7.6.36)
 id=4    @198.51.100.20  (Version: 5.7.44-ndb-7.6.36)
 ```
 
-O nó SQL é referido aqui como `[mysqld(API)]`, o que reflete o fato de que o processo **mysqld** está atuando como um nó da API do NDB Cluster.
+The SQL node is referenced here as `[mysqld(API)]`, which reflects the fact that the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") process is acting as an NDB Cluster API node.
 
-Nota
+Note
 
-O endereço IP exibido para um determinado nó SQL do NDB Cluster ou outro nó da API no resultado do comando `SHOW` (mysql-cluster-mgm-client-commands.html#ndbclient-show) é o endereço usado pelo nó SQL ou API para se conectar aos nós de dados do cluster, e não a nenhum nó de gerenciamento.
+The IP address shown for a given NDB Cluster SQL or other API node in the output of [`SHOW`](mysql-cluster-mgm-client-commands.html#ndbclient-show) is the address used by the SQL or API node to connect to the cluster data nodes, and not to any management node.
 
-Agora você deve estar pronto para trabalhar com bancos de dados, tabelas e dados no NDB Cluster. Consulte Seção 21.3.5, “Exemplo de NDB Cluster com Tabelas e Dados” para uma breve discussão.
+You should now be ready to work with databases, tables, and data in NDB Cluster. See [Section 21.3.5, “NDB Cluster Example with Tables and Data”](mysql-cluster-install-example-data.html "21.3.5 NDB Cluster Example with Tables and Data"), for a brief discussion.

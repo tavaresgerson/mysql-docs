@@ -1,12 +1,12 @@
-#### 14.21.5.3 Ajuste do desempenho do plugin InnoDB memcached
+#### 14.21.5.3 Tuning InnoDB memcached Plugin Performance
 
-Como o uso do `InnoDB` em combinação com o **memcached** envolve a gravação de todos os dados no disco, seja imediatamente ou em algum momento posterior, espera-se que o desempenho bruto seja um pouco mais lento do que o uso do **memcached** por si só. Ao usar o plugin **memcached** para **InnoDB**, foque nos objetivos de ajuste das operações do **memcached** para alcançar um desempenho melhor do que as operações SQL equivalentes.
+Because using `InnoDB` in combination with **memcached** involves writing all data to disk, whether immediately or sometime later, raw performance is expected to be somewhat slower than using **memcached** by itself. When using the `InnoDB` **memcached** plugin, focus tuning goals for **memcached** operations on achieving better performance than equivalent SQL operations.
 
-Os benchmarks sugerem que as consultas e operações de manipulação de dados (inserções, atualizações e exclusões) que utilizam a interface **memcached** são mais rápidas do que as operações SQL tradicionais. As operações de manipulação de dados geralmente apresentam melhorias maiores. Portanto, considere adaptar primeiro as aplicações intensivas em escrita para usar a interface **memcached**. Além disso, considere priorizar a adaptação de aplicações intensivas em escrita que utilizam mecanismos rápidos e leves que não oferecem confiabilidade.
+Benchmarks suggest that queries and DML operations (inserts, updates, and deletes) that use the **memcached** interface are faster than traditional SQL. DML operations typically see a larger improvements. Therefore, consider adapting write-intensive applications to use the **memcached** interface first. Also consider prioritizing adaptation of write-intensive applications that use fast, lightweight mechanisms that lack reliability.
 
-##### Adaptando Consultas SQL
+##### Adapting SQL Queries
 
-Os tipos de consultas mais adequados para solicitações simples de `GET` são aquelas com uma única cláusula ou um conjunto de condições `AND` na cláusula `WHERE`:
+The types of queries that are most suited to simple `GET` requests are those with a single clause or a set of `AND` conditions in the `WHERE` clause:
 
 ```sql
 SQL:
@@ -36,28 +36,28 @@ memcached:
 get key_value
 ```
 
-##### Usando a Memória do Sistema
+##### Using System Memory
 
-Para obter o melhor desempenho, implante o plugin `daemon_memcached` em máquinas configuradas como servidores de banco de dados típicos, onde a maioria da RAM do sistema é dedicada ao pool de buffer `InnoDB`, por meio da opção de configuração `innodb_buffer_pool_size`. Para sistemas com pools de buffer de vários gigabytes, considere aumentar o valor de `innodb_buffer_pool_instances` para obter o máximo de desempenho quando a maioria das operações envolve dados que já estão cacheados na memória.
+For best performance, deploy the `daemon_memcached` plugin on machines that are configured as typical database servers, where the majority of system RAM is devoted to the `InnoDB` buffer pool, through the `innodb_buffer_pool_size` configuration option. For systems with multi-gigabyte buffer pools, consider raising the value of `innodb_buffer_pool_instances` for maximum throughput when most operations involve data that is already cached in memory.
 
-##### Reduzir o I/O redundante
+##### Reducing Redundant I/O
 
-O `InnoDB` tem várias configurações que permitem escolher o equilíbrio entre alta confiabilidade, em caso de falha, e a quantidade de overhead de E/S durante cargas de trabalho de escrita elevadas. Por exemplo, considere definir `innodb_doublewrite` para `0` e `innodb_flush_log_at_trx_commit` para `2`. Meça o desempenho com diferentes configurações de `innodb_flush_method`.
+`InnoDB` has a number of settings that let you choose the balance between high reliability, in case of a crash, and the amount of I/O overhead during high write workloads. For example, consider setting the `innodb_doublewrite` to `0` and `innodb_flush_log_at_trx_commit` to `2`. Measure performance with different `innodb_flush_method` settings.
 
-Nota
+Note
 
-`innodb_support_xa` está desatualizado; espere que ele seja removido em uma futura versão. A partir do MySQL 5.7.10, o suporte `InnoDB` para o commit de duas fases em transações XA está sempre ativado e desativar `innodb_support_xa` não é mais permitido.
+`innodb_support_xa` is deprecated; expect it to be removed in a future release. As of MySQL 5.7.10, `InnoDB` support for two-phase commit in XA transactions is always enabled and disabling `innodb_support_xa` is no longer permitted.
 
-Para outras maneiras de reduzir ou ajustar o I/O para operações de tabela, consulte a Seção 8.5.8, “Otimização do I/O de Disco do InnoDB”.
+For other ways to reduce or tune I/O for table operations, see Section 8.5.8, “Optimizing InnoDB Disk I/O”.
 
-##### Reduzindo o custo operacional das transações
+##### Reducing Transactional Overhead
 
-Um valor padrão de 1 para `daemon_memcached_r_batch_size` e `daemon_memcached_w_batch_size` é destinado à máxima confiabilidade dos resultados e segurança dos dados armazenados ou atualizados.
+A default value of 1 for `daemon_memcached_r_batch_size` and `daemon_memcached_w_batch_size` is intended for maximum reliability of results and safety of stored or updated data.
 
-Dependendo do tipo de aplicação, você pode aumentar um ou ambos esses parâmetros para reduzir o overhead das operações de commit frequentes. Em um sistema ocupado, você pode aumentar `daemon_memcached_r_batch_size`, sabendo que as alterações nos dados feitas por meio do SQL podem não se tornar visíveis para o **memcached** imediatamente (ou seja, até que sejam processadas mais *`N`* operações `get`). Ao processar dados onde cada operação de escrita deve ser armazenada de forma confiável, deixe `daemon_memcached_w_batch_size` definido como `1`. Aumente o parâmetro ao processar um grande número de atualizações destinadas apenas à análise estatística, onde perder os últimos *`N`* atualizações em uma saída inesperada é um risco aceitável.
+Depending on the type of application, you might increase one or both of these settings to reduce the overhead of frequent commit operations. On a busy system, you might increase `daemon_memcached_r_batch_size`, knowing that changes to data made through SQL may not become visible to **memcached** immediately (that is, until *`N`* more `get` operations are processed). When processing data where every write operation must be reliably stored, leave `daemon_memcached_w_batch_size` set to `1`. Increase the setting when processing large numbers of updates intended only for statistical analysis, where losing the last *`N`* updates in an unexpected exit is an acceptable risk.
 
-Por exemplo, imagine um sistema que monitora o tráfego que passa por uma ponte movimentada, registrando dados de aproximadamente 100.000 veículos por dia. Se o aplicativo contar diferentes tipos de veículos para analisar os padrões de tráfego, alterar `daemon_memcached_w_batch_size` de `1` para `100` reduz o overhead de I/O para operações de commit em 99%. Em caso de uma interrupção, no máximo 100 registros são perdidos, o que pode ser uma margem de erro aceitável. Se, em vez disso, o aplicativo realizasse a cobrança automática de pedágio para cada carro, você configuraria `daemon_memcached_w_batch_size` para `1` para garantir que cada registro de pedágio seja salvo imediatamente no disco.
+For example, imagine a system that monitors traffic crossing a busy bridge, recording data for approximately 100,000 vehicles each day. If the application counts different types of vehicles to analyze traffic patterns, changing `daemon_memcached_w_batch_size` from `1` to `100` reduces I/O overhead for commit operations by 99%. In case of an outage, a maximum of 100 records are lost, which may be an acceptable margin of error. If instead the application performed automated toll collection for each car, you would set `daemon_memcached_w_batch_size` to `1` to ensure that each toll record is immediately saved to disk.
 
-Devido à forma como o `InnoDB` organiza os valores de chave do **memcached** no disco, se você tiver um grande número de chaves a serem criadas, pode ser mais rápido ordenar os itens de dados por valor de chave na aplicação e **acrescentá-los** em ordem ordenada, em vez de criar chaves em ordem aleatória.
+Because of the way `InnoDB` organizes **memcached** key values on disk, if you have a large number of keys to create, it may be faster to sort the data items by key value in the application and `add` them in sorted order, rather than create keys in arbitrary order.
 
-O comando **memslap**, que faz parte da distribuição regular do **memcached**, mas não está incluído no plugin `daemon_memcached`, pode ser útil para fazer testes de desempenho de diferentes configurações. Ele também pode ser usado para gerar pares de chave-valor de amostra para uso em seus próprios testes de desempenho.
+The **memslap** command, which is part of the regular **memcached** distribution but not included with the `daemon_memcached` plugin, can be useful for benchmarking different configurations. It can also be used to generate sample key-value pairs to use in your own benchmarks.

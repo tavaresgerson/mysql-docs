@@ -1,17 +1,17 @@
-#### 25.12.3.1 A tabela cond_instances
+#### 25.12.3.1 The cond_instances Table
 
-A tabela `cond_instances` lista todas as condições observadas pelo Schema de Desempenho enquanto o servidor está em execução. Uma condição é um mecanismo de sincronização usado no código para sinalizar que um evento específico ocorreu, para que um thread que está esperando por essa condição possa retomar o trabalho.
+The [`cond_instances`](performance-schema-cond-instances-table.html "25.12.3.1 The cond_instances Table") table lists all the conditions seen by the Performance Schema while the server executes. A condition is a synchronization mechanism used in the code to signal that a specific event has happened, so that a thread waiting for this condition can resume work.
 
-Quando um thread está esperando algo acontecer, o nome da condição é uma indicação do que o thread está esperando, mas não há uma maneira imediata de saber quais outros fios causam a condição de acontecer.
+When a thread is waiting for something to happen, the condition name is an indication of what the thread is waiting for, but there is no immediate way to tell which other threads cause the condition to happen.
 
-A tabela `cond_instances` tem as seguintes colunas:
+The [`cond_instances`](performance-schema-cond-instances-table.html "25.12.3.1 The cond_instances Table") table has these columns:
 
-- `NOME`
+* `NAME`
 
-  O nome do instrumento associado à condição.
+  The instrument name associated with the condition.
 
-- `OBJECT_INSTANCE_BEGIN`
+* `OBJECT_INSTANCE_BEGIN`
 
-  O endereço em memória da condição instrumentada.
+  The address in memory of the instrumented condition.
 
-A operação `TRUNCATE TABLE` não é permitida para a tabela `cond_instances`.
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is not permitted for the [`cond_instances`](performance-schema-cond-instances-table.html "25.12.3.1 The cond_instances Table") table.

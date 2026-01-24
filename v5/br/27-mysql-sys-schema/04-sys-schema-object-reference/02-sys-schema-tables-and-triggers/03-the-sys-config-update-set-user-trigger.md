@@ -1,3 +1,3 @@
-#### 26.4.2.3 O gatilho sys_config_update_set_user
+#### 26.4.2.3 The sys_config_update_set_user Trigger
 
-O gatilho `sys_config_update_set_user` para a tabela `sys_config` é semelhante ao gatilho `sys_config_insert_set_user`, mas para instruções `UPDATE`.
+The `sys_config_update_set_user` trigger for the `sys_config` table is similar to the `sys_config_insert_set_user` trigger, but for `UPDATE` statements.

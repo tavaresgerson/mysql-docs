@@ -1,10 +1,10 @@
-#### 21.3.2.4 Instalar os processos do NDB Cluster como serviços do Windows
+#### 21.3.2.4 Installing NDB Cluster Processes as Windows Services
 
-Depois de garantir que o NDB Cluster esteja funcionando conforme o esperado, você pode instalar os nós de gerenciamento e os nós de dados como serviços do Windows, para que esses processos sejam iniciados e interrompidos automaticamente sempre que o Windows for iniciado ou desligado. Isso também permite controlar esses processos a partir da linha de comando com os comandos apropriados **SC START** e **SC STOP**, ou usando o utilitário de serviços gráficos do Windows **Services**. Os comandos **NET START** e **NET STOP** também podem ser usados.
+Once you are satisfied that NDB Cluster is running as desired, you can install the management nodes and data nodes as Windows services, so that these processes are started and stopped automatically whenever Windows is started or stopped. This also makes it possible to control these processes from the command line with the appropriate **SC START** and **SC STOP** commands, or using the Windows graphical **Services** utility. **NET START** and **NET STOP** commands can also be used.
 
-A instalação de programas como serviços do Windows geralmente deve ser feita usando uma conta que tenha direitos de administrador no sistema.
+Installing programs as Windows services usually must be done using an account that has Administrator rights on the system.
 
-Para instalar o nó de gerenciamento como um serviço no Windows, inicie o **ndb_mgmd.exe** a partir da linha de comando na máquina que hospeda o nó de gerenciamento, usando a opção `--install`, conforme mostrado aqui:
+To install the management node as a service on Windows, invoke [**ndb_mgmd.exe**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") from the command line on the machine hosting the management node, using the [`--install`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_install) option, as shown here:
 
 ```sql
 C:\> C:\mysql\bin\ndb_mgmd.exe --install
@@ -13,13 +13,13 @@ Installing service 'NDB Cluster Management Server'
 Service successfully installed.
 ```
 
-Importante
+Important
 
-Ao instalar um programa de NDB Cluster como um serviço do Windows, você deve sempre especificar o caminho completo; caso contrário, a instalação do serviço pode falhar com o erro O sistema não encontrou o arquivo especificado.
+When installing an NDB Cluster program as a Windows service, you should always specify the complete path; otherwise the service installation may fail with the error The system cannot find the file specified.
 
-A opção `--install` deve ser usada primeiro, antes de qualquer outra opção que possa ser especificada para **ndb_mgmd.exe**. No entanto, é preferível especificar essas opções em um arquivo de opções em vez disso. Se o seu arquivo de opções não estiver em um dos locais padrão, conforme mostrado na saída de **ndb_mgmd.exe** `--help`, você pode especificar a localização usando a opção `--config-file`.
+The [`--install`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_install) option must be used first, ahead of any other options that might be specified for [**ndb_mgmd.exe**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon"). However, it is preferable to specify such options in an options file instead. If your options file is not in one of the default locations as shown in the output of [**ndb_mgmd.exe**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") [`--help`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_help), you can specify the location using the [`--config-file`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_config-file) option.
 
-Agora você deve ser capaz de iniciar e parar o servidor de gerenciamento da seguinte maneira:
+Now you should be able to start and stop the management server like this:
 
 ```sql
 C:\> SC START ndb_mgmd
@@ -27,9 +27,9 @@ C:\> SC START ndb_mgmd
 C:\> SC STOP ndb_mgmd
 ```
 
-Nota
+Note
 
-Se você estiver usando comandos **NET**, também pode iniciar ou parar o servidor de gerenciamento como um serviço do Windows usando o nome descritivo, conforme mostrado aqui:
+If using **NET** commands, you can also start or stop the management server as a Windows service using the descriptive name, as shown here:
 
 ```sql
 C:\> NET START 'NDB Cluster Management Server'
@@ -41,7 +41,7 @@ The NDB Cluster Management Server service is stopping..
 The NDB Cluster Management Server service was stopped successfully.
 ```
 
-Geralmente, é mais simples especificar um nome de serviço curto ou permitir que o nome de serviço padrão seja usado durante a instalação do serviço, e então referenciar esse nome ao iniciar ou parar o serviço. Para especificar um nome de serviço diferente de `ndb_mgmd`, adicione-o à opção `--install`, conforme mostrado neste exemplo:
+It is usually simpler to specify a short service name or to permit the default service name to be used when installing the service, and then reference that name when starting or stopping the service. To specify a service name other than `ndb_mgmd`, append it to the [`--install`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_install) option, as shown in this example:
 
 ```sql
 C:\> C:\mysql\bin\ndb_mgmd.exe --install=mgmd1
@@ -50,7 +50,7 @@ Installing service 'NDB Cluster Management Server'
 Service successfully installed.
 ```
 
-Agora você deve ser capaz de iniciar ou parar o serviço usando o nome que você especificou, assim:
+Now you should be able to start or stop the service using the name you have specified, like this:
 
 ```sql
 C:\> SC START mgmd1
@@ -58,13 +58,13 @@ C:\> SC START mgmd1
 C:\> SC STOP mgmd1
 ```
 
-Para remover o serviço do nó de gerenciamento, use **SC DELETE *`service_name`***:
+To remove the management node service, use **SC DELETE *`service_name`***:
 
 ```sql
 C:\> SC DELETE mgmd1
 ```
 
-Alternativamente, invoque **ndb_mgmd.exe** com a opção `--remove`, conforme mostrado aqui:
+Alternatively, invoke [**ndb_mgmd.exe**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") with the [`--remove`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_remove) option, as shown here:
 
 ```sql
 C:\> C:\mysql\bin\ndb_mgmd.exe --remove
@@ -72,7 +72,7 @@ Removing service 'NDB Cluster Management Server'
 Service successfully removed.
 ```
 
-Se você instalou o serviço usando um nome de serviço diferente do padrão, passe o nome do serviço como o valor da opção `--remove` do comando **ndb_mgmd.exe**, assim:
+If you installed the service using a service name other than the default, pass the service name as the value of the [**ndb_mgmd.exe**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") [`--remove`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_remove) option, like this:
 
 ```sql
 C:\> C:\mysql\bin\ndb_mgmd.exe --remove=mgmd1
@@ -80,7 +80,7 @@ Removing service 'mgmd1'
 Service successfully removed.
 ```
 
-A instalação de um processo de nó de dados de um cluster NDB como um serviço do Windows pode ser feita de maneira semelhante, usando a opção `--install` para o **ndbd.exe** (ou **ndbmtd.exe**), conforme mostrado aqui:
+Installation of an NDB Cluster data node process as a Windows service can be done in a similar fashion, using the [`--install`](mysql-cluster-programs-ndbd.html#option_ndbd_install) option for [**ndbd.exe**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") (or [**ndbmtd.exe**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)")), as shown here:
 
 ```sql
 C:\> C:\mysql\bin\ndbd.exe --install
@@ -88,7 +88,7 @@ Installing service 'NDB Cluster Data Node Daemon' as '"C:\mysql\bin\ndbd.exe" "-
 Service successfully installed.
 ```
 
-Agora você pode iniciar ou parar o nó de dados conforme mostrado no exemplo a seguir:
+Now you can start or stop the data node as shown in the following example:
 
 ```sql
 C:\> SC START ndbd
@@ -96,13 +96,13 @@ C:\> SC START ndbd
 C:\> SC STOP ndbd
 ```
 
-Para remover o serviço do nó de dados, use **SC DELETE *`service_name`***:
+To remove the data node service, use **SC DELETE *`service_name`***:
 
 ```sql
 C:\> SC DELETE ndbd
 ```
 
-Alternativamente, invoque **ndbd.exe** com a opção `--remove`, conforme mostrado aqui:
+Alternatively, invoke [**ndbd.exe**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") with the [`--remove`](mysql-cluster-programs-ndbd.html#option_ndbd_remove) option, as shown here:
 
 ```sql
 C:\> C:\mysql\bin\ndbd.exe --remove
@@ -110,7 +110,7 @@ Removing service 'NDB Cluster Data Node Daemon'
 Service successfully removed.
 ```
 
-Assim como **ndb_mgmd.exe** (e **mysqld.exe**), ao instalar **ndbd.exe** como um serviço do Windows, você também pode especificar um nome para o serviço como o valor de `--install` e, em seguida, usá-lo ao iniciar ou parar o serviço, da seguinte forma:
+As with [**ndb_mgmd.exe**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") (and [**mysqld.exe**](mysqld.html "4.3.1 mysqld — The MySQL Server")), when installing [**ndbd.exe**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") as a Windows service, you can also specify a name for the service as the value of [`--install`](mysql-cluster-programs-ndbd.html#option_ndbd_install), and then use it when starting or stopping the service, like this:
 
 ```sql
 C:\> C:\mysql\bin\ndbd.exe --install=dnode1
@@ -122,13 +122,13 @@ C:\> SC START dnode1
 C:\> SC STOP dnode1
 ```
 
-Se você especificou um nome de serviço ao instalar o serviço de nó de dados, você pode usar esse nome ao removê-lo também, como mostrado aqui:
+If you specified a service name when installing the data node service, you can use this name when removing it as well, as shown here:
 
 ```sql
 C:\> SC DELETE dnode1
 ```
 
-Alternativamente, você pode passar o nome do serviço como o valor da opção `ndbd.exe` `--remove` (mysql-cluster-programs-ndbd.html#option_ndbd_remove), conforme mostrado aqui:
+Alternatively, you can pass the service name as the value of the `ndbd.exe` [`--remove`](mysql-cluster-programs-ndbd.html#option_ndbd_remove) option, as shown here:
 
 ```sql
 C:\> C:\mysql\bin\ndbd.exe --remove=dnode1
@@ -136,4 +136,4 @@ Removing service 'dnode1'
 Service successfully removed.
 ```
 
-A instalação do nó SQL como um serviço do Windows, o início do serviço, a parada do serviço e a remoção do serviço são feitos de maneira semelhante, usando **mysqld** `--install`, **SC START**, **SC STOP** e **SC DELETE** (ou **mysqld** `--remove`). Os comandos **NET** também podem ser usados para iniciar ou parar um serviço. Para obter informações adicionais, consulte Seção 2.3.4.8, “Iniciando o MySQL como um Serviço do Windows”.
+Installation of the SQL node as a Windows service, starting the service, stopping the service, and removing the service are done in a similar fashion, using [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") `--install`, **SC START**, **SC STOP**, and **SC DELETE** (or [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") [`--remove`](server-options.html#option_mysqld_remove)). **NET** commands can also be used to start or stop a service. For additional information, see [Section 2.3.4.8, “Starting MySQL as a Windows Service”](windows-start-service.html "2.3.4.8 Starting MySQL as a Windows Service").

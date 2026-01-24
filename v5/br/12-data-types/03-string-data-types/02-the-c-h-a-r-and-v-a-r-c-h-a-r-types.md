@@ -1,30 +1,30 @@
-### 11.3.2 Tipos CHAR e VARCHAR
+### 11.3.2 The CHAR and VARCHAR Types
 
-Os tipos `CHAR` e `VARCHAR` são semelhantes, mas diferem na forma como são armazenados e recuperados. Eles também diferem no comprimento máximo e se os espaços finais são mantidos.
+The `CHAR` and `VARCHAR` types are similar, but differ in the way they are stored and retrieved. They also differ in maximum length and in whether trailing spaces are retained.
 
-Os tipos `CHAR` e `VARCHAR` são declarados com um comprimento que indica o número máximo de caracteres que você deseja armazenar. Por exemplo, `CHAR(30)` pode armazenar até 30 caracteres.
+The `CHAR` and `VARCHAR` types are declared with a length that indicates the maximum number of characters you want to store. For example, `CHAR(30)` can hold up to 30 characters.
 
-O comprimento de uma coluna `CHAR` é fixo ao comprimento que você declara ao criar a tabela. O comprimento pode ser qualquer valor de 0 a 255. Quando os valores `CHAR` são armazenados, eles são preenchidos com espaços à direita até o comprimento especificado. Quando os valores `CHAR` são recuperados, os espaços finais são removidos, a menos que o modo SQL `PAD_CHAR_TO_FULL_LENGTH` esteja habilitado.
+The length of a `CHAR` column is fixed to the length that you declare when you create the table. The length can be any value from 0 to 255. When `CHAR` values are stored, they are right-padded with spaces to the specified length. When `CHAR` values are retrieved, trailing spaces are removed unless the `PAD_CHAR_TO_FULL_LENGTH` SQL mode is enabled.
 
-Os valores nas colunas `VARCHAR` são strings de comprimento variável. O comprimento pode ser especificado como um valor entre 0 e 65.535. O comprimento máximo efetivo de um `VARCHAR` está sujeito ao tamanho máximo da linha (65.535 bytes, que é compartilhado entre todas as colunas) e ao conjunto de caracteres utilizado. Consulte a Seção 8.4.7, “Limites de contagem de colunas da tabela e tamanho da linha”.
+Values in `VARCHAR` columns are variable-length strings. The length can be specified as a value from 0 to 65,535. The effective maximum length of a `VARCHAR` is subject to the maximum row size (65,535 bytes, which is shared among all columns) and the character set used. See Section 8.4.7, “Limits on Table Column Count and Row Size”.
 
-Ao contrário de `CHAR`, os valores de `VARCHAR` são armazenados como um prefixo de comprimento de 1 ou 2 bytes mais os dados. O prefixo de comprimento indica o número de bytes no valor. Uma coluna usa um byte de comprimento se os valores não exijam mais de 255 bytes, dois bytes de comprimento se os valores podem exigir mais de 255 bytes.
+In contrast to `CHAR`, `VARCHAR` values are stored as a 1-byte or 2-byte length prefix plus data. The length prefix indicates the number of bytes in the value. A column uses one length byte if values require no more than 255 bytes, two length bytes if values may require more than 255 bytes.
 
-Se o modo SQL rigoroso não estiver habilitado e você atribuir um valor a uma coluna `CHAR` ou `VARCHAR` que exceda o comprimento máximo da coluna, o valor será truncado para caber e um aviso será gerado. Para o truncamento de caracteres não espaços, você pode causar um erro (em vez de um aviso) e suprimir a inserção do valor usando o modo SQL rigoroso. Veja a Seção 5.1.10, “Modos SQL do Servidor”.
+If strict SQL mode is not enabled and you assign a value to a `CHAR` or `VARCHAR` column that exceeds the column's maximum length, the value is truncated to fit and a warning is generated. For truncation of nonspace characters, you can cause an error to occur (rather than a warning) and suppress insertion of the value by using strict SQL mode. See Section 5.1.10, “Server SQL Modes”.
 
-Para as colunas `VARCHAR`, os espaços em branco no final que excedam o comprimento da coluna são truncados antes da inserção e um aviso é gerado, independentemente do modo SQL em uso. Para as colunas `CHAR`, o truncamento dos espaços em branco excessivos dos valores inseridos é feito silenciosamente, independentemente do modo SQL.
+For `VARCHAR` columns, trailing spaces in excess of the column length are truncated prior to insertion and a warning is generated, regardless of the SQL mode in use. For `CHAR` columns, truncation of excess trailing spaces from inserted values is performed silently regardless of the SQL mode.
 
-Os valores `VARCHAR` não são preenchidos quando armazenados. Espaços finais são mantidos quando os valores são armazenados e recuperados, de acordo com o SQL padrão.
+`VARCHAR` values are not padded when they are stored. Trailing spaces are retained when values are stored and retrieved, in conformance with standard SQL.
 
-A tabela a seguir ilustra as diferenças entre `CHAR` e `VARCHAR`, mostrando o resultado da armazenagem de vários valores de string em colunas `CHAR(4)` e `VARCHAR(4)` (assumindo que a coluna utiliza um conjunto de caracteres de um byte, como `latin1`).
+The following table illustrates the differences between `CHAR` and `VARCHAR` by showing the result of storing various string values into `CHAR(4)` and `VARCHAR(4)` columns (assuming that the column uses a single-byte character set such as `latin1`).
 
-<table summary="Ilustração da diferença entre os requisitos de armazenamento de CHAR e VARCHAR, mostrando o armazenamento necessário para vários valores de string nas colunas CHAR(4) e VARCHAR(4)."><col style="width: 15%"/><col style="width: 15%"/><col style="width: 20%"/><col style="width: 15%"/><col style="width: 20%"/><thead><tr> <th>Valor</th> <th>PH_HTML_CODE_<code>'abcd'</code>]</th> <th>Armazenamento necessário</th> <th>PH_HTML_CODE_<code>'abcd'</code>]</th> <th>Armazenamento necessário</th> </tr></thead><tbody><tr> <th>PH_HTML_CODE_<code>'abcd'</code>]</th> <td>PH_HTML_CODE_<code>'abcd'</code>]</td> <td>4 bytes</td> <td><code>''</code></td> <td>1 byte</td> </tr><tr> <th><code>'ab'</code></th> <td><code>'ab  '</code></td> <td>4 bytes</td> <td><code>'ab'</code></td> <td>3 bytes</td> </tr><tr> <th><code>'abcd'</code></th> <td><code>'abcd'</code></td> <td>4 bytes</td> <td><code>'abcd'</code></td> <td>5 bytes</td> </tr><tr> <th><code>VARCHAR(4)</code><code>'abcd'</code>]</th> <td><code>'abcd'</code></td> <td>4 bytes</td> <td><code>'abcd'</code></td> <td>5 bytes</td> </tr></tbody></table>
+<table summary="Illustration of the difference between CHAR and VARCHAR storage requirements by showing the required storage for various string values in CHAR(4) and VARCHAR(4) columns."><col style="width: 15%"/><col style="width: 15%"/><col style="width: 20%"/><col style="width: 15%"/><col style="width: 20%"/><thead><tr> <th>Value</th> <th><code>CHAR(4)</code></th> <th>Storage Required</th> <th><code>VARCHAR(4)</code></th> <th>Storage Required</th> </tr></thead><tbody><tr> <th><code>''</code></th> <td><code>'    '</code></td> <td>4 bytes</td> <td><code>''</code></td> <td>1 byte</td> </tr><tr> <th><code>'ab'</code></th> <td><code>'ab  '</code></td> <td>4 bytes</td> <td><code>'ab'</code></td> <td>3 bytes</td> </tr><tr> <th><code>'abcd'</code></th> <td><code>'abcd'</code></td> <td>4 bytes</td> <td><code>'abcd'</code></td> <td>5 bytes</td> </tr><tr> <th><code>'abcdefgh'</code></th> <td><code>'abcd'</code></td> <td>4 bytes</td> <td><code>'abcd'</code></td> <td>5 bytes</td> </tr></tbody></table>
 
-Os valores mostrados como armazenados na última linha da tabela *aplicam-se apenas quando não estiver usando o modo SQL rigoroso*; se o modo rigoroso estiver ativado, os valores que excederem o comprimento da coluna *não são armazenados* e um erro é gerado.
+The values shown as stored in the last row of the table apply *only when not using strict SQL mode*; if strict mode is enabled, values that exceed the column length are *not stored*, and an error results.
 
-O `InnoDB` codifica campos de comprimento fixo maior ou igual a 768 bytes como campos de comprimento variável, que podem ser armazenados fora da página. Por exemplo, uma coluna `CHAR(255)` pode exceder 768 bytes se o comprimento máximo de byte do conjunto de caracteres for maior que 3, como no caso do `utf8mb4`.
+`InnoDB` encodes fixed-length fields greater than or equal to 768 bytes in length as variable-length fields, which can be stored off-page. For example, a `CHAR(255)` column can exceed 768 bytes if the maximum byte length of the character set is greater than 3, as it is with `utf8mb4`.
 
-Se um valor específico for armazenado nas colunas `CHAR(4)` e `VARCHAR(4)`, os valores recuperados das colunas nem sempre serão os mesmos, pois os espaços finais são removidos das colunas `CHAR` durante a recuperação. O exemplo a seguir ilustra essa diferença:
+If a given value is stored into the `CHAR(4)` and `VARCHAR(4)` columns, the values retrieved from the columns are not always the same because trailing spaces are removed from `CHAR` columns upon retrieval. The following example illustrates this difference:
 
 ```sql
 mysql> CREATE TABLE vc (v VARCHAR(4), c CHAR(4));
@@ -42,9 +42,9 @@ mysql> SELECT CONCAT('(', v, ')'), CONCAT('(', c, ')') FROM vc;
 1 row in set (0.06 sec)
 ```
 
-Os valores nas colunas `CHAR`, `VARCHAR` e `TEXT` são ordenados e comparados de acordo com a collation do conjunto de caracteres atribuída à coluna.
+Values in `CHAR`, `VARCHAR`, and `TEXT` columns are sorted and compared according to the character set collation assigned to the column.
 
-Todas as colorações do MySQL são do tipo `PAD SPACE`. Isso significa que todos os valores de `CHAR`, `VARCHAR` e `TEXT` são comparados sem considerar quaisquer espaços finais. A "composição" neste contexto não inclui o operador de correspondência de padrões `LIKE`, para o qual os espaços finais são significativos. Por exemplo:
+All MySQL collations are of type `PAD SPACE`. This means that all `CHAR`, `VARCHAR`, and `TEXT` values are compared without regard to any trailing spaces. “Comparison” in this context does not include the `LIKE` pattern-matching operator, for which trailing spaces are significant. For example:
 
 ```sql
 mysql> CREATE TABLE names (myname CHAR(10));
@@ -70,10 +70,10 @@ mysql> SELECT myname LIKE 'Jones', myname LIKE 'Jones  ' FROM names;
 1 row in set (0.00 sec)
 ```
 
-Isso não é afetado pelo modo SQL do servidor.
+This is not affected by the server SQL mode.
 
-Nota
+Note
 
-Para obter mais informações sobre os conjuntos de caracteres e as colatações do MySQL, consulte o Capítulo 10, *Conjunto de caracteres, colatações, Unicode*. Para informações adicionais sobre os requisitos de armazenamento, consulte a Seção 11.7, “Requisitos de armazenamento de tipos de dados”.
+For more information about MySQL character sets and collations, see Chapter 10, *Character Sets, Collations, Unicode*. For additional information about storage requirements, see Section 11.7, “Data Type Storage Requirements”.
 
-Nos casos em que os caracteres de preenchimento são removidos ou as comparações os ignoram, se uma coluna tiver um índice que exige valores únicos, inserir valores na coluna que diferem apenas no número de caracteres de preenchimento resulta em um erro de chave duplicada. Por exemplo, se uma tabela contém `'a'`, uma tentativa de armazenar `'a '` causa um erro de chave duplicada.
+For those cases where trailing pad characters are stripped or comparisons ignore them, if a column has an index that requires unique values, inserting into the column values that differ only in number of trailing pad characters results in a duplicate-key error. For example, if a table contains `'a'`, an attempt to store `'a '` causes a duplicate-key error.

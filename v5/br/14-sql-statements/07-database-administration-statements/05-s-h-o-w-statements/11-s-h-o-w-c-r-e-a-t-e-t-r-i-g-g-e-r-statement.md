@@ -1,10 +1,10 @@
-#### 13.7.5.11 Declaração `SHOW CREATE TRIGGER`
+#### 13.7.5.11 SHOW CREATE TRIGGER Statement
 
 ```sql
 SHOW CREATE TRIGGER trigger_name
 ```
 
-Esta declaração mostra a declaração `CREATE TRIGGER` que cria o gatilho nomeado. Esta declaração requer o privilégio `TRIGGER` para a tabela associada ao gatilho.
+This statement shows the [`CREATE TRIGGER`](create-trigger.html "13.1.20 CREATE TRIGGER Statement") statement that creates the named trigger. This statement requires the [`TRIGGER`](privileges-provided.html#priv_trigger) privilege for the table associated with the trigger.
 
 ```sql
 mysql> SHOW CREATE TRIGGER ins_sum\G
@@ -23,20 +23,19 @@ SQL Original Statement: CREATE DEFINER=`me`@`localhost` TRIGGER ins_sum
                Created: 2018-08-08 10:10:07.90
 ```
 
-A saída de `SHOW CREATE TRIGGER` tem essas colunas:
+[`SHOW CREATE TRIGGER`](show-create-trigger.html "13.7.5.11 SHOW CREATE TRIGGER Statement") output has these columns:
 
-- `Trigger`: O nome do gatilho.
+* `Trigger`: The trigger name.
+* `sql_mode`: The SQL mode in effect when the trigger executes.
 
-- `sql_mode`: O modo SQL em vigor quando o gatilho é executado.
+* `SQL Original Statement`: The [`CREATE TRIGGER`](create-trigger.html "13.1.20 CREATE TRIGGER Statement") statement that defines the trigger.
 
-- `Instrução SQL Original`: A instrução `CREATE TRIGGER` que define o gatilho.
+* `character_set_client`: The session value of the [`character_set_client`](server-system-variables.html#sysvar_character_set_client) system variable when the trigger was created.
 
-- `character_set_client`: O valor da sessão da variável de sistema `character_set_client` quando o gatilho foi criado.
+* `collation_connection`: The session value of the [`collation_connection`](server-system-variables.html#sysvar_collation_connection) system variable when the trigger was created.
 
-- `collation_connection`: O valor da sessão da variável de sistema `collation_connection` quando o gatilho foi criado.
+* `Database Collation`: The collation of the database with which the trigger is associated.
 
-- `Collinação do banco de dados`: A collation do banco de dados com o qual o gatilho está associado.
+* `Created`: The date and time when the trigger was created. This is a `TIMESTAMP(2)` value (with a fractional part in hundredths of seconds) for triggers created in MySQL 5.7.2 or later, `NULL` for triggers created prior to 5.7.2.
 
-- `Criado`: A data e a hora em que o gatilho foi criado. Este é um valor `TIMESTAMP(2)` (com uma parte fracionária em centésimos de segundo) para gatilhos criados no MySQL 5.7.2 ou posterior, `NULL` para gatilhos criados antes de 5.7.2.
-
-As informações sobre gatilhos também estão disponíveis na tabela `INFORMATION_SCHEMA [`TRIGGERS\`]\(information-schema-triggers-table.html). Veja Seção 24.3.29, “A Tabela INFORMATION_SCHEMA TRIGGERS”.
+Trigger information is also available from the `INFORMATION_SCHEMA` [`TRIGGERS`](information-schema-triggers-table.html "24.3.29 The INFORMATION_SCHEMA TRIGGERS Table") table. See [Section 24.3.29, “The INFORMATION_SCHEMA TRIGGERS Table”](information-schema-triggers-table.html "24.3.29 The INFORMATION_SCHEMA TRIGGERS Table").

@@ -1,59 +1,59 @@
-#### B.3.2.7 O servidor MySQL desapareceu
+#### B.3.2.7 MySQL server has gone away
 
-Esta seção também abrange o erro relacionado `Perda de conexão com o servidor durante a consulta`.
+This section also covers the related `Lost connection to server during query` error.
 
-A razão mais comum para o erro "O servidor MySQL desapareceu" é que o servidor expirou o tempo limite e fechou a conexão. Nesse caso, você normalmente recebe um dos seguintes códigos de erro (o que você recebe depende do sistema operacional).
+The most common reason for the `MySQL server has gone away` error is that the server timed out and closed the connection. In this case, you normally get one of the following error codes (which one you get is operating system-dependent).
 
-<table summary="Códigos de erro do servidor MySQL e uma descrição de cada código."><col style="width: 35%"/><col style="width: 65%"/><thead><tr> <th>Código de erro</th> <th>Descrição</th> </tr></thead><tbody><tr> <td><code>CR_SERVER_GONE_ERROR</code></td> <td>O cliente não conseguiu enviar uma pergunta ao servidor.</td> </tr><tr> <td><code>CR_SERVER_LOST</code></td> <td>O cliente não recebeu um erro ao escrever para o servidor, mas não recebeu uma resposta completa (ou nenhuma resposta) à pergunta.</td> </tr></tbody></table>
+<table summary="MySQL server has gone away error codes and a description of each code."><col style="width: 35%"/><col style="width: 65%"/><thead><tr> <th>Error Code</th> <th>Description</th> </tr></thead><tbody><tr> <td><code>CR_SERVER_GONE_ERROR</code></td> <td>The client couldn't send a question to the server.</td> </tr><tr> <td><code>CR_SERVER_LOST</code></td> <td>The client didn't get an error when writing to the server, but it didn't get a full answer (or any answer) to the question.</td> </tr></tbody></table>
 
-Por padrão, o servidor fecha a conexão após oito horas se nada acontecer. Você pode alterar o limite de tempo configurando a variável [`wait_timeout`](server-system-variables.html#sysvar_wait_timeout) ao iniciar o [**mysqld**](mysqld.html). Veja [Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html).
+By default, the server closes the connection after eight hours if nothing has happened. You can change the time limit by setting the [`wait_timeout`](server-system-variables.html#sysvar_wait_timeout) variable when you start [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"). See [Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables").
 
-Se você tiver um script, basta emitir a consulta novamente para que o cliente faça uma reconexão automática. Isso pressupõe que você tenha a reconexão automática habilitada no cliente (o que é o padrão para o cliente de linha de comando `mysql`).
+If you have a script, you just have to issue the query again for the client to do an automatic reconnection. This assumes that you have automatic reconnection in the client enabled (which is the default for the `mysql` command-line client).
 
-Algumas outras razões comuns para o erro "O servidor MySQL desapareceu" são:
+Some other common reasons for the `MySQL server has gone away` error are:
 
-- Você (ou o administrador do banco de dados) matou o thread em execução com uma declaração [`KILL`](kill.html) ou um comando [**mysqladmin kill**](mysqladmin.html).
+* You (or the db administrator) has killed the running thread with a [`KILL`](kill.html "13.7.6.4 KILL Statement") statement or a [**mysqladmin kill**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") command.
 
-- Você tentou executar uma consulta após fechar a conexão com o servidor. Isso indica um erro lógico na aplicação que deve ser corrigido.
+* You tried to run a query after closing the connection to the server. This indicates a logic error in the application that should be corrected.
 
-- Um aplicativo cliente que está rodando em um host diferente não tem os privilégios necessários para se conectar ao servidor MySQL a partir desse host.
+* A client application running on a different host does not have the necessary privileges to connect to the MySQL server from that host.
 
-- Você recebeu um tempo de espera da conexão TCP/IP no lado do cliente. Isso pode acontecer se você tiver usado os comandos: [`mysql_options(..., MYSQL_OPT_READ_TIMEOUT,...)`](/doc/c-api/5.7/pt-BR/mysql-options.html) ou [`mysql_options(..., MYSQL_OPT_WRITE_TIMEOUT,...)`](/doc/c-api/5.7/pt-BR/mysql-options.html). Nesse caso, aumentar o tempo de espera pode ajudar a resolver o problema.
+* You got a timeout from the TCP/IP connection on the client side. This may happen if you have been using the commands: [`mysql_options(..., MYSQL_OPT_READ_TIMEOUT,...)`](/doc/c-api/5.7/en/mysql-options.html) or [`mysql_options(..., MYSQL_OPT_WRITE_TIMEOUT,...)`](/doc/c-api/5.7/en/mysql-options.html). In this case increasing the timeout may help solve the problem.
 
-- Você encontrou um tempo de espera no lado do servidor e a reconexão automática no cliente está desativada (a bandeira `reconnect` na estrutura `MYSQL` é igual a 0).
+* You have encountered a timeout on the server side and the automatic reconnection in the client is disabled (the `reconnect` flag in the `MYSQL` structure is equal to 0).
 
-- Você está usando um cliente do Windows e o servidor interrompeu a conexão (provavelmente porque o [`wait_timeout`](server-system-variables.html#sysvar_wait_timeout) expirou) antes que o comando fosse emitido.
+* You are using a Windows client and the server had dropped the connection (probably because [`wait_timeout`](server-system-variables.html#sysvar_wait_timeout) expired) before the command was issued.
 
-  O problema no Windows é que, em alguns casos, o MySQL não recebe um erro do sistema operacional ao escrever na conexão TCP/IP com o servidor, mas, em vez disso, recebe o erro ao tentar ler a resposta da conexão.
+  The problem on Windows is that in some cases MySQL does not get an error from the OS when writing to the TCP/IP connection to the server, but instead gets the error when trying to read the answer from the connection.
 
-  A solução para isso é realizar uma consulta [`mysql_ping()`](/doc/c-api/5.7/pt-BR/mysql-ping.html) na conexão se há muito tempo desde a última consulta (isso é o que o Connector/ODBC faz) ou definir o valor de [`wait_timeout`](server-system-variables.html#sysvar_wait_timeout) no servidor do [**mysqld**](mysqld.html) tão alto que ele nunca seja interrompido na prática.
+  The solution to this is to either do a [`mysql_ping()`](/doc/c-api/5.7/en/mysql-ping.html) on the connection if there has been a long time since the last query (this is what Connector/ODBC does) or set [`wait_timeout`](server-system-variables.html#sysvar_wait_timeout) on the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") server so high that it in practice never times out.
 
-- Você também pode receber esses erros se enviar uma consulta ao servidor que está incorreta ou muito grande. Se o [**mysqld**](mysqld.html) receber um pacote muito grande ou fora de ordem, ele assume que algo deu errado com o cliente e fecha a conexão. Se você precisar de consultas grandes (por exemplo, se estiver trabalhando com colunas grandes de [`BLOB`](blob.html), você pode aumentar o limite da consulta definindo a variável [`max_allowed_packet`](server-system-variables.html#sysvar_max_allowed_packet) do servidor, que tem um valor padrão de 4 MB. Você também pode precisar aumentar o tamanho máximo do pacote no cliente. Mais informações sobre como definir o tamanho do pacote estão disponíveis em [Seção B.3.2.8, “Pacote muito grande”](packet-too-large.html).
+* You can also get these errors if you send a query to the server that is incorrect or too large. If [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") receives a packet that is too large or out of order, it assumes that something has gone wrong with the client and closes the connection. If you need big queries (for example, if you are working with big [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") columns), you can increase the query limit by setting the server's [`max_allowed_packet`](server-system-variables.html#sysvar_max_allowed_packet) variable, which has a default value of 4MB. You may also need to increase the maximum packet size on the client end. More information on setting the packet size is given in [Section B.3.2.8, “Packet Too Large”](packet-too-large.html "B.3.2.8 Packet Too Large").
 
-  Uma instrução [`INSERT`](insert.html) ou [`REPLACE`](replace.html) que insere muitas linhas também pode causar esse tipo de erro. Uma dessas instruções envia um único pedido ao servidor, independentemente do número de linhas a serem inseridas; assim, você pode evitar o erro reduzindo o número de linhas enviadas por [`INSERT`](insert.html) ou [`REPLACE`](replace.html).
+  An [`INSERT`](insert.html "13.2.5 INSERT Statement") or [`REPLACE`](replace.html "13.2.8 REPLACE Statement") statement that inserts a great many rows can also cause these sorts of errors. Either one of these statements sends a single request to the server irrespective of the number of rows to be inserted; thus, you can often avoid the error by reducing the number of rows sent per [`INSERT`](insert.html "13.2.5 INSERT Statement") or [`REPLACE`](replace.html "13.2.8 REPLACE Statement").
 
-- É também possível ver esse erro se as consultas de nome de host falharem (por exemplo, se o servidor DNS em que seu servidor ou rede depende falhar). Isso ocorre porque o MySQL depende do sistema de host para a resolução de nomes, mas não tem como saber se está funcionando — do ponto de vista do MySQL, o problema é indistinguível de qualquer outro tempo de espera de rede.
+* It is also possible to see this error if host name lookups fail (for example, if the DNS server on which your server or network relies goes down). This is because MySQL is dependent on the host system for name resolution, but has no way of knowing whether it is working—from MySQL's point of view the problem is indistinguishable from any other network timeout.
 
-  Você também pode ver o erro "O servidor MySQL desapareceu" se o MySQL for iniciado com a variável de sistema [`skip_networking`](server-system-variables.html#sysvar_skip_networking) habilitada.
+  You may also see the `MySQL server has gone away` error if MySQL is started with the [`skip_networking`](server-system-variables.html#sysvar_skip_networking) system variable enabled.
 
-  Outro problema de rede que pode causar esse erro ocorre se a porta MySQL (padrão 3306) for bloqueada pelo seu firewall, impedindo assim qualquer conexão com o servidor MySQL.
+  Another networking issue that can cause this error occurs if the MySQL port (default 3306) is blocked by your firewall, thus preventing any connections at all to the MySQL server.
 
-- Você também pode encontrar esse erro em aplicativos que criam processos filhos, todos os quais tentam usar a mesma conexão com o servidor MySQL. Isso pode ser evitado usando uma conexão separada para cada processo filho.
+* You can also encounter this error with applications that fork child processes, all of which try to use the same connection to the MySQL server. This can be avoided by using a separate connection for each child process.
 
-- Você encontrou um erro em que o servidor morreu enquanto executava a consulta.
+* You have encountered a bug where the server died while executing the query.
 
-Você pode verificar se o servidor MySQL morreu e reiniciou executando [**mysqladmin versão**](mysqladmin.html) e examinando o tempo de atividade do servidor. Se a conexão do cliente foi interrompida porque o [**mysqld**](mysqld.html) travou e reiniciou, você deve se concentrar em encontrar a razão do travamento. Comece verificando se emitir a consulta novamente mata o servidor novamente. Veja [Seção B.3.3.3, “O que fazer se o MySQL continuar travando”](crashing.html).
+You can check whether the MySQL server died and restarted by executing [**mysqladmin version**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") and examining the server's uptime. If the client connection was broken because [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") crashed and restarted, you should concentrate on finding the reason for the crash. Start by checking whether issuing the query again kills the server again. See [Section B.3.3.3, “What to Do If MySQL Keeps Crashing”](crashing.html "B.3.3.3 What to Do If MySQL Keeps Crashing").
 
-Você pode obter mais informações sobre conexões perdidas iniciando [**mysqld**](mysqld.html) com a variável de sistema [`log_error_verbosity`](server-system-variables.html#sysvar_log_error_verbosity) definida como 3. Isso registra algumas das mensagens de desconexão no arquivo `hostname.err`. Veja [Seção 5.4.2, “O Log de Erros”](error-log.html).
+You can obtain more information about lost connections by starting [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") with the [`log_error_verbosity`](server-system-variables.html#sysvar_log_error_verbosity) system variable set to 3. This logs some of the disconnection messages in the `hostname.err` file. See [Section 5.4.2, “The Error Log”](error-log.html "5.4.2 The Error Log").
 
-Se você quiser criar um relatório de erro sobre esse problema, certifique-se de incluir as seguintes informações:
+If you want to create a bug report regarding this problem, be sure that you include the following information:
 
-- Indique se o servidor MySQL morreu. Você pode encontrar informações sobre isso no log de erro do servidor. Veja [Seção B.3.3.3, “O que fazer se o MySQL continuar a falhar”](crashing.html).
+* Indicate whether the MySQL server died. You can find information about this in the server error log. See [Section B.3.3.3, “What to Do If MySQL Keeps Crashing”](crashing.html "B.3.3.3 What to Do If MySQL Keeps Crashing").
 
-- Se uma consulta específica matar [**mysqld**](mysqld.html) e as tabelas envolvidas foram verificadas com [`CHECK TABLE`](check-table.html) antes de você executar a consulta, você pode fornecer um caso de teste reproduzível? Veja [Seção 5.8, “Depuração do MySQL”](debugging-mysql.html).
+* If a specific query kills [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") and the tables involved were checked with [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement") before you ran the query, can you provide a reproducible test case? See [Section 5.8, “Debugging MySQL”](debugging-mysql.html "5.8 Debugging MySQL").
 
-- Qual é o valor da variável de sistema [`wait_timeout`](server-system-variables.html#sysvar_wait_timeout) no servidor MySQL? ([**mysqladmin variables**](mysqladmin.html) fornece o valor desta variável.)
+* What is the value of the [`wait_timeout`](server-system-variables.html#sysvar_wait_timeout) system variable in the MySQL server? ([**mysqladmin variables**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") gives you the value of this variable.)
 
-- Você tentou executar [**mysqld**](mysqld.html) com o log de consultas gerais habilitado para determinar se a consulta com o problema aparece no log? (Veja [Seção 5.4.3, “O Log de Consultas Gerais”](query-log.html).)
+* Have you tried to run [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") with the general query log enabled to determine whether the problem query appears in the log? (See [Section 5.4.3, “The General Query Log”](query-log.html "5.4.3 The General Query Log").)
 
-Veja também [Seção B.3.2.9, “Erros de Comunicação e Conexões Interrompidas”](communication-errors.html) e [Seção 1.5, “Como Relatar Bugs ou Problemas”](bug-reports.html).
+See also [Section B.3.2.9, “Communication Errors and Aborted Connections”](communication-errors.html "B.3.2.9 Communication Errors and Aborted Connections"), and [Section 1.5, “How to Report Bugs or Problems”](bug-reports.html "1.5 How to Report Bugs or Problems").

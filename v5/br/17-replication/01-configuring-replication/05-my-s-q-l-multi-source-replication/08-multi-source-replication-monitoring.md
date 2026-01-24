@@ -1,20 +1,20 @@
-#### 16.1.5.8 Monitoramento da Replicação de Múltiplos Fontes
+#### 16.1.5.8 Multi-Source Replication Monitoring
 
-Para monitorar o status dos canais de replicação, existem as seguintes opções:
+To monitor the status of replication channels the following options exist:
 
-- Usando as tabelas do Schema de Desempenho de Replicação. A primeira coluna dessas tabelas é `Channel_Name`. Isso permite que você escreva consultas complexas com base em `Channel_Name` como chave. Veja Seção 25.12.11, “Tabelas de Replicação do Schema de Desempenho”.
+* Using the replication Performance Schema tables. The first column of these tables is `Channel_Name`. This enables you to write complex queries based on `Channel_Name` as a key. See [Section 25.12.11, “Performance Schema Replication Tables”](performance-schema-replication-tables.html "25.12.11 Performance Schema Replication Tables").
 
-- Usando `SHOW SLAVE STATUS FOR CHANNEL channel`. Por padrão, se a cláusula `FOR CHANNEL channel` não for usada, esta declaração mostra o status da replicação para todos os canais com uma linha por canal. O identificador `Channel_name` é adicionado como uma coluna no conjunto de resultados. Se for fornecida a cláusula `FOR CHANNEL channel`, os resultados mostram o status apenas do canal de replicação nomeado.
+* Using `SHOW SLAVE STATUS FOR CHANNEL channel`. By default, if the `FOR CHANNEL channel` clause is not used, this statement shows the replica status for all channels with one row per channel. The identifier `Channel_name` is added as a column in the result set. If a `FOR CHANNEL channel` clause is provided, the results show the status of only the named replication channel.
 
-Nota
+Note
 
-A instrução `SHOW VARIABLES` não funciona com múltiplos canais de replicação. As informações que estavam disponíveis por meio dessas variáveis foram migradas para as tabelas de desempenho da replicação. Usar uma instrução `SHOW VARIABLES` em uma topologia com múltiplos canais mostra o status apenas do canal padrão.
+The [`SHOW VARIABLES`](show-variables.html "13.7.5.39 SHOW VARIABLES Statement") statement does not work with multiple replication channels. The information that was available through these variables has been migrated to the replication performance tables. Using a [`SHOW VARIABLES`](show-variables.html "13.7.5.39 SHOW VARIABLES Statement") statement in a topology with multiple channels shows the status of only the default channel.
 
-##### 16.1.5.8.1 Canais de monitoramento usando tabelas do Schema de desempenho
+##### 16.1.5.8.1 Monitoring Channels Using Performance Schema Tables
 
-Esta seção explica como usar as tabelas do Schema de Desempenho de Replicação para monitorar os canais. Você pode optar por monitorar todos os canais ou um subconjunto dos canais existentes.
+This section explains how to use the replication Performance Schema tables to monitor channels. You can choose to monitor all channels, or a subset of the existing channels.
 
-Para monitorar o status de conexão de todos os canais:
+To monitor the connection status of all channels:
 
 ```sql
 mysql> SELECT * FROM replication_connection_status\G;
@@ -45,9 +45,9 @@ LAST_ERROR_TIMESTAMP: 0000-00-00 00:00:00
 2 rows in set (0.00 sec)
 ```
 
-No resultado acima, há dois canais habilitados, e, conforme mostrado pelo campo `CHANNEL_NAME`, eles são chamados de `source_1` e `source_2`.
+In the above output there are two channels enabled, and as shown by the `CHANNEL_NAME` field they are called `source_1` and `source_2`.
 
-A adição do campo `CHANNEL_NAME` permite que você consulte as tabelas do Schema de Desempenho para um canal específico. Para monitorar o status da conexão de um canal nomeado, use uma cláusula `WHERE CHANNEL_NAME=channel`:
+The addition of the `CHANNEL_NAME` field enables you to query the Performance Schema tables for a specific channel. To monitor the connection status of a named channel, use a `WHERE CHANNEL_NAME=channel` clause:
 
 ```sql
 mysql> SELECT * FROM replication_connection_status WHERE CHANNEL_NAME='source_1'\G
@@ -66,4 +66,4 @@ LAST_ERROR_TIMESTAMP: 0000-00-00 00:00:00
 1 row in set (0.00 sec)
 ```
 
-Da mesma forma, a cláusula `WHERE CHANNEL_NAME=channel` pode ser usada para monitorar as outras tabelas do Schema de Desempenho de replicação para um canal específico. Para mais informações, consulte Seção 25.12.11, “Tabelas de Replicação do Schema de Desempenho”.
+Similarly, the `WHERE CHANNEL_NAME=channel` clause can be used to monitor the other replication Performance Schema tables for a specific channel. For more information, see [Section 25.12.11, “Performance Schema Replication Tables”](performance-schema-replication-tables.html "25.12.11 Performance Schema Replication Tables").

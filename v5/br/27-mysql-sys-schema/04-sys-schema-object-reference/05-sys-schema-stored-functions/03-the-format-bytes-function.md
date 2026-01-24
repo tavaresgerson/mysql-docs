@@ -1,16 +1,16 @@
-#### 26.4.5.3 A função format_bytes()
+#### 26.4.5.3 The format_bytes() Function
 
-Dado um número de bytes, converte-o para um formato legível por humanos e retorna uma string composta por um valor e um indicador de unidades. Dependendo do tamanho do valor, a parte das unidades é `bytes`, `KiB` (kibibytes), `MiB` (mebibytes), `GiB` (gibibytes), `TiB` (tebibytes) ou `PiB` (pebibytes).
+Given a byte count, converts it to human-readable format and returns a string consisting of a value and a units indicator. Depending on the size of the value, the units part is `bytes`, `KiB` (kibibytes), `MiB` (mebibytes), `GiB` (gibibytes), `TiB` (tebibytes), or `PiB` (pebibytes).
 
-##### Parâmetros
+##### Parameters
 
-- `bytes TEXT`: O número de bytes para formatar.
+* `bytes TEXT`: The byte count to format.
 
-##### Valor de retorno
+##### Return Value
 
-Um valor `TEXT`.
+A `TEXT` value.
 
-##### Exemplo
+##### Example
 
 ```sql
 mysql> SELECT sys.format_bytes(512), sys.format_bytes(18446644073709551615);

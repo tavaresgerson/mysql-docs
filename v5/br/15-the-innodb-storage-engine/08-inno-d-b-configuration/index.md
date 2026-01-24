@@ -1,27 +1,27 @@
-## 14.8 Configuração do InnoDB
+## 14.8 InnoDB Configuration
 
-14.8.1 Configuração de inicialização do InnoDB
+14.8.1 InnoDB Startup Configuration
 
-14.8.2 Configurando o InnoDB para operação apenas de leitura
+14.8.2 Configuring InnoDB for Read-Only Operation
 
-14.8.3 Configuração do Banco de Armazenamento de Buffer do InnoDB
+14.8.3 InnoDB Buffer Pool Configuration
 
-14.8.4 Configurando o Alocador de Memória para InnoDB
+14.8.4 Configuring the Memory Allocator for InnoDB
 
-14.8.5 Configurando Concorrência de Fios para InnoDB
+14.8.5 Configuring Thread Concurrency for InnoDB
 
-14.8.6 Configurando o Número de Fios de E/S do InnoDB em Segundo Plano
+14.8.6 Configuring the Number of Background InnoDB I/O Threads
 
-14.8.7 Uso de E/S assíncrona no Linux
+14.8.7 Using Asynchronous I/O on Linux
 
-14.8.8 Configurando a Capacidade de Entrada/Saída do InnoDB
+14.8.8 Configuring InnoDB I/O Capacity
 
-14.8.9 Configurando a Pesquisa de Bloqueio de Rotação
+14.8.9 Configuring Spin Lock Polling
 
-14.8.10 Configuração de purga
+14.8.10 Purge Configuration
 
-14.8.11 Configurando estatísticas do otimizador para InnoDB
+14.8.11 Configuring Optimizer Statistics for InnoDB
 
-14.8.12 Configurando o Limiar de Fusão para Páginas de Índice
+14.8.12 Configuring the Merge Threshold for Index Pages
 
-Esta seção fornece informações de configuração e procedimentos para a inicialização, inicialização e vários componentes e recursos do motor de armazenamento `InnoDB`. Para informações sobre a otimização das operações de banco de dados para tabelas `InnoDB`, consulte a Seção 8.5, “Otimização para Tabelas InnoDB”.
+This section provides configuration information and procedures for `InnoDB` initialization, startup, and various components and features of the `InnoDB` storage engine. For information about optimizing database operations for `InnoDB` tables, see Section 8.5, “Optimizing for InnoDB Tables”.

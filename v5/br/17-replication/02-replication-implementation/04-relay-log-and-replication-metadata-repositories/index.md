@@ -1,17 +1,17 @@
-### 16.2.4 Repositórios de Log de Relé e Metadados de Replicação
+### 16.2.4 Relay Log and Replication Metadata Repositories
 
-16.2.4.1 O Log de Relé
+[16.2.4.1 The Relay Log](replica-logs-relaylog.html)
 
-16.2.4.2 Repositórios de metadados de replicação
+[16.2.4.2 Replication Metadata Repositories](replica-logs-status.html)
 
-Um servidor de replicação cria vários repositórios de informações para serem usados no processo de replicação:
+A replica server creates several repositories of information to use for the replication process:
 
-- O *registro de retransmissão*, que é escrito pela thread de E/S de replicação, contém as transações lidas do log binário do servidor de origem da replicação. As transações no registro de retransmissão são aplicadas na replica pela thread SQL de replicação. Para obter informações sobre o registro de retransmissão, consulte Seção 16.2.4.1, “O Registro de Retransmissão”.
+* The *relay log*, which is written by the replication I/O thread, contains the transactions read from the replication source server's binary log. The transactions in the relay log are applied on the replica by the replication SQL thread. For information about the relay log, see [Section 16.2.4.1, “The Relay Log”](replica-logs-relaylog.html "16.2.4.1 The Relay Log").
 
-- O repositório de metadados de conexão da réplica contém informações que a thread de E/S de replicação precisa para se conectar ao servidor de origem da replicação e recuperar transações do log binário da origem. O repositório de metadados de conexão é escrito na tabela `mysql.slave_master_info` ou em um arquivo.
+* The replica's *connection metadata repository* contains information that the replication I/O thread needs to connect to the replication source server and retrieve transactions from the source's binary log. The connection metadata repository is written to the `mysql.slave_master_info` table or to a file.
 
-- O repositório de metadados do aplicador de réplicas contém informações que o thread de SQL de replicação precisa ler e aplicar as transações do log de retransmissão da réplica. O repositório de metadados do aplicador é escrito na tabela `mysql.slave_relay_log_info` ou em um arquivo.
+* The replica's *applier metadata repository* contains information that the replication SQL thread needs to read and apply transactions from the replica's relay log. The applier metadata repository is written to the `mysql.slave_relay_log_info` table or to a file.
 
-O repositório de metadados de conexão e o repositório de metadados do aplicativo são coletivamente conhecidos como os repositórios de metadados de replicação. Para obter informações sobre eles, consulte Seção 16.2.4.2, "Repositórios de Metadados de Replicação".
+The connection metadata repository and applier metadata repository are collectively known as the replication metadata repositories. For information about these, see [Section 16.2.4.2, “Replication Metadata Repositories”](replica-logs-status.html "16.2.4.2 Replication Metadata Repositories").
 
-**Tornando a replicação resiliente a interrupções inesperadas.** As tabelas `mysql.slave_master_info` e `mysql.slave_relay_log_info` são criadas usando o mecanismo de armazenamento transacional `InnoDB`. As atualizações no repositório de metadados do aplicável da replica são confirmadas junto com as transações, o que significa que as informações de progresso da replica registradas nesse repositório estão sempre consistentes com o que foi aplicado ao banco de dados, mesmo em caso de uma interrupção inesperada do servidor. Para obter informações sobre a combinação de configurações na replica mais resiliente a interrupções inesperadas, consulte Seção 16.3.2, “Tratamento de uma Interrupção Inesperada de uma Replica”.
+**Making replication resilient to unexpected halts.** The `mysql.slave_master_info` and `mysql.slave_relay_log_info` tables are created using the transactional storage engine [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine"). Updates to the replica's applier metadata repository table are committed together with the transactions, meaning that the replica's progress information recorded in that repository is always consistent with what has been applied to the database, even in the event of an unexpected server halt. For information on the combination of settings on the replica that is most resilient to unexpected halts, see [Section 16.3.2, “Handling an Unexpected Halt of a Replica”](replication-solutions-unexpected-replica-halt.html "16.3.2 Handling an Unexpected Halt of a Replica").

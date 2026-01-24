@@ -1,41 +1,41 @@
-### 14.8.8 Configurando a capacidade de E/S do InnoDB
+### 14.8.8 Configuring InnoDB I/O Capacity
 
-O thread mestre `InnoDB` e outros fios realizam várias tarefas em segundo plano, a maioria das quais está relacionada ao E/S, como o esvaziamento de páginas sujas do pool de buffers e a escrita de alterações do buffer de alterações nos índices secundários apropriados. O `InnoDB` tenta realizar essas tarefas de uma maneira que não afete negativamente o funcionamento normal do servidor. Ele tenta estimar a largura de banda de E/S disponível e ajustar suas atividades para aproveitar a capacidade disponível.
+The `InnoDB` master thread and other threads perform various tasks in the background, most of which are I/O related, such as flushing dirty pages from the buffer pool and writing changes from the change buffer to the appropriate secondary indexes. `InnoDB` attempts to perform these tasks in a way that does not adversely affect the normal working of the server. It tries to estimate the available I/O bandwidth and tune its activities to take advantage of available capacity.
 
-A variável `innodb_io_capacity` define a capacidade geral de E/S disponível para o `InnoDB`. Ela deve ser definida para aproximadamente o número de operações de E/S que o sistema pode realizar por segundo (IOPS). Quando `innodb_io_capacity` é definido, o `InnoDB` estima a largura de banda de E/S disponível para tarefas em segundo plano com base no valor definido.
+The `innodb_io_capacity` variable defines the overall I/O capacity available to `InnoDB`. It should be set to approximately the number of I/O operations that the system can perform per second (IOPS). When `innodb_io_capacity` is set, `InnoDB` estimates the I/O bandwidth available for background tasks based on the set value.
 
-Você pode definir `innodb_io_capacity` para um valor de 100 ou maior. O valor padrão é `200`. Normalmente, valores em torno de 100 são apropriados para dispositivos de armazenamento de nível de consumidor, como discos rígidos de até 7200 RPM. Discos rígidos mais rápidos, configurações RAID e unidades de estado sólido (SSDs) se beneficiam de valores mais altos.
+You can set `innodb_io_capacity` to a value of 100 or greater. The default value is `200`. Typically, values around 100 are appropriate for consumer-level storage devices, such as hard drives up to 7200 RPMs. Faster hard drives, RAID configurations, and solid state drives (SSDs) benefit from higher values.
 
-Idealmente, mantenha o valor o mais baixo possível, mas não tão baixo que as atividades de fundo fiquem para trás. Se o valor for muito alto, os dados serão removidos do pool de buffer e o buffer de mudança será atualizado muito rapidamente para que o cache ofereça um benefício significativo. Para sistemas ocupados capazes de taxas de E/S mais altas, você pode definir um valor mais alto para ajudar o servidor a lidar com o trabalho de manutenção de fundo associado a uma alta taxa de mudanças de linhas. Geralmente, você pode aumentar o valor como uma função do número de unidades usadas para o E/S do `InnoDB`. Por exemplo, você pode aumentar o valor em sistemas que usam múltiplos discos ou SSDs.
+Ideally, keep the setting as low as practical, but not so low that background activities fall behind. If the value is too high, data is removed from the buffer pool and change buffer too quickly for caching to provide a significant benefit. For busy systems capable of higher I/O rates, you can set a higher value to help the server handle the background maintenance work associated with a high rate of row changes. Generally, you can increase the value as a function of the number of drives used for `InnoDB` I/O. For example, you can increase the value on systems that use multiple disks or SSDs.
 
-A configuração padrão de 200 geralmente é suficiente para um SSD de menor custo. Para um SSD conectado ao barramento de alta gama, considere uma configuração mais alta, como 1000, por exemplo. Para sistemas com unidades individuais de 5400 RPM ou 7200 RPM, você pode reduzir o valor para 100, que representa uma proporção estimada das operações de entrada/saída por segundo (IOPS) disponíveis para unidades de disco de geração mais antiga, que podem realizar cerca de 100 IOPS.
+The default setting of 200 is generally sufficient for a lower-end SSD. For a higher-end, bus-attached SSD, consider a higher setting such as 1000, for example. For systems with individual 5400 RPM or 7200 RPM drives, you might lower the value to 100, which represents an estimated proportion of the I/O operations per second (IOPS) available to older-generation disk drives that can perform about 100 IOPS.
 
-Embora você possa especificar um valor alto, como um milhão, na prática, valores tão grandes têm pouco benefício. Geralmente, um valor superior a 20.000 não é recomendado, a menos que você esteja certo de que valores menores são insuficientes para sua carga de trabalho.
+Although you can specify a high value such as a million, in practice such large values have little benefit. Generally, a value higher than 20000 is not recommended unless you are certain that lower values are insufficient for your workload.
 
-Considere a carga de trabalho de escrita ao ajustar `innodb_io_capacity`. Sistemas com grandes cargas de trabalho de escrita provavelmente se beneficiarão de um valor mais alto. Um valor mais baixo pode ser suficiente para sistemas com uma pequena carga de trabalho de escrita.
+Consider write workload when tuning `innodb_io_capacity`. Systems with large write workloads are likely to benefit from a higher setting. A lower setting may be sufficient for systems with a small write workload.
 
-O ajuste `innodb_io_capacity` não é um ajuste por instância de pool de buffers. A capacidade de E/S disponível é distribuída igualmente entre as instâncias do pool de buffers para atividades de varredura.
+The `innodb_io_capacity` setting is not a per buffer pool instance setting. Available I/O capacity is distributed equally among buffer pool instances for flushing activities.
 
-Você pode definir o valor `innodb_io_capacity` no arquivo de opções do MySQL (`my.cnf` ou `my.ini`) ou modificá-lo em tempo de execução usando uma instrução `SET GLOBAL`, que requer privilégios suficientes para definir variáveis de sistema globais. Veja a Seção 5.1.8.1, “Privilégios de Variáveis de Sistema”.
+You can set the `innodb_io_capacity` value in the MySQL option file (`my.cnf` or `my.ini`) or modify it at runtime using a `SET GLOBAL` statement, which requires privileges sufficient to set global system variables. See Section 5.1.8.1, “System Variable Privileges”.
 
-#### Ignorar a capacidade de E/S nos pontos de verificação
+#### Ignoring I/O Capacity at Checkpoints
 
-A variável `innodb_flush_sync`, que está habilitada por padrão, faz com que o ajuste `innodb_io_capacity` seja ignorado durante os picos de atividade de E/S que ocorrem nos pontos de verificação. Para aderir à taxa de E/S definida pelo ajuste `innodb_io_capacity`, desabilite `innodb_flush_sync`.
+The `innodb_flush_sync` variable, which is enabled by default, causes the `innodb_io_capacity` setting to be ignored during bursts of I/O activity that occur at checkpoints. To adhere to the I/O rate defined by the `innodb_io_capacity` setting, disable `innodb_flush_sync`.
 
-Você pode definir o valor `innodb_flush_sync` no arquivo de opções do MySQL (`my.cnf` ou `my.ini`) ou modificá-lo em tempo de execução usando uma instrução `SET GLOBAL`, que requer privilégios suficientes para definir variáveis de sistema globais. Veja a Seção 5.1.8.1, “Privilégios de Variáveis de Sistema”.
+You can set the `innodb_flush_sync` value in the MySQL option file (`my.cnf` or `my.ini`) or modify it at runtime using a `SET GLOBAL` statement, which requires privileges sufficient to set global system variables. See Section 5.1.8.1, “System Variable Privileges”.
 
-#### Configurando um Máximo de Capacidade de Entrada/Saída
+#### Configuring an I/O Capacity Maximum
 
-Se a atividade de limpeza ficar para trás, o `InnoDB` pode realizar a limpeza de forma mais agressiva, com uma taxa maior de operações de E/S por segundo (IOPS) do que a definida pela variável `innodb_io_capacity`. A variável `innodb_io_capacity_max` define um número máximo de IOPS realizados pelas tarefas de segundo plano do `InnoDB` nessas situações.
+If flushing activity falls behind, `InnoDB` can flush more aggressively, at a higher rate of I/O operations per second (IOPS) than defined by the `innodb_io_capacity` variable. The `innodb_io_capacity_max` variable defines a maximum number of IOPS performed by `InnoDB` background tasks in such situations.
 
-Se você especificar um valor para `innodb_io_capacity` durante a inicialização, mas não especificar um valor para `innodb_io_capacity_max`, `innodb_io_capacity_max` terá como padrão o dobro do valor de `innodb_io_capacity` ou 2000, dependendo do valor maior.
+If you specify an `innodb_io_capacity` setting at startup but do not specify a value for `innodb_io_capacity_max`, `innodb_io_capacity_max` defaults to twice the value of `innodb_io_capacity` or 2000, whichever value is greater.
 
-Ao configurar `innodb_io_capacity_max`, o dobro de `innodb_io_capacity` é frequentemente um bom ponto de partida. O valor padrão de 2000 é destinado a cargas de trabalho que utilizam um SSD ou mais de uma unidade de disco regular. Um ajuste de 2000 é provavelmente muito alto para cargas de trabalho que não utilizam SSDs ou múltiplas unidades de disco, e poderia permitir um esvaziamento excessivo. Para uma única unidade de disco regular, um ajuste entre 20 e 400 é recomendado. Para um SSD de alta gama, acoplado à barra, considere um ajuste mais alto, como 2500. Como com o ajuste de `innodb_io_capacity`, mantenha o ajuste o mais baixo possível, mas não tão baixo que o `InnoDB` não possa estender suficientemente a taxa de IOPS além do ajuste de `innodb_io_capacity`.
+When configuring `innodb_io_capacity_max`, twice the `innodb_io_capacity` is often a good starting point. The default value of 2000 is intended for workloads that use an SSD or more than one regular disk drive. A setting of 2000 is likely too high for workloads that do not use SSDs or multiple disk drives, and could allow too much flushing. For a single regular disk drive, a setting between 200 and 400 is recommended. For a high-end, bus-attached SSD, consider a higher setting such as 2500. As with the `innodb_io_capacity` setting, keep the setting as low as practical, but not so low that `InnoDB` cannot sufficiently extend rate of IOPS beyond the `innodb_io_capacity` setting.
 
-Considere a carga de trabalho de escrita ao ajustar `innodb_io_capacity_max`. Sistemas com grandes cargas de trabalho de escrita podem se beneficiar de um valor mais alto. Um valor mais baixo pode ser suficiente para sistemas com uma pequena carga de trabalho de escrita.
+Consider write workload when tuning `innodb_io_capacity_max`. Systems with large write workloads may benefit from a higher setting. A lower setting may be sufficient for systems with a small write workload.
 
-`innodb_io_capacity_max` não pode ser definido para um valor menor que o valor `innodb_io_capacity`.
+`innodb_io_capacity_max` cannot be set to a value lower than the `innodb_io_capacity` value.
 
-Definir `innodb_io_capacity_max` para `DEFAULT` usando uma instrução `SET` (`SET GLOBAL innodb_io_capacity_max=DEFAULT`) define `innodb_io_capacity_max` para o valor máximo.
+Setting `innodb_io_capacity_max` to `DEFAULT` using a `SET` statement (`SET GLOBAL innodb_io_capacity_max=DEFAULT`) sets `innodb_io_capacity_max` to the maximum value.
 
-O limite `innodb_io_capacity_max` aplica-se a todas as instâncias do pool de buffers. Não é uma configuração por instância do pool de buffers.
+The `innodb_io_capacity_max` limit applies to all buffer pool instances. It is not a per buffer pool instance setting.

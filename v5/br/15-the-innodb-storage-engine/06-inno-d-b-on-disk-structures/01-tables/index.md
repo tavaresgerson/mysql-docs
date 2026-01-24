@@ -1,15 +1,15 @@
-### 14.6.1 Tabelas
+### 14.6.1 Tables
 
-14.6.1.1 Criando tabelas InnoDB
+14.6.1.1 Creating InnoDB Tables
 
-14.6.1.2 Criando tabelas externamente
+14.6.1.2 Creating Tables Externally
 
-14.6.1.3 Importando tabelas InnoDB
+14.6.1.3 Importing InnoDB Tables
 
-14.6.1.4 Movimentando ou copiando tabelas InnoDB
+14.6.1.4 Moving or Copying InnoDB Tables
 
-14.6.1.5 Converter tabelas de MyISAM para InnoDB
+14.6.1.5 Converting Tables from MyISAM to InnoDB
 
-14.6.1.6 Gerenciamento de AUTO_INCREMENT no InnoDB
+14.6.1.6 AUTO_INCREMENT Handling in InnoDB
 
-Esta seção abrange tópicos relacionados às tabelas do `InnoDB`.
+This section covers topics related to `InnoDB` tables.

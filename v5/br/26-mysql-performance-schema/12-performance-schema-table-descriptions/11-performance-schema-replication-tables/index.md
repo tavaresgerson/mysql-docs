@@ -1,86 +1,86 @@
-### 25.12.11 Tabelas de Replicação do Schema de Desempenho
+### 25.12.11 Performance Schema Replication Tables
 
-25.12.11.1 Tabela de configuração de conexão de replicação
+[25.12.11.1 The replication_connection_configuration Table](performance-schema-replication-connection-configuration-table.html)
 
-25.12.11.2 Tabela de status_de_conexão_de_replicação
+[25.12.11.2 The replication_connection_status Table](performance-schema-replication-connection-status-table.html)
 
-25.12.11.3 A tabela replication_applier_configuration
+[25.12.11.3 The replication_applier_configuration Table](performance-schema-replication-applier-configuration-table.html)
 
-25.12.11.4 A tabela replication_applier_status
+[25.12.11.4 The replication_applier_status Table](performance-schema-replication-applier-status-table.html)
 
-25.12.11.5 A tabela replication_applier_status_by_coordinator
+[25.12.11.5 The replication_applier_status_by_coordinator Table](performance-schema-replication-applier-status-by-coordinator-table.html)
 
-25.12.11.6 A tabela replication_applier_status_by_worker
+[25.12.11.6 The replication_applier_status_by_worker Table](performance-schema-replication-applier-status-by-worker-table.html)
 
-25.12.11.7 A tabela replication_group_member_stats
+[25.12.11.7 The replication_group_member_stats Table](performance-schema-replication-group-member-stats-table.html)
 
-25.12.11.8 A tabela replication_group_members
+[25.12.11.8 The replication_group_members Table](performance-schema-replication-group-members-table.html)
 
-O Schema de Desempenho fornece tabelas que exibem informações de replicação. Isso é semelhante às informações disponíveis a partir da declaração `SHOW SLAVE STATUS`, mas a representação em formato de tabela é mais acessível e oferece benefícios de usabilidade:
+The Performance Schema provides tables that expose replication information. This is similar to the information available from the [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") statement, but representation in table form is more accessible and has usability benefits:
 
-- A saída `SHOW SLAVE STATUS` é útil para inspeção visual, mas não tanto para uso programático. Por outro lado, ao usar as tabelas do Schema de Desempenho, as informações sobre o status da replica podem ser pesquisadas usando consultas gerais de `SELECT` (select.html), incluindo condições `WHERE` complexas, junções e assim por diante.
+* [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") output is useful for visual inspection, but not so much for programmatic use. By contrast, using the Performance Schema tables, information about replica status can be searched using general [`SELECT`](select.html "13.2.9 SELECT Statement") queries, including complex `WHERE` conditions, joins, and so forth.
 
-- Os resultados das consultas podem ser salvos em tabelas para análise posterior ou atribuídos a variáveis e, assim, utilizados em procedimentos armazenados.
+* Query results can be saved in tables for further analysis, or assigned to variables and thus used in stored procedures.
 
-- As tabelas de replicação fornecem informações de diagnóstico melhores. Para a operação de replicação multisserial, o `SHOW SLAVE STATUS` (exibir status do escravo) relata todos os erros do thread do coordenador e do trabalhador usando os campos `Last_SQL_Errno` e `Last_SQL_Error`, então apenas o mais recente desses erros é visível e as informações podem ser perdidas. As tabelas de replicação armazenam erros por thread sem perda de informações.
+* The replication tables provide better diagnostic information. For multithreaded replica operation, [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") reports all coordinator and worker thread errors using the `Last_SQL_Errno` and `Last_SQL_Error` fields, so only the most recent of those errors is visible and information can be lost. The replication tables store errors on a per-thread basis without loss of information.
 
-- A última transação vista é visível nas tabelas de replicação por trabalhador. Essa é uma informação que não está disponível no `SHOW SLAVE STATUS`.
+* The last seen transaction is visible in the replication tables on a per-worker basis. This is information not avilable from [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement").
 
-- Os desenvolvedores familiarizados com a interface do Schema de Desempenho podem estender as tabelas de replicação para fornecer informações adicionais, adicionando linhas às tabelas.
+* Developers familiar with the Performance Schema interface can extend the replication tables to provide additional information by adding rows to the tables.
 
-#### Descrição das tabelas de replicação
+#### Replication Table Descriptions
 
-O Schema de Desempenho fornece as seguintes tabelas relacionadas à replicação:
+The Performance Schema provides the following replication-related tables:
 
-- Tabelas que contêm informações sobre a conexão de uma réplica com o servidor de origem de replicação:
+* Tables that contain information about the connection of a replica to the replication source server:
 
-  - `configuração_de_conexão_de_replicação`: Parâmetros de configuração para conectar-se à fonte
+  + [`replication_connection_configuration`](performance-schema-replication-connection-configuration-table.html "25.12.11.1 The replication_connection_configuration Table"): Configuration parameters for connecting to the source
 
-  - `replicação_conexão_status`: Status atual da conexão com a fonte
+  + [`replication_connection_status`](performance-schema-replication-connection-status-table.html "25.12.11.2 The replication_connection_status Table"): Current status of the connection to the source
 
-- Tabelas que contêm informações gerais (não específicas de um tópico) sobre o aplicativo de transação:
+* Tables that contain general (not thread-specific) information about the transaction applier:
 
-  - `replication_applier_configuration`: Parâmetros de configuração para o aplicador de transações na replica.
+  + [`replication_applier_configuration`](performance-schema-replication-applier-configuration-table.html "25.12.11.3 The replication_applier_configuration Table"): Configuration parameters for the transaction applier on the replica.
 
-  - `replication_applier_status`: Status atual do aplicador de transações na replica.
+  + [`replication_applier_status`](performance-schema-replication-applier-status-table.html "25.12.11.4 The replication_applier_status Table"): Current status of the transaction applier on the replica.
 
-- Tabelas que contêm informações sobre os threads específicos responsáveis pela aplicação das transações recebidas da fonte:
+* Tables that contain information about specific threads responsible for applying transactions received from the source:
 
-  - `replication_applier_status_by_coordinator`: Status da thread do coordenador (vazio, a menos que a replica seja multithreading).
+  + [`replication_applier_status_by_coordinator`](performance-schema-replication-applier-status-by-coordinator-table.html "25.12.11.5 The replication_applier_status_by_coordinator Table"): Status of the coordinator thread (empty unless the replica is multithreaded).
 
-  - `replication_applier_status_by_worker`: Status da thread do aplicador ou threads do trabalhador se a replica for multithread.
+  + [`replication_applier_status_by_worker`](performance-schema-replication-applier-status-by-worker-table.html "25.12.11.6 The replication_applier_status_by_worker Table"): Status of the applier thread or worker threads if the replica is multithreaded.
 
-- Tabelas que contêm informações sobre os membros do grupo de replicação:
+* Tables that contain information about replication group members:
 
-  - `replication_group_members`: Fornece informações de rede e status para os membros do grupo.
+  + [`replication_group_members`](performance-schema-replication-group-members-table.html "25.12.11.8 The replication_group_members Table"): Provides network and status information for group members.
 
-  - `replication_group_member_stats`: Fornece informações estatísticas sobre os membros do grupo e as transações nas quais eles participam.
+  + [`replication_group_member_stats`](performance-schema-replication-group-member-stats-table.html "25.12.11.7 The replication_group_member_stats Table"): Provides statistical information about group members and transaction in which they participate.
 
-As seções a seguir descrevem cada tabela de replicação com mais detalhes, incluindo a correspondência entre as colunas produzidas por `SHOW SLAVE STATUS` e as colunas da tabela de replicação nas quais as mesmas informações aparecem.
+The following sections describe each replication table in more detail, including the correspondence between the columns produced by [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") and the replication table columns in which the same information appears.
 
-O restante desta introdução sobre as tabelas de replicação descreve como o Gerenciamento de Desempenho as preenche e quais campos do `SHOW SLAVE STATUS` não estão representados nas tabelas.
+The remainder of this introduction to the replication tables describes how the Performance Schema populates them and which fields from [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") are not represented in the tables.
 
-#### Ciclo de vida da tabela de replicação
+#### Replication Table Life Cycle
 
-O esquema de desempenho popula as tabelas de replicação da seguinte forma:
+The Performance Schema populates the replication tables as follows:
 
-- Antes da execução de `CHANGE MASTER TO`, as tabelas estão vazias.
+* Prior to execution of [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement"), the tables are empty.
 
-- Após `CHANGE MASTER TO`, os parâmetros de configuração podem ser vistos nas tabelas. Neste momento, não há threads de replicação ativas, portanto, as colunas `THREAD_ID` são `NULL` e as colunas `SERVICE_STATE` têm um valor de `OFF`.
+* After [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement"), the configuration parameters can be seen in the tables. At this time, there are no active replica threads, so the `THREAD_ID` columns are `NULL` and the `SERVICE_STATE` columns have a value of `OFF`.
 
-- Após `START SLAVE`, valores de `THREAD_ID` que não são `NULL` podem ser vistos. Os threads que estão inativos ou ativos têm um valor de `SERVICE_STATE` de `ON`. O thread que se conecta à fonte tem um valor de `CONNECTING` enquanto está estabelecendo a conexão e `ON` depois disso, enquanto a conexão durar.
+* After [`START SLAVE`](start-slave.html "13.4.2.5 START SLAVE Statement"), non-`NULL` `THREAD_ID` values can be seen. Threads that are idle or active have a `SERVICE_STATE` value of `ON`. The thread that connects to the source has a value of `CONNECTING` while it establishes the connection, and `ON` thereafter as long as the connection lasts.
 
-- Após `STOP SLAVE`, as colunas `THREAD_ID` tornam-se `NULL` e as colunas `SERVICE_STATE` para os threads que não existem mais têm um valor de `OFF`.
+* After [`STOP SLAVE`](stop-slave.html "13.4.2.6 STOP SLAVE Statement"), the `THREAD_ID` columns become `NULL` and the `SERVICE_STATE` columns for threads that no longer exist have a value of `OFF`.
 
-- As tabelas são preservadas após `STOP SLAVE` ou quando os threads morrem devido a um erro.
+* The tables are preserved after [`STOP SLAVE`](stop-slave.html "13.4.2.6 STOP SLAVE Statement") or threads dying due to an error.
 
-- A tabela `replication_applier_status_by_worker` não está vazia apenas quando a replica está operando no modo multithreading. Ou seja, se a variável de sistema [`slave_parallel_workers`]\(replication-options-replica.html#sysvar_slave_parallel_workers] for maior que 0, esta tabela é preenchida quando o comando `START SLAVE` é executado, e o número de linhas mostra o número de trabalhadores.
+* The [`replication_applier_status_by_worker`](performance-schema-replication-applier-status-by-worker-table.html "25.12.11.6 The replication_applier_status_by_worker Table") table is nonempty only when the replica is operating in multithreaded mode. That is, if the [`slave_parallel_workers`](replication-options-replica.html#sysvar_slave_parallel_workers) system variable is greater than 0, this table is populated when [`START SLAVE`](start-slave.html "13.4.2.5 START SLAVE Statement") is executed, and the number of rows shows the number of workers.
 
-#### `Mostrar Status de Escravo` Informações Não na Tabelas de Replicação
+#### [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") Information Not In the Replication Tables
 
-As informações nas tabelas de replicação do Schema de Desempenho diferem um pouco das informações disponíveis no `SHOW SLAVE STATUS`, pois as tabelas são orientadas para o uso de identificadores de transações globais (GTIDs), não para nomes e posições de arquivos, e representam valores de UUID do servidor, não de IDs de servidor. Devido a essas diferenças, várias colunas do `SHOW SLAVE STATUS` não são preservadas nas tabelas de replicação do Schema de Desempenho ou são representadas de maneira diferente:
+The information in the Performance Schema replication tables differs somewhat from the information available from [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") because the tables are oriented toward use of global transaction identifiers (GTIDs), not file names and positions, and they represent server UUID values, not server ID values. Due to these differences, several [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") columns are not preserved in the Performance Schema replication tables, or are represented a different way:
 
-- Os campos a seguir referem-se a nomes de arquivos e posições e não são preservados:
+* The following fields refer to file names and positions and are not preserved:
 
   ```sql
   Master_Log_File
@@ -94,27 +94,27 @@ As informações nas tabelas de replicação do Schema de Desempenho diferem um 
   Until_Log_Pos
   ```
 
-- O campo `Master_Info_File` não é preservado. Ele se refere ao arquivo `master.info`, que foi substituído por tabelas seguras em caso de falha.
+* The `Master_Info_File` field is not preserved. It refers to the `master.info` file, which has been superseded by crash-safe tables.
 
-- Os campos a seguir são baseados em `server_id`, e não em `server_uuid`, e não são preservados:
+* The following fields are based on [`server_id`](replication-options.html#sysvar_server_id), not [`server_uuid`](replication-options.html#sysvar_server_uuid), and are not preserved:
 
   ```sql
   Master_Server_Id
   Replicate_Ignore_Server_Ids
   ```
 
-- O campo `Skip_Counter` é baseado em contagem de eventos, não em GTIDs, e não é preservado.
+* The `Skip_Counter` field is based on event counts, not GTIDs, and is not preserved.
 
-- Esses campos de erro são aliases para `Last_SQL_Errno` e `Last_SQL_Error`, então eles não são preservados:
+* These error fields are aliases for `Last_SQL_Errno` and `Last_SQL_Error`, so they are not preserved:
 
   ```sql
   Last_Errno
   Last_Error
   ```
 
-  No Schema de Desempenho, essas informações de erro estão disponíveis nas colunas `LAST_ERROR_NUMBER` e `LAST_ERROR_MESSAGE` da tabela `replication_applier_status_by_worker. Essas tabelas fornecem informações de erro mais específicas por thread do que as disponíveis em `Last_Errno` e `Last_Error`.
+  In the Performance Schema, this error information is available in the `LAST_ERROR_NUMBER` and `LAST_ERROR_MESSAGE` columns of the [`replication_applier_status_by_worker`](performance-schema-replication-applier-status-by-worker-table.html "25.12.11.6 The replication_applier_status_by_worker Table") table (and [`replication_applier_status_by_coordinator`](performance-schema-replication-applier-status-by-coordinator-table.html "25.12.11.5 The replication_applier_status_by_coordinator Table") if the replica is multithreaded). Those tables provide more specific per-thread error information than is available from `Last_Errno` and `Last_Error`.
 
-- Os campos que fornecem informações sobre as opções de filtragem da linha de comando não são preservados:
+* Fields that provide information about command-line filtering options is not preserved:
 
   ```sql
   Replicate_Do_DB
@@ -125,24 +125,24 @@ As informações nas tabelas de replicação do Schema de Desempenho diferem um 
   Replicate_Wild_Ignore_Table
   ```
 
-- Os campos `Slave_IO_State` e `Slave_SQL_Running_State` não são preservados. Se necessário, esses valores podem ser obtidos da lista de processos usando a coluna `THREAD_ID` da tabela de replicação apropriada e realizando uma junção com a coluna `ID` na tabela `INFORMATION_SCHEMA `PROCESSLIST` para selecionar a coluna `STATE\` da última tabela.
+* The `Slave_IO_State` and `Slave_SQL_Running_State` fields are not preserved. If needed, these values can be obtained from the process list by using the `THREAD_ID` column of the appropriate replication table and joining it with the `ID` column in the `INFORMATION_SCHEMA` [`PROCESSLIST`](information-schema-processlist-table.html "24.3.18 The INFORMATION_SCHEMA PROCESSLIST Table") table to select the `STATE` column of the latter table.
 
-- O campo `Executed_Gtid_Set` pode exibir um conjunto grande com uma grande quantidade de texto. Em vez disso, as tabelas do Schema de Desempenho mostram GTIDs de transações que estão sendo aplicadas atualmente pela replica. Alternativamente, o conjunto de GTIDs executados pode ser obtido a partir do valor da variável de sistema `gtid_executed`.
+* The `Executed_Gtid_Set` field can show a large set with a great deal of text. Instead, the Performance Schema tables show GTIDs of transactions that are currently being applied by the replica. Alternatively, the set of executed GTIDs can be obtained from the value of the [`gtid_executed`](replication-options-gtids.html#sysvar_gtid_executed) system variable.
 
-- Os campos `Seconds_Behind_Master` e `Relay_Log_Space` estão em status a ser decidido e não são preservados.
+* The `Seconds_Behind_Master` and `Relay_Log_Space` fields are in to-be-decided status and are not preserved.
 
-#### Variáveis de status movidas para tabelas de replicação
+#### Status Variables Moved to Replication Tables
 
-A partir da versão 5.7.5 do MySQL, as seguintes variáveis de status (anteriormente monitoradas usando `SHOW STATUS`) foram movidas para as tabelas de replicação do Schema de Desempenho:
+As of MySQL version 5.7.5, the following status variables (previously monitored using [`SHOW STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement")) were moved to the Perfomance Schema replication tables:
 
-- `Slave_retried_transactions`
-- `Slave_last_heartbeat`
-- `Slave_received_heartbeats`
-- `Slave_heartbeat_period`
-- `Slave_running`
+* [`Slave_retried_transactions`](server-status-variables.html#statvar_Slave_retried_transactions)
+* [`Slave_last_heartbeat`](server-status-variables.html#statvar_Slave_last_heartbeat)
+* [`Slave_received_heartbeats`](server-status-variables.html#statvar_Slave_received_heartbeats)
+* [`Slave_heartbeat_period`](server-status-variables.html#statvar_Slave_heartbeat_period)
+* [`Slave_running`](server-status-variables.html#statvar_Slave_running)
 
-Essas variáveis de status são agora relevantes apenas quando um único canal de replicação está sendo usado, pois elas *apenas* relatam o status do canal de replicação padrão. Quando existem vários canais de replicação, use as tabelas de replicação do Schema de Desempenho descritas nesta seção, que relatam essas variáveis para cada canal de replicação existente.
+These status variables are now only relevant when a single replication channel is being used because they *only* report the status of the default replication channel. When multiple replication channels exist, use the Performance Schema replication tables described in this section, which report these variables for each existing replication channel.
 
-#### Canais de replicação
+#### Replication Channels
 
-A primeira coluna das tabelas do Schema de Desempenho de Replicação é `CHANNEL_NAME`. Isso permite que as tabelas sejam visualizadas por canal de replicação. Em uma configuração de replicação não multifonte, há um único canal de replicação padrão. Quando você está usando vários canais de replicação em uma réplica, você pode filtrar as tabelas por canal de replicação para monitorar um canal de replicação específico. Consulte Seção 16.2.2, “Canais de Replicação” e Seção 16.1.5.8, “Monitoramento de Replicação Multifonte” para obter mais informações.
+The first column of the replication Performance Schema tables is `CHANNEL_NAME`. This enables the tables to be viewed per replication channel. In a non-multisource replication setup there is a single default replication channel. When you are using multiple replication channels on a replica, you can filter the tables per replication channel to monitor a specific replication channel. See [Section 16.2.2, “Replication Channels”](replication-channels.html "16.2.2 Replication Channels") and [Section 16.1.5.8, “Multi-Source Replication Monitoring”](replication-multi-source-monitoring.html "16.1.5.8 Multi-Source Replication Monitoring") for more information.

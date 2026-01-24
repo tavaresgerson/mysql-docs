@@ -1,135 +1,135 @@
-#### 14.8.3.6 Salvar e restaurar o estado do pool de buffers
+#### 14.8.3.6 Saving and Restoring the Buffer Pool State
 
-Para reduzir o período de aquecimento após o reinício do servidor, o `InnoDB` salva uma porcentagem das páginas mais recentemente usadas para cada pool de buffers ao desligar o servidor e restaura essas páginas ao iniciar o servidor. A porcentagem de páginas recentemente usadas que é armazenada é definida pela opção de configuração `innodb_buffer_pool_dump_pct`.
+To reduce the warmup period after restarting the server, `InnoDB` saves a percentage of the most recently used pages for each buffer pool at server shutdown and restores these pages at server startup. The percentage of recently used pages that is stored is defined by the `innodb_buffer_pool_dump_pct` configuration option.
 
-Após reiniciar um servidor ocupado, geralmente há um período de aquecimento com um aumento constante no desempenho, à medida que as páginas do disco que estavam no pool de buffer são trazidas de volta à memória (já que os mesmos dados são consultados, atualizados, etc.). A capacidade de restaurar o pool de buffer na inicialização reduz o período de aquecimento recarregando as páginas do disco que estavam no pool de buffer antes do reinício, em vez de esperar pelas operações DML acessarem as linhas correspondentes. Além disso, as solicitações de E/S podem ser realizadas em lotes grandes, tornando o E/S geral mais rápido. O carregamento das páginas acontece em segundo plano e não retarda o início da inicialização do banco de dados.
+After restarting a busy server, there is typically a warmup period with steadily increasing throughput, as disk pages that were in the buffer pool are brought back into memory (as the same data is queried, updated, and so on). The ability to restore the buffer pool at startup shortens the warmup period by reloading disk pages that were in the buffer pool before the restart rather than waiting for DML operations to access corresponding rows. Also, I/O requests can be performed in large batches, making the overall I/O faster. Page loading happens in the background, and does not delay database startup.
 
-Além de salvar o estado do pool de buffers ao desligar e restaurá-lo ao ligar, você pode salvar e restaurar o estado do pool de buffers a qualquer momento, enquanto o servidor estiver em execução. Por exemplo, você pode salvar o estado do pool de buffers após atingir um desempenho estável sob uma carga de trabalho constante. Você também pode restaurar o estado anterior do pool de buffers após executar relatórios ou trabalhos de manutenção que levem páginas de dados para o pool de buffers que são necessárias apenas para essas operações, ou após executar algum outro tipo de carga de trabalho não típico.
+In addition to saving the buffer pool state at shutdown and restoring it at startup, you can save and restore the buffer pool state at any time, while the server is running. For example, you can save the state of the buffer pool after reaching a stable throughput under a steady workload. You could also restore the previous buffer pool state after running reports or maintenance jobs that bring data pages into the buffer pool that are only requited for those operations, or after running some other non-typical workload.
 
-Embora um pool de buffers possa ter vários gigabytes de tamanho, os dados do pool de buffers que o `InnoDB` salva no disco são pequenos em comparação. Apenas os IDs de espaço de tabela e IDs de página necessários para localizar as páginas apropriadas são salvos no disco. Essas informações são derivadas da tabela `INNODB_BUFFER_PAGE_LRU` do `INFORMATION_SCHEMA`. Por padrão, os dados de IDs de espaço de tabela e IDs de página são salvos em um arquivo chamado `ib_buffer_pool`, que é salvo no diretório de dados do `InnoDB`. O nome e a localização do arquivo podem ser modificados usando o parâmetro de configuração `innodb_buffer_pool_filename`.
+Even though a buffer pool can be many gigabytes in size, the buffer pool data that `InnoDB` saves to disk is tiny by comparison. Only tablespace IDs and page IDs necessary to locate the appropriate pages are saved to disk. This information is derived from the `INNODB_BUFFER_PAGE_LRU` `INFORMATION_SCHEMA` table. By default, tablespace ID and page ID data is saved in a file named `ib_buffer_pool`, which is saved to the `InnoDB` data directory. The file name and location can be modified using the `innodb_buffer_pool_filename` configuration parameter.
 
-Como os dados são armazenados na memória cache e excluídos dela conforme as operações normais do banco de dados, não há problema se as páginas do disco forem atualizadas recentemente ou se uma operação de manipulação de dados (DML) envolver dados que ainda não foram carregados. O mecanismo de carregamento ignora as páginas solicitadas que já não existem.
+Because data is cached in and aged out of the buffer pool as it is with regular database operations, there is no problem if the disk pages are recently updated, or if a DML operation involves data that has not yet been loaded. The loading mechanism skips requested pages that no longer exist.
 
-O mecanismo subjacente envolve um thread de fundo que é enviado para realizar as operações de dump e carregamento.
+The underlying mechanism involves a background thread that is dispatched to perform the dump and load operations.
 
-As páginas de disco de tabelas compactadas são carregadas no pool de buffers na sua forma compactada. As páginas são descompactadas normalmente quando o conteúdo das páginas é acessado durante operações DML. Como a descompactação das páginas é um processo intensivo em CPU, é mais eficiente que a concorrência realize a operação em um thread de conexão em vez de no único thread que realiza a operação de restauração do pool de buffers.
+Disk pages from compressed tables are loaded into the buffer pool in their compressed form. Pages are uncompressed as usual when page contents are accessed during DML operations. Because uncompressing pages is a CPU-intensive process, it is more efficient for concurrency to perform the operation in a connection thread rather than in the single thread that performs the buffer pool restore operation.
 
-As operações relacionadas à salvamento e restauração do estado do pool de buffers são descritas nos seguintes tópicos:
+Operations related to saving and restoring the buffer pool state are described in the following topics:
 
-- Configurando a porcentagem de descarte para páginas do pool de buffers
-- Salvar o estado do Pool de Buffer ao desligar e restaurá-lo ao iniciar
-- Salvar e restaurar o estado do pool de buffers online
-- Exibir o progresso da varredura do pool de tampão
-- Exibir o progresso da carga do Pool de Buffer
-- Interrompendo uma operação de carregamento de um pool de buffers
-- Monitoramento do progresso da carga do Pool de Buffer usando o Schema de Desempenho
+* Configuring the Dump Percentage for Buffer Pool Pages
+* Saving the Buffer Pool State at Shutdown and Restoring it at Startup
+* Saving and Restoring the Buffer Pool State Online
+* Displaying Buffer Pool Dump Progress
+* Displaying Buffer Pool Load Progress
+* Aborting a Buffer Pool Load Operation
+* Monitoring Buffer Pool Load Progress Using Performance Schema
 
-##### Configurando a porcentagem de descarte para páginas do pool de buffers
+##### Configuring the Dump Percentage for Buffer Pool Pages
 
-Antes de descartar páginas do pool de buffer, você pode configurar a porcentagem de páginas do pool de buffer mais recentemente usadas que você deseja descartar, definindo a opção `innodb_buffer_pool_dump_pct`. Se você planeja descartar páginas do pool de buffer enquanto o servidor estiver em execução, você pode configurar a opção dinamicamente:
+Before dumping pages from the buffer pool, you can configure the percentage of most-recently-used buffer pool pages that you want to dump by setting the `innodb_buffer_pool_dump_pct` option. If you plan to dump buffer pool pages while the server is running, you can configure the option dynamically:
 
 ```sql
 SET GLOBAL innodb_buffer_pool_dump_pct=40;
 ```
 
-Se você planeja descartar as páginas do buffer pool ao desligar o servidor, defina `innodb_buffer_pool_dump_pct` no arquivo de configuração.
+If you plan to dump buffer pool pages at server shutdown, set `innodb_buffer_pool_dump_pct` in your configuration file.
 
 ```sql
 [mysqld]
 innodb_buffer_pool_dump_pct=40
 ```
 
-O valor padrão de `innodb_buffer_pool_dump_pct` foi alterado de 100 (descartar todas as páginas) para 25 (descartar 25% das páginas mais recentemente usadas) no MySQL 5.7 quando `innodb_buffer_pool_dump_at_shutdown` e `innodb_buffer_pool_load_at_startup` foram habilitados por padrão.
+The `innodb_buffer_pool_dump_pct` default value was changed from 100 (dump all pages) to 25 (dump 25% of most-recently-used pages) in MySQL 5.7 when `innodb_buffer_pool_dump_at_shutdown` and `innodb_buffer_pool_load_at_startup` were enabled by default.
 
-##### Salvar o estado do Pool de Buffer ao desligar e restaurá-lo ao iniciar
+##### Saving the Buffer Pool State at Shutdown and Restoring it at Startup
 
-Para salvar o estado do pool de buffers ao desligar o servidor, execute a seguinte instrução antes de desligar o servidor:
+To save the state of the buffer pool at server shutdown, issue the following statement prior to shutting down the server:
 
 ```sql
 SET GLOBAL innodb_buffer_pool_dump_at_shutdown=ON;
 ```
 
-`innodb_buffer_pool_dump_at_shutdown` está habilitado por padrão.
+`innodb_buffer_pool_dump_at_shutdown` is enabled by default.
 
-Para restaurar o estado do pool de tampão ao iniciar o servidor, especifique a opção `--innodb-buffer-pool-load-at-startup` ao iniciar o servidor:
+To restore the buffer pool state at server startup, specify the `--innodb-buffer-pool-load-at-startup` option when starting the server:
 
 ```sql
 mysqld --innodb-buffer-pool-load-at-startup=ON;
 ```
 
-`innodb_buffer_pool_load_at_startup` está habilitado por padrão.
+`innodb_buffer_pool_load_at_startup` is enabled by default.
 
-##### Salvar e restaurar o estado do pool de buffers online
+##### Saving and Restoring the Buffer Pool State Online
 
-Para salvar o estado do pool de buffers enquanto o servidor MySQL estiver em execução, execute a seguinte instrução:
+To save the state of the buffer pool while MySQL server is running, issue the following statement:
 
 ```sql
 SET GLOBAL innodb_buffer_pool_dump_now=ON;
 ```
 
-Para restaurar o estado do pool de tampão enquanto o MySQL estiver em execução, execute a seguinte instrução:
+To restore the buffer pool state while MySQL is running, issue the following statement:
 
 ```sql
 SET GLOBAL innodb_buffer_pool_load_now=ON;
 ```
 
-##### Exibir o progresso da varredura do pool de tampão
+##### Displaying Buffer Pool Dump Progress
 
-Para exibir o progresso ao salvar o estado do pool de buffers no disco, execute a seguinte instrução:
+To display progress when saving the buffer pool state to disk, issue the following statement:
 
 ```sql
 SHOW STATUS LIKE 'Innodb_buffer_pool_dump_status';
 ```
 
-Se a operação ainda não tiver começado, é retornado o valor “não iniciada”. Se a operação estiver concluída, o tempo de conclusão é impresso (por exemplo, Concluído em 110505 12:18:02). Se a operação estiver em andamento, são fornecidas informações de status (por exemplo, Dumping buffer pool 5/7, página 237/2873).
+If the operation has not yet started, “not started” is returned. If the operation is complete, the completion time is printed (e.g. Finished at 110505 12:18:02). If the operation is in progress, status information is provided (e.g. Dumping buffer pool 5/7, page 237/2873).
 
-##### Exibir o progresso da carga do Pool de Buffer
+##### Displaying Buffer Pool Load Progress
 
-Para exibir o progresso durante o carregamento do pool de buffer, execute a seguinte instrução:
+To display progress when loading the buffer pool, issue the following statement:
 
 ```sql
 SHOW STATUS LIKE 'Innodb_buffer_pool_load_status';
 ```
 
-Se a operação ainda não tiver começado, será retornado “não iniciada”. Se a operação estiver concluída, o tempo de conclusão será impresso (por exemplo, Concluído em 110505 12:23:24). Se a operação estiver em andamento, serão fornecidas informações de status (por exemplo, Carregando 123/22301 páginas).
+If the operation has not yet started, “not started” is returned. If the operation is complete, the completion time is printed (e.g. Finished at 110505 12:23:24). If the operation is in progress, status information is provided (e.g. Loaded 123/22301 pages).
 
-##### Interrompendo uma operação de carregamento de um pool de buffers
+##### Aborting a Buffer Pool Load Operation
 
-Para abortar uma operação de carregamento do pool de buffers, execute a seguinte declaração:
+To abort a buffer pool load operation, issue the following statement:
 
 ```sql
 SET GLOBAL innodb_buffer_pool_load_abort=ON;
 ```
 
-##### Monitoramento do progresso da carga do Pool de Buffer usando o Schema de Desempenho
+##### Monitoring Buffer Pool Load Progress Using Performance Schema
 
-Você pode monitorar o progresso da carga do pool de buffers usando o Schema de Desempenho.
+You can monitor buffer pool load progress using Performance Schema.
 
-O exemplo a seguir demonstra como habilitar o instrumento de evento `stage/innodb/buffer pool load` e as tabelas de consumidor relacionadas para monitorar o progresso da carga do pool de buffer.
+The following example demonstrates how to enable the `stage/innodb/buffer pool load` stage event instrument and related consumer tables to monitor buffer pool load progress.
 
-Para obter informações sobre os procedimentos de exclusão e carregamento do pool de buffers usados neste exemplo, consulte a Seção 14.8.3.6, “Salvar e restaurar o estado do pool de buffers”. Para obter informações sobre os instrumentos de eventos de estágio do Schema de Desempenho e os consumidores relacionados, consulte a Seção 25.12.5, “Tabelas de Eventos de Estágio do Schema de Desempenho”.
+For information about buffer pool dump and load procedures used in this example, see Section 14.8.3.6, “Saving and Restoring the Buffer Pool State”. For information about Performance Schema stage event instruments and related consumers, see Section 25.12.5, “Performance Schema Stage Event Tables”.
 
-1. Ative a ferramenta `stage/innodb/buffer pool load`:
+1. Enable the `stage/innodb/buffer pool load` instrument:
 
    ```sql
    mysql> UPDATE performance_schema.setup_instruments SET ENABLED = 'YES'
           WHERE NAME LIKE 'stage/innodb/buffer%';
    ```
 
-2. Ative as tabelas de consumidores de eventos de palco, que incluem `events_stages_current`, `events_stages_history` e `events_stages_history_long`.
+2. Enable the stage event consumer tables, which include `events_stages_current`, `events_stages_history`, and `events_stages_history_long`.
 
    ```sql
    mysql> UPDATE performance_schema.setup_consumers SET ENABLED = 'YES'
           WHERE NAME LIKE '%stages%';
    ```
 
-3. Descarte o estado atual do pool de buffer habilitando `innodb_buffer_pool_dump_now`.
+3. Dump the current buffer pool state by enabling `innodb_buffer_pool_dump_now`.
 
    ```sql
    mysql> SET GLOBAL innodb_buffer_pool_dump_now=ON;
    ```
 
-4. Verifique o status do dump do pool de buffer para garantir que a operação tenha sido concluída.
+4. Check the buffer pool dump status to ensure that the operation has completed.
 
    ```sql
    mysql> SHOW STATUS LIKE 'Innodb_buffer_pool_dump_status'\G
@@ -138,13 +138,13 @@ Para obter informações sobre os procedimentos de exclusão e carregamento do p
            Value: Buffer pool(s) dump completed at 150202 16:38:58
    ```
 
-5. Carregue o pool de buffer habilitando `innodb_buffer_pool_load_now`:
+5. Load the buffer pool by enabling `innodb_buffer_pool_load_now`:
 
    ```sql
    mysql> SET GLOBAL innodb_buffer_pool_load_now=ON;
    ```
 
-6. Verifique o status atual da operação de carga do pool de buffers consultando a tabela `events_stages_current` do Schema de Desempenho. A coluna `WORK_COMPLETED` mostra o número de páginas do pool de buffers carregadas. A coluna `WORK_ESTIMATED` fornece uma estimativa do trabalho restante, em páginas.
+6. Check the current status of the buffer pool load operation by querying the Performance Schema `events_stages_current` table. The `WORK_COMPLETED` column shows the number of buffer pool pages loaded. The `WORK_ESTIMATED` column provides an estimate of the remaining work, in pages.
 
    ```sql
    mysql> SELECT EVENT_NAME, WORK_COMPLETED, WORK_ESTIMATED
@@ -156,7 +156,7 @@ Para obter informações sobre os procedimentos de exclusão e carregamento do p
    +-------------------------------+----------------+----------------+
    ```
 
-   A tabela `events_stages_current` retorna um conjunto vazio se a operação de carga do pool de buffers tiver sido concluída. Nesse caso, você pode verificar a tabela `events_stages_history` para visualizar os dados do evento concluído. Por exemplo:
+   The `events_stages_current` table returns an empty set if the buffer pool load operation has completed. In this case, you can check the `events_stages_history` table to view data for the completed event. For example:
 
    ```sql
    mysql> SELECT EVENT_NAME, WORK_COMPLETED, WORK_ESTIMATED
@@ -168,6 +168,6 @@ Para obter informações sobre os procedimentos de exclusão e carregamento do p
    +-------------------------------+----------------+----------------+
    ```
 
-Nota
+Note
 
-Você também pode monitorar o progresso da carga do pool de buffers usando o Schema de Desempenho ao carregar o pool de buffers no início usando `innodb_buffer_pool_load_at_startup`. Nesse caso, o instrumento `stage/innodb/buffer pool load` e os consumidores relacionados devem ser habilitados no início. Para mais informações, consulte a Seção 25.3, “Configuração de Inicialização do Schema de Desempenho”.
+You can also monitor buffer pool load progress using Performance Schema when loading the buffer pool at startup using `innodb_buffer_pool_load_at_startup`. In this case, the `stage/innodb/buffer pool load` instrument and related consumers must be enabled at startup. For more information, see Section 25.3, “Performance Schema Startup Configuration”.

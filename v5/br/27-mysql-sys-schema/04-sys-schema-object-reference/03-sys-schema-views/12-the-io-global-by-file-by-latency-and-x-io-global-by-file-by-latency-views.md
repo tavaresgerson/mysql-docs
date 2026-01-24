@@ -1,41 +1,41 @@
-#### 26.4.3.12 As visualizações io_global_by_file_by_latency e x$io_global_by_file_by_latency
+#### 26.4.3.12 The io_global_by_file_by_latency and x$io_global_by_file_by_latency Views
 
-Esses gráficos resumem os consumidores globais de E/S para exibir o tempo de espera por E/S, agrupados por arquivo. Por padrão, as linhas são ordenadas em ordem decrescente de latência total.
+These views summarize global I/O consumers to display time waiting for I/O, grouped by file. By default, rows are sorted by descending total latency.
 
-As vistas `io_global_by_file_by_latency` e `x$io_global_by_file_by_latency` possuem essas colunas:
+The `io_global_by_file_by_latency` and `x$io_global_by_file_by_latency` views have these columns:
 
-- `arquivo`
+* `file`
 
-  O nome do caminho do arquivo.
+  The file path name.
 
-- `total`
+* `total`
 
-  O número total de eventos de entrada/saída para o arquivo.
+  The total number of I/O events for the file.
 
-- `total_latency`
+* `total_latency`
 
-  O tempo total de espera de eventos de E/S temporizados para o arquivo.
+  The total wait time of timed I/O events for the file.
 
-- `count_read`
+* `count_read`
 
-  O número total de eventos de leitura/escrita do arquivo.
+  The total number of read I/O events for the file.
 
-- `latência_de_leitura`
+* `read_latency`
 
-  O tempo total de espera de eventos de E/S de leitura com temporizador para o arquivo.
+  The total wait time of timed read I/O events for the file.
 
-- `count_write`
+* `count_write`
 
-  O número total de eventos de E/S de escrita para o arquivo.
+  The total number of write I/O events for the file.
 
-- `latency_de_escrita`
+* `write_latency`
 
-  O tempo total de espera de eventos de E/S de escrita temporizados para o arquivo.
+  The total wait time of timed write I/O events for the file.
 
-- `count_misc`
+* `count_misc`
 
-  O número total de outros eventos de E/S para o arquivo.
+  The total number of other I/O events for the file.
 
-- `misc_latency`
+* `misc_latency`
 
-  O tempo total de espera de outros eventos de E/S com temporizador para o arquivo.
+  The total wait time of timed other I/O events for the file.

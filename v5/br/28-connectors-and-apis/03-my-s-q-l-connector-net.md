@@ -1,6 +1,6 @@
-## 27.3 MySQL Connector/NET
+## 27.3 MySQL Connector/NET
 
-O manual do MySQL Connector/NET é publicado na forma independente, não como parte do Manual de Referência do MySQL. Para obter informações, consulte esses documentos:
+The MySQL Connector/NET manual is published in standalone form, not as part of the MySQL Reference Manual. For information, see these documents:
 
-- Manual principal: Guia do desenvolvedor do MySQL Connector/NET
-- Notas de lançamento: Notas de lançamento do MySQL Connector/NET
+* Main manual: [MySQL Connector/NET Developer Guide](/doc/connector-net/en/)
+* Release notes: [MySQL Connector/NET Release Notes](/doc/relnotes/connector-net/en/)

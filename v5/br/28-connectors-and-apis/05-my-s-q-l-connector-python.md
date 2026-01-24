@@ -1,6 +1,6 @@
-## 27.5 MySQL Connector/Python
+## 27.5 MySQL Connector/Python
 
-O manual do MySQL Connector/Python é publicado de forma independente, não como parte do Manual de Referência do MySQL. Para obter informações, consulte esses documentos:
+The MySQL Connector/Python manual is published in standalone form, not as part of the MySQL Reference Manual. For information, see these documents:
 
-- Manual principal: Guia do desenvolvedor do Conector MySQL/Python
-- Notas de lançamento: Notas de lançamento do MySQL Connector/Python
+* Main manual: [MySQL Connector/Python Developer Guide](/doc/connector-python/en/)
+* Release notes: [MySQL Connector/Python Release Notes](/doc/relnotes/connector-python/en/)

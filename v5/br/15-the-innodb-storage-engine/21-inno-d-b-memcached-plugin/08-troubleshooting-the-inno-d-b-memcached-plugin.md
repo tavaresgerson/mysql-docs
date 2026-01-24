@@ -1,12 +1,12 @@
-### 14.21.8 Solução de problemas do plugin InnoDB memcached
+### 14.21.8 Troubleshooting the InnoDB memcached Plugin
 
-Esta seção descreve os problemas que você pode encontrar ao usar o plugin **memcached** do InnoDB.
+This section describes issues that you may encounter when using the `InnoDB` **memcached** plugin.
 
-- Se você encontrar o seguinte erro no log de erro do MySQL, o servidor pode não conseguir ser iniciado:
+* If you encounter the following error in the MySQL error log, the server might fail to start:
 
-  não conseguiu definir o limite de arquivos abertos. Tente executar como root ou solicitar um valor menor para maxconns.
+  failed to set rlimit for open files. Try running as root or requesting smaller maxconns value.
 
-  A mensagem de erro é do daemon **memcached**. Uma solução é aumentar o limite do sistema operacional para o número de arquivos abertos. Os comandos para verificar e aumentar o limite de arquivos abertos variam de acordo com o sistema operacional. Este exemplo mostra comandos para Linux e macOS:
+  The error message is from the **memcached** daemon. One solution is to raise the OS limit for the number of open files. The commands for checking and increasing the open file limit varies by operating system. This example shows commands for Linux and macOS:
 
   ```sql
   # Linux
@@ -24,7 +24,7 @@ Esta seção descreve os problemas que você pode encontrar ao usar o plugin **m
   4096
   ```
 
-  A outra solução é reduzir o número de conexões simultâneas permitidas para o daemon **memcached**. Para fazer isso, codifique a opção `-c **memcached**` no parâmetro de configuração `daemon_memcached_option` no arquivo de configuração do MySQL. A opção `-c` tem um valor padrão de 1024.
+  The other solution is to reduce the number of concurrent connections permitted for the **memcached** daemon. To do so, encode the `-c` **memcached** option in the `daemon_memcached_option` configuration parameter in the MySQL configuration file. The `-c` option has a default value of 1024.
 
   ```sql
   [mysqld]
@@ -32,7 +32,7 @@ Esta seção descreve os problemas que você pode encontrar ao usar o plugin **m
   loose-daemon_memcached_option='-c 64'
   ```
 
-- Para solucionar problemas em que o daemon do **memcached** não consegue armazenar ou recuperar dados da tabela do **InnoDB**, codifique a opção **memcached** `-vvv` no parâmetro de configuração `daemon_memcached_option` no arquivo de configuração do MySQL. Examine o log de erro do MySQL para obter saída de depuração relacionada às operações do **memcached**.
+* To troubleshoot problems where the **memcached** daemon is unable to store or retrieve `InnoDB` table data, encode the `-vvv` **memcached** option in the `daemon_memcached_option` configuration parameter in the MySQL configuration file. Examine the MySQL error log for debug output related to **memcached** operations.
 
   ```sql
   [mysqld]
@@ -40,47 +40,46 @@ Esta seção descreve os problemas que você pode encontrar ao usar o plugin **m
   loose-daemon_memcached_option='-vvv'
   ```
 
-- Se as colunas especificadas para armazenar valores do **memcached** tiverem o tipo de dado errado, como um tipo numérico em vez de um tipo de string, as tentativas de armazenar pares chave-valor falham sem nenhum código de erro ou mensagem específica.
+* If columns specified to hold **memcached** values are the wrong data type, such as a numeric type instead of a string type, attempts to store key-value pairs fail with no specific error code or message.
 
-- Se o plugin `daemon_memcached` causar problemas na inicialização do servidor MySQL, você pode desativar temporariamente o plugin `daemon_memcached` durante a solução de problemas, adicionando esta linha sob o grupo `[mysqld]` no arquivo de configuração do MySQL:
+* If the `daemon_memcached` plugin causes MySQL server startup issues, you can temporarily disable the `daemon_memcached` plugin while troubleshooting by adding this line under the `[mysqld]` group in the MySQL configuration file:
 
   ```sql
   daemon_memcached=OFF
   ```
 
-  Por exemplo, se você executar a instrução `INSTALL PLUGIN` antes de executar o script de configuração `innodb_memcached_config.sql` para configurar o banco de dados e as tabelas necessárias, o servidor pode encerrar inesperadamente e não iniciar. O servidor também pode não iniciar se você configurar incorretamente uma entrada na tabela `innodb_memcache.containers`.
+  For example, if you run the `INSTALL PLUGIN` statement before running the `innodb_memcached_config.sql` configuration script to set up the necessary database and tables, the server might unexpectedly exit and fail to start. The server could also fail to start if you incorrectly configure an entry in the `innodb_memcache.containers` table.
 
-  Para desinstalar o plugin **memcached** para uma instância do MySQL, execute a seguinte instrução:
+  To uninstall the **memcached** plugin for a MySQL instance, issue the following statement:
 
   ```sql
   mysql> UNINSTALL PLUGIN daemon_memcached;
   ```
 
-- Se você estiver executando mais de uma instância do MySQL na mesma máquina com o plugin `daemon_memcached` habilitado em cada instância, use o parâmetro de configuração `daemon_memcached_option` para especificar uma porta **memcached** única para cada plugin `daemon_memcached`.
+* If you run more than one instance of MySQL on the same machine with the `daemon_memcached` plugin enabled in each instance, use the `daemon_memcached_option` configuration parameter to specify a unique **memcached** port for each `daemon_memcached` plugin.
 
-- Se uma instrução SQL não conseguir encontrar a tabela `InnoDB` ou não encontrar dados na tabela, mas as chamadas à API do **memcached** recuperarem os dados esperados, você pode estar faltando uma entrada para a tabela `InnoDB` na tabela `innodb_memcache.containers`, ou pode não ter mudado para a tabela `InnoDB` correta ao emitir uma solicitação de `get` ou `set` usando a notação `@@table_id`. Esse problema também pode ocorrer se você alterar uma entrada existente na tabela `innodb_memcache.containers` sem reiniciar o servidor MySQL depois disso. O mecanismo de armazenamento livre de formato é flexível o suficiente para que suas solicitações de armazenamento ou recuperação de um valor de várias colunas, como `col1|col2|col3`, ainda funcionem, mesmo que o daemon esteja usando a tabela `test.demo_test`, que armazena valores em uma única coluna.
+* If an SQL statement cannot find the `InnoDB` table or finds no data in the table, but **memcached** API calls retrieve the expected data, you may be missing an entry for the `InnoDB` table in the `innodb_memcache.containers` table, or you may have not switched to the correct `InnoDB` table by issuing a `get` or `set` request using `@@table_id` notation. This problem could also occur if you change an existing entry in the `innodb_memcache.containers` table without restarting the MySQL server afterward. The free-form storage mechanism is flexible enough that your requests to store or retrieve a multi-column value such as `col1|col2|col3` may still work, even if the daemon is using the `test.demo_test` table which stores values in a single column.
 
-- Ao definir sua própria tabela `InnoDB` para uso com o plugin `daemon_memcached`, e as colunas da tabela forem definidas como `NOT NULL`, certifique-se de que valores sejam fornecidos para as colunas `NOT NULL` ao inserir um registro para a tabela na tabela `innodb_memcache.containers`. Se a instrução `INSERT` para o registro `innodb_memcache.containers` contiver menos valores delimitados do que as colunas mapeadas, as colunas não preenchidas serão definidas como `NULL`. Tentar inserir um valor `NULL` em uma coluna `NOT NULL` faz com que a `INSERT` falhe, o que só pode se tornar evidente após você reinicializar o plugin `daemon_memcached` para aplicar as alterações na tabela `innodb_memcache.containers`.
+* When defining your own `InnoDB` table for use with the `daemon_memcached` plugin, and columns in the table are defined as `NOT NULL`, ensure that values are supplied for the `NOT NULL` columns when inserting a record for the table into the `innodb_memcache.containers` table. If the `INSERT` statement for the `innodb_memcache.containers` record contains fewer delimited values than there are mapped columns, unfilled columns are set to `NULL`. Attempting to insert a `NULL` value into a `NOT NULL` column causes the `INSERT` to fail, which may only become evident after you reinitialize the `daemon_memcached` plugin to apply changes to the `innodb_memcache.containers` table.
 
-- Se os campos `cas_column` e `expire_time_column` da tabela `innodb_memcached.containers` forem definidos como `NULL`, o seguinte erro será retornado ao tentar carregar o plugin **memcached**:
+* If `cas_column` and `expire_time_column` fields of the `innodb_memcached.containers` table are set to `NULL`, the following error is returned when attempting to load the **memcached** plugin:
 
   ```sql
   InnoDB_Memcached: column 6 in the entry for config table 'containers' in
   database 'innodb_memcache' has an invalid NULL value.
   ```
 
-  O plugin **memcached** rejeita o uso de `NULL` nas colunas `cas_column` e `expire_time_column`. Defina o valor dessas colunas para `0` quando as colunas estiverem desativadas.
+  The **memcached** plugin rejects usage of `NULL` in the `cas_column` and `expire_time_column` columns. Set the value of these columns to `0` when the columns are unused.
 
-- À medida que o comprimento da chave e dos valores do **memcached** aumentam, você pode encontrar limites de tamanho e comprimento.
+* As the length of the **memcached** key and values increase, you might encounter size and length limits.
 
-  - Quando a chave excede 250 bytes, as operações do **memcached** retornam um erro. Esse é atualmente um limite fixo dentro do **memcached**.
+  + When the key exceeds 250 bytes, **memcached** operations return an error. This is currently a fixed limit within **memcached**.
 
-  - Os limites da tabela `InnoDB` podem ser encontrados se os valores ultrapassarem 768 bytes de tamanho, 3072 bytes de tamanho ou metade do valor de `innodb_page_size`. Esses limites se aplicam principalmente se você pretende criar um índice em uma coluna de valor para executar consultas geradoras de relatórios nessa coluna usando o SQL. Consulte a Seção 14.23, “Limites do InnoDB”, para obter detalhes.
+  + `InnoDB` table limits may be encountered if values exceed 768 bytes in size, 3072 bytes in size, or half of the `innodb_page_size` value. These limits primarily apply if you intend to create an index on a value column to run report-generating queries on that column using SQL. See Section 14.23, “InnoDB Limits” for details.
 
-  - O tamanho máximo para a combinação chave-valor é de 1 MB.
+  + The maximum size for the key-value combination is 1 MB.
+* If you share configuration files across MySQL servers of different versions, using the latest configuration options for the `daemon_memcached` plugin could cause startup errors on older MySQL versions. To avoid compatibility problems, use the `loose` prefix with option names. For example, use `loose-daemon_memcached_option='-c 64'` instead of `daemon_memcached_option='-c 64'`.
 
-- Se você compartilhar arquivos de configuração entre servidores MySQL de diferentes versões, usar as opções de configuração mais recentes para o plugin `daemon_memcached` pode causar erros de inicialização em versões mais antigas do MySQL. Para evitar problemas de compatibilidade, use o prefixo `loose` com os nomes das opções. Por exemplo, use `loose-daemon_memcached_option='-c 64'` em vez de `daemon_memcached_option='-c 64'`.
+* There is no restriction or check in place to validate character set settings. **memcached** stores and retrieves keys and values in bytes and is therefore not character set-sensitive. However, you must ensure that the **memcached** client and the MySQL table use the same character set.
 
-- Não há restrições ou verificações para validar as configurações do conjunto de caracteres. O **memcached** armazena e recupera chaves e valores em bytes e, portanto, não é sensível ao conjunto de caracteres. No entanto, você deve garantir que o cliente **memcached** e a tabela do MySQL usem o mesmo conjunto de caracteres.
-
-- As conexões do **memcached** são bloqueadas de acessar tabelas que contêm uma coluna virtual indexada. Para acessar uma coluna virtual indexada, é necessário um callback para o servidor, mas uma conexão do **memcached** não tem acesso ao código do servidor.
+* **memcached** connections are blocked from accessing tables that contain an indexed virtual column. Accessing an indexed virtual column requires a callback to the server, but a **memcached** connection does not have access to the server code.

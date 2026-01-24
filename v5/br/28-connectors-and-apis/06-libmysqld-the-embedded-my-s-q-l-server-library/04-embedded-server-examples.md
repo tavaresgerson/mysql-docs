@@ -1,8 +1,8 @@
-### 27.6.4 Exemplos de Servidor Integrado
+### 27.6.4 Embedded Server Examples
 
-Esses dois programas de exemplo devem funcionar sem alterações em um sistema Linux ou FreeBSD. Para outros sistemas operacionais, são necessárias pequenas alterações, principalmente com caminhos de arquivos. Esses exemplos foram projetados para fornecer detalhes suficientes para que você entenda o problema, sem a confusão que é uma parte necessária de uma aplicação real. O primeiro exemplo é muito simples. O segundo exemplo é um pouco mais avançado, com algumas verificações de erros. O primeiro é seguido por uma entrada na linha de comando para compilar o programa. O segundo é seguido por um arquivo GNUmake que pode ser usado para compilar em vez disso.
+These two example programs should work without any changes on a Linux or FreeBSD system. For other operating systems, minor changes are needed, mostly with file paths. These examples are designed to give enough details for you to understand the problem, without the clutter that is a necessary part of a real application. The first example is very straightforward. The second example is a little more advanced with some error checking. The first is followed by a command-line entry for compiling the program. The second is followed by a GNUmake file that may be used for compiling instead.
 
-**Exemplo 1**
+**Example 1**
 
 `test1_libmysqld.c`
 
@@ -48,16 +48,16 @@ int main(void)
 }
 ```
 
-Aqui está a linha de comando para compilar o programa acima:
+Here is the command line for compiling the above program:
 
 ```sql
 gcc test1_libmysqld.c -o test1_libmysqld \
  `/usr/local/mysql/bin/mysql_config --include --libmysqld-libs`
 ```
 
-**Exemplo 2**
+**Example 2**
 
-Para experimentar o exemplo, crie um diretório `test2_libmysqld` no mesmo nível do diretório de origem do MySQL. Salve o código-fonte `test2_libmysqld.c` e o `GNUmakefile` no diretório e execute o `GNU make` a partir do diretório `test2_libmysqld`.
+To try the example, create an `test2_libmysqld` directory at the same level as the MySQL source directory. Save the `test2_libmysqld.c` source and the `GNUmakefile` in the directory, and run GNU `make` from inside the `test2_libmysqld` directory.
 
 `test2_libmysqld.c`
 

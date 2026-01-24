@@ -1,9 +1,9 @@
-#### 26.4.4.12 O procedimento ps_setup_reload_saved()
+#### 26.4.4.12 The ps_setup_reload_saved() Procedure
 
-Recarrega uma configuração do Schema de Desempenho salva anteriormente na mesma sessão usando o procedimento `ps_setup_save()`. Para mais informações, consulte a descrição do procedimento `ps_setup_save()`).
+Reloads a Performance Schema configuration saved earlier within the same session using `ps_setup_save()` Procedure"). For more information, see the description of `ps_setup_save()` Procedure").
 
-Esse procedimento desabilita o registro binário durante sua execução, manipulando o valor da sessão da variável de sistema `sql_log_bin`. Essa é uma operação restrita, portanto, o procedimento requer privilégios suficientes para definir variáveis de sessão restritas. Consulte a Seção 5.1.8.1, “Privilégios de Variáveis de Sistema”.
+This procedure disables binary logging during its execution by manipulating the session value of the `sql_log_bin` system variable. That is a restricted operation, so the procedure requires privileges sufficient to set restricted session variables. See Section 5.1.8.1, “System Variable Privileges”.
 
-##### Parâmetros
+##### Parameters
 
-Nenhum.
+None.

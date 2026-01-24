@@ -1,3 +1,3 @@
-#### B.3.2.10 A mesa está cheia
+#### B.3.2.10 The table is full
 
-Se ocorrer um erro de tabela cheia, pode ser que o disco esteja cheio ou que a tabela tenha atingido seu tamanho máximo. O tamanho máximo efetivo da tabela para bancos de dados MySQL geralmente é determinado pelas restrições do sistema operacional em relação ao tamanho dos arquivos, e não pelos limites internos do MySQL. Veja [Seção 8.4.6, “Limites de Tamanho da Tabela”](table-size-limit.html).
+If a table-full error occurs, it may be that the disk is full or that the table has reached its maximum size. The effective maximum table size for MySQL databases is usually determined by operating system constraints on file sizes, not by MySQL internal limits. See [Section 8.4.6, “Limits on Table Size”](table-size-limit.html "8.4.6 Limits on Table Size").

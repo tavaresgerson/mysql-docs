@@ -1,55 +1,55 @@
-## 21.6 Gerenciamento do NDB Cluster
+## 21.6 Management of NDB Cluster
 
-21.6.1 Comandos no Cliente de Gerenciamento do NDB Cluster
+[21.6.1 Commands in the NDB Cluster Management Client](mysql-cluster-mgm-client-commands.html)
 
-21.6.2 Mensagens de log do cluster NDB
+[21.6.2 NDB Cluster Log Messages](mysql-cluster-logs-ndb-messages.html)
 
-21.6.3 Relatórios de Eventos Gerados no NDB Cluster
+[21.6.3 Event Reports Generated in NDB Cluster](mysql-cluster-event-reports.html)
 
-21.6.4 Resumo das fases de início do cluster do NDB
+[21.6.4 Summary of NDB Cluster Start Phases](mysql-cluster-start-phases.html)
 
-21.6.5 Realizar um Reinício Rotativo de um Clúster NDB
+[21.6.5 Performing a Rolling Restart of an NDB Cluster](mysql-cluster-rolling-restart.html)
 
-21.6.6 Modo de usuário único do cluster NDB
+[21.6.6 NDB Cluster Single User Mode](mysql-cluster-single-user-mode.html)
 
-21.6.7 Adicionando nós de dados do NDB Cluster Online
+[21.6.7 Adding NDB Cluster Data Nodes Online](mysql-cluster-online-add-node.html)
 
-21.6.8 Backup Online de NDB Cluster
+[21.6.8 Online Backup of NDB Cluster](mysql-cluster-backup.html)
 
-21.6.9 Importando dados no MySQL Cluster
+[21.6.9 Importing Data Into MySQL Cluster](mysql-cluster-importing-data.html)
 
-21.6.10 Uso do Servidor MySQL para NDB Cluster
+[21.6.10 MySQL Server Usage for NDB Cluster](mysql-cluster-mysqld.html)
 
-21.6.11 Tabelas de dados de disco do cluster NDB
+[21.6.11 NDB Cluster Disk Data Tables](mysql-cluster-disk-data.html)
 
-21.6.12 Operações online com ALTER TABLE no NDB Cluster
+[21.6.12 Online Operations with ALTER TABLE in NDB Cluster](mysql-cluster-online-operations.html)
 
-21.6.13 Distribuição de privilégios usando tabelas de concessão compartilhadas
+[21.6.13 Distributed Privileges Using Shared Grant Tables](mysql-cluster-privilege-distribution.html)
 
-21.6.14 Contadores e variáveis de estatísticas da API NDB
+[21.6.14 NDB API Statistics Counters and Variables](mysql-cluster-ndb-api-statistics.html)
 
-21.6.15 ndbinfo: A Base de Dados de Informações do NDB Cluster
+[21.6.15 ndbinfo: The NDB Cluster Information Database](mysql-cluster-ndbinfo.html)
 
-21.6.16 INFORMAÇÕES_SCHEMA Tabelas para NDB Cluster
+[21.6.16 INFORMATION_SCHEMA Tables for NDB Cluster](mysql-cluster-information-schema-tables.html)
 
-21.6.17 Referência Rápida: Declarações SQL do NDB Cluster
+[21.6.17 Quick Reference: NDB Cluster SQL Statements](mysql-cluster-sql-statements.html)
 
-21.6.18 Problemas de segurança do cluster do NDB
+[21.6.18 NDB Cluster Security Issues](mysql-cluster-security.html)
 
-Gerenciar um NDB Cluster envolve várias tarefas, sendo a primeira a configuração e inicialização do NDB Cluster. Isso é abordado na Seção 21.4, “Configuração do NDB Cluster” e na Seção 21.5, “Programas do NDB Cluster”.
+Managing an NDB Cluster involves a number of tasks, the first of which is to configure and start NDB Cluster. This is covered in [Section 21.4, “Configuration of NDB Cluster”](mysql-cluster-configuration.html "21.4 Configuration of NDB Cluster"), and [Section 21.5, “NDB Cluster Programs”](mysql-cluster-programs.html "21.5 NDB Cluster Programs").
 
-As próximas seções cobrem a gestão de um cluster NDB em execução.
+The next few sections cover the management of a running NDB Cluster.
 
-Para obter informações sobre problemas de segurança relacionados à gestão e implantação de um NDB Cluster, consulte Seção 21.6.18, “Problemas de Segurança do NDB Cluster”.
+For information about security issues relating to management and deployment of an NDB Cluster, see [Section 21.6.18, “NDB Cluster Security Issues”](mysql-cluster-security.html "21.6.18 NDB Cluster Security Issues").
 
-Existem, essencialmente, dois métodos para gerenciar ativamente um NDB Cluster em execução. O primeiro deles é o uso de comandos inseridos no cliente de gerenciamento, através dos quais é possível verificar o status do cluster, alterar os níveis de log, iniciar e parar backups, e parar e iniciar nós. O segundo método envolve o estudo do conteúdo do log do cluster `ndb_node_id_cluster.log`; esse log geralmente está localizado no diretório do servidor de gerenciamento `DataDir`, mas essa localização pode ser substituída usando a opção `LogDestination`. (Lembre-se de que *`node_id`* representa o identificador único do nó cuja atividade está sendo registrada.) O log do cluster contém relatórios de eventos gerados pelo **ndbd**. Também é possível enviar entradas do log do cluster para um log de sistema Unix.
+There are essentially two methods of actively managing a running NDB Cluster. The first of these is through the use of commands entered into the management client whereby cluster status can be checked, log levels changed, backups started and stopped, and nodes stopped and started. The second method involves studying the contents of the cluster log `ndb_node_id_cluster.log`; this is usually found in the management server's [`DataDir`](mysql-cluster-mgm-definition.html#ndbparam-mgmd-datadir) directory, but this location can be overridden using the [`LogDestination`](mysql-cluster-mgm-definition.html#ndbparam-mgmd-logdestination) option. (Recall that *`node_id`* represents the unique identifier of the node whose activity is being logged.) The cluster log contains event reports generated by [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon"). It is also possible to send cluster log entries to a Unix system log.
 
-Alguns aspectos do funcionamento do cluster também podem ser monitorados a partir de um nó SQL usando a instrução `SHOW ENGINE NDB STATUS`.
+Some aspects of the cluster's operation can be also be monitored from an SQL node using the [`SHOW ENGINE NDB STATUS`](show-engine.html "13.7.5.15 SHOW ENGINE Statement") statement.
 
-Informações mais detalhadas sobre as operações do NDB Cluster estão disponíveis em tempo real por meio de uma interface SQL usando o banco de dados `ndbinfo`. Para mais informações, consulte Seção 21.6.15, “ndbinfo: O Banco de Dados de Informações do NDB Cluster”.
+More detailed information about NDB Cluster operations is available in real time through an SQL interface using the [`ndbinfo`](mysql-cluster-ndbinfo.html "21.6.15 ndbinfo: The NDB Cluster Information Database") database. For more information, see [Section 21.6.15, “ndbinfo: The NDB Cluster Information Database”](mysql-cluster-ndbinfo.html "21.6.15 ndbinfo: The NDB Cluster Information Database").
 
-Os contadores de estatísticas do NDB fornecem monitoramento aprimorado usando o cliente **mysql**. Esses contadores, implementados no kernel do NDB, estão relacionados às operações realizadas por ou que afetam os objetos do `Ndb`, como iniciar, fechar e abortar transações; operações de chave primária e chave única; varreduras de tabela, intervalo e aparafusadas; threads bloqueadas esperando a conclusão de várias operações; e dados e eventos enviados e recebidos pelo NDB Cluster. Os contadores são incrementados pelo kernel do NDB sempre que chamadas da API do NDB são feitas ou dados são enviados ou recebidos pelos nós de dados.
+NDB statistics counters provide improved monitoring using the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client. These counters, implemented in the NDB kernel, relate to operations performed by or affecting [`Ndb`](/doc/ndbapi/en/ndb-ndb.html) objects, such as starting, closing, and aborting transactions; primary key and unique key operations; table, range, and pruned scans; blocked threads waiting for various operations to complete; and data and events sent and received by NDB Cluster. The counters are incremented by the NDB kernel whenever NDB API calls are made or data is sent to or received by the data nodes.
 
-**mysqld** expõe os contadores de estatísticas da API NDB como variáveis de status do sistema, que podem ser identificadas a partir do prefixo comum a todos os seus nomes (`Ndb_api_`). Os valores dessas variáveis podem ser lidos no cliente **mysql** a partir da saída de uma declaração `SHOW STATUS`, ou consultando a tabela `**SESSION_STATUS**` ou a tabela `**GLOBAL_STATUS**` (no banco de dados `INFORMATION_SCHEMA`). Ao comparar os valores das variáveis de status antes e depois da execução de uma declaração SQL que atua nas tabelas de `NDB`, você pode observar as ações tomadas no nível da API NDB que correspondem a essa declaração, o que pode ser benéfico para o monitoramento e o ajuste de desempenho do NDB Cluster.
+[**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") exposes the NDB API statistics counters as system status variables, which can be identified from the prefix common to all of their names (`Ndb_api_`). The values of these variables can be read in the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client from the output of a [`SHOW STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") statement, or by querying either the [`SESSION_STATUS`](information-schema-status-table.html "24.3.10 The INFORMATION_SCHEMA GLOBAL_STATUS and SESSION_STATUS Tables") table or the [`GLOBAL_STATUS`](information-schema-status-table.html "24.3.10 The INFORMATION_SCHEMA GLOBAL_STATUS and SESSION_STATUS Tables") table (in the `INFORMATION_SCHEMA` database). By comparing the values of the status variables before and after the execution of an SQL statement that acts on [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables, you can observe the actions taken on the NDB API level that correspond to this statement, which can be beneficial for monitoring and performance tuning of NDB Cluster.
 
-O MySQL Cluster Manager oferece uma interface avançada de linha de comando que simplifica muitas tarefas de gerenciamento do NDB Cluster que, de outra forma, seriam complexas, como iniciar, parar ou reiniciar um NDB Cluster com um grande número de nós. O cliente MySQL Cluster Manager também suporta comandos para obter e definir os valores da maioria dos parâmetros de configuração do nó, bem como as opções e variáveis do servidor **mysqld** relacionadas ao NDB Cluster. Consulte o Manual do Usuário do MySQL Cluster Manager 1.4.8, para obter mais informações.
+MySQL Cluster Manager provides an advanced command-line interface that simplifies many otherwise complex NDB Cluster management tasks, such as starting, stopping, or restarting an NDB Cluster with a large number of nodes. The MySQL Cluster Manager client also supports commands for getting and setting the values of most node configuration parameters as well as [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") server options and variables relating to NDB Cluster. See [MySQL Cluster Manager 1.4.8 User Manual](/doc/mysql-cluster-manager/1.4/en/), for more information.

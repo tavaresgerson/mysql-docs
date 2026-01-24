@@ -1,194 +1,194 @@
-### 24.3.9 A tabela INFORMATION_SCHEMA FILES
+### 24.3.9 The INFORMATION_SCHEMA FILES Table
 
-A tabela `FILES` fornece informações sobre os arquivos nos quais os dados do espaço de tabela do MySQL são armazenados.
+The [`FILES`](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table") table provides information about the files in which MySQL tablespace data is stored.
 
-A tabela `FILES` fornece informações sobre os arquivos de dados do `InnoDB`. No NDB Cluster, essa tabela também fornece informações sobre os arquivos nos quais as tabelas de Dados de Disco do NDB Cluster são armazenadas. Para informações adicionais específicas do `InnoDB`, consulte Notas do InnoDB, mais adiante nesta seção; para informações adicionais específicas do NDB Cluster, consulte Notas do NDB.
+The [`FILES`](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table") table provides information about `InnoDB` data files. In NDB Cluster, this table also provides information about the files in which NDB Cluster Disk Data tables are stored. For additional information specific to `InnoDB`, see [InnoDB Notes](information-schema-files-table.html#files-table-innodb-notes "InnoDB Notes"), later in this section; for additional information specific to NDB Cluster, see [NDB Notes](information-schema-files-table.html#files-table-ndb-notes "NDB Notes").
 
-A tabela `FILES` tem essas colunas:
+The [`FILES`](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table") table has these columns:
 
-- `ID do arquivo`
+* `FILE_ID`
 
-  Para `InnoDB`: O ID do espaço de tabelas, também conhecido como `space_id` ou `fil_space_t::id`.
+  For `InnoDB`: The tablespace ID, also referred to as the `space_id` or `fil_space_t::id`.
 
-  Para `NDB`: Um identificador de arquivo. Os valores da coluna `FILE_ID` são gerados automaticamente.
+  For `NDB`: A file identifier. `FILE_ID` column values are auto-generated.
 
-- `NOME_DO_ARQUIVO`
+* `FILE_NAME`
 
-  Para `InnoDB`: O nome do arquivo de dados. Os espaços de tabela por arquivo e os espaços de tabela gerais têm a extensão de nome de arquivo `.ibd`. Os espaços de tabela de desfazer são prefixados por `undo`. O espaço de tabela do sistema é prefixado por `ibdata`. Os espaços de tabela temporários são prefixados por `ibtmp`. O nome do arquivo inclui o caminho do arquivo, que pode ser relativo ao diretório de dados do MySQL (o valor da variável de sistema `datadir`).
+  For `InnoDB`: The name of the data file. File-per-table and general tablespaces have an `.ibd` file name extension. Undo tablespaces are prefixed by `undo`. The system tablespace is prefixed by `ibdata`. Temporary tablespaces are prefixed by `ibtmp`. The file name includes the file path, which may be relative to the MySQL data directory (the value of the [`datadir`](server-system-variables.html#sysvar_datadir) system variable).
 
-  Para `NDB`: O nome de um arquivo de registro `UNDO` criado por `CREATE LOGFILE GROUP` (create-logfile-group.html) ou `ALTER LOGFILE GROUP` (alter-logfile-group.html), ou de um arquivo de dados criado por `CREATE TABLESPACE` (create-tablespace.html) ou `ALTER TABLESPACE` (alter-tablespace.html).
+  For `NDB`: The name of an `UNDO` log file created by [`CREATE LOGFILE GROUP`](create-logfile-group.html "13.1.15 CREATE LOGFILE GROUP Statement") or [`ALTER LOGFILE GROUP`](alter-logfile-group.html "13.1.5 ALTER LOGFILE GROUP Statement"), or of a data file created by [`CREATE TABLESPACE`](create-tablespace.html "13.1.19 CREATE TABLESPACE Statement") or [`ALTER TABLESPACE`](alter-tablespace.html "13.1.9 ALTER TABLESPACE Statement").
 
-- `FILE_TYPE`
+* `FILE_TYPE`
 
-  Para `InnoDB`: O tipo de arquivo do espaço de tabelas. Existem três tipos de arquivo possíveis para arquivos `InnoDB`. `TABLESPACE` é o tipo de arquivo para qualquer espaço de tabela do sistema, geral ou por arquivo, que contém tabelas, índices ou outras formas de dados do usuário. `TEMPORARY` é o tipo de arquivo para espaços de tabelas temporárias. `UNDO LOG` é o tipo de arquivo para espaços de tabelas de recuperação, que contêm registros de recuperação.
+  For `InnoDB`: The tablespace file type. There are three possible file types for `InnoDB` files. `TABLESPACE` is the file type for any system, general, or file-per-table tablespace file that holds tables, indexes, or other forms of user data. `TEMPORARY` is the file type for temporary tablespaces. `UNDO LOG` is the file type for undo tablespaces, which hold undo records.
 
-  Para `NDB`: Um dos valores `UNDO LOG`, `DATAFILE` ou `TABLESPACE`.
+  For `NDB`: One of the values `UNDO LOG`, `DATAFILE`, or `TABLESPACE`.
 
-- `TABLESPACE_NAME`
+* `TABLESPACE_NAME`
 
-  O nome do espaço de tabelas com o qual o arquivo está associado.
+  The name of the tablespace with which the file is associated.
 
-- `TABLE_CATALOG`
+* `TABLE_CATALOG`
 
-  Esse valor sempre está vazio.
+  This value is always empty.
 
-- `TABLE_SCHEMA`
+* `TABLE_SCHEMA`
 
-  Isso é sempre `NULL`.
+  This is always `NULL`.
 
-- `NOME_TABELA`
+* `TABLE_NAME`
 
-  Isso é sempre `NULL`.
+  This is always `NULL`.
 
-- `LOGFILE_GROUP_NAME`
+* `LOGFILE_GROUP_NAME`
 
-  Para `InnoDB`: Isso é sempre `NULL`.
+  For `InnoDB`: This is always `NULL`.
 
-  Para `NDB`: O nome do grupo de arquivos de registro ao qual o arquivo de registro ou arquivo de dados pertence.
+  For `NDB`: The name of the log file group to which the log file or data file belongs.
 
-- `LOGFILE_GROUP_NUMBER`
+* `LOGFILE_GROUP_NUMBER`
 
-  Para `InnoDB`: Isso é sempre `NULL`.
+  For `InnoDB`: This is always `NULL`.
 
-  Para `NDB`: Para um arquivo de log de desfazer de dados de disco, o número de ID gerado automaticamente do grupo de arquivos de log ao qual o arquivo de log pertence. Este é o mesmo valor exibido para a coluna `id` na tabela `ndbinfo.dict_obj_info` e para a coluna `log_id` nas tabelas `ndbinfo.logspaces` e `ndbinfo.logspaces` para este arquivo de log de desfazer.
+  For `NDB`: For a Disk Data undo log file, the auto-generated ID number of the log file group to which the log file belongs. This is the same as the value shown for the `id` column in the [`ndbinfo.dict_obj_info`](mysql-cluster-ndbinfo-dict-obj-info.html "21.6.15.15 The ndbinfo dict_obj_info Table") table and the `log_id` column in the [`ndbinfo.logspaces`](mysql-cluster-ndbinfo-logspaces.html "21.6.15.24 The ndbinfo logspaces Table") and [`ndbinfo.logspaces`](mysql-cluster-ndbinfo-logspaces.html "21.6.15.24 The ndbinfo logspaces Table") tables for this undo log file.
 
-- `MOTOR`
+* `ENGINE`
 
-  Para `InnoDB`: Isso é sempre `InnoDB`.
+  For `InnoDB`: This is always `InnoDB`.
 
-  Para `NDB`: Isso é sempre `ndbcluster`.
+  For `NDB`: This is always `ndbcluster`.
 
-- `FULLTEXT_KEYS`
+* `FULLTEXT_KEYS`
 
-  Isso é sempre `NULL`.
+  This is always `NULL`.
 
-- `LINHAS_DELETADAS`
+* `DELETED_ROWS`
 
-  Isso é sempre `NULL`.
+  This is always `NULL`.
 
-- `UPDATE_COUNT`
+* `UPDATE_COUNT`
 
-  Isso é sempre `NULL`.
+  This is always `NULL`.
 
-- `FREE_EXTENTS`
+* `FREE_EXTENTS`
 
-  Para `InnoDB`: O número de extensões totalmente livres no arquivo de dados atual.
+  For `InnoDB`: The number of fully free extents in the current data file.
 
-  Para `NDB`: O número de extensões que ainda não foram usadas pelo arquivo.
+  For `NDB`: The number of extents which have not yet been used by the file.
 
-- `TOTAL_EXTENTS`
+* `TOTAL_EXTENTS`
 
-  Para `InnoDB`: O número de extensões completas usadas no arquivo de dados atual. Qualquer extensão parcial no final do arquivo não é contada.
+  For `InnoDB`: The number of full extents used in the current data file. Any partial extent at the end of the file is not counted.
 
-  Para `NDB`: O número total de extensões alocadas ao arquivo.
+  For `NDB`: The total number of extents allocated to the file.
 
-- `EXTENT_SIZE`
+* `EXTENT_SIZE`
 
-  Para `InnoDB`: o tamanho do intervalo é de 1048576 (1 MB) para arquivos com tamanho de página de 4 KB, 8 KB ou 16 KB. O tamanho do intervalo é de 2097152 bytes (2 MB) para arquivos com tamanho de página de 32 KB e 4194304 (4 MB) para arquivos com tamanho de página de 64 KB. A tabela `[FILES]` (information-schema-files-table.html) não reporta o tamanho da página do `InnoDB`. O tamanho da página é definido pela variável de sistema `[innodb_page_size]` (innodb-parameters.html#sysvar_innodb_page_size). As informações sobre o tamanho do intervalo também podem ser recuperadas da tabela `[INNODB_SYS_TABLESPACES]` (information-schema-innodb-sys-tablespaces-table.html), onde `FILES.FILE_ID = INNODB_SYS_TABLESPACES.SPACE`.
+  For `InnoDB`: Extent size is 1048576 (1MB) for files with a 4KB, 8KB, or 16KB page size. Extent size is 2097152 bytes (2MB) for files with a 32KB page size, and 4194304 (4MB) for files with a 64KB page size. [`FILES`](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table") does not report `InnoDB` page size. Page size is defined by the [`innodb_page_size`](innodb-parameters.html#sysvar_innodb_page_size) system variable. Extent size information can also be retrieved from the [`INNODB_SYS_TABLESPACES`](information-schema-innodb-sys-tablespaces-table.html "24.4.24 The INFORMATION_SCHEMA INNODB_SYS_TABLESPACES Table") table where `FILES.FILE_ID = INNODB_SYS_TABLESPACES.SPACE`.
 
-  Para `NDB`: O tamanho de uma extensão do arquivo em bytes.
+  For `NDB`: The size of an extent for the file in bytes.
 
-- `INITIAL_SIZE`
+* `INITIAL_SIZE`
 
-  Para `InnoDB`: O tamanho inicial do arquivo em bytes.
+  For `InnoDB`: The initial size of the file in bytes.
 
-  Para `NDB`: O tamanho do arquivo em bytes. Este é o mesmo valor que foi usado na cláusula `INITIAL_SIZE` da instrução `CREATE LOGFILE GROUP`, `ALTER LOGFILE GROUP`, `CREATE TABLESPACE` ou `ALTER TABLESPACE` usada para criar o arquivo.
+  For `NDB`: The size of the file in bytes. This is the same value that was used in the `INITIAL_SIZE` clause of the [`CREATE LOGFILE GROUP`](create-logfile-group.html "13.1.15 CREATE LOGFILE GROUP Statement"), [`ALTER LOGFILE GROUP`](alter-logfile-group.html "13.1.5 ALTER LOGFILE GROUP Statement"), [`CREATE TABLESPACE`](create-tablespace.html "13.1.19 CREATE TABLESPACE Statement"), or [`ALTER TABLESPACE`](alter-tablespace.html "13.1.9 ALTER TABLESPACE Statement") statement used to create the file.
 
-- `MAXIMA_TAMANHO`
+* `MAXIMUM_SIZE`
 
-  Para `InnoDB`: O número máximo de bytes permitido no arquivo. O valor é `NULL` para todos os arquivos de espaço de tabela do sistema pré-definidos, exceto para os arquivos de dados dos espaços de tabela do sistema. O tamanho máximo do arquivo do espaço de tabela do sistema é definido por `innodb_data_file_path`. O tamanho máximo do arquivo do espaço de tabela temporário é definido por `innodb_temp_data_file_path`. Um valor `NULL` para um arquivo de espaço de tabela do sistema pré-definido indica que um limite de tamanho de arquivo não foi definido explicitamente.
+  For `InnoDB`: The maximum number of bytes permitted in the file. The value is `NULL` for all data files except for predefined system tablespace data files. Maximum system tablespace file size is defined by [`innodb_data_file_path`](innodb-parameters.html#sysvar_innodb_data_file_path). Maximum temporary tablespace file size is defined by [`innodb_temp_data_file_path`](innodb-parameters.html#sysvar_innodb_temp_data_file_path). A `NULL` value for a predefined system tablespace data file indicates that a file size limit was not defined explicitly.
 
-  Para `NDB`: Este valor é sempre o mesmo que o valor `INITIAL_SIZE`.
+  For `NDB`: This value is always the same as the `INITIAL_SIZE` value.
 
-- `AUTOEXTEND_SIZE`
+* `AUTOEXTEND_SIZE`
 
-  O tamanho de auto-extensão do espaço de tabela. Para `NDB`, `AUTOEXTEND_SIZE` é sempre `NULL`.
+  The auto-extend size of the tablespace. For `NDB`, `AUTOEXTEND_SIZE` is always `NULL`.
 
-- `CREAÇÃO_TIME`
+* `CREATION_TIME`
 
-  Isso é sempre `NULL`.
+  This is always `NULL`.
 
-- `LAST_UPDATE_TIME`
+* `LAST_UPDATE_TIME`
 
-  Isso é sempre `NULL`.
+  This is always `NULL`.
 
-- `LAST_ACCESS_TIME`
+* `LAST_ACCESS_TIME`
 
-  Isso é sempre `NULL`.
+  This is always `NULL`.
 
-- `RECOVER_TIME`
+* `RECOVER_TIME`
 
-  Isso é sempre `NULL`.
+  This is always `NULL`.
 
-- `CONTADOR_TRANSACAO`
+* `TRANSACTION_COUNTER`
 
-  Isso é sempre `NULL`.
+  This is always `NULL`.
 
-- `VERSÃO`
+* `VERSION`
 
-  Para `InnoDB`: Isso é sempre `NULL`.
+  For `InnoDB`: This is always `NULL`.
 
-  Para `NDB`: O número da versão do arquivo.
+  For `NDB`: The version number of the file.
 
-- `ROW_FORMAT`
+* `ROW_FORMAT`
 
-  Para `InnoDB`: Isso é sempre `NULL`.
+  For `InnoDB`: This is always `NULL`.
 
-  Para `NDB`: Um dos valores `FIXED` ou `DYNAMIC`.
+  For `NDB`: One of `FIXED` or `DYNAMIC`.
 
-- `TABELA_LINHAS`
+* `TABLE_ROWS`
 
-  Isso é sempre `NULL`.
+  This is always `NULL`.
 
-- `AVG_ROW_LENGTH`
+* `AVG_ROW_LENGTH`
 
-  Isso é sempre `NULL`.
+  This is always `NULL`.
 
-- `DATA_LENGTH`
+* `DATA_LENGTH`
 
-  Isso é sempre `NULL`.
+  This is always `NULL`.
 
-- `MAX_DATA_LENGTH`
+* `MAX_DATA_LENGTH`
 
-  Isso é sempre `NULL`.
+  This is always `NULL`.
 
-- `INDEX_LENGTH`
+* `INDEX_LENGTH`
 
-  Isso é sempre `NULL`.
+  This is always `NULL`.
 
-- `DATA_FREE`
+* `DATA_FREE`
 
-  Para `InnoDB`: O valor total de espaço livre (em bytes) para todo o espaço de tabelas. Os espaços de tabelas do sistema predefinidos, que incluem o espaço de tabelas do sistema e os espaços de tabelas temporárias, podem ter um ou mais arquivos de dados.
+  For `InnoDB`: The total amount of free space (in bytes) for the entire tablespace. Predefined system tablespaces, which include the system tablespace and temporary table tablespaces, may have one or more data files.
 
-  Para `NDB`: Isso é sempre `NULL`.
+  For `NDB`: This is always `NULL`.
 
-- `CREATE_TIME`
+* `CREATE_TIME`
 
-  Isso é sempre `NULL`.
+  This is always `NULL`.
 
-- `UPDATE_TIME`
+* `UPDATE_TIME`
 
-  Isso é sempre `NULL`.
+  This is always `NULL`.
 
-- `CHECK_TIME`
+* `CHECK_TIME`
 
-  Isso é sempre `NULL`.
+  This is always `NULL`.
 
-- `CHECKSUM`
+* `CHECKSUM`
 
-  Isso é sempre `NULL`.
+  This is always `NULL`.
 
-- `STATUS`
+* `STATUS`
 
-  Para `InnoDB`: Este valor é `NORMAL` por padrão. Os espaços de tabela `InnoDB` por arquivo podem exibir `IMPORTING`, o que indica que o espaço de tabela ainda não está disponível.
+  For `InnoDB`: This value is `NORMAL` by default. `InnoDB` file-per-table tablespaces may report `IMPORTING`, which indicates that the tablespace is not yet available.
 
-  Para `NDB`: Isso é sempre `NORMAL`.
+  For `NDB`: This is always `NORMAL`.
 
-- `EXTRA`
+* `EXTRA`
 
-  Para `InnoDB`: Isso é sempre `NULL`.
+  For `InnoDB`: This is always `NULL`.
 
-  Para `NDB`: Esta coluna mostra a qual nó de dados o arquivo de dados ou o arquivo de log de desfazer pertence (cada nó de dados tem sua própria cópia de cada arquivo); para arquivos de log de desfazer, também mostra o tamanho do buffer de log de desfazer. Suponha que você use esta declaração em um NDB Cluster com quatro nós de dados:
+  For `NDB`: This column shows which data node the data file or undo log file belongs to (each data node having its own copy of each file); for an undo log files, it also shows the size of the undo log buffer. Suppose that you use this statement on an NDB Cluster with four data nodes:
 
   ```sql
   CREATE LOGFILE GROUP mygroup
@@ -197,7 +197,7 @@ A tabela `FILES` tem essas colunas:
       ENGINE NDB;
   ```
 
-  Após executar a instrução `CREATE LOGFILE GROUP` com sucesso, você deve ver um resultado semelhante ao mostrado aqui para esta consulta contra a tabela `FILES`:
+  After running the [`CREATE LOGFILE GROUP`](create-logfile-group.html "13.1.15 CREATE LOGFILE GROUP Statement") statement successfully, you should see a result similar to the one shown here for this query against the [`FILES`](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table") table:
 
   ```sql
   mysql> SELECT LOGFILE_GROUP_NAME, FILE_TYPE, EXTRA
@@ -214,21 +214,21 @@ A tabela `FILES` tem essas colunas:
   +--------------------+-----------+-----------------------------------------+
   ```
 
-#### Notas
+#### Notes
 
-- `FILES` é uma tabela `INFORMATION_SCHEMA` não padrão.
+* [`FILES`](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table") is a nonstandard `INFORMATION_SCHEMA` table.
 
-#### Notas do InnoDB
+#### InnoDB Notes
 
-As seguintes notas se aplicam aos arquivos de dados do `InnoDB`.
+The following notes apply to `InnoDB` data files.
 
-- Os dados relatados por `FILES` são relatados a partir do cache em memória `InnoDB` para arquivos abertos. Em comparação, `INNODB_SYS_DATAFILES` relata dados da tabela interna `SYS_DATAFILES` do `InnoDB`.
+* Data reported by [`FILES`](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table") is reported from the `InnoDB` in-memory cache for open files. By comparison, [`INNODB_SYS_DATAFILES`](information-schema-innodb-sys-datafiles-table.html "24.4.18 The INFORMATION_SCHEMA INNODB_SYS_DATAFILES Table") reports data from the `InnoDB` `SYS_DATAFILES` internal data dictionary table.
 
-- Os dados relatados por `FILES` incluem dados de espaço de tabela temporário. Esses dados não estão disponíveis na tabela `SYS_DATAFILES` do dicionário de dados interno `InnoDB`, e, portanto, não são relatados por `INNODB_SYS_DATAFILES`.
+* The data reported by [`FILES`](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table") includes temporary tablespace data. This data is not available in the `InnoDB` `SYS_DATAFILES` internal data dictionary table, and is therefore not reported by [`INNODB_SYS_DATAFILES`](information-schema-innodb-sys-datafiles-table.html "24.4.18 The INFORMATION_SCHEMA INNODB_SYS_DATAFILES Table").
 
-- Os dados do espaço de tabelas são relatados por `FILES`.
+* Undo tablespace data is reported by [`FILES`](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table").
 
-- A consulta a seguir retorna todos os dados pertinentes aos espaços de tabela `InnoDB`.
+* The following query returns all data pertinent to `InnoDB` tablespaces.
 
   ```sql
   SELECT
@@ -238,13 +238,13 @@ As seguintes notas se aplicam aos arquivos de dados do `InnoDB`.
   FROM INFORMATION_SCHEMA.FILES WHERE ENGINE='InnoDB'\G
   ```
 
-#### Notas do BNDES
+#### NDB Notes
 
-- A tabela `FILES` fornece informações apenas sobre os arquivos de dados do disco; você não pode usá-la para determinar a alocação ou disponibilidade de espaço em disco para tabelas individuais de `NDB`. No entanto, é possível ver quanto espaço é alocado para cada tabela de `NDB` (mysql-cluster.html), com dados armazenados no disco, bem como quanto espaço ainda está disponível para o armazenamento de dados no disco para essa tabela, usando **ndb_desc**.
+* The `FILES` table provides information about Disk Data *files* only; you cannot use it for determining disk space allocation or availability for individual `NDB` tables. However, it is possible to see how much space is allocated for each [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table having data stored on disk—as well as how much remains available for storage of data on disk for that table—using [**ndb_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables").
 
-- Os valores `CREATION_TIME`, `LAST_UPDATE_TIME` e `LAST_ACCESSED` são fornecidos pelo sistema operacional e não pelo mecanismo de armazenamento `NDB`. Quando nenhum valor é fornecido pelo sistema operacional, essas colunas exibem `NULL`.
+* The `CREATION_TIME`, `LAST_UPDATE_TIME`, and `LAST_ACCESSED` values are as reported by the operating system, and are not supplied by the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine. Where no value is provided by the operating system, these columns display `NULL`.
 
-- A diferença entre as colunas `TOTAL EXTENTS` e `FREE_EXTENTS` é o número de extensões atualmente em uso pelo arquivo:
+* The difference between the `TOTAL EXTENTS` and `FREE_EXTENTS` columns is the number of extents currently in use by the file:
 
   ```sql
   SELECT TOTAL_EXTENTS - FREE_EXTENTS AS extents_used
@@ -252,7 +252,7 @@ As seguintes notas se aplicam aos arquivos de dados do `InnoDB`.
       WHERE FILE_NAME = 'myfile.dat';
   ```
 
-  Para aproximar a quantidade de espaço em disco utilizada pelo arquivo, multiplique essa diferença pelo valor da coluna `EXTENT_SIZE`, que fornece o tamanho de um extent para o arquivo em bytes:
+  To approximate the amount of disk space in use by the file, multiply that difference by the value of the `EXTENT_SIZE` column, which gives the size of an extent for the file in bytes:
 
   ```sql
   SELECT (TOTAL_EXTENTS - FREE_EXTENTS) * EXTENT_SIZE AS bytes_used
@@ -260,7 +260,7 @@ As seguintes notas se aplicam aos arquivos de dados do `InnoDB`.
       WHERE FILE_NAME = 'myfile.dat';
   ```
 
-  Da mesma forma, você pode estimar a quantidade de espaço disponível em um arquivo específico ao multiplicar `FREE_EXTENTS` por `EXTENT_SIZE`:
+  Similarly, you can estimate the amount of space that remains available in a given file by multiplying `FREE_EXTENTS` by `EXTENT_SIZE`:
 
   ```sql
   SELECT FREE_EXTENTS * EXTENT_SIZE AS bytes_free
@@ -268,19 +268,19 @@ As seguintes notas se aplicam aos arquivos de dados do `InnoDB`.
       WHERE FILE_NAME = 'myfile.dat';
   ```
 
-  Importante
+  Important
 
-  Os valores de byte produzidos pelas consultas anteriores são apenas aproximações e sua precisão é inversamente proporcional ao valor de `EXTENT_SIZE`. Isso significa que, quanto maior for o valor de `EXTENT_SIZE`, menos precisas serão as aproximações.
+  The byte values produced by the preceding queries are approximations only, and their precision is inversely proportional to the value of `EXTENT_SIZE`. That is, the larger `EXTENT_SIZE` becomes, the less accurate the approximations are.
 
-  É importante lembrar também que, uma vez que um índice é usado, ele não pode ser liberado novamente sem a eliminação do arquivo de dados do qual faz parte. Isso significa que a exclusão de uma tabela de Dados de Disco *não* libera espaço em disco.
+  It is also important to remember that once an extent is used, it cannot be freed again without dropping the data file of which it is a part. This means that deletes from a Disk Data table do *not* release disk space.
 
-  O tamanho da extensão pode ser definido em uma declaração de `CREATE TABLESPACE`. Para mais informações, consulte Seção 13.1.19, "Declaração CREATE TABLESPACE".
+  The extent size can be set in a [`CREATE TABLESPACE`](create-tablespace.html "13.1.19 CREATE TABLESPACE Statement") statement. For more information, see [Section 13.1.19, “CREATE TABLESPACE Statement”](create-tablespace.html "13.1.19 CREATE TABLESPACE Statement").
 
-- Uma linha adicional está presente na tabela `FILES` após a criação de um grupo de logfiles. Essa linha tem `NULL` para o valor da coluna `FILE_NAME` e `0` para o valor da coluna `FILE_ID`; o valor da coluna `FILE_TYPE` é sempre `UNDO LOG` e o da coluna `STATUS` é sempre `NORMAL`. O valor da coluna `ENGINE` para essa linha é sempre `ndbcluster`.
+* An additional row is present in the [`FILES`](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table") table following the creation of a logfile group. This row has `NULL` for the value of the `FILE_NAME` column and `0` for the value of the `FILE_ID` column; the value of the `FILE_TYPE` column is always `UNDO LOG`, and that of the `STATUS` column is always `NORMAL`. The value of the `ENGINE` column for this row is always `ndbcluster`.
 
-  A coluna `FREE_EXTENTS` nesta linha mostra o número total de extensões livres disponíveis para todos os arquivos de desfazer pertencentes a um grupo de arquivos de log específico, cujo nome e número são mostrados nas colunas `LOGFILE_GROUP_NAME` e `LOGFILE_GROUP_NUMBER`, respectivamente.
+  The `FREE_EXTENTS` column in this row shows the total number of free extents available to all undo files belonging to a given log file group whose name and number are shown in the `LOGFILE_GROUP_NAME` and `LOGFILE_GROUP_NUMBER` columns, respectively.
 
-  Suponha que não haja grupos de arquivos de registro existentes no seu NDB Cluster e que você crie um deles usando a seguinte declaração:
+  Suppose there are no existing log file groups on your NDB Cluster, and you create one using the following statement:
 
   ```sql
   mysql> CREATE LOGFILE GROUP lg1
@@ -290,7 +290,7 @@ As seguintes notas se aplicam aos arquivos de dados do `InnoDB`.
            ENGINE = NDB;
   ```
 
-  Agora você pode ver essa linha `NULL` ao fazer uma consulta na tabela `[FILES]` (information-schema-files-table.html):
+  You can now see this `NULL` row when you query the [`FILES`](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table") table:
 
   ```sql
   mysql> SELECT DISTINCT
@@ -308,7 +308,7 @@ As seguintes notas se aplicam aos arquivos de dados do `InnoDB`.
   +--------------+---------+---------+------+----------+
   ```
 
-  O número total de extensões livres disponíveis para registro de desfazer é sempre um pouco menor que a soma dos valores da coluna `TOTAL_EXTENTS` para todos os arquivos de desfazer no grupo de arquivos de log, devido ao overhead necessário para manter os arquivos de desfazer. Isso pode ser visto ao adicionar um segundo arquivo de desfazer ao grupo de arquivos de log, e então repetir a consulta anterior na tabela `FILES`:
+  The total number of free extents available for undo logging is always somewhat less than the sum of the `TOTAL_EXTENTS` column values for all undo files in the log file group due to overhead required for maintaining the undo files. This can be seen by adding a second undo file to the log file group, then repeating the previous query against the [`FILES`](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table") table:
 
   ```sql
   mysql> ALTER LOGFILE GROUP lg1
@@ -332,7 +332,7 @@ As seguintes notas se aplicam aos arquivos de dados do `InnoDB`.
   +----------------+---------+---------+------+----------+
   ```
 
-  O espaço livre em bytes disponível para registro de desfazer nas tabelas de Dados de disco usando este grupo de arquivos de log pode ser aproximado multiplicando o número de extensões livres pelo tamanho inicial:
+  The amount of free space in bytes which is available for undo logging by Disk Data tables using this log file group can be approximated by multiplying the number of free extents by the initial size:
 
   ```sql
   mysql> SELECT
@@ -348,7 +348,7 @@ As seguintes notas se aplicam aos arquivos de dados do `InnoDB`.
   +--------------+------------+
   ```
 
-  Se você criar uma tabela de dados de disco de cluster NDB Cluster e, em seguida, inserir algumas linhas nela, você pode ver aproximadamente quanto espaço permanece para o registro de desfazer posteriormente, por exemplo:
+  If you create an NDB Cluster Disk Data table and then insert some rows into it, you can see approximately how much space remains for undo logging afterward, for example:
 
   ```sql
   mysql> CREATE TABLESPACE ts1
@@ -384,8 +384,8 @@ As seguintes notas se aplicam aos arquivos de dados do `InnoDB`.
   +--------------+------------+
   ```
 
-- Uma linha adicional está presente na tabela `FILES` para qualquer espaço de tabela do NDB Cluster, independentemente de quaisquer arquivos de dados estarem ou não associados ao espaço de tabela. Essa linha tem `NULL` para o valor da coluna `FILE_NAME` e o valor da coluna `FILE_ID` é sempre `0`. O valor exibido na coluna `FILE_TYPE` é sempre `TABLESPACE` e o da coluna `STATUS` é sempre `NORMAL`. O valor da coluna `ENGINE` para essa linha é sempre `ndbcluster`.
+* An additional row is present in the [`FILES`](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table") table for any NDB Cluster tablespace, whether or not any data files are associated with the tablespace. This row has `NULL` for the value of the `FILE_NAME` column, and the value of the `FILE_ID` column is always `0`. The value shown in the `FILE_TYPE` column is always `TABLESPACE`, and that of the `STATUS` column is always `NORMAL`. The value of the `ENGINE` column for this row is always `ndbcluster`.
 
-- Para obter informações adicionais e exemplos de criação e eliminação de objetos de dados de disco do NDB Cluster, consulte Seção 21.6.11, “Tabelas de Dados de Disco do NDB Cluster”.
+* For additional information, and examples of creating and dropping NDB Cluster Disk Data objects, see [Section 21.6.11, “NDB Cluster Disk Data Tables”](mysql-cluster-disk-data.html "21.6.11 NDB Cluster Disk Data Tables").
 
-- A partir do MySQL 5.7.31, você deve ter o privilégio `PROCESS` para consultar essa tabela.
+* As of MySQL 5.7.31, you must have the [`PROCESS`](privileges-provided.html#priv_process) privilege to query this table.

@@ -1,26 +1,26 @@
-### 23.5.4 A cláusula Opção de Visualização COM opção de verificação
+### 23.5.4 The View WITH CHECK OPTION Clause
 
-A cláusula `WITH CHECK OPTION` pode ser usada em uma visão atualizável para impedir inserções em linhas para as quais a cláusula `WHERE` no *`select_statement`* não é verdadeira. Ela também impede atualizações em linhas para as quais a cláusula `WHERE` é verdadeira, mas a atualização faria com que ela se tornasse falsa (em outras palavras, ela impede que linhas visíveis sejam atualizadas para linhas não visíveis).
+The `WITH CHECK OPTION` clause can be given for an updatable view to prevent inserts to rows for which the `WHERE` clause in the *`select_statement`* is not true. It also prevents updates to rows for which the `WHERE` clause is true but the update would cause it to be not true (in other words, it prevents visible rows from being updated to nonvisible rows).
 
-Em uma cláusula `WITH CHECK OPTION` para uma visualização atualizável, as palavras-chave `LOCAL` e `CASCADED` determinam o escopo da verificação quando a visualização é definida em termos de outra visualização. Quando nenhuma dessas palavras-chave é fornecida, o padrão é `CASCADED`.
+In a `WITH CHECK OPTION` clause for an updatable view, the `LOCAL` and `CASCADED` keywords determine the scope of check testing when the view is defined in terms of another view. When neither keyword is given, the default is `CASCADED`.
 
-Antes do MySQL 5.7.6, o teste da opção `WITH CHECK` funciona da seguinte maneira:
+Before MySQL 5.7.6, `WITH CHECK OPTION` testing works like this:
 
-- Com `LOCAL`, a cláusula `WHERE` da vista é verificada, mas nenhuma vista subjacente é verificada.
+* With `LOCAL`, the view `WHERE` clause is checked, but no underlying views are checked.
 
-- Com `CASCADED`, a cláusula `WHERE` da vista é verificada, e a verificação recursora é feita em vistas subjacentes, adicionando `WITH CASCADED CHECK OPTION` a elas (para fins de verificação; suas definições permanecem inalteradas) e aplicando as mesmas regras.
+* With `CASCADED`, the view `WHERE` clause is checked, then checking recurses to underlying views, adds `WITH CASCADED CHECK OPTION` to them (for purposes of the check; their definitions remain unchanged), and applies the same rules.
 
-- Sem a opção de verificação, a cláusula `WHERE` da vista não é verificada, e nenhuma vista subjacente é verificada.
+* With no check option, the view `WHERE` clause is not checked, and no underlying views are checked.
 
-A partir do MySQL 5.7.6, o teste da opção `WITH CHECK` está em conformidade com o padrão (com a semântica alterada em relação ao `LOCAL` anterior e sem cláusula de verificação):
+As of MySQL 5.7.6, `WITH CHECK OPTION` testing is standard-compliant (with changed semantics from previously for `LOCAL` and no check clause):
 
-- Com `LOCAL`, a cláusula `WHERE` da vista é verificada, e a verificação recurssiva é aplicada às vistas subjacentes e aplica as mesmas regras.
+* With `LOCAL`, the view `WHERE` clause is checked, then checking recurses to underlying views and applies the same rules.
 
-- Com `CASCADED`, a cláusula `WHERE` da vista é verificada, e a verificação recursora é feita em vistas subjacentes, adicionando `WITH CASCADED CHECK OPTION` a elas (para fins de verificação; suas definições permanecem inalteradas) e aplicando as mesmas regras.
+* With `CASCADED`, the view `WHERE` clause is checked, then checking recurses to underlying views, adds `WITH CASCADED CHECK OPTION` to them (for purposes of the check; their definitions remain unchanged), and applies the same rules.
 
-- Sem a opção de verificação, a cláusula `WHERE` da vista não é verificada, e a verificação recursora é feita em vistas subjacentes, aplicando as mesmas regras.
+* With no check option, the view `WHERE` clause is not checked, then checking recurses to underlying views, and applies the same rules.
 
-Considere as definições para a tabela e o conjunto de visualizações a seguir:
+Consider the definitions for the following table and set of views:
 
 ```sql
 CREATE TABLE t1 (a INT);
@@ -32,7 +32,7 @@ CREATE VIEW v3 AS SELECT * FROM v1 WHERE a > 0
 WITH CASCADED CHECK OPTION;
 ```
 
-Aqui, as visualizações `v2` e `v3` são definidas em termos de outra visualização, `v1`. Antes do MySQL 5.7.6, porque `v2` tem uma opção de verificação `LOCAL`, as inserções são testadas apenas contra a verificação `v2`. `v3` tem uma opção de verificação `CASCADED`, então as inserções são testadas não apenas contra a verificação `v3`, mas contra as de visualizações subjacentes. As seguintes declarações ilustram essas diferenças:
+Here the `v2` and `v3` views are defined in terms of another view, `v1`. Before MySQL 5.7.6, because `v2` has a `LOCAL` check option, inserts are tested only against the `v2` check. `v3` has a `CASCADED` check option, so inserts are tested not only against the `v3` check, but against those of underlying views. The following statements illustrate these differences:
 
 ```sql
 mysql> INSERT INTO v2 VALUES (2);
@@ -41,7 +41,7 @@ mysql> INSERT INTO v3 VALUES (2);
 ERROR 1369 (HY000): CHECK OPTION failed 'test.v3'
 ```
 
-A partir do MySQL 5.7.6, a semântica para `LOCAL` difere da anterior: as inserções para `v2` são verificadas contra sua opção de verificação `LOCAL`, e, diferentemente do que acontecia antes do 5.7.6, a verificação recursava para `v1` e as regras eram aplicadas novamente. As regras para `v1` causam um erro na verificação. A verificação para `v3` falha como antes:
+As of MySQL 5.7.6, the semantics for `LOCAL` differ from previously: Inserts for `v2` are checked against its `LOCAL` check option, then (unlike before 5.7.6), the check recurses to `v1` and the rules are applied again. The rules for `v1` cause a check failure. The check for `v3` fails as before:
 
 ```sql
 mysql> INSERT INTO v2 VALUES (2);

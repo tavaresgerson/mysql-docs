@@ -1,43 +1,43 @@
-### 13.3.7 Transações XA
+### 13.3.7 XA Transactions
 
-13.3.7.1 Declarações SQL de Transações XA
+[13.3.7.1 XA Transaction SQL Statements](xa-statements.html)
 
-13.3.7.2 Estados de Transação XA
+[13.3.7.2 XA Transaction States](xa-states.html)
 
-13.3.7.3 Restrições para Transações XA
+[13.3.7.3 Restrictions on XA Transactions](xa-restrictions.html)
 
-O suporte para transações XA está disponível para o mecanismo de armazenamento \`InnoDB. A implementação MySQL XA é baseada no documento X/Open CAE *Processamento de Transações Distribuídas: A Especificação XA*. Este documento é publicado pelo The Open Group e está disponível em <http://www.opengroup.org/public/pubs/catalog/c193.htm>. As limitações da implementação atual do XA são descritas em Seção 13.3.7.3, “Restrições para Transações XA”.
+Support for [XA](glossary.html#glos_xa "XA") transactions is available for the [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") storage engine. The MySQL XA implementation is based on the X/Open CAE document *Distributed Transaction Processing: The XA Specification*. This document is published by The Open Group and available at <http://www.opengroup.org/public/pubs/catalog/c193.htm>. Limitations of the current XA implementation are described in [Section 13.3.7.3, “Restrictions on XA Transactions”](xa-restrictions.html "13.3.7.3 Restrictions on XA Transactions").
 
-Do lado do cliente, não há requisitos especiais. A interface XA para um servidor MySQL consiste em instruções SQL que começam com a palavra-chave `XA`. Os programas clientes do MySQL devem ser capazes de enviar instruções SQL e entender a semântica da interface da instrução XA. Eles não precisam ser vinculados a uma biblioteca de cliente recente. Bibliotecas de cliente mais antigas também funcionam.
+On the client side, there are no special requirements. The XA interface to a MySQL server consists of SQL statements that begin with the `XA` keyword. MySQL client programs must be able to send SQL statements and to understand the semantics of the XA statement interface. They do not need be linked against a recent client library. Older client libraries also work.
 
-Entre os Conectores MySQL, o MySQL Connector/J 5.0.0 e versões superiores suportam o XA diretamente, por meio de uma interface de classe que gerencia a interface de declaração SQL XA para você.
+Among the MySQL Connectors, MySQL Connector/J 5.0.0 and higher supports XA directly, by means of a class interface that handles the XA SQL statement interface for you.
 
-O XA suporta transações distribuídas, ou seja, a capacidade de permitir que vários recursos transacionais separados participem de uma transação global. Os recursos transacionais são frequentemente RDBMS, mas podem ser outros tipos de recursos.
+XA supports distributed transactions, that is, the ability to permit multiple separate transactional resources to participate in a global transaction. Transactional resources often are RDBMSs but may be other kinds of resources.
 
-Uma transação global envolve várias ações que são transacionais por si mesmas, mas todas devem ser concluídas com sucesso como um grupo ou todas devem ser revertidas como um grupo. Em essência, isso estende as propriedades ACID “para cima” para que múltiplas transações ACID possam ser executadas em conjunto como componentes de uma operação global que também possui propriedades ACID. (Assim como nas transações não distribuídas, `SERIALIZABLE` pode ser preferível se suas aplicações são sensíveis a fenômenos de leitura. `REPEATABLE READ` pode não ser suficiente para transações distribuídas.)
+A global transaction involves several actions that are transactional in themselves, but that all must either complete successfully as a group, or all be rolled back as a group. In essence, this extends ACID properties “up a level” so that multiple ACID transactions can be executed in concert as components of a global operation that also has ACID properties. (As with nondistributed transactions, [`SERIALIZABLE`](innodb-transaction-isolation-levels.html#isolevel_serializable) may be preferred if your applications are sensitive to read phenomena. [`REPEATABLE READ`](innodb-transaction-isolation-levels.html#isolevel_repeatable-read) may not be sufficient for distributed transactions.)
 
-Alguns exemplos de transações distribuídas:
+Some examples of distributed transactions:
 
-- Um aplicativo pode atuar como uma ferramenta de integração que combina um serviço de mensagens com um RDBMS. O aplicativo garante que as transações relacionadas ao envio, recuperação e processamento de mensagens, que também envolvem um banco de dados transacional, ocorram em uma transação global. Você pode pensar nisso como um "e-mail transacional".
+* An application may act as an integration tool that combines a messaging service with an RDBMS. The application makes sure that transactions dealing with message sending, retrieval, and processing that also involve a transactional database all happen in a global transaction. You can think of this as “transactional email.”
 
-- Uma aplicação executa ações que envolvem diferentes servidores de banco de dados, como um servidor MySQL e um servidor Oracle (ou múltiplos servidores MySQL), onde as ações que envolvem múltiplos servidores devem ocorrer como parte de uma transação global, em vez de como transações separadas locais em cada servidor.
+* An application performs actions that involve different database servers, such as a MySQL server and an Oracle server (or multiple MySQL servers), where actions that involve multiple servers must happen as part of a global transaction, rather than as separate transactions local to each server.
 
-- Um banco mantém as informações das contas em um RDBMS e distribui e recebe dinheiro por meio de caixas eletrônicos (ATM). É necessário garantir que as ações do ATM sejam refletidas corretamente nas contas, mas isso não pode ser feito apenas com o RDBMS. Um gerente de transações globais integra os recursos do ATM e do banco de dados para garantir a consistência geral das transações financeiras.
+* A bank keeps account information in an RDBMS and distributes and receives money through automated teller machines (ATMs). It is necessary to ensure that ATM actions are correctly reflected in the accounts, but this cannot be done with the RDBMS alone. A global transaction manager integrates the ATM and database resources to ensure overall consistency of financial transactions.
 
-Aplicações que utilizam transações globais envolvem um ou mais Gerenciadores de Recursos e um Gerenciador de Transações:
+Applications that use global transactions involve one or more Resource Managers and a Transaction Manager:
 
-- Um Gestor de Recursos (RM) fornece acesso a recursos transacionais. Um servidor de banco de dados é um tipo de gerenciador de recursos. Deve ser possível confirmar ou reverter as transações gerenciadas pelo RM.
+* A Resource Manager (RM) provides access to transactional resources. A database server is one kind of resource manager. It must be possible to either commit or roll back transactions managed by the RM.
 
-- Um Gestor de Transações (TM) coordena as transações que fazem parte de uma transação global. Ele se comunica com os RM que lidam com cada uma dessas transações. As transações individuais dentro de uma transação global são "ramos" da transação global. As transações globais e seus ramos são identificados por um esquema de nomeação descrito mais adiante.
+* A Transaction Manager (TM) coordinates the transactions that are part of a global transaction. It communicates with the RMs that handle each of these transactions. The individual transactions within a global transaction are “branches” of the global transaction. Global transactions and their branches are identified by a naming scheme described later.
 
-A implementação do XA no MySQL permite que um servidor MySQL atue como um Gerenciador de Recursos que lida com transações XA dentro de uma transação global. Um programa cliente que se conecta ao servidor MySQL atua como o Gerenciador de Transações.
+The MySQL implementation of XA enables a MySQL server to act as a Resource Manager that handles XA transactions within a global transaction. A client program that connects to the MySQL server acts as the Transaction Manager.
 
-Para realizar uma transação global, é necessário saber quais componentes estão envolvidos e levar cada componente a um ponto em que ele possa ser comprometido ou desfeito. Dependendo do que cada componente relata sobre sua capacidade de sucesso, todos eles devem comprometer ou desfazer como um grupo atômico. Ou seja, todos os componentes devem comprometer ou desfazer. Para gerenciar uma transação global, é necessário levar em conta que qualquer componente ou a rede de conexão pode falhar.
+To carry out a global transaction, it is necessary to know which components are involved, and bring each component to a point when it can be committed or rolled back. Depending on what each component reports about its ability to succeed, they must all commit or roll back as an atomic group. That is, either all components must commit, or all components must roll back. To manage a global transaction, it is necessary to take into account that any component or the connecting network might fail.
 
-O processo para executar uma transação global utiliza o commit de duas fases (2PC). Isso ocorre após as ações realizadas pelas ramificações da transação global terem sido executadas.
+The process for executing a global transaction uses two-phase commit (2PC). This takes place after the actions performed by the branches of the global transaction have been executed.
 
-1. Na primeira fase, todos os ramos são preparados. Ou seja, eles são informados pelo TM para se prepararem para o commit. Normalmente, isso significa que cada RM que gerencia um ramo registra as ações para o ramo em armazenamento estável. Os ramos indicam se eles são capazes de fazer isso, e esses resultados são usados para a segunda fase.
+1. In the first phase, all branches are prepared. That is, they are told by the TM to get ready to commit. Typically, this means each RM that manages a branch records the actions for the branch in stable storage. The branches indicate whether they are able to do this, and these results are used for the second phase.
 
-2. Na segunda fase, o TM informa aos RM se devem comprometer ou reverter. Se todos os ramos indicarem que podem comprometer-se quando foram preparados, todos os ramos são informados para comprometer-se. Se algum ramo indicar que não pode comprometer-se quando foi preparado, todos os ramos são informados para reverter.
+2. In the second phase, the TM tells the RMs whether to commit or roll back. If all branches indicated when they were prepared that they can commit, all branches are told to commit. If any branch indicated when it was prepared that it could not commit, all branches are told to roll back.
 
-Em alguns casos, uma transação global pode usar o commit de uma fase (1PC). Por exemplo, quando um Gestor de Transações descobre que uma transação global consiste em apenas um recurso transacional (ou seja, um único ramo), esse recurso pode ser instruído a se preparar e se comprometer ao mesmo tempo.
+In some cases, a global transaction might use one-phase commit (1PC). For example, when a Transaction Manager finds that a global transaction consists of only one transactional resource (that is, a single branch), that resource can be told to prepare and commit at the same time.

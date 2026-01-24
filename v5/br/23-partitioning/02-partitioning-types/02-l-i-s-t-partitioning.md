@@ -1,16 +1,16 @@
-### 22.2.2 Partição da lista
+### 22.2.2 LIST Partitioning
 
-A partição por lista no MySQL é semelhante à partição por intervalo de várias maneiras. Assim como na partição por `RANGE`, cada partição deve ser definida explicitamente. A principal diferença entre os dois tipos de partição é que, na partição por lista, cada partição é definida e selecionada com base na pertença de um valor de coluna em um dos conjuntos de listas de valores, em vez de em um dos conjuntos de intervalos contíguos de valores. Isso é feito usando `PARTITION BY LIST(expr)` onde *`expr`* é um valor de coluna ou uma expressão baseada em um valor de coluna e retornando um valor inteiro, e então definindo cada partição por meio de uma `VALUES IN (value_list)`, onde *`value_list`* é uma lista de inteiros separada por vírgula.
+List partitioning in MySQL is similar to range partitioning in many ways. As in partitioning by `RANGE`, each partition must be explicitly defined. The chief difference between the two types of partitioning is that, in list partitioning, each partition is defined and selected based on the membership of a column value in one of a set of value lists, rather than in one of a set of contiguous ranges of values. This is done by using `PARTITION BY LIST(expr)` where *`expr`* is a column value or an expression based on a column value and returning an integer value, and then defining each partition by means of a `VALUES IN (value_list)`, where *`value_list`* is a comma-separated list of integers.
 
-Nota
+Note
 
-No MySQL 5.7, é possível fazer correspondência apenas com uma lista de inteiros (e possivelmente `NULL` — veja Seção 22.2.7, “Como o MySQL Partitioning lida com NULLs”).
+In MySQL 5.7, it is possible to match against only a list of integers (and possibly `NULL`—see [Section 22.2.7, “How MySQL Partitioning Handles NULL”](partitioning-handling-nulls.html "22.2.7 How MySQL Partitioning Handles NULL")) when partitioning by `LIST`.
 
-No entanto, outros tipos de colunas podem ser usados em listas de valores ao utilizar a partição `LIST COLUMN`, que é descrita mais adiante nesta seção.
+However, other column types may be used in value lists when employing `LIST COLUMN` partitioning, which is described later in this section.
 
-Ao contrário do que ocorre com as partições definidas por intervalo, as partições de lista não precisam ser declaradas em uma ordem específica. Para informações sintáticas mais detalhadas, consulte Seção 13.1.18, “Instrução CREATE TABLE”.
+Unlike the case with partitions defined by range, list partitions do not need to be declared in any particular order. For more detailed syntactical information, see [Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement").
 
-Para os exemplos que se seguem, assumimos que a definição básica da tabela a ser particionada é fornecida pela instrução `CREATE TABLE` mostrada aqui:
+For the examples that follow, we assume that the basic definition of the table to be partitioned is provided by the [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement shown here:
 
 ```sql
 CREATE TABLE employees (
@@ -24,13 +24,13 @@ CREATE TABLE employees (
 );
 ```
 
-(Esta é a mesma tabela usada como base para os exemplos na Seção 22.2.1, “Partitionamento RANGE”.)
+(This is the same table used as a basis for the examples in [Section 22.2.1, “RANGE Partitioning”](partitioning-range.html "22.2.1 RANGE Partitioning").)
 
-Suponha que haja 20 lojas de vídeo distribuídas entre 4 franquias, conforme mostrado na tabela a seguir.
+Suppose that there are 20 video stores distributed among 4 franchises as shown in the following table.
 
-<table summary="Um exemplo de 20 lojas de vídeo distribuídas entre 4 franquias regionais, conforme descrito no texto anterior."><thead><tr> <th>Região</th> <th>Números de identificação da loja</th> </tr></thead><tbody><tr> <td>Norte</td> <td>3, 5, 6, 9, 17</td> </tr><tr> <td>Leste</td> <td>1, 2, 10, 11, 19, 20</td> </tr><tr> <td>O Oeste</td> <td>4, 12, 13, 14, 18</td> </tr><tr> <td>Central</td> <td>7, 8, 15, 16</td> </tr></tbody></table>
+<table summary="An example of 20 video stores distributed among 4 regional franchises, as described in the preceding text."><thead><tr> <th>Region</th> <th>Store ID Numbers</th> </tr></thead><tbody><tr> <td>North</td> <td>3, 5, 6, 9, 17</td> </tr><tr> <td>East</td> <td>1, 2, 10, 11, 19, 20</td> </tr><tr> <td>West</td> <td>4, 12, 13, 14, 18</td> </tr><tr> <td>Central</td> <td>7, 8, 15, 16</td> </tr></tbody></table>
 
-Para particionar essa tabela de forma que as linhas de lojas pertencentes à mesma região sejam armazenadas na mesma partição, você pode usar a instrução `CREATE TABLE` mostrada aqui:
+To partition this table in such a way that rows for stores belonging to the same region are stored in the same partition, you could use the [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement shown here:
 
 ```sql
 CREATE TABLE employees (
@@ -50,11 +50,11 @@ PARTITION BY LIST(store_id) (
 );
 ```
 
-Isso facilita a adição ou remoção de registros de funcionários relacionados a regiões específicas da tabela. Por exemplo, suponha que todas as lojas da região Oeste sejam vendidas para outra empresa. No MySQL 5.7, todas as linhas relacionadas a funcionários que trabalham em lojas dessa região podem ser excluídas com a consulta `ALTER TABLE employees TRUNCATE PARTITION pWest`, que pode ser executada de forma muito mais eficiente do que a instrução equivalente `DELETE FROM employees WHERE store_id IN (4,12,13,14,18);`. (Usar `ALTER TABLE employees DROP PARTITION pWest` também exclui todas essas linhas, mas também remove a partição `pWest` da definição da tabela; você precisaria usar uma instrução `ALTER TABLE ... ADD PARTITION` para restaurar o esquema de partição original da tabela.)
+This makes it easy to add or drop employee records relating to specific regions to or from the table. For instance, suppose that all stores in the West region are sold to another company. In MySQL 5.7, all rows relating to employees working at stores in that region can be deleted with the query `ALTER TABLE employees TRUNCATE PARTITION pWest`, which can be executed much more efficiently than the equivalent [`DELETE`](delete.html "13.2.2 DELETE Statement") statement `DELETE FROM employees WHERE store_id IN (4,12,13,14,18);`. (Using `ALTER TABLE employees DROP PARTITION pWest` would also delete all of these rows, but would also remove the partition `pWest` from the definition of the table; you would need to use an `ALTER TABLE ... ADD PARTITION` statement to restore the table's original partitioning scheme.)
 
-Assim como na partição por `RANGE`, é possível combinar a partição por `LIST` com a partição por hash ou chave para produzir uma partição composta (subpartição). Veja Seção 22.2.6, “Subpartição”.
+As with `RANGE` partitioning, it is possible to combine `LIST` partitioning with partitioning by hash or key to produce a composite partitioning (subpartitioning). See [Section 22.2.6, “Subpartitioning”](partitioning-subpartitions.html "22.2.6 Subpartitioning").
 
-Ao contrário do caso do particionamento `RANGE`, não há um "recurso universal" como `MAXVALUE`; todos os valores esperados para a expressão de particionamento devem ser cobertos nas cláusulas `PARTITION ... VALUES IN (...)`. Uma instrução `INSERT` (insert.html) que contém um valor de coluna de particionamento não correspondente falha com um erro, como mostrado neste exemplo:
+Unlike the case with `RANGE` partitioning, there is no “catch-all” such as `MAXVALUE`; all expected values for the partitioning expression should be covered in `PARTITION ... VALUES IN (...)` clauses. An [`INSERT`](insert.html "13.2.5 INSERT Statement") statement containing an unmatched partitioning column value fails with an error, as shown in this example:
 
 ```sql
 mysql> CREATE TABLE h2 (
@@ -71,9 +71,9 @@ mysql> INSERT INTO h2 VALUES (3, 5);
 ERROR 1525 (HY000): Table has no partition for value 3
 ```
 
-Ao inserir várias linhas usando uma única instrução `INSERT`, o comportamento depende se a tabela usa um mecanismo de armazenamento transacional. Para uma tabela de `InnoDB`, a instrução é considerada uma única transação, então a presença de quaisquer valores não correspondentes faz com que a instrução falhe completamente, e nenhuma linha é inserida. Para uma tabela que usa um mecanismo de armazenamento não transacional, como `MyISAM`, quaisquer linhas que vierem antes da linha que contém o valor não correspondente são inseridas, mas quaisquer que vierem depois não são.
+When inserting multiple rows using a single [`INSERT`](insert.html "13.2.5 INSERT Statement") statement the behavior depends on whether the table uses a transactional storage engine. For an [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") table, the statement is considered a single transaction, so the presence of any unmatched values causes the statement to fail completely, and no rows are inserted. For a table using a nontransactional storage engine such as [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine"), any rows coming before the row containing the unmatched value are inserted, but any coming after it are not.
 
-Você pode fazer com que esse tipo de erro seja ignorado usando a palavra-chave `IGNORE`, embora uma mensagem de aviso seja emitida para cada linha que contenha valores de coluna de particionamento não correspondentes, conforme mostrado aqui.
+You can cause this type of error to be ignored by using the `IGNORE` keyword, although a warning is issued for each row containing unmatched partitioning column values, as shown here.
 
 ```sql
 mysql> TRUNCATE h2;
@@ -96,7 +96,7 @@ mysql> SHOW WARNINGS;
 2 rows in set (0.00 sec)
 ```
 
-Você pode ver no resultado da seguinte declaração `TABLE` que as linhas que continham valores de coluna de particionamento não correspondentes foram rejeitadas silenciosamente, enquanto as linhas que não continham valores não correspondentes foram inseridas na tabela:
+You can see in the output of the following [`TABLE`](/doc/refman/8.0/en/table.html) statement that rows containing unmatched partitioning column values were silently rejected, while rows containing no unmatched values were inserted into the table:
 
 ```sql
 mysql> TABLE h2;
@@ -110,4 +110,4 @@ mysql> TABLE h2;
 3 rows in set (0.00 sec)
 ```
 
-O MySQL também oferece suporte para a partição `LIST COLUMNS`, uma variante da partição `LIST` que permite que você use colunas de tipos diferentes de inteiro para a partição das colunas e use múltiplas colunas como chaves de partição. Para mais informações, consulte Seção 22.2.3.2, “Partição de LIST COLUMNS”.
+MySQL also provides support for `LIST COLUMNS` partitioning, a variant of `LIST` partitioning that enables you to use columns of types other than integer for partitioning columns, and to use multiple columns as partitioning keys. For more information, see [Section 22.2.3.2, “LIST COLUMNS partitioning”](partitioning-columns-list.html "22.2.3.2 LIST COLUMNS partitioning").

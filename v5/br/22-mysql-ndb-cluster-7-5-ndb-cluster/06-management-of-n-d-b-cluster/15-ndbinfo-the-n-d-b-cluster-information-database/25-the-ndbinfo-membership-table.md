@@ -1,76 +1,76 @@
-#### 21.6.15.25 Tabela de associação ndbinfo
+#### 21.6.15.25 The ndbinfo membership Table
 
-A tabela `membership` descreve a visão que cada nó de dados tem de todos os outros no clúster, incluindo a associação ao grupo de nós, o nó presidente, o árbitro, o sucessor do árbitro, os estados de conexão do árbitro e outras informações.
+The `membership` table describes the view that each data node has of all the others in the cluster, including node group membership, president node, arbitrator, arbitrator successor, arbitrator connection states, and other information.
 
-A tabela `membership` contém as seguintes colunas:
+The `membership` table contains the following columns:
 
-- `node_id`
+* `node_id`
 
-  ID do nó deste nó
+  This node's node ID
 
-- `grupo_id`
+* `group_id`
 
-  Grupo de nós ao qual este nó pertence
+  Node group to which this node belongs
 
-- "nó esquerdo"
+* `left node`
 
-  ID do nó do nó anterior
+  Node ID of the previous node
 
-- `direita_nó`
+* `right_node`
 
-  ID do nó do próximo nó
+  Node ID of the next node
 
-- presidente
+* `president`
 
-  ID do nó do presidente
+  President's node ID
 
-- "sucessor"
+* `successor`
 
-  ID do nó do sucessor do presidente
+  Node ID of successor to president
 
-- ordem de sucessão
+* `succession_order`
 
-  Ordem em que este nó sucede à presidência
+  Order in which this node succeeds to presidency
 
-- `Conf_HB_order`
+* `Conf_HB_order`
 
   -
 
-- "arbitrador"
+* `arbitrator`
 
-  ID do nó do árbitro
+  Node ID of arbitrator
 
-- `arb_ticket`
+* `arb_ticket`
 
-  Identificador interno usado para rastrear a arbitragem
+  Internal identifier used to track arbitration
 
-- `arb_state`
+* `arb_state`
 
-  Estado de arbitragem
+  Arbitration state
 
-- `arb_connected`
+* `arb_connected`
 
-  Se este nó está conectado ao árbitro; seja `Sim` ou `Não`
+  Whether this node is connected to the arbitrator; either of `Yes` or `No`
 
-- `connected_rank1_arbs`
+* `connected_rank1_arbs`
 
-  Arbitros conectados de nível 1
+  Connected arbitrators of rank 1
 
-- `connected_rank2_arbs`
+* `connected_rank2_arbs`
 
-  Arbitros conectados de nível 1
+  Connected arbitrators of rank 1
 
-##### Notas
+##### Notes
 
-O ID do nó e o ID do grupo de nós são os mesmos relatados por **ndb_mgm -e "SHOW"**.
+The node ID and node group ID are the same as reported by [**ndb_mgm -e "SHOW"**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client").
 
-`left_node` e `right_node` são definidos em termos de um modelo que conecta todos os nós de dados em um círculo, na ordem de seus IDs de nó, semelhante à ordem dos números em um mostrador de relógio, como mostrado aqui:
+`left_node` and `right_node` are defined in terms of a model that connects all data nodes in a circle, in order of their node IDs, similar to the ordering of the numbers on a clock dial, as shown here:
 
-**Figura 21.8. Disposição Circular dos Nodos do Agrupamento NDB**
+**Figure 21.8 Circular Arrangement of NDB Cluster Nodes**
 
-![O conteúdo é descrito no texto ao redor.](images/cluster-left-right.png)
+![Content is described in the surrounding text.](images/cluster-left-right.png)
 
-Neste exemplo, temos 8 nós de dados, numerados 5, 6, 7, 8, 12, 13, 14 e 15, ordenados no sentido horário em um círculo. Determinamos “esquerda” e “direita” a partir do interior do círculo. O nó à esquerda do nó 5 é o nó 15, e o nó à direita do nó 5 é o nó 6. Você pode ver todas essas relações executando a seguinte consulta e observando a saída:
+In this example, we have 8 data nodes, numbered 5, 6, 7, 8, 12, 13, 14, and 15, ordered clockwise in a circle. We determine “left” and “right” from the interior of the circle. The node to the left of node 5 is node 15, and the node to the right of node 5 is node 6. You can see all these relationships by running the following query and observing the output:
 
 ```sql
 mysql> SELECT node_id,left_node,right_node
@@ -90,18 +90,18 @@ mysql> SELECT node_id,left_node,right_node
 8 rows in set (0.00 sec)
 ```
 
-As designações “esquerda” e “direita” são usadas no log de eventos da mesma forma.
+The designations “left” and “right” are used in the event log in the same way.
 
-O nó `presidente` é o nó que o nó atual considera responsável por definir um árbitro (consulte Fases de Início do Clúster NDB). Se o presidente falhar ou se desconectar, o nó atual espera que o nó cujo ID é exibido na coluna `sucessor` se torne o novo presidente. A coluna `ordem_sucessão` mostra o lugar na fila de sucessão que o nó atual considera que tem.
+The `president` node is the node viewed by the current node as responsible for setting an arbitrator (see [NDB Cluster Start Phases](/doc/ndb-internals/en/ndb-internals-start-phases.html)). If the president fails or becomes disconnected, the current node expects the node whose ID is shown in the `successor` column to become the new president. The `succession_order` column shows the place in the succession queue that the current node views itself as having.
 
-Em um cluster NDB normal, todos os nós de dados devem ver o mesmo nó como `presidente`, e o mesmo nó (diferente do presidente) como seu `sucessor`. Além disso, o atual presidente deve se ver como `1` na ordem de sucessão, o nó `sucessor` deve se ver como `2`, e assim por diante.
+In a normal NDB Cluster, all data nodes should see the same node as `president`, and the same node (other than the president) as its `successor`. In addition, the current president should see itself as `1` in the order of succession, the `successor` node should see itself as `2`, and so on.
 
-Todos os nós devem exibir os mesmos valores de `arb_ticket` e os mesmos valores de `arb_state`. Os possíveis valores de `arb_state` são `ARBIT_NULL`, `ARBIT_INIT`, `ARBIT_FIND`, `ARBIT_PREP1`, `ARBIT_PREP2`, `ARBIT_START`, `ARBIT_RUN`, `ARBIT_CHOOSE`, `ARBIT_CRASH` e `UNKNOWN`.
+All nodes should show the same `arb_ticket` values as well as the same `arb_state` values. Possible `arb_state` values are `ARBIT_NULL`, `ARBIT_INIT`, `ARBIT_FIND`, `ARBIT_PREP1`, `ARBIT_PREP2`, `ARBIT_START`, `ARBIT_RUN`, `ARBIT_CHOOSE`, `ARBIT_CRASH`, and `UNKNOWN`.
 
-`arb_connected` mostra se este nó está conectado ao nó mostrado como o `arbitrador` deste nó.
+`arb_connected` shows whether this node is connected to the node shown as this node's `arbitrator`.
 
-As colunas `connected_rank1_arbs` e `connected_rank2_arbs` exibem, cada uma, uma lista de 0 ou mais árbitros que têm um `ArbitrationRank` (mysql-cluster-mgm-definition.html#ndbparam-mgmd-arbitrationrank) igual a 1, ou a 2, respectivamente.
+The `connected_rank1_arbs` and `connected_rank2_arbs` columns each display a list of 0 or more arbitrators having an [`ArbitrationRank`](mysql-cluster-mgm-definition.html#ndbparam-mgmd-arbitrationrank) equal to 1, or to 2, respectively.
 
-Nota
+Note
 
-Tanto os nós de gerenciamento quanto os nós de API são elegíveis para se tornarem árbitros.
+Both management nodes and API nodes are eligible to become arbitrators.

@@ -1,14 +1,14 @@
-### 21.6.9 Importando dados no MySQL Cluster
+### 21.6.9 Importing Data Into MySQL Cluster
 
-É comum, ao configurar uma nova instância do NDB Cluster, precisar importar dados de uma instância existente do NDB Cluster, de uma instância do MySQL ou de outra fonte. Esses dados geralmente estão disponíveis em um ou mais dos seguintes formatos:
+It is common when setting up a new instance of NDB Cluster to need to import data from an existing NDB Cluster, instance of MySQL, or other source. This data is most often available in one or more of the following formats:
 
-- Um arquivo de exclusão SQL, como o produzido por **mysqldump** ou **mysqlpump**. Este pode ser importado usando o cliente **mysql**, conforme mostrado mais adiante nesta seção.
+* An SQL dump file such as produced by [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") or [**mysqlpump**](mysqlpump.html "4.5.6 mysqlpump — A Database Backup Program"). This can be imported using the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client, as shown later in this section.
 
-- Um arquivo CSV produzido por **mysqldump** ou outro programa de exportação. Esses arquivos podem ser importados no `NDB` usando `LOAD DATA INFILE` no cliente [**mysql**]\(mysql.html], ou com o utilitário **ndb_import** fornecido com a distribuição do NDB Cluster. Para mais informações sobre este último, consulte Seção 21.5.14, “ndb_import — Importar dados CSV no NDB”.
+* A CSV file produced by [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") or other export program. Such files can be imported into `NDB` using `LOAD DATA INFILE` in the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client, or with the [**ndb_import**](mysql-cluster-programs-ndb-import.html "21.5.14 ndb_import — Import CSV Data Into NDB") utility provided with the NDB Cluster distribution. For more information about the latter, see [Section 21.5.14, “ndb_import — Import CSV Data Into NDB”](mysql-cluster-programs-ndb-import.html "21.5.14 ndb_import — Import CSV Data Into NDB").
 
-- Um backup nativo do `NDB` produzido usando `START BACKUP` no cliente de gerenciamento do `NDB`. Para importar um backup nativo, você deve usar o programa **ndb_restore** que vem como parte do NDB Cluster. Veja Seção 21.5.24, “ndb_restore — Restaurar um backup do NDB Cluster” para obter mais informações sobre como usar esse programa.
+* A native `NDB` backup produced using [`START BACKUP`](mysql-cluster-backup-using-management-client.html "21.6.8.2 Using The NDB Cluster Management Client to Create a Backup") in the `NDB` management client. To import a native backup, you must use the [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") program that comes as part of NDB Cluster. See [Section 21.5.24, “ndb_restore — Restore an NDB Cluster Backup”](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup"), for more about using this program.
 
-Ao importar dados de um arquivo SQL, muitas vezes não é necessário impor transações ou chaves estrangeiras, e desativar temporariamente essas funcionalidades pode acelerar muito o processo de importação. Isso pode ser feito usando o cliente **mysql**, seja a partir de uma sessão do cliente ou invocando-o na linha de comando. Dentro de uma sessão do cliente **mysql**, você pode realizar a importação usando as seguintes instruções SQL:
+When importing data from an SQL file, it is often not necessary to enforce transactions or foreign keys, and temporarily disabling these features can speed up the import process greatly. This can be done using the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client, either from a client session, or by invoking it on the command line. Within a [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client session, you can perform the import using the following SQL statements:
 
 ```sql
 SET ndb_use_transactions=0;
@@ -20,18 +20,18 @@ SET ndb_use_transactions=1;
 SET foreign_key_checks=1;
 ```
 
-Ao realizar a importação dessa maneira, você *deve* habilitar `ndb_use_transaction` e `foreign_key_checks` novamente após a execução do comando `source` do cliente **mysql**. Caso contrário, é possível que declarações posteriores na mesma sessão também sejam executadas sem a aplicação de transações ou restrições de chave estrangeira, o que pode levar à inconsistência dos dados.
+When performing the import in this fashion, you *must* enable `ndb_use_transaction` and `foreign_key_checks` again following execution of the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client's `source` command. Otherwise, it is possible for later statements in same session may also be executed without enforcing transactions or foreign key constraints, and which could lead to data inconcsistency.
 
-A partir da shell do sistema, você pode importar o arquivo SQL enquanto desabilita a aplicação de transações e chaves estrangeiras usando o cliente **mysql** com a opção `--init-command`, da seguinte forma:
+From the system shell, you can import the SQL file while disabling enforcement of transaction and foreign keys by using the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client with the [`--init-command`](mysql-command-options.html#option_mysql_init-command) option, like this:
 
 ```sql
 $> mysql --init-command='SET ndb_use_transactions=0; SET foreign_key_checks=0' < path/to/dumpfile
 ```
 
-Também é possível carregar os dados em uma tabela `[InnoDB]` e, depois, convertê-los para usar o motor de armazenamento NDB usando `ALTER TABLE ... ENGINE NDB`). Você deve levar em consideração, especialmente para muitas tabelas, que isso pode exigir várias dessas operações; além disso, se chaves estrangeiras forem usadas, você deve prestar atenção à ordem das instruções `ALTER TABLE` com cuidado, devido ao fato de que as chaves estrangeiras não funcionam entre tabelas que usam motores de armazenamento MySQL diferentes.
+It is also possible to load the data into an [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") table, and convert it to use the NDB storage engine afterwards using ALTER TABLE ... ENGINE NDB). You should take into account, especially for many tables, that this may require a number of such operations; in addition, if foreign keys are used, you must mind the order of the `ALTER TABLE` statements carefully, due to the fact that foreign keys do not work between tables using different MySQL storage engines.
 
-Você deve estar ciente de que os métodos descritos anteriormente nesta seção não são otimizados para conjuntos de dados muito grandes ou transações grandes. Se uma aplicação realmente precisar de grandes transações ou muitas transações concorrentes como parte do funcionamento normal, você pode querer aumentar o valor do parâmetro de configuração do nó de dados `MaxNoOfConcurrentOperations`, que reserva mais memória para permitir que um nó de dados assuma uma transação se seu coordenador de transação parar inesperadamente.
+You should be aware that the methods described previously in this section are not optimized for very large data sets or large transactions. Should an application really need big transactions or many concurrent transactions as part of normal operation, you may wish to increase the value of the [`MaxNoOfConcurrentOperations`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnoofconcurrentoperations) data node configuration parameter, which reserves more memory to allow a data node to take over a transaction if its transaction coordinator stops unexpectedly.
 
-Você também pode querer fazer isso ao realizar operações em massa de `DELETE` ou `UPDATE` em tabelas do NDB Cluster. Se possível, tente fazer com que as aplicações realizem essas operações em partes, por exemplo, adicionando `LIMIT` a essas instruções.
+You may also wish to do this when performing bulk [`DELETE`](delete.html "13.2.2 DELETE Statement") or [`UPDATE`](update.html "13.2.11 UPDATE Statement") operations on NDB Cluster tables. If possible, try to have applications perform these operations in chunks, for example, by adding `LIMIT` to such statements.
 
-Se uma operação de importação de dados não for concluída com sucesso, por qualquer motivo, você deve estar preparado para realizar qualquer limpeza necessária, incluindo, possivelmente, uma ou mais instruções `DROP TABLE`, instruções `DROP DATABASE` ou ambas. Não fazer isso pode deixar o banco de dados em um estado inconsistente.
+If a data import operation does not complete successfully, for whatever reason, you should be prepared to perform any necessary cleanup including possibly one or more [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement") statements, [`DROP DATABASE`](drop-database.html "13.1.22 DROP DATABASE Statement") statements, or both. Failing to do so may leave the database in an inconsistent state.

@@ -1,71 +1,71 @@
-### 14.21.4 Considerações de segurança para o plugin InnoDB memcached
+### 14.21.4 Security Considerations for the InnoDB memcached Plugin
 
-Cuidado
+Caution
 
-Consulte esta seção antes de implantar o plugin `daemon_memcached` em um servidor de produção, ou até mesmo em um servidor de teste, se a instância do MySQL contiver dados sensíveis.
+Consult this section before deploying the `daemon_memcached` plugin on a production server, or even on a test server if the MySQL instance contains sensitive data.
 
-Como o **memcached** não utiliza um mecanismo de autenticação por padrão e a autenticação opcional SASL não é tão forte quanto as medidas de segurança tradicionais dos SGBD, mantenha apenas os dados não sensíveis na instância do MySQL que utiliza o plugin `daemon_memcached` e isole quaisquer servidores que utilizem essa configuração de possíveis intrusos. Não permita o acesso do **memcached** a esses servidores pela Internet; permita apenas o acesso por meio de uma intranet com firewall, idealmente de uma sub-rede cuja associação você possa restringir.
+Because **memcached** does not use an authentication mechanism by default, and the optional SASL authentication is not as strong as traditional DBMS security measures, only keep non-sensitive data in the MySQL instance that uses the `daemon_memcached` plugin, and wall off any servers that use this configuration from potential intruders. Do not allow **memcached** access to these servers from the Internet; only allow access from within a firewalled intranet, ideally from a subnet whose membership you can restrict.
 
-#### Protegendo memcached com senha usando SASL
+#### Password-Protecting memcached Using SASL
 
-O suporte SASL oferece a capacidade de proteger seu banco de dados MySQL contra acesso não autenticado por meio de clientes **memcached**. Esta seção explica como habilitar o SASL com o plugin `daemon_memcached`. Os passos são quase idênticos aos realizados para habilitar o SASL em um servidor **memcached** tradicional.
+SASL support provides the capability to protect your MySQL database from unauthenticated access through **memcached** clients. This section explains how to enable SASL with the `daemon_memcached` plugin. The steps are almost identical to those performed to enabled SASL for a traditional **memcached** server.
 
-SASL significa “Camada de Segurança e Autenticação Simples”, um padrão para adicionar suporte à autenticação em protocolos baseados em conexão. O **memcached** adicionou suporte a SASL na versão 1.4.3.
+SASL stands for “Simple Authentication and Security Layer”, a standard for adding authentication support to connection-based protocols. **memcached** added SASL support in version 1.4.3.
 
-A autenticação SASL é suportada apenas com o protocolo binário.
+SASL authentication is only supported with the binary protocol.
 
-Os clientes do **memcached** só conseguem acessar as tabelas do **InnoDB** que estão registradas na tabela **innodb_memcache.containers**. Embora um DBA possa aplicar restrições de acesso a essas tabelas, o acesso através das aplicações do **memcached** não pode ser controlado. Por essa razão, o suporte SASL é fornecido para controlar o acesso às tabelas do **InnoDB** associadas ao plugin **daemon_memcached**.
+**memcached** clients are only able to access `InnoDB` tables that are registered in the `innodb_memcache.containers` table. Even though a DBA can place access restrictions on such tables, access through **memcached** applications cannot be controlled. For this reason, SASL support is provided to control access to `InnoDB` tables associated with the `daemon_memcached` plugin.
 
-A seção a seguir mostra como construir, habilitar e testar um plugin `daemon_memcached` habilitado para SASL.
+The following section shows how to build, enable, and test an SASL-enabled `daemon_memcached` plugin.
 
-#### Construindo e habilitando SASL com o plugin memcached do InnoDB
+#### Building and Enabling SASL with the InnoDB memcached Plugin
 
-Por padrão, um plugin `daemon_memcached` habilitado para SASL não está incluído nos pacotes de lançamento do MySQL, pois um plugin `daemon_memcached` habilitado para SASL requer a construção do **memcached** com as bibliotecas SASL. Para habilitar o suporte para SASL, faça o download do código-fonte do MySQL e reconstrua o plugin `daemon_memcached` após baixar as bibliotecas SASL:
+By default, an SASL-enabled `daemon_memcached` plugin is not included in MySQL release packages, since an SASL-enabled `daemon_memcached` plugin requires building **memcached** with SASL libraries. To enable SASL support, download the MySQL source and rebuild the `daemon_memcached` plugin after downloading the SASL libraries:
 
-1. Instale as bibliotecas de desenvolvimento e utilitárias do SASL. Por exemplo, no Ubuntu, use o **apt-get** para obter as bibliotecas:
+1. Install the SASL development and utility libraries. For example, on Ubuntu, use **apt-get** to obtain the libraries:
 
    ```sql
    sudo apt-get -f install libsasl2-2 sasl2-bin libsasl2-2 libsasl2-dev libsasl2-modules
    ```
 
-2. Construa as bibliotecas de compartilhamento do plugin `daemon_memcached` com capacidade SASL adicionando `ENABLE_MEMCACHED_SASL=1` às suas opções de **cmake**. O **memcached** também oferece suporte a senhas simples em texto claro, o que facilita o teste. Para habilitar o suporte a senhas simples em texto claro, especifique a opção **cmake** `ENABLE_MEMCACHED_SASL_PWDB=1`.
+2. Build the `daemon_memcached` plugin shared libraries with SASL capability by adding `ENABLE_MEMCACHED_SASL=1` to your **cmake** options. **memcached** also provides *simple cleartext password support*, which facilitates testing. To enable simple cleartext password support, specify the `ENABLE_MEMCACHED_SASL_PWDB=1` **cmake** option.
 
-   Em resumo, adicione as seguintes três opções do **cmake**:
+   In summary, add following three **cmake** options:
 
    ```sql
    cmake ... -DWITH_INNODB_MEMCACHED=1 -DENABLE_MEMCACHED_SASL=1 -DENABLE_MEMCACHED_SASL_PWDB=1
    ```
 
-3. Instale o plugin `daemon_memcached`, conforme descrito na Seção 14.21.3, “Configurando o Plugin InnoDB memcached”.
+3. Install the `daemon_memcached` plugin, as described in Section 14.21.3, “Setting Up the InnoDB memcached Plugin”.
 
-4. Configure um arquivo de nome de usuário e senha. (Este exemplo usa o suporte simples de senha em texto claro do **memcached**.)
+4. Configure a user name and password file. (This example uses **memcached** simple cleartext password support.)
 
-   1. Crie um arquivo com o nome `testname` e defina a senha como `testpasswd`:
+   1. In a file, create a user named `testname` and define the password as `testpasswd`:
 
       ```sql
       echo "testname:testpasswd:::::::" >/home/jy/memcached-sasl-db
       ```
 
-   2. Configure a variável de ambiente `MEMCACHED_SASL_PWDB` para informar ao `memcached` o nome do usuário e o arquivo de senha:
+   2. Configure the `MEMCACHED_SASL_PWDB` environment variable to inform `memcached` of the user name and password file:
 
       ```sql
       export MEMCACHED_SASL_PWDB=/home/jy/memcached-sasl-db
       ```
 
-   3. Informe ao `memcached` que uma senha em texto claro é usada:
+   3. Inform `memcached` that a cleartext password is used:
 
       ```sql
       echo "mech_list: plain" > /home/jy/work2/msasl/clients/memcached.conf
       export SASL_CONF_PATH=/home/jy/work2/msasl/clients
       ```
 
-5. Ative o SASL reiniciando o servidor MySQL com a opção **memcached** `-S` codificada no parâmetro de configuração `daemon_memcached_option`:
+5. Enable SASL by restarting the MySQL server with the **memcached** `-S` option encoded in the `daemon_memcached_option` configuration parameter:
 
    ```sql
    mysqld ... --daemon_memcached_option="-S"
    ```
 
-6. Para testar a configuração, use um cliente habilitado para SASL, como [libmemcached habilitado para SASL](https://code.launchpad.net/~trond-norbye/libmemcached/sasl).
+6. To test the setup, use an SASL-enabled client such as [SASL-enabled libmemcached](https://code.launchpad.net/~trond-norbye/libmemcached/sasl).
 
    ```sql
    memcp --servers=localhost:11211 --binary  --username=testname
@@ -75,6 +75,6 @@ Por padrão, um plugin `daemon_memcached` habilitado para SASL não está inclu�
      --password=password myfile.txt
    ```
 
-   Se você especificar um nome de usuário ou senha incorreto, a operação será rejeitada com a mensagem `memcache error AUTHENTICATION FAILURE`. Nesse caso, examine a senha em texto claro definida no arquivo `memcached-sasl-db` para verificar se as credenciais fornecidas estão corretas.
+   If you specify an incorrect user name or password, the operation is rejected with a `memcache error AUTHENTICATION FAILURE` message. In this case, examine the cleartext password set in the `memcached-sasl-db` file to verify that the credentials you supplied are correct.
 
-Existem outros métodos para testar a autenticação SASL com o **memcached**, mas o método descrito acima é o mais simples.
+There are other methods to test SASL authentication with **memcached**, but the method described above is the most straightforward.

@@ -1,4 +1,4 @@
-#### 13.7.2.5 Declaração de REPARO DE TÁBUA
+#### 13.7.2.5 REPAIR TABLE Statement
 
 ```sql
 REPAIR [NO_WRITE_TO_BINLOG | LOCAL]
@@ -6,84 +6,81 @@ REPAIR [NO_WRITE_TO_BINLOG | LOCAL]
     [QUICK] [EXTENDED] [USE_FRM]
 ```
 
-`REPAIR TABLE` repara uma tabela possivelmente corrompida, apenas para determinados motores de armazenamento.
+[`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement") repairs a possibly corrupted table, for certain storage engines only.
 
-Esta declaração requer privilégios de `SELECT` e `INSERT` para a tabela.
+This statement requires [`SELECT`](privileges-provided.html#priv_select) and [`INSERT`](privileges-provided.html#priv_insert) privileges for the table.
 
-Embora normalmente você nunca deva precisar executar `REPAIR TABLE`, se um desastre acontecer, essa declaração provavelmente recuperará todos os seus dados de uma tabela `MyISAM`. Se suas tabelas forem corrompidas com frequência, tente encontrar a razão para isso, para eliminar a necessidade de usar `REPAIR TABLE`. Veja Seção B.3.3.3, “O que fazer se o MySQL continuar a falhar” e Seção 15.2.4, “Problemas com tabelas MyISAM”.
+Although normally you should never have to run [`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement"), if disaster strikes, this statement is very likely to get back all your data from a `MyISAM` table. If your tables become corrupted often, try to find the reason for it, to eliminate the need to use [`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement"). See [Section B.3.3.3, “What to Do If MySQL Keeps Crashing”](crashing.html "B.3.3.3 What to Do If MySQL Keeps Crashing"), and [Section 15.2.4, “MyISAM Table Problems”](myisam-table-problems.html "15.2.4 MyISAM Table Problems").
 
-`REPAIR TABLE` verifica a tabela para ver se é necessário um upgrade. Se for o caso, ele executa o upgrade, seguindo as mesmas regras que `CHECK TABLE ... FOR UPGRADE`. Consulte Seção 13.7.2.2, “Instrução CHECK TABLE” para obter mais informações.
+[`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement") checks the table to see whether an upgrade is required. If so, it performs the upgrade, following the same rules as [`CHECK TABLE ... FOR UPGRADE`](check-table.html "13.7.2.2 CHECK TABLE Statement"). See [Section 13.7.2.2, “CHECK TABLE Statement”](check-table.html "13.7.2.2 CHECK TABLE Statement"), for more information.
 
-Importante
+Important
 
-- Faça um backup de uma tabela antes de realizar uma operação de reparo de tabela; em algumas circunstâncias, a operação pode causar perda de dados. As possíveis causas incluem, mas não estão limitadas a, erros no sistema de arquivos. Consulte [Capítulo 7, *Backup e Recuperação*] (backup-and-recovery.html).
+* Make a backup of a table before performing a table repair operation; under some circumstances the operation might cause data loss. Possible causes include but are not limited to file system errors. See [Chapter 7, *Backup and Recovery*](backup-and-recovery.html "Chapter 7 Backup and Recovery").
 
-- Se o servidor sair durante uma operação de `REPAIR TABLE`, é essencial, após o reinício, executar imediatamente outra instrução `REPAIR TABLE` para a tabela antes de realizar qualquer outra operação nela. No pior dos casos, você pode ter um novo arquivo de índice limpo sem informações sobre o arquivo de dados, e então a próxima operação que você realizar pode sobrescrever o arquivo de dados. Esse é um cenário improvável, mas possível, que destaca o valor de fazer um backup primeiro.
+* If the server exits during a [`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement") operation, it is essential after restarting it that you immediately execute another [`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement") statement for the table before performing any other operations on it. In the worst case, you might have a new clean index file without information about the data file, and then the next operation you perform could overwrite the data file. This is an unlikely but possible scenario that underscores the value of making a backup first.
 
-- Caso uma tabela na fonte seja corrompida e você execute `REPAIR TABLE` nela, quaisquer alterações resultantes na tabela original *não serão* propagadas às réplicas.
+* In the event that a table on the source becomes corrupted and you run [`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement") on it, any resulting changes to the original table are *not* propagated to replicas.
 
-- Suporte ao motor de armazenamento e particionamento da tabela de reparo
+* [REPAIR TABLE Storage Engine and Partitioning Support](repair-table.html#repair-table-support "REPAIR TABLE Storage Engine and Partitioning Support")
+* [REPAIR TABLE Options](repair-table.html#repair-table-options "REPAIR TABLE Options")
+* [REPAIR TABLE Output](repair-table.html#repair-table-output "REPAIR TABLE Output")
+* [Table Repair Considerations](repair-table.html#repair-table-table-repair-considerations "Table Repair Considerations")
 
-- Opções de reparo da tabela
+##### REPAIR TABLE Storage Engine and Partitioning Support
 
-- SAIBA MAIS SOBRE A TABELA
+[`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement") works for [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine"), [`ARCHIVE`](archive-storage-engine.html "15.5 The ARCHIVE Storage Engine"), and [`CSV`](csv-storage-engine.html "15.4 The CSV Storage Engine") tables. For [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine") tables, it has the same effect as [**myisamchk --recover *`tbl_name`***](myisamchk.html "4.6.3 myisamchk — MyISAM Table-Maintenance Utility") by default. This statement does not work with views.
 
-- Considerações sobre a reparação de tabelas
+[`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement") is supported for partitioned tables. However, the `USE_FRM` option cannot be used with this statement on a partitioned table.
 
-##### Suporte ao motor de armazenamento e particionamento da tabela de reparo
+You can use `ALTER TABLE ... REPAIR PARTITION` to repair one or more partitions; for more information, see [Section 13.1.8, “ALTER TABLE Statement”](alter-table.html "13.1.8 ALTER TABLE Statement"), and [Section 22.3.4, “Maintenance of Partitions”](partitioning-maintenance.html "22.3.4 Maintenance of Partitions").
 
-`REPAIR TABLE` funciona para tabelas de `MyISAM`, `ARCHIVE` e `CSV`. Para tabelas de `MyISAM`, ele tem o mesmo efeito que **myisamchk --recover *`tbl_name`*** por padrão. Esta declaração não funciona com visualizações.
+##### REPAIR TABLE Options
 
-A opção `REPAIR TABLE` é suportada para tabelas particionadas. No entanto, a opção `USE_FRM` não pode ser usada com essa instrução em uma tabela particionada.
+* `NO_WRITE_TO_BINLOG` or `LOCAL`
 
-Você pode usar `ALTER TABLE ... REPAIR PARTITION` para reparar uma ou mais partições; para mais informações, consulte Seção 13.1.8, “Instrução ALTER TABLE” e Seção 22.3.4, “Manutenção de Partições”.
+  By default, the server writes [`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement") statements to the binary log so that they replicate to replicas. To suppress logging, specify the optional `NO_WRITE_TO_BINLOG` keyword or its alias `LOCAL`.
 
-##### Opções de REPARAR TÁBUA
+* `QUICK`
 
-- `NO_WRITE_TO_BINLOG` ou `LOCAL`
+  If you use the `QUICK` option, [`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement") tries to repair only the index file, and not the data file. This type of repair is like that done by [**myisamchk --recover --quick**](myisamchk.html "4.6.3 myisamchk — MyISAM Table-Maintenance Utility").
 
-  Por padrão, o servidor escreve as instruções `REPAIR TABLE` no log binário para que elas sejam replicadas para as réplicas. Para suprimir o registro, especifique a palavra-chave opcional `NO_WRITE_TO_BINLOG` ou seu alias `LOCAL`.
+* `EXTENDED`
 
-- `RÁPIDO`
+  If you use the `EXTENDED` option, MySQL creates the index row by row instead of creating one index at a time with sorting. This type of repair is like that done by [**myisamchk --safe-recover**](myisamchk.html "4.6.3 myisamchk — MyISAM Table-Maintenance Utility").
 
-  Se você usar a opção `QUICK`, o `REPAIR TABLE` tenta reparar apenas o arquivo de índice e não o arquivo de dados. Esse tipo de reparo é semelhante ao realizado por **myisamchk --recover --quick**.
+* `USE_FRM`
 
-- `EXTENDIDO`
+  The `USE_FRM` option is available for use if the `.MYI` index file is missing or if its header is corrupted. This option tells MySQL not to trust the information in the `.MYI` file header and to re-create it using information from the `.frm` file. This kind of repair cannot be done with [**myisamchk**](myisamchk.html "4.6.3 myisamchk — MyISAM Table-Maintenance Utility").
 
-  Se você usar a opção `EXTENDED`, o MySQL cria a linha do índice linha por linha, em vez de criar um índice de cada vez com classificação. Esse tipo de reparo é semelhante ao realizado pelo **myisamchk --safe-recover**.
+  Caution
 
-- `USE_FRM`
+  Use the `USE_FRM` option *only* if you cannot use regular `REPAIR` modes. Telling the server to ignore the `.MYI` file makes important table metadata stored in the `.MYI` unavailable to the repair process, which can have deleterious consequences:
 
-  A opção `USE_FRM` está disponível para uso se o arquivo de índice `.MYI` estiver ausente ou se seu cabeçalho estiver corrompido. Esta opção informa ao MySQL para não confiar nas informações no cabeçalho do arquivo `.MYI` e para recriá-lo usando informações do arquivo `.frm`. Esse tipo de reparo não pode ser feito com **myisamchk**.
+  + The current `AUTO_INCREMENT` value is lost.
 
-  Cuidado
+  + The link to deleted records in the table is lost, which means that free space for deleted records remain unoccupied thereafter.
 
-  Use a opção `USE_FRM` *apenas* se você não puder usar os modos regulares de `REPAIR`. Informar ao servidor para ignorar o arquivo `.MYI` torna os metadados importantes das tabelas armazenados no `.MYI` indisponíveis para o processo de reparo, o que pode ter consequências prejudiciais:
+  + The `.MYI` header indicates whether the table is compressed. If the server ignores this information, it cannot tell that a table is compressed and repair can cause change or loss of table contents. This means that `USE_FRM` should not be used with compressed tables. That should not be necessary, anyway: Compressed tables are read only, so they should not become corrupt.
 
-  - O valor atual de `AUTO_INCREMENT` é perdido.
+  If you use `USE_FRM` for a table that was created by a different version of the MySQL server than the one you are currently running, [`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement") does not attempt to repair the table. In this case, the result set returned by [`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement") contains a line with a `Msg_type` value of `error` and a `Msg_text` value of `Failed repairing incompatible .FRM file`.
 
-  - O link para os registros excluídos na tabela é perdido, o que significa que o espaço livre para os registros excluídos permanece desocupado a partir daí.
+  If `USE_FRM` is used, [`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement") does not check the table to see whether an upgrade is required.
 
-  - O cabeçalho `.MYI` indica se a tabela está comprimida. Se o servidor ignorar essa informação, ele não poderá determinar se uma tabela está comprimida e a reparação pode causar alterações ou perda do conteúdo da tabela. Isso significa que o `USE_FRM` não deve ser usado com tabelas comprimidas. Isso não deveria ser necessário, de qualquer forma: as tabelas comprimidas são apenas de leitura, então elas não deveriam ficar corrompidas.
+##### REPAIR TABLE Output
 
-  Se você usar `USE_FRM` para uma tabela criada por uma versão diferente do servidor MySQL daquela que você está executando atualmente, o `REPAIR TABLE` não tentará reparar a tabela. Nesse caso, o conjunto de resultados retornado pelo `REPAIR TABLE` contém uma linha com um valor `Msg_type` de `error` e um valor `Msg_text` de `Falha ao reparar o arquivo .FRM incompatível`.
+[`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement") returns a result set with the columns shown in the following table.
 
-  Se `USE_FRM` for usado, o comando `REPAIR TABLE` (reparar tabela) não verifica a tabela para ver se é necessário um upgrade.
+<table summary="Columns of the REPAIR TABLE result set."><col style="width: 15%"/><col style="width: 60%"/><thead><tr> <th>Column</th> <th>Value</th> </tr></thead><tbody><tr> <td><code>Table</code></td> <td>The table name</td> </tr><tr> <td><code>Op</code></td> <td>Always <code>repair</code></td> </tr><tr> <td><code>Msg_type</code></td> <td><code>status</code>, <code>error</code>, <code>info</code>, <code>note</code>, or <code>warning</code></td> </tr><tr> <td><code>Msg_text</code></td> <td>An informational message</td> </tr></tbody></table>
 
-##### REPARAR TÁBLIA Saída
+The [`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement") statement might produce many rows of information for each repaired table. The last row has a `Msg_type` value of `status` and `Msg_test` normally should be `OK`. For a `MyISAM` table, if you do not get `OK`, you should try repairing it with [**myisamchk --safe-recover**](myisamchk.html "4.6.3 myisamchk — MyISAM Table-Maintenance Utility"). ([`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement") does not implement all the options of [**myisamchk**](myisamchk.html "4.6.3 myisamchk — MyISAM Table-Maintenance Utility"). With [**myisamchk --safe-recover**](myisamchk.html "4.6.3 myisamchk — MyISAM Table-Maintenance Utility"), you can also use options that [`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement") does not support, such as [`--max-record-length`](myisamchk-repair-options.html#option_myisamchk_max-record-length).)
 
-`REPAIR TABLE` retorna um conjunto de resultados com as colunas mostradas na tabela a seguir.
+[`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement") table catches and throws any errors that occur while copying table statistics from the old corrupted file to the newly created file. For example. if the user ID of the owner of the `.frm`, `.MYD`, or `.MYI` file is different from the user ID of the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") process, [`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement") generates a "cannot change ownership of the file" error unless [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") is started by the `root` user.
 
-<table summary="Colunas do conjunto de resultados da tabela REPAIR."><col style="width: 15%"/><col style="width: 60%"/><thead><tr> <th>Coluna</th> <th>Valor</th> </tr></thead><tbody><tr> <td><code>Table</code></td> <td>O nome da tabela</td> </tr><tr> <td><code>Op</code></td> <td>Sempre <code>repair</code></td> </tr><tr> <td><code>Msg_type</code></td> <td><code>status</code>, <code>error</code>, <code>info</code>, <code>note</code> ou <code>warning</code></td> </tr><tr> <td><code>Msg_text</code></td> <td>Uma mensagem informativa</td> </tr></tbody></table>
+##### Table Repair Considerations
 
-A instrução `REPAIR TABLE` pode gerar muitas linhas de informações para cada tabela reparada. A última linha tem um valor `Msg_type` de `status` e `Msg_test` normalmente deve ser `OK`. Para uma tabela `MyISAM`, se você não obtiver `OK`, deve tentar repará-la com **myisamchk --safe-recover**. (`REPAIR TABLE` não implementa todas as opções de **myisamchk**. Com **myisamchk --safe-recover**, você também pode usar opções que `REPAIR TABLE` não suporta, como `--max-record-length`.)
+[`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement") upgrades a table if it contains old temporal columns in pre-5.6.4 format ([`TIME`](time.html "11.2.3 The TIME Type"), [`DATETIME`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types"), and [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") columns without support for fractional seconds precision) and the [`avoid_temporal_upgrade`](server-system-variables.html#sysvar_avoid_temporal_upgrade) system variable is disabled. If [`avoid_temporal_upgrade`](server-system-variables.html#sysvar_avoid_temporal_upgrade) is enabled, [`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement") ignores the old temporal columns present in the table and does not upgrade them.
 
-A tabela `[REPAIR TABLE]` (repair-table.html) captura e exibe quaisquer erros que ocorram durante a cópia das estatísticas da tabela do arquivo antigo corrompido para o arquivo recém-criado. Por exemplo, se o ID do usuário do proprietário do arquivo `.frm`, `.MYD` ou `.MYI` for diferente do ID do usuário do processo **mysqld**, a `[REPAIR TABLE]` (repair-table.html) gera um erro de "não é possível alterar a propriedade do arquivo" a menos que o **mysqld** seja iniciado pelo usuário `root`.
+To upgrade tables that contain such temporal columns, disable [`avoid_temporal_upgrade`](server-system-variables.html#sysvar_avoid_temporal_upgrade) before executing [`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement").
 
-##### Considerações sobre a reparação de mesas
-
-`REPAIR TABLE` atualiza uma tabela se ela contiver colunas temporais antigas no formato pré-5.6.4 (`TIME`, `DATETIME` e `TIMESTAMP` colunas sem suporte para precisão de frações de segundo) e a variável de sistema `avoid_temporal_upgrade` estiver desabilitada. Se `avoid_temporal_upgrade` estiver habilitada, `REPAIR TABLE` ignora as colunas temporais antigas presentes na tabela e não as atualiza.
-
-Para atualizar tabelas que contêm colunas temporais, desative `avoid_temporal_upgrade` antes de executar `REPAIR TABLE`.
-
-Você pode aumentar o desempenho de `REPAIR TABLE` configurando certas variáveis do sistema. Veja Seção 8.6.3, “Otimizando instruções REPAIR TABLE”.
+You may be able to increase [`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement") performance by setting certain system variables. See [Section 8.6.3, “Optimizing REPAIR TABLE Statements”](repair-table-optimization.html "8.6.3 Optimizing REPAIR TABLE Statements").

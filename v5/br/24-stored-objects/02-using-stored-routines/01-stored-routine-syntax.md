@@ -1,19 +1,19 @@
-### 23.2.1 Sintaxe de Rotina Armazenada
+### 23.2.1 Stored Routine Syntax
 
-Uma rotina armazenada é um procedimento ou uma função. Rotinas armazenadas são criadas com as instruções `CREATE PROCEDURE` e `CREATE FUNCTION` (consulte a Seção 13.1.16, “Instruções CREATE PROCEDURE e CREATE FUNCTION”). Um procedimento é invocado usando uma instrução `CALL` (consulte a Seção 13.2.1, “Instrução CALL”), e só pode retornar valores usando variáveis de saída. Uma função pode ser chamada dentro de uma instrução, assim como qualquer outra função (ou seja, invocando o nome da função), e pode retornar um valor escalar. O corpo de uma rotina armazenada pode usar instruções compostas (consulte a Seção 13.6, “Instruções Compostas”).
+A stored routine is either a procedure or a function. Stored routines are created with the `CREATE PROCEDURE` and `CREATE FUNCTION` statements (see Section 13.1.16, “CREATE PROCEDURE and CREATE FUNCTION Statements”). A procedure is invoked using a `CALL` statement (see Section 13.2.1, “CALL Statement”), and can only pass back values using output variables. A function can be called from inside a statement just like any other function (that is, by invoking the function's name), and can return a scalar value. The body of a stored routine can use compound statements (see Section 13.6, “Compound Statements”).
 
-As rotinas armazenadas podem ser excluídas com as instruções `DROP PROCEDURE` e `DROP FUNCTION` (consulte a Seção 13.1.27, “Instruções DROP PROCEDURE e DROP FUNCTION”) e alteradas com as instruções `ALTER PROCEDURE` e `ALTER FUNCTION` (consulte a Seção 13.1.6, “Instrução ALTER PROCEDURE”).
+Stored routines can be dropped with the `DROP PROCEDURE` and `DROP FUNCTION` statements (see Section 13.1.27, “DROP PROCEDURE and DROP FUNCTION Statements”), and altered with the `ALTER PROCEDURE` and `ALTER FUNCTION` statements (see Section 13.1.6, “ALTER PROCEDURE Statement”).
 
-Um procedimento armazenado ou função está associado a um banco de dados específico. Isso tem várias implicações:
+A stored procedure or function is associated with a particular database. This has several implications:
 
-- Quando a rotina é invocada, uma `USE db_name` implícita é realizada (e desfeita quando a rotina termina). As instruções `USE` dentro de rotinas armazenadas não são permitidas.
+* When the routine is invoked, an implicit `USE db_name` is performed (and undone when the routine terminates). `USE` statements within stored routines are not permitted.
 
-- Você pode qualificar nomes de rotinas com o nome do banco de dados. Isso pode ser usado para se referir a uma rotina que não está no banco de dados atual. Por exemplo, para invocar um procedimento armazenado `p` ou função `f` que está associado ao banco de dados `test`, você pode dizer `CALL test.p()` ou `test.f()`.
+* You can qualify routine names with the database name. This can be used to refer to a routine that is not in the current database. For example, to invoke a stored procedure `p` or function `f` that is associated with the `test` database, you can say `CALL test.p()` or `test.f()`.
 
-- Quando um banco de dados é excluído, todas as rotinas armazenadas associadas a ele também são excluídas.
+* When a database is dropped, all stored routines associated with it are dropped as well.
 
-As funções armazenadas não podem ser recursivas.
+Stored functions cannot be recursive.
 
-A recursão em procedimentos armazenados é permitida, mas desabilitada por padrão. Para habilitar a recursão, defina a variável de sistema do servidor `max_sp_recursion_depth` para um valor maior que zero. A recursão em procedimentos armazenados aumenta a demanda por espaço na pilha de threads. Se você aumentar o valor de `max_sp_recursion_depth`, pode ser necessário aumentar o tamanho da pilha de threads ao aumentar o valor de `thread_stack` durante o inicialização do servidor. Consulte a Seção 5.1.7, “Variáveis de Sistema do Servidor”, para obter mais informações.
+Recursion in stored procedures is permitted but disabled by default. To enable recursion, set the `max_sp_recursion_depth` server system variable to a value greater than zero. Stored procedure recursion increases the demand on thread stack space. If you increase the value of `max_sp_recursion_depth`, it may be necessary to increase thread stack size by increasing the value of `thread_stack` at server startup. See Section 5.1.7, “Server System Variables”, for more information.
 
-O MySQL suporta uma extensão muito útil que permite o uso de instruções `SELECT` regulares (ou seja, sem o uso de cursors ou variáveis locais) dentro de um procedimento armazenado. O conjunto de resultados dessa consulta é simplesmente enviado diretamente ao cliente. Múltiplas instruções `SELECT` geram múltiplos conjuntos de resultados, então o cliente deve usar uma biblioteca de cliente do MySQL que suporte múltiplos conjuntos de resultados. Isso significa que o cliente deve usar uma biblioteca de cliente de uma versão do MySQL pelo menos tão recente quanto 4.1. O cliente também deve especificar a opção `CLIENT_MULTI_RESULTS` ao se conectar. Para programas em C, isso pode ser feito com a função `mysql_real_connect()` da API C. Veja mysql_real_connect() e Suporte à Execução de Instruções Múltiplas.
+MySQL supports a very useful extension that enables the use of regular `SELECT` statements (that is, without using cursors or local variables) inside a stored procedure. The result set of such a query is simply sent directly to the client. Multiple `SELECT` statements generate multiple result sets, so the client must use a MySQL client library that supports multiple result sets. This means the client must use a client library from a version of MySQL at least as recent as 4.1. The client should also specify the `CLIENT_MULTI_RESULTS` option when it connects. For C programs, this can be done with the `mysql_real_connect()` C API function. See mysql_real_connect(), and Multiple Statement Execution Support.

@@ -1,12 +1,12 @@
-### 13.8.4 Declaração de uso
+### 13.8.4 USE Statement
 
 ```sql
 USE db_name
 ```
 
-A instrução `USE` informa ao MySQL que deve usar o banco de dados nomeado como o banco de dados padrão (atual) para as instruções subsequentes. Esta instrução requer algum privilégio para o banco de dados ou algum objeto dentro dele.
+The [`USE`](use.html "13.8.4 USE Statement") statement tells MySQL to use the named database as the default (current) database for subsequent statements. This statement requires some privilege for the database or some object within it.
 
-O banco de dados nomeado permanece como padrão até o final da sessão ou até que outra instrução `USE` seja emitida:
+The named database remains the default until the end of the session or another [`USE`](use.html "13.8.4 USE Statement") statement is issued:
 
 ```sql
 USE db1;
@@ -15,9 +15,9 @@ USE db2;
 SELECT COUNT(*) FROM mytable;   # selects from db2.mytable
 ```
 
-O nome do banco de dados deve ser especificado em uma única linha. As novas linhas nos nomes dos bancos de dados não são suportadas.
+The database name must be specified on a single line. Newlines in database names are not supported.
 
-Tornar um banco de dados específico o padrão por meio da instrução `USE` não impede o acesso a tabelas em outros bancos de dados. O exemplo a seguir acessa a tabela `author` do banco de dados `db1` e a tabela `editor` do banco de dados `db2`:
+Making a particular database the default by means of the [`USE`](use.html "13.8.4 USE Statement") statement does not preclude accessing tables in other databases. The following example accesses the `author` table from the `db1` database and the `editor` table from the `db2` database:
 
 ```sql
 USE db1;

@@ -1,41 +1,41 @@
-#### 16.1.2.5 Configurando Replicas
+#### 16.1.2.5 Setting Up Replicas
 
-As seções a seguir descrevem como configurar réplicas. Antes de prosseguir, certifique-se de que você tem:
+The following sections describe how to set up replicas. Before you proceed, ensure that you have:
 
-- Configurou a fonte com as propriedades de configuração necessárias. Consulte Seção 16.1.2.1, "Definindo a configuração da fonte de replicação".
+* Configured the source with the necessary configuration properties. See [Section 16.1.2.1, “Setting the Replication Source Configuration”](replication-howto-masterbaseconfig.html "16.1.2.1 Setting the Replication Source Configuration").
 
-- Obteve as informações de status da fonte ou uma cópia do arquivo de índice de log binário da fonte, feito durante um desligamento para o instantâneo de dados. Consulte Seção 16.1.2.3, “Obtendo as coordenadas de log binário da fonte de replicação”.
+* Obtained the source's status information, or a copy of the source's binary log index file made during a shutdown for the data snapshot. See [Section 16.1.2.3, “Obtaining the Replication Source's Binary Log Coordinates”](replication-howto-masterstatus.html "16.1.2.3 Obtaining the Replication Source's Binary Log Coordinates").
 
-- Na fonte, liberou o bloqueio de leitura:
+* On the source, released the read lock:
 
   ```sql
   mysql> UNLOCK TABLES;
   ```
 
-##### 16.1.2.5.1 Configuração de replicação
+##### 16.1.2.5.1 Setting the Replica Configuration
 
-Cada replica deve ter um ID de servidor único, conforme especificado pela variável de sistema `server_id`. Se você estiver configurando múltiplas replicas, cada uma deve ter um valor único de `server_id` que difere do do servidor de origem e de qualquer outra replica. Se o ID de servidor da replica ainda não estiver definido ou o valor atual entrar em conflito com o valor que você escolheu para o servidor de origem ou outra replica, você deve alterá-lo. Com o valor padrão de `server_id` de 0, uma replica se recusa a se conectar a um servidor de origem.
+Each replica must have a unique server ID, as specified by the [`server_id`](replication-options.html#sysvar_server_id) system variable. If you are setting up multiple replicas, each one must have a unique [`server_id`](replication-options.html#sysvar_server_id) value that differs from that of the source and from any of the other replicas. If the replica's server ID is not already set, or the current value conflicts with the value that you have chosen for the source server or another replica, you must change it. With the default [`server_id`](replication-options.html#sysvar_server_id) value of 0, a replica refuses to connect to a source.
 
-Você pode alterar o valor de `server_id` dinamicamente emitindo uma declaração como esta:
+You can change the [`server_id`](replication-options.html#sysvar_server_id) value dynamically by issuing a statement like this:
 
 ```sql
 SET GLOBAL server_id = 21;
 ```
 
-Se o valor padrão do `server_id` de 0 foi definido anteriormente, você deve reiniciar o servidor para inicializar a replica com seu novo ID de servidor não nulo. Caso contrário, um reinício do servidor não é necessário quando você altera o ID do servidor, a menos que você faça outras alterações de configuração que o exijam. Por exemplo, se o registro binário foi desativado no servidor e você deseja ativá-lo para sua replica, um reinício do servidor é necessário para ativá-lo.
+If the default [`server_id`](replication-options.html#sysvar_server_id) value of 0 was set previously, you must restart the server to initialize the replica with your new nonzero server ID. Otherwise, a server restart is not needed when you change the server ID, unless you make other configuration changes that require it. For example, if binary logging was disabled on the server and you want it enabled for your replica, a server restart is required to enable this.
 
-Se você estiver desligando o servidor de replicação, pode editar a seção `[mysqld]` do arquivo de configuração para especificar um ID de servidor único. Por exemplo:
+If you are shutting down the replica server, you can edit the `[mysqld]` section of the configuration file to specify a unique server ID. For example:
 
 ```sql
 [mysqld]
 server-id=21
 ```
 
-Uma réplica não precisa ter o registro binário habilitado para que a replicação ocorra. No entanto, o registro binário em uma réplica significa que o log binário da réplica pode ser usado para backups de dados e recuperação em caso de falha. Réplicas que têm o registro binário habilitado também podem ser usadas como parte de uma topologia de replicação mais complexa. Se você deseja habilitar o registro binário em uma réplica, use a opção `log-bin` na seção `[mysqld]` do arquivo de configuração. Um reinício do servidor é necessário para iniciar o registro binário em um servidor que não o usou anteriormente.
+A replica is not required to have binary logging enabled for replication to take place. However, binary logging on a replica means that the replica's binary log can be used for data backups and crash recovery. Replicas that have binary logging enabled can also be used as part of a more complex replication topology. If you want to enable binary logging on a replica, use the `log-bin` option in the `[mysqld]` section of the configuration file. A server restart is required to start binary logging on a server that did not previously use it.
 
-##### 16.1.2.5.2. Definir a configuração de fonte no replicador
+##### 16.1.2.5.2 Setting the Source Configuration on the Replica
 
-Para configurar a replica para se comunicar com a fonte de replicação, configure a replica com as informações de conexão necessárias. Para fazer isso, execute a seguinte instrução na replica, substituindo os valores da opção pelos valores reais relevantes para o seu sistema:
+To set up the replica to communicate with the source for replication, configure the replica with the necessary connection information. To do this, execute the following statement on the replica, replacing the option values with the actual values relevant to your system:
 
 ```sql
 mysql> CHANGE MASTER TO
@@ -46,70 +46,70 @@ mysql> CHANGE MASTER TO
     ->     MASTER_LOG_POS=recorded_log_position;
 ```
 
-Nota
+Note
 
-A replicação não pode usar arquivos de socket Unix. Você deve ser capaz de se conectar ao servidor MySQL de origem usando TCP/IP.
+Replication cannot use Unix socket files. You must be able to connect to the source MySQL server using TCP/IP.
 
-A declaração `CHANGE MASTER TO` também possui outras opções. Por exemplo, é possível configurar a replicação segura usando SSL. Para uma lista completa das opções e informações sobre o comprimento máximo permitido para as opções de valor de string, consulte Seção 13.4.2.1, “Declaração CHANGE MASTER TO”.
+The [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") statement has other options as well. For example, it is possible to set up secure replication using SSL. For a full list of options, and information about the maximum permissible length for the string-valued options, see [Section 13.4.2.1, “CHANGE MASTER TO Statement”](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement").
 
-Os próximos passos dependem de você ter dados existentes para importar na replica ou não. Consulte Seção 16.1.2.4, “Escolhendo um Método para Instantâneos de Dados” para obter mais informações. Escolha um dos seguintes:
+The next steps depend on whether you have existing data to import to the replica or not. See [Section 16.1.2.4, “Choosing a Method for Data Snapshots”](replication-snapshot-method.html "16.1.2.4 Choosing a Method for Data Snapshots") for more information. Choose one of the following:
 
-- Se você não tiver uma instantânea de um banco de dados a ser importado, consulte Seção 16.1.2.5.3, “Configurando a replicação entre uma nova fonte e réplicas”.
+* If you do not have a snapshot of a database to import, see [Section 16.1.2.5.3, “Setting Up Replication between a New Source and Replicas”](replication-setup-replicas.html#replication-howto-newservers "16.1.2.5.3 Setting Up Replication between a New Source and Replicas").
 
-- Se você tiver uma instantânea de um banco de dados a ser importado, consulte Seção 16.1.2.5.4, “Configurando a Replicação com Dados Existentes”.
+* If you have a snapshot of a database to import, see [Section 16.1.2.5.4, “Setting Up Replication with Existing Data”](replication-setup-replicas.html#replication-howto-existingdata "16.1.2.5.4 Setting Up Replication with Existing Data").
 
-##### 16.1.2.5.3 Configurando a replicação entre uma nova fonte e réplicas
+##### 16.1.2.5.3 Setting Up Replication between a New Source and Replicas
 
-Quando não houver uma cópia de um banco de dados anterior para importar, configure a replicação para começar a replicar a partir da nova fonte.
+When there is no snapshot of a previous database to import, configure the replica to start replication from the new source.
 
-Para configurar a replicação entre uma fonte e uma nova réplica:
+To set up replication between a source and a new replica:
 
-1. Inicie a replica e conecte-se a ela.
-2. Execute a declaração `CHANGE MASTER TO` para definir a configuração da fonte. Veja Seção 16.1.2.5.2, “Definindo a Configuração da Fonte no Replica”.
+1. Start up the replica and connect to it.
+2. Execute a [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") statement to set the source configuration. See [Section 16.1.2.5.2, “Setting the Source Configuration on the Replica”](replication-setup-replicas.html#replication-howto-slaveinit "16.1.2.5.2 Setting the Source Configuration on the Replica").
 
-Realize essas etapas de configuração em cada réplica.
+Perform these setup steps on each replica.
 
-Esse método também pode ser usado se você estiver configurando novos servidores, mas tiver um dump existente dos bancos de dados de um servidor diferente que deseja carregar na configuração de replicação. Ao carregar os dados em uma nova fonte, os dados são replicados automaticamente para as réplicas.
+This method can also be used if you are setting up new servers but have an existing dump of the databases from a different server that you want to load into your replication configuration. By loading the data into a new source, the data is automatically replicated to the replicas.
 
-Se você estiver configurando um novo ambiente de replicação usando os dados de um servidor de banco de dados existente para criar uma nova fonte, execute o arquivo de dump gerado a partir desse servidor na nova fonte. As atualizações do banco de dados são automaticamente propagadas para as réplicas:
+If you are setting up a new replication environment using the data from a different existing database server to create a new source, run the dump file generated from that server on the new source. The database updates are automatically propagated to the replicas:
 
 ```sql
 $> mysql -h master < fulldb.dump
 ```
 
-##### 16.1.2.5.4 Configurando a replicação com dados existentes
+##### 16.1.2.5.4 Setting Up Replication with Existing Data
 
-Ao configurar a replicação com dados existentes, transfira o instantâneo da fonte para a replica antes de iniciar a replicação. O processo de importação de dados para a replica depende de como você criou o instantâneo dos dados na fonte.
+When setting up replication with existing data, transfer the snapshot from the source to the replica before starting replication. The process for importing data to the replica depends on how you created the snapshot of data on the source.
 
-Siga este procedimento para configurar a replicação com dados existentes:
+Follow this procedure to set up replication with existing data:
 
-1. Importe os dados para a replica usando um dos seguintes métodos:
+1. Import the data to the replica using one of the following methods:
 
-   1. Se você usou **mysqldump**, inicie o servidor de replicação, garantindo que a replicação não seja iniciada usando a opção `--skip-slave-start`. Em seguida, importe o arquivo de dump:
+   1. If you used [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program"), start the replica server, ensuring that replication does not start by using the [`--skip-slave-start`](replication-options-replica.html#option_mysqld_skip-slave-start) option. Then import the dump file:
 
       ```sql
       $> mysql < fulldb.dump
       ```
 
-   2. Se você criou um instantâneo usando os arquivos de dados brutos, extraia os arquivos de dados para o diretório de dados da replica. Por exemplo:
+   2. If you created a snapshot using the raw data files, extract the data files into your replica's data directory. For example:
 
       ```sql
       $> tar xvf dbdump.tar
       ```
 
-      Você pode precisar definir permissões e propriedade dos arquivos para que o servidor de replicação possa acessá-los e modificá-los. Em seguida, inicie o servidor de replicação, garantindo que a replicação não seja iniciada usando a opção `--skip-slave-start`.
+      You may need to set permissions and ownership on the files so that the replica server can access and modify them. Then start the replica server, ensuring that replication does not start by using the [`--skip-slave-start`](replication-options-replica.html#option_mysqld_skip-slave-start) option.
 
-2. Configure a replica com as coordenadas de replicação da fonte. Isso informa à replica o arquivo de log binário e a posição dentro do arquivo onde a replicação deve começar. Além disso, configure a replica com as credenciais de login e o nome do host da fonte. Para mais informações sobre a declaração `CHANGE MASTER TO`, consulte Seção 16.1.2.5.2, “Definindo a Configuração da Fonte na Replica”.
+2. Configure the replica with the replication coordinates from the source. This tells the replica the binary log file and position within the file where replication needs to start. Also, configure the replica with the login credentials and host name of the source. For more information on the [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") statement required, see [Section 16.1.2.5.2, “Setting the Source Configuration on the Replica”](replication-setup-replicas.html#replication-howto-slaveinit "16.1.2.5.2 Setting the Source Configuration on the Replica").
 
-3. Comece os threads de replicação:
+3. Start the replication threads:
 
    ```sql
    mysql> START SLAVE;
    ```
 
-Depois de realizar este procedimento, a réplica se conecta à fonte e replica todas as atualizações que ocorreram na fonte desde que o instantâneo foi feito.
+After you have performed this procedure, the replica connects to the source and replicates any updates that have occurred on the source since the snapshot was taken.
 
-Se a variável de sistema `server_id` para a fonte não estiver configurada corretamente, as réplicas não poderão se conectar a ela. Da mesma forma, se você não tiver configurado corretamente o `server_id` para a réplica, você receberá o seguinte erro no log de erro da réplica:
+If the [`server_id`](replication-options.html#sysvar_server_id) system variable for the source is not correctly set, replicas cannot connect to it. Similarly, if you have not set [`server_id`](replication-options.html#sysvar_server_id) correctly for the replica, you get the following error in the replica's error log:
 
 ```sql
 Warning: You should set server-id to a non-0 value if master_host
@@ -117,12 +117,12 @@ is set; we will force server id to 2, but this MySQL server will
 not act as a slave.
 ```
 
-Você também encontrará mensagens de erro no log de erro da replica se ela não conseguir replicar por qualquer outro motivo.
+You also find error messages in the replica's error log if it is not able to replicate for any other reason.
 
-A replica armazena informações sobre a fonte configurada em seu repositório de metadados de conexão. O repositório de metadados de conexão pode estar na forma de arquivos ou uma tabela, conforme determinado pelo valor definido para a variável de sistema `master_info_repository`. Quando uma replica é executada com `master_info_repository=FILE`, dois arquivos são armazenados no diretório de dados, chamados `master.info` e `relay-log.info`. Se, em vez disso, for definido `master_info_repository=TABLE`, essas informações são salvas na tabela `master_slave_info` no banco de dados `mysql`. Em qualquer caso, *não* remova ou edite os arquivos ou a tabela. Sempre use a declaração `[ALTER MASTER TO]`]\(change-master-to.html) para alterar os parâmetros de replicação. A replica pode usar os valores especificados na declaração para atualizar os arquivos de status automaticamente. Consulte Seção 16.2.4, “Repositórios de Metadados de Relógio de Relay e Replicação” para obter mais informações.
+The replica stores information about the source you have configured in its connection metadata repository. The connection metadata repository can be in the form of files or a table, as determined by the value set for the [`master_info_repository`](replication-options-replica.html#sysvar_master_info_repository) system variable. When a replica runs with [`master_info_repository=FILE`](replication-options-replica.html#sysvar_master_info_repository), two files are stored in the data directory, named `master.info` and `relay-log.info`. If [`master_info_repository=TABLE`](replication-options-replica.html#sysvar_master_info_repository) instead, this information is saved in the `master_slave_info` table in the `mysql` database. In either case, do *not* remove or edit the files or table. Always use the [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") statement to change replication parameters. The replica can use the values specified in the statement to update the status files automatically. See [Section 16.2.4, “Relay Log and Replication Metadata Repositories”](replica-logs.html "16.2.4 Relay Log and Replication Metadata Repositories"), for more information.
 
-Nota
+Note
 
-O conteúdo do repositório de metadados de conexão substitui algumas das opções do servidor especificadas na linha de comando ou no `my.cnf`. Consulte Seção 16.1.6, “Opções e variáveis de replicação e registro binário” para obter mais detalhes.
+The contents of the connection metadata repository override some of the server options specified on the command line or in `my.cnf`. See [Section 16.1.6, “Replication and Binary Logging Options and Variables”](replication-options.html "16.1.6 Replication and Binary Logging Options and Variables"), for more details.
 
-Um único instantâneo da fonte é suficiente para múltiplas réplicas. Para configurar réplicas adicionais, use o mesmo instantâneo da fonte e siga a parte da réplica do procedimento descrito anteriormente.
+A single snapshot of the source suffices for multiple replicas. To set up additional replicas, use the same source snapshot and follow the replica portion of the procedure just described.

@@ -1,6 +1,6 @@
-#### 25.12.16.4 A tabela de fios
+#### 25.12.16.4 The threads Table
 
-A tabela `threads` contém uma linha para cada thread do servidor. Cada linha contém informações sobre uma thread e indica se o monitoramento e o registro de eventos históricos estão habilitados para ela:
+The [`threads`](performance-schema-threads-table.html "25.12.16.4 The threads Table") table contains a row for each server thread. Each row contains information about a thread and indicates whether monitoring and historical event logging are enabled for it:
 
 ```sql
 mysql> SELECT * FROM performance_schema.threads\G
@@ -44,49 +44,49 @@ PROCESSLIST_COMMAND: Query
 ...
 ```
 
-Quando o Schema de Desempenho é inicializado, ele preenche a tabela `threads` com base nos threads existentes naquela época. Posteriormente, uma nova linha é adicionada sempre que o servidor cria um thread.
+When the Performance Schema initializes, it populates the [`threads`](performance-schema-threads-table.html "25.12.16.4 The threads Table") table based on the threads in existence then. Thereafter, a new row is added each time the server creates a thread.
 
-Os valores das colunas `INSTRUMENTED` e `HISTORY` para novos tópicos são determinados pelo conteúdo da tabela `setup_actors`. Para obter informações sobre como usar a tabela `setup_actors` para controlar essas colunas, consulte Seção 25.4.6, “Pré-filtragem por Tópico”.
+The `INSTRUMENTED` and `HISTORY` column values for new threads are determined by the contents of the [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table") table. For information about how to use the [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table") table to control these columns, see [Section 25.4.6, “Pre-Filtering by Thread”](performance-schema-thread-filtering.html "25.4.6 Pre-Filtering by Thread").
 
-A remoção de linhas da tabela `threads` ocorre quando os threads terminam. Para um thread associado a uma sessão de cliente, a remoção ocorre quando a sessão termina. Se um cliente tiver o recurso de reconexão automática habilitado e a sessão se reconectar após uma desconexão, a sessão se torna associada a uma nova linha na tabela `threads` que tem um valor diferente para o `PROCESSLIST_ID`. Os valores iniciais `INSTRUMENTED` e `HISTORY` para o novo thread podem ser diferentes dos do thread original: A tabela `setup_actors` pode ter sido alterada entretanto, e se o valor `INSTRUMENTED` ou `HISTORY` para o thread original foi alterado após a linha ter sido inicializada, a alteração não se aplica ao novo thread.
+Removal of rows from the [`threads`](performance-schema-threads-table.html "25.12.16.4 The threads Table") table occurs when threads end. For a thread associated with a client session, removal occurs when the session ends. If a client has auto-reconnect enabled and the session reconnects after a disconnect, the session becomes associated with a new row in the [`threads`](performance-schema-threads-table.html "25.12.16.4 The threads Table") table that has a different `PROCESSLIST_ID` value. The initial `INSTRUMENTED` and `HISTORY` values for the new thread may be different from those of the original thread: The [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table") table may have changed in the meantime, and if the `INSTRUMENTED` or `HISTORY` value for the original thread was changed after the row was initialized, the change does not carry over to the new thread.
 
-Você pode habilitar ou desabilitar o monitoramento de threads (ou seja, se os eventos executados pelo thread são instrumentados) e o registro de eventos históricos. Para controlar os valores iniciais de `INSTRUMENTED` e `HISTORY` para novos threads em primeiro plano, use a tabela `setup_actors`. Para controlar esses aspectos dos threads existentes, defina as colunas `INSTRUMENTED` e `HISTORY` das linhas da tabela `threads`. (Para mais informações sobre as condições sob as quais o monitoramento de threads e o registro de eventos históricos ocorrem, consulte as descrições das colunas `INSTRUMENTED` e `HISTORY`.)
+You can enable or disable thread monitoring (that is, whether events executed by the thread are instrumented) and historical event logging. To control the initial `INSTRUMENTED` and `HISTORY` values for new foreground threads, use the [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table") table. To control these aspects of existing threads, set the `INSTRUMENTED` and `HISTORY` columns of [`threads`](performance-schema-threads-table.html "25.12.16.4 The threads Table") table rows. (For more information about the conditions under which thread monitoring and historical event logging occur, see the descriptions of the `INSTRUMENTED` and `HISTORY` columns.)
 
-Para uma comparação das colunas da tabela `threads` com nomes que têm um prefixo de `PROCESSLIST_`, consulte Fontes de informações sobre processos.
+For a comparison of the [`threads`](performance-schema-threads-table.html "25.12.16.4 The threads Table") table columns with names having a prefix of `PROCESSLIST_` to other process information sources, see [Sources of Process Information](processlist-access.html#processlist-sources "Sources of Process Information").
 
-Importante
+Important
 
-Para fontes de informações sobre threads que não sejam a tabela `threads`, as informações sobre threads para outros usuários são exibidas apenas se o usuário atual tiver o privilégio `PROCESS`. Isso não é verdade para a tabela `threads`; todas as linhas são exibidas para qualquer usuário que tenha o privilégio `SELECT` para a tabela. Os usuários que não devem ser capazes de ver threads de outros usuários ao acessar a tabela `threads` não devem ter o privilégio `SELECT` para isso.
+For thread information sources other than the [`threads`](performance-schema-threads-table.html "25.12.16.4 The threads Table") table, information about threads for other users is shown only if the current user has the [`PROCESS`](privileges-provided.html#priv_process) privilege. That is not true of the [`threads`](performance-schema-threads-table.html "25.12.16.4 The threads Table") table; all rows are shown to any user who has the [`SELECT`](privileges-provided.html#priv_select) privilege for the table. Users who should not be able to see threads for other users by accessing the [`threads`](performance-schema-threads-table.html "25.12.16.4 The threads Table") table should not be given the [`SELECT`](privileges-provided.html#priv_select) privilege for it.
 
-A tabela `threads` tem essas colunas:
+The [`threads`](performance-schema-threads-table.html "25.12.16.4 The threads Table") table has these columns:
 
-- `THREAD_ID`
+* `THREAD_ID`
 
-  Um identificador único de thread.
+  A unique thread identifier.
 
-- `NOME`
+* `NAME`
 
-  O nome associado ao código de instrumentação de thread no servidor. Por exemplo, `thread/sql/one_connection` corresponde à função de thread no código responsável por gerenciar uma conexão de usuário, e `thread/sql/main` representa a função `main()` do servidor.
+  The name associated with the thread instrumentation code in the server. For example, `thread/sql/one_connection` corresponds to the thread function in the code responsible for handling a user connection, and `thread/sql/main` stands for the `main()` function of the server.
 
-- `TIPO`
+* `TYPE`
 
-  O tipo de thread, `FOREGROUND` ou `BACKGROUND`. Os fios de conexão do usuário são fios de primeiro plano. Os fios associados à atividade do servidor interno são fios de segundo plano. Exemplos são os fios internos do `InnoDB`, os fios de "dump do binlog" que enviam informações para as réplicas e os fios de I/O de replicação e SQL.
+  The thread type, either `FOREGROUND` or `BACKGROUND`. User connection threads are foreground threads. Threads associated with internal server activity are background threads. Examples are internal `InnoDB` threads, “binlog dump” threads sending information to replicas, and replication I/O and SQL threads.
 
-- `PROCESSLIST_ID`
+* `PROCESSLIST_ID`
 
-  Para um thread de plano de fundo (associado a uma conexão de usuário), este é o identificador de conexão. Este é o mesmo valor exibido na coluna `ID` da tabela `INFORMATION_SCHEMA `PROCESSLIST``, exibida na coluna `Id` do `SHOW PROCESSLIST` (show-processlist.html) saída, e retornada pela função `[`CONNECTION_ID()\`]\(information-functions.html#function_connection-id) dentro do thread.
+  For a foreground thread (associated with a user connection), this is the connection identifier. This is the same value displayed in the `ID` column of the `INFORMATION_SCHEMA` [`PROCESSLIST`](information-schema-processlist-table.html "24.3.18 The INFORMATION_SCHEMA PROCESSLIST Table") table, displayed in the `Id` column of [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement") output, and returned by the [`CONNECTION_ID()`](information-functions.html#function_connection-id) function within the thread.
 
-  Para um thread de plano de fundo (não associado a uma conexão de usuário), `PROCESSLIST_ID` é `NULL`, então os valores não são únicos.
+  For a background thread (not associated with a user connection), `PROCESSLIST_ID` is `NULL`, so the values are not unique.
 
-- `PROCESSLIST_USER`
+* `PROCESSLIST_USER`
 
-  O usuário associado a uma thread de primeiro plano, `NULL` para uma thread de segundo plano.
+  The user associated with a foreground thread, `NULL` for a background thread.
 
-- `PROCESSLIST_HOST`
+* `PROCESSLIST_HOST`
 
-  O nome do host do cliente associado a uma thread em primeiro plano, `NULL` para uma thread em segundo plano.
+  The host name of the client associated with a foreground thread, `NULL` for a background thread.
 
-  Ao contrário da coluna `HOST` da tabela `INFORMATION_SCHEMA `PROCESSLIST` ou da coluna `Host`da saída de`SHOW PROCESSLIST`(show-processlist.html), a coluna`PROCESSLIST_HOST`não inclui o número da porta para conexões TCP/IP. Para obter essa informação do Schema de Desempenho, habilite a instrumentação de soquetes (que não está habilitada por padrão) e examine a tabela`socket_instances\` (performance-schema-socket-instances-table.html):
+  Unlike the `HOST` column of the `INFORMATION_SCHEMA` [`PROCESSLIST`](information-schema-processlist-table.html "24.3.18 The INFORMATION_SCHEMA PROCESSLIST Table") table or the `Host` column of [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement") output, the `PROCESSLIST_HOST` column does not include the port number for TCP/IP connections. To obtain this information from the Performance Schema, enable the socket instrumentation (which is not enabled by default) and examine the [`socket_instances`](performance-schema-socket-instances-table.html "25.12.3.5 The socket_instances Table") table:
 
   ```sql
   mysql> SELECT * FROM performance_schema.setup_instruments
@@ -118,92 +118,92 @@ A tabela `threads` tem essas colunas:
   ...
   ```
 
-- `PROCESSLIST_DB`
+* `PROCESSLIST_DB`
 
-  O banco de dados padrão para o tópico, ou `NULL` se nenhum tiver sido selecionado.
+  The default database for the thread, or `NULL` if none has been selected.
 
-- `PROCESSLIST_COMMAND`
+* `PROCESSLIST_COMMAND`
 
-  Para os threads de primeiro plano, o tipo de comando que o thread está executando em nome do cliente, ou `Sleep` se a sessão estiver inativa. Para descrições dos comandos do thread, consulte Seção 8.14, “Examinando Informações do Thread (Processo) do Servidor”. O valor desta coluna corresponde aos comandos `COM_xxx` do protocolo cliente/servidor e às variáveis de status `Com_xxx`. Consulte Seção 5.1.9, “Variáveis de Status do Servidor”
+  For foreground threads, the type of command the thread is executing on behalf of the client, or `Sleep` if the session is idle. For descriptions of thread commands, see [Section 8.14, “Examining Server Thread (Process) Information”](thread-information.html "8.14 Examining Server Thread (Process) Information"). The value of this column corresponds to the `COM_xxx` commands of the client/server protocol and `Com_xxx` status variables. See [Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-  Os threads de segundo plano não executam comandos em nome dos clientes, portanto, essa coluna pode ser `NULL`.
+  Background threads do not execute commands on behalf of clients, so this column may be `NULL`.
 
-- `PROCESSLIST_TIME`
+* `PROCESSLIST_TIME`
 
-  O tempo em segundos que o thread esteve em seu estado atual. Para um thread de replicação SQL, o valor é o número de segundos entre o timestamp do último evento replicado e o horário real do host da replica. Veja Seção 16.2.3, “Fios de Replicação”.
+  The time in seconds that the thread has been in its current state. For a replica SQL thread, the value is the number of seconds between the timestamp of the last replicated event and the real time of the replica host. See [Section 16.2.3, “Replication Threads”](replication-threads.html "16.2.3 Replication Threads").
 
-- `PROCESSLIST_STATE`
+* `PROCESSLIST_STATE`
 
-  Uma ação, evento ou estado que indica o que o thread está fazendo. Para descrições dos valores de `PROCESSLIST_STATE`, consulte [Seção 8.14, “Examinando Informações do Fio do Servidor (Processo”] (thread-information.html). Se o valor for `NULL`, o thread pode corresponder a uma sessão de cliente inativo ou o trabalho que ele está fazendo não está instrumentado com estágios.
+  An action, event, or state that indicates what the thread is doing. For descriptions of `PROCESSLIST_STATE` values, see [Section 8.14, “Examining Server Thread (Process) Information”](thread-information.html "8.14 Examining Server Thread (Process) Information"). If the value if `NULL`, the thread may correspond to an idle client session or the work it is doing is not instrumented with stages.
 
-  A maioria dos estados corresponde a operações muito rápidas. Se um thread permanecer em um determinado estado por muitos segundos, pode haver um problema que precisa ser investigado.
+  Most states correspond to very quick operations. If a thread stays in a given state for many seconds, there might be a problem that bears investigation.
 
-- `PROCESSLIST_INFO`
+* `PROCESSLIST_INFO`
 
-  A declaração que o thread está executando, ou `NULL` se não estiver executando nenhuma declaração. A declaração pode ser a enviada ao servidor ou uma declaração mais interna se a declaração executar outras declarações. Por exemplo, se uma declaração `CALL` executar um procedimento armazenado que está executando uma declaração `SELECT`, o valor `PROCESSLIST_INFO` mostrará a declaração `SELECT`.
+  The statement the thread is executing, or `NULL` if it is executing no statement. The statement might be the one sent to the server, or an innermost statement if the statement executes other statements. For example, if a `CALL` statement executes a stored procedure that is executing a [`SELECT`](select.html "13.2.9 SELECT Statement") statement, the `PROCESSLIST_INFO` value shows the [`SELECT`](select.html "13.2.9 SELECT Statement") statement.
 
-- `PARENT_THREAD_ID`
+* `PARENT_THREAD_ID`
 
-  Se este thread for um subfio (gerado por outro thread), este é o valor `THREAD_ID` do thread gerador.
+  If this thread is a subthread (spawned by another thread), this is the `THREAD_ID` value of the spawning thread.
 
-- `ROL`
+* `ROLE`
 
-  Inexercitado.
+  Unused.
 
-- `INSTRUMENTADO`
+* `INSTRUMENTED`
 
-  Se os eventos executados pelo thread estão instrumentados. O valor é `SIM` ou `NÃO`.
+  Whether events executed by the thread are instrumented. The value is `YES` or `NO`.
 
-  - Para os threads de primeiro plano, o valor inicial `INSTRUMENTED` é determinado se a conta de usuário associada ao thread corresponde a qualquer linha na tabela `setup_actors`. A correspondência é baseada nos valores das colunas `PROCESSLIST_USER` e `PROCESSLIST_HOST`.
+  + For foreground threads, the initial `INSTRUMENTED` value is determined by whether the user account associated with the thread matches any row in the [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table") table. Matching is based on the values of the `PROCESSLIST_USER` and `PROCESSLIST_HOST` columns.
 
-    Se o thread gerar um subfio, a correspondência ocorre novamente para a linha da tabela `threads` criada para o subfio.
+    If the thread spawns a subthread, matching occurs again for the [`threads`](performance-schema-threads-table.html "25.12.16.4 The threads Table") table row created for the subthread.
 
-  - Para os threads de segundo plano, `INSTRUMENTED` é `YES` por padrão. `setup_actors` não é consultado porque não há um usuário associado aos threads de segundo plano.
+  + For background threads, `INSTRUMENTED` is `YES` by default. [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table") is not consulted because there is no associated user for background threads.
 
-  - Para qualquer thread, seu valor `INSTRUMENTED` pode ser alterado durante a vida útil da thread.
+  + For any thread, its `INSTRUMENTED` value can be changed during the lifetime of the thread.
 
-  Para que o monitoramento de eventos executados pelo thread ocorra, essas coisas devem ser verdadeiras:
+  For monitoring of events executed by the thread to occur, these things must be true:
 
-  - O consumidor `thread_instrumentation` na tabela `setup_consumers` (performance-schema-setup-consumers-table.html) deve ser `YES`.
+  + The `thread_instrumentation` consumer in the [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") table must be `YES`.
 
-  - A coluna `threads.INSTRUMENTED` deve ser `YES`.
+  + The `threads.INSTRUMENTED` column must be `YES`.
 
-  - O monitoramento ocorre apenas para os eventos de thread gerados a partir de instrumentos que têm a coluna `ENABLED` definida como `YES` na tabela `setup_instruments`.
+  + Monitoring occurs only for those thread events produced from instruments that have the `ENABLED` column set to `YES` in the [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table.
 
-- `HISTÓRIA`
+* `HISTORY`
 
-  Se deve registrar eventos históricos para o tópico. O valor é `SIM` ou `NÃO`.
+  Whether to log historical events for the thread. The value is `YES` or `NO`.
 
-  - Para os threads de primeiro plano, o valor inicial de `HISTORY` é determinado se a conta de usuário associada ao thread corresponde a qualquer linha na tabela `setup_actors`. A correspondência é baseada nos valores das colunas `PROCESSLIST_USER` e `PROCESSLIST_HOST`.
+  + For foreground threads, the initial `HISTORY` value is determined by whether the user account associated with the thread matches any row in the [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table") table. Matching is based on the values of the `PROCESSLIST_USER` and `PROCESSLIST_HOST` columns.
 
-    Se o thread gerar um subfio, a correspondência ocorre novamente para a linha da tabela `threads` criada para o subfio.
+    If the thread spawns a subthread, matching occurs again for the [`threads`](performance-schema-threads-table.html "25.12.16.4 The threads Table") table row created for the subthread.
 
-  - Para os threads de segundo plano, `HISTORY` é `YES` por padrão. O `setup_actors` não é consultado porque não há um usuário associado aos threads de segundo plano.
+  + For background threads, `HISTORY` is `YES` by default. [`setup_actors`](performance-schema-setup-actors-table.html "25.12.2.1 The setup_actors Table") is not consulted because there is no associated user for background threads.
 
-  - Para qualquer thread, seu valor `HISTORY` pode ser alterado durante a vida útil da thread.
+  + For any thread, its `HISTORY` value can be changed during the lifetime of the thread.
 
-  Para que o registro de eventos históricos ocorra no tópico, essas coisas devem ser verdadeiras:
+  For historical event logging for the thread to occur, these things must be true:
 
-  - Os consumidores apropriados relacionados à história na tabela `setup_consumers` devem estar habilitados. Por exemplo, para registrar eventos de espera na tabela `events_waits_history` e na tabela `events_waits_history_long`, é necessário que os consumidores `events_waits_history` e `events_waits_history_long` correspondentes estejam configurados como `YES`.
+  + The appropriate history-related consumers in the [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") table must be enabled. For example, wait event logging in the [`events_waits_history`](performance-schema-events-waits-history-table.html "25.12.4.2 The events_waits_history Table") and [`events_waits_history_long`](performance-schema-events-waits-history-long-table.html "25.12.4.3 The events_waits_history_long Table") tables requires the corresponding `events_waits_history` and `events_waits_history_long` consumers to be `YES`.
 
-  - A coluna `threads.HISTORY` deve ser `YES`.
+  + The `threads.HISTORY` column must be `YES`.
 
-  - O registro ocorre apenas para aqueles eventos de thread gerados a partir de instrumentos que têm a coluna `ENABLED` definida como `YES` na tabela `setup_instruments`.
+  + Logging occurs only for those thread events produced from instruments that have the `ENABLED` column set to `YES` in the [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table.
 
-- `TIPO_CONEXÃO`
+* `CONNECTION_TYPE`
 
-  O protocolo usado para estabelecer a conexão, ou `NULL` para threads em segundo plano. Os valores permitidos são `TCP/IP` (conexão TCP/IP estabelecida sem criptografia), `SSL/TLS` (conexão TCP/IP estabelecida com criptografia), `Socket` (conexão de arquivo de socket Unix), `Named Pipe` (conexão de named pipe do Windows) e `Shared Memory` (conexão de memória compartilhada do Windows).
+  The protocol used to establish the connection, or `NULL` for background threads. Permitted values are `TCP/IP` (TCP/IP connection established without encryption), `SSL/TLS` (TCP/IP connection established with encryption), `Socket` (Unix socket file connection), `Named Pipe` (Windows named pipe connection), and `Shared Memory` (Windows shared memory connection).
 
-- `THREAD_OS_ID`
+* `THREAD_OS_ID`
 
-  O identificador do thread ou tarefa, conforme definido pelo sistema operacional subjacente, se houver:
+  The thread or task identifier as defined by the underlying operating system, if there is one:
 
-  - Quando um thread MySQL está associado ao mesmo thread do sistema operacional durante toda a sua vida útil, o `THREAD_OS_ID` contém o ID do thread do sistema operacional.
+  + When a MySQL thread is associated with the same operating system thread for its lifetime, `THREAD_OS_ID` contains the operating system thread ID.
 
-  - Quando um thread MySQL não está associado ao mesmo thread do sistema operacional ao longo de sua vida útil, o `THREAD_OS_ID` contém `NULL`. Isso é típico de sessões de usuário quando o plugin do pool de threads é usado (veja Seção 5.5.3, “MySQL Enterprise Thread Pool”).
+  + When a MySQL thread is not associated with the same operating system thread for its lifetime, `THREAD_OS_ID` contains `NULL`. This is typical for user sessions when the thread pool plugin is used (see [Section 5.5.3, “MySQL Enterprise Thread Pool”](thread-pool.html "5.5.3 MySQL Enterprise Thread Pool")).
 
-  Para o Windows, `THREAD_OS_ID` corresponde ao ID de thread visível no Process Explorer (<https://technet.microsoft.com/en-us/sysinternals/bb896653.aspx>).
+  For Windows, `THREAD_OS_ID` corresponds to the thread ID visible in Process Explorer (<https://technet.microsoft.com/en-us/sysinternals/bb896653.aspx>).
 
-  Para Linux, `THREAD_OS_ID` corresponde ao valor da função `gettid()`. Esse valor é exibido, por exemplo, usando os comandos **perf** ou **ps -L**, ou no sistema de arquivos `proc` (`/proc/[pid]/task/[tid]`). Para mais informações, consulte as páginas de manual `perf-stat(1)`, `ps(1)` e `proc(5)`.
+  For Linux, `THREAD_OS_ID` corresponds to the value of the `gettid()` function. This value is exposed, for example, using the **perf** or **ps -L** commands, or in the `proc` file system (`/proc/[pid]/task/[tid]`). For more information, see the `perf-stat(1)`, `ps(1)`, and `proc(5)` man pages.
 
-A operação `TRUNCATE TABLE` não é permitida para a tabela `threads`.
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is not permitted for the [`threads`](performance-schema-threads-table.html "25.12.16.4 The threads Table") table.

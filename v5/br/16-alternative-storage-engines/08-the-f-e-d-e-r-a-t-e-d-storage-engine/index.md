@@ -1,17 +1,17 @@
-## 15.8 O Motor de Armazenamento FEDERATED
+## 15.8 The FEDERATED Storage Engine
 
-15.8.1 Visão geral do mecanismo de armazenamento FEDERATED
+15.8.1 FEDERATED Storage Engine Overview
 
-15.8.2 Como criar tabelas FEDERATED
+15.8.2 How to Create FEDERATED Tables
 
-15.8.3 Notas e dicas do mecanismo de armazenamento FEDERATED
+15.8.3 FEDERATED Storage Engine Notes and Tips
 
-15.8.4 Recursos do Motor de Armazenamento FEDERATED
+15.8.4 FEDERATED Storage Engine Resources
 
-O mecanismo de armazenamento `FEDERATED` permite que você acesse dados de um banco de dados MySQL remoto sem usar replicação ou tecnologia de cluster. A consulta a uma tabela `FEDERATED` local puxa automaticamente os dados das tabelas remotas (federadas). Nenhum dado é armazenado nas tabelas locais.
+The `FEDERATED` storage engine lets you access data from a remote MySQL database without using replication or cluster technology. Querying a local `FEDERATED` table automatically pulls the data from the remote (federated) tables. No data is stored on the local tables.
 
-Para incluir o mecanismo de armazenamento `FEDERATED` ao construir o MySQL a partir do código-fonte, invocando o **CMake** com a opção `-DWITH_FEDERATED_STORAGE_ENGINE`.
+To include the `FEDERATED` storage engine if you build MySQL from source, invoke **CMake** with the `-DWITH_FEDERATED_STORAGE_ENGINE` option.
 
-O mecanismo de armazenamento `FEDERATED` não está habilitado por padrão no servidor em execução; para habilitar o `FEDERATED`, você deve iniciar o binário do servidor MySQL usando a opção `--federated`.
+The `FEDERATED` storage engine is not enabled by default in the running server; to enable `FEDERATED`, you must start the MySQL server binary using the `--federated` option.
 
-Para examinar a fonte do motor `FEDERATED`, procure no diretório `storage/federated` de uma distribuição de fonte MySQL.
+To examine the source for the `FEDERATED` engine, look in the `storage/federated` directory of a MySQL source distribution.

@@ -1,49 +1,49 @@
-#### 26.4.3.25 As visualizações schema_index_statistics e x$schema_index_statistics
+#### 26.4.3.25 The schema_index_statistics and x$schema_index_statistics Views
 
-Essas visualizações fornecem estatísticas de índice. Por padrão, as linhas são ordenadas por latência total do índice em ordem decrescente.
+These views provide index statistics. By default, rows are sorted by descending total index latency.
 
-As vistas `schema_index_statistics` e `x$schema_index_statistics` têm essas colunas:
+The `schema_index_statistics` and `x$schema_index_statistics` views have these columns:
 
-- `esquema_tabela`
+* `table_schema`
 
-  O esquema que contém a tabela.
+  The schema that contains the table.
 
-- `nome_tabela`
+* `table_name`
 
-  A tabela que contém o índice.
+  The table that contains the index.
 
-- `nome_do_índice`
+* `index_name`
 
-  O nome do índice.
+  The name of the index.
 
-- `rows_selected`
+* `rows_selected`
 
-  O número total de linhas lidas usando o índice.
+  The total number of rows read using the index.
 
-- `selecionar_latência`
+* `select_latency`
 
-  O tempo total de espera de leituras temporizadas usando o índice.
+  The total wait time of timed reads using the index.
 
-- `rows_inserted`
+* `rows_inserted`
 
-  O número total de linhas inseridas no índice.
+  The total number of rows inserted into the index.
 
-- `insert_latency`
+* `insert_latency`
 
-  O tempo total de espera para inserções temporizadas no índice.
+  The total wait time of timed inserts into the index.
 
-- `rows_updated`
+* `rows_updated`
 
-  O número total de linhas atualizadas no índice.
+  The total number of rows updated in the index.
 
-- `update_latency`
+* `update_latency`
 
-  O tempo total de espera de atualizações temporizadas no índice.
+  The total wait time of timed updates in the index.
 
-- `rows_deleted`
+* `rows_deleted`
 
-  O número total de linhas excluídas do índice.
+  The total number of rows deleted from the index.
 
-- `delete_latency`
+* `delete_latency`
 
-  O tempo total de espera para a exclusão temporizada do índice.
+  The total wait time of timed deletes from the index.

@@ -1,151 +1,151 @@
-## Índice de Nível de Isolamento de Transação
+## Transaction Isolation Level Index
 
-[R](dynindex-isolevel.html#isolevel-index-R) | [S](dynindex-isolevel.html#isolevel-index-S)
+[R](dynindex-isolevel.html#isolevel-index-R "R") | [S](dynindex-isolevel.html#isolevel-index-S "S")
 
 ### R
 
-index superior](dynindex-isolevel.html#isolevel-index-superior)]
+index top](dynindex-isolevel.html#isolevel-index-top)]
 
-### LEIA COM PROMESSA DE COMPROMISSO
+### READ COMMITTED
 
-[Seção 14.7.2.3, “Leitura Consistente sem Bloqueio”](innodb-consistent-read.html)
+[Section 14.7.2.3, “Consistent Nonlocking Reads”](innodb-consistent-read.html "14.7.2.3 Consistent Nonlocking Reads")
 
-[Seção 21.2.6.1, “Diferenças entre os motores de armazenamento NDB e InnoDB”](mysql-cluster-ndb-innodb-engines.html)
+[Section 21.2.6.1, “Differences Between the NDB and InnoDB Storage Engines”](mysql-cluster-ndb-innodb-engines.html "21.2.6.1 Differences Between the NDB and InnoDB Storage Engines")
 
-[Seção 17.3.2, “Limitações da Replicação em Grupo”](group-replication-limitations.html)
+[Section 17.3.2, “Group Replication Limitations”](group-replication-limitations.html "17.3.2 Group Replication Limitations")
 
-[Seção 14.7.5.3, “Como minimizar e lidar com deadlocks”](innodb-deadlocks-handling.html)
+[Section 14.7.5.3, “How to Minimize and Handle Deadlocks”](innodb-deadlocks-handling.html "14.7.5.3 How to Minimize and Handle Deadlocks")
 
-[Seção 14.7.1, "Bloqueio InnoDB"](innodb-locking.html)
+[Section 14.7.1, “InnoDB Locking”](innodb-locking.html "14.7.1 InnoDB Locking")
 
-[Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
+[Section 14.15, “InnoDB Startup Options and System Variables”](innodb-parameters.html "14.15 InnoDB Startup Options and System Variables")
 
-[Seção 21.2.7.3, “Limitações relacionadas ao processamento de transações no NDB Cluster”](mysql-cluster-limitations-transactions.html)
+[Section 21.2.7.3, “Limits Relating to Transaction Handling in NDB Cluster”](mysql-cluster-limitations-transactions.html "21.2.7.3 Limits Relating to Transaction Handling in NDB Cluster")
 
-[Seção 14.7.3, "Bloqueios Definidos por Diferentes Instruções SQL no InnoDB"](innodb-locks-set.html)
+[Section 14.7.3, “Locks Set by Different SQL Statements in InnoDB”](innodb-locks-set.html "14.7.3 Locks Set by Different SQL Statements in InnoDB")
 
-[Seção A.1, “Perguntas frequentes do MySQL 5.7: Geral”](faqs-general.html)
+[Section A.1, “MySQL 5.7 FAQ: General”](faqs-general.html "A.1 MySQL 5.7 FAQ: General")
 
-[Seção A.10, “Perguntas frequentes sobre o MySQL 5.7: NDB Cluster”](faqs-mysql-cluster.html)
+[Section A.10, “MySQL 5.7 FAQ: NDB Cluster”](faqs-mysql-cluster.html "A.10 MySQL 5.7 FAQ: NDB Cluster")
 
-[Seção 21.2.6.3, “Resumo do uso de recursos de NDB e InnoDB”](mysql-cluster-ndb-innodb-usage.html)
+[Section 21.2.6.3, “NDB and InnoDB Feature Usage Summary”](mysql-cluster-ndb-innodb-usage.html "21.2.6.3 NDB and InnoDB Feature Usage Summary")
 
-[Seção 8.5.2, “Otimização da Gestão de Transações InnoDB”](optimizing-innodb-transaction-management.html)
+[Section 8.5.2, “Optimizing InnoDB Transaction Management”](optimizing-innodb-transaction-management.html "8.5.2 Optimizing InnoDB Transaction Management")
 
-[Seção 13.3.6, “Instrução SET TRANSACTION”](set-transaction.html)
+[Section 13.3.6, “SET TRANSACTION Statement”](set-transaction.html "13.3.6 SET TRANSACTION Statement")
 
-[Seção 5.4.4.2, “Definindo o formato do log binário”](binary-log-setting.html)
+[Section 5.4.4.2, “Setting The Binary Log Format”](binary-log-setting.html "5.4.4.2 Setting The Binary Log Format")
 
-[Seção 25.12.7.1, “A tabela events_transactions_current”](performance-schema-events-transactions-current-table.html)
+[Section 25.12.7.1, “The events_transactions_current Table”](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table")
 
-[Seção 14.7.2.1, “Níveis de Isolamento de Transações”](innodb-transaction-isolation-levels.html)
+[Section 14.7.2.1, “Transaction Isolation Levels”](innodb-transaction-isolation-levels.html "14.7.2.1 Transaction Isolation Levels")
 
-### LEIA NÃO COMPROMETIDO
+### READ UNCOMMITTED
 
-[Seção 14.7.2.3, “Leitura Consistente sem Bloqueio”](innodb-consistent-read.html)
+[Section 14.7.2.3, “Consistent Nonlocking Reads”](innodb-consistent-read.html "14.7.2.3 Consistent Nonlocking Reads")
 
-[Seção 14.8.11.1.4, “Inclusão de registros marcados para exclusão em cálculos de estatísticas persistentes”](innodb-persistent-stats.html#innodb-persistent-stats-delete-marked)
+[Section 14.8.11.1.4, “Including Delete-marked Records in Persistent Statistics Calculations”](innodb-persistent-stats.html#innodb-persistent-stats-delete-marked "14.8.11.1.4 Including Delete-marked Records in Persistent Statistics Calculations")
 
-[Seção 14.21.2, “Arquitetura InnoDB memcached”](innodb-memcached-intro.html)
+[Section 14.21.2, “InnoDB memcached Architecture”](innodb-memcached-intro.html "14.21.2 InnoDB memcached Architecture")
 
-[Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
+[Section 14.15, “InnoDB Startup Options and System Variables”](innodb-parameters.html "14.15 InnoDB Startup Options and System Variables")
 
-[Seção 21.2.7.3, “Limitações relacionadas ao processamento de transações no NDB Cluster”](mysql-cluster-limitations-transactions.html)
+[Section 21.2.7.3, “Limits Relating to Transaction Handling in NDB Cluster”](mysql-cluster-limitations-transactions.html "21.2.7.3 Limits Relating to Transaction Handling in NDB Cluster")
 
-[Seção 14.21.5.6, “Execução de declarações DML e DDL na tabela subjacente InnoDB”](innodb-memcached-ddl.html)
+[Section 14.21.5.6, “Performing DML and DDL Statements on the Underlying InnoDB Table”](innodb-memcached-ddl.html "14.21.5.6 Performing DML and DDL Statements on the Underlying InnoDB Table")
 
-[Seção 13.3.6, “Instrução SET TRANSACTION”](set-transaction.html)
+[Section 13.3.6, “SET TRANSACTION Statement”](set-transaction.html "13.3.6 SET TRANSACTION Statement")
 
-[Seção 5.4.4.2, “Definindo o formato do log binário”](binary-log-setting.html)
+[Section 5.4.4.2, “Setting The Binary Log Format”](binary-log-setting.html "5.4.4.2 Setting The Binary Log Format")
 
-[Seção 25.12.7.1, “A tabela events_transactions_current”](performance-schema-events-transactions-current-table.html)
+[Section 25.12.7.1, “The events_transactions_current Table”](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table")
 
-[Seção 14.7.2.1, “Níveis de Isolamento de Transações”](innodb-transaction-isolation-levels.html)
+[Section 14.7.2.1, “Transaction Isolation Levels”](innodb-transaction-isolation-levels.html "14.7.2.1 Transaction Isolation Levels")
 
-### LEIA-COMPROMETIDO
+### READ-COMMITTED
 
-[Seção 5.1.6, “Opções de comando do servidor”](server-options.html)
+[Section 5.1.6, “Server Command Options”](server-options.html "5.1.6 Server Command Options")
 
-[Seção 13.3.6, “Instrução SET TRANSACTION”](set-transaction.html)
+[Section 13.3.6, “SET TRANSACTION Statement”](set-transaction.html "13.3.6 SET TRANSACTION Statement")
 
 ### READ-UNCOMMITTED
 
-[Seção 5.1.6, “Opções de comando do servidor”](server-options.html)
+[Section 5.1.6, “Server Command Options”](server-options.html "5.1.6 Server Command Options")
 
-[Seção 13.3.6, “Instrução SET TRANSACTION”](set-transaction.html)
+[Section 13.3.6, “SET TRANSACTION Statement”](set-transaction.html "13.3.6 SET TRANSACTION Statement")
 
 ### REPEATABLE READ
 
-[Seção 14.7.2.3, “Leitura Consistente sem Bloqueio”](innodb-consistent-read.html)
+[Section 14.7.2.3, “Consistent Nonlocking Reads”](innodb-consistent-read.html "14.7.2.3 Consistent Nonlocking Reads")
 
-[Seção 14.21.5.4, “Controle do comportamento transacional do plugin InnoDB memcached”](innodb-memcached-txn.html)
+[Section 14.21.5.4, “Controlling Transactional Behavior of the InnoDB memcached Plugin”](innodb-memcached-txn.html "14.21.5.4 Controlling Transactional Behavior of the InnoDB memcached Plugin")
 
-[Seção 17.3.2, “Limitações da Replicação em Grupo”](group-replication-limitations.html)
+[Section 17.3.2, “Group Replication Limitations”](group-replication-limitations.html "17.3.2 Group Replication Limitations")
 
-[Seção 14.7.1, "Bloqueio InnoDB"](innodb-locking.html)
+[Section 14.7.1, “InnoDB Locking”](innodb-locking.html "14.7.1 InnoDB Locking")
 
-[Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
+[Section 14.15, “InnoDB Startup Options and System Variables”](innodb-parameters.html "14.15 InnoDB Startup Options and System Variables")
 
-[Seção 21.2.7.3, “Limitações relacionadas ao processamento de transações no NDB Cluster”](mysql-cluster-limitations-transactions.html)
+[Section 21.2.7.3, “Limits Relating to Transaction Handling in NDB Cluster”](mysql-cluster-limitations-transactions.html "21.2.7.3 Limits Relating to Transaction Handling in NDB Cluster")
 
-[Seção 5.4.4.3, "Formato de registro binário misto"](binary-log-mixed.html)
+[Section 5.4.4.3, “Mixed Binary Logging Format”](binary-log-mixed.html "5.4.4.3 Mixed Binary Logging Format")
 
-[Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”](mysqldump.html)
+[Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program")
 
-[Seção 4.5.6, “mysqlpump — Um programa de backup de banco de dados”](mysqlpump.html)
+[Section 4.5.6, “mysqlpump — A Database Backup Program”](mysqlpump.html "4.5.6 mysqlpump — A Database Backup Program")
 
-[Seção 8.5.2, “Otimização da Gestão de Transações InnoDB”](optimizing-innodb-transaction-management.html)
+[Section 8.5.2, “Optimizing InnoDB Transaction Management”](optimizing-innodb-transaction-management.html "8.5.2 Optimizing InnoDB Transaction Management")
 
-[Seção 25.12.7, "Tabelas de Transações do Schema de Desempenho"](performance-schema-transaction-tables.html)
+[Section 25.12.7, “Performance Schema Transaction Tables”](performance-schema-transaction-tables.html "25.12.7 Performance Schema Transaction Tables")
 
-[Seção 13.3.6, “Instrução SET TRANSACTION”](set-transaction.html)
+[Section 13.3.6, “SET TRANSACTION Statement”](set-transaction.html "13.3.6 SET TRANSACTION Statement")
 
-[Seção 13.3.1, "Instruções START TRANSACTION, COMMIT e ROLLBACK"](commit.html)
+[Section 13.3.1, “START TRANSACTION, COMMIT, and ROLLBACK Statements”](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements")
 
-[Seção 25.12.7.1, “A tabela events_transactions_current”](performance-schema-events-transactions-current-table.html)
+[Section 25.12.7.1, “The events_transactions_current Table”](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table")
 
-[Seção 14.7.2.1, “Níveis de Isolamento de Transações”](innodb-transaction-isolation-levels.html)
+[Section 14.7.2.1, “Transaction Isolation Levels”](innodb-transaction-isolation-levels.html "14.7.2.1 Transaction Isolation Levels")
 
-[Seção 13.3.7, “Transações XA”](xa.html)
+[Section 13.3.7, “XA Transactions”](xa.html "13.3.7 XA Transactions")
 
-### REPEAT-VE-LÁ-VEIS
+### REPEATABLE-READ
 
-[Seção 5.1.6, “Opções de comando do servidor”](server-options.html)
+[Section 5.1.6, “Server Command Options”](server-options.html "5.1.6 Server Command Options")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 13.3.6, “Instrução SET TRANSACTION”](set-transaction.html)
+[Section 13.3.6, “SET TRANSACTION Statement”](set-transaction.html "13.3.6 SET TRANSACTION Statement")
 
 ### S
 
-index superior](dynindex-isolevel.html#isolevel-index-superior)]
+index top](dynindex-isolevel.html#isolevel-index-top)]
 
-### SERIALIZÁVEL
+### SERIALIZABLE
 
-[Seção 17.3.2, “Limitações da Replicação em Grupo”](group-replication-limitations.html)
+[Section 17.3.2, “Group Replication Limitations”](group-replication-limitations.html "17.3.2 Group Replication Limitations")
 
-[Seção 8.10.3.1, “Como o Cache de Consultas Funciona”](query-cache-operation.html)
+[Section 8.10.3.1, “How the Query Cache Operates”](query-cache-operation.html "8.10.3.1 How the Query Cache Operates")
 
-[Seção 14.7.1, "Bloqueio InnoDB"](innodb-locking.html)
+[Section 14.7.1, “InnoDB Locking”](innodb-locking.html "14.7.1 InnoDB Locking")
 
-[Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
+[Section 14.15, “InnoDB Startup Options and System Variables”](innodb-parameters.html "14.15 InnoDB Startup Options and System Variables")
 
-[Seção 21.2.7.3, “Limitações relacionadas ao processamento de transações no NDB Cluster”](mysql-cluster-limitations-transactions.html)
+[Section 21.2.7.3, “Limits Relating to Transaction Handling in NDB Cluster”](mysql-cluster-limitations-transactions.html "21.2.7.3 Limits Relating to Transaction Handling in NDB Cluster")
 
-[Seção 14.7.3, "Bloqueios Definidos por Diferentes Instruções SQL no InnoDB"](innodb-locks-set.html)
+[Section 14.7.3, “Locks Set by Different SQL Statements in InnoDB”](innodb-locks-set.html "14.7.3 Locks Set by Different SQL Statements in InnoDB")
 
-[Seção 5.4.4.3, "Formato de registro binário misto"](binary-log-mixed.html)
+[Section 5.4.4.3, “Mixed Binary Logging Format”](binary-log-mixed.html "5.4.4.3 Mixed Binary Logging Format")
 
-[Seção 25.12.7, "Tabelas de Transações do Schema de Desempenho"](performance-schema-transaction-tables.html)
+[Section 25.12.7, “Performance Schema Transaction Tables”](performance-schema-transaction-tables.html "25.12.7 Performance Schema Transaction Tables")
 
-[Seção 5.1.6, “Opções de comando do servidor”](server-options.html)
+[Section 5.1.6, “Server Command Options”](server-options.html "5.1.6 Server Command Options")
 
-[Seção 13.3.6, “Instrução SET TRANSACTION”](set-transaction.html)
+[Section 13.3.6, “SET TRANSACTION Statement”](set-transaction.html "13.3.6 SET TRANSACTION Statement")
 
-[Seção 13.3.1, "Instruções START TRANSACTION, COMMIT e ROLLBACK"](commit.html)
+[Section 13.3.1, “START TRANSACTION, COMMIT, and ROLLBACK Statements”](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements")
 
-[Seção 25.12.7.1, “A tabela events_transactions_current”](performance-schema-events-transactions-current-table.html)
+[Section 25.12.7.1, “The events_transactions_current Table”](performance-schema-events-transactions-current-table.html "25.12.7.1 The events_transactions_current Table")
 
-[Seção 14.7.2.1, “Níveis de Isolamento de Transações”](innodb-transaction-isolation-levels.html)
+[Section 14.7.2.1, “Transaction Isolation Levels”](innodb-transaction-isolation-levels.html "14.7.2.1 Transaction Isolation Levels")
 
-[Seção 13.3.7, “Transações XA”](xa.html)
+[Section 13.3.7, “XA Transactions”](xa.html "13.3.7 XA Transactions")

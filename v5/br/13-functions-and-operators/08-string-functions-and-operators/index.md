@@ -1,24 +1,24 @@
-## 12.8 Funções e operadores de strings
+## 12.8 String Functions and Operators
 
-12.8.1 Funções e operadores de comparação de strings
+12.8.1 String Comparison Functions and Operators
 
-12.8.2 Expressões Regulares
+12.8.2 Regular Expressions
 
-12.8.3 Conjunto de caracteres e comparação dos resultados das funções
+12.8.3 Character Set and Collation of Function Results
 
-**Tabela 12.12 Funções e operadores de strings**
+**Table 12.12 String Functions and Operators**
 
-<table frame="box" rules="all" summary="Uma referência que lista funções e operadores de string."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td>PH_HTML_CODE_<code>FIELD()</code>]</td> <td>Retorne o valor numérico do caractere mais à esquerda</td> </tr><tr><td>PH_HTML_CODE_<code>FIELD()</code>]</td> <td>Retorne uma string contendo a representação binária de um número</td> </tr><tr><td>PH_HTML_CODE_<code>FORMAT()</code>]</td> <td>Comprimento de retorno do argumento em bits</td> </tr><tr><td>PH_HTML_CODE_<code>FROM_BASE64()</code>]</td> <td>Retorne o caractere para cada inteiro passado</td> </tr><tr><td>PH_HTML_CODE_<code>HEX()</code>]</td> <td>Número de caracteres de retorno no argumento</td> </tr><tr><td>PH_HTML_CODE_<code>INSERT()</code>]</td> <td>Sinônimo de CHAR_LENGTH()</td> </tr><tr><td>PH_HTML_CODE_<code>INSTR()</code>]</td> <td>Retorne a string concatenada</td> </tr><tr><td>PH_HTML_CODE_<code>LCASE()</code>]</td> <td>Concatenar e retornar com separador</td> </tr><tr><td>PH_HTML_CODE_<code>LEFT()</code>]</td> <td>Retorne a string no número de índice</td> </tr><tr><td>PH_HTML_CODE_<code>LENGTH()</code>]</td> <td>Retorne uma string onde, para cada bit definido no valor bits, você recebe uma string "on" e, para cada bit não definido, você recebe uma string "off".</td> </tr><tr><td><code>FIELD()</code></td> <td>Índice (posição) do primeiro argumento nos argumentos subsequentes</td> </tr><tr><td><code>BIN()</code><code>FIELD()</code>]</td> <td>Índice (posição) do primeiro argumento dentro do segundo argumento</td> </tr><tr><td><code>FORMAT()</code></td> <td>Retorne um número formatado para o número especificado de casas decimais</td> </tr><tr><td><code>FROM_BASE64()</code></td> <td>Decodificar a string codificada em base64 e retornar o resultado</td> </tr><tr><td><code>HEX()</code></td> <td>Representação hexadecimal de valor decimal ou de cadeia</td> </tr><tr><td><code>INSERT()</code></td> <td>Insira a subcadeia na posição especificada até o número especificado de caracteres</td> </tr><tr><td><code>INSTR()</code></td> <td>Retorne o índice da primeira ocorrência da subcadeia</td> </tr><tr><td><code>LCASE()</code></td> <td>Sinônimo de LOWER()</td> </tr><tr><td><code>LEFT()</code></td> <td>Retorne o número de caracteres mais à esquerda conforme especificado</td> </tr><tr><td><code>LENGTH()</code></td> <td>Retorne o comprimento de uma string em bytes</td> </tr><tr><td><code>BIT_LENGTH()</code><code>FIELD()</code>]</td> <td>Encontre padrões simples</td> </tr><tr><td><code>BIT_LENGTH()</code><code>FIELD()</code>]</td> <td>Carregue o arquivo nomeado</td> </tr><tr><td><code>BIT_LENGTH()</code><code>FORMAT()</code>]</td> <td>Retorne a posição da primeira ocorrência da subcadeia</td> </tr><tr><td><code>BIT_LENGTH()</code><code>FROM_BASE64()</code>]</td> <td>Devolva o argumento em minúsculas</td> </tr><tr><td><code>BIT_LENGTH()</code><code>HEX()</code>]</td> <td>Retorne o argumento de string, preenchido à esquerda com a string especificada</td> </tr><tr><td><code>BIT_LENGTH()</code><code>INSERT()</code>]</td> <td>Remova espaços em branco iniciais</td> </tr><tr><td><code>BIT_LENGTH()</code><code>INSTR()</code>]</td> <td>Retorne um conjunto de strings separadas por vírgula que tenham o bit correspondente definido em bits</td> </tr><tr><td><code>BIT_LENGTH()</code><code>LCASE()</code>]</td> <td>Realize uma pesquisa de texto completo</td> </tr><tr><td><code>BIT_LENGTH()</code><code>LEFT()</code>]</td> <td>Retorne uma subcadeia a partir da posição especificada</td> </tr><tr><td><code>BIT_LENGTH()</code><code>LENGTH()</code>]</td> <td>Negação de correspondência de padrão simples</td> </tr><tr><td><code>CHAR()</code><code>FIELD()</code>]</td> <td>Negação de REGEXP</td> </tr><tr><td><code>CHAR()</code><code>FIELD()</code>]</td> <td>Retorne uma string contendo a representação octal de um número</td> </tr><tr><td><code>CHAR()</code><code>FORMAT()</code>]</td> <td>Sinônimo de LENGTH()</td> </tr><tr><td><code>CHAR()</code><code>FROM_BASE64()</code>]</td> <td>Código de caractere de retorno para o caractere mais à esquerda do argumento</td> </tr><tr><td><code>CHAR()</code><code>HEX()</code>]</td> <td>Sinônimo de LOCATE()</td> </tr><tr><td><code>CHAR()</code><code>INSERT()</code>]</td> <td>Escape o argumento para uso em uma declaração SQL</td> </tr><tr><td><code>CHAR()</code><code>INSTR()</code>]</td> <td>Se a cadeia corresponde à expressão regular</td> </tr><tr><td><code>CHAR()</code><code>LCASE()</code>]</td> <td>Repita uma string o número especificado de vezes</td> </tr><tr><td><code>CHAR()</code><code>LEFT()</code>]</td> <td>Substitua as ocorrências de uma string especificada</td> </tr><tr><td><code>CHAR()</code><code>LENGTH()</code>]</td> <td>Inverter os caracteres de uma string</td> </tr><tr><td><code>CHAR_LENGTH()</code><code>FIELD()</code>]</td> <td>Retorne o número especificado de caracteres à direita</td> </tr><tr><td><code>CHAR_LENGTH()</code><code>FIELD()</code>]</td> <td>Se a cadeia corresponde à expressão regular</td> </tr><tr><td><code>CHAR_LENGTH()</code><code>FORMAT()</code>]</td> <td>Adicione a string o número especificado de vezes</td> </tr><tr><td><code>CHAR_LENGTH()</code><code>FROM_BASE64()</code>]</td> <td>Remova espaços em branco finais</td> </tr><tr><td><code>CHAR_LENGTH()</code><code>HEX()</code>]</td> <td>Retorne uma string soundex</td> </tr><tr><td><code>CHAR_LENGTH()</code><code>INSERT()</code>]</td> <td>Compare os sons</td> </tr><tr><td><code>CHAR_LENGTH()</code><code>INSTR()</code>]</td> <td>Retorne uma string com o número especificado de espaços</td> </tr><tr><td><code>CHAR_LENGTH()</code><code>LCASE()</code>]</td> <td>Compare duas strings</td> </tr><tr><td><code>CHAR_LENGTH()</code><code>LEFT()</code>]</td> <td>Retorne a subcadeia especificada</td> </tr><tr><td><code>CHAR_LENGTH()</code><code>LENGTH()</code>]</td> <td>Retorne a subcadeia especificada</td> </tr><tr><td><code>CHARACTER_LENGTH()</code><code>FIELD()</code>]</td> <td>Retorne uma subcadeia de uma string antes do número especificado de ocorrências do delimitador</td> </tr><tr><td><code>CHARACTER_LENGTH()</code><code>FIELD()</code>]</td> <td>Retorne o argumento convertido em uma string base-64</td> </tr><tr><td><code>CHARACTER_LENGTH()</code><code>FORMAT()</code>]</td> <td>Remova espaços em branco no início e no final</td> </tr><tr><td><code>CHARACTER_LENGTH()</code><code>FROM_BASE64()</code>]</td> <td>Sinônimo de UPPER()</td> </tr><tr><td><code>CHARACTER_LENGTH()</code><code>HEX()</code>]</td> <td>Retorne uma string contendo a representação hexadecimal de um número</td> </tr><tr><td><code>CHARACTER_LENGTH()</code><code>INSERT()</code>]</td> <td>Converta para maiúsculas</td> </tr><tr><td><code>CHARACTER_LENGTH()</code><code>INSTR()</code>]</td> <td>Retorne a string de peso para uma string</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists string functions and operators."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>ASCII()</code></td> <td> Return numeric value of left-most character </td> </tr><tr><td><code>BIN()</code></td> <td> Return a string containing binary representation of a number </td> </tr><tr><td><code>BIT_LENGTH()</code></td> <td> Return length of argument in bits </td> </tr><tr><td><code>CHAR()</code></td> <td> Return the character for each integer passed </td> </tr><tr><td><code>CHAR_LENGTH()</code></td> <td> Return number of characters in argument </td> </tr><tr><td><code>CHARACTER_LENGTH()</code></td> <td> Synonym for CHAR_LENGTH() </td> </tr><tr><td><code>CONCAT()</code></td> <td> Return concatenated string </td> </tr><tr><td><code>CONCAT_WS()</code></td> <td> Return concatenate with separator </td> </tr><tr><td><code>ELT()</code></td> <td> Return string at index number </td> </tr><tr><td><code>EXPORT_SET()</code></td> <td> Return a string such that for every bit set in the value bits, you get an on string and for every unset bit, you get an off string </td> </tr><tr><td><code>FIELD()</code></td> <td> Index (position) of first argument in subsequent arguments </td> </tr><tr><td><code>FIND_IN_SET()</code></td> <td> Index (position) of first argument within second argument </td> </tr><tr><td><code>FORMAT()</code></td> <td> Return a number formatted to specified number of decimal places </td> </tr><tr><td><code>FROM_BASE64()</code></td> <td> Decode base64 encoded string and return result </td> </tr><tr><td><code>HEX()</code></td> <td> Hexadecimal representation of decimal or string value </td> </tr><tr><td><code>INSERT()</code></td> <td> Insert substring at specified position up to specified number of characters </td> </tr><tr><td><code>INSTR()</code></td> <td> Return the index of the first occurrence of substring </td> </tr><tr><td><code>LCASE()</code></td> <td> Synonym for LOWER() </td> </tr><tr><td><code>LEFT()</code></td> <td> Return the leftmost number of characters as specified </td> </tr><tr><td><code>LENGTH()</code></td> <td> Return the length of a string in bytes </td> </tr><tr><td><code>LIKE</code></td> <td> Simple pattern matching </td> </tr><tr><td><code>LOAD_FILE()</code></td> <td> Load the named file </td> </tr><tr><td><code>LOCATE()</code></td> <td> Return the position of the first occurrence of substring </td> </tr><tr><td><code>LOWER()</code></td> <td> Return the argument in lowercase </td> </tr><tr><td><code>LPAD()</code></td> <td> Return the string argument, left-padded with the specified string </td> </tr><tr><td><code>LTRIM()</code></td> <td> Remove leading spaces </td> </tr><tr><td><code>MAKE_SET()</code></td> <td> Return a set of comma-separated strings that have the corresponding bit in bits set </td> </tr><tr><td><code>MATCH()</code></td> <td> Perform full-text search </td> </tr><tr><td><code>MID()</code></td> <td> Return a substring starting from the specified position </td> </tr><tr><td><code>NOT LIKE</code></td> <td> Negation of simple pattern matching </td> </tr><tr><td><code>NOT REGEXP</code></td> <td> Negation of REGEXP </td> </tr><tr><td><code>OCT()</code></td> <td> Return a string containing octal representation of a number </td> </tr><tr><td><code>OCTET_LENGTH()</code></td> <td> Synonym for LENGTH() </td> </tr><tr><td><code>ORD()</code></td> <td> Return character code for leftmost character of the argument </td> </tr><tr><td><code>POSITION()</code></td> <td> Synonym for LOCATE() </td> </tr><tr><td><code>QUOTE()</code></td> <td> Escape the argument for use in an SQL statement </td> </tr><tr><td><code>REGEXP</code></td> <td> Whether string matches regular expression </td> </tr><tr><td><code>REPEAT()</code></td> <td> Repeat a string the specified number of times </td> </tr><tr><td><code>REPLACE()</code></td> <td> Replace occurrences of a specified string </td> </tr><tr><td><code>REVERSE()</code></td> <td> Reverse the characters in a string </td> </tr><tr><td><code>RIGHT()</code></td> <td> Return the specified rightmost number of characters </td> </tr><tr><td><code>RLIKE</code></td> <td> Whether string matches regular expression </td> </tr><tr><td><code>RPAD()</code></td> <td> Append string the specified number of times </td> </tr><tr><td><code>RTRIM()</code></td> <td> Remove trailing spaces </td> </tr><tr><td><code>SOUNDEX()</code></td> <td> Return a soundex string </td> </tr><tr><td><code>SOUNDS LIKE</code></td> <td> Compare sounds </td> </tr><tr><td><code>SPACE()</code></td> <td> Return a string of the specified number of spaces </td> </tr><tr><td><code>STRCMP()</code></td> <td> Compare two strings </td> </tr><tr><td><code>SUBSTR()</code></td> <td> Return the substring as specified </td> </tr><tr><td><code>SUBSTRING()</code></td> <td> Return the substring as specified </td> </tr><tr><td><code>SUBSTRING_INDEX()</code></td> <td> Return a substring from a string before the specified number of occurrences of the delimiter </td> </tr><tr><td><code>TO_BASE64()</code></td> <td> Return the argument converted to a base-64 string </td> </tr><tr><td><code>TRIM()</code></td> <td> Remove leading and trailing spaces </td> </tr><tr><td><code>UCASE()</code></td> <td> Synonym for UPPER() </td> </tr><tr><td><code>UNHEX()</code></td> <td> Return a string containing hex representation of a number </td> </tr><tr><td><code>UPPER()</code></td> <td> Convert to uppercase </td> </tr><tr><td><code>WEIGHT_STRING()</code></td> <td> Return the weight string for a string </td> </tr></tbody></table>
 
-As funções de valor de cadeia de caracteres retornam `NULL` se o comprimento do resultado fosse maior que o valor da variável de sistema `max_allowed_packet`. Veja a Seção 5.1.1, “Configurando o servidor”.
+String-valued functions return `NULL` if the length of the result would be greater than the value of the `max_allowed_packet` system variable. See Section 5.1.1, “Configuring the Server”.
 
-Para funções que operam em posições de string, a primeira posição é numerada como 1.
+For functions that operate on string positions, the first position is numbered 1.
 
-Para funções que aceitam argumentos de comprimento, os argumentos não inteiros são arredondados para o inteiro mais próximo.
+For functions that take length arguments, noninteger arguments are rounded to the nearest integer.
 
-- `ASCII(str)`
+* `ASCII(str)`
 
-  Retorna o valor numérico do caractere mais à esquerda da string *`str`*. Retorna `0` se *`str`* for a string vazia. Retorna `NULL` se *`str`* for `NULL`. `ASCII()` funciona para caracteres de 8 bits.
+  Returns the numeric value of the leftmost character of the string *`str`*. Returns `0` if *`str`* is the empty string. Returns `NULL` if *`str`* is `NULL`. `ASCII()` works for 8-bit characters.
 
   ```sql
   mysql> SELECT ASCII('2');
@@ -29,29 +29,29 @@ Para funções que aceitam argumentos de comprimento, os argumentos não inteiro
           -> 100
   ```
 
-  Veja também a função `ORD()`.
+  See also the `ORD()` function.
 
-- `BIN(N)`
+* `BIN(N)`
 
-  Retorna uma representação em string do valor binário de *`N`*, onde *`N`* é um número longlong (`BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT`). Isso é equivalente a `CONV(N,10,2)`. Retorna `NULL` se *`N`* for `NULL\`.
+  Returns a string representation of the binary value of *`N`*, where *`N`* is a longlong (`BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT")) number. This is equivalent to `CONV(N,10,2)`. Returns `NULL` if *`N`* is `NULL`.
 
   ```sql
   mysql> SELECT BIN(12);
           -> '1100'
   ```
 
-- `BIT_LENGTH(str)`
+* `BIT_LENGTH(str)`
 
-  Retorna o comprimento da string *`str`* em bits.
+  Returns the length of the string *`str`* in bits.
 
   ```sql
   mysql> SELECT BIT_LENGTH('text');
           -> 32
   ```
 
-- `CHAR(N,... [USANDO charset_name])`
+* `CHAR(N,... [USING charset_name])`
 
-  `CHAR()` interpreta cada argumento *`N`* como um inteiro e retorna uma string composta pelos caracteres fornecidos pelos valores de código desses inteiros. Os valores `NULL` são ignorados.
+  `CHAR()` interprets each argument *`N`* as an integer and returns a string consisting of the characters given by the code values of those integers. `NULL` values are skipped.
 
   ```sql
   mysql> SELECT CHAR(77,121,83,81,'76');
@@ -60,7 +60,7 @@ Para funções que aceitam argumentos de comprimento, os argumentos não inteiro
           -> 'MMM'
   ```
 
-  Os argumentos `CHAR()` maiores que 255 são convertidos em múltiplos bytes de resultado. Por exemplo, `CHAR(256)` é equivalente a `CHAR(1,0)`, e `CHAR(256*256)` é equivalente a `CHAR(1,0,0)`:
+  `CHAR()` arguments larger than 255 are converted into multiple result bytes. For example, `CHAR(256)` is equivalent to `CHAR(1,0)`, and `CHAR(256*256)` is equivalent to `CHAR(1,0,0)`:
 
   ```sql
   mysql> SELECT HEX(CHAR(1,0)), HEX(CHAR(256));
@@ -77,7 +77,7 @@ Para funções que aceitam argumentos de comprimento, os argumentos não inteiro
   +------------------+--------------------+
   ```
 
-  Por padrão, `CHAR()` retorna uma string binária. Para produzir uma string em um conjunto de caracteres específico, use a cláusula opcional `USING`:
+  By default, `CHAR()` returns a binary string. To produce a string in a given character set, use the optional `USING` clause:
 
   ```sql
   mysql> SELECT CHARSET(CHAR(X'65')), CHARSET(CHAR(X'65' USING utf8));
@@ -88,13 +88,13 @@ Para funções que aceitam argumentos de comprimento, os argumentos não inteiro
   +----------------------+---------------------------------+
   ```
 
-  Se `USING` for fornecido e a string de resultado for ilegal para o conjunto de caracteres fornecido, um aviso é emitido. Além disso, se o modo SQL rigoroso estiver ativado, o resultado da função `CHAR()` se torna `NULL`.
+  If `USING` is given and the result string is illegal for the given character set, a warning is issued. Also, if strict SQL mode is enabled, the result from `CHAR()` becomes `NULL`.
 
-  Se a função `CHAR()` for invocada dentro do cliente **mysql**, as cadeias binárias são exibidas usando notação hexadecimal, dependendo do valor da opção `--binary-as-hex`. Para obter mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de linha de comando do MySQL”.
+  If `CHAR()` is invoked from within the **mysql** client, binary strings display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see Section 4.5.1, “mysql — The MySQL Command-Line Client”.
 
-- `CHAR_LENGTH(str)`
+* `CHAR_LENGTH(str)`
 
-  Retorna o comprimento da string *`str`*, medido em pontos de código. Um caractere multibyte é considerado um único ponto de código. Isso significa que, para uma string que contém dois caracteres de 3 bytes, `LENGTH()` retorna `6`, enquanto `CHAR_LENGTH()` retorna `2`, como mostrado aqui:
+  Returns the length of the string *`str`*, measured in code points. A multibyte character counts as a single code point. This means that, for a string containing two 3-byte characters, `LENGTH()` returns `6`, whereas `CHAR_LENGTH()` returns `2`, as shown here:
 
   ```sql
   mysql> SET @dolphin:='海豚';
@@ -109,15 +109,15 @@ Para funções que aceitam argumentos de comprimento, os argumentos não inteiro
   1 row in set (0.00 sec)
   ```
 
-- `CHARACTER_LENGTH(str)`
+* `CHARACTER_LENGTH(str)`
 
-  `CHARACTER_LENGTH()` é sinônimo de `CHAR_LENGTH()`.
+  `CHARACTER_LENGTH()` is a synonym for `CHAR_LENGTH()`.
 
-- `CONCAT(str1, str2, ...)`
+* `CONCAT(str1,str2,...)`
 
-  Retorna a string resultante da concatenação dos argumentos. Pode ter um ou mais argumentos. Se todos os argumentos forem strings não binárias, o resultado será uma string não binária. Se os argumentos incluir quaisquer strings binárias, o resultado será uma string binária. Um argumento numérico é convertido para sua forma equivalente de string não binária.
+  Returns the string that results from concatenating the arguments. May have one or more arguments. If all arguments are nonbinary strings, the result is a nonbinary string. If the arguments include any binary strings, the result is a binary string. A numeric argument is converted to its equivalent nonbinary string form.
 
-  `CONCAT()` retorna `NULL` se qualquer argumento for `NULL`.
+  `CONCAT()` returns `NULL` if any argument is `NULL`.
 
   ```sql
   mysql> SELECT CONCAT('My', 'S', 'QL');
@@ -128,18 +128,18 @@ Para funções que aceitam argumentos de comprimento, os argumentos não inteiro
           -> '14.3'
   ```
 
-  Para strings citadas, a concatenação pode ser realizada colocando as strings uma ao lado da outra:
+  For quoted strings, concatenation can be performed by placing the strings next to each other:
 
   ```sql
   mysql> SELECT 'My' 'S' 'QL';
           -> 'MySQL'
   ```
 
-  Se a função `CONCAT()` for invocada dentro do cliente **mysql**, os resultados das cadeias binárias são exibidos usando a notação hexadecimal, dependendo do valor da opção `--binary-as-hex`. Para obter mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de linha de comando do MySQL”.
+  If `CONCAT()` is invoked from within the **mysql** client, binary string results display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see Section 4.5.1, “mysql — The MySQL Command-Line Client”.
 
-- `CONCAT_WS(separador,str1,str2,...)`
+* `CONCAT_WS(separator,str1,str2,...)`
 
-  `CONCAT_WS()` significa Concatenar com Sepador e é uma forma especial da função `CONCAT()`. O primeiro argumento é o separador para os demais argumentos. O separador é adicionado entre as strings a serem concatenadas. O separador pode ser uma string, assim como os demais argumentos. Se o separador for `NULL`, o resultado será `NULL`.
+  `CONCAT_WS()` stands for Concatenate With Separator and is a special form of `CONCAT()`. The first argument is the separator for the rest of the arguments. The separator is added between the strings to be concatenated. The separator can be a string, as can the rest of the arguments. If the separator is `NULL`, the result is `NULL`.
 
   ```sql
   mysql> SELECT CONCAT_WS(',', 'First name', 'Second name', 'Last Name');
@@ -148,11 +148,11 @@ Para funções que aceitam argumentos de comprimento, os argumentos não inteiro
           -> 'First name,Last Name'
   ```
 
-  `CONCAT_WS()` não ignora cadeias vazias. No entanto, ele ignora quaisquer valores `NULL` após o argumento separador.
+  `CONCAT_WS()` does not skip empty strings. However, it does skip any `NULL` values after the separator argument.
 
-- `ELT(N,str1,str2,str3,...)`
+* `ELT(N,str1,str2,str3,...)`
 
-  `ELT()` retorna o \*`N`\*º elemento da lista de strings: *`str1`* se *`N`* = `1`, *`str2`* se *`N`* = `2`, e assim por diante. Retorna `NULL` se *`N`* for menor que `1` ou maior que o número de argumentos. `ELT()` é o complemento de `FIELD()`.
+  `ELT()` returns the *`N`*th element of the list of strings: *`str1`* if *`N`* = `1`, *`str2`* if *`N`* = `2`, and so on. Returns `NULL` if *`N`* is less than `1` or greater than the number of arguments. `ELT()` is the complement of `FIELD()`.
 
   ```sql
   mysql> SELECT ELT(1, 'Aa', 'Bb', 'Cc', 'Dd');
@@ -161,9 +161,9 @@ Para funções que aceitam argumentos de comprimento, os argumentos não inteiro
           -> 'Dd'
   ```
 
-- [`EXPORT_SET(bits, on, off[, separator[, número_de_bits)`](string-functions.html#function_export-set)
+* [`EXPORT_SET(bits,on,off[,separator[,number_of_bits)`](string-functions.html#function_export-set)
 
-  Retorna uma string de tal forma que, para cada bit definido no valor *`bits`*, você recebe uma string *`on`* e, para cada bit não definido no valor, você recebe uma string *`off`*. Os bits em *`bits`* são examinados da direita para a esquerda (de bits de menor ordem para bits de maior ordem). As strings são adicionadas ao resultado da esquerda para a direita, separadas pela string *`separator`* (o padrão é o caractere vírgula `,`). O número de bits examinados é dado por *`number_of_bits`*, que tem um valor padrão de 64 se não for especificado. *`number_of_bits`* é acionado silenciosamente para 64 se for maior que 64. Ele é tratado como um inteiro não assinado, então um valor de −1 é efetivamente o mesmo que 64.
+  Returns a string such that for every bit set in the value *`bits`*, you get an *`on`* string and for every bit not set in the value, you get an *`off`* string. Bits in *`bits`* are examined from right to left (from low-order to high-order bits). Strings are added to the result from left to right, separated by the *`separator`* string (the default being the comma character `,`). The number of bits examined is given by *`number_of_bits`*, which has a default of 64 if not specified. *`number_of_bits`* is silently clipped to 64 if larger than 64. It is treated as an unsigned integer, so a value of −1 is effectively the same as 64.
 
   ```sql
   mysql> SELECT EXPORT_SET(5,'Y','N',',',4);
@@ -172,13 +172,13 @@ Para funções que aceitam argumentos de comprimento, os argumentos não inteiro
           -> '0,1,1,0,0,0,0,0,0,0'
   ```
 
-- `FIELD(str,str1,str2,str3,...)`
+* `FIELD(str,str1,str2,str3,...)`
 
-  Retorna o índice (posição) de *`str`* na lista *`str1`*, *`str2`*, *`str3`*, *...*. Retorna `0` se *`str`* não for encontrado.
+  Returns the index (position) of *`str`* in the *`str1`*, *`str2`*, *`str3`*, `...` list. Returns `0` if *`str`* is not found.
 
-  Se todos os argumentos de `FIELD()` forem strings, todos os argumentos são comparados como strings. Se todos os argumentos forem números, eles são comparados como números. Caso contrário, os argumentos são comparados como duplos.
+  If all arguments to `FIELD()` are strings, all arguments are compared as strings. If all arguments are numbers, they are compared as numbers. Otherwise, the arguments are compared as double.
 
-  Se *`str`* for `NULL`, o valor de retorno será `0` porque `NULL` falha na comparação de igualdade com qualquer valor. `FIELD()` é o complemento de `ELT()`.
+  If *`str`* is `NULL`, the return value is `0` because `NULL` fails equality comparison with any value. `FIELD()` is the complement of `ELT()`.
 
   ```sql
   mysql> SELECT FIELD('Bb', 'Aa', 'Bb', 'Cc', 'Dd', 'Ff');
@@ -187,20 +187,20 @@ Para funções que aceitam argumentos de comprimento, os argumentos não inteiro
           -> 0
   ```
 
-- `FIND_IN_SET(str, strlist)`
+* `FIND_IN_SET(str,strlist)`
 
-  Retorna um valor no intervalo de 1 a *`N`* se a string *`str`* estiver na lista de strings *`strlist`* composta por *`N`* substrings. Uma lista de strings é uma string composta por substrings separados por caracteres `,`. Se o primeiro argumento for uma string constante e o segundo for uma coluna do tipo `SET`, a função `FIND_IN_SET()` é otimizada para usar aritmética de bits. Retorna `0` se *`str`* não estiver em *`strlist`* ou se *`strlist`* for a string vazia. Retorna `NULL` se qualquer um dos argumentos for `NULL`. Esta função não funciona corretamente se o primeiro argumento contiver um caractere `,` (vírgula).
+  Returns a value in the range of 1 to *`N`* if the string *`str`* is in the string list *`strlist`* consisting of *`N`* substrings. A string list is a string composed of substrings separated by `,` characters. If the first argument is a constant string and the second is a column of type `SET`, the `FIND_IN_SET()` function is optimized to use bit arithmetic. Returns `0` if *`str`* is not in *`strlist`* or if *`strlist`* is the empty string. Returns `NULL` if either argument is `NULL`. This function does not work properly if the first argument contains a comma (`,`) character.
 
   ```sql
   mysql> SELECT FIND_IN_SET('b','a,b,c,d');
           -> 2
   ```
 
-- `FORMAT(X, D[, locale])`
+* `FORMAT(X,D[,locale])`
 
-  Formata o número *`X`* para um formato como `'#,###,###.##'`, arredondado a *`D`* casas decimais, e retorna o resultado como uma string. Se *`D`* for `0`, o resultado não terá ponto decimal ou parte fracionária.
+  Formats the number *`X`* to a format like `'#,###,###.##'`, rounded to *`D`* decimal places, and returns the result as a string. If *`D`* is `0`, the result has no decimal point or fractional part.
 
-  O terceiro parâmetro opcional permite especificar um local para ser usado para o ponto decimal do número de resultado, o separador de milhares e a separação entre os separadores. Os valores de local permitidos são os mesmos dos valores legais para a variável de sistema `lc_time_names` (consulte a Seção 10.16, “Suporte de Local do MySQL Server”). Se nenhum local for especificado, o padrão é `'en_US'`.
+  The optional third parameter enables a locale to be specified to be used for the result number's decimal point, thousands separator, and grouping between separators. Permissible locale values are the same as the legal values for the `lc_time_names` system variable (see Section 10.16, “MySQL Server Locale Support”). If no locale is specified, the default is `'en_US'`.
 
   ```sql
   mysql> SELECT FORMAT(12332.123456, 4);
@@ -213,22 +213,22 @@ Para funções que aceitam argumentos de comprimento, os argumentos não inteiro
           -> '12.332,20'
   ```
 
-- `FROM_BASE64(str)`
+* `FROM_BASE64(str)`
 
-  Toma uma string codificada com as regras de codificação base-64 usadas pelo `TO_BASE64()`, e retorna o resultado decodificado como uma string binária. O resultado é `NULL` se o argumento for `NULL` ou não for uma string base-64 válida. Consulte a descrição do `TO_BASE64()` para obter detalhes sobre as regras de codificação e decodificação.
+  Takes a string encoded with the base-64 encoded rules used by `TO_BASE64()` and returns the decoded result as a binary string. The result is `NULL` if the argument is `NULL` or not a valid base-64 string. See the description of `TO_BASE64()` for details about the encoding and decoding rules.
 
   ```sql
   mysql> SELECT TO_BASE64('abc'), FROM_BASE64(TO_BASE64('abc'));
           -> 'JWJj', 'abc'
   ```
 
-  Se `FROM_BASE64()` for invocado dentro do cliente **mysql**, as cadeias binárias são exibidas usando notação hexadecimal, dependendo do valor da opção `--binary-as-hex`. Para obter mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de linha de comando do MySQL”.
+  If `FROM_BASE64()` is invoked from within the **mysql** client, binary strings display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see Section 4.5.1, “mysql — The MySQL Command-Line Client”.
 
-- `HEX(str)`, `HEX(N)`
+* `HEX(str)`, `HEX(N)`
 
-  Para um argumento de string *`str`*, `HEX()` retorna uma representação hexadecimal da string *`str`* onde cada byte de cada caractere em *`str`* é convertido em dois dígitos hexadecimais. (Caracteres multibyte, portanto, se tornam mais de dois dígitos.) A operação inversa é realizada pela função `UNHEX()`.
+  For a string argument *`str`*, `HEX()` returns a hexadecimal string representation of *`str`* where each byte of each character in *`str`* is converted to two hexadecimal digits. (Multibyte characters therefore become more than two digits.) The inverse of this operation is performed by the `UNHEX()` function.
 
-  Para um argumento numérico *`N`*, `HEX()` retorna uma representação hexadecimal da string do valor de *`N`* tratado como um número de tipo `longlong` (`BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT`). Isso é equivalente a `CONV(N,10,16)`. A operação inversa é realizada por `CONV(HEX(N),16,10)\`.
+  For a numeric argument *`N`*, `HEX()` returns a hexadecimal string representation of the value of *`N`* treated as a longlong (`BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT")) number. This is equivalent to `CONV(N,10,16)`. The inverse of this operation is performed by `CONV(HEX(N),16,10)`.
 
   ```sql
   mysql> SELECT X'616263', HEX('abc'), UNHEX(HEX('abc'));
@@ -237,9 +237,9 @@ Para funções que aceitam argumentos de comprimento, os argumentos não inteiro
           -> 'FF', 255
   ```
 
-- `INSERT(str, pos, len, newstr)`
+* `INSERT(str,pos,len,newstr)`
 
-  Retorna a string *`str`*, com a subcadeia começando na posição *`pos`* e com *`len`* caracteres de comprimento substituída pela string *`newstr`*. Retorna a string original se *`pos`* não estiver dentro do comprimento da string. Substitui o resto da string a partir da posição *`pos`* se *`len`* não estiver dentro do comprimento do resto da string. Retorna `NULL` se algum argumento for `NULL`.
+  Returns the string *`str`*, with the substring beginning at position *`pos`* and *`len`* characters long replaced by the string *`newstr`*. Returns the original string if *`pos`* is not within the length of the string. Replaces the rest of the string from position *`pos`* if *`len`* is not within the length of the rest of the string. Returns `NULL` if any argument is `NULL`.
 
   ```sql
   mysql> SELECT INSERT('Quadratic', 3, 4, 'What');
@@ -250,11 +250,11 @@ Para funções que aceitam argumentos de comprimento, os argumentos não inteiro
           -> 'QuWhat'
   ```
 
-  Essa função é segura para multibytes.
+  This function is multibyte safe.
 
-- `INSTR(str,substr)`
+* `INSTR(str,substr)`
 
-  Retorna a posição da primeira ocorrência da subcadeia *`substr`* na string *`str`*. Isso é o mesmo que a forma de dois argumentos da função `LOCATE()`, exceto que a ordem dos argumentos é invertida.
+  Returns the position of the first occurrence of substring *`substr`* in string *`str`*. This is the same as the two-argument form of `LOCATE()`, except that the order of the arguments is reversed.
 
   ```sql
   mysql> SELECT INSTR('foobarbar', 'bar');
@@ -263,45 +263,45 @@ Para funções que aceitam argumentos de comprimento, os argumentos não inteiro
           -> 0
   ```
 
-  Essa função é segura para multibytes e é case-sensitive apenas se pelo menos um argumento for uma string binária.
+  This function is multibyte safe, and is case-sensitive only if at least one argument is a binary string.
 
-- `LCASE(str)`
+* `LCASE(str)`
 
-  `LCASE()` é um sinônimo de `LOWER()`.
+  `LCASE()` is a synonym for `LOWER()`.
 
-  `LCASE()` usado em uma vista é reescrito como `LOWER()` ao armazenar a definição da vista. (Bug #12844279)
+  `LCASE()` used in a view is rewritten as `LOWER()` when storing the view's definition. (Bug #12844279)
 
-- `LEFT(str, len)`
+* `LEFT(str,len)`
 
-  Retorna os caracteres *`len`* mais à esquerda da string *`str`*, ou `NULL` se algum argumento for `NULL`.
+  Returns the leftmost *`len`* characters from the string *`str`*, or `NULL` if any argument is `NULL`.
 
   ```sql
   mysql> SELECT LEFT('foobarbar', 5);
           -> 'fooba'
   ```
 
-  Essa função é segura para multibytes.
+  This function is multibyte safe.
 
-- `LENGTH(str)`
+* `LENGTH(str)`
 
-  Retorna o comprimento da string *`str`*, medido em bytes. Um caractere multibyte é contado como múltiplos bytes. Isso significa que, para uma string que contém cinco caracteres de 2 bytes, o `LENGTH()` retorna `10`, enquanto o `CHAR_LENGTH()` retorna `5`.
+  Returns the length of the string *`str`*, measured in bytes. A multibyte character counts as multiple bytes. This means that for a string containing five 2-byte characters, `LENGTH()` returns `10`, whereas `CHAR_LENGTH()` returns `5`.
 
   ```sql
   mysql> SELECT LENGTH('text');
           -> 4
   ```
 
-  Nota
+  Note
 
-  A função espacial `Length()` do OpenGIS é chamada `ST_Length()` no MySQL.
+  The `Length()` OpenGIS spatial function is named `ST_Length()` in MySQL.
 
-- `LOAD_FILE(nome_do_arquivo)`
+* `LOAD_FILE(file_name)`
 
-  Leitura do arquivo e retorno do conteúdo do arquivo como uma string. Para usar essa função, o arquivo deve estar localizado no host do servidor, você deve especificar o nome completo do caminho do arquivo e você deve ter o privilégio `FILE`. O arquivo deve ser legível por todos e seu tamanho deve ser menor que `max_allowed_packet` bytes. Se a variável de sistema `secure_file_priv` estiver definida como um nome de diretório não vazio, o arquivo a ser carregado deve estar localizado nesse diretório.
+  Reads the file and returns the file contents as a string. To use this function, the file must be located on the server host, you must specify the full path name to the file, and you must have the `FILE` privilege. The file must be readable by all and its size less than `max_allowed_packet` bytes. If the `secure_file_priv` system variable is set to a nonempty directory name, the file to be loaded must be located in that directory.
 
-  Se o arquivo não existir ou não puder ser lido porque uma das condições anteriores não for atendida, a função retorna `NULL`.
+  If the file does not exist or cannot be read because one of the preceding conditions is not satisfied, the function returns `NULL`.
 
-  A variável de sistema `character_set_filesystem` controla a interpretação dos nomes de arquivos fornecidos como strings literais.
+  The `character_set_filesystem` system variable controls interpretation of file names that are given as literal strings.
 
   ```sql
   mysql> UPDATE t
@@ -309,9 +309,9 @@ Para funções que aceitam argumentos de comprimento, os argumentos não inteiro
               WHERE id=1;
   ```
 
-- `LOCATE(substr,str)` e `LOCATE(substr,str,pos)`
+* `LOCATE(substr,str)`, `LOCATE(substr,str,pos)`
 
-  A primeira sintaxe retorna a posição da primeira ocorrência da subcadeia *`substr`* na string *`str`*. A segunda sintaxe retorna a posição da primeira ocorrência da subcadeia *`substr`* na string *`str`*, começando na posição *`pos`*. Retorna `0` se *`substr`* não estiver em *`str`*. Retorna `NULL` se *`substr`* ou *`str`* estiverem `NULL`.
+  The first syntax returns the position of the first occurrence of substring *`substr`* in string *`str`*. The second syntax returns the position of the first occurrence of substring *`substr`* in string *`str`*, starting at position *`pos`*. Returns `0` if *`substr`* is not in *`str`*. Returns `NULL` if *`substr`* or *`str`* is `NULL`.
 
   ```sql
   mysql> SELECT LOCATE('bar', 'foobarbar');
@@ -322,18 +322,18 @@ Para funções que aceitam argumentos de comprimento, os argumentos não inteiro
           -> 7
   ```
 
-  Essa função é segura para multibytes e é case-sensitive apenas se pelo menos um argumento for uma string binária.
+  This function is multibyte safe, and is case-sensitive only if at least one argument is a binary string.
 
-- `LOWER(str)`
+* `LOWER(str)`
 
-  Retorna a string *`str`* com todos os caracteres alterados para maiúsculas conforme a configuração atual do mapeamento de conjuntos de caracteres. O padrão é `latin1` (cp1252, Europa Ocidental).
+  Returns the string *`str`* with all characters changed to lowercase according to the current character set mapping. The default is `latin1` (cp1252 West European).
 
   ```sql
   mysql> SELECT LOWER('QUADRATICALLY');
           -> 'quadratically'
   ```
 
-  `LOWER()` (e `UPPER()`) são ineficazes quando aplicados a strings binárias (`BINARY`, `VARBINARY`, `BLOB`). Para realizar a conversão de maiúsculas e minúsculas de uma string binária, primeiro converta-a em uma string não binária usando um conjunto de caracteres apropriado para os dados armazenados na string:
+  `LOWER()` (and `UPPER()`) are ineffective when applied to binary strings (`BINARY`, `VARBINARY`, `BLOB`). To perform lettercase conversion of a binary string, first convert it to a nonbinary string using a character set appropriate for the data stored in the string:
 
   ```sql
   mysql> SET @str = BINARY 'New York';
@@ -345,15 +345,15 @@ Para funções que aceitam argumentos de comprimento, os argumentos não inteiro
   +-------------+-----------------------------------+
   ```
 
-  Para a comparação de conjuntos de caracteres Unicode, `LOWER()` e `UPPER()` funcionam de acordo com o Algoritmo de Comparação Unicode (UCA) da versão indicada no nome da comparação, se houver uma, e UCA 4.0.0, se nenhuma versão for especificada. Por exemplo, `utf8_unicode_520_ci` funciona de acordo com o UCA 5.2.0, enquanto `utf8_unicode_ci` funciona de acordo com o UCA 4.0.0. Veja a Seção 10.10.1, “Conjunto de Caracteres Unicode”.
+  For collations of Unicode character sets, `LOWER()` and `UPPER()` work according to the Unicode Collation Algorithm (UCA) version in the collation name, if there is one, and UCA 4.0.0 if no version is specified. For example, `utf8_unicode_520_ci` works according to UCA 5.2.0, whereas `utf8_unicode_ci` works according to UCA 4.0.0. See Section 10.10.1, “Unicode Character Sets”.
 
-  Essa função é segura para multibytes.
+  This function is multibyte safe.
 
-  Em versões anteriores do MySQL, `LOWER()` usado dentro de uma vista era reescrito como `LCASE()` ao armazenar a definição da vista. No MySQL 5.7, `LOWER()` nunca é reescrito nessas situações, mas `LCASE()` usado dentro das vistas é reescrito como `LOWER()`. (Bug #12844279)
+  In previous versions of MySQL, `LOWER()` used within a view was rewritten as `LCASE()` when storing the view's definition. In MySQL 5.7, `LOWER()` is never rewritten in such cases, but `LCASE()` used within views is instead rewritten as `LOWER()`. (Bug #12844279)
 
-- `LPAD(str,len,padstr)`
+* `LPAD(str,len,padstr)`
 
-  Retorna a string *`str`*, preenchida à esquerda com a string *`padstr`* até atingir uma extensão de *`len`* caracteres. Se *`str`* for mais longa que *`len`*, o valor de retorno é encurtado para *`len`* caracteres.
+  Returns the string *`str`*, left-padded with the string *`padstr`* to a length of *`len`* characters. If *`str`* is longer than *`len`*, the return value is shortened to *`len`* characters.
 
   ```sql
   mysql> SELECT LPAD('hi',4,'??');
@@ -362,20 +362,20 @@ Para funções que aceitam argumentos de comprimento, os argumentos não inteiro
           -> 'h'
   ```
 
-- `LTRIM(str)`
+* `LTRIM(str)`
 
-  Retorna a string *`str`* com os caracteres de espaço em branco removidos.
+  Returns the string *`str`* with leading space characters removed.
 
   ```sql
   mysql> SELECT LTRIM('  barbar');
           -> 'barbar'
   ```
 
-  Essa função é segura para multibytes.
+  This function is multibyte safe.
 
-- `MAKE_SET(bits,str1,str2,...)`
+* `MAKE_SET(bits,str1,str2,...)`
 
-  Retorna um conjunto de valores (uma string contendo substrings separados por caracteres `,`) consistindo das strings que têm o bit correspondente em *`bits`* definido. *`str1`* corresponde ao bit 0, *`str2`* ao bit 1, e assim por diante. Valores `NULL` em *`str1`*, *`str2`*, `...` não são anexados ao resultado.
+  Returns a set value (a string containing substrings separated by `,` characters) consisting of the strings that have the corresponding bit in *`bits`* set. *`str1`* corresponds to bit 0, *`str2`* to bit 1, and so on. `NULL` values in *`str1`*, *`str2`*, `...` are not appended to the result.
 
   ```sql
   mysql> SELECT MAKE_SET(1,'a','b','c');
@@ -388,26 +388,26 @@ Para funções que aceitam argumentos de comprimento, os argumentos não inteiro
           -> ''
   ```
 
-- `MID(str, pos)`, `MID(str FROM pos)`, `MID(str, pos, len)`, `MID(str FROM pos FOR len)`
+* `MID(str,pos)`, `MID(str FROM pos)`, `MID(str,pos,len)`, `MID(str FROM pos FOR len)`
 
-  `MID(str, pos, len)` é sinônimo de `SUBSTRING(str, pos, len)`.
+  `MID(str,pos,len)` is a synonym for `SUBSTRING(str,pos,len)`.
 
-- `OCT(N)`
+* `OCT(N)`
 
-  Retorna uma representação em string do valor octal de *`N`*, onde *`N`* é um número longlong (`BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT`). Isso é equivalente a `CONV(N,10,8)`. Retorna `NULL` se *`N`* for `NULL\`.
+  Returns a string representation of the octal value of *`N`*, where *`N`* is a longlong (`BIGINT` - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT")) number. This is equivalent to `CONV(N,10,8)`. Returns `NULL` if *`N`* is `NULL`.
 
   ```sql
   mysql> SELECT OCT(12);
           -> '14'
   ```
 
-- `OCTET_LENGTH(str)`
+* `OCTET_LENGTH(str)`
 
-  `OCTET_LENGTH()` é sinônimo de `LENGTH()`.
+  `OCTET_LENGTH()` is a synonym for `LENGTH()`.
 
-- `ORD(str)`
+* `ORD(str)`
 
-  Se o caractere mais à esquerda da string *`str`* for um caractere multibyte, retorne o código desse caractere, calculado a partir dos valores numéricos de seus bytes constituintes usando esta fórmula:
+  If the leftmost character of the string *`str`* is a multibyte character, returns the code for that character, calculated from the numeric values of its constituent bytes using this formula:
 
   ```sql
     (1st byte code)
@@ -415,20 +415,20 @@ Para funções que aceitam argumentos de comprimento, os argumentos não inteiro
   + (3rd byte code * 256^2) ...
   ```
 
-  Se o caractere mais à esquerda não for um caractere multibyte, o `ORD()` retorna o mesmo valor que a função `ASCII()`.
+  If the leftmost character is not a multibyte character, `ORD()` returns the same value as the `ASCII()` function.
 
   ```sql
   mysql> SELECT ORD('2');
           -> 50
   ```
 
-- `POSITION(substr IN str)`
+* `POSITION(substr IN str)`
 
-  `POSITION(substr IN str)` é sinônimo de `LOCATE(substr, str)`.
+  `POSITION(substr IN str)` is a synonym for `LOCATE(substr,str)`.
 
-- `CITE(str)`
+* `QUOTE(str)`
 
-  Cita uma string para produzir um resultado que pode ser usado como um valor de dados corretamente escapado em uma instrução SQL. A string é retornada entre aspas simples e com cada instância de barra invertida (`\`), aspas simples (`'`), ASCII `NUL` e Control+Z precedidas por uma barra invertida. Se o argumento for `NULL`, o valor de retorno é a palavra “NULL” sem as aspas simples.
+  Quotes a string to produce a result that can be used as a properly escaped data value in an SQL statement. The string is returned enclosed by single quotation marks and with each instance of backslash (`\`), single quote (`'`), ASCII `NUL`, and Control+Z preceded by a backslash. If the argument is `NULL`, the return value is the word “NULL” without enclosing single quotation marks.
 
   ```sql
   mysql> SELECT QUOTE('Don\'t!');
@@ -437,53 +437,53 @@ Para funções que aceitam argumentos de comprimento, os argumentos não inteiro
           -> NULL
   ```
 
-  Para comparação, consulte as regras de citação para strings literais e dentro da API C na Seção 9.1.1, “Strings Literais”, e mysql_real_escape_string_quote().
+  For comparison, see the quoting rules for literal strings and within the C API in Section 9.1.1, “String Literals”, and mysql_real_escape_string_quote().
 
-- `REPETIR(str, count)`
+* `REPEAT(str,count)`
 
-  Retorna uma string composta pela string *`str`* repetida *`count`* vezes. Se *`count`* for menor que 1, retorna uma string vazia. Retorna `NULL` se *`str`* ou *`count`* forem `NULL`.
+  Returns a string consisting of the string *`str`* repeated *`count`* times. If *`count`* is less than 1, returns an empty string. Returns `NULL` if *`str`* or *`count`* are `NULL`.
 
   ```sql
   mysql> SELECT REPEAT('MySQL', 3);
           -> 'MySQLMySQLMySQL'
   ```
 
-- `REPLACE(str, from_str, to_str)`
+* `REPLACE(str,from_str,to_str)`
 
-  Retorna a string *`str`* com todas as ocorrências da string *`from_str`* substituídas pela string *`to_str`*. O método `REPLACE()` realiza uma correspondência sensível a maiúsculas e minúsculas ao procurar por *`from_str`*.
+  Returns the string *`str`* with all occurrences of the string *`from_str`* replaced by the string *`to_str`*. `REPLACE()` performs a case-sensitive match when searching for *`from_str`*.
 
   ```sql
   mysql> SELECT REPLACE('www.mysql.com', 'w', 'Ww');
           -> 'WwWwWw.mysql.com'
   ```
 
-  Essa função é segura para multibytes.
+  This function is multibyte safe.
 
-- `REVERSE(str)`
+* `REVERSE(str)`
 
-  Retorna a string *`str`* com a ordem dos caracteres invertida.
+  Returns the string *`str`* with the order of the characters reversed.
 
   ```sql
   mysql> SELECT REVERSE('abc');
           -> 'cba'
   ```
 
-  Essa função é segura para multibytes.
+  This function is multibyte safe.
 
-- `RIGHT(str, len)`
+* `RIGHT(str,len)`
 
-  Retorna os caracteres *`len`* mais à direita da string *`str`*, ou `NULL` se algum argumento for `NULL`.
+  Returns the rightmost *`len`* characters from the string *`str`*, or `NULL` if any argument is `NULL`.
 
   ```sql
   mysql> SELECT RIGHT('foobarbar', 4);
           -> 'rbar'
   ```
 
-  Essa função é segura para multibytes.
+  This function is multibyte safe.
 
-- `RPAD(str, len, padstr)`
+* `RPAD(str,len,padstr)`
 
-  Retorna a string *`str`*, preenchida à direita com a string *`padstr`* até atingir uma extensão de *`len`* caracteres. Se *`str`* for mais longa que *`len`*, o valor de retorno é encurtado para *`len`* caracteres.
+  Returns the string *`str`*, right-padded with the string *`padstr`* to a length of *`len`* characters. If *`str`* is longer than *`len`*, the return value is shortened to *`len`* characters.
 
   ```sql
   mysql> SELECT RPAD('hi',5,'?');
@@ -492,30 +492,30 @@ Para funções que aceitam argumentos de comprimento, os argumentos não inteiro
           -> 'h'
   ```
 
-  Essa função é segura para multibytes.
+  This function is multibyte safe.
 
-- `RTRIM(str)`
+* `RTRIM(str)`
 
-  Retorna a string *`str`* com os caracteres de espaço em branco finais removidos.
+  Returns the string *`str`* with trailing space characters removed.
 
   ```sql
   mysql> SELECT RTRIM('barbar   ');
           -> 'barbar'
   ```
 
-  Essa função é segura para multibytes.
+  This function is multibyte safe.
 
-- `SOUNDEX(str)`
+* `SOUNDEX(str)`
 
-  Retorna uma string de soundex de *`str`*. Duas strings que soam quase iguais devem ter strings de soundex idênticas. Uma string de soundex padrão tem quatro caracteres, mas a função `SOUNDEX()` retorna uma string arbitrariamente longa. Você pode usar `SUBSTRING()` no resultado para obter uma string de soundex padrão. Todos os caracteres não alfabéticos em *`str`* são ignorados. Todos os caracteres alfabéticos internacionais fora da faixa de A-Z são tratados como vogais.
+  Returns a soundex string from *`str`*. Two strings that sound almost the same should have identical soundex strings. A standard soundex string is four characters long, but the `SOUNDEX()` function returns an arbitrarily long string. You can use `SUBSTRING()` on the result to get a standard soundex string. All nonalphabetic characters in *`str`* are ignored. All international alphabetic characters outside the A-Z range are treated as vowels.
 
-  Importante
+  Important
 
-  Ao usar `SOUNDEX()`, você deve estar ciente das seguintes limitações:
+  When using `SOUNDEX()`, you should be aware of the following limitations:
 
-  - Essa função, conforme implementada atualmente, é destinada a funcionar bem com strings que estão apenas no idioma inglês. Strings em outros idiomas podem não produzir resultados confiáveis.
+  + This function, as currently implemented, is intended to work well with strings that are in the English language only. Strings in other languages may not produce reliable results.
 
-  - Esta função não garante resultados consistentes com strings que utilizam conjuntos de caracteres multibyte, incluindo `utf-8`. Consulte o Bug #22638 para obter mais informações.
+  + This function is not guaranteed to provide consistent results with strings that use multibyte character sets, including `utf-8`. See Bug #22638 for more information.
 
   ```sql
   mysql> SELECT SOUNDEX('Hello');
@@ -524,32 +524,32 @@ Para funções que aceitam argumentos de comprimento, os argumentos não inteiro
           -> 'Q36324'
   ```
 
-  Nota
+  Note
 
-  Essa função implementa o algoritmo original Soundex, e não a versão aprimorada mais popular (também descrita por D. Knuth). A diferença é que a versão original descarta as vogais primeiro e duplica as consoantes depois, enquanto a versão aprimorada descarta as duplicatas primeiro e as vogais depois.
+  This function implements the original Soundex algorithm, not the more popular enhanced version (also described by D. Knuth). The difference is that original version discards vowels first and duplicates second, whereas the enhanced version discards duplicates first and vowels second.
 
-- `expr1 SOA COMO expr2`
+* `expr1 SOUNDS LIKE expr2`
 
-  Isso é o mesmo que `SOUNDEX(expr1) = SOUNDEX(expr2)`.
+  This is the same as `SOUNDEX(expr1) = SOUNDEX(expr2)`.
 
-- `ESPACO(N)`
+* `SPACE(N)`
 
-  Retorna uma string composta por *`N`* caracteres de espaço.
+  Returns a string consisting of *`N`* space characters.
 
   ```sql
   mysql> SELECT SPACE(6);
           -> '      '
   ```
 
-- `SUBSTR(str, pos)`, `SUBSTR(str FROM pos)`, `SUBSTR(str, pos, len)`, `SUBSTR(str FROM pos FOR len)`
+* `SUBSTR(str,pos)`, `SUBSTR(str FROM pos)`, `SUBSTR(str,pos,len)`, `SUBSTR(str FROM pos FOR len)`
 
-  `SUBSTR()` é sinônimo de `SUBSTRING()`.
+  `SUBSTR()` is a synonym for `SUBSTRING()`.
 
-- `SUBSTRING(str, pos)`, `SUBSTRING(str FROM pos)`, `SUBSTRING(str, pos, len)`, `SUBSTRING(str FROM pos FOR len)`
+* `SUBSTRING(str,pos)`, `SUBSTRING(str FROM pos)`, `SUBSTRING(str,pos,len)`, `SUBSTRING(str FROM pos FOR len)`
 
-  Os formulários sem o argumento `*len*` retornam uma subcadeia da string `*str*` a partir da posição `*pos*`. Os formulários com o argumento `*len*` retornam uma subcadeia de `*len*` caracteres da string `*str*`, a partir da posição `*pos*`. Os formulários que usam `FROM` são a sintaxe padrão do SQL. Também é possível usar um valor negativo para `*pos*`. Neste caso, o início da subcadeia está `*pos*` caracteres a partir do final da string, em vez do início. Um valor negativo pode ser usado para `*pos*` em qualquer um dos formulários desta função. Um valor de 0 para `*pos*` retorna uma string vazia.
+  The forms without a *`len`* argument return a substring from string *`str`* starting at position *`pos`*. The forms with a *`len`* argument return a substring *`len`* characters long from string *`str`*, starting at position *`pos`*. The forms that use `FROM` are standard SQL syntax. It is also possible to use a negative value for *`pos`*. In this case, the beginning of the substring is *`pos`* characters from the end of the string, rather than the beginning. A negative value may be used for *`pos`* in any of the forms of this function. A value of 0 for *`pos`* returns an empty string.
 
-  Para todas as formas de `SUBSTRING()`, a posição do primeiro caractere na string a partir da qual a subcadeia deve ser extraída é considerada como `1`.
+  For all forms of `SUBSTRING()`, the position of the first character in the string from which the substring is to be extracted is reckoned as `1`.
 
   ```sql
   mysql> SELECT SUBSTRING('Quadratically',5);
@@ -566,13 +566,13 @@ Para funções que aceitam argumentos de comprimento, os argumentos não inteiro
           -> 'ki'
   ```
 
-  Essa função é segura para multibytes.
+  This function is multibyte safe.
 
-  Se *`len`* for menor que 1, o resultado será a string vazia.
+  If *`len`* is less than 1, the result is the empty string.
 
-- `SUBSTRING_INDEX(str, delim, count)`
+* `SUBSTRING_INDEX(str,delim,count)`
 
-  Retorna a subcadeia da string *`str`* antes de *`count`* ocorrências do delimitador *`delim`*. Se *`count`* for positivo, tudo à esquerda do delimitador final (contando da esquerda para a direita) é retornado. Se *`count`* for negativo, tudo à direita do delimitador final (contando da direita para a esquerda) é retornado. A função `SUBSTRING_INDEX()` realiza uma correspondência sensível a maiúsculas e minúsculas ao procurar por *`delim`*.
+  Returns the substring from string *`str`* before *`count`* occurrences of the delimiter *`delim`*. If *`count`* is positive, everything to the left of the final delimiter (counting from the left) is returned. If *`count`* is negative, everything to the right of the final delimiter (counting from the right) is returned. `SUBSTRING_INDEX()` performs a case-sensitive match when searching for *`delim`*.
 
   ```sql
   mysql> SELECT SUBSTRING_INDEX('www.mysql.com', '.', 2);
@@ -581,32 +581,32 @@ Para funções que aceitam argumentos de comprimento, os argumentos não inteiro
           -> 'mysql.com'
   ```
 
-  Essa função é segura para multibytes.
+  This function is multibyte safe.
 
-- `TO_BASE64(str)`
+* `TO_BASE64(str)`
 
-  Converte o argumento de string para a forma codificada em base-64 e retorna o resultado como uma string de caracteres com o conjunto de caracteres de conexão e a ordenação. Se o argumento não for uma string, ele é convertido em uma string antes da conversão ocorrer. O resultado é `NULL` se o argumento for `NULL`. Strings codificadas em base-64 podem ser decodificadas usando a função `FROM_BASE64()`.
+  Converts the string argument to base-64 encoded form and returns the result as a character string with the connection character set and collation. If the argument is not a string, it is converted to a string before conversion takes place. The result is `NULL` if the argument is `NULL`. Base-64 encoded strings can be decoded using the `FROM_BASE64()` function.
 
   ```sql
   mysql> SELECT TO_BASE64('abc'), FROM_BASE64(TO_BASE64('abc'));
           -> 'JWJj', 'abc'
   ```
 
-  Existem diferentes esquemas de codificação base-64. Estes são as regras de codificação e decodificação usadas pelo `TO_BASE64()` e `FROM_BASE64()`:
+  Different base-64 encoding schemes exist. These are the encoding and decoding rules used by `TO_BASE64()` and `FROM_BASE64()`:
 
-  - O codificação para o valor do alfabeto 62 é `'+'`.
+  + The encoding for alphabet value 62 is `'+'`.
 
-  - O codificação para o valor do alfabeto 63 é `'/'`.
+  + The encoding for alphabet value 63 is `'/'`.
 
-  - A saída codificada consiste em grupos de 4 caracteres imprimíveis. Cada 3 bytes dos dados de entrada são codificados usando 4 caracteres. Se o último grupo estiver incompleto, ele é preenchido com caracteres `='` até atingir uma extensão de 4.
+  + Encoded output consists of groups of 4 printable characters. Each 3 bytes of the input data are encoded using 4 characters. If the last group is incomplete, it is padded with `'='` characters to a length of 4.
 
-  - Uma nova linha é adicionada após cada 76 caracteres de saída codificada para dividir a saída longa em várias linhas.
+  + A newline is added after each 76 characters of encoded output to divide long output into multiple lines.
 
-  - O Decoding reconhece e ignora novas linhas, retorno de carro, tabulação e espaços.
+  + Decoding recognizes and ignores newline, carriage return, tab, and space.
 
-- [`TRIM([{BOTH | LEADING | TRAILING} [remstr] FROM] str)`](string-functions.html#function_trim), `TRIM([remstr FROM] str)`
+* [`TRIM([{BOTH | LEADING | TRAILING} [remstr] FROM] str)`](string-functions.html#function_trim), `TRIM([remstr FROM] str)`
 
-  Retorna a string *`str`* com todos os prefixos ou sufixos de *`remstr`* removidos. Se nenhum dos especificadores `BOTH`, `LEADING` ou `TRAILING` for fornecido, o `BOTH` é assumido. *`remstr`* é opcional e, se não especificado, os espaços são removidos.
+  Returns the string *`str`* with all *`remstr`* prefixes or suffixes removed. If none of the specifiers `BOTH`, `LEADING`, or `TRAILING` is given, `BOTH` is assumed. *`remstr`* is optional and, if not specified, spaces are removed.
 
   ```sql
   mysql> SELECT TRIM('  bar   ');
@@ -619,17 +619,17 @@ Para funções que aceitam argumentos de comprimento, os argumentos não inteiro
           -> 'barx'
   ```
 
-  Essa função é segura para multibytes.
+  This function is multibyte safe.
 
-- `UCASE(str)`
+* `UCASE(str)`
 
-  `UCASE()` é um sinônimo de `UPPER()`.
+  `UCASE()` is a synonym for `UPPER()`.
 
-  No MySQL 5.7, `UCASE()` usado em uma visualização é reescrito como `UPPER()` ao armazenar a definição da visualização. (Bug #12844279)
+  In MySQL 5.7, `UCASE()` used in a view is rewritten as `UPPER()` when storing the view's definition. (Bug #12844279)
 
-- `UNHEX(str)`
+* `UNHEX(str)`
 
-  Para um argumento de string *`str`*, `UNHEX(str)` interpreta cada par de caracteres no argumento como um número hexadecimal e o converte para o byte representado pelo número. O valor de retorno é uma string binária.
+  For a string argument *`str`*, `UNHEX(str)` interprets each pair of characters in the argument as a hexadecimal number and converts it to the byte represented by the number. The return value is a binary string.
 
   ```sql
   mysql> SELECT UNHEX('4D7953514C');
@@ -642,7 +642,7 @@ Para funções que aceitam argumentos de comprimento, os argumentos não inteiro
           -> '1267'
   ```
 
-  Os caracteres na string de argumento devem ser algarismos hexadecimais válidos: `'0'` .. `'9'`, `'A'` .. `'F'`, `'a'` .. `'f'`. Se o argumento contiver quaisquer algarismos não hexadecimais, o resultado será `NULL`:
+  The characters in the argument string must be legal hexadecimal digits: `'0'` .. `'9'`, `'A'` .. `'F'`, `'a'` .. `'f'`. If the argument contains any nonhexadecimal digits, the result is `NULL`:
 
   ```sql
   mysql> SELECT UNHEX('GG');
@@ -653,52 +653,52 @@ Para funções que aceitam argumentos de comprimento, os argumentos não inteiro
   +-------------+
   ```
 
-  Um resultado `NULL` pode ocorrer se o argumento de `UNHEX()` for uma coluna `BINARY`, porque os valores são preenchidos com bytes `0x00` ao serem armazenados, mas esses bytes não são removidos na recuperação. Por exemplo, `'41'` é armazenado em uma coluna `CHAR(3)` como `'41 '` e recuperado como `'41'` (com o espaço de preenchimento final removido), então `UNHEX()` para o valor da coluna retorna `X'41'`. Por outro lado, `'41'` é armazenado em uma coluna `BINARY(3)` como `'41\0'` e recuperado como `'41\0'` (com o byte de preenchimento final `0x00` não removido). `'\0'` não é um dígito hexadecimal legal, então `UNHEX()` para o valor da coluna retorna `NULL`.
+  A `NULL` result can occur if the argument to `UNHEX()` is a `BINARY` column, because values are padded with `0x00` bytes when stored but those bytes are not stripped on retrieval. For example, `'41'` is stored into a `CHAR(3)` column as `'41 '` and retrieved as `'41'` (with the trailing pad space stripped), so `UNHEX()` for the column value returns `X'41'`. By contrast, `'41'` is stored into a `BINARY(3)` column as `'41\0'` and retrieved as `'41\0'` (with the trailing pad `0x00` byte not stripped). `'\0'` is not a legal hexadecimal digit, so `UNHEX()` for the column value returns `NULL`.
 
-  Para um argumento numérico *`N`*, o inverso de `HEX(N)` não é realizado pelo `UNHEX()`. Use `CONV(HEX(N),16,10)` em vez disso. Veja a descrição do `HEX()`.
+  For a numeric argument *`N`*, the inverse of `HEX(N)` is not performed by `UNHEX()`. Use `CONV(HEX(N),16,10)` instead. See the description of `HEX()`.
 
-  Se a função `UNHEX()` for invocada dentro do cliente **mysql**, as cadeias binárias são exibidas usando a notação hexadecimal, dependendo do valor da opção `--binary-as-hex`. Para obter mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de linha de comando do MySQL”.
+  If `UNHEX()` is invoked from within the **mysql** client, binary strings display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see Section 4.5.1, “mysql — The MySQL Command-Line Client”.
 
-- `UPPER(str)`
+* `UPPER(str)`
 
-  Retorna a string *`str`* com todos os caracteres alterados para maiúsculas de acordo com a configuração atual de mapeamento de conjuntos de caracteres. O padrão é `latin1` (cp1252 da Europa Ocidental).
+  Returns the string *`str`* with all characters changed to uppercase according to the current character set mapping. The default is `latin1` (cp1252 West European).
 
   ```sql
   mysql> SELECT UPPER('Hej');
           -> 'HEJ'
   ```
 
-  Consulte a descrição da função `LOWER()` para obter informações que também se aplicam à função `UPPER()`. Isso inclui informações sobre como realizar a conversão de maiúsculas e minúsculas de strings binárias (`BINARY`, `VARBINARY`, `BLOB`), para as quais essas funções são ineficazes, e informações sobre o dobramento de maiúsculas para conjuntos de caracteres Unicode.
+  See the description of `LOWER()` for information that also applies to `UPPER()`. This included information about how to perform lettercase conversion of binary strings (`BINARY`, `VARBINARY`, `BLOB`) for which these functions are ineffective, and information about case folding for Unicode character sets.
 
-  Essa função é segura para multibytes.
+  This function is multibyte safe.
 
-  Em versões anteriores do MySQL, `UPPER()` usado dentro de uma vista era reescrito como `UCASE()` ao armazenar a definição da vista. No MySQL 5.7, `UPPER()` nunca é reescrito nessas situações, mas `UCASE()` usado dentro das vistas é reescrito como `UPPER()`. (Bug #12844279)
+  In previous versions of MySQL, `UPPER()` used within a view was rewritten as `UCASE()` when storing the view's definition. In MySQL 5.7, `UPPER()` is never rewritten in such cases, but `UCASE()` used within views is instead rewritten as `UPPER()`. (Bug #12844279)
 
-- `WEIGHT_STRING(str [AS {CHAR|BINARY}(N)] [LEVEL níveis] [flags])`
+* `WEIGHT_STRING(str [AS {CHAR|BINARY}(N)] [LEVEL levels] [flags])`
 
   `levels: N [ASC|DESC|REVERSE] [, N [ASC|DESC|REVERSE ...`
 
-  Essa função retorna a string de peso para a string de entrada. O valor de retorno é uma string binária que representa o valor de comparação e ordenação da string. Ela tem essas propriedades:
+  This function returns the weight string for the input string. The return value is a binary string that represents the comparison and sorting value of the string. It has these properties:
 
-  - Se `WEIGHT_STRING(str1)` = `WEIGHT_STRING(str2)`, então `str1 = str2` (*`str1`* e *`str2`* são considerados iguais)
+  + If `WEIGHT_STRING(str1)` = `WEIGHT_STRING(str2)`, then `str1 = str2` (*`str1`* and *`str2`* are considered equal)
 
-  - Se `WEIGHT_STRING(str1)` < `WEIGHT_STRING(str2)`, então `str1 < str2` (*`str1`* é ordenado antes de *`str2`*)
+  + If `WEIGHT_STRING(str1)` < `WEIGHT_STRING(str2)`, then `str1 < str2` (*`str1`* sorts before *`str2`*)
 
-  `WEIGHT_STRING()` é uma função de depuração destinada ao uso interno. Seu comportamento pode mudar sem aviso entre as versões do MySQL. Pode ser usada para testar e depurar colateias, especialmente se você estiver adicionando uma nova colateia. Veja a Seção 10.14, “Adicionando uma Colateia a um Conjunto de Caracteres”.
+  `WEIGHT_STRING()` is a debugging function intended for internal use. Its behavior can change without notice between MySQL versions. It can be used for testing and debugging of collations, especially if you are adding a new collation. See Section 10.14, “Adding a Collation to a Character Set”.
 
-  Esta lista resume brevemente os argumentos. Mais detalhes são fornecidos na discussão que segue a lista.
+  This list briefly summarizes the arguments. More details are given in the discussion following the list.
 
-  - *`str`*: A expressão de string de entrada.
+  + *`str`*: The input string expression.
 
-  - Cláusula `AS`: Opcional; converta a string de entrada para um tipo e comprimento específicos.
+  + `AS` clause: Optional; cast the input string to a given type and length.
 
-  - Cláusula `LEVEL`: Opcional; especifique os níveis de peso para o valor de retorno.
+  + `LEVEL` clause: Optional; specify weight levels for the return value.
 
-  - *`flags`*: Opcional; não utilizado.
+  + *`flags`*: Optional; unused.
 
-  A string de entrada, *`str`*, é uma expressão de string. Se a entrada for uma string não binária (caractere), como um valor `CHAR`, `VARCHAR` ou `TEXT`, o valor de retorno contém os pesos de ordenação da string. Se a entrada for uma string binária (byte), como um valor `BINARY`, `VARBINARY` ou `BLOB`, o valor de retorno é o mesmo da entrada (o peso de cada byte em uma string binária é o valor do byte). Se a entrada for `NULL`, `WEIGHT_STRING()` retorna `NULL`.
+  The input string, *`str`*, is a string expression. If the input is a nonbinary (character) string such as a `CHAR`, `VARCHAR`, or `TEXT` value, the return value contains the collation weights for the string. If the input is a binary (byte) string such as a `BINARY`, `VARBINARY`, or `BLOB` value, the return value is the same as the input (the weight for each byte in a binary string is the byte value). If the input is `NULL`, `WEIGHT_STRING()` returns `NULL`.
 
-  Exemplos:
+  Examples:
 
   ```sql
   mysql> SET @s = _latin1 'AB' COLLATE latin1_swedish_ci;
@@ -740,7 +740,7 @@ Para funções que aceitam argumentos de comprimento, os argumentos não inteiro
   +------+---------+------------------------+
   ```
 
-  Os exemplos anteriores usam `HEX()` para exibir o resultado da função `WEIGHT_STRING()`. Como o resultado é um valor binário, `HEX()` pode ser especialmente útil quando o resultado contém valores não imprimíveis, para exibí-lo em formato imprimível:
+  The preceding examples use `HEX()` to display the `WEIGHT_STRING()` result. Because the result is a binary value, `HEX()` can be especially useful when the result contains nonprinting values, to display it in printable form:
 
   ```sql
   mysql> SET @s = CONVERT(X'C39F' USING utf8) COLLATE utf8_czech_ci;
@@ -752,13 +752,13 @@ Para funções que aceitam argumentos de comprimento, os argumentos não inteiro
   +------------------------+
   ```
 
-  Para valores de retorno que não sejam `NULL`, o tipo de dados do valor é `VARBINARY` se sua extensão estiver dentro do comprimento máximo para `VARBINARY`, caso contrário, o tipo de dados é `BLOB`.
+  For non-`NULL` return values, the data type of the value is `VARBINARY` if its length is within the maximum length for `VARBINARY`, otherwise the data type is `BLOB`.
 
-  A cláusula `AS` pode ser usada para converter a string de entrada em uma string não binária ou binária e para forçá-la a ter uma determinada extensão:
+  The `AS` clause may be given to cast the input string to a nonbinary or binary string and to force it to a given length:
 
-  - `AS CHAR(N)` converte a string para uma string não binária e a preenche à direita com espaços até atingir uma extensão de *`N`* caracteres. *`N`* deve ser no mínimo 1. Se *`N`* for menor que a extensão da string de entrada, a string é truncada até *`N`* caracteres. Não há aviso para o truncamento.
+  + `AS CHAR(N)` casts the string to a nonbinary string and pads it on the right with spaces to a length of *`N`* characters. *`N`* must be at least 1. If *`N`* is less than the length of the input string, the string is truncated to *`N`* characters. No warning occurs for truncation.
 
-  - `AS BINARY(N)` é semelhante, mas converte a string em uma string binária. *`N`* é medido em bytes (não em caracteres), e o preenchimento usa bytes `0x00` (não espaços).
+  + `AS BINARY(N)` is similar but casts the string to a binary string, *`N`* is measured in bytes (not characters), and padding uses `0x00` bytes (not spaces).
 
   ```sql
   mysql> SET NAMES 'latin1';
@@ -786,11 +786,11 @@ Para funções que aceitam argumentos de comprimento, os argumentos não inteiro
   +---------------------------------------+
   ```
 
-  A cláusula `LEVEL` pode ser usada para especificar que o valor de retorno deve conter pesos para níveis de ordenação específicos.
+  The `LEVEL` clause may be given to specify that the return value should contain weights for specific collation levels.
 
-  O especificador *`levels`* após a palavra-chave `LEVEL` pode ser fornecido como uma lista de um ou mais inteiros separados por vírgulas, ou como um intervalo de dois inteiros separados por uma barra. O espaço em branco ao redor dos caracteres de pontuação não importa.
+  The *`levels`* specifier following the `LEVEL` keyword may be given either as a list of one or more integers separated by commas, or as a range of two integers separated by a dash. Whitespace around the punctuation characters does not matter.
 
-  Exemplos:
+  Examples:
 
   ```sql
   LEVEL 1
@@ -798,21 +798,21 @@ Para funções que aceitam argumentos de comprimento, os argumentos não inteiro
   LEVEL 1-3
   ```
 
-  Qualquer nível menor que 1 é tratado como 1. Qualquer nível maior que o máximo para a ordenação da string de entrada é tratado como o máximo para a ordenação. O máximo varia de acordo com a ordenação, mas nunca é maior que 6.
+  Any level less than 1 is treated as 1. Any level greater than the maximum for the input string collation is treated as maximum for the collation. The maximum varies per collation, but is never greater than 6.
 
-  Em uma lista de níveis, os níveis devem ser apresentados em ordem crescente. Em uma faixa de níveis, se o segundo número for menor que o primeiro, ele será tratado como o primeiro número (por exemplo, 4-2 é o mesmo que 4-4).
+  In a list of levels, levels must be given in increasing order. In a range of levels, if the second number is less than the first, it is treated as the first number (for example, 4-2 is the same as 4-4).
 
-  Se a cláusula `LEVEL` for omitida, o MySQL assume `LEVEL 1 - max`, onde *`max`* é o nível máximo para a colagem.
+  If the `LEVEL` clause is omitted, MySQL assumes `LEVEL 1 - max`, where *`max`* is the maximum level for the collation.
 
-  Se o `LEVEL` for especificado usando a sintaxe de lista (e não a sintaxe de intervalo), qualquer número de nível pode ser seguido por esses modificadores:
+  If `LEVEL` is specified using list syntax (not range syntax), any level number can be followed by these modifiers:
 
-  - `ASC`: Retorne os pesos sem modificação. Este é o padrão.
+  + `ASC`: Return the weights without modification. This is the default.
 
-  - `DESC`: Retorna pesos inversos bit a bit (por exemplo, `0x78f0 DESC` = `0x870f`).
+  + `DESC`: Return bitwise-inverted weights (for example, `0x78f0 DESC` = `0x870f`).
 
-  - `REVERSE`: Retorne os pesos na ordem inversa (ou seja, os pesos para a string invertida, com o primeiro caractere como último e o último como primeiro).
+  + `REVERSE`: Return the weights in reverse order (that is,the weights for the reversed string, with the first character last and the last first).
 
-  Exemplos:
+  Examples:
 
   ```sql
   mysql> SELECT HEX(WEIGHT_STRING(0x007fff LEVEL 1));
@@ -850,6 +850,6 @@ Para funções que aceitam argumentos de comprimento, os argumentos não inteiro
   +---------------------------------------------------+
   ```
 
-  A cláusula *`flags`* atualmente não é usada.
+  The *`flags`* clause currently is unused.
 
-  Se `WEIGHT_STRING()` for invocado dentro do cliente **mysql**, as strings binárias são exibidas usando notação hexadecimal, dependendo do valor da opção `--binary-as-hex`. Para obter mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de linha de comando do MySQL”.
+  If `WEIGHT_STRING()` is invoked from within the **mysql** client, binary strings display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see Section 4.5.1, “mysql — The MySQL Command-Line Client”.

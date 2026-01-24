@@ -1,28 +1,28 @@
-#### 14.6.2.4 Índices de Texto Completo InnoDB
+#### 14.6.2.4 InnoDB Full-Text Indexes
 
-Os índices de texto completo são criados em colunas baseadas em texto (colunas `CHAR`, `VARCHAR` ou `TEXT`) para acelerar as consultas e as operações de manipulação de dados (DML) nos dados contidos nessas colunas.
+Full-text indexes are created on text-based columns (`CHAR`, `VARCHAR`, or `TEXT` columns) to speed up queries and DML operations on data contained within those columns.
 
-Um índice de texto completo é definido como parte de uma instrução `CREATE TABLE` ou adicionado a uma tabela existente usando `ALTER TABLE` ou `CREATE INDEX`.
+A full-text index is defined as part of a `CREATE TABLE` statement or added to an existing table using `ALTER TABLE` or `CREATE INDEX`.
 
-A pesquisa de texto completo é realizada usando a sintaxe `MATCH() ... AGAINST`. Para informações sobre o uso, consulte a Seção 12.9, “Funções de Pesquisa de Texto Completo”.
+Full-text search is performed using `MATCH() ... AGAINST` syntax. For usage information, see Section 12.9, “Full-Text Search Functions”.
 
-Os índices de texto completo do InnoDB são descritos nos tópicos a seguir nesta seção:
+`InnoDB` full-text indexes are described under the following topics in this section:
 
-- Design de índice de texto completo InnoDB
-- Tabelas de índice de texto completo InnoDB
-- Cache de índice de texto completo InnoDB
-- Índice de Texto Completo InnoDB DOC_ID e Coluna FTS_DOC_ID
-- Tratamento da exclusão de índices de texto completo do InnoDB
-- Tratamento de transações de índice de texto completo InnoDB
-- Monitoramento de índices de texto completo InnoDB
+* InnoDB Full-Text Index Design
+* InnoDB Full-Text Index Tables
+* InnoDB Full-Text Index Cache
+* InnoDB Full-Text Index DOC_ID and FTS_DOC_ID Column
+* InnoDB Full-Text Index Deletion Handling
+* InnoDB Full-Text Index Transaction Handling
+* Monitoring InnoDB Full-Text Indexes
 
-##### Design de índice de texto completo InnoDB
+##### InnoDB Full-Text Index Design
 
-Os índices de texto completo do `InnoDB` têm um design de índice invertido. Os índices invertidos armazenam uma lista de palavras e, para cada palavra, uma lista de documentos nos quais a palavra aparece. Para suportar a pesquisa por proximidade, as informações de posição de cada palavra também são armazenadas, como um deslocamento em bytes.
+`InnoDB` full-text indexes have an inverted index design. Inverted indexes store a list of words, and for each word, a list of documents that the word appears in. To support proximity search, position information for each word is also stored, as a byte offset.
 
-##### Tabelas de índice de texto completo InnoDB
+##### InnoDB Full-Text Index Tables
 
-Quando um índice de texto completo `InnoDB` é criado, um conjunto de tabelas de índice é criado, conforme mostrado no exemplo a seguir:
+When an `InnoDB` full-text index is created, a set of index tables is created, as shown in the following example:
 
 ```sql
 mysql> CREATE TABLE opening_lines (
@@ -53,13 +53,13 @@ mysql> SELECT table_id, name, space from INFORMATION_SCHEMA.INNODB_SYS_TABLES
 +----------+----------------------------------------------------+-------+
 ```
 
-As seis primeiras tabelas de índice compõem o índice invertido e são referidas como tabelas de índice auxiliares. Quando os documentos recebidos são tokenizados, as palavras individuais (também chamadas de “tokens”) são inseridas nas tabelas de índice juntamente com informações de posição e um `DOC_ID` associado. As palavras são totalmente ordenadas e divididas entre as seis tabelas de índice com base no peso de classificação do conjunto de caracteres do primeiro caractere da palavra.
+The first six index tables comprise the inverted index and are referred to as auxiliary index tables. When incoming documents are tokenized, the individual words (also referred to as “tokens”) are inserted into the index tables along with position information and an associated `DOC_ID`. The words are fully sorted and partitioned among the six index tables based on the character set sort weight of the word's first character.
 
-O índice invertido é dividido em seis tabelas de índice auxiliares para suportar a criação de índices paralelos. Por padrão, dois threads tokenizam, classificam e inserem palavras e dados associados nas tabelas de índice. O número de threads que realizam esse trabalho é configurável usando a variável `innodb_ft_sort_pll_degree`. Considere aumentar o número de threads ao criar índices de texto completo em tabelas grandes.
+The inverted index is partitioned into six auxiliary index tables to support parallel index creation. By default, two threads tokenize, sort, and insert words and associated data into the index tables. The number of threads that perform this work is configurable using the `innodb_ft_sort_pll_degree` variable. Consider increasing the number of threads when creating full-text indexes on large tables.
 
-Os nomes das tabelas de índice auxiliares são prefixados com `fts_` e pós-fixados com `index_#`. Cada tabela de índice auxiliar está associada à tabela indexada por um valor hexadecimal no nome da tabela de índice auxiliar que corresponde ao `table_id` da tabela indexada. Por exemplo, o `table_id` da tabela `test/opening_lines` é `327`, para o qual o valor hexadecimal é 0x147. Como mostrado no exemplo anterior, o valor hexadecimal “147” aparece nos nomes das tabelas de índice auxiliares que estão associadas à tabela `test/opening_lines`.
+Auxiliary index table names are prefixed with `fts_` and postfixed with `index_#`. Each auxiliary index table is associated with the indexed table by a hex value in the auxiliary index table name that matches the `table_id` of the indexed table. For example, the `table_id` of the `test/opening_lines` table is `327`, for which the hex value is 0x147. As shown in the preceding example, the “147” hex value appears in the names of auxiliary index tables that are associated with the `test/opening_lines` table.
 
-Um valor hexadecimal que representa o `index_id` do índice de texto completo também aparece nos nomes das tabelas de índice auxiliares. Por exemplo, no nome da tabela auxiliar `test/FTS_0000000000000147_00000000000001c9_INDEX_1`, o valor hexadecimal `1c9` tem um valor decimal de 457. O índice definido na tabela `opening_lines` (`idx`) pode ser identificado consultando a tabela do Schema de Informações `INNODB_SYS_INDEXES` para este valor (457).
+A hex value representing the `index_id` of the full-text index also appears in auxiliary index table names. For example, in the auxiliary table name `test/FTS_0000000000000147_00000000000001c9_INDEX_1`, the hex value `1c9` has a decimal value of 457. The index defined on the `opening_lines` table (`idx`) can be identified by querying the Information Schema `INNODB_SYS_INDEXES` table for this value (457).
 
 ```sql
 mysql> SELECT index_id, name, table_id, space from INFORMATION_SCHEMA.INNODB_SYS_INDEXES
@@ -71,39 +71,39 @@ mysql> SELECT index_id, name, table_id, space from INFORMATION_SCHEMA.INNODB_SYS
 +----------+------+----------+-------+
 ```
 
-As tabelas de índice são armazenadas em seu próprio espaço de tabela se a tabela principal for criada em um espaço de tabela por arquivo. Caso contrário, as tabelas de índice são armazenadas no espaço de tabela onde a tabela indexada reside.
+Index tables are stored in their own tablespace if the primary table is created in a file-per-table tablespace. Otherwise, index tables are stored in the tablespace where the indexed table resides.
 
-As outras tabelas de índice mostradas no exemplo anterior são chamadas de tabelas de índice comuns e são usadas para lidar com a exclusão e armazenar o estado interno dos índices de texto completo. Ao contrário das tabelas de índice invertido, que são criadas para cada índice de texto completo, este conjunto de tabelas é comum a todos os índices de texto completo criados em uma tabela específica.
+The other index tables shown in the preceding example are referred to as common index tables and are used for deletion handling and storing the internal state of full-text indexes. Unlike the inverted index tables, which are created for each full-text index, this set of tables is common to all full-text indexes created on a particular table.
 
-As tabelas de índice comuns são mantidas mesmo se os índices de texto completo forem removidos. Quando um índice de texto completo é removido, a coluna `FTS_DOC_ID` que foi criada para o índice é mantida, pois a remoção da coluna `FTS_DOC_ID` exigiria a reconstrução da tabela previamente indexada. As tabelas de índice comuns são necessárias para gerenciar a coluna `FTS_DOC_ID`.
+Common index tables are retained even if full-text indexes are dropped. When a full-text index is dropped, the `FTS_DOC_ID` column that was created for the index is retained, as removing the `FTS_DOC_ID` column would require rebuilding the previously indexed table. Common index tables are required to manage the `FTS_DOC_ID` column.
 
-- `FTS_*_DELETED` e `FTS_*_DELETED_CACHE`
+* `FTS_*_DELETED` and `FTS_*_DELETED_CACHE`
 
-  Contêm os IDs de documentos (DOC_ID) para documentos que são excluídos, mas cujos dados ainda não foram removidos do índice de texto completo. O `FTS_*_DELETED_CACHE` é a versão de memória da tabela `FTS_*_DELETED`.
+  Contain the document IDs (DOC_ID) for documents that are deleted but whose data is not yet removed from the full-text index. The `FTS_*_DELETED_CACHE` is the in-memory version of the `FTS_*_DELETED` table.
 
-- `FTS_*_BEING_DELETED` e `FTS_*_BEING_DELETED_CACHE`
+* `FTS_*_BEING_DELETED` and `FTS_*_BEING_DELETED_CACHE`
 
-  Contêm os IDs dos documentos (DOC_ID) para documentos que são excluídos e cujos dados estão atualmente sendo removidos do índice de texto completo. A tabela `FTS_*_BEING_DELETED_CACHE` é a versão de memória da tabela `FTS_*_BEING_DELETED`.
+  Contain the document IDs (DOC_ID) for documents that are deleted and whose data is currently in the process of being removed from the full-text index. The `FTS_*_BEING_DELETED_CACHE` table is the in-memory version of the `FTS_*_BEING_DELETED` table.
 
-- `FTS_*_CONFIG`
+* `FTS_*_CONFIG`
 
-  Armazena informações sobre o estado interno do índice de texto completo. O mais importante é que ele armazena o `FTS_SYNCED_DOC_ID`, que identifica documentos que foram analisados e descarregados no disco. Em caso de recuperação após falha, os valores de `FTS_SYNCED_DOC_ID` são usados para identificar documentos que não foram descarregados no disco, para que os documentos possam ser analisados novamente e adicionados de volta ao cache do índice de texto completo. Para visualizar os dados nesta tabela, consulte a tabela do esquema de informações `INNODB_FT_CONFIG`.
+  Stores information about the internal state of the full-text index. Most importantly, it stores the `FTS_SYNCED_DOC_ID`, which identifies documents that have been parsed and flushed to disk. In case of crash recovery, `FTS_SYNCED_DOC_ID` values are used to identify documents that have not been flushed to disk so that the documents can be re-parsed and added back to the full-text index cache. To view the data in this table, query the Information Schema `INNODB_FT_CONFIG` table.
 
-##### Cache de índice de texto completo InnoDB
+##### InnoDB Full-Text Index Cache
 
-Quando um documento é inserido, ele é tokenizado e as palavras individuais e os dados associados são inseridos no índice de texto completo. Esse processo, mesmo para documentos pequenos, pode resultar em inúmeras inserções pequenas nas tabelas de índice auxiliares, tornando o acesso concorrente a essas tabelas um ponto de conflito. Para evitar esse problema, o `InnoDB` usa um cache de índice de texto completo para armazenar temporariamente as inserções das tabelas de índice para linhas inseridas recentemente. Essa estrutura de cache em memória armazena as inserções até que o cache esteja cheio e, então, as descarrega em lote no disco (para as tabelas de índice auxiliares). Você pode consultar a tabela do esquema de informações `INNODB_FT_INDEX_CACHE` para visualizar os dados tokenizados para linhas inseridas recentemente.
+When a document is inserted, it is tokenized, and the individual words and associated data are inserted into the full-text index. This process, even for small documents, can result in numerous small insertions into the auxiliary index tables, making concurrent access to these tables a point of contention. To avoid this problem, `InnoDB` uses a full-text index cache to temporarily cache index table insertions for recently inserted rows. This in-memory cache structure holds insertions until the cache is full and then batch flushes them to disk (to the auxiliary index tables). You can query the Information Schema `INNODB_FT_INDEX_CACHE` table to view tokenized data for recently inserted rows.
 
-O comportamento de cache e varredura em lote evita atualizações frequentes em tabelas de índice auxiliares, o que poderia resultar em problemas de acesso concorrente durante períodos de inserção e atualização intensos. A técnica de agrupamento também evita múltiplas inserções para a mesma palavra e minimiza entradas duplicadas. Em vez de varrer cada palavra individualmente, as inserções para a mesma palavra são unidas e varridas para o disco como uma única entrada, melhorando a eficiência da inserção enquanto mantém as tabelas de índice auxiliares o menores possíveis.
+The caching and batch flushing behavior avoids frequent updates to auxiliary index tables, which could result in concurrent access issues during busy insert and update times. The batching technique also avoids multiple insertions for the same word, and minimizes duplicate entries. Instead of flushing each word individually, insertions for the same word are merged and flushed to disk as a single entry, improving insertion efficiency while keeping auxiliary index tables as small as possible.
 
-A variável `innodb_ft_cache_size` é usada para configurar o tamanho do cache do índice de texto completo (por tabela), o que afeta a frequência com que o cache do índice de texto completo é esvaziado. Você também pode definir um limite global de tamanho do cache de índice de texto completo para todas as tabelas em uma instância específica usando a variável `innodb_ft_total_cache_size`.
+The `innodb_ft_cache_size` variable is used to configure the full-text index cache size (on a per-table basis), which affects how often the full-text index cache is flushed. You can also define a global full-text index cache size limit for all tables in a given instance using the `innodb_ft_total_cache_size` variable.
 
-O cache do índice de texto completo armazena as mesmas informações que as tabelas de índice auxiliares. No entanto, o cache do índice de texto completo armazena apenas dados tokenizados para linhas inseridas recentemente. Os dados que já foram descarregados no disco (para as tabelas de índice auxiliares) não são trazidos de volta para o cache do índice de texto completo quando a consulta é realizada. Os dados nas tabelas de índice auxiliares são consultados diretamente, e os resultados das tabelas de índice auxiliares são mesclados com os resultados do cache do índice de texto completo antes de serem retornados.
+The full-text index cache stores the same information as auxiliary index tables. However, the full-text index cache only caches tokenized data for recently inserted rows. The data that is already flushed to disk (to the auxiliary index tables) is not brought back into the full-text index cache when queried. The data in auxiliary index tables is queried directly, and results from the auxiliary index tables are merged with results from the full-text index cache before being returned.
 
-##### Índice de Texto Completo InnoDB DOC_ID e Coluna FTS_DOC_ID
+##### InnoDB Full-Text Index DOC_ID and FTS_DOC_ID Column
 
-O `InnoDB` usa um identificador único de documento, denominado `DOC_ID`, para mapear palavras no índice de texto completo para registros de documentos onde a palavra aparece. A mapeo requer uma coluna `FTS_DOC_ID` na tabela indexada. Se uma coluna `FTS_DOC_ID` não for definida, o `InnoDB` adiciona automaticamente uma coluna `FTS_DOC_ID` oculta quando o índice de texto completo é criado. O exemplo a seguir demonstra esse comportamento.
+`InnoDB` uses a unique document identifier referred to as the `DOC_ID` to map words in the full-text index to document records where the word appears. The mapping requires an `FTS_DOC_ID` column on the indexed table. If an `FTS_DOC_ID` column is not defined, `InnoDB` automatically adds a hidden `FTS_DOC_ID` column when the full-text index is created. The following example demonstrates this behavior.
 
-A definição da tabela a seguir não inclui uma coluna `FTS_DOC_ID`:
+The following table definition does not include an `FTS_DOC_ID` column:
 
 ```sql
 mysql> CREATE TABLE opening_lines (
@@ -114,7 +114,7 @@ mysql> CREATE TABLE opening_lines (
        ) ENGINE=InnoDB;
 ```
 
-Quando você cria um índice de texto completo na tabela usando a sintaxe `CREATE FULLTEXT INDEX`, um aviso é exibido, informando que o `InnoDB` está reconstruindo a tabela para adicionar a coluna `FTS_DOC_ID`.
+When you create a full-text index on the table using `CREATE FULLTEXT INDEX` syntax, a warning is returned which reports that `InnoDB` is rebuilding the table to add the `FTS_DOC_ID` column.
 
 ```sql
 mysql> CREATE FULLTEXT INDEX idx ON opening_lines(opening_line);
@@ -129,13 +129,13 @@ mysql> SHOW WARNINGS;
 +---------+------+--------------------------------------------------+
 ```
 
-O mesmo aviso é retornado quando você usa `ALTER TABLE` para adicionar um índice de texto completo a uma tabela que não tem uma coluna `FTS_DOC_ID`. Se você criar um índice de texto completo no momento da criação da tabela e não especificar uma coluna `FTS_DOC_ID`, o `InnoDB` adiciona uma coluna `FTS_DOC_ID` oculta, sem aviso.
+The same warning is returned when using `ALTER TABLE` to add a full-text index to a table that does not have an `FTS_DOC_ID` column. If you create a full-text index at `CREATE TABLE` time and do not specify an `FTS_DOC_ID` column, `InnoDB` adds a hidden `FTS_DOC_ID` column, without warning.
 
-Definir uma coluna `FTS_DOC_ID` no momento da criação da tabela com `CREATE TABLE` é mais barato do que criar um índice de texto completo em uma tabela que já está carregada com dados. Se uma coluna `FTS_DOC_ID` for definida em uma tabela antes da carga de dados, a tabela e seus índices não precisam ser reconstruídos para adicionar a nova coluna. Se você não se preocupa com o desempenho do `CREATE FULLTEXT INDEX`, deixe a coluna `FTS_DOC_ID` de fora para que o `InnoDB` a crie para você. O `InnoDB` cria uma coluna `FTS_DOC_ID` oculta, juntamente com um índice único (`FTS_DOC_ID_INDEX`) na coluna `FTS_DOC_ID`. Se você quiser criar sua própria coluna `FTS_DOC_ID`, a coluna deve ser definida como `BIGINT UNSIGNED NOT NULL` e nomeada `FTS_DOC_ID` (todos maiúsculos), como no exemplo a seguir:
+Defining an `FTS_DOC_ID` column at `CREATE TABLE` time is less expensive than creating a full-text index on a table that is already loaded with data. If an `FTS_DOC_ID` column is defined on a table prior to loading data, the table and its indexes do not have to be rebuilt to add the new column. If you are not concerned with `CREATE FULLTEXT INDEX` performance, leave out the `FTS_DOC_ID` column to have `InnoDB` create it for you. `InnoDB` creates a hidden `FTS_DOC_ID` column along with a unique index (`FTS_DOC_ID_INDEX`) on the `FTS_DOC_ID` column. If you want to create your own `FTS_DOC_ID` column, the column must be defined as `BIGINT UNSIGNED NOT NULL` and named `FTS_DOC_ID` (all uppercase), as in the following example:
 
-Nota
+Note
 
-A coluna `FTS_DOC_ID` não precisa ser definida como uma coluna `AUTO_INCREMENT`, mas isso pode facilitar o carregamento dos dados.
+The `FTS_DOC_ID` column does not need to be defined as an `AUTO_INCREMENT` column, but doing so could make loading data easier.
 
 ```sql
 mysql> CREATE TABLE opening_lines (
@@ -146,27 +146,27 @@ mysql> CREATE TABLE opening_lines (
        ) ENGINE=InnoDB;
 ```
 
-Se você optar por definir a coluna `FTS_DOC_ID` manualmente, você será responsável por gerenciá-la para evitar valores vazios ou duplicados. Os valores de `FTS_DOC_ID` não podem ser reutilizados, o que significa que os valores de `FTS_DOC_ID` devem ser sempre crescentes.
+If you choose to define the `FTS_DOC_ID` column yourself, you are responsible for managing the column to avoid empty or duplicate values. `FTS_DOC_ID` values cannot be reused, which means `FTS_DOC_ID` values must be ever increasing.
 
-Opcionalmente, você pode criar o `FTS_DOC_ID_INDEX` único necessário (todos em maiúsculas) na coluna `FTS_DOC_ID`.
+Optionally, you can create the required unique `FTS_DOC_ID_INDEX` (all uppercase) on the `FTS_DOC_ID` column.
 
 ```sql
 mysql> CREATE UNIQUE INDEX FTS_DOC_ID_INDEX on opening_lines(FTS_DOC_ID);
 ```
 
-Se você não criar o `FTS_DOC_ID_INDEX`, o `InnoDB` cria automaticamente.
+If you do not create the `FTS_DOC_ID_INDEX`, `InnoDB` creates it automatically.
 
-Antes do MySQL 5.7.13, a diferença permitida entre o maior valor usado do `FTS_DOC_ID` e o novo valor `FTS_DOC_ID` era de 10000. No MySQL 5.7.13 e versões posteriores, a diferença permitida é de 65535.
+Before MySQL 5.7.13, the permitted gap between the largest used `FTS_DOC_ID` value and new `FTS_DOC_ID` value is 10000. In MySQL 5.7.13 and later, the permitted gap is 65535.
 
-Para evitar a reconstrução da tabela, a coluna `FTS_DOC_ID` é mantida ao excluir um índice de texto completo.
+To avoid rebuilding the table, the `FTS_DOC_ID` column is retained when dropping a full-text index.
 
-##### Tratamento da exclusão de índices de texto completo do InnoDB
+##### InnoDB Full-Text Index Deletion Handling
 
-A exclusão de um registro que possui uma coluna de índice de texto completo pode resultar em inúmeras exclusões pequenas nas tabelas de índice auxiliar, tornando o acesso concorrente a essas tabelas um ponto de conflito. Para evitar esse problema, o `DOC_ID` de um documento excluído é registrado em uma tabela especial `FTS_*_DELETED` sempre que um registro é excluído de uma tabela indexada, e o registro indexado permanece no índice de texto completo. Antes de retornar os resultados da consulta, as informações na tabela `FTS_*_DELETED` são usadas para filtrar os `DOC_ID`s excluídos. O benefício desse design é que as exclusões são rápidas e econômicas. A desvantagem é que o tamanho do índice não é reduzido imediatamente após a exclusão de registros. Para remover entradas do índice de texto completo para registros excluídos, execute `OPTIMIZE TABLE` na tabela indexada com `innodb_optimize_fulltext_only=ON` para reconstruir o índice de texto completo. Para mais informações, consulte Otimizando índices de texto completo InnoDB.
+Deleting a record that has a full-text index column could result in numerous small deletions in the auxiliary index tables, making concurrent access to these tables a point of contention. To avoid this problem, the `DOC_ID` of a deleted document is logged in a special `FTS_*_DELETED` table whenever a record is deleted from an indexed table, and the indexed record remains in the full-text index. Before returning query results, information in the `FTS_*_DELETED` table is used to filter out deleted `DOC_ID`s. The benefit of this design is that deletions are fast and inexpensive. The drawback is that the size of the index is not immediately reduced after deleting records. To remove full-text index entries for deleted records, run `OPTIMIZE TABLE` on the indexed table with `innodb_optimize_fulltext_only=ON` to rebuild the full-text index. For more information, see Optimizing InnoDB Full-Text Indexes.
 
-##### Tratamento de transações de índice de texto completo InnoDB
+##### InnoDB Full-Text Index Transaction Handling
 
-Os índices de texto completo do `InnoDB` têm características especiais de tratamento de transações devido ao seu comportamento de cache e processamento em lote. Especificamente, as atualizações e inserções em um índice de texto completo são processadas no momento do commit da transação, o que significa que uma pesquisa de texto completo só pode ver dados comprometidos. O exemplo a seguir demonstra esse comportamento. A pesquisa de texto completo só retorna um resultado após as linhas inseridas serem comprometidas.
+`InnoDB` full-text indexes have special transaction handling characteristics due its caching and batch processing behavior. Specifically, updates and insertions on a full-text index are processed at transaction commit time, which means that a full-text search can only see committed data. The following example demonstrates this behavior. The full-text search only returns a result after the inserted lines are committed.
 
 ```sql
 mysql> CREATE TABLE opening_lines (
@@ -206,17 +206,17 @@ mysql> SELECT COUNT(*) FROM opening_lines WHERE MATCH(opening_line) AGAINST('Ish
 +----------+
 ```
 
-##### Monitoramento de índices de texto completo InnoDB
+##### Monitoring InnoDB Full-Text Indexes
 
-Você pode monitorar e examinar os aspectos especiais de processamento de texto dos índices full-text do `InnoDB` consultando as seguintes tabelas do `INFORMATION_SCHEMA`:
+You can monitor and examine the special text-processing aspects of `InnoDB` full-text indexes by querying the following `INFORMATION_SCHEMA` tables:
 
-- `INNODB_FT_CONFIG`
-- `INNODB_FT_INDEX_TABLE`
-- `INNODB_FT_INDEX_CACHE`
-- `INNODB_FT_DEFAULT_STOPWORD`
-- `INNODB_FT_DELETED`
-- `INNODB_FT_BEING_DELETED`
+* `INNODB_FT_CONFIG`
+* `INNODB_FT_INDEX_TABLE`
+* `INNODB_FT_INDEX_CACHE`
+* `INNODB_FT_DEFAULT_STOPWORD`
+* `INNODB_FT_DELETED`
+* `INNODB_FT_BEING_DELETED`
 
-Você também pode visualizar informações básicas sobre índices de texto completo e tabelas fazendo uma consulta no `INNODB_SYS_INDEXES` e `INNODB_SYS_TABLES`.
+You can also view basic information for full-text indexes and tables by querying `INNODB_SYS_INDEXES` and `INNODB_SYS_TABLES`.
 
-Para obter mais informações, consulte a Seção 14.16.4, “Tabelas de Índices FULLTEXT do InnoDB INFORMATION_SCHEMA”.
+For more information, see Section 14.16.4, “InnoDB INFORMATION_SCHEMA FULLTEXT Index Tables”.

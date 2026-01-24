@@ -1,18 +1,18 @@
-### 24.3.11 Tabelas INFORMATION_SCHEMA GLOBAL_VARIABLES e SESSION_VARIABLES
+### 24.3.11 The INFORMATION_SCHEMA GLOBAL_VARIABLES and SESSION_VARIABLES Tables
 
-Nota
+Note
 
-O valor da variável de sistema `show_compatibility_56` afeta as informações disponíveis nas tabelas descritas aqui. Para obter detalhes, consulte a descrição dessa variável em Seção 5.1.7, "Variáveis de Sistema do Servidor".
+The value of the [`show_compatibility_56`](server-system-variables.html#sysvar_show_compatibility_56) system variable affects the information available from the tables described here. For details, see the description of that variable in [Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables").
 
-Nota
+Note
 
-As informações disponíveis nas tabelas descritas aqui também estão disponíveis no Gerenciamento de Desempenho. As tabelas `INFORMATION_SCHEMA` são desaconselhadas em favor das tabelas do Gerenciamento de Desempenho e serão removidas no MySQL 8.0. Para obter orientações sobre a migração das tabelas `INFORMATION_SCHEMA` para as tabelas do Gerenciamento de Desempenho, consulte Seção 25.20, “Migração para as tabelas do Gerenciamento de Desempenho e Variáveis de Status”.
+Information available from the tables described here is also available from the Performance Schema. The `INFORMATION_SCHEMA` tables are deprecated in preference to the Performance Schema tables and are removed in MySQL 8.0. For advice on migrating away from the `INFORMATION_SCHEMA` tables to the Performance Schema tables, see [Section 25.20, “Migrating to Performance Schema System and Status Variable Tables”](performance-schema-variable-table-migration.html "25.20 Migrating to Performance Schema System and Status Variable Tables").
 
-As tabelas `GLOBAL_VARIABLES` e `SESSION_VARIABLES` fornecem informações sobre as variáveis de status do servidor. Seus conteúdos correspondem às informações produzidas pelas instruções `SHOW GLOBAL VARIABLES` e `SHOW SESSION VARIABLES` (veja Seção 13.7.5.39, “Instrução SHOW VARIABLES”).
+The [`GLOBAL_VARIABLES`](information-schema-variables-table.html "24.3.11 The INFORMATION_SCHEMA GLOBAL_VARIABLES and SESSION_VARIABLES Tables") and [`SESSION_VARIABLES`](information-schema-variables-table.html "24.3.11 The INFORMATION_SCHEMA GLOBAL_VARIABLES and SESSION_VARIABLES Tables") tables provide information about server status variables. Their contents correspond to the information produced by the [`SHOW GLOBAL VARIABLES`](show-variables.html "13.7.5.39 SHOW VARIABLES Statement") and [`SHOW SESSION VARIABLES`](show-variables.html "13.7.5.39 SHOW VARIABLES Statement") statements (see [Section 13.7.5.39, “SHOW VARIABLES Statement”](show-variables.html "13.7.5.39 SHOW VARIABLES Statement")).
 
-#### Notas
+#### Notes
 
-- A coluna `VARIABLE_VALUE` para cada uma dessas tabelas é definida como `VARCHAR(1024)`. Para variáveis com valores muito longos que não são completamente exibidos, use `SELECT` como uma solução alternativa. Por exemplo:
+* The `VARIABLE_VALUE` column for each of these tables is defined as `VARCHAR(1024)`. For variables with very long values that are not completely displayed, use [`SELECT`](select.html "13.2.9 SELECT Statement") as a workaround. For example:
 
   ```sql
   SELECT @@GLOBAL.innodb_data_file_path;

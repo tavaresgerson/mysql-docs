@@ -1,18 +1,18 @@
-### 13.1.7 Declaração ALTER SERVER
+### 13.1.7 ALTER SERVER Statement
 
 ```sql
 ALTER SERVER  server_name
     OPTIONS (option [, option] ...)
 ```
 
-Altera as informações do servidor para `server_name`, ajustando qualquer uma das opções permitidas na declaração `CREATE SERVER`. Os campos correspondentes na tabela `mysql.servers` são atualizados conforme necessário. Esta declaração requer o privilégio `SUPER`.
+Alters the server information for `server_name`, adjusting any of the options permitted in the [`CREATE SERVER`](create-server.html "13.1.17 CREATE SERVER Statement") statement. The corresponding fields in the `mysql.servers` table are updated accordingly. This statement requires the [`SUPER`](privileges-provided.html#priv_super) privilege.
 
-Por exemplo, para atualizar a opção `USER`:
+For example, to update the `USER` option:
 
 ```sql
 ALTER SERVER s OPTIONS (USER 'sally');
 ```
 
-`ALTER SERVER` causa um commit implícito. Veja Seção 13.3.3, “Instruções que causam um commit implícito”.
+`ALTER SERVER` causes an implicit commit. See [Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit").
 
-`ALTER SERVER` não é escrito no log binário, independentemente do formato de registro que está em uso.
+`ALTER SERVER` is not written to the binary log, regardless of the logging format that is in use.

@@ -1,17 +1,17 @@
-#### 13.6.4.1 Declaração de variável local DECLARE
+#### 13.6.4.1 Local Variable DECLARE Statement
 
 ```sql
 DECLARE var_name [, var_name] ... type [DEFAULT value]
 ```
 
-Esta declaração declara variáveis locais dentro de programas armazenados. Para fornecer um valor padrão para uma variável, inclua uma cláusula `DEFAULT`. O valor pode ser especificado como uma expressão; ele não precisa ser uma constante. Se a cláusula `DEFAULT` estiver ausente, o valor inicial é `NULL`.
+This statement declares local variables within stored programs. To provide a default value for a variable, include a `DEFAULT` clause. The value can be specified as an expression; it need not be a constant. If the `DEFAULT` clause is missing, the initial value is `NULL`.
 
-As variáveis locais são tratadas como parâmetros de rotina armazenados, no que diz respeito ao tipo de dados e à verificação de estouro. Consulte Seção 13.1.16, “Instruções CREATE PROCEDURE e CREATE FUNCTION”.
+Local variables are treated like stored routine parameters with respect to data type and overflow checking. See [Section 13.1.16, “CREATE PROCEDURE and CREATE FUNCTION Statements”](create-procedure.html "13.1.16 CREATE PROCEDURE and CREATE FUNCTION Statements").
 
-As declarações de variáveis devem aparecer antes das declarações de cursor ou manipulador.
+Variable declarations must appear before cursor or handler declarations.
 
-Os nomes de variáveis locais não são sensíveis ao maiúsculas e minúsculas. Os caracteres permitidos e as regras de citação são os mesmos que para outros identificadores, conforme descrito na Seção 9.2, “Nomes de Objetos de Esquema”.
+Local variable names are not case-sensitive. Permissible characters and quoting rules are the same as for other identifiers, as described in [Section 9.2, “Schema Object Names”](identifiers.html "9.2 Schema Object Names").
 
-O escopo de uma variável local é o bloco `BEGIN ... END` dentro do qual ela é declarada. A variável pode ser referenciada em blocos aninhados dentro do bloco declarador, exceto aqueles blocos que declaram uma variável com o mesmo nome.
+The scope of a local variable is the [`BEGIN ... END`](begin-end.html "13.6.1 BEGIN ... END Compound Statement") block within which it is declared. The variable can be referred to in blocks nested within the declaring block, except those blocks that declare a variable with the same name.
 
-Para exemplos de declarações de variáveis, consulte Seção 13.6.4.2, "Âmbito e Resolução de Variáveis Locais".
+For examples of variable declarations, see [Section 13.6.4.2, “Local Variable Scope and Resolution”](local-variable-scope.html "13.6.4.2 Local Variable Scope and Resolution").

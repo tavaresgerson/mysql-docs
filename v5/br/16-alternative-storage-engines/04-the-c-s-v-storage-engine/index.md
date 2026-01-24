@@ -1,16 +1,16 @@
-## 15.4 O Motor de Armazenamento CSV
+## 15.4 The CSV Storage Engine
 
-15.4.1 Reparo e verificação de tabelas CSV
+15.4.1 Repairing and Checking CSV Tables
 
-15.4.2 Limitações do CSV
+15.4.2 CSV Limitations
 
-O mecanismo de armazenamento `CSV` armazena dados em arquivos de texto no formato de valores separados por vírgula.
+The `CSV` storage engine stores data in text files using comma-separated values format.
 
-O mecanismo de armazenamento `CSV` é sempre compilado no servidor MySQL.
+The `CSV` storage engine is always compiled into the MySQL server.
 
-Para examinar a fonte do motor `CSV`, procure no diretório `storage/csv` de uma distribuição de fonte MySQL.
+To examine the source for the `CSV` engine, look in the `storage/csv` directory of a MySQL source distribution.
 
-Quando você cria uma tabela `CSV`, o servidor cria um arquivo de formato de tabela no diretório do banco de dados. O arquivo começa com o nome da tabela e tem a extensão `.frm`. O mecanismo de armazenamento também cria um arquivo de dados em texto simples com um nome que começa com o nome da tabela e tem a extensão `.CSV`. Quando você armazena dados na tabela, o mecanismo de armazenamento os salva no arquivo de dados no formato de valores separados por vírgula.
+When you create a `CSV` table, the server creates a table format file in the database directory. The file begins with the table name and has an `.frm` extension. The storage engine also creates plain text data file having a name that begins with the table name and has a `.CSV` extension. When you store data into the table, the storage engine saves it into the data file in comma-separated values format.
 
 ```sql
 mysql> CREATE TABLE test (i INT NOT NULL, c CHAR(10) NOT NULL)
@@ -31,13 +31,13 @@ mysql> SELECT * FROM test;
 2 rows in set (0.00 sec)
 ```
 
-Ao criar uma tabela `CSV`, também é criado um metaarquivo correspondente que armazena o estado da tabela e o número de linhas que existem na tabela. O nome desse arquivo é o mesmo do nome da tabela, com a extensão `CSM`.
+Creating a `CSV` table also creates a corresponding metafile that stores the state of the table and the number of rows that exist in the table. The name of this file is the same as the name of the table with the extension `CSM`.
 
-Se você examinar o arquivo `test.CSV` no diretório do banco de dados criado pela execução das declarações anteriores, seu conteúdo deve parecer assim:
+If you examine the `test.CSV` file in the database directory created by executing the preceding statements, its contents should look like this:
 
 ```sql
 "1","record one"
 "2","record two"
 ```
 
-Esse formato pode ser lido e até mesmo escrito por aplicativos de planilhas, como o Microsoft Excel.
+This format can be read, and even written, by spreadsheet applications such as Microsoft Excel.

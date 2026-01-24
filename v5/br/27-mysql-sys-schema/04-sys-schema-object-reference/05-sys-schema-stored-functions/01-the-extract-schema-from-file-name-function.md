@@ -1,18 +1,18 @@
-#### 26.4.5.1 A função extract_schema_from_file_name()
+#### 26.4.5.1 The extract_schema_from_file_name() Function
 
-Dada um nome de caminho de arquivo, retorna o componente de caminho que representa o nome do esquema. Esta função assume que o nome do arquivo está dentro do diretório do esquema. Por essa razão, ela não funciona com partições ou tabelas definidas usando a opção `DATA_DIRECTORY` própria.
+Given a file path name, returns the path component that represents the schema name. This function assumes that the file name lies within the schema directory. For this reason, it does not work with partitions or tables defined using their own `DATA_DIRECTORY` table option.
 
-Essa função é útil ao extrair informações de E/S de arquivos do Schema de Desempenho que incluem nomes de caminho de arquivo. Ela fornece uma maneira conveniente de exibir nomes de esquemas, que podem ser mais facilmente compreendidos do que nomes de caminhos completos, e pode ser usada em junções contra nomes de esquemas de objetos.
+This function is useful when extracting file I/O information from the Performance Schema that includes file path names. It provides a convenient way to display schema names, which can be more easily understood than full path names, and can be used in joins against object schema names.
 
-##### Parâmetros
+##### Parameters
 
-- `path VARCHAR(512)`: O caminho completo para um arquivo de dados a partir do qual extrair o nome do esquema.
+* `path VARCHAR(512)`: The full path to a data file from which to extract the schema name.
 
-##### Valor de retorno
+##### Return Value
 
-Um valor `VARCHAR(64)`.
+A `VARCHAR(64)` value.
 
-##### Exemplo
+##### Example
 
 ```sql
 mysql> SELECT sys.extract_schema_from_file_name('/usr/local/mysql/data/world/City.ibd');

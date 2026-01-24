@@ -1,24 +1,24 @@
-### 25.12.14 Tabelas de variáveis de status do esquema de desempenho
+### 25.12.14 Performance Schema Status Variable Tables
 
-Nota
+Note
 
-O valor da variável de sistema `show_compatibility_56` afeta as informações disponíveis nas tabelas descritas aqui. Para obter detalhes, consulte a descrição dessa variável em Seção 5.1.7, "Variáveis de Sistema do Servidor".
+The value of the [`show_compatibility_56`](server-system-variables.html#sysvar_show_compatibility_56) system variable affects the information available from the tables described here. For details, see the description of that variable in [Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables").
 
-O servidor MySQL mantém várias variáveis de status que fornecem informações sobre sua operação (consulte Seção 5.1.9, “Variáveis de Status do Servidor”). As informações das variáveis de status estão disponíveis nessas tabelas do Schema de Desempenho:
+The MySQL server maintains many status variables that provide information about its operation (see [Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")). Status variable information is available in these Performance Schema tables:
 
-- `global_status`: Variáveis de status global. Uma aplicação que deseja apenas valores globais deve usar esta tabela.
+* [`global_status`](performance-schema-status-variable-tables.html "25.12.14 Performance Schema Status Variable Tables"): Global status variables. An application that wants only global values should use this table.
 
-- `session_status`: Variáveis de status para a sessão atual. Uma aplicação que deseja obter todos os valores das variáveis de status para sua própria sessão deve usar essa tabela. Ela inclui as variáveis de sessão para sua sessão, bem como os valores das variáveis globais que não têm correspondência em sessão.
+* [`session_status`](performance-schema-status-variable-tables.html "25.12.14 Performance Schema Status Variable Tables"): Status variables for the current session. An application that wants all status variable values for its own session should use this table. It includes the session variables for its session, as well as the values of global variables that have no session counterpart.
 
-- `status_by_thread`: Variáveis de status de sessão para cada sessão ativa. Uma aplicação que deseja saber os valores das variáveis de sessão para sessões específicas deve usar esta tabela. Ela inclui apenas variáveis de sessão, identificadas pelo ID do thread.
+* [`status_by_thread`](performance-schema-status-variable-tables.html "25.12.14 Performance Schema Status Variable Tables"): Session status variables for each active session. An application that wants to know the session variable values for specific sessions should use this table. It includes session variables only, identified by thread ID.
 
-Há também tabelas de resumo que fornecem informações sobre variáveis de status agregadas por conta, nome do host e nome do usuário. Veja Seção 25.12.15.10, “Tabelas de Resumo de Variáveis de Status”.
+There are also summary tables that provide status variable information aggregated by account, host name, and user name. See [Section 25.12.15.10, “Status Variable Summary Tables”](performance-schema-status-variable-summary-tables.html "25.12.15.10 Status Variable Summary Tables").
 
-As tabelas de variáveis de sessão (`session_status`, `status_by_thread`) contêm informações apenas para sessões ativas, não para sessões encerradas.
+The session variable tables ([`session_status`](performance-schema-status-variable-tables.html "25.12.14 Performance Schema Status Variable Tables"), [`status_by_thread`](performance-schema-status-variable-tables.html "25.12.14 Performance Schema Status Variable Tables")) contain information only for active sessions, not terminated sessions.
 
-O Schema de Desempenho coleta estatísticas para variáveis de status globais apenas para os threads para os quais o valor `INSTRUMENTED` é `YES` na tabela `threads`. As estatísticas para variáveis de status de sessão são sempre coletadas, independentemente do valor `INSTRUMENTED`.
+The Performance Schema collects statistics for global status variables only for threads for which the `INSTRUMENTED` value is `YES` in the [`threads`](performance-schema-threads-table.html "25.12.16.4 The threads Table") table. Statistics for session status variables are always collected, regardless of the `INSTRUMENTED` value.
 
-O Schema de Desempenho não coleta estatísticas para as variáveis de status `Com_xxx` nas tabelas de variáveis de status. Para obter contagem de execução de declarações globais e por sessão, use as tabelas `events_statements_summary_global_by_event_name` e `events_statements_summary_by_thread_by_event_name`, respectivamente. Por exemplo:
+The Performance Schema does not collect statistics for `Com_xxx` status variables in the status variable tables. To obtain global and per-session statement execution counts, use the [`events_statements_summary_global_by_event_name`](performance-schema-statement-summary-tables.html "25.12.15.3 Statement Summary Tables") and [`events_statements_summary_by_thread_by_event_name`](performance-schema-statement-summary-tables.html "25.12.15.3 Statement Summary Tables") tables, respectively. For example:
 
 ```sql
 SELECT EVENT_NAME, COUNT_STAR
@@ -26,40 +26,39 @@ FROM performance_schema.events_statements_summary_global_by_event_name
 WHERE EVENT_NAME LIKE 'statement/sql/%';
 ```
 
-As tabelas `global_status` e `session_status` possuem as seguintes colunas:
+The [`global_status`](performance-schema-status-variable-tables.html "25.12.14 Performance Schema Status Variable Tables") and [`session_status`](performance-schema-status-variable-tables.html "25.12.14 Performance Schema Status Variable Tables") tables have these columns:
 
-- `VARIAVEL_NOME`
+* `VARIABLE_NAME`
 
-  O nome da variável de status.
+  The status variable name.
 
-- `VARIABLE_VALUE`
+* `VARIABLE_VALUE`
 
-  O valor da variável de status. Para `global_status`, esta coluna contém o valor global. Para `session_status`, esta coluna contém o valor da variável para a sessão atual.
+  The status variable value. For [`global_status`](performance-schema-status-variable-tables.html "25.12.14 Performance Schema Status Variable Tables"), this column contains the global value. For [`session_status`](performance-schema-status-variable-tables.html "25.12.14 Performance Schema Status Variable Tables"), this column contains the variable value for the current session.
 
-A tabela `status_by_thread` contém o status de cada thread ativa. Ela possui as seguintes colunas:
+The [`status_by_thread`](performance-schema-status-variable-tables.html "25.12.14 Performance Schema Status Variable Tables") table contains the status of each active thread. It has these columns:
 
-- `THREAD_ID`
+* `THREAD_ID`
 
-  O identificador do thread da sessão em que a variável de status é definida.
+  The thread identifier of the session in which the status variable is defined.
 
-- `VARIAVEL_NOME`
+* `VARIABLE_NAME`
 
-  O nome da variável de status.
+  The status variable name.
 
-- `VARIABLE_VALUE`
+* `VARIABLE_VALUE`
 
-  O valor da variável de sessão para a sessão nomeada pela coluna `THREAD_ID`.
+  The session variable value for the session named by the `THREAD_ID` column.
 
-A tabela `status_by_thread` contém informações sobre variáveis de status apenas sobre os threads em primeiro plano. Se a variável de sistema `performance_schema_max_thread_instances` não for autoescalonada (indicada por um valor de -1) e o número máximo permitido de objetos de thread instrumentados não for maior que o número de threads de segundo plano, a tabela estará vazia.
+The [`status_by_thread`](performance-schema-status-variable-tables.html "25.12.14 Performance Schema Status Variable Tables") table contains status variable information only about foreground threads. If the [`performance_schema_max_thread_instances`](performance-schema-system-variables.html#sysvar_performance_schema_max_thread_instances) system variable is not autoscaled (signified by a value of −1) and the maximum permitted number of instrumented thread objects is not greater than the number of background threads, the table is empty.
 
-O Schema de Desempenho suporta `TRUNCATE TABLE` para tabelas de variáveis de status da seguinte forma:
+The Performance Schema supports [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") for status variable tables as follows:
 
-- `global_status`: Redefine o status de thread, conta, host e usuário. Redefine as variáveis de status globais, exceto aquelas que o servidor nunca redefine.
+* [`global_status`](performance-schema-status-variable-tables.html "25.12.14 Performance Schema Status Variable Tables"): Resets thread, account, host, and user status. Resets global status variables except those that the server never resets.
 
-- `session_status`: Não é suportado.
+* [`session_status`](performance-schema-status-variable-tables.html "25.12.14 Performance Schema Status Variable Tables"): Not supported.
+* [`status_by_thread`](performance-schema-status-variable-tables.html "25.12.14 Performance Schema Status Variable Tables"): Aggregates status for all threads to the global status and account status, then resets thread status. If account statistics are not collected, the session status is added to host and user status, if host and user status are collected.
 
-- `status_by_thread`: Agrupa o status de todos os threads para o status global e o status da conta, e depois redefini o status do thread. Se as estatísticas da conta não forem coletadas, o status da sessão é adicionado ao status do host e do usuário, se o status do host e do usuário forem coletados.
+  Account, host, and user statistics are not collected if the [`performance_schema_accounts_size`](performance-schema-system-variables.html#sysvar_performance_schema_accounts_size), [`performance_schema_hosts_size`](performance-schema-system-variables.html#sysvar_performance_schema_hosts_size), and [`performance_schema_users_size`](performance-schema-system-variables.html#sysvar_performance_schema_users_size) system variables, respectively, are set to 0.
 
-  As estatísticas da conta, do host e do usuário não são coletadas se as variáveis de sistema `performance_schema_accounts_size`, [`performance_schema_hosts_size`]\(performance-schema-system-variables.html#sysvar_performance_schema_hosts_size] e `performance_schema_users_size`, respectivamente, forem definidas como 0.
-
-`FLUSH STATUS` adiciona o status da sessão de todas as sessões ativas às variáveis de status globais, redefini o status de todas as sessões ativas e redefini os valores de status de conta, host e usuário agregados de sessões desconectadas.
+[`FLUSH STATUS`](flush.html#flush-status) adds the session status from all active sessions to the global status variables, resets the status of all active sessions, and resets account, host, and user status values aggregated from disconnected sessions.

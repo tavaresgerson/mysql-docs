@@ -1,7 +1,7 @@
-### 24.3.26 A tabela INFORMATION_SCHEMA TABLESPACES
+### 24.3.26 The INFORMATION_SCHEMA TABLESPACES Table
 
-Esta tabela não está sendo usada. Outras tabelas do `INFORMATION_SCHEMA` podem fornecer informações relacionadas:
+This table is unused. Other `INFORMATION_SCHEMA` tables may provide related information:
 
-- Para `NDB`, a tabela `INFORMATION_SCHEMA` `FILES` fornece informações relacionadas ao espaço de armazenamento.
+* For `NDB`, the `INFORMATION_SCHEMA` [`FILES`](information-schema-files-table.html "24.3.9 The INFORMATION_SCHEMA FILES Table") table provides tablespace-related information.
 
-- Para o `InnoDB`, as tabelas `INFORMATION_SCHEMA` `INNODB_SYS_TABLESPACES` e `INNODB_SYS_DATAFILES` fornecem metadados do espaço de tabelas.
+* For `InnoDB`, the `INFORMATION_SCHEMA` [`INNODB_SYS_TABLESPACES`](information-schema-innodb-sys-tablespaces-table.html "24.4.24 The INFORMATION_SCHEMA INNODB_SYS_TABLESPACES Table") and [`INNODB_SYS_DATAFILES`](information-schema-innodb-sys-datafiles-table.html "24.4.18 The INFORMATION_SCHEMA INNODB_SYS_DATAFILES Table") tables provide tablespace metadata.

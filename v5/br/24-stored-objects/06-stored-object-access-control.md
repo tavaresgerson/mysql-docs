@@ -1,40 +1,40 @@
-## 23.6 Controle de acesso a objetos armazenados
+## 23.6 Stored Object Access Control
 
-Os programas armazenados (procedimentos, funções, gatilhos e eventos) e as visualizações são definidos antes do uso e, quando referenciados, são executados dentro de um contexto de segurança que determina seus privilégios. Os privilégios aplicáveis à execução de um objeto armazenado são controlados pelo atributo `DEFINER` e pela característica `SQL SECURITY`.
+Stored programs (procedures, functions, triggers, and events) and views are defined prior to use and, when referenced, execute within a security context that determines their privileges. The privileges applicable to execution of a stored object are controlled by its `DEFINER` attribute and `SQL SECURITY` characteristic.
 
-- O atributo DEFINER
-- A característica de segurança do SQL
-- Exemplos
-- Objetos Armazenados de Órfãos
-- Diretrizes de Minimização de Riscos
+* The DEFINER Attribute
+* The SQL SECURITY Characteristic
+* Examples
+* Orphan Stored Objects
+* Risk-Minimization Guidelines
 
-### O atributo DEFINER
+### The DEFINER Attribute
 
-Uma definição de objeto armazenado pode incluir um atributo `DEFINER` que nomeia uma conta do MySQL. Se uma definição omite o atributo `DEFINER`, o definidor padrão do objeto é o usuário que a cria.
+A stored object definition can include a `DEFINER` attribute that names a MySQL account. If a definition omits the `DEFINER` attribute, the default object definer is the user who creates it.
 
-As seguintes regras determinam quais contas você pode especificar como o atributo `DEFINER` para um objeto armazenado:
+The following rules determine which accounts you can specify as the `DEFINER` attribute for a stored object:
 
-- Se você tiver o privilégio `SUPER`, pode especificar qualquer conta como o atributo `DEFINER`. Se a conta não existir, um aviso será gerado.
+* If you have the `SUPER` privilege, you can specify any account as the `DEFINER` attribute. If the account does not exist, a warning is generated.
 
-- Caso contrário, a única conta permitida é a sua própria, especificada de forma literal ou como `CURRENT_USER` ou `CURRENT_USER()`. Você não pode definir o definidor para qualquer outra conta.
+* Otherwise, the only permitted account is your own, specified either literally or as `CURRENT_USER` or `CURRENT_USER()`. You cannot set the definer to any other account.
 
-Criar um objeto armazenado com uma conta `DEFINER` inexistente cria um objeto órfão, o que pode ter consequências negativas; veja Objetos Armazenados Órfãos.
+Creating a stored object with a nonexistent `DEFINER` account creates an orphan object, which may have negative consequences; see Orphan Stored Objects.
 
-### A característica de segurança do SQL
+### The SQL SECURITY Characteristic
 
-Para rotinas armazenadas (procedimentos e funções) e visualizações, a definição do objeto pode incluir uma característica `SQL SECURITY` com um valor de `DEFINER` ou `INVOKER` para especificar se o objeto é executado no contexto do definidor ou do invocador. Se a definição omitir a característica `SQL SECURITY`, o padrão é o contexto do definidor.
+For stored routines (procedures and functions) and views, the object definition can include an `SQL SECURITY` characteristic with a value of `DEFINER` or `INVOKER` to specify whether the object executes in definer or invoker context. If the definition omits the `SQL SECURITY` characteristic, the default is definer context.
 
-Os gatilhos e eventos não possuem a característica `SQL SECURITY` e sempre são executados no contexto definido. O servidor invoca esses objetos automaticamente conforme necessário, portanto, não há um usuário que invoque.
+Triggers and events have no `SQL SECURITY` characteristic and always execute in definer context. The server invokes these objects automatically as necessary, so there is no invoking user.
 
-Os contextos de segurança do definidor e do invocador diferem da seguinte forma:
+Definer and invoker security contexts differ as follows:
 
-- Um objeto armazenado que é executado no contexto de segurança do definidor é executado com os privilégios da conta nomeada por seu atributo `DEFINER`. Esses privilégios podem ser completamente diferentes dos do usuário que os invoca. O invocador deve ter privilégios apropriados para referenciar o objeto (por exemplo, `EXECUTE` para chamar um procedimento armazenado ou `SELECT` para selecionar de uma visão), mas durante a execução do objeto, os privilégios do invocador são ignorados e apenas os privilégios da conta `DEFINER` importam. Se a conta `DEFINER` tiver poucos privilégios, o objeto será limitado nas operações que pode realizar. Se a conta `DEFINER` for altamente privilegiada (como uma conta administrativa), o objeto pode realizar operações poderosas *não importa quem a invoque.*
+* A stored object that executes in definer security context executes with the privileges of the account named by its `DEFINER` attribute. These privileges may be entirely different from those of the invoking user. The invoker must have appropriate privileges to reference the object (for example, `EXECUTE` to call a stored procedure or `SELECT` to select from a view), but during object execution, the invoker's privileges are ignored and only the `DEFINER` account privileges matter. If the `DEFINER` account has few privileges, the object is correspondingly limited in the operations it can perform. If the `DEFINER` account is highly privileged (such as an administrative account), the object can perform powerful operations *no matter who invokes it.*
 
-- Uma rotina ou visualização armazenada que é executada no contexto de segurança do invocante pode realizar apenas operações para as quais o invocante tenha privilégios. O atributo `DEFINER` não tem efeito na execução do objeto.
+* A stored routine or view that executes in invoker security context can perform only operations for which the invoker has privileges. The `DEFINER` attribute has no effect on object execution.
 
-### Exemplos
+### Examples
 
-Considere o seguinte procedimento armazenado, que é declarado com `SQL SECURITY DEFINER` para ser executado no contexto de segurança do definidor:
+Consider the following stored procedure, which is declared with `SQL SECURITY DEFINER` to execute in definer security context:
 
 ```sql
 CREATE DEFINER = 'admin'@'localhost' PROCEDURE p1()
@@ -44,9 +44,9 @@ BEGIN
 END;
 ```
 
-Qualquer usuário que tenha o privilégio `EXECUTE` para `p1` pode invocá-lo com uma instrução `CALL`. No entanto, quando `p1` é executado, ele é executado no contexto de definição e, portanto, é executado com os privilégios de `'admin'@'localhost'`, a conta nomeada como seu atributo `DEFINER`. Essa conta deve ter o privilégio `EXECUTE` para `p1`, bem como o privilégio `UPDATE` para a tabela `t1` referenciada no corpo do objeto. Caso contrário, o procedimento falhará.
+Any user who has the `EXECUTE` privilege for `p1` can invoke it with a `CALL` statement. However, when `p1` executes, it does so in definer security context and thus executes with the privileges of `'admin'@'localhost'`, the account named as its `DEFINER` attribute. This account must have the `EXECUTE` privilege for `p1` as well as the `UPDATE` privilege for the table `t1` referenced within the object body. Otherwise, the procedure fails.
 
-Agora, considere este procedimento armazenado, que é idêntico ao `p1`, exceto que sua característica `SQL SECURITY` é `INVOKER`:
+Now consider this stored procedure, which is identical to `p1` except that its `SQL SECURITY` characteristic is `INVOKER`:
 
 ```sql
 CREATE DEFINER = 'admin'@'localhost' PROCEDURE p2()
@@ -56,33 +56,33 @@ BEGIN
 END;
 ```
 
-Ao contrário de `p1`, `p2` é executado no contexto de segurança do invocante e, portanto, com os privilégios do usuário que o invocou, independentemente do valor do atributo `DEFINER`. `p2` falha se o invocante não tiver o privilégio `EXECUTE` para `p2` ou o privilégio `UPDATE` para a tabela `t1`.
+Unlike `p1`, `p2` executes in invoker security context and thus with the privileges of the invoking user regardless of the `DEFINER` attribute value. `p2` fails if the invoker lacks the `EXECUTE` privilege for `p2` or the `UPDATE` privilege for the table `t1`.
 
-### Objetos Armazenados de Órfãos
+### Orphan Stored Objects
 
-Um objeto sem dono é aquele para o qual o atributo `DEFINER` nomeia uma conta inexistente:
+An orphan stored object is one for which its `DEFINER` attribute names a nonexistent account:
 
-- Um objeto de armazenamento de órfão pode ser criado especificando uma conta `DEFINER` inexistente no momento da criação do objeto.
+* An orphan stored object can be created by specifying a nonexistent `DEFINER` account at object-creation time.
 
-- Um objeto armazenado existente pode se tornar órfão devido à execução de uma instrução `DROP USER` que exclui a conta do objeto `DEFINER`, ou de uma instrução `RENAME USER` que renomeia a conta do objeto `DEFINER`.
+* An existing stored object can become orphaned through execution of a `DROP USER` statement that drops the object `DEFINER` account, or a `RENAME USER` statement that renames the object `DEFINER` account.
 
-Um objeto de guarda de órfão pode ser problemático das seguintes maneiras:
+An orphan stored object may be problematic in these ways:
 
-- Como a conta `DEFINER` não existe, o objeto pode não funcionar conforme o esperado se for executado em um contexto de segurança de definidor:
+* Because the `DEFINER` account does not exist, the object may not work as expected if it executes in definer security context:
 
-  - Para uma rotina armazenada, ocorre um erro no momento da execução da rotina se o valor `SQL SECURITY` for `DEFINER`, mas a conta do definidor não existir.
+  + For a stored routine, an error occurs at routine execution time if the `SQL SECURITY` value is `DEFINER` but the definer account does not exist.
 
-  - Para um gatilho, não é uma boa ideia que a ativação do gatilho ocorra até que a conta realmente exista. Caso contrário, o comportamento em relação à verificação de privilégios é indefinido.
+  + For a trigger, it is not a good idea for trigger activation to occur until the account actually does exist. Otherwise, the behavior with respect to privilege checking is undefined.
 
-  - Para um evento, ocorre um erro no momento da execução do evento se a conta não existir.
+  + For an event, an error occurs at event execution time if the account does not exist.
 
-  - Para uma visualização, ocorre um erro quando a visualização é referenciada se o valor `SQL SECURITY` for `DEFINER`, mas a conta do definidor não existir.
+  + For a view, an error occurs when the view is referenced if the `SQL SECURITY` value is `DEFINER` but the definer account does not exist.
 
-- O objeto pode apresentar um risco de segurança se a inexistente conta `DEFINER` for posteriormente recriada para um propósito não relacionado ao objeto. Nesse caso, a conta “adquire” o objeto e, com os privilégios apropriados, é capaz de executá-lo, mesmo que isso não seja o objetivo.
+* The object may present a security risk if the nonexistent `DEFINER` account is subsequently re-created for a purpose unrelated to the object. In this case, the account “adopts” the object and, with the appropriate privileges, is able to execute it even if that is not intended.
 
-Para obter informações sobre as contas usadas como definidores de objetos armazenados em uma instalação do MySQL, execute uma consulta no `INFORMATION_SCHEMA`.
+To obtain information about the accounts used as stored object definers in a MySQL installation, query the `INFORMATION_SCHEMA`.
 
-Essa consulta identifica quais tabelas do `INFORMATION_SCHEMA` descrevem objetos que possuem o atributo `DEFINER`:
+This query identifies which `INFORMATION_SCHEMA` tables describe objects that have a `DEFINER` attribute:
 
 ```sql
 mysql> SELECT TABLE_SCHEMA, TABLE_NAME FROM INFORMATION_SCHEMA.COLUMNS
@@ -97,9 +97,9 @@ mysql> SELECT TABLE_SCHEMA, TABLE_NAME FROM INFORMATION_SCHEMA.COLUMNS
 +--------------------+------------+
 ```
 
-O resultado indica quais tabelas consultar para descobrir quais valores do objeto armazenado `DEFINER` existem e quais objetos têm um valor específico de `DEFINER`:
+The result tells you which tables to query to discover which stored object `DEFINER` values exist and which objects have a particular `DEFINER` value:
 
-- Para identificar quais valores de `DEFINER` existem em cada tabela, use essas consultas:
+* To identify which `DEFINER` values exist in each table, use these queries:
 
   ```sql
   SELECT DISTINCT DEFINER FROM INFORMATION_SCHEMA.EVENTS;
@@ -108,15 +108,15 @@ O resultado indica quais tabelas consultar para descobrir quais valores do objet
   SELECT DISTINCT DEFINER FROM INFORMATION_SCHEMA.VIEWS;
   ```
 
-  Os resultados da consulta são significativos para qualquer conta exibida da seguinte forma:
+  The query results are significant for any account displayed as follows:
 
-  - Se a conta existir, a remoção ou renomeação dela faz com que os objetos armazenados se tornem órfãos. Se você planeja remover ou renomear a conta, considere primeiro remover seus objetos armazenados associados ou redefiní-los para ter um definidor diferente.
+  + If the account exists, dropping or renaming it causes stored objects to become orphaned. If you plan to drop or rename the account, consider first dropping its associated stored objects or redefining them to have a different definer.
 
-  - Se a conta não existir, criá-la fará com que ela adote objetos armazenados atualmente órfãos. Se você planeja criar a conta, considere se os objetos órfãos devem ser associados a ela. Se não, redefina-os para terem um definidor diferente.
+  + If the account does not exist, creating it causes it to adopt currently orphaned stored objects. If you plan to create the account, consider whether the orphaned objects should be associated with it. If not, redefine them to have a different definer.
 
-  Para redefinir um objeto com um definidor diferente, você pode usar `ALTER EVENT` ou `ALTER VIEW` para modificar diretamente a conta `DEFINER` dos eventos e vistas. Para procedimentos armazenados, funções e gatilhos, você deve descartar o objeto e recriá-lo com uma conta `DEFINER` diferente.
+  To redefine an object with a different definer, you can use `ALTER EVENT` or `ALTER VIEW` to directly modify the `DEFINER` account of events and views. For stored procedures and functions and for triggers, you must drop the object and re-create it with a different `DEFINER` account
 
-- Para identificar quais objetos têm uma conta `DEFINER` específica, use essas consultas, substituindo o nome da conta de interesse por `user_name@host_name`:
+* To identify which objects have a given `DEFINER` account, use these queries, substituting the account of interest for `user_name@host_name`:
 
   ```sql
   SELECT EVENT_SCHEMA, EVENT_NAME FROM INFORMATION_SCHEMA.EVENTS
@@ -130,32 +130,32 @@ O resultado indica quais tabelas consultar para descobrir quais valores do objet
   WHERE DEFINER = 'user_name@host_name';
   ```
 
-  Para a tabela `ROUTINES`, a consulta inclui a coluna `ROUTINE_TYPE` para que as linhas de saída distingam se o `DEFINER` é para um procedimento armazenado ou uma função armazenada.
+  For the `ROUTINES` table, the query includes the `ROUTINE_TYPE` column so that output rows distinguish whether the `DEFINER` is for a stored procedure or stored function.
 
-  Se a conta que você está procurando não existir, quaisquer objetos exibidos por essas consultas são objetos órfãos.
+  If the account you are searching for does not exist, any objects displayed by those queries are orphan objects.
 
-### Diretrizes de Minimização de Riscos
+### Risk-Minimization Guidelines
 
-Para minimizar o risco potencial de criação e uso de objetos armazenados, siga estas diretrizes:
+To minimize the risk potential for stored object creation and use, follow these guidelines:
 
-- Não crie objetos armazenados órfãos; ou seja, objetos para os quais o atributo `DEFINER` nomeia uma conta inexistente. Não faça com que objetos armazenados se tornem órfãos ao excluir ou renomear uma conta nomeada pelo atributo `DEFINER` de qualquer objeto existente.
+* Do not create orphan stored objects; that is, objects for which the `DEFINER` attribute names a nonexistent account. Do not cause stored objects to become orphaned by dropping or renaming an account named by the `DEFINER` attribute of any existing object.
 
-- Para uma rotina ou visualização armazenada, use `SQL SECURITY INVOKER` na definição do objeto, quando possível, para que ele possa ser usado apenas por usuários com permissões apropriadas para as operações realizadas pelo objeto.
+* For a stored routine or view, use `SQL SECURITY INVOKER` in the object definition when possible so that it can be used only by users with permissions appropriate for the operations performed by the object.
 
-- Se você criar objetos armazenados com atributo `DEFINER-CONTEXT` usando uma conta que tenha o privilégio `SUPER`, especifique um atributo `DEFINER` explícito que nomeie uma conta que possua apenas os privilégios necessários para as operações realizadas pelo objeto. Especifique uma conta `DEFINER` altamente privilegiada apenas quando absolutamente necessário.
+* If you create definer-context stored objects while using an account that has the `SUPER` privilege, specify an explicit `DEFINER` attribute that names an account possessing only the privileges required for the operations performed by the object. Specify a highly privileged `DEFINER` account only when absolutely necessary.
 
-- Os administradores podem impedir que os usuários criem objetos armazenados que especifiquem contas de `DEFINER` altamente privilegiadas, não concedendo-lhes o privilégio `SUPER`.
+* Administrators can prevent users from creating stored objects that specify highly privileged `DEFINER` accounts by not granting them the `SUPER` privilege.
 
-- Os objetos de definição de contexto devem ser escritos com a consciência de que eles podem ter acesso a dados para os quais o usuário que os invoca não tenha privilégios. Em alguns casos, você pode impedir referências a esses objetos ao não conceder privilégios específicos a usuários não autorizados:
+* Definer-context objects should be written keeping in mind that they may be able to access data for which the invoking user has no privileges. In some cases, you can prevent references to these objects by not granting unauthorized users particular privileges:
 
-  - Uma rotina armazenada não pode ser referenciada por um usuário que não tenha o privilégio `EXECUTE` para ela.
+  + A stored routine cannot be referenced by a user who does not have the `EXECUTE` privilege for it.
 
-  - Uma visão não pode ser referenciada por um usuário que não tenha o privilégio apropriado para ela (`SELECT` para selecionar dela, `INSERT` para inserir nela, e assim por diante).
+  + A view cannot be referenced by a user who does not have the appropriate privilege for it (`SELECT` to select from it, `INSERT` to insert into it, and so forth).
 
-  No entanto, não existe nenhum controle para gatilhos e eventos, pois eles sempre são executados no contexto do definidor. O servidor invoca esses objetos automaticamente conforme necessário, e os usuários não os referenciam diretamente:
+  However, no such control exists for triggers and events because they always execute in definer context. The server invokes these objects automatically as necessary, and users do not reference them directly:
 
-  - Um gatilho é ativado pelo acesso à tabela com a qual está associado, mesmo acessos comuns à tabela por usuários sem privilégios especiais.
+  + A trigger is activated by access to the table with which it is associated, even ordinary table accesses by users with no special privileges.
 
-  - Um evento é executado pelo servidor de forma programada.
+  + An event is executed by the server on a scheduled basis.
 
-  Em ambos os casos, se a conta `DEFINER` tiver privilégios elevados, o objeto poderá realizar operações sensíveis ou perigosas. Isso continua verdadeiro mesmo se os privilégios necessários para criar o objeto forem revogados da conta do usuário que o criou. Os administradores devem ter especial cautela ao conceder privilégios de criação de objetos aos usuários.
+  In both cases, if the `DEFINER` account is highly privileged, the object may be able to perform sensitive or dangerous operations. This remains true if the privileges needed to create the object are revoked from the account of the user who created it. Administrators should be especially careful about granting users object-creation privileges.

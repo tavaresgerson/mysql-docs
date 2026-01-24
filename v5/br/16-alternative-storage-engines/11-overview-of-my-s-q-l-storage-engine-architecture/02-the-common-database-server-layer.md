@@ -1,23 +1,23 @@
-### 15.11.1 Camada do Servidor de Banco de Dados Comum
+### 15.11.2 The Common Database Server Layer
 
-Um motor de armazenamento plugável do MySQL é o componente no servidor de banco de dados MySQL responsável por realizar as operações de E/S de dados reais para um banco de dados, além de habilitar e impor determinados conjuntos de recursos que visam uma necessidade específica de uma aplicação. Um grande benefício de usar motores de armazenamento específicos é que você recebe apenas os recursos necessários para uma aplicação específica, e, portanto, tem menos sobrecarga no sistema no banco de dados, com o resultado final sendo mais eficiente e com um desempenho maior do banco de dados. Esta é uma das razões pelas quais o MySQL sempre foi conhecido por ter um desempenho tão alto, igualando ou superando bancos de dados monolíticos proprietários em benchmarks padrão da indústria.
+A MySQL pluggable storage engine is the component in the MySQL database server that is responsible for performing the actual data I/O operations for a database as well as enabling and enforcing certain feature sets that target a specific application need. A major benefit of using specific storage engines is that you are only delivered the features needed for a particular application, and therefore you have less system overhead in the database, with the end result being more efficient and higher database performance. This is one of the reasons that MySQL has always been known to have such high performance, matching or beating proprietary monolithic databases in industry standard benchmarks.
 
-Do ponto de vista técnico, quais são alguns dos componentes de infraestrutura de suporte únicos que estão em um motor de armazenamento? Algumas das principais diferenças de recursos incluem:
+From a technical perspective, what are some of the unique supporting infrastructure components that are in a storage engine? Some of the key feature differentiations include:
 
-- *Concorrência*: Algumas aplicações têm requisitos de bloqueio mais detalhados (como bloqueios em nível de linha) do que outras. Escolher a estratégia de bloqueio certa pode reduzir o overhead e, portanto, melhorar o desempenho geral. Esta área também inclui suporte para capacidades como controle de concorrência de múltiplas versões ou leitura de "instantâneos".
+* *Concurrency*: Some applications have more granular lock requirements (such as row-level locks) than others. Choosing the right locking strategy can reduce overhead and therefore improve overall performance. This area also includes support for capabilities such as multi-version concurrency control or “snapshot” read.
 
-- *Suporte a Transações*: Nem todas as aplicações precisam de transações, mas para aquelas que precisam, existem requisitos bem definidos, como a conformidade ACID e muito mais.
+* *Transaction Support*: Not every application needs transactions, but for those that do, there are very well defined requirements such as ACID compliance and more.
 
-- *Integridade Referencial*: A necessidade de o servidor impor a integridade referencial do banco de dados relacional por meio de chaves estrangeiras definidas pelo DDL.
+* *Referential Integrity*: The need to have the server enforce relational database referential integrity through DDL defined foreign keys.
 
-- *Armazenamento físico*: Isso inclui tudo, desde o tamanho geral da página para tabelas e índices, até o formato usado para armazenar dados no disco físico.
+* *Physical Storage*: This involves everything from the overall page size for tables and indexes as well as the format used for storing data to physical disk.
 
-- *Suporte a índices*: Diferentes cenários de aplicação tendem a se beneficiar de diferentes estratégias de índice. Cada mecanismo de armazenamento geralmente tem seus próprios métodos de indexação, embora alguns (como índices de árvore B) sejam comuns a quase todos os mecanismos.
+* *Index Support*: Different application scenarios tend to benefit from different index strategies. Each storage engine generally has its own indexing methods, although some (such as B-tree indexes) are common to nearly all engines.
 
-- *Caches de memória*: Diferentes aplicativos respondem melhor a algumas estratégias de cache de memória do que a outras, portanto, embora alguns caches de memória sejam comuns a todos os motores de armazenamento (como os usados para conexões de usuário ou o cache de consultas de alta velocidade do MySQL), outros são definidos de forma única apenas quando um motor de armazenamento específico é utilizado.
+* *Memory Caches*: Different applications respond better to some memory caching strategies than others, so although some memory caches are common to all storage engines (such as those used for user connections or MySQL's high-speed Query Cache), others are uniquely defined only when a particular storage engine is put in play.
 
-- *Ajudas de desempenho*: Isso inclui múltiplas threads de E/S para operações paralelas, concorrência de threads, verificação de ponto de controle de banco de dados, manipulação de inserção em massa e muito mais.
+* *Performance Aids*: This includes multiple I/O threads for parallel operations, thread concurrency, database checkpointing, bulk insert handling, and more.
 
-- *Recursos do alvo diversos*: Isso pode incluir suporte para operações geográficas, restrições de segurança para certas operações de manipulação de dados e outros recursos semelhantes.
+* *Miscellaneous Target Features*: This may include support for geospatial operations, security restrictions for certain data manipulation operations, and other similar features.
 
-Cada conjunto de componentes da infraestrutura do motor de armazenamento plugável é projetado para oferecer um conjunto seletivo de benefícios para uma aplicação específica. Por outro lado, evitar um conjunto de recursos dos componentes ajuda a reduzir o overhead desnecessário. É lógico que entender o conjunto de requisitos de uma aplicação específica e selecionar o motor de armazenamento MySQL adequado pode ter um impacto significativo na eficiência e no desempenho do sistema como um todo.
+Each set of the pluggable storage engine infrastructure components are designed to offer a selective set of benefits for a particular application. Conversely, avoiding a set of component features helps reduce unnecessary overhead. It stands to reason that understanding a particular application's set of requirements and selecting the proper MySQL storage engine can have a dramatic impact on overall system efficiency and performance.

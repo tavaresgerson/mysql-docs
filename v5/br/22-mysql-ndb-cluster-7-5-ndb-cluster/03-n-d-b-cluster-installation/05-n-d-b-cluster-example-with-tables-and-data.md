@@ -1,32 +1,32 @@
-### 21.3.5 Exemplo de cluster do NDB com tabelas e dados
+### 21.3.5 NDB Cluster Example with Tables and Data
 
-Nota
+Note
 
-As informações nesta seção se aplicam ao NDB Cluster em execução em plataformas Unix e Windows.
+The information in this section applies to NDB Cluster running on both Unix and Windows platforms.
 
-Trabalhar com tabelas de banco de dados e dados no NDB Cluster não difere muito de fazer isso no MySQL padrão. Há dois pontos-chave a serem lembrados:
+Working with database tables and data in NDB Cluster is not much different from doing so in standard MySQL. There are two key points to keep in mind:
 
-- Para que uma tabela seja replicada no clúster, ela deve usar o mecanismo de armazenamento `NDBCLUSTER`. Para especificar isso, use a opção `ENGINE=NDBCLUSTER` ou `ENGINE=NDB` ao criar a tabela:
+* For a table to be replicated in the cluster, it must use the [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine. To specify this, use the `ENGINE=NDBCLUSTER` or `ENGINE=NDB` option when creating the table:
 
   ```sql
   CREATE TABLE tbl_name (col_name column_definitions) ENGINE=NDBCLUSTER;
   ```
 
-  Como alternativa, para uma tabela existente que usa um motor de armazenamento diferente, use `ALTER TABLE` para alterar a tabela para usar `NDBCLUSTER`:
+  Alternatively, for an existing table that uses a different storage engine, use [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") to change the table to use [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6"):
 
   ```sql
   ALTER TABLE tbl_name ENGINE=NDBCLUSTER;
   ```
 
-- Cada tabela `NDBCLUSTER` tem uma chave primária. Se nenhuma chave primária for definida pelo usuário ao criar uma tabela, o mecanismo de armazenamento `NDBCLUSTER` gera automaticamente uma chave oculta. Essa chave ocupa espaço assim como qualquer outro índice de tabela. (Não é incomum encontrar problemas devido à memória insuficiente para acomodar esses índices criados automaticamente.)
+* Every [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table has a primary key. If no primary key is defined by the user when a table is created, the [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine automatically generates a hidden one. Such a key takes up space just as does any other table index. (It is not uncommon to encounter problems due to insufficient memory for accommodating these automatically created indexes.)
 
-Se você está importando tabelas de um banco de dados existente usando o resultado do **mysqldump**, você pode abrir o script SQL em um editor de texto e adicionar a opção `ENGINE` a quaisquer declarações de criação de tabelas, ou substituir quaisquer opções `ENGINE` existentes. Suponha que você tenha o banco de dados `world` em outro servidor MySQL que não suporta o NDB Cluster e queira exportar a tabela `City`:
+If you are importing tables from an existing database using the output of [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program"), you can open the SQL script in a text editor and add the `ENGINE` option to any table creation statements, or replace any existing `ENGINE` options. Suppose that you have the `world` sample database on another MySQL server that does not support NDB Cluster, and you want to export the `City` table:
 
 ```sql
 $> mysqldump --add-drop-table world City > city_table.sql
 ```
 
-O arquivo `city_table.sql` resultante contém essa declaração de criação da tabela (e as instruções `INSERT` necessárias para importar os dados da tabela):
+The resulting `city_table.sql` file contains this table creation statement (and the [`INSERT`](insert.html "13.2.5 INSERT Statement") statements necessary to import the table data):
 
 ```sql
 DROP TABLE IF EXISTS `City`;
@@ -45,7 +45,7 @@ INSERT INTO `City` VALUES (3,'Herat','AFG','Herat',186800);
 (remaining INSERT statements omitted)
 ```
 
-Você precisa garantir que o MySQL use o mecanismo de armazenamento `NDBCLUSTER` para essa tabela. Existem duas maneiras de realizar isso. Uma delas é modificar a definição da tabela *antes* de importá-la para o banco de dados Cluster. Usando a tabela `City` como exemplo, modifique a opção `ENGINE` da definição da seguinte forma:
+You need to make sure that MySQL uses the [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine for this table. There are two ways that this can be accomplished. One of these is to modify the table definition *before* importing it into the Cluster database. Using the `City` table as an example, modify the `ENGINE` option of the definition as follows:
 
 ```sql
 DROP TABLE IF EXISTS `City`;
@@ -64,25 +64,25 @@ INSERT INTO `City` VALUES (3,'Herat','AFG','Herat',186800);
 (remaining INSERT statements omitted)
 ```
 
-Isso deve ser feito para a definição de cada tabela que fará parte do banco de dados agrupado. A maneira mais fácil de fazer isso é fazer uma busca e substituição no arquivo que contém as definições e substituir todas as ocorrências de `TYPE=engine_name` ou `ENGINE=engine_name` por `ENGINE=NDBCLUSTER`. Se você não quiser modificar o arquivo, pode usar o arquivo não modificado para criar as tabelas e, em seguida, usar `ALTER TABLE` para alterar seu motor de armazenamento. Os detalhes são fornecidos mais adiante nesta seção.
+This must be done for the definition of each table that is to be part of the clustered database. The easiest way to accomplish this is to do a search-and-replace on the file that contains the definitions and replace all instances of `TYPE=engine_name` or `ENGINE=engine_name` with `ENGINE=NDBCLUSTER`. If you do not want to modify the file, you can use the unmodified file to create the tables, and then use [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") to change their storage engine. The particulars are given later in this section.
 
-Supondo que você já tenha criado um banco de dados chamado `world` no nó SQL do cluster, você pode então usar o cliente de linha de comando **mysql** para ler `city_table.sql` e criar e preencher a tabela correspondente da maneira usual:
+Assuming that you have already created a database named `world` on the SQL node of the cluster, you can then use the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") command-line client to read `city_table.sql`, and create and populate the corresponding table in the usual manner:
 
 ```sql
 $> mysql world < city_table.sql
 ```
 
-É muito importante ter em mente que o comando anterior deve ser executado no host onde o nó SQL está em execução (neste caso, na máquina com o endereço IP `198.51.100.20`).
+It is very important to keep in mind that the preceding command must be executed on the host where the SQL node is running (in this case, on the machine with the IP address `198.51.100.20`).
 
-Para criar uma cópia de todo o banco de dados `world` no nó SQL, use **mysqldump** no servidor não em cluster para exportar o banco de dados para um arquivo chamado `world.sql` (por exemplo, no diretório `/tmp`). Em seguida, modifique as definições da tabela conforme descrito e importe o arquivo no nó SQL do cluster da seguinte forma:
+To create a copy of the entire `world` database on the SQL node, use [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") on the noncluster server to export the database to a file named `world.sql` (for example, in the `/tmp` directory). Then modify the table definitions as just described and import the file into the SQL node of the cluster like this:
 
 ```sql
 $> mysql world < /tmp/world.sql
 ```
 
-Se você salvar o arquivo em um local diferente, ajuste as instruções anteriores conforme necessário.
+If you save the file to a different location, adjust the preceding instructions accordingly.
 
-Executar consultas `SELECT` no nó SQL não difere da execução delas em qualquer outra instância de um servidor MySQL. Para executar consultas a partir da linha de comando, você primeiro precisa fazer login no Monitor MySQL da maneira usual (especifique a senha `root` no prompt `Digite a senha:`):
+Running [`SELECT`](select.html "13.2.9 SELECT Statement") queries on the SQL node is no different from running them on any other instance of a MySQL server. To run queries from the command line, you first need to log in to the MySQL Monitor in the usual way (specify the `root` password at the `Enter password:` prompt):
 
 ```sql
 $> mysql -u root -p
@@ -95,11 +95,11 @@ Type 'help;' or '\h' for help. Type '\c' to clear the buffer.
 mysql>
 ```
 
-Nós simplesmente usamos a conta `root` do servidor MySQL e assumimos que você seguiu as precauções de segurança padrão para instalar um servidor MySQL, incluindo a definição de uma senha forte para a conta `root`. Para mais informações, consulte Seção 2.9.4, “Segurança da Conta Inicial do MySQL”.
+We simply use the MySQL server's `root` account and assume that you have followed the standard security precautions for installing a MySQL server, including setting a strong `root` password. For more information, see [Section 2.9.4, “Securing the Initial MySQL Account”](default-privileges.html "2.9.4 Securing the Initial MySQL Account").
 
-Vale a pena ter em mente que os nós do Cluster *não* utilizam o sistema de privilégios do MySQL ao acessarem uns aos outros. Definir ou alterar contas de usuário do MySQL (incluindo a conta `root`) afeta apenas as aplicações que acessam o nó SQL, e não a interação entre os nós. Consulte Seção 21.6.18.2, “NDB Cluster e Privilégios do MySQL” para obter mais informações.
+It is worth taking into account that Cluster nodes do *not* make use of the MySQL privilege system when accessing one another. Setting or changing MySQL user accounts (including the `root` account) effects only applications that access the SQL node, not interaction between nodes. See [Section 21.6.18.2, “NDB Cluster and MySQL Privileges”](mysql-cluster-security-mysql-privileges.html "21.6.18.2 NDB Cluster and MySQL Privileges"), for more information.
 
-Se você não modificou as cláusulas `ENGINE` nas definições da tabela antes de importar o script SQL, você deve executar as seguintes instruções neste ponto:
+If you did not modify the `ENGINE` clauses in the table definitions prior to importing the SQL script, you should run the following statements at this point:
 
 ```sql
 mysql> USE world;
@@ -108,7 +108,7 @@ mysql> ALTER TABLE Country ENGINE=NDBCLUSTER;
 mysql> ALTER TABLE CountryLanguage ENGINE=NDBCLUSTER;
 ```
 
-A seleção de um banco de dados e a execução de uma consulta **SELECT** contra uma tabela nesse banco de dados também são realizadas da maneira usual, assim como a saída do Monitor MySQL:
+Selecting a database and running a **SELECT** query against a table in that database is also accomplished in the usual manner, as is exiting the MySQL Monitor:
 
 ```sql
 mysql> USE world;
@@ -130,7 +130,7 @@ Bye
 $>
 ```
 
-Aplicações que utilizam o MySQL podem empregar APIs padrão para acessar as tabelas do `NDB`. É importante lembrar que sua aplicação deve acessar o nó SQL, e não os nós de gerenciamento ou dados. Este breve exemplo mostra como podemos executar a instrução `SELECT` mostrada anteriormente usando a extensão `mysqli` do PHP 5.X rodando em um servidor web em outro lugar da rede:
+Applications that use MySQL can employ standard APIs to access [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables. It is important to remember that your application must access the SQL node, and not the management or data nodes. This brief example shows how we might execute the [`SELECT`](select.html "13.2.9 SELECT Statement") statement just shown by using the PHP 5.X `mysqli` extension running on a Web server elsewhere on the network:
 
 ```sql
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
@@ -190,6 +190,6 @@ Aplicações que utilizam o MySQL podem empregar APIs padrão para acessar as ta
 </html>
 ```
 
-Acreditamos que o processo em execução no servidor da Web pode alcançar o endereço IP do nó SQL.
+We assume that the process running on the Web server can reach the IP address of the SQL node.
 
-Da mesma forma, você pode usar a API C MySQL, Perl-DBI, Python-mysql ou Conectadores MySQL para realizar as tarefas de definição e manipulação de dados, da mesma forma que faria normalmente com o MySQL.
+In a similar fashion, you can use the MySQL C API, Perl-DBI, Python-mysql, or MySQL Connectors to perform the tasks of data definition and manipulation just as you would normally with MySQL.

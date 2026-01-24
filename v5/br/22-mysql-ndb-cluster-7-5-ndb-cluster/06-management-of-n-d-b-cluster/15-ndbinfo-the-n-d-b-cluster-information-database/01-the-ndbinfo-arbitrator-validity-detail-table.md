@@ -1,33 +1,33 @@
-#### 21.6.15.1 Tabela ndbinfo arbitrator_validity_detail
+#### 21.6.15.1 The ndbinfo arbitrator_validity_detail Table
 
-A tabela `arbitrator_validity_detail` mostra a visão que cada nó de dados no clúster tem do árbitro. É um subconjunto da tabela `membership`.
+The `arbitrator_validity_detail` table shows the view that each data node in the cluster has of the arbitrator. It is a subset of the [`membership`](mysql-cluster-ndbinfo-membership.html "21.6.15.25 The ndbinfo membership Table") table.
 
-A tabela `arbitrator_validity_detail` contém as seguintes colunas:
+The `arbitrator_validity_detail` table contains the following columns:
 
-- `node_id`
+* `node_id`
 
-  ID do nó deste nó
+  This node's node ID
 
-- "arbitrador"
+* `arbitrator`
 
-  ID do nó do árbitro
+  Node ID of arbitrator
 
-- `arb_ticket`
+* `arb_ticket`
 
-  Identificador interno usado para rastrear a arbitragem
+  Internal identifier used to track arbitration
 
-- `arb_connected`
+* `arb_connected`
 
-  Se este nó está conectado ao árbitro; seja `Sim` ou `Não`
+  Whether this node is connected to the arbitrator; either of `Yes` or `No`
 
-- `arb_state`
+* `arb_state`
 
-  Estado de arbitragem
+  Arbitration state
 
-##### Notas
+##### Notes
 
-O ID do nó é o mesmo que o relatado por **ndb_mgm -e "SHOW"**.
+The node ID is the same as that reported by [**ndb_mgm -e "SHOW"**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client").
 
-Todos os nós devem exibir os mesmos valores de `arbitrator` e `arb_ticket`, bem como o mesmo valor de `arb_state`. Os valores possíveis de `arb_state` são `ARBIT_NULL`, `ARBIT_INIT`, `ARBIT_FIND`, `ARBIT_PREP1`, `ARBIT_PREP2`, `ARBIT_START`, `ARBIT_RUN`, `ARBIT_CHOOSE`, `ARBIT_CRASH` e `UNKNOWN`.
+All nodes should show the same `arbitrator` and `arb_ticket` values as well as the same `arb_state` value. Possible `arb_state` values are `ARBIT_NULL`, `ARBIT_INIT`, `ARBIT_FIND`, `ARBIT_PREP1`, `ARBIT_PREP2`, `ARBIT_START`, `ARBIT_RUN`, `ARBIT_CHOOSE`, `ARBIT_CRASH`, and `UNKNOWN`.
 
-`arb_connected` mostra se o nó atual está conectado ao `arbitrador`.
+`arb_connected` shows whether the current node is connected to the `arbitrator`.

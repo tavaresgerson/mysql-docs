@@ -1,436 +1,437 @@
-#### 21.4.3.9 Opções e variáveis do servidor MySQL para o NDB Cluster
+#### 21.4.3.9 MySQL Server Options and Variables for NDB Cluster
 
-Esta seção fornece informações sobre as opções do servidor MySQL, variáveis do servidor e de status específicas para o NDB Cluster. Para informações gerais sobre o uso dessas opções e variáveis, e para outras opções e variáveis que não são específicas para o NDB Cluster, consulte Seção 5.1, “O Servidor MySQL”.
+This section provides information about MySQL server options, server and status variables that are specific to NDB Cluster. For general information on using these, and for other options and variables not specific to NDB Cluster, see [Section 5.1, “The MySQL Server”](mysqld-server.html "5.1 The MySQL Server").
 
-Para os parâmetros de configuração do NDB Cluster usados no arquivo de configuração do cluster (geralmente chamado `config.ini`), consulte Seção 21.4, “Configuração do NDB Cluster”.
+For NDB Cluster configuration parameters used in the cluster configuration file (usually named `config.ini`), see [Section 21.4, “Configuration of NDB Cluster”](mysql-cluster-configuration.html "21.4 Configuration of NDB Cluster").
 
-##### 21.4.3.9.1 Opções do Servidor MySQL para o NDB Cluster
+##### 21.4.3.9.1 MySQL Server Options for NDB Cluster
 
-Esta seção fornece descrições das opções do servidor **mysqld** relacionadas ao NDB Cluster. Para informações sobre as opções do **mysqld** que não são específicas do NDB Cluster, e para informações gerais sobre o uso de opções com **mysqld**, consulte Seção 5.1.6, “Opções de Comando do Servidor”.
+This section provides descriptions of [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") server options relating to NDB Cluster. For information about [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") options not specific to NDB Cluster, and for general information about the use of options with [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"), see [Section 5.1.6, “Server Command Options”](server-options.html "5.1.6 Server Command Options").
 
-Para obter informações sobre as opções de linha de comando usadas com outros processos do NDB Cluster, consulte Seção 21.5, "Programas do NDB Cluster".
+For information about command-line options used with other NDB Cluster processes, see [Section 21.5, “NDB Cluster Programs”](mysql-cluster-programs.html "21.5 NDB Cluster Programs").
 
-- `--ndbcluster`
+* [`--ndbcluster`](mysql-cluster-options-variables.html#option_mysqld_ndbcluster)
 
-  <table frame="box" rules="all" summary="Propriedades para ndbcluster"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndbcluster[=valu<code>skip-ndbcluster</code></code></td> </tr><tr><th>Incapaz de</th> <td><code>skip-ndbcluster</code></td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>OFF</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndbcluster"><tbody><tr><th>Command-Line Format</th> <td><code>--ndbcluster[=value]</code></td> </tr><tr><th>Disabled by</th> <td><code>skip-ndbcluster</code></td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>OFF</code></td> </tr></tbody></table>
 
-  O mecanismo de armazenamento `NDBCLUSTER` é necessário para usar o NDB Cluster. Se um binário do **mysqld** incluir suporte ao mecanismo de armazenamento `NDBCLUSTER`, o mecanismo será desativado por padrão. Use a opção `--ndbcluster` para ativá-lo. Use `--skip-ndbcluster` para desativá-lo explicitamente.
+  The [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine is necessary for using NDB Cluster. If a [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") binary includes support for the [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine, the engine is disabled by default. Use the [`--ndbcluster`](mysql-cluster-options-variables.html#option_mysqld_ndbcluster) option to enable it. Use `--skip-ndbcluster` to explicitly disable the engine.
 
-  Não é necessário nem desejável usar essa opção junto com `--initialize`. A partir do NDB 7.5.4, o `--ndbcluster` é ignorado (e o mecanismo de armazenamento `NDB` *não* é habilitado) se `--initialize` também for usado. (Bug #81689, Bug #23518923)
+  It is not necessary or desirable to use this option together with [`--initialize`](server-options.html#option_mysqld_initialize). Beginning with NDB 7.5.4, `--ndbcluster` is ignored (and the `NDB` storage engine is *not* enabled) if `--initialize` is also used. (Bug #81689, Bug
+  #23518923)
 
-- `--ndb-allow-copying-alter-table=[ON|OFF]`
+* `--ndb-allow-copying-alter-table=[ON|OFF]`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-allow-copying-alter-table"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_allow_copying_alter_table</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-allow-copying-alter-table"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>System Variable</th> <td><code>ndb_allow_copying_alter_table</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
-  Deixe que as instruções DDL, como `ALTER TABLE` e outras, utilizem operações de cópia em tabelas `NDB`. Defina para `OFF` para evitar isso; isso pode melhorar o desempenho de aplicações críticas.
+  Let [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") and other DDL statements use copying operations on `NDB` tables. Set to `OFF` to keep this from happening; doing so may improve performance of critical applications.
 
-- `--ndb-batch-size=#`
+* `--ndb-batch-size=#`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-batch-size"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-batch-size</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_batch_size</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>32768</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo (≥ 5.7.37-ndb-7.6.22)</th> <td><code>2147483648</code></td> </tr><tr><th>Valor máximo (≥ 5.7.37-ndb-7.5.26)</th> <td><code>2147483648</code></td> </tr><tr><th>Valor máximo (≤ 5.7.37-ndb-7.5.25)</th> <td><code>31536000</code></td> </tr><tr><th>Valor máximo (≤ 5.7.37-ndb-7.6.21)</th> <td><code>31536000</code></td> </tr><tr><th>Valor máximo</th> <td><code>31536000</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-batch-size"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-batch-size</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_batch_size</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>32768</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value (≥ 5.7.37-ndb-7.6.22)</th> <td><code>2147483648</code></td> </tr><tr><th>Maximum Value (≥ 5.7.37-ndb-7.5.26)</th> <td><code>2147483648</code></td> </tr><tr><th>Maximum Value (≤ 5.7.37-ndb-7.5.25)</th> <td><code>31536000</code></td> </tr><tr><th>Maximum Value (≤ 5.7.37-ndb-7.6.21)</th> <td><code>31536000</code></td> </tr><tr><th>Maximum Value</th> <td><code>31536000</code></td> </tr><tr><th>Unit</th> <td>bytes</td> </tr></tbody></table>
 
-  Isso define o tamanho em bytes utilizado para os lotes de transações do NDB.
+  This sets the size in bytes that is used for NDB transaction batches.
 
-- `--ndb-cluster-connection-pool=#`
+* `--ndb-cluster-connection-pool=#`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-cluster-connection-pool</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>63</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-cluster-connection-pool"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-cluster-connection-pool</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>63</code></td> </tr></tbody></table>
 
-  Ao definir essa opção para um valor maior que 1 (o padrão), um processo **mysqld** pode usar múltiplas conexões ao clúster, imitando efetivamente vários nós SQL. Cada conexão requer sua própria seção `[api]` ou `[mysqld]` no arquivo de configuração do clúster (`config.ini`) e é contabilizada no número máximo de conexões API suportadas pelo clúster.
+  By setting this option to a value greater than 1 (the default), a [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") process can use multiple connections to the cluster, effectively mimicking several SQL nodes. Each connection requires its own `[api]` or `[mysqld]` section in the cluster configuration (`config.ini`) file, and counts against the maximum number of API connections supported by the cluster.
 
-  Suponha que você tenha 2 computadores hospedeiros de cluster, cada um executando um nó SQL cujo processo **mysqld** foi iniciado com `--ndb-cluster-connection-pool=4`; isso significa que o cluster deve ter 8 slots de API disponíveis para essas conexões (em vez de 2). Todas essas conexões são configuradas quando o nó SQL se conecta ao cluster e são alocadas para threads de forma round-robin.
+  Suppose that you have 2 cluster host computers, each running an SQL node whose [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") process was started with `--ndb-cluster-connection-pool=4`; this means that the cluster must have 8 API slots available for these connections (instead of 2). All of these connections are set up when the SQL node connects to the cluster, and are allocated to threads in a round-robin fashion.
 
-  Esta opção é útil apenas quando você está executando **mysqld** em máquinas hospedeiras com múltiplos CPUs, múltiplos núcleos ou ambos. Para obter os melhores resultados, o valor deve ser menor que o número total de núcleos disponíveis na máquina hospedeira. Definir um valor maior que este provavelmente degradará severamente o desempenho.
+  This option is useful only when running [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") on host machines having multiple CPUs, multiple cores, or both. For best results, the value should be smaller than the total number of cores available on the host machine. Setting it to a value greater than this is likely to degrade performance severely.
 
-  Importante
+  Important
 
-  Como cada nó SQL que usa o pool de conexões ocupa vários slots de nó da API — cada slot tem seu próprio ID de nó no cluster —, você *não deve* usar um ID de nó como parte da string de conexão do cluster ao iniciar qualquer processo **mysqld** que utilize o pool de conexões.
+  Because each SQL node using connection pooling occupies multiple API node slots—each slot having its own node ID in the cluster—you must *not* use a node ID as part of the cluster connection string when starting any [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") process that employs connection pooling.
 
-  Definir um ID de nó na cadeia de conexão ao usar a opção `--ndb-cluster-connection-pool` causa erros de alocação de ID de nó quando o nó SQL tenta se conectar ao cluster.
+  Setting a node ID in the connection string when using the `--ndb-cluster-connection-pool` option causes node ID allocation errors when the SQL node attempts to connect to the cluster.
 
-- `--ndb-cluster-connection-pool-nodeids=list`
+* `--ndb-cluster-connection-pool-nodeids=list`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool-nodeids"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-cluster-connection-pool-nodeids</code></td> </tr><tr><th>Introduzido</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>Variável do sistema (≥ 5.7.10-ndb-7.5.0)</th> <td><code>ndb_cluster_connection_pool_nodeids</code></td> </tr><tr><th>Âmbito (≥ 5.7.10-ndb-7.5.0)</th> <td>Global</td> </tr><tr><th>Dinâmico (≥ 5.7.10-ndb-7.5.0)</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Conjunto</td> </tr><tr><th>Valor padrão</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-cluster-connection-pool-nodeids"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-cluster-connection-pool-nodeids</code></td> </tr><tr><th>Introduced</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>System Variable (≥ 5.7.10-ndb-7.5.0)</th> <td><code>ndb_cluster_connection_pool_nodeids</code></td> </tr><tr><th>Scope (≥ 5.7.10-ndb-7.5.0)</th> <td>Global</td> </tr><tr><th>Dynamic (≥ 5.7.10-ndb-7.5.0)</th> <td>No</td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
-  Especifica uma lista separada por vírgula de IDs de nó para conexões ao clúster usadas por um nó SQL. O número de nós nesta lista deve ser o mesmo que o valor definido para a opção `--ndb-cluster-connection-pool`.
+  Specifies a comma-separated list of node IDs for connections to the cluster used by an SQL node. The number of nodes in this list must be the same as the value set for the [`--ndb-cluster-connection-pool`](mysql-cluster-options-variables.html#option_mysqld_ndb-cluster-connection-pool) option.
 
-  `--ndb-cluster-connection-pool-nodeids` foi adicionado no NDB 7.5.0.
+  `--ndb-cluster-connection-pool-nodeids` was added in NDB 7.5.0.
 
-- `--ndb-blob-read-batch-bytes=bytes`
+* `--ndb-blob-read-batch-bytes=bytes`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-blob-read-batch-bytes"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-blob-read-batch-bytes</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_blob_read_batch_bytes</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>65536</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-blob-read-batch-bytes"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-blob-read-batch-bytes</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_blob_read_batch_bytes</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>65536</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  Essa opção pode ser usada para definir o tamanho (em bytes) para o agrupamento de leituras de dados de `BLOB` em aplicativos do NDB Cluster. Quando esse tamanho de lote é excedido pela quantidade de dados de `BLOB` a serem lidos dentro da transação atual, quaisquer operações de leitura de `BLOB` pendentes são executadas imediatamente.
+  This option can be used to set the size (in bytes) for batching of [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") data reads in NDB Cluster applications. When this batch size is exceeded by the amount of [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") data to be read within the current transaction, any pending [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") read operations are immediately executed.
 
-  O valor máximo para esta opção é 4294967295; o padrão é 65536. Definir para 0 desabilita o agrupamento em lote de leitura de `BLOB`.
+  The maximum value for this option is 4294967295; the default is 65536. Setting it to 0 has the effect of disabling [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") read batching.
 
-  Nota
+  Note
 
-  Em aplicativos da API NDB, você pode controlar o agrupamento de escritas de `BLOB` com os métodos `setMaxPendingBlobReadBytes()` e `getMaxPendingBlobReadBytes()` (/doc/ndbapi/pt-BR/ndb-ndbtransaction.html#ndb-ndbtransaction-setmaxpendingblobreadbytes) e (/doc/ndbapi/pt-BR/ndb-ndbtransaction.html#ndb-ndbtransaction-getmaxpendingblobreadbytes).
+  In NDB API applications, you can control [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") write batching with the [`setMaxPendingBlobReadBytes()`](/doc/ndbapi/en/ndb-ndbtransaction.html#ndb-ndbtransaction-setmaxpendingblobreadbytes) and [`getMaxPendingBlobReadBytes()`](/doc/ndbapi/en/ndb-ndbtransaction.html#ndb-ndbtransaction-getmaxpendingblobreadbytes) methods.
 
-- `--ndb-blob-write-batch-bytes=bytes`
+* `--ndb-blob-write-batch-bytes=bytes`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-blob-write-batch-bytes"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-blob-write-batch-bytes</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_blob_write_batch_bytes</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>65536</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-blob-write-batch-bytes"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-blob-write-batch-bytes</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_blob_write_batch_bytes</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>65536</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr><tr><th>Unit</th> <td>bytes</td> </tr></tbody></table>
 
-  Essa opção pode ser usada para definir o tamanho (em bytes) para o agrupamento de escritas de dados de `BLOB` em aplicativos do NDB Cluster. Quando esse tamanho de lote é excedido pela quantidade de dados de `BLOB` a serem escritos na transação atual, quaisquer operações de escrita de `BLOB` pendentes são executadas imediatamente.
+  This option can be used to set the size (in bytes) for batching of [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") data writes in NDB Cluster applications. When this batch size is exceeded by the amount of [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") data to be written within the current transaction, any pending [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") write operations are immediately executed.
 
-  O valor máximo para esta opção é 4294967295; o padrão é 65536. Definir para 0 desativa o agrupamento de lote de escrita de `BLOB`.
+  The maximum value for this option is 4294967295; the default is 65536. Setting it to 0 has the effect of disabling [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") write batching.
 
-  Nota
+  Note
 
-  Em aplicativos da API NDB, você pode controlar o agrupamento de escrita de `BLOB` com os métodos `setMaxPendingBlobWriteBytes()` e `getMaxPendingBlobWriteBytes()` (/doc/ndbapi/pt-BR/ndb-ndbtransaction.html#ndb-ndbtransaction-setmaxpendingblobwritebytes) e (/doc/ndbapi/pt-BR/ndb-ndbtransaction.html#ndb-ndbtransaction-getmaxpendingblobwritebytes).
+  In NDB API applications, you can control [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") write batching with the [`setMaxPendingBlobWriteBytes()`](/doc/ndbapi/en/ndb-ndbtransaction.html#ndb-ndbtransaction-setmaxpendingblobwritebytes) and [`getMaxPendingBlobWriteBytes()`](/doc/ndbapi/en/ndb-ndbtransaction.html#ndb-ndbtransaction-getmaxpendingblobwritebytes) methods.
 
-- `--ndb-connectstring=connection_string`
+* `--ndb-connectstring=connection_string`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-connectstring</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-connectstring"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-connectstring</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  Ao usar o mecanismo de armazenamento `NDBCLUSTER`, esta opção especifica o servidor de gerenciamento que distribui os dados de configuração do cluster. Consulte Seção 21.4.3.3, “Strings de Conexão do NDB Cluster” para a sintaxe.
+  When using the [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine, this option specifies the management server that distributes cluster configuration data. See [Section 21.4.3.3, “NDB Cluster Connection Strings”](mysql-cluster-connection-strings.html "21.4.3.3 NDB Cluster Connection Strings"), for syntax.
 
-- `--ndb-default-column-format=[FIXO|DINÂMICO]`
+* `--ndb-default-column-format=[FIXED|DYNAMIC]`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-default-column-format"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-default-column-format={FIXED|DYNAMIC}</code></td> </tr><tr><th>Introduzido</th> <td>5.7.11-ndb-7.5.1</td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_default_column_format</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Enumeração</td> </tr><tr><th>Valor padrão (≥ 5.7.16-ndb-7.5.4)</th> <td><code>FIXED</code></td> </tr><tr><th>Valor padrão (≥ 5.7.11-ndb-7.5.1, ≤ 5.7.13-ndb-7.5.3)</th> <td><code>DYNAMIC</code></td> </tr><tr><th>Valores válidos</th> <td><p><code>FIXED</code></p><p><code>DYNAMIC</code></p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-default-column-format"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-default-column-format={FIXED|DYNAMIC}</code></td> </tr><tr><th>Introduced</th> <td>5.7.11-ndb-7.5.1</td> </tr><tr><th>System Variable</th> <td><code>ndb_default_column_format</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Enumeration</td> </tr><tr><th>Default Value (≥ 5.7.16-ndb-7.5.4)</th> <td><code>FIXED</code></td> </tr><tr><th>Default Value (≥ 5.7.11-ndb-7.5.1, ≤ 5.7.13-ndb-7.5.3)</th> <td><code>DYNAMIC</code></td> </tr><tr><th>Valid Values</th> <td><p><code>FIXED</code></p><p><code>DYNAMIC</code></p></td> </tr></tbody></table>
 
-  No NDB 7.5.1 e versões posteriores, define o `COLUMN_FORMAT` e `ROW_FORMAT` padrão para novas tabelas (consulte Seção 13.1.18, “Instrução CREATE TABLE”).
+  In NDB 7.5.1 and later, sets the default `COLUMN_FORMAT` and `ROW_FORMAT` for new tables (see [Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement")).
 
-  No NDB 7.5.1, o padrão para essa opção era `DYNAMIC`; no NDB 7.5.4, o padrão foi alterado para `FIXED` para manter a compatibilidade reversa com séries de lançamentos anteriores (Bug #24487363).
+  In NDB 7.5.1, the default for this option was `DYNAMIC`; in NDB 7.5.4, the default was changed to `FIXED` to maintain backwards compatibility with older release series (Bug #24487363).
 
-- `--ndb-deferred-constraints=[0|1]`
+* `--ndb-deferred-constraints=[0|1]`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-deferred-constraints"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-deferred-constraints</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_deferred_constraints</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>0</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>1</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-deferred-constraints"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-deferred-constraints</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_deferred_constraints</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>0</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>1</code></td> </tr></tbody></table>
 
-  Controla se as verificações de restrição em índices únicos são adiadas até o momento do commit, onde essas verificações são suportadas. `0` é o padrão.
+  Controls whether or not constraint checks on unique indexes are deferred until commit time, where such checks are supported. `0` is the default.
 
-  Essa opção normalmente não é necessária para o funcionamento do NDB Cluster ou da NDB Cluster Replication, e é destinada principalmente para uso em testes.
+  This option is not normally needed for operation of NDB Cluster or NDB Cluster Replication, and is intended primarily for use in testing.
 
-- `--ndb-distribution=[KEYHASH|LINHASH]`
+* `--ndb-distribution=[KEYHASH|LINHASH]`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-allow-copying-alter-table"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_allow_copying_alter_table</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-allow-copying-alter-table"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>System Variable</th> <td><code>ndb_allow_copying_alter_table</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
-  Controla o método de distribuição padrão para tabelas de `NDB`. Pode ser definido como `KEYHASH` (hash de chave) ou `LINHASH` (hash linear). `KEYHASH` é o padrão.
+  Controls the default distribution method for [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables. Can be set to either of `KEYHASH` (key hashing) or `LINHASH` (linear hashing). `KEYHASH` is the default.
 
-- `--ndb-log-apply-status`
+* `--ndb-log-apply-status`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-allow-copying-alter-table"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_allow_copying_alter_table</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-allow-copying-alter-table"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>System Variable</th> <td><code>ndb_allow_copying_alter_table</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
-  Faz com que uma replica **mysqld** registre quaisquer atualizações recebidas de sua fonte imediata na tabela `mysql.ndb_apply_status` em seu próprio log binário usando seu próprio ID de servidor, em vez do ID de servidor da fonte. Em um ambiente de replicação circular ou em cadeia, isso permite que essas atualizações se propague para as tabelas `mysql.ndb_apply_status` de quaisquer servidores MySQL configurados como réplicas do **mysqld** atual.
+  Causes a replica [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") to log any updates received from its immediate source to the `mysql.ndb_apply_status` table in its own binary log using its own server ID rather than the server ID of the source. In a circular or chain replication setting, this allows such updates to propagate to the `mysql.ndb_apply_status` tables of any MySQL servers configured as replicas of the current [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server").
 
-  Em uma configuração de replicação em cadeia, usar essa opção permite que os clusters descendentes (replica) estejam cientes de suas posições em relação a todos os seus contribuintes (fontes) ascendentes.
+  In a chain replication setup, using this option allows downstream (replica) clusters to be aware of their positions relative to all of their upstream contributors (sources).
 
-  Em uma configuração de replicação circular, essa opção faz com que as alterações nas tabelas `ndb_apply_status` completem o circuito inteiro, propagando-se eventualmente de volta ao NDB Cluster de origem. Isso também permite que um cluster que atua como fonte veja quando suas alterações (épocas) foram aplicadas aos outros clusters no círculo.
+  In a circular replication setup, this option causes changes to `ndb_apply_status` tables to complete the entire circuit, eventually propagating back to the originating NDB Cluster. This also allows a cluster acting as a source to see when its changes (epochs) have been applied to the other clusters in the circle.
 
-  Esta opção não tem efeito, a menos que o servidor MySQL seja iniciado com a opção `--ndbcluster`.
+  This option has no effect unless the MySQL server is started with the [`--ndbcluster`](mysql-cluster-options-variables.html#option_mysqld_ndbcluster) option.
 
-- `--ndb-log-empty-epochs=[ON|OFF]`
+* `--ndb-log-empty-epochs=[ON|OFF]`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-allow-copying-alter-table"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_allow_copying_alter_table</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-allow-copying-alter-table"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>System Variable</th> <td><code>ndb_allow_copying_alter_table</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
-  Causas épocas em que não houve alterações a serem escritas nas tabelas `ndb_apply_status` e `ndb_binlog_index`, mesmo quando o [`log_slave_updates`](https://pt.wikipedia.org/wiki/Replicação_de_log_bin%C3%A1rio#sysvar_log_slave_updates) está habilitado.
+  Causes epochs during which there were no changes to be written to the `ndb_apply_status` and `ndb_binlog_index` tables, even when [`log_slave_updates`](replication-options-binary-log.html#sysvar_log_slave_updates) is enabled.
 
-  Por padrão, essa opção está desativada. Desativar `--ndb-log-empty-epochs` faz com que as transações de época sem alterações não sejam escritas no log binário, embora uma linha ainda seja escrita, mesmo para uma época vazia no `ndb_binlog_index`.
+  By default this option is disabled. Disabling `--ndb-log-empty-epochs` causes epoch transactions with no changes not to be written to the binary log, although a row is still written even for an empty epoch in `ndb_binlog_index`.
 
-  Como o `--ndb-log-empty-epochs=1` faz com que o tamanho da tabela `ndb_binlog_index` aumente independentemente do tamanho do log binário, os usuários devem estar preparados para gerenciar o crescimento dessa tabela, mesmo que esperem que o clúster esteja inativo grande parte do tempo.
+  Because `--ndb-log-empty-epochs=1` causes the size of the `ndb_binlog_index` table to increase independently of the size of the binary log, users should be prepared to manage the growth of this table, even if they expect the cluster to be idle a large part of the time.
 
-- `--ndb-log-empty-update=[ON|OFF]`
+* `--ndb-log-empty-update=[ON|OFF]`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-allow-copying-alter-table"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_allow_copying_alter_table</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-allow-copying-alter-table"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>System Variable</th> <td><code>ndb_allow_copying_alter_table</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
-  As atualizações que não produziram alterações são escritas nas tabelas `ndb_apply_status` e `ndb_binlog_index`, quando o [`log_slave_updates`](https://pt.wikipedia.org/wiki/Replicação_de_bin%C3%A1rio#sysvar_log_slave_updates) está habilitado.
+  Causes updates that produced no changes to be written to the `ndb_apply_status` and `ndb_binlog_index` tables, when when [`log_slave_updates`](replication-options-binary-log.html#sysvar_log_slave_updates) is enabled.
 
-  Por padrão, essa opção está desativada (`OFF`). Desativar `--ndb-log-empty-update` faz com que as atualizações sem alterações não sejam escritas no log binário.
+  By default this option is disabled (`OFF`). Disabling `--ndb-log-empty-update` causes updates with no changes not to be written to the binary log.
 
-- `--ndb-log-exclusive-reads=[0|1]`
+* `--ndb-log-exclusive-reads=[0|1]`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-allow-copying-alter-table"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_allow_copying_alter_table</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-allow-copying-alter-table"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>System Variable</th> <td><code>ndb_allow_copying_alter_table</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
-  Iniciar o servidor com essa opção faz com que as leituras de chave primária sejam registradas com bloqueios exclusivos, o que permite a detecção e resolução de conflitos na replicação em cluster do NDB com base em conflitos de leitura. Você também pode habilitar e desabilitar esses bloqueios em tempo de execução, definindo o valor da variável de sistema `ndb_log_exclusive_reads` para 1 ou 0, respectivamente. 0 (desabilitar bloqueio) é o padrão.
+  Starting the server with this option causes primary key reads to be logged with exclusive locks, which allows for NDB Cluster Replication conflict detection and resolution based on read conflicts. You can also enable and disable these locks at runtime by setting the value of the [`ndb_log_exclusive_reads`](mysql-cluster-options-variables.html#sysvar_ndb_log_exclusive_reads) system variable to 1 or 0, respectively. 0 (disable locking) is the default.
 
-  Para obter mais informações, consulte Leia sobre detecção e resolução de conflitos.
+  For more information, see [Read conflict detection and resolution](mysql-cluster-replication-conflict-resolution.html#conflict-resolution-read-conflicts "Read conflict detection and resolution").
 
-- `--ndb-log-fail-terminate`
+* `--ndb-log-fail-terminate`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-allow-copying-alter-table"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_allow_copying_alter_table</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-allow-copying-alter-table"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>System Variable</th> <td><code>ndb_allow_copying_alter_table</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
-  Quando essa opção é especificada e o registro completo de todos os eventos de linha encontrados não for possível, o processo **mysqld** é encerrado.
+  When this option is specified, and complete logging of all found row events is not possible, the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") process is terminated.
 
-- `--ndb-log-orig`
+* `--ndb-log-orig`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-allow-copying-alter-table"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_allow_copying_alter_table</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-allow-copying-alter-table"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>System Variable</th> <td><code>ndb_allow_copying_alter_table</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
-  Registre o ID do servidor de origem e o epílogo na tabela `ndb_binlog_index`.
+  Log the originating server ID and epoch in the `ndb_binlog_index` table.
 
-  Nota
+  Note
 
-  Isso permite que uma determinada época tenha múltiplas linhas no `ndb_binlog_index`, uma para cada época de origem.
+  This makes it possible for a given epoch to have multiple rows in `ndb_binlog_index`, one for each originating epoch.
 
-  Para obter mais informações, consulte Seção 21.7.4, “Esquema e tabelas de replicação de cluster NDB”.
+  For more information, see [Section 21.7.4, “NDB Cluster Replication Schema and Tables”](mysql-cluster-replication-schema.html "21.7.4 NDB Cluster Replication Schema and Tables").
 
-- `--ndb-log-transaction-id`
+* `--ndb-log-transaction-id`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-allow-copying-alter-table"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_allow_copying_alter_table</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-allow-copying-alter-table"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>System Variable</th> <td><code>ndb_allow_copying_alter_table</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
-  Faz com que a replica **mysqld** escreva o ID de transação NDB em cada linha do log binário. Esse registro requer o uso do formato de evento da versão 2 para o log binário; portanto, a variável de sistema `log_bin_use_v1_row_events` deve ser desativada para usar essa opção.
+  Causes a replica [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") to write the NDB transaction ID in each row of the binary log. Such logging requires the use of the Version 2 event format for the binary log; thus, the [`log_bin_use_v1_row_events`](replication-options-binary-log.html#sysvar_log_bin_use_v1_row_events) system variable must be disabled to use this option.
 
-  `--ndb-log-transaction-id` é necessário para habilitar a detecção e resolução de conflitos da replicação do NDB Cluster usando a função `NDB$EPOCH_TRANS()` (veja NDB$EPOCH_TRANS()).
+  `--ndb-log-transaction-id` is required to enable NDB Cluster Replication conflict detection and resolution using the `NDB$EPOCH_TRANS()` function (see [NDB$EPOCH_TRANS()](mysql-cluster-replication-conflict-resolution.html#mysql-cluster-replication-ndb-epoch-trans "NDB$EPOCH_TRANS()")).
 
-  Para obter mais informações, consulte Seção 21.7.11, “Resolução de conflitos de replicação de cluster NDB”.
+  For more information, see [Section 21.7.11, “NDB Cluster Replication Conflict Resolution”](mysql-cluster-replication-conflict-resolution.html "21.7.11 NDB Cluster Replication Conflict Resolution").
 
-- `--ndb-log-update-as-write`
+* `--ndb-log-update-as-write`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-allow-copying-alter-table"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_allow_copying_alter_table</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-allow-copying-alter-table"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>System Variable</th> <td><code>ndb_allow_copying_alter_table</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
-  Se as atualizações na fonte forem escritas no log binário como atualizações (`OFF`) ou escritas (`ON`). Quando esta opção estiver habilitada e ambas as opções `--ndb-log-updated-only` e `--ndb-log-update-minimal` estiverem desativadas, as operações de diferentes tipos serão registradas conforme descrito na lista a seguir:
+  Whether updates on the source are written to the binary log as updates (`OFF`) or writes (`ON`). When this option is enabled, and both [`--ndb-log-updated-only`](mysql-cluster-options-variables.html#option_mysqld_ndb-log-updated-only) and [`--ndb-log-update-minimal`](mysql-cluster-options-variables.html#option_mysqld_ndb-log-update-minimal) are disabled, operations of different types are loǵged as described in the following list:
 
-  - `INSERT`: Registrado como um evento `WRITE_ROW` sem imagem anterior; a imagem após é registrada com todas as colunas.
+  + `INSERT`: Logged as a `WRITE_ROW` event with no before image; the after image is logged with all columns.
 
-    `ATUALIZAÇÃO`: Registrada como um evento `WRITE_ROW` sem imagem anterior; a imagem após é registrada com todas as colunas.
+    `UPDATE`: Logged as a `WRITE_ROW` event with no before image; the after image is logged with all columns.
 
-    `DELETE`: Registrado como um evento `DELETE_ROW` com todas as colunas registradas na imagem anterior; a imagem após não é registrada.
+    `DELETE`: Logged as a `DELETE_ROW` event with all columns logged in the before image; the after image is not logged.
 
-  Essa opção pode ser usada para resolução de conflitos de replicação NDB em combinação com as outras duas opções de registro NDB mencionadas anteriormente; consulte tabela ndb_replication para obter mais informações.
+  This option can be used for NDB Replication conflict resolution in combination with the other two NDB logging options mentioned previously; see [ndb_replication Table](mysql-cluster-replication-schema.html#ndb-replication-ndb-replication "ndb_replication Table"), for more information.
 
-- `--ndb-log-updated-only`
+* `--ndb-log-updated-only`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-allow-copying-alter-table"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr><tr><th>Introduzido</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_allow_copying_alter_table</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Boolean</td> </tr><tr><th>Valor padrão</th> <td><code>ON</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-allow-copying-alter-table"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-allow-copying-alter-table[={OFF|ON}]</code></td> </tr><tr><th>Introduced</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>System Variable</th> <td><code>ndb_allow_copying_alter_table</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Boolean</td> </tr><tr><th>Default Value</th> <td><code>ON</code></td> </tr></tbody></table>
 
-  Se **mysqld** escreve atualizações apenas (`ON`) ou linhas completas (`OFF`) no log binário. Quando esta opção está habilitada e ambas as opções `--ndb-log-update-as-write` e `--ndb-log-update-minimal` estão desativadas, as operações de diferentes tipos são registradas conforme descrito na lista a seguir
+  Whether [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") writes updates only (`ON`) or complete rows (`OFF`) to the binary log. When this option is enabled, and both [`--ndb-log-update-as-write`](mysql-cluster-options-variables.html#option_mysqld_ndb-log-update-as-write) and [`--ndb-log-update-minimal`](mysql-cluster-options-variables.html#option_mysqld_ndb-log-update-minimal) are disabled, operations of different types are loǵged as described in the following list
 
-  - `INSERT`: Registrado como um evento `WRITE_ROW` sem imagem anterior; a imagem após é registrada com todas as colunas.
+  + `INSERT`: Logged as a `WRITE_ROW` event with no before image; the after image is logged with all columns.
 
-  - `ATUALIZAÇÃO`: Registrada como um evento `UPDATE_ROW` com colunas de chave primária e colunas atualizadas presentes tanto nas imagens antes quanto depois.
+  + `UPDATE`: Logged as an `UPDATE_ROW` event with primary key columns and updated columns present in both the before and after images.
 
-  - `DELETE`: Registrado como um evento `DELETE_ROW` com as colunas da chave primária incluídas na imagem anterior; a imagem após não é registrada.
+  + `DELETE`: Logged as a `DELETE_ROW` event with primary key columns incuded in the before image; the after image is not logged.
 
-  Essa opção pode ser usada para resolução de conflitos de replicação NDB em combinação com as outras duas opções de registro NDB mencionadas anteriormente; consulte tabela ndb_replication para obter mais informações sobre como essas opções interagem entre si.
+  This option can be used for NDB Replication conflict resolution in combination with the other two NDB logging options mentioned previously; see [ndb_replication Table](mysql-cluster-replication-schema.html#ndb-replication-ndb-replication "ndb_replication Table"), for more information about how these options interact with one another.
 
-- `--ndb-log-update-minimal`
+* `--ndb-log-update-minimal`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-batch-size"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-batch-size</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_batch_size</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>32768</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo (≥ 5.7.37-ndb-7.6.22)</th> <td><code>2147483648</code></td> </tr><tr><th>Valor máximo (≥ 5.7.37-ndb-7.5.26)</th> <td><code>2147483648</code></td> </tr><tr><th>Valor máximo (≤ 5.7.37-ndb-7.5.25)</th> <td><code>31536000</code></td> </tr><tr><th>Valor máximo (≤ 5.7.37-ndb-7.6.21)</th> <td><code>31536000</code></td> </tr><tr><th>Valor máximo</th> <td><code>31536000</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-batch-size"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-batch-size</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_batch_size</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>32768</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value (≥ 5.7.37-ndb-7.6.22)</th> <td><code>2147483648</code></td> </tr><tr><th>Maximum Value (≥ 5.7.37-ndb-7.5.26)</th> <td><code>2147483648</code></td> </tr><tr><th>Maximum Value (≤ 5.7.37-ndb-7.5.25)</th> <td><code>31536000</code></td> </tr><tr><th>Maximum Value (≤ 5.7.37-ndb-7.6.21)</th> <td><code>31536000</code></td> </tr><tr><th>Maximum Value</th> <td><code>31536000</code></td> </tr><tr><th>Unit</th> <td>bytes</td> </tr></tbody></table>
 
-  Faça atualizações de log de forma mínima, escrevendo apenas os valores da chave primária na imagem anterior e apenas as colunas alteradas na imagem posterior. Isso pode causar problemas de compatibilidade se a replicação for para motores de armazenamento diferentes do `NDB`. Quando essa opção estiver habilitada e ambas as opções `--ndb-log-updated-only` e `--ndb-log-update-as-write` estiverem desativadas, as operações de diferentes tipos serão registradas conforme descrito na lista a seguir:
+  Log updates in a minimal fashion, by writing only the primary key values in the before image, and only the changed columns in the after image. This may cause compatibility problems if replicating to storage engines other than `NDB`. When this option is enabled, and both [`--ndb-log-updated-only`](mysql-cluster-options-variables.html#option_mysqld_ndb-log-updated-only) and [`--ndb-log-update-as-write`](mysql-cluster-options-variables.html#option_mysqld_ndb-log-update-as-write) are disabled, operations of different types are loǵged as described in the following list:
 
-  - `INSERT`: Registrado como um evento `WRITE_ROW` sem imagem anterior; a imagem após é registrada com todas as colunas.
+  + `INSERT`: Logged as a `WRITE_ROW` event with no before image; the after image is logged with all columns.
 
-  - `ATUALIZAÇÃO`: Registrada como um evento `UPDATE_ROW` com as colunas da chave primária na imagem anterior; todas as colunas *exceto* as colunas da chave primária são registradas na imagem final.
+  + `UPDATE`: Logged as an `UPDATE_ROW` event with primary key columns in the before image; all columns *except* primary key columns are logged in the after image.
 
-  - `DELETE`: Registrado como um evento `DELETE_ROW` com todas as colunas da imagem anterior; a imagem após não é registrada.
+  + `DELETE`: Logged as a `DELETE_ROW` event with all columns in the before image; the after image is not logged.
 
-  Essa opção pode ser usada para resolução de conflitos de replicação NDB em combinação com as outras duas opções de registro NDB mencionadas anteriormente; consulte tabela ndb_replication para obter mais informações.
+  This option can be used for NDB Replication conflict resolution in combination with the other two NDB logging options mentioned previously; see [ndb_replication Table](mysql-cluster-replication-schema.html#ndb-replication-ndb-replication "ndb_replication Table"), for more information.
 
-- `--ndb-mgmd-host=host[:port]`
+* `--ndb-mgmd-host=host[:port]`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-batch-size"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-batch-size</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_batch_size</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>32768</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo (≥ 5.7.37-ndb-7.6.22)</th> <td><code>2147483648</code></td> </tr><tr><th>Valor máximo (≥ 5.7.37-ndb-7.5.26)</th> <td><code>2147483648</code></td> </tr><tr><th>Valor máximo (≤ 5.7.37-ndb-7.5.25)</th> <td><code>31536000</code></td> </tr><tr><th>Valor máximo (≤ 5.7.37-ndb-7.6.21)</th> <td><code>31536000</code></td> </tr><tr><th>Valor máximo</th> <td><code>31536000</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-batch-size"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-batch-size</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_batch_size</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>32768</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value (≥ 5.7.37-ndb-7.6.22)</th> <td><code>2147483648</code></td> </tr><tr><th>Maximum Value (≥ 5.7.37-ndb-7.5.26)</th> <td><code>2147483648</code></td> </tr><tr><th>Maximum Value (≤ 5.7.37-ndb-7.5.25)</th> <td><code>31536000</code></td> </tr><tr><th>Maximum Value (≤ 5.7.37-ndb-7.6.21)</th> <td><code>31536000</code></td> </tr><tr><th>Maximum Value</th> <td><code>31536000</code></td> </tr><tr><th>Unit</th> <td>bytes</td> </tr></tbody></table>
 
-  Pode ser usado para definir o número do host e do número de porta de um único servidor de gerenciamento para que o programa se conecte. Se o programa exigir IDs de nó ou referências a múltiplos servidores de gerenciamento (ou ambos) em suas informações de conexão, use a opção `--ndb-connectstring` em vez disso.
+  Can be used to set the host and port number of a single management server for the program to connect to. If the program requires node IDs or references to multiple management servers (or both) in its connection information, use the [`--ndb-connectstring`](mysql-cluster-options-variables.html#option_mysqld_ndb-connectstring) option instead.
 
-- `--ndb-nodeid=#`
+* `--ndb-nodeid=#`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-batch-size"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-batch-size</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_batch_size</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>32768</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo (≥ 5.7.37-ndb-7.6.22)</th> <td><code>2147483648</code></td> </tr><tr><th>Valor máximo (≥ 5.7.37-ndb-7.5.26)</th> <td><code>2147483648</code></td> </tr><tr><th>Valor máximo (≤ 5.7.37-ndb-7.5.25)</th> <td><code>31536000</code></td> </tr><tr><th>Valor máximo (≤ 5.7.37-ndb-7.6.21)</th> <td><code>31536000</code></td> </tr><tr><th>Valor máximo</th> <td><code>31536000</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-batch-size"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-batch-size</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_batch_size</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>32768</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value (≥ 5.7.37-ndb-7.6.22)</th> <td><code>2147483648</code></td> </tr><tr><th>Maximum Value (≥ 5.7.37-ndb-7.5.26)</th> <td><code>2147483648</code></td> </tr><tr><th>Maximum Value (≤ 5.7.37-ndb-7.5.25)</th> <td><code>31536000</code></td> </tr><tr><th>Maximum Value (≤ 5.7.37-ndb-7.6.21)</th> <td><code>31536000</code></td> </tr><tr><th>Maximum Value</th> <td><code>31536000</code></td> </tr><tr><th>Unit</th> <td>bytes</td> </tr></tbody></table>
 
-  Defina o ID de nó deste servidor MySQL em um NDB Cluster.
+  Set this MySQL server's node ID in an NDB Cluster.
 
-  A opção `--ndb-nodeid` substitui qualquer ID de nó definida com `--ndb-connectstring` (mysql-cluster-options-variables.html#option_mysqld_ndb-connectstring), independentemente da ordem em que as duas opções são usadas.
+  The `--ndb-nodeid` option overrides any node ID set with [`--ndb-connectstring`](mysql-cluster-options-variables.html#option_mysqld_ndb-connectstring), regardless of the order in which the two options are used.
 
-  Além disso, se `--ndb-nodeid` for usado, então deve-se encontrar um ID de nó correspondente em uma seção `[mysqld]` ou `[api]` do `config.ini`, ou deve haver uma seção `[mysqld]` ou `[api]` “aberta” no arquivo (ou seja, uma seção sem um parâmetro `NodeId` ou `Id` especificado). Isso também é verdadeiro se o ID do nó for especificado como parte da string de conexão.
+  In addition, if `--ndb-nodeid` is used, then either a matching node ID must be found in a `[mysqld]` or `[api]` section of `config.ini`, or there must be an “open” `[mysqld]` or `[api]` section in the file (that is, a section without a `NodeId` or `Id` parameter specified). This is also true if the node ID is specified as part of the connection string.
 
-  Independentemente de como o ID do nó é determinado, ele é exibido como o valor da variável de status global `Ndb_cluster_node_id` na saída de `SHOW STATUS`, e como `cluster_node_id` na linha `connection` da saída de `SHOW ENGINE NDBCLUSTER STATUS`.
+  Regardless of how the node ID is determined, its is shown as the value of the global status variable `Ndb_cluster_node_id` in the output of [`SHOW STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), and as `cluster_node_id` in the `connection` row of the output of [`SHOW ENGINE NDBCLUSTER STATUS`](show-engine.html "13.7.5.15 SHOW ENGINE Statement").
 
-  Para obter mais informações sobre os IDs de nós para nós SQL do NDB Cluster, consulte Seção 21.4.3.7, “Definindo nós SQL e outros nós de API em um NDB Cluster”.
+  For more information about node IDs for NDB Cluster SQL nodes, see [Section 21.4.3.7, “Defining SQL and Other API Nodes in an NDB Cluster”](mysql-cluster-api-definition.html "21.4.3.7 Defining SQL and Other API Nodes in an NDB Cluster").
 
-- `--ndb-optimization-delay=milésimos`
+* `--ndb-optimization-delay=milliseconds`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-batch-size"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-batch-size</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_batch_size</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>32768</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo (≥ 5.7.37-ndb-7.6.22)</th> <td><code>2147483648</code></td> </tr><tr><th>Valor máximo (≥ 5.7.37-ndb-7.5.26)</th> <td><code>2147483648</code></td> </tr><tr><th>Valor máximo (≤ 5.7.37-ndb-7.5.25)</th> <td><code>31536000</code></td> </tr><tr><th>Valor máximo (≤ 5.7.37-ndb-7.6.21)</th> <td><code>31536000</code></td> </tr><tr><th>Valor máximo</th> <td><code>31536000</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-batch-size"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-batch-size</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_batch_size</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>32768</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value (≥ 5.7.37-ndb-7.6.22)</th> <td><code>2147483648</code></td> </tr><tr><th>Maximum Value (≥ 5.7.37-ndb-7.5.26)</th> <td><code>2147483648</code></td> </tr><tr><th>Maximum Value (≤ 5.7.37-ndb-7.5.25)</th> <td><code>31536000</code></td> </tr><tr><th>Maximum Value (≤ 5.7.37-ndb-7.6.21)</th> <td><code>31536000</code></td> </tr><tr><th>Maximum Value</th> <td><code>31536000</code></td> </tr><tr><th>Unit</th> <td>bytes</td> </tr></tbody></table>
 
-  Defina o número de milissegundos para esperar entre conjuntos de linhas por instruções `OPTIMIZE TABLE` em tabelas de `NDB`. O valor padrão é 10.
+  Set the number of milliseconds to wait between sets of rows by [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") statements on [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables. The default is 10.
 
-- `--ndb-optimized-node-selection`
+* `--ndb-optimized-node-selection`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-batch-size"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-batch-size</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_batch_size</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>32768</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo (≥ 5.7.37-ndb-7.6.22)</th> <td><code>2147483648</code></td> </tr><tr><th>Valor máximo (≥ 5.7.37-ndb-7.5.26)</th> <td><code>2147483648</code></td> </tr><tr><th>Valor máximo (≤ 5.7.37-ndb-7.5.25)</th> <td><code>31536000</code></td> </tr><tr><th>Valor máximo (≤ 5.7.37-ndb-7.6.21)</th> <td><code>31536000</code></td> </tr><tr><th>Valor máximo</th> <td><code>31536000</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-batch-size"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-batch-size</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_batch_size</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>32768</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value (≥ 5.7.37-ndb-7.6.22)</th> <td><code>2147483648</code></td> </tr><tr><th>Maximum Value (≥ 5.7.37-ndb-7.5.26)</th> <td><code>2147483648</code></td> </tr><tr><th>Maximum Value (≤ 5.7.37-ndb-7.5.25)</th> <td><code>31536000</code></td> </tr><tr><th>Maximum Value (≤ 5.7.37-ndb-7.6.21)</th> <td><code>31536000</code></td> </tr><tr><th>Maximum Value</th> <td><code>31536000</code></td> </tr><tr><th>Unit</th> <td>bytes</td> </tr></tbody></table>
 
-  Ative as otimizações para a seleção de nós para transações. Ativado por padrão; use `--skip-ndb-optimized-node-selection` para desativá-lo.
+  Enable optimizations for selection of nodes for transactions. Enabled by default; use `--skip-ndb-optimized-node-selection` to disable.
 
-- `--ndb-transid-mysql-connection-map=estado`
+* `--ndb-transid-mysql-connection-map=state`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-batch-size"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-batch-size</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_batch_size</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>32768</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo (≥ 5.7.37-ndb-7.6.22)</th> <td><code>2147483648</code></td> </tr><tr><th>Valor máximo (≥ 5.7.37-ndb-7.5.26)</th> <td><code>2147483648</code></td> </tr><tr><th>Valor máximo (≤ 5.7.37-ndb-7.5.25)</th> <td><code>31536000</code></td> </tr><tr><th>Valor máximo (≤ 5.7.37-ndb-7.6.21)</th> <td><code>31536000</code></td> </tr><tr><th>Valor máximo</th> <td><code>31536000</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-batch-size"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-batch-size</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_batch_size</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>32768</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value (≥ 5.7.37-ndb-7.6.22)</th> <td><code>2147483648</code></td> </tr><tr><th>Maximum Value (≥ 5.7.37-ndb-7.5.26)</th> <td><code>2147483648</code></td> </tr><tr><th>Maximum Value (≤ 5.7.37-ndb-7.5.25)</th> <td><code>31536000</code></td> </tr><tr><th>Maximum Value (≤ 5.7.37-ndb-7.6.21)</th> <td><code>31536000</code></td> </tr><tr><th>Maximum Value</th> <td><code>31536000</code></td> </tr><tr><th>Unit</th> <td>bytes</td> </tr></tbody></table>
 
-  Habilita ou desabilita o plugin que lida com a tabela `ndb_transid_mysql_connection_map` no banco de dados `INFORMATION_SCHEMA`. Recebe um dos valores `ON`, `OFF` ou `FORCE`. `ON` (o padrão) habilita o plugin. `OFF` desabilita o plugin, tornando o `ndb_transid_mysql_connection_map` inacessível. `FORCE` impede que o MySQL Server seja iniciado se o plugin não conseguir ser carregado e iniciado.
+  Enables or disables the plugin that handles the [`ndb_transid_mysql_connection_map`](information-schema-ndb-transid-mysql-connection-map-table.html "24.3.13 The INFORMATION_SCHEMA ndb_transid_mysql_connection_map Table") table in the `INFORMATION_SCHEMA` database. Takes one of the values `ON`, `OFF`, or `FORCE`. `ON` (the default) enables the plugin. `OFF` disables the plugin, which makes `ndb_transid_mysql_connection_map` inaccessible. `FORCE` keeps the MySQL Server from starting if the plugin fails to load and start.
 
-  Você pode verificar se o plugin da tabela `ndb_transid_mysql_connection_map` está em execução verificando a saída do `SHOW PLUGINS`.
+  You can see whether the [`ndb_transid_mysql_connection_map`](information-schema-ndb-transid-mysql-connection-map-table.html "24.3.13 The INFORMATION_SCHEMA ndb_transid_mysql_connection_map Table") table plugin is running by checking the output of [`SHOW PLUGINS`](show-plugins.html "13.7.5.25 SHOW PLUGINS Statement").
 
-- `--ndb-wait-connected=segundos`
+* `--ndb-wait-connected=seconds`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-batch-size"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-batch-size</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_batch_size</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>32768</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo (≥ 5.7.37-ndb-7.6.22)</th> <td><code>2147483648</code></td> </tr><tr><th>Valor máximo (≥ 5.7.37-ndb-7.5.26)</th> <td><code>2147483648</code></td> </tr><tr><th>Valor máximo (≤ 5.7.37-ndb-7.5.25)</th> <td><code>31536000</code></td> </tr><tr><th>Valor máximo (≤ 5.7.37-ndb-7.6.21)</th> <td><code>31536000</code></td> </tr><tr><th>Valor máximo</th> <td><code>31536000</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-batch-size"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-batch-size</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_batch_size</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>32768</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value (≥ 5.7.37-ndb-7.6.22)</th> <td><code>2147483648</code></td> </tr><tr><th>Maximum Value (≥ 5.7.37-ndb-7.5.26)</th> <td><code>2147483648</code></td> </tr><tr><th>Maximum Value (≤ 5.7.37-ndb-7.5.25)</th> <td><code>31536000</code></td> </tr><tr><th>Maximum Value (≤ 5.7.37-ndb-7.6.21)</th> <td><code>31536000</code></td> </tr><tr><th>Maximum Value</th> <td><code>31536000</code></td> </tr><tr><th>Unit</th> <td>bytes</td> </tr></tbody></table>
 
-  Esta opção define o período de tempo que o servidor MySQL espera para que as conexões ao NDB Cluster e aos nós de dados sejam estabelecidas antes de aceitar as conexões dos clientes MySQL. O tempo é especificado em segundos. O valor padrão é `30`.
+  This option sets the period of time that the MySQL server waits for connections to NDB Cluster management and data nodes to be established before accepting MySQL client connections. The time is specified in seconds. The default value is `30`.
 
-- `--ndb-wait-setup=segundos`
+* `--ndb-wait-setup=seconds`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-batch-size"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-batch-size</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_batch_size</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>32768</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo (≥ 5.7.37-ndb-7.6.22)</th> <td><code>2147483648</code></td> </tr><tr><th>Valor máximo (≥ 5.7.37-ndb-7.5.26)</th> <td><code>2147483648</code></td> </tr><tr><th>Valor máximo (≤ 5.7.37-ndb-7.5.25)</th> <td><code>31536000</code></td> </tr><tr><th>Valor máximo (≤ 5.7.37-ndb-7.6.21)</th> <td><code>31536000</code></td> </tr><tr><th>Valor máximo</th> <td><code>31536000</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-batch-size"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-batch-size</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_batch_size</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>32768</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value (≥ 5.7.37-ndb-7.6.22)</th> <td><code>2147483648</code></td> </tr><tr><th>Maximum Value (≥ 5.7.37-ndb-7.5.26)</th> <td><code>2147483648</code></td> </tr><tr><th>Maximum Value (≤ 5.7.37-ndb-7.5.25)</th> <td><code>31536000</code></td> </tr><tr><th>Maximum Value (≤ 5.7.37-ndb-7.6.21)</th> <td><code>31536000</code></td> </tr><tr><th>Maximum Value</th> <td><code>31536000</code></td> </tr><tr><th>Unit</th> <td>bytes</td> </tr></tbody></table>
 
-  Esta variável indica o período de tempo que o servidor MySQL espera para que o mecanismo de armazenamento `NDB` seja concluído antes de expirar o tempo e tratar o `NDB` como indisponível. O tempo é especificado em segundos. O valor padrão é `30`.
+  This variable shows the period of time that the MySQL server waits for the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine to complete setup before timing out and treating [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") as unavailable. The time is specified in seconds. The default value is `30`.
 
-- `--skip-ndbcluster`
+* `--skip-ndbcluster`
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-batch-size"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-batch-size</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_batch_size</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>32768</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo (≥ 5.7.37-ndb-7.6.22)</th> <td><code>2147483648</code></td> </tr><tr><th>Valor máximo (≥ 5.7.37-ndb-7.5.26)</th> <td><code>2147483648</code></td> </tr><tr><th>Valor máximo (≤ 5.7.37-ndb-7.5.25)</th> <td><code>31536000</code></td> </tr><tr><th>Valor máximo (≤ 5.7.37-ndb-7.6.21)</th> <td><code>31536000</code></td> </tr><tr><th>Valor máximo</th> <td><code>31536000</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-batch-size"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-batch-size</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_batch_size</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>32768</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value (≥ 5.7.37-ndb-7.6.22)</th> <td><code>2147483648</code></td> </tr><tr><th>Maximum Value (≥ 5.7.37-ndb-7.5.26)</th> <td><code>2147483648</code></td> </tr><tr><th>Maximum Value (≤ 5.7.37-ndb-7.5.25)</th> <td><code>31536000</code></td> </tr><tr><th>Maximum Value (≤ 5.7.37-ndb-7.6.21)</th> <td><code>31536000</code></td> </tr><tr><th>Maximum Value</th> <td><code>31536000</code></td> </tr><tr><th>Unit</th> <td>bytes</td> </tr></tbody></table>
 
-  Desative o mecanismo de armazenamento `NDBCLUSTER`. Este é o padrão para binários que foram compilados com suporte ao mecanismo de armazenamento `NDBCLUSTER`; o servidor aloca memória e outros recursos apenas para este mecanismo de armazenamento se a opção `--ndbcluster` for fornecida explicitamente. Veja Seção 21.4.1, “Configuração rápida do NDB Cluster” para um exemplo.
+  Disable the [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine. This is the default for binaries that were built with [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine support; the server allocates memory and other resources for this storage engine only if the [`--ndbcluster`](mysql-cluster-options-variables.html#option_mysqld_ndbcluster) option is given explicitly. See [Section 21.4.1, “Quick Test Setup of NDB Cluster”](mysql-cluster-quick.html "21.4.1 Quick Test Setup of NDB Cluster"), for an example.
 
-##### 21.4.3.9.2 Variáveis do Sistema de Clúster do NDB
+##### 21.4.3.9.2 NDB Cluster System Variables
 
-Esta seção fornece informações detalhadas sobre as variáveis do sistema do servidor MySQL que são específicas do NDB Cluster e do mecanismo de armazenamento `NDB`. Para variáveis do sistema que não são específicas do NDB Cluster, consulte Seção 5.1.7, “Variáveis do Sistema do Servidor”. Para informações gerais sobre o uso de variáveis do sistema, consulte Seção 5.1.8, “Usando Variáveis do Sistema”.
+This section provides detailed information about MySQL server system variables that are specific to NDB Cluster and the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine. For system variables not specific to NDB Cluster, see [Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables"). For general information on using system variables, see [Section 5.1.8, “Using System Variables”](using-system-variables.html "5.1.8 Using System Variables").
 
-- `ndb_autoincrement_prefetch_sz`
+* [`ndb_autoincrement_prefetch_sz`](mysql-cluster-options-variables.html#sysvar_ndb_autoincrement_prefetch_sz)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-batch-size"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-batch-size</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_batch_size</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>32768</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo (≥ 5.7.37-ndb-7.6.22)</th> <td><code>2147483648</code></td> </tr><tr><th>Valor máximo (≥ 5.7.37-ndb-7.5.26)</th> <td><code>2147483648</code></td> </tr><tr><th>Valor máximo (≤ 5.7.37-ndb-7.5.25)</th> <td><code>31536000</code></td> </tr><tr><th>Valor máximo (≤ 5.7.37-ndb-7.6.21)</th> <td><code>31536000</code></td> </tr><tr><th>Valor máximo</th> <td><code>31536000</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-batch-size"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-batch-size</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_batch_size</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>32768</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value (≥ 5.7.37-ndb-7.6.22)</th> <td><code>2147483648</code></td> </tr><tr><th>Maximum Value (≥ 5.7.37-ndb-7.5.26)</th> <td><code>2147483648</code></td> </tr><tr><th>Maximum Value (≤ 5.7.37-ndb-7.5.25)</th> <td><code>31536000</code></td> </tr><tr><th>Maximum Value (≤ 5.7.37-ndb-7.6.21)</th> <td><code>31536000</code></td> </tr><tr><th>Maximum Value</th> <td><code>31536000</code></td> </tr><tr><th>Unit</th> <td>bytes</td> </tr></tbody></table>
 
-  Determina a probabilidade de lacunas em uma coluna autoincrementada. Defina-o para `1` para minimizar isso. Definir um valor alto para otimização torna as inserções mais rápidas, mas diminui a probabilidade de números consecutivos de autoincremento serem usados em um lote de inserções.
+  Determines the probability of gaps in an autoincremented column. Set it to `1` to minimize this. Setting it to a high value for optimization makes inserts faster, but decreases the likelihood that consecutive autoincrement numbers are used in a batch of inserts.
 
-  Essa variável afeta apenas o número de IDs `AUTO_INCREMENT` que são obtidos entre as instruções; dentro de uma determinada instrução, pelo menos 32 IDs são obtidos de cada vez.
+  This variable affects only the number of `AUTO_INCREMENT` IDs that are fetched between statements; within a given statement, at least 32 IDs are obtained at a time.
 
-  Importante
+  Important
 
-  Essa variável não afeta os insertos realizados usando `INSERT ... SELECT`.
+  This variable does not affect inserts performed using [`INSERT ... SELECT`](insert-select.html "13.2.5.1 INSERT ... SELECT Statement").
 
-- `ndb_cache_check_time`
+* [`ndb_cache_check_time`](mysql-cluster-options-variables.html#sysvar_ndb_cache_check_time)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-cluster-connection-pool</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>63</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-cluster-connection-pool"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-cluster-connection-pool</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>63</code></td> </tr></tbody></table>
 
-  O número de milissegundos que passam entre as verificações dos nós do NDB Cluster SQL pelo cache de consultas do MySQL. Definir esse valor para 0 (o valor padrão e mínimo) significa que o cache de consultas verifica a validação em cada consulta.
+  The number of milliseconds that elapse between checks of NDB Cluster SQL nodes by the MySQL query cache. Setting this to 0 (the default and minimum value) means that the query cache checks for validation on every query.
 
-  O valor máximo recomendado para essa variável é 1000, o que significa que a verificação é realizada uma vez por segundo. Um valor maior indica que a verificação é realizada e, possivelmente, invalidada devido a atualizações em diferentes nós do SQL com menos frequência. Geralmente, não é desejável definir esse valor para um valor maior que 2000.
+  The recommended maximum value for this variable is 1000, which means that the check is performed once per second. A larger value means that the check is performed and possibly invalidated due to updates on different SQL nodes less often. It is generally not desirable to set this to a value greater than 2000.
 
-  Nota
+  Note
 
-  O cache de consultas é descontinuado a partir do MySQL 5.7.20 e será removido no MySQL 8.0. A descontinuidade inclui `ndb_cache_check_time`.
+  The query cache is deprecated as of MySQL 5.7.20, and is removed in MySQL 8.0. Deprecation includes [`ndb_cache_check_time`](mysql-cluster-options-variables.html#sysvar_ndb_cache_check_time).
 
-- `ndb_clear_apply_status`
+* [`ndb_clear_apply_status`](mysql-cluster-options-variables.html#sysvar_ndb_clear_apply_status)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-cluster-connection-pool</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>63</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-cluster-connection-pool"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-cluster-connection-pool</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>63</code></td> </tr></tbody></table>
 
-  Por padrão, a execução de `RESET SLAVE` faz com que uma replica do NDB Cluster apague todas as linhas da tabela `ndb_apply_status`. Você pode desabilitar isso configurando `ndb_clear_apply_status=OFF`.
+  By the default, executing [`RESET SLAVE`](reset-slave.html "13.4.2.3 RESET SLAVE Statement") causes an NDB Cluster replica to purge all rows from its `ndb_apply_status` table. You can disable this by setting `ndb_clear_apply_status=OFF`.
 
-- `ndb_data_node_neighbour`
+* [`ndb_data_node_neighbour`](mysql-cluster-options-variables.html#sysvar_ndb_data_node_neighbour)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-cluster-connection-pool</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>63</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-cluster-connection-pool"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-cluster-connection-pool</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>63</code></td> </tr></tbody></table>
 
-  Define o ID de um nó de dados "mais próximo" — ou seja, um nó de dados não local preferido é escolhido para executar a transação, em vez de um que esteja executando no mesmo host que o nó SQL ou API. Isso costumava garantir que, quando uma tabela totalmente replicada é acessada, acessamos-a neste nó de dados, para garantir que a cópia local da tabela seja sempre usada sempre que possível. Isso também pode ser usado para fornecer dicas para transações.
+  Sets the ID of a “nearest” data node—that is, a preferred nonlocal data node is chosen to execute the transaction, rather than one running on the same host as the SQL or API node. This used to ensure that when a fully replicated table is accessed, we access it on this data node, to ensure that the local copy of the table is always used whenever possible. This can also be used for providing hints for transactions.
 
-  Isso pode melhorar os tempos de acesso aos dados no caso de um nó que está fisicamente mais próximo e, portanto, tem maior capacidade de transferência de rede do que outros no mesmo host.
+  This can improve data access times in the case of a node that is physically closer than and thus has higher network throughput than others on the same host.
 
-  Consulte Seção 13.1.18.9, “Definindo opções de comentário do NDB” para obter mais informações.
+  See [Section 13.1.18.9, “Setting NDB Comment Options”](create-table-ndb-comment-options.html "13.1.18.9 Setting NDB Comment Options"), for further information.
 
-  Adicionado em NDB 7.5.2.
+  Added in NDB 7.5.2.
 
-  Nota
+  Note
 
-  Um método equivalente `set_data_node_neighbour()` é fornecido para uso em aplicativos da API NDB.
+  An equivalent method [`set_data_node_neighbour()`](/doc/ndbapi/en/ndb-ndb-cluster-connection.html#ndb-ndb-cluster-connection-set-data-node-neighbour) is provided for use in NDB API applications.
 
-- `ndb_default_column_format`
+* [`ndb_default_column_format`](mysql-cluster-options-variables.html#sysvar_ndb_default_column_format)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-cluster-connection-pool</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>63</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-cluster-connection-pool"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-cluster-connection-pool</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>63</code></td> </tr></tbody></table>
 
-  No NDB 7.5.1 e versões posteriores, define o `COLUMN_FORMAT` e `ROW_FORMAT` padrão para novas tabelas (consulte Seção 13.1.18, “Instrução CREATE TABLE”).
+  In NDB 7.5.1 and later, sets the default `COLUMN_FORMAT` and `ROW_FORMAT` for new tables (see [Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement")).
 
-  No NDB 7.5.1, o padrão para essa variável era `DYNAMIC`; no NDB 7.5.4, o padrão foi alterado para `FIXED` para manter a compatibilidade reversa com séries de lançamentos anteriores (Bug #24487363).
+  In NDB 7.5.1, the default for this variable was `DYNAMIC`; in NDB 7.5.4, the default was changed to `FIXED` to maintain backwards compatibility with older release series (Bug #24487363).
 
-- `ndb_deferred_constraints`
+* [`ndb_deferred_constraints`](mysql-cluster-options-variables.html#sysvar_ndb_deferred_constraints)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-cluster-connection-pool</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>63</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-cluster-connection-pool"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-cluster-connection-pool</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>63</code></td> </tr></tbody></table>
 
-  Controla se as verificações de restrição são adiadas ou não, onde essas são suportadas. `0` é o padrão.
+  Controls whether or not constraint checks are deferred, where these are supported. `0` is the default.
 
-  Essa variável normalmente não é necessária para o funcionamento do NDB Cluster ou da NDB Cluster Replication, e é destinada principalmente para uso em testes.
+  This variable is not normally needed for operation of NDB Cluster or NDB Cluster Replication, and is intended primarily for use in testing.
 
-- `ndb_distribution`
+* [`ndb_distribution`](mysql-cluster-options-variables.html#sysvar_ndb_distribution)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-cluster-connection-pool</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>63</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-cluster-connection-pool"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-cluster-connection-pool</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>63</code></td> </tr></tbody></table>
 
-  Controla o método de distribuição padrão para tabelas de `NDB`. Pode ser definido como `KEYHASH` (hash de chave) ou `LINHASH` (hash linear). `KEYHASH` é o padrão.
+  Controls the default distribution method for [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables. Can be set to either of `KEYHASH` (key hashing) or `LINHASH` (linear hashing). `KEYHASH` is the default.
 
-- `ndb_eventbuffer_free_percent`
+* [`ndb_eventbuffer_free_percent`](mysql-cluster-options-variables.html#sysvar_ndb_eventbuffer_free_percent)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-cluster-connection-pool</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>63</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-cluster-connection-pool"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-cluster-connection-pool</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>63</code></td> </tr></tbody></table>
 
-  Define a porcentagem da memória máxima alocada para o buffer de eventos (ndb_eventbuffer_max_alloc) que deve estar disponível no buffer de eventos após atingir o máximo, antes de começar a bufferizar novamente.
+  Sets the percentage of the maximum memory allocated to the event buffer (ndb_eventbuffer_max_alloc) that should be available in event buffer after reaching the maximum, before starting to buffer again.
 
-- `ndb_eventbuffer_max_alloc`
+* [`ndb_eventbuffer_max_alloc`](mysql-cluster-options-variables.html#sysvar_ndb_eventbuffer_max_alloc)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-cluster-connection-pool</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>63</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-cluster-connection-pool"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-cluster-connection-pool</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>63</code></td> </tr></tbody></table>
 
-  Define o valor máximo de memória (em bytes) que pode ser alocado para o buffer de eventos pela API NDB. 0 significa que não há limite imposto e é o valor padrão.
+  Sets the maximum amount memory (in bytes) that can be allocated for buffering events by the NDB API. 0 means that no limit is imposed, and is the default.
 
-- `ndb_extra_logging`
+* [`ndb_extra_logging`](mysql-cluster-options-variables.html#sysvar_ndb_extra_logging)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-cluster-connection-pool</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>63</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-cluster-connection-pool"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-cluster-connection-pool</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>63</code></td> </tr></tbody></table>
 
-  Essa variável permite a gravação no log de erro do MySQL de informações específicas do mecanismo de armazenamento `NDB`.
+  This variable enables recording in the MySQL error log of information specific to the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine.
 
-  Quando essa variável é definida como 0, a única informação específica do `NDB` que é escrita no log de erro do MySQL está relacionada ao gerenciamento de transações. Se o valor for maior que 0, mas menor que 10, o esquema da tabela `NDB` e os eventos de conexão também são registrados, bem como se a resolução de conflitos está em uso ou não, e outros erros e informações do `NDB`. Se o valor for definido como 10 ou mais, informações sobre o `NDB` interno, como o progresso da distribuição de dados entre os nós do cluster, também são escritas no log de erro do MySQL. O valor padrão é 1.
+  When this variable is set to 0, the only information specific to `NDB` that is written to the MySQL error log relates to transaction handling. If it set to a value greater than 0 but less than 10, `NDB` table schema and connection events are also logged, as well as whether or not conflict resolution is in use, and other `NDB` errors and information. If the value is set to 10 or more, information about `NDB` internals, such as the progress of data distribution among cluster nodes, is also written to the MySQL error log. The default is 1.
 
-- `ndb_force_send`
+* [`ndb_force_send`](mysql-cluster-options-variables.html#sysvar_ndb_force_send)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-cluster-connection-pool</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Âmbito</th> <td>Global</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Dinâmico</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>1</code></td> </tr><tr><th>Valor mínimo</th> <td><code>1</code></td> </tr><tr><th>Valor máximo</th> <td><code>63</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-cluster-connection-pool"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-cluster-connection-pool</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_cluster_connection_pool</code></td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Scope</th> <td>Global</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Dynamic</th> <td>No</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>1</code></td> </tr><tr><th>Minimum Value</th> <td><code>1</code></td> </tr><tr><th>Maximum Value</th> <td><code>63</code></td> </tr></tbody></table>
 
-  Força o envio de buffers para `NDB` imediatamente, sem esperar por outros threads. A opção padrão é `ON`.
+  Forces sending of buffers to [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") immediately, without waiting for other threads. Defaults to `ON`.
 
-- `ndb_fully_replicated`
+* [`ndb_fully_replicated`](mysql-cluster-options-variables.html#sysvar_ndb_fully_replicated)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool-nodeids"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-cluster-connection-pool-nodeids</code></td> </tr><tr><th>Introduzido</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>Variável do sistema (≥ 5.7.10-ndb-7.5.0)</th> <td><code>ndb_cluster_connection_pool_nodeids</code></td> </tr><tr><th>Âmbito (≥ 5.7.10-ndb-7.5.0)</th> <td>Global</td> </tr><tr><th>Dinâmico (≥ 5.7.10-ndb-7.5.0)</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Conjunto</td> </tr><tr><th>Valor padrão</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-cluster-connection-pool-nodeids"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-cluster-connection-pool-nodeids</code></td> </tr><tr><th>Introduced</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>System Variable (≥ 5.7.10-ndb-7.5.0)</th> <td><code>ndb_cluster_connection_pool_nodeids</code></td> </tr><tr><th>Scope (≥ 5.7.10-ndb-7.5.0)</th> <td>Global</td> </tr><tr><th>Dynamic (≥ 5.7.10-ndb-7.5.0)</th> <td>No</td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
-  Determina se novas tabelas `NDB` são replicadas completamente. Essa configuração pode ser substituída para uma tabela individual usando `COMMENT="NDB_TABLE=FULLY_REPLICATED=..."` em uma instrução `CREATE TABLE` ou `ALTER TABLE`; consulte Seção 13.1.18.9, “Definindo Opções de Comentário NDB”, para sintaxe e outras informações.
+  Determines whether new `NDB` tables are fully replicated. This setting can be overridden for an individual table using `COMMENT="NDB_TABLE=FULLY_REPLICATED=..."` in a [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") or [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statement; see [Section 13.1.18.9, “Setting NDB Comment Options”](create-table-ndb-comment-options.html "13.1.18.9 Setting NDB Comment Options"), for syntax and other information.
 
-  Adicionado em NDB 7.5.2.
+  Added in NDB 7.5.2.
 
-- `ndb_index_stat_enable`
+* [`ndb_index_stat_enable`](mysql-cluster-options-variables.html#sysvar_ndb_index_stat_enable)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool-nodeids"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-cluster-connection-pool-nodeids</code></td> </tr><tr><th>Introduzido</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>Variável do sistema (≥ 5.7.10-ndb-7.5.0)</th> <td><code>ndb_cluster_connection_pool_nodeids</code></td> </tr><tr><th>Âmbito (≥ 5.7.10-ndb-7.5.0)</th> <td>Global</td> </tr><tr><th>Dinâmico (≥ 5.7.10-ndb-7.5.0)</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Conjunto</td> </tr><tr><th>Valor padrão</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-cluster-connection-pool-nodeids"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-cluster-connection-pool-nodeids</code></td> </tr><tr><th>Introduced</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>System Variable (≥ 5.7.10-ndb-7.5.0)</th> <td><code>ndb_cluster_connection_pool_nodeids</code></td> </tr><tr><th>Scope (≥ 5.7.10-ndb-7.5.0)</th> <td>Global</td> </tr><tr><th>Dynamic (≥ 5.7.10-ndb-7.5.0)</th> <td>No</td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
-  Use as estatísticas do índice `NDB` na otimização de consultas. O padrão é `ON`.
+  Use [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") index statistics in query optimization. The default is `ON`.
 
-- `ndb_index_stat_option`
+* [`ndb_index_stat_option`](mysql-cluster-options-variables.html#sysvar_ndb_index_stat_option)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool-nodeids"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-cluster-connection-pool-nodeids</code></td> </tr><tr><th>Introduzido</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>Variável do sistema (≥ 5.7.10-ndb-7.5.0)</th> <td><code>ndb_cluster_connection_pool_nodeids</code></td> </tr><tr><th>Âmbito (≥ 5.7.10-ndb-7.5.0)</th> <td>Global</td> </tr><tr><th>Dinâmico (≥ 5.7.10-ndb-7.5.0)</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Conjunto</td> </tr><tr><th>Valor padrão</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-cluster-connection-pool-nodeids"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-cluster-connection-pool-nodeids</code></td> </tr><tr><th>Introduced</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>System Variable (≥ 5.7.10-ndb-7.5.0)</th> <td><code>ndb_cluster_connection_pool_nodeids</code></td> </tr><tr><th>Scope (≥ 5.7.10-ndb-7.5.0)</th> <td>Global</td> </tr><tr><th>Dynamic (≥ 5.7.10-ndb-7.5.0)</th> <td>No</td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
-  Esta variável é usada para fornecer opções de ajuste para a geração de estatísticas de índice NDB. A lista consiste em pares de nomes e valores separados por vírgula de nomes de opções e valores, e essa lista não deve conter nenhum caractere de espaço.
+  This variable is used for providing tuning options for NDB index statistics generation. The list consist of comma-separated name-value pairs of option names and values, and this list must not contain any space characters.
 
-  As opções não utilizadas ao configurar `ndb_index_stat_option` não são alteradas de seus valores padrão. Por exemplo, você pode definir `ndb_index_stat_option = 'loop_idle=1000ms,cache_limit=32M'`.
+  Options not used when setting `ndb_index_stat_option` are not changed from their default values. For example, you can set `ndb_index_stat_option = 'loop_idle=1000ms,cache_limit=32M'`.
 
-  Os valores de tempo podem ser sufixados com `h` (horas), `m` (minutos) ou `s` (segundos). Os valores de milissegundos podem ser especificados opcionalmente usando `ms`; valores de milissegundos não podem ser especificados usando `h`, `m` ou `s`. Valores inteiros podem ser sufixados com `K`, `M` ou `G`.
+  Time values can be optionally suffixed with `h` (hours), `m` (minutes), or `s` (seconds). Millisecond values can optionally be specified using `ms`; millisecond values cannot be specified using `h`, `m`, or `s`.) Integer values can be suffixed with `K`, `M`, or `G`.
 
-  Os nomes das opções que podem ser definidos usando essa variável estão mostrados na tabela a seguir. A tabela também fornece descrições breves das opções, seus valores padrão e (quando aplicável) seus valores mínimo e máximo.
+  The names of the options that can be set using this variable are shown in the table that follows. The table also provides brief descriptions of the options, their default values, and (where applicable) their minimum and maximum values.
 
-  **Tabela 21.18 ndb_index_stat_option opções e valores**
+  **Table 21.18 ndb_index_stat_option options and values**
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool-nodeids"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-cluster-connection-pool-nodeids</code></td> </tr><tr><th>Introduzido</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>Variável do sistema (≥ 5.7.10-ndb-7.5.0)</th> <td><code>ndb_cluster_connection_pool_nodeids</code></td> </tr><tr><th>Âmbito (≥ 5.7.10-ndb-7.5.0)</th> <td>Global</td> </tr><tr><th>Dinâmico (≥ 5.7.10-ndb-7.5.0)</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Conjunto</td> </tr><tr><th>Valor padrão</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-cluster-connection-pool-nodeids"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-cluster-connection-pool-nodeids</code></td> </tr><tr><th>Introduced</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>System Variable (≥ 5.7.10-ndb-7.5.0)</th> <td><code>ndb_cluster_connection_pool_nodeids</code></td> </tr><tr><th>Scope (≥ 5.7.10-ndb-7.5.0)</th> <td>Global</td> </tr><tr><th>Dynamic (≥ 5.7.10-ndb-7.5.0)</th> <td>No</td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
-- `ndb_join_pushdown`
+* [`ndb_join_pushdown`](mysql-cluster-options-variables.html#sysvar_ndb_join_pushdown)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool-nodeids"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-cluster-connection-pool-nodeids</code></td> </tr><tr><th>Introduzido</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>Variável do sistema (≥ 5.7.10-ndb-7.5.0)</th> <td><code>ndb_cluster_connection_pool_nodeids</code></td> </tr><tr><th>Âmbito (≥ 5.7.10-ndb-7.5.0)</th> <td>Global</td> </tr><tr><th>Dinâmico (≥ 5.7.10-ndb-7.5.0)</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Conjunto</td> </tr><tr><th>Valor padrão</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-cluster-connection-pool-nodeids"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-cluster-connection-pool-nodeids</code></td> </tr><tr><th>Introduced</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>System Variable (≥ 5.7.10-ndb-7.5.0)</th> <td><code>ndb_cluster_connection_pool_nodeids</code></td> </tr><tr><th>Scope (≥ 5.7.10-ndb-7.5.0)</th> <td>Global</td> </tr><tr><th>Dynamic (≥ 5.7.10-ndb-7.5.0)</th> <td>No</td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
-  Esta variável controla se as junções nas tabelas de `NDB` são impulsionadas para o kernel NDB (nós de dados). Anteriormente, uma junção era tratada usando múltiplos acessos de `NDB` pelo nó SQL; no entanto, quando `ndb_join_pushdown` é habilitado, uma junção impulsionável é enviada na íntegra para os nós de dados, onde pode ser distribuída entre os nós de dados e executada em paralelo em múltiplas cópias dos dados, com um único resultado consolidado sendo retornado para **mysqld**. Isso pode reduzir muito o número de viagens entre um nó SQL e os nós de dados necessárias para lidar com uma junção assim.
+  This variable controls whether joins on [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables are pushed down to the NDB kernel (data nodes). Previously, a join was handled using multiple accesses of [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") by the SQL node; however, when [`ndb_join_pushdown`](mysql-cluster-options-variables.html#sysvar_ndb_join_pushdown) is enabled, a pushable join is sent in its entirety to the data nodes, where it can be distributed among the data nodes and executed in parallel on multiple copies of the data, with a single, merged result being returned to [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"). This can reduce greatly the number of round trips between an SQL node and the data nodes required to handle such a join.
 
-  Por padrão, `ndb_join_pushdown` está habilitado.
+  By default, [`ndb_join_pushdown`](mysql-cluster-options-variables.html#sysvar_ndb_join_pushdown) is enabled.
 
-  **Condições para junções pushdown do NDB.** Para que uma junção seja pushável, ela deve atender às seguintes condições:
+  **Conditions for NDB pushdown joins.** In order for a join to be pushable, it must meet the following conditions:
 
-  1. Apenas as colunas podem ser comparadas, e todas as colunas a serem unidas devem usar *exatamente* o mesmo tipo de dado.
+  1. Only columns can be compared, and all columns to be joined must use *exactly* the same data type.
 
-     Isso significa que expressões como `t1.a = t2.a + constante` não podem ser empurradas para baixo, e que, por exemplo, uma junção em uma coluna de tipo `INT` e uma coluna de tipo `BIGINT` também não podem ser empurradas para baixo.
+     This means that expressions such as `t1.a = t2.a + constant` cannot be pushed down, and that (for example) a join on an [`INT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") column and a [`BIGINT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") column also cannot be pushed down.
 
-  2. As consultas que fazem referência às colunas `BLOB` ou `TEXT` não são suportadas.
+  2. Queries referencing [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") or [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types") columns are not supported.
 
-  3. O bloqueio explícito não é suportado; no entanto, o bloqueio implícito baseado em linhas, uma característica do mecanismo de armazenamento `NDB`, é aplicado.
+  3. Explicit locking is not supported; however, the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine's characteristic implicit row-based locking is enforced.
 
-     Isso significa que uma junção usando `FOR UPDATE` não pode ser empurrada para baixo.
+     This means that a join using `FOR UPDATE` cannot be pushed down.
 
-  4. Para que uma junção seja impulsionada, as tabelas subordinadas na junção devem ser acessadas usando um dos métodos de acesso `ref`, `eq_ref` ou `const` ou alguma combinação desses métodos.
+  4. In order for a join to be pushed down, child tables in the join must be accessed using one of the [`ref`](explain-output.html#jointype_ref), [`eq_ref`](explain-output.html#jointype_eq_ref), or [`const`](explain-output.html#jointype_const) access methods, or some combination of these methods.
 
-     As tabelas filhas externas podem ser empurradas apenas usando `eq_ref`.
+     Outer joined child tables can only be pushed using [`eq_ref`](explain-output.html#jointype_eq_ref).
 
-     Se a raiz da junção empurrada for um `eq_ref` ou `const`, apenas as tabelas filhas conectadas por `eq_ref` podem ser anexadas. (Uma tabela conectada por `ref` provavelmente se tornará a raiz de outra junção empurrada.)
+     If the root of the pushed join is an [`eq_ref`](explain-output.html#jointype_eq_ref) or [`const`](explain-output.html#jointype_const), only child tables joined by [`eq_ref`](explain-output.html#jointype_eq_ref) can be appended. (A table joined by [`ref`](explain-output.html#jointype_ref) is likely to become the root of another pushed join.)
 
-     Se o otimizador de consultas decidir usar o cache de junção para uma tabela filha candidata, essa tabela não pode ser empurrada como filha. No entanto, ela pode ser a raiz de outro conjunto de tabelas empurradas.
+     If the query optimizer decides on `Using join cache` for a candidate child table, that table cannot be pushed as a child. However, it may be the root of another set of pushed tables.
 
-  5. As junções que fazem referência a tabelas explicitamente particionadas por `[LINEAR] HASH`, `LIST` ou `RANGE` atualmente não podem ser empurradas para baixo.
+  5. Joins referencing tables explicitly partitioned by `[LINEAR] HASH`, `LIST`, or `RANGE` currently cannot be pushed down.
 
-  Você pode verificar se uma junção específica pode ser simplificada consultando-a com `EXPLAIN` (explain.html); quando a junção pode ser simplificada, você pode ver referências à junção simplificada na coluna `Extra` do resultado, como mostrado neste exemplo:
+  You can see whether a given join can be pushed down by checking it with [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement"); when the join can be pushed down, you can see references to the `pushed join` in the `Extra` column of the output, as shown in this example:
 
   ```sql
   mysql> EXPLAIN
@@ -486,1026 +487,1026 @@ Esta seção fornece informações detalhadas sobre as variáveis do sistema do 
   4 rows in set (0.00 sec)
   ```
 
-  Nota
+  Note
 
-  Se as tabelas filhas unidas internamente forem unidas por `ref`, *e* o resultado for ordenado ou agrupado por um índice ordenado, esse índice não pode fornecer linhas ordenadas, o que obriga a gravação em um arquivo temporário ordenado.
+  If inner joined child tables are joined by [`ref`](explain-output.html#jointype_ref), *and* the result is ordered or grouped by a sorted index, this index cannot provide sorted rows, which forces writing to a sorted tempfile.
 
-  Dois recursos adicionais de informações sobre o desempenho da junção empurrada estão disponíveis:
+  Two additional sources of information about pushed join performance are available:
 
-  1. As variáveis de status `Ndb_pushed_queries_defined`, `Ndb_pushed_queries_dropped`, `Ndb_pushed_queries_executed` e `Ndb_pushed_reads`.
+  1. The status variables [`Ndb_pushed_queries_defined`](mysql-cluster-options-variables.html#statvar_Ndb_pushed_queries_defined), [`Ndb_pushed_queries_dropped`](mysql-cluster-options-variables.html#statvar_Ndb_pushed_queries_dropped), [`Ndb_pushed_queries_executed`](mysql-cluster-options-variables.html#statvar_Ndb_pushed_queries_executed), and [`Ndb_pushed_reads`](mysql-cluster-options-variables.html#statvar_Ndb_pushed_reads).
 
-  2. Os contabilistas na tabela `ndbinfo.counters` que pertencem ao bloco do kernel `DBSPJ`.
+  2. The counters in the [`ndbinfo.counters`](mysql-cluster-ndbinfo-counters.html "21.6.15.10 The ndbinfo counters Table") table that belong to the [`DBSPJ`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbspj.html) kernel block.
 
-- `ndb_log_apply_status`
+* [`ndb_log_apply_status`](mysql-cluster-options-variables.html#sysvar_ndb_log_apply_status)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool-nodeids"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-cluster-connection-pool-nodeids</code></td> </tr><tr><th>Introduzido</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>Variável do sistema (≥ 5.7.10-ndb-7.5.0)</th> <td><code>ndb_cluster_connection_pool_nodeids</code></td> </tr><tr><th>Âmbito (≥ 5.7.10-ndb-7.5.0)</th> <td>Global</td> </tr><tr><th>Dinâmico (≥ 5.7.10-ndb-7.5.0)</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Conjunto</td> </tr><tr><th>Valor padrão</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-cluster-connection-pool-nodeids"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-cluster-connection-pool-nodeids</code></td> </tr><tr><th>Introduced</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>System Variable (≥ 5.7.10-ndb-7.5.0)</th> <td><code>ndb_cluster_connection_pool_nodeids</code></td> </tr><tr><th>Scope (≥ 5.7.10-ndb-7.5.0)</th> <td>Global</td> </tr><tr><th>Dynamic (≥ 5.7.10-ndb-7.5.0)</th> <td>No</td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
-  Uma variável somente de leitura que indica se o servidor foi iniciado com a opção `--ndb-log-apply-status`.
+  A read-only variable which shows whether the server was started with the [`--ndb-log-apply-status`](mysql-cluster-options-variables.html#option_mysqld_ndb-log-apply-status) option.
 
-- `ndb_log_bin`
+* [`ndb_log_bin`](mysql-cluster-options-variables.html#sysvar_ndb_log_bin)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool-nodeids"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-cluster-connection-pool-nodeids</code></td> </tr><tr><th>Introduzido</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>Variável do sistema (≥ 5.7.10-ndb-7.5.0)</th> <td><code>ndb_cluster_connection_pool_nodeids</code></td> </tr><tr><th>Âmbito (≥ 5.7.10-ndb-7.5.0)</th> <td>Global</td> </tr><tr><th>Dinâmico (≥ 5.7.10-ndb-7.5.0)</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Conjunto</td> </tr><tr><th>Valor padrão</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-cluster-connection-pool-nodeids"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-cluster-connection-pool-nodeids</code></td> </tr><tr><th>Introduced</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>System Variable (≥ 5.7.10-ndb-7.5.0)</th> <td><code>ndb_cluster_connection_pool_nodeids</code></td> </tr><tr><th>Scope (≥ 5.7.10-ndb-7.5.0)</th> <td>Global</td> </tr><tr><th>Dynamic (≥ 5.7.10-ndb-7.5.0)</th> <td>No</td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
-  As atualizações das tabelas `NDB` são escritas no log binário. A definição desta variável não tem efeito se o registro binário não estiver já habilitado para o servidor usando [`log_bin`](https://pt.wikipedia.org/wiki/Log_bin%C3%A1rio#sysvar_log_bin). O valor padrão de `ndb_log_bin` é 1 (ON); normalmente, não há necessidade de alterar esse valor em um ambiente de produção.
+  Causes updates to `NDB` tables to be written to the binary log. Setting this variable has no effect if binary logging is not already enabled for the server using [`log_bin`](replication-options-binary-log.html#sysvar_log_bin). `ndb_log_bin` defaults to 1 (ON); normally, there is never any need to change this value in a production environment.
 
-- `ndb_log_binlog_index`
+* [`ndb_log_binlog_index`](mysql-cluster-options-variables.html#sysvar_ndb_log_binlog_index)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool-nodeids"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-cluster-connection-pool-nodeids</code></td> </tr><tr><th>Introduzido</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>Variável do sistema (≥ 5.7.10-ndb-7.5.0)</th> <td><code>ndb_cluster_connection_pool_nodeids</code></td> </tr><tr><th>Âmbito (≥ 5.7.10-ndb-7.5.0)</th> <td>Global</td> </tr><tr><th>Dinâmico (≥ 5.7.10-ndb-7.5.0)</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Conjunto</td> </tr><tr><th>Valor padrão</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-cluster-connection-pool-nodeids"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-cluster-connection-pool-nodeids</code></td> </tr><tr><th>Introduced</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>System Variable (≥ 5.7.10-ndb-7.5.0)</th> <td><code>ndb_cluster_connection_pool_nodeids</code></td> </tr><tr><th>Scope (≥ 5.7.10-ndb-7.5.0)</th> <td>Global</td> </tr><tr><th>Dynamic (≥ 5.7.10-ndb-7.5.0)</th> <td>No</td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
-  Faz com que a mapeo de épocas para posições no log binário seja inserido na tabela `ndb_binlog_index`. Definir essa variável não tem efeito se o registro binário não estiver já habilitado para o servidor usando `log_bin`. (Além disso, `ndb_log_bin` não deve ser desativado.) `ndb_log_binlog_index` tem o valor padrão de `1` (`ON`); normalmente, não há necessidade de alterar esse valor em um ambiente de produção.
+  Causes a mapping of epochs to positions in the binary log to be inserted into the `ndb_binlog_index` table. Setting this variable has no effect if binary logging is not already enabled for the server using [`log_bin`](replication-options-binary-log.html#sysvar_log_bin). (In addition, [`ndb_log_bin`](mysql-cluster-options-variables.html#sysvar_ndb_log_bin) must not be disabled.) `ndb_log_binlog_index` defaults to `1` (`ON`); normally, there is never any need to change this value in a production environment.
 
-- `ndb_log_empty_epochs`
+* [`ndb_log_empty_epochs`](mysql-cluster-options-variables.html#sysvar_ndb_log_empty_epochs)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool-nodeids"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-cluster-connection-pool-nodeids</code></td> </tr><tr><th>Introduzido</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>Variável do sistema (≥ 5.7.10-ndb-7.5.0)</th> <td><code>ndb_cluster_connection_pool_nodeids</code></td> </tr><tr><th>Âmbito (≥ 5.7.10-ndb-7.5.0)</th> <td>Global</td> </tr><tr><th>Dinâmico (≥ 5.7.10-ndb-7.5.0)</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Conjunto</td> </tr><tr><th>Valor padrão</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-cluster-connection-pool-nodeids"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-cluster-connection-pool-nodeids</code></td> </tr><tr><th>Introduced</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>System Variable (≥ 5.7.10-ndb-7.5.0)</th> <td><code>ndb_cluster_connection_pool_nodeids</code></td> </tr><tr><th>Scope (≥ 5.7.10-ndb-7.5.0)</th> <td>Global</td> </tr><tr><th>Dynamic (≥ 5.7.10-ndb-7.5.0)</th> <td>No</td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
-  Quando essa variável é definida como 0, as transações de época sem alterações não são escritas no log binário, embora uma linha ainda seja escrita, mesmo para uma época vazia no `ndb_binlog_index`.
+  When this variable is set to 0, epoch transactions with no changes are not written to the binary log, although a row is still written even for an empty epoch in `ndb_binlog_index`.
 
-- `ndb_log_empty_update`
+* [`ndb_log_empty_update`](mysql-cluster-options-variables.html#sysvar_ndb_log_empty_update)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-cluster-connection-pool-nodeids"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-cluster-connection-pool-nodeids</code></td> </tr><tr><th>Introduzido</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>Variável do sistema (≥ 5.7.10-ndb-7.5.0)</th> <td><code>ndb_cluster_connection_pool_nodeids</code></td> </tr><tr><th>Âmbito (≥ 5.7.10-ndb-7.5.0)</th> <td>Global</td> </tr><tr><th>Dinâmico (≥ 5.7.10-ndb-7.5.0)</th> <td>Não</td> </tr><tr><th>Tipo</th> <td>Conjunto</td> </tr><tr><th>Valor padrão</th> <td><code></code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-cluster-connection-pool-nodeids"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-cluster-connection-pool-nodeids</code></td> </tr><tr><th>Introduced</th> <td>5.7.10-ndb-7.5.0</td> </tr><tr><th>System Variable (≥ 5.7.10-ndb-7.5.0)</th> <td><code>ndb_cluster_connection_pool_nodeids</code></td> </tr><tr><th>Scope (≥ 5.7.10-ndb-7.5.0)</th> <td>Global</td> </tr><tr><th>Dynamic (≥ 5.7.10-ndb-7.5.0)</th> <td>No</td> </tr><tr><th>Type</th> <td>Set</td> </tr><tr><th>Default Value</th> <td><code></code></td> </tr></tbody></table>
 
-  Quando essa variável estiver definida como `ON` (`1`), as transações sem alterações serão escritas no log binário, mesmo quando o [`log_slave_updates`](https://pt.wikipedia.org/wiki/Op%C3%A9r_de_replic%C3%A3o#Op%C3%A3es_de_log_bin%C3%A1rio) estiver habilitado.
+  When this variable is set to `ON` (`1`), update transactions with no changes are written to the binary log, even when [`log_slave_updates`](replication-options-binary-log.html#sysvar_log_slave_updates) is enabled.
 
-- `ndb_log_exclusive_reads`
+* [`ndb_log_exclusive_reads`](mysql-cluster-options-variables.html#sysvar_ndb_log_exclusive_reads)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-blob-read-batch-bytes"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-blob-read-batch-bytes</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_blob_read_batch_bytes</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>65536</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-blob-read-batch-bytes"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-blob-read-batch-bytes</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_blob_read_batch_bytes</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>65536</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  Essa variável determina se as leituras da chave primária são registradas com bloqueios exclusivos, o que permite a detecção e resolução de conflitos na replicação em cluster do NDB com base em conflitos de leitura. Para habilitar esses bloqueios, defina o valor de `ndb_log_exclusive_reads` para 1. 0, que desabilita esse bloqueio, é o padrão.
+  This variable determines whether primary key reads are logged with exclusive locks, which allows for NDB Cluster Replication conflict detection and resolution based on read conflicts. To enable these locks, set the value of `ndb_log_exclusive_reads` to 1. 0, which disables such locking, is the default.
 
-  Para obter mais informações, consulte Leia sobre detecção e resolução de conflitos.
+  For more information, see [Read conflict detection and resolution](mysql-cluster-replication-conflict-resolution.html#conflict-resolution-read-conflicts "Read conflict detection and resolution").
 
-- `ndb_log_orig`
+* [`ndb_log_orig`](mysql-cluster-options-variables.html#sysvar_ndb_log_orig)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-blob-read-batch-bytes"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-blob-read-batch-bytes</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_blob_read_batch_bytes</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>65536</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-blob-read-batch-bytes"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-blob-read-batch-bytes</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_blob_read_batch_bytes</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>65536</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  Mostra se o ID do servidor de origem e a época estão registrados na tabela `ndb_binlog_index`. Defina usando a opção de servidor `--ndb-log-orig`.
+  Shows whether the originating server ID and epoch are logged in the `ndb_binlog_index` table. Set using the [`--ndb-log-orig`](mysql-cluster-options-variables.html#option_mysqld_ndb-log-orig) server option.
 
-- `ndb_log_transaction_id`
+* [`ndb_log_transaction_id`](mysql-cluster-options-variables.html#sysvar_ndb_log_transaction_id)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-blob-read-batch-bytes"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-blob-read-batch-bytes</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_blob_read_batch_bytes</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>65536</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-blob-read-batch-bytes"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-blob-read-batch-bytes</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_blob_read_batch_bytes</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>65536</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  Esta variável de sistema binária de leitura somente mostra se uma replica **mysqld** escreve IDs de transação NDB no log binário (requisitado para usar a Replicação de NDB Cluster “ativo-ativo” com detecção de conflitos `NDB$EPOCH_TRANS()`). Para alterar a configuração, use a opção `--ndb-log-transaction-id`.
+  This read-only, Boolean system variable shows whether a replica [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") writes NDB transaction IDs in the binary log (required to use “active-active” NDB Cluster Replication with `NDB$EPOCH_TRANS()` conflict detection). To change the setting, use the [`--ndb-log-transaction-id`](mysql-cluster-options-variables.html#option_mysqld_ndb-log-transaction-id) option.
 
-  `ndb_log_transaction_id` não é suportado no MySQL Server 5.7 principal.
+  [`ndb_log_transaction_id`](mysql-cluster-options-variables.html#sysvar_ndb_log_transaction_id) is not supported in mainline MySQL Server 5.7.
 
-  Para obter mais informações, consulte Seção 21.7.11, “Resolução de conflitos de replicação de cluster NDB”.
+  For more information, see [Section 21.7.11, “NDB Cluster Replication Conflict Resolution”](mysql-cluster-replication-conflict-resolution.html "21.7.11 NDB Cluster Replication Conflict Resolution").
 
-- `ndb_optimized_node_selection`
+* [`ndb_optimized_node_selection`](mysql-cluster-options-variables.html#sysvar_ndb_optimized_node_selection)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-blob-read-batch-bytes"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-blob-read-batch-bytes</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_blob_read_batch_bytes</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>65536</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-blob-read-batch-bytes"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-blob-read-batch-bytes</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_blob_read_batch_bytes</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>65536</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  Existem duas formas de seleção de nós otimizadas, descritas aqui:
+  There are two forms of optimized node selection, described here:
 
-  1. O nó SQL usa promixity para determinar o coordenador da transação; ou seja, o nó de dados "mais próximo" do nó SQL é escolhido como o coordenador da transação. Para esse propósito, um nó de dados que tenha uma conexão de memória compartilhada com o nó SQL é considerado "mais próximo" do nó SQL; os próximos mais próximos (em ordem decrescente de proximidade) são: conexão TCP com `localhost`, seguida por conexão TCP de um host diferente de `localhost`.
+  1. The SQL node uses promixity to determine the transaction coordinator; that is, the “closest” data node to the SQL node is chosen as the transaction coordinator. For this purpose, a data node having a shared memory connection with the SQL node is considered to be “closest” to the SQL node; the next closest (in order of decreasing proximity) are: TCP connection to `localhost`, followed by TCP connection from a host other than `localhost`.
 
-  2. O thread SQL usa a consciência de distribuição para selecionar o nó de dados. Ou seja, o nó de dados que abriga a partição do clúster acessada pelo primeiro comando de uma determinada transação é usado como coordenador da transação para toda a transação. (Isso só é eficaz se o primeiro comando da transação não acessar mais de uma partição do clúster.)
+  2. The SQL thread uses distribution awareness to select the data node. That is, the data node housing the cluster partition accessed by the first statement of a given transaction is used as the transaction coordinator for the entire transaction. (This is effective only if the first statement of the transaction accesses no more than one cluster partition.)
 
-  Esta opção aceita um dos valores inteiros `0`, `1`, `2` ou `3`. O valor `3` é o padrão. Esses valores afetam a seleção de nós da seguinte forma:
+  This option takes one of the integer values `0`, `1`, `2`, or `3`. `3` is the default. These values affect node selection as follows:
 
-  - `0`: A seleção de nós não está otimizada. Cada nó de dados é empregado como coordenador de transação 8 vezes antes que o thread SQL prossiga para o próximo nó de dados.
+  + `0`: Node selection is not optimized. Each data node is employed as the transaction coordinator 8 times before the SQL thread proceeds to the next data node.
 
-  - `1`: A proximidade com o nó SQL é usada para determinar o coordenador da transação.
+  + `1`: Proximity to the SQL node is used to determine the transaction coordinator.
 
-  - `2`: A conscientização da distribuição é usada para selecionar o coordenador da transação. No entanto, se a primeira declaração da transação acessar mais de uma partição de cluster, o nó SQL retorna ao comportamento de rotação em anel visto quando essa opção é definida como `0`.
+  + `2`: Distribution awareness is used to select the transaction coordinator. However, if the first statement of the transaction accesses more than one cluster partition, the SQL node reverts to the round-robin behavior seen when this option is set to `0`.
 
-  - `3`: Se a consciência de distribuição puder ser usada para determinar o coordenador da transação, então ela é usada; caso contrário, a proximidade é usada para selecionar o coordenador da transação. (Esse é o comportamento padrão.)
+  + `3`: If distribution awareness can be employed to determine the transaction coordinator, then it is used; otherwise proximity is used to select the transaction coordinator. (This is the default behavior.)
 
-  A proximidade é determinada da seguinte forma:
+  Proximity is determined as follows:
 
-  1. Comece com o valor definido para o parâmetro `Group` (padrão 55).
+  1. Start with the value set for the [`Group`](mysql-cluster-tcp-definition.html#ndbparam-tcp-group) parameter (default 55).
 
-  2. Para um nó da API que compartilha o mesmo host com outros nós da API, diminua o valor em 1. Considerando o valor padrão para `Grupo`, o valor efetivo para nós de dados no mesmo host que o nó da API é 54, e para nós de dados remotos 55.
+  2. For an API node sharing the same host with other API nodes, decrement the value by 1. Assuming the default value for `Group`, the effective value for data nodes on same host as the API node is 54, and for remote data nodes 55.
 
-  3. (*NDB 7.5.2 e versões posteriores:*) Definir `ndb_data_node_neighbour` reduz ainda mais o valor efetivo do `Group` em 50%, fazendo com que esse nó seja considerado o nó mais próximo. Isso é necessário apenas quando todos os nós de dados estão em hosts diferentes daquele que hospeda o nó da API e é desejável dedicar um deles ao nó da API. Nos casos normais, o ajuste padrão descrito anteriormente é suficiente.
+  3. (*NDB 7.5.2 and later:*) Setting [`ndb_data_node_neighbour`](mysql-cluster-options-variables.html#sysvar_ndb_data_node_neighbour) further decreases the effective `Group` value by 50, causing this node to be regarded as the nearest node. This is needed only when all data nodes are on hosts other than that hosts the API node and it is desirable to dedicate one of them to the API node. In normal cases, the default adjustment described previously is sufficient.
 
-  Mudanças frequentes em `ndb_data_node_neighbour` não são aconselháveis, pois isso altera o estado da conexão do cluster e, assim, pode interromper o algoritmo de seleção para novas transações de cada thread até que ele se estabilize.
+  Frequent changes in `ndb_data_node_neighbour` are not advisable, since this changes the state of the cluster connection and thus may disrupt the selection algorithm for new transactions from each thread until it stablilizes.
 
-- `ndb_read_backup`
+* [`ndb_read_backup`](mysql-cluster-options-variables.html#sysvar_ndb_read_backup)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-blob-read-batch-bytes"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-blob-read-batch-bytes</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_blob_read_batch_bytes</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>65536</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-blob-read-batch-bytes"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-blob-read-batch-bytes</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_blob_read_batch_bytes</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>65536</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  Ative a leitura de qualquer réplica de fragmento para qualquer tabela `NDB` posteriormente criada; isso melhora significativamente o desempenho da leitura da tabela a um custo relativamente baixo para as escritas.
+  Enable read from any fragment replica for any `NDB` table subsequently created; doing so greatly improves the table read performance at a relatively small cost to writes.
 
-  Se o nó SQL e o nó de dados usarem o mesmo nome de host ou endereço IP, esse fato é detectado automaticamente, portanto, a preferência é enviar leituras para o mesmo host. Se esses nós estiverem no mesmo host, mas usarem endereços IP diferentes, você pode instruir o nó SQL a usar o nó de dados correto, definindo o valor de `ndb_data_node_neighbour` no nó SQL para o ID do nó de dados.
+  If the SQL node and the data node use the same host name or IP address, this fact is detected automatically, so that the preference is to send reads to the same host. If these nodes are on the same host but use different IP addresses, you can tell the SQL node to use the correct data node by setting the value of [`ndb_data_node_neighbour`](mysql-cluster-options-variables.html#sysvar_ndb_data_node_neighbour) on the SQL node to the node ID of the data node.
 
-  Para habilitar ou desabilitar a leitura de qualquer réplica de fragmento para uma tabela individual, você pode definir a opção `NDB_TABLE` `READ_BACKUP` para a tabela conforme necessário, em uma declaração de `CREATE TABLE` ou `ALTER TABLE`; consulte Seção 13.1.18.9, “Definindo Opções de Comentário NDB” para obter mais informações.
+  To enable or disable read from any fragment replica for an individual table, you can set the `NDB_TABLE` option `READ_BACKUP` for the table accordingly, in a [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") or [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statement; see [Section 13.1.18.9, “Setting NDB Comment Options”](create-table-ndb-comment-options.html "13.1.18.9 Setting NDB Comment Options"), for more information.
 
-  Adicionado em NDB 7.5.2.
+  Added in NDB 7.5.2.
 
-- `ndb_recv_thread_activation_threshold`
+* [`ndb_recv_thread_activation_threshold`](mysql-cluster-options-variables.html#sysvar_ndb_recv_thread_activation_threshold)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-blob-read-batch-bytes"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-blob-read-batch-bytes</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_blob_read_batch_bytes</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>65536</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-blob-read-batch-bytes"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-blob-read-batch-bytes</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_blob_read_batch_bytes</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>65536</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  Quando esse número de threads ativas simultaneamente é atingido, a thread de recebimento assume a verificação da conexão do cluster.
+  When this number of concurrently active threads is reached, the receive thread takes over polling of the cluster connection.
 
-  Essa variável tem escopo global. Ela também pode ser definida na inicialização.
+  This variable is global in scope. It can also be set at startup.
 
-- `ndb_recv_thread_cpu_mask`
+* [`ndb_recv_thread_cpu_mask`](mysql-cluster-options-variables.html#sysvar_ndb_recv_thread_cpu_mask)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-blob-read-batch-bytes"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-blob-read-batch-bytes</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_blob_read_batch_bytes</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>65536</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-blob-read-batch-bytes"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-blob-read-batch-bytes</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_blob_read_batch_bytes</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>65536</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  Máscara de CPU para bloquear os threads do receptor em CPUs específicas. Isso é especificado como uma máscara de bits hexadecimal. Por exemplo, `0x33` significa que uma CPU é usada por cada thread do receptor. Uma string vazia é o padrão; definir `ndb_recv_thread_cpu_mask` para esse valor remove quaisquer bloqueios de thread do receptor previamente definidos.
+  CPU mask for locking receiver threads to specific CPUs. This is specified as a hexadecimal bitmask. For example, `0x33` means that one CPU is used per receiver thread. An empty string is the default; setting `ndb_recv_thread_cpu_mask` to this value removes any receiver thread locks previously set.
 
-  Essa variável tem escopo global. Ela também pode ser definida na inicialização.
+  This variable is global in scope. It can also be set at startup.
 
-- `ndb_report_thresh_binlog_epoch_slip`
+* [`ndb_report_thresh_binlog_epoch_slip`](mysql-cluster-options-variables.html#sysvar_ndb_report_thresh_binlog_epoch_slip)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-blob-read-batch-bytes"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-blob-read-batch-bytes</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_blob_read_batch_bytes</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>65536</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-blob-read-batch-bytes"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-blob-read-batch-bytes</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_blob_read_batch_bytes</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>65536</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  No NDB 7.5.4 e versões posteriores, isso representa o limite para o número de épocas completamente armazenadas no buffer de eventos, mas ainda não consumidas pelo thread injetor do binlog. Quando esse grau de atraso (lag) é excedido, uma mensagem de status do buffer de eventos é relatada, com `BUFFERED_EPOCHS_OVER_THRESHOLD` fornecido como a razão (veja Seção 21.6.2.3, “Relatório do Buffer de Eventos no Log do Clúster”). O atraso aumenta quando uma época é recebida dos nós de dados e armazenada completamente no buffer de eventos; diminui quando uma época é consumida pelo thread injetor do binlog, sendo reduzida. Eras vazias são armazenadas e colocadas em fila, e, portanto, incluídas neste cálculo apenas quando isso é habilitado usando o método `Ndb::setEventBufferQueueEmptyEpoch()` da API NDB.
+  In NDB 7.5.4 and later, this represents the threshold for the number of epochs completely buffered in the event buffer, but not yet consumed by the binlog injector thread. When this degree of slippage (lag) is exceeded, an event buffer status message is reported, with `BUFFERED_EPOCHS_OVER_THRESHOLD` supplied as the reason (see [Section 21.6.2.3, “Event Buffer Reporting in the Cluster Log”](mysql-cluster-logs-event-buffer.html "21.6.2.3 Event Buffer Reporting in the Cluster Log")). Slip is increased when an epoch is received from data nodes and buffered completely in the event buffer; it is decreased when an epoch is consumed by the binlog injector thread, it is reduced. Empty epochs are buffered and queued, and so included in this calculation only when this is enabled using the [`Ndb::setEventBufferQueueEmptyEpoch()`](/doc/ndbapi/en/ndb-ndb.html#ndb-ndb-seteventbufferqueueemptyepoch) method from the NDB API.
 
-  Antes da NDB 7.5.4, o valor desse variável servia como um limite para o número de épocas que deveriam ser ultrapassadas antes de relatar o status do log binário. Nesses lançamentos anteriores, um valor de `3` — o padrão — significa que, se a diferença entre a época que foi recebida dos nós de armazenamento e a época que foi aplicada ao log binário for de 3 ou mais, uma mensagem de status é então enviada para o log do clúster.
+  Prior to NDB 7.5.4, the value of this vairable served as a threshold for the number of epochs to be behind before reporting binary log status. In these previous releases, a value of `3`—the default—means that if the difference between which epoch has been received from the storage nodes and which epoch has been applied to the binary log is 3 or more, a status message is then sent to the cluster log.
 
-- `ndb_report_thresh_binlog_mem_usage`
+* [`ndb_report_thresh_binlog_mem_usage`](mysql-cluster-options-variables.html#sysvar_ndb_report_thresh_binlog_mem_usage)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-blob-read-batch-bytes"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-blob-read-batch-bytes</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_blob_read_batch_bytes</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>65536</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-blob-read-batch-bytes"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-blob-read-batch-bytes</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_blob_read_batch_bytes</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>65536</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  Esse é um limite sobre a porcentagem de memória livre restante antes de relatar o status do log binário. Por exemplo, um valor de `10` (o padrão) significa que, se a quantidade de memória disponível para receber dados do log binário dos nós de dados cair abaixo de 10%, uma mensagem de status é enviada para o log do clúster.
+  This is a threshold on the percentage of free memory remaining before reporting binary log status. For example, a value of `10` (the default) means that if the amount of available memory for receiving binary log data from the data nodes falls below 10%, a status message is sent to the cluster log.
 
-- `ndb_row_checksum`
+* [`ndb_row_checksum`](mysql-cluster-options-variables.html#sysvar_ndb_row_checksum)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-blob-read-batch-bytes"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-blob-read-batch-bytes</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_blob_read_batch_bytes</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>65536</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-blob-read-batch-bytes"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-blob-read-batch-bytes</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_blob_read_batch_bytes</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>65536</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr></tbody></table>
 
-  Tradicionalmente, o `NDB` criou tabelas com verificações de checksum de linha, o que verifica problemas de hardware em detrimento do desempenho. Definir `ndb_row_checksum` para 0 significa que as verificações de checksum de linha *não* são usadas para novas ou tabelas alteradas, o que tem um impacto significativo no desempenho para todos os tipos de consultas. Esta variável é definida para 1 por padrão, para fornecer um comportamento compatível com versões anteriores.
+  Traditionally, `NDB` has created tables with row checksums, which checks for hardware issues at the expense of performance. Setting `ndb_row_checksum` to 0 means that row checksums are *not* used for new or altered tables, which has a significant impact on performance for all types of queries. This variable is set to 1 by default, to provide backward-compatible behavior.
 
-- `ndb_show_foreign_key_mock_tables`
+* [`ndb_show_foreign_key_mock_tables`](mysql-cluster-options-variables.html#sysvar_ndb_show_foreign_key_mock_tables)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-blob-write-batch-bytes"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-blob-write-batch-bytes</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_blob_write_batch_bytes</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>65536</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-blob-write-batch-bytes"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-blob-write-batch-bytes</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_blob_write_batch_bytes</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>65536</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr><tr><th>Unit</th> <td>bytes</td> </tr></tbody></table>
 
-  Mostre as tabelas fictícias usadas pelo `NDB` para suportar `foreign_key_checks=0`. Quando essa opção está habilitada, avisos extras são exibidos ao criar e excluir as tabelas. O nome real (interno) da tabela pode ser visto na saída do `SHOW CREATE TABLE`.
+  Show the mock tables used by `NDB` to support [`foreign_key_checks=0`](server-system-variables.html#sysvar_foreign_key_checks). When this is enabled, extra warnings are shown when creating and dropping the tables. The real (internal) name of the table can be seen in the output of [`SHOW CREATE TABLE`](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement").
 
-- `ndb_slave_conflict_role`
+* [`ndb_slave_conflict_role`](mysql-cluster-options-variables.html#sysvar_ndb_slave_conflict_role)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-blob-write-batch-bytes"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-blob-write-batch-bytes</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_blob_write_batch_bytes</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>65536</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-blob-write-batch-bytes"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-blob-write-batch-bytes</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_blob_write_batch_bytes</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>65536</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr><tr><th>Unit</th> <td>bytes</td> </tr></tbody></table>
 
-  Determine o papel deste nó SQL (e do NDB Cluster) em uma configuração de replicação circular ("ativa-ativa"). `ndb_slave_conflict_role` pode assumir qualquer um dos valores `PRIMARY`, `SECONDARY`, `PASS` ou `NULL` (o padrão). O thread SQL do replica deve ser parado antes que você possa alterar `ndb_slave_conflict_role`. Além disso, não é possível alterar diretamente entre `PASS` e `PRIMARY` ou `SECONDARY` diretamente; nesses casos, você deve garantir que o thread SQL seja parado, depois executar `SET @@GLOBAL.ndb_slave_conflict_role = 'NONE'` primeiro.
+  Determine the role of this SQL node (and NDB Cluster) in a circular (“active-active”) replication setup. `ndb_slave_conflict_role` can take any one of the values `PRIMARY`, `SECONDARY`, `PASS`, or `NULL` (the default). The replica SQL thread must be stopped before you can change `ndb_slave_conflict_role`. In addition, it is not possible to change directly between `PASS` and either of `PRIMARY` or `SECONDARY` directly; in such cases, you must ensure that the SQL thread is stopped, then execute [`SET @@GLOBAL.ndb_slave_conflict_role = 'NONE'`](set-statement.html "13.7.4 SET Statements") first.
 
-  Para obter mais informações, consulte Seção 21.7.11, “Resolução de conflitos de replicação de cluster NDB”.
+  For more information, see [Section 21.7.11, “NDB Cluster Replication Conflict Resolution”](mysql-cluster-replication-conflict-resolution.html "21.7.11 NDB Cluster Replication Conflict Resolution").
 
-- `ndb_table_no_logging`
+* [`ndb_table_no_logging`](mysql-cluster-options-variables.html#sysvar_ndb_table_no_logging)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-blob-write-batch-bytes"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-blob-write-batch-bytes</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_blob_write_batch_bytes</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>65536</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-blob-write-batch-bytes"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-blob-write-batch-bytes</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_blob_write_batch_bytes</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>65536</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr><tr><th>Unit</th> <td>bytes</td> </tr></tbody></table>
 
-  Quando essa variável é definida como `ON` ou `1`, todas as tabelas criadas ou alteradas usando `ENGINE NDB` ficam sem registro; ou seja, nenhuma alteração de dados dessa tabela é escrita no log de refazer ou arquivada no disco, assim como se a tabela tivesse sido criada ou alterada usando a opção `NOLOGGING` para `CREATE TABLE` (create-table.html) ou `ALTER TABLE` (alter-table.html).
+  When this variable is set to `ON` or `1`, it causes all tables created or altered using `ENGINE NDB` to be nonlogging; that is, no data changes for this table are written to the redo log or checkpointed to disk, just as if the table had been created or altered using the `NOLOGGING` option for [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") or [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement").
 
-  Para obter mais informações sobre tabelas `NDB` sem registro, consulte Opções de comentário de tabela NDB.
+  For more information about nonlogging `NDB` tables, see [NDB_TABLE Options](create-table-ndb-comment-options.html#create-table-ndb-comment-table-options "NDB_TABLE Options").
 
-  `ndb_table_no_logging` não tem efeito na criação dos arquivos de esquema de tabela `NDB`; para suprimi-los, use `ndb_table_temporary` em vez disso.
+  [`ndb_table_no_logging`](mysql-cluster-options-variables.html#sysvar_ndb_table_no_logging) has no effect on the creation of [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table schema files; to suppress these, use [`ndb_table_temporary`](mysql-cluster-options-variables.html#sysvar_ndb_table_temporary) instead.
 
-- `ndb_table_temporary`
+* [`ndb_table_temporary`](mysql-cluster-options-variables.html#sysvar_ndb_table_temporary)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-blob-write-batch-bytes"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-blob-write-batch-bytes</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_blob_write_batch_bytes</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>65536</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-blob-write-batch-bytes"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-blob-write-batch-bytes</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_blob_write_batch_bytes</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>65536</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr><tr><th>Unit</th> <td>bytes</td> </tr></tbody></table>
 
-  Quando definido como `ON` ou `1`, essa variável faz com que as tabelas do `NDB` não sejam escritas em disco: Isso significa que nenhum arquivo de esquema de tabela é criado e que as tabelas não são registradas.
+  When set to `ON` or `1`, this variable causes [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables not to be written to disk: This means that no table schema files are created, and that the tables are not logged.
 
-  Nota
+  Note
 
-  Definir essa variável atualmente não tem efeito. Esse é um problema conhecido; veja o Bug #34036.
+  Setting this variable currently has no effect. This is a known issue; see Bug #34036.
 
-- `ndb_use_copying_alter_table`
+* [`ndb_use_copying_alter_table`](mysql-cluster-options-variables.html#sysvar_ndb_use_copying_alter_table)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-blob-write-batch-bytes"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-blob-write-batch-bytes</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_blob_write_batch_bytes</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>65536</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-blob-write-batch-bytes"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-blob-write-batch-bytes</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_blob_write_batch_bytes</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>65536</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr><tr><th>Unit</th> <td>bytes</td> </tr></tbody></table>
 
-  Força `NDB` a usar a cópia de tabelas em caso de problemas com operações de `ALTER TABLE` online. O valor padrão é `OFF`.
+  Forces [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") to use copying of tables in the event of problems with online [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") operations. The default value is `OFF`.
 
-- `ndb_use_exact_count`
+* [`ndb_use_exact_count`](mysql-cluster-options-variables.html#sysvar_ndb_use_exact_count)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-blob-write-batch-bytes"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-blob-write-batch-bytes</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_blob_write_batch_bytes</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>65536</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-blob-write-batch-bytes"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-blob-write-batch-bytes</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_blob_write_batch_bytes</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>65536</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr><tr><th>Unit</th> <td>bytes</td> </tr></tbody></table>
 
-  Força `NDB` a usar um contagem de registros durante o planejamento da consulta `SELECT COUNT(*)`, para acelerar esse tipo de consulta. O valor padrão é `OFF`, o que permite consultas mais rápidas no geral.
+  Forces [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") to use a count of records during `SELECT COUNT(*)` query planning to speed up this type of query. The default value is `OFF`, which allows for faster queries overall.
 
-- `ndb_use_transactions`
+* [`ndb_use_transactions`](mysql-cluster-options-variables.html#sysvar_ndb_use_transactions)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-blob-write-batch-bytes"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-blob-write-batch-bytes</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_blob_write_batch_bytes</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>65536</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-blob-write-batch-bytes"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-blob-write-batch-bytes</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_blob_write_batch_bytes</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>65536</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr><tr><th>Unit</th> <td>bytes</td> </tr></tbody></table>
 
-  Você pode desativar o suporte para transações `NDB` definindo o valor desta variável para `OFF`. Geralmente, isso não é recomendado, embora possa ser útil desativar o suporte para transações dentro de uma sessão de cliente específica quando essa sessão for usada para importar um ou mais arquivos de dump com transações grandes; isso permite que uma inserção de várias linhas seja executada em partes, em vez de como uma única transação. Nesses casos, uma vez que a importação tenha sido concluída, você deve reiniciar o valor da variável para essa sessão para `ON`, ou simplesmente encerrar a sessão.
+  You can disable `NDB` transaction support by setting this variable's value to `OFF`. This is generally not recommended, although it may be useful to disable transaction support within a given client session when that session is used to import one or more dump files with large transactions; this allows a multi-row insert to be executed in parts, rather than as a single transaction. In such cases, once the import has been completed, you should either reset the variable value for this session to `ON`, or simply terminate the session.
 
-- `ndb_version`
+* [`ndb_version`](mysql-cluster-options-variables.html#sysvar_ndb_version)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-blob-write-batch-bytes"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-blob-write-batch-bytes</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_blob_write_batch_bytes</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>65536</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-blob-write-batch-bytes"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-blob-write-batch-bytes</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_blob_write_batch_bytes</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>65536</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr><tr><th>Unit</th> <td>bytes</td> </tr></tbody></table>
 
-  Versão do motor `NDB`, como um inteiro composto.
+  `NDB` engine version, as a composite integer.
 
-- `ndb_version_string`
+* [`ndb_version_string`](mysql-cluster-options-variables.html#sysvar_ndb_version_string)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-blob-write-batch-bytes"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-blob-write-batch-bytes</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_blob_write_batch_bytes</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>65536</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-blob-write-batch-bytes"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-blob-write-batch-bytes</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_blob_write_batch_bytes</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>65536</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr><tr><th>Unit</th> <td>bytes</td> </tr></tbody></table>
 
-  Versão do motor `NDB` no formato `ndb-x.y.z`.
+  `NDB` engine version in `ndb-x.y.z` format.
 
-- `server_id_bits`
+* [`server_id_bits`](mysql-cluster-options-variables.html#sysvar_server_id_bits)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-blob-write-batch-bytes"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-blob-write-batch-bytes</code></td> </tr><tr><th>Variável do sistema</th> <td><code>ndb_blob_write_batch_bytes</code></td> </tr><tr><th>Âmbito</th> <td>Global, Sessão</td> </tr><tr><th>Dinâmico</th> <td>Sim</td> </tr><tr><th>Tipo</th> <td>Inteiro</td> </tr><tr><th>Valor padrão</th> <td><code>65536</code></td> </tr><tr><th>Valor mínimo</th> <td><code>0</code></td> </tr><tr><th>Valor máximo</th> <td><code>4294967295</code></td> </tr><tr><th>Unidade</th> <td>bytes</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-blob-write-batch-bytes"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-blob-write-batch-bytes</code></td> </tr><tr><th>System Variable</th> <td><code>ndb_blob_write_batch_bytes</code></td> </tr><tr><th>Scope</th> <td>Global, Session</td> </tr><tr><th>Dynamic</th> <td>Yes</td> </tr><tr><th>Type</th> <td>Integer</td> </tr><tr><th>Default Value</th> <td><code>65536</code></td> </tr><tr><th>Minimum Value</th> <td><code>0</code></td> </tr><tr><th>Maximum Value</th> <td><code>4294967295</code></td> </tr><tr><th>Unit</th> <td>bytes</td> </tr></tbody></table>
 
-  Esta variável indica o número de bits menos significativos dentro do ID do servidor de 32 bits `server_id` que realmente identificam o servidor. Indicar que o servidor é realmente identificado por menos de 32 bits permite que alguns dos bits restantes sejam usados para outros propósitos, como armazenar dados do usuário gerados por aplicativos que utilizam a API de Eventos da NDB dentro do `AnyValue` de uma estrutura de `OperationOptions` (/doc/ndbapi/en/ndb-ndboperation.html#ndb-ndboperation-operationoptions) (o NDB Cluster usa o `AnyValue` para armazenar o ID do servidor).
+  This variable indicates the number of least significant bits within the 32-bit [`server_id`](replication-options.html#sysvar_server_id) which actually identify the server. Indicating that the server is actually identified by fewer than 32 bits makes it possible for some of the remaining bits to be used for other purposes, such as storing user data generated by applications using the NDB API's Event API within the `AnyValue` of an [`OperationOptions`](/doc/ndbapi/en/ndb-ndboperation.html#ndb-ndboperation-operationoptions) structure (NDB Cluster uses the `AnyValue` to store the server ID).
 
-  Ao extrair o ID do servidor efetivo de `server_id` para fins como a detecção de loops de replicação, o servidor ignora os bits restantes. A variável `server_id_bits` é usada para mascarar quaisquer bits irrelevantes de `server_id` nos threads de I/O e SQL ao decidir se um evento deve ser ignorado com base no ID do servidor.
+  When extracting the effective server ID from [`server_id`](replication-options.html#sysvar_server_id) for purposes such as detection of replication loops, the server ignores the remaining bits. The [`server_id_bits`](mysql-cluster-options-variables.html#sysvar_server_id_bits) variable is used to mask out any irrelevant bits of [`server_id`](replication-options.html#sysvar_server_id) in the I/O and SQL threads when deciding whether an event should be ignored based on the server ID.
 
-  Esses dados podem ser lidos do log binário pelo **mysqlbinlog**, desde que seja executado com sua própria variável \`**server_id_bits** definida como 32 (o padrão).
+  This data can be read from the binary log by [**mysqlbinlog**](mysqlbinlog.html "4.6.7 mysqlbinlog — Utility for Processing Binary Log Files"), provided that it is run with its own [`server_id_bits`](mysql-cluster-options-variables.html#sysvar_server_id_bits) variable set to 32 (the default).
 
-  Se o valor de `server_id` for maior ou igual a 2 elevado a `server_id_bits`; caso contrário, o **mysqld** se recusa a iniciar.
+  If the value of [`server_id`](replication-options.html#sysvar_server_id) greater than or equal to 2 to the power of [`server_id_bits`](mysql-cluster-options-variables.html#sysvar_server_id_bits); otherwise, [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") refuses to start.
 
-  Essa variável de sistema é suportada apenas pelo NDB Cluster. Não é suportada no servidor padrão MySQL 5.7.
+  This system variable is supported only by NDB Cluster. It is not supported in the standard MySQL 5.7 Server.
 
-- `slave_allow_batching`
+* [`slave_allow_batching`](mysql-cluster-options-variables.html#sysvar_slave_allow_batching)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-connectstring</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-connectstring"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-connectstring</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  Se as atualizações em lote estão habilitadas ou não nas réplicas do NDB Cluster.
+  Whether or not batched updates are enabled on NDB Cluster replicas.
 
-  Permitir atualizações em lote na replica melhora significativamente o desempenho, especialmente ao replicar as colunas `TEXT`, `BLOB` e `JSON`. Por essa razão, você deve sempre habilitar `slave_allow_batching` ao usar a replicação NDB. A partir do NDB 7.6.23, uma mensagem de aviso é emitida sempre que essa variável for definida como `OFF`.
+  Allowing batched updates on the replica greatly improves performance, particularly when replicating [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types"), [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types"), and [`JSON`](json.html "11.5 The JSON Data Type") columns. For this reason, you should always enable `slave_allow_batching` when using NDB replication. Beginning with NDB 7.6.23, a warning is issued whenever this variable is set to `OFF`.
 
-  Definir essa variável tem efeito apenas ao usar a replicação com o mecanismo de armazenamento `NDB`; no MySQL Server 5.7, ela está presente, mas não faz nada. Para mais informações, consulte [Seção 21.7.6, “Iniciando a replicação do NDB Cluster (Canal de replicação único”\(mysql-cluster-replication-starting.html).
+  Setting this variable has an effect only when using replication with the `NDB` storage engine; in MySQL Server 5.7, it is present but does nothing. For more information, see [Section 21.7.6, “Starting NDB Cluster Replication (Single Replication Channel)”](mysql-cluster-replication-starting.html "21.7.6 Starting NDB Cluster Replication (Single Replication Channel)").
 
-- `transaction_allow_batching`
+* [`transaction_allow_batching`](mysql-cluster-options-variables.html#sysvar_transaction_allow_batching)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-connectstring</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-connectstring"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-connectstring</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  Quando definido como `1` ou `ON`, essa variável habilita o agrupamento de instruções dentro da mesma transação. Para usar essa variável, `autocommit` deve ser desativado primeiro, definindo-o como `0` ou `OFF`; caso contrário, definir `transaction_allow_batching` não terá efeito.
+  When set to `1` or `ON`, this variable enables batching of statements within the same transaction. To use this variable, [`autocommit`](server-system-variables.html#sysvar_autocommit) must first be disabled by setting it to `0` or `OFF`; otherwise, setting [`transaction_allow_batching`](mysql-cluster-options-variables.html#sysvar_transaction_allow_batching) has no effect.
 
-  É seguro usar essa variável com transações que realizam apenas escritas, pois a ativação pode levar a leituras da imagem "antes". Você deve garantir que quaisquer transações pendentes sejam confirmadas (usando um `COMMIT` explícito, se desejar) antes de emitir uma `SELECT`.
+  It is safe to use this variable with transactions that performs writes only, as having it enabled can lead to reads from the “before” image. You should ensure that any pending transactions are committed (using an explicit [`COMMIT`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") if desired) before issuing a [`SELECT`](select.html "13.2.9 SELECT Statement").
 
-  Importante
+  Important
 
-  `transaction_allow_batching` não deve ser usado sempre que houver a possibilidade de os efeitos de uma determinada instrução dependerem do resultado de uma instrução anterior dentro da mesma transação.
+  [`transaction_allow_batching`](mysql-cluster-options-variables.html#sysvar_transaction_allow_batching) should not be used whenever there is the possibility that the effects of a given statement depend on the outcome of a previous statement within the same transaction.
 
-  Esta variável é atualmente suportada apenas para o NDB Cluster.
+  This variable is currently supported for NDB Cluster only.
 
-As variáveis de sistema na lista a seguir estão todas relacionadas ao banco de dados de informações `ndbinfo`.
+The system variables in the following list all relate to the [`ndbinfo`](mysql-cluster-ndbinfo.html "21.6.15 ndbinfo: The NDB Cluster Information Database") information database.
 
-- `ndbinfo_database`
+* [`ndbinfo_database`](mysql-cluster-options-variables.html#sysvar_ndbinfo_database)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-connectstring</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-connectstring"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-connectstring</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  Mostra o nome usado para o banco de dados de informações `NDB`; o padrão é `ndbinfo`. Esta é uma variável de leitura somente, cujo valor é determinado no momento da compilação.
+  Shows the name used for the `NDB` information database; the default is `ndbinfo`. This is a read-only variable whose value is determined at compile time.
 
-- `ndbinfo_max_bytes`
+* [`ndbinfo_max_bytes`](mysql-cluster-options-variables.html#sysvar_ndbinfo_max_bytes)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-connectstring</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-connectstring"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-connectstring</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  Usado apenas para testes e depuração.
+  Used in testing and debugging only.
 
-- `ndbinfo_max_rows`
+* [`ndbinfo_max_rows`](mysql-cluster-options-variables.html#sysvar_ndbinfo_max_rows)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-connectstring</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-connectstring"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-connectstring</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  Usado apenas para testes e depuração.
+  Used in testing and debugging only.
 
-- `ndbinfo_offline`
+* [`ndbinfo_offline`](mysql-cluster-options-variables.html#sysvar_ndbinfo_offline)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-connectstring</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-connectstring"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-connectstring</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  Coloque o banco de dados `ndbinfo` no modo offline, no qual as tabelas e visualizações podem ser abertas mesmo quando não existem na verdade, ou quando existem, mas têm definições diferentes no `NDB`. Não serão retornadas linhas dessas tabelas (ou visualizações).
+  Place the [`ndbinfo`](mysql-cluster-ndbinfo.html "21.6.15 ndbinfo: The NDB Cluster Information Database") database into offline mode, in which tables and views can be opened even when they do not actually exist, or when they exist but have different definitions in [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6"). No rows are returned from such tables (or views).
 
-- `ndbinfo_show_hidden`
+* [`ndbinfo_show_hidden`](mysql-cluster-options-variables.html#sysvar_ndbinfo_show_hidden)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-connectstring</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-connectstring"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-connectstring</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  Se as tabelas internas subjacentes do banco de dados `ndbinfo` são ou não exibidas no cliente **mysql**. O padrão é `OFF`.
+  Whether or not the [`ndbinfo`](mysql-cluster-ndbinfo.html "21.6.15 ndbinfo: The NDB Cluster Information Database") database's underlying internal tables are shown in the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client. The default is `OFF`.
 
-  Nota
+  Note
 
-  Quando `ndbinfo_show_hidden` está habilitado, as tabelas internas são exibidas apenas no banco de dados `ndbinfo`; elas não são visíveis em `TABELAS` ou em outras tabelas do `INFORMATION_SCHEMA`, independentemente da configuração da variável.
+  When `ndbinfo_show_hidden` is enabled, the internal tables are shown in the `ndbinfo` database only; they are not visible in [`TABLES`](information-schema-tables-table.html "24.3.25 The INFORMATION_SCHEMA TABLES Table") or other `INFORMATION_SCHEMA` tables, regardless of the variable's setting.
 
-- `ndbinfo_table_prefix`
+* [`ndbinfo_table_prefix`](mysql-cluster-options-variables.html#sysvar_ndbinfo_table_prefix)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-connectstring</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-connectstring"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-connectstring</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  O prefixo usado para nomear as tabelas de base do banco de dados ndbinfo (normalmente oculto, a menos que seja exibido ao definir `ndbinfo_show_hidden`). Esta é uma variável de leitura somente, cujo valor padrão é `ndb$`; o próprio prefixo é determinado no momento da compilação.
+  The prefix used in naming the ndbinfo database's base tables (normally hidden, unless exposed by setting [`ndbinfo_show_hidden`](mysql-cluster-options-variables.html#sysvar_ndbinfo_show_hidden)). This is a read-only variable whose default value is `ndb$`; the prefix itself is determined at compile time.
 
-- `ndbinfo_version`
+* [`ndbinfo_version`](mysql-cluster-options-variables.html#sysvar_ndbinfo_version)
 
-  <table frame="box" rules="all" summary="Propriedades para ndb-connectstring"><tbody><tr><th>Formato de linha de comando</th> <td><code>--ndb-connectstring</code></td> </tr><tr><th>Tipo</th> <td>String</td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="Properties for ndb-connectstring"><tbody><tr><th>Command-Line Format</th> <td><code>--ndb-connectstring</code></td> </tr><tr><th>Type</th> <td>String</td> </tr></tbody></table>
 
-  Mostra a versão do motor `ndbinfo` em uso; apenas leitura.
+  Shows the version of the [`ndbinfo`](mysql-cluster-ndbinfo.html "21.6.15 ndbinfo: The NDB Cluster Information Database") engine in use; read-only.
 
-##### 21.4.3.9.3 Variáveis de Status do Agrupamento do BND
+##### 21.4.3.9.3 NDB Cluster Status Variables
 
-Esta seção fornece informações detalhadas sobre as variáveis de status do servidor MySQL que se relacionam ao NDB Cluster e ao mecanismo de armazenamento `NDB`. Para variáveis de status não específicas do NDB Cluster e para informações gerais sobre o uso de variáveis de status, consulte Seção 5.1.9, “Variáveis de Status do Servidor”.
+This section provides detailed information about MySQL server status variables that relate to NDB Cluster and the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine. For status variables not specific to NDB Cluster, and for general information on using status variables, see [Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables").
 
-- `Handler_discover`
+* [`Handler_discover`](mysql-cluster-options-variables.html#statvar_Handler_discover)
 
-  O servidor MySQL pode perguntar ao mecanismo de armazenamento `NDBCLUSTER` se ele conhece uma tabela com um nome específico. Isso é chamado de descoberta. `Handler_discover` indica o número de vezes que as tabelas foram descobertas usando esse mecanismo.
+  The MySQL server can ask the [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine if it knows about a table with a given name. This is called discovery. [`Handler_discover`](mysql-cluster-options-variables.html#statvar_Handler_discover) indicates the number of times that tables have been discovered using this mechanism.
 
-- `Ndb_api_adaptive_send_deferred_count`
+* [`Ndb_api_adaptive_send_deferred_count`](mysql-cluster-options-variables.html#statvar_Ndb_api_adaptive_send_deferred_count)
 
-  Número de chamadas de envio adaptativas que não foram realmente enviadas.
+  Number of adaptive send calls that were not actually sent.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_adaptive_send_deferred_count_session`
+* [`Ndb_api_adaptive_send_deferred_count_session`](mysql-cluster-options-variables.html#statvar_Ndb_api_adaptive_send_deferred_count_session)
 
-  Número de chamadas de envio adaptativas que não foram realmente enviadas.
+  Number of adaptive send calls that were not actually sent.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_adaptive_send_deferred_count_slave`
+* [`Ndb_api_adaptive_send_deferred_count_slave`](mysql-cluster-options-variables.html#statvar_Ndb_api_adaptive_send_deferred_count_slave)
 
-  Número de chamadas de envio adaptativas que não foram realmente enviadas por esta réplica.
+  Number of adaptive send calls that were not actually sent by this replica.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_adaptive_send_forced_count`
+* [`Ndb_api_adaptive_send_forced_count`](mysql-cluster-options-variables.html#statvar_Ndb_api_adaptive_send_forced_count)
 
-  Número de chamadas de envio adaptativas enviadas por meio do envio forçado por este servidor MySQL (nó SQL).
+  Number of adaptive send calls using forced-send sent by this MySQL Server (SQL node).
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_adaptive_send_forced_count_session`
+* [`Ndb_api_adaptive_send_forced_count_session`](mysql-cluster-options-variables.html#statvar_Ndb_api_adaptive_send_forced_count_session)
 
-  Número de chamadas de envio adaptativas com envio forçado nesta sessão do cliente.
+  Number of adaptive send calls using forced-send sent in this client session.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_adaptive_send_forced_count_slave`
+* [`Ndb_api_adaptive_send_forced_count_slave`](mysql-cluster-options-variables.html#statvar_Ndb_api_adaptive_send_forced_count_slave)
 
-  Número de chamadas de envio adaptativas enviadas por esta réplica usando o envio forçado.
+  Number of adaptive send calls using forced-send sent by this replica.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_adaptive_send_unforced_count`
+* [`Ndb_api_adaptive_send_unforced_count`](mysql-cluster-options-variables.html#statvar_Ndb_api_adaptive_send_unforced_count)
 
-  Número de chamadas de envio adaptativas sem envio forçado enviadas por este servidor MySQL (nó SQL).
+  Number of adaptive send calls without forced-send sent by this MySQL server (SQL node).
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_adaptive_send_unforced_count_session`
+* [`Ndb_api_adaptive_send_unforced_count_session`](mysql-cluster-options-variables.html#statvar_Ndb_api_adaptive_send_unforced_count_session)
 
-  Número de chamadas de envio adaptativas sem envio forçado nesta sessão do cliente.
+  Number of adaptive send calls without forced-send sent in this client session.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_adaptive_send_unforced_count_slave`
+* [`Ndb_api_adaptive_send_unforced_count_slave`](mysql-cluster-options-variables.html#statvar_Ndb_api_adaptive_send_unforced_count_slave)
 
-  Número de chamadas de envio adaptativas sem envio forçado enviadas por esta réplica.
+  Number of adaptive send calls without forced-send sent by this replica.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_bytes_sent_count_session`
+* [`Ndb_api_bytes_sent_count_session`](mysql-cluster-options-variables.html#statvar_Ndb_api_bytes_sent_count_session)
 
-  Quantidade de dados (em bytes) enviados para os nós de dados nesta sessão do cliente.
+  Amount of data (in bytes) sent to the data nodes in this client session.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste [**mysqld**].
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it relates to the current session only, and is not affected by any other clients of this [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server").
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_bytes_sent_count_slave`
+* [`Ndb_api_bytes_sent_count_slave`](mysql-cluster-options-variables.html#statvar_Ndb_api_bytes_sent_count_slave)
 
-  Quantidade de dados (em bytes) enviados para os nós de dados por esta réplica.
+  Amount of data (in bytes) sent to the data nodes by this replica.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela é efetivamente de escopo global. Se esse servidor MySQL não atuar como replica ou não usar tabelas NDB, esse valor será sempre 0.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope. If this MySQL server does not act as a replica, or does not use NDB tables, this value is always 0.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_bytes_sent_count`
+* [`Ndb_api_bytes_sent_count`](mysql-cluster-options-variables.html#statvar_Ndb_api_bytes_sent_count)
 
-  Quantidade de dados (em bytes) enviados para os nós de dados por este servidor MySQL (nó SQL).
+  Amount of data (in bytes) sent to the data nodes by this MySQL Server (SQL node).
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` (show-status.html) ou `SHOW SESSION STATUS` (show-status.html), ela é efetivamente de escopo global.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_bytes_received_count_session`
+* [`Ndb_api_bytes_received_count_session`](mysql-cluster-options-variables.html#statvar_Ndb_api_bytes_received_count_session)
 
-  Quantidade de dados (em bytes) recebidos dos nós de dados nesta sessão do cliente.
+  Amount of data (in bytes) received from the data nodes in this client session.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste [**mysqld**].
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it relates to the current session only, and is not affected by any other clients of this [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server").
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_bytes_received_count_slave`
+* [`Ndb_api_bytes_received_count_slave`](mysql-cluster-options-variables.html#statvar_Ndb_api_bytes_received_count_slave)
 
-  Quantidade de dados (em bytes) recebidos dos nós de dados por esta réplica.
+  Amount of data (in bytes) received from the data nodes by this replica.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela é efetivamente de escopo global. Se esse servidor MySQL não atuar como replica ou não usar tabelas NDB, esse valor será sempre 0.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope. If this MySQL server does not act as a replica, or does not use NDB tables, this value is always 0.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_bytes_received_count`
+* [`Ndb_api_bytes_received_count`](mysql-cluster-options-variables.html#statvar_Ndb_api_bytes_received_count)
 
-  Quantidade de dados (em bytes) recebidos dos nós de dados deste servidor MySQL (nó SQL).
+  Amount of data (in bytes) received from the data nodes by this MySQL Server (SQL node).
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` (show-status.html) ou `SHOW SESSION STATUS` (show-status.html), ela é efetivamente de escopo global.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_event_data_count_injector`
+* [`Ndb_api_event_data_count_injector`](mysql-cluster-options-variables.html#statvar_Ndb_api_event_data_count_injector)
 
-  O número de eventos de alteração de linha recebidos pelo thread de injeção binlog do NDB.
+  The number of row change events received by the NDB binlog injector thread.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` (show-status.html) ou `SHOW SESSION STATUS` (show-status.html), ela é efetivamente de escopo global.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_event_data_count`
+* [`Ndb_api_event_data_count`](mysql-cluster-options-variables.html#statvar_Ndb_api_event_data_count)
 
-  O número de eventos de mudança de linha recebidos por este servidor MySQL (nó SQL).
+  The number of row change events received by this MySQL Server (SQL node).
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` (show-status.html) ou `SHOW SESSION STATUS` (show-status.html), ela é efetivamente de escopo global.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_event_nondata_count_injector`
+* [`Ndb_api_event_nondata_count_injector`](mysql-cluster-options-variables.html#statvar_Ndb_api_event_nondata_count_injector)
 
-  O número de eventos recebidos, exceto eventos de alteração de linha, pelo thread de injeção de log binário do NDB.
+  The number of events received, other than row change events, by the NDB binary log injector thread.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` (show-status.html) ou `SHOW SESSION STATUS` (show-status.html), ela é efetivamente de escopo global.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_event_nondata_count`
+* [`Ndb_api_event_nondata_count`](mysql-cluster-options-variables.html#statvar_Ndb_api_event_nondata_count)
 
-  O número de eventos recebidos, além dos eventos de mudança de linha, por este servidor MySQL (nó SQL).
+  The number of events received, other than row change events, by this MySQL Server (SQL node).
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` (show-status.html) ou `SHOW SESSION STATUS` (show-status.html), ela é efetivamente de escopo global.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_event_bytes_count_injector`
+* [`Ndb_api_event_bytes_count_injector`](mysql-cluster-options-variables.html#statvar_Ndb_api_event_bytes_count_injector)
 
-  O número de bytes de eventos recebidos pelo thread de injeção binlog do NDB.
+  The number of bytes of events received by the NDB binlog injector thread.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` (show-status.html) ou `SHOW SESSION STATUS` (show-status.html), ela é efetivamente de escopo global.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_event_bytes_count`
+* [`Ndb_api_event_bytes_count`](mysql-cluster-options-variables.html#statvar_Ndb_api_event_bytes_count)
 
-  O número de bytes de eventos recebidos por este servidor MySQL (nó SQL).
+  The number of bytes of events received by this MySQL Server (SQL node).
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` (show-status.html) ou `SHOW SESSION STATUS` (show-status.html), ela é efetivamente de escopo global.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_pk_op_count_session`
+* [`Ndb_api_pk_op_count_session`](mysql-cluster-options-variables.html#statvar_Ndb_api_pk_op_count_session)
 
-  O número de operações nesta sessão do cliente com base em ou usando chaves primárias. Isso inclui operações em tabelas de blob, operações de desbloqueio implícitas e operações de autoincremento, além das operações de chave primária visíveis pelo usuário.
+  The number of operations in this client session based on or using primary keys. This includes operations on blob tables, implicit unlock operations, and auto-increment operations, as well as user-visible primary key operations.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste [**mysqld**].
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it relates to the current session only, and is not affected by any other clients of this [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server").
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_pk_op_count_slave`
+* [`Ndb_api_pk_op_count_slave`](mysql-cluster-options-variables.html#statvar_Ndb_api_pk_op_count_slave)
 
-  O número de operações dessa replica baseada em ou usando chaves primárias. Isso inclui operações em tabelas de blob, operações de desbloqueio implícitas e operações de autoincremento, além das operações de chave primária visíveis pelo usuário.
+  The number of operations by this replica based on or using primary keys. This includes operations on blob tables, implicit unlock operations, and auto-increment operations, as well as user-visible primary key operations.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela é efetivamente de escopo global. Se esse servidor MySQL não atuar como replica ou não usar tabelas NDB, esse valor será sempre 0.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope. If this MySQL server does not act as a replica, or does not use NDB tables, this value is always 0.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_pk_op_count`
+* [`Ndb_api_pk_op_count`](mysql-cluster-options-variables.html#statvar_Ndb_api_pk_op_count)
 
-  O número de operações deste servidor MySQL (nó SQL) com base em ou usando chaves primárias. Isso inclui operações em tabelas blob, operações de desbloqueio implícitas e operações de autoincremento, além das operações de chave primária visíveis pelo usuário.
+  The number of operations by this MySQL Server (SQL node) based on or using primary keys. This includes operations on blob tables, implicit unlock operations, and auto-increment operations, as well as user-visible primary key operations.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` (show-status.html) ou `SHOW SESSION STATUS` (show-status.html), ela é efetivamente de escopo global.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_pruned_scan_count_session`
+* [`Ndb_api_pruned_scan_count_session`](mysql-cluster-options-variables.html#statvar_Ndb_api_pruned_scan_count_session)
 
-  O número de varreduras nesta sessão do cliente que foram reduzidas a uma única partição.
+  The number of scans in this client session that have been pruned to a single partition.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste [**mysqld**].
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it relates to the current session only, and is not affected by any other clients of this [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server").
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_pruned_scan_count_slave`
+* [`Ndb_api_pruned_scan_count_slave`](mysql-cluster-options-variables.html#statvar_Ndb_api_pruned_scan_count_slave)
 
-  O número de varreduras desta réplica que foram reduzidas a uma única partição.
+  The number of scans by this replica that have been pruned to a single partition.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela é efetivamente de escopo global. Se esse servidor MySQL não atuar como replica ou não usar tabelas NDB, esse valor será sempre 0.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope. If this MySQL server does not act as a replica, or does not use NDB tables, this value is always 0.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_pruned_scan_count`
+* [`Ndb_api_pruned_scan_count`](mysql-cluster-options-variables.html#statvar_Ndb_api_pruned_scan_count)
 
-  O número de varreduras deste servidor MySQL (nó SQL) que foram reduzidas a uma única partição.
+  The number of scans by this MySQL Server (SQL node) that have been pruned to a single partition.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` (show-status.html) ou `SHOW SESSION STATUS` (show-status.html), ela é efetivamente de escopo global.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_range_scan_count_session`
+* [`Ndb_api_range_scan_count_session`](mysql-cluster-options-variables.html#statvar_Ndb_api_range_scan_count_session)
 
-  O número de varreduras de alcance iniciadas nesta sessão do cliente.
+  The number of range scans that have been started in this client session.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste [**mysqld**].
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it relates to the current session only, and is not affected by any other clients of this [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server").
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_range_scan_count_slave`
+* [`Ndb_api_range_scan_count_slave`](mysql-cluster-options-variables.html#statvar_Ndb_api_range_scan_count_slave)
 
-  O número de varreduras de alcance iniciadas por esta réplica.
+  The number of range scans that have been started by this replica.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela é efetivamente de escopo global. Se esse servidor MySQL não atuar como replica ou não usar tabelas NDB, esse valor será sempre 0.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope. If this MySQL server does not act as a replica, or does not use NDB tables, this value is always 0.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_range_scan_count`
+* [`Ndb_api_range_scan_count`](mysql-cluster-options-variables.html#statvar_Ndb_api_range_scan_count)
 
-  O número de varreduras de alcance iniciadas por este servidor MySQL (nó SQL).
+  The number of range scans that have been started by this MySQL Server (SQL node).
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` (show-status.html) ou `SHOW SESSION STATUS` (show-status.html), ela é efetivamente de escopo global.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_read_row_count_session`
+* [`Ndb_api_read_row_count_session`](mysql-cluster-options-variables.html#statvar_Ndb_api_read_row_count_session)
 
-  O número total de linhas que foram lidas nesta sessão do cliente. Isso inclui todas as linhas lidas por qualquer chave primária, chave única ou operação de varredura realizada nesta sessão do cliente.
+  The total number of rows that have been read in this client session. This includes all rows read by any primary key, unique key, or scan operation made in this client session.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste [**mysqld**].
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it relates to the current session only, and is not affected by any other clients of this [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server").
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_read_row_count_slave`
+* [`Ndb_api_read_row_count_slave`](mysql-cluster-options-variables.html#statvar_Ndb_api_read_row_count_slave)
 
-  O número total de linhas que foram lidas por esta réplica. Isso inclui todas as linhas lidas por qualquer chave primária, chave única ou operação de varredura realizada por esta réplica.
+  The total number of rows that have been read by this replica. This includes all rows read by any primary key, unique key, or scan operation made by this replica.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela é efetivamente de escopo global. Se esse servidor MySQL não atuar como replica ou não usar tabelas NDB, esse valor será sempre 0.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope. If this MySQL server does not act as a replica, or does not use NDB tables, this value is always 0.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_read_row_count`
+* [`Ndb_api_read_row_count`](mysql-cluster-options-variables.html#statvar_Ndb_api_read_row_count)
 
-  O número total de linhas que foram lidas por este servidor MySQL (nó SQL). Isso inclui todas as linhas lidas por qualquer chave primária, chave única ou operação de varredura realizada por este servidor MySQL (nó SQL).
+  The total number of rows that have been read by this MySQL Server (SQL node). This includes all rows read by any primary key, unique key, or scan operation made by this MySQL Server (SQL node).
 
-  Você deve estar ciente de que esse valor pode não ser completamente preciso em relação às linhas lidas por consultas de `[SELECT]` (`select.html`), `[COUNT(*)]` (`aggregate-functions.html#function_count`), devido ao fato de que, neste caso, o servidor MySQL realmente lê pseudo-linhas na forma `[ID do fragmento da tabela]:[número de linhas no fragmento]` e soma as linhas por fragmento para todos os fragmentos da tabela para derivar uma contagem estimada para todas as linhas. O `Ndb_api_read_row_count` usa essa estimativa e não o número real de linhas na tabela.
+  You should be aware that this value may not be completely accurate with regard to rows read by [`SELECT`](select.html "13.2.9 SELECT Statement") [`COUNT(*)`](aggregate-functions.html#function_count) queries, due to the fact that, in this case, the MySQL server actually reads pseudo-rows in the form `[table fragment ID]:[number of rows in fragment]` and sums the rows per fragment for all fragments in the table to derive an estimated count for all rows. `Ndb_api_read_row_count` uses this estimate and not the actual number of rows in the table.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` (show-status.html) ou `SHOW SESSION STATUS` (show-status.html), ela é efetivamente de escopo global.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_scan_batch_count_session`
+* [`Ndb_api_scan_batch_count_session`](mysql-cluster-options-variables.html#statvar_Ndb_api_scan_batch_count_session)
 
-  O número de lotes de linhas recebidos nesta sessão do cliente. Um lote é definido como um conjunto de resultados de varredura de um único fragmento.
+  The number of batches of rows received in this client session. 1 batch is defined as 1 set of scan results from a single fragment.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste [**mysqld**].
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it relates to the current session only, and is not affected by any other clients of this [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server").
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_scan_batch_count_slave`
+* [`Ndb_api_scan_batch_count_slave`](mysql-cluster-options-variables.html#statvar_Ndb_api_scan_batch_count_slave)
 
-  O número de lotes de linhas recebidos por esta réplica. 1 lote é definido como 1 conjunto de resultados de varredura de um único fragmento.
+  The number of batches of rows received by this replica. 1 batch is defined as 1 set of scan results from a single fragment.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela é efetivamente de escopo global. Se esse servidor MySQL não atuar como replica ou não usar tabelas NDB, esse valor será sempre 0.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope. If this MySQL server does not act as a replica, or does not use NDB tables, this value is always 0.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_scan_batch_count`
+* [`Ndb_api_scan_batch_count`](mysql-cluster-options-variables.html#statvar_Ndb_api_scan_batch_count)
 
-  O número de lotes de linhas recebidos por este servidor MySQL (nó SQL). 1 lote é definido como 1 conjunto de resultados de varredura de um único fragmento.
+  The number of batches of rows received by this MySQL Server (SQL node). 1 batch is defined as 1 set of scan results from a single fragment.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` (show-status.html) ou `SHOW SESSION STATUS` (show-status.html), ela é efetivamente de escopo global.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_table_scan_count_session`
+* [`Ndb_api_table_scan_count_session`](mysql-cluster-options-variables.html#statvar_Ndb_api_table_scan_count_session)
 
-  O número de varreduras de tabela iniciadas nesta sessão do cliente, incluindo varreduras de tabelas internas.
+  The number of table scans that have been started in this client session, including scans of internal tables,.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste [**mysqld**].
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it relates to the current session only, and is not affected by any other clients of this [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server").
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_table_scan_count_slave`
+* [`Ndb_api_table_scan_count_slave`](mysql-cluster-options-variables.html#statvar_Ndb_api_table_scan_count_slave)
 
-  O número de varreduras de tabela iniciadas por esta réplica, incluindo varreduras de tabelas internas.
+  The number of table scans that have been started by this replica, including scans of internal tables,.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela é efetivamente de escopo global. Se esse servidor MySQL não atuar como replica ou não usar tabelas NDB, esse valor será sempre 0.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope. If this MySQL server does not act as a replica, or does not use NDB tables, this value is always 0.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_table_scan_count`
+* [`Ndb_api_table_scan_count`](mysql-cluster-options-variables.html#statvar_Ndb_api_table_scan_count)
 
-  O número de varreduras de tabela iniciadas por este servidor MySQL (nó SQL), incluindo varreduras de tabelas internas.
+  The number of table scans that have been started by this MySQL Server (SQL node), including scans of internal tables,.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` (show-status.html) ou `SHOW SESSION STATUS` (show-status.html), ela é efetivamente de escopo global.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_trans_abort_count_session`
+* [`Ndb_api_trans_abort_count_session`](mysql-cluster-options-variables.html#statvar_Ndb_api_trans_abort_count_session)
 
-  Número de transações abortadas nesta sessão do cliente.
+  The number of transactions aborted in this client session.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste [**mysqld**].
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it relates to the current session only, and is not affected by any other clients of this [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server").
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_trans_abort_count_slave`
+* [`Ndb_api_trans_abort_count_slave`](mysql-cluster-options-variables.html#statvar_Ndb_api_trans_abort_count_slave)
 
-  Número de transações abortadas por esta réplica.
+  The number of transactions aborted by this replica.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela é efetivamente de escopo global. Se esse servidor MySQL não atuar como replica ou não usar tabelas NDB, esse valor será sempre 0.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope. If this MySQL server does not act as a replica, or does not use NDB tables, this value is always 0.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_trans_abort_count`
+* [`Ndb_api_trans_abort_count`](mysql-cluster-options-variables.html#statvar_Ndb_api_trans_abort_count)
 
-  Número de transações abortadas por este servidor MySQL (nó SQL).
+  The number of transactions aborted by this MySQL Server (SQL node).
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` (show-status.html) ou `SHOW SESSION STATUS` (show-status.html), ela é efetivamente de escopo global.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_trans_close_count_session`
+* [`Ndb_api_trans_close_count_session`](mysql-cluster-options-variables.html#statvar_Ndb_api_trans_close_count_session)
 
-  O número de transações concluídas nesta sessão do cliente. Esse valor pode ser maior que a soma de `Ndb_api_trans_commit_count_session` e `Ndb_api_trans_abort_count_session`, pois algumas transações podem ter sido revertidas.
+  The number of transactions closed in this client session. This value may be greater than the sum of [`Ndb_api_trans_commit_count_session`](mysql-cluster-options-variables.html#statvar_Ndb_api_trans_commit_count_session) and [`Ndb_api_trans_abort_count_session`](mysql-cluster-options-variables.html#statvar_Ndb_api_trans_abort_count_session), since some transactions may have been rolled back.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste [**mysqld**].
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it relates to the current session only, and is not affected by any other clients of this [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server").
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_trans_close_count_slave`
+* [`Ndb_api_trans_close_count_slave`](mysql-cluster-options-variables.html#statvar_Ndb_api_trans_close_count_slave)
 
-  O número de transações concluídas por esta réplica. Esse valor pode ser maior que a soma de `Ndb_api_trans_commit_count_slave` e `Ndb_api_trans_abort_count_slave`, pois algumas transações podem ter sido revertidas.
+  The number of transactions closed by this replica. This value may be greater than the sum of [`Ndb_api_trans_commit_count_slave`](mysql-cluster-options-variables.html#statvar_Ndb_api_trans_commit_count_slave) and [`Ndb_api_trans_abort_count_slave`](mysql-cluster-options-variables.html#statvar_Ndb_api_trans_abort_count_slave), since some transactions may have been rolled back.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela é efetivamente de escopo global. Se esse servidor MySQL não atuar como replica ou não usar tabelas NDB, esse valor será sempre 0.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope. If this MySQL server does not act as a replica, or does not use NDB tables, this value is always 0.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_trans_close_count`
+* [`Ndb_api_trans_close_count`](mysql-cluster-options-variables.html#statvar_Ndb_api_trans_close_count)
 
-  O número de transações concluídas por este servidor MySQL (nó SQL). Esse valor pode ser maior que a soma de `Ndb_api_trans_commit_count` e `Ndb_api_trans_abort_count`, pois algumas transações podem ter sido revertidas.
+  The number of transactions closed by this MySQL Server (SQL node). This value may be greater than the sum of [`Ndb_api_trans_commit_count`](mysql-cluster-options-variables.html#statvar_Ndb_api_trans_commit_count) and [`Ndb_api_trans_abort_count`](mysql-cluster-options-variables.html#statvar_Ndb_api_trans_abort_count), since some transactions may have been rolled back.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` (show-status.html) ou `SHOW SESSION STATUS` (show-status.html), ela é efetivamente de escopo global.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_trans_commit_count_session`
+* [`Ndb_api_trans_commit_count_session`](mysql-cluster-options-variables.html#statvar_Ndb_api_trans_commit_count_session)
 
-  O número de transações realizadas nesta sessão do cliente.
+  The number of transactions committed in this client session.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste [**mysqld**].
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it relates to the current session only, and is not affected by any other clients of this [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server").
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_trans_commit_count_slave`
+* [`Ndb_api_trans_commit_count_slave`](mysql-cluster-options-variables.html#statvar_Ndb_api_trans_commit_count_slave)
 
-  O número de transações realizadas por esta réplica.
+  The number of transactions committed by this replica.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela é efetivamente de escopo global. Se esse servidor MySQL não atuar como replica ou não usar tabelas NDB, esse valor será sempre 0.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope. If this MySQL server does not act as a replica, or does not use NDB tables, this value is always 0.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_trans_commit_count`
+* [`Ndb_api_trans_commit_count`](mysql-cluster-options-variables.html#statvar_Ndb_api_trans_commit_count)
 
-  O número de transações realizadas por este servidor MySQL (nó SQL).
+  The number of transactions committed by this MySQL Server (SQL node).
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` (show-status.html) ou `SHOW SESSION STATUS` (show-status.html), ela é efetivamente de escopo global.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_trans_local_read_row_count_session`
+* [`Ndb_api_trans_local_read_row_count_session`](mysql-cluster-options-variables.html#statvar_Ndb_api_trans_local_read_row_count_session)
 
-  O número total de linhas que foram lidas nesta sessão do cliente. Isso inclui todas as linhas lidas por qualquer chave primária, chave única ou operação de varredura realizada nesta sessão do cliente.
+  The total number of rows that have been read in this client session. This includes all rows read by any primary key, unique key, or scan operation made in this client session.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste [**mysqld**].
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it relates to the current session only, and is not affected by any other clients of this [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server").
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_trans_local_read_row_count_slave`
+* [`Ndb_api_trans_local_read_row_count_slave`](mysql-cluster-options-variables.html#statvar_Ndb_api_trans_local_read_row_count_slave)
 
-  O número total de linhas que foram lidas por esta réplica. Isso inclui todas as linhas lidas por qualquer chave primária, chave única ou operação de varredura realizada por esta réplica.
+  The total number of rows that have been read by this replica. This includes all rows read by any primary key, unique key, or scan operation made by this replica.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela é efetivamente de escopo global. Se esse servidor MySQL não atuar como replica ou não usar tabelas NDB, esse valor será sempre 0.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope. If this MySQL server does not act as a replica, or does not use NDB tables, this value is always 0.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_trans_local_read_row_count`
+* [`Ndb_api_trans_local_read_row_count`](mysql-cluster-options-variables.html#statvar_Ndb_api_trans_local_read_row_count)
 
-  O número total de linhas que foram lidas por este servidor MySQL (nó SQL). Isso inclui todas as linhas lidas por qualquer chave primária, chave única ou operação de varredura realizada por este servidor MySQL (nó SQL).
+  The total number of rows that have been read by this MySQL Server (SQL node). This includes all rows read by any primary key, unique key, or scan operation made by this MySQL Server (SQL node).
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` (show-status.html) ou `SHOW SESSION STATUS` (show-status.html), ela é efetivamente de escopo global.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_trans_start_count_session`
+* [`Ndb_api_trans_start_count_session`](mysql-cluster-options-variables.html#statvar_Ndb_api_trans_start_count_session)
 
-  O número de transações iniciadas nesta sessão do cliente.
+  The number of transactions started in this client session.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste [**mysqld**].
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it relates to the current session only, and is not affected by any other clients of this [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server").
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_trans_start_count_slave`
+* [`Ndb_api_trans_start_count_slave`](mysql-cluster-options-variables.html#statvar_Ndb_api_trans_start_count_slave)
 
-  O número de transações iniciadas por esta réplica.
+  The number of transactions started by this replica.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela é efetivamente de escopo global. Se esse servidor MySQL não atuar como replica ou não usar tabelas NDB, esse valor será sempre 0.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope. If this MySQL server does not act as a replica, or does not use NDB tables, this value is always 0.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_trans_start_count`
+* [`Ndb_api_trans_start_count`](mysql-cluster-options-variables.html#statvar_Ndb_api_trans_start_count)
 
-  O número de transações iniciadas por este servidor MySQL (nó SQL).
+  The number of transactions started by this MySQL Server (SQL node).
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` (show-status.html) ou `SHOW SESSION STATUS` (show-status.html), ela é efetivamente de escopo global.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_uk_op_count_session`
+* [`Ndb_api_uk_op_count_session`](mysql-cluster-options-variables.html#statvar_Ndb_api_uk_op_count_session)
 
-  O número de operações nesta sessão do cliente com base em ou usando chaves únicas.
+  The number of operations in this client session based on or using unique keys.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste [**mysqld**].
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it relates to the current session only, and is not affected by any other clients of this [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server").
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_uk_op_count_slave`
+* [`Ndb_api_uk_op_count_slave`](mysql-cluster-options-variables.html#statvar_Ndb_api_uk_op_count_slave)
 
-  O número de operações realizadas por esta réplica com base em ou usando chaves únicas.
+  The number of operations by this replica based on or using unique keys.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela é efetivamente de escopo global. Se esse servidor MySQL não atuar como replica ou não usar tabelas NDB, esse valor será sempre 0.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope. If this MySQL server does not act as a replica, or does not use NDB tables, this value is always 0.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_uk_op_count`
+* [`Ndb_api_uk_op_count`](mysql-cluster-options-variables.html#statvar_Ndb_api_uk_op_count)
 
-  O número de operações deste servidor MySQL (nó SQL) com base em ou usando chaves únicas.
+  The number of operations by this MySQL Server (SQL node) based on or using unique keys.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` (show-status.html) ou `SHOW SESSION STATUS` (show-status.html), ela é efetivamente de escopo global.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_wait_exec_complete_count_session`
+* [`Ndb_api_wait_exec_complete_count_session`](mysql-cluster-options-variables.html#statvar_Ndb_api_wait_exec_complete_count_session)
 
-  O número de vezes que um thread foi bloqueado nesta sessão do cliente enquanto aguardava a execução de uma operação para ser concluída. Isso inclui todas as chamadas de `execute()` e execuções implícitas para operações de blob e autoincremento que não são visíveis para os clientes.
+  The number of times a thread has been blocked in this client session while waiting for execution of an operation to complete. This includes all [`execute()`](/doc/ndbapi/en/ndb-ndbtransaction.html#ndb-ndbtransaction-execute) calls as well as implicit executes for blob and auto-increment operations not visible to clients.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste [**mysqld**].
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it relates to the current session only, and is not affected by any other clients of this [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server").
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_wait_exec_complete_count_slave`
+* [`Ndb_api_wait_exec_complete_count_slave`](mysql-cluster-options-variables.html#statvar_Ndb_api_wait_exec_complete_count_slave)
 
-  O número de vezes que um thread foi bloqueado por esta replica enquanto aguardava a execução de uma operação para ser concluída. Isso inclui todas as chamadas de `execute()` e execuções implícitas para operações de blob e auto-incremento que não são visíveis para os clientes.
+  The number of times a thread has been blocked by this replica while waiting for execution of an operation to complete. This includes all [`execute()`](/doc/ndbapi/en/ndb-ndbtransaction.html#ndb-ndbtransaction-execute) calls as well as implicit executes for blob and auto-increment operations not visible to clients.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela é efetivamente de escopo global. Se esse servidor MySQL não atuar como replica ou não usar tabelas NDB, esse valor será sempre 0.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope. If this MySQL server does not act as a replica, or does not use NDB tables, this value is always 0.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_wait_exec_complete_count`
+* [`Ndb_api_wait_exec_complete_count`](mysql-cluster-options-variables.html#statvar_Ndb_api_wait_exec_complete_count)
 
-  O número de vezes que um thread foi bloqueado por este servidor MySQL (nó SQL) enquanto aguardava a conclusão da execução de uma operação. Isso inclui todas as chamadas de `execute()` e execuções implícitas para operações de blob e autoincremento que não são visíveis para os clientes.
+  The number of times a thread has been blocked by this MySQL Server (SQL node) while waiting for execution of an operation to complete. This includes all [`execute()`](/doc/ndbapi/en/ndb-ndbtransaction.html#ndb-ndbtransaction-execute) calls as well as implicit executes for blob and auto-increment operations not visible to clients.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` (show-status.html) ou `SHOW SESSION STATUS` (show-status.html), ela é efetivamente de escopo global.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_wait_meta_request_count_session`
+* [`Ndb_api_wait_meta_request_count_session`](mysql-cluster-options-variables.html#statvar_Ndb_api_wait_meta_request_count_session)
 
-  O número de vezes que um thread foi bloqueado nesta sessão do cliente enquanto aguardava por um sinal baseado em metadados, como o esperado para solicitações de DDL, novas épocas e apreensão de registros de transações.
+  The number of times a thread has been blocked in this client session waiting for a metadata-based signal, such as is expected for DDL requests, new epochs, and seizure of transaction records.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste [**mysqld**].
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it relates to the current session only, and is not affected by any other clients of this [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server").
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_wait_meta_request_count_slave`
+* [`Ndb_api_wait_meta_request_count_slave`](mysql-cluster-options-variables.html#statvar_Ndb_api_wait_meta_request_count_slave)
 
-  O número de vezes que um thread foi bloqueado por essa replica enquanto aguardava por um sinal baseado em metadados, como o esperado para solicitações de DDL, novas épocas e apreensão de registros de transações.
+  The number of times a thread has been blocked by this replica waiting for a metadata-based signal, such as is expected for DDL requests, new epochs, and seizure of transaction records.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela é efetivamente de escopo global. Se esse servidor MySQL não atuar como replica ou não usar tabelas NDB, esse valor será sempre 0.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope. If this MySQL server does not act as a replica, or does not use NDB tables, this value is always 0.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_wait_meta_request_count`
+* [`Ndb_api_wait_meta_request_count`](mysql-cluster-options-variables.html#statvar_Ndb_api_wait_meta_request_count)
 
-  O número de vezes que um thread foi bloqueado por este servidor MySQL (nó SQL) aguardando um sinal baseado em metadados, como o esperado para solicitações de DDL, novas épocas e apreensão de registros de transação.
+  The number of times a thread has been blocked by this MySQL Server (SQL node) waiting for a metadata-based signal, such as is expected for DDL requests, new epochs, and seizure of transaction records.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` (show-status.html) ou `SHOW SESSION STATUS` (show-status.html), ela é efetivamente de escopo global.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_wait_nanos_count_session`
+* [`Ndb_api_wait_nanos_count_session`](mysql-cluster-options-variables.html#statvar_Ndb_api_wait_nanos_count_session)
 
-  Tempo total (em nanosegundos) gasto nesta sessão do cliente esperando por qualquer tipo de sinal dos nós de dados.
+  Total time (in nanoseconds) spent in this client session waiting for any type of signal from the data nodes.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste [**mysqld**].
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it relates to the current session only, and is not affected by any other clients of this [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server").
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_wait_nanos_count_slave`
+* [`Ndb_api_wait_nanos_count_slave`](mysql-cluster-options-variables.html#statvar_Ndb_api_wait_nanos_count_slave)
 
-  Tempo total (em nanosegundos) gasto por esta réplica esperando qualquer tipo de sinal dos nós de dados.
+  Total time (in nanoseconds) spent by this replica waiting for any type of signal from the data nodes.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela é efetivamente de escopo global. Se esse servidor MySQL não atuar como replica ou não usar tabelas NDB, esse valor será sempre 0.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope. If this MySQL server does not act as a replica, or does not use NDB tables, this value is always 0.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_wait_nanos_count`
+* [`Ndb_api_wait_nanos_count`](mysql-cluster-options-variables.html#statvar_Ndb_api_wait_nanos_count)
 
-  O tempo total (em nanosegundos) gasto por este servidor MySQL (nó SQL) esperando por qualquer tipo de sinal dos nós de dados.
+  Total time (in nanoseconds) spent by this MySQL Server (SQL node) waiting for any type of signal from the data nodes.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` (show-status.html) ou `SHOW SESSION STATUS` (show-status.html), ela é efetivamente de escopo global.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_wait_scan_result_count_session`
+* [`Ndb_api_wait_scan_result_count_session`](mysql-cluster-options-variables.html#statvar_Ndb_api_wait_scan_result_count_session)
 
-  O número de vezes que um thread foi bloqueado nesta sessão do cliente enquanto aguardava por um sinal baseado em varredura, como quando está aguardando mais resultados de uma varredura ou quando está aguardando que a varredura seja concluída.
+  The number of times a thread has been blocked in this client session while waiting for a scan-based signal, such as when waiting for more results from a scan, or when waiting for a scan to close.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela se relaciona apenas à sessão atual e não é afetada por nenhum outro cliente deste [**mysqld**].
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it relates to the current session only, and is not affected by any other clients of this [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server").
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_wait_scan_result_count_slave`
+* [`Ndb_api_wait_scan_result_count_slave`](mysql-cluster-options-variables.html#statvar_Ndb_api_wait_scan_result_count_slave)
 
-  O número de vezes que um thread foi bloqueado por esta réplica enquanto aguardava por um sinal baseado em varredura, como quando está aguardando mais resultados de uma varredura ou quando está aguardando que a varredura seja concluída.
+  The number of times a thread has been blocked by this replica while waiting for a scan-based signal, such as when waiting for more results from a scan, or when waiting for a scan to close.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` ou `SHOW SESSION STATUS`, ela é efetivamente de escopo global. Se esse servidor MySQL não atuar como replica ou não usar tabelas NDB, esse valor será sempre 0.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope. If this MySQL server does not act as a replica, or does not use NDB tables, this value is always 0.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_api_wait_scan_result_count`
+* [`Ndb_api_wait_scan_result_count`](mysql-cluster-options-variables.html#statvar_Ndb_api_wait_scan_result_count)
 
-  O número de vezes que um thread foi bloqueado por este servidor MySQL (nó SQL) enquanto aguardava por um sinal baseado em varredura, como quando está aguardando mais resultados de uma varredura ou quando está aguardando que uma varredura seja concluída.
+  The number of times a thread has been blocked by this MySQL Server (SQL node) while waiting for a scan-based signal, such as when waiting for more results from a scan, or when waiting for a scan to close.
 
-  Embora essa variável possa ser lida usando `SHOW GLOBAL STATUS` (show-status.html) ou `SHOW SESSION STATUS` (show-status.html), ela é efetivamente de escopo global.
+  Although this variable can be read using either [`SHOW GLOBAL STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement") or [`SHOW SESSION STATUS`](show-status.html "13.7.5.35 SHOW STATUS Statement"), it is effectively global in scope.
 
-  Para obter mais informações, consulte Seção 21.6.14, "Contas de estatísticas da API NDB e variáveis".
+  For more information, see [Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables").
 
-- `Ndb_cluster_node_id`
+* [`Ndb_cluster_node_id`](mysql-cluster-options-variables.html#statvar_Ndb_cluster_node_id)
 
-  Se o servidor estiver atuando como um nó do NDB Cluster, então o valor desta variável será o ID do nó no cluster.
+  If the server is acting as an NDB Cluster node, then the value of this variable its node ID in the cluster.
 
-  Se o servidor não faz parte de um NDB Cluster, o valor desta variável é 0.
+  If the server is not part of an NDB Cluster, then the value of this variable is 0.
 
-- `Ndb_config_from_host`
+* [`Ndb_config_from_host`](mysql-cluster-options-variables.html#statvar_Ndb_config_from_host)
 
-  Se o servidor faz parte de um NDB Cluster, o valor desta variável é o nome do host ou o endereço IP do servidor de gerenciamento do Cluster, a partir do qual ele obtém seus dados de configuração.
+  If the server is part of an NDB Cluster, the value of this variable is the host name or IP address of the Cluster management server from which it gets its configuration data.
 
-  Se o servidor não faz parte de um NDB Cluster, o valor desta variável será uma string vazia.
+  If the server is not part of an NDB Cluster, then the value of this variable is an empty string.
 
-- `Ndb_config_from_port`
+* [`Ndb_config_from_port`](mysql-cluster-options-variables.html#statvar_Ndb_config_from_port)
 
-  Se o servidor faz parte de um NDB Cluster, o valor desta variável é o número da porta através da qual ele está conectado ao servidor de gerenciamento do Cluster, do qual ele obtém seus dados de configuração.
+  If the server is part of an NDB Cluster, the value of this variable is the number of the port through which it is connected to the Cluster management server from which it gets its configuration data.
 
-  Se o servidor não faz parte de um NDB Cluster, o valor desta variável é 0.
+  If the server is not part of an NDB Cluster, then the value of this variable is 0.
 
-- `Ndb_conflict_fn_epoch`
+* [`Ndb_conflict_fn_epoch`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_fn_epoch)
 
-  Utilizada na resolução de conflitos da replicação em clúster do NDB, essa variável mostra o número de linhas encontradas em conflito usando a resolução de conflitos `NDB$EPOCH()` em um determinado **mysqld** desde a última vez que ele foi reiniciado.
+  Used in NDB Cluster Replication conflict resolution, this variable shows the number of rows found to be in conflict using `NDB$EPOCH()` conflict resolution on a given [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") since the last time it was restarted.
 
-  Para obter mais informações, consulte Seção 21.7.11, “Resolução de conflitos de replicação de cluster NDB”.
+  For more information, see [Section 21.7.11, “NDB Cluster Replication Conflict Resolution”](mysql-cluster-replication-conflict-resolution.html "21.7.11 NDB Cluster Replication Conflict Resolution").
 
-- `Ndb_conflict_fn_epoch_trans`
+* [`Ndb_conflict_fn_epoch_trans`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_fn_epoch_trans)
 
-  Utilizada na resolução de conflitos da replicação em clúster do NDB, essa variável mostra o número de linhas encontradas em conflito usando a resolução de conflitos `NDB$EPOCH_TRANS()` em um determinado **mysqld** desde a última vez que ele foi reiniciado.
+  Used in NDB Cluster Replication conflict resolution, this variable shows the number of rows found to be in conflict using `NDB$EPOCH_TRANS()` conflict resolution on a given [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") since the last time it was restarted.
 
-  Para obter mais informações, consulte Seção 21.7.11, “Resolução de conflitos de replicação de cluster NDB”.
+  For more information, see [Section 21.7.11, “NDB Cluster Replication Conflict Resolution”](mysql-cluster-replication-conflict-resolution.html "21.7.11 NDB Cluster Replication Conflict Resolution").
 
-- `Ndb_conflict_fn_epoch2`
+* [`Ndb_conflict_fn_epoch2`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_fn_epoch2)
 
-  Mostra o número de linhas encontradas em conflito na resolução de conflitos da replicação em cluster NDB Cluster, quando se usa `NDB$EPOCH2()`, na fonte designada como primária desde a última vez que foi reiniciado.
+  Shows the number of rows found to be in conflict in NDB Cluster Replication conflict resolution, when using `NDB$EPOCH2()`, on the source designated as the primary since the last time it was restarted.
 
-  Para obter mais informações, consulte NDB$EPOCH2().
+  For more information, see [NDB$EPOCH2()](mysql-cluster-replication-conflict-resolution.html#mysql-cluster-replication-ndb-epoch2 "NDB$EPOCH2()").
 
-- `Ndb_conflict_fn_epoch2_trans`
+* [`Ndb_conflict_fn_epoch2_trans`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_fn_epoch2_trans)
 
-  Utilizada na resolução de conflitos da replicação em clúster do NDB, essa variável mostra o número de linhas encontradas em conflito usando a resolução de conflitos `NDB$EPOCH_TRANS2()` em um determinado **mysqld** desde a última vez que ele foi reiniciado.
+  Used in NDB Cluster Replication conflict resolution, this variable shows the number of rows found to be in conflict using `NDB$EPOCH_TRANS2()` conflict resolution on a given [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") since the last time it was restarted.
 
-  Para obter mais informações, consulte NDB$EPOCH2_TRANS().
+  For more information, see [NDB$EPOCH2_TRANS()](mysql-cluster-replication-conflict-resolution.html#mysql-cluster-replication-ndb-epoch2-trans "NDB$EPOCH2_TRANS()").
 
-- `Ndb_conflict_fn_max`
+* [`Ndb_conflict_fn_max`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_fn_max)
 
-  Utilizada na resolução de conflitos da replicação em clúster do NDB, essa variável mostra o número de vezes que uma linha não foi aplicada no nó SQL atual devido à resolução de conflitos “maior timestamp vence” desde a última vez que esse **mysqld** foi iniciado.
+  Used in NDB Cluster Replication conflict resolution, this variable shows the number of times that a row was not applied on the current SQL node due to “greatest timestamp wins” conflict resolution since the last time that this [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") was started.
 
-  Para obter mais informações, consulte Seção 21.7.11, “Resolução de conflitos de replicação de cluster NDB”.
+  For more information, see [Section 21.7.11, “NDB Cluster Replication Conflict Resolution”](mysql-cluster-replication-conflict-resolution.html "21.7.11 NDB Cluster Replication Conflict Resolution").
 
-- `Ndb_conflict_fn_max_del_win`
+* [`Ndb_conflict_fn_max_del_win`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_fn_max_del_win)
 
-  Mostra o número de vezes que uma linha foi rejeitada no nó SQL atual devido à resolução de conflitos da replicação do NDB Cluster usando `NDB$MAX_DELETE_WIN()`, desde a última vez que este **mysqld** foi iniciado.
+  Shows the number of times that a row was rejected on the current SQL node due to NDB Cluster Replication conflict resolution using `NDB$MAX_DELETE_WIN()`, since the last time that this [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") was started.
 
-  Para obter mais informações, consulte Seção 21.7.11, “Resolução de conflitos de replicação de cluster NDB”.
+  For more information, see [Section 21.7.11, “NDB Cluster Replication Conflict Resolution”](mysql-cluster-replication-conflict-resolution.html "21.7.11 NDB Cluster Replication Conflict Resolution").
 
-- `Ndb_conflict_fn_old`
+* [`Ndb_conflict_fn_old`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_fn_old)
 
-  Utilizada na resolução de conflitos da replicação em clúster do NDB, essa variável mostra o número de vezes que uma linha não foi aplicada como resultado da resolução de conflitos "o mesmo timestamp vence" em um determinado **mysqld** desde a última vez que ele foi reiniciado.
+  Used in NDB Cluster Replication conflict resolution, this variable shows the number of times that a row was not applied as the result of “same timestamp wins” conflict resolution on a given [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") since the last time it was restarted.
 
-  Para obter mais informações, consulte Seção 21.7.11, “Resolução de conflitos de replicação de cluster NDB”.
+  For more information, see [Section 21.7.11, “NDB Cluster Replication Conflict Resolution”](mysql-cluster-replication-conflict-resolution.html "21.7.11 NDB Cluster Replication Conflict Resolution").
 
-- `Ndb_conflict_last_conflict_epoch`
+* [`Ndb_conflict_last_conflict_epoch`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_last_conflict_epoch)
 
-  A época mais recente em que um conflito foi detectado nesta réplica. Você pode comparar esse valor com `Ndb_slave_max_replicated_epoch`; se `Ndb_slave_max_replicated_epoch` for maior que `Ndb_conflict_last_conflict_epoch`, nenhum conflito ainda foi detectado.
+  The most recent epoch in which a conflict was detected on this replica. You can compare this value with [`Ndb_slave_max_replicated_epoch`](mysql-cluster-options-variables.html#statvar_Ndb_slave_max_replicated_epoch); if `Ndb_slave_max_replicated_epoch` is greater than `Ndb_conflict_last_conflict_epoch`, no conflicts have yet been detected.
 
-  Para obter mais informações, consulte Seção 21.7.11, "Resolução de conflitos de replicação de cluster NDB".
+  See [Section 21.7.11, “NDB Cluster Replication Conflict Resolution”](mysql-cluster-replication-conflict-resolution.html "21.7.11 NDB Cluster Replication Conflict Resolution"), for more information.
 
-- `Ndb_conflict_reflected_op_discard_count`
+* [`Ndb_conflict_reflected_op_discard_count`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_reflected_op_discard_count)
 
-  Ao usar a resolução de conflitos da replicação em clúster NDB, este é o número de operações refletidas que não foram aplicadas no secundário, devido ao erro encontrado durante a execução.
+  When using NDB Cluster Replication conflict resolution, this is the number of reflected operations that were not applied on the secondary, due to encountering an error during execution.
 
-  Para obter mais informações, consulte Seção 21.7.11, "Resolução de conflitos de replicação de cluster NDB".
+  See [Section 21.7.11, “NDB Cluster Replication Conflict Resolution”](mysql-cluster-replication-conflict-resolution.html "21.7.11 NDB Cluster Replication Conflict Resolution"), for more information.
 
-- `Ndb_conflict_reflected_op_prepare_count`
+* [`Ndb_conflict_reflected_op_prepare_count`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_reflected_op_prepare_count)
 
-  Ao usar a resolução de conflitos com a Replicação em Cluster do NDB, essa variável de status contém o número de operações refletidas que foram definidas (ou seja, preparadas para execução no secundário).
+  When using conflict resolution with NDB Cluster Replication, this status variable contains the number of reflected operations that have been defined (that is, prepared for execution on the secondary).
 
-  Consulte seção 21.7.11, "Resolução de conflitos de replicação de cluster NDB".
+  See [Section 21.7.11, “NDB Cluster Replication Conflict Resolution”](mysql-cluster-replication-conflict-resolution.html "21.7.11 NDB Cluster Replication Conflict Resolution").
 
-- `Ndb_conflict_refresh_op_count`
+* [`Ndb_conflict_refresh_op_count`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_refresh_op_count)
 
-  Ao usar a resolução de conflitos com a Replicação em Cluster do NDB, isso fornece o número de operações de atualização preparadas para execução no secundário.
+  When using conflict resolution with NDB Cluster Replication, this gives the number of refresh operations that have been prepared for execution on the secondary.
 
-  Para obter mais informações, consulte Seção 21.7.11, "Resolução de conflitos de replicação de cluster NDB".
+  See [Section 21.7.11, “NDB Cluster Replication Conflict Resolution”](mysql-cluster-replication-conflict-resolution.html "21.7.11 NDB Cluster Replication Conflict Resolution"), for more information.
 
-- `Ndb_conflict_last_stable_epoch`
+* [`Ndb_conflict_last_stable_epoch`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_last_stable_epoch)
 
-  Número de linhas encontradas em conflito por uma função de conflito transacional
+  Number of rows found to be in conflict by a transactional conflict function
 
-  Para obter mais informações, consulte Seção 21.7.11, "Resolução de conflitos de replicação de cluster NDB".
+  See [Section 21.7.11, “NDB Cluster Replication Conflict Resolution”](mysql-cluster-replication-conflict-resolution.html "21.7.11 NDB Cluster Replication Conflict Resolution"), for more information.
 
-- `Ndb_conflict_trans_row_conflict_count`
+* [`Ndb_conflict_trans_row_conflict_count`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_trans_row_conflict_count)
 
-  Utilizado na resolução de conflitos da replicação em clúster do NDB, essa variável de status mostra o número de linhas encontradas como estando diretamente em conflito por uma função de conflito transacional em um determinado **mysqld** desde a última vez que ele foi reiniciado.
+  Used in NDB Cluster Replication conflict resolution, this status variable shows the number of rows found to be directly in-conflict by a transactional conflict function on a given [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") since the last time it was restarted.
 
-  Atualmente, a única função de detecção de conflitos transacionais suportada pelo NDB Cluster é a NDB$EPOCH_TRANS(), então essa variável de status é efetivamente a mesma que `Ndb_conflict_fn_epoch_trans`.
+  Currently, the only transactional conflict detection function supported by NDB Cluster is NDB$EPOCH_TRANS(), so this status variable is effectively the same as [`Ndb_conflict_fn_epoch_trans`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_fn_epoch_trans).
 
-  Para obter mais informações, consulte Seção 21.7.11, “Resolução de conflitos de replicação de cluster NDB”.
+  For more information, see [Section 21.7.11, “NDB Cluster Replication Conflict Resolution”](mysql-cluster-replication-conflict-resolution.html "21.7.11 NDB Cluster Replication Conflict Resolution").
 
-- `Ndb_conflict_trans_row_reject_count`
+* [`Ndb_conflict_trans_row_reject_count`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_trans_row_reject_count)
 
-  Utilizado na resolução de conflitos da replicação em clúster NDB, essa variável de status mostra o número total de linhas realinhadas devido a serem determinadas como conflitantes por uma função de detecção de conflitos transacionais. Isso inclui não apenas `Ndb_conflict_trans_row_conflict_count`, mas também quaisquer linhas em transações conflitantes ou dependentes delas.
+  Used in NDB Cluster Replication conflict resolution, this status variable shows the total number of rows realigned due to being determined as conflicting by a transactional conflict detection function. This includes not only [`Ndb_conflict_trans_row_conflict_count`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_trans_row_conflict_count), but any rows in or dependent on conflicting transactions.
 
-  Para obter mais informações, consulte Seção 21.7.11, “Resolução de conflitos de replicação de cluster NDB”.
+  For more information, see [Section 21.7.11, “NDB Cluster Replication Conflict Resolution”](mysql-cluster-replication-conflict-resolution.html "21.7.11 NDB Cluster Replication Conflict Resolution").
 
-- `Ndb_conflict_trans_reject_count`
+* [`Ndb_conflict_trans_reject_count`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_trans_reject_count)
 
-  Utilizado na resolução de conflitos da replicação em clúster do NDB, essa variável de status mostra o número de transações encontradas como conflitantes por uma função de detecção de conflitos transacionais.
+  Used in NDB Cluster Replication conflict resolution, this status variable shows the number of transactions found to be in conflict by a transactional conflict detection function.
 
-  Para obter mais informações, consulte Seção 21.7.11, “Resolução de conflitos de replicação de cluster NDB”.
+  For more information, see [Section 21.7.11, “NDB Cluster Replication Conflict Resolution”](mysql-cluster-replication-conflict-resolution.html "21.7.11 NDB Cluster Replication Conflict Resolution").
 
-- `Ndb_conflict_trans_detect_iter_count`
+* [`Ndb_conflict_trans_detect_iter_count`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_trans_detect_iter_count)
 
-  Utilizado na resolução de conflitos da replicação em clúster do NDB, este valor indica o número de iterações internas necessárias para confirmar uma transação de época. Deve ser (levemente) maior ou igual a `Ndb_conflict_trans_conflict_commit_count`.
+  Used in NDB Cluster Replication conflict resolution, this shows the number of internal iterations required to commit an epoch transaction. Should be (slightly) greater than or equal to [`Ndb_conflict_trans_conflict_commit_count`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_trans_conflict_commit_count).
 
-  Para obter mais informações, consulte Seção 21.7.11, “Resolução de conflitos de replicação de cluster NDB”.
+  For more information, see [Section 21.7.11, “NDB Cluster Replication Conflict Resolution”](mysql-cluster-replication-conflict-resolution.html "21.7.11 NDB Cluster Replication Conflict Resolution").
 
-- `Ndb_conflict_trans_conflict_commit_count`
+* [`Ndb_conflict_trans_conflict_commit_count`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_trans_conflict_commit_count)
 
-  Utilizado na resolução de conflitos da replicação em clúster do NDB, este mostra o número de transações de época comprometidas após a necessidade de tratamento de conflitos transacionais.
+  Used in NDB Cluster Replication conflict resolution, this shows the number of epoch transactions committed after they required transactional conflict handling.
 
-  Para obter mais informações, consulte Seção 21.7.11, “Resolução de conflitos de replicação de cluster NDB”.
+  For more information, see [Section 21.7.11, “NDB Cluster Replication Conflict Resolution”](mysql-cluster-replication-conflict-resolution.html "21.7.11 NDB Cluster Replication Conflict Resolution").
 
-- `Ndb_epoch_delete_delete_count`
+* [`Ndb_epoch_delete_delete_count`](mysql-cluster-options-variables.html#statvar_Ndb_epoch_delete_delete_count)
 
-  Ao usar a detecção de conflitos delete-delete, este é o número de conflitos delete-delete detectados, onde uma operação de exclusão é aplicada, mas a linha indicada não existe.
+  When using delete-delete conflict detection, this is the number of delete-delete conflicts detected, where a delete operation is applied, but the indicated row does not exist.
 
-- `Ndb_execute_count`
+* [`Ndb_execute_count`](mysql-cluster-options-variables.html#statvar_Ndb_execute_count)
 
-  Fornece o número de viagens de ida e volta ao kernel `NDB` realizadas por operações.
+  Provides the number of round trips to the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") kernel made by operations.
 
-- `Ndb_last_commit_epoch_server`
+* [`Ndb_last_commit_epoch_server`](mysql-cluster-options-variables.html#statvar_Ndb_last_commit_epoch_server)
 
-  A época mais recentemente marcada pelo `NDB`.
+  The epoch most recently committed by `NDB`.
 
-- `Ndb_last_commit_epoch_session`
+* [`Ndb_last_commit_epoch_session`](mysql-cluster-options-variables.html#statvar_Ndb_last_commit_epoch_session)
 
-  A época mais recentemente marcada por este cliente do `NDB`.
+  The epoch most recently committed by this `NDB` client.
 
-- `Ndb_number_of_data_nodes`
+* [`Ndb_number_of_data_nodes`](mysql-cluster-options-variables.html#statvar_Ndb_number_of_data_nodes)
 
-  Se o servidor faz parte de um NDB Cluster, o valor desta variável é o número de nós de dados no cluster.
+  If the server is part of an NDB Cluster, the value of this variable is the number of data nodes in the cluster.
 
-  Se o servidor não faz parte de um NDB Cluster, o valor desta variável é 0.
+  If the server is not part of an NDB Cluster, then the value of this variable is 0.
 
-- `Ndb_pushed_queries_defined`
+* [`Ndb_pushed_queries_defined`](mysql-cluster-options-variables.html#statvar_Ndb_pushed_queries_defined)
 
-  O número total de junções foi reduzido para o núcleo NDB para o gerenciamento distribuído nos nós de dados.
+  The total number of joins pushed down to the NDB kernel for distributed handling on the data nodes.
 
-  Nota
+  Note
 
-  Os testes de junções com `[`EXPLAIN\`]\(explain.html) que podem ser otimizados contribuem para esse número.
+  Joins tested using [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") that can be pushed down contribute to this number.
 
-- `Ndb_pushed_queries_dropped`
+* [`Ndb_pushed_queries_dropped`](mysql-cluster-options-variables.html#statvar_Ndb_pushed_queries_dropped)
 
-  O número de junções que foram empurradas para o kernel do NDB, mas que não puderam ser tratadas lá.
+  The number of joins that were pushed down to the NDB kernel but that could not be handled there.
 
-- `Ndb_pushed_queries_executed`
+* [`Ndb_pushed_queries_executed`](mysql-cluster-options-variables.html#statvar_Ndb_pushed_queries_executed)
 
-  O número de junções que foram enviadas com sucesso para `NDB` e executadas lá.
+  The number of joins successfully pushed down to [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") and executed there.
 
-- `Ndb_pushed_reads`
+* [`Ndb_pushed_reads`](mysql-cluster-options-variables.html#statvar_Ndb_pushed_reads)
 
-  O número de linhas devolvidas a **mysqld** pelo kernel NDB por junções que foram empurradas para baixo.
+  The number of rows returned to [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") from the NDB kernel by joins that were pushed down.
 
-  Nota
+  Note
 
-  A execução de `EXPLAIN` em junções que podem ser empurradas para o `NDB` não aumenta esse número.
+  Executing [`EXPLAIN`](explain.html "13.8.2 EXPLAIN Statement") on joins that can be pushed down to [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") does not add to this number.
 
-- `Ndb_pruned_scan_count`
+* [`Ndb_pruned_scan_count`](mysql-cluster-options-variables.html#statvar_Ndb_pruned_scan_count)
 
-  Esta variável contém um contador do número de varreduras executadas pelo `NDBCLUSTER` desde que o NDB Cluster foi iniciado pela última vez, quando o `NDBCLUSTER` conseguiu usar o corte de partições.
+  This variable holds a count of the number of scans executed by [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") since the NDB Cluster was last started where [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") was able to use partition pruning.
 
-  Usar essa variável juntamente com `Ndb_scan_count` pode ser útil no design do esquema para maximizar a capacidade do servidor de aparar varreduras para uma única partição da tabela, envolvendo assim apenas um único nó de dados.
+  Using this variable together with [`Ndb_scan_count`](mysql-cluster-options-variables.html#statvar_Ndb_scan_count) can be helpful in schema design to maximize the ability of the server to prune scans to a single table partition, thereby involving only a single data node.
 
-- `Ndb_scan_count`
+* [`Ndb_scan_count`](mysql-cluster-options-variables.html#statvar_Ndb_scan_count)
 
-  Essa variável contém um contador do número total de varreduras executadas pelo `NDBCLUSTER` desde que o NDB Cluster foi iniciado pela última vez.
+  This variable holds a count of the total number of scans executed by [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") since the NDB Cluster was last started.
 
-- `Ndb_slave_max_replicated_epoch`
+* [`Ndb_slave_max_replicated_epoch`](mysql-cluster-options-variables.html#statvar_Ndb_slave_max_replicated_epoch)
 
-  A época mais recentemente registrada nesta replica. Você pode comparar esse valor com `Ndb_conflict_last_conflict_epoch`; se `Ndb_slave_max_replicated_epoch` for maior que o valor de `Ndb_conflict_last_conflict_epoch`, ainda não foram detectados conflitos.
+  The most recently committed epoch on this replica. You can compare this value with [`Ndb_conflict_last_conflict_epoch`](mysql-cluster-options-variables.html#statvar_Ndb_conflict_last_conflict_epoch); if `Ndb_slave_max_replicated_epoch` is the greater of the two, no conflicts have yet been detected.
 
-  Para obter mais informações, consulte Seção 21.7.11, “Resolução de conflitos de replicação de cluster NDB”.
+  For more information, see [Section 21.7.11, “NDB Cluster Replication Conflict Resolution”](mysql-cluster-replication-conflict-resolution.html "21.7.11 NDB Cluster Replication Conflict Resolution").
 
-- `Ndb_system_name`
+* [`Ndb_system_name`](mysql-cluster-options-variables.html#statvar_Ndb_system_name)
 
-  Se este servidor MySQL estiver conectado a um cluster NDB, essa variável somente de leitura mostrará o nome do sistema do cluster. Caso contrário, o valor será uma string vazia.
+  If this MySQL Server is connected to an NDB cluster, this read-only variable shows the cluster system name. Otherwise, the value is an empty string.

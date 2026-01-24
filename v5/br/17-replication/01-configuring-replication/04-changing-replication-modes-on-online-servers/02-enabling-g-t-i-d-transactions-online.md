@@ -1,88 +1,88 @@
-#### 16.1.4.2 Habilitar transações GTID online
+#### 16.1.4.2 Enabling GTID Transactions Online
 
-Esta seção descreve como habilitar as transações GTID e, opcionalmente, o posicionamento automático em servidores que já estão online e estão usando transações anônimas. Esse procedimento não requer a remoção do servidor do ar e é adequado para uso em produção. No entanto, se você tiver a possibilidade de remover os servidores do ar ao habilitar as transações GTID, o processo será mais fácil.
+This section describes how to enable GTID transactions, and optionally auto-positioning, on servers that are already online and using anonymous transactions. This procedure does not require taking the server offline and is suited to use in production. However, if you have the possibility to take the servers offline when enabling GTID transactions that process is easier.
 
-Antes de começar, certifique-se de que os servidores atendam às seguintes condições prévias:
+Before you start, ensure that the servers meet the following pre-conditions:
 
-- *Todos os* servidores em sua topologia devem usar o MySQL 5.7.6 ou uma versão posterior. Você não pode habilitar transações GTID online em qualquer servidor individual, a menos que *todos* os servidores que estão na topologia estejam usando essa versão.
+* *All* servers in your topology must use MySQL 5.7.6 or later. You cannot enable GTID transactions online on any single server unless *all* servers which are in the topology are using this version.
 
-- Todos os servidores têm `gtid_mode` definido para o valor padrão `OFF`.
+* All servers have [`gtid_mode`](replication-options-gtids.html#sysvar_gtid_mode) set to the default value `OFF`.
 
-O procedimento a seguir pode ser interrompido a qualquer momento e, posteriormente, retomado no ponto onde estava, ou invertido ao alternar para a etapa correspondente de Seção 16.1.4.3, “Desabilitar Transações GTID Online”, o procedimento online para desabilitar GTIDs. Isso torna o procedimento tolerante a falhas, pois quaisquer problemas não relacionados que possam surgir durante o procedimento podem ser tratados normalmente, e o procedimento é então continuado a partir do ponto onde foi interrompido.
+The following procedure can be paused at any time and later resumed where it was, or reversed by jumping to the corresponding step of [Section 16.1.4.3, “Disabling GTID Transactions Online”](replication-mode-change-online-disable-gtids.html "16.1.4.3 Disabling GTID Transactions Online"), the online procedure to disable GTIDs. This makes the procedure fault-tolerant because any unrelated issues that may appear in the middle of the procedure can be handled as usual, and then the procedure continued where it was left off.
 
-Nota
+Note
 
-É crucial que você complete cada etapa antes de continuar para a próxima etapa.
+It is crucial that you complete every step before continuing to the next step.
 
-Para habilitar transações GTID:
+To enable GTID transactions:
 
-1. Em cada servidor, execute:
+1. On each server, execute:
 
    ```sql
    SET @@GLOBAL.ENFORCE_GTID_CONSISTENCY = WARN;
    ```
 
-   Deixe o servidor rodar por um tempo com a carga de trabalho normal e monitore os logs. Se essa etapa causar algum aviso no log, ajuste sua aplicação para que ela use apenas recursos compatíveis com GTID e não gere quaisquer avisos.
+   Let the server run for a while with your normal workload and monitor the logs. If this step causes any warnings in the log, adjust your application so that it only uses GTID-compatible features and does not generate any warnings.
 
-   Importante
+   Important
 
-   Este é o primeiro passo importante. Você deve garantir que nenhum aviso esteja sendo gerado nos logs de erro antes de passar para o próximo passo.
+   This is the first important step. You must ensure that no warnings are being generated in the error logs before going to the next step.
 
-2. Em cada servidor, execute:
+2. On each server, execute:
 
    ```sql
    SET @@GLOBAL.ENFORCE_GTID_CONSISTENCY = ON;
    ```
 
-3. Em cada servidor, execute:
+3. On each server, execute:
 
    ```sql
    SET @@GLOBAL.GTID_MODE = OFF_PERMISSIVE;
    ```
 
-   Não importa qual servidor execute essa declaração primeiro, mas é importante que todos os servidores completem essa etapa antes que qualquer servidor comece a próxima etapa.
+   It does not matter which server executes this statement first, but it is important that all servers complete this step before any server begins the next step.
 
-4. Em cada servidor, execute:
+4. On each server, execute:
 
    ```sql
    SET @@GLOBAL.GTID_MODE = ON_PERMISSIVE;
    ```
 
-   Não importa qual servidor execute essa declaração primeiro.
+   It does not matter which server executes this statement first.
 
-5. Em cada servidor, aguarde até que a variável de status `CONTADOR_DE_TRANSACÇÕES_ANÔNIMAS_EM_ANDAMENTO` seja zero. Isso pode ser verificado usando:
+5. On each server, wait until the status variable `ONGOING_ANONYMOUS_TRANSACTION_COUNT` is zero. This can be checked using:
 
    ```sql
    SHOW STATUS LIKE 'ONGOING_ANONYMOUS_TRANSACTION_COUNT';
    ```
 
-   Nota
+   Note
 
-   Em uma réplica, teoricamente é possível que ele mostre zero e depois novamente um número não zero. Isso não é um problema, basta que ele mostre zero uma vez.
+   On a replica, it is theoretically possible that this shows zero and then nonzero again. This is not a problem, it suffices that it shows zero once.
 
-6. Aguarde que todas as transações geradas até o passo 5 sejam replicadas em todos os servidores. Você pode fazer isso sem interromper as atualizações: o único detalhe importante é que todas as transações anônimas sejam replicadas.
+6. Wait for all transactions generated up to step 5 to replicate to all servers. You can do this without stopping updates: the only important thing is that all anonymous transactions get replicated.
 
-   Consulte Seção 16.1.4.4, “Verificação da Replicação de Transações Anônimas” para um método de verificar se todas as transações anônimas foram replicadas para todos os servidores.
+   See [Section 16.1.4.4, “Verifying Replication of Anonymous Transactions”](replication-mode-change-online-verify-transactions.html "16.1.4.4 Verifying Replication of Anonymous Transactions") for one method of checking that all anonymous transactions have replicated to all servers.
 
-7. Se você usar logs binários para qualquer outra finalidade que não seja a replicação, como, por exemplo, backup e restauração em um ponto específico, espere até que não precise mais dos logs binários antigos com transações sem GTIDs.
+7. If you use binary logs for anything other than replication, for example point in time backup and restore, wait until you do not need the old binary logs having transactions without GTIDs.
 
-   Por exemplo, após a etapa 6 ser concluída, você pode executar `FLUSH LOGS` no servidor onde está fazendo os backups. Em seguida, você pode tomar um backup explicitamente ou esperar pela próxima iteração de qualquer rotina de backup periódica que você tenha configurado.
+   For instance, after step 6 has completed, you can execute [`FLUSH LOGS`](flush.html#flush-logs) on the server where you are taking backups. Then either explicitly take a backup or wait for the next iteration of any periodic backup routine you may have set up.
 
-   Idealmente, espere o servidor limpar todos os logs binários que existiam quando o passo 6 foi concluído. Além disso, espere que qualquer backup feito antes do passo 6 expire.
+   Ideally, wait for the server to purge all binary logs that existed when step 6 was completed. Also wait for any backup taken before step 6 to expire.
 
-   Importante
+   Important
 
-   Este é o segundo ponto importante. É vital entender que os logs binários que contêm transações anônimas, sem GTIDs, não podem ser usados após a próxima etapa. Após essa etapa, você deve ter certeza de que as transações sem GTIDs não existem em nenhuma parte da topologia.
+   This is the second important point. It is vital to understand that binary logs containing anonymous transactions, without GTIDs cannot be used after the next step. After this step, you must be sure that transactions without GTIDs do not exist anywhere in the topology.
 
-8. Em cada servidor, execute:
+8. On each server, execute:
 
    ```sql
    SET @@GLOBAL.GTID_MODE = ON;
    ```
 
-9. Em cada servidor, adicione `gtid_mode=ON` e `enforce_gtid_consistency=ON` ao `my.cnf`.
+9. On each server, add `gtid_mode=ON` and `enforce_gtid_consistency=ON` to `my.cnf`.
 
-   Agora você tem a garantia de que todas as transações têm um GTID (exceto as transações geradas no passo 5 ou antes, que já foram processadas). Para começar a usar o protocolo GTID, para que você possa realizar o fail-over automático mais tarde, execute o seguinte em cada replica. Opcionalmente, se você usar a replicação de múltiplas fontes, faça isso para cada canal e inclua a cláusula `FOR CHANNEL channel`:
+   You are now guaranteed that all transactions have a GTID (except transactions generated in step 5 or earlier, which have already been processed). To start using the GTID protocol so that you can later perform automatic fail-over, execute the following on each replica. Optionally, if you use multi-source replication, do this for each channel and include the `FOR CHANNEL channel` clause:
 
    ```sql
    STOP SLAVE [FOR CHANNEL 'channel'];

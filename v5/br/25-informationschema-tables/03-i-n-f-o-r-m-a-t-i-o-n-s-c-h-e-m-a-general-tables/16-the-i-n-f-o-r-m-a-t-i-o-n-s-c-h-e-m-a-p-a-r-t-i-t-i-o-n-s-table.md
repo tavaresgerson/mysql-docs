@@ -1,50 +1,50 @@
-### 24.3.16 A tabela INFORMATION_SCHEMA PARTITIONS
+### 24.3.16 The INFORMATION_SCHEMA PARTITIONS Table
 
-A tabela `PARTITIONS` fornece informações sobre as partições de tabela. Cada linha desta tabela corresponde a uma partição ou subpartição individual de uma tabela particionada. Para obter mais informações sobre a partição de tabelas, consulte Capítulo 22, *Partição*.
+The [`PARTITIONS`](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table") table provides information about table partitions. Each row in this table corresponds to an individual partition or subpartition of a partitioned table. For more information about partitioning tables, see [Chapter 22, *Partitioning*](partitioning.html "Chapter 22 Partitioning").
 
-A tabela `PARTITIONS` tem as seguintes colunas:
+The [`PARTITIONS`](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table") table has these columns:
 
-- `TABLE_CATALOG`
+* `TABLE_CATALOG`
 
-  O nome do catálogo ao qual a tabela pertence. Esse valor é sempre `def`.
+  The name of the catalog to which the table belongs. This value is always `def`.
 
-- `TABLE_SCHEMA`
+* `TABLE_SCHEMA`
 
-  O nome do esquema (banco de dados) ao qual a tabela pertence.
+  The name of the schema (database) to which the table belongs.
 
-- `NOME_TABELA`
+* `TABLE_NAME`
 
-  O nome da tabela que contém a partição.
+  The name of the table containing the partition.
 
-- `PARTITION_NAME`
+* `PARTITION_NAME`
 
-  O nome da partição.
+  The name of the partition.
 
-- `SUBPARTITION_NAME`
+* `SUBPARTITION_NAME`
 
-  Se a linha da tabela `PARTITIONS` representar uma subpartição, o nome da subpartição; caso contrário, `NULL`.
+  If the [`PARTITIONS`](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table") table row represents a subpartition, the name of subpartition; otherwise `NULL`.
 
-- `POSIÇÃO_ORDINAL_DA_PARTIÇÃO`
+* `PARTITION_ORDINAL_POSITION`
 
-  Todas as partições são indexadas na mesma ordem em que são definidas, com o número `1` sendo o atribuído à primeira partição. O índice pode mudar à medida que partições são adicionadas, removidas e reorganizadas; o número exibido reflete a ordem atual, levando em conta quaisquer alterações no índice.
+  All partitions are indexed in the same order as they are defined, with `1` being the number assigned to the first partition. The indexing can change as partitions are added, dropped, and reorganized; the number shown is this column reflects the current order, taking into account any indexing changes.
 
-- `SUBPARTITION_ORDINAL_POSITION`
+* `SUBPARTITION_ORDINAL_POSITION`
 
-  As subpartições dentro de uma partição específica também são indexadas e reindexadas da mesma maneira que as partições são indexadas dentro de uma tabela.
+  Subpartitions within a given partition are also indexed and reindexed in the same manner as partitions are indexed within a table.
 
-- `PARTITION_METHOD`
+* `PARTITION_METHOD`
 
-  Um dos valores `RANGE`, `LIST`, `HASH`, `HASH LINEAR`, `KEY` ou `KEY LINEAR`; ou seja, um dos tipos de particionamento disponíveis, conforme discutido em Seção 22.2, “Tipos de particionamento”.
+  One of the values `RANGE`, `LIST`, `HASH`, `LINEAR HASH`, `KEY`, or `LINEAR KEY`; that is, one of the available partitioning types as discussed in [Section 22.2, “Partitioning Types”](partitioning-types.html "22.2 Partitioning Types").
 
-- `SUBPARTITION_METHOD`
+* `SUBPARTITION_METHOD`
 
-  Um dos valores `HASH`, `HASH LINEAR`, `CHAVE` ou `CHAVE LINEAR`; ou seja, um dos tipos de subpartição disponíveis, conforme discutido em Seção 22.2.6, “Subpartição”.
+  One of the values `HASH`, `LINEAR HASH`, `KEY`, or `LINEAR KEY`; that is, one of the available subpartitioning types as discussed in [Section 22.2.6, “Subpartitioning”](partitioning-subpartitions.html "22.2.6 Subpartitioning").
 
-- `PARTITION_EXPRESSION`
+* `PARTITION_EXPRESSION`
 
-  A expressão para a função de partição usada na instrução `CREATE TABLE` ou `ALTER TABLE` que criou o esquema de partição atual da tabela.
+  The expression for the partitioning function used in the [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") or [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statement that created the table's current partitioning scheme.
 
-  Por exemplo, considere uma tabela particionada criada no banco de dados `test` usando esta declaração:
+  For example, consider a partitioned table created in the `test` database using this statement:
 
   ```sql
   CREATE TABLE tp (
@@ -56,7 +56,7 @@ A tabela `PARTITIONS` tem as seguintes colunas:
   PARTITIONS 4;
   ```
 
-  A coluna `PARTITION_EXPRESSION` na linha de uma tabela `PARTITIONS` para uma partição desta tabela exibe `c1 + c2`, conforme mostrado aqui:
+  The `PARTITION_EXPRESSION` column in a [`PARTITIONS`](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table") table row for a partition from this table displays `c1 + c2`, as shown here:
 
   ```sql
   mysql> SELECT DISTINCT PARTITION_EXPRESSION
@@ -69,102 +69,102 @@ A tabela `PARTITIONS` tem as seguintes colunas:
   +----------------------+
   ```
 
-  Para uma tabela `[NDB]` (mysql-cluster.html) que não esteja explicitamente particionada, essa coluna está vazia. Para tabelas que utilizam outros mecanismos de armazenamento e que não estejam particionadas, essa coluna é `NULL`.
+  For an [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table that is not explicitly partitioned, this column is empty. For tables using other storage engines and which are not partitioned, this column is `NULL`.
 
-- `SUBPARTITION_EXPRESSION`
+* `SUBPARTITION_EXPRESSION`
 
-  Isso funciona da mesma maneira para a expressão de subpartição que define a subpartição para uma tabela, assim como a expressão `PARTITION_EXPRESSION` faz com a expressão de partição usada para definir a partição de uma tabela.
+  This works in the same fashion for the subpartitioning expression that defines the subpartitioning for a table as `PARTITION_EXPRESSION` does for the partitioning expression used to define a table's partitioning.
 
-  Se a tabela não tiver subpartições, essa coluna será `NULL`.
+  If the table has no subpartitions, this column is `NULL`.
 
-- `PARTITION_DESCRIPTION`
+* `PARTITION_DESCRIPTION`
 
-  Esta coluna é usada para partições de tipo RANGE e LIST. Para uma partição de tipo `RANGE`, ela contém o conjunto de valores definido na cláusula `VALUES LESS THAN` da partição, que pode ser um inteiro ou `MAXVALUE`. Para uma partição de tipo `LIST`, esta coluna contém os valores definidos na cláusula `VALUES IN` da partição, que é uma lista de valores inteiros separados por vírgula.
+  This column is used for RANGE and LIST partitions. For a `RANGE` partition, it contains the value set in the partition's `VALUES LESS THAN` clause, which can be either an integer or `MAXVALUE`. For a `LIST` partition, this column contains the values defined in the partition's `VALUES IN` clause, which is a list of comma-separated integer values.
 
-  Para partições cuja `PARTITION_METHOD` é diferente de `RANGE` ou `LIST`, esta coluna é sempre `NULL`.
+  For partitions whose `PARTITION_METHOD` is other than `RANGE` or `LIST`, this column is always `NULL`.
 
-- `TABELA_LINHAS`
+* `TABLE_ROWS`
 
-  O número de linhas da tabela na partição.
+  The number of table rows in the partition.
 
-  Para tabelas particionadas do tipo `InnoDB`, o número de linhas fornecido na coluna `TABLE_ROWS` é apenas um valor estimado usado na otimização do SQL e pode não ser sempre exato.
+  For partitioned [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") tables, the row count given in the `TABLE_ROWS` column is only an estimated value used in SQL optimization, and may not always be exact.
 
-  Para tabelas de `NDB`, você também pode obter essas informações usando o utilitário **ndb_desc**.
+  For [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables, you can also obtain this information using the [**ndb_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables") utility.
 
-- `AVG_ROW_LENGTH`
+* `AVG_ROW_LENGTH`
 
-  O comprimento médio das linhas armazenadas nesta partição ou subpartição, em bytes. Isso é o mesmo que `DATA_LENGTH` dividido por `TABLE_ROWS`.
+  The average length of the rows stored in this partition or subpartition, in bytes. This is the same as `DATA_LENGTH` divided by `TABLE_ROWS`.
 
-  Para tabelas de `NDB`, você também pode obter essas informações usando o utilitário **ndb_desc**.
+  For [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables, you can also obtain this information using the [**ndb_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables") utility.
 
-- `DATA_LENGTH`
+* `DATA_LENGTH`
 
-  O comprimento total de todas as linhas armazenadas nesta partição ou subpartição, em bytes; ou seja, o número total de bytes armazenados na partição ou subpartição.
+  The total length of all rows stored in this partition or subpartition, in bytes; that is, the total number of bytes stored in the partition or subpartition.
 
-  Para tabelas de `NDB`, você também pode obter essas informações usando o utilitário **ndb_desc**.
+  For [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables, you can also obtain this information using the [**ndb_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables") utility.
 
-- `MAX_DATA_LENGTH`
+* `MAX_DATA_LENGTH`
 
-  O número máximo de bytes que podem ser armazenados nesta partição ou subpartição.
+  The maximum number of bytes that can be stored in this partition or subpartition.
 
-  Para tabelas de `NDB`, você também pode obter essas informações usando o utilitário **ndb_desc**.
+  For [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables, you can also obtain this information using the [**ndb_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables") utility.
 
-- `INDEX_LENGTH`
+* `INDEX_LENGTH`
 
-  O comprimento do arquivo de índice para esta partição ou subpartição, em bytes.
+  The length of the index file for this partition or subpartition, in bytes.
 
-  Para partições de tabelas de `NDB`, independentemente de as tabelas usarem partição implícita ou explícita, o valor da coluna `INDEX_LENGTH` é sempre 0. No entanto, você pode obter informações equivalentes usando o utilitário **ndb_desc**.
+  For partitions of [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables, whether the tables use implicit or explicit partitioning, the `INDEX_LENGTH` column value is always 0. However, you can obtain equivalent information using the [**ndb_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables") utility.
 
-- `DATA_FREE`
+* `DATA_FREE`
 
-  O número de bytes alocados para a partição ou subpartição, mas não utilizados.
+  The number of bytes allocated to the partition or subpartition but not used.
 
-  Para tabelas de `NDB`, você também pode obter essas informações usando o utilitário **ndb_desc**.
+  For [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables, you can also obtain this information using the [**ndb_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables") utility.
 
-- `CREATE_TIME`
+* `CREATE_TIME`
 
-  O momento em que a partição ou subpartição foi criada.
+  The time that the partition or subpartition was created.
 
-- `UPDATE_TIME`
+* `UPDATE_TIME`
 
-  O horário em que a partição ou subpartição foi modificada pela última vez.
+  The time that the partition or subpartition was last modified.
 
-- `CHECK_TIME`
+* `CHECK_TIME`
 
-  A última vez que a tabela a qual esta partição ou subpartição pertence foi verificada.
+  The last time that the table to which this partition or subpartition belongs was checked.
 
-  Para tabelas particionadas de `InnoDB`, o valor é sempre `NULL`.
+  For partitioned [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") tables, the value is always `NULL`.
 
-- `CHECKSUM`
+* `CHECKSUM`
 
-  O valor do checksum, se houver; caso contrário, `NULL`.
+  The checksum value, if any; otherwise `NULL`.
 
-- `PARTITION_COMMENT`
+* `PARTITION_COMMENT`
 
-  O texto do comentário, se a partição tiver um. Se não, este valor está vazio.
+  The text of the comment, if the partition has one. If not, this value is empty.
 
-  O comprimento máximo de um comentário de partição é definido como 1024 caracteres, e a largura de exibição da coluna `PARTITION_COMMENT` também é de 1024 caracteres, para corresponder a esse limite.
+  The maximum length for a partition comment is defined as 1024 characters, and the display width of the `PARTITION_COMMENT` column is also 1024, characters to match this limit.
 
-- `NODEGROUP`
+* `NODEGROUP`
 
-  Este é o grupo de nós ao qual a partição pertence. Para as tabelas do NDB Cluster, este é sempre `default`. Para tabelas particionadas usando motores de armazenamento diferentes de `NDB`, o valor também é `default`. Caso contrário, esta coluna está vazia.
+  This is the nodegroup to which the partition belongs. For NDB Cluster tables, this is always `default`. For partitioned tables using storage engines other than [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6"), the value is also `default`. Otherwise, this column is empty.
 
-- `TABLESPACE_NAME`
+* `TABLESPACE_NAME`
 
-  O nome do espaço de tabelas ao qual a partição pertence. O valor é sempre `DEFAULT`, a menos que a tabela utilize o mecanismo de armazenamento `NDB` (consulte as *Notas* no final desta seção).
+  The name of the tablespace to which the partition belongs. The value is always `DEFAULT`, unless the table uses the `NDB` storage engine (see the *Notes* at the end of this section).
 
-#### Notas
+#### Notes
 
-- `PARTITIONS` é uma tabela `INFORMATION_SCHEMA` não padrão.
+* [`PARTITIONS`](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table") is a nonstandard `INFORMATION_SCHEMA` table.
 
-- Uma tabela que utiliza outro mecanismo de armazenamento, diferente de `NDB` e que não está particionada, tem uma única linha na tabela `PARTITIONS`. No entanto, os valores das colunas `PARTITION_NAME`, `SUBPARTITION_NAME`, `PARTITION_ORDINAL_POSITION`, `SUBPARTITION_ORDINAL_POSITION`, `PARTITION_METHOD`, `SUBPARTITION_METHOD`, `PARTITION_EXPRESSION`, `SUBPARTITION_EXPRESSION` e `PARTITION_DESCRIPTION` são todos `NULL`. Além disso, a coluna `PARTITION_COMMENT` neste caso está em branco.
+* A table using any storage engine other than [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") and which is not partitioned has one row in the [`PARTITIONS`](information-schema-partitions-table.html "24.3.16 The INFORMATION_SCHEMA PARTITIONS Table") table. However, the values of the `PARTITION_NAME`, `SUBPARTITION_NAME`, `PARTITION_ORDINAL_POSITION`, `SUBPARTITION_ORDINAL_POSITION`, `PARTITION_METHOD`, `SUBPARTITION_METHOD`, `PARTITION_EXPRESSION`, `SUBPARTITION_EXPRESSION`, and `PARTITION_DESCRIPTION` columns are all `NULL`. Also, the `PARTITION_COMMENT` column in this case is blank.
 
-- Uma tabela `NDB` que não está explicitamente particionada tem uma linha na tabela `PARTITIONS` para cada nó de dados no cluster NDB. Para cada linha dessa natureza:
+* An `NDB` table which is not explicitly partitioned has one row in the `PARTITIONS` table for each data node in the NDB cluster. For each such row:
 
-  - As colunas `SUBPARTITION_NAME`, `SUBPARTITION_ORDINAL_POSITION`, `SUBPARTITION_METHOD`, `SUBPARTITION_EXPRESSION`, `CREATE_TIME`, `UPDATE_TIME`, `CHECK_TIME`, `CHECKSUM` e `TABLESPACE_NAME` estão todas `NULL`.
+  + The `SUBPARTITION_NAME`, `SUBPARTITION_ORDINAL_POSITION`, `SUBPARTITION_METHOD`, `SUBPARTITION_EXPRESSION`, `CREATE_TIME`, `UPDATE_TIME`, `CHECK_TIME`, `CHECKSUM`, and `TABLESPACE_NAME` columns are all `NULL`.
 
-  - O `PARTITION_METHOD` é sempre `KEY`.
+  + The `PARTITION_METHOD` is always `KEY`.
 
-  - A coluna `NODEGROUP` é `default`.
+  + The `NODEGROUP` column is `default`.
 
-  - As colunas `PARTITION_EXPRESSION` e `PARTITION_COMMENT` estão vazias.
+  + The `PARTITION_EXPRESSION` and `PARTITION_COMMENT` columns are empty.

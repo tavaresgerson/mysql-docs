@@ -1,4 +1,4 @@
-#### 13.6.7.4 Declaração RESIGNAL
+#### 13.6.7.4 RESIGNAL Statement
 
 ```sql
 RESIGNAL [condition_value]
@@ -32,67 +32,67 @@ condition_name, simple_value_specification:
     (see following discussion)
 ```
 
-`RESIGNAL` transmite as informações sobre a condição de erro que estão disponíveis durante a execução de um manipulador de condição dentro de uma instrução composta dentro de um procedimento ou função armazenada, um gatilho ou um evento. `RESIGNAL` pode alterar algumas ou todas as informações antes de transmiti-las. `RESIGNAL` está relacionado a `SIGNAL`, mas, em vez de originar uma condição como o faz o `SIGNAL`, o `RESIGNAL` retransmite as informações existentes sobre a condição, possivelmente após modificá-las.
+[`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement") passes on the error condition information that is available during execution of a condition handler within a compound statement inside a stored procedure or function, trigger, or event. [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement") may change some or all information before passing it on. [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement") is related to [`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement"), but instead of originating a condition as [`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement") does, [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement") relays existing condition information, possibly after modifying it.
 
-`RESIGNAL` permite tanto lidar com um erro quanto retornar as informações do erro. Caso contrário, ao executar uma instrução SQL dentro do manipulador, as informações que causaram a ativação do manipulador são destruídas. O `RESIGNAL` também pode tornar alguns procedimentos mais curtos se um manipulador específico puder lidar com parte de uma situação, passando então a condição para outro manipulador.
+[`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement") makes it possible to both handle an error and return the error information. Otherwise, by executing an SQL statement within the handler, information that caused the handler's activation is destroyed. [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement") also can make some procedures shorter if a given handler can handle part of a situation, then pass the condition “up the line” to another handler.
 
-Não são necessários privilégios para executar a declaração `RESIGNAL`.
+No privileges are required to execute the [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement") statement.
 
-Todas as formas de `RESIGNAL` exigem que o contexto atual seja um manipulador de condição. Caso contrário, `RESIGNAL` é ilegal e ocorre um erro `RESIGNAL when handler not active` (RESIGNAL quando o manipulador não está ativo).
+All forms of [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement") require that the current context be a condition handler. Otherwise, [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement") is illegal and a `RESIGNAL when handler not active` error occurs.
 
-Para recuperar informações da área de diagnóstico, use a instrução `GET DIAGNOSTICS` (consulte Seção 13.6.7.3, “Instrução GET DIAGNOSTICS”). Para informações sobre a área de diagnóstico, consulte Seção 13.6.7.7, “A Área de Diagnóstico do MySQL”.
+To retrieve information from the diagnostics area, use the [`GET DIAGNOSTICS`](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement") statement (see [Section 13.6.7.3, “GET DIAGNOSTICS Statement”](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement")). For information about the diagnostics area, see [Section 13.6.7.7, “The MySQL Diagnostics Area”](diagnostics-area.html "13.6.7.7 The MySQL Diagnostics Area").
 
-- Visão geral do RESIGNAL
-- RESIGNAL Apenas
-- Reenviar com Novas Informações de Sinal
-- Reenviar com um Valor de Condição e Informações Opcionais sobre Novo Sinal
-- RESIGNAL Requer o contexto do manipulador de condições
+* [RESIGNAL Overview](resignal.html#resignal-overview "RESIGNAL Overview")
+* [RESIGNAL Alone](resignal.html#resignal-alone "RESIGNAL Alone")
+* [RESIGNAL with New Signal Information](resignal.html#resignal-with-new-signal "RESIGNAL with New Signal Information")
+* [RESIGNAL with a Condition Value and Optional New Signal Information](resignal.html#resignal-with-condition "RESIGNAL with a Condition Value and Optional New Signal Information")
+* [RESIGNAL Requires Condition Handler Context](resignal.html#resignal-handler "RESIGNAL Requires Condition Handler Context")
 
-##### RESIGNAL Visão geral
+##### RESIGNAL Overview
 
-Para `condition_value` e `signal_information_item`, as definições e regras são as mesmas para `RESIGNAL` (resignal.html) e `SIGNAL` (signal.html). Por exemplo, o `condition_value` pode ser um valor `SQLSTATE`, e o valor pode indicar erros, avisos ou "não encontrado". Para obter informações adicionais, consulte a Seção 13.6.7.5, "Instrução SIGNAL".
+For *`condition_value`* and *`signal_information_item`*, the definitions and rules are the same for [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement") as for [`SIGNAL`](signal.html "13.6.7.5 SIGNAL Statement"). For example, the *`condition_value`* can be an `SQLSTATE` value, and the value can indicate errors, warnings, or “not found.” For additional information, see [Section 13.6.7.5, “SIGNAL Statement”](signal.html "13.6.7.5 SIGNAL Statement").
 
-A declaração `RESIGNAL` aceita cláusulas *`condition_value`* e `SET`, ambas opcionais. Isso leva a vários usos possíveis:
+The [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement") statement takes *`condition_value`* and `SET` clauses, both of which are optional. This leads to several possible uses:
 
-- Apenas `RESIGNAL`:
+* [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement") alone:
 
   ```sql
   RESIGNAL;
   ```
 
-- `RESIGNAL` com novas informações sobre o sinal:
+* [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement") with new signal information:
 
   ```sql
   RESIGNAL SET signal_information_item [, signal_information_item] ...;
   ```
 
-- `RESIGNAL` com um valor de condição e, possivelmente, novas informações sobre o sinal:
+* [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement") with a condition value and possibly new signal information:
 
   ```sql
   RESIGNAL condition_value
       [SET signal_information_item [, signal_information_item] ...];
   ```
 
-Todos esses casos de uso causam alterações nas áreas de diagnóstico e condição:
+These use cases all cause changes to the diagnostics and condition areas:
 
-- Uma área de diagnóstico contém uma ou mais áreas de condição.
-- Uma área de condição contém itens de informações de condição, como o valor `SQLSTATE`, `MYSQL_ERRNO` ou `MESSAGE_TEXT`.
+* A diagnostics area contains one or more condition areas.
+* A condition area contains condition information items, such as the `SQLSTATE` value, `MYSQL_ERRNO`, or `MESSAGE_TEXT`.
 
-Há uma pilha de áreas de diagnóstico. Quando um manipulador assume o controle, ele empurra uma área de diagnóstico para o topo da pilha, então há duas áreas de diagnóstico durante a execução do manipulador:
+There is a stack of diagnostics areas. When a handler takes control, it pushes a diagnostics area to the top of the stack, so there are two diagnostics areas during handler execution:
 
-- A primeira (atual) área de diagnóstico, que começa como uma cópia da última área de diagnóstico, mas é sobrescrita pela primeira instrução no manipulador que altera a área de diagnóstico atual.
+* The first (current) diagnostics area, which starts as a copy of the last diagnostics area, but is overwritten by the first statement in the handler that changes the current diagnostics area.
 
-- A última área de diagnóstico (em pilha), que contém as áreas de condição configuradas antes de o manipulador assumir o controle.
+* The last (stacked) diagnostics area, which has the condition areas that were set up before the handler took control.
 
-O número máximo de áreas de condição em uma área de diagnóstico é determinado pelo valor da variável de sistema `max_error_count`. Veja Variáveis de sistema relacionadas à área de diagnóstico.
+The maximum number of condition areas in a diagnostics area is determined by the value of the [`max_error_count`](server-system-variables.html#sysvar_max_error_count) system variable. See [Diagnostics Area-Related System Variables](diagnostics-area.html#diagnostics-area-system-variables "Diagnostics Area-Related System Variables").
 
-##### RESIGNAL Sozinho
+##### RESIGNAL Alone
 
-Um simples `RESIGNAL` significa apenas “passar o erro sem alterações”. Ele restaura a última área de diagnóstico e a torna a área de diagnóstico atual. Ou seja, ele “desloca” a pilha de áreas de diagnóstico.
+A simple [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement") alone means “pass on the error with no change.” It restores the last diagnostics area and makes it the current diagnostics area. That is, it “pops” the diagnostics area stack.
 
-Dentro de um manipulador de condições que captura uma condição, um uso único para `RESIGNAL` por si só é realizar algumas outras ações e, em seguida, passar sem alterações as informações originais da condição (as informações que existiam antes da entrada no manipulador).
+Within a condition handler that catches a condition, one use for [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement") alone is to perform some other actions, and then pass on without change the original condition information (the information that existed before entry into the handler).
 
-Exemplo:
+Example:
 
 ```sql
 DROP TABLE IF EXISTS xx;
@@ -112,55 +112,55 @@ SET @a = 0;
 CALL p();
 ```
 
-Suponha que a instrução `DROP TABLE xx` falhe. A pilha de área de diagnóstico parece assim:
+Suppose that the `DROP TABLE xx` statement fails. The diagnostics area stack looks like this:
 
 ```sql
 DA 1. ERROR 1051 (42S02): Unknown table 'xx'
 ```
 
-Em seguida, a execução entra no manipulador `EXIT`. Ela começa impondo uma área de diagnóstico no topo da pilha, que agora parece assim:
+Then execution enters the `EXIT` handler. It starts by pushing a diagnostics area to the top of the stack, which now looks like this:
 
 ```sql
 DA 1. ERROR 1051 (42S02): Unknown table 'xx'
 DA 2. ERROR 1051 (42S02): Unknown table 'xx'
 ```
 
-Neste ponto, o conteúdo das primeiras (atual) e segundas (em pilha) áreas de diagnóstico são os mesmos. A primeira área de diagnóstico pode ser modificada por instruções que sejam executadas posteriormente dentro do manipulador.
+At this point, the contents of the first (current) and second (stacked) diagnostics areas are the same. The first diagnostics area may be modified by statements executing subsequently within the handler.
 
-Normalmente, uma declaração de procedimento limpa a primeira área de diagnóstico. `BEGIN` é uma exceção, não limpa, não faz nada. `SET` não é uma exceção, limpa, executa a operação e produz um resultado de “sucesso”. A pilha da área de diagnóstico agora parece assim:
+Usually a procedure statement clears the first diagnostics area. `BEGIN` is an exception, it does not clear, it does nothing. `SET` is not an exception, it clears, performs the operation, and produces a result of “success.” The diagnostics area stack now looks like this:
 
 ```sql
 DA 1. ERROR 0000 (00000): Successful operation
 DA 2. ERROR 1051 (42S02): Unknown table 'xx'
 ```
 
-Neste ponto, se `@a = 0`, o `RESIGNAL` exibe a pilha da área de diagnóstico, que agora parece assim:
+At this point, if `@a = 0`, [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement") pops the diagnostics area stack, which now looks like this:
 
 ```sql
 DA 1. ERROR 1051 (42S02): Unknown table 'xx'
 ```
 
-E é isso que o chamador vê.
+And that is what the caller sees.
 
-Se `@a` não for 0, o manipulador simplesmente termina, o que significa que não há mais necessidade da área de diagnóstico atual (já foi "manipulada"), então ela pode ser descartada, fazendo com que a pilha de áreas de diagnóstico volte a ser a área de diagnóstico atual. A pilha de áreas de diagnóstico fica assim:
+If `@a` is not 0, the handler simply ends, which means that there is no more use for the current diagnostics area (it has been “handled”), so it can be thrown away, causing the stacked diagnostics area to become the current diagnostics area again. The diagnostics area stack looks like this:
 
 ```sql
 DA 1. ERROR 0000 (00000): Successful operation
 ```
 
-Os detalhes fazem parecer complexo, mas o resultado final é bastante útil: os manipuladores podem ser executados sem destruir informações sobre a condição que causou a ativação do manipulador.
+The details make it look complex, but the end result is quite useful: Handlers can execute without destroying information about the condition that caused activation of the handler.
 
-##### RESIGNAL com novas informações de sinal
+##### RESIGNAL with New Signal Information
 
-`RESIGNAL` com uma cláusula `SET` fornece novas informações sobre o sinal, então a declaração significa “transmitir o erro com alterações”:
+[`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement") with a `SET` clause provides new signal information, so the statement means “pass on the error with changes”:
 
 ```sql
 RESIGNAL SET signal_information_item [, signal_information_item] ...;
 ```
 
-Assim como com `RESIGNAL` sozinho, a ideia é empurrar a pilha de área de diagnóstico para que a informação original saia. Ao contrário de `RESIGNAL` sozinho, qualquer coisa especificada na cláusula `SET` muda.
+As with [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement") alone, the idea is to pop the diagnostics area stack so that the original information goes out. Unlike [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement") alone, anything specified in the `SET` clause changes.
 
-Exemplo:
+Example:
 
 ```sql
 DROP TABLE IF EXISTS xx;
@@ -180,34 +180,34 @@ SET @a = 0;
 CALL p();
 ```
 
-Lembre-se da discussão anterior de que `RESIGNAL` sozinho resulta em uma pilha de área de diagnóstico como esta:
+Remember from the previous discussion that [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement") alone results in a diagnostics area stack like this:
 
 ```sql
 DA 1. ERROR 1051 (42S02): Unknown table 'xx'
 ```
 
-A instrução `RESIGNAL SET MYSQL_ERRNO = 5` resulta na pilha a seguir, que é o que o chamador vê:
+The `RESIGNAL SET MYSQL_ERRNO = 5` statement results in this stack instead, which is what the caller sees:
 
 ```sql
 DA 1. ERROR 5 (42S02): Unknown table 'xx'
 ```
 
-Em outras palavras, ele altera o número de erro, e nada mais.
+In other words, it changes the error number, and nothing else.
 
-A declaração `RESIGNAL` pode alterar qualquer um ou todos os itens de informações de sinal, fazendo com que a primeira área de condição da área de diagnóstico pareça bastante diferente.
+The [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement") statement can change any or all of the signal information items, making the first condition area of the diagnostics area look quite different.
 
-##### RESIGNAL com um valor de condição e informações de sinal novas opcionais
+##### RESIGNAL with a Condition Value and Optional New Signal Information
 
-`RESIGNAL` com um valor de condição significa "empurrar uma condição para a área de diagnóstico atual". Se a cláusula `SET` estiver presente, ela também altera as informações de erro.
+[`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement") with a condition value means “push a condition into the current diagnostics area.” If the `SET` clause is present, it also changes the error information.
 
 ```sql
 RESIGNAL condition_value
     [SET signal_information_item [, signal_information_item] ...];
 ```
 
-Essa forma de `RESIGNAL` restaura a última área de diagnóstico e a torna a área de diagnóstico atual. Ou seja, ela "põe em destaque" a pilha de áreas de diagnóstico, o que é o mesmo que fazer um simples `RESIGNAL` sozinho. No entanto, ela também altera a área de diagnóstico dependendo do valor da condição ou das informações do sinal.
+This form of [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement") restores the last diagnostics area and makes it the current diagnostics area. That is, it “pops” the diagnostics area stack, which is the same as what a simple [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement") alone would do. However, it also changes the diagnostics area depending on the condition value or signal information.
 
-Exemplo:
+Example:
 
 ```sql
 DROP TABLE IF EXISTS xx;
@@ -229,16 +229,16 @@ CALL p();
 SHOW ERRORS;
 ```
 
-Isso é semelhante ao exemplo anterior, e os efeitos são os mesmos, exceto que, se `RESIGNAL` ocorrer, a área da condição atual parecerá diferente no final. (A razão pela qual a condição adiciona em vez de substituir a condição existente é o uso de um valor de condição.)
+This is similar to the previous example, and the effects are the same, except that if [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement") happens, the current condition area looks different at the end. (The reason the condition adds to rather than replaces the existing condition is the use of a condition value.)
 
-A declaração `RESIGNAL` inclui um valor de condição (`SQLSTATE '45000'`), então ela adiciona uma nova área de condição, resultando em uma pilha de áreas de diagnóstico que parece assim:
+The [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement") statement includes a condition value (`SQLSTATE '45000'`), so it adds a new condition area, resulting in a diagnostics area stack that looks like this:
 
 ```sql
 DA 1. (condition 2) ERROR 1051 (42S02): Unknown table 'xx'
       (condition 1) ERROR 5 (45000) Unknown table 'xx'
 ```
 
-O resultado de `CALL p()` e `SHOW ERRORS` para este exemplo é:
+The result of [`CALL p()`](call.html "13.2.1 CALL Statement") and [`SHOW ERRORS`](show-errors.html "13.7.5.17 SHOW ERRORS Statement") for this example is:
 
 ```sql
 mysql> CALL p();
@@ -252,9 +252,9 @@ mysql> SHOW ERRORS;
 +-------+------+----------------------------------+
 ```
 
-##### RESIGNAL Requer o contexto do manipulador de condições
+##### RESIGNAL Requires Condition Handler Context
 
-Todas as formas de `RESIGNAL` exigem que o contexto atual seja um manipulador de condição. Caso contrário, `RESIGNAL` é ilegal e ocorre um erro `RESIGNAL when handler not active` (RESIGNAL quando o manipulador não está ativo). Por exemplo:
+All forms of [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement") require that the current context be a condition handler. Otherwise, [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement") is illegal and a `RESIGNAL when handler not active` error occurs. For example:
 
 ```sql
 mysql> CREATE PROCEDURE p () RESIGNAL;
@@ -264,7 +264,7 @@ mysql> CALL p();
 ERROR 1645 (0K000): RESIGNAL when handler not active
 ```
 
-Aqui está um exemplo mais difícil:
+Here is a more difficult example:
 
 ```sql
 delimiter //
@@ -282,4 +282,4 @@ delimiter ;
 CALL p();
 ```
 
-`RESIGNAL` ocorre dentro da função armazenada `f()`. Embora `f()` em si seja invocado dentro do contexto do manipulador `EXIT`, a execução dentro de `f()` tem seu próprio contexto, que não é o contexto do manipulador. Assim, `RESIGNAL` dentro de `f()` resulta em um erro de "manipulador não ativo".
+[`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement") occurs within the stored function `f()`. Although `f()` itself is invoked within the context of the `EXIT` handler, execution within `f()` has its own context, which is not handler context. Thus, `RESIGNAL` within `f()` results in a “handler not active” error.

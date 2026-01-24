@@ -1,80 +1,80 @@
-### 21.6.1 Comandos no Cliente de Gerenciamento do NDB Cluster
+### 21.6.1 Commands in the NDB Cluster Management Client
 
-Além do arquivo de configuração central, um clúster também pode ser controlado por meio de uma interface de linha de comando disponível através do cliente de gerenciamento **ndb_mgm**. Esta é a principal interface administrativa de um clúster em execução.
+In addition to the central configuration file, a cluster may also be controlled through a command-line interface available through the management client [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client"). This is the primary administrative interface to a running cluster.
 
-Os comandos para os registros de eventos estão descritos na Seção 21.6.3, “Relatórios de Eventos Gerados no NDB Cluster”; os comandos para criar backups e restaurá-los estão descritos na Seção 21.6.8, “Backup Online do NDB Cluster”.
+Commands for the event logs are given in [Section 21.6.3, “Event Reports Generated in NDB Cluster”](mysql-cluster-event-reports.html "21.6.3 Event Reports Generated in NDB Cluster"); commands for creating backups and restoring from them are provided in [Section 21.6.8, “Online Backup of NDB Cluster”](mysql-cluster-backup.html "21.6.8 Online Backup of NDB Cluster").
 
-**Usando ndb_mgm com o MySQL Cluster Manager.**
+**Using ndb_mgm with MySQL Cluster Manager.**
 
-O MySQL Cluster Manager controla o início e o término dos processos e acompanha seus estados internamente, portanto, não é necessário usar o cliente de linha de comando **ndb_mgm** para essas tarefas em um NDB Cluster sob controle do MySQL Cluster Manager. Recomenda-se *não* usar o cliente de linha de comando **ndb_mgm** que vem com a distribuição do NDB Cluster para realizar operações que envolvam o início ou o término de nós. Isso inclui, mas não se limita aos comandos `START`, `STOP`, `RESTART` e `SHUTDOWN`. Para mais informações, consulte Comandos de Processo do MySQL Cluster Manager.
+MySQL Cluster Manager handles starting and stopping processes and tracks their states internally, so it is not necessary to use [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") for these tasks for an NDB Cluster that is under MySQL Cluster Manager control. it is recommended *not* to use the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") command-line client that comes with the NDB Cluster distribution to perform operations that involve starting or stopping nodes. These include but are not limited to the [`START`](mysql-cluster-mgm-client-commands.html#ndbclient-start), [`STOP`](mysql-cluster-mgm-client-commands.html#ndbclient-stop), [`RESTART`](mysql-cluster-mgm-client-commands.html#ndbclient-restart), and [`SHUTDOWN`](mysql-cluster-mgm-client-commands.html#ndbclient-shutdown) commands. For more information, see [MySQL Cluster Manager Process Commands](/doc/mysql-cluster-manager/1.4/en/mcm-process-commands.html).
 
-O cliente de gerenciamento tem os seguintes comandos básicos. Na lista a seguir, *`node_id`* denota um ID de nó de dados ou a palavra-chave `ALL`, que indica que o comando deve ser aplicado a todos os nós de dados do clúster.
+The management client has the following basic commands. In the listing that follows, *`node_id`* denotes either a data node ID or the keyword `ALL`, which indicates that the command should be applied to all of the cluster's data nodes.
 
-- `CONNECT connection-string`
+* [`CONNECT connection-string`](mysql-cluster-mgm-client-commands.html#ndbclient-connect)
 
-  Conecta-se ao servidor de gerenciamento indicado pela cadeia de conexão. Se o cliente já estiver conectado a este servidor, ele se reconecta.
+  Connects to the management server indicated by the connection string. If the client is already connected to this server, the client reconnects.
 
-- `CREATE NODEGROUP nodeid[, nodeid, ...]`
+* [`CREATE NODEGROUP nodeid[, nodeid, ...]`](mysql-cluster-mgm-client-commands.html#ndbclient-create-nodegroup)
 
-  Cria um novo grupo de nós de cluster NDB e faz com que os nós de dados se juntem a ele.
+  Creates a new NDB Cluster node group and causes data nodes to join it.
 
-  Este comando é usado após a adição de novos nós de dados online a um NDB Cluster e faz com que eles se juntem a um novo grupo de nós e, assim, comecem a participar plenamente do cluster. O comando aceita como único parâmetro uma lista de IDs de nós separados por vírgula — estes são os IDs dos nós recém-adicionados e iniciados, que devem se juntar ao novo grupo de nós. A lista não deve conter IDs duplicados; a partir do NDB 7.5.23 e do NDB 7.6.19, a presença de quaisquer duplicados faz com que o comando retorne um erro. O número de nós na lista deve ser o mesmo que o número de nós em cada grupo de nós que já faz parte do cluster (cada grupo de nós do NDB Cluster deve ter o mesmo número de nós). Em outras palavras, se o NDB Cluster consiste em 2 grupos de nós com 2 nós de dados cada, então o novo grupo de nós também deve ter 2 nós de dados.
+  This command is used after adding new data nodes online to an NDB Cluster, and causes them to join a new node group and thus to begin participating fully in the cluster. The command takes as its sole parameter a comma-separated list of node IDs—these are the IDs of the nodes just added and started, and that are to join the new node group. The list must contain no duplicate IDs; beginning with NDB 7.5.23 and NDB 7.6.19, the presence of any duplicates causes the command to return an error. The number of nodes in the list must be the same as the number of nodes in each node group that is already part of the cluster (each NDB Cluster node group must have the same number of nodes). In other words, if the NDB Cluster consists of 2 node groups having 2 data nodes each, then the new node group must also have 2 data nodes.
 
-  O ID do grupo de nós do novo grupo de nós criado por este comando é determinado automaticamente e sempre é o ID do grupo de nós não utilizado mais alto no clúster; não é possível configurá-lo manualmente.
+  The node group ID of the new node group created by this command is determined automatically, and always the next highest unused node group ID in the cluster; it is not possible to set it manually.
 
-  Para obter mais informações, consulte Seção 21.6.7, “Adicionar nós de dados do NDB Cluster Online”.
+  For more information, see [Section 21.6.7, “Adding NDB Cluster Data Nodes Online”](mysql-cluster-online-add-node.html "21.6.7 Adding NDB Cluster Data Nodes Online").
 
-- `DROP NODEGROUP nodegroup_id`
+* [`DROP NODEGROUP nodegroup_id`](mysql-cluster-mgm-client-commands.html#ndbclient-drop-nodegroup)
 
-  Descarte o grupo de nós do NDB Cluster com o ID de \*\`nodegroup_id\`\` fornecido.
+  Drops the NDB Cluster node group with the given *`nodegroup_id`*.
 
-  Esse comando pode ser usado para descartar um grupo de nós de um NDB Cluster. `DROP NODEGROUP` aceita como único argumento o ID do grupo de nós a ser descartado.
+  This command can be used to drop a node group from an NDB Cluster. `DROP NODEGROUP` takes as its sole argument the node group ID of the node group to be dropped.
 
-  O comando `DROP NODEGROUP` atua apenas para remover os nós de dados do grupo de nós afetado desse grupo de nós. Ele não para os nós de dados, os atribui a um grupo de nós diferente ou os remove da configuração do clúster. Um nó de dados que não pertence a um grupo de nós é indicado na saída do comando do cliente de gerenciamento `SHOW` (mysql-cluster-mgm-client-commands.html#ndbclient-show) com `no nodegroup` no lugar do ID do grupo de nós, da seguinte forma (indicado em negrito):
+  `DROP NODEGROUP` acts only to remove the data nodes in the effected node group from that node group. It does not stop data nodes, assign them to a different node group, or remove them from the cluster's configuration. A data node that does not belong to a node group is indicated in the output of the management client [`SHOW`](mysql-cluster-mgm-client-commands.html#ndbclient-show) command with `no nodegroup` in place of the node group ID, like this (indicated using bold text):
 
   ```sql
   id=3    @10.100.2.67  (5.7.44-ndb-7.5.36, no nodegroup)
   ```
 
-  `DROP NODEGROUP` só funciona quando todos os nós de dados do grupo de nós a serem removidos estão completamente vazios de qualquer dado de tabela e definições de tabela. Como atualmente não há nenhuma maneira de usar o **ndb_mgm** ou o cliente **mysql** para remover todos os dados de um nó de dados específico ou grupo de nós, isso significa que o comando só terá sucesso nos dois casos seguintes:
+  `DROP NODEGROUP` works only when all data nodes in the node group to be dropped are completely empty of any table data and table definitions. Since there is currently no way using [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") or the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client to remove all data from a specific data node or node group, this means that the command succeeds only in the two following cases:
 
-  1. Após emitir `CREATE NODEGROUP` no cliente **ndb_mgm**, mas antes de emitir quaisquer instruções `ALTER TABLE ... REORGANIZE PARTITION` no cliente **mysql**.
+  1. After issuing [`CREATE NODEGROUP`](mysql-cluster-mgm-client-commands.html#ndbclient-create-nodegroup) in the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") client, but before issuing any [`ALTER TABLE ... REORGANIZE PARTITION`](alter-table.html "13.1.8 ALTER TABLE Statement") statements in the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client.
 
-  2. Após descartar todas as tabelas de `NDBCLUSTER` usando `DROP TABLE`.
+  2. After dropping all [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables using [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement").
 
-     A opção `TRUNCATE TABLE` não funciona para esse propósito, pois ela remove apenas os dados da tabela; os nós de dados continuam a armazenar a definição de uma tabela de `NDBCLUSTER` até que uma declaração `DROP TABLE` seja emitida, o que faz com que os metadados da tabela sejam removidos.
+     [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") does not work for this purpose because this removes only the table data; the data nodes continue to store an [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table's definition until a [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement") statement is issued that causes the table metadata to be dropped.
 
-  Para obter mais informações sobre `DROP NODEGROUP`, consulte Seção 21.6.7, “Adicionar nós de dados do NDB Cluster Online”.
+  For more information about `DROP NODEGROUP`, see [Section 21.6.7, “Adding NDB Cluster Data Nodes Online”](mysql-cluster-online-add-node.html "21.6.7 Adding NDB Cluster Data Nodes Online").
 
-- Entrar no modo de usuário único node_id
+* [`ENTER SINGLE USER MODE node_id`](mysql-cluster-mgm-client-commands.html#ndbclient-enter-single-user-mode)
 
-  Entra no modo de usuário único, onde apenas o servidor MySQL identificado pelo ID do nó *`node_id`* é autorizado a acessar o banco de dados.
+  Enters single user mode, whereby only the MySQL server identified by the node ID *`node_id`* is permitted to access the database.
 
-- `SAIR DO MODO ÚNICO USUÁRIO`
+* [`EXIT SINGLE USER MODE`](mysql-cluster-mgm-client-commands.html#ndbclient-exit-single-user-mode)
 
-  Saída do modo de usuário único, permitindo que todos os nós SQL (ou seja, todos os processos em execução de **mysqld** acessem o banco de dados.
+  Exits single user mode, enabling all SQL nodes (that is, all running [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") processes) to access the database.
 
-  Nota
+  Note
 
-  É possível usar `EXIT SINGLE USER MODE` mesmo quando não estiver no modo de usuário único, embora o comando não tenha efeito nesse caso.
+  It is possible to use `EXIT SINGLE USER MODE` even when not in single user mode, although the command has no effect in this case.
 
-- `AJUDA`
+* [`HELP`](mysql-cluster-mgm-client-commands.html#ndbclient-help)
 
-  Exibe informações sobre todos os comandos disponíveis.
+  Displays information on all available commands.
 
-- `node_id NODELOG DEBUG {ON|OFF}`
+* [`node_id NODELOG DEBUG {ON|OFF}`](mysql-cluster-mgm-client-commands.html#ndbclient-nodelog-debug)
 
-  Habilita o registro de depuração no log do nó, como se o(s) nó(s) de dados afetado(s) tivesse(m) sido iniciado(s) com a opção `--verbose` (mysql-cluster-programs-ndbd.html#option_ndbd_verbose). `NODELOG DEBUG ON` inicia o registro de depuração; `NODELOG DEBUG OFF` desativa o registro de depuração.
+  Toggles debug logging in the node log, as though the effected data node or nodes had been started with the [`--verbose`](mysql-cluster-programs-ndbd.html#option_ndbd_verbose) option. `NODELOG DEBUG ON` starts debug logging; `NODELOG DEBUG OFF` switches debug logging off.
 
-  Esse comando foi adicionado no NDB 7.6.
+  This command was added in NDB 7.6.
 
-- `PROMPT [prompt]`
+* [`PROMPT [prompt]`](mysql-cluster-mgm-client-commands.html#ndbclient-prompt)
 
-  Altera o prompt exibido por **ndb_mgm** para a literal de string *`prompt`*.
+  Changes the prompt shown by [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") to the string literal *`prompt`*.
 
-  *`prompt`* não deve ser citado (a menos que você queira que o prompt inclua as aspas). Ao contrário do caso do cliente **mysql**, sequências de caracteres especiais e escapamentos não são reconhecidos. Se chamado sem argumento, o comando redefini o prompt para o valor padrão (`ndb_mgm>`).
+  *`prompt`* should not be quoted (unless you want the prompt to include the quotation marks). Unlike the case with the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client, special character sequences and escapes are not recognized. If called without an argument, the command resets the prompt to the default value (`ndb_mgm>`).
 
-  Alguns exemplos são mostrados aqui:
+  Some examples are shown here:
 
   ```sql
   ndb_mgm> PROMPT mgm#1:
@@ -89,25 +89,25 @@ O cliente de gerenciamento tem os seguintes comandos básicos. Na lista a seguir
   $>
   ```
 
-  Observe que os espaços em branco no início e no final da string *`prompt`* não são removidos. Os espaços em branco no final são removidos.
+  Note that leading spaces and spaces within the *`prompt`* string are not trimmed. Trailing spaces are removed.
 
-  O comando `PROMPT` foi adicionado no NDB 7.5.0.
+  The `PROMPT` command was added in NDB 7.5.0.
 
-- `QUIT`, `EXIT`
+* [`QUIT`](mysql-cluster-mgm-client-commands.html#ndbclient-quit), [`EXIT`](mysql-cluster-mgm-client-commands.html#ndbclient-quit)
 
-  Finaliza o gerenciamento do cliente.
+  Terminates the management client.
 
-  Este comando não afeta nenhum nó conectado ao cluster.
+  This command does not affect any nodes connected to the cluster.
 
-- `node_id REPORT report-type`
+* [`node_id REPORT report-type`](mysql-cluster-mgm-client-commands.html#ndbclient-report)
 
-  Exibe um relatório do tipo *`report-type`* para o nó de dados identificado por *`node_id`*, ou para todos os nós de dados usando `ALL`.
+  Displays a report of type *`report-type`* for the data node identified by *`node_id`*, or for all data nodes using `ALL`.
 
-  Atualmente, existem três valores aceitos para *`report-type`*:
+  Currently, there are three accepted values for *`report-type`*:
 
-  - `BackupStatus` fornece um relatório de status sobre um backup de cluster em andamento
+  + `BackupStatus` provides a status report on a cluster backup in progress
 
-  - `MemoryUsage` exibe quanto espaço de memória de dados e memória de índice está sendo utilizado por cada nó de dados, conforme mostrado neste exemplo:
+  + `MemoryUsage` displays how much data memory and index memory is being used by each data node as shown in this example:
 
     ```sql
     ndb_mgm> ALL REPORT MEMORY
@@ -118,35 +118,35 @@ O cliente de gerenciamento tem os seguintes comandos básicos. Na lista a seguir
     Node 2: Index usage is 0%(108 8K pages of total 12832)
     ```
 
-    Essas informações também estão disponíveis na tabela `ndbinfo.memoryusage`.
+    This information is also available from the [`ndbinfo.memoryusage`](mysql-cluster-ndbinfo-memoryusage.html "21.6.15.26 The ndbinfo memoryusage Table") table.
 
-  - O `EventLog` relata eventos dos buffers do log de eventos de um ou mais nós de dados.
+  + `EventLog` reports events from the event log buffers of one or more data nodes.
 
-  *`report-type`* é case-insensitive e "fuzzy"; para `MemoryUsage`, você pode usar `MEMORY` (como mostrado no exemplo anterior), `memory`, ou até mesmo simplesmente `MEM` (ou `mem`). Você pode abreviar `BackupStatus` de maneira semelhante.
+  *`report-type`* is case-insensitive and “fuzzy”; for `MemoryUsage`, you can use `MEMORY` (as shown in the prior example), `memory`, or even simply `MEM` (or `mem`). You can abbreviate `BackupStatus` in a similar fashion.
 
-- `node_id RESTART [-n] [-i] [-a] [-f]`
+* [`node_id RESTART [-n] [-i] [-a] [-f]`](mysql-cluster-mgm-client-commands.html#ndbclient-restart)
 
-  Reinicie o nó de dados identificado por *`node_id`* (ou todos os nós de dados).
+  Restarts the data node identified by *`node_id`* (or all data nodes).
 
-  Usar a opção `-i` com `RESTART` faz com que o nó de dados realize um reinício inicial; ou seja, o sistema de arquivos do nó é excluído e recriado. O efeito é o mesmo obtido ao interromper o processo do nó de dados e, em seguida, iniciá-lo novamente usando **ndbd** `--initial` no shell do sistema.
+  Using the `-i` option with `RESTART` causes the data node to perform an initial restart; that is, the node's file system is deleted and recreated. The effect is the same as that obtained from stopping the data node process and then starting it again using [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") [`--initial`](mysql-cluster-programs-ndbd.html#option_ndbd_initial) from the system shell.
 
-  Nota
+  Note
 
-  Os arquivos de backup e os arquivos de dados do disco não são removidos quando esta opção é usada.
+  Backup files and Disk Data files are not removed when this option is used.
 
-  Usar a opção `-n` faz com que o processo do nó de dados seja reiniciado, mas o nó de dados não é realmente colocado online até que o comando apropriado `**START** seja emitido. O efeito dessa opção é o mesmo que o obtido ao parar o nó de dados e, em seguida, iniciá-lo novamente usando **ndbd** `--nostart`(mysql-cluster-programs-ndbd.html#option_ndbd_nostart) ou **ndbd**`-n\` no shell do sistema.
+  Using the `-n` option causes the data node process to be restarted, but the data node is not actually brought online until the appropriate [`START`](mysql-cluster-mgm-client-commands.html#ndbclient-start) command is issued. The effect of this option is the same as that obtained from stopping the data node and then starting it again using [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") [`--nostart`](mysql-cluster-programs-ndbd.html#option_ndbd_nostart) or [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") `-n` from the system shell.
 
-  Usar a opção `-a` faz com que todas as transações atuais que dependem deste nó sejam abortadas. Não é realizada nenhuma verificação no GCP quando o nó se reconectar ao clúster.
+  Using the `-a` causes all current transactions relying on this node to be aborted. No GCP check is done when the node rejoins the cluster.
 
-  Normalmente, o `RESTART` falha se a remoção do nó resultar em um clúster incompleto. A opção `-f` força o nó a reiniciar sem verificar isso. Se essa opção for usada e o resultado for um clúster incompleto, todo o clúster é reiniciado.
+  Normally, `RESTART` fails if taking the node offline would result in an incomplete cluster. The `-f` option forces the node to restart without checking for this. If this option is used and the result is an incomplete cluster, the entire cluster is restarted.
 
-- `SHOW`
+* [`SHOW`](mysql-cluster-mgm-client-commands.html#ndbclient-show)
 
-  Exibe informações básicas sobre o clúster e os nós do clúster. Para todos os nós, a saída inclui o ID do nó, o tipo e a versão do software `NDB`. Se o nó estiver conectado, seu endereço IP também é exibido; caso contrário, a saída mostra `não conectado, aceitando conexão a partir de ip_address`, com `qualquer host` usado para nós que estão autorizados a se conectar a partir de qualquer endereço.
+  Displays basic information about the cluster and cluster nodes. For all nodes, the output includes the node's ID, type, and `NDB` software version. If the node is connected, its IP address is also shown; otherwise the output shows `not connected, accepting connect from ip_address`, with `any host` used for nodes that are permitted to connect from any address.
 
-  Além disso, para os nós de dados, a saída inclui `starting` (iniciando) se o nó ainda não tiver iniciado e mostra o grupo de nós do qual o nó faz parte. Se o nó de dados estiver atuando como o nó mestre, isso é indicado com um asterisco (`*`).
+  In addition, for data nodes, the output includes `starting` if the node has not yet started, and shows the node group of which the node is a member. If the data node is acting as the master node, this is indicated with an asterisk (`*`).
 
-  Considere um grupo cuja configuração inclui as informações mostradas aqui (as configurações adicionais possíveis foram omitidas para maior clareza):
+  Consider a cluster whose configuration file includes the information shown here (possible additional settings are omitted for clarity):
 
   ```sql
   [ndbd default]
@@ -185,7 +185,7 @@ O cliente de gerenciamento tem os seguintes comandos básicos. Na lista a seguir
   NodeId=101
   ```
 
-  Depois que esse grupo (incluindo um nó SQL) for iniciado, o `SHOW` exibe a seguinte saída:
+  After this cluster (including one SQL node) has been started, `SHOW` displays the following output:
 
   ```sql
   ndb_mgm> SHOW
@@ -206,54 +206,54 @@ O cliente de gerenciamento tem os seguintes comandos básicos. Na lista a seguir
   id=101 (not connected, accepting connect from any host)
   ```
 
-  A saída deste comando também indica quando o clúster está no modo de usuário único (consulte a descrição do comando `ENTER SINGLE USER MODE`, bem como a Seção 21.6.6, “Modo de Usuário Único do NDB Cluster”).
+  The output from this command also indicates when the cluster is in single user mode (see the description of the [`ENTER SINGLE USER MODE`](mysql-cluster-mgm-client-commands.html#ndbclient-enter-single-user-mode) command, as well as [Section 21.6.6, “NDB Cluster Single User Mode”](mysql-cluster-single-user-mode.html "21.6.6 NDB Cluster Single User Mode")).
 
-- `SHUTDOWN`
+* [`SHUTDOWN`](mysql-cluster-mgm-client-commands.html#ndbclient-shutdown)
 
-  Desliga todos os nós de dados do clúster e os nós de gerenciamento. Para sair do cliente de gerenciamento após isso, use `EXIT` ou `QUIT`.
+  Shuts down all cluster data nodes and management nodes. To exit the management client after this has been done, use [`EXIT`](mysql-cluster-mgm-client-commands.html#ndbclient-quit) or [`QUIT`](mysql-cluster-mgm-client-commands.html#ndbclient-quit).
 
-  Esse comando *não* desativa nenhum nó SQL ou nó de API conectado ao cluster.
+  This command does *not* shut down any SQL nodes or API nodes that are connected to the cluster.
 
-- `node_id STATUS`
+* [`node_id STATUS`](mysql-cluster-mgm-client-commands.html#ndbclient-status)
 
-  Exibe informações de status para o nó de dados identificado por *`node_id`* (ou para todos os nós de dados).
+  Displays status information for the data node identified by *`node_id`* (or for all data nodes).
 
-  Os possíveis valores de status do nó incluem `UNKNOWN`, `NO_CONTACT`, `NOT_STARTED`, `STARTING`, `STARTED`, `SHUTTING_DOWN` e `RESTARTING`.
+  Possible node status values include `UNKNOWN`, `NO_CONTACT`, `NOT_STARTED`, `STARTING`, `STARTED`, `SHUTTING_DOWN`, and `RESTARTING`.
 
-  A saída deste comando também indica quando o clúster está no modo de usuário único (status `MODO DE USUÁRIO ÚNICO`).
+  The output from this command also indicates when the cluster is in single user mode (status `SINGLE USER MODE`).
 
-- `node_id START`
+* [`node_id START`](mysql-cluster-mgm-client-commands.html#ndbclient-start)
 
-  Traz online o nó de dados identificado por *`node_id`* (ou todos os nós de dados).
+  Brings online the data node identified by *`node_id`* (or all data nodes).
 
-  O comando `ALL START` funciona apenas em todos os nós de dados e não afeta os nós de gerenciamento.
+  `ALL START` works on all data nodes only, and does not affect management nodes.
 
-  Importante
+  Important
 
-  Para usar este comando para colocar um nó de dados online, o nó de dados deve ter sido iniciado usando `--nostart` ou `-n`.
+  To use this command to bring a data node online, the data node must have been started using [`--nostart`](mysql-cluster-programs-ndbd.html#option_ndbd_nostart) or `-n`.
 
-- `node_id STOP [-a] [-f]`
+* [`node_id STOP [-a] [-f]`](mysql-cluster-mgm-client-commands.html#ndbclient-stop)
 
-  Para de funcionar o nó de dados ou de gerenciamento identificado por *`node_id`*.
+  Stops the data or management node identified by *`node_id`*.
 
-  Nota
+  Note
 
-  O comando `ALL STOP` funciona para parar apenas os nós de dados e não afeta os nós de gerenciamento.
+  `ALL STOP` works to stop all data nodes only, and does not affect management nodes.
 
-  Um nó afetado por este comando se desconecta do clúster e seu processo associado **ndbd** ou **ndb_mgmd** é encerrado.
+  A node affected by this command disconnects from the cluster, and its associated [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") or [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") process terminates.
 
-  A opção `-a` faz com que o nó seja parado imediatamente, sem esperar a conclusão de quaisquer transações pendentes.
+  The `-a` option causes the node to be stopped immediately, without waiting for the completion of any pending transactions.
 
-  Normalmente, o comando `STOP` falha se o resultado causar um grupo incompleto. A opção `-f` obriga o nó a desligar sem verificar isso. Se essa opção for usada e o resultado for um grupo incompleto, o grupo é desligado imediatamente.
+  Normally, `STOP` fails if the result would cause an incomplete cluster. The `-f` option forces the node to shut down without checking for this. If this option is used and the result is an incomplete cluster, the cluster immediately shuts down.
 
-  Aviso
+  Warning
 
-  O uso da opção `-a` também desabilita a verificação de segurança que, de outra forma, seria realizada quando o comando `STOP` é invocado, para garantir que a parada do nó não cause um clúster incompleto. Em outras palavras, você deve ter extremo cuidado ao usar a opção `-a` com o comando `STOP`, devido ao fato de que essa opção permite que o clúster seja desligado forçadamente, pois ele não tem mais uma cópia completa de todos os dados armazenados em `NDB`.
+  Use of the `-a` option also disables the safety check otherwise performed when `STOP` is invoked to insure that stopping the node does not cause an incomplete cluster. In other words, you should exercise extreme care when using the `-a` option with the `STOP` command, due to the fact that this option makes it possible for the cluster to undergo a forced shutdown because it no longer has a complete copy of all data stored in [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6").
 
-**Comandos adicionais.** Vários outros comandos disponíveis no cliente **ndb_mgm** são descritos em outros lugares, conforme mostrado na lista a seguir:
+**Additional commands.** A number of other commands available in the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") client are described elsewhere, as shown in the following list:
 
-- `START BACKUP` é usado para realizar um backup online no cliente **ndb_mgm**; o comando `ABORT BACKUP` é usado para cancelar um backup já em andamento. Para mais informações, consulte Seção 21.6.8, “Backup Online do NDB Cluster”.
+* [`START BACKUP`](mysql-cluster-backup-using-management-client.html "21.6.8.2 Using The NDB Cluster Management Client to Create a Backup") is used to perform an online backup in the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") client; the [`ABORT BACKUP`](mysql-cluster-backup-using-management-client.html#ndbclient-abort-backup "Cancelling backups") command is used to cancel a backup already in progress. For more information, see [Section 21.6.8, “Online Backup of NDB Cluster”](mysql-cluster-backup.html "21.6.8 Online Backup of NDB Cluster").
 
-- O comando `CLUSTERLOG` é usado para realizar várias funções de registro. Consulte Seção 21.6.3, “Relatórios de Eventos Gerados no NDB Cluster” para obter mais informações e exemplos. O NDB 7.6 adiciona `NODELOG DEBUG` para ativar ou desativar impressões de depuração nos logs dos nós, conforme descrito anteriormente nesta seção.
+* The [`CLUSTERLOG`](mysql-cluster-logging-management-commands.html "21.6.3.1 NDB Cluster Logging Management Commands") command is used to perform various logging functions. See [Section 21.6.3, “Event Reports Generated in NDB Cluster”](mysql-cluster-event-reports.html "21.6.3 Event Reports Generated in NDB Cluster"), for more information and examples. NDB 7.6 adds [`NODELOG DEBUG`](mysql-cluster-mgm-client-commands.html#ndbclient-nodelog-debug) to activate or deactivate debug printouts in node logs, as described previously in this section.
 
-- Para testes e trabalhos de diagnóstico, o cliente suporta o comando `DUMP`, que pode ser usado para executar comandos internos no cluster. Ele nunca deve ser usado em um ambiente de produção, a menos que o suporte do MySQL o indique. Para mais informações, consulte Comandos de DUMP do Cliente de Gerenciamento de Cluster NDB.
+* For testing and diagnostics work, the client supports a [`DUMP`](/doc/ndb-internals/en/dump-commands.html) command which can be used to execute internal commands on the cluster. It should never be used in a production setting unless directed to do so by MySQL Support. For more information, see [NDB Cluster Management Client DUMP Commands](/doc/ndb-internals/en/dump-commands.html).

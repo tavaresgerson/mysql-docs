@@ -1,53 +1,53 @@
-#### 16.4.1.32 Inconsistências na Replicação e Transações
+#### 16.4.1.32 Replication and Transaction Inconsistencies
 
-As inconsistências na sequência das transações executadas a partir do log de retransmissão podem ocorrer dependendo da configuração de replicação. Esta seção explica como evitar inconsistências e resolver quaisquer problemas que elas causam.
+Inconsistencies in the sequence of transactions that have been executed from the relay log can occur depending on your replication configuration. This section explains how to avoid inconsistencies and solve any problems they cause.
 
-Os seguintes tipos de inconsistências podem existir:
+The following types of inconsistencies can exist:
 
-- *Transações parciais*. Uma transação que atualiza tabelas não transacionais aplicou algumas, mas não todas, de suas alterações.
+* *Half-applied transactions*. A transaction which updates non-transactional tables has applied some but not all of its changes.
 
-- *Lacunas*. Uma lacuna é uma transação que não foi aplicada completamente, mesmo que uma transação posterior na sequência tenha sido aplicada. As lacunas só podem aparecer ao usar uma replica multithread. Para evitar que ocorram lacunas, configure `slave_preserve_commit_order=1`, o que requer `slave_parallel_type=CLOCK_LOGICAL`, e que `log-bin` e `log-slave-updates` também estejam habilitados. Observe que `slave_preserve_commit_order=1` não preserva a ordem de atualizações DML não transacionais, portanto, essas podem ser aplicadas antes das transações que as precedem no log de retransmissão, o que pode resultar em lacunas.
+* *Gaps*. A gap is a transaction that has not been fully applied, even though some transaction later in the sequence has been applied. Gaps can only appear when using a multithreaded replica. To avoid gaps occurring, set [`slave_preserve_commit_order=1`](replication-options-replica.html#sysvar_slave_preserve_commit_order), which requires [`slave_parallel_type=LOGICAL_CLOCK`](replication-options-replica.html#sysvar_slave_parallel_type), and that [`log-bin`](replication-options-binary-log.html#sysvar_log_bin) and [`log-slave-updates`](replication-options-binary-log.html#sysvar_log_slave_updates) are also enabled. Note that [`slave_preserve_commit_order=1`](replication-options-replica.html#sysvar_slave_preserve_commit_order) does not preserve the order of non-transactional DML updates, so these might commit before transactions that precede them in the relay log, which might result in gaps.
 
-- *Atraso na posição do log binário de origem*. Mesmo na ausência de lacunas, é possível que transações após `Exec_master_log_pos` tenham sido aplicadas. Ou seja, todas as transações até o ponto `N` foram aplicadas, e nenhuma transação após `N` foi aplicada, mas `Exec_master_log_pos` tem um valor menor que `N`. Nessa situação, `Exec_master_log_pos` é uma "marca de baixa água" das transações aplicadas e fica atrasada em relação à posição da transação mais recentemente aplicada. Isso só pode acontecer em réplicas multithread. Ativação de `slave_preserve_commit_order` não impede o atraso na posição do log binário de origem.
+* *Source binary log position lag*. Even in the absence of gaps, it is possible that transactions after `Exec_master_log_pos` have been applied. That is, all transactions up to point `N` have been applied, and no transactions after `N` have been applied, but `Exec_master_log_pos` has a value smaller than `N`. In this situation, `Exec_master_log_pos` is a “low-water mark” of the transactions applied, and lags behind the position of the most recently applied transaction. This can only happen on multithreaded replicas. Enabling [`slave_preserve_commit_order`](replication-options-replica.html#sysvar_slave_preserve_commit_order) does not prevent source binary log position lag.
 
-Os seguintes cenários são relevantes para a existência de transações parciais, lacunas e atraso na posição do log binário de origem:
+The following scenarios are relevant to the existence of half-applied transactions, gaps, and source binary log position lag:
 
-1. Enquanto os threads de replicação estiverem em execução, podem haver lacunas e transações parciais.
+1. While replication threads are running, there may be gaps and half-applied transactions.
 
-2. O **mysqld** é desligado. Tanto o desligamento limpo quanto o não limpo abortam as transações em andamento e podem deixar lacunas e transações meio aplicadas.
+2. [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") shuts down. Both clean and unclean shutdown abort ongoing transactions and may leave gaps and half-applied transactions.
 
-3. `KILL` (cancelar) os threads de replicação (o thread SQL ao usar uma replicação de único thread, o thread coordenador ao usar uma replicação de múltiplos fios). Isso interrompe as transações em andamento e pode deixar lacunas e transações meio aplicadas.
+3. [`KILL`](kill.html "13.7.6.4 KILL Statement") of replication threads (the SQL thread when using a single-threaded replica, the coordinator thread when using a multithreaded replica). This aborts ongoing transactions and may leave gaps and half-applied transactions.
 
-4. Erro nas threads do aplicador. Isso pode deixar lacunas. Se o erro estiver em uma transação mista, essa transação será aplicada parcialmente. Ao usar uma replica multithreaded, os trabalhadores que não receberam um erro completam suas filas, então pode levar tempo para parar todos os threads.
+4. Error in applier threads. This may leave gaps. If the error is in a mixed transaction, that transaction is half-applied. When using a multithreaded replica, workers which have not received an error complete their queues, so it may take time to stop all threads.
 
-5. `PARE SLAVE` ao usar uma replica multithreading. Após emitir `PARE SLAVE`, a replica aguarda por quaisquer lacunas serem preenchidas e, em seguida, atualiza `Exec_master_log_pos`. Isso garante que ela nunca deixe lacunas ou atraso na posição do log binário de origem, a menos que algum dos casos acima se aplique, ou seja, antes que `PARE SLAVE` seja concluído, ocorra um erro ou outro thread emita `KILL` ou o servidor seja reiniciado. Nesses casos, `PARE SLAVE` retorna com sucesso.
+5. [`STOP SLAVE`](stop-slave.html "13.4.2.6 STOP SLAVE Statement") when using a multithreaded replica. After issuing [`STOP SLAVE`](stop-slave.html "13.4.2.6 STOP SLAVE Statement"), the replica waits for any gaps to be filled and then updates `Exec_master_log_pos`. This ensures it never leaves gaps or source binary log position lag, unless any of the cases above applies, in other words, before [`STOP SLAVE`](stop-slave.html "13.4.2.6 STOP SLAVE Statement") completes, either an error happens, or another thread issues [`KILL`](kill.html "13.7.6.4 KILL Statement"), or the server restarts. In these cases, [`STOP SLAVE`](stop-slave.html "13.4.2.6 STOP SLAVE Statement") returns successfully.
 
-6. Se a última transação no log de retransmissão for apenas parcialmente recebida e o coordenador da replica multithread tiver começado a agendar a transação para um trabalhador, então o `STOP SLAVE` aguarda até 60 segundos para que a transação seja recebida. Após esse tempo limite, o coordenador desiste e aborta a transação. Se a transação for mista, ela pode ser deixada incompleta.
+6. If the last transaction in the relay log is only half-received and the multithreaded replica coordinator has started to schedule the transaction to a worker, then [`STOP SLAVE`](stop-slave.html "13.4.2.6 STOP SLAVE Statement") waits up to 60 seconds for the transaction to be received. After this timeout, the coordinator gives up and aborts the transaction. If the transaction is mixed, it may be left half-completed.
 
-7. `PARE SLAVE` quando a transação em andamento atualiza apenas as tabelas transacionais, nesse caso, ela é revertida e `PARE SLAVE` para de funcionar imediatamente. Se a transação em andamento for mista, `PARE SLAVE` aguarda até 60 segundos para que a transação seja concluída. Após esse tempo de espera, ela interrompe a transação, então ela pode ficar meio concluída.
+7. [`STOP SLAVE`](stop-slave.html "13.4.2.6 STOP SLAVE Statement") when the ongoing transaction updates transactional tables only, in which case it is rolled back and [`STOP SLAVE`](stop-slave.html "13.4.2.6 STOP SLAVE Statement") stops immediately. If the ongoing transaction is mixed, [`STOP SLAVE`](stop-slave.html "13.4.2.6 STOP SLAVE Statement") waits up to 60 seconds for the transaction to complete. After this timeout, it aborts the transaction, so it may be left half-completed.
 
-A variável global `rpl_stop_slave_timeout` não está relacionada ao processo de parada dos threads de replicação. Ela apenas faz o cliente que emite `STOP SLAVE` retornar ao cliente, mas os threads de replicação continuam tentando parar.
+The global variable [`rpl_stop_slave_timeout`](replication-options-replica.html#sysvar_rpl_stop_slave_timeout) is unrelated to the process of stopping the replication threads. It only makes the client that issues [`STOP SLAVE`](stop-slave.html "13.4.2.6 STOP SLAVE Statement") return to the client, but the replication threads continue to try to stop.
 
-Se um canal de replicação tiver lacunas, isso terá as seguintes consequências:
+If a replication channel has gaps, it has the following consequences:
 
-1. O banco de dados de replicação está em um estado que nunca poderia ter existido na fonte.
+1. The replica database is in a state that may never have existed on the source.
 
-2. O campo `Exec_master_log_pos` na consulta `SHOW SLAVE STATUS` é apenas um "limite mínimo". Em outras palavras, as transações que aparecem antes da posição são garantidas como concluídas, mas as transações após a posição podem ter sido concluídas ou
+2. The field `Exec_master_log_pos` in [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") is only a “low-water mark”. In other words, transactions appearing before the position are guaranteed to have committed, but transactions after the position may have committed or not.
 
-3. As declarações `CHANGE MASTER TO` para esse canal falham com um erro, a menos que os threads do aplicativo estejam em execução e a declaração `CHANGE MASTER TO` apenas defina as opções do receptor.
+3. [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") statements for that channel fail with an error, unless the applier threads are running and the [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") statement only sets receiver options.
 
-4. Se o **mysqld** for iniciado com `--relay-log-recovery` (opções de replicação-replica.html#sysvar_relay_log_recovery), não será realizada nenhuma recuperação para esse canal, e uma mensagem de aviso será impressa.
+4. If [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") is started with [`--relay-log-recovery`](replication-options-replica.html#sysvar_relay_log_recovery), no recovery is done for that channel, and a warning is printed.
 
-5. Se o **mysqldump** for usado com `--dump-slave`, ele não registra a existência de lacunas; assim, ele imprime `CHANGE MASTER TO` com `RELAY_LOG_POS` definido para a posição do "nível mínimo" em `Exec_master_log_pos`.
+5. If [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") is used with [`--dump-slave`](mysqldump.html#option_mysqldump_dump-slave), it does not record the existence of gaps; thus it prints [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") with `RELAY_LOG_POS` set to the “low-water mark” position in `Exec_master_log_pos`.
 
-   Após aplicar o dump em outro servidor e iniciar os threads de replicação, as transações que aparecem após a posição são replicadas novamente. Observe que isso é inofensivo se os GTIDs estiverem habilitados (no entanto, nesse caso, não é recomendado usar `--dump-slave`).
+   After applying the dump on another server, and starting the replication threads, transactions appearing after the position are replicated again. Note that this is harmless if GTIDs are enabled (however, in that case it is not recommended to use [`--dump-slave`](mysqldump.html#option_mysqldump_dump-slave)).
 
-Se um canal de replicação tiver atraso na posição do log binário de origem, mas sem lacunas, os casos 2 a 5 acima se aplicam, mas o caso 1
+If a replication channel has source binary log position lag but no gaps, cases 2 to 5 above apply, but case 1 does not.
 
-As informações de posição do log binário de origem são mantidas em formato binário na tabela interna `mysql.slave_worker_info`. `START SLAVE [SQL_THREAD]` sempre consulta essas informações para que elas sejam aplicadas apenas às transações corretas. Isso permanece verdadeiro mesmo se `slave_parallel_workers` tiver sido alterado para 0 antes de `START SLAVE`, e mesmo se `START SLAVE` for usado com cláusulas `UNTIL`. `START SLAVE UNTIL SQL_AFTER_MTS_GAPS` aplica apenas tantas transações quanto necessário para preencher as lacunas. Se `START SLAVE` for usado com cláusulas `UNTIL` que dizem para ele parar antes de consumir todas as lacunas, ele deixa as lacunas restantes.
+The source binary log position information is persisted in binary format in the internal table `mysql.slave_worker_info`. [`START SLAVE [SQL_THREAD]`](start-slave.html "13.4.2.5 START SLAVE Statement") always consults this information so that it applies only the correct transactions. This remains true even if [`slave_parallel_workers`](replication-options-replica.html#sysvar_slave_parallel_workers) has been changed to 0 before [`START SLAVE`](start-slave.html "13.4.2.5 START SLAVE Statement"), and even if [`START SLAVE`](start-slave.html "13.4.2.5 START SLAVE Statement") is used with `UNTIL` clauses. [`START SLAVE UNTIL SQL_AFTER_MTS_GAPS`](start-slave.html "13.4.2.5 START SLAVE Statement") only applies as many transactions as needed in order to fill in the gaps. If [`START SLAVE`](start-slave.html "13.4.2.5 START SLAVE Statement") is used with `UNTIL` clauses that tell it to stop before it has consumed all the gaps, then it leaves remaining gaps.
 
-Aviso
+Warning
 
-O comando `RESET SLAVE` remove os registros do relay e redefini o posicionamento da replicação. Portanto, ao emitir o comando `RESET SLAVE` em uma replica com lacunas, a replica perde qualquer informação sobre as lacunas, sem corrigir as lacunas.
+[`RESET SLAVE`](reset-slave.html "13.4.2.3 RESET SLAVE Statement") removes the relay logs and resets the replication position. Thus issuing [`RESET SLAVE`](reset-slave.html "13.4.2.3 RESET SLAVE Statement") on a replica with gaps means the replica loses any information about the gaps, without correcting the gaps.
 
-Quando a replicação baseada em GTID está em uso, a partir do MySQL 5.7.28, uma replica multisserializa verifica primeiro se `MASTER_AUTO_POSITION` está definido como `ON`, e se estiver, omite o passo de cálculo das transações que devem ser ignoradas ou não ignoradas. Nessa situação, os logs do retransmissor antigo não são necessários para o processo de recuperação.
+When GTID-based replication is in use, from MySQL 5.7.28 a multithreaded replica checks first whether `MASTER_AUTO_POSITION` is set to `ON`, and if it is, omits the step of calculating the transactions that should be skipped or not skipped. In that situation, the old relay logs are not required for the recovery process.

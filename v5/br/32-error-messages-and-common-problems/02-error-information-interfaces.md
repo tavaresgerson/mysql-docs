@@ -1,66 +1,66 @@
-## B.2 Interfaces de informações de erro
+## B.2 Error Information Interfaces
 
-Os erros podem ocorrer no lado do servidor ou no lado do cliente, e cada mensagem de erro inclui um código de erro, valor SQLSTATE e uma string de mensagem, conforme descrito na [Seção B.1, “Fontes e elementos da mensagem de erro”](error-message-elements.html). Para listas de erros no lado do servidor, no lado do cliente e globais (compartilhadas entre o servidor e os clientes), consulte [Referência de Mensagens de Erro do MySQL 5.7](/doc/mysql-errors/5.7/pt_BR/).
+Error messages can originate on the server side or the client side, and each error message includes an error code, SQLSTATE value, and message string, as described in [Section B.1, “Error Message Sources and Elements”](error-message-elements.html "B.1 Error Message Sources and Elements"). For lists of server-side, client-side, and global (shared between server and clients) errors, see [MySQL 5.7 Error Message Reference](/doc/mysql-errors/5.7/en/).
 
-Para verificar erros dentro dos programas, use números ou símbolos de código de erro, e não cadeias de mensagens de erro. As cadeias de mensagens de erro não mudam com frequência, mas é possível. Além disso, se o administrador do banco de dados alterar a configuração de idioma, isso afetará o idioma das cadeias de mensagens de erro; consulte [Seção 10.12, “Definindo o Idioma da Mensagem de Erro”](error-message-language.html).
+For error checking from within programs, use error code numbers or symbols, not error message strings. Message strings do not change often, but it is possible. Also, if the database administrator changes the language setting, that affects the language of message strings; see [Section 10.12, “Setting the Error Message Language”](error-message-language.html "10.12 Setting the Error Message Language").
 
-As informações de erro no MySQL estão disponíveis no log de erro do servidor, no nível SQL, dentro dos programas cliente e na linha de comando.
+Error information in MySQL is available in the server error log, at the SQL level, from within client programs, and at the command line.
 
-- [Registro de Erros](error-interfaces.html#error-interface-log)
-- [Interface de Mensagem de Erro SQL](error-interfaces.html#error-interface-sql)
-- [Interface de Mensagem de Erro do Cliente](error-interfaces.html#error-interface-client)
-- [Interface de Mensagem de Erro de Linha de Comando](error-interfaces.html#error-interface-command)
+* [Error Log](error-interfaces.html#error-interface-log "Error Log")
+* [SQL Error Message Interface](error-interfaces.html#error-interface-sql "SQL Error Message Interface")
+* [Client Error Message Interface](error-interfaces.html#error-interface-client "Client Error Message Interface")
+* [Command-Line Error Message Interface](error-interfaces.html#error-interface-command "Command-Line Error Message Interface")
 
-### Registro de erros
+### Error Log
 
-No lado do servidor, algumas mensagens são destinadas ao log de erros. Para obter informações sobre como configurar onde e como o servidor escreve o log, consulte [Seção 5.4.2, “O Log de Erros”](error-log.html).
+On the server side, some messages are intended for the error log. For information about configuring where and how the server writes the log, see [Section 5.4.2, “The Error Log”](error-log.html "5.4.2 The Error Log").
 
-Outras mensagens de erro do servidor são destinadas a serem enviadas para os programas do cliente e estão disponíveis conforme descrito em [Interface de Mensagem de Erro do Cliente](error-interfaces.html#error-interface-client).
+Other server error messages are intended to be sent to client programs and are available as described in [Client Error Message Interface](error-interfaces.html#error-interface-client "Client Error Message Interface").
 
-### Interface de Mensagem de Erro SQL
+### SQL Error Message Interface
 
-No nível SQL, existem várias fontes de informações de erro no MySQL:
+At the SQL level, there are several sources of error information in MySQL:
 
-- As informações de avisos e erros de instruções SQL estão disponíveis através das instruções [`SHOW WARNINGS`](show-warnings.html) e [`SHOW ERRORS`](show-errors.html). A variável de sistema [`warning_count`](server-system-variables.html#sysvar_warning_count) indica o número de erros, avisos e notas (excluindo as notas se a variável de sistema [`sql_notes`](server-system-variables.html#sysvar_sql_notes) estiver desativada). A variável de sistema [`error_count`](server-system-variables.html#sysvar_error_count) indica o número de erros. Seu valor exclui avisos e notas.
+* SQL statement warning and error information is available through the [`SHOW WARNINGS`](show-warnings.html "13.7.5.40 SHOW WARNINGS Statement") and [`SHOW ERRORS`](show-errors.html "13.7.5.17 SHOW ERRORS Statement") statements. The [`warning_count`](server-system-variables.html#sysvar_warning_count) system variable indicates the number of errors, warnings, and notes (with notes excluded if the [`sql_notes`](server-system-variables.html#sysvar_sql_notes) system variable is disabled). The [`error_count`](server-system-variables.html#sysvar_error_count) system variable indicates the number of errors. Its value excludes warnings and notes.
 
-- A declaração [`GET DIAGNOSTICS`](get-diagnostics.html) pode ser usada para inspecionar as informações de diagnóstico na área de diagnóstico. Veja [Seção 13.6.7.3, “Declaração GET DIAGNOSTICS”](get-diagnostics.html).
+* The [`GET DIAGNOSTICS`](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement") statement may be used to inspect the diagnostic information in the diagnostics area. See [Section 13.6.7.3, “GET DIAGNOSTICS Statement”](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement").
 
-- A saída da declaração [`SHOW SLAVE STATUS`](show-slave-status.html) inclui informações sobre erros de replicação que ocorrem nos servidores replicados.
+* [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") statement output includes information about replication errors occurring on replica servers.
 
-- A saída da instrução [`SHOW ENGINE INNODB STATUS`](show-engine.html) inclui informações sobre o erro mais recente de chave estrangeira, caso uma instrução [`CREATE TABLE`](create-table.html) para uma tabela de [`InnoDB`](innodb-storage-engine.html) falhe.
+* [`SHOW ENGINE INNODB STATUS`](show-engine.html "13.7.5.15 SHOW ENGINE Statement") statement output includes information about the most recent foreign key error if a [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement for an [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") table fails.
 
-### Interface de Mensagem de Erro do Cliente
+### Client Error Message Interface
 
-Os programas de clientes recebem erros de duas fontes:
+Client programs receive errors from two sources:
 
-- Erros que se originam no lado do cliente, dentro da biblioteca do cliente MySQL.
+* Errors that originate on the client side from within the MySQL client library.
 
-- Erros que se originam no lado do servidor e são enviados ao cliente pelo servidor. Eles são recebidos dentro da biblioteca do cliente, o que os torna disponíveis para o programa cliente hospedeiro.
+* Errors that originate on the server side and are sent to the client by the server. These are received within the client library, which makes them available to the host client program.
 
-Independentemente de um erro ser gerado pela biblioteca do cliente ou recebido do servidor, um programa cliente MySQL obtém o código de erro, o valor SQLSTATE, a string de mensagem e outras informações relacionadas ao chamar funções da API C na biblioteca do cliente:
+Regardless of whether an error originates from within the client library or is received from the server, a MySQL client program obtains the error code, SQLSTATE value, message string, and other related information by calling C API functions in the client library:
 
-- [`mysql_errno()`](/doc/c-api/5.7/pt-BR/mysql-errno.html) retorna o código de erro do MySQL.
+* [`mysql_errno()`](/doc/c-api/5.7/en/mysql-errno.html) returns the MySQL error code.
 
-- [`mysql_sqlstate()`](/doc/c-api/5.7/pt-BR/mysql-sqlstate.html) retorna o valor SQLSTATE.
+* [`mysql_sqlstate()`](/doc/c-api/5.7/en/mysql-sqlstate.html) returns the SQLSTATE value.
 
-- [`mysql_error()`](/doc/c-api/5.7/pt-BR/mysql-error.html) retorna a string de mensagem.
+* [`mysql_error()`](/doc/c-api/5.7/en/mysql-error.html) returns the message string.
 
-- [`mysql_stmt_errno()`](/doc/c-api/5.7/pt_BR/mysql-stmt-errno.html), [`mysql_stmt_sqlstate()`](/doc/c-api/5.7/pt_BR/mysql-stmt-sqlstate.html) e [`mysql_stmt_error()`](/doc/c-api/5.7/pt_BR/mysql-stmt-error.html) são as funções de erro correspondentes para instruções preparadas.
+* [`mysql_stmt_errno()`](/doc/c-api/5.7/en/mysql-stmt-errno.html), [`mysql_stmt_sqlstate()`](/doc/c-api/5.7/en/mysql-stmt-sqlstate.html), and [`mysql_stmt_error()`](/doc/c-api/5.7/en/mysql-stmt-error.html) are the corresponding error functions for prepared statements.
 
-- [`mysql_warning_count()`](/doc/c-api/5.7/pt-BR/mysql-warning-count.html) retorna o número de erros, avisos e notas para a declaração mais recente.
+* [`mysql_warning_count()`](/doc/c-api/5.7/en/mysql-warning-count.html) returns the number of errors, warnings, and notes for the most recent statement.
 
-Para descrições das funções de erro da biblioteca do cliente, consulte [Guia do desenvolvedor da API C do MySQL 5.7](/doc/c-api/5.7/pt_BR/).
+For descriptions of the client library error functions, see [MySQL 5.7 C API Developer Guide](/doc/c-api/5.7/en/).
 
-Um programa cliente do MySQL pode responder a um erro de maneiras variadas. O cliente pode exibir a mensagem de erro para que o usuário possa tomar medidas corretivas, tentar resolver internamente ou tentar novamente uma operação falha ou tomar outras ações. Por exemplo, (usando o cliente [**mysql**](mysql.html), uma falha na conexão com o servidor pode resultar na seguinte mensagem:
+A MySQL client program may respond to an error in varying ways. The client may display the error message so the user can take corrective measures, internally attempt to resolve or retry a failed operation, or take other action. For example, (using the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client), a failure to connect to the server might result in this message:
 
 ```sql
 $> mysql -h no-such-host
 ERROR 2005 (HY000): Unknown MySQL server host 'no-such-host' (0)
 ```
 
-### Interface de Mensagem de Erro de Linha de Comando
+### Command-Line Error Message Interface
 
-O programa [**perror**](perror.html) fornece informações da linha de comando sobre números de erro. Veja [Seção 4.8.2, “perror — Exibir informações do erro do MySQL”](perror.html).
+The [**perror**](perror.html "4.8.2 perror — Display MySQL Error Message Information") program provides information from the command line about error numbers. See [Section 4.8.2, “perror — Display MySQL Error Message Information”](perror.html "4.8.2 perror — Display MySQL Error Message Information").
 
 ```sql
 $> perror 1231
@@ -68,7 +68,7 @@ MySQL error code 1231 (ER_WRONG_VALUE_FOR_VAR): Variable '%-.64s' can't
 be set to the value of '%-.200s'
 ```
 
-Para erros do MySQL NDB Cluster, use [**ndb_perror**](mysql-cluster-programs-ndb-perror.html). Veja [Seção 21.5.17, “ndb_perror — Obter informações de mensagem de erro NDB”](mysql-cluster-programs-ndb-perror.html).
+For MySQL NDB Cluster errors, use [**ndb_perror**](mysql-cluster-programs-ndb-perror.html "21.5.17 ndb_perror — Obtain NDB Error Message Information"). See [Section 21.5.17, “ndb_perror — Obtain NDB Error Message Information”](mysql-cluster-programs-ndb-perror.html "21.5.17 ndb_perror — Obtain NDB Error Message Information").
 
 ```sql
 $> ndb_perror 323

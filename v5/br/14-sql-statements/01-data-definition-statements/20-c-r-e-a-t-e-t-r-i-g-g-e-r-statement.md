@@ -1,4 +1,4 @@
-### 13.1.20 Declaração CREATE TRIGGER
+### 13.1.20 CREATE TRIGGER Statement
 
 ```sql
 CREATE
@@ -16,66 +16,66 @@ trigger_event: { INSERT | UPDATE | DELETE }
 trigger_order: { FOLLOWS | PRECEDES } other_trigger_name
 ```
 
-Essa declaração cria um novo gatilho. Um gatilho é um objeto de banco de dados nomeado que está associado a uma tabela e que é ativado quando um evento específico ocorre para a tabela. O gatilho se torna associado à tabela chamada *`tbl_name`*, que deve se referir a uma tabela permanente. Você não pode associar um gatilho a uma tabela `TEMPORARY` ou a uma visão.
+This statement creates a new trigger. A trigger is a named database object that is associated with a table, and that activates when a particular event occurs for the table. The trigger becomes associated with the table named *`tbl_name`*, which must refer to a permanent table. You cannot associate a trigger with a `TEMPORARY` table or a view.
 
-Os nomes dos gatilhos existem no espaço de nome do esquema, o que significa que todos os gatilhos devem ter nomes únicos dentro de um esquema. Os gatilhos em diferentes esquemas podem ter o mesmo nome.
+Trigger names exist in the schema namespace, meaning that all triggers must have unique names within a schema. Triggers in different schemas can have the same name.
 
-Esta seção descreve a sintaxe de `CREATE TRIGGER`. Para uma discussão adicional, consulte Seção 23.3.1, “Sintaxe e Exemplos de Trigêmeos”.
+This section describes [`CREATE TRIGGER`](create-trigger.html "13.1.20 CREATE TRIGGER Statement") syntax. For additional discussion, see [Section 23.3.1, “Trigger Syntax and Examples”](trigger-syntax.html "23.3.1 Trigger Syntax and Examples").
 
-`CREATE TRIGGER` requer o privilégio `TRIGGER` para a tabela associada ao gatilho. Se a cláusula `DEFINER` estiver presente, os privilégios necessários dependem do valor do *`user`*, conforme discutido na Seção 23.6, “Controle de Acesso a Objetos Armazenados”. Se o registro binário estiver habilitado, o `CREATE TRIGGER` pode exigir o privilégio `SUPER`, conforme discutido na Seção 23.7, “Registro Binário de Programas Armazenados”.
+[`CREATE TRIGGER`](create-trigger.html "13.1.20 CREATE TRIGGER Statement") requires the [`TRIGGER`](privileges-provided.html#priv_trigger) privilege for the table associated with the trigger. If the `DEFINER` clause is present, the privileges required depend on the *`user`* value, as discussed in [Section 23.6, “Stored Object Access Control”](stored-objects-security.html "23.6 Stored Object Access Control"). If binary logging is enabled, [`CREATE TRIGGER`](create-trigger.html "13.1.20 CREATE TRIGGER Statement") might require the [`SUPER`](privileges-provided.html#priv_super) privilege, as discussed in [Section 23.7, “Stored Program Binary Logging”](stored-programs-logging.html "23.7 Stored Program Binary Logging").
 
-A cláusula `DEFINER` determina o contexto de segurança a ser utilizado ao verificar os privilégios de acesso no momento da ativação do gatilho, conforme descrito mais adiante nesta seção.
+The `DEFINER` clause determines the security context to be used when checking access privileges at trigger activation time, as described later in this section.
 
-*`trigger_time`* é o tempo de ação do gatilho. Pode ser `BEFORE` ou `AFTER` para indicar que o gatilho é ativado antes ou depois de cada linha a ser modificada.
+*`trigger_time`* is the trigger action time. It can be `BEFORE` or `AFTER` to indicate that the trigger activates before or after each row to be modified.
 
-Os verificações básicas de valores de coluna ocorrem antes da ativação do gatilho, portanto, você não pode usar gatilhos `BEFORE` para converter valores inadequados para o tipo de coluna em valores válidos.
+Basic column value checks occur prior to trigger activation, so you cannot use `BEFORE` triggers to convert values inappropriate for the column type to valid values.
 
-*`trigger_event`* indica o tipo de operação que ativa o gatilho. Esses valores de *`trigger_event`* são permitidos:
+*`trigger_event`* indicates the kind of operation that activates the trigger. These *`trigger_event`* values are permitted:
 
-- O gatilho é ativado sempre que uma nova linha é inserida na tabela (por exemplo, através das instruções `INSERT` (insert.html), `LOAD DATA` (load-data.html) e `REPLACE` (replace.html)).
+* [`INSERT`](insert.html "13.2.5 INSERT Statement"): The trigger activates whenever a new row is inserted into the table (for example, through [`INSERT`](insert.html "13.2.5 INSERT Statement"), [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement"), and [`REPLACE`](replace.html "13.2.8 REPLACE Statement") statements).
 
-- `UPDATE`: O gatilho é ativado sempre que uma linha é modificada (por exemplo, através das instruções `UPDATE`).
+* [`UPDATE`](update.html "13.2.11 UPDATE Statement"): The trigger activates whenever a row is modified (for example, through [`UPDATE`](update.html "13.2.11 UPDATE Statement") statements).
 
-- `DELETE`: O gatilho é ativado sempre que uma linha é excluída da tabela (por exemplo, através das instruções `DELETE` e `REPLACE`). As instruções `DROP TABLE` e `TRUNCATE TABLE` na tabela *não* ativam este gatilho, porque elas não usam `DELETE`. A eliminação de uma partição também não ativa os gatilhos `DELETE`.
+* [`DELETE`](delete.html "13.2.2 DELETE Statement"): The trigger activates whenever a row is deleted from the table (for example, through [`DELETE`](delete.html "13.2.2 DELETE Statement") and [`REPLACE`](replace.html "13.2.8 REPLACE Statement") statements). [`DROP TABLE`](drop-table.html "13.1.29 DROP TABLE Statement") and [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") statements on the table do *not* activate this trigger, because they do not use [`DELETE`](delete.html "13.2.2 DELETE Statement"). Dropping a partition does not activate [`DELETE`](delete.html "13.2.2 DELETE Statement") triggers, either.
 
-O `trigger_event` não representa um tipo literal de instrução SQL que ativa o gatilho, mas sim um tipo de operação de tabela. Por exemplo, um gatilho de `INSERT` (insert.html) é ativado não apenas para instruções de `INSERT` (insert.html), mas também para instruções de `LOAD DATA` (load-data.html), pois ambas as instruções inserem linhas em uma tabela.
+The *`trigger_event`* does not represent a literal type of SQL statement that activates the trigger so much as it represents a type of table operation. For example, an [`INSERT`](insert.html "13.2.5 INSERT Statement") trigger activates not only for [`INSERT`](insert.html "13.2.5 INSERT Statement") statements but also [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") statements because both statements insert rows into a table.
 
-Um exemplo potencialmente confuso disso é a sintaxe `INSERT INTO ... ON DUPLICATE KEY UPDATE ...`: um gatilho `BEFORE INSERT` é ativado para cada linha, seguido por um gatilho `AFTER INSERT` ou ambos os gatilhos `BEFORE UPDATE` e `AFTER UPDATE`, dependendo se havia uma chave duplicada para a linha.
+A potentially confusing example of this is the `INSERT INTO ... ON DUPLICATE KEY UPDATE ...` syntax: a `BEFORE INSERT` trigger activates for every row, followed by either an `AFTER INSERT` trigger or both the `BEFORE UPDATE` and `AFTER UPDATE` triggers, depending on whether there was a duplicate key for the row.
 
-Nota
+Note
 
-As ações de chave estrangeira em cascata não ativam gatilhos.
+Cascaded foreign key actions do not activate triggers.
 
-É possível definir múltiplos gatilhos para uma tabela específica que tenham o mesmo evento de gatilho e hora de ação. Por exemplo, você pode ter dois gatilhos `BEFORE UPDATE` para uma tabela. Por padrão, os gatilhos que têm o mesmo evento de gatilho e hora de ação são ativados na ordem em que foram criados. Para alterar a ordem dos gatilhos, especifique uma cláusula `trigger_order` que indique `FOLLOWS` ou `PRECEDES` e o nome de um gatilho existente que também tenha o mesmo evento de gatilho e hora de ação. Com `FOLLOWS`, o novo gatilho é ativado após o gatilho existente. Com `PRECEDES`, o novo gatilho é ativado antes do gatilho existente.
+It is possible to define multiple triggers for a given table that have the same trigger event and action time. For example, you can have two `BEFORE UPDATE` triggers for a table. By default, triggers that have the same trigger event and action time activate in the order they were created. To affect trigger order, specify a *`trigger_order`* clause that indicates `FOLLOWS` or `PRECEDES` and the name of an existing trigger that also has the same trigger event and action time. With `FOLLOWS`, the new trigger activates after the existing trigger. With `PRECEDES`, the new trigger activates before the existing trigger.
 
-*`trigger_body`* é a instrução a ser executada quando o gatilho é ativado. Para executar várias instruções, use a construção de instrução composta `BEGIN ... END`. Isso também permite que você use as mesmas instruções permitidas dentro de rotinas armazenadas. Veja Seção 13.6.1, “Instrução Composta BEGIN ... END”. Algumas instruções não são permitidas em gatilhos; veja Seção 23.8, “Restrições em Programas Armazenados”.
+*`trigger_body`* is the statement to execute when the trigger activates. To execute multiple statements, use the [`BEGIN ... END`](begin-end.html "13.6.1 BEGIN ... END Compound Statement") compound statement construct. This also enables you to use the same statements that are permitted within stored routines. See [Section 13.6.1, “BEGIN ... END Compound Statement”](begin-end.html "13.6.1 BEGIN ... END Compound Statement"). Some statements are not permitted in triggers; see [Section 23.8, “Restrictions on Stored Programs”](stored-program-restrictions.html "23.8 Restrictions on Stored Programs").
 
-Dentro do corpo do gatilho, você pode se referir a colunas na tabela do assunto (a tabela associada ao gatilho) usando os aliases `OLD` e `NEW`. `OLD.col_name` refere-se a uma coluna de uma linha existente antes de ser atualizada ou excluída. `NEW.col_name` refere-se à coluna de uma nova linha a ser inserida ou a uma linha existente após ser atualizada.
+Within the trigger body, you can refer to columns in the subject table (the table associated with the trigger) by using the aliases `OLD` and `NEW`. `OLD.col_name` refers to a column of an existing row before it is updated or deleted. `NEW.col_name` refers to the column of a new row to be inserted or an existing row after it is updated.
 
-Os gatilhos não podem usar `NEW.col_name` ou usar `OLD.col_name` para referenciar colunas geradas. Para obter informações sobre colunas geradas, consulte Seção 13.1.18.7, “CREATE TABLE e Colunas Geradas”.
+Triggers cannot use `NEW.col_name` or use `OLD.col_name` to refer to generated columns. For information about generated columns, see [Section 13.1.18.7, “CREATE TABLE and Generated Columns”](create-table-generated-columns.html "13.1.18.7 CREATE TABLE and Generated Columns").
 
-O MySQL armazena o valor da variável de sistema `sql_mode` em vigor quando um gatilho é criado e sempre executa o corpo do gatilho com esse valor em vigor, *independentemente do modo SQL do servidor atual quando o gatilho começa a ser executado*.
+MySQL stores the [`sql_mode`](server-system-variables.html#sysvar_sql_mode) system variable setting in effect when a trigger is created, and always executes the trigger body with this setting in force, *regardless of the current server SQL mode when the trigger begins executing*.
 
-A cláusula `DEFINER` especifica a conta MySQL a ser usada ao verificar os privilégios de acesso no momento da ativação do gatilho. Se a cláusula `DEFINER` estiver presente, o valor de *`user`* deve ser uma conta MySQL especificada como `'user_name'@'host_name'`, `CURRENT_USER` ou `CURRENT_USER()`. Os valores de *`user`* permitidos dependem dos privilégios que você possui, conforme discutido na Seção 23.6, “Controle de Acesso a Objetos Armazenados”. Veja também essa seção para obter informações adicionais sobre a segurança dos gatilhos.
+The `DEFINER` clause specifies the MySQL account to be used when checking access privileges at trigger activation time. If the `DEFINER` clause is present, the *`user`* value should be a MySQL account specified as `'user_name'@'host_name'`, [`CURRENT_USER`](information-functions.html#function_current-user), or [`CURRENT_USER()`](information-functions.html#function_current-user). The permitted *`user`* values depend on the privileges you hold, as discussed in [Section 23.6, “Stored Object Access Control”](stored-objects-security.html "23.6 Stored Object Access Control"). Also see that section for additional information about trigger security.
 
-Se a cláusula `DEFINER` for omitida, o definidor padrão é o usuário que executa a instrução `CREATE TRIGGER`. Isso é o mesmo que especificar explicitamente `DEFINER = CURRENT_USER`.
+If the `DEFINER` clause is omitted, the default definer is the user who executes the [`CREATE TRIGGER`](create-trigger.html "13.1.20 CREATE TRIGGER Statement") statement. This is the same as specifying `DEFINER = CURRENT_USER` explicitly.
 
-O MySQL leva em consideração o usuário `DEFINER` ao verificar os privilégios dos gatilhos da seguinte forma:
+MySQL takes the `DEFINER` user into account when checking trigger privileges as follows:
 
-- No momento da criação do `CREATE TRIGGER`, o usuário que emite a declaração deve ter o privilégio `TRIGGER`.
+* At [`CREATE TRIGGER`](create-trigger.html "13.1.20 CREATE TRIGGER Statement") time, the user who issues the statement must have the [`TRIGGER`](privileges-provided.html#priv_trigger) privilege.
 
-- No momento da ativação do gatilho, os privilégios são verificados em relação ao usuário `DEFINER`. Esse usuário deve ter esses privilégios:
+* At trigger activation time, privileges are checked against the `DEFINER` user. This user must have these privileges:
 
-  - O privilégio `TRIGGER` para a tabela do sujeito.
+  + The [`TRIGGER`](privileges-provided.html#priv_trigger) privilege for the subject table.
 
-  - O privilégio `SELECT` para a tabela do sujeito, se as referências às colunas da tabela ocorrerem usando `OLD.col_name` ou `NEW.col_name` no corpo do gatilho.
+  + The [`SELECT`](privileges-provided.html#priv_select) privilege for the subject table if references to table columns occur using `OLD.col_name` or `NEW.col_name` in the trigger body.
 
-  - O privilégio `UPDATE` para a tabela do objeto, se as colunas da tabela forem alvos de atribuições `SET NEW.col_name = value` no corpo do gatilho.
+  + The [`UPDATE`](privileges-provided.html#priv_update) privilege for the subject table if table columns are targets of `SET NEW.col_name = value` assignments in the trigger body.
 
-  - Quaisquer outros privilégios normalmente necessários para as declarações executadas pelo gatilho.
+  + Whatever other privileges normally are required for the statements executed by the trigger.
 
-Dentro de um corpo de gatilho, a função `CURRENT_USER` retorna a conta usada para verificar privilégios no momento da ativação do gatilho. Essa é a conta `DEFINER`, e não a conta do usuário cujas ações ativaram o gatilho. Para informações sobre auditoria de contas dentro de gatilhos, consulte Seção 6.2.18, “Auditorização de Atividades de Conta Baseada em SQL”.
+Within a trigger body, the [`CURRENT_USER`](information-functions.html#function_current-user) function returns the account used to check privileges at trigger activation time. This is the `DEFINER` user, not the user whose actions caused the trigger to be activated. For information about user auditing within triggers, see [Section 6.2.18, “SQL-Based Account Activity Auditing”](account-activity-auditing.html "6.2.18 SQL-Based Account Activity Auditing").
 
-Se você usar `LOCK TABLES` para bloquear uma tabela que tenha gatilhos, as tabelas usadas dentro do gatilho também serão bloqueadas, conforme descrito em LOCK TABLES e Gatilhos.
+If you use [`LOCK TABLES`](lock-tables.html "13.3.5 LOCK TABLES and UNLOCK TABLES Statements") to lock a table that has triggers, the tables used within the trigger are also locked, as described in [LOCK TABLES and Triggers](lock-tables.html#lock-tables-and-triggers "LOCK TABLES and Triggers").
 
-Para uma discussão adicional sobre o uso de gatilhos, consulte Seção 23.3.1, “Sintaxe e Exemplos de Gatilhos”.
+For additional discussion of trigger use, see [Section 23.3.1, “Trigger Syntax and Examples”](trigger-syntax.html "23.3.1 Trigger Syntax and Examples").

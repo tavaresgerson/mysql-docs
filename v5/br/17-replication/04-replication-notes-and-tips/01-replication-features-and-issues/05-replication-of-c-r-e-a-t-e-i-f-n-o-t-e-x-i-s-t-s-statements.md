@@ -1,9 +1,9 @@
-#### 16.4.1.5 Replicação de declarações CREATE ... IF NOT EXISTS
+#### 16.4.1.5 Replication of CREATE ... IF NOT EXISTS Statements
 
-O MySQL aplica essas regras quando várias instruções `CREATE ... IF NOT EXISTS` são replicadas:
+MySQL applies these rules when various `CREATE ... IF NOT EXISTS` statements are replicated:
 
-- Cada instrução `CREATE DATABASE IF NOT EXISTS` é replicada, independentemente de a base de dados já existir na origem ou
+* Every [`CREATE DATABASE IF NOT EXISTS`](create-database.html "13.1.11 CREATE DATABASE Statement") statement is replicated, whether or not the database already exists on the source.
 
-- Da mesma forma, cada instrução `CREATE TABLE IF NOT EXISTS` sem uma instrução `SELECT` é replicada, independentemente de a tabela já existir na origem. Isso inclui `CREATE TABLE IF NOT EXISTS ... LIKE`. A replicação de `CREATE TABLE IF NOT EXISTS ... SELECT` segue regras um pouco diferentes; consulte Seção 16.4.1.6, “Replicação de Instruções CREATE TABLE ... SELECT”, para mais informações.
+* Similarly, every [`CREATE TABLE IF NOT EXISTS`](create-table.html "13.1.18 CREATE TABLE Statement") statement without a [`SELECT`](select.html "13.2.9 SELECT Statement") is replicated, whether or not the table already exists on the source. This includes [`CREATE TABLE IF NOT EXISTS ... LIKE`](create-table-like.html "13.1.18.3 CREATE TABLE ... LIKE Statement"). Replication of [`CREATE TABLE IF NOT EXISTS ... SELECT`](create-table-select.html "13.1.18.4 CREATE TABLE ... SELECT Statement") follows somewhat different rules; see [Section 16.4.1.6, “Replication of CREATE TABLE ... SELECT Statements”](replication-features-create-select.html "16.4.1.6 Replication of CREATE TABLE ... SELECT Statements"), for more information.
 
-- `CREATE EVENT IF NOT EXISTS` é sempre replicado, independentemente de o evento nomeado na declaração já existir na fonte ou
+* [`CREATE EVENT IF NOT EXISTS`](create-event.html "13.1.12 CREATE EVENT Statement") is always replicated, whether or not the event named in the statement already exists on the source.

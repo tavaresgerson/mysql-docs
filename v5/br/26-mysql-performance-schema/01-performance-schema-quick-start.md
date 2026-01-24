@@ -1,15 +1,15 @@
-## 25.1 Início Rápido do Schema de Desempenho
+## 25.1 Performance Schema Quick Start
 
-Esta seção apresenta brevemente o Schema de Desempenho com exemplos que mostram como usá-lo. Para exemplos adicionais, consulte Seção 25.19, “Usando o Schema de Desempenho para Diagnosticar Problemas”.
+This section briefly introduces the Performance Schema with examples that show how to use it. For additional examples, see [Section 25.19, “Using the Performance Schema to Diagnose Problems”](performance-schema-examples.html "25.19 Using the Performance Schema to Diagnose Problems").
 
-O Schema de Desempenho é ativado por padrão. Para ativá-lo ou desativá-lo explicitamente, inicie o servidor com a variável `performance_schema` definida para um valor apropriado. Por exemplo, use essas linhas no arquivo `my.cnf` do servidor:
+The Performance Schema is enabled by default. To enable or disable it explicitly, start the server with the [`performance_schema`](performance-schema-system-variables.html#sysvar_performance_schema) variable set to an appropriate value. For example, use these lines in the server `my.cnf` file:
 
 ```sql
 [mysqld]
 performance_schema=ON
 ```
 
-Quando o servidor for iniciado, ele verá `performance_schema` e tentará inicializar o Schema de Desempenho. Para verificar a inicialização bem-sucedida, use esta instrução:
+When the server starts, it sees [`performance_schema`](performance-schema-system-variables.html#sysvar_performance_schema) and attempts to initialize the Performance Schema. To verify successful initialization, use this statement:
 
 ```sql
 mysql> SHOW VARIABLES LIKE 'performance_schema';
@@ -20,9 +20,9 @@ mysql> SHOW VARIABLES LIKE 'performance_schema';
 +--------------------+-------+
 ```
 
-Um valor de `ON` significa que o Schema de Desempenho foi inicializado com sucesso e está pronto para uso. Um valor de `OFF` significa que ocorreu algum erro. Verifique o log de erros do servidor para obter informações sobre o que deu errado.
+A value of `ON` means that the Performance Schema initialized successfully and is ready for use. A value of `OFF` means that some error occurred. Check the server error log for information about what went wrong.
 
-O Schema de Desempenho é implementado como um mecanismo de armazenamento. Se este mecanismo estiver disponível (o que você já deve ter verificado anteriormente), você deve vê-lo listado com um valor `SUPPORT` de `YES` na saída da tabela do Schema de Informações `ENGINES` ou na declaração `SHOW ENGINES`:
+The Performance Schema is implemented as a storage engine. If this engine is available (which you should already have checked earlier), you should see it listed with a `SUPPORT` value of `YES` in the output from the Information Schema [`ENGINES`](information-schema-engines-table.html "24.3.7 The INFORMATION_SCHEMA ENGINES Table") table or the [`SHOW ENGINES`](show-engines.html "13.7.5.16 SHOW ENGINES Statement") statement:
 
 ```sql
 mysql> SELECT * FROM INFORMATION_SCHEMA.ENGINES
@@ -46,13 +46,13 @@ Transactions: NO
 ...
 ```
 
-O mecanismo de armazenamento `PERFORMANCE_SCHEMA` opera em tabelas no banco de dados `performance_schema`. Você pode tornar o `performance_schema` o banco de dados padrão, para que as referências a suas tabelas não precisem ser qualificadas com o nome do banco de dados:
+The [`PERFORMANCE_SCHEMA`](performance-schema.html "Chapter 25 MySQL Performance Schema") storage engine operates on tables in the `performance_schema` database. You can make `performance_schema` the default database so that references to its tables need not be qualified with the database name:
 
 ```sql
 mysql> USE performance_schema;
 ```
 
-As tabelas do Schema de Desempenho são armazenadas no banco de dados `performance_schema`. Informações sobre a estrutura desse banco de dados e suas tabelas podem ser obtidas, assim como em qualquer outro banco de dados, selecionando o banco de dados `INFORMATION_SCHEMA` ou usando as instruções `[`SHOW\`]\(show\.html). Por exemplo, use uma dessas instruções para ver quais tabelas do Schema de Desempenho existem:
+Performance Schema tables are stored in the `performance_schema` database. Information about the structure of this database and its tables can be obtained, as for any other database, by selecting from the `INFORMATION_SCHEMA` database or by using [`SHOW`](show.html "13.7.5 SHOW Statements") statements. For example, use either of these statements to see what Performance Schema tables exist:
 
 ```sql
 mysql> SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES
@@ -126,11 +126,11 @@ mysql> SHOW TABLES FROM performance_schema;
 ...
 ```
 
-O número de tabelas do Schema de Desempenho aumenta ao longo do tempo à medida que a implementação de instrumentação adicional prossegue.
+The number of Performance Schema tables increases over time as implementation of additional instrumentation proceeds.
 
-O nome do banco de dados `performance_schema` é minúsculo, assim como os nomes das tabelas nele contidas. As consultas devem especificar os nomes em minúsculas.
+The name of the `performance_schema` database is lowercase, as are the names of tables within it. Queries should specify the names in lowercase.
 
-Para ver a estrutura de tabelas individuais, use `SHOW CREATE TABLE`:
+To see the structure of individual tables, use [`SHOW CREATE TABLE`](show-create-table.html "13.7.5.10 SHOW CREATE TABLE Statement"):
 
 ```sql
 mysql> SHOW CREATE TABLE performance_schema.setup_consumers\G
@@ -142,11 +142,11 @@ Create Table: CREATE TABLE `setup_consumers` (
 ) ENGINE=PERFORMANCE_SCHEMA DEFAULT CHARSET=utf8
 ```
 
-A estrutura da tabela também está disponível ao selecionar tabelas como `INFORMATION_SCHEMA.COLUMNS` ou usando instruções como `SHOW COLUMNS`.
+Table structure is also available by selecting from tables such as [`INFORMATION_SCHEMA.COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") or by using statements such as [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement").
 
-As tabelas no banco de dados `performance_schema` podem ser agrupadas de acordo com o tipo de informação que contêm: eventos atuais, históricos e resumos de eventos, instâncias de objetos e informações de configuração (configuração). Os seguintes exemplos ilustram alguns usos dessas tabelas. Para informações detalhadas sobre as tabelas de cada grupo, consulte Seção 25.12, “Descrição das Tabelas do Schema de Desempenho”.
+Tables in the `performance_schema` database can be grouped according to the type of information in them: Current events, event histories and summaries, object instances, and setup (configuration) information. The following examples illustrate a few uses for these tables. For detailed information about the tables in each group, see [Section 25.12, “Performance Schema Table Descriptions”](performance-schema-table-descriptions.html "25.12 Performance Schema Table Descriptions").
 
-Inicialmente, nem todos os instrumentos e consumidores estão habilitados, portanto, o esquema de desempenho não coleta todos os eventos. Para ativar todos esses recursos e habilitar o cronometramento de eventos, execute duas instruções (os números de linhas podem variar dependendo da versão do MySQL):
+Initially, not all instruments and consumers are enabled, so the performance schema does not collect all events. To turn all of these on and enable event timing, execute two statements (the row counts may differ depending on MySQL version):
 
 ```sql
 mysql> UPDATE performance_schema.setup_instruments
@@ -157,7 +157,7 @@ mysql> UPDATE performance_schema.setup_consumers
 Query OK, 10 rows affected (0.00 sec)
 ```
 
-Para ver o que o servidor está fazendo no momento, examine a tabela `events_waits_current`. Ela contém uma linha por thread, mostrando o evento mais recente monitorado de cada thread:
+To see what the server is doing at the moment, examine the [`events_waits_current`](performance-schema-events-waits-current-table.html "25.12.4.1 The events_waits_current Table") table. It contains one row per thread showing each thread's most recent monitored event:
 
 ```sql
 mysql> SELECT *
@@ -185,15 +185,15 @@ OBJECT_INSTANCE_BEGIN: 142270668
 ...
 ```
 
-Esse evento indica que o thread 0 estava esperando por 86.526 picosegundos para adquirir um bloqueio no `THR_LOCK::mutex`, um mutex no subsistema `mysys`. As primeiras colunas fornecem as seguintes informações:
+This event indicates that thread 0 was waiting for 86,526 picoseconds to acquire a lock on `THR_LOCK::mutex`, a mutex in the `mysys` subsystem. The first few columns provide the following information:
 
-- As colunas ID indicam de qual thread o evento vem e o número do evento.
+* The ID columns indicate which thread the event comes from and the event number.
 
-- `EVENT_NAME` indica o que foi instrumentado e `SOURCE` indica qual arquivo de origem contém o código instrumentado.
+* `EVENT_NAME` indicates what was instrumented and `SOURCE` indicates which source file contains the instrumented code.
 
-- As colunas do temporizador mostram quando o evento começou e parou e quanto tempo levou. Se um evento ainda estiver em andamento, os valores `TIMER_END` e `TIMER_WAIT` são `NULL`. Os valores do temporizador são aproximados e expressos em picosegundos. Para informações sobre temporizadores e coleta de tempo de eventos, consulte Seção 25.4.1, “Cronometragem de Eventos do Schema de Desempenho”.
+* The timer columns show when the event started and stopped and how long it took. If an event is still in progress, the `TIMER_END` and `TIMER_WAIT` values are `NULL`. Timer values are approximate and expressed in picoseconds. For information about timers and event time collection, see [Section 25.4.1, “Performance Schema Event Timing”](performance-schema-timing.html "25.4.1 Performance Schema Event Timing").
 
-As tabelas de histórico contêm o mesmo tipo de linhas que a tabela de eventos atuais, mas têm mais linhas e mostram o que o servidor tem feito "recentemente" em vez de "atualmente". As tabelas `events_waits_history` e `events_waits_history_long` contêm os 10 eventos mais recentes por thread e, respectivamente, os 10.000 eventos mais recentes. Por exemplo, para ver informações sobre eventos recentes produzidos pelo thread 13, faça o seguinte:
+The history tables contain the same kind of rows as the current-events table but have more rows and show what the server has been doing “recently” rather than “currently.” The [`events_waits_history`](performance-schema-events-waits-history-table.html "25.12.4.2 The events_waits_history Table") and [`events_waits_history_long`](performance-schema-events-waits-history-long-table.html "25.12.4.3 The events_waits_history_long Table") tables contain the most recent 10 events per thread and most recent 10,000 events, respectively. For example, to see information for recent events produced by thread 13, do this:
 
 ```sql
 mysql> SELECT EVENT_ID, EVENT_NAME, TIMER_WAIT
@@ -216,9 +216,9 @@ mysql> SELECT EVENT_ID, EVENT_NAME, TIMER_WAIT
 +----------+-----------------------------------------+------------+
 ```
 
-À medida que novos eventos são adicionados a uma tabela de histórico, os eventos mais antigos são descartados se a tabela estiver cheia.
+As new events are added to a history table, older events are discarded if the table is full.
 
-As tabelas de resumo fornecem informações agregadas para todos os eventos ao longo do tempo. As tabelas deste grupo resumem os dados dos eventos de diferentes maneiras. Para ver quais instrumentos foram executados mais vezes ou tiveram mais tempo de espera, organize a tabela `events_waits_summary_global_by_event_name` na coluna `COUNT_STAR` ou `SUM_TIMER_WAIT`, que correspondem a um valor `COUNT(*)` ou `SUM(TIMER_WAIT)`, respectivamente, calculado para todos os eventos:
+Summary tables provide aggregated information for all events over time. The tables in this group summarize event data in different ways. To see which instruments have been executed the most times or have taken the most wait time, sort the [`events_waits_summary_global_by_event_name`](performance-schema-wait-summary-tables.html "25.12.15.1 Wait Event Summary Tables") table on the `COUNT_STAR` or `SUM_TIMER_WAIT` column, which correspond to a `COUNT(*)` or `SUM(TIMER_WAIT)` value, respectively, calculated over all events:
 
 ```sql
 mysql> SELECT EVENT_NAME, COUNT_STAR
@@ -258,13 +258,13 @@ mysql> SELECT EVENT_NAME, SUM_TIMER_WAIT
 +----------------------------------------+----------------+
 ```
 
-Esses resultados mostram que o mutex `THR_LOCK_malloc` é "quente", tanto em termos de quantas vezes ele é usado quanto do tempo que os threads esperam para adquiri-lo.
+These results show that the `THR_LOCK_malloc` mutex is “hot,” both in terms of how often it is used and amount of time that threads wait attempting to acquire it.
 
-Nota
+Note
 
-O mutex `THR_LOCK_malloc` é usado apenas em compilações de depuração. Em compilações de produção, ele não é usado porque não existe.
+The `THR_LOCK_malloc` mutex is used only in debug builds. In production builds it is not hot because it is nonexistent.
 
-As tabelas de instâncias documentam quais tipos de objetos estão instrumentados. Um objeto instrumentado, quando utilizado pelo servidor, gera um evento. Essas tabelas fornecem nomes de eventos e notas explicativas ou informações de status. Por exemplo, a tabela `file_instances` lista as instâncias de instrumentos para operações de E/S de arquivos e seus arquivos associados:
+Instance tables document what types of objects are instrumented. An instrumented object, when used by the server, produces an event. These tables provide event names and explanatory notes or status information. For example, the [`file_instances`](performance-schema-file-instances-table.html "25.12.3.2 The file_instances Table") table lists instances of instruments for file I/O operations and their associated files:
 
 ```sql
 mysql> SELECT *
@@ -284,7 +284,7 @@ OPEN_COUNT: 1
 ...
 ```
 
-As tabelas de configuração são usadas para configurar e exibir características de monitoramento. Por exemplo, `setup_instruments` lista o conjunto de instrumentos para os quais eventos podem ser coletados e mostra quais deles estão habilitados:
+Setup tables are used to configure and display monitoring characteristics. For example, [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") lists the set of instruments for which events can be collected and shows which of them are enabled:
 
 ```sql
 mysql> SELECT * FROM performance_schema.setup_instruments;
@@ -319,9 +319,9 @@ mysql> SELECT * FROM performance_schema.setup_instruments;
 ...
 ```
 
-Para entender como interpretar os nomes dos instrumentos, consulte Seção 25.6, "Convenções de Nomenclatura de Instrumentos do Schema de Desempenho".
+To understand how to interpret instrument names, see [Section 25.6, “Performance Schema Instrument Naming Conventions”](performance-schema-instrument-naming.html "25.6 Performance Schema Instrument Naming Conventions").
 
-Para controlar se os eventos são coletados para um instrumento, defina o valor `ENABLED` para `YES` ou `NO`. Por exemplo:
+To control whether events are collected for an instrument, set its `ENABLED` value to `YES` or `NO`. For example:
 
 ```sql
 mysql> UPDATE performance_schema.setup_instruments
@@ -329,7 +329,7 @@ mysql> UPDATE performance_schema.setup_instruments
        WHERE NAME = 'wait/synch/mutex/sql/LOCK_mysql_create_db';
 ```
 
-O Schema de Desempenho usa eventos coletados para atualizar tabelas no banco de dados `performance_schema`, que atuam como "consumidores" de informações de eventos. A tabela `setup_consumers` lista os consumidores disponíveis e quais estão habilitados:
+The Performance Schema uses collected events to update tables in the `performance_schema` database, which act as “consumers” of event information. The [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") table lists the available consumers and which are enabled:
 
 ```sql
 mysql> SELECT * FROM performance_schema.setup_consumers;
@@ -354,8 +354,8 @@ mysql> SELECT * FROM performance_schema.setup_consumers;
 +----------------------------------+---------+
 ```
 
-Para controlar se o Schema de Desempenho mantém um consumidor como destino para as informações dos eventos, defina o valor `ENABLED`.
+To control whether the Performance Schema maintains a consumer as a destination for event information, set its `ENABLED` value.
 
-Para obter mais informações sobre as tabelas de configuração e como usá-las para controlar a coleta de eventos, consulte Seção 25.4.2, “Filtragem de Eventos do Schema de Desempenho”.
+For more information about the setup tables and how to use them to control event collection, see [Section 25.4.2, “Performance Schema Event Filtering”](performance-schema-filtering.html "25.4.2 Performance Schema Event Filtering").
 
-Existem algumas tabelas variadas que não se enquadram em nenhum dos grupos anteriores. Por exemplo, `performance_timers` lista os temporizadores de eventos disponíveis e suas características. Para informações sobre temporizadores, consulte Seção 25.4.1, “Temporização de Eventos do Schema de Desempenho”.
+There are some miscellaneous tables that do not fall into any of the previous groups. For example, [`performance_timers`](performance-schema-performance-timers-table.html "25.12.16.2 The performance_timers Table") lists the available event timers and their characteristics. For information about timers, see [Section 25.4.1, “Performance Schema Event Timing”](performance-schema-timing.html "25.4.1 Performance Schema Event Timing").

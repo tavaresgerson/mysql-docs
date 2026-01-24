@@ -1,37 +1,37 @@
-## 16.3 Soluções de Replicação
+## 16.3 Replication Solutions
 
-16.3.1 Uso da replicação para backups
+[16.3.1 Using Replication for Backups](replication-solutions-backups.html)
 
-16.3.2 Gerenciamento de um Parada Inesperada de uma Replicação
+[16.3.2 Handling an Unexpected Halt of a Replica](replication-solutions-unexpected-replica-halt.html)
 
-16.3.3 Uso da replicação com diferentes motores de armazenamento de origem e réplica
+[16.3.3 Using Replication with Different Source and Replica Storage Engines](replication-solutions-diffengines.html)
 
-16.3.4 Uso da replicação para expansão em escala
+[16.3.4 Using Replication for Scale-Out](replication-solutions-scaleout.html)
 
-16.3.5 Replicação de diferentes bancos de dados em diferentes réplicas
+[16.3.5 Replicating Different Databases to Different Replicas](replication-solutions-partitioning.html)
 
-16.3.6 Melhoria do desempenho da replicação
+[16.3.6 Improving Replication Performance](replication-solutions-performance.html)
 
-16.3.7 Alterar fontes durante o failover
+[16.3.7 Switching Sources During Failover](replication-solutions-switch.html)
 
-16.3.8 Configurando a replicação para usar conexões criptografadas
+[16.3.8 Setting Up Replication to Use Encrypted Connections](replication-encrypted-connections.html)
 
-16.3.9 Replicação semiesincronizada
+[16.3.9 Semisynchronous Replication](replication-semisync.html)
 
-16.3.10 Replicação atrasada
+[16.3.10 Delayed Replication](replication-delayed.html)
 
-A replicação pode ser usada em muitos ambientes diferentes para uma variedade de propósitos. Esta seção fornece notas gerais e conselhos sobre o uso da replicação para tipos específicos de soluções.
+Replication can be used in many different environments for a range of purposes. This section provides general notes and advice on using replication for specific solution types.
 
-Para obter informações sobre o uso da replicação em um ambiente de backup, incluindo notas sobre a configuração, o procedimento de backup e os arquivos a serem protegidos, consulte Seção 16.3.1, “Usando a Replicação para Backups”.
+For information on using replication in a backup environment, including notes on the setup, backup procedure, and files to back up, see [Section 16.3.1, “Using Replication for Backups”](replication-solutions-backups.html "16.3.1 Using Replication for Backups").
 
-Para obter conselhos e dicas sobre o uso de diferentes motores de armazenamento na fonte e nas réplicas, consulte Seção 16.3.3, “Usando replicação com diferentes motores de armazenamento de fonte e réplica”.
+For advice and tips on using different storage engines on the source and replicas, see [Section 16.3.3, “Using Replication with Different Source and Replica Storage Engines”](replication-solutions-diffengines.html "16.3.3 Using Replication with Different Source and Replica Storage Engines").
 
-Para usar a replicação como solução de expansão, é necessário fazer algumas alterações na lógica e no funcionamento das aplicações que utilizam a solução. Consulte Seção 16.3.4, “Usar replicação para expansão”.
+Using replication as a scale-out solution requires some changes in the logic and operation of applications that use the solution. See [Section 16.3.4, “Using Replication for Scale-Out”](replication-solutions-scaleout.html "16.3.4 Using Replication for Scale-Out").
 
-Por razões de desempenho ou distribuição de dados, você pode querer replicar diferentes bancos de dados para diferentes réplicas. Consulte Seção 16.3.5, “Replicação de Diferentes Bancos de Dados para Diferentes Réplicas”
+For performance or data distribution reasons, you may want to replicate different databases to different replicas. See [Section 16.3.5, “Replicating Different Databases to Different Replicas”](replication-solutions-partitioning.html "16.3.5 Replicating Different Databases to Different Replicas")
 
-À medida que o número de réplicas aumenta, a carga na fonte pode aumentar e levar a um desempenho reduzido (devido à necessidade de replicar o log binário para cada réplica). Para obter dicas sobre como melhorar o desempenho da replicação, incluindo o uso de um único servidor secundário como servidor de origem de replicação, consulte Seção 16.3.6, “Melhorando o Desempenho da Replicação”.
+As the number of replicas increases, the load on the source can increase and lead to reduced performance (because of the need to replicate the binary log to each replica). For tips on improving your replication performance, including using a single secondary server as a replication source server, see [Section 16.3.6, “Improving Replication Performance”](replication-solutions-performance.html "16.3.6 Improving Replication Performance").
 
-Para obter orientações sobre a troca de fontes ou a conversão de réplicas em fontes como parte de uma solução de falha de emergência, consulte Seção 16.3.7, “Troca de Fontes Durante a Falha de Emergência”.
+For guidance on switching sources, or converting replicas into sources as part of an emergency failover solution, see [Section 16.3.7, “Switching Sources During Failover”](replication-solutions-switch.html "16.3.7 Switching Sources During Failover").
 
-Para garantir a comunicação de replicação, você pode criptografar o canal de comunicação. Para obter instruções passo a passo, consulte Seção 16.3.8, “Configurando a Replicação para Usar Conexões Criptografadas”.
+To secure your replication communication, you can encrypt the communication channel. For step-by-step instructions, see [Section 16.3.8, “Setting Up Replication to Use Encrypted Connections”](replication-encrypted-connections.html "16.3.8 Setting Up Replication to Use Encrypted Connections").

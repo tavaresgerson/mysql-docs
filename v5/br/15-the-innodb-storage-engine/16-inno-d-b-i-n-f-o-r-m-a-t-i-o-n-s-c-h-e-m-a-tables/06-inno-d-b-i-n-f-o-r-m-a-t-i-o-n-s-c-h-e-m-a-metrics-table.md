@@ -1,8 +1,8 @@
-### 14.16.6 Tabela de métricas do esquema de informações InnoDB
+### 14.16.6 InnoDB INFORMATION_SCHEMA Metrics Table
 
-A tabela `INNODB_METRICS` fornece informações sobre os contadores de desempenho e recursos relacionados ao `InnoDB`.
+The `INNODB_METRICS` table provides information about `InnoDB` performance and resource-related counters.
 
-As colunas da tabela `INNODB_METRICS` estão mostradas abaixo. Para descrições de colunas, consulte a Seção 24.4.16, “A Tabela INFORMATION_SCHEMA INNODB_METRICS”.
+`INNODB_METRICS` table columns are shown below. For column descriptions, see Section 24.4.16, “The INFORMATION_SCHEMA INNODB_METRICS Table”.
 
 ```sql
 mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_METRICS WHERE NAME="dml_inserts" \G
@@ -26,54 +26,54 @@ AVG_COUNT_RESET: NULL
         COMMENT: Number of rows inserted
 ```
 
-#### Habilitar, desabilitar e redefinir contadores
+#### Enabling, Disabling, and Resetting Counters
 
-Você pode habilitar, desabilitar e reiniciar contadores usando as seguintes variáveis:
+You can enable, disable, and reset counters using the following variables:
 
-- `innodb_monitor_enable`: Habilita os contadores.
+* `innodb_monitor_enable`: Enables counters.
 
   ```sql
   SET GLOBAL innodb_monitor_enable = [counter-name|module_name|pattern|all];
   ```
 
-- `innodb_monitor_disable`: Desabilita os contadores.
+* `innodb_monitor_disable`: Disables counters.
 
   ```sql
   SET GLOBAL innodb_monitor_disable = [counter-name|module_name|pattern|all];
   ```
 
-- `innodb_monitor_reset`: Redefine os valores do contador para zero.
+* `innodb_monitor_reset`: Resets counter values to zero.
 
   ```sql
   SET GLOBAL innodb_monitor_reset = [counter-name|module_name|pattern|all];
   ```
 
-- `innodb_monitor_reset_all`: Redefine todos os valores do contador. Um contador deve ser desativado antes de usar `innodb_monitor_reset_all`.
+* `innodb_monitor_reset_all`: Resets all counter values. A counter must be disabled before using `innodb_monitor_reset_all`.
 
   ```sql
   SET GLOBAL innodb_monitor_reset_all = [counter-name|module_name|pattern|all];
   ```
 
-Os contadores e módulos de contador também podem ser habilitados durante o início do servidor usando o arquivo de configuração do servidor MySQL. Por exemplo, para habilitar o módulo `log`, os contadores `metadata_table_handles_opened` e `metadata_table_handles_closed`, insira a seguinte linha na seção `[mysqld]` do arquivo de configuração do servidor MySQL.
+Counters and counter modules can also be enabled at startup using the MySQL server configuration file. For example, to enable the `log` module, `metadata_table_handles_opened` and `metadata_table_handles_closed` counters, enter the following line in the `[mysqld]` section of the MySQL server configuration file..
 
 ```sql
 [mysqld]
 innodb_monitor_enable = module_recovery,metadata_table_handles_opened,metadata_table_handles_closed
 ```
 
-Ao habilitar vários contadores ou módulos em um arquivo de configuração, especifique a variável `innodb_monitor_enable`, seguida pelos nomes do contador e do módulo separados por vírgula, conforme mostrado acima. Apenas a variável `innodb_monitor_enable` pode ser usada em um arquivo de configuração. As variáveis `innodb_monitor_disable` e `innodb_monitor_reset` são suportadas apenas na linha de comando.
+When enabling multiple counters or modules in a configuration file, specify the `innodb_monitor_enable` variable followed by counter and module names separated by a comma, as shown above. Only the `innodb_monitor_enable` variable can be used in a configuration file. The `innodb_monitor_disable` and `innodb_monitor_reset` variables are supported on the command line only.
 
-Nota
+Note
 
-Como cada contador adiciona um grau de sobrecarga de tempo de execução, use os contadores de forma conservadora em servidores de produção para diagnosticar problemas específicos ou monitorar funcionalidades específicas. Um servidor de teste ou desenvolvimento é recomendado para o uso mais extenso dos contadores.
+Because each counter adds a degree of runtime overhead, use counters conservatively on production servers to diagnose specific issues or monitor specific functionality. A test or development server is recommended for more extensive use of counters.
 
-#### Contas
+#### Counters
 
-A lista de contadores disponíveis pode ser alterada. Consulte a tabela do esquema de informações `INNODB_METRICS` para obter os contadores disponíveis na versão do seu servidor MySQL.
+The list of available counters is subject to change. Query the Information Schema `INNODB_METRICS` table for counters available in your MySQL server version.
 
-Os contadores habilitados por padrão correspondem aos mostrados na saída `SHOW ENGINE INNODB STATUS`. Os contadores mostrados na saída `SHOW ENGINE INNODB STATUS` estão sempre habilitados em nível de sistema, mas podem ser desabilitados para a tabela `INNODB_METRICS`. O status do contador não é persistente. A menos que configurado de outra forma, os contadores retornam ao seu status habilitado ou desabilitado padrão quando o servidor é reiniciado.
+The counters enabled by default correspond to those shown in `SHOW ENGINE INNODB STATUS` output. Counters shown in `SHOW ENGINE INNODB STATUS` output are always enabled at a system level but can be disable for the `INNODB_METRICS` table. Counter status is not persistent. Unless configured otherwise, counters revert to their default enabled or disabled status when the server is restarted.
 
-Se você executar programas que seriam afetados pela adição ou remoção de contadores, é recomendável que você revise as notas de lançamento e consulte a tabela `INNODB_METRICS` para identificar essas alterações como parte do seu processo de atualização.
+If you run programs that would be affected by the addition or removal of counters, it is recommended that you review the releases notes and query the `INNODB_METRICS` table to identify those changes as part of your upgrade process.
 
 ```sql
 mysql> SELECT name, subsystem, status FROM INFORMATION_SCHEMA.INNODB_METRICS ORDER BY NAME;
@@ -319,9 +319,9 @@ mysql> SELECT name, subsystem, status FROM INFORMATION_SCHEMA.INNODB_METRICS ORD
 235 rows in set (0.01 sec)
 ```
 
-#### Módulos de Contador
+#### Counter Modules
 
-Cada contador está associado a um módulo específico. Os nomes dos módulos podem ser usados para habilitar, desabilitar ou reiniciar todos os contadores de um subsistema específico. Por exemplo, use `module_dml` para habilitar todos os contadores associados ao subsistema `dml`.
+Each counter is associated with a particular module. Module names can be used to enable, disable, or reset all counters for a particular subsystem. For example, use `module_dml` to enable all counters associated with the `dml` subsystem.
 
 ```sql
 mysql> SET GLOBAL innodb_monitor_enable = module_dml;
@@ -338,49 +338,49 @@ mysql> SELECT name, subsystem, status FROM INFORMATION_SCHEMA.INNODB_METRICS
 +-------------+-----------+---------+
 ```
 
-Os nomes dos módulos podem ser usados com `innodb_monitor_enable` e variáveis relacionadas.
+Module names can be used with `innodb_monitor_enable` and related variables.
 
-Os nomes dos módulos e os nomes correspondentes ao `SUBSYSTEM` estão listados abaixo.
+Module names and corresponding `SUBSYSTEM` names are listed below.
 
-- `module_adaptive_hash` (subsistema = `adaptive_hash_index`)
+* `module_adaptive_hash` (subsystem = `adaptive_hash_index`)
 
-- `module_buffer` (subsistema = `buffer`)
+* `module_buffer` (subsystem = `buffer`)
 
-- `module_buffer_page` (subsistema = `buffer_page_io`)
+* `module_buffer_page` (subsystem = `buffer_page_io`)
 
-- `module_compress` (subsistema = `compressão`)
+* `module_compress` (subsystem = `compression`)
 
-- `module_ddl` (subsistema = `ddl`)
+* `module_ddl` (subsystem = `ddl`)
 
-- `module_dml` (subsistema = `dml`)
+* `module_dml` (subsystem = `dml`)
 
-- `module_file` (subsistema = `file_system`)
+* `module_file` (subsystem = `file_system`)
 
-- `module_ibuf_system` (subsistema = `change_buffer`)
+* `module_ibuf_system` (subsystem = `change_buffer`)
 
-- `module_icp` (subsistema = `icp`)
+* `module_icp` (subsystem = `icp`)
 
-- `module_index` (subsistema = `index`)
+* `module_index` (subsystem = `index`)
 
-- `module_innodb` (subsistema = `innodb`)
+* `module_innodb` (subsystem = `innodb`)
 
-- `module_lock` (subsistema = `lock`)
+* `module_lock` (subsystem = `lock`)
 
-- `module_log` (subsistema = `recuperação`)
+* `module_log` (subsystem = `recovery`)
 
-- `module_metadata` (subsistema = `metadata`)
+* `module_metadata` (subsystem = `metadata`)
 
-- `module_os` (subsistema = `os`)
+* `module_os` (subsystem = `os`)
 
-- `module_purge` (subsistema = `purge`)
+* `module_purge` (subsystem = `purge`)
 
-- `module_trx` (subsistema = `transação`)
+* `module_trx` (subsystem = `transaction`)
 
-**Exemplo 14.11: Trabalhando com Contadores da Tabela INNODB_METRICS**
+**Example 14.11 Working with INNODB_METRICS Table Counters**
 
-Este exemplo demonstra como habilitar, desabilitar e reiniciar um contador e como consultar os dados do contador na tabela `INNODB_METRICS`.
+This example demonstrates enabling, disabling, and resetting a counter, and querying counter data in the `INNODB_METRICS` table.
 
-1. Crie uma tabela simples do tipo `InnoDB`:
+1. Create a simple `InnoDB` table:
 
    ```sql
    mysql> USE test;
@@ -390,14 +390,14 @@ Este exemplo demonstra como habilitar, desabilitar e reiniciar um contador e com
    Query OK, 0 rows affected (0.02 sec)
    ```
 
-2. Ative o contador `dml_inserts`.
+2. Enable the `dml_inserts` counter.
 
    ```sql
    mysql> SET GLOBAL innodb_monitor_enable = dml_inserts;
    Query OK, 0 rows affected (0.01 sec)
    ```
 
-   Uma descrição do contador `dml_inserts` pode ser encontrada na coluna `COMMENT` da tabela `INNODB_METRICS`:
+   A description of the `dml_inserts` counter can be found in the `COMMENT` column of the `INNODB_METRICS` table:
 
    ```sql
    mysql> SELECT NAME, COMMENT FROM INFORMATION_SCHEMA.INNODB_METRICS WHERE NAME="dml_inserts";
@@ -408,7 +408,7 @@ Este exemplo demonstra como habilitar, desabilitar e reiniciar um contador e com
    +-------------+-------------------------+
    ```
 
-3. Consulte a tabela `INNODB_METRICS` para obter os dados do contador `dml_inserts`. Como nenhuma operação DML foi realizada, os valores do contador são zero ou NULL. Os valores `TIME_ENABLED` e `TIME_ELAPSED` indicam quando o contador foi habilitado pela última vez e quantos segundos se passaram desde então.
+3. Query the `INNODB_METRICS` table for the `dml_inserts` counter data. Because no DML operations have been performed, the counter values are zero or NULL. The `TIME_ENABLED` and `TIME_ELAPSED` values indicate when the counter was last enabled and how many seconds have elapsed since that time.
 
    ```sql
    mysql>  SELECT * FROM INFORMATION_SCHEMA.INNODB_METRICS WHERE NAME="dml_inserts" \G
@@ -432,7 +432,7 @@ Este exemplo demonstra como habilitar, desabilitar e reiniciar um contador e com
            COMMENT: Number of rows inserted
    ```
 
-4. Insira três linhas de dados na tabela.
+4. Insert three rows of data into the table.
 
    ```sql
    mysql> INSERT INTO t1 values(1);
@@ -445,7 +445,7 @@ Este exemplo demonstra como habilitar, desabilitar e reiniciar um contador e com
    Query OK, 1 row affected (0.00 sec)
    ```
 
-5. Interrogue novamente a tabela `INNODB_METRICS` para obter os dados do contador `dml_inserts`. Agora, vários valores do contador foram incrementados, incluindo `COUNT`, `MAX_COUNT`, `AVG_COUNT` e `COUNT_RESET`. Consulte a definição da tabela `INNODB_METRICS` para obter descrições desses valores.
+5. Query the `INNODB_METRICS` table again for the `dml_inserts` counter data. A number of counter values have now incremented including `COUNT`, `MAX_COUNT`, `AVG_COUNT`, and `COUNT_RESET`. Refer to the `INNODB_METRICS` table definition for descriptions of these values.
 
    ```sql
    mysql>  SELECT * FROM INFORMATION_SCHEMA.INNODB_METRICS WHERE NAME="dml_inserts"\G
@@ -469,7 +469,7 @@ Este exemplo demonstra como habilitar, desabilitar e reiniciar um contador e com
            COMMENT: Number of rows inserted
    ```
 
-6. Reinicie o contador `dml_inserts` e consulte novamente a tabela `INNODB_METRICS` para obter os dados do contador `dml_inserts`. Os valores `%_RESET` que foram relatados anteriormente, como `COUNT_RESET` e `MAX_RESET`, são redefinidos para zero. Valores como `COUNT`, `MAX_COUNT` e `AVG_COUNT`, que coletam dados cumulativamente desde o momento em que o contador é habilitado, não são afetados pelo reset.
+6. Reset the `dml_inserts` counter and query the `INNODB_METRICS` table again for the `dml_inserts` counter data. The `%_RESET` values that were reported previously, such as `COUNT_RESET` and `MAX_RESET`, are set back to zero. Values such as `COUNT`, `MAX_COUNT`, and `AVG_COUNT`, which cumulatively collect data from the time the counter is enabled, are unaffected by the reset.
 
    ```sql
    mysql> SET GLOBAL innodb_monitor_reset = dml_inserts;
@@ -496,7 +496,7 @@ Este exemplo demonstra como habilitar, desabilitar e reiniciar um contador e com
            COMMENT: Number of rows inserted
    ```
 
-7. Para redefinir todos os valores do contador, você deve primeiro desativá-lo. Ao desativar o contador, o valor `STATUS` é definido como `disabled`.
+7. To reset all counter values, you must first disable the counter. Disabling the counter sets the `STATUS` value to `disabled`.
 
    ```sql
    mysql> SET GLOBAL innodb_monitor_disable = dml_inserts;
@@ -523,11 +523,11 @@ Este exemplo demonstra como habilitar, desabilitar e reiniciar um contador e com
            COMMENT: Number of rows inserted
    ```
 
-   Nota
+   Note
 
-   A correspondência com caracteres especiais é suportada para os nomes de contador e módulo. Por exemplo, em vez de especificar o nome completo do contador `dml_inserts`, você pode especificar `dml_i%`. Você também pode habilitar, desabilitar ou reiniciar vários contadores ou módulos de uma vez usando uma correspondência com caracteres especiais. Por exemplo, especifique `dml_%` para habilitar, desabilitar ou reiniciar todos os contadores que começam com `dml_`.
+   Wildcard match is supported for counter and module names. For example, instead of specifying the full `dml_inserts` counter name, you can specify `dml_i%`. You can also enable, disable, or reset multiple counters or modules at once using a wildcard match. For example, specify `dml_%` to enable, disable, or reset all counters that begin with `dml_`.
 
-8. Depois que o contador é desativado, você pode redefinir todos os valores do contador usando a opção `innodb_monitor_reset_all`. Todos os valores são definidos como zero ou NULL.
+8. After the counter is disabled, you can reset all counter values using the `innodb_monitor_reset_all` option. All values are set to zero or NULL.
 
    ```sql
    mysql> SET GLOBAL innodb_monitor_reset_all = dml_inserts;

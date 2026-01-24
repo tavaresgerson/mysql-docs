@@ -1,28 +1,28 @@
-### 12.4.2 Funções e operadores de comparação
+### 12.4.2 Comparison Functions and Operators
 
-**Tabela 12.4 Operadores de Comparação**
+**Table 12.4 Comparison Operators**
 
-<table frame="box" rules="all" summary="Uma referência que lista operadores de comparação."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Nome</th> <th>Descrição</th> </tr></thead><tbody><tr><td>PH_HTML_CODE_<code>EXISTS()</code>]</td> <td>Operador maior que</td> </tr><tr><td>PH_HTML_CODE_<code>EXISTS()</code>]</td> <td>Operador maior que ou igual a</td> </tr><tr><td>PH_HTML_CODE_<code>IN()</code>]</td> <td>Menos que o operador</td> </tr><tr><td>PH_HTML_CODE_<code>INTERVAL()</code>], PH_HTML_CODE_<code>IS</code>]</td> <td>Operador não igual</td> </tr><tr><td>PH_HTML_CODE_<code>IS NOT</code>]</td> <td>Operador menor ou igual</td> </tr><tr><td>PH_HTML_CODE_<code>IS NOT NULL</code>]</td> <td>Igual a operador seguro para valores nulos</td> </tr><tr><td>PH_HTML_CODE_<code>IS NULL</code>]</td> <td>Operador igual</td> </tr><tr><td>PH_HTML_CODE_<code>ISNULL()</code>]</td> <td>Se um valor estiver dentro de uma faixa de valores</td> </tr><tr><td>PH_HTML_CODE_<code>LEAST()</code>]</td> <td>Retorne o primeiro argumento que não é NULL</td> </tr><tr><td><code>EXISTS()</code></td> <td>Se o resultado de uma consulta contiver alguma linha</td> </tr><tr><td><code>&gt;=</code><code>EXISTS()</code>]</td> <td>Retorne o maior argumento</td> </tr><tr><td><code>IN()</code></td> <td>Se um valor está dentro de um conjunto de valores</td> </tr><tr><td><code>INTERVAL()</code></td> <td>Retorne o índice do argumento que é menor que o primeiro argumento</td> </tr><tr><td><code>IS</code></td> <td>Teste um valor contra um booleano</td> </tr><tr><td><code>IS NOT</code></td> <td>Teste um valor contra um booleano</td> </tr><tr><td><code>IS NOT NULL</code></td> <td>Teste de valor NOT NULL</td> </tr><tr><td><code>IS NULL</code></td> <td>Teste de valor nulo</td> </tr><tr><td><code>ISNULL()</code></td> <td>Teste se o argumento é NULL</td> </tr><tr><td><code>LEAST()</code></td> <td>Retorne o menor argumento</td> </tr><tr><td><code>&lt;</code><code>EXISTS()</code>]</td> <td>Encontre padrões simples</td> </tr><tr><td><code>&lt;</code><code>EXISTS()</code>]</td> <td>Se um valor não estiver dentro de uma faixa de valores</td> </tr><tr><td><code>&lt;</code><code>IN()</code>]</td> <td>Se o resultado de uma consulta não contiver nenhuma linha</td> </tr><tr><td><code>&lt;</code><code>INTERVAL()</code>]</td> <td>Se um valor não estiver dentro de um conjunto de valores</td> </tr><tr><td><code>&lt;</code><code>IS</code>]</td> <td>Negação de correspondência de padrão simples</td> </tr><tr><td><code>&lt;</code><code>IS NOT</code>]</td> <td>Compare duas strings</td> </tr></tbody></table>
+<table frame="box" rules="all" summary="A reference that lists comparison operators."><col style="width: 28%"/><col style="width: 71%"/><thead><tr><th>Name</th> <th>Description</th> </tr></thead><tbody><tr><td><code>&gt;</code></td> <td> Greater than operator </td> </tr><tr><td><code>&gt;=</code></td> <td> Greater than or equal operator </td> </tr><tr><td><code>&lt;</code></td> <td> Less than operator </td> </tr><tr><td><code>&lt;&gt;</code>, <code>!=</code></td> <td> Not equal operator </td> </tr><tr><td><code>&lt;=</code></td> <td> Less than or equal operator </td> </tr><tr><td><code>&lt;=&gt;</code></td> <td> NULL-safe equal to operator </td> </tr><tr><td><code>=</code></td> <td> Equal operator </td> </tr><tr><td><code>BETWEEN ... AND ...</code></td> <td> Whether a value is within a range of values </td> </tr><tr><td><code>COALESCE()</code></td> <td> Return the first non-NULL argument </td> </tr><tr><td><code>EXISTS()</code></td> <td> Whether the result of a query contains any rows </td> </tr><tr><td><code>GREATEST()</code></td> <td> Return the largest argument </td> </tr><tr><td><code>IN()</code></td> <td> Whether a value is within a set of values </td> </tr><tr><td><code>INTERVAL()</code></td> <td> Return the index of the argument that is less than the first argument </td> </tr><tr><td><code>IS</code></td> <td> Test a value against a boolean </td> </tr><tr><td><code>IS NOT</code></td> <td> Test a value against a boolean </td> </tr><tr><td><code>IS NOT NULL</code></td> <td> NOT NULL value test </td> </tr><tr><td><code>IS NULL</code></td> <td> NULL value test </td> </tr><tr><td><code>ISNULL()</code></td> <td> Test whether the argument is NULL </td> </tr><tr><td><code>LEAST()</code></td> <td> Return the smallest argument </td> </tr><tr><td><code>LIKE</code></td> <td> Simple pattern matching </td> </tr><tr><td><code>NOT BETWEEN ... AND ...</code></td> <td> Whether a value is not within a range of values </td> </tr><tr><td><code>NOT EXISTS()</code></td> <td> Whether the result of a query contains no rows </td> </tr><tr><td><code>NOT IN()</code></td> <td> Whether a value is not within a set of values </td> </tr><tr><td><code>NOT LIKE</code></td> <td> Negation of simple pattern matching </td> </tr><tr><td><code>STRCMP()</code></td> <td> Compare two strings </td> </tr></tbody></table>
 
-As operações de comparação resultam em um valor de `1` (`TRUE`), `0` (`FALSE`) ou `NULL`. Essas operações funcionam tanto para números quanto para strings. As strings são convertidas automaticamente em números e os números em strings conforme necessário.
+Comparison operations result in a value of `1` (`TRUE`), `0` (`FALSE`), or `NULL`. These operations work for both numbers and strings. Strings are automatically converted to numbers and numbers to strings as necessary.
 
-Os seguintes operadores de comparação relacional podem ser usados para comparar não apenas operandos escalares, mas também operandos de linha:
+The following relational comparison operators can be used to compare not only scalar operands, but row operands:
 
 ```sql
 =  >  <  >=  <=  <>  !=
 ```
 
-As descrições desses operadores mais adiante nesta seção detalham como eles funcionam com operadores de linha. Para exemplos adicionais de comparações de linha no contexto de subconsultas de linha, consulte a Seção 13.2.10.5, “Subconsultas de Linha”.
+The descriptions for those operators later in this section detail how they work with row operands. For additional examples of row comparisons in the context of row subqueries, see Section 13.2.10.5, “Row Subqueries”.
 
-Algumas das funções nesta seção retornam valores diferentes de `1` (`TRUE`), `0` (`FALSE`) ou `NULL`. `LEAST()` e `GREATEST()` são exemplos de tais funções; a Seção 12.3, “Conversão de Tipo na Avaliação de Expressões”, descreve as regras para operações de comparação realizadas por essas e funções semelhantes para determinar seus valores de retorno.
+Some of the functions in this section return values other than `1` (`TRUE`), `0` (`FALSE`), or `NULL`. `LEAST()` and `GREATEST()` are examples of such functions; Section 12.3, “Type Conversion in Expression Evaluation”, describes the rules for comparison operations performed by these and similar functions for determining their return values.
 
-Para converter um valor para um tipo específico para fins de comparação, você pode usar a função `CAST()`. Valores de string podem ser convertidos para um conjunto de caracteres diferente usando `CONVERT()`. Veja a Seção 12.10, “Funções e Operadores de Cast”.
+To convert a value to a specific type for comparison purposes, you can use the `CAST()` function. String values can be converted to a different character set using `CONVERT()`. See Section 12.10, “Cast Functions and Operators”.
 
-Por padrão, as comparações de strings não são case-sensitive e usam o conjunto de caracteres atual. O padrão é `latin1` (cp1252 da Europa Ocidental), que também funciona bem para o inglês.
+By default, string comparisons are not case-sensitive and use the current character set. The default is `latin1` (cp1252 West European), which also works well for English.
 
-- `=`
+* `=`
 
-  Igual:
+  Equal:
 
   ```sql
   mysql> SELECT 1 = 0;
@@ -37,17 +37,17 @@ Por padrão, as comparações de strings não são case-sensitive e usam o conju
           -> 1
   ```
 
-  Para comparações de linhas, `(a, b) = (x, y)` é equivalente a:
+  For row comparisons, `(a, b) = (x, y)` is equivalent to:
 
   ```sql
   (a = x) AND (b = y)
   ```
 
-- `<=>`
+* `<=>`
 
-  Igualdade segura para `NULL`. Esse operador realiza uma comparação de igualdade como o operador `=` , mas retorna `1` em vez de `NULL` se ambos os operandos forem `NULL` e `0` em vez de `NULL` se um dos operandos for `NULL`.
+  `NULL`-safe equal. This operator performs an equality comparison like the `=` operator, but returns `1` rather than `NULL` if both operands are `NULL`, and `0` rather than `NULL` if one operand is `NULL`.
 
-  O operador `<=>` é equivalente ao operador padrão SQL `IS NOT DISTINCT FROM`.
+  The `<=>` operator is equivalent to the standard SQL `IS NOT DISTINCT FROM` operator.
 
   ```sql
   mysql> SELECT 1 <=> 1, NULL <=> NULL, 1 <=> NULL;
@@ -56,15 +56,15 @@ Por padrão, as comparações de strings não são case-sensitive e usam o conju
           -> 1, NULL, NULL
   ```
 
-  Para comparações de linhas, `(a, b) <=> (x, y)` é equivalente a:
+  For row comparisons, `(a, b) <=> (x, y)` is equivalent to:
 
   ```sql
   (a <=> x) AND (b <=> y)
   ```
 
-- `<>`, `!=`
+* `<>`, `!=`
 
-  Não é igual:
+  Not equal:
 
   ```sql
   mysql> SELECT '.01' <> '0.01';
@@ -75,75 +75,75 @@ Por padrão, as comparações de strings não são case-sensitive e usam o conju
           -> 1
   ```
 
-  Para comparações de linhas, `(a, b) <> (x, y)` e `(a, b) != (x, y)` são equivalentes a:
+  For row comparisons, `(a, b) <> (x, y)` and `(a, b) != (x, y)` are equivalent to:
 
   ```sql
   (a <> x) OR (b <> y)
   ```
 
-- `<=`
+* `<=`
 
-  Menos ou igual a:
+  Less than or equal:
 
   ```sql
   mysql> SELECT 0.1 <= 2;
           -> 1
   ```
 
-  Para comparações de linhas, `(a, b) <= (x, y)` é equivalente a:
+  For row comparisons, `(a, b) <= (x, y)` is equivalent to:
 
   ```sql
   (a < x) OR ((a = x) AND (b <= y))
   ```
 
-- `<`
+* `<`
 
-  Menos que:
+  Less than:
 
   ```sql
   mysql> SELECT 2 < 2;
           -> 0
   ```
 
-  Para comparações de linhas, `(a, b) < (x, y)` é equivalente a:
+  For row comparisons, `(a, b) < (x, y)` is equivalent to:
 
   ```sql
   (a < x) OR ((a = x) AND (b < y))
   ```
 
-- `>=`
+* `>=`
 
-  Maior ou igual a:
+  Greater than or equal:
 
   ```sql
   mysql> SELECT 2 >= 2;
           -> 1
   ```
 
-  Para comparações de linhas, `(a, b) >= (x, y)` é equivalente a:
+  For row comparisons, `(a, b) >= (x, y)` is equivalent to:
 
   ```sql
   (a > x) OR ((a = x) AND (b >= y))
   ```
 
-- `>`
+* `>`
 
-  Maior que:
+  Greater than:
 
   ```sql
   mysql> SELECT 2 > 2;
           -> 0
   ```
 
-  Para comparações de linhas, `(a, b) > (x, y)` é equivalente a:
+  For row comparisons, `(a, b) > (x, y)` is equivalent to:
 
   ```sql
   (a > x) OR ((a = x) AND (b > y))
   ```
 
-- `expr BETWEEN min E max`
+* `expr BETWEEN min AND max`
 
-  Se *`expr`* for maior ou igual a *`min`* e *`expr`* for menor ou igual a *`max`*, o `BETWEEN` retorna `1`, caso contrário, retorna `0`. Isso é equivalente à expressão `(min <= expr AND expr <= max)` se todos os argumentos forem do mesmo tipo. Caso contrário, a conversão de tipo ocorre de acordo com as regras descritas na Seção 12.3, “Conversão de Tipo na Avaliação de Expressões”, mas aplicada a todos os três argumentos.
+  If *`expr`* is greater than or equal to *`min`* and *`expr`* is less than or equal to *`max`*, `BETWEEN` returns `1`, otherwise it returns `0`. This is equivalent to the expression `(min <= expr AND expr <= max)` if all the arguments are of the same type. Otherwise type conversion takes place according to the rules described in Section 12.3, “Type Conversion in Expression Evaluation”, but applied to all the three arguments.
 
   ```sql
   mysql> SELECT 2 BETWEEN 1 AND 3, 2 BETWEEN 3 and 1;
@@ -158,17 +158,17 @@ Por padrão, as comparações de strings não são case-sensitive e usam o conju
           -> 0
   ```
 
-  Para obter os melhores resultados ao usar `BETWEEN` com valores de data ou hora, use `CAST()` para converter explicitamente os valores para o tipo de dado desejado. Exemplos: Se você comparar uma `DATETIME` com dois valores `DATE`, converta os valores `DATE` em valores `DATETIME`. Se você usar uma constante de string como `'2001-1-1'` em uma comparação com uma `DATE`, caste a string em uma `DATE`.
+  For best results when using `BETWEEN` with date or time values, use `CAST()` to explicitly convert the values to the desired data type. Examples: If you compare a `DATETIME` to two `DATE` values, convert the `DATE` values to `DATETIME` values. If you use a string constant such as `'2001-1-1'` in a comparison to a `DATE`, cast the string to a `DATE`.
 
-- `expr NÃO ENTRE ENTRE min E max`
+* `expr NOT BETWEEN min AND max`
 
-  Isso é o mesmo que `NOT (expr BETWEEN min AND max)`.
+  This is the same as `NOT (expr BETWEEN min AND max)`.
 
-- `COALESCE(valor,...)`
+* `COALESCE(value,...)`
 
-  Retorna o primeiro valor não `NULL` na lista, ou `NULL` se não houver valores não `NULL`.
+  Returns the first non-`NULL` value in the list, or `NULL` if there are no non-`NULL` values.
 
-  O tipo de retorno de `COALESCE()` é o tipo agregado dos tipos dos argumentos.
+  The return type of `COALESCE()` is the aggregated type of the argument types.
 
   ```sql
   mysql> SELECT COALESCE(NULL,1);
@@ -177,9 +177,9 @@ Por padrão, as comparações de strings não são case-sensitive e usam o conju
           -> NULL
   ```
 
-- `EXISTS(consulta)`
+* `EXISTS(query)`
 
-  Se o resultado de uma consulta contém alguma linha.
+  Whether the result of a query contains any rows.
 
   ```sql
   CREATE TABLE t (col VARCHAR(3));
@@ -192,9 +192,9 @@ Por padrão, as comparações de strings não são case-sensitive e usam o conju
           -> 0
   ```
 
-- `NOT EXISTS(query)`
+* `NOT EXISTS(query)`
 
-  Se o resultado de uma consulta não contiver nenhuma linha:
+  Whether the result of a query contains no rows:
 
   ```sql
   SELECT NOT EXISTS (SELECT * FROM t WHERE col LIKE 'c%');
@@ -204,9 +204,9 @@ Por padrão, as comparações de strings não são case-sensitive e usam o conju
           -> 1
   ```
 
-- `MAIOR(valor1, valor2,...)`
+* `GREATEST(value1,value2,...)`
 
-  Com dois ou mais argumentos, retorna o maior argumento (com o valor máximo). Os argumentos são comparados seguindo as mesmas regras do `LEAST()`.
+  With two or more arguments, returns the largest (maximum-valued) argument. The arguments are compared using the same rules as for `LEAST()`.
 
   ```sql
   mysql> SELECT GREATEST(2,0);
@@ -217,13 +217,13 @@ Por padrão, as comparações de strings não são case-sensitive e usam o conju
           -> 'C'
   ```
 
-  `GREATEST()` retorna `NULL` se qualquer argumento for `NULL`.
+  `GREATEST()` returns `NULL` if any argument is `NULL`.
 
-- `expr IN (valor,...)`
+* `expr IN (value,...)`
 
-  Retorna `1` (verdadeiro) se *`expr`* for igual a qualquer um dos valores na lista `IN()`, caso contrário, retorna `0` (falso).
+  Returns `1` (true) if *`expr`* is equal to any of the values in the `IN()` list, else returns `0` (false).
 
-  A conversão de tipo ocorre de acordo com as regras descritas na Seção 12.3, “Conversão de Tipo na Avaliação de Expressões”, aplicada a todos os argumentos. Se nenhuma conversão de tipo for necessária para os valores na lista `IN()`, todos eles são constantes do mesmo tipo, e *`expr`* pode ser comparado a cada um deles como um valor do mesmo tipo (possivelmente após conversão de tipo), uma otimização ocorre. Os valores da lista são ordenados e a busca por *`expr`* é feita usando uma busca binária, o que torna a operação `IN()` muito rápida.
+  Type conversion takes place according to the rules described in Section 12.3, “Type Conversion in Expression Evaluation”, applied to all the arguments. If no type conversion is needed for the values in the `IN()` list, they are all constants of the same type, and *`expr`* can be compared to each of them as a value of the same type (possibly after type conversion), an optimization takes place. The values the list are sorted and the search for *`expr`* is done using a binary search, which makes the `IN()` operation very quick.
 
   ```sql
   mysql> SELECT 2 IN (0,3,5,7);
@@ -232,7 +232,7 @@ Por padrão, as comparações de strings não são case-sensitive e usam o conju
           -> 1
   ```
 
-  `IN()` pode ser usado para comparar construtores de linha:
+  `IN()` can be used to compare row constructors:
 
   ```sql
   mysql> SELECT (3,4) IN ((1,2), (3,4));
@@ -241,40 +241,40 @@ Por padrão, as comparações de strings não são case-sensitive e usam o conju
           -> 0
   ```
 
-  Você nunca deve misturar valores com e sem aspas em uma lista `IN()`, porque as regras de comparação para valores com aspas (como strings) e valores sem aspas (como números) são diferentes. A mistura de tipos pode, portanto, levar a resultados inconsistentes. Por exemplo, não escreva uma expressão `IN()` assim:
+  You should never mix quoted and unquoted values in an `IN()` list because the comparison rules for quoted values (such as strings) and unquoted values (such as numbers) differ. Mixing types may therefore lead to inconsistent results. For example, do not write an `IN()` expression like this:
 
   ```sql
   SELECT val1 FROM tbl1 WHERE val1 IN (1,2,'a');
   ```
 
-  Em vez disso, escreva assim:
+  Instead, write it like this:
 
   ```sql
   SELECT val1 FROM tbl1 WHERE val1 IN ('1','2','a');
   ```
 
-  A conversão implícita de tipos pode produzir resultados não intuitivos:
+  Implicit type conversion may produce nonintuitive results:
 
   ```sql
   mysql> SELECT 'a' IN (0), 0 IN ('b');
           -> 1, 1
   ```
 
-  Em ambos os casos, os valores de comparação são convertidos em valores de ponto flutuante, resultando em 0,0 em cada caso, e um resultado de comparação de 1 (verdadeiro).
+  In both cases, the comparison values are converted to floating-point values, yielding 0.0 in each case, and a comparison result of 1 (true).
 
-  O número de valores na lista `IN()` é limitado apenas pelo valor `max_allowed_packet`.
+  The number of values in the `IN()` list is only limited by the `max_allowed_packet` value.
 
-  Para cumprir com o padrão SQL, `IN()` retorna `NULL` não apenas se a expressão do lado esquerdo for `NULL`, mas também se não for encontrada nenhuma correspondência na lista e uma das expressões na lista for `NULL`.
+  To comply with the SQL standard, `IN()` returns `NULL` not only if the expression on the left hand side is `NULL`, but also if no match is found in the list and one of the expressions in the list is `NULL`.
 
-  A sintaxe `IN()` também pode ser usada para escrever certos tipos de subconsultas. Veja a Seção 13.2.10.3, “Subconsultas com ANY, IN ou SOME”.
+  `IN()` syntax can also be used to write certain types of subqueries. See Section 13.2.10.3, “Subqueries with ANY, IN, or SOME”.
 
-- `expr NOT IN (valor,...)`
+* `expr NOT IN (value,...)`
 
-  Isso é o mesmo que `NOT (expr IN (valor,...))`.
+  This is the same as `NOT (expr IN (value,...))`.
 
-- `INTERVAL(N, N1, N2, N3,...)`
+* `INTERVAL(N,N1,N2,N3,...)`
 
-  Retorna `0` se *`N`* ≤ *`N1`*, `1` se *`N`* ≤ *`N2`* e assim por diante, ou `-1` se *`N`* for `NULL`. Todos os argumentos são tratados como inteiros. É necessário que *`N1`* ≤ *`N2`* ≤ *`N3`* ≤ `...` ≤ *`Nn`* para que essa função funcione corretamente. Isso ocorre porque uma busca binária é usada (muito rápida).
+  Returns `0` if *`N`* ≤ *`N1`*, `1` if *`N`* ≤ *`N2`* and so on, or `-1` if *`N`* is `NULL`. All arguments are treated as integers. It is required that *`N1`* ≤ *`N2`* ≤ *`N3`* ≤ `...` ≤ *`Nn`* for this function to work correctly. This is because a binary search is used (very fast).
 
   ```sql
   mysql> SELECT INTERVAL(23, 1, 15, 17, 30, 44, 200);
@@ -285,69 +285,69 @@ Por padrão, as comparações de strings não são case-sensitive e usam o conju
           -> 0
   ```
 
-- `IS boolean_value`
+* `IS boolean_value`
 
-  Verifica um valor contra um valor booleano, onde *`boolean_value`* pode ser `TRUE`, `FALSE` ou `UNKNOWN`.
+  Tests a value against a boolean value, where *`boolean_value`* can be `TRUE`, `FALSE`, or `UNKNOWN`.
 
   ```sql
   mysql> SELECT 1 IS TRUE, 0 IS FALSE, NULL IS UNKNOWN;
           -> 1, 1, 1
   ```
 
-- `Não é boolean_value`
+* `IS NOT boolean_value`
 
-  Verifica um valor contra um valor booleano, onde *`boolean_value`* pode ser `TRUE`, `FALSE` ou `UNKNOWN`.
+  Tests a value against a boolean value, where *`boolean_value`* can be `TRUE`, `FALSE`, or `UNKNOWN`.
 
   ```sql
   mysql> SELECT 1 IS NOT UNKNOWN, 0 IS NOT UNKNOWN, NULL IS NOT UNKNOWN;
           -> 1, 1, 0
   ```
 
-- `IS NULL`
+* `IS NULL`
 
-  Verifica se um valor é `NULL`.
+  Tests whether a value is `NULL`.
 
   ```sql
   mysql> SELECT 1 IS NULL, 0 IS NULL, NULL IS NULL;
           -> 0, 0, 1
   ```
 
-  Para funcionar bem com programas ODBC, o MySQL suporta as seguintes funcionalidades extras ao usar `IS NULL`:
+  To work well with ODBC programs, MySQL supports the following extra features when using `IS NULL`:
 
-  - Se a variável `sql_auto_is_null` estiver definida como 1, após uma instrução que insere com sucesso um valor `AUTO_INCREMENT` gerado automaticamente, você poderá encontrar esse valor executando uma instrução do seguinte formato:
+  + If `sql_auto_is_null` variable is set to 1, then after a statement that successfully inserts an automatically generated `AUTO_INCREMENT` value, you can find that value by issuing a statement of the following form:
 
     ```sql
     SELECT * FROM tbl_name WHERE auto_col IS NULL
     ```
 
-    Se a declaração retornar uma linha, o valor retornado será o mesmo se você tivesse invocado a função `LAST_INSERT_ID()`. Para obter detalhes, incluindo o valor de retorno após uma inserção de várias linhas, consulte a Seção 12.15, “Funções de Informação”. Se nenhum valor `AUTO_INCREMENT` foi inserido com sucesso, a declaração `SELECT` não retornará nenhuma linha.
+    If the statement returns a row, the value returned is the same as if you invoked the `LAST_INSERT_ID()` function. For details, including the return value after a multiple-row insert, see Section 12.15, “Information Functions”. If no `AUTO_INCREMENT` value was successfully inserted, the `SELECT` statement returns no row.
 
-    O comportamento de recuperar um valor `AUTO_INCREMENT` usando uma comparação `IS NULL` pode ser desativado definindo `sql_auto_is_null = 0`. Veja a Seção 5.1.7, “Variáveis do Sistema do Servidor”.
+    The behavior of retrieving an `AUTO_INCREMENT` value by using an `IS NULL` comparison can be disabled by setting `sql_auto_is_null = 0`. See Section 5.1.7, “Server System Variables”.
 
-    O valor padrão de `sql_auto_is_null` é 0.
+    The default value of `sql_auto_is_null` is 0.
 
-  - Para as colunas `DATE` e `DATETIME` declaradas como `NOT NULL`, você pode encontrar a data especial `'0000-00-00'` usando uma declaração como esta:
+  + For `DATE` and `DATETIME` columns that are declared as `NOT NULL`, you can find the special date `'0000-00-00'` by using a statement like this:
 
     ```sql
     SELECT * FROM tbl_name WHERE date_column IS NULL
     ```
 
-    Isso é necessário para que algumas aplicações ODBC funcionem, pois o ODBC não suporta o valor de data `'0000-00-00'`.
+    This is needed to get some ODBC applications to work because ODBC does not support a `'0000-00-00'` date value.
 
-    Veja Obter Valores de Autoincremento e a descrição da opção `FLAG_AUTO_IS_NULL` nos Parâmetros de Conexão do Connector/ODBC.
+    See Obtaining Auto-Increment Values, and the description for the `FLAG_AUTO_IS_NULL` option at Connector/ODBC Connection Parameters.
 
-- `NÃO É NULL`
+* `IS NOT NULL`
 
-  Verifica se um valor não é `NULL`.
+  Tests whether a value is not `NULL`.
 
   ```sql
   mysql> SELECT 1 IS NOT NULL, 0 IS NOT NULL, NULL IS NOT NULL;
           -> 1, 1, 0
   ```
 
-- `ISNULL(expr)`
+* `ISNULL(expr)`
 
-  Se *`expr`* for `NULL`, `ISNULL()` retorna `1`, caso contrário, ele retorna `0`.
+  If *`expr`* is `NULL`, `ISNULL()` returns `1`, otherwise it returns `0`.
 
   ```sql
   mysql> SELECT ISNULL(1+1);
@@ -356,27 +356,27 @@ Por padrão, as comparações de strings não são case-sensitive e usam o conju
           -> 1
   ```
 
-  `ISNULL()` pode ser usado em vez de `=` para testar se um valor é `NULL`. (Comparar um valor com `NULL` usando `=` sempre resulta em `NULL`.)
+  `ISNULL()` can be used instead of `=` to test whether a value is `NULL`. (Comparing a value to `NULL` using `=` always yields `NULL`.)
 
-  A função `ISNULL()` compartilha alguns comportamentos especiais com o operador de comparação `IS NULL`. Veja a descrição de `IS NULL`.
+  The `ISNULL()` function shares some special behaviors with the `IS NULL` comparison operator. See the description of `IS NULL`.
 
-- `LEAST(valor1, valor2,...)`
+* `LEAST(value1,value2,...)`
 
-  Com dois ou mais argumentos, retorna o menor (com o valor mínimo) argumento. Os argumentos são comparados usando as seguintes regras:
+  With two or more arguments, returns the smallest (minimum-valued) argument. The arguments are compared using the following rules:
 
-  - Se qualquer argumento for `NULL`, o resultado será `NULL`. Não é necessário realizar nenhuma comparação.
+  + If any argument is `NULL`, the result is `NULL`. No comparison is needed.
 
-  - Se todos os argumentos forem de valor inteiro, eles serão comparados como inteiros.
+  + If all arguments are integer-valued, they are compared as integers.
 
-  - Se pelo menos um argumento for de ponto duplo, eles são comparados como valores de ponto duplo. Caso contrário, se pelo menos um argumento for um valor de `DECIMAL` - DECIMAL, NUMERIC")", eles são comparados como valores de `DECIMAL` - DECIMAL, NUMERIC")".
+  + If at least one argument is double precision, they are compared as double-precision values. Otherwise, if at least one argument is a `DECIMAL` - DECIMAL, NUMERIC") value, they are compared as `DECIMAL` - DECIMAL, NUMERIC") values.
 
-  - Se os argumentos contiverem uma mistura de números e strings, eles serão comparados como números.
+  + If the arguments comprise a mix of numbers and strings, they are compared as numbers.
 
-  - Se qualquer argumento for uma string não binária (caractere), os argumentos são comparados como strings não binárias.
+  + If any argument is a nonbinary (character) string, the arguments are compared as nonbinary strings.
 
-  - Em todos os outros casos, os argumentos são comparados como strings binárias.
+  + In all other cases, the arguments are compared as binary strings.
 
-  O tipo de retorno de `LEAST()` é o tipo agregado dos tipos dos argumentos de comparação.
+  The return type of `LEAST()` is the aggregated type of the comparison argument types.
 
   ```sql
   mysql> SELECT LEAST(2,0);

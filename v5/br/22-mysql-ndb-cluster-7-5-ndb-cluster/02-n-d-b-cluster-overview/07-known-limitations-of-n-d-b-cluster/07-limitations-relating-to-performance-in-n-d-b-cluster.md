@@ -1,9 +1,9 @@
-#### 21.2.7.7 Limitações relacionadas ao desempenho no cluster NDB
+#### 21.2.7.7 Limitations Relating to Performance in NDB Cluster
 
-Os seguintes problemas de desempenho são específicos ou especialmente pronunciados no NDB Cluster:
+The following performance issues are specific to or especially pronounced in NDB Cluster:
 
-- **Análises de intervalo.** Existem problemas de desempenho das consultas devido ao acesso sequencial ao mecanismo de armazenamento `NDB`; também é relativamente mais caro realizar muitas análises de intervalo do que com `MyISAM` ou `InnoDB`.
+* **Range scans.** There are query performance issues due to sequential access to the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine; it is also relatively more expensive to do many range scans than it is with either `MyISAM` or `InnoDB`.
 
-- **Fiabilidade dos registros na faixa.** A estatística "Registros na faixa" está disponível, mas não foi totalmente testada ou oficialmente suportada. Isso pode resultar em planos de consulta não ótimos em alguns casos. Se necessário, você pode usar `USE INDEX` ou `FORCE INDEX` para alterar o plano de execução. Consulte Seção 8.9.4, "Dicas de índice" para obter mais informações sobre como fazer isso.
+* **Reliability of Records in range.** The `Records in range` statistic is available but is not completely tested or officially supported. This may result in nonoptimal query plans in some cases. If necessary, you can employ `USE INDEX` or `FORCE INDEX` to alter the execution plan. See [Section 8.9.4, “Index Hints”](index-hints.html "8.9.4 Index Hints"), for more information on how to do this.
 
-- **Indekses de hash únicos.** Índices de hash únicos criados com `USING HASH` não podem ser usados para acessar uma tabela se `NULL` for fornecido como parte da chave.
+* **Unique hash indexes.** Unique hash indexes created with `USING HASH` cannot be used for accessing a table if `NULL` is given as part of the key.

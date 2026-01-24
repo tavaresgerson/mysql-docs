@@ -1,17 +1,17 @@
-### 13.4.2 Instruções SQL para controlar servidores de replicação
+### 13.4.2 SQL Statements for Controlling Replica Servers
 
-13.4.2.1 ALTERAR MASTER PARA Declaração
+[13.4.2.1 CHANGE MASTER TO Statement](change-master-to.html)
 
-13.4.2.2 Declaração de filtro de replicação de alterações
+[13.4.2.2 CHANGE REPLICATION FILTER Statement](change-replication-filter.html)
 
-13.4.2.3 Declaração de RESET SLAVE
+[13.4.2.3 RESET SLAVE Statement](reset-slave.html)
 
-13.4.2.4 SINAL GLOBAL sql_slave_skip_counter Sintaxe
+[13.4.2.4 SET GLOBAL sql_slave_skip_counter Syntax](set-global-sql-slave-skip-counter.html)
 
-13.4.2.5 Declaração de início do escravo
+[13.4.2.5 START SLAVE Statement](start-slave.html)
 
-13.4.2.6 Declaração de PARAR SLAVE
+[13.4.2.6 STOP SLAVE Statement](stop-slave.html)
 
-Esta seção discute declarações para gerenciar servidores replicados. Seção 13.4.1, "Declarações SQL para controle de servidores de origem de replicação", discute declarações para gerenciar servidores de origem.
+This section discusses statements for managing replica servers. [Section 13.4.1, “SQL Statements for Controlling Replication Source Servers”](replication-statements-master.html "13.4.1 SQL Statements for Controlling Replication Source Servers"), discusses statements for managing source servers.
 
-Além das declarações descritas aqui, `SHOW SLAVE STATUS` e `SHOW RELAYLOG EVENTS` também são usadas com réplicas. Para obter informações sobre essas declarações, consulte Seção 13.7.5.34, “Declaração SHOW SLAVE STATUS” e Seção 13.7.5.32, “Declaração SHOW RELAYLOG EVENTS”.
+In addition to the statements described here, [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") and [`SHOW RELAYLOG EVENTS`](show-relaylog-events.html "13.7.5.32 SHOW RELAYLOG EVENTS Statement") are also used with replicas. For information about these statements, see [Section 13.7.5.34, “SHOW SLAVE STATUS Statement”](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement"), and [Section 13.7.5.32, “SHOW RELAYLOG EVENTS Statement”](show-relaylog-events.html "13.7.5.32 SHOW RELAYLOG EVENTS Statement").

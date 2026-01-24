@@ -1,44 +1,44 @@
-### 17.5.3 Partição de rede
+### 17.5.3 Network Partitioning
 
-O grupo precisa alcançar o consenso sempre que uma mudança que precisa ser replicada ocorrer. Esse é o caso de transações regulares, mas também é necessário para mudanças de membros do grupo e algumas mensagens internas que mantêm o grupo consistente. O consenso exige que a maioria dos membros do grupo concorde com uma decisão dada. Quando a maioria dos membros do grupo é perdida, o grupo não consegue progredir e fica bloqueado porque não consegue garantir a maioria ou o quórum.
+The group needs to achieve consensus whenever a change that needs to be replicated happens. This is the case for regular transactions but is also required for group membership changes and some internal messaging that keeps the group consistent. Consensus requires a majority of group members to agree on a given decision. When a majority of group members is lost, the group is unable to progress and blocks because it cannot secure majority or quorum.
 
-O quórum pode ser perdido quando há múltiplas falhas involuntárias, fazendo com que a maioria dos servidores seja removida abruptamente do grupo. Por exemplo, em um grupo de 5 servidores, se 3 deles ficarem silenciosos de uma vez, a maioria é comprometida e, portanto, não é possível alcançar o quórum. Na verdade, os dois restantes não conseguem dizer se os outros 3 servidores falharam ou se uma partição de rede os isolou sozinhos e, portanto, o grupo não pode ser reconfigurado automaticamente.
+Quorum may be lost when there are multiple involuntary failures, causing a majority of servers to be removed abruptly from the group. For example, in a group of 5 servers, if 3 of them become silent at once, the majority is compromised and thus no quorum can be achieved. In fact, the remaining two are not able to tell if the other 3 servers have crashed or whether a network partition has isolated these 2 alone and therefore the group cannot be reconfigured automatically.
 
-Por outro lado, se os servidores saem do grupo voluntariamente, eles instruem o grupo a se reconectar. Na prática, isso significa que um servidor que está saindo informa aos outros que está indo embora. Isso significa que outros membros podem reconectar o grupo corretamente, a consistência da associação é mantida e a maioria é recalculada. Por exemplo, no cenário acima de 5 servidores, onde 3 saem de uma vez, se os 3 servidores que estão saindo avisam o grupo que estão indo embora, um por um, então a associação é capaz de se ajustar de 5 para 2, e ao mesmo tempo, garantir o quórum enquanto isso acontece.
+On the other hand, if servers exit the group voluntarily, they instruct the group that it should reconfigure itself. In practice, this means that a server that is leaving tells others that it is going away. This means that other members can reconfigure the group properly, the consistency of the membership is maintained and the majority is recalculated. For example, in the above scenario of 5 servers where 3 leave at once, if the 3 leaving servers warn the group that they are leaving, one by one, then the membership is able to adjust itself from 5 to 2, and at the same time, securing quorum while that happens.
 
-Nota
+Note
 
-A perda de quórum é, por si só, um efeito colateral do mau planejamento. Planeje o tamanho do grupo para o número de falhas esperadas (independentemente de serem consecutivas, ocorrerem todas de uma vez ou sejam esporádicas).
+Loss of quorum is by itself a side-effect of bad planning. Plan the group size for the number of expected failures (regardless whether they are consecutive, happen all at once or are sporadic).
 
-As seções a seguir explicam o que fazer se o sistema for particionado de tal forma que nenhum quórum seja alcançado automaticamente pelos servidores do grupo.
+The following sections explain what to do if the system partitions in such a way that no quorum is automatically achieved by the servers in the group.
 
-Dica
+Tip
 
-Um membro primário que foi excluído de um grupo após uma perda por maioria seguida por uma reconfiguração pode conter transações extras que não estão incluídas no novo grupo. Se isso acontecer, a tentativa de adicionar o membro excluído de volta ao grupo resultará em um erro com a mensagem "Este membro tem mais transações executadas do que as presentes no grupo".
+A primary that has been excluded from a group after a majority loss followed by a reconfiguration can contain extra transactions that are not included in the new group. If this happens, the attempt to add back the excluded member from the group results in an error with the message This member has more executed transactions than those present in the group.
 
-#### Detecção de Partições
+#### Detecting Partitions
 
-A tabela do esquema de desempenho `replication_group_members` apresenta o status de cada servidor na visualização atual sob a perspectiva deste servidor. Na maioria das vezes, o sistema não enfrenta partições, e, portanto, a tabela mostra informações consistentes em todos os servidores do grupo. Em outras palavras, o status de cada servidor nesta tabela é acordado por todos na visualização atual. No entanto, se houver partição de rede e o quórum for perdido, a tabela mostrará o status `UNREACHABLE` (IRRECONHECÍVEL) para esses servidores que não puderem ser contatados. Esta informação é exportada pelo detector de falhas local integrado à Replicação em Grupo.
+The [`replication_group_members`](performance-schema-replication-group-members-table.html "25.12.11.8 The replication_group_members Table") performance schema table presents the status of each server in the current view from the perspective of this server. The majority of the time the system does not run into partitioning, and therefore the table shows information that is consistent across all servers in the group. In other words, the status of each server on this table is agreed by all in the current view. However, if there is network partitioning, and quorum is lost, then the table shows the status `UNREACHABLE` for those servers that it cannot contact. This information is exported by the local failure detector built into Group Replication.
 
-**Figura 17.7 Perda de Quórum**
+**Figure 17.7 Losing Quorum**
 
-![Cinco instâncias de servidor, S1, S2, S3, S4 e S5, são implantadas como um grupo interconectado, que é um grupo estável. Quando três dos servidores, S3, S4 e S5, falham, a maioria é perdida e o grupo não pode mais prosseguir sem intervenção.](images/gr-maioria-perdida.png)
+![Five server instances, S1, S2, S3, S4, and S5, are deployed as an interconnected group, which is a stable group. When three of the servers, S3, S4, and S5, fail, the majority is lost and the group can no longer proceed without intervention.](images/gr-majority-lost.png)
 
-Para entender esse tipo de partição de rede, a seção a seguir descreve um cenário em que inicialmente há 5 servidores trabalhando corretamente juntos, e as mudanças que então ocorrem no grupo, uma vez que apenas 2 servidores estão online. O cenário é representado na figura.
+To understand this type of network partition the following section describes a scenario where there are initially 5 servers working together correctly, and the changes that then happen to the group once only 2 servers are online. The scenario is depicted in the figure.
 
-Assim, vamos assumir que há um grupo com esses 5 servidores nele:
+As such, lets assume that there is a group with these 5 servers in it:
 
-- Servidor s1 com o identificador do membro `199b2df7-4aaf-11e6-bb16-28b2bd168d07`
+* Server s1 with member identifier `199b2df7-4aaf-11e6-bb16-28b2bd168d07`
 
-- Servidor s2 com identificador de membro `199bb88e-4aaf-11e6-babe-28b2bd168d07`
+* Server s2 with member identifier `199bb88e-4aaf-11e6-babe-28b2bd168d07`
 
-- Servidor s3 com identificador de membro `1999b9fb-4aaf-11e6-bb54-28b2bd168d07`
+* Server s3 with member identifier `1999b9fb-4aaf-11e6-bb54-28b2bd168d07`
 
-- Servidor s4 com identificador de membro `19ab72fc-4aaf-11e6-bb51-28b2bd168d07`
+* Server s4 with member identifier `19ab72fc-4aaf-11e6-bb51-28b2bd168d07`
 
-- Servidor s5 com identificador de membro `19b33846-4aaf-11e6-ba81-28b2bd168d07`
+* Server s5 with member identifier `19b33846-4aaf-11e6-ba81-28b2bd168d07`
 
-Inicialmente, o grupo está funcionando bem e os servidores estão se comunicando felizes uns com os outros. Você pode verificar isso ao fazer login no s1 e olhar para sua tabela de esquema de desempenho `replication_group_members`. Por exemplo:
+Initially the group is running fine and the servers are happily communicating with each other. You can verify this by logging into s1 and looking at its [`replication_group_members`](performance-schema-replication-group-members-table.html "25.12.11.8 The replication_group_members Table") performance schema table. For example:
 
 ```sql
 mysql> SELECT MEMBER_ID,MEMBER_STATE, MEMBER_ROLE FROM performance_schema.replication_group_members;
@@ -53,7 +53,7 @@ mysql> SELECT MEMBER_ID,MEMBER_STATE, MEMBER_ROLE FROM performance_schema.replic
 +--------------------------------------+--------------+-------------+
 ```
 
-No entanto, momentos depois, ocorre uma falha catastrófica e os servidores s3, s4 e s5 param inesperadamente. Alguns segundos depois, ao olhar novamente na tabela `replication_group_members` no s1, vemos que ela ainda está online, mas vários outros membros não estão. Na verdade, como visto abaixo, eles estão marcados como `UNREACHABLE`. Além disso, o sistema não conseguiu se reconectar para alterar a associação, porque a maioria foi perdida.
+However, moments later there is a catastrophic failure and servers s3, s4 and s5 stop unexpectedly. A few seconds after this, looking again at the [`replication_group_members`](performance-schema-replication-group-members-table.html "25.12.11.8 The replication_group_members Table") table on s1 shows that it is still online, but several others members are not. In fact, as seen below they are marked as `UNREACHABLE`. Moreover, the system could not reconfigure itself to change the membership, because the majority has been lost.
 
 ```sql
 mysql> SELECT MEMBER_ID,MEMBER_STATE FROM performance_schema.replication_group_members;
@@ -68,23 +68,23 @@ mysql> SELECT MEMBER_ID,MEMBER_STATE FROM performance_schema.replication_group_m
 +--------------------------------------+--------------+
 ```
 
-A tabela mostra que o s1 agora está em um grupo que não tem meios de progredir sem intervenção externa, porque a maioria dos servidores não é acessível. Neste caso específico, a lista de membros do grupo precisa ser redefinida para permitir que o sistema prossiga, o que é explicado nesta seção. Alternativamente, você também pode optar por parar a Replicação em Grupo nos s1 e s2 (ou parar completamente os s1 e s2), descobrir o que aconteceu com os s3, s4 e s5 e, em seguida, reiniciar a Replicação em Grupo (ou os servidores).
+The table shows that s1 is now in a group that has no means of progressing without external intervention, because a majority of the servers are unreachable. In this particular case, the group membership list needs to be reset to allow the system to proceed, which is explained in this section. Alternatively, you could also choose to stop Group Replication on s1 and s2 (or stop completely s1 and s2), figure out what happened with s3, s4 and s5 and then restart Group Replication (or the servers).
 
-#### Desbloqueando uma partição
+#### Unblocking a Partition
 
-A replicação em grupo permite que você redefina a lista de membros do grupo ao impor uma configuração específica. Por exemplo, no caso acima, onde s1 e s2 são os únicos servidores online, você pode optar por impor uma configuração de membros que inclua apenas s1 e s2. Isso requer a verificação de algumas informações sobre s1 e s2 e, em seguida, o uso da variável `group_replication_force_members`.
+Group replication enables you to reset the group membership list by forcing a specific configuration. For instance in the case above, where s1 and s2 are the only servers online, you could chose to force a membership configuration consisting of only s1 and s2. This requires checking some information about s1 and s2 and then using the [`group_replication_force_members`](group-replication-system-variables.html#sysvar_group_replication_force_members) variable.
 
-**Figura 17.8 Forçando uma nova adesão**
+**Figure 17.8 Forcing a New Membership**
 
-![Três dos servidores de um grupo, S3, S4 e S5, falharam, então a maioria está perdida e o grupo não pode prosseguir sem intervenção. Com a intervenção descrita no texto a seguir, S1 e S2 conseguem formar um grupo estável por conta própria.](images/gr-maioria-perdida-para-grupo-estável.png)
+![Three of the servers in a group, S3, S4, and S5, have failed, so the majority is lost and the group can no longer proceed without intervention. With the intervention described in the following text, S1 and S2 are able to form a stable group by themselves.](images/gr-majority-lost-to-stable-group.png)
 
-Suponha que você esteja de volta à situação em que s1 e s2 são os únicos servidores restantes no grupo. Os servidores s3, s4 e s5 saíram do grupo inesperadamente. Para fazer com que os servidores s1 e s2 continuem, você deseja forçar uma configuração de associação que contenha apenas s1 e s2.
+Suppose that you are back in the situation where s1 and s2 are the only servers left in the group. Servers s3, s4 and s5 have left the group unexpectedly. To make servers s1 and s2 continue, you want to force a membership configuration that contains only s1 and s2.
 
-Aviso
+Warning
 
-Este procedimento utiliza `group_replication_force_members` e deve ser considerado um remédio de último recurso. Deve ser usado com extremo cuidado e apenas para superar a perda de quórum. Se usado de forma incorreta, pode criar um cenário de cérebro artificialmente dividido ou bloquear o sistema como um todo.
+This procedure uses [`group_replication_force_members`](group-replication-system-variables.html#sysvar_group_replication_force_members) and should be considered a last resort remedy. It *must* be used with extreme care and only for overriding loss of quorum. If misused, it could create an artificial split-brain scenario or block the entire system altogether.
 
-Lembre-se de que o sistema está bloqueado e a configuração atual é a seguinte (conforme percebido pelo detector de falhas local em s1):
+Recall that the system is blocked and the current configuration is the following (as perceived by the local failure detector on s1):
 
 ```sql
 mysql> SELECT MEMBER_ID,MEMBER_STATE FROM performance_schema.replication_group_members;
@@ -99,19 +99,19 @@ mysql> SELECT MEMBER_ID,MEMBER_STATE FROM performance_schema.replication_group_m
 +--------------------------------------+--------------+
 ```
 
-A primeira coisa a fazer é verificar qual é o endereço local (identificador de comunicação de grupo) para s1 e s2. Faça login em s1 e s2 e obtenha essas informações da seguinte forma.
+The first thing to do is to check what is the local address (group communication identifier) for s1 and s2. Log in to s1 and s2 and get that information as follows.
 
 ```sql
 mysql> SELECT @@group_replication_local_address;
 ```
 
-Depois de conhecer os endereços de comunicação em grupo de s1 (`127.0.0.1:10000`) e s2 (`127.0.0.1:10001`), você pode usar esses endereços em um dos dois servidores para injetar uma nova configuração de membro, substituindo assim a existente que perdeu o quórum. Para fazer isso em s1:
+Once you know the group communication addresses of s1 (`127.0.0.1:10000`) and s2 (`127.0.0.1:10001`), you can use that on one of the two servers to inject a new membership configuration, thus overriding the existing one that has lost quorum. To do that on s1:
 
 ```sql
 mysql> SET GLOBAL group_replication_force_members="127.0.0.1:10000,127.0.0.1:10001";
 ```
 
-Isso desbloqueia o grupo ao forçar uma configuração diferente. Verifique `replication_group_members` em ambos os s1 e s2 para verificar a associação ao grupo após essa alteração. Primeiro no s1.
+This unblocks the group by forcing a different configuration. Check [`replication_group_members`](performance-schema-replication-group-members-table.html "25.12.11.8 The replication_group_members Table") on both s1 and s2 to verify the group membership after this change. First on s1.
 
 ```sql
 mysql> SELECT MEMBER_ID,MEMBER_STATE FROM performance_schema.replication_group_members;
@@ -123,7 +123,7 @@ mysql> SELECT MEMBER_ID,MEMBER_STATE FROM performance_schema.replication_group_m
 +--------------------------------------+--------------+
 ```
 
-E depois no s2.
+And then on s2.
 
 ```sql
 mysql> SELECT * FROM performance_schema.replication_group_members;
@@ -135,6 +135,6 @@ mysql> SELECT * FROM performance_schema.replication_group_members;
 +--------------------------------------+--------------+
 ```
 
-Ao forçar uma nova configuração de membro, certifique-se de que todos os servidores que serão forçados a sair do grupo estejam realmente desligados. No cenário descrito acima, se s3, s4 e s5 não estiverem realmente indisponíveis, mas sim online, eles podem ter formado sua própria partição funcional (eles são 3 de 5, portanto, têm a maioria). Nesse caso, forçar uma lista de membros do grupo com s1 e s2 pode criar uma situação de cérebro partido artificial. Portanto, é importante, antes de forçar uma nova configuração de membro, garantir que os servidores a serem excluídos estejam realmente desligados e, se não estiverem, desligue-os antes de prosseguir.
+When forcing a new membership configuration, make sure that any servers are going to be forced out of the group are indeed stopped. In the scenario depicted above, if s3, s4 and s5 are not really unreachable but instead are online, they may have formed their own functional partition (they are 3 out of 5, hence they have the majority). In that case, forcing a group membership list with s1 and s2 could create an artificial split-brain situation. Therefore it is important before forcing a new membership configuration to ensure that the servers to be excluded are indeed shutdown and if they are not, shut them down before proceeding.
 
-Depois de usar a variável de sistema `group_replication_force_members` para forçar com sucesso uma nova adesão ao grupo e desbloquear o grupo, certifique-se de limpar a variável de sistema. A variável de sistema `group_replication_force_members` deve estar vazia para emitir uma declaração de `START GROUP_REPLICATION`.
+After you have used the [`group_replication_force_members`](group-replication-system-variables.html#sysvar_group_replication_force_members) system variable to successfully force a new group membership and unblock the group, ensure that you clear the system variable. [`group_replication_force_members`](group-replication-system-variables.html#sysvar_group_replication_force_members) must be empty in order to issue a [`START GROUP_REPLICATION`](start-group-replication.html "13.4.3.1 START GROUP_REPLICATION Statement") statement.

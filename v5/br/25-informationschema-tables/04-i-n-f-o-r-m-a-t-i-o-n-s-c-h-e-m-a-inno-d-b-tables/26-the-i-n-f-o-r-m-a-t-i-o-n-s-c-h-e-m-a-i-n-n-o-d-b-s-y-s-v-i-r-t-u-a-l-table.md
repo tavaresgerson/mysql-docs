@@ -1,31 +1,31 @@
-### 24.4.26 A tabela INFORMATION_SCHEMA INNODB_SYS_VIRTUAL
+### 24.4.26 The INFORMATION_SCHEMA INNODB_SYS_VIRTUAL Table
 
-A tabela `INNODB_SYS_VIRTUAL` fornece metadados sobre as colunas `virtual geradas` do InnoDB e sobre as colunas nas quais essas colunas virtualizadas são baseadas, equivalentes às informações na tabela `SYS_VIRTUAL` do dicionário de dados do InnoDB.
+The [`INNODB_SYS_VIRTUAL`](information-schema-innodb-sys-virtual-table.html "24.4.26 The INFORMATION_SCHEMA INNODB_SYS_VIRTUAL Table") table provides metadata about `InnoDB` [virtual generated columns](glossary.html#glos_virtual_generated_column "virtual generated column") and columns upon which virtual generated columns are based, equivalent to information in the `SYS_VIRTUAL` table in the `InnoDB` data dictionary.
 
-Uma linha aparece na tabela `INNODB_SYS_VIRTUAL` para cada coluna sobre a qual uma coluna virtual gerada é baseada.
+A row appears in the `INNODB_SYS_VIRTUAL` table for each column upon which a virtual generated column is based.
 
-A tabela [`INNODB_SYS_VIRTUAL`](https://pt.wikipedia.org/wiki/Tabela_de_informa%C3%A7%C3%A3o-schema-innodb-sys-virtual) possui as seguintes colunas:
+The [`INNODB_SYS_VIRTUAL`](information-schema-innodb-sys-virtual-table.html "24.4.26 The INFORMATION_SCHEMA INNODB_SYS_VIRTUAL Table") table has these columns:
 
-- `TABLE_ID`
+* `TABLE_ID`
 
-  Um identificador que representa a tabela associada à coluna virtual; o mesmo valor que `INNODB_SYS_TABLES.TABLE_ID`.
+  An identifier representing the table associated with the virtual column; the same value as `INNODB_SYS_TABLES.TABLE_ID`.
 
-- `POS`
+* `POS`
 
-  O valor da posição da coluna gerada virtualmente. O valor é grande porque codifica o número de sequência da coluna e a posição ordinal. A fórmula usada para calcular o valor utiliza uma operação de bits:
+  The position value of the [virtual generated column](glossary.html#glos_virtual_generated_column "virtual generated column"). The value is large because it encodes the column sequence number and ordinal position. The formula used to calculate the value uses a bitwise operation:
 
   ```sql
   ((nth virtual generated column for the InnoDB instance + 1) << 16)
   + the ordinal position of the virtual generated column
   ```
 
-  Por exemplo, se a primeira coluna virtual gerada na instância `InnoDB` for a terceira coluna da tabela, a fórmula é `(0 + 1) << 16) + 2`. A primeira coluna virtual gerada na instância `InnoDB` é sempre o número 0. Como a terceira coluna na tabela, a posição ordinal da coluna virtual gerada é 2. As posições ordinais são contadas a partir de 0.
+  For example, if the first virtual generated column in the `InnoDB` instance is the third column of the table, the formula is `(0 + 1) << 16) + 2`. The first virtual generated column in the `InnoDB` instance is always number 0. As the third column in the table, the ordinal position of the virtual generated column is 2. Ordinal positions are counted from 0.
 
-- `BASE_POS`
+* `BASE_POS`
 
-  A posição ordinal das colunas sobre as quais uma coluna gerada virtualmente é baseada.
+  The ordinal position of the columns upon which a virtual generated column is based.
 
-#### Exemplo
+#### Example
 
 ```sql
 mysql> CREATE TABLE `t1` (
@@ -47,9 +47,9 @@ mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_VIRTUAL
 +----------+-------+----------+
 ```
 
-#### Notas
+#### Notes
 
-- Se um valor constante for atribuído a uma coluna gerada virtualmente, como na tabela a seguir, uma entrada para a coluna não aparecerá na tabela `INNODB_SYS_VIRTUAL`. Para que uma entrada apareça, uma coluna gerada virtualmente deve ter uma coluna base.
+* If a constant value is assigned to a [virtual generated column](glossary.html#glos_virtual_generated_column "virtual generated column"), as in the following table, an entry for the column does not appear in the `INNODB_SYS_VIRTUAL` table. For an entry to appear, a virtual generated column must have a base column.
 
   ```sql
   CREATE TABLE `t1` (
@@ -59,8 +59,8 @@ mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_VIRTUAL
   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
   ```
 
-  No entanto, os metadados para essa coluna aparecem na tabela \`[INNODB_SYS_COLUMNS](https://pt.wikipedia.org/wiki/Tabela_INNODB_SYS_COLUMNS) do esquema de informações.
+  However, metadata for such a column does appear in the [`INNODB_SYS_COLUMNS`](information-schema-innodb-sys-columns-table.html "24.4.17 The INFORMATION_SCHEMA INNODB_SYS_COLUMNS Table") table.
 
-- Você deve ter o privilégio `PROCESSO` para consultar esta tabela.
+* You must have the [`PROCESS`](privileges-provided.html#priv_process) privilege to query this table.
 
-- Use a tabela `INFORMATION_SCHEMA` `COLUMNS` ou a instrução `SHOW COLUMNS` para visualizar informações adicionais sobre as colunas desta tabela, incluindo tipos de dados e valores padrão.
+* Use the `INFORMATION_SCHEMA` [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") table or the [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") statement to view additional information about the columns of this table, including data types and default values.

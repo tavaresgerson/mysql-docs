@@ -1,16 +1,16 @@
-#### B.3.2.14 A tabela 'tbl_name' não existe
+#### B.3.2.14 Table 'tbl_name' doesn't exist
 
-Se você receber um dos seguintes erros, geralmente significa que não existe nenhuma tabela no banco de dados padrão com o nome fornecido:
+If you get either of the following errors, it usually means that no table exists in the default database with the given name:
 
 ```sql
 Table 'tbl_name' doesn't exist
 Can't find file: 'tbl_name' (errno: 2)
 ```
 
-Em alguns casos, pode ser que a tabela exista, mas que você esteja se referindo a ela incorretamente:
+In some cases, it may be that the table does exist but that you are referring to it incorrectly:
 
-- Como o MySQL usa diretórios e arquivos para armazenar bancos de dados e tabelas, os nomes de banco de dados e tabelas são sensíveis ao maiúsculas e minúsculas se estiverem localizados em um sistema de arquivos que tenha nomes de arquivos sensíveis ao maiúsculas e minúsculas.
+* Because MySQL uses directories and files to store databases and tables, database and table names are case-sensitive if they are located on a file system that has case-sensitive file names.
 
-- Mesmo para sistemas de arquivos que não são case-sensitive, como no Windows, todas as referências a uma determinada tabela em uma consulta devem usar a mesma letra maiúscula.
+* Even for file systems that are not case-sensitive, such as on Windows, all references to a given table within a query must use the same lettercase.
 
-Você pode verificar quais tabelas estão no banco de dados padrão com [`SHOW TABLES`](show-tables.html). Veja [Seção 13.7.5, “Instruções SHOW”](show.html).
+You can check which tables are in the default database with [`SHOW TABLES`](show-tables.html "13.7.5.37 SHOW TABLES Statement"). See [Section 13.7.5, “SHOW Statements”](show.html "13.7.5 SHOW Statements").

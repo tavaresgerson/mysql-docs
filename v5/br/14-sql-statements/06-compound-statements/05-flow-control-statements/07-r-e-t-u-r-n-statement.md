@@ -1,9 +1,9 @@
-#### 13.6.5.7 Declaração RETURN
+#### 13.6.5.7 RETURN Statement
 
 ```sql
 RETURN expr
 ```
 
-A instrução `RETURN` termina a execução de uma função armazenada e retorna o valor *`expr`* para o chamador da função. Deve haver pelo menos uma instrução `RETURN` em uma função armazenada. Pode haver mais de uma se a função tiver vários pontos de saída.
+The [`RETURN`](return.html "13.6.5.7 RETURN Statement") statement terminates execution of a stored function and returns the value *`expr`* to the function caller. There must be at least one [`RETURN`](return.html "13.6.5.7 RETURN Statement") statement in a stored function. There may be more than one if the function has multiple exit points.
 
-Esta declaração não é usada em procedimentos armazenados, gatilhos ou eventos. A declaração `LEAVE` pode ser usada para sair de um programa armazenado desses tipos.
+This statement is not used in stored procedures, triggers, or events. The [`LEAVE`](leave.html "13.6.5.4 LEAVE Statement") statement can be used to exit a stored program of those types.

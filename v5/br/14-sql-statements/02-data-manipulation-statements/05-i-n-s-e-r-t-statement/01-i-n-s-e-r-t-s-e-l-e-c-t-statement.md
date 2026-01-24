@@ -1,4 +1,4 @@
-#### 13.2.5.1 Inserir ... Instrução SELECT
+#### 13.2.5.1 INSERT ... SELECT Statement
 
 ```sql
 INSERT [LOW_PRIORITY | HIGH_PRIORITY] [IGNORE]
@@ -18,7 +18,7 @@ assignment_list:
     assignment [, assignment] ...
 ```
 
-Com `INSERT ... SELECT`, você pode inserir rapidamente muitas linhas em uma tabela a partir do resultado de uma instrução `SELECT`, que pode selecionar de uma ou mais tabelas. Por exemplo:
+With [`INSERT ... SELECT`](insert-select.html "13.2.5.1 INSERT ... SELECT Statement"), you can quickly insert many rows into a table from the result of a [`SELECT`](select.html "13.2.9 SELECT Statement") statement, which can select from one or many tables. For example:
 
 ```sql
 INSERT INTO tbl_temp2 (fld_id)
@@ -26,28 +26,27 @@ INSERT INTO tbl_temp2 (fld_id)
   FROM tbl_temp1 WHERE tbl_temp1.fld_order_id > 100;
 ```
 
-As seguintes condições se aplicam às instruções `INSERT ... SELECT`:
+The following conditions hold for [`INSERT ... SELECT`](insert-select.html "13.2.5.1 INSERT ... SELECT Statement") statements:
 
-- Especifique `IGNORE` para ignorar linhas que causariam violações de chave duplicada.
+* Specify `IGNORE` to ignore rows that would cause duplicate-key violations.
 
-- A tabela de destino da instrução `INSERT` pode aparecer na cláusula `FROM` da parte `SELECT` da consulta. No entanto, você não pode inserir em uma tabela e selecionar dela na mesma tabela em uma subconsulta.
+* The target table of the [`INSERT`](insert.html "13.2.5 INSERT Statement") statement may appear in the `FROM` clause of the [`SELECT`](select.html "13.2.9 SELECT Statement") part of the query. However, you cannot insert into a table and select from the same table in a subquery.
 
-  Ao selecionar e inserir na mesma tabela, o MySQL cria uma tabela temporária interna para armazenar as linhas do `SELECT` e, em seguida, insere essas linhas na tabela de destino. No entanto, você não pode usar `INSERT INTO t ... SELECT ... FROM t` quando `t` é uma tabela `TEMPORARY`, porque as tabelas `TEMPORARY` não podem ser referenciadas duas vezes na mesma instrução. Veja Seção 8.4.4, “Uso de Tabela Temporária Interna no MySQL” e Seção B.3.6.2, “Problemas com Tabela TEMPORARY”.
+  When selecting from and inserting into the same table, MySQL creates an internal temporary table to hold the rows from the [`SELECT`](select.html "13.2.9 SELECT Statement") and then inserts those rows into the target table. However, you cannot use `INSERT INTO t ... SELECT ... FROM t` when `t` is a `TEMPORARY` table, because `TEMPORARY` tables cannot be referred to twice in the same statement. See [Section 8.4.4, “Internal Temporary Table Use in MySQL”](internal-temporary-tables.html "8.4.4 Internal Temporary Table Use in MySQL"), and [Section B.3.6.2, “TEMPORARY Table Problems”](temporary-table-problems.html "B.3.6.2 TEMPORARY Table Problems").
 
-- As colunas `AUTO_INCREMENT` funcionam normalmente.
+* `AUTO_INCREMENT` columns work as usual.
+* To ensure that the binary log can be used to re-create the original tables, MySQL does not permit concurrent inserts for [`INSERT ... SELECT`](insert-select.html "13.2.5.1 INSERT ... SELECT Statement") statements (see [Section 8.11.3, “Concurrent Inserts”](concurrent-inserts.html "8.11.3 Concurrent Inserts")).
 
-- Para garantir que o log binário possa ser usado para recriar as tabelas originais, o MySQL não permite inserções concorrentes para instruções `INSERT ... SELECT` (consulte Seção 8.11.3, “Inserções Concorrentes”).
+* To avoid ambiguous column reference problems when the [`SELECT`](select.html "13.2.9 SELECT Statement") and the [`INSERT`](insert.html "13.2.5 INSERT Statement") refer to the same table, provide a unique alias for each table used in the [`SELECT`](select.html "13.2.9 SELECT Statement") part, and qualify column names in that part with the appropriate alias.
 
-- Para evitar problemas de referência ambígua de colunas quando o `SELECT` e o `INSERT` se referem à mesma tabela, forneça um alias único para cada tabela usada na parte `SELECT` e qualifique os nomes das colunas nessa parte com o alias apropriado.
+You can explicitly select which partitions or subpartitions (or both) of the source or target table (or both) are to be used with a `PARTITION` clause following the name of the table. When `PARTITION` is used with the name of the source table in the [`SELECT`](select.html "13.2.9 SELECT Statement") portion of the statement, rows are selected only from the partitions or subpartitions named in its partition list. When `PARTITION` is used with the name of the target table for the [`INSERT`](insert.html "13.2.5 INSERT Statement") portion of the statement, it must be possible to insert all rows selected into the partitions or subpartitions named in the partition list following the option. Otherwise, the `INSERT ... SELECT` statement fails. For more information and examples, see [Section 22.5, “Partition Selection”](partitioning-selection.html "22.5 Partition Selection").
 
-Você pode selecionar explicitamente quais partições ou subpartições (ou ambas) da tabela de origem ou destino (ou ambas) serão usadas com uma cláusula `PARTITION` após o nome da tabela. Quando `PARTITION` é usado com o nome da tabela de origem na parte `SELECT` da declaração, as linhas são selecionadas apenas das partições ou subpartições nomeadas em sua lista de partições. Quando `PARTITION` é usado com o nome da tabela de destino para a parte `INSERT` da declaração, deve ser possível inserir todas as linhas selecionadas nas partições ou subpartições nomeadas na lista de partições que segue a opção. Caso contrário, a declaração `INSERT ... SELECT` falha. Para mais informações e exemplos, consulte Seção 22.5, “Seleção de Partição”.
+For [`INSERT ... SELECT`](insert-on-duplicate.html "13.2.5.2 INSERT ... ON DUPLICATE KEY UPDATE Statement") statements, see [Section 13.2.5.2, “INSERT ... ON DUPLICATE KEY UPDATE Statement”](insert-on-duplicate.html "13.2.5.2 INSERT ... ON DUPLICATE KEY UPDATE Statement") for conditions under which the [`SELECT`](select.html "13.2.9 SELECT Statement") columns can be referred to in an `ON DUPLICATE KEY UPDATE` clause.
 
-Para as instruções `INSERT ... SELECT`, consulte Seção 13.2.5.2, “Instrução `INSERT ... ON DUPLICATE KEY UPDATE`” para as condições sob as quais as colunas do `SELECT` podem ser referenciadas em uma cláusula `ON DUPLICATE KEY UPDATE`.
+The order in which a [`SELECT`](select.html "13.2.9 SELECT Statement") statement with no `ORDER BY` clause returns rows is nondeterministic. This means that, when using replication, there is no guarantee that such a [`SELECT`](select.html "13.2.9 SELECT Statement") returns rows in the same order on the source and the replica, which can lead to inconsistencies between them. To prevent this from occurring, always write `INSERT ... SELECT` statements that are to be replicated using an `ORDER BY` clause that produces the same row order on the source and the replica. See also [Section 16.4.1.17, “Replication and LIMIT”](replication-features-limit.html "16.4.1.17 Replication and LIMIT").
 
-A ordem em que uma instrução `SELECT` sem cláusula `ORDER BY` retorna as linhas é não determinística. Isso significa que, ao usar a replicação, não há garantia de que essa instrução `SELECT` retorne as linhas na mesma ordem na fonte e na replica, o que pode levar a inconsistências entre elas. Para evitar que isso ocorra, sempre escreva instruções `INSERT ... SELECT` que devem ser replicadas usando uma cláusula `ORDER BY` que produza a mesma ordem de linha na fonte e na replica. Veja também Seção 16.4.1.17, “Replicação e LIMIT”.
+Due to this issue, [`INSERT ... SELECT ON DUPLICATE KEY UPDATE`](insert-on-duplicate.html "13.2.5.2 INSERT ... ON DUPLICATE KEY UPDATE Statement") and [`INSERT IGNORE ... SELECT`](insert-select.html "13.2.5.1 INSERT ... SELECT Statement") statements are flagged as unsafe for statement-based replication. Such statements produce a warning in the error log when using statement-based mode and are written to the binary log using the row-based format when using `MIXED` mode. (Bug #11758262, Bug #50439)
 
-Devido a esse problema, as instruções `INSERT ... SELECT ON DUPLICATE KEY UPDATE` e `INSERT IGNORE ... SELECT` são marcadas como inseguras para a replicação baseada em instruções. Essas instruções produzem um aviso no log de erro ao usar o modo baseado em instruções e são escritas no log binário usando o formato baseado em linhas quando o modo `MIXED` é usado. (Bug #11758262, Bug #50439)
+See also [Section 16.2.1.1, “Advantages and Disadvantages of Statement-Based and Row-Based Replication”](replication-sbr-rbr.html "16.2.1.1 Advantages and Disadvantages of Statement-Based and Row-Based Replication").
 
-Veja também Seção 16.2.1.1, “Vantagens e desvantagens da replicação baseada em declarações e baseada em linhas”.
-
-Uma instrução `INSERT ... SELECT` que afeta tabelas particionadas usando um mecanismo de armazenamento como `MyISAM` que emprega bloqueios de nível de tabela bloqueia todas as partições da tabela de destino; no entanto, apenas as partições que são realmente lidas da tabela de origem são bloqueadas. (Isso não ocorre com tabelas que usam mecanismos de armazenamento como `InnoDB` que emprega bloqueios de nível de linha.) Para mais informações, consulte Seção 22.6.4, “Particionamento e Bloqueio”.
+An `INSERT ... SELECT` statement affecting partitioned tables using a storage engine such as [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine") that employs table-level locks locks all partitions of the target table; however, only those partitions that are actually read from the source table are locked. (This does not occur with tables using storage engines such as [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") that employ row-level locking.) For more information, see [Section 22.6.4, “Partitioning and Locking”](partitioning-limitations-locking.html "22.6.4 Partitioning and Locking").

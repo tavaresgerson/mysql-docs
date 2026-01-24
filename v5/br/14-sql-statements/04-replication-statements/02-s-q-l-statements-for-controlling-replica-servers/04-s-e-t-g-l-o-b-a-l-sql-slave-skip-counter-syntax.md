@@ -1,21 +1,21 @@
-#### 13.4.2.4 Sintaxe do parâmetro global sql_slave_skip_counter
+#### 13.4.2.4 SET GLOBAL sql_slave_skip_counter Syntax
 
 ```sql
 SET GLOBAL sql_slave_skip_counter = N
 ```
 
-Essa declaração ignora os próximos eventos *`N`* do mestre. Isso é útil para recuperar-se de paradas de replicação causadas por uma declaração.
+This statement skips the next *`N`* events from the master. This is useful for recovering from replication stops caused by a statement.
 
-Esta declaração é válida apenas quando os threads escravos não estão em execução. Caso contrário, produz um erro.
+This statement is valid only when the slave threads are not running. Otherwise, it produces an error.
 
-Ao usar essa declaração, é importante entender que o log binário é organizado como uma sequência de grupos conhecidos como grupos de eventos. Cada grupo de eventos consiste em uma sequência de eventos.
+When using this statement, it is important to understand that the binary log is actually organized as a sequence of groups known as event groups. Each event group consists of a sequence of events.
 
-- Para tabelas transacionais, um grupo de eventos corresponde a uma transação.
+* For transactional tables, an event group corresponds to a transaction.
 
-- Para tabelas não transacionais, um grupo de eventos corresponde a uma única instrução SQL.
+* For nontransactional tables, an event group corresponds to a single SQL statement.
 
-Nota
+Note
 
-Uma única transação pode conter alterações em tabelas tanto transacionais quanto não transacionais.
+A single transaction can contain changes to both transactional and nontransactional tables.
 
-Quando você usa `SET GLOBAL sql_slave_skip_counter` para pular eventos e o resultado está no meio de um grupo, o escravo continua a pular eventos até chegar ao final do grupo. A execução então começa com o próximo grupo de eventos.
+When you use [`SET GLOBAL sql_slave_skip_counter`](set-global-sql-slave-skip-counter.html "13.4.2.4 SET GLOBAL sql_slave_skip_counter Syntax") to skip events and the result is in the middle of a group, the slave continues to skip events until it reaches the end of the group. Execution then starts with the next event group.

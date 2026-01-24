@@ -1,23 +1,22 @@
-#### 21.6.2.2 Mensagens de inicialização do log do cluster do NDB
+#### 21.6.2.2 NDB Cluster Log Startup Messages
 
-Possíveis mensagens de inicialização com descrições estão fornecidas na lista a seguir:
+Possible startup messages with descriptions are provided in the following list:
 
-- `Início inicial, aguardando que %s se conecte, nós [todos: %s conectados: %s sem espera: %s ]`
+* `Initial start, waiting for %s to connect, nodes [ all: %s connected: %s no-wait: %s ]`
 
-- `Esperando até que os nós: %s se conectem, nós [todos: %s conectados: %s sem espera: %s ]`
+* `Waiting until nodes: %s connects, nodes [ all: %s connected: %s no-wait: %s ]`
 
-- `Esperando %u seg para os nós %s se conectarem, nós [ todos: %s conectados: %s sem espera: %s ]`
+* `Waiting %u sec for nodes %s to connect, nodes [ all: %s connected: %s no-wait: %s ]`
 
-- `Aguardando início não particionado, nós [todos: %s conectados: %s ausentes: %s sem espera: %s ]`
+* `Waiting for non partitioned start, nodes [ all: %s connected: %s missing: %s no-wait: %s ]`
 
-- `Esperando %u seg para início não particionado, nós [ todos: %s conectados: %s ausentes: %s sem espera: %s ]`
+* `Waiting %u sec for non partitioned start, nodes [ all: %s connected: %s missing: %s no-wait: %s ]`
 
-- `Início inicial com nós %s [falta: %s sem espera: %s ]`
+* `Initial start with nodes %s [ missing: %s no-wait: %s ]`
 
-- `Comece com todos os nós %s`
+* `Start with all nodes %s`
+* `Start with nodes %s [ missing: %s no-wait: %s ]`
 
-- `Comece com nós %s [falta: %s sem espera: %s ]`
+* `Start potentially partitioned with nodes %s [ missing: %s no-wait: %s ]`
 
-- `Comece potencialmente particionado com nós %s [falta: %s não-espera: %s ]`
-
-- `Erro de início desconhecido: 0x%x [ %s %s %s %s ]`
+* `Unknown startreport: 0x%x [ %s %s %s %s ]`

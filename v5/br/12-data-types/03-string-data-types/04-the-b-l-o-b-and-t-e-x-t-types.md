@@ -1,32 +1,32 @@
-### 11.3.4 Os tipos BLOB e TEXTO
+### 11.3.4 The BLOB and TEXT Types
 
-Um `BLOB` é um objeto grande binário que pode armazenar uma quantidade variável de dados. Os quatro tipos de `BLOB` são `TINYBLOB`, `BLOB`, `MEDIUMBLOB` e `LONGBLOB`. Eles diferem apenas no comprimento máximo dos valores que podem armazenar. Os quatro tipos de `TEXT` são `TINYTEXT`, `TEXT`, `MEDIUMTEXT` e `LONGTEXT`. Estes correspondem aos quatro tipos de `BLOB` e têm os mesmos comprimentos máximos e requisitos de armazenamento. Consulte a Seção 11.7, “Requisitos de Armazenamento de Tipos de Dados”.
+A `BLOB` is a binary large object that can hold a variable amount of data. The four `BLOB` types are `TINYBLOB`, `BLOB`, `MEDIUMBLOB`, and `LONGBLOB`. These differ only in the maximum length of the values they can hold. The four `TEXT` types are `TINYTEXT`, `TEXT`, `MEDIUMTEXT`, and `LONGTEXT`. These correspond to the four `BLOB` types and have the same maximum lengths and storage requirements. See Section 11.7, “Data Type Storage Requirements”.
 
-Os valores `BLOB` são tratados como cadeias binárias (cadeias de bytes). Eles têm o conjunto de caracteres `binary` e a ordenação, e a comparação e ordenação são baseadas nos valores numéricos dos bytes nos valores da coluna. Os valores `TEXT` são tratados como cadeias não binárias (cadeias de caracteres). Eles têm um conjunto de caracteres diferente de `binary`, e os valores são ordenados e comparados com base na ordenação do conjunto de caracteres.
+`BLOB` values are treated as binary strings (byte strings). They have the `binary` character set and collation, and comparison and sorting are based on the numeric values of the bytes in column values. `TEXT` values are treated as nonbinary strings (character strings). They have a character set other than `binary`, and values are sorted and compared based on the collation of the character set.
 
-Se o modo SQL rigoroso não estiver habilitado e você atribuir um valor a uma coluna `BLOB` ou `TEXT` que exceda o comprimento máximo da coluna, o valor será truncado para caber e um aviso será gerado. Para o truncamento de caracteres não espaços, você pode causar um erro (em vez de um aviso) e suprimir a inserção do valor usando o modo SQL rigoroso. Veja a Seção 5.1.10, “Modos SQL do Servidor”.
+If strict SQL mode is not enabled and you assign a value to a `BLOB` or `TEXT` column that exceeds the column's maximum length, the value is truncated to fit and a warning is generated. For truncation of nonspace characters, you can cause an error to occur (rather than a warning) and suppress insertion of the value by using strict SQL mode. See Section 5.1.10, “Server SQL Modes”.
 
-A truncação de espaços em branco excessivos de valores a serem inseridos em colunas `TEXT` sempre gera uma mensagem de aviso, independentemente do modo SQL.
+Truncation of excess trailing spaces from values to be inserted into `TEXT` columns always generates a warning, regardless of the SQL mode.
 
-Para as colunas `TEXT` e `BLOB`, não há preenchimento no momento da inserção e nenhum byte é removido no momento da seleção.
+For `TEXT` and `BLOB` columns, there is no padding on insert and no bytes are stripped on select.
 
-Se uma coluna `TEXT` estiver indexada, as comparações de entradas de índice são preenchidas com espaços no final. Isso significa que, se o índice exigir valores únicos, erros de chave duplicada ocorrerão para valores que diferem apenas no número de espaços finais. Por exemplo, se uma tabela contém `'a'`, uma tentativa de armazenar `'a '` causa um erro de chave duplicada. Isso não é verdade para colunas `BLOB`.
+If a `TEXT` column is indexed, index entry comparisons are space-padded at the end. This means that, if the index requires unique values, duplicate-key errors occur for values that differ only in the number of trailing spaces. For example, if a table contains `'a'`, an attempt to store `'a '` causes a duplicate-key error. This is not true for `BLOB` columns.
 
-Na maioria dos casos, você pode considerar uma coluna `BLOB` como uma coluna `VARBINARY`, que pode ser do tamanho que você quiser. Da mesma forma, você pode considerar uma coluna `TEXT` como uma coluna `VARCHAR`. `BLOB` e `TEXT` diferem de `VARBINARY` e `VARCHAR` da seguinte maneira:
+In most respects, you can regard a `BLOB` column as a `VARBINARY` column that can be as large as you like. Similarly, you can regard a `TEXT` column as a `VARCHAR` column. `BLOB` and `TEXT` differ from `VARBINARY` and `VARCHAR` in the following ways:
 
-- Para índices em colunas `BLOB` e `TEXT`, você deve especificar o comprimento do prefixo do índice. Para `CHAR` e `VARCHAR`, o comprimento do prefixo é opcional. Veja a Seção 8.3.4, “Indeks de Colunas”.
+* For indexes on `BLOB` and `TEXT` columns, you must specify an index prefix length. For `CHAR` and `VARCHAR`, a prefix length is optional. See Section 8.3.4, “Column Indexes”.
 
-- As colunas `BLOB` e `TEXT` não podem ter valores `DEFAULT`.
+* `BLOB` and `TEXT` columns cannot have `DEFAULT` values.
 
-Se você usar o atributo `BINARY` com um tipo de dado `TEXT`, a coluna receberá a collation binária (_bin) do conjunto de caracteres da coluna.
+If you use the `BINARY` attribute with a `TEXT` data type, the column is assigned the binary (`_bin`) collation of the column character set.
 
-`LONG` e `LONG VARCHAR` correspondem ao tipo de dados `MEDIUMTEXT`. Esse é um recurso de compatibilidade.
+`LONG` and `LONG VARCHAR` map to the `MEDIUMTEXT` data type. This is a compatibility feature.
 
-O MySQL Connector/ODBC define os valores `BLOB` como `LONGVARBINARY` e os valores `TEXT` como `LONGVARCHAR`.
+MySQL Connector/ODBC defines `BLOB` values as `LONGVARBINARY` and `TEXT` values as `LONGVARCHAR`.
 
-Como os valores `BLOB` e `TEXT` podem ser extremamente longos, você pode encontrar algumas restrições ao usá-los:
+Because `BLOB` and `TEXT` values can be extremely long, you might encounter some constraints in using them:
 
-- Apenas os primeiros `max_sort_length` bytes da coluna são usados durante o ordenamento. O valor padrão de `max_sort_length` é 1024. Você pode tornar mais bytes significativos no ordenamento ou agrupamento aumentando o valor de `max_sort_length` durante o início ou execução do servidor. Qualquer cliente pode alterar o valor da variável `max_sort_length` da sessão:
+* Only the first `max_sort_length` bytes of the column are used when sorting. The default value of `max_sort_length` is 1024. You can make more bytes significant in sorting or grouping by increasing the value of `max_sort_length` at server startup or runtime. Any client can change the value of its session `max_sort_length` variable:
 
   ```sql
   mysql> SET max_sort_length = 2000;
@@ -34,14 +34,14 @@ Como os valores `BLOB` e `TEXT` podem ser extremamente longos, você pode encont
       -> ORDER BY comment;
   ```
 
-- Quando as colunas `BLOB` ou `TEXT` estão presentes no resultado de uma consulta processada usando uma tabela temporária, o servidor usa uma tabela no disco em vez de na memória, pois o mecanismo de armazenamento `MEMORY` não suporta esses tipos de dados (consulte a Seção 8.4.4, “Uso de Tabela Temporária Interna no MySQL”). O uso do disco implica uma penalidade de desempenho, portanto, inclua as colunas `BLOB` ou `TEXT` no resultado da consulta apenas se elas realmente forem necessárias. Por exemplo, evite usar `SELECT *`, que seleciona todas as colunas.
+* Instances of `BLOB` or `TEXT` columns in the result of a query that is processed using a temporary table causes the server to use a table on disk rather than in memory because the `MEMORY` storage engine does not support those data types (see Section 8.4.4, “Internal Temporary Table Use in MySQL”). Use of disk incurs a performance penalty, so include `BLOB` or `TEXT` columns in the query result only if they are really needed. For example, avoid using `SELECT *`, which selects all columns.
 
-- O tamanho máximo de um objeto `BLOB` ou `TEXT` é determinado pelo seu tipo, mas o maior valor que você realmente pode transmitir entre o cliente e o servidor é determinado pela quantidade de memória disponível e pelo tamanho dos buffers de comunicação. Você pode alterar o tamanho do buffer de mensagem alterando o valor da variável `max_allowed_packet`, mas isso deve ser feito tanto para o servidor quanto para o seu programa cliente. Por exemplo, o **mysql** e o **mysqldump** permitem que você altere o valor do `max_allowed_packet` no lado do cliente. Veja a Seção 5.1.1, “Configurando o Servidor”, a Seção 4.5.1, “mysql — O Cliente de Linha de Comando do MySQL” e a Seção 4.5.4, “mysqldump — Um Programa de Backup de Bancos de Dados”. Você também pode querer comparar os tamanhos dos pacotes e o tamanho dos objetos de dados que está armazenando com os requisitos de armazenamento, veja a Seção 11.7, “Requisitos de Armazenamento de Tipos de Dados”
+* The maximum size of a `BLOB` or `TEXT` object is determined by its type, but the largest value you actually can transmit between the client and server is determined by the amount of available memory and the size of the communications buffers. You can change the message buffer size by changing the value of the `max_allowed_packet` variable, but you must do so for both the server and your client program. For example, both **mysql** and **mysqldump** enable you to change the client-side `max_allowed_packet` value. See Section 5.1.1, “Configuring the Server”, Section 4.5.1, “mysql — The MySQL Command-Line Client”, and Section 4.5.4, “mysqldump — A Database Backup Program”. You may also want to compare the packet sizes and the size of the data objects you are storing with the storage requirements, see Section 11.7, “Data Type Storage Requirements”
 
-Cada valor `BLOB` ou `TEXT` é representado internamente por um objeto alocado separadamente. Isso contrasta com todos os outros tipos de dados, para os quais o armazenamento é alocado uma vez por coluna quando a tabela é aberta.
+Each `BLOB` or `TEXT` value is represented internally by a separately allocated object. This is in contrast to all other data types, for which storage is allocated once per column when the table is opened.
 
-Em alguns casos, pode ser desejável armazenar dados binários, como arquivos de mídia, em colunas `BLOB` ou `TEXT`. Você pode achar as funções de manipulação de strings do MySQL úteis para trabalhar com esses dados. Veja a Seção 12.8, “Funções e Operadores de String”. Por motivos de segurança e outros, geralmente é preferível fazer isso usando código de aplicação, em vez de dar ao usuário da aplicação o privilégio `FILE`. Você pode discutir detalhes para várias linguagens e plataformas nos Fóruns do MySQL (<http://forums.mysql.com/>).
+In some cases, it may be desirable to store binary data such as media files in `BLOB` or `TEXT` columns. You may find MySQL's string handling functions useful for working with such data. See Section 12.8, “String Functions and Operators”. For security and other reasons, it is usually preferable to do so using application code rather than giving application users the `FILE` privilege. You can discuss specifics for various languages and platforms in the MySQL Forums (<http://forums.mysql.com/>).
 
-Nota
+Note
 
-No cliente **mysql**, as cadeias binárias são exibidas usando notação hexadecimal, dependendo do valor da opção `--binary-as-hex`. Para obter mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de linha de comando do MySQL”.
+Within the **mysql** client, binary strings display using hexadecimal notation, depending on the value of the `--binary-as-hex`. For more information about that option, see Section 4.5.1, “mysql — The MySQL Command-Line Client”.

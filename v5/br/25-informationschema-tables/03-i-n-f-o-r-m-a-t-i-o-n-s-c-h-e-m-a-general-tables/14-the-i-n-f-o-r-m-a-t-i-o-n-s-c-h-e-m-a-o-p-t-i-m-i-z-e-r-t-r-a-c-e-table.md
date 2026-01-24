@@ -1,21 +1,21 @@
-### 24.3.14 A tabela INFORMATION_SCHEMA OPTIMIZER_TRACE
+### 24.3.14 The INFORMATION_SCHEMA OPTIMIZER_TRACE Table
 
-A tabela `OPTIMIZER_TRACE` fornece informações produzidas pela capacidade de rastreamento do otimizador para instruções rastreadas. Para habilitar o rastreamento, use a variável de sistema `optimizer_trace`. Para obter detalhes, consulte Seção 8.15, “Rastreamento do Otimizador”.
+The [`OPTIMIZER_TRACE`](information-schema-optimizer-trace-table.html "24.3.14 The INFORMATION_SCHEMA OPTIMIZER_TRACE Table") table provides information produced by the optimizer tracing capability for traced statements. To enable tracking, use the [`optimizer_trace`](server-system-variables.html#sysvar_optimizer_trace) system variable. For details, see [Section 8.15, “Tracing the Optimizer”](optimizer-tracing.html "8.15 Tracing the Optimizer").
 
-A tabela `OPTIMIZER_TRACE` tem as seguintes colunas:
+The [`OPTIMIZER_TRACE`](information-schema-optimizer-trace-table.html "24.3.14 The INFORMATION_SCHEMA OPTIMIZER_TRACE Table") table has these columns:
 
-- `QUERY`
+* `QUERY`
 
-  O texto da declaração traçada.
+  The text of the traced statement.
 
-- `TRACE`
+* `TRACE`
 
-  A trilha, no formato `JSON`.
+  The trace, in `JSON` format.
 
-- `DESLOCAMENTO DE BÔNUS EXCEDENDO O TAMANHO MÁXIMO DE MEMORY`
+* `MISSING_BYTES_BEYOND_MAX_MEM_SIZE`
 
-  Cada rastro lembrado é uma string que é estendida à medida que a otimização avança e adiciona dados a ela. A variável `optimizer_trace_max_mem_size` define um limite para a quantidade total de memória usada por todos os rastros lembrados atualmente. Se esse limite for atingido, o rastro atual não é estendido (e, portanto, é incompleto), e a coluna `MISSING_BYTES_BEYOND_MAX_MEM_SIZE` mostra o número de bytes faltantes do rastro.
+  Each remembered trace is a string that is extended as optimization progresses and appends data to it. The [`optimizer_trace_max_mem_size`](server-system-variables.html#sysvar_optimizer_trace_max_mem_size) variable sets a limit on the total amount of memory used by all currently remembered traces. If this limit is reached, the current trace is not extended (and thus is incomplete), and the `MISSING_BYTES_BEYOND_MAX_MEM_SIZE` column shows the number of bytes missing from the trace.
 
-- `INSUFFICIENT_PRIVILEGES`
+* `INSUFFICIENT_PRIVILEGES`
 
-  Se uma consulta rastreada usar visualizações ou rotinas armazenadas que tenham `SQL SECURITY` com o valor `DEFINER`, pode ser que um usuário diferente do definidor seja negado de ver o rastreamento da consulta. Nesse caso, o rastreamento é exibido como vazio e `INSUFFICIENT_PRIVILEGES` tem o valor 1. Caso contrário, o valor é 0.
+  If a traced query uses views or stored routines that have `SQL SECURITY` with a value of `DEFINER`, it may be that a user other than the definer is denied from seeing the trace of the query. In that case, the trace is shown as empty and `INSUFFICIENT_PRIVILEGES` has a value of 1. Otherwise, the value is 0.

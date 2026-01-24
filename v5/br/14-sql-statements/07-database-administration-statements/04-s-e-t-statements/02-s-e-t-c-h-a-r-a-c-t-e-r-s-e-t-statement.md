@@ -1,14 +1,14 @@
-#### 13.7.4.2 Declaração de conjunto de caracteres de definição
+#### 13.7.4.2 SET CHARACTER SET Statement
 
 ```sql
 SET {CHARACTER SET | CHARSET}
     {'charset_name' | DEFAULT}
 ```
 
-Esta declaração mapeia todas as cadeias de caracteres enviadas entre o servidor e o cliente atual com o mapeamento fornecido. `SET CHARACTER SET` define três variáveis do sistema de sessão: `character_set_client` e `character_set_results` são definidas para o conjunto de caracteres fornecido, e `character_set_connection` para o valor de `character_set_database`. Veja Seção 10.4, “Conjunto de caracteres de conexão e colagens”.
+This statement maps all strings sent between the server and the current client with the given mapping. `SET CHARACTER SET` sets three session system variables: [`character_set_client`](server-system-variables.html#sysvar_character_set_client) and [`character_set_results`](server-system-variables.html#sysvar_character_set_results) are set to the given character set, and [`character_set_connection`](server-system-variables.html#sysvar_character_set_connection) to the value of [`character_set_database`](server-system-variables.html#sysvar_character_set_database). See [Section 10.4, “Connection Character Sets and Collations”](charset-connection.html "10.4 Connection Character Sets and Collations").
 
-*`charset_name`* pode ser citado ou não citado.
+*`charset_name`* may be quoted or unquoted.
 
-O mapeamento do conjunto de caracteres padrão pode ser restaurado usando o valor `DEFAULT`. O padrão depende da configuração do servidor.
+The default character set mapping can be restored by using the value `DEFAULT`. The default depends on the server configuration.
 
-Alguns conjuntos de caracteres não podem ser usados como o conjunto de caracteres do cliente. Tentar usá-los com `SET CHARACTER SET` produz um erro. Veja Conjunto de caracteres do cliente impermissível.
+Some character sets cannot be used as the client character set. Attempting to use them with [`SET CHARACTER SET`](set-character-set.html "13.7.4.2 SET CHARACTER SET Statement") produces an error. See [Impermissible Client Character Sets](charset-connection.html#charset-connection-impermissible-client-charset "Impermissible Client Character Sets").

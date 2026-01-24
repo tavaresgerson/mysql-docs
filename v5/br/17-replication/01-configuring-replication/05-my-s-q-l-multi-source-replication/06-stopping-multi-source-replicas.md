@@ -1,17 +1,17 @@
-#### 16.1.5.6 Parar as réplicas de múltiplas fontes
+#### 16.1.5.6 Stopping Multi-Source Replicas
 
-A declaração `STOP SLAVE` pode ser usada para interromper uma replica multi-fonte. Por padrão, se você usar a declaração `STOP SLAVE` em uma replica multi-fonte, todos os canais são interrompidos. Opcionalmente, use a cláusula `FOR CHANNEL channel` para interromper apenas um canal específico.
+The [`STOP SLAVE`](stop-slave.html "13.4.2.6 STOP SLAVE Statement") statement can be used to stop a multi-source replica. By default, if you use the [`STOP SLAVE`](stop-slave.html "13.4.2.6 STOP SLAVE Statement") statement on a multi-source replica all channels are stopped. Optionally, use the `FOR CHANNEL channel` clause to stop only a specific channel.
 
-- Para parar todos os canais de replicação configurados atualmente:
+* To stop all currently configured replication channels:
 
   ```sql
   STOP SLAVE;
   ```
 
-- Para interromper apenas um canal nomeado, use uma cláusula `FOR CHANNEL channel`:
+* To stop only a named channel, use a `FOR CHANNEL channel` clause:
 
   ```sql
   STOP SLAVE FOR CHANNEL "source_1";
   ```
 
-Para a sintaxe completa do comando `STOP SLAVE` e outras opções disponíveis, consulte Seção 13.4.2.6, “Instrução STOP SLAVE”.
+For the full syntax of the [`STOP SLAVE`](stop-slave.html "13.4.2.6 STOP SLAVE Statement") command and other available options, see [Section 13.4.2.6, “STOP SLAVE Statement”](stop-slave.html "13.4.2.6 STOP SLAVE Statement").

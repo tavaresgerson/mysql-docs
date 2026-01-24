@@ -1,9 +1,9 @@
-### 13.5.3 Declaração de DESALOQUE PREPARAR
+### 13.5.3 DEALLOCATE PREPARE Statement
 
 ```sql
 {DEALLOCATE | DROP} PREPARE stmt_name
 ```
 
-Para desalojar uma declaração preparada criada com `PREPARE`, use uma declaração `DEALLOCATE PREPARE` que faça referência ao nome da declaração preparada. Tentar executar uma declaração preparada após desalojá-la resulta em um erro. Se forem criadas muitas declarações preparadas e não forem desalojadas pela declaração `DEALLOCATE PREPARE` ou ao final da sessão, você pode encontrar o limite superior imposto pela variável de sistema `max_prepared_stmt_count`.
+To deallocate a prepared statement produced with [`PREPARE`](prepare.html "13.5.1 PREPARE Statement"), use a [`DEALLOCATE PREPARE`](deallocate-prepare.html "13.5.3 DEALLOCATE PREPARE Statement") statement that refers to the prepared statement name. Attempting to execute a prepared statement after deallocating it results in an error. If too many prepared statements are created and not deallocated by either the `DEALLOCATE PREPARE` statement or the end of the session, you might encounter the upper limit enforced by the [`max_prepared_stmt_count`](server-system-variables.html#sysvar_max_prepared_stmt_count) system variable.
 
-Para exemplos, veja Seção 13.5, "Declarações Preparadas".
+For examples, see [Section 13.5, “Prepared Statements”](sql-prepared-statements.html "13.5 Prepared Statements").

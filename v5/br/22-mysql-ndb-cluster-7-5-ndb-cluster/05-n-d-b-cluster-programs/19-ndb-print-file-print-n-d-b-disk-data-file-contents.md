@@ -1,23 +1,23 @@
-### 21.5.19 ndb_print_file — Imprimir o conteúdo do arquivo de dados do disco NDB
+### 21.5.19 ndb_print_file — Print NDB Disk Data File Contents
 
-**ndb_print_file** obtém informações de um arquivo de dados de disco do NDB Cluster.
+[**ndb_print_file**](mysql-cluster-programs-ndb-print-file.html "21.5.19 ndb_print_file — Print NDB Disk Data File Contents") obtains information from an NDB Cluster Disk Data file.
 
-#### Uso
+#### Usage
 
 ```sql
 ndb_print_file [-v] [-q] file_name+
 ```
 
-*`file_name`* é o nome de um arquivo de dados de disco do NDB Cluster. Vários nomes de arquivos são aceitos, separados por espaços.
+*`file_name`* is the name of an NDB Cluster Disk Data file. Multiple filenames are accepted, separated by spaces.
 
-Assim como **ndb_print_schema_file** e **ndb_print_sys_file** (e ao contrário da maioria das outras ferramentas de `NDB` (mysql-cluster.html) que são destinadas a serem executadas em um servidor de gerenciamento ou para se conectar a um servidor de gerenciamento), **ndb_print_file** deve ser executado em um nó de dados do NDB Cluster, pois ele acessa diretamente o sistema de arquivos do nó de dados. Como ele não faz uso do servidor de gerenciamento, essa ferramenta pode ser usada quando o servidor de gerenciamento não está em execução e até mesmo quando o cluster foi completamente desligado.
+Like [**ndb_print_schema_file**](mysql-cluster-programs-ndb-print-schema-file.html "21.5.21 ndb_print_schema_file — Print NDB Schema File Contents") and [**ndb_print_sys_file**](mysql-cluster-programs-ndb-print-sys-file.html "21.5.22 ndb_print_sys_file — Print NDB System File Contents") (and unlike most of the other [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") utilities that are intended to be run on a management server host or to connect to a management server) [**ndb_print_file**](mysql-cluster-programs-ndb-print-file.html "21.5.19 ndb_print_file — Print NDB Disk Data File Contents") must be run on an NDB Cluster data node, since it accesses the data node file system directly. Because it does not make use of the management server, this utility can be used when the management server is not running, and even when the cluster has been completely shut down.
 
-#### Opções adicionais
+#### Additional Options
 
-**ndb_print_file** suporta as seguintes opções:
+[**ndb_print_file**](mysql-cluster-programs-ndb-print-file.html "21.5.19 ndb_print_file — Print NDB Disk Data File Contents") supports the following options:
 
-- `-v`: Torna a saída mais detalhada.
-- `-q`: Supressão da saída (modo silencioso).
-- `--help`, `-h`, `-?`: Imprima a mensagem de ajuda.
+* `-v`: Make output verbose.
+* `-q`: Suppress output (quiet mode).
+* `--help`, `-h`, `-?`: Print help message.
 
-Para mais informações, consulte Seção 21.6.11, “Tabelas de dados de disco do NDB Cluster”.
+For more information, see [Section 21.6.11, “NDB Cluster Disk Data Tables”](mysql-cluster-disk-data.html "21.6.11 NDB Cluster Disk Data Tables").

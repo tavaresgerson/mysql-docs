@@ -1,14 +1,14 @@
-#### 26.4.4.1 O procedimento create_synonym_db()
+#### 26.4.4.1 The create_synonym_db() Procedure
 
-Dada um nome de esquema, este procedimento cria um esquema sinônimo contendo visualizações que fazem referência a todas as tabelas e visualizações no esquema original. Isso pode ser usado, por exemplo, para criar um nome mais curto para se referir a um esquema com um nome longo (como `info` em vez de `INFORMATION_SCHEMA`).
+Given a schema name, this procedure creates a synonym schema containing views that refer to all the tables and views in the original schema. This can be used, for example, to create a shorter name by which to refer to a schema with a long name (such as `info` rather than `INFORMATION_SCHEMA`).
 
-##### Parâmetros
+##### Parameters
 
-- `in_db_name VARCHAR(64)`: O nome do esquema para o qual você deseja criar o sinônimo.
+* `in_db_name VARCHAR(64)`: The name of the schema for which to create the synonym.
 
-- `in_synonym VARCHAR(64)`: O nome a ser usado para o esquema de sinônimos. Esse esquema não pode já existir.
+* `in_synonym VARCHAR(64)`: The name to use for the synonym schema. This schema must not already exist.
 
-##### Exemplo
+##### Example
 
 ```sql
 mysql> SHOW DATABASES;

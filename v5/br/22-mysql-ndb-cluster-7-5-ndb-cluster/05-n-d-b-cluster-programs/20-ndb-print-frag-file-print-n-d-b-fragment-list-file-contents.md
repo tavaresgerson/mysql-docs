@@ -1,22 +1,22 @@
-### 21.5.20 ndb_print_frag_file — Imprimir o conteúdo do arquivo de lista de fragmentos do NDB
+### 21.5.20 ndb_print_frag_file — Print NDB Fragment List File Contents
 
-**ndb_print_frag_file** obtém informações de um arquivo de lista de fragmentos de clúster. É destinado ao uso para ajudar a diagnosticar problemas com reinicializações de nós de dados.
+[**ndb_print_frag_file**](mysql-cluster-programs-ndb-print-frag-file.html "21.5.20 ndb_print_frag_file — Print NDB Fragment List File Contents") obtains information from a cluster fragment list file. It is intended for use in helping to diagnose issues with data node restarts.
 
-#### Uso
+#### Usage
 
 ```sql
 ndb_print_frag_file file_name
 ```
 
-*`file_name`* é o nome de um arquivo de lista de fragmentos de cluster, que corresponde ao padrão `SX.FragList`, onde *`X`* é um dígito no intervalo de 2 a 9, inclusive, e são encontrados no sistema de arquivos do nó de dados que tem o ID de nó *`nodeid`*, em diretórios nomeados `ndb_nodeid_fs/DN/DBDIH/`, onde *`N`* é `1` ou `2`. Cada arquivo de fragmento contém registros dos fragmentos pertencentes a cada tabela `NDB`. Para mais informações sobre os arquivos de dados de nó de cluster de NDB, consulte Diretório de Sistema de Arquivos de Nó de Dados de Cluster de NDB.
+*`file_name`* is the name of a cluster fragment list file, which matches the pattern `SX.FragList`, where *`X`* is a digit in the range 2-9 inclusive, and are found in the data node file system of the data node having the node ID *`nodeid`*, in directories named `ndb_nodeid_fs/DN/DBDIH/`, where *`N`* is `1` or `2`. Each fragment file contains records of the fragments belonging to each `NDB` table. For more information about cluster fragment files, see [NDB Cluster Data Node File System Directory](/doc/ndb-internals/en/ndb-internals-ndbd-filesystemdir-files.html).
 
-Assim como **ndb_print_backup_file**, **ndb_print_sys_file** e **ndb_print_schema_file** (e ao contrário da maioria das outras ferramentas de `NDB`]\(mysql-cluster.html) que são destinadas a serem executadas em um host de servidor de gerenciamento ou para se conectar a um servidor de gerenciamento), **ndb_print_frag_file** deve ser executado em um nó de dados do cluster, pois ele acessa diretamente o sistema de arquivos do nó de dados. Como ele não faz uso do servidor de gerenciamento, essa ferramenta pode ser usada quando o servidor de gerenciamento não está em execução e até mesmo quando o cluster foi completamente desligado.
+Like [**ndb_print_backup_file**](mysql-cluster-programs-ndb-print-backup-file.html "21.5.18 ndb_print_backup_file — Print NDB Backup File Contents"), [**ndb_print_sys_file**](mysql-cluster-programs-ndb-print-sys-file.html "21.5.22 ndb_print_sys_file — Print NDB System File Contents"), and [**ndb_print_schema_file**](mysql-cluster-programs-ndb-print-schema-file.html "21.5.21 ndb_print_schema_file — Print NDB Schema File Contents") (and unlike most of the other [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") utilities that are intended to be run on a management server host or to connect to a management server), [**ndb_print_frag_file**](mysql-cluster-programs-ndb-print-frag-file.html "21.5.20 ndb_print_frag_file — Print NDB Fragment List File Contents") must be run on a cluster data node, since it accesses the data node file system directly. Because it does not make use of the management server, this utility can be used when the management server is not running, and even when the cluster has been completely shut down.
 
-#### Opções adicionais
+#### Additional Options
 
-Nenhum.
+None.
 
-#### Saída de amostra
+#### Sample Output
 
 ```sql
 $> ndb_print_frag_file /usr/local/mysqld/data/ndb_3_fs/D1/DBDIH/S2.FragList

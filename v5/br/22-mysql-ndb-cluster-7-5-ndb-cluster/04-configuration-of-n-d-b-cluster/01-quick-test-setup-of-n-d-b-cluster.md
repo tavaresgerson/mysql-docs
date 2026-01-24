@@ -1,14 +1,14 @@
-### 21.4.1 Configuração rápida do teste do cluster NDB
+### 21.4.1 Quick Test Setup of NDB Cluster
 
-Para familiarizar você com os conceitos básicos, descrevemos a configuração mais simples possível para um NDB Cluster funcional. Depois disso, você deve ser capaz de projetar a configuração desejada com base nas informações fornecidas nas outras seções relevantes deste capítulo.
+To familiarize you with the basics, we describe the simplest possible configuration for a functional NDB Cluster. After this, you should be able to design your desired setup from the information provided in the other relevant sections of this chapter.
 
-Primeiro, você precisa criar um diretório de configuração, como `/var/lib/mysql-cluster`, executando o seguinte comando como usuário `root` do sistema:
+First, you need to create a configuration directory such as `/var/lib/mysql-cluster`, by executing the following command as the system `root` user:
 
 ```sql
 $> mkdir /var/lib/mysql-cluster
 ```
 
-Neste diretório, crie um arquivo chamado `config.ini` que contenha as seguintes informações. Substitua os valores apropriados para `HostName` e `DataDir` conforme necessário para o seu sistema.
+In this directory, create a file named `config.ini` that contains the following information. Substitute appropriate values for `HostName` and `DataDir` as necessary for your system.
 
 ```sql
 # file "config.ini" - showing minimal setup consisting of 1 data node,
@@ -41,41 +41,41 @@ DataDir= /var/lib/mysql-cluster
 [mysqld]
 ```
 
-Agora você pode iniciar o servidor de gerenciamento do **ndb_mgmd**. Por padrão, ele tenta ler o arquivo `config.ini` no diretório de trabalho atual, então mude a localização para o diretório onde o arquivo está localizado e então inicie o **ndb_mgmd**:
+You can now start the [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") management server. By default, it attempts to read the `config.ini` file in its current working directory, so change location into the directory where the file is located and then invoke [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon"):
 
 ```sql
 $> cd /var/lib/mysql-cluster
 $> ndb_mgmd
 ```
 
-Em seguida, inicie um único nó de dados executando **ndbd**:
+Then start a single data node by running [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon"):
 
 ```sql
 $> ndbd
 ```
 
-Por padrão, o **ndbd** procura pelo servidor de gerenciamento em `localhost` na porta 1186.
+By default, [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") looks for the management server at `localhost` on port 1186.
 
-Nota
+Note
 
-Se você instalou o MySQL a partir de um tarball binário, você deve especificar explicitamente o caminho dos servidores **ndb_mgmd** e **ndbd**. (Normalmente, esses podem ser encontrados em `/usr/local/mysql/bin`.)
+If you have installed MySQL from a binary tarball, you must specify the path of the [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") and [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") servers explicitly. (Normally, these can be found in `/usr/local/mysql/bin`.)
 
-Por fim, mude a localização para o diretório de dados MySQL (geralmente `/var/lib/mysql` ou `/usr/local/mysql/data`) e certifique-se de que o arquivo `my.cnf` contenha a opção necessária para habilitar o mecanismo de armazenamento NDB:
+Finally, change location to the MySQL data directory (usually `/var/lib/mysql` or `/usr/local/mysql/data`), and make sure that the `my.cnf` file contains the option necessary to enable the NDB storage engine:
 
 ```sql
 [mysqld]
 ndbcluster
 ```
 
-Agora você pode iniciar o servidor MySQL como de costume:
+You can now start the MySQL server as usual:
 
 ```sql
 $> mysqld_safe --user=mysql &
 ```
 
-Aguarde um momento para garantir que o servidor MySQL esteja funcionando corretamente. Se você vir a mensagem `mysql ended`, verifique o arquivo `.err` do servidor para descobrir o que deu errado.
+Wait a moment to make sure the MySQL server is running properly. If you see the notice `mysql ended`, check the server's `.err` file to find out what went wrong.
 
-Se tudo correr bem até agora, você agora pode começar a usar o clúster. Conecte-se ao servidor e verifique se o mecanismo de armazenamento `NDBCLUSTER` está habilitado:
+If all has gone well so far, you now can start using the cluster. Connect to the server and verify that the [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine is enabled:
 
 ```sql
 $> mysql
@@ -97,9 +97,9 @@ Comment: Alias for NDBCLUSTER
 ...
 ```
 
-Os números de linha mostrados na saída do exemplo anterior podem ser diferentes dos mostrados no seu sistema, dependendo da configuração do seu servidor.
+The row numbers shown in the preceding example output may be different from those shown on your system, depending upon how your server is configured.
 
-Tente criar uma tabela `NDBCLUSTER`:
+Try to create an [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table:
 
 ```sql
 $> mysql
@@ -118,13 +118,13 @@ Create Table: CREATE TABLE `ctest` (
 1 row in set (0.00 sec)
 ```
 
-Para verificar se seus nós foram configurados corretamente, inicie o cliente de gerenciamento:
+To check that your nodes were set up properly, start the management client:
 
 ```sql
 $> ndb_mgm
 ```
 
-Use o comando **SHOW** dentro do cliente de gerenciamento para obter um relatório sobre o status do clúster:
+Use the **SHOW** command from within the management client to obtain a report on the cluster's status:
 
 ```sql
 ndb_mgm> SHOW
@@ -142,4 +142,4 @@ id=4 (not connected, accepting connect from any host)
 id=5 (not connected, accepting connect from any host)
 ```
 
-Neste ponto, você configurou com sucesso um NDB Cluster funcional. Agora, você pode armazenar dados no cluster usando qualquer tabela criada com `ENGINE=NDBCLUSTER` ou seu alias `ENGINE=NDB`.
+At this point, you have successfully set up a working NDB Cluster . You can now store data in the cluster by using any table created with `ENGINE=NDBCLUSTER` or its alias `ENGINE=NDB`.

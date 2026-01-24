@@ -1,27 +1,27 @@
-### 14.8.11 Configurando estatísticas do otimizador para InnoDB
+### 14.8.11 Configuring Optimizer Statistics for InnoDB
 
-14.8.11.1 Configurando Parâmetros de Estatísticas de Otimizador Persistente
+14.8.11.1 Configuring Persistent Optimizer Statistics Parameters
 
-14.8.11.2 Configurando Parâmetros de Estatísticas de Otimizador Não Persistentes
+14.8.11.2 Configuring Non-Persistent Optimizer Statistics Parameters
 
-14.8.11.3 Estimativa da complexidade da tabela ANALYZE para tabelas InnoDB
+14.8.11.3 Estimating ANALYZE TABLE Complexity for InnoDB Tables
 
-Esta seção descreve como configurar estatísticas de otimizador persistentes e não persistentes para tabelas `InnoDB`.
+This section describes how to configure persistent and non-persistent optimizer statistics for `InnoDB` tables.
 
-As estatísticas do otimizador persistentes são mantidas mesmo após o reinício do servidor, permitindo maior estabilidade do plano e desempenho de consulta mais consistente. As estatísticas do otimizador persistentes também oferecem controle e flexibilidade com esses benefícios adicionais:
+Persistent optimizer statistics are persisted across server restarts, allowing for greater plan stability and more consistent query performance. Persistent optimizer statistics also provide control and flexibility with these additional benefits:
 
-- Você pode usar a opção de configuração `innodb_stats_auto_recalc` para controlar se as estatísticas são atualizadas automaticamente após alterações substanciais em uma tabela.
+* You can use the `innodb_stats_auto_recalc` configuration option to control whether statistics are updated automatically after substantial changes to a table.
 
-- Você pode usar as cláusulas `STATS_PERSISTENT`, `STATS_AUTO_RECALC` e `STATS_SAMPLE_PAGES` com as instruções `CREATE TABLE` e `ALTER TABLE` para configurar estatísticas do otimizador para tabelas individuais.
+* You can use the `STATS_PERSISTENT`, `STATS_AUTO_RECALC`, and `STATS_SAMPLE_PAGES` clauses with `CREATE TABLE` and `ALTER TABLE` statements to configure optimizer statistics for individual tables.
 
-- Você pode consultar dados de estatísticas do otimizador nas tabelas `mysql.innodb_table_stats` e `mysql.innodb_index_stats`.
+* You can query optimizer statistics data in the `mysql.innodb_table_stats` and `mysql.innodb_index_stats` tables.
 
-- Você pode visualizar a coluna `last_update` das tabelas `mysql.innodb_table_stats` e `mysql.innodb_index_stats` para ver quando as estatísticas foram atualizadas pela última vez.
+* You can view the `last_update` column of the `mysql.innodb_table_stats` and `mysql.innodb_index_stats` tables to see when statistics were last updated.
 
-- Você pode modificar manualmente as tabelas `mysql.innodb_table_stats` e `mysql.innodb_index_stats` para forçar um plano de otimização de consulta específico ou para testar planos alternativos sem modificar o banco de dados.
+* You can manually modify the `mysql.innodb_table_stats` and `mysql.innodb_index_stats` tables to force a specific query optimization plan or to test alternative plans without modifying the database.
 
-A funcionalidade de otimização de estatísticas persistentes está habilitada por padrão (`innodb_stats_persistent=ON`).
+The persistent optimizer statistics feature is enabled by default (`innodb_stats_persistent=ON`).
 
-As estatísticas do otimizador não persistentes são limpas em cada reinício do servidor e após algumas outras operações, e recomputadas na próxima vez que a tabela for acessada. Como resultado, diferentes estimativas podem ser produzidas ao recomputar as estatísticas, levando a diferentes escolhas nos planos de execução e variações no desempenho das consultas.
+Non-persistent optimizer statistics are cleared on each server restart and after some other operations, and recomputed on the next table access. As a result, different estimates could be produced when recomputing statistics, leading to different choices in execution plans and variations in query performance.
 
-Esta seção também fornece informações sobre a estimativa da complexidade da consulta `ANALYZE TABLE`, o que pode ser útil ao tentar alcançar um equilíbrio entre estatísticas precisas e tempo de execução da consulta `ANALYZE TABLE`.
+This section also provides information about estimating `ANALYZE TABLE` complexity, which may be useful when attempting to achieve a balance between accurate statistics and `ANALYZE TABLE` execution time.

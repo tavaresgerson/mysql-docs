@@ -1,44 +1,44 @@
-#### 14.7.2.1 Níveis de Isolamento de Transações
+#### 14.7.2.1 Transaction Isolation Levels
 
-A isolação de transações é um dos fundamentos do processamento de bancos de dados. A isolação é a letra I do acrônimo ACID; o nível de isolamento é a configuração que ajusta o equilíbrio entre desempenho e confiabilidade, consistência e reprodutibilidade dos resultados quando múltiplas transações estão fazendo alterações e executando consultas ao mesmo tempo.
+Transaction isolation is one of the foundations of database processing. Isolation is the I in the acronym ACID; the isolation level is the setting that fine-tunes the balance between performance and reliability, consistency, and reproducibility of results when multiple transactions are making changes and performing queries at the same time.
 
-O `InnoDB` oferece todos os quatro níveis de isolamento de transação descritos pelo padrão SQL:1992: `READ UNCOMMITTED`, `READ COMMITTED`, `REPEATABLE READ` e `SERIALIZABLE`. O nível de isolamento padrão para o `InnoDB` é `REPEATABLE READ`.
+`InnoDB` offers all four transaction isolation levels described by the SQL:1992 standard: `READ UNCOMMITTED`, `READ COMMITTED`, `REPEATABLE READ`, and `SERIALIZABLE`. The default isolation level for `InnoDB` is `REPEATABLE READ`.
 
-Um usuário pode alterar o nível de isolamento para uma única sessão ou para todas as conexões subsequentes com a instrução `SET TRANSACTION`. Para definir o nível de isolamento padrão do servidor para todas as conexões, use a opção `--transaction-isolation` na linha de comando ou em um arquivo de opções. Para obter informações detalhadas sobre os níveis de isolamento e a sintaxe de definição de nível, consulte a Seção 13.3.6, “Instrução SET TRANSACTION”.
+A user can change the isolation level for a single session or for all subsequent connections with the `SET TRANSACTION` statement. To set the server's default isolation level for all connections, use the `--transaction-isolation` option on the command line or in an option file. For detailed information about isolation levels and level-setting syntax, see Section 13.3.6, “SET TRANSACTION Statement”.
 
-O `InnoDB` suporta cada um dos níveis de isolamento de transação descritos aqui usando diferentes estratégias de bloqueio. Você pode impor um alto grau de consistência com o nível `REPEATABLE READ` padrão, para operações em dados cruciais onde a conformidade ACID é importante. Ou você pode relaxar as regras de consistência com `READ COMMITTED` ou até mesmo `READ UNCOMMITTED`, em situações como relatórios em massa, onde a consistência precisa e resultados repetidos são menos importantes do que minimizar a quantidade de overhead para o bloqueio. `SERIALIZABLE` impõe regras ainda mais rigorosas do que `REPEATABLE READ` e é usado principalmente em situações especializadas, como com transações XA e para solucionar problemas com concorrência e bloqueios.
+`InnoDB` supports each of the transaction isolation levels described here using different locking strategies. You can enforce a high degree of consistency with the default `REPEATABLE READ` level, for operations on crucial data where ACID compliance is important. Or you can relax the consistency rules with `READ COMMITTED` or even `READ UNCOMMITTED`, in situations such as bulk reporting where precise consistency and repeatable results are less important than minimizing the amount of overhead for locking. `SERIALIZABLE` enforces even stricter rules than `REPEATABLE READ`, and is used mainly in specialized situations, such as with XA transactions and for troubleshooting issues with concurrency and deadlocks.
 
-A lista a seguir descreve como o MySQL suporta os diferentes níveis de transação. A lista vai do nível mais comumente usado ao menos usado.
+The following list describes how MySQL supports the different transaction levels. The list goes from the most commonly used level to the least used.
 
-- `REPETIÇÃO DE LEITURA`
+* `REPEATABLE READ`
 
-  Este é o nível de isolamento padrão para o `InnoDB`. Leitura consistente dentro da mesma transação lê o instantâneo estabelecido pelo primeiro acesso. Isso significa que, se você emitir várias instruções `SELECT` simples (não bloqueantes) dentro da mesma transação, essas instruções `SELECT` também são consistentes entre si. Veja a Seção 14.7.2.3, “Leitura Consistente Não Bloqueante”.
+  This is the default isolation level for `InnoDB`. Consistent reads within the same transaction read the snapshot established by the first read. This means that if you issue several plain (nonlocking) `SELECT` statements within the same transaction, these `SELECT` statements are consistent also with respect to each other. See Section 14.7.2.3, “Consistent Nonlocking Reads”.
 
-  Para as instruções de bloqueio de leitura (`SELECT` com `FOR UPDATE` ou `LOCK IN SHARE MODE`), `UPDATE` e `DELETE`, o bloqueio depende se a instrução usa um índice único com uma condição de pesquisa única ou uma condição de pesquisa de tipo intervalo.
+  For locking reads (`SELECT` with `FOR UPDATE` or `LOCK IN SHARE MODE`), `UPDATE`, and `DELETE` statements, locking depends on whether the statement uses a unique index with a unique search condition or a range-type search condition.
 
-  - Para um índice único com uma condição de busca única, o `InnoDB` bloqueia apenas o registro do índice encontrado, e não o espaço antes dele.
+  + For a unique index with a unique search condition, `InnoDB` locks only the index record found, not the gap before it.
 
-  - Para outras condições de pesquisa, o `InnoDB` bloqueia o intervalo do índice pesquisado, usando bloqueios de lacuna ou bloqueios de próxima chave para bloquear inserções por outras sessões nos intervalos cobertos pelo intervalo. Para informações sobre bloqueios de lacuna e bloqueios de próxima chave, consulte a Seção 14.7.1, “Bloqueio InnoDB”.
+  + For other search conditions, `InnoDB` locks the index range scanned, using gap locks or next-key locks to block insertions by other sessions into the gaps covered by the range. For information about gap locks and next-key locks, see Section 14.7.1, “InnoDB Locking”.
 
-  Não é recomendado misturar instruções de bloqueio (`UPDATE`, `INSERT`, `DELETE` ou `SELECT ... FOR ...`) com instruções `SELECT` não-bloqueáveis em uma única transação `REPEATABLE READ`, porque, normalmente, você deseja `SERIALIZABLE` nesse caso. Isso ocorre porque uma instrução `SELECT` não-bloqueável apresenta o estado do banco de dados a partir de uma visão de leitura que consiste em transações comprometidas antes da criação da visão de leitura e antes das próprias escritas da transação atual, enquanto as instruções de bloqueio veem e modificam o estado mais recente do banco de dados para usar o bloqueio. De maneira geral, esses dois estados de tabela diferentes são inconsistentes entre si e difíceis de interpretar.
+  It is not recommended to mix locking statements (`UPDATE`, `INSERT`, `DELETE`, or `SELECT ... FOR ...`) with non-locking `SELECT` statements in a single `REPEATABLE READ` transaction, because typically in such cases you want `SERIALIZABLE` instead. This is because a non-locking `SELECT` statement presents the state of the database from a read-view which consists of transactions committed before the read-view was created and before the current transaction's own writes, while the locking statements see and modify the most recent state of the database to use locking. In general, these two different table states are inconsistent with each other and difficult to parse.
 
-- `LEIA COM PROMESSA`
+* `READ COMMITTED`
 
-  Cada leitura consistente, mesmo dentro da mesma transação, define e lê seu próprio instantâneo fresco. Para informações sobre leituras consistentes, consulte a Seção 14.7.2.3, “Leituras Não Bloqueadas Consistentes”.
+  Each consistent read, even within the same transaction, sets and reads its own fresh snapshot. For information about consistent reads, see Section 14.7.2.3, “Consistent Nonlocking Reads”.
 
-  Para bloqueios de leituras (`SELECT` com `FOR UPDATE` ou `LOCK IN SHARE MODE`), instruções `UPDATE` e `DELETE`, o `InnoDB` bloqueia apenas os registros de índice, não os espaços antes deles, permitindo assim a inserção livre de novos registros ao lado dos registros bloqueados. O bloqueio de espaços é usado apenas para verificação de restrições de chave estrangeira e verificação de chaves duplicadas.
+  For locking reads (`SELECT` with `FOR UPDATE` or `LOCK IN SHARE MODE`), `UPDATE` statements, and `DELETE` statements, `InnoDB` locks only index records, not the gaps before them, and thus permits the free insertion of new records next to locked records. Gap locking is only used for foreign-key constraint checking and duplicate-key checking.
 
-  Como o bloqueio de lacunas está desativado, podem ocorrer problemas com linhas fantasmas, pois outras sessões podem inserir novas linhas nas lacunas. Para obter informações sobre linhas fantasmas, consulte a Seção 14.7.4, “Linhas Fantasmas”.
+  Because gap locking is disabled, phantom row problems may occur, as other sessions can insert new rows into the gaps. For information about phantom rows, see Section 14.7.4, “Phantom Rows”.
 
-  Apenas o registro binário baseado em linhas é suportado com o nível de isolamento `READ COMMITTED`. Se você usar `READ COMMITTED` com `binlog_format=MIXED`, o servidor usa automaticamente o registro baseado em linhas.
+  Only row-based binary logging is supported with the `READ COMMITTED` isolation level. If you use `READ COMMITTED` with `binlog_format=MIXED`, the server automatically uses row-based logging.
 
-  O uso de `READ COMMITTED` tem efeitos adicionais:
+  Using `READ COMMITTED` has additional effects:
 
-  - Para as instruções `UPDATE` ou `DELETE`, o `InnoDB` mantém travamentos apenas para as linhas que ele atualiza ou exclui. Os travamentos de registro para linhas não correspondentes são liberados após o MySQL ter avaliado a condição `WHERE`. Isso reduz significativamente a probabilidade de deadlocks, mas ainda podem ocorrer.
+  + For `UPDATE` or `DELETE` statements, `InnoDB` holds locks only for rows that it updates or deletes. Record locks for nonmatching rows are released after MySQL has evaluated the `WHERE` condition. This greatly reduces the probability of deadlocks, but they can still happen.
 
-  - Para as instruções `UPDATE`, se uma linha já estiver bloqueada, o `InnoDB` realiza uma leitura "semi-consistente", retornando a versão mais recente comprometida ao MySQL para que o MySQL possa determinar se a linha corresponde à condição `WHERE` da `UPDATE`. Se a linha corresponder (deve ser atualizada), o MySQL lê a linha novamente e, desta vez, o `InnoDB` a bloqueia ou aguarda por um bloqueio nela.
+  + For `UPDATE` statements, if a row is already locked, `InnoDB` performs a “semi-consistent” read, returning the latest committed version to MySQL so that MySQL can determine whether the row matches the `WHERE` condition of the `UPDATE`. If the row matches (must be updated), MySQL reads the row again and this time `InnoDB` either locks it or waits for a lock on it.
 
-  Considere o exemplo a seguir, começando com esta tabela:
+  Consider the following example, beginning with this table:
 
   ```sql
   CREATE TABLE t (a INT NOT NULL, b INT) ENGINE = InnoDB;
@@ -46,9 +46,9 @@ A lista a seguir descreve como o MySQL suporta os diferentes níveis de transaç
   COMMIT;
   ```
 
-  Nesse caso, a tabela não tem índices, então as pesquisas e varreduras de índice usam o índice agrupado oculto para o bloqueio de registros (veja a Seção 14.6.2.1, “Indekses Agrupados e Secundários”) em vez das colunas indexadas.
+  In this case, the table has no indexes, so searches and index scans use the hidden clustered index for record locking (see Section 14.6.2.1, “Clustered and Secondary Indexes”) rather than indexed columns.
 
-  Suponha que uma sessão realize uma `UPDATE` usando essas instruções:
+  Suppose that one session performs an `UPDATE` using these statements:
 
   ```sql
   # Session A
@@ -56,16 +56,16 @@ A lista a seguir descreve como o MySQL suporta os diferentes níveis de transaç
   UPDATE t SET b = 5 WHERE b = 3;
   ```
 
-  Suponha também que uma segunda sessão execute uma `UPDATE` executando esta instrução após as da primeira sessão:
+  Suppose also that a second session performs an `UPDATE` by executing this statement following those of the first session:
 
   ```sql
   # Session B
   UPDATE t SET b = 4 WHERE b = 2;
   ```
 
-  À medida que o `InnoDB` executa cada `UPDATE`, ele primeiro adquire um bloqueio exclusivo para cada linha que lê e, em seguida, determina se deve modificá-la. Se o `InnoDB` não modificar a linha, ele libera o bloqueio. Caso contrário, o `InnoDB` retém o bloqueio até o final da transação. Isso afeta o processamento da transação da seguinte forma.
+  As `InnoDB` executes each `UPDATE`, it first acquires an exclusive lock for each row that it reads, and then determines whether to modify it. If `InnoDB` does not modify the row, it releases the lock. Otherwise, `InnoDB` retains the lock until the end of the transaction. This affects transaction processing as follows.
 
-  Ao usar o nível de isolamento padrão `REPEATABLE READ`, a primeira `UPDATE` adquire um x-lock em cada linha que lê e não libera nenhuma delas:
+  When using the default `REPEATABLE READ` isolation level, the first `UPDATE` acquires an x-lock on each row that it reads and does not release any of them:
 
   ```sql
   x-lock(1,2); retain x-lock
@@ -75,13 +75,13 @@ A lista a seguir descreve como o MySQL suporta os diferentes níveis de transaç
   x-lock(5,2); retain x-lock
   ```
 
-  O segundo `UPDATE` bloqueia assim que tenta adquirir quaisquer bloqueios (porque o primeiro `UPDATE` reteriu bloqueios em todas as linhas) e não prossegue até que o primeiro `UPDATE` seja confirmado ou revertido:
+  The second `UPDATE` blocks as soon as it tries to acquire any locks (because first update has retained locks on all rows), and does not proceed until the first `UPDATE` commits or rolls back:
 
   ```sql
   x-lock(1,2); block and wait for first UPDATE to commit or roll back
   ```
 
-  Se `READ COMMITTED` for usado, o primeiro `UPDATE` adquire um x-lock em cada linha que lê e libera aquelas linhas que não modifica:
+  If `READ COMMITTED` is used instead, the first `UPDATE` acquires an x-lock on each row that it reads and releases those for rows that it does not modify:
 
   ```sql
   x-lock(1,2); unlock(1,2)
@@ -91,7 +91,7 @@ A lista a seguir descreve como o MySQL suporta os diferentes níveis de transaç
   x-lock(5,2); unlock(5,2)
   ```
 
-  Para a segunda `UPDATE`, o `InnoDB` realiza uma leitura "semi-consistente", retornando a versão mais recente comprometida de cada linha que ele lê para o MySQL, para que o MySQL possa determinar se a linha corresponde à condição `WHERE` da `UPDATE`:
+  For the second `UPDATE`, `InnoDB` does a “semi-consistent” read, returning the latest committed version of each row that it reads to MySQL so that MySQL can determine whether the row matches the `WHERE` condition of the `UPDATE`:
 
   ```sql
   x-lock(1,2); update(1,2) to (1,4); retain x-lock
@@ -101,7 +101,7 @@ A lista a seguir descreve como o MySQL suporta os diferentes níveis de transaç
   x-lock(5,2); update(5,2) to (5,4); retain x-lock
   ```
 
-  No entanto, se a condição `WHERE` incluir uma coluna indexada e o `InnoDB` usar o índice, apenas a coluna indexada será considerada ao adquirir e reter travamentos de registro. No exemplo seguinte, o primeiro `UPDATE` adquire e reterá um travamento x em cada linha onde b = 2. O segundo `UPDATE` será bloqueado quando tentar adquirir travamentos x nos mesmos registros, pois também usa o índice definido na coluna b.
+  However, if the `WHERE` condition includes an indexed column, and `InnoDB` uses the index, only the indexed column is considered when taking and retaining record locks. In the following example, the first `UPDATE` takes and retains an x-lock on each row where b = 2. The second `UPDATE` blocks when it tries to acquire x-locks on the same records, as it also uses the index defined on column b.
 
   ```sql
   CREATE TABLE t (a INT NOT NULL, b INT, c INT, INDEX (b)) ENGINE = InnoDB;
@@ -116,18 +116,18 @@ A lista a seguir descreve como o MySQL suporta os diferentes níveis de transaç
   UPDATE t SET b = 4 WHERE b = 2 AND c = 4;
   ```
 
-  Os efeitos de usar o nível de isolamento `READ COMMITTED` são os mesmos de habilitar a variável descontinuada `innodb_locks_unsafe_for_binlog`, com essas exceções:
+  The effects of using the `READ COMMITTED` isolation level are the same as enabling the deprecated `innodb_locks_unsafe_for_binlog` variable, with these exceptions:
 
-  - Ativar `innodb_locks_unsafe_for_binlog` é um ajuste global e afeta todas as sessões, enquanto o nível de isolamento pode ser definido globalmente para todas as sessões ou individualmente por sessão.
+  + Enabling `innodb_locks_unsafe_for_binlog` is a global setting and affects all sessions, whereas the isolation level can be set globally for all sessions, or individually per session.
 
-  - `innodb_locks_unsafe_for_binlog` pode ser definido apenas no início do servidor, enquanto o nível de isolamento pode ser definido no início ou alterado durante a execução.
+  + `innodb_locks_unsafe_for_binlog` can be set only at server startup, whereas the isolation level can be set at startup or changed at runtime.
 
-  O `READ COMMITTED` oferece, portanto, um controle mais fino e flexível do que o `innodb_locks_unsafe_for_binlog`.
+  `READ COMMITTED` therefore offers finer and more flexible control than `innodb_locks_unsafe_for_binlog`.
 
-- `LEIA NÃO COMPROMETIDA`
+* `READ UNCOMMITTED`
 
-  As instruções `SELECT` são executadas de forma não bloqueante, mas uma versão anterior possível de uma linha pode ser usada. Assim, ao usar esse nível de isolamento, essas leituras não são consistentes. Isso também é chamado de leitura suja. Caso contrário, esse nível de isolamento funciona como `READ COMMITTED`.
+  `SELECT` statements are performed in a nonlocking fashion, but a possible earlier version of a row might be used. Thus, using this isolation level, such reads are not consistent. This is also called a dirty read. Otherwise, this isolation level works like `READ COMMITTED`.
 
-- `SERIALIZÁVEL`
+* `SERIALIZABLE`
 
-  Esse nível é como o `REPEATABLE READ`, mas o `InnoDB` converte implicitamente todas as instruções `SELECT` simples em `SELECT ... LOCK IN SHARE MODE` se o `autocommit` estiver desativado. Se o `autocommit` estiver ativado, o `SELECT` é sua própria transação. Portanto, é conhecido por ser apenas de leitura e pode ser serializado se realizado como uma leitura consistente (sem bloqueio) e não precisa bloquear outras transações. (Para forçar uma simples `SELECT` a bloquear se outras transações tiverem modificado as linhas selecionadas, desative o `autocommit`.)
+  This level is like `REPEATABLE READ`, but `InnoDB` implicitly converts all plain `SELECT` statements to `SELECT ... LOCK IN SHARE MODE` if `autocommit` is disabled. If `autocommit` is enabled, the `SELECT` is its own transaction. It therefore is known to be read only and can be serialized if performed as a consistent (nonlocking) read and need not block for other transactions. (To force a plain `SELECT` to block if other transactions have modified the selected rows, disable `autocommit`.)

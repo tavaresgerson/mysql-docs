@@ -1,57 +1,57 @@
-#### 26.4.3.39 As visualizações _statements_with_sorting e x$statements_with_sorting
+#### 26.4.3.39 The statements_with_sorting and x$statements_with_sorting Views
 
-Essas visualizações listam declarações normalizadas que realizaram ordenamentos. Por padrão, as linhas são ordenadas por latência total decrescente.
+These views list normalized statements that have performed sorts. By default, rows are sorted by descending total latency.
 
-As views `statements_with_sorting` e `x$statements_with_sorting` possuem essas colunas:
+The `statements_with_sorting` and `x$statements_with_sorting` views have these columns:
 
-- `consulta`
+* `query`
 
-  A string de declaração normalizada.
+  The normalized statement string.
 
-- `db`
+* `db`
 
-  O banco de dados padrão para a declaração, ou `NULL` se não houver nenhum.
+  The default database for the statement, or `NULL` if there is none.
 
-- `exec_count`
+* `exec_count`
 
-  O número total de vezes que a declaração foi executada.
+  The total number of times the statement has executed.
 
-- `total_latency`
+* `total_latency`
 
-  O tempo total de espera de ocorrências temporizadas da declaração.
+  The total wait time of timed occurrences of the statement.
 
-- `sort_merge_passes`
+* `sort_merge_passes`
 
-  O número total de passes de fusão de classificação por ocorrências da declaração.
+  The total number of sort merge passes by occurrences of the statement.
 
-- `avg_sort_merges`
+* `avg_sort_merges`
 
-  O número médio de passes de fusão de classificação por ocorrência da declaração.
+  The average number of sort merge passes per occurrence of the statement.
 
-- `sorts_using_scans`
+* `sorts_using_scans`
 
-  O número total de tipos que usam varreduras de tabela por ocorrências da declaração.
+  The total number of sorts using table scans by occurrences of the statement.
 
-- `sort_using_range`
+* `sort_using_range`
 
-  O número total de tipos que usam acessos de intervalo por ocorrências da declaração.
+  The total number of sorts using range accesses by occurrences of the statement.
 
-- `rows_sorted`
+* `rows_sorted`
 
-  O número total de linhas classificadas por ocorrências da declaração.
+  The total number of rows sorted by occurrences of the statement.
 
-- `avg_rows_sorted`
+* `avg_rows_sorted`
 
-  O número médio de linhas ordenadas por ocorrência da declaração.
+  The average number of rows sorted per occurrence of the statement.
 
-- `primeiro_avistado`
+* `first_seen`
 
-  O momento em que a declaração foi vista pela primeira vez.
+  The time at which the statement was first seen.
 
-- `última_visualização`
+* `last_seen`
 
-  O horário em que a declaração foi vista pela última vez.
+  The time at which the statement was most recently seen.
 
-- `digest`
+* `digest`
 
-  O resumo da declaração.
+  The statement digest.

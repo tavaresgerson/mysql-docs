@@ -1,16 +1,16 @@
-#### B.3.2.2 Não consigo me conectar ao servidor MySQL [local]
+#### B.3.2.2 Can't connect to [local] MySQL server
 
-Um cliente MySQL no Unix pode se conectar ao servidor [**mysqld**](mysqld.html) de duas maneiras diferentes: usando um arquivo de soquete Unix para se conectar por meio de um arquivo no sistema de arquivos (padrão `/tmp/mysql.sock`), ou usando TCP/IP, que se conecta por meio de um número de porta. Uma conexão por arquivo de soquete Unix é mais rápida que o TCP/IP, mas só pode ser usada ao se conectar a um servidor no mesmo computador. Um arquivo de soquete Unix é usado se você não especificar um nome de host ou se especificar o nome de host especial `localhost`.
+A MySQL client on Unix can connect to the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") server in two different ways: By using a Unix socket file to connect through a file in the file system (default `/tmp/mysql.sock`), or by using TCP/IP, which connects through a port number. A Unix socket file connection is faster than TCP/IP, but can be used only when connecting to a server on the same computer. A Unix socket file is used if you do not specify a host name or if you specify the special host name `localhost`.
 
-Se o servidor MySQL estiver em execução no Windows, você pode se conectar usando TCP/IP. Se o servidor estiver iniciado com a variável de sistema [`named_pipe`](server-system-variables.html#sysvar_named_pipe) habilitada, você também pode se conectar com tubos nomeados se executar o cliente no host onde o servidor está em execução. O nome do tubo nomeado é `MySQL` por padrão. Se você não fornecer um nome de host ao se conectar ao [**mysqld**](mysqld.html), um cliente MySQL tentará primeiro se conectar ao tubo nomeado. Se isso não funcionar, ele se conecta à porta TCP/IP. Você pode forçar o uso de tubos nomeados no Windows usando `.` como nome de host.
+If the MySQL server is running on Windows, you can connect using TCP/IP. If the server is started with the [`named_pipe`](server-system-variables.html#sysvar_named_pipe) system variable enabled, you can also connect with named pipes if you run the client on the host where the server is running. The name of the named pipe is `MySQL` by default. If you do not give a host name when connecting to [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server"), a MySQL client first tries to connect to the named pipe. If that does not work, it connects to the TCP/IP port. You can force the use of named pipes on Windows by using `.` as the host name.
 
-O erro (2002) `Não é possível se conectar a ...` normalmente significa que não há um servidor MySQL em execução no sistema ou que você está usando um nome de arquivo de soquete Unix ou número de porta TCP/IP incorreto ao tentar se conectar ao servidor. Você também deve verificar se a porta TCP/IP que você está usando não foi bloqueada por um firewall ou serviço de bloqueio de porta.
+The error (2002) `Can't connect to ...` normally means that there is no MySQL server running on the system or that you are using an incorrect Unix socket file name or TCP/IP port number when trying to connect to the server. You should also check that the TCP/IP port you are using has not been blocked by a firewall or port blocking service.
 
-O erro (2003) `Não é possível conectar ao servidor MySQL em 'server' (10061)` indica que a conexão de rede foi recusada. Você deve verificar se há um servidor MySQL em execução, se as conexões de rede estão habilitadas e se a porta de rede que você especificou é a mesma configurada no servidor.
+The error (2003) `Can't connect to MySQL server on 'server' (10061)` indicates that the network connection has been refused. You should check that there is a MySQL server running, that it has network connections enabled, and that the network port you specified is the one configured on the server.
 
-Comece verificando se há um processo chamado [**mysqld**](mysqld.html) em execução no seu servidor. (Use **ps xa | grep mysqld** no Unix ou o Gerenciador de Tarefas no Windows.) Se não houver esse processo, você deve iniciar o servidor. Veja [Seção 2.9.2, “Iniciando o Servidor”](starting-server.html).
+Start by checking whether there is a process named [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") running on your server host. (Use **ps xa | grep mysqld** on Unix or the Task Manager on Windows.) If there is no such process, you should start the server. See [Section 2.9.2, “Starting the Server”](starting-server.html "2.9.2 Starting the Server").
 
-Se um processo [**mysqld**](mysqld.html) estiver em execução, você pode verificá-lo tentando os seguintes comandos. O número de porta ou o nome do arquivo de soquete Unix podem ser diferentes no seu ambiente. `host_ip` representa o endereço IP da máquina onde o servidor está em execução.
+If a [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") process is running, you can check it by trying the following commands. The port number or Unix socket file name might be different in your setup. `host_ip` represents the IP address of the machine where the server is running.
 
 ```sql
 $> mysqladmin version
@@ -21,73 +21,73 @@ $> mysqladmin -h host_ip version
 $> mysqladmin --protocol=SOCKET --socket=/tmp/mysql.sock version
 ```
 
-Observe o uso de aspas duplas em vez de aspas simples com o comando **hostname**. Essas aspas fazem com que a saída do **hostname** (ou seja, o nome atual do host) seja substituída pelo comando [**mysqladmin**](mysqladmin.html). Se você não tiver o comando **hostname** ou estiver executando no Windows, pode digitar manualmente o nome do host da sua máquina (sem aspas duplas) seguindo a opção `-h`. Você também pode tentar `-h 127.0.0.1` para se conectar ao host local via TCP/IP.
+Note the use of backticks rather than forward quotation marks with the **hostname** command; these cause the output of **hostname** (that is, the current host name) to be substituted into the [**mysqladmin**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") command. If you have no **hostname** command or are running on Windows, you can manually type the host name of your machine (without backticks) following the `-h` option. You can also try `-h 127.0.0.1` to connect with TCP/IP to the local host.
 
-Certifique-se de que o servidor não foi configurado para ignorar conexões de rede ou (se você estiver tentando se conectar remotamente) que ele não foi configurado para ouvir apenas localmente em suas interfaces de rede. Se o servidor foi iniciado com a variável de sistema [`skip_networking`](server-system-variables.html#sysvar_skip_networking) habilitada, ele não aceita conexões TCP/IP. Se o servidor foi iniciado com a variável de sistema [`bind_address`](server-system-variables.html#sysvar_bind_address) definida como `127.0.0.1`, ele escuta apenas conexões TCP/IP localmente na interface de loopback e não aceita conexões remotas.
+Make sure that the server has not been configured to ignore network connections or (if you are attempting to connect remotely) that it has not been configured to listen only locally on its network interfaces. If the server was started with the [`skip_networking`](server-system-variables.html#sysvar_skip_networking) system variable enabled, it does not accept TCP/IP connections at all. If the server was started with the [`bind_address`](server-system-variables.html#sysvar_bind_address) system variable set to `127.0.0.1`, it listens for TCP/IP connections only locally on the loopback interface and does not accept remote connections.
 
-Verifique se não há um firewall bloqueando o acesso ao MySQL. Seu firewall pode estar configurado com base na aplicação que está sendo executada ou no número de porta usado pelo MySQL para comunicação (3306 por padrão). Em Linux ou Unix, verifique a configuração de suas tabelas de IP (ou similar) para garantir que a porta não tenha sido bloqueada. Em Windows, aplicativos como o ZoneAlarm ou o Windows Firewall podem precisar ser configurados para não bloquear a porta do MySQL.
+Check to make sure that there is no firewall blocking access to MySQL. Your firewall may be configured on the basis of the application being executed, or the port number used by MySQL for communication (3306 by default). Under Linux or Unix, check your IP tables (or similar) configuration to ensure that the port has not been blocked. Under Windows, applications such as ZoneAlarm or Windows Firewall may need to be configured not to block the MySQL port.
 
-Aqui estão algumas razões pelas quais o erro "Não é possível se conectar ao servidor MySQL local" pode ocorrer:
+Here are some reasons the `Can't connect to local MySQL server` error might occur:
 
-- [**mysqld**](mysqld.html) não está rodando no host local. Verifique a lista de processos do seu sistema operacional para garantir que o processo [**mysqld**](mysqld.html) esteja presente.
+* [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") is not running on the local host. Check your operating system's process list to ensure the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") process is present.
 
-- Você está executando um servidor MySQL no Windows com muitas conexões TCP/IP. Se você estiver enfrentando isso com frequência, seus clientes recebem esse erro, você pode encontrar uma solução aqui: [Seção B.3.2.2.1, “Conexão com o Servidor MySQL Falhando no Windows”](can-not-connect-to-server.html#can-not-connect-to-server-on-windows).
+* You're running a MySQL server on Windows with many TCP/IP connections to it. If you're experiencing that quite often your clients get that error, you can find a workaround here: [Section B.3.2.2.1, “Connection to MySQL Server Failing on Windows”](can-not-connect-to-server.html#can-not-connect-to-server-on-windows "B.3.2.2.1 Connection to MySQL Server Failing on Windows").
 
-- Alguém removeu o arquivo de soquete Unix que o [**mysqld**](mysqld.html) usa (`/tmp/mysql.sock` por padrão). Por exemplo, você pode ter um **cron** que remove arquivos antigos do diretório `/tmp`. Você sempre pode executar [**mysqladmin versão**](mysqladmin.html) para verificar se o arquivo de soquete Unix que o [**mysqladmin**](mysqladmin.html) está tentando usar realmente existe. A solução nesse caso é alterar o **cron** para não remover `mysql.sock` ou para colocar o arquivo de soquete em outro lugar. Veja [Seção B.3.3.6, “Como Proteger ou Alterar o Arquivo de Soquete Unix do MySQL”](problems-with-mysql-sock.html).
+* Someone has removed the Unix socket file that [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") uses (`/tmp/mysql.sock` by default). For example, you might have a **cron** job that removes old files from the `/tmp` directory. You can always run [**mysqladmin version**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") to check whether the Unix socket file that [**mysqladmin**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") is trying to use really exists. The fix in this case is to change the **cron** job to not remove `mysql.sock` or to place the socket file somewhere else. See [Section B.3.3.6, “How to Protect or Change the MySQL Unix Socket File”](problems-with-mysql-sock.html "B.3.3.6 How to Protect or Change the MySQL Unix Socket File").
 
-- Você iniciou o servidor [**mysqld**](mysqld.html) com a opção [`--socket=/caminho/para/socket`](server-options.html#option_mysqld_socket), mas esqueceu de informar aos programas clientes o novo nome do arquivo de soquete. Se você alterar o nome do caminho de soquete para o servidor, também deve notificar os clientes MySQL. Você pode fazer isso fornecendo a mesma opção [`--socket`](connection-options.html#option_general_socket) ao executar programas clientes. Você também precisa garantir que os clientes tenham permissão para acessar o arquivo `mysql.sock`. Para descobrir onde está o arquivo de soquete, você pode fazer:
+* You have started the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") server with the [`--socket=/path/to/socket`](server-options.html#option_mysqld_socket) option, but forgotten to tell client programs the new name of the socket file. If you change the socket path name for the server, you must also notify the MySQL clients. You can do this by providing the same [`--socket`](connection-options.html#option_general_socket) option when you run client programs. You also need to ensure that clients have permission to access the `mysql.sock` file. To find out where the socket file is, you can do:
 
   ```sql
   $> netstat -ln | grep mysql
   ```
 
-  Veja [Seção B.3.3.6, “Como proteger ou alterar o arquivo de soquete Unix do MySQL”](problemas-com-mysql-sock.html).
+  See [Section B.3.3.6, “How to Protect or Change the MySQL Unix Socket File”](problems-with-mysql-sock.html "B.3.3.6 How to Protect or Change the MySQL Unix Socket File").
 
-- Você está usando o Linux e um thread do servidor morreu (dumpou o núcleo). Nesse caso, você deve matar os outros fios do [**mysqld**](mysqld.html) (por exemplo, com [**kill**](kill.html)) antes de poder reiniciar o servidor MySQL. Veja [Seção B.3.3.3, “O que fazer se o MySQL continuar travando”](crashing.html).
+* You are using Linux and one server thread has died (dumped core). In this case, you must kill the other [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") threads (for example, with [**kill**](kill.html "13.7.6.4 KILL Statement")) before you can restart the MySQL server. See [Section B.3.3.3, “What to Do If MySQL Keeps Crashing”](crashing.html "B.3.3.3 What to Do If MySQL Keeps Crashing").
 
-- O servidor ou o programa cliente podem não ter os privilégios de acesso adequados para o diretório que contém o arquivo de soquete Unix ou o próprio arquivo de soquete. Nesse caso, você deve alterar os privilégios de acesso para o diretório ou o arquivo de soquete para que o servidor e os clientes possam acessá-los, ou reiniciar [**mysqld**](mysqld.html) com uma opção [`--socket`](server-options.html#option_mysqld_socket) que especifica o nome de um arquivo de soquete em um diretório onde o servidor pode criá-lo e onde os programas cliente podem acessá-lo.
+* The server or client program might not have the proper access privileges for the directory that holds the Unix socket file or the socket file itself. In this case, you must either change the access privileges for the directory or socket file so that the server and clients can access them, or restart [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") with a [`--socket`](server-options.html#option_mysqld_socket) option that specifies a socket file name in a directory where the server can create it and where client programs can access it.
 
-Se você receber a mensagem de erro "Não consigo conectar ao servidor MySQL em algum_host", você pode tentar as seguintes coisas para descobrir qual é o problema:
+If you get the error message `Can't connect to MySQL server on some_host`, you can try the following things to find out what the problem is:
 
-- Verifique se o servidor está em execução nesse host executando `telnet algum_host 3306` e pressionando a tecla Enter algumas vezes. (3306 é o número de porta padrão do MySQL. Altere o valor se o seu servidor estiver ouvindo uma porta diferente.) Se houver um servidor MySQL em execução e ouvindo a porta, você deve receber uma resposta que inclua o número da versão do servidor. Se você receber um erro como `telnet: Não foi possível conectar ao host remoto: Conexão recusada`, então não há nenhum servidor em execução na porta fornecida.
+* Check whether the server is running on that host by executing `telnet some_host 3306` and pressing the Enter key a couple of times. (3306 is the default MySQL port number. Change the value if your server is listening to a different port.) If there is a MySQL server running and listening to the port, you should get a response that includes the server's version number. If you get an error such as `telnet: Unable to connect to remote host: Connection refused`, then there is no server running on the given port.
 
-- Se o servidor estiver rodando no host local, tente usar [**mysqladmin -h localhost variables**](mysqladmin.html) para se conectar usando o arquivo de socket Unix. Verifique o número da porta TCP/IP para a qual o servidor está configurado para ouvir (é o valor da variável [`port`](server-system-variables.html#sysvar_port)).
+* If the server is running on the local host, try using [**mysqladmin -h localhost variables**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") to connect using the Unix socket file. Verify the TCP/IP port number that the server is configured to listen to (it is the value of the [`port`](server-system-variables.html#sysvar_port) variable.)
 
-- Se você estiver executando sob Linux e o Linux com Segurança Aprimorada (SELinux) estiver habilitado, consulte [Seção 6.7, “SELinux”](selinux.html).
+* If you are running under Linux and Security-Enhanced Linux (SELinux) is enabled, see [Section 6.7, “SELinux”](selinux.html "6.7 SELinux").
 
-##### B.3.2.2.1 Conexão com o servidor MySQL falhando no Windows
+##### B.3.2.2.1 Connection to MySQL Server Failing on Windows
 
-Quando você está executando um servidor MySQL no Windows com muitas conexões TCP/IP, e você está enfrentando esse problema com frequência, onde seus clientes recebem o erro "Não é possível conectar-se ao servidor MySQL", a razão pode ser que o Windows não permite conexões suficientes em portas efêmeras (de curta duração).
+When you're running a MySQL server on Windows with many TCP/IP connections to it, and you're experiencing that quite often your clients get a `Can't connect to MySQL server` error, the reason might be that Windows does not allow for enough ephemeral (short-lived) ports to serve those connections.
 
-O propósito do `TIME_WAIT` é manter uma conexão aceitando pacotes mesmo após a conexão ter sido fechada. Isso ocorre porque o roteamento da Internet pode fazer com que um pacote tome uma rota lenta para o seu destino e ele possa chegar depois que ambos os lados tenham concordado em fechar. Se a porta estiver em uso para uma nova conexão, esse pacote da conexão antiga poderia quebrar o protocolo ou comprometer informações pessoais da conexão original. O atraso do `TIME_WAIT` previne isso, garantindo que a porta não possa ser reutilizada até que algum tempo tenha sido permitido para que esses pacotes atrasados cheguem.
+The purpose of `TIME_WAIT` is to keep a connection accepting packets even after the connection has been closed. This is because Internet routing can cause a packet to take a slow route to its destination and it may arrive after both sides have agreed to close. If the port is in use for a new connection, that packet from the old connection could break the protocol or compromise personal information from the original connection. The `TIME_WAIT` delay prevents this by ensuring that the port cannot be reused until after some time has been permitted for those delayed packets to arrive.
 
-É seguro reduzir muito o `TIME_WAIT` em conexões LAN, pois há pouca chance de pacotes chegarem com atrasos muito longos, como poderiam fazer na Internet, com suas distâncias e latências comparativamente grandes.
+It is safe to reduce `TIME_WAIT` greatly on LAN connections because there is little chance of packets arriving at very long delays, as they could through the Internet with its comparatively large distances and latencies.
 
-O Windows permite portas TCP efêmeras (de curta duração) para o usuário. Após a fechamento de qualquer porta, ela permanece no estado `TIME_WAIT` por 120 segundos. A porta não estará disponível novamente até que esse tempo expire. A faixa padrão de números de porta depende da versão do Windows, com um número de portas mais limitado em versões mais antigas:
+Windows permits ephemeral (short-lived) TCP ports to the user. After any port is closed it remains in `TIME_WAIT` status for 120 seconds. The port is not available again until this time expires. The default range of port numbers depends on the version of Windows, with a more limited number of ports in older versions:
 
-- Windows através do Server 2003: portas na faixa de 1025 a 5000
+* Windows through Server 2003: Ports in range 1025–5000
 
-- Windows Vista, Server 2008 e versões mais recentes: portas na faixa de 49152 a 65535
+* Windows Vista, Server 2008, and newer: Ports in range 49152–65535
 
-Com uma pequena pilha de portas TCP disponíveis (5000) e um grande número de portas TCP abertas e fechadas em um curto período de tempo, juntamente com o estado `TIME_WAIT`, você tem uma boa chance de acabar com as portas. Existem duas maneiras de resolver esse problema:
+With a small stack of available TCP ports (5000) and a high number of TCP ports being open and closed over a short period of time along with the `TIME_WAIT` status you have a good chance for running out of ports. There are two ways to address this problem:
 
-- Reduza o número de portas TCP consumidas rapidamente investigando o agrupamento de conexões ou conexões persistentes, sempre que possível.
+* Reduce the number of TCP ports consumed quickly by investigating connection pooling or persistent connections where possible
 
-- Ajuste algumas configurações no registro do Windows (veja abaixo)
+* Tune some settings in the Windows registry (see below)
 
-Importante
+Important
 
-O procedimento a seguir envolve a modificação do registro do Windows. Antes de modificar o registro, certifique-se de fazer uma cópia de segurança e verifique se entende como restaurá-lo caso ocorra um problema. Para obter informações sobre como fazer backup, restaurar e editar o registro, consulte o seguinte artigo na Base de Conhecimento da Microsoft: <http://support.microsoft.com/kb/256986/EN-US/>.
+The following procedure involves modifying the Windows registry. Before you modify the registry, make sure to back it up and make sure that you understand how to restore it if a problem occurs. For information about how to back up, restore, and edit the registry, view the following article in the Microsoft Knowledge Base: <http://support.microsoft.com/kb/256986/EN-US/>.
 
-1. Comece o Editor do Registro (`Regedt32.exe`).
+1. Start Registry Editor (`Regedt32.exe`).
 
-2. Localize a chave seguinte no registro:
+2. Locate the following key in the registry:
 
    ```sql
    HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters
    ```
 
-3. No menu `Editar`, clique em `Adicionar Valor` e, em seguida, adicione o seguinte valor de registro:
+3. On the `Edit` menu, click `Add Value`, and then add the following registry value:
 
    ```sql
    Value Name: MaxUserPort
@@ -95,9 +95,9 @@ O procedimento a seguir envolve a modificação do registro do Windows. Antes de
    Value: 65534
    ```
 
-   Isso define o número de portas efêmeras disponíveis para qualquer usuário. A faixa válida é entre 5000 e 65534 (decimal). O valor padrão é 0x1388 (5000 decimal).
+   This sets the number of ephemeral ports available to any user. The valid range is between 5000 and 65534 (decimal). The default value is 0x1388 (5000 decimal).
 
-4. No menu `Editar`, clique em `Adicionar Valor` e, em seguida, adicione o seguinte valor de registro:
+4. On the `Edit` menu, click `Add Value`, and then add the following registry value:
 
    ```sql
    Value Name: TcpTimedWaitDelay
@@ -105,10 +105,9 @@ O procedimento a seguir envolve a modificação do registro do Windows. Antes de
    Value: 30
    ```
 
-   Isso define o número de segundos para manter uma conexão de porta TCP no estado `TIME_WAIT` antes de fechar. A faixa válida é entre 30 e 300 decimais, embora você possa querer verificar com a Microsoft para obter os valores permitidos mais recentes. O valor padrão é 0x78 (120 decimais).
+   This sets the number of seconds to hold a TCP port connection in `TIME_WAIT` state before closing. The valid range is between 30 and 300 decimal, although you may wish to check with Microsoft for the latest permitted values. The default value is 0x78 (120 decimal).
 
-5. Pare o Editor do Registro.
+5. Quit Registry Editor.
+6. Reboot the machine.
 
-6. Reinicie a máquina.
-
-Observação: Desfazer o que foi feito acima deve ser tão simples quanto excluir as entradas do registro que você criou.
+Note: Undoing the above should be as simple as deleting the registry entries you've created.

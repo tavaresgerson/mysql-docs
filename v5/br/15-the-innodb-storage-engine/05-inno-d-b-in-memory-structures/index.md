@@ -1,11 +1,11 @@
-## 14.5 Estruturas em Memória Dinâmica do InnoDB
+## 14.5 InnoDB In-Memory Structures
 
-14.5.1 Pool de tampão
+14.5.1 Buffer Pool
 
-14.5.2 Buffer de alteração
+14.5.2 Change Buffer
 
-14.5.3 Índice Hash Adaptativo
+14.5.3 Adaptive Hash Index
 
-14.5.4 Buffer de registro
+14.5.4 Log Buffer
 
-Esta seção descreve as estruturas de memória dinâmica do InnoDB e tópicos relacionados.
+This section describes `InnoDB` in-memory structures and related topics.

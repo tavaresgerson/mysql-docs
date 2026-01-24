@@ -1,27 +1,27 @@
-## 23.3 Usando gatilhos
+## 23.3 Using Triggers
 
-23.3.1 Sintaxe e exemplos de gatilho
+23.3.1 Trigger Syntax and Examples
 
-23.3.2 Metadados do gatilho
+23.3.2 Trigger Metadata
 
-Um gatilho é um objeto de banco de dados nomeado que está associado a uma tabela e que é ativado quando um evento específico ocorre na tabela. Alguns usos dos gatilhos são realizar verificações de valores a serem inseridos em uma tabela ou realizar cálculos sobre os valores envolvidos em uma atualização.
+A trigger is a named database object that is associated with a table, and that activates when a particular event occurs for the table. Some uses for triggers are to perform checks of values to be inserted into a table or to perform calculations on values involved in an update.
 
-Um gatilho é definido para ser ativado quando uma declaração insere, atualiza ou exclui linhas na tabela associada. Essas operações de linha são eventos de gatilho. Por exemplo, as linhas podem ser inseridas por declarações `INSERT` ou `LOAD DATA`, e um gatilho de inserção é ativado para cada linha inserida. Um gatilho pode ser configurado para ser ativado antes ou depois do evento do gatilho. Por exemplo, você pode ter um gatilho ativado antes de cada linha inserida em uma tabela ou depois de cada linha atualizada.
+A trigger is defined to activate when a statement inserts, updates, or deletes rows in the associated table. These row operations are trigger events. For example, rows can be inserted by `INSERT` or `LOAD DATA` statements, and an insert trigger activates for each inserted row. A trigger can be set to activate either before or after the trigger event. For example, you can have a trigger activate before each row that is inserted into a table or after each row that is updated.
 
-Importante
+Important
 
-Os gatilhos do MySQL são ativados apenas para alterações feitas em tabelas por instruções SQL. Isso inclui alterações em tabelas base que sustentam visualizações atualizáveis. Os gatilhos não são ativados para alterações em tabelas feitas por APIs que não transmitem instruções SQL para o MySQL Server. Isso significa que os gatilhos não são ativados por atualizações feitas usando a API `NDB`.
+MySQL triggers activate only for changes made to tables by SQL statements. This includes changes to base tables that underlie updatable views. Triggers do not activate for changes to tables made by APIs that do not transmit SQL statements to the MySQL Server. This means that triggers are not activated by updates made using the `NDB` API.
 
-Os gatilhos não são ativados por alterações nas tabelas `INFORMATION_SCHEMA` ou `performance_schema`. Essas tabelas são, na verdade, visualizações e gatilhos não são permitidos em visualizações.
+Triggers are not activated by changes in `INFORMATION_SCHEMA` or `performance_schema` tables. Those tables are actually views and triggers are not permitted on views.
 
-As seções a seguir descrevem a sintaxe para criar e descartar gatilhos, mostram alguns exemplos de como usá-los e indicam como obter metadados de gatilhos.
+The following sections describe the syntax for creating and dropping triggers, show some examples of how to use them, and indicate how to obtain trigger metadata.
 
-### Recursos adicionais
+### Additional Resources
 
-- Você pode achar os [Fóruns de Usuários do MySQL](https://forums.mysql.com/list.php?20) úteis ao trabalhar com gatilhos.
+* You may find the [MySQL User Forums](https://forums.mysql.com/list.php?20) helpful when working with triggers.
 
-- Para respostas a perguntas frequentes sobre gatilhos no MySQL, consulte a Seção A.5, “Perguntas frequentes do MySQL 5.7: gatilhos”.
+* For answers to commonly asked questions regarding triggers in MySQL, see Section A.5, “MySQL 5.7 FAQ: Triggers”.
 
-- Há algumas restrições sobre o uso de gatilhos; veja a Seção 23.8, “Restrições sobre Programas Armazenados”.
+* There are some restrictions on the use of triggers; see Section 23.8, “Restrictions on Stored Programs”.
 
-- O registro binário para gatilhos ocorre conforme descrito na Seção 23.7, “Registro Binário de Programas Armazenados”.
+* Binary logging for triggers takes place as described in Section 23.7, “Stored Program Binary Logging”.

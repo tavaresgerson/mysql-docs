@@ -1,4 +1,4 @@
-#### 13.7.4.1 Sintaxe de definição de variáveis para atribuição
+#### 13.7.4.1 SET Syntax for Variable Assignment
 
 ```sql
 SET variable = expr [, variable = expr] ...
@@ -12,49 +12,49 @@ variable: {
 }
 ```
 
-A sintaxe `SET` para atribuição de variáveis permite que você atribua valores a diferentes tipos de variáveis que afetam o funcionamento do servidor ou dos clientes:
+[`SET`](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment") syntax for variable assignment enables you to assign values to different types of variables that affect the operation of the server or clients:
 
-- Variáveis definidas pelo usuário. Consulte Seção 9.4, “Variáveis Definidas pelo Usuário”.
+* User-defined variables. See [Section 9.4, “User-Defined Variables”](user-variables.html "9.4 User-Defined Variables").
 
-- Parâmetros de procedimentos e funções armazenados, e variáveis locais de programas armazenados. Consulte Seção 13.6.4, “Variáveis em Programas Armazenados”.
+* Stored procedure and function parameters, and stored program local variables. See [Section 13.6.4, “Variables in Stored Programs”](stored-program-variables.html "13.6.4 Variables in Stored Programs").
 
-- Variáveis do sistema. Consulte Seção 5.1.7, “Variáveis do sistema do servidor”. As variáveis do sistema também podem ser definidas durante o início do servidor, conforme descrito na Seção 5.1.8, “Uso de variáveis do sistema”.
+* System variables. See [Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables"). System variables also can be set at server startup, as described in [Section 5.1.8, “Using System Variables”](using-system-variables.html "5.1.8 Using System Variables").
 
-Uma declaração `SET` que atribui valores variáveis não é escrita no log binário, portanto, em cenários de replicação, ela afeta apenas o host no qual você a executa. Para afetar todos os hosts de replicação, execute a declaração em cada host.
+A [`SET`](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment") statement that assigns variable values is not written to the binary log, so in replication scenarios it affects only the host on which you execute it. To affect all replication hosts, execute the statement on each host.
 
-As seções a seguir descrevem a sintaxe de `SET` para definir variáveis. Elas usam o operador de atribuição `=`, mas o operador de atribuição `:=` também é permitido para esse propósito.
+The following sections describe [`SET`](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment") syntax for setting variables. They use the [`=`](assignment-operators.html#operator_assign-equal) assignment operator, but the [`:=`](assignment-operators.html#operator_assign-value) assignment operator is also permitted for this purpose.
 
-- Atribuição de variável definida pelo usuário
-- Atribuição de Parâmetros e Variáveis Locais
-- Atribuição de variáveis do sistema
-- Tratamento de Erros do SET
-- Atribuição de variáveis múltiplas
-- Referências de variáveis de sistema em expressões
+* [User-Defined Variable Assignment](set-variable.html#set-variable-user-variables "User-Defined Variable Assignment")
+* [Parameter and Local Variable Assignment](set-variable.html#set-variable-parameters-local-variables "Parameter and Local Variable Assignment")
+* [System Variable Assignment](set-variable.html#set-variable-system-variables "System Variable Assignment")
+* [SET Error Handling](set-variable.html#set-variable-error-handling "SET Error Handling")
+* [Multiple Variable Assignment](set-variable.html#set-variable-multiple-assignments "Multiple Variable Assignment")
+* [System Variable References in Expressions](set-variable.html#variable-references-in-expressions "System Variable References in Expressions")
 
-##### Atribuição de variáveis definidas pelo usuário
+##### User-Defined Variable Assignment
 
-As variáveis definidas pelo usuário são criadas localmente dentro de uma sessão e existem apenas dentro do contexto dessa sessão; veja Seção 9.4, “Variáveis Definidas pelo Usuário”.
+User-defined variables are created locally within a session and exist only within the context of that session; see [Section 9.4, “User-Defined Variables”](user-variables.html "9.4 User-Defined Variables").
 
-Uma variável definida pelo usuário é escrita como `@var_name` e recebe um valor de expressão da seguinte forma:
+A user-defined variable is written as `@var_name` and is assigned an expression value as follows:
 
 ```sql
 SET @var_name = expr;
 ```
 
-Exemplos:
+Examples:
 
 ```sql
 SET @name = 43;
 SET @total_tax = (SELECT SUM(tax) FROM taxable_transactions);
 ```
 
-Como demonstrado por essas declarações, *`expr`* pode variar de simples (um valor literal) a mais complexo (o valor retornado por uma subconsulta escalar).
+As demonstrated by those statements, *`expr`* can range from simple (a literal value) to more complex (the value returned by a scalar subquery).
 
-A tabela do Schema de Desempenho `user_variables_by_thread` contém informações sobre variáveis definidas pelo usuário. Veja Seção 25.12.10, “Tabelas de Variáveis Definidas pelo Usuário do Schema de Desempenho”.
+The Performance Schema [`user_variables_by_thread`](performance-schema-user-variable-tables.html "25.12.10 Performance Schema User-Defined Variable Tables") table contains information about user-defined variables. See [Section 25.12.10, “Performance Schema User-Defined Variable Tables”](performance-schema-user-variable-tables.html "25.12.10 Performance Schema User-Defined Variable Tables").
 
-##### Atribuição de parâmetros e variáveis locais
+##### Parameter and Local Variable Assignment
 
-`SET` se aplica a parâmetros e variáveis locais no contexto do objeto armazenado no qual são definidos. O procedimento a seguir usa o parâmetro de procedimento `increment` e a variável local `counter`:
+[`SET`](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment") applies to parameters and local variables in the context of the stored object within which they are defined. The following procedure uses the `increment` procedure parameter and `counter` local variable:
 
 ```sql
 CREATE PROCEDURE p(increment INT)
@@ -67,28 +67,28 @@ BEGIN
 END;
 ```
 
-##### Atribuição de variáveis do sistema
+##### System Variable Assignment
 
-O servidor MySQL mantém variáveis de sistema que configuram sua operação. Uma variável de sistema pode ter um valor global que afeta a operação do servidor como um todo, um valor de sessão que afeta a sessão atual ou ambos. Muitas variáveis de sistema são dinâmicas e podem ser alteradas em tempo de execução usando a instrução `SET` para afetar a operação da instância atual do servidor. (Para tornar uma configuração de variável de sistema global permanente, para que ela seja aplicada em reinicializações do servidor, você também deve configurá-la em um arquivo de opções.)
+The MySQL server maintains system variables that configure its operation. A system variable can have a global value that affects server operation as a whole, a session value that affects the current session, or both. Many system variables are dynamic and can be changed at runtime using the [`SET`](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment") statement to affect operation of the current server instance. (To make a global system variable setting permanent so that it applies across server restarts, you should also set it in an option file.)
 
-Se você alterar uma variável de sistema de sessão, o valor permanecerá em vigor dentro da sua sessão até que você altere a variável para um valor diferente ou a sessão termine. A alteração não tem efeito em outras sessões.
+If you change a session system variable, the value remains in effect within your session until you change the variable to a different value or the session ends. The change has no effect on other sessions.
 
-Se você alterar uma variável de sistema global, o valor é lembrado e usado para inicializar o valor da sessão para novas sessões até que você altere a variável para um valor diferente ou o servidor saia. A mudança é visível para qualquer cliente que acesse o valor global. No entanto, a mudança afeta o valor da sessão correspondente apenas para clientes que se conectam após a mudança. A alteração da variável global não afeta o valor da sessão para nenhuma sessão de cliente atual (nem mesmo a sessão na qual a alteração do valor global ocorre).
+If you change a global system variable, the value is remembered and used to initialize the session value for new sessions until you change the variable to a different value or the server exits. The change is visible to any client that accesses the global value. However, the change affects the corresponding session value only for clients that connect after the change. The global variable change does not affect the session value for any current client sessions (not even the session within which the global value change occurs).
 
-Nota
+Note
 
-Definir o valor de uma variável de sistema global sempre requer privilégios especiais. Definir o valor de uma variável de sistema de sessão normalmente não requer privilégios especiais e pode ser feito por qualquer usuário, embora existam exceções. Para mais informações, consulte Seção 5.1.8.1, “Privilégios de Variáveis de Sistema”.
+Setting a global system variable value always requires special privileges. Setting a session system variable value normally requires no special privileges and can be done by any user, although there are exceptions. For more information, see [Section 5.1.8.1, “System Variable Privileges”](system-variable-privileges.html "5.1.8.1 System Variable Privileges").
 
-A discussão a seguir descreve as opções de sintaxe para definir variáveis do sistema:
+The following discussion describes the syntax options for setting system variables:
 
-- Para atribuir um valor a uma variável de sistema global, preceda o nome da variável com a palavra-chave `GLOBAL` ou o qualificador `@@GLOBAL.`:
+* To assign a value to a global system variable, precede the variable name by the `GLOBAL` keyword or the `@@GLOBAL.` qualifier:
 
   ```sql
   SET GLOBAL max_connections = 1000;
   SET @@GLOBAL.max_connections = 1000;
   ```
 
-- Para atribuir um valor a uma variável de sistema de sessão, preceda o nome da variável com as palavras-chave `SESSION` ou `LOCAL`, com o qualificador `@@SESSION.`, `@@LOCAL.` ou `@@`, ou sem nenhuma palavra-chave ou modificador:
+* To assign a value to a session system variable, precede the variable name by the `SESSION` or `LOCAL` keyword, by the `@@SESSION.`, `@@LOCAL.`, or `@@` qualifier, or by no keyword or no modifier at all:
 
   ```sql
   SET SESSION sql_mode = 'TRADITIONAL';
@@ -99,35 +99,35 @@ A discussão a seguir descreve as opções de sintaxe para definir variáveis do
   SET sql_mode = 'TRADITIONAL';
   ```
 
-  Um cliente pode alterar suas próprias variáveis de sessão, mas não as de outros clientes.
+  A client can change its own session variables, but not those of any other client.
 
-Para definir o valor de uma variável de sistema global para o valor padrão integrado do MySQL ou uma variável de sistema de sessão para o valor global correspondente atual, defina a variável para o valor `DEFAULT`. Por exemplo, as seguintes duas instruções são idênticas para definir o valor da sessão de `max_join_size` para o valor global atual:
+To set a global system variable value to the compiled-in MySQL default value or a session system variable to the current corresponding global value, set the variable to the value `DEFAULT`. For example, the following two statements are identical in setting the session value of [`max_join_size`](server-system-variables.html#sysvar_max_join_size) to the current global value:
 
 ```sql
 SET @@SESSION.max_join_size = DEFAULT;
 SET @@SESSION.max_join_size = @@GLOBAL.max_join_size;
 ```
 
-Para exibir os nomes e valores das variáveis do sistema:
+To display system variable names and values:
 
-- Use a instrução `SHOW VARIABLES`; veja Seção 13.7.5.39, “Instrução SHOW VARIABLES”.
+* Use the [`SHOW VARIABLES`](show-variables.html "13.7.5.39 SHOW VARIABLES Statement") statement; see [Section 13.7.5.39, “SHOW VARIABLES Statement”](show-variables.html "13.7.5.39 SHOW VARIABLES Statement").
 
-- Várias tabelas do Schema de Desempenho fornecem informações sobre variáveis do sistema. Veja Seção 25.12.13, “Tabelas de Variáveis do Sistema do Schema de Desempenho”.
+* Several Performance Schema tables provide system variable information. See [Section 25.12.13, “Performance Schema System Variable Tables”](performance-schema-system-variable-tables.html "25.12.13 Performance Schema System Variable Tables").
 
-##### Tratamento de Erros do SET
+##### SET Error Handling
 
-Se qualquer atribuição de variável em uma declaração de `[`SET\`]\(set-variable.html) falhar, toda a declaração falhará e nenhuma variável será alterada.
+If any variable assignment in a [`SET`](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment") statement fails, the entire statement fails and no variables are changed.
 
-`SET` produz um erro nas circunstâncias descritas aqui. A maioria dos exemplos mostra instruções `SET` que usam a sintaxe de palavras-chave (por exemplo, `GLOBAL` ou `SESSION`), mas os princípios também são válidos para instruções que usam os modificadores correspondentes (por exemplo, `@@GLOBAL.` ou `@@SESSION.`).
+[`SET`](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment") produces an error under the circumstances described here. Most of the examples show [`SET`](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment") statements that use keyword syntax (for example, `GLOBAL` or `SESSION`), but the principles are also true for statements that use the corresponding modifiers (for example, `@@GLOBAL.` or `@@SESSION.`).
 
-- Uso de `SET` (qualquer variante) para definir uma variável somente de leitura:
+* Use of [`SET`](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment") (any variant) to set a read-only variable:
 
   ```sql
   mysql> SET GLOBAL version = 'abc';
   ERROR 1238 (HY000): Variable 'version' is a read only variable
   ```
 
-- Uso de `GLOBAL` para definir uma variável que tem apenas um valor de sessão:
+* Use of `GLOBAL` to set a variable that has only a session value:
 
   ```sql
   mysql> SET GLOBAL sql_log_bin = ON;
@@ -135,7 +135,7 @@ Se qualquer atribuição de variável em uma declaração de `[`SET\`]\(set-vari
   set to the value of 'ON'
   ```
 
-- Uso de `SESSION` para definir uma variável que tem apenas um valor global:
+* Use of `SESSION` to set a variable that has only a global value:
 
   ```sql
   mysql> SET SESSION max_connections = 1000;
@@ -143,7 +143,7 @@ Se qualquer atribuição de variável em uma declaração de `[`SET\`]\(set-vari
   GLOBAL variable and should be set with SET GLOBAL
   ```
 
-- Omissão de `GLOBAL` para definir uma variável que tem apenas um valor global:
+* Omission of `GLOBAL` to set a variable that has only a global value:
 
   ```sql
   mysql> SET max_connections = 1000;
@@ -151,23 +151,23 @@ Se qualquer atribuição de variável em uma declaração de `[`SET\`]\(set-vari
   GLOBAL variable and should be set with SET GLOBAL
   ```
 
-- Os modificadores `@@GLOBAL.`, `@@SESSION.`, e `@@` aplicam-se apenas a variáveis do sistema. Um erro ocorre para tentativas de aplicá-los a variáveis definidas pelo usuário, parâmetros de procedimentos ou funções armazenados, ou variáveis locais de programas armazenados.
+* The `@@GLOBAL.`, `@@SESSION.`, and `@@` modifiers apply only to system variables. An error occurs for attempts to apply them to user-defined variables, stored procedure or function parameters, or stored program local variables.
 
-- Nem todas as variáveis do sistema podem ser definidas como `DEFAULT`. Nesse caso, atribuir `DEFAULT` resulta em um erro.
+* Not all system variables can be set to `DEFAULT`. In such cases, assigning `DEFAULT` results in an error.
 
-- Um erro ocorre para tentativas de atribuir `DEFAULT` a variáveis definidas pelo usuário, parâmetros de procedimentos ou funções armazenados ou variáveis locais de programas armazenados.
+* An error occurs for attempts to assign `DEFAULT` to user-defined variables, stored procedure or function parameters, or stored program local variables.
 
-##### Atribuição de múltiplas variáveis
+##### Multiple Variable Assignment
 
-Uma declaração `SET` pode conter várias atribuições de variáveis, separadas por vírgulas. Esta declaração atribui um valor a uma variável definida pelo usuário e a uma variável do sistema:
+A [`SET`](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment") statement can contain multiple variable assignments, separated by commas. This statement assigns a value to a user-defined variable and a system variable:
 
 ```sql
 SET @x = 1, SESSION sql_mode = '';
 ```
 
-Se você definir várias variáveis de sistema em uma única instrução, a palavra-chave mais recente `GLOBAL` ou `SESSION` na instrução será usada para atribuições subsequentes que não tenham uma palavra-chave especificada.
+If you set multiple system variables in a single statement, the most recent `GLOBAL` or `SESSION` keyword in the statement is used for following assignments that have no keyword specified.
 
-Exemplos de atribuição de variáveis múltiplas:
+Examples of multiple-variable assignment:
 
 ```sql
 SET GLOBAL sort_buffer_size = 1000000, SESSION sort_buffer_size = 1000000;
@@ -175,20 +175,20 @@ SET @@GLOBAL.sort_buffer_size = 1000000, @@LOCAL.sort_buffer_size = 1000000;
 SET GLOBAL max_connections = 1000, sort_buffer_size = 1000000;
 ```
 
-Os modificadores `@@GLOBAL.`, `@@SESSION.`, e `@@` aplicam-se apenas à variável de sistema imediatamente seguinte, e não a quaisquer variáveis de sistema restantes. Esta declaração define o valor global `sort_buffer_size` para 50000 e o valor da sessão para 1.000.000:
+The `@@GLOBAL.`, `@@SESSION.`, and `@@` modifiers apply only to the immediately following system variable, not any remaining system variables. This statement sets the [`sort_buffer_size`](server-system-variables.html#sysvar_sort_buffer_size) global value to 50000 and the session value to 1000000:
 
 ```sql
 SET @@GLOBAL.sort_buffer_size = 50000, sort_buffer_size = 1000000;
 ```
 
-##### Referências de variáveis do sistema em expressões
+##### System Variable References in Expressions
 
-Para referenciar o valor de uma variável de sistema em expressões, use um dos modificadores `@@`. Por exemplo, você pode recuperar os valores das variáveis de sistema em uma instrução `SELECT` assim:
+To refer to the value of a system variable in expressions, use one of the `@@`-modifiers. For example, you can retrieve system variable values in a [`SELECT`](select.html "13.2.9 SELECT Statement") statement like this:
 
 ```sql
 SELECT @@GLOBAL.sql_mode, @@SESSION.sql_mode, @@sql_mode;
 ```
 
-Nota
+Note
 
-Uma referência a uma variável de sistema em uma expressão como `@@var_name` (com `@@` em vez de `@@GLOBAL.` ou `@@SESSION.`) retorna o valor da sessão, se existir, e o valor global, caso contrário. Isso difere de `SET @@var_name = expr`, que sempre se refere ao valor da sessão.
+A reference to a system variable in an expression as `@@var_name` (with `@@` rather than `@@GLOBAL.` or `@@SESSION.`) returns the session value if it exists and the global value otherwise. This differs from `SET @@var_name = expr`, which always refers to the session value.

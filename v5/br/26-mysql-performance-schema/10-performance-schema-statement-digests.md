@@ -1,148 +1,148 @@
-## 25.10 Resumo das declarações do esquema de desempenho
+## 25.10 Performance Schema Statement Digests
 
-O servidor MySQL é capaz de manter informações sobre o resumo das instruções. O processo de digestão converte cada instrução SQL para uma forma normalizada (o resumo da instrução) e calcula um valor de hash MD5 (o valor de hash do digest) a partir do resultado normalizado. A normalização permite que instruções semelhantes sejam agrupadas e resumidas para expor informações sobre os tipos de instruções que o servidor está executando e com que frequência elas ocorrem. Esta seção descreve como ocorre a digestão das instruções e como ela pode ser útil.
+The MySQL server is capable of maintaining statement digest information. The digesting process converts each SQL statement to normalized form (the statement digest) and computes an MD5 hash value (the digest hash value) from the normalized result. Normalization permits statements that are similar to be grouped and summarized to expose information about the types of statements the server is executing and how often they occur. This section describes how statement digesting occurs and how it can be useful.
 
-A digestão ocorre no analisador, independentemente de o Schema de Desempenho estar disponível, para que outros componentes do servidor, como o MySQL Enterprise Firewall e os plugins de reescrita de consultas, tenham acesso às digests de instruções.
+Digesting occurs in the parser regardless of whether the Performance Schema is available, so that other server components such as MySQL Enterprise Firewall and query rewrite plugins have access to statement digests.
 
-- Resumo de declarações conceitos gerais do esquema de desempenho
-- Resumo de declarações no esquema de desempenho
-- Resumo de declaração sobre o uso da memória dos esquemas de execução
+* [Statement Digest General Concepts](performance-schema-statement-digests.html#statement-digests-general "Statement Digest General Concepts")
+* [Statement Digests in the Performance Schema](performance-schema-statement-digests.html#statement-digests-performance-schema "Statement Digests in the Performance Schema")
+* [Statement Digest Memory Use](performance-schema-statement-digests.html#statement-digests-memory-use "Statement Digest Memory Use")
 
-### Resumo da Declaração Conceitos Gerais
+### Statement Digest General Concepts
 
-Quando o analisador recebe uma instrução SQL, ele calcula um resumo da instrução, se esse resumo for necessário, o que é verdadeiro se qualquer uma das seguintes condições for verdadeira:
+When the parser receives an SQL statement, it computes a statement digest if that digest is needed, which is true if any of the following conditions are true:
 
-- A instrumentação do esquema de desempenho digest está habilitada
-- O Firewall Empresarial MySQL está ativado
-- Um plugin de reescrita de consulta está ativado
+* Performance Schema digest instrumentation is enabled
+* MySQL Enterprise Firewall is enabled
+* A query rewrite plugin is enabled
 
-O valor da variável de sistema `max_digest_length` determina o número máximo de bytes disponíveis por sessão para a computação de digestos normalizados de declarações. Uma vez que essa quantidade de espaço é usada durante a computação do digest, ocorre a redução: nenhum token adicional de uma declaração analisada é coletado ou incluído em seu valor de digest. Declarações que diferem apenas após esse número de bytes de tokens analisados produzem o mesmo digest normalizado de declaração e são consideradas idênticas se comparadas ou se agregadas para estatísticas de digest.
+The [`max_digest_length`](server-system-variables.html#sysvar_max_digest_length) system variable value determines the maximum number of bytes available per session for computation of normalized statement digests. Once that amount of space is used during digest computation, truncation occurs: no further tokens from a parsed statement are collected or figure into its digest value. Statements that differ only after that many bytes of parsed tokens produce the same normalized statement digest and are considered identical if compared or if aggregated for digest statistics.
 
-Aviso
+Warning
 
-Definir a variável de sistema `max_digest_length` para zero desativa a produção de digests, o que também desativa a funcionalidade do servidor que requer digests.
+Setting the [`max_digest_length`](server-system-variables.html#sysvar_max_digest_length) system variable to zero disables digest production, which also disables server functionality that requires digests.
 
-Após a declaração normalizada ter sido calculada, um valor de hash MD5 é calculado a partir dela. Além disso:
+After the normalized statement has been computed, an MD5 hash value is computed from it. In addition:
 
-- Se o MySQL Enterprise Firewall estiver ativado, ele será chamado e o digest calculado estará disponível para ele.
+* If MySQL Enterprise Firewall is enabled, it is called and the digest as computed is available to it.
 
-- Se algum plugin de reescrita de consulta estiver ativado, ele será chamado e o resumo da declaração e o valor do resumo estarão disponíveis para ele.
+* If any query rewrite plugin is enabled, it is called and the statement digest and digest value are available to it.
 
-- Se a instrumentação de digestão do Schema de Desempenho estiver habilitada, ela faz uma cópia do digestão normalizada da declaração, alocando um máximo de [`performance_schema_max_digest_length`]\(performance-schema-system-variables.html#sysvar_performance_schema_max_digest_length] bytes para isso. Consequentemente, se `performance_schema_max_digest_length` for menor que `max_digest_length`, a cópia é truncada em relação ao original. A cópia do digestão normalizada da declaração é armazenada nas tabelas apropriadas do Schema de Desempenho, juntamente com o valor do hash MD5 calculado a partir da declaração normalizada original. (Se o Schema de Desempenho truncar sua cópia do digestão normalizada em relação ao original, ele não recompõe o valor do hash MD5.)
+* If the Performance Schema has digest instrumentation enabled, it makes a copy of the normalized statement digest, allocating a maximum of [`performance_schema_max_digest_length`](performance-schema-system-variables.html#sysvar_performance_schema_max_digest_length) bytes for it. Consequently, if [`performance_schema_max_digest_length`](performance-schema-system-variables.html#sysvar_performance_schema_max_digest_length) is less than [`max_digest_length`](server-system-variables.html#sysvar_max_digest_length), the copy is truncated relative to the original. The copy of the normalized statement digest is stored in the appropriate Performance Schema tables, along with the MD5 hash value computed from the original normalized statement. (If the Performance Schema truncates its copy of the normalized statement digest relative to the original, it does not recompute the MD5 hash value.)
 
-A normalização de declarações transforma o texto da declaração em uma representação de string de digest mais padronizada, que preserva a estrutura geral da declaração, ao mesmo tempo em que remove informações não essenciais para a estrutura:
+Statement normalization transforms the statement text to a more standardized digest string representation that preserves the general statement structure while removing information not essential to the structure:
 
-- Os identificadores de objetos, como nomes de banco de dados e tabelas, são preservados.
+* Object identifiers such as database and table names are preserved.
 
-- Os valores literais são convertidos em marcadores de parâmetros. Uma declaração normalizada não retém informações como nomes, senhas, datas, etc.
+* Literal values are converted to parameter markers. A normalized statement does not retain information such as names, passwords, dates, and so forth.
 
-- Os comentários são removidos e o espaço em branco é ajustado.
+* Comments are removed and whitespace is adjusted.
 
-Considere essas declarações:
+Consider these statements:
 
 ```sql
 SELECT * FROM orders WHERE customer_id=10 AND quantity>20
 SELECT * FROM orders WHERE customer_id = 20 AND quantity > 100
 ```
 
-Para normalizar essas declarações, o analisador substitui os valores de dados por `?` e ajusta o espaço em branco. Ambas as declarações produzem a mesma forma normalizada e, portanto, são consideradas “iguais”:
+To normalize these statements, the parser replaces data values by `?` and adjusts whitespace. Both statements yield the same normalized form and thus are considered “the same”:
 
 ```sql
 SELECT * FROM orders WHERE customer_id = ? AND quantity > ?
 ```
 
-A declaração normalizada contém menos informações, mas ainda é representativa da declaração original. Outras declarações semelhantes que têm valores de dados diferentes têm a mesma forma normalizada.
+The normalized statement contains less information but is still representative of the original statement. Other similar statements that have different data values have the same normalized form.
 
-Agora, considere essas declarações:
+Now consider these statements:
 
 ```sql
 SELECT * FROM customers WHERE customer_id = 1000
 SELECT * FROM orders WHERE customer_id = 1000
 ```
 
-Neste caso, as declarações normalizadas diferem porque os identificadores dos objetos diferem:
+In this case, the normalized statements differ because the object identifiers differ:
 
 ```sql
 SELECT * FROM customers WHERE customer_id = ?
 SELECT * FROM orders WHERE customer_id = ?
 ```
 
-Se a normalização produzir uma declaração que exceda o espaço disponível no buffer de digestão (determinado por `max_digest_length`), ocorre a troncamento e o texto termina com “...”. Declarações normalizadas longas que diferem apenas na parte que ocorre após o “...” são consideradas iguais. Considere estas declarações:
+If normalization produces a statement that exceeds the space available in the digest buffer (as determined by [`max_digest_length`](server-system-variables.html#sysvar_max_digest_length)), truncation occurs and the text ends with “...”. Long normalized statements that differ only in the part that occurs following the “...” are considered the same. Consider these statements:
 
 ```sql
 SELECT * FROM mytable WHERE cola = 10 AND colb = 20
 SELECT * FROM mytable WHERE cola = 10 AND colc = 20
 ```
 
-Se o corte acontecer logo após o `AND`, ambas as declarações terão essa forma normalizada:
+If the cutoff happens to be right after the `AND`, both statements have this normalized form:
 
 ```sql
 SELECT * FROM mytable WHERE cola = ? AND ...
 ```
 
-Nesse caso, a diferença no nome da segunda coluna é perdida e ambas as declarações são consideradas iguais.
+In this case, the difference in the second column name is lost and both statements are considered the same.
 
-### Resumo de declarações no esquema de desempenho
+### Statement Digests in the Performance Schema
 
-No Schema de Desempenho, a digestão de declarações envolve esses elementos:
+In the Performance Schema, statement digesting involves these elements:
 
-- Um consumidor `statements_digest` na tabela `setup_consumers` controla se o Schema de Desempenho mantém as informações do digest. Veja Consumidor de Digest de Declarações.
+* A `statements_digest` consumer in the [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") table controls whether the Performance Schema maintains digest information. See [Statement Digest Consumer](performance-schema-consumer-filtering.html#performance-schema-consumer-filtering-statement-digest "Statement Digest Consumer").
 
-- As tabelas de eventos de declarações (`events_statements_current`, `events_statements_history` e `events_statements_history_long`) têm colunas para armazenar os valores normalizados de hashes MD5 dos registros de declaração e os valores correspondentes de hash MD5 do registro de declaração:
+* The statement event tables ([`events_statements_current`](performance-schema-events-statements-current-table.html "25.12.6.1 The events_statements_current Table"), [`events_statements_history`](performance-schema-events-statements-history-table.html "25.12.6.2 The events_statements_history Table"), and [`events_statements_history_long`](performance-schema-events-statements-history-long-table.html "25.12.6.3 The events_statements_history_long Table")) have columns for storing normalized statement digests and the corresponding digest MD5 hash values:
 
-  - `DIGEST_TEXT` é o texto do resumo normalizado da declaração. Esta é uma cópia da declaração original normalizada que foi calculada até um máximo de `max_digest_length` bytes, posteriormente truncada conforme necessário para `performance_schema_max_digest_length` bytes.
+  + `DIGEST_TEXT` is the text of the normalized statement digest. This is a copy of the original normalized statement that was computed to a maximum of [`max_digest_length`](server-system-variables.html#sysvar_max_digest_length) bytes, further truncated as necessary to [`performance_schema_max_digest_length`](performance-schema-system-variables.html#sysvar_performance_schema_max_digest_length) bytes.
 
-  - `DIGEST` é o valor de hash MD5 da digest gerado a partir da declaração original normalizada.
+  + `DIGEST` is the digest MD5 hash value computed from the original normalized statement.
 
-  Consulte Seção 25.12.6, “Tabelas de Eventos de Declaração do Schema de Desempenho”.
+  See [Section 25.12.6, “Performance Schema Statement Event Tables”](performance-schema-statement-tables.html "25.12.6 Performance Schema Statement Event Tables").
 
-- A tabela de resumo de `eventos_estatuto_resumo_por_digest` fornece informações agregadas sobre o resumo dos estatutos. Esta tabela agrega informações para estatutos por combinação de `SCHEMA_NAME` e `DIGEST`. O Schema de Desempenho usa valores de hash MD5 para agregação porque são rápidos de calcular e têm uma distribuição estatística favorável que minimiza colisões. Veja Seção 25.12.15.3, “Tabelas de Resumo de Estatutos”.
+* The [`events_statements_summary_by_digest`](performance-schema-statement-summary-tables.html "25.12.15.3 Statement Summary Tables") summary table provides aggregated statement digest information. This table aggregates information for statements per `SCHEMA_NAME` and `DIGEST` combination. The Performance Schema uses MD5 hash values for aggregation because they are fast to compute and have a favorable statistical distribution that minimizes collisions. See [Section 25.12.15.3, “Statement Summary Tables”](performance-schema-statement-summary-tables.html "25.12.15.3 Statement Summary Tables").
 
-As tabelas de eventos de declarações também possuem uma coluna `SQL_TEXT` que contém a declaração SQL original. O espaço máximo disponível para exibição da declaração é de 1024 bytes por padrão. Para alterar esse valor, defina a variável de sistema `performance_schema_max_sql_text_length` na inicialização do servidor.
+The statement event tables also have an `SQL_TEXT` column that contains the original SQL statement. The maximum space available for statement display is 1024 bytes by default. To change this value, set the [`performance_schema_max_sql_text_length`](performance-schema-system-variables.html#sysvar_performance_schema_max_sql_text_length) system variable at server startup.
 
-A variável de sistema `performance_schema_max_digest_length` determina o número máximo de bytes disponíveis por declaração para o armazenamento do valor do digest no Schema de Desempenho. No entanto, o comprimento de exibição dos digests das declarações pode ser maior que o tamanho do buffer disponível devido à codificação interna dos elementos das declarações, como palavras-chave e valores literais. Consequentemente, os valores selecionados da coluna `DIGEST_TEXT` das tabelas de eventos das declarações podem parecer exceder o valor da variável `performance_schema_max_digest_length`.
+The [`performance_schema_max_digest_length`](performance-schema-system-variables.html#sysvar_performance_schema_max_digest_length) system variable determines the maximum number of bytes available per statement for digest value storage in the Performance Schema. However, the display length of statement digests may be longer than the available buffer size due to internal encoding of statement elements such as keywords and literal values. Consequently, values selected from the `DIGEST_TEXT` column of statement event tables may appear to exceed the [`performance_schema_max_digest_length`](performance-schema-system-variables.html#sysvar_performance_schema_max_digest_length) value.
 
-A tabela de resumo de `[`eventos_estatísticas_resumo_por_digest\`]\(performance-schema-statement-summary-tables.html) fornece um perfil das estatísticas executadas pelo servidor. Ela mostra que tipos de estatísticas uma aplicação está executando e com que frequência. Um desenvolvedor de aplicativos pode usar essas informações juntamente com outras informações na tabela para avaliar as características de desempenho do aplicativo. Por exemplo, as colunas da tabela que mostram tempos de espera, tempos de bloqueio ou uso de índices podem destacar tipos de consultas que são ineficientes. Isso dá ao desenvolvedor uma visão sobre quais partes do aplicativo precisam de atenção.
+The [`events_statements_summary_by_digest`](performance-schema-statement-summary-tables.html "25.12.15.3 Statement Summary Tables") summary table provides a profile of the statements executed by the server. It shows what kinds of statements an application is executing and how often. An application developer can use this information together with other information in the table to assess the application's performance characteristics. For example, table columns that show wait times, lock times, or index use may highlight types of queries that are inefficient. This gives the developer insight into which parts of the application need attention.
 
-A tabela de resumo de ``events_statements_summary_by_digest` tem um tamanho fixo. Por padrão, o Schema de Desempenho estima o tamanho a ser usado no início. Para especificar explicitamente o tamanho da tabela, defina a variável de sistema ``performance_schema_digests_size` no início do servidor. Se a tabela ficar cheia, o Schema de Desempenho agrupa as declarações que têm valores de `SCHEMA_NAME` e `DIGEST` que não correspondem aos valores existentes na tabela em uma linha especial com `SCHEMA_NAME` e `DIGEST` definidos como `NULL`. Isso permite que todas as declarações sejam contadas. No entanto, se a linha especial representar uma porcentagem significativa das declarações executadas, pode ser desejável aumentar o tamanho da tabela de resumo aumentando `[`performance_schema_digests_size\`]\(performance-schema-system-variables.html#sysvar_performance_schema_digests_size).
+The [`events_statements_summary_by_digest`](performance-schema-statement-summary-tables.html "25.12.15.3 Statement Summary Tables") summary table has a fixed size. By default the Performance Schema estimates the size to use at startup. To specify the table size explicitly, set the [`performance_schema_digests_size`](performance-schema-system-variables.html#sysvar_performance_schema_digests_size) system variable at server startup. If the table becomes full, the Performance Schema groups statements that have `SCHEMA_NAME` and `DIGEST` values not matching existing values in the table in a special row with `SCHEMA_NAME` and `DIGEST` set to `NULL`. This permits all statements to be counted. However, if the special row accounts for a significant percentage of the statements executed, it might be desirable to increase the summary table size by increasing [`performance_schema_digests_size`](performance-schema-system-variables.html#sysvar_performance_schema_digests_size).
 
-### Resumo da declaração sobre o uso da memória
+### Statement Digest Memory Use
 
-Para aplicações que geram declarações muito longas que diferem apenas no final, aumentar `max_digest_length` permite a computação de digests que distinguem declarações que, de outra forma, seriam agregadas ao mesmo digest. Por outro lado, diminuir `max_digest_length` faz com que o servidor dedique menos memória ao armazenamento do digest, mas aumenta a probabilidade de declarações mais longas serem agregadas ao mesmo digest. Os administradores devem ter em mente que valores maiores resultam em requisitos de memória correspondentemente aumentados, especialmente para cargas de trabalho que envolvem um grande número de sessões simultâneas (o servidor aloca `max_digest_length` bytes por sessão).
+For applications that generate very long statements that differ only at the end, increasing [`max_digest_length`](server-system-variables.html#sysvar_max_digest_length) enables computation of digests that distinguish statements that would otherwise aggregate to the same digest. Conversely, decreasing [`max_digest_length`](server-system-variables.html#sysvar_max_digest_length) causes the server to devote less memory to digest storage but increases the likelihood of longer statements aggregating to the same digest. Administrators should keep in mind that larger values result in correspondingly increased memory requirements, particularly for workloads that involve large numbers of simultaneous sessions (the server allocates [`max_digest_length`](server-system-variables.html#sysvar_max_digest_length) bytes per session).
 
-Como descrito anteriormente, os resumos de declarações normalizados calculados pelo analisador estão limitados a um máximo de `max_digest_length` bytes, enquanto os resumos de declarações normalizados armazenados no Performance Schema utilizam `performance_schema_max_digest_length` bytes. As seguintes considerações sobre o uso de memória se aplicam aos valores relativos de `max_digest_length` e `performance_schema_max_digest_length`:
+As described previously, normalized statement digests as computed by the parser are constrained to a maximum of [`max_digest_length`](server-system-variables.html#sysvar_max_digest_length) bytes, whereas normalized statement digests stored in the Performance Schema use [`performance_schema_max_digest_length`](performance-schema-system-variables.html#sysvar_performance_schema_max_digest_length) bytes. The following memory-use considerations apply regarding the relative values of [`max_digest_length`](server-system-variables.html#sysvar_max_digest_length) and [`performance_schema_max_digest_length`](performance-schema-system-variables.html#sysvar_performance_schema_max_digest_length):
 
-- Se `max_digest_length` for menor que `performance_schema_max_digest_length`:
+* If [`max_digest_length`](server-system-variables.html#sysvar_max_digest_length) is less than [`performance_schema_max_digest_length`](performance-schema-system-variables.html#sysvar_performance_schema_max_digest_length):
 
-  - Os componentes do servidor, além do Schema de Desempenho, utilizam descriptografias de instruções normalizadas que ocupam até `max_digest_length` bytes.
+  + Server components other than the Performance Schema use normalized statement digests that take up to [`max_digest_length`](server-system-variables.html#sysvar_max_digest_length) bytes.
 
-  - O Schema de Desempenho não trunca mais os resumos de declarações normalizados que ele armazena, mas aloca mais memória do que os bytes de `max_digest_length`, o que é desnecessário.
+  + The Performance Schema does not further truncate normalized statement digests that it stores, but allocates more memory than [`max_digest_length`](server-system-variables.html#sysvar_max_digest_length) bytes per digest, which is unnecessary.
 
-- Se `max_digest_length` for igual a `performance_schema_max_digest_length`:
+* If [`max_digest_length`](server-system-variables.html#sysvar_max_digest_length) equals [`performance_schema_max_digest_length`](performance-schema-system-variables.html#sysvar_performance_schema_max_digest_length):
 
-  - Os componentes do servidor, além do Schema de Desempenho, utilizam descriptografias de instruções normalizadas que ocupam até `max_digest_length` bytes.
+  + Server components other than the Performance Schema use normalized statement digests that take up to [`max_digest_length`](server-system-variables.html#sysvar_max_digest_length) bytes.
 
-  - O Schema de Desempenho não trunca mais os resumos de declarações normalizados que ele armazena e aloca a mesma quantidade de memória em bytes que `max_digest_length`, por digest.
+  + The Performance Schema does not further truncate normalized statement digests that it stores, and allocates the same amount of memory as [`max_digest_length`](server-system-variables.html#sysvar_max_digest_length) bytes per digest.
 
-- Se `max_digest_length` for maior que `performance_schema_max_digest_length`:
+* If [`max_digest_length`](server-system-variables.html#sysvar_max_digest_length) is greater than [`performance_schema_max_digest_length`](performance-schema-system-variables.html#sysvar_performance_schema_max_digest_length):
 
-  - Os componentes do servidor, além do Schema de Desempenho, utilizam descriptografias de instruções normalizadas que ocupam até `max_digest_length` bytes.
+  + Server components other than the Performance Schema use normalized statement digests that take up to [`max_digest_length`](server-system-variables.html#sysvar_max_digest_length) bytes.
 
-  - O Schema de Desempenho também trunca os resumos de declarações normalizados que ele armazena e aloca menos memória do que `max_digest_length` bytes por digest.
+  + The Performance Schema further truncates normalized statement digests that it stores, and allocates less memory than [`max_digest_length`](server-system-variables.html#sysvar_max_digest_length) bytes per digest.
 
-Como as tabelas de eventos das declarações do Schema de Desempenho podem armazenar muitos digests, definir `performance_schema_max_digest_length` menor que `max_digest_length` permite que os administradores equilibrem esses fatores:
+Because the Performance Schema statement event tables might store many digests, setting [`performance_schema_max_digest_length`](performance-schema-system-variables.html#sysvar_performance_schema_max_digest_length) smaller than [`max_digest_length`](server-system-variables.html#sysvar_max_digest_length) enables administrators to balance these factors:
 
-- A necessidade de ter resumos de declarações normalizados por longos períodos disponíveis para componentes do servidor fora do Schema de Desempenho
+* The need to have long normalized statement digests available for server components outside the Performance Schema
 
-- Muitas sessões concorrentes, cada uma das quais aloca memória para cálculo de digestão
+* Many concurrent sessions, each of which allocates digest-computation memory
 
-- A necessidade de limitar o consumo de memória das tabelas de eventos de declaração do Gerenciamento de Desempenho ao armazenar muitos registros de declaração
+* The need to limit memory consumption by the Performance Schema statement event tables when storing many statement digests
 
-O ajuste `performance_schema_max_digest_length` não é por sessão, é por declaração, e uma sessão pode armazenar múltiplas declarações na tabela `events_statements_history`. Um número típico de declarações nesta tabela é de 10 por sessão, então cada sessão consome 10 vezes a memória indicada pelo valor de `performance_schema_max_digest_length`, apenas para esta tabela.
+The [`performance_schema_max_digest_length`](performance-schema-system-variables.html#sysvar_performance_schema_max_digest_length) setting is not per session, it is per statement, and a session can store multiple statements in the [`events_statements_history`](performance-schema-events-statements-history-table.html "25.12.6.2 The events_statements_history Table") table. A typical number of statements in this table is 10 per session, so each session consumes 10 times the memory indicated by the [`performance_schema_max_digest_length`](performance-schema-system-variables.html#sysvar_performance_schema_max_digest_length) value, for this table alone.
 
-Além disso, existem muitas declarações (e resumos) coletadas globalmente, principalmente na tabela `events_statements_history_long`. Aqui, também, as declarações armazenadas consumindo *`N`* vezes a memória indicada pelo valor da variável `performance_schema_max_digest_length` consomem *`N`* vezes a memória indicada pelo valor da variável `performance_schema_max_digest_length`.
+Also, there are many statements (and digests) collected globally, most notably in the [`events_statements_history_long`](performance-schema-events-statements-history-long-table.html "25.12.6.3 The events_statements_history_long Table") table. Here, too, *`N`* statements stored consume *`N`* times the memory indicated by the [`performance_schema_max_digest_length`](performance-schema-system-variables.html#sysvar_performance_schema_max_digest_length) value.
 
-Para avaliar a quantidade de memória usada para o armazenamento de instruções SQL e o cálculo do digest, use a instrução `SHOW ENGINE PERFORMANCE_SCHEMA STATUS`, ou monitore esses instrumentos:
+To assess the amount of memory used for SQL statement storage and digest computation, use the [`SHOW ENGINE PERFORMANCE_SCHEMA STATUS`](show-engine.html "13.7.5.15 SHOW ENGINE Statement") statement, or monitor these instruments:
 
 ```sql
 mysql> SELECT NAME

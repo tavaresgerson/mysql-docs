@@ -1,31 +1,31 @@
-### 21.4.2 Visão geral dos parâmetros, opções e variáveis de configuração do cluster do NDB
+### 21.4.2 Overview of NDB Cluster Configuration Parameters, Options, and Variables
 
-21.4.2.1 Parâmetros de configuração do nó de dados do cluster NDB
+[21.4.2.1 NDB Cluster Data Node Configuration Parameters](mysql-cluster-params-ndbd.html)
 
-21.4.2.2 Parâmetros de configuração do nó de gerenciamento do clúster NDB
+[21.4.2.2 NDB Cluster Management Node Configuration Parameters](mysql-cluster-params-mgmd.html)
 
-21.4.2.3 Parâmetros de configuração do nó SQL do NDB Cluster e do nó API
+[21.4.2.3 NDB Cluster SQL Node and API Node Configuration Parameters](mysql-cluster-params-api.html)
 
-21.4.2.4 Outros parâmetros de configuração do cluster do NDB
+[21.4.2.4 Other NDB Cluster Configuration Parameters](mysql-cluster-params-other.html)
 
-21.4.2.5 Referência de Opções e Variáveis do NDB Cluster mysqld
+[21.4.2.5 NDB Cluster mysqld Option and Variable Reference](mysql-cluster-option-tables.html)
 
-As próximas seções fornecem tabelas resumidas dos parâmetros de configuração do nó do NDB Cluster usados no arquivo `config.ini` para governar vários aspectos do comportamento do nó, bem como das opções e variáveis lidas pelo **mysqld** a partir de um arquivo `my.cnf` ou da linha de comando quando executado como um processo do NDB Cluster. Cada uma das tabelas de parâmetros do nó lista os parâmetros para um determinado tipo (`ndbd`, `ndb_mgmd`, `mysqld`, `computer`, `tcp` ou `shm`). Todas as tabelas incluem o tipo de dados para o parâmetro, opção ou variável, bem como seus valores padrão, mínimo e máximo, conforme aplicável.
+The next several sections provide summary tables of NDB Cluster node configuration parameters used in the `config.ini` file to govern various aspects of node behavior, as well as of options and variables read by [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") from a `my.cnf` file or from the command line when run as an NDB Cluster process. Each of the node parameter tables lists the parameters for a given type (`ndbd`, `ndb_mgmd`, `mysqld`, `computer`, `tcp`, or `shm`). All tables include the data type for the parameter, option, or variable, as well as its default, mimimum, and maximum values as applicable.
 
-**Considerações ao reiniciar nós.** Para os parâmetros dos nós, essas tabelas também indicam que tipo de reinício é necessário (reinício de nó ou reinício do sistema) e se o reinício deve ser feito com a opção `--initial` para alterar o valor de um parâmetro de configuração específico. Ao realizar um reinício de nó ou um reinício inicial de nó, todos os nós de dados do clúster devem ser reiniciados em ordem (também conhecido como reinício contínuo). É possível atualizar os parâmetros de configuração do clúster marcados como `node` online — ou seja, sem desligar o clúster — dessa maneira. Um reinício inicial de nó requer o reinício de cada processo **ndbd** com a opção `--initial`.
+**Considerations when restarting nodes.** For node parameters, these tables also indicate what type of restart is required (node restart or system restart)—and whether the restart must be done with `--initial`—to change the value of a given configuration parameter. When performing a node restart or an initial node restart, all of the cluster's data nodes must be restarted in turn (also referred to as a rolling restart). It is possible to update cluster configuration parameters marked as `node` online—that is, without shutting down the cluster—in this fashion. An initial node restart requires restarting each [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") process with the `--initial` option.
 
-Para reiniciar o sistema, é necessário fazer um desligamento completo e reiniciar todo o clúster. Para um reinício inicial do sistema, é necessário fazer um backup do clúster, limpar o sistema de arquivos do clúster após o desligamento e, em seguida, restaurar a partir do backup após o reinício.
+A system restart requires a complete shutdown and restart of the entire cluster. An initial system restart requires taking a backup of the cluster, wiping the cluster file system after shutdown, and then restoring from the backup following the restart.
 
-Em qualquer reinício do clúster, todos os servidores de gerenciamento do clúster devem ser reiniciados para que eles possam ler os valores dos parâmetros de configuração atualizados.
+In any cluster restart, all of the cluster's management servers must be restarted for them to read the updated configuration parameter values.
 
-Importante
+Important
 
-Os valores dos parâmetros de agrupamento numérico geralmente podem ser aumentados sem problemas, embora seja aconselhável fazê-lo de forma gradual, realizando esses ajustes em incrementos relativamente pequenos. Muitos deles podem ser aumentados online, usando um reinício contínuo.
+Values for numeric cluster parameters can generally be increased without any problems, although it is advisable to do so progressively, making such adjustments in relatively small increments. Many of these can be increased online, using a rolling restart.
 
-No entanto, a redução dos valores desses parâmetros — seja por meio de um reinício do nó, um reinício inicial do nó ou até mesmo um reinício completo do sistema do clúster — não deve ser feita de forma descuidada; é recomendável que você faça isso apenas após um planejamento e testes cuidadosos. Isso é especialmente verdadeiro em relação aos parâmetros que se relacionam com o uso de memória e espaço em disco, como `MaxNoOfTables`, `MaxNoOfOrderedIndexes` e `MaxNoOfUniqueHashIndexes`. Além disso, geralmente é o caso de que os parâmetros de configuração relacionados ao uso de memória e disco podem ser aumentados por meio de um simples reinício do nó, mas eles exigem um reinício inicial do nó para serem reduzidos.
+However, decreasing the values of such parameters—whether this is done using a node restart, node initial restart, or even a complete system restart of the cluster—is not to be undertaken lightly; it is recommended that you do so only after careful planning and testing. This is especially true with regard to those parameters that relate to memory usage and disk space, such as [`MaxNoOfTables`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnooftables), [`MaxNoOfOrderedIndexes`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnooforderedindexes), and [`MaxNoOfUniqueHashIndexes`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnoofuniquehashindexes). In addition, it is the generally the case that configuration parameters relating to memory and disk usage can be raised using a simple node restart, but they require an initial node restart to be lowered.
 
-Como alguns desses parâmetros podem ser usados para configurar mais de um tipo de nó do cluster, eles podem aparecer em mais de uma das tabelas.
+Because some of these parameters can be used for configuring more than one type of cluster node, they may appear in more than one of the tables.
 
-Nota
+Note
 
-O valor `4294967039` geralmente aparece como o valor máximo nessas tabelas. Esse valor é definido nas fontes do `NDBCLUSTER` como `MAX_INT_RNIL` e é igual a `0xFFFFFEFF`, ou `232 − 28 − 1`.
+`4294967039` often appears as a maximum value in these tables. This value is defined in the [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") sources as `MAX_INT_RNIL` and is equal to `0xFFFFFEFF`, or `232 − 28 − 1`.

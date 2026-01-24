@@ -1,48 +1,48 @@
-### 24.4.23 A tabela INFORMATION_SCHEMA INNODB_SYS_TABLES
+### 24.4.23 The INFORMATION_SCHEMA INNODB_SYS_TABLES Table
 
-A tabela [`INNODB_SYS_TABLES`](https://docs.oracle.com/en/database/sql/information-schema/sql/innodb_sys_tables.html) fornece metadados sobre as tabelas `InnoDB`, equivalentes às informações da tabela `SYS_TABLES` no dicionário de dados `InnoDB`.
+The [`INNODB_SYS_TABLES`](information-schema-innodb-sys-tables-table.html "24.4.23 The INFORMATION_SCHEMA INNODB_SYS_TABLES Table") table provides metadata about `InnoDB` tables, equivalent to the information from the `SYS_TABLES` table in the `InnoDB` data dictionary.
 
-Para informações de uso relacionadas e exemplos, consulte Seção 14.16.3, “Tabelas do Sistema InnoDB INFORMATION_SCHEMA”.
+For related usage information and examples, see [Section 14.16.3, “InnoDB INFORMATION_SCHEMA System Tables”](innodb-information-schema-system-tables.html "14.16.3 InnoDB INFORMATION_SCHEMA System Tables").
 
-A tabela [`INNODB_SYS_TABLES`](https://docs.oracle.com/en/database/sql/information-schema/sql/innodb_sys_tables.html) possui as seguintes colunas:
+The [`INNODB_SYS_TABLES`](information-schema-innodb-sys-tables-table.html "24.4.23 The INFORMATION_SCHEMA INNODB_SYS_TABLES Table") table has these columns:
 
-- `TABLE_ID`
+* `TABLE_ID`
 
-  Um identificador para a tabela `InnoDB`. Esse valor é único em todos os bancos de dados da instância.
+  An identifier for the `InnoDB` table. This value is unique across all databases in the instance.
 
-- `NOME`
+* `NAME`
 
-  O nome da tabela, precedido pelo nome do esquema (banco de dados), quando aplicável (por exemplo, `test/t1`). Os nomes dos bancos de dados e das tabelas de usuários estão no mesmo caso em que foram originalmente definidos, possivelmente influenciados pela configuração `lower_case_table_names`.
+  The name of the table, preceded by the schema (database) name where appropriate (for example, `test/t1`). Names of databases and user tables are in the same case as they were originally defined, possibly influenced by the [`lower_case_table_names`](server-system-variables.html#sysvar_lower_case_table_names) setting.
 
-- `FLAG`
+* `FLAG`
 
-  Um valor numérico que representa informações de nível de bits sobre o formato da tabela e as características de armazenamento.
+  A numeric value that represents bit-level information about table format and storage characteristics.
 
-- `N_COLS`
+* `N_COLS`
 
-  O número de colunas na tabela. O número reportado inclui três colunas ocultas que são criadas pelo `InnoDB` (`DB_ROW_ID`, `DB_TRX_ID` e `DB_ROLL_PTR`). O número reportado também inclui colunas geradas virtualmente (glossary.html#glos_virtual_generated_column), se estiverem presentes.
+  The number of columns in the table. The number reported includes three hidden columns that are created by `InnoDB` (`DB_ROW_ID`, `DB_TRX_ID`, and `DB_ROLL_PTR`). The number reported also includes [virtual generated columns](glossary.html#glos_virtual_generated_column "virtual generated column"), if present.
 
-- `ESPACO`
+* `SPACE`
 
-  Um identificador para o espaço de tabelas onde a tabela reside. 0 significa o espaço de tabelas `InnoDB` espaço de tabelas do sistema. Qualquer outro número representa um espaço de tabelas `file-per-table` espaço de tabelas por arquivo ou um espaço de tabelas geral. Esse identificador permanece o mesmo após uma instrução `TRUNCATE TABLE`. Para espaços de tabelas por arquivo, esse identificador é único para tabelas em todos os bancos de dados da instância.
+  An identifier for the tablespace where the table resides. 0 means the `InnoDB` [system tablespace](glossary.html#glos_system_tablespace "system tablespace"). Any other number represents either a [file-per-table](glossary.html#glos_file_per_table "file-per-table") tablespace or a general tablespace. This identifier stays the same after a [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") statement. For file-per-table tablespaces, this identifier is unique for tables across all databases in the instance.
 
-- `FORMATO_ARQUIVO`
+* `FILE_FORMAT`
 
-  O formato de arquivo da tabela (`Antelope` ou `Barracuda`).
+  The table's file format (`Antelope` or `Barracuda`).
 
-- `ROW_FORMAT`
+* `ROW_FORMAT`
 
-  O formato da linha da tabela (`Compact`, `Redundant`, `Dynamic` ou `Compressed`).
+  The table's row format (`Compact`, `Redundant`, `Dynamic`, or `Compressed`).
 
-- `ZIP_PAGE_SIZE`
+* `ZIP_PAGE_SIZE`
 
-  O tamanho do arquivo ZIP. Aplica-se apenas a tabelas com um formato de linha de `Compressido`.
+  The zip page size. Applies only to tables with a row format of `Compressed`.
 
-- `TIPO_ESPACO`
+* `SPACE_TYPE`
 
-  O tipo de espaço de tabela ao qual a tabela pertence. Os valores possíveis incluem `System` para o espaço de tabela do sistema, `General` para espaços de tabela gerais e `Single` para espaços de tabela por arquivo. As tabelas atribuídas ao espaço de tabela do sistema usando `CREATE TABLE` ou `ALTER TABLE` `TABLESPACE=innodb_system` têm um `SPACE_TYPE` de `General`. Para mais informações, consulte `CREATE TABLESPACE`.
+  The type of tablespace to which the table belongs. Possible values include `System` for the system tablespace, `General` for general tablespaces, and `Single` for file-per-table tablespaces. Tables assigned to the system tablespace using [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") or [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") `TABLESPACE=innodb_system` have a `SPACE_TYPE` of `General`. For more information, see [`CREATE TABLESPACE`](create-tablespace.html "13.1.19 CREATE TABLESPACE Statement").
 
-#### Exemplo
+#### Example
 
 ```sql
 mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_SYS_TABLES WHERE TABLE_ID = 214\G
@@ -58,8 +58,8 @@ ZIP_PAGE_SIZE: 0
    SPACE_TYPE: General
 ```
 
-#### Notas
+#### Notes
 
-- Você deve ter o privilégio `PROCESSO` para consultar esta tabela.
+* You must have the [`PROCESS`](privileges-provided.html#priv_process) privilege to query this table.
 
-- Use a tabela `INFORMATION_SCHEMA` `COLUMNS` ou a instrução `SHOW COLUMNS` para visualizar informações adicionais sobre as colunas desta tabela, incluindo tipos de dados e valores padrão.
+* Use the `INFORMATION_SCHEMA` [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") table or the [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") statement to view additional information about the columns of this table, including data types and default values.

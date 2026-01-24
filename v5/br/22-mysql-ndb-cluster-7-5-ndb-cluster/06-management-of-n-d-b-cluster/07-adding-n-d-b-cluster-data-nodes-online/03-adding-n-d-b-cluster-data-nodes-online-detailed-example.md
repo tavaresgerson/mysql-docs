@@ -1,8 +1,8 @@
-#### 21.6.7.3 Adicionando nós de dados do NDB Cluster Online: exemplo detalhado
+#### 21.6.7.3 Adding NDB Cluster Data Nodes Online: Detailed Example
 
-Nesta seção, fornecemos um exemplo detalhado que ilustra como adicionar novos nós de dados do NDB Cluster online, começando com um NDB Cluster com 2 nós de dados em um único grupo de nós e concluindo com um cluster com 4 nós de dados em 2 grupos de nós.
+In this section we provide a detailed example illustrating how to add new NDB Cluster data nodes online, starting with an NDB Cluster having 2 data nodes in a single node group and concluding with a cluster having 4 data nodes in 2 node groups.
 
-**Configuração inicial.** Para fins ilustrativos, assumimos uma configuração mínima e que o clúster utilize um arquivo `config.ini` contendo apenas as seguintes informações:
+**Starting configuration.** For purposes of illustration, we assume a minimal configuration, and that the cluster uses a `config.ini` file containing only the following information:
 
 ```sql
 [ndbd default]
@@ -32,11 +32,11 @@ Id=21
 HostName = 198.51.100.21
 ```
 
-Nota
+Note
 
-Nós deixamos uma lacuna na sequência entre os IDs dos nós de dados e outros nós. Isso facilita a atribuição de IDs de nós que ainda não estão em uso a nós de dados que são adicionados recentemente.
+We have left a gap in the sequence between data node IDs and other nodes. This make it easier later to assign node IDs that are not already in use to data nodes which are newly added.
 
-Também assumimos que você já iniciou o clúster usando o comando apropriado ou as opções do `my.cnf`, e que a execução de `SHOW` no cliente de gerenciamento produz uma saída semelhante à mostrada aqui:
+We also assume that you have already started the cluster using the appropriate command line or `my.cnf` options, and that running [`SHOW`](mysql-cluster-mgm-client-commands.html#ndbclient-show) in the management client produces output similar to what is shown here:
 
 ```sql
 -- NDB Cluster -- Management Client --
@@ -56,7 +56,7 @@ id=20   @198.51.100.20  (5.7.44-ndb-7.5.36)
 id=21   @198.51.100.21  (5.7.44-ndb-7.5.36)
 ```
 
-Por fim, assumimos que o conjunto contém uma única tabela `NDBCLUSTER` criada conforme mostrado aqui:
+Finally, we assume that the cluster contains a single [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table created as shown here:
 
 ```sql
 USE n;
@@ -71,13 +71,13 @@ CREATE TABLE ips (
 )   ENGINE NDBCLUSTER;
 ```
 
-O uso da memória e as informações relacionadas mostradas mais adiante nesta seção foram geradas após inserir aproximadamente 50.000 linhas nesta tabela.
+The memory usage and related information shown later in this section was generated after inserting approximately 50000 rows into this table.
 
-Nota
+Note
 
-Neste exemplo, mostramos o processo de nó de dados sendo executado com o **ndbd** em execução em um único thread. Você também pode aplicar este exemplo, se estiver usando o **ndbmtd** em multithread, substituindo **ndbmtd** por **ndbd** sempre que aparecer nas etapas que se seguem.
+In this example, we show the single-threaded [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") being used for the data node processes. You can also apply this example, if you are using the multithreaded [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") by substituting [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") for [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") wherever it appears in the steps that follow.
 
-**Passo 1: Atualize o arquivo de configuração.** Abra o arquivo de configuração global do cluster em um editor de texto e adicione as seções `[ndbd]` correspondentes aos 2 novos nós de dados. (Damos esses nós de dados os IDs 3 e 4, e assumimos que eles devem ser executados em máquinas hospedeiras nos endereços 198.51.100.3 e 198.51.100.4, respectivamente.) Após adicionar as novas seções, o conteúdo do arquivo `config.ini` deve parecer o que está mostrado aqui, onde as adições ao arquivo são mostradas em negrito:
+**Step 1: Update configuration file.** Open the cluster global configuration file in a text editor and add `[ndbd]` sections corresponding to the 2 new data nodes. (We give these data nodes IDs 3 and 4, and assume that they are to be run on host machines at addresses 198.51.100.3 and 198.51.100.4, respectively.) After you have added the new sections, the contents of the `config.ini` file should look like what is shown here, where the additions to the file are shown in bold type:
 
 ```sql
 [ndbd default]
@@ -115,11 +115,11 @@ Id=21
 HostName = 198.51.100.21
 ```
 
-Depois de fazer as alterações necessárias, salve o arquivo.
+Once you have made the necessary changes, save the file.
 
-**Passo 2: Reinicie o servidor de gerenciamento.** Para reiniciar o servidor de gerenciamento do clúster, você precisa emitir comandos separados para parar o servidor de gerenciamento e, em seguida, iniciá-lo novamente, conforme segue:
+**Step 2: Restart the management server.** Restarting the cluster management server requires that you issue separate commands to stop the management server and then to start it again, as follows:
 
-1. Pare o servidor de gerenciamento usando o comando do cliente de gerenciamento `STOP`, conforme mostrado aqui:
+1. Stop the management server using the management client [`STOP`](mysql-cluster-mgm-client-commands.html#ndbclient-stop) command, as shown here:
 
    ```sql
    ndb_mgm> 10 STOP
@@ -129,7 +129,7 @@ Depois de fazer as alterações necessárias, salve o arquivo.
    $>
    ```
 
-2. Como o encerramento do servidor de gerenciamento faz com que o cliente de gerenciamento seja encerrado, você deve iniciar o servidor de gerenciamento a partir da shell do sistema. Para simplificar, assumimos que o `config.ini` está no mesmo diretório que o binário do servidor de gerenciamento, mas, na prática, você deve fornecer o caminho correto para o arquivo de configuração. Você também deve fornecer a opção `--reload` (mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_reload) ou `--initial` (mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_initial) para que o servidor de gerenciamento leia a nova configuração do arquivo em vez de sua cache de configuração. Se o diretório atual da sua shell também for o mesmo do diretório onde o binário do servidor de gerenciamento está localizado, então você pode invocar o servidor de gerenciamento da seguinte forma:
+2. Because shutting down the management server causes the management client to terminate, you must start the management server from the system shell. For simplicity, we assume that `config.ini` is in the same directory as the management server binary, but in practice, you must supply the correct path to the configuration file. You must also supply the [`--reload`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_reload) or [`--initial`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_initial) option so that the management server reads the new configuration from the file rather than its configuration cache. If your shell's current directory is also the same as the directory where the management server binary is located, then you can invoke the management server as shown here:
 
    ```sql
    $> ndb_mgmd -f config.ini --reload
@@ -137,7 +137,7 @@ Depois de fazer as alterações necessárias, salve o arquivo.
    2008-12-08 17:29:23 [MgmSrvr] INFO     -- Reading cluster configuration from 'config.ini'
    ```
 
-Se você verificar a saída do comando `SHOW` no cliente de gerenciamento após reiniciar o processo **ndb_mgm**, você deve ver algo como este:
+If you check the output of [`SHOW`](mysql-cluster-mgm-client-commands.html#ndbclient-show) in the management client after restarting the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") process, you should now see something like this:
 
 ```sql
 -- NDB Cluster -- Management Client --
@@ -159,7 +159,7 @@ id=20   @198.51.100.20  (5.7.44-ndb-7.5.36)
 id=21   @198.51.100.21  (5.7.44-ndb-7.5.36)
 ```
 
-**Passo 3: Realize um reinício contínuo dos nós de dados existentes.** Esse passo pode ser realizado inteiramente no cliente de gerenciamento do clúster usando o comando `RESTART`, conforme mostrado aqui:
+**Step 3: Perform a rolling restart of the existing data nodes.** This step can be accomplished entirely within the cluster management client using the [`RESTART`](mysql-cluster-mgm-client-commands.html#ndbclient-restart) command, as shown here:
 
 ```sql
 ndb_mgm> 1 RESTART
@@ -180,13 +180,13 @@ ndb_mgm> Node 2: Start initiated (version 7.5.36)
 ndb_mgm> Node 2: Started (version 7.5.36)
 ```
 
-Importante
+Important
 
-Após emitir cada comando `X RESTART`, aguarde até que o cliente de gerenciamento informe `Node X: Started (version ...)` *antes* de prosseguir.
+After issuing each `X RESTART` command, wait until the management client reports `Node X: Started (version ...)` *before* proceeding any further.
 
-Você pode verificar se todos os nós de dados existentes foram reiniciados usando a configuração atualizada verificando a tabela `ndbinfo.nodes` no cliente **mysql**.
+You can verify that all existing data nodes were restarted using the updated configuration by checking the [`ndbinfo.nodes`](mysql-cluster-ndbinfo-nodes.html "21.6.15.28 The ndbinfo nodes Table") table in the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client.
 
-**Passo 4: Realize um reinício contínuo de todos os nós da API do cluster.** Desligue e reinicie cada servidor MySQL que atua como um nó SQL no cluster usando **mysqladmin shutdown** seguido de **mysqld_safe** (ou outro script de inicialização). Isso deve ser semelhante ao que está mostrado aqui, onde *`password`* é a senha do `root` do MySQL para uma instância específica do servidor MySQL:
+**Step 4: Perform a rolling restart of all cluster API nodes.** Shut down and restart each MySQL server acting as an SQL node in the cluster using [**mysqladmin shutdown**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") followed by [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script") (or another startup script). This should be similar to what is shown here, where *`password`* is the MySQL `root` password for a given MySQL server instance:
 
 ```sql
 $> mysqladmin -uroot -ppassword shutdown
@@ -198,19 +198,19 @@ $> mysqld_safe --ndbcluster --ndb-connectstring=198.51.100.10 &
 from /usr/local/mysql/var
 ```
 
-Claro, a entrada e a saída exatas dependem de como e onde o MySQL está instalado no sistema, além das opções que você escolher para iniciá-lo (e se algumas ou todas essas opções estão especificadas em um arquivo `my.cnf`).
+Of course, the exact input and output depend on how and where MySQL is installed on the system, as well as which options you choose to start it (and whether or not some or all of these options are specified in a `my.cnf` file).
 
-**Passo 5: Realize o início inicial dos novos nós de dados.** A partir de uma janela de sistema em cada um dos hosts dos novos nós de dados, inicie os nós de dados conforme mostrado aqui, usando a opção `--initial`:
+**Step 5: Perform an initial start of the new data nodes.** From a system shell on each of the hosts for the new data nodes, start the data nodes as shown here, using the [`--initial`](mysql-cluster-programs-ndbd.html#option_ndbd_initial) option:
 
 ```sql
 $> ndbd -c 198.51.100.10 --initial
 ```
 
-Nota
+Note
 
-Ao contrário do caso de reiniciar os nós de dados existentes, você pode iniciar os novos nós de dados simultaneamente; você não precisa esperar que um deles termine de iniciar antes de iniciar o outro.
+Unlike the case with restarting the existing data nodes, you can start the new data nodes concurrently; you do not need to wait for one to finish starting before starting the other.
 
-*Aguarde até que ambos os novos nós de dados tenham iniciado antes de prosseguir para o próximo passo*. Uma vez que os novos nós de dados tenham iniciado, você poderá ver na saída do comando de cliente de gerenciamento `SHOW` que eles ainda não pertencem a nenhum grupo de nós (como indicado em negrito aqui):
+*Wait until both of the new data nodes have started before proceeding with the next step*. Once the new data nodes have started, you can see in the output of the management client [`SHOW`](mysql-cluster-mgm-client-commands.html#ndbclient-show) command that they do not yet belong to any node group (as indicated with bold type here):
 
 ```sql
 ndb_mgm> SHOW
@@ -231,14 +231,14 @@ id=20   @198.51.100.20  (5.7.44-ndb-7.5.36)
 id=21   @198.51.100.21  (5.7.44-ndb-7.5.36)
 ```
 
-**Passo 6: Crie um novo grupo de nós.** Você pode fazer isso emitindo o comando `CREATE NODEGROUP` no cliente de gerenciamento de clúster. Esse comando recebe como argumento uma lista de IDs de nós separados por vírgula dos nós de dados a serem incluídos no novo grupo de nós, conforme mostrado aqui:
+**Step 6: Create a new node group.** You can do this by issuing a [`CREATE NODEGROUP`](mysql-cluster-mgm-client-commands.html#ndbclient-create-nodegroup) command in the cluster management client. This command takes as its argument a comma-separated list of the node IDs of the data nodes to be included in the new node group, as shown here:
 
 ```sql
 ndb_mgm> CREATE NODEGROUP 3,4
 Nodegroup 1 created
 ```
 
-Ao emitir novamente `SHOW`, você pode verificar que os nós de dados 3 e 4 se juntaram ao novo grupo de nós (novamente indicado em negrito):
+By issuing [`SHOW`](mysql-cluster-mgm-client-commands.html#ndbclient-show) again, you can verify that data nodes 3 and 4 have joined the new node group (again indicated in bold type):
 
 ```sql
 ndb_mgm> SHOW
@@ -259,7 +259,7 @@ id=20   @198.51.100.20  (5.7.44-ndb-7.5.36)
 id=21   @198.51.100.21  (5.7.44-ndb-7.5.36)
 ```
 
-**Passo 7: Redistribua os dados do cluster.** Quando um grupo de nós é criado, os dados e índices existentes não são distribuídos automaticamente para os nós de dados do novo grupo de nós, como você pode ver ao emitir o comando apropriado `REPORT` no cliente de gerenciamento:
+**Step 7: Redistribute cluster data.** When a node group is created, existing data and indexes are not automatically distributed to the new node group's data nodes, as you can see by issuing the appropriate [`REPORT`](mysql-cluster-mgm-client-commands.html#ndbclient-report) command in the management client:
 
 ```sql
 ndb_mgm> ALL REPORT MEMORY
@@ -274,7 +274,7 @@ Node 4: Data usage is 0%(0 32K pages of total 3200)
 Node 4: Index usage is 0%(0 8K pages of total 12832)
 ```
 
-Ao usar **ndb_desc** com a opção `-p`, o que faz com que a saída inclua informações de particionamento, você pode ver que a tabela ainda usa apenas 2 particionamentos (na seção `Per partition info` da saída, mostrada aqui em texto em negrito):
+By using [**ndb_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables") with the `-p` option, which causes the output to include partitioning information, you can see that the table still uses only 2 partitions (in the `Per partition info` section of the output, shown here in bold text):
 
 ```sql
 $> ndb_desc -c 198.51.100.10 -d n ips -p
@@ -314,15 +314,15 @@ Partition   Row count   Commit count  Frag fixed memory   Frag varsized memory
 NDBT_ProgramExit: 0 - OK
 ```
 
-Você pode fazer com que os dados sejam redistribuídos entre todos os nós de dados executando, para cada tabela `NDB`, uma instrução `ALTER TABLE ... ALGORITHM=INPLACE, REORGANIZE PARTITION` no cliente **mysql**.
+You can cause the data to be redistributed among all of the data nodes by performing, for each [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table, an [`ALTER TABLE ... ALGORITHM=INPLACE, REORGANIZE PARTITION`](alter-table.html "13.1.8 ALTER TABLE Statement") statement in the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client.
 
-Importante
+Important
 
-`ALTER TABLE ... ALGORITHM=INPLACE, REORGANIZE PARTITION` não funciona em tabelas criadas com a opção `MAX_ROWS`. Em vez disso, use `ALTER TABLE ... ALGORITHM=INPLACE, MAX_ROWS=...` para reorganizar essas tabelas.
+`ALTER TABLE ... ALGORITHM=INPLACE, REORGANIZE PARTITION` does not work on tables that were created with the `MAX_ROWS` option. Instead, use `ALTER TABLE ... ALGORITHM=INPLACE, MAX_ROWS=...` to reorganize such tables.
 
-Tenha em mente que o uso de `MAX_ROWS` para definir o número de partições por tabela está desatualizado no NDB 7.5.4 e versões posteriores, onde você deve usar `PARTITION_BALANCE`; consulte Seção 13.1.18.9, “Definindo Opções de Comentário do NDB” para obter mais informações.
+Keep in mind that using `MAX_ROWS` to set the number of partitions per table is deprecated in NDB 7.5.4 and later, where you should use `PARTITION_BALANCE` instead; see [Section 13.1.18.9, “Setting NDB Comment Options”](create-table-ndb-comment-options.html "13.1.18.9 Setting NDB Comment Options"), for more information.
 
-Após emitir a declaração `ALTER TABLE ips ALGORITHM=INPLACE, REORGANIZE PARTITION`, você pode ver usando **ndb_desc** que os dados desta tabela agora estão armazenados usando 4 partições, conforme mostrado aqui (com as partes relevantes do resultado em negrito):
+After issuing the statement `ALTER TABLE ips ALGORITHM=INPLACE, REORGANIZE PARTITION`, you can see using [**ndb_desc**](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables") that the data for this table is now stored using 4 partitions, as shown here (with the relevant portions of the output in bold type):
 
 ```sql
 $> ndb_desc -c 198.51.100.10 -d n ips -p
@@ -364,13 +364,13 @@ Partition   Row count   Commit count  Frag fixed memory   Frag varsized memory
 NDBT_ProgramExit: 0 - OK
 ```
 
-Nota
+Note
 
-Normalmente, `ALTER TABLE nome_tabela [ALGORITHM=INPLACE,] REORGANIZE PARTITION` é usado com uma lista de identificadores de partição e um conjunto de definições de partição para criar um novo esquema de partição para uma tabela que já foi explicitamente particionada. Seu uso aqui para redistribuir dados em um novo grupo de nós do NDB Cluster é uma exceção a esse respeito; quando usado dessa maneira, nenhum outro termo-chave ou identificador segue `REORGANIZE PARTITION`.
+Normally, [`ALTER TABLE table_name [ALGORITHM=INPLACE,] REORGANIZE PARTITION`](alter-table.html "13.1.8 ALTER TABLE Statement") is used with a list of partition identifiers and a set of partition definitions to create a new partitioning scheme for a table that has already been explicitly partitioned. Its use here to redistribute data onto a new NDB Cluster node group is an exception in this regard; when used in this way, no other keywords or identifiers follow `REORGANIZE PARTITION`.
 
-Para obter mais informações, consulte Seção 13.1.8, “Instrução ALTER TABLE”.
+For more information, see [Section 13.1.8, “ALTER TABLE Statement”](alter-table.html "13.1.8 ALTER TABLE Statement").
 
-Além disso, para cada tabela, a instrução `ALTER TABLE` deve ser seguida por uma instrução `OPTIMIZE TABLE` para recuperar o espaço desperdiçado. Você pode obter uma lista de todas as tabelas `NDBCLUSTER` usando a seguinte consulta na tabela do Schema de Informações `TABLES`:
+In addition, for each table, the [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statement should be followed by an [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") to reclaim wasted space. You can obtain a list of all [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables using the following query against the Information Schema [`TABLES`](information-schema-tables-table.html "24.3.25 The INFORMATION_SCHEMA TABLES Table") table:
 
 ```sql
 SELECT TABLE_SCHEMA, TABLE_NAME
@@ -378,11 +378,11 @@ SELECT TABLE_SCHEMA, TABLE_NAME
     WHERE ENGINE = 'NDBCLUSTER';
 ```
 
-Nota
+Note
 
-O valor `INFORMATION_SCHEMA.TABLES.ENGINE` para uma tabela de NDB Cluster é sempre `NDBCLUSTER`, independentemente de a instrução `CREATE TABLE` usada para criar a tabela (ou a instrução `ALTER TABLE` usada para converter uma tabela existente de um motor de armazenamento diferente) ter usado `NDB` ou `NDBCLUSTER` em sua opção `ENGINE`.
+The `INFORMATION_SCHEMA.TABLES.ENGINE` value for an NDB Cluster table is always [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6"), regardless of whether the `CREATE TABLE` statement used to create the table (or [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statement used to convert an existing table from a different storage engine) used [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") or [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") in its `ENGINE` option.
 
-Você pode ver após executar essas declarações na saída de `ALL REPORT MEMORY` que os dados e índices agora estão redistribuídos entre todos os nós de dados do cluster, conforme mostrado aqui:
+You can see after performing these statements in the output of [`ALL REPORT MEMORY`](mysql-cluster-mgm-client-commands.html#ndbclient-report) that the data and indexes are now redistributed between all cluster data nodes, as shown here:
 
 ```sql
 ndb_mgm> ALL REPORT MEMORY
@@ -397,13 +397,13 @@ Node 4: Data usage is 2%(80 32K pages of total 3200)
 Node 4: Index usage is 0%(50 8K pages of total 12832)
 ```
 
-Nota
+Note
 
-Como apenas uma operação DDL nas tabelas de `NDBCLUSTER` pode ser executada de cada vez, você deve esperar que cada instrução `ALTER TABLE ... REORGANIZE PARTITION` termine antes de emitir a próxima.
+Since only one DDL operation on [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables can be executed at a time, you must wait for each [`ALTER TABLE ... REORGANIZE PARTITION`](alter-table.html "13.1.8 ALTER TABLE Statement") statement to finish before issuing the next one.
 
-Não é necessário emitir declarações de `ALTER TABLE ... REORGANIZE PARTITION` para tabelas de `NDBCLUSTER` criadas *após* a adição dos novos nós de dados; os dados adicionados a essas tabelas são distribuídos automaticamente entre todos os nós de dados. No entanto, em tabelas de `NDBCLUSTER` que existiam *antes* da adição dos novos nós, nem os dados existentes nem os novos são distribuídos usando os novos nós até que essas tabelas tenham sido reorganizadas usando `ALTER TABLE ... REORGANIZE PARTITION`.
+It is not necessary to issue [`ALTER TABLE ... REORGANIZE PARTITION`](alter-table.html "13.1.8 ALTER TABLE Statement") statements for [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables created *after* the new data nodes have been added; data added to such tables is distributed among all data nodes automatically. However, in [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables that existed *prior to* the addition of the new nodes, neither existing nor new data is distributed using the new nodes until these tables have been reorganized using [`ALTER TABLE ... REORGANIZE PARTITION`](alter-table.html "13.1.8 ALTER TABLE Statement").
 
-**Procedimento alternativo, sem reinício contínuo.** É possível evitar a necessidade de um reinício contínuo configurando os nós de dados extras, mas não iniciando-os, ao iniciar o clúster pela primeira vez. Continuamos assumindo que você deseja começar com dois nós de dados — os nós 1 e 2 — em um grupo de nós e, posteriormente, expandir o clúster para quatro nós de dados, adicionando um segundo grupo de nós, composto pelos nós 3 e 4:
+**Alternative procedure, without rolling restart.** It is possible to avoid the need for a rolling restart by configuring the extra data nodes, but not starting them, when first starting the cluster. We assume, as before, that you wish to start with two data nodes—nodes 1 and 2—in one node group and later to expand the cluster to four data nodes, by adding a second node group consisting of nodes 3 and 4:
 
 ```sql
 [ndbd default]
@@ -443,30 +443,30 @@ Id=21
 HostName = 198.51.100.21
 ```
 
-Os nós de dados que serão colocados online posteriormente (nós 3 e 4) podem ser configurados com `NodeGroup = 65536`, caso em que os nós 1 e 2 podem ser iniciados individualmente, conforme mostrado aqui:
+The data nodes to be brought online at a later time (nodes 3 and 4) can be configured with [`NodeGroup = 65536`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-nodegroup), in which case nodes 1 and 2 can each be started as shown here:
 
 ```sql
 $> ndbd -c 198.51.100.10 --initial
 ```
 
-Os nós de dados configurados com `NodeGroup = 65536` são tratados pelo servidor de gerenciamento como se você tivesse iniciado os nós 1 e 2 usando `--nowait-nodes=3,4` após esperar por um período de tempo determinado pelo ajuste do parâmetro de configuração do nó de dados `StartNoNodeGroupTimeout`. Por padrão, isso é de 15 segundos (15000 milissegundos).
+The data nodes configured with [`NodeGroup = 65536`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-nodegroup) are treated by the management server as though you had started nodes 1 and 2 using [`--nowait-nodes=3,4`](mysql-cluster-programs-ndbd.html#option_ndbd_nowait-nodes) after waiting for a period of time determined by the setting for the [`StartNoNodeGroupTimeout`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-startnonodegrouptimeout) data node configuration parameter. By default, this is 15 seconds (15000 milliseconds).
 
-Nota
+Note
 
-`StartNoNodegroupTimeout` deve ser o mesmo para todos os nós de dados no clúster; por essa razão, você deve defini-lo sempre na seção `[ndbd default]` do arquivo `config.ini`, e não para nós de dados individuais.
+[`StartNoNodegroupTimeout`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-startnonodegrouptimeout) must be the same for all data nodes in the cluster; for this reason, you should always set it in the `[ndbd default]` section of the `config.ini` file, rather than for individual data nodes.
 
-Quando estiver pronto para adicionar o segundo grupo de nós, basta realizar as seguintes etapas adicionais:
+When you are ready to add the second node group, you need only perform the following additional steps:
 
-1. Inicie os nós de dados 3 e 4, invocando o processo do nó de dados uma vez para cada novo nó:
+1. Start data nodes 3 and 4, invoking the data node process once for each new node:
 
    ```sql
    $> ndbd -c 198.51.100.10 --initial
    ```
 
-2. Emita o comando apropriado `CREATE NODEGROUP` no cliente de gerenciamento:
+2. Issue the appropriate [`CREATE NODEGROUP`](mysql-cluster-mgm-client-commands.html#ndbclient-create-nodegroup) command in the management client:
 
    ```sql
    ndb_mgm> CREATE NODEGROUP 3,4
    ```
 
-3. No cliente **mysql**, execute as instruções `ALTER TABLE ... REORGANIZE PARTITION` e `OPTIMIZE TABLE` para cada tabela existente do NDBCLUSTER. (Como mencionado em outro lugar nesta seção, as tabelas existentes do NDB Cluster não podem usar os novos nós para distribuição de dados até que isso tenha sido feito.)
+3. In the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client, issue [`ALTER TABLE ... REORGANIZE PARTITION`](alter-table.html "13.1.8 ALTER TABLE Statement") and [`OPTIMIZE TABLE`](optimize-table.html "13.7.2.4 OPTIMIZE TABLE Statement") statements for each existing [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table. (As noted elsewhere in this section, existing NDB Cluster tables cannot use the new nodes for data distribution until this has been done.)

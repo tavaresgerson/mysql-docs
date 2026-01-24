@@ -1,111 +1,108 @@
-### 25.12.9 Tabelas de atributos de conexão do esquema de desempenho
+### 25.12.9 Performance Schema Connection Attribute Tables
 
-25.12.9.1 Tabela session_account_connect_attrs
+[25.12.9.1 The session_account_connect_attrs Table](performance-schema-session-account-connect-attrs-table.html)
 
-25.12.9.2 Tabela session_connect_attrs
+[25.12.9.2 The session_connect_attrs Table](performance-schema-session-connect-attrs-table.html)
 
-Os atributos de conexão são pares chave-valor que os programas de aplicação podem passar ao servidor no momento da conexão. Para aplicações baseadas na API C implementada pela biblioteca de cliente `libmysqlclient`, as funções `mysql_options()` e `mysql_options4()` definem o conjunto de atributos de conexão. Outros Conectores MySQL podem fornecer seus próprios métodos de definição de atributos.
+Connection attributes are key-value pairs that application programs can pass to the server at connect time. For applications based on the C API implemented by the `libmysqlclient` client library, the [`mysql_options()`](/doc/c-api/5.7/en/mysql-options.html) and [`mysql_options4()`](/doc/c-api/5.7/en/mysql-options4.html) functions define the connection attribute set. Other MySQL Connectors may provide their own attribute-definition methods.
 
-Essas tabelas do Schema de Desempenho exibem informações de atributos:
+These Performance Schema tables expose attribute information:
 
-- `session_account_connect_attrs`: Atributos de conexão para a sessão atual e outras sessões associadas à conta de sessão
+* [`session_account_connect_attrs`](performance-schema-session-account-connect-attrs-table.html "25.12.9.1 The session_account_connect_attrs Table"): Connection attributes for the current session, and other sessions associated with the session account
 
-- `session_connect_attrs`: Atributos de conexão para todas as sessões
+* [`session_connect_attrs`](performance-schema-session-connect-attrs-table.html "25.12.9.2 The session_connect_attrs Table"): Connection attributes for all sessions
 
-Os nomes de atributos que começam com um sublinhado (`_`) são reservados para uso interno e não devem ser criados por programas de aplicação. Essa convenção permite que novos atributos sejam introduzidos pelo MySQL sem colidirem com atributos de aplicação e permite que programas de aplicação definam seus próprios atributos que não colidem com atributos internos.
+Attribute names that begin with an underscore (`_`) are reserved for internal use and should not be created by application programs. This convention permits new attributes to be introduced by MySQL without colliding with application attributes, and enables application programs to define their own attributes that do not collide with internal attributes.
 
-- Atributos de conexão disponíveis
-- Limites de atributos de conexão
+* [Available Connection Atrributes](performance-schema-connection-attribute-tables.html#performance-schema-connection-attributes-available "Available Connection Atrributes")
+* [Connection Atrribute Limits](performance-schema-connection-attribute-tables.html#performance-schema-connection-attribute-limits "Connection Atrribute Limits")
 
-#### Atributos de Conexão Disponíveis
+#### Available Connection Atrributes
 
-O conjunto de atributos de conexão visíveis dentro de uma conexão específica varia dependendo de fatores como sua plataforma, o Conector MySQL usado para estabelecer a conexão ou o programa cliente.
+The set of connection attributes visible within a given connection varies depending on factors such as your platform, MySQL Connector used to establish the connection, or client program.
 
-A biblioteca de clientes `libmysqlclient` define esses atributos:
+The `libmysqlclient` client library sets these attributes:
 
-- `_client_name`: O nome do cliente (`libmysql` para a biblioteca do cliente).
+* `_client_name`: The client name (`libmysql` for the client library).
 
-- `_client_version`: A versão da biblioteca do cliente.
+* `_client_version`: The client library version.
 
-- _os: O sistema operacional (por exemplo, `Linux`, `Win64`).
+* `_os`: The operating system (for example, `Linux`, `Win64`).
 
-- `_pid`: O ID do processo do cliente.
+* `_pid`: The client process ID.
+* `_platform`: The machine platform (for example, `x86_64`).
 
-- _platform: A plataforma da máquina (por exemplo, `x86_64`).
+* `_thread`: The client thread ID (Windows only).
 
-- _thread: O ID do thread do cliente (apenas no Windows).
+Other MySQL Connectors may define their own connection attributes.
 
-Outros Conectores MySQL podem definir seus próprios atributos de conexão.
+MySQL Connector/J defines these attributes:
 
-O MySQL Connector/J define esses atributos:
+* `_client_license`: The connector license type.
 
-- _client_license: O tipo de licença do conector.
+* `_runtime_vendor`: The Java runtime environment (JRE) vendor.
 
-- _runtime_vendor: O fornecedor do ambiente de execução Java (JRE).
+* `_runtime_version`: The Java runtime environment (JRE) version.
 
-- `_runtime_version`: A versão do ambiente de execução Java (JRE).
+MySQL Connector/NET defines these attributes:
 
-O MySQL Connector/NET define esses atributos:
+* `_client_version`: The client library version.
 
-- `_client_version`: A versão da biblioteca do cliente.
+* `_os`: The operating system (for example, `Linux`, `Win64`).
 
-- _os: O sistema operacional (por exemplo, `Linux`, `Win64`).
+* `_pid`: The client process ID.
+* `_platform`: The machine platform (for example, `x86_64`).
 
-- `_pid`: O ID do processo do cliente.
+* `_program_name`: The client name.
+* `_thread`: The client thread ID (Windows only).
 
-- _platform: A plataforma da máquina (por exemplo, `x86_64`).
+PHP defines attributes that depend on how it was compiled:
 
-- `_program_name`: O nome do cliente.
+* Compiled using `libmysqlclient`: The standard `libmysqlclient` attributes, described previously.
 
-- _thread: O ID do thread do cliente (apenas no Windows).
+* Compiled using `mysqlnd`: Only the `_client_name` attribute, with a value of `mysqlnd`.
 
-O PHP define atributos que dependem de como ele foi compilado:
+Many MySQL client programs set a `program_name` attribute with a value equal to the client name. For example, [**mysqladmin**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program") and [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") set `program_name` to `mysqladmin` and `mysqldump`, respectively.
 
-- Compilado usando `libmysqlclient`: Os atributos padrão do `libmysqlclient`, descritos anteriormente.
+Some MySQL client programs define additional attributes:
 
-- Compilado usando `mysqlnd`: Apenas o atributo `_client_name`, com um valor de `mysqlnd`.
+* [**mysqlbinlog**](mysqlbinlog.html "4.6.7 mysqlbinlog — Utility for Processing Binary Log Files"):
 
-Muitos programas clientes do MySQL definem um atributo `program_name` com um valor igual ao nome do cliente. Por exemplo, **mysqladmin** e **mysqldump** definem `program_name` como `mysqladmin` e `mysqldump`, respectivamente.
+  + `_client_role`: `binary_log_listener`
 
-Alguns programas clientes do MySQL definem atributos adicionais:
+* Replica connections:
 
-- **mysqlbinlog**:
+  + `program_name`: `mysqld`
 
-  - `_client_role`: `binary_log_listener`
+  + `_client_role`: `binary_log_listener`
 
-- Conexões de réplica:
+  + `_client_replication_channel_name`: The channel name.
 
-  - `program_name`: `mysqld`
+* [`FEDERATED`](federated-storage-engine.html "15.8 The FEDERATED Storage Engine") storage engine connections:
 
-  - `_client_role`: `binary_log_listener`
+  + `program_name`: `mysqld`
 
-  - `_client_replication_channel_name`: O nome do canal.
+  + `_client_role`: `federated_storage`
 
-- Conexões do mecanismo de armazenamento `FEDERATED` (federated-storage-engine.html):
+#### Connection Atrribute Limits
 
-  - `program_name`: `mysqld`
+There are limits on the amount of connection attribute data transmitted from client to server:
 
-  - `_client_role`: `armazenamento_federado`
+* A fixed limit imposed by the client prior to connect time.
+* A fixed limit imposed by the server at connect time.
+* A configurable limit imposed by the Performance Schema at connect time.
 
-#### Conexão Limites de atributo
+For connections initiated using the C API, the `libmysqlclient` library imposes a limit of 64KB on the aggregate size of connection attribute data on the client side: Calls to [`mysql_options()`](/doc/c-api/5.7/en/mysql-options.html) that cause this limit to be exceeded produce a [`CR_INVALID_PARAMETER_NO`](/doc/mysql-errors/5.7/en/client-error-reference.html#error_cr_invalid_parameter_no) error. Other MySQL Connectors may impose their own client-side limits on how much connection attribute data can be transmitted to the server.
 
-Há limites para a quantidade de dados do atributo de conexão transmitidos do cliente para o servidor:
+On the server side, these size checks on connection attribute data occur:
 
-- Um limite fixo imposto pelo cliente antes do horário de conexão.
-- Um limite fixo imposto pelo servidor no momento da conexão.
-- Um limite configurável imposto pelo Schema de Desempenho no momento da conexão.
+* The server imposes a limit of 64KB on the aggregate size of connection attribute data it can accept. If a client attempts to send more than 64KB of attribute data, the server rejects the connection.
 
-Para conexões iniciadas usando a API C, a biblioteca `libmysqlclient` impõe um limite de 64 KB no tamanho agregado dos dados do atributo de conexão no lado do cliente: Chamadas a `mysql_options()` que excederem esse limite produzem um erro `CR_INVALID_PARAMETER_NO`. Outros Conectores MySQL podem impor seus próprios limites no lado do cliente sobre o quanto os dados do atributo de conexão podem ser transmitidos ao servidor.
+* For accepted connections, the Performance Schema checks aggregate attribute size against the value of the [`performance_schema_session_connect_attrs_size`](performance-schema-system-variables.html#sysvar_performance_schema_session_connect_attrs_size) system variable. If attribute size exceeds this value, these actions take place:
 
-No lado do servidor, essas verificações de tamanho dos dados do atributo de conexão ocorrem:
+  + The Performance Schema truncates the attribute data and increments the [`Performance_schema_session_connect_attrs_lost`](performance-schema-status-variables.html#statvar_Performance_schema_session_connect_attrs_lost) status variable, which indicates the number of connections for which attribute truncation occurred.
 
-- O servidor impõe um limite de 64 KB no tamanho agregado dos dados do atributo de conexão que ele pode aceitar. Se um cliente tentar enviar mais de 64 KB de dados do atributo, o servidor rejeita a conexão.
-
-- Para conexões aceitas, o Schema de Desempenho verifica o tamanho do atributo agregado contra o valor da variável de sistema `performance_schema_session_connect_attrs_size`. Se o tamanho do atributo exceder esse valor, essas ações ocorrem:
-
-  - O Schema de Desempenho trunca os dados do atributo e incrementa a variável de status `Performance_schema_session_connect_attrs_lost`, que indica o número de conexões para as quais ocorreu a truncagem de atributos.
-
-  - O Schema de Desempenho escreve uma mensagem no log de erros se a variável de sistema `log_error_verbosity` for maior que 1:
+  + The Performance Schema writes a message to the error log if the [`log_error_verbosity`](server-system-variables.html#sysvar_log_error_verbosity) system variable is greater than 1:
 
     ```sql
     [Warning] Connection attributes of length N were truncated

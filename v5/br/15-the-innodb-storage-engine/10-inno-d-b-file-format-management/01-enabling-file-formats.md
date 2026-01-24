@@ -1,23 +1,23 @@
-### 14.10.1 Habilitar formatos de arquivo
+### 14.10.1 Enabling File Formats
 
-A opção de configuração `innodb_file_format` permite um formato de arquivo `InnoDB` para espaços de tabelas por arquivo.
+The `innodb_file_format` configuration option enables an `InnoDB` file format for file-per-table tablespaces.
 
-`Barracuda` é o padrão para `innodb_file_format`. Em versões anteriores, o formato de arquivo padrão era `Antelope`.
+`Barracuda` is the default `innodb_file_format` setting. In earlier releases, the default file format was `Antelope`.
 
-Nota
+Note
 
-A opção de configuração `innodb_file_format` está desatualizada e pode ser removida em uma futura versão. Para mais informações, consulte a Seção 14.10, “Gerenciamento do Formato de Arquivo InnoDB”.
+The `innodb_file_format` configuration option is deprecated and may be removed in a future release. For more information, see Section 14.10, “InnoDB File-Format Management”.
 
-Você pode definir o valor de `innodb_file_format` na linha de comando quando você inicia o **mysqld**, ou no arquivo de opções (`my.cnf` no Unix, `my.ini` no Windows). Você também pode alterá-lo dinamicamente com uma declaração `SET GLOBAL`.
+You can set the value of `innodb_file_format` on the command line when you start **mysqld**, or in the option file (`my.cnf` on Unix, `my.ini` on Windows). You can also change it dynamically with a `SET GLOBAL` statement.
 
 ```sql
 SET GLOBAL innodb_file_format=Barracuda;
 ```
 
-#### Observações de uso
+#### Usage notes
 
-- As configurações do formato de arquivo `InnoDB` não se aplicam às tabelas armazenadas em espaços de tabelas gerais. Os espaços de tabelas gerais fornecem suporte para todos os formatos de linha e recursos associados. Para mais informações, consulte a Seção 14.6.3.3, “Espaços de Tabelas Gerais”.
+* `InnoDB` file format settings do not apply to tables stored in general tablespaces. General tablespaces provide support for all row formats and associated features. For more information, see Section 14.6.3.3, “General Tablespaces”.
 
-- A configuração `innodb_file_format` não é aplicável ao usar a opção `TABLESPACE [=] innodb_system` com `CREATE TABLE` ou `ALTER TABLE` para armazenar uma tabela `DYNAMIC` no espaço de tabelas do sistema.
+* The `innodb_file_format` setting is not applicable when using the `TABLESPACE [=] innodb_system` table option with `CREATE TABLE` or `ALTER TABLE` to store a `DYNAMIC` table in the system tablespace.
 
-- A configuração `innodb_file_format` é ignorada ao criar tabelas que utilizam o formato de linha `DYNAMIC`. Para obter mais informações, consulte o formato de linha DYNAMIC.
+* The `innodb_file_format` setting is ignored when creating tables that use the `DYNAMIC` row format. For more information, see DYNAMIC Row Format.

@@ -1,9 +1,9 @@
-#### 26.4.3.20 Visões de memory_global_total e x$memory_global_total
+#### 26.4.3.20 The memory_global_total and x$memory_global_total Views
 
-Esses pontos resumem o uso total da memória dentro do servidor.
+These views summarize total memory use within the server.
 
-As views `memory_global_total` e `x$memory_global_total` possuem as seguintes colunas:
+The `memory_global_total` and `x$memory_global_total` views have these columns:
 
-- `total_allocated`
+* `total_allocated`
 
-  Os bytes totais de memória alocados dentro do servidor.
+  The total bytes of memory allocated within the server.

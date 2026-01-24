@@ -1,8 +1,8 @@
-#### 21.4.3.11 Conexões de cluster NDB TCP/IP usando conexões diretas
+#### 21.4.3.11 NDB Cluster TCP/IP Connections Using Direct Connections
 
-Para configurar um clúster usando conexões diretas entre os nós de dados, é necessário especificar explicitamente os endereços IP de crossover dos nós de dados conectados na seção `[tcp]` do arquivo `config.ini` do clúster.
+Setting up a cluster using direct connections between data nodes requires specifying explicitly the crossover IP addresses of the data nodes so connected in the `[tcp]` section of the cluster `config.ini` file.
 
-No exemplo a seguir, imaginamos um clúster com pelo menos quatro hosts, um para cada um dos seguintes: um servidor de gerenciamento, um nó SQL e dois nós de dados. O clúster como um todo reside na sub-rede `172.23.72.*` de uma LAN. Além das conexões de rede usuais, os dois nós de dados estão conectados diretamente usando um cabo crossover padrão e se comunicam diretamente usando endereços IP na faixa de endereços `1.1.0.*`, conforme mostrado:
+In the following example, we envision a cluster with at least four hosts, one each for a management server, an SQL node, and two data nodes. The cluster as a whole resides on the `172.23.72.*` subnet of a LAN. In addition to the usual network connections, the two data nodes are connected directly using a standard crossover cable, and communicate with one another directly using IP addresses in the `1.1.0.*` address range as shown:
 
 ```sql
 # Management Server
@@ -32,10 +32,10 @@ HostName1=1.1.0.1
 HostName2=1.1.0.2
 ```
 
-Os parâmetros `HostName1` e `HostName2` são usados apenas ao especificar conexões diretas.
+The [`HostName1`](mysql-cluster-tcp-definition.html#ndbparam-tcp-hostname1) and [`HostName2`](mysql-cluster-tcp-definition.html#ndbparam-tcp-hostname2) parameters are used only when specifying direct connections.
 
-O uso de conexões TCP diretas entre os nós de dados pode melhorar a eficiência geral do clúster, permitindo que os nós de dados contornem um dispositivo Ethernet, como um switch, hub ou roteador, reduzindo assim a latência do clúster.
+The use of direct TCP connections between data nodes can improve the cluster's overall efficiency by enabling the data nodes to bypass an Ethernet device such as a switch, hub, or router, thus cutting down on the cluster's latency.
 
-Nota
+Note
 
-Para aproveitar ao máximo as conexões diretas dessa maneira com mais de dois nós de dados, você deve ter uma conexão direta entre cada nó de dados e todos os outros nós de dados do mesmo grupo de nós.
+To take the best advantage of direct connections in this fashion with more than two data nodes, you must have a direct connection between each data node and every other data node in the same node group.

@@ -1,15 +1,15 @@
-#### 13.7.5.28 Mostrar o status do procedimento Declaração
+#### 13.7.5.28 SHOW PROCEDURE STATUS Statement
 
 ```sql
 SHOW PROCEDURE STATUS
     [LIKE 'pattern' | WHERE expr]
 ```
 
-Esta declaração é uma extensão do MySQL. Ela retorna características de um procedimento armazenado, como o banco de dados, nome, tipo, criador, datas de criação e modificação e informações sobre o conjunto de caracteres. Uma declaração semelhante, `SHOW FUNCTION STATUS`, exibe informações sobre funções armazenadas (consulte Seção 13.7.5.20, “Declaração SHOW FUNCTION STATUS”).
+This statement is a MySQL extension. It returns characteristics of a stored procedure, such as the database, name, type, creator, creation and modification dates, and character set information. A similar statement, [`SHOW FUNCTION STATUS`](show-function-status.html "13.7.5.20 SHOW FUNCTION STATUS Statement"), displays information about stored functions (see [Section 13.7.5.20, “SHOW FUNCTION STATUS Statement”](show-function-status.html "13.7.5.20 SHOW FUNCTION STATUS Statement")).
 
-Para usar qualquer uma dessas declarações, você deve ser o proprietário da rotina ou ter acesso ao `mysql.proc` tabela com `SELECT` (select.html).
+To use either statement, you must be the owner of the routine or have [`SELECT`](select.html "13.2.9 SELECT Statement") access to the `mysql.proc` table.
 
-A cláusula `LIKE`, se presente, indica quais nomes de procedimentos ou funções devem ser correspondidos. A cláusula `WHERE` pode ser usada para selecionar linhas com condições mais gerais, conforme discutido em Seção 24.8, “Extensões para Declarações SHOW”.
+The [`LIKE`](string-comparison-functions.html#operator_like) clause, if present, indicates which procedure or function names to match. The `WHERE` clause can be given to select rows using more general conditions, as discussed in [Section 24.8, “Extensions to SHOW Statements”](extended-show.html "24.8 Extensions to SHOW Statements").
 
 ```sql
 mysql> SHOW PROCEDURE STATUS LIKE 'sp1'\G
@@ -41,6 +41,6 @@ collation_connection: utf8_general_ci
   Database Collation: latin1_swedish_ci
 ```
 
-`character_set_client` é o valor da sessão da variável de sistema `character_set_client` quando a rotina foi criada. `collation_connection` é o valor da sessão da variável de sistema `collation_connection` quando a rotina foi criada. `Database Collation` é a collation do banco de dados com o qual a rotina está associada.
+`character_set_client` is the session value of the [`character_set_client`](server-system-variables.html#sysvar_character_set_client) system variable when the routine was created. `collation_connection` is the session value of the [`collation_connection`](server-system-variables.html#sysvar_collation_connection) system variable when the routine was created. `Database Collation` is the collation of the database with which the routine is associated.
 
-As informações de rotina armazenadas também estão disponíveis nas tabelas `INFORMATION_SCHEMA `PARAMETERS` e [`ROUTINES\`]\(information-schema-routines-table.html). Veja Seção 24.3.15, “A Tabela INFORMATION_SCHEMA PARAMETERS” e Seção 24.3.21, “A Tabela INFORMATION_SCHEMA ROUTINES”.
+Stored routine information is also available from the `INFORMATION_SCHEMA` [`PARAMETERS`](information-schema-parameters-table.html "24.3.15 The INFORMATION_SCHEMA PARAMETERS Table") and [`ROUTINES`](information-schema-routines-table.html "24.3.21 The INFORMATION_SCHEMA ROUTINES Table") tables. See [Section 24.3.15, “The INFORMATION_SCHEMA PARAMETERS Table”](information-schema-parameters-table.html "24.3.15 The INFORMATION_SCHEMA PARAMETERS Table"), and [Section 24.3.21, “The INFORMATION_SCHEMA ROUTINES Table”](information-schema-routines-table.html "24.3.21 The INFORMATION_SCHEMA ROUTINES Table").

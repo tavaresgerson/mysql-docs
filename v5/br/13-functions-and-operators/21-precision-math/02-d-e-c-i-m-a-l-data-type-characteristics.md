@@ -1,32 +1,32 @@
-### 12.21.2 Características do Tipo de Dados DECIMAL
+### 12.21.2 DECIMAL Data Type Characteristics
 
-Esta seção discute as características do tipo de dados `DECIMAL` - DECIMAL, NUMERIC") (e seus sinônimos), com especial atenção aos seguintes tópicos:
+This section discusses the characteristics of the `DECIMAL` - DECIMAL, NUMERIC") data type (and its synonyms), with particular regard to the following topics:
 
-- Número máximo de dígitos
-- Formato de armazenamento
-- Requisitos de armazenamento
-- A extensão não padrão do MySQL para o intervalo superior das colunas `DECIMAL` - DECIMAL, NUMERIC")
+* Maximum number of digits
+* Storage format
+* Storage requirements
+* The nonstandard MySQL extension to the upper range of `DECIMAL` - DECIMAL, NUMERIC") columns
 
-A sintaxe de declaração para uma coluna `DECIMAL` - DECIMAL, NUMERIC") é `DECIMAL(M, D)`. Os intervalos de valores para os argumentos são os seguintes:
+The declaration syntax for a `DECIMAL` - DECIMAL, NUMERIC") column is `DECIMAL(M,D)`. The ranges of values for the arguments are as follows:
 
-- *`M`* é o número máximo de dígitos (a precisão). Ele tem um intervalo de 1 a 65.
+* *`M`* is the maximum number of digits (the precision). It has a range of 1 to 65.
 
-- *`D`* é o número de dígitos à direita do ponto decimal (a escala). Ele tem um intervalo de 0 a 30 e não pode ser maior que *`M`*.
+* *`D`* is the number of digits to the right of the decimal point (the scale). It has a range of 0 to 30 and must be no larger than *`M`*.
 
-Se *`D`* for omitido, o padrão é 0. Se *`M`* for omitido, o padrão é 10.
+If *`D`* is omitted, the default is 0. If *`M`* is omitted, the default is 10.
 
-O valor máximo de 65 para *`M`* significa que os cálculos em valores `DECIMAL` - `DECIMAL`, `NUMERIC`") são precisos até 65 dígitos. Esse limite de 65 dígitos de precisão também se aplica a literais numéricos de valor exato, portanto, a faixa máxima desses literais difere da anterior. (Há também um limite para a quantidade de texto que os literais `DECIMAL` - `DECIMAL`, `NUMERIC`") podem ter; veja a Seção 12.21.3, “Tratamento de Expressões.”)
+The maximum value of 65 for *`M`* means that calculations on `DECIMAL` - DECIMAL, NUMERIC") values are accurate up to 65 digits. This limit of 65 digits of precision also applies to exact-value numeric literals, so the maximum range of such literals differs from before. (There is also a limit on how long the text of `DECIMAL` - DECIMAL, NUMERIC") literals can be; see Section 12.21.3, “Expression Handling”.)
 
-Os valores das colunas `DECIMAL` - DECIMAL, NUMERIC") são armazenados em um formato binário que compacta nove dígitos decimais em 4 bytes. Os requisitos de armazenamento para as partes inteiras e fracionárias de cada valor são determinados separadamente. Cada múltiplo de nove dígitos requer 4 bytes, e quaisquer dígitos restantes restantes exigem uma fração de 4 bytes. Os requisitos de armazenamento para os dígitos restantes são fornecidos pela tabela a seguir.
+Values for `DECIMAL` - DECIMAL, NUMERIC") columns are stored using a binary format that packs nine decimal digits into 4 bytes. The storage requirements for the integer and fractional parts of each value are determined separately. Each multiple of nine digits requires 4 bytes, and any remaining digits left over require some fraction of 4 bytes. The storage required for remaining digits is given by the following table.
 
-<table summary="O número de bytes necessários para os dígitos restantes/remanescentes em valores DECIMAL."><col style="width: 25%"/><col style="width: 25%"/><thead><tr> <th>Dígitos Remanescentes</th> <th>Número de bytes</th> </tr></thead><tbody><tr> <td>0</td> <td>0</td> </tr><tr> <td>1–2</td> <td>1</td> </tr><tr> <td>3–4</td> <td>2</td> </tr><tr> <td>5–6</td> <td>3</td> </tr><tr> <td>7–9</td> <td>4</td> </tr></tbody></table>
+<table summary="The number of bytes required for remaining/leftover digits in DECIMAL values."><col style="width: 25%"/><col style="width: 25%"/><thead><tr> <th>Leftover Digits</th> <th>Number of Bytes</th> </tr></thead><tbody><tr> <td>0</td> <td>0</td> </tr><tr> <td>1–2</td> <td>1</td> </tr><tr> <td>3–4</td> <td>2</td> </tr><tr> <td>5–6</td> <td>3</td> </tr><tr> <td>7–9</td> <td>4</td> </tr></tbody></table>
 
-Por exemplo, uma coluna `DECIMAL(18,9)` tem nove dígitos de cada lado do ponto decimal, então a parte inteira e a parte fracionária exigem cada uma 4 bytes. Uma coluna `DECIMAL(20,6)` tem catorze dígitos inteiros e seis dígitos fracionários. Os dígitos inteiros exigem quatro bytes para nove dos dígitos e 3 bytes para os cinco dígitos restantes. Os seis dígitos fracionários exigem 3 bytes.
+For example, a `DECIMAL(18,9)` column has nine digits on either side of the decimal point, so the integer part and the fractional part each require 4 bytes. A `DECIMAL(20,6)` column has fourteen integer digits and six fractional digits. The integer digits require four bytes for nine of the digits and 3 bytes for the remaining five digits. The six fractional digits require 3 bytes.
 
-As colunas `DECIMAL` e `NUMERIC`) não armazenam um caractere `+` ou `-` no início ou dígitos `0` no início. Se você inserir `+0003.1` em uma coluna `DECIMAL(5,1)`, ela será armazenada como `3.1`. Para números negativos, um caractere literal `-` não é armazenado.
+`DECIMAL` - DECIMAL, NUMERIC") columns do not store a leading `+` character or `-` character or leading `0` digits. If you insert `+0003.1` into a `DECIMAL(5,1)` column, it is stored as `3.1`. For negative numbers, a literal `-` character is not stored.
 
-Colunas `DECIMAL` - `DECIMAL`, `NUMERIC`) não permitem valores maiores que o intervalo implícito na definição da coluna. Por exemplo, uma coluna `DECIMAL(3,0)` suporta um intervalo de `-999` a `999`. Uma coluna `DECIMAL(M,D)` permite até *`M`* - *`D`* dígitos à esquerda do ponto decimal.
+`DECIMAL` - DECIMAL, NUMERIC") columns do not permit values larger than the range implied by the column definition. For example, a `DECIMAL(3,0)` column supports a range of `-999` to `999`. A `DECIMAL(M,D)` column permits up to *`M`* - *`D`* digits to the left of the decimal point.
 
-O padrão SQL exige que a precisão de `NUMERIC(M,D)` seja *exatamente* *`M`* dígitos. Para `DECIMAL(M,D)`, o padrão exige uma precisão de pelo menos *`M`* dígitos, mas permite mais. No MySQL, `DECIMAL(M,D)` e `NUMERIC(M,D)` são iguais e ambos têm uma precisão de exatamente *`M`* dígitos.
+The SQL standard requires that the precision of `NUMERIC(M,D)` be *exactly* *`M`* digits. For `DECIMAL(M,D)`, the standard requires a precision of at least *`M`* digits but permits more. In MySQL, `DECIMAL(M,D)` and `NUMERIC(M,D)` are the same, and both have a precision of exactly *`M`* digits.
 
-Para uma explicação completa do formato interno dos valores `DECIMAL`, consulte o arquivo `strings/decimal.c` em uma distribuição de código-fonte do MySQL. O formato é explicado (com um exemplo) na função `decimal2bin()`.
+For a full explanation of the internal format of `DECIMAL` values, see the file `strings/decimal.c` in a MySQL source distribution. The format is explained (with an example) in the `decimal2bin()` function.

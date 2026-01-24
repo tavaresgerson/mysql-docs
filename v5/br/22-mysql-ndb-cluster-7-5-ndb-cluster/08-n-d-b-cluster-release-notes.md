@@ -1,5 +1,5 @@
-## 21.8 Notas de lançamento do cluster do NDB
+## 21.8 NDB Cluster Release Notes
 
-As alterações nas versões do NDB Cluster são documentadas separadamente deste manual de referência; você pode encontrar as notas de lançamento das alterações em cada versão do NDB Cluster 7.5 em Notas de lançamento do NDB 7.5 e em cada versão do NDB Cluster 7.6 em Notas de lançamento do NDB 7.6.
+Changes in NDB Cluster releases are documented separately from this reference manual; you can find release notes for the changes in each NDB Cluster 7.5 release at [NDB 7.5 Release Notes](/doc/relnotes/mysql-cluster/7.5/en/), and for each NDB Cluster 7.6 release at [NDB 7.6 Release Notes](/doc/relnotes/mysql-cluster/7.6/en/).
 
-Você pode obter as notas de lançamento para versões mais antigas do NDB Cluster em Notas de lançamento do NDB Cluster.
+You can obtain release notes for older versions of NDB Cluster from [NDB Cluster Release Notes](/doc/index-cluster.html#cluster-relnotes).

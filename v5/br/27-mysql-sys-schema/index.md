@@ -1,37 +1,35 @@
-# Capítulo 26 Schema do sistema MySQL
+# Chapter 26 MySQL sys Schema
 
-**Índice**
+**Table of Contents**
 
-26.1 Pré-requisitos para usar o esquema sys
+26.1 Prerequisites for Using the sys Schema
 
-26.2 Usando o esquema sys
+26.2 Using the sys Schema
 
-26.3 Relatório de progresso do esquema sys
+26.3 sys Schema Progress Reporting
 
-26.4 Objeto de esquema do sistema :   26.4.1 Índice de objeto de esquema do sistema
+26.4 sys Schema Object Reference :   26.4.1 sys Schema Object Index
 
-```
-26.4.2 sys Schema Tables and Triggers
+    26.4.2 sys Schema Tables and Triggers
 
-26.4.3 sys Schema Views
+    26.4.3 sys Schema Views
 
-26.4.4 sys Schema Stored Procedures
+    26.4.4 sys Schema Stored Procedures
 
-26.4.5 sys Schema Stored Functions
-```
+    26.4.5 sys Schema Stored Functions
 
-O MySQL 5.7 inclui o esquema `sys`, um conjunto de objetos que ajuda os administradores de banco de dados e desenvolvedores a interpretar os dados coletados pelo Gerenciador de Desempenho. Os objetos do esquema `sys` podem ser usados para casos típicos de ajuste e diagnóstico. Os objetos deste esquema incluem:
+MySQL 5.7 includes the `sys` schema, a set of objects that helps DBAs and developers interpret data collected by the Performance Schema. `sys` schema objects can be used for typical tuning and diagnosis use cases. Objects in this schema include:
 
-- Visões que resumem os dados do Performance Schema em uma forma mais fácil de entender.
+* Views that summarize Performance Schema data into more easily understandable form.
 
-- Procedimentos armazenados que realizam operações como a configuração do Schema de Desempenho e a geração de relatórios de diagnóstico.
+* Stored procedures that perform operations such as Performance Schema configuration and generating diagnostic reports.
 
-- Funções armazenadas que consultam a configuração do Gerenciador de Desempenho e fornecem serviços de formatação.
+* Stored functions that query Performance Schema configuration and provide formatting services.
 
-Para novas instalações, o esquema `sys` é instalado por padrão durante a inicialização do diretório de dados se você usar o **mysqld** com a opção `--initialize` ou `--initialize-insecure`. Você pode excluir o esquema \`sys manualmente após a inicialização, se ele não for necessário.
+For new installations, the `sys` schema is installed by default during data directory initialization if you use **mysqld** with the `--initialize` or `--initialize-insecure` option. You can drop the `sys` schema manually after initialization if it is unneeded.
 
-Para atualizações, o **mysql_upgrade** instala o esquema `sys` se ele não estiver instalado e, caso contrário, o atualiza para a versão atual. Para permitir que esse comportamento seja suprimido, o **mysql_upgrade** tem a opção `--skip-sys-schema`.
+For upgrades, **mysql_upgrade** installs the `sys` schema if it is not installed, and upgrades it to the current version otherwise. To permit this behavior to be suppressed, **mysql_upgrade** has a `--skip-sys-schema` option.
 
-O **mysql_upgrade** retorna um erro se um esquema `sys` existir, mas não tiver a visão `version`, assumindo que a ausência dessa visão indica um esquema `sys` criado pelo usuário. Para fazer a atualização nesse caso, remova ou renomeie primeiro o esquema `sys` existente.
+**mysql_upgrade** returns an error if a `sys` schema exists but has no `version` view, on the assumption that absence of this view indicates a user-created `sys` schema. To upgrade in this case, remove or rename the existing `sys` schema first.
 
-Os objetos do esquema `sys` têm um `DEFINER` de `'mysql.sys'@'localhost'`. O uso da conta dedicada `mysql.sys` evita problemas que ocorrem se um DBA renomear ou remover a conta `root`.
+`sys` schema objects have a `DEFINER` of `'mysql.sys'@'localhost'`. Use of the dedicated `mysql.sys` account avoids problems that occur if a DBA renames or removes the `root` account.

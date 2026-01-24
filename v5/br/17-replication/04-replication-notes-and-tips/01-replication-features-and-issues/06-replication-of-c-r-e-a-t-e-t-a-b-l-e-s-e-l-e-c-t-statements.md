@@ -1,19 +1,19 @@
-#### 16.4.1.6 Replicação de declarações CREATE TABLE ... SELECT
+#### 16.4.1.6 Replication of CREATE TABLE ... SELECT Statements
 
-Esta seção discute como o MySQL replica as instruções `CREATE TABLE ... SELECT`.
+This section discusses how MySQL replicates [`CREATE TABLE ... SELECT`](create-table-select.html "13.1.18.4 CREATE TABLE ... SELECT Statement") statements.
 
-O MySQL 5.7 não permite que uma instrução `CREATE TABLE ... SELECT` faça alterações em tabelas diferentes daquela criada pela instrução. Algumas versões mais antigas do MySQL permitiam que essas instruções fizessem isso; isso significa que, ao usar replicação entre uma replica do MySQL 5.6 ou posterior e uma fonte executando uma versão anterior do MySQL, uma instrução `CREATE TABLE ... SELECT` que causa alterações em outras tabelas na fonte falha na replica, fazendo com que a replicação pare. Para evitar que isso aconteça, você deve usar a replicação baseada em linhas, reescrever a instrução ofensiva antes de executá-la na fonte ou atualizar a fonte para o MySQL 5.7. (Se você optar por atualizar a fonte, tenha em mente que tal instrução `CREATE TABLE ... SELECT` falha após a atualização, a menos que seja reescrita para remover quaisquer efeitos colaterais em outras tabelas.)
+MySQL 5.7 does not allow a [`CREATE TABLE ... SELECT`](create-table-select.html "13.1.18.4 CREATE TABLE ... SELECT Statement") statement to make any changes in tables other than the table that is created by the statement. Some older versions of MySQL permitted these statements to do so; this means that, when using replication between a MySQL 5.6 or later replica and a source running a previous version of MySQL, a [`CREATE TABLE ... SELECT`](create-table-select.html "13.1.18.4 CREATE TABLE ... SELECT Statement") statement causing changes in other tables on the source fails on the replica, causing replication to stop. To prevent this from happening, you should use row-based replication, rewrite the offending statement before running it on the source, or upgrade the source to MySQL 5.7. (If you choose to upgrade the source, keep in mind that such a [`CREATE TABLE ... SELECT`](create-table-select.html "13.1.18.4 CREATE TABLE ... SELECT Statement") statement fails following the upgrade unless it is rewritten to remove any side effects on other tables.)
 
-Esses comportamentos não dependem da versão do MySQL:
+These behaviors are not dependent on MySQL version:
 
-- `CREATE TABLE ... SELECT` sempre realiza um commit implícito (Seção 13.3.3, “Declarações que Causam um Commit Implícito”).
+* [`CREATE TABLE ... SELECT`](create-table-select.html "13.1.18.4 CREATE TABLE ... SELECT Statement") always performs an implicit commit ([Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit")).
 
-- Se a tabela de destino não existir, o registro ocorre da seguinte forma. Não importa se o `IF NOT EXISTS` está presente.
+* If destination table does not exist, logging occurs as follows. It does not matter whether `IF NOT EXISTS` is present.
 
-  - Formato `DECLARATIVO` ou `MISTO`: A declaração é registrada conforme escrito.
+  + `STATEMENT` or `MIXED` format: The statement is logged as written.
 
-  - Formato `ROW`: A declaração é registrada como uma declaração de `CREATE TABLE` seguida por uma série de eventos de inserção de linha.
+  + `ROW` format: The statement is logged as a [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement followed by a series of insert-row events.
 
-- Se a declaração falhar, nada é registrado. Isso inclui o caso em que a tabela de destino existe e o `IF NOT EXISTS` não é fornecido.
+* If the statement fails, nothing is logged. This includes the case that the destination table exists and `IF NOT EXISTS` is not given.
 
-Quando a tabela de destino existe e o comando `IF NOT EXISTS` é fornecido, o MySQL 5.7 ignora completamente a instrução; nada é inserido ou registrado.
+When the destination table exists and `IF NOT EXISTS` is given, MySQL 5.7 ignores the statement completely; nothing is inserted or logged.

@@ -1,6 +1,6 @@
-### 11.4.10 Uso de índices espaciais
+### 11.4.10 Using Spatial Indexes
 
-O otimizador investiga se índices espaciais disponíveis podem ser envolvidos na busca por consultas que utilizam uma função como `MBRContains()` ou `MBRWithin()` na cláusula `WHERE`. A seguinte consulta encontra todos os objetos que estão no retângulo dado:
+The optimizer investigates whether available spatial indexes can be involved in the search for queries that use a function such as `MBRContains()` or `MBRWithin()` in the `WHERE` clause. The following query finds all objects that are in the given rectangle:
 
 ```sql
 mysql> SET @poly =
@@ -38,7 +38,7 @@ mysql> SELECT fid,ST_AsText(g) FROM geom WHERE
 20 rows in set (0.00 sec)
 ```
 
-Use `EXPLAIN` para verificar a forma como essa consulta é executada:
+Use `EXPLAIN` to check the way this query is executed:
 
 ```sql
 mysql> SET @poly =
@@ -63,7 +63,7 @@ possible_keys: g
 1 row in set (0.00 sec)
 ```
 
-Verifique o que aconteceria sem um índice espacial:
+Check what would happen without a spatial index:
 
 ```sql
 mysql> SET @poly =
@@ -88,7 +88,7 @@ possible_keys: NULL
 1 row in set (0.00 sec)
 ```
 
-Executar a instrução `SELECT` sem o índice espacial produz o mesmo resultado, mas faz com que o tempo de execução aumente de 0,00 segundos para 0,46 segundos:
+Executing the `SELECT` statement without the spatial index yields the same result but causes the execution time to rise from 0.00 seconds to 0.46 seconds:
 
 ```sql
 mysql> SET @poly =

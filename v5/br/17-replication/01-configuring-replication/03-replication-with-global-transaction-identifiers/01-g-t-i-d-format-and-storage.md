@@ -1,56 +1,56 @@
-#### 16.1.3.1 Formato e Armazenamento do GTID
+#### 16.1.3.1 GTID Format and Storage
 
-Um identificador de transação global (GTID) é um identificador único criado e associado a cada transação realizada no servidor de origem (a fonte). Esse identificador é único não apenas para o servidor em que foi gerado, mas também é único em todos os servidores de uma determinada topologia de replicação.
+A global transaction identifier (GTID) is a unique identifier created and associated with each transaction committed on the server of origin (the source). This identifier is unique not only to the server on which it originated, but is unique across all servers in a given replication topology.
 
-A atribuição de GTID distingue entre as transações do cliente, que são comprometidas na fonte, e as transações replicadas, que são reproduzidas em uma réplica. Quando uma transação do cliente é comprometida na fonte, ela recebe um novo GTID, desde que a transação tenha sido escrita no log binário. As transações do cliente são garantidas para ter GTIDs que aumentam de forma monótona sem lacunas entre os números gerados. Se uma transação do cliente não for escrita no log binário (por exemplo, porque a transação foi filtrada ou a transação era apenas de leitura), ela não recebe um GTID no servidor de origem.
+GTID assignment distinguishes between client transactions, which are committed on the source, and replicated transactions, which are reproduced on a replica. When a client transaction is committed on the source, it is assigned a new GTID, provided that the transaction was written to the binary log. Client transactions are guaranteed to have monotonically increasing GTIDs without gaps between the generated numbers. If a client transaction is not written to the binary log (for example, because the transaction was filtered out, or the transaction was read-only), it is not assigned a GTID on the server of origin.
 
-As transações replicadas retêm o mesmo GTID que foi atribuído à transação no servidor de origem. O GTID está presente antes de a transação replicada começar a ser executada e é persistido mesmo se a transação replicada não for escrita no log binário na replica ou for filtrada na replica. A tabela de sistema MySQL `mysql.gtid_executed` é usada para preservar os GTIDs atribuídos a todas as transações aplicadas em um servidor MySQL, exceto aquelas que estão armazenadas em um arquivo de log binário atualmente ativo.
+Replicated transactions retain the same GTID that was assigned to the transaction on the server of origin. The GTID is present before the replicated transaction begins to execute, and is persisted even if the replicated transaction is not written to the binary log on the replica, or is filtered out on the replica. The MySQL system table `mysql.gtid_executed` is used to preserve the assigned GTIDs of all the transactions applied on a MySQL server, except those that are stored in a currently active binary log file.
 
-A função de desvio automático para GTIDs significa que uma transação comprometida na fonte pode ser aplicada no máximo uma vez na replica, o que ajuda a garantir a consistência. Uma vez que uma transação com um GTID específico tenha sido comprometida em um servidor específico, qualquer tentativa de executar uma transação subsequente com o mesmo GTID é ignorada por esse servidor. Nenhum erro é gerado e nenhuma declaração na transação é executada.
+The auto-skip function for GTIDs means that a transaction committed on the source can be applied no more than once on the replica, which helps to guarantee consistency. Once a transaction with a given GTID has been committed on a given server, any attempt to execute a subsequent transaction with the same GTID is ignored by that server. No error is raised, and no statement in the transaction is executed.
 
-Se uma transação com um GTID específico já começou a ser executada em um servidor, mas ainda não foi confirmada ou revertida, qualquer tentativa de iniciar uma transação concorrente no servidor com o mesmo GTID é bloqueada. O servidor não começa a executar a transação concorrente nem retorna o controle ao cliente. Uma vez que a primeira tentativa da transação é confirmada ou revertida, as sessões concorrentes que estavam bloqueadas no mesmo GTID podem prosseguir. Se a primeira tentativa for revertida, uma sessão concorrente prossegue para tentar a transação, e quaisquer outras sessões concorrentes que estavam bloqueadas no mesmo GTID permanecem bloqueadas. Se a primeira tentativa for confirmada, todas as sessões concorrentes deixam de ser bloqueadas e ignoram automaticamente todas as instruções da transação.
+If a transaction with a given GTID has started to execute on a server, but has not yet committed or rolled back, any attempt to start a concurrent transaction on the server with the same GTID blocks. The server neither begins to execute the concurrent transaction nor returns control to the client. Once the first attempt at the transaction commits or rolls back, concurrent sessions that were blocking on the same GTID may proceed. If the first attempt rolled back, one concurrent session proceeds to attempt the transaction, and any other concurrent sessions that were blocking on the same GTID remain blocked. If the first attempt committed, all the concurrent sessions stop being blocked, and auto-skip all the statements of the transaction.
 
-Um GTID é representado como um par de coordenadas, separados por um caractere de colon (`:`), como mostrado aqui:
+A GTID is represented as a pair of coordinates, separated by a colon character (`:`), as shown here:
 
 ```sql
 GTID = source_id:transaction_id
 ```
 
-O *`source_id`* identifica o servidor de origem. Normalmente, o `server_uuid` do servidor de origem é usado para esse propósito. O *`transaction_id`* é um número de sequência determinado pela ordem em que a transação foi comprometida no servidor de origem. Por exemplo, a primeira transação a ser comprometida tem `1` como seu *`transaction_id`*, e a décima transação a ser comprometida no mesmo servidor de origem recebe um *`transaction_id`* de `10`. Não é possível que uma transação tenha `0` como número de sequência em um GTID. Por exemplo, a vigésima terceira transação a ser comprometida originalmente no servidor com o UUID `3E11FA47-71CA-11E1-9E33-C80AA9429562` tem este GTID:
+The *`source_id`* identifies the originating server. Normally, the source's [`server_uuid`](replication-options.html#sysvar_server_uuid) is used for this purpose. The *`transaction_id`* is a sequence number determined by the order in which the transaction was committed on the source. For example, the first transaction to be committed has `1` as its *`transaction_id`*, and the tenth transaction to be committed on the same originating server is assigned a *`transaction_id`* of `10`. It is not possible for a transaction to have `0` as a sequence number in a GTID. For example, the twenty-third transaction to be committed originally on the server with the UUID `3E11FA47-71CA-11E1-9E33-C80AA9429562` has this GTID:
 
 ```sql
 3E11FA47-71CA-11E1-9E33-C80AA9429562:23
 ```
 
-O limite superior para os números de sequência dos GTIDs em uma instância do servidor é o número de valores não negativos para um inteiro de 64 bits assinado (2 elevado à potência de 63 menos 1, ou 9.223.372.036.854.775.807). Se o servidor ficar sem GTIDs, ele executa a ação especificada por [`binlog_error_action`](https://pt.wikipedia.org/wiki/Replicação_de_transações#Op%C3%A7%C3%B5es_de_erro_do_binary_log).
+The upper limit for sequence numbers for GTIDs on a server instance is the number of non-negative values for a signed 64-bit integer (2 to the power of 63 minus 1, or 9,223,372,036,854,775,807). If the server runs out of GTIDs, it takes the action specified by [`binlog_error_action`](replication-options-binary-log.html#sysvar_binlog_error_action).
 
-O GTID de uma transação é exibido na saída do **mysqlbinlog**, e é usado para identificar uma transação individual nas tabelas de status de replicação do Schema de Desempenho, por exemplo, `replication_applier_status_by_worker`. O valor armazenado pela variável de sistema `@@GLOBAL.gtid_next` (`@@GLOBAL.gtid_next`) é um único GTID.
+The GTID for a transaction is shown in the output from [**mysqlbinlog**](mysqlbinlog.html "4.6.7 mysqlbinlog — Utility for Processing Binary Log Files"), and it is used to identify an individual transaction in the Performance Schema replication status tables, for example, [`replication_applier_status_by_worker`](performance-schema-replication-applier-status-by-worker-table.html "25.12.11.6 The replication_applier_status_by_worker Table"). The value stored by the [`gtid_next`](replication-options-gtids.html#sysvar_gtid_next) system variable (`@@GLOBAL.gtid_next`) is a single GTID.
 
-##### Kits GTID
+##### GTID Sets
 
-Um conjunto de GTID é um conjunto que compreende um ou mais GTIDs individuais ou intervalos de GTIDs. Conjuntos de GTID são usados em um servidor MySQL de várias maneiras. Por exemplo, os valores armazenados nas variáveis de sistema `gtid_executed` e `gtid_purged` são conjuntos de GTID. As cláusulas `START SLAVE` (`start-slave.html`) `UNTIL SQL_BEFORE_GTIDS` e `UNTIL SQL_AFTER_GTIDS` podem ser usadas para fazer com que um processo de replicação execute transações apenas até o primeiro GTID em um conjunto de GTID, ou pare após o último GTID em um conjunto de GTID. As funções integradas `GTID_SUBSET()` e `GTID_SUBTRACT()` exigem conjuntos de GTID como entrada.
+A GTID set is a set comprising one or more single GTIDs or ranges of GTIDs. GTID sets are used in a MySQL server in several ways. For example, the values stored by the [`gtid_executed`](replication-options-gtids.html#sysvar_gtid_executed) and [`gtid_purged`](replication-options-gtids.html#sysvar_gtid_purged) system variables are GTID sets. The [`START SLAVE`](start-slave.html "13.4.2.5 START SLAVE Statement") clauses `UNTIL SQL_BEFORE_GTIDS` and `UNTIL SQL_AFTER_GTIDS` can be used to make a replica process transactions only up to the first GTID in a GTID set, or stop after the last GTID in a GTID set. The built-in functions [`GTID_SUBSET()`](gtid-functions.html#function_gtid-subset) and [`GTID_SUBTRACT()`](gtid-functions.html#function_gtid-subtract) require GTID sets as input.
 
-Uma série de GTIDs provenientes do mesmo servidor pode ser reduzida a uma única expressão, como mostrado aqui:
+A range of GTIDs originating from the same server can be collapsed into a single expression, as shown here:
 
 ```sql
 3E11FA47-71CA-11E1-9E33-C80AA9429562:1-5
 ```
 
-O exemplo acima representa as primeiras cinco transações originadas no servidor MySQL cujo `server_uuid` é `3E11FA47-71CA-11E1-9E33-C80AA9429562`. Vários GTIDs únicos ou intervalos de GTIDs originados do mesmo servidor também podem ser incluídos em uma única expressão, com os GTIDs ou intervalos separados por colchetes, como no exemplo a seguir:
+The above example represents the first through fifth transactions originating on the MySQL server whose [`server_uuid`](replication-options.html#sysvar_server_uuid) is `3E11FA47-71CA-11E1-9E33-C80AA9429562`. Multiple single GTIDs or ranges of GTIDs originating from the same server can also be included in a single expression, with the GTIDs or ranges separated by colons, as in the following example:
 
 ```sql
 3E11FA47-71CA-11E1-9E33-C80AA9429562:1-3:11:47-49
 ```
 
-Um conjunto de GTID pode incluir qualquer combinação de GTIDs individuais e faixas de GTIDs, e pode incluir GTIDs provenientes de diferentes servidores. Este exemplo mostra o conjunto de GTID armazenado na variável de sistema `[gtid_executed]` (`@@GLOBAL.gtid_executed`) de uma replica que aplicou transações de mais de uma fonte:
+A GTID set can include any combination of single GTIDs and ranges of GTIDs, and it can include GTIDs originating from different servers. This example shows the GTID set stored in the [`gtid_executed`](replication-options-gtids.html#sysvar_gtid_executed) system variable (`@@GLOBAL.gtid_executed`) of a replica that has applied transactions from more than one source:
 
 ```sql
 2174B383-5441-11E8-B90A-C80AA9429562:1-3, 24DA167-0C0C-11E8-8442-00059A3C7B00:1-19
 ```
 
-Quando os conjuntos GTID são retornados a partir de variáveis do servidor, os UUIDs estão em ordem alfabética e os intervalos numéricos são combinados e em ordem crescente.
+When GTID sets are returned from server variables, UUIDs are in alphabetical order, and numeric intervals are merged and in ascending order.
 
-A sintaxe para um conjunto de GTID é a seguinte:
+The syntax for a GTID set is as follows:
 
 ```sql
 gtid_set:
@@ -72,11 +72,11 @@ interval:
     (n >= 1)
 ```
 
-##### Tabela mysql.gtid_executed
+##### mysql.gtid_executed Table
 
-Os GTIDs são armazenados em uma tabela chamada `gtid_executed`, no banco de dados `mysql`. Uma linha nesta tabela contém, para cada GTID ou conjunto de GTIDs que ele representa, o UUID do servidor de origem e os IDs de transação de início e fim do conjunto; para uma linha que referencia apenas um único GTID, esses dois últimos valores são os mesmos.
+GTIDs are stored in a table named `gtid_executed`, in the `mysql` database. A row in this table contains, for each GTID or set of GTIDs that it represents, the UUID of the originating server, and the starting and ending transaction IDs of the set; for a row referencing only a single GTID, these last two values are the same.
 
-A tabela `mysql.gtid_executed` é criada (se ainda não existir) quando o MySQL Server é instalado ou atualizado, usando uma instrução `CREATE TABLE` semelhante à mostrada aqui: CREATE TABLE
+The `mysql.gtid_executed` table is created (if it does not already exist) when MySQL Server is installed or upgraded, using a [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement similar to that shown here:
 
 ```sql
 CREATE TABLE gtid_executed (
@@ -87,25 +87,25 @@ CREATE TABLE gtid_executed (
 )
 ```
 
-Aviso
+Warning
 
-Assim como outras tabelas do sistema MySQL, não tente criar ou modificar essa tabela sozinho.
+As with other MySQL system tables, do not attempt to create or modify this table yourself.
 
-A tabela `mysql.gtid_executed` é fornecida para uso interno pelo servidor MySQL. Ela permite que uma réplica use GTIDs quando o registro binário está desativado na réplica e permite a retenção do estado do GTID quando os registros binários forem perdidos. Observe que a tabela `mysql.gtid_executed` será limpa se você emitir `RESET MASTER`.
+The `mysql.gtid_executed` table is provided for internal use by the MySQL server. It enables a replica to use GTIDs when binary logging is disabled on the replica, and it enables retention of the GTID state when the binary logs have been lost. Note that the `mysql.gtid_executed` table is cleared if you issue [`RESET MASTER`](reset-master.html "13.4.1.2 RESET MASTER Statement").
 
-Os GTIDs são armazenados na tabela `mysql.gtid_executed` apenas quando o `gtid_mode` (opções de replicação de GTIDs) está configurado como `ON` ou `ON_PERMISSIVE`. O ponto em que os GTIDs são armazenados depende se o registro binário está habilitado ou desabilitado:
+GTIDs are stored in the `mysql.gtid_executed` table only when [`gtid_mode`](replication-options-gtids.html#sysvar_gtid_mode) is `ON` or `ON_PERMISSIVE`. The point at which GTIDs are stored depends on whether binary logging is enabled or disabled:
 
-- Se o registro binário estiver desativado (`log_bin` estiver em `OFF`), ou se o `log_slave_updates` estiver desativado, o servidor armazena o GTID pertencente a cada transação junto com a transação no buffer quando a transação é confirmada, e o thread de segundo plano adiciona periodicamente o conteúdo do buffer como uma ou mais entradas à tabela `mysql.gtid_executed`. Além disso, a tabela é comprimida periodicamente a uma taxa configurável pelo usuário; consulte mysql.gtid_executed Table Compression para obter mais informações. Esta situação só pode ocorrer em uma replica onde o registro binário ou o registro de atualização da replica estão desativados. Não se aplica a um servidor de origem de replicação, porque na origem, o registro binário deve estar habilitado para que a replicação ocorra.
+* If binary logging is disabled (`log_bin` is `OFF`), or if [`log_slave_updates`](replication-options-binary-log.html#sysvar_log_slave_updates) is disabled, the server stores the GTID belonging to each transaction together with the transaction in the buffer when the transaction is committed, and the background thread adds the contents of the buffer periodically as one or more entries to the `mysql.gtid_executed` table. In addition, the table is compressed periodically at a user-configurable rate; see [mysql.gtid_executed Table Compression](replication-gtids-concepts.html#replication-gtids-gtid-executed-table-compression "mysql.gtid_executed Table Compression"), for more information. This situation can only apply on a replica where binary logging or replica update logging is disabled. It does not apply on a replication source server, because on the source, binary logging must be enabled for replication to take place.
 
-- Se o registro binário estiver habilitado (`log_bin` estiver definido como `ON`), sempre que o log binário for rotado ou o servidor for desligado, o servidor escreve GTIDs para todas as transações que foram escritas no log binário anterior na tabela `mysql.gtid_executed`. Esta situação se aplica a um servidor de origem de replicação ou a uma réplica onde o registro binário está habilitado.
+* If binary logging is enabled (`log_bin` is `ON`), whenever the binary log is rotated or the server is shut down, the server writes GTIDs for all transactions that were written into the previous binary log into the `mysql.gtid_executed` table. This situation applies on a replication source server, or a replica where binary logging is enabled.
 
-  Em caso de parada inesperada do servidor, o conjunto de GTIDs do arquivo de log binário atual não é salvo na tabela `mysql.gtid_executed`. Esses GTIDs são adicionados à tabela a partir do arquivo de log binário durante a recuperação. A exceção a isso é se o registro binário não estiver habilitado quando o servidor for reiniciado. Nessa situação, o servidor não pode acessar o arquivo de log binário para recuperar os GTIDs, portanto, a replicação não pode ser iniciada.
+  In the event of the server stopping unexpectedly, the set of GTIDs from the current binary log file is not saved in the `mysql.gtid_executed` table. These GTIDs are added to the table from the binary log file during recovery. The exception to this is if binary logging is not enabled when the server is restarted. In this situation, the server cannot access the binary log file to recover the GTIDs, so replication cannot be started.
 
-  Quando o registro binário está habilitado, a tabela `mysql.gtid_executed` não contém um registro completo dos GTIDs para todas as transações executadas. Essas informações são fornecidas pelo valor global da variável de sistema `gtid_executed`. Sempre use `@@GLOBAL.gtid_executed`, que é atualizado após cada commit, para representar o estado do GTID para o servidor MySQL, e não consulte a tabela `mysql.gtid_executed`.
+  When binary logging is enabled, the `mysql.gtid_executed` table does not hold a complete record of the GTIDs for all executed transactions. That information is provided by the global value of the [`gtid_executed`](replication-options-gtids.html#sysvar_gtid_executed) system variable. Always use `@@GLOBAL.gtid_executed`, which is updated after every commit, to represent the GTID state for the MySQL server, and do not query the `mysql.gtid_executed` table.
 
-##### Compressão da tabela mysql.gtid_executed
+##### mysql.gtid_executed Table Compression
 
-Com o passar do tempo, a tabela `mysql.gtid_executed` pode ficar cheia de muitas linhas que se referem a GTIDs individuais que são gerados no mesmo servidor e cujos IDs de transação formam uma faixa, semelhante ao que é mostrado aqui:
+Over the course of time, the `mysql.gtid_executed` table can become filled with many rows referring to individual GTIDs that originate on the same server, and whose transaction IDs make up a range, similar to what is shown here:
 
 ```sql
 +--------------------------------------+----------------+--------------+
@@ -121,7 +121,7 @@ Com o passar do tempo, a tabela `mysql.gtid_executed` pode ficar cheia de muitas
 ...
 ```
 
-Para economizar espaço, o servidor MySQL comprime a tabela `mysql.gtid_executed` periodicamente, substituindo cada conjunto dessas linhas por uma única linha que abrange todo o intervalo dos identificadores de transação, da seguinte forma:
+To save space, the MySQL server compresses the `mysql.gtid_executed` table periodically by replacing each such set of rows with a single row that spans the entire interval of transaction identifiers, like this:
 
 ```sql
 +--------------------------------------+----------------+--------------+
@@ -131,13 +131,13 @@ Para economizar espaço, o servidor MySQL comprime a tabela `mysql.gtid_executed
 ...
 ```
 
-Você pode controlar o número de transações permitidas para passar antes que a tabela seja comprimida, e, assim, a taxa de compressão, definindo a variável de sistema `gtid_executed_compression_period`. O valor padrão dessa variável é 1000, o que significa que, por padrão, a compressão da tabela é realizada após cada 1000 transações. Definir `gtid_executed_compression_period` para 0 impede que a compressão seja realizada, e você deve estar preparado para um aumento potencialmente grande na quantidade de espaço em disco que pode ser necessário para a tabela `gtid_executed` se você fizer isso.
+You can control the number of transactions that are allowed to elapse before the table is compressed, and thus the compression rate, by setting the [`gtid_executed_compression_period`](replication-options-gtids.html#sysvar_gtid_executed_compression_period) system variable. This variable's default value is 1000, meaning that by default, compression of the table is performed after each 1000 transactions. Setting [`gtid_executed_compression_period`](replication-options-gtids.html#sysvar_gtid_executed_compression_period) to 0 prevents the compression from being performed at all, and you should be prepared for a potentially large increase in the amount of disk space that may be required by the `gtid_executed` table if you do this.
 
-Nota
+Note
 
-Quando o registro binário está habilitado, o valor de `gtid_executed_compression_period` *não* é usado e a tabela `mysql.gtid_executed` é comprimida em cada rotação do log binário.
+When binary logging is enabled, the value of [`gtid_executed_compression_period`](replication-options-gtids.html#sysvar_gtid_executed_compression_period) is *not* used and the `mysql.gtid_executed` table is compressed on each binary log rotation.
 
-A compressão da tabela `mysql.gtid_executed` é realizada por um thread de primeiro plano dedicado chamado `thread/sql/compress_gtid_table`. Esse thread não está listado na saída de `SHOW PROCESSLIST`, mas pode ser visualizado como uma linha na tabela `threads`, conforme mostrado aqui:
+Compression of the `mysql.gtid_executed` table is performed by a dedicated foreground thread named `thread/sql/compress_gtid_table`. This thread is not listed in the output of [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement"), but it can be viewed as a row in the [`threads`](performance-schema-threads-table.html "25.12.16.4 The threads Table") table, as shown here:
 
 ```sql
 mysql> SELECT * FROM performance_schema.threads WHERE NAME LIKE '%gtid%'\G
@@ -161,4 +161,4 @@ PROCESSLIST_COMMAND: Daemon
        THREAD_OS_ID: 18677
 ```
 
-O thread `thread/sql/compress_gtid_table` normalmente dorme até que as transações `gtid_executed_compression_period` sejam executadas, e então acorda para realizar a compressão da tabela `mysql.gtid_executed` conforme descrito anteriormente. Ele dorme novamente até que outras transações `gtid_executed_compression_period` ocorram, e então acorda para realizar a compressão novamente, repetindo esse loop indefinidamente. Definir esse valor para 0 quando o registro binário estiver desativado significa que o thread sempre dorme e nunca acorda, o que significa que esse método de compressão explícito não é usado. Em vez disso, a compressão ocorre implicitamente conforme necessário.
+The `thread/sql/compress_gtid_table` thread normally sleeps until [`gtid_executed_compression_period`](replication-options-gtids.html#sysvar_gtid_executed_compression_period) transactions have been executed, then wakes up to perform compression of the `mysql.gtid_executed` table as described previously. It then sleeps until another [`gtid_executed_compression_period`](replication-options-gtids.html#sysvar_gtid_executed_compression_period) transactions have taken place, then wakes up to perform the compression again, repeating this loop indefinitely. Setting this value to 0 when binary logging is disabled means that the thread always sleeps and never wakes up, meaning that this explicit compression method is not used. Instead, compression occurs implicitly as required.

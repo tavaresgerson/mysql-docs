@@ -1,5 +1,5 @@
-### 17.9.2 O Grupo
+### 17.9.2 The Group
 
-No MySQL Group Replication, um conjunto de servidores forma um grupo de replicação. Um grupo tem um nome, que assume a forma de um UUID. O grupo é dinâmico e os servidores podem sair (voluntariamente ou involuntariamente) e se juntar a ele a qualquer momento. O grupo se ajusta sempre que servidores se juntam ou saem.
+In MySQL Group Replication, a set of servers forms a replication group. A group has a name, which takes the form of a UUID. The group is dynamic and servers can leave (either voluntarily or involuntarily) and join it at any time. The group adjusts itself whenever servers join or leave.
 
-Se um servidor se juntar ao grupo, ele se atualiza automaticamente, obtendo o estado faltante de um servidor existente. Esse estado é transferido por meio da replicação MySQL assíncrona. Se um servidor sair do grupo, por exemplo, ele foi desligado para manutenção, os servidores restantes percebem que ele saiu e reconfiguram o grupo automaticamente. O serviço de associação ao grupo descrito em Seção 17.1.3.1, “Associação ao Grupo” impulsiona tudo isso.
+If a server joins the group, it automatically brings itself up to date by fetching the missing state from an existing server. This state is transferred by means of Asynchronous MySQL replication. If a server leaves the group, for instance it was taken down for maintenance, the remaining servers notice that it has left and reconfigure the group automatically. The group membership service described at [Section 17.1.3.1, “Group Membership”](group-replication-group-membership.html "17.1.3.1 Group Membership") powers all of this.

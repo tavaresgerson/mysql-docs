@@ -1,6 +1,6 @@
-#### 17.5.1.3 Encontrar o Primário
+#### 17.5.1.3 Finding the Primary
 
-O exemplo a seguir mostra como descobrir qual servidor é o principal atualmente quando está configurado no modo de único principal.
+The following example shows how to find out which server is currently the primary when deployed in single-primary mode.
 
 ```sql
 mysql> SHOW STATUS LIKE 'group_replication_primary_member';

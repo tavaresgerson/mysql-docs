@@ -1,21 +1,21 @@
-#### 26.4.3.31 As vistas schema_tables_with_full_table_scans e x$schema_tables_with_full_table_scans
+#### 26.4.3.31 The schema_tables_with_full_table_scans and x$schema_tables_with_full_table_scans Views
 
-Essas visualizações mostram quais tabelas estão sendo acessadas com varreduras completas da tabela. Por padrão, as linhas são ordenadas em ordem decrescente de varreduras.
+These views display which tables are being accessed with full table scans. By default, rows are sorted by descending rows scanned.
 
-As views `schema_tables_with_full_table_scans` e `x$schema_tables_with_full_table_scans` possuem as seguintes colunas:
+The `schema_tables_with_full_table_scans` and `x$schema_tables_with_full_table_scans` views have these columns:
 
-- `objeto_esquema`
+* `object_schema`
 
-  O nome do esquema.
+  The schema name.
 
-- `nome_objeto`
+* `object_name`
 
-  O nome da tabela.
+  The table name.
 
-- `rows_full_scanned`
+* `rows_full_scanned`
 
-  O número total de linhas digitalizadas por varreduras completas da tabela.
+  The total number of rows scanned by full scans of the table.
 
-- latência
+* `latency`
 
-  O tempo total de espera para varreduras completas da tabela.
+  The total wait time of full scans of the table.

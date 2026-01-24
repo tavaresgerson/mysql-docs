@@ -1,7 +1,7 @@
-#### B.3.3.7 Problemas com fuso horário
+#### B.3.3.7 Time Zone Problems
 
-Se você tiver um problema com o `SELECT NOW()` retornando valores em UTC e não em sua hora local, você precisa informar ao servidor seu fuso horário atual. O mesmo se aplica se o [`UNIX_TIMESTAMP()`](date-and-time-functions.html#function_unix-timestamp) retornar o valor errado. Isso deve ser feito para o ambiente em que o servidor está rodando (por exemplo, em [**mysqld_safe**](mysqld-safe.html) ou [**mysql.server**](mysql-server.html)). Veja [Seção 4.9, “Variáveis de Ambiente”](environment-variables.html).
+If you have a problem with `SELECT NOW()` returning values in UTC and not your local time, you have to tell the server your current time zone. The same applies if [`UNIX_TIMESTAMP()`](date-and-time-functions.html#function_unix-timestamp) returns the wrong value. This should be done for the environment in which the server runs (for example, in [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script") or [**mysql.server**](mysql-server.html "4.3.3 mysql.server — MySQL Server Startup Script")). See [Section 4.9, “Environment Variables”](environment-variables.html "4.9 Environment Variables").
 
-Você pode definir o fuso horário do servidor com a opção [`--timezone=timezone_name`](mysqld-safe.html#option_mysqld_safe_timezone) no [**mysqld_safe**](mysqld-safe.html). Você também pode defini-lo configurando a variável de ambiente `TZ` antes de iniciar o [**mysqld**](mysqld.html).
+You can set the time zone for the server with the [`--timezone=timezone_name`](mysqld-safe.html#option_mysqld_safe_timezone) option to [**mysqld_safe**](mysqld-safe.html "4.3.2 mysqld_safe — MySQL Server Startup Script"). You can also set it by setting the `TZ` environment variable before you start [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server").
 
-Os valores permitidos para [`--timezone`](mysqld-safe.html#option_mysqld_safe_timezone) ou `TZ` dependem do sistema. Consulte a documentação do seu sistema operacional para ver quais valores são aceitáveis.
+The permissible values for [`--timezone`](mysqld-safe.html#option_mysqld_safe_timezone) or `TZ` are system dependent. Consult your operating system documentation to see what values are acceptable.

@@ -1,34 +1,34 @@
-### 24.4.5 As tabelas INFORMATION_SCHEMA INNODB_CMP e INNODB_CMP_RESET
+### 24.4.5 The INFORMATION_SCHEMA INNODB_CMP and INNODB_CMP_RESET Tables
 
-As tabelas `INNODB_CMP` e `INNODB_CMP_RESET` fornecem informações de status sobre operações relacionadas a tabelas `InnoDB` compactadas.
+The [`INNODB_CMP`](information-schema-innodb-cmp-table.html "24.4.5 The INFORMATION_SCHEMA INNODB_CMP and INNODB_CMP_RESET Tables") and [`INNODB_CMP_RESET`](information-schema-innodb-cmp-table.html "24.4.5 The INFORMATION_SCHEMA INNODB_CMP and INNODB_CMP_RESET Tables") tables provide status information on operations related to [compressed](glossary.html#glos_compression "compression") `InnoDB` tables.
 
-As tabelas `INNODB_CMP` e `INNODB_CMP_RESET` possuem as seguintes colunas:
+The [`INNODB_CMP`](information-schema-innodb-cmp-table.html "24.4.5 The INFORMATION_SCHEMA INNODB_CMP and INNODB_CMP_RESET Tables") and [`INNODB_CMP_RESET`](information-schema-innodb-cmp-table.html "24.4.5 The INFORMATION_SCHEMA INNODB_CMP and INNODB_CMP_RESET Tables") tables have these columns:
 
-- `PAGE_SIZE`
+* `PAGE_SIZE`
 
-  O tamanho da página comprimida em bytes.
+  The compressed page size in bytes.
 
-- `COMPRESS_OPS`
+* `COMPRESS_OPS`
 
-  O número de vezes que uma página de árvore B do tamanho `PAGE_SIZE` foi comprimida. As páginas são comprimidas sempre que uma página vazia é criada ou o espaço para o log de modificação não compactado esgota-se.
+  The number of times a B-tree page of size `PAGE_SIZE` has been compressed. Pages are compressed whenever an empty page is created or the space for the uncompressed modification log runs out.
 
-- `COMPRESS_OPS_OK`
+* `COMPRESS_OPS_OK`
 
-  O número de vezes que uma página de árvore B do tamanho `PAGE_SIZE` foi comprimida com sucesso. Esse contagem nunca deve exceder `COMPRESS_OPS`.
+  The number of times a B-tree page of size `PAGE_SIZE` has been successfully compressed. This count should never exceed `COMPRESS_OPS`.
 
-- `COMPRESS_TIME`
+* `COMPRESS_TIME`
 
-  O tempo total em segundos usado para tentativas de comprimir páginas de árvore B do tamanho `PAGE_SIZE`.
+  The total time in seconds used for attempts to compress B-tree pages of size `PAGE_SIZE`.
 
-- `UNCOMPRESS_OPS`
+* `UNCOMPRESS_OPS`
 
-  O número de vezes que uma página de árvore B do tamanho `PAGE_SIZE` foi descompactada. As páginas de árvore B são descompactadas sempre que a compressão falha ou na primeira vez de acesso, quando a página descompactada não existe no pool de buffer.
+  The number of times a B-tree page of size `PAGE_SIZE` has been uncompressed. B-tree pages are uncompressed whenever compression fails or at first access when the uncompressed page does not exist in the buffer pool.
 
-- `UNCOMPRESS_TIME`
+* `UNCOMPRESS_TIME`
 
-  O tempo total em segundos usado para descompactação das páginas B-tree do tamanho `PAGE_SIZE`.
+  The total time in seconds used for uncompressing B-tree pages of the size `PAGE_SIZE`.
 
-#### Exemplo
+#### Example
 
 ```sql
 mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_CMP\G
@@ -69,12 +69,12 @@ compress_ops_ok: 0
 uncompress_time: 0
 ```
 
-#### Notas
+#### Notes
 
-- Use essas tabelas para medir a eficácia da tabela `InnoDB` compressão no seu banco de dados.
+* Use these tables to measure the effectiveness of `InnoDB` table [compression](glossary.html#glos_compression "compression") in your database.
 
-- Você deve ter o privilégio `PROCESSO` para consultar esta tabela.
+* You must have the [`PROCESS`](privileges-provided.html#priv_process) privilege to query this table.
 
-- Use a tabela `INFORMATION_SCHEMA` `COLUMNS` ou a instrução `SHOW COLUMNS` para visualizar informações adicionais sobre as colunas desta tabela, incluindo tipos de dados e valores padrão.
+* Use the `INFORMATION_SCHEMA` [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") table or the [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") statement to view additional information about the columns of this table, including data types and default values.
 
-- Para informações sobre uso, consulte Seção 14.9.1.4, “Monitoramento da Compressão de Tabelas InnoDB em Tempo Real” e Seção 14.16.1.3, “Uso das Tabelas do Esquema de Informações de Compressão”. Para informações gerais sobre a compressão de tabelas `InnoDB`, consulte Seção 14.9, “Compressão de Tabelas e Páginas InnoDB”.
+* For usage information, see [Section 14.9.1.4, “Monitoring InnoDB Table Compression at Runtime”](innodb-compression-tuning-monitoring.html "14.9.1.4 Monitoring InnoDB Table Compression at Runtime") and [Section 14.16.1.3, “Using the Compression Information Schema Tables”](innodb-information-schema-examples-compression-sect.html "14.16.1.3 Using the Compression Information Schema Tables"). For general information about `InnoDB` table compression, see [Section 14.9, “InnoDB Table and Page Compression”](innodb-compression.html "14.9 InnoDB Table and Page Compression").

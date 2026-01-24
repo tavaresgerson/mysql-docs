@@ -1,9 +1,9 @@
-### 23.3.2 Metadados de gatilho
+### 23.3.2 Trigger Metadata
 
-Para obter metadados sobre gatilhos:
+To obtain metadata about triggers:
 
-- Consulte a tabela `TRIGGERS` do banco de dados `INFORMATION_SCHEMA`. Veja a Seção 24.3.29, “A tabela TRIGGERS do INFORMATION_SCHEMA”.
+* Query the `TRIGGERS` table of the `INFORMATION_SCHEMA` database. See Section 24.3.29, “The INFORMATION_SCHEMA TRIGGERS Table”.
 
-- Use a instrução `SHOW CREATE TRIGGER`. Veja a Seção 13.7.5.11, “Instrução SHOW CREATE TRIGGER”.
+* Use the `SHOW CREATE TRIGGER` statement. See Section 13.7.5.11, “SHOW CREATE TRIGGER Statement”.
 
-- Use a instrução `SHOW TRIGGERS`. Veja a Seção 13.7.5.38, “Instrução SHOW TRIGGERS”.
+* Use the `SHOW TRIGGERS` statement. See Section 13.7.5.38, “SHOW TRIGGERS Statement”.

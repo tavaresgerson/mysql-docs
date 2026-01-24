@@ -1,58 +1,54 @@
-## 25.19 Usar o Schema de Desempenho para diagnosticar problemas
+## 25.19 Using the Performance Schema to Diagnose Problems
 
-25.19.1 Profilação de consultas usando o Gerenciamento de desempenho
+[25.19.1 Query Profiling Using Performance Schema](performance-schema-query-profiling.html)
 
-O Schema de Desempenho é uma ferramenta que ajuda um DBA a ajustar o desempenho ao realizar medições reais em vez de "suposições casuais". Esta seção demonstra algumas maneiras de usar o Schema de Desempenho para esse propósito. A discussão aqui depende do uso da filtragem de eventos, que é descrita em Seção 25.4.2, "Filtragem de Eventos do Schema de Desempenho".
+The Performance Schema is a tool to help a DBA do performance tuning by taking real measurements instead of “wild guesses.” This section demonstrates some ways to use the Performance Schema for this purpose. The discussion here relies on the use of event filtering, which is described in [Section 25.4.2, “Performance Schema Event Filtering”](performance-schema-filtering.html "25.4.2 Performance Schema Event Filtering").
 
-O exemplo a seguir apresenta uma metodologia que você pode usar para analisar um problema recorrente, como investigar um gargalo de desempenho. Para começar, você deve ter um caso de uso recorrente em que o desempenho é considerado "muito lento" e precisa ser otimizado, e você deve habilitar toda a instrumentação (sem pré-filtragem).
+The following example provides one methodology that you can use to analyze a repeatable problem, such as investigating a performance bottleneck. To begin, you should have a repeatable use case where performance is deemed “too slow” and needs optimization, and you should enable all instrumentation (no pre-filtering at all).
 
-1. Execute o caso de uso.
+1. Run the use case.
+2. Using the Performance Schema tables, analyze the root cause of the performance problem. This analysis relies heavily on post-filtering.
 
-2. Utilize as tabelas do Gerenciamento de Desempenho para analisar a causa raiz do problema de desempenho. Essa análise depende muito do pós-filtragem.
+3. For problem areas that are ruled out, disable the corresponding instruments. For example, if analysis shows that the issue is not related to file I/O in a particular storage engine, disable the file I/O instruments for that engine. Then truncate the history and summary tables to remove previously collected events.
 
-3. Para áreas com problemas que foram descartados, desative os instrumentos correspondentes. Por exemplo, se a análise mostrar que o problema não está relacionado ao I/O de arquivos em um determinado mecanismo de armazenamento, desative os instrumentos de I/O de arquivos para esse mecanismo. Em seguida, trunque as tabelas de histórico e resumo para remover eventos coletados anteriormente.
+4. Repeat the process at step 1.
 
-4. Repita o processo no passo 1.
+   At each iteration, the Performance Schema output, particularly the [`events_waits_history_long`](performance-schema-events-waits-history-long-table.html "25.12.4.3 The events_waits_history_long Table") table, contains less and less “noise” caused by nonsignificant instruments, and given that this table has a fixed size, contains more and more data relevant to the analysis of the problem at hand.
 
-   Em cada iteração, a saída do Schema de Desempenho, particularmente a tabela `events_waits_history_long`, contém cada vez menos "ruído" causado por instrumentos não significativos, e, dado que essa tabela tem um tamanho fixo, contém cada vez mais dados relevantes para a análise do problema em questão.
+   At each iteration, investigation should lead closer and closer to the root cause of the problem, as the signal-to-noise ratio improves, making analysis easier.
 
-   Em cada iteração, a investigação deve se aproximar cada vez mais da causa raiz do problema, à medida que a relação sinal/ruído melhora, facilitando a análise.
+5. Once a root cause of performance bottleneck is identified, take the appropriate corrective action, such as:
 
-5. Depois de identificar a causa raiz do gargalo de desempenho, tome a ação corretiva apropriada, como:
+   * Tune the server parameters (cache sizes, memory, and so forth).
 
-   - Ajuste os parâmetros do servidor (tamanhos de cache, memória, etc.).
+   * Tune a query by writing it differently,
+   * Tune the database schema (tables, indexes, and so forth).
+   * Tune the code (this applies to storage engine or server developers only).
 
-   - Ajuste uma consulta escrevendo-a de maneira diferente.
+6. Start again at step 1, to see the effects of the changes on performance.
 
-   - Ajuste o esquema do banco de dados (tabelas, índices, etc.).
+The `mutex_instances.LOCKED_BY_THREAD_ID` and `rwlock_instances.WRITE_LOCKED_BY_THREAD_ID` columns are extremely important for investigating performance bottlenecks or deadlocks. This is made possible by Performance Schema instrumentation as follows:
 
-   - Ajuste o código (isso se aplica apenas aos desenvolvedores do mecanismo de armazenamento ou do servidor).
-
-6. Comece novamente no passo 1, para ver os efeitos das alterações no desempenho.
-
-As colunas `mutex_instances.LOCKED_BY_THREAD_ID` e `rwlock_instances.WRITE_LOCKED_BY_THREAD_ID` são extremamente importantes para investigar gargalos de desempenho ou deadlocks. Isso é possível graças à instrumentação do Performance Schema, conforme descrito a seguir:
-
-1. Suponha que o thread 1 esteja preso, esperando por um mutex.
-
-2. Você pode determinar o que o thread está esperando:
+1. Suppose that thread 1 is stuck waiting for a mutex.
+2. You can determine what the thread is waiting for:
 
    ```sql
    SELECT * FROM performance_schema.events_waits_current
    WHERE THREAD_ID = thread_1;
    ```
 
-   Diga que o resultado da consulta identifica que o thread está aguardando o mutex A, encontrado em `events_waits_current.OBJECT_INSTANCE_BEGIN`.
+   Say the query result identifies that the thread is waiting for mutex A, found in `events_waits_current.OBJECT_INSTANCE_BEGIN`.
 
-3. Você pode determinar qual thread está segurando o mutex A:
+3. You can determine which thread is holding mutex A:
 
    ```sql
    SELECT * FROM performance_schema.mutex_instances
    WHERE OBJECT_INSTANCE_BEGIN = mutex_A;
    ```
 
-   Diga que o resultado da consulta identifica que é o thread 2 que está segurando o mutex A, conforme encontrado em `mutex_instances.LOCKED_BY_THREAD_ID`.
+   Say the query result identifies that it is thread 2 holding mutex A, as found in `mutex_instances.LOCKED_BY_THREAD_ID`.
 
-4. Você pode ver o que o thread 2 está fazendo:
+4. You can see what thread 2 is doing:
 
    ```sql
    SELECT * FROM performance_schema.events_waits_current

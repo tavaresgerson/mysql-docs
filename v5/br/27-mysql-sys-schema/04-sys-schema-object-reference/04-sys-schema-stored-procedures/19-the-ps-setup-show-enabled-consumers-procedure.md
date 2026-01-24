@@ -1,12 +1,12 @@
-#### 26.4.4.19 O procedimento ps_setup_show_enabled_consumers()
+#### 26.4.4.19 The ps_setup_show_enabled_consumers() Procedure
 
-Exibe todos os consumidores do Schema de Desempenho atualmente habilitados.
+Displays all currently enabled Performance Schema consumers.
 
-##### Parâmetros
+##### Parameters
 
-Nenhum.
+None.
 
-##### Exemplo
+##### Example
 
 ```sql
 mysql> CALL sys.ps_setup_show_enabled_consumers();

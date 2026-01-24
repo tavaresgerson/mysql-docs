@@ -1,6 +1,6 @@
-#### 21.4.3.3 Strings de conexão do cluster NDB
+#### 21.4.3.3 NDB Cluster Connection Strings
 
-Com exceção do servidor de gerenciamento do NDB Cluster (**ndb_mgmd**), cada nó que faz parte de um NDB Cluster requer uma string de conexão que aponta para a localização do servidor de gerenciamento. Essa string de conexão é usada para estabelecer uma conexão com o servidor de gerenciamento, bem como para realizar outras tarefas, dependendo do papel do nó no cluster. A sintaxe para uma string de conexão é a seguinte:
+With the exception of the NDB Cluster management server ([**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")), each node that is part of an NDB Cluster requires a connection string that points to the management server's location. This connection string is used in establishing a connection to the management server as well as in performing other tasks depending on the node's role in the cluster. The syntax for a connection string is as follows:
 
 ```sql
 [nodeid=node_id, ]host-definition[, host-definition[, ...
@@ -9,18 +9,18 @@ host-definition:
     host_name[:port_number]
 ```
 
-`node_id` é um número inteiro maior ou igual a 1 que identifica um nó em `config.ini`. *`host_name`* é uma string que representa um nome de host válido da Internet ou um endereço IP. *`port_number`* é um número inteiro que se refere a um número de porta TCP/IP.
+`node_id` is an integer greater than or equal to 1 which identifies a node in `config.ini`. *`host_name`* is a string representing a valid Internet host name or IP address. *`port_number`* is an integer referring to a TCP/IP port number.
 
 ```sql
 example 1 (long):    "nodeid=2,myhost1:1100,myhost2:1100,198.51.100.3:1200"
 example 2 (short):   "myhost1"
 ```
 
-`localhost:1186` é usado como o valor padrão da string de conexão se nenhuma for fornecida. Se *`port_num`* for omitido da string de conexão, a porta padrão é 1186. Esta porta deve estar sempre disponível na rede, pois foi atribuída pela IANA para esse propósito (consulte <http://www.iana.org/assignments/port-numbers> para detalhes).
+`localhost:1186` is used as the default connection string value if none is provided. If *`port_num`* is omitted from the connection string, the default port is 1186. This port should always be available on the network because it has been assigned by IANA for this purpose (see <http://www.iana.org/assignments/port-numbers> for details).
 
-Ao listar várias definições de host, é possível designar vários servidores de gerenciamento redundantes. Um nó de dados ou API de um NDB Cluster tenta entrar em contato com servidores de gerenciamento sucessivos em cada host na ordem especificada, até que uma conexão bem-sucedida seja estabelecida.
+By listing multiple host definitions, it is possible to designate several redundant management servers. An NDB Cluster data or API node attempts to contact successive management servers on each host in the order specified, until a successful connection has been established.
 
-Também é possível especificar em uma cadeia de conexão um ou mais endereços de vinculação a serem usados por nós que possuem múltiplas interfaces de rede para se conectarem a servidores de gerenciamento. Um endereço de vinculação consiste em um nome de domínio ou endereço de rede e um número de porta opcional. Esta sintaxe aprimorada para cadeias de conexão é mostrada aqui:
+It is also possible to specify in a connection string one or more bind addresses to be used by nodes having multiple network interfaces for connecting to management servers. A bind address consists of a hostname or network address and an optional port number. This enhanced syntax for connection strings is shown here:
 
 ```sql
 [nodeid=node_id, ]
@@ -33,38 +33,38 @@ host-definition:
     host_name[:port_number]
 ```
 
-Se um endereço de vinculação único for usado na string de conexão *antes* de especificar quaisquer hosts de gerenciamento, esse endereço será usado como padrão para se conectar a qualquer um deles (a menos que seja sobrescrito para um servidor de gerenciamento específico; veja mais adiante nesta seção para um exemplo). Por exemplo, a seguinte string de conexão faz com que o nó use `198.51.100.242`, independentemente do servidor de gerenciamento ao qual ele se conecta:
+If a single bind address is used in the connection string *prior* to specifying any management hosts, then this address is used as the default for connecting to any of them (unless overridden for a given management server; see later in this section for an example). For example, the following connection string causes the node to use `198.51.100.242` regardless of the management server to which it connects:
 
 ```sql
 bind-address=198.51.100.242, poseidon:1186, perch:1186
 ```
 
-Se um endereço de vinculação for especificado *depois* de uma definição de host de gerenciamento, ele será usado apenas para conectar-se a esse nó de gerenciamento. Considere a seguinte string de conexão:
+If a bind address is specified *following* a management host definition, then it is used only for connecting to that management node. Consider the following connection string:
 
 ```sql
 poseidon:1186;bind-address=localhost, perch:1186;bind-address=198.51.100.242
 ```
 
-Neste caso, o nó usa `localhost` para se conectar ao servidor de gerenciamento que está em execução no host chamado `poseidon` e `198.51.100.242` para se conectar ao servidor de gerenciamento que está em execução no host chamado `perch`.
+In this case, the node uses `localhost` to connect to the management server running on the host named `poseidon` and `198.51.100.242` to connect to the management server running on the host named `perch`.
 
-Você pode especificar um endereço de vinculação padrão e, em seguida, substituir esse padrão para um ou mais hosts de gerenciamento específicos. No exemplo a seguir, `localhost` é usado para se conectar ao servidor de gerenciamento que está em execução no host `poseidon`; como `198.51.100.242` é especificado primeiro (antes de quaisquer definições de servidores de gerenciamento), ele é o endereço de vinculação padrão e, portanto, é usado para se conectar aos servidores de gerenciamento nos hosts `perch` e `orca`:
+You can specify a default bind address and then override this default for one or more specific management hosts. In the following example, `localhost` is used for connecting to the management server running on host `poseidon`; since `198.51.100.242` is specified first (before any management server definitions), it is the default bind address and so is used for connecting to the management servers on hosts `perch` and `orca`:
 
 ```sql
 bind-address=198.51.100.242,poseidon:1186;bind-address=localhost,perch:1186,orca:2200
 ```
 
-Há várias maneiras diferentes de especificar a cadeia de conexão:
+There are a number of different ways to specify the connection string:
 
-- Cada executável tem sua própria opção de linha de comando que permite especificar o servidor de gerenciamento no momento do início. (Consulte a documentação do respectivo executável.)
+* Each executable has its own command-line option which enables specifying the management server at startup. (See the documentation for the respective executable.)
 
-- É também possível definir a string de conexão para todos os nós do cluster de uma vez, colocando-a em uma seção `[mysql_cluster]` no arquivo `my.cnf` do servidor de gerenciamento.
+* It is also possible to set the connection string for all nodes in the cluster at once by placing it in a `[mysql_cluster]` section in the management server's `my.cnf` file.
 
-- Para compatibilidade com versões anteriores, há duas outras opções disponíveis, usando a mesma sintaxe:
+* For backward compatibility, two other options are available, using the same syntax:
 
-  1. Defina a variável de ambiente `NDB_CONNECTSTRING` para conter a string de conexão.
+  1. Set the `NDB_CONNECTSTRING` environment variable to contain the connection string.
 
-  2. Escreva a string de conexão para cada executável em um arquivo de texto chamado `Ndb.cfg` e coloque esse arquivo no diretório de inicialização do executável.
+  2. Write the connection string for each executable into a text file named `Ndb.cfg` and place this file in the executable's startup directory.
 
-  Esses devem ser considerados obsoletos e não devem ser usados em novas instalações.
+  These should be considered deprecated, and not used for new installations.
 
-O método recomendado para especificar a cadeia de conexão é defini-la na linha de comando ou no arquivo `my.cnf` para cada executável.
+The recommended method for specifying the connection string is to set it on the command line or in the `my.cnf` file for each executable.

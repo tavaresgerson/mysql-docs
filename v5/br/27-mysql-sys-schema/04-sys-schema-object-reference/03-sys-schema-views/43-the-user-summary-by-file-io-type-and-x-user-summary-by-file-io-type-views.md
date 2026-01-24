@@ -1,25 +1,25 @@
-#### 26.4.3.43 As visualizações user_summary_by_file_io_type e x$user_summary_by_file_io_type do usuário
+#### 26.4.3.43 The user_summary_by_file_io_type and x$user_summary_by_file_io_type Views
 
-Essas visualizações resumem o acesso e a gravação de arquivos, agrupados por usuário e tipo de evento. Por padrão, as linhas são ordenadas por usuário e por latência total decrescente.
+These views summarize file I/O, grouped by user and event type. By default, rows are sorted by user and descending total latency.
 
-As views `user_summary_by_file_io_type` e `x$user_summary_by_file_io_type` possuem essas colunas:
+The `user_summary_by_file_io_type` and `x$user_summary_by_file_io_type` views have these columns:
 
-- `usuário`
+* `user`
 
-  O nome de usuário do cliente. As linhas para as quais a coluna `USER` na tabela subjacente do Schema de Desempenho é `NULL` são assumidas como pertencentes a threads de segundo plano e são relatadas com o nome do host `background`.
+  The client user name. Rows for which the `USER` column in the underlying Performance Schema table is `NULL` are assumed to be for background threads and are reported with a host name of `background`.
 
-- `nome_do_evento`
+* `event_name`
 
-  O nome do evento de E/S do arquivo.
+  The file I/O event name.
 
-- `total`
+* `total`
 
-  O número total de ocorrências do evento de E/S de arquivo para o usuário.
+  The total number of occurrences of the file I/O event for the user.
 
-- latência
+* `latency`
 
-  O tempo total de espera de ocorrências temporizadas do evento de E/S do arquivo para o usuário.
+  The total wait time of timed occurrences of the file I/O event for the user.
 
-- `max_latency`
+* `max_latency`
 
-  O tempo de espera máximo de uma única ocorrência temporizada do evento de E/S do arquivo para o usuário.
+  The maximum single wait time of timed occurrences of the file I/O event for the user.

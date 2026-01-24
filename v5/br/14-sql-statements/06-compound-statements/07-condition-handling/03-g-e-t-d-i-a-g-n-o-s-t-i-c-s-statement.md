@@ -1,4 +1,4 @@
-#### 13.6.7.3. Declaração de DIAGNÓSTICO
+#### 13.6.7.3 GET DIAGNOSTICS Statement
 
 ```sql
 GET [CURRENT | STACKED] DIAGNOSTICS {
@@ -40,13 +40,13 @@ condition_number, target:
     (see following discussion)
 ```
 
-As instruções SQL produzem informações de diagnóstico que preenchem a área de diagnóstico. A instrução `GET DIAGNOSTICS` permite que as aplicações inspecionem essas informações. (Você também pode usar `SHOW WARNINGS` ou `SHOW ERRORS` para ver condições ou erros.)
+SQL statements produce diagnostic information that populates the diagnostics area. The [`GET DIAGNOSTICS`](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement") statement enables applications to inspect this information. (You can also use [`SHOW WARNINGS`](show-warnings.html "13.7.5.40 SHOW WARNINGS Statement") or [`SHOW ERRORS`](show-errors.html "13.7.5.17 SHOW ERRORS Statement") to see conditions or errors.)
 
-Não são necessários privilégios especiais para executar `GET DIAGNOSTICS`.
+No special privileges are required to execute [`GET DIAGNOSTICS`](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement").
 
-A palavra-chave `CURRENT` significa recuperar informações da área de diagnóstico atual. A palavra-chave `STACKED` significa recuperar informações da segunda área de diagnóstico, que está disponível apenas se o contexto atual for um manipulador de condição. Se nenhuma das palavras-chave for fornecida, o padrão é usar a área de diagnóstico atual.
+The keyword `CURRENT` means to retrieve information from the current diagnostics area. The keyword `STACKED` means to retrieve information from the second diagnostics area, which is available only if the current context is a condition handler. If neither keyword is given, the default is to use the current diagnostics area.
 
-A instrução `GET DIAGNOSTICS` é tipicamente usada em um manipulador dentro de um programa armazenado. É uma extensão do MySQL que `GET [CURRENT] DIAGNOSTICS` é permitido fora do contexto do manipulador para verificar a execução de qualquer instrução SQL. Por exemplo, se você invocar o programa cliente **mysql**, você pode inserir essas instruções na prompt:
+The [`GET DIAGNOSTICS`](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement") statement is typically used in a handler within a stored program. It is a MySQL extension that [`GET [CURRENT] DIAGNOSTICS`](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement") is permitted outside handler context to check the execution of any SQL statement. For example, if you invoke the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client program, you can enter these statements at the prompt:
 
 ```sql
 mysql> DROP TABLE test.no_such_table;
@@ -61,15 +61,15 @@ mysql> SELECT @p1, @p2;
 +-------+------------------------------------+
 ```
 
-Esta extensão só se aplica à área de diagnóstico atual. Não se aplica à segunda área de diagnóstico, pois o comando `GET STACKED DIAGNOSTICS` só é permitido se o contexto atual for um manipulador de condição. Se não for esse o caso, ocorrerá um erro `GET STACKED DIAGNOSTICS when handler not active`.
+This extension applies only to the current diagnostics area. It does not apply to the second diagnostics area because `GET STACKED DIAGNOSTICS` is permitted only if the current context is a condition handler. If that is not the case, a `GET STACKED DIAGNOSTICS when handler not active` error occurs.
 
-Para uma descrição da área de diagnóstico, consulte Seção 13.6.7.7, “A Área de Diagnóstico do MySQL”. Em resumo, ela contém dois tipos de informações:
+For a description of the diagnostics area, see [Section 13.6.7.7, “The MySQL Diagnostics Area”](diagnostics-area.html "13.6.7.7 The MySQL Diagnostics Area"). Briefly, it contains two kinds of information:
 
-- Informações de declaração, como o número de condições que ocorreram ou o número de linhas afetadas.
+* Statement information, such as the number of conditions that occurred or the affected-rows count.
 
-- Informações sobre a condição, como o código e a mensagem de erro. Se uma declaração gerar várias condições, esta parte da área de diagnóstico tem uma área de condição para cada uma. Se uma declaração não gerar nenhuma condição, esta parte da área de diagnóstico está vazia.
+* Condition information, such as the error code and message. If a statement raises multiple conditions, this part of the diagnostics area has a condition area for each one. If a statement raises no conditions, this part of the diagnostics area is empty.
 
-Para uma declaração que produz três condições, a área de diagnóstico contém informações sobre a declaração e as condições, como esta:
+For a statement that produces three conditions, the diagnostics area contains statement and condition information like this:
 
 ```sql
 Statement information:
@@ -90,28 +90,28 @@ Condition area list:
     ... other condition information items ...
 ```
 
-`GET DIAGNOSTICS` pode obter informações de declaração ou condição, mas não ambas na mesma declaração:
+[`GET DIAGNOSTICS`](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement") can obtain either statement or condition information, but not both in the same statement:
 
-- Para obter informações de declaração, retorne os itens desejados da declaração nas variáveis de destino. Esta instância de `GET DIAGNOSTICS` atribui o número de condições disponíveis e o número de linhas afetadas às variáveis do usuário `@p1` e `@p2`:
+* To obtain statement information, retrieve the desired statement items into target variables. This instance of [`GET DIAGNOSTICS`](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement") assigns the number of available conditions and the rows-affected count to the user variables `@p1` and `@p2`:
 
   ```sql
   GET DIAGNOSTICS @p1 = NUMBER, @p2 = ROW_COUNT;
   ```
 
-- Para obter informações sobre a condição, especifique o número da condição e retorne os itens desejados da condição nas variáveis de destino. Esta instância de `GET DIAGNOSTICS` atribui o valor SQLSTATE e a mensagem de erro às variáveis do usuário `@p3` e `@p4`:
+* To obtain condition information, specify the condition number and retrieve the desired condition items into target variables. This instance of [`GET DIAGNOSTICS`](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement") assigns the SQLSTATE value and error message to the user variables `@p3` and `@p4`:
 
   ```sql
   GET DIAGNOSTICS CONDITION 1
     @p3 = RETURNED_SQLSTATE, @p4 = MESSAGE_TEXT;
   ```
 
-A lista de recuperação especifica uma ou mais atribuições `target = item_name`, separadas por vírgulas. Cada atribuição nomeia uma variável de destino e um *`item_de_informação_da_declaração`* ou *`item_de_informação_da_condição`*, dependendo se a declaração recupera informações de declaração ou condição.
+The retrieval list specifies one or more `target = item_name` assignments, separated by commas. Each assignment names a target variable and either a *`statement_information_item_name`* or *`condition_information_item_name`* designator, depending on whether the statement retrieves statement or condition information.
 
-Os identificadores válidos *`target`* para armazenar informações de itens podem ser parâmetros de procedimentos ou funções armazenados, variáveis locais de programas armazenados declaradas com `DECLARE` ou variáveis definidas pelo usuário.
+Valid *`target`* designators for storing item information can be stored procedure or function parameters, stored program local variables declared with [`DECLARE`](declare.html "13.6.3 DECLARE Statement"), or user-defined variables.
 
-Os identificadores válidos de *`condition_number`* podem ser parâmetros de procedimentos ou funções armazenados, variáveis locais de programas armazenados declaradas com `DECLARE`, variáveis definidas pelo usuário, variáveis de sistema ou literais. Um literal de caractere pode incluir um *`_charset`* introducer. Um aviso ocorre se o número de condição não estiver no intervalo de 1 a número de áreas de condição que têm informações. Neste caso, o aviso é adicionado à área de diagnóstico sem ser apagado.
+Valid *`condition_number`* designators can be stored procedure or function parameters, stored program local variables declared with [`DECLARE`](declare.html "13.6.3 DECLARE Statement"), user-defined variables, system variables, or literals. A character literal may include a *`_charset`* introducer. A warning occurs if the condition number is not in the range from 1 to the number of condition areas that have information. In this case, the warning is added to the diagnostics area without clearing it.
 
-Quando uma condição ocorre, o MySQL não preenche todos os itens de condição reconhecidos por `GET DIAGNOSTICS`. Por exemplo:
+When a condition occurs, MySQL does not populate all condition items recognized by [`GET DIAGNOSTICS`](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement"). For example:
 
 ```sql
 mysql> GET DIAGNOSTICS CONDITION 1
@@ -124,22 +124,22 @@ mysql> SELECT @p5, @p6;
 +------+------+
 ```
 
-No SQL padrão, se houver várias condições, a primeira condição está relacionada ao valor `SQLSTATE` retornado para a instrução SQL anterior. No MySQL, isso não é garantido. Para obter o erro principal, você não pode fazer isso:
+In standard SQL, if there are multiple conditions, the first condition relates to the `SQLSTATE` value returned for the previous SQL statement. In MySQL, this is not guaranteed. To get the main error, you cannot do this:
 
 ```sql
 GET DIAGNOSTICS CONDITION 1 @errno = MYSQL_ERRNO;
 ```
 
-Em vez disso, obtenha primeiro o número de condições e, em seguida, use-o para especificar qual número de condição deve ser inspecionado:
+Instead, retrieve the condition count first, then use it to specify which condition number to inspect:
 
 ```sql
 GET DIAGNOSTICS @cno = NUMBER;
 GET DIAGNOSTICS CONDITION @cno @errno = MYSQL_ERRNO;
 ```
 
-Para obter informações sobre os itens de informações de declaração e condição permitidos, e quais são preenchidos quando uma condição ocorre, consulte Itens de Informações da Área de Diagnóstico.
+For information about permissible statement and condition information items, and which ones are populated when a condition occurs, see [Diagnostics Area Information Items](diagnostics-area.html#diagnostics-area-information-items "Diagnostics Area Information Items").
 
-Aqui está um exemplo que usa `GET DIAGNOSTICS` e um manipulador de exceções no contexto de um procedimento armazenado para avaliar o resultado de uma operação de inserção. Se a inserção foi bem-sucedida, o procedimento usa `GET DIAGNOSTICS` para obter o número de linhas afetadas. Isso mostra que você pode usar `GET DIAGNOSTICS` várias vezes para recuperar informações sobre uma instrução, desde que a área de diagnóstico atual não tenha sido limpa.
+Here is an example that uses [`GET DIAGNOSTICS`](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement") and an exception handler in stored procedure context to assess the outcome of an insert operation. If the insert was successful, the procedure uses [`GET DIAGNOSTICS`](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement") to get the rows-affected count. This shows that you can use [`GET DIAGNOSTICS`](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement") multiple times to retrieve information about a statement as long as the current diagnostics area has not been cleared.
 
 ```sql
 CREATE PROCEDURE do_insert(value INT)
@@ -170,7 +170,7 @@ BEGIN
 END;
 ```
 
-Suponha que `t1.int_col` seja uma coluna inteira declarada como `NOT NULL`. O procedimento produz esses resultados quando invocado para inserir valores `NULL` e `NOT NULL`, respectivamente:
+Suppose that `t1.int_col` is an integer column that is declared as `NOT NULL`. The procedure produces these results when invoked to insert non-`NULL` and `NULL` values, respectively:
 
 ```sql
 mysql> CALL do_insert(1);
@@ -188,21 +188,21 @@ mysql> CALL do_insert(NULL);
 +-------------------------------------------------------------------------+
 ```
 
-Quando um manipulador de condição é ativado, ocorre um empurrão para a pilha de área de diagnóstico:
+When a condition handler activates, a push to the diagnostics area stack occurs:
 
-- A primeira (atual) área de diagnóstico se torna a segunda (em pilha) área de diagnóstico e uma nova área de diagnóstico atual é criada como uma cópia dela.
+* The first (current) diagnostics area becomes the second (stacked) diagnostics area and a new current diagnostics area is created as a copy of it.
 
-- `GET [CURRENT] DIAGNOSTICS` e `GET STACKED DIAGNOSTICS` podem ser usados dentro do manipulador para acessar o conteúdo das áreas de diagnóstico atuais e empilhadas.
+* [`GET [CURRENT] DIAGNOSTICS`](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement") and [`GET STACKED DIAGNOSTICS`](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement") can be used within the handler to access the contents of the current and stacked diagnostics areas.
 
-- Inicialmente, ambas as áreas de diagnóstico retornam o mesmo resultado, portanto, é possível obter informações da área de diagnóstico atual sobre a condição que ativou o manipulador, *desde que* você não execute nenhuma instrução dentro do manipulador que mude sua área de diagnóstico atual.
+* Initially, both diagnostics areas return the same result, so it is possible to get information from the current diagnostics area about the condition that activated the handler, *as long as* you execute no statements within the handler that change its current diagnostics area.
 
-- No entanto, as declarações executadas dentro do manipulador podem modificar a área de diagnóstico atual, apagando e definindo seu conteúdo de acordo com as regras normais (veja Como a Área de Diagnóstico é Limpada e Populada).
+* However, statements executing within the handler can modify the current diagnostics area, clearing and setting its contents according to the normal rules (see [How the Diagnostics Area is Cleared and Populated](diagnostics-area.html#diagnostics-area-populating "How the Diagnostics Area is Cleared and Populated")).
 
-  Uma maneira mais confiável de obter informações sobre a condição de ativação do manipulador é usar a área de diagnósticos empilhada, que não pode ser modificada por instruções que executam dentro do manipulador, exceto pelo `RESIGNAL`. Para informações sobre quando a área de diagnósticos atual é definida e limpa, consulte Seção 13.6.7.7, “A Área de Diagnósticos do MySQL”.
+  A more reliable way to obtain information about the handler-activating condition is to use the stacked diagnostics area, which cannot be modified by statements executing within the handler except [`RESIGNAL`](resignal.html "13.6.7.4 RESIGNAL Statement"). For information about when the current diagnostics area is set and cleared, see [Section 13.6.7.7, “The MySQL Diagnostics Area”](diagnostics-area.html "13.6.7.7 The MySQL Diagnostics Area").
 
-O próximo exemplo mostra como o comando `GET STACKED DIAGNOSTICS` pode ser usado dentro de um manipulador para obter informações sobre a exceção tratada, mesmo após a área de diagnóstico atual ter sido modificada por instruções do manipulador.
+The next example shows how `GET STACKED DIAGNOSTICS` can be used within a handler to obtain information about the handled exception, even after the current diagnostics area has been modified by handler statements.
 
-Dentro de um procedimento armazenado `p()`, tentamos inserir dois valores em uma tabela que contém uma coluna `TEXT NOT NULL`. O primeiro valor é uma string que não é `NULL` e o segundo é `NULL`. A coluna proíbe valores `NULL`, então o primeiro inserção tem sucesso, mas a segunda causa uma exceção. O procedimento inclui um manipulador de exceção que mapeia tentativas de inserir `NULL` em inserções da string vazia:
+Within a stored procedure `p()`, we attempt to insert two values into a table that contains a `TEXT NOT NULL` column. The first value is a non-`NULL` string and the second is `NULL`. The column prohibits `NULL` values, so the first insert succeeds but the second causes an exception. The procedure includes an exception handler that maps attempts to insert `NULL` into inserts of the empty string:
 
 ```sql
 DROP TABLE IF EXISTS t1;
@@ -254,7 +254,7 @@ CALL p();
 SELECT * FROM t1;
 ```
 
-Quando o manipulador é ativado, uma cópia da área de diagnóstico atual é empurrada para a pilha de áreas de diagnóstico. O manipulador primeiro exibe o conteúdo das áreas de diagnóstico atual e empilhada, que são ambas iguais inicialmente:
+When the handler activates, a copy of the current diagnostics area is pushed to the diagnostics area stack. The handler first displays the contents of the current and stacked diagnostics areas, which are both the same initially:
 
 ```sql
 +---------------------------------+-------+----------------------------+
@@ -270,7 +270,7 @@ Quando o manipulador é ativado, uma cópia da área de diagnóstico atual é em
 +---------------------------------+-------+----------------------------+
 ```
 
-As declarações que executam após as declarações `GET DIAGNOSTICS` podem reiniciar a área de diagnóstico atual. As declarações podem reiniciar a área de diagnóstico atual. Por exemplo, o manipulador mapeia a inserção `NULL` para uma inserção de string vazia e exibe o resultado. A nova inserção tem sucesso e limpa a área de diagnóstico atual, mas a área de diagnóstico empilhada permanece inalterada e ainda contém informações sobre a condição que ativou o manipulador:
+Statements executing after the [`GET DIAGNOSTICS`](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement") statements may reset the current diagnostics area. statements may reset the current diagnostics area. For example, the handler maps the `NULL` insert to an empty-string insert and displays the result. The new insert succeeds and clears the current diagnostics area, but the stacked diagnostics area remains unchanged and still contains information about the condition that activated the handler:
 
 ```sql
 +----------------------------------------------+
@@ -286,9 +286,9 @@ As declarações que executam após as declarações `GET DIAGNOSTICS` podem rei
 +--------------------------------+-------+----------------------------+
 ```
 
-Quando o manipulador de condição termina, sua área de diagnóstico atual é removida da pilha e a área de diagnóstico empilhada se torna a área de diagnóstico atual na procedure armazenada.
+When the condition handler ends, its current diagnostics area is popped from the stack and the stacked diagnostics area becomes the current diagnostics area in the stored procedure.
 
-Após o procedimento retornar, a tabela contém duas linhas. A linha vazia resulta da tentativa de inserir `NULL` que foi mapeada para uma inserção de string vazia:
+After the procedure returns, the table contains two rows. The empty row results from the attempt to insert `NULL` that was mapped to an empty-string insert:
 
 ```sql
 +----------+
@@ -299,7 +299,7 @@ Após o procedimento retornar, a tabela contém duas linhas. A linha vazia resul
 +----------+
 ```
 
-No exemplo anterior, os dois primeiros comandos `GET DIAGNOSTICS` dentro do manipulador de condição que recuperam informações das áreas de diagnóstico atuais e empilhadas retornam os mesmos valores. Isso não ocorre se os comandos que reinicializam a área de diagnóstico atual executados anteriormente dentro do manipulador forem executados. Suponha que `p()` seja reescrito para colocar os comandos `DECLARE` dentro da definição do manipulador em vez de antecedê-los:
+In the preceding example, the first two [`GET DIAGNOSTICS`](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement") statements within the condition handler that retrieve information from the current and stacked diagnostics areas return the same values. This is not the case if statements that reset the current diagnostics area executed earlier within the handler. Suppose that `p()` is rewritten to place the [`DECLARE`](declare.html "13.6.3 DECLARE Statement") statements within the handler definition rather than preceding it:
 
 ```sql
 CREATE PROCEDURE p ()
@@ -319,11 +319,11 @@ BEGIN
 ...
 ```
 
-Neste caso, o resultado depende da versão:
+In this case, the result is version dependent:
 
-- Antes do MySQL 5.7.2, `DECLARE` não altera a área de diagnóstico atual, portanto, as duas primeiras instruções `GET DIAGNOSTICS` retornam o mesmo resultado, assim como na versão original do `p()`.
+* Before MySQL 5.7.2, [`DECLARE`](declare.html "13.6.3 DECLARE Statement") does not change the current diagnostics area, so the first two [`GET DIAGNOSTICS`](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement") statements return the same result, just as in the original version of `p()`.
 
-  No MySQL 5.7.2, foi feito o trabalho para garantir que todas as declarações não diagnósticas preencham a área de diagnóstico, de acordo com o padrão SQL. `DECLARE` é um deles, então, no 5.7.2 e versões superiores, as declarações `DECLARE` que são executadas no início do manipulador limpam a área de diagnóstico atual e as declarações `GET DIAGNOSTICS` produzem resultados diferentes:
+  In MySQL 5.7.2, work was done to ensure that all nondiagnostic statements populate the diagnostics area, per the SQL standard. [`DECLARE`](declare.html "13.6.3 DECLARE Statement") is one of them, so in 5.7.2 and higher, [`DECLARE`](declare.html "13.6.3 DECLARE Statement") statements executing at the beginning of the handler clear the current diagnostics area and the [`GET DIAGNOSTICS`](get-diagnostics.html "13.6.7.3 GET DIAGNOSTICS Statement") statements produce different results:
 
   ```sql
   +---------------------------------+-------+------+
@@ -339,4 +339,4 @@ Neste caso, o resultado depende da versão:
   +---------------------------------+-------+----------------------------+
   ```
 
-Para evitar esse problema em um manipulador de condição ao tentar obter informações sobre a condição que ativou o manipulador, certifique-se de acessar a área de diagnósticos empilhados, e não a área de diagnósticos atuais.
+To avoid this issue within a condition handler when seeking to obtain information about the condition that activated the handler, be sure to access the stacked diagnostics area, not the current diagnostics area.

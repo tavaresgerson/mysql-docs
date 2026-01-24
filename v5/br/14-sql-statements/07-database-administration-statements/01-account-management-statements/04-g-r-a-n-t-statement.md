@@ -1,4 +1,4 @@
-#### 13.7.1.4 Declaração de concessão
+#### 13.7.1.4 GRANT Statement
 
 ```sql
 GRANT
@@ -55,39 +55,39 @@ resource_option: {
 }
 ```
 
-A declaração `GRANT` concede privilégios às contas de usuário do MySQL. Existem vários aspectos da declaração `GRANT`, descritos nos seguintes tópicos:
+The [`GRANT`](grant.html "13.7.1.4 GRANT Statement") statement grants privileges to MySQL user accounts. There are several aspects to the [`GRANT`](grant.html "13.7.1.4 GRANT Statement") statement, described under the following topics:
 
-- Visão Geral do Auxílio
-- Diretrizes para citação de objetos
-- Privilegios suportados pelo MySQL
-- Nomes de contas e senhas
-- Privilégios globais
-- Privilégios de banco de dados
-- Privilégios da tabela
-- Privilégios de coluna
-- Privilégios de rotina armazenados
-- Privilégios do Usuário Proxy
-- Criação de Conta Implícita
-- Outras características da conta
-- Versões MySQL e SQL Padrão do GRANT
+* [GRANT General Overview](grant.html#grant-overview "GRANT General Overview")
+* [Object Quoting Guidelines](grant.html#grant-quoting "Object Quoting Guidelines")
+* [Privileges Supported by MySQL](grant.html#grant-privileges "Privileges Supported by MySQL")
+* [Account Names and Passwords](grant.html#grant-accounts-passwords "Account Names and Passwords")
+* [Global Privileges](grant.html#grant-global-privileges "Global Privileges")
+* [Database Privileges](grant.html#grant-database-privileges "Database Privileges")
+* [Table Privileges](grant.html#grant-table-privileges "Table Privileges")
+* [Column Privileges](grant.html#grant-column-privileges "Column Privileges")
+* [Stored Routine Privileges](grant.html#grant-routine-privileges "Stored Routine Privileges")
+* [Proxy User Privileges](grant.html#grant-proxy-privileges "Proxy User Privileges")
+* [Implicit Account Creation](grant.html#grant-account-creation "Implicit Account Creation")
+* [Other Account Characteristics](grant.html#grant-other-characteristics "Other Account Characteristics")
+* [MySQL and Standard SQL Versions of GRANT](grant.html#grant-mysql-vs-standard-sql "MySQL and Standard SQL Versions of GRANT")
 
-##### GRANT Visão Geral Geral
+##### GRANT General Overview
 
-A declaração `GRANT` concede privilégios às contas de usuário do MySQL.
+The [`GRANT`](grant.html "13.7.1.4 GRANT Statement") statement grants privileges to MySQL user accounts.
 
-Para conceder um privilégio com `GRANT`, você deve ter o privilégio `GRANT OPTION` e você deve ter os privilégios que está concedendo. (Alternativamente, se você tiver o privilégio `UPDATE` para as tabelas de concessão no banco de dados do sistema `mysql`, você pode conceder qualquer conta qualquer privilégio.) Quando a variável de sistema `read_only` é habilitada, `GRANT` requer adicionalmente o privilégio `SUPER`.
+To grant a privilege with [`GRANT`](grant.html "13.7.1.4 GRANT Statement"), you must have the [`GRANT OPTION`](privileges-provided.html#priv_grant-option) privilege, and you must have the privileges that you are granting. (Alternatively, if you have the [`UPDATE`](privileges-provided.html#priv_update) privilege for the grant tables in the `mysql` system database, you can grant any account any privilege.) When the [`read_only`](server-system-variables.html#sysvar_read_only) system variable is enabled, [`GRANT`](grant.html "13.7.1.4 GRANT Statement") additionally requires the [`SUPER`](privileges-provided.html#priv_super) privilege.
 
-A declaração `REVOKE` está relacionada à `GRANT` e permite que os administradores removam privilégios de conta. Consulte Seção 13.7.1.6, “Declaração REVOKE”.
+The [`REVOKE`](revoke.html "13.7.1.6 REVOKE Statement") statement is related to [`GRANT`](grant.html "13.7.1.4 GRANT Statement") and enables administrators to remove account privileges. See [Section 13.7.1.6, “REVOKE Statement”](revoke.html "13.7.1.6 REVOKE Statement").
 
-Cada nome de conta usa o formato descrito na Seção 6.2.4, “Especificação de Nomes de Conta”. Por exemplo:
+Each account name uses the format described in [Section 6.2.4, “Specifying Account Names”](account-names.html "6.2.4 Specifying Account Names"). For example:
 
 ```sql
 GRANT ALL ON db1.* TO 'jeffrey'@'localhost';
 ```
 
-A parte do nome do host da conta, se omitida, tem como padrão `'%'.`
+The host name part of the account, if omitted, defaults to `'%'`.
 
-Normalmente, um administrador de banco de dados usa primeiro `CREATE USER` para criar uma conta e definir suas características não privilegiadas, como a senha, se ela usa conexões seguras e limites de acesso aos recursos do servidor, e depois usa `GRANT` para definir seus privilégios. O `ALTER USER` pode ser usado para alterar as características não privilegiadas das contas existentes. Por exemplo:
+Normally, a database administrator first uses [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") to create an account and define its nonprivilege characteristics such as its password, whether it uses secure connections, and limits on access to server resources, then uses [`GRANT`](grant.html "13.7.1.4 GRANT Statement") to define its privileges. [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement") may be used to change the nonprivilege characteristics of existing accounts. For example:
 
 ```sql
 CREATE USER 'jeffrey'@'localhost' IDENTIFIED BY 'password';
@@ -96,45 +96,45 @@ GRANT SELECT ON db2.invoice TO 'jeffrey'@'localhost';
 ALTER USER 'jeffrey'@'localhost' WITH MAX_QUERIES_PER_HOUR 90;
 ```
 
-Nota
+Note
 
-Os exemplos mostrados aqui não incluem nenhuma cláusula `IDENTIFIED`. Assume-se que você estabeleça senhas com `CREATE USER` no momento da criação da conta para evitar a criação de contas inseguras.
+Examples shown here include no `IDENTIFIED` clause. It is assumed that you establish passwords with [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") at account-creation time to avoid creating insecure accounts.
 
-Nota
+Note
 
-Se uma conta mencionada em uma declaração de `GRANT` não existir, o `GRANT` pode criá-la nas condições descritas mais adiante na discussão do modo SQL `NO_AUTO_CREATE_USER`. Também é possível usar o `GRANT` para especificar características de contas que não são privilégios, como se elas usam conexões seguras e limites de acesso aos recursos do servidor.
+If an account named in a [`GRANT`](grant.html "13.7.1.4 GRANT Statement") statement does not already exist, [`GRANT`](grant.html "13.7.1.4 GRANT Statement") may create it under the conditions described later in the discussion of the [`NO_AUTO_CREATE_USER`](sql-mode.html#sqlmode_no_auto_create_user) SQL mode. It is also possible to use [`GRANT`](grant.html "13.7.1.4 GRANT Statement") to specify nonprivilege account characteristics such as whether it uses secure connections and limits on access to server resources.
 
-No entanto, o uso de `GRANT` para criar contas ou definir características não privilegiadas está desaconselhado no MySQL 5.7. Em vez disso, realize essas tarefas usando `CREATE USER` ou `ALTER USER`.
+However, use of [`GRANT`](grant.html "13.7.1.4 GRANT Statement") to create accounts or define nonprivilege characteristics is deprecated in MySQL 5.7. Instead, perform these tasks using [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") or [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement").
 
-No programa **mysql**, o comando `GRANT` responde com `Query OK, 0 rows affected` quando executado com sucesso. Para determinar quais privilégios resultam da operação, use o comando `SHOW GRANTS` (exibir_permissões). Consulte Seção 13.7.5.21, “Instrução SHOW GRANTS”.
+From the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") program, [`GRANT`](grant.html "13.7.1.4 GRANT Statement") responds with `Query OK, 0 rows affected` when executed successfully. To determine what privileges result from the operation, use [`SHOW GRANTS`](show-grants.html "13.7.5.21 SHOW GRANTS Statement"). See [Section 13.7.5.21, “SHOW GRANTS Statement”](show-grants.html "13.7.5.21 SHOW GRANTS Statement").
 
-Importante
+Important
 
-Em algumas circunstâncias, `GRANT` pode ser registrado nos logs do servidor ou no lado do cliente em um arquivo de histórico, como `~/.mysql_history`, o que significa que senhas em texto claro podem ser lidas por qualquer pessoa que tenha acesso de leitura a essas informações. Para obter informações sobre as condições sob as quais isso ocorre para os logs do servidor e como controlá-lo, consulte Seção 6.1.2.3, “Senhas e Registro”. Para informações semelhantes sobre o registro no lado do cliente, consulte Seção 4.5.1.3, “Registro do Cliente MySQL”.
+Under some circumstances, [`GRANT`](grant.html "13.7.1.4 GRANT Statement") may be recorded in server logs or on the client side in a history file such as `~/.mysql_history`, which means that cleartext passwords may be read by anyone having read access to that information. For information about the conditions under which this occurs for the server logs and how to control it, see [Section 6.1.2.3, “Passwords and Logging”](password-logging.html "6.1.2.3 Passwords and Logging"). For similar information about client-side logging, see [Section 4.5.1.3, “mysql Client Logging”](mysql-logging.html "4.5.1.3 mysql Client Logging").
 
-`GRANT` suporta nomes de host com até 60 caracteres. Os nomes de usuário podem ter até 32 caracteres. Os nomes de banco de dados, tabela, coluna e rotina podem ter até 64 caracteres.
+[`GRANT`](grant.html "13.7.1.4 GRANT Statement") supports host names up to 60 characters long. User names can be up to 32 characters. Database, table, column, and routine names can be up to 64 characters.
 
-Aviso
+Warning
 
-*Não tente alterar o comprimento permitido para os nomes de usuário alterando a tabela `mysql.user` do sistema. Isso resulta em comportamento imprevisível, que pode até tornar impossível para os usuários fazer login no servidor MySQL*. Nunca altere a estrutura das tabelas no banco de dados do sistema `mysql` de qualquer maneira, exceto por meio do procedimento descrito em Seção 2.10, “Atualização do MySQL”.
+*Do not attempt to change the permissible length for user names by altering the `mysql.user` system table. Doing so results in unpredictable behavior which may even make it impossible for users to log in to the MySQL server*. Never alter the structure of tables in the `mysql` system database in any manner except by means of the procedure described in [Section 2.10, “Upgrading MySQL”](upgrading.html "2.10 Upgrading MySQL").
 
-##### Diretrizes para citação de objetos
+##### Object Quoting Guidelines
 
-Vários objetos nas declarações ``GRANT` estão sujeitos à citação, embora a citação seja opcional em muitos casos: nomes de conta, banco de dados, tabela, coluna e rotinas. Por exemplo, se um valor de *`user_name`* ou *`host_name`* em um nome de conta for legal como um identificador não citado, você não precisa citar. No entanto, as aspas são necessárias para especificar uma string de *`user_name`* contendo caracteres especiais (como `-`) ou uma string de *`host_name`* contendo caracteres especiais ou caracteres curinga, como `%`(por exemplo,`'test-user'@'%.com'\`). Cite o nome de usuário e o nome do host separadamente.
+Several objects within [`GRANT`](grant.html "13.7.1.4 GRANT Statement") statements are subject to quoting, although quoting is optional in many cases: Account, database, table, column, and routine names. For example, if a *`user_name`* or *`host_name`* value in an account name is legal as an unquoted identifier, you need not quote it. However, quotation marks are necessary to specify a *`user_name`* string containing special characters (such as `-`), or a *`host_name`* string containing special characters or wildcard characters such as `%` (for example, `'test-user'@'%.com'`). Quote the user name and host name separately.
 
-Para especificar valores citados:
+To specify quoted values:
 
-- Nomeie o banco de dados, a tabela, a coluna e as rotinas como identificadores.
+* Quote database, table, column, and routine names as identifiers.
 
-- Cite nomes de usuários e nomes de hosts como identificadores ou como strings.
+* Quote user names and host names as identifiers or as strings.
 
-- Citar senhas como strings.
+* Quote passwords as strings.
 
-Para as diretrizes de citação de strings e identificadores, consulte Seção 9.1.1, “Literais de String” e Seção 9.2, “Nomes de Objetos de Esquema”.
+For string-quoting and identifier-quoting guidelines, see [Section 9.1.1, “String Literals”](string-literals.html "9.1.1 String Literals"), and [Section 9.2, “Schema Object Names”](identifiers.html "9.2 Schema Object Names").
 
-Os caracteres curingas `_` e `%` são permitidos ao especificar nomes de banco de dados em declarações de `GRANT` (concessão de privilégios) que concedem privilégios ao nível do banco de dados (`GRANT ... ON db_name.*`). Isso significa, por exemplo, que, para usar um caractere `_` como parte de um nome de banco de dados, especifique-o usando o caractere de escape `\` como `_` na declaração de `GRANT`, para evitar que o usuário possa acessar bancos de dados adicionais que correspondam ao padrão de curinga (por exemplo, `GRANT ... ON `foo_bar`.* TO ...`).
+The `_` and `%` wildcards are permitted when specifying database names in [`GRANT`](grant.html "13.7.1.4 GRANT Statement") statements that grant privileges at the database level (`GRANT ... ON db_name.*`). This means, for example, that to use a `_` character as part of a database name, specify it using the `\` escape character as `_` in the [`GRANT`](grant.html "13.7.1.4 GRANT Statement") statement, to prevent the user from being able to access additional databases matching the wildcard pattern (for example, `` GRANT ... ON `foo_bar`.* TO ... ``).
 
-Emitir várias declarações `GRANT` contendo caracteres curinga pode não ter o efeito esperado em declarações DML; ao resolver concessões que envolvem caracteres curinga, o MySQL considera apenas a primeira concessão que corresponde. Em outras palavras, se um usuário tiver duas concessões de nível de banco de dados que usam caracteres curinga e que correspondem ao mesmo banco de dados, a concessão que foi criada primeiro será aplicada. Considere o banco de dados `db` e a tabela `t` criados usando as declarações mostradas aqui:
+Issuing multiple `GRANT` statements containing wildcards may not have the expected effect on DML statements; when resolving grants involving wildcards, MySQL takes only the first matching grant into consideration. In other words, if a user has two database-level grants using wildcards that match the same database, the grant which was created first is applied. Consider the database `db` and table `t` created using the statements shown here:
 
 ```sql
 mysql> CREATE DATABASE db;
@@ -147,7 +147,7 @@ mysql> INSERT INTO db.t VALUES ROW(1);
 Query OK, 1 row affected (0.00 sec)
 ```
 
-Em seguida (assumindo que a conta corrente seja a conta `root` do MySQL ou outra conta com os privilégios necessários), criamos um usuário `u` e em seguida emitimos duas declarações `GRANT` contendo asteriscos, da seguinte forma:
+Next (assuming that the current account is the MySQL `root` account or another account having the necessary privileges), we create a user `u` then issue two `GRANT` statements containing wildcards, like this:
 
 ```sql
 mysql> CREATE USER u;
@@ -166,7 +166,7 @@ mysql> EXIT
 Bye
 ```
 
-Se encerrarmos a sessão e, em seguida, nos logarmos novamente com o cliente **mysql**, desta vez como **u**, vemos que essa conta tem apenas o privilégio fornecido pela primeira concessão correspondente, mas não pela segunda:
+If we end the session and then log in again with the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client, this time as **u**, we see that this account has only the privilege provided by the first matching grant, but not the second:
 
 ```sql
 $> mysql -uu -hlocalhost
@@ -198,241 +198,241 @@ mysql> INSERT INTO db.t VALUES ROW(2);
 ERROR 1142 (42000): INSERT command denied to user 'u'@'localhost' for table 't'
 ```
 
-Quando um nome de banco de dados não é usado para conceder privilégios ao nível do banco de dados, mas como um qualificador para conceder privilégios a algum outro objeto, como uma tabela ou rotina (por exemplo, `GRANT ... ON db_name.tbl_name`), o MySQL interpreta caracteres curinga como caracteres literais.
+When a database name is not used to grant privileges at the database level, but as a qualifier for granting privileges to some other object such as a table or routine (for example, `GRANT ... ON db_name.tbl_name`), MySQL interprets wildcard characters as literal characters.
 
-##### Privilégios suportados pelo MySQL
+##### Privileges Supported by MySQL
 
-A tabela a seguir resume os tipos de privilégio *`priv_type`* permitidos que podem ser especificados para as instruções `GRANT` e `REVOKE`, e os níveis nos quais cada privilégio pode ser concedido. Para obter informações adicionais sobre cada privilégio, consulte Seção 6.2.2, “Privilégios Fornecidos pelo MySQL”.
+The following table summarizes the permissible *`priv_type`* privilege types that can be specified for the [`GRANT`](grant.html "13.7.1.4 GRANT Statement") and [`REVOKE`](revoke.html "13.7.1.6 REVOKE Statement") statements, and the levels at which each privilege can be granted. For additional information about each privilege, see [Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL").
 
-**Tabela 13.8 Privilegios Permitidos para GRANTE e REVOGAR**
+**Table 13.8 Permissible Privileges for GRANT and REVOKE**
 
-<table><thead><tr> <th>Privilégio</th> <th>Significado e Níveis de Financiamento</th> </tr></thead><tbody><tr> <td>PH_HTML_CODE_<code>CREATE TEMPORARY TABLE</code>]</td> <td>Concede todos os privilégios no nível de acesso especificado, excetoPH_HTML_CODE_<code>CREATE TEMPORARY TABLE</code>]ePH_HTML_CODE_<code>CREATE USER</code>].</td> </tr><tr> <td>PH_HTML_CODE_<code>DROP USER</code>]</td> <td>Ative o uso dePH_HTML_CODE_<code>RENAME USER</code>]Níveis: Global, banco de dados, tabela.</td> </tr><tr> <td>PH_HTML_CODE_<code>REVOKE ALL PRIVILEGES</code>]</td> <td>Ative a alteração ou a eliminação de rotinas armazenadas. Níveis: Global, banco de dados, rotina.</td> </tr><tr> <td>PH_HTML_CODE_<code>CREATE VIEW</code>]</td> <td>Ative a criação de bancos de dados e tabelas. Níveis: Global, banco de dados, tabela.</td> </tr><tr> <td>PH_HTML_CODE_<code>DELETE</code>]</td> <td>Ative a criação de rotinas armazenadas. Níveis: Global, banco de dados.</td> </tr><tr> <td>PH_HTML_CODE_<code>DELETE</code>]</td> <td>Ative a criação, alteração ou eliminação de espaços de tabela e grupos de arquivos de log. Nível: Global.</td> </tr><tr> <td>PH_HTML_CODE_<code>DROP</code>]</td> <td>Ative o uso de<code>CREATE TEMPORARY TABLE</code>Níveis: Global, banco de dados.</td> </tr><tr> <td><code>GRANT OPTION</code><code>CREATE TEMPORARY TABLE</code>]</td> <td>Ative o uso de<code>CREATE USER</code>,<code>DROP USER</code>,<code>RENAME USER</code>, e<code>REVOKE ALL PRIVILEGES</code>Nível: Global.</td> </tr><tr> <td><code>CREATE VIEW</code></td> <td>Ative a criação ou alteração de visualizações. Níveis: Global, banco de dados, tabela.</td> </tr><tr> <td><code>DELETE</code></td> <td>Ative o uso de<code>DELETE</code>Nível: Global, banco de dados, tabela.</td> </tr><tr> <td><code>DROP</code></td> <td>Ative a possibilidade de excluir bancos de dados, tabelas e visualizações. Níveis: Global, banco de dados, tabela.</td> </tr><tr> <td><code>PROXY</code><code>CREATE TEMPORARY TABLE</code>]</td> <td>Ative o uso de eventos para o Agendamento de Eventos. Níveis: Global, banco de dados.</td> </tr><tr> <td><code>PROXY</code><code>CREATE TEMPORARY TABLE</code>]</td> <td>Permitir que o usuário execute rotinas armazenadas. Níveis: Global, banco de dados, rotina.</td> </tr><tr> <td><code>PROXY</code><code>CREATE USER</code>]</td> <td>Permitir que o usuário faça com que o servidor leia ou escreva arquivos. Nível: Global.</td> </tr><tr> <td><code>PROXY</code><code>DROP USER</code>]</td> <td>Ative ou desative privilégios para serem concedidos ou removidos de outras contas. Níveis: Global, banco de dados, tabela, rotina, proxy.</td> </tr><tr> <td><code>PROXY</code><code>RENAME USER</code>]</td> <td>Ative a criação ou remoção de índices. Níveis: Global, banco de dados, tabela.</td> </tr><tr> <td><code>PROXY</code><code>REVOKE ALL PRIVILEGES</code>]</td> <td>Ative o uso de<code>PROXY</code><code>CREATE VIEW</code>]Níveis: Global, banco de dados, tabela, coluna.</td> </tr><tr> <td><code>PROXY</code><code>DELETE</code>]</td> <td>Ative o uso de<code>PROXY</code><code>DELETE</code>]nas mesas para as quais você tem<code>PROXY</code><code>DROP</code>]privilégio. Níveis: Global, banco de dados.</td> </tr><tr> <td><code>ALTER</code><code>CREATE TEMPORARY TABLE</code>]</td> <td>Permitir que o usuário veja todos os processos com<code>ALTER</code><code>CREATE TEMPORARY TABLE</code>]Nível: Global.</td> </tr><tr> <td><code>ALTER</code><code>CREATE USER</code>]</td> <td>Ative o encaminhamento de proxy do usuário. Nível: De usuário para usuário.</td> </tr><tr> <td><code>ALTER</code><code>DROP USER</code>]</td> <td>Ative a criação de chaves estrangeiras. Níveis: Global, banco de dados, tabela, coluna.</td> </tr><tr> <td><code>ALTER</code><code>RENAME USER</code>]</td> <td>Ative o uso de<code>ALTER</code><code>REVOKE ALL PRIVILEGES</code>]operações. Nível: Global.</td> </tr><tr> <td><code>ALTER</code><code>CREATE VIEW</code>]</td> <td>Permitir que o usuário pergunte onde estão os servidores de origem ou replicação. Nível: Global.</td> </tr><tr> <td><code>ALTER</code><code>DELETE</code>]</td> <td>Ative as réplicas para ler eventos de log binário da fonte. Nível: Global.</td> </tr><tr> <td><code>ALTER</code><code>DELETE</code>]</td> <td>Ative o uso de<code>ALTER</code><code>DROP</code>]Níveis: Global, banco de dados, tabela, coluna.</td> </tr><tr> <td><code>ALTER TABLE</code><code>CREATE TEMPORARY TABLE</code>]</td> <td>Ative<code>ALTER TABLE</code><code>CREATE TEMPORARY TABLE</code>]para mostrar todos os bancos de dados. Nível: Global.</td> </tr><tr> <td><code>ALTER TABLE</code><code>CREATE USER</code>]</td> <td>Ative o uso deRENAME USER</code>]"><code>ALTER TABLE</code><code>DROP USER</code>]Níveis: Global, banco de dados, tabela.</td> </tr><tr> <td><code>ALTER TABLE</code><code>RENAME USER</code>]</td> <td>Ative o uso de<span><strong>mysqladmin shutdown</strong></span>Nível: Global.</td> </tr><tr> <td><code>ALTER TABLE</code><code>REVOKE ALL PRIVILEGES</code>]</td> <td>Ative o uso de outras operações administrativas, como<code>ALTER TABLE</code><code>CREATE VIEW</code>],<code>ALTER TABLE</code><code>DELETE</code>],<code>ALTER TABLE</code><code>DELETE</code>],<code>ALTER TABLE</code><code>DROP</code>], e<span><strong>mysqladmin debug</strong></span>comando. Nível: Global.</td> </tr><tr> <td><code>ALTER ROUTINE</code><code>CREATE TEMPORARY TABLE</code>]</td> <td>Ative as operações de gatilho. Níveis: Global, banco de dados, tabela.</td> </tr><tr> <td><code>ALTER ROUTINE</code><code>CREATE TEMPORARY TABLE</code>]</td> <td>Ative o uso de<code>ALTER ROUTINE</code><code>CREATE USER</code>]Níveis: Global, banco de dados, tabela, coluna.</td> </tr><tr> <td><code>ALTER ROUTINE</code><code>DROP USER</code>]</td> <td>Sinônimo de<span class="quote">“<span class="quote">sem privilégios</span>”</span></td> </tr></tbody></table>
+<table><thead><tr> <th>Privilege</th> <th>Meaning and Grantable Levels</th> </tr></thead><tbody><tr> <td><code>ALL [PRIVILEGES]</code></td> <td>Grant all privileges at specified access level except <code>GRANT OPTION</code> and <code>PROXY</code>.</td> </tr><tr> <td><code>ALTER</code></td> <td>Enable use of <code>ALTER TABLE</code>. Levels: Global, database, table.</td> </tr><tr> <td><code>ALTER ROUTINE</code></td> <td>Enable stored routines to be altered or dropped. Levels: Global, database, routine.</td> </tr><tr> <td><code>CREATE</code></td> <td>Enable database and table creation. Levels: Global, database, table.</td> </tr><tr> <td><code>CREATE ROUTINE</code></td> <td>Enable stored routine creation. Levels: Global, database.</td> </tr><tr> <td><code>CREATE TABLESPACE</code></td> <td>Enable tablespaces and log file groups to be created, altered, or dropped. Level: Global.</td> </tr><tr> <td><code>CREATE TEMPORARY TABLES</code></td> <td>Enable use of <code>CREATE TEMPORARY TABLE</code>. Levels: Global, database.</td> </tr><tr> <td><code>CREATE USER</code></td> <td>Enable use of <code>CREATE USER</code>, <code>DROP USER</code>, <code>RENAME USER</code>, and <code>REVOKE ALL PRIVILEGES</code>. Level: Global.</td> </tr><tr> <td><code>CREATE VIEW</code></td> <td>Enable views to be created or altered. Levels: Global, database, table.</td> </tr><tr> <td><code>DELETE</code></td> <td>Enable use of <code>DELETE</code>. Level: Global, database, table.</td> </tr><tr> <td><code>DROP</code></td> <td>Enable databases, tables, and views to be dropped. Levels: Global, database, table.</td> </tr><tr> <td><code>EVENT</code></td> <td>Enable use of events for the Event Scheduler. Levels: Global, database.</td> </tr><tr> <td><code>EXECUTE</code></td> <td>Enable the user to execute stored routines. Levels: Global, database, routine.</td> </tr><tr> <td><code>FILE</code></td> <td>Enable the user to cause the server to read or write files. Level: Global.</td> </tr><tr> <td><code>GRANT OPTION</code></td> <td>Enable privileges to be granted to or removed from other accounts. Levels: Global, database, table, routine, proxy.</td> </tr><tr> <td><code>INDEX</code></td> <td>Enable indexes to be created or dropped. Levels: Global, database, table.</td> </tr><tr> <td><code>INSERT</code></td> <td>Enable use of <code>INSERT</code>. Levels: Global, database, table, column.</td> </tr><tr> <td><code>LOCK TABLES</code></td> <td>Enable use of <code>LOCK TABLES</code> on tables for which you have the <code>SELECT</code> privilege. Levels: Global, database.</td> </tr><tr> <td><code>PROCESS</code></td> <td>Enable the user to see all processes with <code>SHOW PROCESSLIST</code>. Level: Global.</td> </tr><tr> <td><code>PROXY</code></td> <td>Enable user proxying. Level: From user to user.</td> </tr><tr> <td><code>REFERENCES</code></td> <td>Enable foreign key creation. Levels: Global, database, table, column.</td> </tr><tr> <td><code>RELOAD</code></td> <td>Enable use of <code>FLUSH</code> operations. Level: Global.</td> </tr><tr> <td><code>REPLICATION CLIENT</code></td> <td>Enable the user to ask where source or replica servers are. Level: Global.</td> </tr><tr> <td><code>REPLICATION SLAVE</code></td> <td>Enable replicas to read binary log events from the source. Level: Global.</td> </tr><tr> <td><code>SELECT</code></td> <td>Enable use of <code>SELECT</code>. Levels: Global, database, table, column.</td> </tr><tr> <td><code>SHOW DATABASES</code></td> <td>Enable <code>SHOW DATABASES</code> to show all databases. Level: Global.</td> </tr><tr> <td><code>SHOW VIEW</code></td> <td>Enable use of <code>SHOW CREATE VIEW</code>. Levels: Global, database, table.</td> </tr><tr> <td><code>SHUTDOWN</code></td> <td>Enable use of <span><strong>mysqladmin shutdown</strong></span>. Level: Global.</td> </tr><tr> <td><code>SUPER</code></td> <td>Enable use of other administrative operations such as <code>CHANGE MASTER TO</code>, <code>KILL</code>, <code>PURGE BINARY LOGS</code>, <code>SET GLOBAL</code>, and <span><strong>mysqladmin debug</strong></span> command. Level: Global.</td> </tr><tr> <td><code>TRIGGER</code></td> <td>Enable trigger operations. Levels: Global, database, table.</td> </tr><tr> <td><code>UPDATE</code></td> <td>Enable use of <code>UPDATE</code>. Levels: Global, database, table, column.</td> </tr><tr> <td><code>USAGE</code></td> <td>Synonym for <span class="quote">“<span class="quote">no privileges</span>”</span></td> </tr></tbody></table>
 
-Um gatilho está associado a uma tabela. Para criar ou excluir um gatilho, você deve ter o privilégio `TRIGGER` para a tabela, não para o gatilho.
+A trigger is associated with a table. To create or drop a trigger, you must have the [`TRIGGER`](privileges-provided.html#priv_trigger) privilege for the table, not the trigger.
 
-Nas declarações de `GRANT`, o privilégio `ALL [PRIVILEGES]` ou `PROXY` deve ser nomeado por si mesmo e não pode ser especificado junto com outros privilégios. `ALL [PRIVILEGES]` representa todos os privilégios disponíveis para o nível em que os privilégios devem ser concedidos, exceto os privilégios `GRANT OPTION` e `PROXY`.
+In [`GRANT`](grant.html "13.7.1.4 GRANT Statement") statements, the [`ALL [PRIVILEGES]`](privileges-provided.html#priv_all) or [`PROXY`](privileges-provided.html#priv_proxy) privilege must be named by itself and cannot be specified along with other privileges. [`ALL [PRIVILEGES]`](privileges-provided.html#priv_all) stands for all privileges available for the level at which privileges are to be granted except for the [`GRANT OPTION`](privileges-provided.html#priv_grant-option) and [`PROXY`](privileges-provided.html#priv_proxy) privileges.
 
-`USAGE` pode ser especificado para criar um usuário que não tenha privilégios ou para especificar as cláusulas `REQUIRE` ou `WITH` para uma conta sem alterar seus privilégios existentes. (No entanto, o uso de `GRANT` para definir características não-privilegiadas é desaconselhado.
+[`USAGE`](privileges-provided.html#priv_usage) can be specified to create a user that has no privileges, or to specify the `REQUIRE` or `WITH` clauses for an account without changing its existing privileges. (However, use of [`GRANT`](grant.html "13.7.1.4 GRANT Statement") to define nonprivilege characteristics is deprecated.
 
-As informações da conta do MySQL são armazenadas nas tabelas do banco de dados do sistema `mysql`. Para obter detalhes adicionais, consulte Seção 6.2, “Controle de Acesso e Gerenciamento de Contas”, que discute extensivamente o banco de dados do sistema `mysql` e o sistema de controle de acesso.
+MySQL account information is stored in the tables of the `mysql` system database. For additional details, consult [Section 6.2, “Access Control and Account Management”](access-control.html "6.2 Access Control and Account Management"), which discusses the `mysql` system database and the access control system extensively.
 
-Se as tabelas de concessão contiverem linhas de privilégio que contenham nomes de banco de dados ou tabelas com maiúsculas e minúsculas misturadas e a variável de sistema `lower_case_table_names` estiver definida para um valor diferente de zero, a opção `REVOKE` não pode ser usada para revogar esses privilégios. É necessário manipular as tabelas de concessão diretamente. (`GRANT` não cria essas linhas quando a variável `lower_case_table_names` está definida, mas essas linhas podem ter sido criadas antes de definir essa variável.)
+If the grant tables hold privilege rows that contain mixed-case database or table names and the [`lower_case_table_names`](server-system-variables.html#sysvar_lower_case_table_names) system variable is set to a nonzero value, [`REVOKE`](revoke.html "13.7.1.6 REVOKE Statement") cannot be used to revoke these privileges. It is necessary to manipulate the grant tables directly. ([`GRANT`](grant.html "13.7.1.4 GRANT Statement") does not create such rows when [`lower_case_table_names`](server-system-variables.html#sysvar_lower_case_table_names) is set, but such rows might have been created prior to setting that variable.)
 
-Os privilégios podem ser concedidos em vários níveis, dependendo da sintaxe usada para a cláusula `ON`. Para `REVOKE` (revogar), a mesma sintaxe `ON` especifica quais privilégios devem ser removidos.
+Privileges can be granted at several levels, depending on the syntax used for the `ON` clause. For [`REVOKE`](revoke.html "13.7.1.6 REVOKE Statement"), the same `ON` syntax specifies which privileges to remove.
 
-Para os níveis global, banco de dados, tabela e rotina, `GRANT ALL` atribui apenas os privilégios que existem no nível em que você está concedendo. Por exemplo, `GRANT ALL ON db_name.*` é uma declaração de nível de banco de dados, então ela não concede privilégios exclusivos do nível global, como `FILE`. A concessão de `ALL` não atribui o privilégio `GRANT OPTION` ou `PROXY`.
+For the global, database, table, and routine levels, [`GRANT ALL`](grant.html "13.7.1.4 GRANT Statement") assigns only the privileges that exist at the level you are granting. For example, `GRANT ALL ON db_name.*` is a database-level statement, so it does not grant any global-only privileges such as [`FILE`](privileges-provided.html#priv_file). Granting [`ALL`](privileges-provided.html#priv_all) does not assign the [`GRANT OPTION`](privileges-provided.html#priv_grant-option) or [`PROXY`](privileges-provided.html#priv_proxy) privilege.
 
-A cláusula `object_type`, se presente, deve ser especificada como `TABLE`, `FUNCTION` ou `PROCEDURE` quando o objeto a seguir for uma tabela, uma função armazenada ou um procedimento armazenado.
+The *`object_type`* clause, if present, should be specified as `TABLE`, `FUNCTION`, or `PROCEDURE` when the following object is a table, a stored function, or a stored procedure.
 
-Os privilégios que um usuário possui para uma base de dados, tabela, coluna ou rotina são formados aditivamente como a lógica [`OR`]\(operadores lógicos.html#operador_ou) dos privilégios da conta em cada um dos níveis de privilégio, incluindo o nível global. Não é possível negar um privilégio concedido em um nível superior pela ausência desse privilégio em um nível inferior. Por exemplo, esta declaração concede os privilégios de consulta `SELECT` e de inserção `INSERT` globalmente:
+The privileges that a user holds for a database, table, column, or routine are formed additively as the logical [`OR`](logical-operators.html#operator_or) of the account privileges at each of the privilege levels, including the global level. It is not possible to deny a privilege granted at a higher level by absence of that privilege at a lower level. For example, this statement grants the [`SELECT`](privileges-provided.html#priv_select) and [`INSERT`](privileges-provided.html#priv_insert) privileges globally:
 
 ```sql
 GRANT SELECT, INSERT ON *.* TO u1;
 ```
 
-Os privilégios concedidos globalmente se aplicam a todas as bases de dados, tabelas e colunas, mesmo que não tenham sido concedidos em nenhum desses níveis inferiores.
+The globally granted privileges apply to all databases, tables, and columns, even though not granted at any of those lower levels.
 
-Os detalhes do procedimento de verificação de privilégios estão apresentados na Seção 6.2.6, "Controle de Acesso, Etapa 2: Verificação de Solicitação".
+Details of the privilege-checking procedure are presented in [Section 6.2.6, “Access Control, Stage 2: Request Verification”](request-access.html "6.2.6 Access Control, Stage 2: Request Verification").
 
-Se você estiver usando privilégios de tabela, coluna ou rotina para até um usuário, o servidor examina os privilégios de tabela, coluna e rotina para todos os usuários, o que faz o MySQL funcionar um pouco mais devagar. Da mesma forma, se você limitar o número de consultas, atualizações ou conexões para qualquer usuário, o servidor deve monitorar esses valores.
+If you are using table, column, or routine privileges for even one user, the server examines table, column, and routine privileges for all users and this slows down MySQL a bit. Similarly, if you limit the number of queries, updates, or connections for any users, the server must monitor these values.
 
-O MySQL permite que você conceda privilégios em bancos de dados ou tabelas que não existem. Para tabelas, os privilégios a serem concedidos devem incluir o privilégio `CREATE`. *Esse comportamento é intencional* e visa permitir que o administrador do banco de dados prepare contas e privilégios de usuários para bancos de dados ou tabelas que serão criados posteriormente.
+MySQL enables you to grant privileges on databases or tables that do not exist. For tables, the privileges to be granted must include the [`CREATE`](privileges-provided.html#priv_create) privilege. *This behavior is by design*, and is intended to enable the database administrator to prepare user accounts and privileges for databases or tables that are to be created at a later time.
 
-Importante
+Important
 
-*O MySQL não revoga automaticamente quaisquer privilégios quando você exclui um banco de dados ou uma tabela*. No entanto, se você excluir uma rotina, quaisquer privilégios de nível de rotina concedidos para essa rotina serão revogados.
+*MySQL does not automatically revoke any privileges when you drop a database or table*. However, if you drop a routine, any routine-level privileges granted for that routine are revoked.
 
-##### Nomes e Senhas de Conta
+##### Account Names and Passwords
 
-Um valor `user` em uma declaração `GRANT` indica uma conta MySQL à qual a declaração se aplica. Para acomodar a concessão de direitos a usuários de hosts arbitrários, o MySQL suporta a especificação do valor `user` na forma `'user_name'@'host_name'`.
+A *`user`* value in a [`GRANT`](grant.html "13.7.1.4 GRANT Statement") statement indicates a MySQL account to which the statement applies. To accommodate granting rights to users from arbitrary hosts, MySQL supports specifying the *`user`* value in the form `'user_name'@'host_name'`.
 
-Você pode especificar caracteres curinga no nome do host. Por exemplo, `'user_name'@'%.example.com'` se aplica a *`user_name`* para qualquer host no domínio `example.com`, e `'user_name'@'198.51.100.%'` se aplica a *`user_name`* para qualquer host na sub-rede de classe C `198.51.100`.
+You can specify wildcards in the host name. For example, `'user_name'@'%.example.com'` applies to *`user_name`* for any host in the `example.com` domain, and `'user_name'@'198.51.100.%'` applies to *`user_name`* for any host in the `198.51.100` class C subnet.
 
-A forma simples `'user_name'` é um sinônimo de `'user_name'@'%'`.
+The simple form `'user_name'` is a synonym for `'user_name'@'%'`.
 
-*O MySQL não suporta caracteres curinga em nomes de usuários*. Para se referir a um usuário anônimo, especifique uma conta com um nome de usuário vazio com a instrução `GRANT`:
+*MySQL does not support wildcards in user names*. To refer to an anonymous user, specify an account with an empty user name with the [`GRANT`](grant.html "13.7.1.4 GRANT Statement") statement:
 
 ```sql
 GRANT ALL ON test.* TO ''@'localhost' ...;
 ```
 
-Nesse caso, qualquer usuário que se conecte ao host local com a senha correta para o usuário anônimo terá permissão para acessar, com os privilégios associados à conta do usuário anônimo.
+In this case, any user who connects from the local host with the correct password for the anonymous user is permitted access, with the privileges associated with the anonymous user account.
 
-Para obter informações adicionais sobre os valores de nome de usuário e nome de host em nomes de contas, consulte Seção 6.2.4, “Especificação de Nomes de Contas”.
+For additional information about user name and host name values in account names, see [Section 6.2.4, “Specifying Account Names”](account-names.html "6.2.4 Specifying Account Names").
 
-Aviso
+Warning
 
-Se você permitir que usuários anônimos locais se conectem ao servidor MySQL, também deve conceder privilégios a todos os usuários locais como `'user_name'@'localhost'`. Caso contrário, a conta de usuário anônimo para `localhost` na tabela de sistema `mysql.user` será usada quando usuários nomeados tentarem fazer login no servidor MySQL a partir da máquina local. Para obter detalhes, consulte Seção 6.2.5, “Controle de Acesso, Etapa 1: Verificação de Conexão”.
+If you permit local anonymous users to connect to the MySQL server, you should also grant privileges to all local users as `'user_name'@'localhost'`. Otherwise, the anonymous user account for `localhost` in the `mysql.user` system table is used when named users try to log in to the MySQL server from the local machine. For details, see [Section 6.2.5, “Access Control, Stage 1: Connection Verification”](connection-access.html "6.2.5 Access Control, Stage 1: Connection Verification").
 
-Para determinar se esse problema se aplica a você, execute a seguinte consulta, que lista quaisquer usuários anônimos:
+To determine whether this issue applies to you, execute the following query, which lists any anonymous users:
 
 ```sql
 SELECT Host, User FROM mysql.user WHERE User='';
 ```
 
-Para evitar o problema descrito acima, exclua a conta de usuário anônimo local usando esta declaração:
+To avoid the problem just described, delete the local anonymous user account using this statement:
 
 ```sql
 DROP USER ''@'localhost';
 ```
 
-Para a sintaxe de `GRANT` que permite que um valor de *`auth_option`* siga um valor de *`user`*, *`auth_option`* começa com `IDENTIFIED` e indica como a conta autentica, especificando um plugin de autenticação de conta, credenciais (por exemplo, uma senha) ou ambos. A sintaxe da cláusula *`auth_option`* é a mesma da declaração `CREATE USER`. Para detalhes, consulte Seção 13.7.1.2, “Declaração CREATE USER”.
+For [`GRANT`](grant.html "13.7.1.4 GRANT Statement") syntax that permits an *`auth_option`* value to follow a *`user`* value, *`auth_option`* begins with `IDENTIFIED` and indicates how the account authenticates by specifying an account authentication plugin, credentials (for example, a password), or both. Syntax of the *`auth_option`* clause is the same as for the [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") statement. For details, see [Section 13.7.1.2, “CREATE USER Statement”](create-user.html "13.7.1.2 CREATE USER Statement").
 
-Nota
+Note
 
-O uso de `GRANT` para definir características de autenticação de conta está desatualizado no MySQL 5.7. Em vez disso, estabeleça ou mude as características de autenticação usando `CREATE USER` ou `ALTER USER`. Espere que essa capacidade de `GRANT` seja removida em uma futura versão do MySQL.
+Use of [`GRANT`](grant.html "13.7.1.4 GRANT Statement") to define account authentication characteristics is deprecated in MySQL 5.7. Instead, establish or change authentication characteristics using [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") or [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement"). Expect this [`GRANT`](grant.html "13.7.1.4 GRANT Statement") capability to be removed in a future MySQL release.
 
-Quando `IDENTIFIED` está presente e você tem o privilégio de concessão global (`GRANT OPTION`), qualquer senha especificada se torna a nova senha da conta, mesmo que a conta já exista e tenha uma senha. Sem `IDENTIFIED`, a senha da conta permanece inalterada.
+When `IDENTIFIED` is present and you have the global grant privilege ([`GRANT OPTION`](privileges-provided.html#priv_grant-option)), any password specified becomes the new password for the account, even if the account exists and already has a password. Without `IDENTIFIED`, the account password remains unchanged.
 
-##### Privilegios Globais
+##### Global Privileges
 
-Os privilégios globais são administrativos ou aplicam-se a todas as bases de dados em um servidor específico. Para atribuir privilégios globais, use a sintaxe `ON *.*`:
+Global privileges are administrative or apply to all databases on a given server. To assign global privileges, use `ON *.*` syntax:
 
 ```sql
 GRANT ALL ON *.* TO 'someuser'@'somehost';
 GRANT SELECT, INSERT ON *.* TO 'someuser'@'somehost';
 ```
 
-Os privilégios `CREATE TABLESPACE`, `CREATE USER`, `FILE`, `PROCESS`, `RELOAD`, `REPLICATION CLIENT`, `REPLICATION SLAVE`, `SHOW DATABASES`, `SHUTDOWN` e `SUPER` são administrativos e só podem ser concedidos globalmente.
+The [`CREATE TABLESPACE`](privileges-provided.html#priv_create-tablespace), [`CREATE USER`](privileges-provided.html#priv_create-user), [`FILE`](privileges-provided.html#priv_file), [`PROCESS`](privileges-provided.html#priv_process), [`RELOAD`](privileges-provided.html#priv_reload), [`REPLICATION CLIENT`](privileges-provided.html#priv_replication-client), [`REPLICATION SLAVE`](privileges-provided.html#priv_replication-slave), [`SHOW DATABASES`](privileges-provided.html#priv_show-databases), [`SHUTDOWN`](privileges-provided.html#priv_shutdown), and [`SUPER`](privileges-provided.html#priv_super) privileges are administrative and can only be granted globally.
 
-Outros privilégios podem ser concedidos globalmente ou em níveis mais específicos.
+Other privileges can be granted globally or at more specific levels.
 
-A opção de privilégio (`GRANT OPTION`)(privileges-provided.html#priv_grant-option) concedida em nível global para qualquer privilégio global aplica-se a todos os privilégios globais.
+[`GRANT OPTION`](privileges-provided.html#priv_grant-option) granted at the global level for any global privilege applies to all global privileges.
 
-O MySQL armazena privilégios globais na tabela de sistema `mysql.user`.
+MySQL stores global privileges in the `mysql.user` system table.
 
-##### Privilégios de banco de dados
+##### Database Privileges
 
-Os privilégios de banco de dados se aplicam a todos os objetos em um banco de dados específico. Para atribuir privilégios de nível de banco de dados, use a sintaxe `ON db_name.*`:
+Database privileges apply to all objects in a given database. To assign database-level privileges, use `ON db_name.*` syntax:
 
 ```sql
 GRANT ALL ON mydb.* TO 'someuser'@'somehost';
 GRANT SELECT, INSERT ON mydb.* TO 'someuser'@'somehost';
 ```
 
-Se você usar a sintaxe `ON *` (em vez de `ON *.*`), os privilégios serão atribuídos ao nível do banco de dados para o banco de dados padrão. Um erro ocorrerá se não houver um banco de dados padrão.
+If you use `ON *` syntax (rather than `ON *.*`), privileges are assigned at the database level for the default database. An error occurs if there is no default database.
 
-Os privilégios `CREATE`, `DROP`, `EVENT`, `GRANT OPTION`, `LOCK TABLES` e `REFERENCES` podem ser especificados no nível do banco de dados. Privilegios de tabela ou rotina também podem ser especificados no nível do banco de dados, caso em que eles se aplicam a todas as tabelas ou rotinas no banco de dados.
+The [`CREATE`](privileges-provided.html#priv_create), [`DROP`](privileges-provided.html#priv_drop), [`EVENT`](privileges-provided.html#priv_event), [`GRANT OPTION`](privileges-provided.html#priv_grant-option), [`LOCK TABLES`](privileges-provided.html#priv_lock-tables), and [`REFERENCES`](privileges-provided.html#priv_references) privileges can be specified at the database level. Table or routine privileges also can be specified at the database level, in which case they apply to all tables or routines in the database.
 
-O MySQL armazena os privilégios do banco de dados na tabela `mysql.db` do sistema.
+MySQL stores database privileges in the `mysql.db` system table.
 
-##### Prêmios da Mesa
+##### Table Privileges
 
-Os privilégios de tabela se aplicam a todas as colunas de uma tabela específica. Para atribuir privilégios de nível de tabela, use a sintaxe `ON db_name.tbl_name`:
+Table privileges apply to all columns in a given table. To assign table-level privileges, use `ON db_name.tbl_name` syntax:
 
 ```sql
 GRANT ALL ON mydb.mytbl TO 'someuser'@'somehost';
 GRANT SELECT, INSERT ON mydb.mytbl TO 'someuser'@'somehost';
 ```
 
-Se você especificar *`tbl_name`* em vez de *`db_name.tbl_name`*, a instrução se aplica a *`tbl_name`* no banco de dados padrão. Um erro ocorre se não houver um banco de dados padrão.
+If you specify *`tbl_name`* rather than *`db_name.tbl_name`*, the statement applies to *`tbl_name`* in the default database. An error occurs if there is no default database.
 
-Os valores permitidos de *`priv_type`* no nível da tabela são `ALTER`, `CREATE VIEW`, `CREATE`, `DELETE`, `DROP`, `GRANT OPTION`, `INDEX`, `INSERT`, `REFERENCES`, `SELECT`, `SHOW VIEW`, `TRIGGER` e `UPDATE`.
+The permissible *`priv_type`* values at the table level are [`ALTER`](privileges-provided.html#priv_alter), [`CREATE VIEW`](privileges-provided.html#priv_create-view), [`CREATE`](privileges-provided.html#priv_create), [`DELETE`](privileges-provided.html#priv_delete), [`DROP`](privileges-provided.html#priv_drop), [`GRANT OPTION`](privileges-provided.html#priv_grant-option), [`INDEX`](privileges-provided.html#priv_index), [`INSERT`](privileges-provided.html#priv_insert), [`REFERENCES`](privileges-provided.html#priv_references), [`SELECT`](privileges-provided.html#priv_select), [`SHOW VIEW`](privileges-provided.html#priv_show-view), [`TRIGGER`](privileges-provided.html#priv_trigger), and [`UPDATE`](privileges-provided.html#priv_update).
 
-Os privilégios de nível de tabela se aplicam a tabelas e visualizações básicas. Eles não se aplicam a tabelas criadas com `CREATE TEMPORARY TABLE`, mesmo que os nomes das tabelas sejam iguais. Para obter informações sobre os privilégios de tabela `TEMPORARY`, consulte Seção 13.1.18.2, “Instrução CREATE TEMPORARY TABLE”.
+Table-level privileges apply to base tables and views. They do not apply to tables created with [`CREATE TEMPORARY TABLE`](create-temporary-table.html "13.1.18.2 CREATE TEMPORARY TABLE Statement"), even if the table names match. For information about `TEMPORARY` table privileges, see [Section 13.1.18.2, “CREATE TEMPORARY TABLE Statement”](create-temporary-table.html "13.1.18.2 CREATE TEMPORARY TABLE Statement").
 
-O MySQL armazena os privilégios da tabela na tabela `mysql.tables_priv` do sistema.
+MySQL stores table privileges in the `mysql.tables_priv` system table.
 
-##### Coluna Privilegios
+##### Column Privileges
 
-Os privilégios de coluna se aplicam a colunas individuais em uma tabela específica. Cada privilégio a ser concedido no nível da coluna deve ser seguido pela coluna ou colunas, entre parênteses.
+Column privileges apply to single columns in a given table. Each privilege to be granted at the column level must be followed by the column or columns, enclosed within parentheses.
 
 ```sql
 GRANT SELECT (col1), INSERT (col1, col2) ON mydb.mytbl TO 'someuser'@'somehost';
 ```
 
-Os valores permitidos de *`priv_type`* para uma coluna (ou seja, quando você usa uma cláusula *`column_list`*) são `INSERT`, `REFERENCES`, `SELECT` e `UPDATE`.
+The permissible *`priv_type`* values for a column (that is, when you use a *`column_list`* clause) are [`INSERT`](privileges-provided.html#priv_insert), [`REFERENCES`](privileges-provided.html#priv_references), [`SELECT`](privileges-provided.html#priv_select), and [`UPDATE`](privileges-provided.html#priv_update).
 
-O MySQL armazena os privilégios das colunas na tabela de sistema `mysql.columns_priv`.
+MySQL stores column privileges in the `mysql.columns_priv` system table.
 
-##### Privilégios de rotina armazenados
+##### Stored Routine Privileges
 
-Os privilégios `ALTER ROUTINE`, `CREATE ROUTINE`, `EXECUTE` e `GRANT OPTION` aplicam-se a rotinas armazenadas (procedimentos e funções). Eles podem ser concedidos nos níveis global e de banco de dados. Exceto para `CREATE ROUTINE`, esses privilégios podem ser concedidos no nível da rotina para rotinas individuais.
+The [`ALTER ROUTINE`](privileges-provided.html#priv_alter-routine), [`CREATE ROUTINE`](privileges-provided.html#priv_create-routine), [`EXECUTE`](privileges-provided.html#priv_execute), and [`GRANT OPTION`](privileges-provided.html#priv_grant-option) privileges apply to stored routines (procedures and functions). They can be granted at the global and database levels. Except for [`CREATE ROUTINE`](privileges-provided.html#priv_create-routine), these privileges can be granted at the routine level for individual routines.
 
 ```sql
 GRANT CREATE ROUTINE ON mydb.* TO 'someuser'@'somehost';
 GRANT EXECUTE ON PROCEDURE mydb.myproc TO 'someuser'@'somehost';
 ```
 
-Os valores permitidos de *`priv_type`* no nível da rotina são `ALTER ROUTINE`, `EXECUTE` e `GRANT OPTION`. `CREATE ROUTINE` não é um privilégio no nível da rotina, pois você deve ter o privilégio no nível global ou do banco de dados para criar uma rotina em primeiro lugar.
+The permissible *`priv_type`* values at the routine level are [`ALTER ROUTINE`](privileges-provided.html#priv_alter-routine), [`EXECUTE`](privileges-provided.html#priv_execute), and [`GRANT OPTION`](privileges-provided.html#priv_grant-option). [`CREATE ROUTINE`](privileges-provided.html#priv_create-routine) is not a routine-level privilege because you must have the privilege at the global or database level to create a routine in the first place.
 
-O MySQL armazena privilégios de nível de rotina na tabela de sistema `mysql.procs_priv`.
+MySQL stores routine-level privileges in the `mysql.procs_priv` system table.
 
-##### Privilégios de Usuário Proxy
+##### Proxy User Privileges
 
-O privilégio `PROXY` permite que um usuário seja um proxy para outro. O usuário proxy assume ou assume a identidade do usuário proxy; ou seja, assume os privilégios do usuário proxy.
+The [`PROXY`](privileges-provided.html#priv_proxy) privilege enables one user to be a proxy for another. The proxy user impersonates or takes the identity of the proxied user; that is, it assumes the privileges of the proxied user.
 
 ```sql
 GRANT PROXY ON 'localuser'@'localhost' TO 'externaluser'@'somehost';
 ```
 
-Quando o `PROXY` é concedido, ele deve ser o único privilégio mencionado na declaração `GRANT`, a cláusula `REQUIRE` não pode ser dada e a única opção `WITH` permitida é `WITH GRANT OPTION`.
+When [`PROXY`](privileges-provided.html#priv_proxy) is granted, it must be the only privilege named in the [`GRANT`](grant.html "13.7.1.4 GRANT Statement") statement, the `REQUIRE` clause cannot be given, and the only permitted `WITH` option is `WITH GRANT OPTION`.
 
-A proxy exige que o usuário da proxy se autentique por meio de um plugin que retorne o nome do usuário proxy ao servidor quando o usuário da proxy se conectar, e que o usuário da proxy tenha o privilégio `PROXY` para o usuário proxy. Para obter detalhes e exemplos, consulte Seção 6.2.14, “Usuários de Proxy”.
+Proxying requires that the proxy user authenticate through a plugin that returns the name of the proxied user to the server when the proxy user connects, and that the proxy user have the `PROXY` privilege for the proxied user. For details and examples, see [Section 6.2.14, “Proxy Users”](proxy-users.html "6.2.14 Proxy Users").
 
-O MySQL armazena privilégios de proxy na tabela de sistema `mysql.proxies_priv`.
+MySQL stores proxy privileges in the `mysql.proxies_priv` system table.
 
-##### Criação Implícita de Conta
+##### Implicit Account Creation
 
-Se uma conta mencionada em uma declaração de `GRANT` não existir, a ação tomada depende do modo SQL `NO_AUTO_CREATE_USER`:
+If an account named in a [`GRANT`](grant.html "13.7.1.4 GRANT Statement") statement does not exist, the action taken depends on the [`NO_AUTO_CREATE_USER`](sql-mode.html#sqlmode_no_auto_create_user) SQL mode:
 
-- Se `NO_AUTO_CREATE_USER` não estiver habilitado, o `GRANT` cria a conta. *Isso é muito inseguro* a menos que você especifique uma senha não vazia usando `IDENTIFIED BY`.
+* If [`NO_AUTO_CREATE_USER`](sql-mode.html#sqlmode_no_auto_create_user) is not enabled, [`GRANT`](grant.html "13.7.1.4 GRANT Statement") creates the account. *This is very insecure* unless you specify a nonempty password using `IDENTIFIED BY`.
 
-- Se `NO_AUTO_CREATE_USER` estiver habilitado, a instrução `GRANT` falha e não cria a conta, a menos que você especifique uma senha não vazia usando `IDENTIFIED BY` ou nomeie um plugin de autenticação usando `IDENTIFIED WITH`.
+* If [`NO_AUTO_CREATE_USER`](sql-mode.html#sqlmode_no_auto_create_user) is enabled, [`GRANT`](grant.html "13.7.1.4 GRANT Statement") fails and does not create the account, unless you specify a nonempty password using `IDENTIFIED BY` or name an authentication plugin using `IDENTIFIED WITH`.
 
-Se a conta já existir, o comando `IDENTIFIED WITH` é proibido, pois ele é destinado apenas para uso ao criar novas contas.
+If the account already exists, `IDENTIFIED WITH` is prohibited because it is intended only for use when creating new accounts.
 
-##### Outras características da conta
+##### Other Account Characteristics
 
-O MySQL pode verificar os atributos do certificado X.509, além da autenticação usual, que é baseada no nome do usuário e nas credenciais. Para informações de fundo sobre o uso do SSL com o MySQL, consulte Seção 6.3, “Usando Conexões Encriptadas”.
+MySQL can check X.509 certificate attributes in addition to the usual authentication that is based on the user name and credentials. For background information on the use of SSL with MySQL, see [Section 6.3, “Using Encrypted Connections”](encrypted-connections.html "6.3 Using Encrypted Connections").
 
-A cláusula opcional `REQUIRE` especifica opções relacionadas ao SSL para uma conta MySQL. A sintaxe é a mesma da instrução `CREATE USER`. Para detalhes, consulte Seção 13.7.1.2, “Instrução CREATE USER”.
+The optional `REQUIRE` clause specifies SSL-related options for a MySQL account. The syntax is the same as for the [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") statement. For details, see [Section 13.7.1.2, “CREATE USER Statement”](create-user.html "13.7.1.2 CREATE USER Statement").
 
-Nota
+Note
 
-O uso de `GRANT` para definir as características de SSL da conta está desatualizado no MySQL 5.7. Em vez disso, estabeleça ou mude as características de SSL usando `CREATE USER` ou `ALTER USER`. Espere que essa capacidade de `GRANT` seja removida em uma futura versão do MySQL.
+Use of [`GRANT`](grant.html "13.7.1.4 GRANT Statement") to define account SSL characteristics is deprecated in MySQL 5.7. Instead, establish or change SSL characteristics using [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") or [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement"). Expect this [`GRANT`](grant.html "13.7.1.4 GRANT Statement") capability to be removed in a future MySQL release.
 
-A cláusula `WITH` opcional é usada para esses propósitos:
+The optional `WITH` clause is used for these purposes:
 
-- Para permitir que um usuário conceda privilégios a outros usuários
-- Para especificar limites de recursos para um usuário
+* To enable a user to grant privileges to other users
+* To specify resource limits for a user
 
-A cláusula `WITH GRANT OPTION` permite que o usuário atribua a outros usuários quaisquer privilégios que o usuário tenha no nível de privilégio especificado.
+The `WITH GRANT OPTION` clause gives the user the ability to give to other users any privileges the user has at the specified privilege level.
 
-Para conceder o privilégio `GRANT OPTION` a uma conta sem alterar seus privilégios, faça o seguinte:
+To grant the [`GRANT OPTION`](privileges-provided.html#priv_grant-option) privilege to an account without otherwise changing its privileges, do this:
 
 ```sql
 GRANT USAGE ON *.* TO 'someuser'@'somehost' WITH GRANT OPTION;
 ```
 
-Tenha cuidado com quem você concede o privilégio de `GRANT OPTION`, pois dois usuários com privilégios diferentes podem combinar os privilégios!
+Be careful to whom you give the [`GRANT OPTION`](privileges-provided.html#priv_grant-option) privilege because two users with different privileges may be able to combine privileges!
 
-Você não pode conceder um privilégio a outro usuário que você mesmo não possui; o privilégio `GRANT OPTION` permite que você atribua apenas os privilégios que você mesmo possui.
+You cannot grant another user a privilege which you yourself do not have; the [`GRANT OPTION`](privileges-provided.html#priv_grant-option) privilege enables you to assign only those privileges which you yourself possess.
 
-Tenha em mente que, ao conceder a um usuário o privilégio `GRANT OPTION` em um nível de privilégio específico, quaisquer privilégios que o usuário possua (ou possa ser concedidos no futuro) nesse nível também podem ser concedidos por esse usuário a outros usuários. Suponha que você conceda a um usuário o privilégio `INSERT` em um banco de dados. Se, em seguida, conceder o privilégio `SELECT` no banco de dados e especificar `WITH GRANT OPTION`, esse usuário pode conceder a outros usuários não apenas o privilégio `SELECT`, mas também `INSERT`. Se, em seguida, conceder o privilégio `UPDATE` ao usuário no banco de dados, o usuário pode conceder `INSERT`, `SELECT` e `UPDATE`.
+Be aware that when you grant a user the [`GRANT OPTION`](privileges-provided.html#priv_grant-option) privilege at a particular privilege level, any privileges the user possesses (or may be given in the future) at that level can also be granted by that user to other users. Suppose that you grant a user the [`INSERT`](privileges-provided.html#priv_insert) privilege on a database. If you then grant the [`SELECT`](privileges-provided.html#priv_select) privilege on the database and specify `WITH GRANT OPTION`, that user can give to other users not only the [`SELECT`](privileges-provided.html#priv_select) privilege, but also [`INSERT`](privileges-provided.html#priv_insert). If you then grant the [`UPDATE`](privileges-provided.html#priv_update) privilege to the user on the database, the user can grant [`INSERT`](privileges-provided.html#priv_insert), [`SELECT`](privileges-provided.html#priv_select), and [`UPDATE`](privileges-provided.html#priv_update).
 
-Para um usuário não administrativo, você não deve conceder o privilégio `ALTER` globalmente ou para o banco de dados do sistema `mysql`. Se você fizer isso, o usuário poderá tentar contornar o sistema de privilégios renomeando tabelas!
+For a nonadministrative user, you should not grant the [`ALTER`](privileges-provided.html#priv_alter) privilege globally or for the `mysql` system database. If you do that, the user can try to subvert the privilege system by renaming tables!
 
-Para obter informações adicionais sobre os riscos de segurança associados a certos privilégios, consulte Seção 6.2.2, “Privilégios fornecidos pelo MySQL”.
+For additional information about security risks associated with particular privileges, see [Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL").
 
-É possível definir limites de uso dos recursos do servidor para uma conta, conforme discutido em Seção 6.2.16, “Definir Limites de Recursos da Conta”. Para fazer isso, use uma cláusula `WITH` que especifique um ou mais valores de *`resource_option`*. Limites não especificados mantêm seus valores atuais. A sintaxe é a mesma da instrução `CREATE USER`. Para obter detalhes, consulte Seção 13.7.1.2, “Instrução CREATE USER”.
+It is possible to place limits on use of server resources by an account, as discussed in [Section 6.2.16, “Setting Account Resource Limits”](user-resources.html "6.2.16 Setting Account Resource Limits"). To do so, use a `WITH` clause that specifies one or more *`resource_option`* values. Limits not specified retain their current values. The syntax is the same as for the [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") statement. For details, see [Section 13.7.1.2, “CREATE USER Statement”](create-user.html "13.7.1.2 CREATE USER Statement").
 
-Nota
+Note
 
-O uso de `GRANT` para definir limites de recursos da conta está desatualizado no MySQL 5.7. Em vez disso, estabeleça ou mude os limites de recursos usando `CREATE USER` ou `ALTER USER`. Espere que essa capacidade de `GRANT` seja removida em uma futura versão do MySQL.
+Use of [`GRANT`](grant.html "13.7.1.4 GRANT Statement") to define account resource limits is deprecated in MySQL 5.7. Instead, establish or change resource limits using [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") or [`ALTER USER`](alter-user.html "13.7.1.1 ALTER USER Statement"). Expect this [`GRANT`](grant.html "13.7.1.4 GRANT Statement") capability to be removed in a future MySQL release.
 
-##### Versões de GRANT do MySQL e SQL Padrão
+##### MySQL and Standard SQL Versions of GRANT
 
-As maiores diferenças entre as versões MySQL e SQL padrão do `GRANT` são:
+The biggest differences between the MySQL and standard SQL versions of [`GRANT`](grant.html "13.7.1.4 GRANT Statement") are:
 
-- O MySQL associa privilégios à combinação de um nome de host e um nome de usuário e não apenas a um nome de usuário.
+* MySQL associates privileges with the combination of a host name and user name and not with only a user name.
 
-- O SQL padrão não possui privilégios globais ou de nível de banco de dados, nem suporta todos os tipos de privilégios que o MySQL suporta.
+* Standard SQL does not have global or database-level privileges, nor does it support all the privilege types that MySQL supports.
 
-- O MySQL não suporta o privilégio padrão SQL `UNDER`.
+* MySQL does not support the standard SQL `UNDER` privilege.
 
-- Os privilégios padrão do SQL são estruturados de forma hierárquica. Se você remover um usuário, todos os privilégios que o usuário recebeu serão revogados. Isso também é válido no MySQL se você usar `DROP USER`. Veja Seção 13.7.1.3, “Instrução DROP USER”.
+* Standard SQL privileges are structured in a hierarchical manner. If you remove a user, all privileges the user has been granted are revoked. This is also true in MySQL if you use [`DROP USER`](drop-user.html "13.7.1.3 DROP USER Statement"). See [Section 13.7.1.3, “DROP USER Statement”](drop-user.html "13.7.1.3 DROP USER Statement").
 
-- No SQL padrão, ao excluir uma tabela, todos os privilégios da tabela são revogados. No SQL padrão, ao revogar um privilégio, todos os privilégios que foram concedidos com base nesse privilégio também são revogados. No MySQL, os privilégios podem ser excluídos com as instruções `DROP USER` ou `REVOKE`.
+* In standard SQL, when you drop a table, all privileges for the table are revoked. In standard SQL, when you revoke a privilege, all privileges that were granted based on that privilege are also revoked. In MySQL, privileges can be dropped with [`DROP USER`](drop-user.html "13.7.1.3 DROP USER Statement") or [`REVOKE`](revoke.html "13.7.1.6 REVOKE Statement") statements.
 
-- No MySQL, é possível ter o privilégio `INSERT` apenas para algumas das colunas de uma tabela. Nesse caso, você ainda pode executar instruções `INSERT` na tabela, desde que insira valores apenas para as colunas para as quais você tenha o privilégio `INSERT`. As colunas omitidas são definidas com seus valores padrão implícitos se o modo SQL rigoroso não estiver habilitado. No modo rigoroso, a instrução é rejeitada se qualquer uma das colunas omitidas não tiver um valor padrão. (O SQL padrão exige que você tenha o privilégio `INSERT` em todas as colunas.) Para informações sobre o modo SQL rigoroso e valores padrão de tipos de dados, consulte Seção 5.1.10, “Modos de SQL do Servidor” e Seção 11.6, “Valores Padrão de Tipos de Dados”.
+* In MySQL, it is possible to have the [`INSERT`](privileges-provided.html#priv_insert) privilege for only some of the columns in a table. In this case, you can still execute [`INSERT`](insert.html "13.2.5 INSERT Statement") statements on the table, provided that you insert values only for those columns for which you have the [`INSERT`](privileges-provided.html#priv_insert) privilege. The omitted columns are set to their implicit default values if strict SQL mode is not enabled. In strict mode, the statement is rejected if any of the omitted columns have no default value. (Standard SQL requires you to have the [`INSERT`](privileges-provided.html#priv_insert) privilege on all columns.) For information about strict SQL mode and implicit default values, see [Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes"), and [Section 11.6, “Data Type Default Values”](data-type-defaults.html "11.6 Data Type Default Values").

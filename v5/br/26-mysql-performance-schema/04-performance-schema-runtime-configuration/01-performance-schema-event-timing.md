@@ -1,18 +1,18 @@
-### 25.4.1 Cronometragem de eventos do esquema de desempenho
+### 25.4.1 Performance Schema Event Timing
 
-Os eventos são coletados por meio de instrumentos adicionados ao código-fonte do servidor. Os instrumentos registram o tempo dos eventos, o que permite que o Schema de Desempenho forneça uma ideia de quanto tempo os eventos levam. Também é possível configurar os instrumentos para não coletar informações de temporização. Esta seção discute os temporizadores disponíveis e suas características, bem como como os valores de temporização são representados nos eventos.
+Events are collected by means of instrumentation added to the server source code. Instruments time events, which is how the Performance Schema provides an idea of how long events take. It is also possible to configure instruments not to collect timing information. This section discusses the available timers and their characteristics, and how timing values are represented in events.
 
-#### Temporizadores do Schema de Desempenho
+#### Performance Schema Timers
 
-Duas tabelas do esquema de desempenho fornecem informações sobre o temporizador:
+Two Performance Schema tables provide timer information:
 
-- `performance_timers` lista os temporizadores disponíveis e suas características.
+* [`performance_timers`](performance-schema-performance-timers-table.html "25.12.16.2 The performance_timers Table") lists the available timers and their characteristics.
 
-- `setup_timers` indica quais temporizadores são usados para quais instrumentos.
+* [`setup_timers`](performance-schema-setup-timers-table.html "25.12.2.5 The setup_timers Table") indicates which timers are used for which instruments.
 
-Cada linha de temporizador em `setup_timers` deve se referir a um dos temporizadores listados em `performance_timers`.
+Each timer row in [`setup_timers`](performance-schema-setup-timers-table.html "25.12.2.5 The setup_timers Table") must refer to one of the timers listed in [`performance_timers`](performance-schema-performance-timers-table.html "25.12.16.2 The performance_timers Table").
 
-Os temporizadores variam em precisão e quantidade de overhead. Para ver quais temporizadores estão disponíveis e suas características, verifique a tabela `performance_timers`:
+Timers vary in precision and amount of overhead. To see what timers are available and their characteristics, check the [`performance_timers`](performance-schema-performance-timers-table.html "25.12.16.2 The performance_timers Table") table:
 
 ```sql
 mysql> SELECT * FROM performance_schema.performance_timers;
@@ -27,19 +27,19 @@ mysql> SELECT * FROM performance_schema.performance_timers;
 +-------------+-----------------+------------------+----------------+
 ```
 
-Se os valores associados a um nome de temporizador específico forem `NULL`, esse temporizador não é suportado na sua plataforma. As linhas que não contêm `NULL` indicam quais temporizadores você pode usar em `setup_timers`.
+If the values associated with a given timer name are `NULL`, that timer is not supported on your platform. The rows that do not contain `NULL` indicate which timers you can use in [`setup_timers`](performance-schema-setup-timers-table.html "25.12.2.5 The setup_timers Table").
 
-As colunas têm esses significados:
+The columns have these meanings:
 
-- A coluna `TIMER_NAME` mostra os nomes dos temporizadores disponíveis. `CYCLE` refere-se ao temporizador baseado no contador de ciclos da CPU (processador). Os temporizadores em `setup_timers` que você pode usar são aqueles que não têm `NULL` nas outras colunas. Se os valores associados a um nome de temporizador específico forem `NULL`, esse temporizador não é suportado na sua plataforma.
+* The `TIMER_NAME` column shows the names of the available timers. `CYCLE` refers to the timer that is based on the CPU (processor) cycle counter. The timers in [`setup_timers`](performance-schema-setup-timers-table.html "25.12.2.5 The setup_timers Table") that you can use are those that do not have `NULL` in the other columns. If the values associated with a given timer name are `NULL`, that timer is not supported on your platform.
 
-- `TIMER_FREQUENCY` indica o número de unidades de temporizador por segundo. Para um temporizador de ciclo, a frequência geralmente está relacionada à velocidade da CPU. O valor mostrado foi obtido em um sistema com um processador de 2,4 GHz. Os outros temporizadores são baseados em frações fixas de segundos. Para `TICK`, a frequência pode variar de acordo com a plataforma (por exemplo, alguns usam 100 ticks/segundo, outros 1000 ticks/segundo).
+* `TIMER_FREQUENCY` indicates the number of timer units per second. For a cycle timer, the frequency is generally related to the CPU speed. The value shown was obtained on a system with a 2.4GHz processor. The other timers are based on fixed fractions of seconds. For `TICK`, the frequency may vary by platform (for example, some use 100 ticks/second, others 1000 ticks/second).
 
-- `TIMER_RESOLUTION` indica o número de unidades de temporizador com as quais os valores do temporizador aumentam de cada vez. Se um temporizador tiver uma resolução de 10, seu valor aumenta em 10 cada vez.
+* `TIMER_RESOLUTION` indicates the number of timer units by which timer values increase at a time. If a timer has a resolution of 10, its value increases by 10 each time.
 
-- `TIMER_OVERHEAD` é o número mínimo de ciclos de sobrecarga para obter um temporizador com o temporizador fornecido. A sobrecarga por evento é o dobro do valor exibido, pois o temporizador é invocado no início e no final do evento.
+* `TIMER_OVERHEAD` is the minimal number of cycles of overhead to obtain one timing with the given timer. The overhead per event is twice the value displayed because the timer is invoked at the beginning and end of the event.
 
-Para ver quais temporizadores estão em vigor ou para alterá-los, acesse a tabela `setup_timers`:
+To see which timers are in effect or to change timers, access the [`setup_timers`](performance-schema-setup-timers-table.html "25.12.2.5 The setup_timers Table") table:
 
 ```sql
 mysql> SELECT * FROM performance_schema.setup_timers;
@@ -68,43 +68,43 @@ mysql> SELECT * FROM performance_schema.setup_timers;
 +-------------+-------------+
 ```
 
-Por padrão, o Schema de Desempenho usa o melhor temporizador disponível para cada tipo de instrumento, mas você pode selecionar um diferente.
+By default, the Performance Schema uses the best timer available for each instrument type, but you can select a different one.
 
-Para cronometrar eventos de espera, o critério mais importante é reduzir o overhead, às custas da precisão do temporizador, portanto, usar o temporizador `CYCLE` é o melhor.
+To time wait events, the most important criterion is to reduce overhead, at the possible expense of the timer accuracy, so using the `CYCLE` timer is the best.
 
-O tempo que uma instrução (ou etapa) leva para ser executada é, em geral, de ordens de grandeza maior do que o tempo que leva para executar uma única espera. Para medir instruções, o critério mais importante é ter uma medida precisa, que não é afetada por mudanças na frequência do processador, então o melhor é usar um temporizador que não seja baseado em ciclos. O temporizador padrão para instruções é `NANOSECOND`. O "sobrecarga" extra em comparação com o temporizador `CYCLE` não é significativa, porque a sobrecarga causada por chamar um temporizador duas vezes (uma vez quando a instrução começa e outra quando ela termina) é de ordens de grandeza menor em comparação com o tempo de CPU usado para executar a própria instrução. Usar o temporizador `CYCLE` não traz nenhum benefício aqui, apenas desvantagens.
+The time a statement (or stage) takes to execute is in general orders of magnitude larger than the time it takes to execute a single wait. To time statements, the most important criterion is to have an accurate measure, which is not affected by changes in processor frequency, so using a timer which is not based on cycles is the best. The default timer for statements is `NANOSECOND`. The extra “overhead” compared to the `CYCLE` timer is not significant, because the overhead caused by calling a timer twice (once when the statement starts, once when it ends) is orders of magnitude less compared to the CPU time used to execute the statement itself. Using the `CYCLE` timer has no benefit here, only drawbacks.
 
-A precisão oferecida pelo contador de ciclos depende da velocidade do processador. Se o processador funcionar a 1 GHz (um bilhão de ciclos por segundo) ou mais, o contador de ciclos oferece precisão em sub-nanosegundos. Usar o contador de ciclos é muito mais barato do que obter o horário exato do dia. Por exemplo, a função padrão `gettimeofday()` pode levar centenas de ciclos, o que é um desperdício inaceitável para a coleta de dados que pode ocorrer milhares ou milhões de vezes por segundo.
+The precision offered by the cycle counter depends on processor speed. If the processor runs at 1 GHz (one billion cycles/second) or higher, the cycle counter delivers sub-nanosecond precision. Using the cycle counter is much cheaper than getting the actual time of day. For example, the standard `gettimeofday()` function can take hundreds of cycles, which is an unacceptable overhead for data gathering that may occur thousands or millions of times per second.
 
-Os contadores de ciclos também têm desvantagens:
+Cycle counters also have disadvantages:
 
-- Os usuários finais esperam ver os tempos em unidades de relógio de parede, como frações de segundo. A conversão de ciclos para frações de segundos pode ser cara. Por essa razão, a conversão é uma operação de multiplicação rápida e bastante grosseira.
+* End users expect to see timings in wall-clock units, such as fractions of a second. Converting from cycles to fractions of seconds can be expensive. For this reason, the conversion is a quick and fairly rough multiplication operation.
 
-- A taxa de ciclo do processador pode mudar, como quando um laptop entra no modo de economia de energia ou quando uma CPU desacelera para reduzir a geração de calor. Se a taxa de ciclo de um processador flutuar, a conversão de ciclos para unidades em tempo real está sujeita a erros.
+* Processor cycle rate might change, such as when a laptop goes into power-saving mode or when a CPU slows down to reduce heat generation. If a processor's cycle rate fluctuates, conversion from cycles to real-time units is subject to error.
 
-- Os contadores de ciclos podem não ser confiáveis ou indisponíveis, dependendo do processador ou do sistema operacional. Por exemplo, em Pentiums, a instrução é `RDTSC` (uma linguagem de montagem, e não uma instrução em C) e, teoricamente, é possível que o sistema operacional impeça programas em modo de usuário de usá-la.
+* Cycle counters might be unreliable or unavailable depending on the processor or the operating system. For example, on Pentiums, the instruction is `RDTSC` (an assembly-language rather than a C instruction) and it is theoretically possible for the operating system to prevent user-mode programs from using it.
 
-- Alguns detalhes do processador relacionados à execução fora de ordem ou à sincronização de múltiplos processadores podem fazer com que o contador pareça rápido ou lento em até 1000 ciclos.
+* Some processor details related to out-of-order execution or multiprocessor synchronization might cause the counter to seem fast or slow by up to 1000 cycles.
 
-O MySQL funciona com contadores de ciclo em x386 (Windows, macOS, Linux, Solaris e outros sabores Unix), PowerPC e IA-64.
+MySQL works with cycle counters on x386 (Windows, macOS, Linux, Solaris, and other Unix flavors), PowerPC, and IA-64.
 
-#### Tempo de execução do esquema de representação de temporizadores em eventos
+#### Performance Schema Timer Representation in Events
 
-As linhas nas tabelas do Gerenciamento de Desempenho que armazenam eventos atuais e históricos têm três colunas para representar informações de temporização: `TIMER_START` e `TIMER_END` indicam quando um evento começou e terminou, e `TIMER_WAIT` indica a duração do evento.
+Rows in Performance Schema tables that store current events and historical events have three columns to represent timing information: `TIMER_START` and `TIMER_END` indicate when an event started and finished, and `TIMER_WAIT` indicates event duration.
 
-A tabela `setup_instruments` possui uma coluna `ENABLED` para indicar os instrumentos para os quais os eventos serão coletados. A tabela também possui uma coluna `TIMED` para indicar quais instrumentos são temporizados. Se um instrumento não estiver habilitado, ele não produzirá eventos. Se um instrumento habilitado não estiver temporizado, os eventos produzidos pelo instrumento terão `NULL` para os valores dos temporizadores `TIMER_START`, `TIMER_END` e `TIMER_WAIT`. Isso, por sua vez, faz com que esses valores sejam ignorados ao calcular os valores de tempo agregados em tabelas resumidas (soma, mínimo, máximo e média).
+The [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table has an `ENABLED` column to indicate the instruments for which to collect events. The table also has a `TIMED` column to indicate which instruments are timed. If an instrument is not enabled, it produces no events. If an enabled instrument is not timed, events produced by the instrument have `NULL` for the `TIMER_START`, `TIMER_END`, and `TIMER_WAIT` timer values. This in turn causes those values to be ignored when calculating aggregate time values in summary tables (sum, minimum, maximum, and average).
 
-Internamente, os tempos dentro dos eventos são armazenados em unidades fornecidas pelo temporizador em vigor quando o cronometramento do evento começa. Para exibição quando os eventos são recuperados das tabelas do Gerenciamento de Desempenho, os tempos são exibidos em picossegundos (trilhésimos de segundo) para normalizá-los a uma unidade padrão, independentemente do temporizador selecionado.
+Internally, times within events are stored in units given by the timer in effect when event timing begins. For display when events are retrieved from Performance Schema tables, times are shown in picoseconds (trillionths of a second) to normalize them to a standard unit, regardless of which timer is selected.
 
-As modificações na tabela `setup_timers` afetam o monitoramento imediatamente. Eventos já em andamento podem usar o temporizador original para a hora de início e o novo temporizador para a hora de término. Para evitar resultados imprevisíveis após fazer alterações nos temporizadores, use `TRUNCATE TABLE` para redefinir as estatísticas do Schema de Desempenho.
+Modifications to the [`setup_timers`](performance-schema-setup-timers-table.html "25.12.2.5 The setup_timers Table") table affect monitoring immediately. Events already in progress may use the original timer for the begin time and the new timer for the end time. To avoid unpredictable results after you make timer changes, use [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") to reset Performance Schema statistics.
 
-A linha de base do temporizador ("zero de tempo") ocorre durante a inicialização do Schema de Desempenho durante a inicialização do servidor. Os valores `TIMER_START` e `TIMER_END` nos eventos representam picosegundos desde a linha de base. Os valores `TIMER_WAIT` são durações em picosegundos.
+The timer baseline (“time zero”) occurs at Performance Schema initialization during server startup. `TIMER_START` and `TIMER_END` values in events represent picoseconds since the baseline. `TIMER_WAIT` values are durations in picoseconds.
 
-Os valores de picosegundos nos eventos são aproximados. Sua precisão está sujeita às formas usuais de erro associadas à conversão de uma unidade para outra. Se o temporizador `CYCLE` for usado e a taxa do processador variar, pode haver um desvio. Por essas razões, não é razoável considerar o valor de `TIMER_START` para um evento como uma medida precisa do tempo decorrido desde o início do servidor. Por outro lado, é razoável usar os valores de `TIMER_START` ou `TIMER_WAIT` nas cláusulas `ORDER BY` para ordenar os eventos pelo tempo de início ou duração.
+Picosecond values in events are approximate. Their accuracy is subject to the usual forms of error associated with conversion from one unit to another. If the `CYCLE` timer is used and the processor rate varies, there might be drift. For these reasons, it is not reasonable to look at the `TIMER_START` value for an event as an accurate measure of time elapsed since server startup. On the other hand, it is reasonable to use `TIMER_START` or `TIMER_WAIT` values in `ORDER BY` clauses to order events by start time or duration.
 
-A escolha de picossegundos em eventos em vez de um valor como microsegundos tem uma base de desempenho. Um objetivo da implementação era mostrar os resultados em uma unidade de tempo uniforme, independentemente do temporizador. Em um mundo ideal, essa unidade de tempo seria semelhante a uma unidade de relógio de parede e seria razoavelmente precisa; em outras palavras, microsegundos. Mas para converter ciclos ou nanosegundos em microsegundos, seria necessário realizar uma divisão para cada instrumento. A divisão é cara em muitas plataformas. A multiplicação não é cara, então é isso que é usado. Portanto, a unidade de tempo é um múltiplo inteiro do valor mais alto possível do `TIMER_FREQUENCY`, usando um multiplicador grande o suficiente para garantir que não haja perda significativa de precisão. O resultado é que a unidade de tempo é “picossegundos”. Essa precisão é especulativa, mas a decisão permite que o overhead seja minimizado.
+The choice of picoseconds in events rather than a value such as microseconds has a performance basis. One implementation goal was to show results in a uniform time unit, regardless of the timer. In an ideal world this time unit would look like a wall-clock unit and be reasonably precise; in other words, microseconds. But to convert cycles or nanoseconds to microseconds, it would be necessary to perform a division for every instrumentation. Division is expensive on many platforms. Multiplication is not expensive, so that is what is used. Therefore, the time unit is an integer multiple of the highest possible `TIMER_FREQUENCY` value, using a multiplier large enough to ensure that there is no major precision loss. The result is that the time unit is “picoseconds.” This precision is spurious, but the decision enables overhead to be minimized.
 
-Enquanto uma espera, uma etapa, uma declaração ou um evento de transação está sendo executado, as tabelas de eventos atuais respectivos exibem informações de cronometragem de eventos atuais:
+While a wait, stage, statement, or transaction event is executing, the respective current-event tables display current-event timing information:
 
 ```sql
 events_waits_current
@@ -113,18 +113,17 @@ events_statements_current
 events_transactions_current
 ```
 
-Para permitir determinar quanto tempo um evento ainda não concluído já está em andamento, as colunas do temporizador são definidas da seguinte forma:
+To make it possible to determine how long a not-yet-completed event has been running, the timer columns are set as follows:
 
-- `TIMER_START` foi preenchido.
+* `TIMER_START` is populated.
+* `TIMER_END` is populated with the current timer value.
 
-- `TIMER_END` é preenchido com o valor atual do temporizador.
+* `TIMER_WAIT` is populated with the time elapsed so far (`TIMER_END` − `TIMER_START`).
 
-- `TIMER_WAIT` é preenchido com o tempo que já passou (`TIMER_END` − `TIMER_START`).
-
-Eventos que ainda não foram concluídos têm um valor de `END_EVENT_ID` de `NULL`. Para avaliar o tempo decorrido até o momento para um evento, use a coluna `TIMER_WAIT`. Portanto, para identificar eventos que ainda não foram concluídos e que levaram mais tempo do que *`N`* picosegundos até agora, os aplicativos de monitoramento podem usar essa expressão nas consultas:
+Events that have not yet completed have an `END_EVENT_ID` value of `NULL`. To assess time elapsed so far for an event, use the `TIMER_WAIT` column. Therefore, to identify events that have not yet completed and have taken longer than *`N`* picoseconds thus far, monitoring applications can use this expression in queries:
 
 ```sql
 WHERE END_EVENT_ID IS NULL AND TIMER_WAIT > N
 ```
 
-A identificação de eventos conforme descrito acima pressupõe que os instrumentos correspondentes tenham `ENABLED` e `TIMED` configurados como `YES` e que os consumidores relevantes estejam habilitados.
+Event identification as just described assumes that the corresponding instruments have `ENABLED` and `TIMED` set to `YES` and that the relevant consumers are enabled.

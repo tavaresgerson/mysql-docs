@@ -1,55 +1,54 @@
-## 14.23 Limites do InnoDB
+## 14.23 InnoDB Limits
 
-Esta seção descreve os limites para as tabelas `InnoDB`, índices, espaços de tabelas e outros aspectos do motor de armazenamento `InnoDB`.
+This section describes limits for `InnoDB` tables, indexes, tablespaces, and other aspects of the `InnoDB` storage engine.
 
-- Uma tabela pode conter no máximo 1017 colunas (aumentado no MySQL 5.6.9 a partir do limite anterior de 1000). As colunas geradas virtualmente estão incluídas neste limite.
+* A table can contain a maximum of 1017 columns (raised in MySQL 5.6.9 from the earlier limit of 1000). Virtual generated columns are included in this limit.
 
-- Uma tabela pode conter um máximo de 64 índices secundários.
+* A table can contain a maximum of 64 secondary indexes.
 
-- Se `innodb_large_prefix` estiver habilitado (o padrão), o limite do prefixo da chave do índice é de 3072 bytes para tabelas `InnoDB` que usam o formato de linha `DINÂMICO` ou `COMPRESSADO`. Se `innodb_large_prefix` estiver desabilitado, o limite do prefixo da chave do índice é de 767 bytes para tabelas de qualquer formato de linha.
+* If `innodb_large_prefix` is enabled (the default), the index key prefix limit is 3072 bytes for `InnoDB` tables that use the `DYNAMIC` or `COMPRESSED` row format. If `innodb_large_prefix` is disabled, the index key prefix limit is 767 bytes for tables of any row format.
 
-  `innodb_large_prefix` está desatualizado; espere que ele seja removido em uma futura versão do MySQL. `innodb_large_prefix` foi introduzido no MySQL 5.5 para desabilitar prefixos de chaves de índice grandes para compatibilidade com versões anteriores do `InnoDB` que não suportam prefixos de chaves de índice grandes.
+  `innodb_large_prefix` is deprecated; expect it to be removed in a future MySQL release. `innodb_large_prefix` was introduced in MySQL 5.5 to disable large index key prefixes for compatibility with earlier versions of `InnoDB` that do not support large index key prefixes.
 
-  O limite de comprimento do prefixo da chave do índice é de 767 bytes para tabelas `InnoDB` que utilizam o formato de linha `REDUNDANT` ou `COMPACT`. Por exemplo, você pode atingir esse limite com um índice de prefixo de coluna com mais de 255 caracteres em uma coluna `TEXT` ou `VARCHAR`, assumindo um conjunto de caracteres `utf8mb3` e o máximo de 3 bytes para cada caractere.
+  The index key prefix length limit is 767 bytes for `InnoDB` tables that use the `REDUNDANT` or `COMPACT` row format. For example, you might hit this limit with a column prefix index of more than 255 characters on a `TEXT` or `VARCHAR` column, assuming a `utf8mb3` character set and the maximum of 3 bytes for each character.
 
-  Tentar usar um prefixo de comprimento de chave de índice que exceda o limite retorna um erro. Para evitar tais erros nas configurações de replicação, evite habilitar `innodb_large_prefix` na fonte se ele não puder ser habilitado também nas réplicas.
+  Attempting to use an index key prefix length that exceeds the limit returns an error. To avoid such errors in replication configurations, avoid enabling `innodb_large_prefix` on the source if it cannot also be enabled on replicas.
 
-  Se você reduzir o tamanho da página do `InnoDB` para 8KB ou 4KB, especificando a opção `innodb_page_size` ao criar a instância do MySQL, o comprimento máximo da chave do índice é reduzido proporcionalmente, com base no limite de 3072 bytes para um tamanho de página de 16KB. Isso significa que o comprimento máximo da chave do índice é de 1536 bytes quando o tamanho da página é de 8KB e 768 bytes quando o tamanho da página é de 4KB.
+  If you reduce the `InnoDB` page size to 8KB or 4KB by specifying the `innodb_page_size` option when creating the MySQL instance, the maximum length of the index key is lowered proportionally, based on the limit of 3072 bytes for a 16KB page size. That is, the maximum index key length is 1536 bytes when the page size is 8KB, and 768 bytes when the page size is 4KB.
 
-  Os limites que se aplicam aos prefixos de chaves de índice também se aplicam às chaves de índice de coluna inteira.
+  The limits that apply to index key prefixes also apply to full-column index keys.
 
-- Um máximo de 16 colunas é permitido para índices de múltiplas colunas. Exceder o limite retorna um erro.
+* A maximum of 16 columns is permitted for multicolumn indexes. Exceeding the limit returns an error.
 
   ```sql
   ERROR 1070 (42000): Too many key parts specified; max 16 parts allowed
   ```
 
-- O tamanho máximo de linha, excluindo quaisquer colunas de comprimento variável armazenadas fora da página, é ligeiramente inferior a metade de uma página para os tamanhos de página de 4KB, 8KB, 16KB e 32KB. Por exemplo, o tamanho máximo de linha para o valor padrão `innodb_page_size` de 16KB é de aproximadamente 8000 bytes. No entanto, para um tamanho de página `InnoDB` de 64KB, o tamanho máximo de linha é de aproximadamente 16000 bytes. As colunas `LONGBLOB` e `LONGTEXT` devem ser menores que 4GB, e o tamanho total da linha, incluindo as colunas `BLOB` e `TEXT`, deve ser menor que 4GB.
+* The maximum row size, excluding any variable-length columns that are stored off-page, is slightly less than half of a page for 4KB, 8KB, 16KB, and 32KB page sizes. For example, the maximum row size for the default `innodb_page_size` of 16KB is about 8000 bytes. However, for an `InnoDB` page size of 64KB, the maximum row size is approximately 16000 bytes. `LONGBLOB` and `LONGTEXT` columns must be less than 4GB, and the total row size, including `BLOB` and `TEXT` columns, must be less than 4GB.
 
-  Se uma linha tiver menos de meia página, toda ela será armazenada localmente dentro da página. Se ultrapassar meia página, colunas de comprimento variável serão escolhidas para armazenamento externo fora da página até que a linha se encaixe em meia página, conforme descrito na Seção 14.12.2, “Gestão do Espaço de Arquivo”.
+  If a row is less than half a page long, all of it is stored locally within the page. If it exceeds half a page, variable-length columns are chosen for external off-page storage until the row fits within half a page, as described in Section 14.12.2, “File Space Management”.
 
-- Embora o `InnoDB` suporte tamanhos de linha maiores que 65.535 bytes internamente, o próprio MySQL impõe um limite de tamanho de linha de 65.535 para o tamanho combinado de todas as colunas. Veja a Seção 8.4.7, “Limites de Contagem de Colunas de Tabela e Tamanho de Linha”.
+* Although `InnoDB` supports row sizes larger than 65,535 bytes internally, MySQL itself imposes a row-size limit of 65,535 for the combined size of all columns. See Section 8.4.7, “Limits on Table Column Count and Row Size”.
 
-- Em alguns sistemas operacionais mais antigos, os arquivos devem ter menos de 2 GB. Isso não é uma limitação do `InnoDB`. Se você precisar de um grande espaço de tabela do sistema, configure-o usando vários arquivos de dados menores, em vez de um único arquivo de dados grande, ou distribua os dados da tabela entre arquivos de dados por tabela e arquivos de dados do espaço de tabela geral.
+* On some older operating systems, files must be less than 2GB. This is not an `InnoDB` limitation. If you require a large system tablespace, configure it using several smaller data files rather than one large data file, or distribute table data across file-per-table and general tablespace data files.
 
-- O tamanho máximo combinado para os arquivos de log do `InnoDB` é de 512 GB.
+* The combined maximum size for `InnoDB` log files is 512GB.
 
-- O tamanho mínimo do espaço de tabela é ligeiramente maior que 10 MB. O tamanho máximo do espaço de tabela depende do tamanho da página do `InnoDB`.
+* The minimum tablespace size is slightly larger than 10MB. The maximum tablespace size depends on the `InnoDB` page size.
 
-  **Tabela 14.25 Tamanho máximo do espaço de tabelas InnoDB**
+  **Table 14.25 InnoDB Maximum Tablespace Size**
 
-  <table summary="O tamanho máximo do espaço de tabela para cada tamanho de página do InnoDB."><col style="width: 40%"/><col style="width: 60%"/><thead><tr> <th>Tamanho da página do InnoDB</th> <th>Tamanho máximo do espaço de tabela</th> </tr></thead><tbody><tr> <td>4 KB</td> <td>16TB</td> </tr><tr> <td>8 KB</td> <td>32 TB</td> </tr><tr> <td>16 KB</td> <td>64 TB</td> </tr><tr> <td>32 KB</td> <td>128 TB</td> </tr><tr> <td>64 KB</td> <td>256 TB</td> </tr></tbody></table>
+  <table summary="The maximum tablespace size for each InnoDB page size."><col style="width: 40%"/><col style="width: 60%"/><thead><tr> <th>InnoDB Page Size</th> <th>Maximum Tablespace Size</th> </tr></thead><tbody><tr> <td>4KB</td> <td>16TB</td> </tr><tr> <td>8KB</td> <td>32TB</td> </tr><tr> <td>16KB</td> <td>64TB</td> </tr><tr> <td>32KB</td> <td>128TB</td> </tr><tr> <td>64KB</td> <td>256TB</td> </tr></tbody></table>
 
-  O tamanho máximo do espaço de tabela também é o tamanho máximo para uma tabela.
+  The maximum tablespace size is also the maximum size for a table.
 
-- Os arquivos de tablespace não podem exceder 4 GB em sistemas de 32 bits do Windows (bug #80149).
+* Tablespace files cannot exceed 4GB on Windows 32-bit systems (Bug #80149).
 
-- Uma instância do `InnoDB` suporta até 2^32 (4294967296) espaços de tabelas, com um pequeno número desses espaços de tabelas reservados para desfazer e tabelas temporárias.
+* An `InnoDB` instance supports up to 2^32 (4294967296) tablespaces, with a small number of those tablespaces reserved for undo and temporary tables.
 
-- Os espaços de tabela compartilhados suportam até 2^32 (4294967296) tabelas.
+* Shared tablespaces support up to 2^32 (4294967296) tables.
+* The path of a tablespace file, including the file name, cannot exceed the `MAX_PATH` limit on Windows. Prior to Windows 10, the `MAX_PATH` limit is 260 characters. As of Windows 10, version 1607, `MAX_PATH` limitations are removed from common Win32 file and directory functions, but you must enable the new behavior.
 
-- O caminho de um arquivo de espaço de tabela, incluindo o nome do arquivo, não pode exceder o limite `MAX_PATH` no Windows. Antes do Windows 10, o limite `MAX_PATH` é de 260 caracteres. A partir do Windows 10, versão 1607, as limitações de `MAX_PATH` são removidas das funções comuns de arquivos e diretórios Win32, mas você deve habilitar o novo comportamento.
+* `ROW_FORMAT=COMPRESSED` in the Barracuda file format assumes that the page size is at most 16KB and uses 14-bit pointers.
 
-- `ROW_FORMAT=COMPRESSED` no formato de arquivo Barracuda assume que o tamanho da página é de no máximo 16 KB e usa ponteiros de 14 bits.
-
-- Para limites associados a transações de leitura e escrita concorrentes, consulte a Seção 14.6.7, "Registros de Anulação".
+* For limits associated with concurrent read-write transactions, see Section 14.6.7, “Undo Logs”.

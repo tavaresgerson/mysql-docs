@@ -1,19 +1,19 @@
-#### 11.4.2.4 Classe de curva
+#### 11.4.2.4 Curve Class
 
-Uma `Curva` é uma geometria unidimensional, geralmente representada por uma sequência de pontos. Subclasses específicas de `Curva` definem o tipo de interpolação entre os pontos. `Curva` é uma classe não instanciável.
+A `Curve` is a one-dimensional geometry, usually represented by a sequence of points. Particular subclasses of `Curve` define the type of interpolation between points. `Curve` is a noninstantiable class.
 
-**Propriedades da curva**
+**`Curve` Properties**
 
-- Uma `Curva` tem as coordenadas de seus pontos.
+* A `Curve` has the coordinates of its points.
 
-- Uma `Curva` é definida como uma geometria unidimensional.
+* A `Curve` is defined as a one-dimensional geometry.
 
-- Uma curva é simples se não passar pelo mesmo ponto duas vezes, com a exceção de que uma curva ainda pode ser simples se os pontos de início e fim forem os mesmos.
+* A `Curve` is simple if it does not pass through the same point twice, with the exception that a curve can still be simple if the start and end points are the same.
 
-- Uma `Curva` é fechada se seu ponto de início for igual ao seu ponto final.
+* A `Curve` is closed if its start point is equal to its endpoint.
 
-- A borda de uma `Curva` fechada é vazia.
+* The boundary of a closed `Curve` is empty.
 
-- A borda de uma `Curva` não fechada é composta por seus dois pontos finais.
+* The boundary of a nonclosed `Curve` consists of its two endpoints.
 
-- Uma `Curva` que é simples e fechada é um `Ring Linear`.
+* A `Curve` that is simple and closed is a `LinearRing`.

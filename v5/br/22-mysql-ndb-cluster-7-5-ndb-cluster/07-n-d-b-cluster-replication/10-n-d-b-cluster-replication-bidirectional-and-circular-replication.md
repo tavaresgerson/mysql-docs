@@ -1,57 +1,57 @@
-### 21.7.10 Replicação em cluster do NDB: Replicação bidirecional e circular
+### 21.7.10 NDB Cluster Replication: Bidirectional and Circular Replication
 
-É possível usar o NDB Cluster para replicação bidirecional entre dois clusters, bem como para replicação circular entre qualquer número de clusters.
+It is possible to use NDB Cluster for bidirectional replication between two clusters, as well as for circular replication between any number of clusters.
 
-**Exemplo de replicação circular.** Nos próximos parágrafos, consideramos o exemplo de uma configuração de replicação envolvendo três NDB Clusters numerados 1, 2 e 3, no qual o Cluster 1 atua como a fonte de replicação para o Cluster 2, o Cluster 2 atua como a fonte para o Cluster 3 e o Cluster 3 atua como a fonte para o Cluster 1. Cada cluster tem dois nós SQL, com os nós SQL A e B pertencentes ao Cluster 1, os nós SQL C e D pertencentes ao Cluster 2 e os nós SQL E e F pertencentes ao Cluster 3.
+**Circular replication example.** In the next few paragraphs we consider the example of a replication setup involving three NDB Clusters numbered 1, 2, and 3, in which Cluster 1 acts as the replication source for Cluster 2, Cluster 2 acts as the source for Cluster 3, and Cluster 3 acts as the source for Cluster 1. Each cluster has two SQL nodes, with SQL nodes A and B belonging to Cluster 1, SQL nodes C and D belonging to Cluster 2, and SQL nodes E and F belonging to Cluster 3.
 
-A replicação circular usando esses clusters é suportada desde que as seguintes condições sejam atendidas:
+Circular replication using these clusters is supported as long as the following conditions are met:
 
-- Os nós SQL em todas as fontes e réplicas são os mesmos.
-- Todos os nós SQL que atuam como fontes e réplicas são iniciados com a variável de sistema [`log_slave_updates`](https://pt.wikipedia.org/wiki/Replicação#Op%C3%A7%C3%B5es_bin%C3%A1rias_de_log) habilitada.
+* The SQL nodes on all sources and replicas are the same.
+* All SQL nodes acting as sources and replicas are started with the [`log_slave_updates`](replication-options-binary-log.html#sysvar_log_slave_updates) system variable enabled.
 
-Esse tipo de configuração de replicação circular é mostrado no diagrama a seguir:
+This type of circular replication setup is shown in the following diagram:
 
-**Figura 21.17 Replicação Circular de Clusters NDB com Todas as Fontes como Replicas**
+**Figure 21.17 NDB Cluster Circular Replication with All Sources As Replicas**
 
-![Alguns conteúdos são descritos no texto ao redor. O diagrama mostra três aglomerados, cada um com dois nós. As setas que conectam os nós SQL em diferentes aglomerados ilustram que todas as fontes também são réplicas.](images/cluster-circular-replication-1.png)
+![Some content is described in the surrounding text. The diagram shows three clusters, each with two nodes. Arrows connecting SQL nodes in different clusters illustrate that all sources are also replicas.](images/cluster-circular-replication-1.png)
 
-Nesse cenário, o nó SQL A do Cluster 1 replica para o nó SQL C do Cluster 2; o nó SQL C replica para o nó SQL E do Cluster 3; o nó SQL E replica para o nó SQL A. Em outras palavras, a linha de replicação (indicada pelas setas curvas no diagrama) conecta diretamente todos os nós SQL usados como fontes e réplicas de replicação.
+In this scenario, SQL node A in Cluster 1 replicates to SQL node C in Cluster 2; SQL node C replicates to SQL node E in Cluster 3; SQL node E replicates to SQL node A. In other words, the replication line (indicated by the curved arrows in the diagram) directly connects all SQL nodes used as replication sources and replicas.
 
-É também possível configurar a replicação circular de forma que nem todos os nós de SQL de origem sejam também réplicas, como mostrado aqui:
+It is also possible to set up circular replication in such a way that not all source SQL nodes are also replicas, as shown here:
 
-**Figura 21.18 Replicação Circular de Clusters NDB Onde Nem Todas as Fontes São Replicas**
+**Figure 21.18 NDB Cluster Circular Replication Where Not All Sources Are Replicas**
 
-![Alguns conteúdos são descritos no texto ao redor. O diagrama mostra três aglomerados, cada um com dois nós. As setas que conectam os nós SQL em diferentes aglomerados ilustram que nem todas as fontes são réplicas.](images/cluster-circular-replication-2.png)
+![Some content is described in the surrounding text. The diagram shows three clusters, each with two nodes. Arrows connecting SQL nodes in different clusters illustrate that not all sources are replicas.](images/cluster-circular-replication-2.png)
 
-Nesse caso, diferentes nós SQL em cada clúster são usados como fontes de replicação e réplicas. Você *não* deve iniciar nenhum dos nós SQL com a variável de sistema `log_slave_updates` habilitada. Esse tipo de esquema de replicação circular para o NDB Cluster, no qual a linha de replicação (novamente indicada pelas setas curvas no diagrama) é descontínua, deve ser possível, mas deve-se notar que ainda não foi testado completamente e, portanto, ainda deve ser considerado experimental.
+In this case, different SQL nodes in each cluster are used as replication sources and replicas. You must *not* start any of the SQL nodes with the [`log_slave_updates`](replication-options-binary-log.html#sysvar_log_slave_updates) system variable enabled. This type of circular replication scheme for NDB Cluster, in which the line of replication (again indicated by the curved arrows in the diagram) is discontinuous, should be possible, but it should be noted that it has not yet been thoroughly tested and must therefore still be considered experimental.
 
-**Usando backup e restauração nativas do NDB para inicializar um cluster de replica.**
+**Using NDB-native backup and restore to initialize a replica cluster.**
 
-Ao configurar a replicação circular, é possível inicializar o clúster de replicação usando o comando `[START BACKUP]` (mysql-cluster-backup-using-management-client.html) no NDB Cluster para criar um backup e, em seguida, aplicar esse backup em outro NDB Cluster usando **ndb_restore**. Isso não cria automaticamente logs binários no nó SQL do segundo NDB Cluster que atua como replica; para que os logs binários sejam criados, você deve emitir uma declaração `[SHOW TABLES]` (show-tables.html) nesse nó SQL; isso deve ser feito antes de executar `[START SLAVE]` (start-slave.html). Esse é um problema conhecido.
+When setting up circular replication, it is possible to initialize the replica cluster by using the management client [`START BACKUP`](mysql-cluster-backup-using-management-client.html "21.6.8.2 Using The NDB Cluster Management Client to Create a Backup") command on one NDB Cluster to create a backup and then applying this backup on another NDB Cluster using [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup"). This does not automatically create binary logs on the second NDB Cluster's SQL node acting as the replica; in order to cause the binary logs to be created, you must issue a [`SHOW TABLES`](show-tables.html "13.7.5.37 SHOW TABLES Statement") statement on that SQL node; this should be done prior to running [`START SLAVE`](start-slave.html "13.4.2.5 START SLAVE Statement"). This is a known issue.
 
-**Exemplo de falha de múltiplas fontes.** Nesta seção, discutimos a falha de múltiplas fontes em uma configuração de replicação de NDB Cluster de múltiplas fontes com três NDB Clusters com IDs de servidor 1, 2 e 3. Neste cenário, o Cluster 1 replica para os Clusters 2 e 3; o Cluster 2 também replica para o Cluster 3. Esta relação é mostrada aqui:
+**Multi-source failover example.** In this section, we discuss failover in a multi-source NDB Cluster replication setup with three NDB Clusters having server IDs 1, 2, and 3. In this scenario, Cluster 1 replicates to Clusters 2 and 3; Cluster 2 also replicates to Cluster 3. This relationship is shown here:
 
-**Figura 21.19 Replicação de cluster NDDB com múltiplos mestres com 3 fontes**
+**Figure 21.19 NDB Cluster Multi-Master Replication With 3 Sources**
 
-![Configuração de replicação de NDB Cluster de múltiplas fontes com três NDB Clusters com IDs de servidor 1, 2 e 3; o Cluster 1 replica para os Clusters 2 e 3; o Cluster 2 também replica para o Cluster 3](images/cluster-replication-multi-source.png)
+![Multi-source NDB Cluster replication setup with three NDB Clusters having server IDs 1, 2, and 3; Cluster 1 replicates to Clusters 2 and 3; Cluster 2 also replicates to Cluster 3.](images/cluster-replication-multi-source.png)
 
-Em outras palavras, os dados são replicados do Cluster 1 para o Cluster 3 por meio de 2 rotas diferentes: diretamente e por meio do Cluster 2.
+In other words, data replicates from Cluster 1 to Cluster 3 through 2 different routes: directly, and by way of Cluster 2.
 
-Nem todos os servidores MySQL que participam da replicação de múltiplas fontes precisam atuar como fonte e réplica, e um determinado NDB Cluster pode usar diferentes nós SQL para diferentes canais de replicação. Um caso como esse é mostrado aqui:
+Not all MySQL servers taking part in multi-source replication must act as both source and replica, and a given NDB Cluster might use different SQL nodes for different replication channels. Such a case is shown here:
 
-**Figura 21.20 Replicação de múltiplas fontes de cluster NDB, com servidores MySQL**
+**Figure 21.20 NDB Cluster Multi-Source Replication, With MySQL Servers**
 
-![Os conceitos são descritos no texto ao redor. Mostra três nós: o nó SQL A no Clúster 1 replica para o nó SQL F no Clúster 3; o nó SQL B no Clúster 1 replica para o nó SQL C no Clúster 2; o nó SQL E no Clúster 3 replica para o nó SQL G no Clúster 3. Os nós SQL A e B no Clúster 1 têm --log-slave-updates=0; os nós SQL C no Clúster 2 e os nós SQL F e G no Clúster 3 têm --log-slave-updates=1; e os nós SQL D e E no Clúster 2 têm --log-slave-updates=0.](images/cluster-replication-multi-source-mysqlds.png)
+![Concepts are described in the surrounding text. Shows three nodes: SQL node A in Cluster 1 replicates to SQL node F in Cluster 3; SQL node B in Cluster 1 replicates to SQL node C in Cluster 2; SQL node E in Cluster 3 replicates to SQL node G in Cluster 3. SQL nodes A and B in cluster 1 have --log-slave-updates=0; SQL nodes C in Cluster 2, and SQL nodes F and G in Cluster 3 have --log-slave-updates=1; and SQL nodes D and E in Cluster 2 have --log-slave-updates=0.](images/cluster-replication-multi-source-mysqlds.png)
 
-Os servidores MySQL que atuam como réplicas devem ser executados com a variável de sistema `log_slave_updates` habilitada. Os processos do **mysqld** que exigem essa opção também estão mostrados no diagrama anterior.
+MySQL servers acting as replicas must be run with the [`log_slave_updates`](replication-options-binary-log.html#sysvar_log_slave_updates) system variable enabled. Which [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") processes require this option is also shown in the preceding diagram.
 
-Nota
+Note
 
-O uso da variável de sistema [`log_slave_updates`](https://pt.wikipedia.org/wiki/Replicação#Op%C3%A7%C3%B5es_bin%C3%A1rias_de_log) não tem efeito em servidores que não estão sendo executados como réplicas.
+Using the [`log_slave_updates`](replication-options-binary-log.html#sysvar_log_slave_updates) system variable has no effect on servers not being run as replicas.
 
-A necessidade de falha de replicação surge quando um dos clusters replicadores é interrompido. Neste exemplo, consideramos o caso em que o Cluster 1 é perdido, e, portanto, o Cluster 3 perde 2 fontes de atualizações do Cluster 1. Como a replicação entre os Clusters NDB é assíncrona, não há garantia de que as atualizações do Cluster 3 que têm origem diretamente no Cluster 1 sejam mais recentes do que as recebidas através do Cluster 2. Você pode lidar com isso garantindo que o Cluster 3 consiga se atualizar com o Cluster 2 em relação às atualizações do Cluster 1. Em termos de servidores MySQL, isso significa que você precisa replicar quaisquer atualizações pendentes do servidor MySQL C para o servidor F.
+The need for failover arises when one of the replicating clusters goes down. In this example, we consider the case where Cluster 1 is lost to service, and so Cluster 3 loses 2 sources of updates from Cluster 1. Because replication between NDB Clusters is asynchronous, there is no guarantee that Cluster 3's updates originating directly from Cluster 1 are more recent than those received through Cluster 2. You can handle this by ensuring that Cluster 3 catches up to Cluster 2 with regard to updates from Cluster 1. In terms of MySQL servers, this means that you need to replicate any outstanding updates from MySQL server C to server F.
 
-No servidor C, execute as seguintes consultas:
+On server C, perform the following queries:
 
 ```sql
 mysqlC> SELECT @latest:=MAX(epoch)
@@ -67,11 +67,11 @@ mysqlC> SELECT
      ->     ORDER BY epoch ASC LIMIT 1;
 ```
 
-Nota
+Note
 
-Você pode melhorar o desempenho dessa consulta e, assim, acelerar significativamente os tempos de failover, adicionando o índice apropriado à tabela `ndb_binlog_index`. Consulte Seção 21.7.4, “Esquema e tabelas de replicação de clúster NDB” para obter mais informações.
+You can improve the performance of this query, and thus likely speed up failover times significantly, by adding the appropriate index to the `ndb_binlog_index` table. See [Section 21.7.4, “NDB Cluster Replication Schema and Tables”](mysql-cluster-replication-schema.html "21.7.4 NDB Cluster Replication Schema and Tables"), for more information.
 
-Copie manualmente os valores para *`@file`* e *`@pos`* do servidor C para o servidor F (ou faça sua aplicação realizar o equivalente). Em seguida, no servidor F, execute a seguinte declaração `CHANGE MASTER TO`:
+Copy over the values for *`@file`* and *`@pos`* manually from server C to server F (or have your application perform the equivalent). Then, on server F, execute the following [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") statement:
 
 ```sql
 mysqlF> CHANGE MASTER TO
@@ -80,6 +80,6 @@ mysqlF> CHANGE MASTER TO
      ->     MASTER_LOG_POS=@pos;
 ```
 
-Depois que isso for feito, você pode emitir uma declaração `START SLAVE` no servidor MySQL F; isso faz com que quaisquer atualizações faltantes originadas do servidor B sejam replicadas para o servidor F.
+Once this has been done, you can issue a [`START SLAVE`](start-slave.html "13.4.2.5 START SLAVE Statement") statement on MySQL server F; this causes any missing updates originating from server B to be replicated to server F.
 
-A declaração `CHANGE MASTER TO` também suporta a opção `IGNORE_SERVER_IDS`, que aceita uma lista de IDs de servidor separados por vírgula e faz com que os eventos originados nos servidores correspondentes sejam ignorados. Para obter mais informações, consulte Seção 13.4.2.1, “Declaração CHANGE MASTER TO” e Seção 13.7.5.34, “Declaração SHOW SLAVE STATUS”. Para informações sobre como essa opção interage com a variável `ndb_log_apply_status`, consulte Seção 21.7.8, “Implementação de Failover com Replicação de NDB Cluster”.
+The [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") statement also supports an `IGNORE_SERVER_IDS` option which takes a comma-separated list of server IDs and causes events originating from the corresponding servers to be ignored. For more information, see [Section 13.4.2.1, “CHANGE MASTER TO Statement”](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement"), and [Section 13.7.5.34, “SHOW SLAVE STATUS Statement”](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement"). For information about how this option intereacts with the [`ndb_log_apply_status`](mysql-cluster-options-variables.html#sysvar_ndb_log_apply_status) variable, see [Section 21.7.8, “Implementing Failover with NDB Cluster Replication”](mysql-cluster-replication-failover.html "21.7.8 Implementing Failover with NDB Cluster Replication").

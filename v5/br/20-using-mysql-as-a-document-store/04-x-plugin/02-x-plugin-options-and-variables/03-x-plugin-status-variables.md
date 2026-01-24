@@ -1,247 +1,247 @@
-#### 19.4.2.3 Variáveis de Status do Plugin X
+#### 19.4.2.3 X Plugin Status Variables
 
-As variáveis de status do X Plugin têm os seguintes significados.
+The X Plugin status variables have the following meanings.
 
-- `Mysqlx_address`
+* `Mysqlx_address`
 
-  O endereço de rede ao qual o X Plugin está vinculado. Se a vinculação falhou ou se a opção `skip_networking` foi usada, o valor mostra `UNDEFINED`.
+  The network address which X Plugin is bound to. If the bind has failed, or if the `skip_networking` option has been used, the value shows `UNDEFINED`.
 
-- `Mysqlx_bytes_received`
+* `Mysqlx_bytes_received`
 
-  O número de bytes recebidos através da rede.
+  The number of bytes received through the network.
 
-- `Mysqlx_bytes_sent`
+* `Mysqlx_bytes_sent`
 
-  O número de bytes enviados pela rede.
+  The number of bytes sent through the network.
 
-- `Mysqlx_connection_accept_errors`
+* `Mysqlx_connection_accept_errors`
 
-  O número de conexões que causaram erros de aceitação.
+  The number of connections which have caused accept errors.
 
-- `Mysqlx_connection_errors`
+* `Mysqlx_connection_errors`
 
-  O número de conexões que causaram erros.
+  The number of connections which have caused errors.
 
-- `Mysqlx_connections_accepted`
+* `Mysqlx_connections_accepted`
 
-  O número de conexões que foram aceitas.
+  The number of connections which have been accepted.
 
-- `Mysqlx_connections_closed`
+* `Mysqlx_connections_closed`
 
-  O número de conexões que foram fechadas.
+  The number of connections which have been closed.
 
-- `Mysqlx_connections_rejected`
+* `Mysqlx_connections_rejected`
 
-  O número de conexões que foram rejeitadas.
+  The number of connections which have been rejected.
 
-- `Mysqlx_crud_create_view`
+* `Mysqlx_crud_create_view`
 
-  Número de solicitações de criação de visualizações recebidas.
+  The number of create view requests received.
 
-- `Mysqlx_crud_delete`
+* `Mysqlx_crud_delete`
 
-  O número de solicitações de exclusão recebidas.
+  The number of delete requests received.
 
-- `Mysqlx_crud_drop_view`
+* `Mysqlx_crud_drop_view`
 
-  O número de solicitações de visualização em queda recebidas.
+  The number of drop view requests received.
 
-- `Mysqlx_crud_find`
+* `Mysqlx_crud_find`
 
-  O número de solicitações de pesquisa recebidas.
+  The number of find requests received.
 
-- `Mysqlx_crud_insert`
+* `Mysqlx_crud_insert`
 
-  O número de pedidos de inserção recebidos.
+  The number of insert requests received.
 
-- `Mysqlx_crud_modify_view`
+* `Mysqlx_crud_modify_view`
 
-  Número de solicitações de modificação de visualização recebidas.
+  The number of modify view requests received.
 
-- `Mysqlx_crud_update`
+* `Mysqlx_crud_update`
 
-  O número de solicitações de atualização recebidas.
+  The number of update requests received.
 
-- `Mysqlx_errors_sent`
+* `Mysqlx_errors_sent`
 
-  O número de erros enviados aos clientes.
+  The number of errors sent to clients.
 
-- `Mysqlx_errors_unknown_message_type`
+* `Mysqlx_errors_unknown_message_type`
 
-  O número de tipos de mensagens desconhecidas que foram recebidas.
+  The number of unknown message types that have been received.
 
-- `Mysqlx_expect_close`
+* `Mysqlx_expect_close`
 
-  O número de blocos de expectativa fechados.
+  The number of expectation blocks closed.
 
-- `Mysqlx_expect_open`
+* `Mysqlx_expect_open`
 
-  Número de blocos de expectativa abertos.
+  The number of expectation blocks opened.
 
-- `Mysqlx_init_error`
+* `Mysqlx_init_error`
 
-  Número de erros durante a inicialização.
+  The number of errors during initialisation.
 
-- `Mysqlx_notice_other_sent`
+* `Mysqlx_notice_other_sent`
 
-  O número de outros tipos de avisos enviados de volta aos clientes.
+  The number of other types of notices sent back to clients.
 
-- `Mysqlx_notice_warning_sent`
+* `Mysqlx_notice_warning_sent`
 
-  O número de avisos enviados de volta aos clientes.
+  The number of warning notices sent back to clients.
 
-- `Mysqlx_port`
+* `Mysqlx_port`
 
-  A porta TCP para a qual o X Plugin está ouvindo. Se uma vinculação de rede falhou ou se a variável de sistema `skip_networking` estiver habilitada, o valor será `UNDEFINED`.
+  The TCP port which X Plugin is listening to. If a network bind has failed, or if the `skip_networking` system variable is enabled, the value shows `UNDEFINED`.
 
-- `Mysqlx_rows_sent`
+* `Mysqlx_rows_sent`
 
-  O número de linhas enviadas de volta aos clientes.
+  The number of rows sent back to clients.
 
-- `Mysqlx_sessions`
+* `Mysqlx_sessions`
 
-  O número de sessões que foram abertas.
+  The number of sessions that have been opened.
 
-- `Mysqlx_sessions_accepted`
+* `Mysqlx_sessions_accepted`
 
-  O número de tentativas de sessão que foram aceitas.
+  The number of session attempts which have been accepted.
 
-- `Mysqlx_sessions_closed`
+* `Mysqlx_sessions_closed`
 
-  O número de sessões que foram fechadas.
+  The number of sessions that have been closed.
 
-- `Mysqlx_sessions_fatal_error`
+* `Mysqlx_sessions_fatal_error`
 
-  O número de sessões que foram encerradas com um erro fatal.
+  The number of sessions that have closed with a fatal error.
 
-- `Mysqlx_sessions_killed`
+* `Mysqlx_sessions_killed`
 
-  O número de sessões que foram eliminadas.
+  The number of sessions which have been killed.
 
-- `Mysqlx_sessions_rejected`
+* `Mysqlx_sessions_rejected`
 
-  Número de tentativas de sessão que foram rejeitadas.
+  The number of session attempts which have been rejected.
 
-- `Mysqlx_socket`
+* `Mysqlx_socket`
 
-  O socket Unix ao qual o X Plugin está ouvindo.
+  The Unix socket which X Plugin is listening to.
 
-- `Mysqlx_ssl_accept_renegotiates`
+* `Mysqlx_ssl_accept_renegotiates`
 
-  O número de negociações necessárias para estabelecer a conexão.
+  The number of negotiations needed to establish the connection.
 
-- `Mysqlx_ssl_accepts`
+* `Mysqlx_ssl_accepts`
 
-  O número de conexões SSL aceitas.
+  The number of accepted SSL connections.
 
-- `Mysqlx_ssl_active`
+* `Mysqlx_ssl_active`
 
-  Se o SSL estiver ativo.
+  If SSL is active.
 
-- `Mysqlx_ssl_cipher`
+* `Mysqlx_ssl_cipher`
 
-  O cifrador SSL atual (vazio para conexões não SSL).
+  The current SSL cipher (empty for non-SSL connections).
 
-- `Mysqlx_ssl_cipher_list`
+* `Mysqlx_ssl_cipher_list`
 
-  Uma lista de possíveis cifra SSL (vazia para conexões não SSL).
+  A list of possible SSL ciphers (empty for non-SSL connections).
 
-- `Mysqlx_ssl_ctx_verify_depth`
+* `Mysqlx_ssl_ctx_verify_depth`
 
-  O limite de profundidade de verificação de certificado atualmente definido em ctx.
+  The certificate verification depth limit currently set in ctx.
 
-- `Mysqlx_ssl_ctx_verify_mode`
+* `Mysqlx_ssl_ctx_verify_mode`
 
-  O modo de verificação de certificado atualmente configurado em ctx.
+  The certificate verification mode currently set in ctx.
 
-- `Mysqlx_ssl_finished_accepts`
+* `Mysqlx_ssl_finished_accepts`
 
-  O número de conexões SSL bem-sucedidas com o servidor.
+  The number of successful SSL connections to the server.
 
-- `Mysqlx_ssl_server_not_after`
+* `Mysqlx_ssl_server_not_after`
 
-  A última data em que o certificado SSL é válido.
+  The last date for which the SSL certificate is valid.
 
-- `Mysqlx_ssl_server_not_before`
+* `Mysqlx_ssl_server_not_before`
 
-  A primeira data em que o certificado SSL é válido.
+  The first date for which the SSL certificate is valid.
 
-- `Mysqlx_ssl_verify_depth`
+* `Mysqlx_ssl_verify_depth`
 
-  A profundidade de verificação de certificado para conexões SSL.
+  The certificate verification depth for SSL connections.
 
-- `Mysqlx_ssl_verify_mode`
+* `Mysqlx_ssl_verify_mode`
 
-  O modo de verificação de certificado para conexões SSL.
+  The certificate verification mode for SSL connections.
 
-- `Mysqlx_ssl_version`
+* `Mysqlx_ssl_version`
 
-  O nome do protocolo usado para conexões SSL.
+  The name of the protocol used for SSL connections.
 
-- `Mysqlx_stmt_create_collection`
+* `Mysqlx_stmt_create_collection`
 
-  Número de declarações de criação de coleção recebidas.
+  The number of create collection statements received.
 
-- `Mysqlx_stmt_create_collection_index`
+* `Mysqlx_stmt_create_collection_index`
 
-  Número de declarações de criação de índice de coleção recebidas.
+  The number of create collection index statements received.
 
-- `Mysqlx_stmt_disable_notices`
+* `Mysqlx_stmt_disable_notices`
 
-  Número de declarações de aviso de incapacidade recebidas.
+  The number of disable notice statements received.
 
-- `Mysqlx_stmt_drop_collection`
+* `Mysqlx_stmt_drop_collection`
 
-  O número de declarações de coleta de resíduos recebidas.
+  The number of drop collection statements received.
 
-- `Mysqlx_stmt_drop_collection_index`
+* `Mysqlx_stmt_drop_collection_index`
 
-  Número de declarações de índice de coleta de resíduos recebidas.
+  The number of drop collection index statements received.
 
-- `Mysqlx_stmt_enable_notices`
+* `Mysqlx_stmt_enable_notices`
 
-  Número de declarações de notificação de ativação recebidas.
+  The number of enable notice statements received.
 
-- `Mysqlx_stmt_ensure_collection`
+* `Mysqlx_stmt_ensure_collection`
 
-  Número de declarações de cobrança recebidas.
+  The number of ensure collection statements received.
 
-- `Mysqlx_stmt_execute_mysqlx`
+* `Mysqlx_stmt_execute_mysqlx`
 
-  O número de mensagens StmtExecute recebidas com o namespace definido como `mysqlx`.
+  The number of StmtExecute messages received with namespace set to `mysqlx`.
 
-- `Mysqlx_stmt_execute_sql`
+* `Mysqlx_stmt_execute_sql`
 
-  O número de solicitações StmtExecute recebidas para o namespace SQL.
+  The number of StmtExecute requests received for the SQL namespace.
 
-- `Mysqlx_stmt_execute_xplugin`
+* `Mysqlx_stmt_execute_xplugin`
 
-  O número de solicitações StmtExecute recebidas para o namespace do Plugin X.
+  The number of StmtExecute requests received for the X Plugin namespace.
 
-- `Mysqlx_stmt_kill_client`
+* `Mysqlx_stmt_kill_client`
 
-  Número de declarações de clientes mortos recebidas.
+  The number of kill client statements received.
 
-- `Mysqlx_stmt_list_clients`
+* `Mysqlx_stmt_list_clients`
 
-  Número de declarações de clientes da lista recebidas.
+  The number of list client statements received.
 
-- `Mysqlx_stmt_list_notices`
+* `Mysqlx_stmt_list_notices`
 
-  Número de declarações de notificação de lista recebidas.
+  The number of list notice statements received.
 
-- `Mysqlx_stmt_list_objects`
+* `Mysqlx_stmt_list_objects`
 
-  Número de declarações de objetos de lista recebidas.
+  The number of list object statements received.
 
-- `Mysqlx_stmt_ping`
+* `Mysqlx_stmt_ping`
 
-  O número de declarações de ping recebidas.
+  The number of ping statements received.
 
-- `Mysqlx_worker_threads`
+* `Mysqlx_worker_threads`
 
-  O número de threads de trabalho disponíveis.
+  The number of worker threads available.
 
-- `Mysqlx_worker_threads_active`
+* `Mysqlx_worker_threads_active`
 
-  O número de threads de trabalhador atualmente utilizadas.
+  The number of worker threads currently used.

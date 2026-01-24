@@ -1,38 +1,38 @@
-#### 21.6.15.28 Tabela de nós ndbinfo
+#### 21.6.15.28 The ndbinfo nodes Table
 
-Esta tabela contém informações sobre o status dos nós de dados. Para cada nó de dados que está em execução no cluster, uma linha correspondente nesta tabela fornece o ID do nó, o status e o tempo de atividade. Para nós que estão começando, também mostra a fase de início atual.
+This table contains information on the status of data nodes. For each data node that is running in the cluster, a corresponding row in this table provides the node's node ID, status, and uptime. For nodes that are starting, it also shows the current start phase.
 
-A tabela `nodes` contém as seguintes colunas:
+The `nodes` table contains the following columns:
 
-- `node_id`
+* `node_id`
 
-  O ID único do nó do nó de dados no cluster.
+  The data node's unique node ID in the cluster.
 
-- `uptime`
+* `uptime`
 
-  Tempo desde que o nó foi iniciado pela última vez, em segundos.
+  Time since the node was last started, in seconds.
 
-- `status`
+* `status`
 
-  Status atual do nó de dados; consulte o texto para os possíveis valores.
+  Current status of the data node; see text for possible values.
 
-- `fase_inicial`
+* `start_phase`
 
-  Se o nó de dados estiver sendo iniciado, a fase atual de início.
+  If the data node is starting, the current start phase.
 
-- `config_generation`
+* `config_generation`
 
-  A versão do arquivo de configuração do cluster em uso neste nó de dados.
+  The version of the cluster configuration file in use on this data node.
 
-##### Notas
+##### Notes
 
-A coluna `uptime` mostra o tempo em segundos que esse nó está em execução desde que foi iniciado ou reiniciado pela última vez. Esse é um valor de tipo `[BIGINT]` (tipos-inteiros.html). Esse número inclui o tempo realmente necessário para iniciar o nó; em outras palavras, esse contador começa a contar a partir do momento em que **ndbd** ou **ndbmtd** é invocado pela primeira vez; assim, mesmo para um nó que ainda não terminou de iniciar, o `uptime` pode mostrar um valor diferente de zero.
+The `uptime` column shows the time in seconds that this node has been running since it was last started or restarted. This is a [`BIGINT`](integer-types.html "11.1.2 Integer Types (Exact Value) - INTEGER, INT, SMALLINT, TINYINT, MEDIUMINT, BIGINT") value. This figure includes the time actually needed to start the node; in other words, this counter starts running the moment that [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") or [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") is first invoked; thus, even for a node that has not yet finished starting, `uptime` may show a nonzero value.
 
-A coluna `status` mostra o status atual do nó. Isso é um dos seguintes: `NOTHING`, `CMVMI`, `STARTING`, `STARTED`, `SINGLEUSER`, `STOPPING_1`, `STOPPING_2`, `STOPPING_3` ou `STOPPING_4`. Quando o status é `STARTING`, você pode ver a fase atual de início na coluna `start_phase` (veja mais adiante nesta seção). `SINGLEUSER` é exibido na coluna `status` para todos os nós de dados quando o clúster está no modo de usuário único (veja Seção 21.6.6, “Modo de Usuário Único do Clúster NDB”). Ver um dos estados `STOPPING` não significa necessariamente que o nó está desligando, mas pode significar que ele está entrando em um novo estado. Por exemplo, se você colocar o clúster no modo de usuário único, às vezes você pode ver nós de dados relatando seu estado brevemente como `STOPPING_2` antes que o status mude para `SINGLEUSER`.
+The `status` column shows the node's current status. This is one of: `NOTHING`, `CMVMI`, `STARTING`, `STARTED`, `SINGLEUSER`, `STOPPING_1`, `STOPPING_2`, `STOPPING_3`, or `STOPPING_4`. When the status is `STARTING`, you can see the current start phase in the `start_phase` column (see later in this section). `SINGLEUSER` is displayed in the `status` column for all data nodes when the cluster is in single user mode (see [Section 21.6.6, “NDB Cluster Single User Mode”](mysql-cluster-single-user-mode.html "21.6.6 NDB Cluster Single User Mode")). Seeing one of the `STOPPING` states does not necessarily mean that the node is shutting down but can mean rather that it is entering a new state. For example, if you put the cluster in single user mode, you can sometimes see data nodes report their state briefly as `STOPPING_2` before the status changes to `SINGLEUSER`.
 
-A coluna `start_phase` utiliza a mesma faixa de valores que os usados na saída do comando do cliente **ndb_mgm** `node_id STATUS` (ver Seção 21.6.1, “Comandos no Cliente de Gerenciamento do NDB Cluster”). Se o nó não estiver iniciando atualmente, essa coluna mostra `0`. Para uma lista das fases de início do NDB Cluster com descrições, consulte Seção 21.6.4, “Resumo das Fases de Início do NDB Cluster”.
+The `start_phase` column uses the same range of values as those used in the output of the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") client [`node_id STATUS`](mysql-cluster-mgm-client-commands.html#ndbclient-status) command (see [Section 21.6.1, “Commands in the NDB Cluster Management Client”](mysql-cluster-mgm-client-commands.html "21.6.1 Commands in the NDB Cluster Management Client")). If the node is not currently starting, then this column shows `0`. For a listing of NDB Cluster start phases with descriptions, see [Section 21.6.4, “Summary of NDB Cluster Start Phases”](mysql-cluster-start-phases.html "21.6.4 Summary of NDB Cluster Start Phases").
 
-A coluna `config_generation` mostra qual versão da configuração do cluster está em vigor em cada nó de dados. Isso pode ser útil ao realizar um reinício contínuo do cluster para fazer alterações nos parâmetros de configuração. Por exemplo, a partir do resultado da seguinte instrução `SELECT` (select.html), você pode ver que o nó 3 ainda não está usando a versão mais recente da configuração do cluster (`6`), embora os nós 1, 2 e 4 estejam fazendo isso:
+The `config_generation` column shows which version of the cluster configuration is in effect on each data node. This can be useful when performing a rolling restart of the cluster in order to make changes in configuration parameters. For example, from the output of the following [`SELECT`](select.html "13.2.9 SELECT Statement") statement, you can see that node 3 is not yet using the latest version of the cluster configuration (`6`) although nodes 1, 2, and 4 are doing so:
 
 ```sql
 mysql> USE ndbinfo;
@@ -49,9 +49,9 @@ mysql> SELECT * FROM nodes;
 2 rows in set (0.04 sec)
 ```
 
-Portanto, para o caso mostrado acima, você deve reiniciar o nó 3 para completar o reinício contínuo do clúster.
+Therefore, for the case just shown, you should restart node 3 to complete the rolling restart of the cluster.
 
-Os nós que estão parados não são contabilizados nesta tabela. Suponha que você tenha um NDB Cluster com 4 nós de dados (IDs de nó 1, 2, 3 e 4), e todos os nós estejam funcionando normalmente, então esta tabela contém 4 linhas, 1 para cada nó de dados:
+Nodes that are stopped are not accounted for in this table. Suppose that you have an NDB Cluster with 4 data nodes (node IDs 1, 2, 3 and 4), and all nodes are running normally, then this table contains 4 rows, 1 for each data node:
 
 ```sql
 mysql> USE ndbinfo;
@@ -68,7 +68,7 @@ mysql> SELECT * FROM nodes;
 4 rows in set (0.04 sec)
 ```
 
-Se você desligar um dos nós, apenas os nós que ainda estão em execução serão representados na saída desta instrução `SELECT`, conforme mostrado aqui:
+If you shut down one of the nodes, only the nodes that are still running are represented in the output of this [`SELECT`](select.html "13.2.9 SELECT Statement") statement, as shown here:
 
 ```sql
 ndb_mgm> 2 STOP

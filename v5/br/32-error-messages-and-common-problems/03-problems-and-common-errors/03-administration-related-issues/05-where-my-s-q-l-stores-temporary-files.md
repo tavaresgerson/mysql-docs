@@ -1,22 +1,22 @@
-#### B.3.3.5 Onde o MySQL armazena arquivos temporários
+#### B.3.3.5 Where MySQL Stores Temporary Files
 
-No Unix, o MySQL usa o valor da variável de ambiente `TMPDIR` como o nome do caminho do diretório onde os arquivos temporários serão armazenados. Se `TMPDIR` não for definido, o MySQL usa o padrão do sistema, que geralmente é `/tmp`, `/var/tmp` ou `/usr/tmp`.
+On Unix, MySQL uses the value of the `TMPDIR` environment variable as the path name of the directory in which to store temporary files. If `TMPDIR` is not set, MySQL uses the system default, which is usually `/tmp`, `/var/tmp`, or `/usr/tmp`.
 
-No Windows, o MySQL verifica em ordem os valores das variáveis de ambiente `TMPDIR`, `TEMP` e `TMP`. Para o primeiro valor encontrado, o MySQL usa-o e não verifica os demais. Se nenhum dos valores de `TMPDIR`, `TEMP` ou `TMP` estiver definido, o MySQL usa o padrão do sistema do Windows, que geralmente é `C:\windows\temp\`.
+On Windows, MySQL checks in order the values of the `TMPDIR`, `TEMP`, and `TMP` environment variables. For the first one found to be set, MySQL uses it and does not check those remaining. If none of `TMPDIR`, `TEMP`, or `TMP` are set, MySQL uses the Windows system default, which is usually `C:\windows\temp\`.
 
-Se o sistema de arquivos que contém o diretório do seu arquivo temporário for muito pequeno, você pode usar a opção [**mysqld**](mysqld.html) [`--tmpdir`](server-options.html#option_mysqld_tmpdir) para especificar um diretório em um sistema de arquivos onde você tenha espaço suficiente.
+If the file system containing your temporary file directory is too small, you can use the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") [`--tmpdir`](server-options.html#option_mysqld_tmpdir) option to specify a directory in a file system where you have enough space.
 
-A opção [`--tmpdir`](server-options.html#option_mysqld_tmpdir) pode ser configurada para uma lista de vários caminhos que são usados de forma rotativa. Os caminhos devem ser separados por colchetes (`:`) no Unix e por pontos e vírgulas (`;`) no Windows.
+The [`--tmpdir`](server-options.html#option_mysqld_tmpdir) option can be set to a list of several paths that are used in round-robin fashion. Paths should be separated by colon characters (`:`) on Unix and semicolon characters (`;`) on Windows.
 
-Nota
+Note
 
-Para distribuir a carga de forma eficaz, esses caminhos devem estar localizados em discos *físicos* diferentes, não em partições diferentes do mesmo disco.
+To spread the load effectively, these paths should be located on different *physical* disks, not different partitions of the same disk.
 
-Se o servidor MySQL estiver atuando como replica, você pode definir a variável de sistema [`slave_load_tmpdir`](replication-options-replica.html#sysvar_slave_load_tmpdir) para especificar um diretório separado para armazenar arquivos temporários ao replicar instruções de [`LOAD DATA`](load-data.html). Esse diretório deve estar em um sistema de arquivos baseado em disco (não em um sistema de arquivos baseado em memória) para que os arquivos temporários usados para replicar o LOAD DATA possam sobreviver a reinicializações da máquina. O diretório também não deve ser o que o sistema operacional limpar durante o processo de inicialização do sistema. No entanto, a replicação pode continuar após um reinício se os arquivos temporários tiverem sido removidos.
+If the MySQL server is acting as a replica, you can set the [`slave_load_tmpdir`](replication-options-replica.html#sysvar_slave_load_tmpdir) system variable to specify a separate directory for holding temporary files when replicating [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") statements. This directory should be in a disk-based file system (not a memory-based file system) so that the temporary files used to replicate LOAD DATA can survive machine restarts. The directory also should not be one that is cleared by the operating system during the system startup process. However, replication can now continue after a restart if the temporary files have been removed.
 
-O MySQL garante que os arquivos temporários são removidos se o [**mysqld**](mysqld.html) for encerrado. Em plataformas que o suportam (como o Unix), isso é feito desvinculando o arquivo após abri-lo. A desvantagem disso é que o nome não aparece nas listagens de diretórios e você não vê um grande arquivo temporário que preenche o sistema de arquivos no qual o diretório do arquivo temporário está localizado. (Nesses casos, **lsof +L1** pode ser útil para identificar arquivos grandes associados ao [**mysqld**](mysqld.html).)
+MySQL arranges that temporary files are removed if [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") is terminated. On platforms that support it (such as Unix), this is done by unlinking the file after opening it. The disadvantage of this is that the name does not appear in directory listings and you do not see a big temporary file that fills up the file system in which the temporary file directory is located. (In such cases, **lsof +L1** may be helpful in identifying large files associated with [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server").)
 
-Ao ordenar (`ORDER BY` ou `GROUP BY`), o MySQL normalmente usa um ou dois arquivos temporários. O espaço em disco máximo necessário é determinado pela seguinte expressão:
+When sorting (`ORDER BY` or `GROUP BY`), MySQL normally uses one or two temporary files. The maximum disk space required is determined by the following expression:
 
 ```sql
 (length of what is sorted + sizeof(row pointer))
@@ -24,16 +24,16 @@ Ao ordenar (`ORDER BY` ou `GROUP BY`), o MySQL normalmente usa um ou dois arquiv
 * 2
 ```
 
-O tamanho do ponteiro de linha geralmente é de quatro bytes, mas pode aumentar no futuro para tabelas muito grandes.
+The row pointer size is usually four bytes, but may grow in the future for really big tables.
 
-Para algumas declarações, o MySQL cria tabelas SQL temporárias que não são ocultas e têm nomes que começam com `#sql`.
+For some statements, MySQL creates temporary SQL tables that are not hidden and have names that begin with `#sql`.
 
-Algumas consultas [`SELECT`](select.html) criam tabelas SQL temporárias para armazenar resultados intermediários.
+Some [`SELECT`](select.html "13.2.9 SELECT Statement") queries creates temporary SQL tables to hold intermediate results.
 
-As operações DDL que reconstruem a tabela e não são executadas online usando a técnica `ALGORITHM=INPLACE` criam uma cópia temporária da tabela original no mesmo diretório da tabela original.
+DDL operations that rebuild the table and are not performed online using the `ALGORITHM=INPLACE` technique create a temporary copy of the original table in the same directory as the original table.
 
-As operações DDL online podem usar arquivos de registro temporários para registrar DML concorrente, arquivos de classificação temporários ao criar um índice e arquivos de tabelas intermediárias temporárias ao reconstruir a tabela. Para mais informações, consulte [Seção 14.13.3, “Requisitos de Espaço DDL Online”](innodb-online-ddl-space-requirements.html).
+Online DDL operations may use temporary log files for recording concurrent DML, temporary sort files when creating an index, and temporary intermediate tables files when rebuilding the table. For more information, see [Section 14.13.3, “Online DDL Space Requirements”](innodb-online-ddl-space-requirements.html "14.13.3 Online DDL Space Requirements").
 
-As tabelas temporárias não compactadas, criadas pelo usuário, do tipo `InnoDB` e as tabelas temporárias internas no disco são criadas em um arquivo de espaço de tabelas temporárias chamado `ibtmp1` no diretório de dados do MySQL. Para mais informações, consulte [Seção 14.6.3.5, “O Espaço de Tabelas Temporárias”](innodb-temporary-tablespace.html).
+`InnoDB` non-compressed, user-created temporary tables and on-disk internal temporary tables are created in a temporary tablespace file named `ibtmp1` in the MySQL data directory. For more information, see [Section 14.6.3.5, “The Temporary Tablespace”](innodb-temporary-tablespace.html "14.6.3.5 The Temporary Tablespace").
 
-Veja também [Seção 14.16.7, “Tabela de Informações Temporárias do Schema INFORMATION_SCHEMA da InnoDB”](innodb-information-schema-temp-table-info.html). [Tabelas Temporárias Órfãs](innodb-troubleshooting-datadict.html#innodb-orphan-temporary-tables).
+See also [Section 14.16.7, “InnoDB INFORMATION_SCHEMA Temporary Table Info Table”](innodb-information-schema-temp-table-info.html "14.16.7 InnoDB INFORMATION_SCHEMA Temporary Table Info Table"). [Orphan Temporary Tables](innodb-troubleshooting-datadict.html#innodb-orphan-temporary-tables "Orphan Temporary Tables").

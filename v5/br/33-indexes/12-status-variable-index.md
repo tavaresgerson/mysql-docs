@@ -1,2195 +1,2195 @@
-## Índice de Índice Variável de Status
+## Status Variable Index
 
-[A](dynindex-statvar.html#statvar-index-A) | [B](dynindex-statvar.html#statvar-index-B) | [C](dynindex-statvar.html#statvar-index-C) | [D](dynindex-statvar.html#statvar-index-D) | [F](dynindex-statvar.html#statvar-index-F) | [G](dynindex-statvar.html#statvar-index-G) | [H](dynindex-statvar.html#statvar-index-H) | [I](dynindex-statvar.html#statvar-index-I) | [K](dynindex-statvar.html#statvar-index-K) | [L](dynindex-statvar.html#statvar-index-L) | [M](dynindex-statvar.html#statvar-index-M) | [N](dynindex-statvar.html#statvar-index-N) | [O](dynindex-statvar.html#statvar-index-O) | [P](dynindex-statvar.html#statvar-index-P) | [Q](dynindex-statvar.html#statvar-index-Q) | [R](dynindex-statvar.html#statvar-index-R) | [S](dynindex-statvar.html#statvar-index-S) | [T](dynindex-statvar.html#statvar-index-T) | [U](dynindex-statvar.html#statvar-index-U) | [V](dynindex-statvar.html#statvar-index-V)
+[A](dynindex-statvar.html#statvar-index-A "A") | [B](dynindex-statvar.html#statvar-index-B "B") | [C](dynindex-statvar.html#statvar-index-C "C") | [D](dynindex-statvar.html#statvar-index-D "D") | [F](dynindex-statvar.html#statvar-index-F "F") | [G](dynindex-statvar.html#statvar-index-G "G") | [H](dynindex-statvar.html#statvar-index-H "H") | [I](dynindex-statvar.html#statvar-index-I "I") | [K](dynindex-statvar.html#statvar-index-K "K") | [L](dynindex-statvar.html#statvar-index-L "L") | [M](dynindex-statvar.html#statvar-index-M "M") | [N](dynindex-statvar.html#statvar-index-N "N") | [O](dynindex-statvar.html#statvar-index-O "O") | [P](dynindex-statvar.html#statvar-index-P "P") | [Q](dynindex-statvar.html#statvar-index-Q "Q") | [R](dynindex-statvar.html#statvar-index-R "R") | [S](dynindex-statvar.html#statvar-index-S "S") | [T](dynindex-statvar.html#statvar-index-T "T") | [U](dynindex-statvar.html#statvar-index-U "U") | [V](dynindex-statvar.html#statvar-index-V "V")
 
 ### A
 
-index superior](dynindex-statvar.html#statvar-index-superior)]
+index top](dynindex-statvar.html#statvar-index-top)]
 
-### clientes_cancelados
+### Aborted_clients
 
-[Seção B.3.2.9, “Erros de Comunicação e Conexões Abortadas”](communication-errors.html)
+[Section B.3.2.9, “Communication Errors and Aborted Connections”](communication-errors.html "B.3.2.9 Communication Errors and Aborted Connections")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### Abortado_conectados
+### Aborted_connects
 
-[Seção B.3.2.9, “Erros de Comunicação e Conexões Abortadas”](communication-errors.html)
+[Section B.3.2.9, “Communication Errors and Aborted Connections”](communication-errors.html "B.3.2.9 Communication Errors and Aborted Connections")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### log_de_auditoria_tamanho_atual
+### Audit_log_current_size
 
-[Seção 6.4.5.11, “Referência do Log de Auditoria”](audit-log-reference.html)
+[Section 6.4.5.11, “Audit Log Reference”](audit-log-reference.html "6.4.5.11 Audit Log Reference")
 
-### log_evento_de_auditoria_max_drop_size
+### Audit_log_event_max_drop_size
 
-[Seção 6.4.5.11, “Referência do Log de Auditoria”](audit-log-reference.html)
+[Section 6.4.5.11, “Audit Log Reference”](audit-log-reference.html "6.4.5.11 Audit Log Reference")
 
-### eventos_log_de_auditoria
+### Audit_log_events
 
-[Seção 6.4.5.11, “Referência do Log de Auditoria”](audit-log-reference.html)
+[Section 6.4.5.11, “Audit Log Reference”](audit-log-reference.html "6.4.5.11 Audit Log Reference")
 
-### eventos_de_log_de_auditoria_filtrados
+### Audit_log_events_filtered
 
-[Seção 6.4.5.11, “Referência do Log de Auditoria”](audit-log-reference.html)
+[Section 6.4.5.11, “Audit Log Reference”](audit-log-reference.html "6.4.5.11 Audit Log Reference")
 
-### log_eventos_de_auditoria_perdidos
+### Audit_log_events_lost
 
-[Seção 6.4.5.11, “Referência do Log de Auditoria”](audit-log-reference.html)
+[Section 6.4.5.11, “Audit Log Reference”](audit-log-reference.html "6.4.5.11 Audit Log Reference")
 
-### eventos_de_audit_escritos
+### Audit_log_events_written
 
-[Seção 6.4.5.11, “Referência do Log de Auditoria”](audit-log-reference.html)
+[Section 6.4.5.11, “Audit Log Reference”](audit-log-reference.html "6.4.5.11 Audit Log Reference")
 
-### log_audit_total_size
+### Audit_log_total_size
 
-[Seção 6.4.5.11, “Referência do Log de Auditoria”](audit-log-reference.html)
+[Section 6.4.5.11, “Audit Log Reference”](audit-log-reference.html "6.4.5.11 Audit Log Reference")
 
-### Registro de auditoria_espera_de_escrita
+### Audit_log_write_waits
 
-[Seção 6.4.5.11, “Referência do Log de Auditoria”](audit-log-reference.html)
+[Section 6.4.5.11, “Audit Log Reference”](audit-log-reference.html "6.4.5.11 Audit Log Reference")
 
 ### B
 
-index superior](dynindex-statvar.html#statvar-index-superior)]
+index top](dynindex-statvar.html#statvar-index-top)]
 
 ### Binlog_cache_disk_use
 
-[Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
+[Section 16.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "16.1.6.4 Binary Logging Options and Variables")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 5.4.4, “O Log Binário”](binary-log.html)
+[Section 5.4.4, “The Binary Log”](binary-log.html "5.4.4 The Binary Log")
 
 ### Binlog_cache_use
 
-[Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
+[Section 16.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "16.1.6.4 Binary Logging Options and Variables")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 5.4.4, “O Log Binário”](binary-log.html)
+[Section 5.4.4, “The Binary Log”](binary-log.html "5.4.4 The Binary Log")
 
 ### Binlog_stmt_cache_disk_use
 
-[Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
+[Section 16.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "16.1.6.4 Binary Logging Options and Variables")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Binlog_stmt_cache_use
 
-[Seção 16.1.6.4, “Opções e variáveis de registro binário”](replication-options-binary-log.html)
+[Section 16.1.6.4, “Binary Logging Options and Variables”](replication-options-binary-log.html "16.1.6.4 Binary Logging Options and Variables")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Bytes_received
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Bytes_sent
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### C
 
-index superior](dynindex-statvar.html#statvar-index-superior)]
+index top](dynindex-statvar.html#statvar-index-top)]
 
-### Cache_sha2_password_rsa_public_key
+### Caching_sha2_password_rsa_public_key
 
-[Seção 6.4.1.4, “Cache de Autenticação Pluggable SHA-2”](caching-sha2-pluggable-authentication.html)
+[Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”](caching-sha2-pluggable-authentication.html "6.4.1.4 Caching SHA-2 Pluggable Authentication")
 
 ### Com_flush
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Com_shutdown
 
-[Seção 13.7.6.7, "Declaração de DESATIVAÇÃO"](shutdown.html)
+[Section 13.7.6.7, “SHUTDOWN Statement”](shutdown.html "13.7.6.7 SHUTDOWN Statement")
 
 ### Com_stmt_reprepare
 
-[Seção 8.10.4, “Cache de Declarações Preparadas e Programas Armazenados”](statement-caching.html)
+[Section 8.10.4, “Caching of Prepared Statements and Stored Programs”](statement-caching.html "8.10.4 Caching of Prepared Statements and Stored Programs")
 
-### Compressão
+### Compression
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### delay_de_controle_de_conexão_gerado
+### Connection_control_delay_generated
 
-[Seção 6.4.2.1, “Instalação do Plugin de Controle de Conexão”](connection-control-plugin-installation.html)
+[Section 6.4.2.1, “Connection Control Plugin Installation”](connection-control-plugin-installation.html "6.4.2.1 Connection Control Plugin Installation")
 
-[Seção 6.4.2.2, “Sistema de Plugin de Controle de Conexão e Variáveis de Status”](connection-control-plugin-variables.html)
+[Section 6.4.2.2, “Connection Control Plugin System and Status Variables”](connection-control-plugin-variables.html "6.4.2.2 Connection Control Plugin System and Status Variables")
 
-### Erros de conexão_accept
+### Connection_errors_accept
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### Erros de conexão_internos
+### Connection_errors_internal
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### Erros de conexão_max_conexões
+### Connection_errors_max_connections
 
-[Seção 5.1.11.1, “Interfaces de Conexão”](connection-interfaces.html)
+[Section 5.1.11.1, “Connection Interfaces”](connection-interfaces.html "5.1.11.1 Connection Interfaces")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### Erros de conexão_peer_address
+### Connection_errors_peer_address
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### Erros de conexão_select
+### Connection_errors_select
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### Erros de conexão_tcpwrap
+### Connection_errors_tcpwrap
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### Erros de conexão_xxx
+### Connection_errors_xxx
 
-[Seção 5.1.11.2, "Consultas DNS e Cache de Anfitriões"](host-cache.html)
+[Section 5.1.11.2, “DNS Lookups and the Host Cache”](host-cache.html "5.1.11.2 DNS Lookups and the Host Cache")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### Conexões
+### Connections
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-### Criado_discos_temporários_de_tabela
+### Created_tmp_disk_tables
 
-[Seção 8.4.4, “Uso de Tabelas Temporárias Internas no MySQL”](internal-temporary-tables.html)
+[Section 8.4.4, “Internal Temporary Table Use in MySQL”](internal-temporary-tables.html "8.4.4 Internal Temporary Table Use in MySQL")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 25.12.6.1, “A tabela events_statements_current”](performance-schema-events-statements-current-table.html)
+[Section 25.12.6.1, “The events_statements_current Table”](performance-schema-events-statements-current-table.html "25.12.6.1 The events_statements_current Table")
 
-### Arquivos temporários criados
+### Created_tmp_files
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### Criado_tabelas_temporárias
+### Created_tmp_tables
 
-[Seção 8.4.4, “Uso de Tabelas Temporárias Internas no MySQL”](internal-temporary-tables.html)
+[Section 8.4.4, “Internal Temporary Table Use in MySQL”](internal-temporary-tables.html "8.4.4 Internal Temporary Table Use in MySQL")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 13.7.5.35, "Declaração de Status"] (show-status.html)
+[Section 13.7.5.35, “SHOW STATUS Statement”](show-status.html "13.7.5.35 SHOW STATUS Statement")
 
-[Seção 25.12.6.1, “A tabela events_statements_current”](performance-schema-events-statements-current-table.html)
+[Section 25.12.6.1, “The events_statements_current Table”](performance-schema-events-statements-current-table.html "25.12.6.1 The events_statements_current Table")
 
 ### D
 
-index superior](dynindex-statvar.html#statvar-index-superior)]
+index top](dynindex-statvar.html#statvar-index-top)]
 
-### Erros atrasados
+### Delayed_errors
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### threads_de_inserção_atrasada
+### Delayed_insert_threads
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### escritas atrasadas
+### Delayed_writes
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### F
 
-index superior](dynindex-statvar.html#statvar-index-superior)]
+index top](dynindex-statvar.html#statvar-index-top)]
 
 ### Firewall_access_denied
 
-[Seção 6.4.6.4, “Referência do Firewall Empresarial MySQL”](firewall-reference.html)
+[Section 6.4.6.4, “MySQL Enterprise Firewall Reference”](firewall-reference.html "6.4.6.4 MySQL Enterprise Firewall Reference")
 
 ### Firewall_access_granted
 
-[Seção 6.4.6.4, “Referência do Firewall Empresarial MySQL”](firewall-reference.html)
+[Section 6.4.6.4, “MySQL Enterprise Firewall Reference”](firewall-reference.html "6.4.6.4 MySQL Enterprise Firewall Reference")
 
-[Seção 6.4.6.3, “Uso do Firewall da MySQL Enterprise”](firewall-usage.html)
+[Section 6.4.6.3, “Using MySQL Enterprise Firewall”](firewall-usage.html "6.4.6.3 Using MySQL Enterprise Firewall")
 
 ### Firewall_access_suspicious
 
-[Seção 6.4.6.4, “Referência do Firewall Empresarial MySQL”](firewall-reference.html)
+[Section 6.4.6.4, “MySQL Enterprise Firewall Reference”](firewall-reference.html "6.4.6.4 MySQL Enterprise Firewall Reference")
 
 ### Firewall_cached_entries
 
-[Seção 6.4.6.4, “Referência do Firewall Empresarial MySQL”](firewall-reference.html)
+[Section 6.4.6.4, “MySQL Enterprise Firewall Reference”](firewall-reference.html "6.4.6.4 MySQL Enterprise Firewall Reference")
 
 ### Flush_commands
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### G
 
-index superior](dynindex-statvar.html#statvar-index-superior)]
+index top](dynindex-statvar.html#statvar-index-top)]
 
-### grupo_replication_primary_member
+### group_replication_primary_member
 
-[Seção 17.7.2, “Variáveis de Status de Replicação em Grupo”](group-replication-status-variables.html)
+[Section 17.7.2, “Group Replication Status Variables”](group-replication-status-variables.html "17.7.2 Group Replication Status Variables")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### H
 
-index superior](dynindex-statvar.html#statvar-index-superior)]
+index top](dynindex-statvar.html#statvar-index-top)]
 
 ### Handler_commit
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Handler_delete
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Handler_discover
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Handler_external_lock
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Handler_mrr_init
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Handler_prepare
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Handler_read_first
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Handler_read_key
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Handler_read_last
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Handler_read_next
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 8.3.9, “Uso de Extensões de Índice”](index-extensions.html)
+[Section 8.3.9, “Use of Index Extensions”](index-extensions.html "8.3.9 Use of Index Extensions")
 
 ### Handler_read_prev
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Handler_read_rnd
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Handler_read_rnd_next
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Handler_rollback
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Handler_savepoint
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Handler_savepoint_rollback
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Handler_update
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Handler_write
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### Eu
+### I
 
-index superior](dynindex-statvar.html#statvar-index-superior)]
+index top](dynindex-statvar.html#statvar-index-top)]
 
 ### Innodb_available_undo_logs
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### innodb_buffer_pool_bytes_data
+### Innodb_buffer_pool_bytes_data
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### innodb_buffer_pool_bytes_dirty
+### Innodb_buffer_pool_bytes_dirty
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Innodb_buffer_pool_dump_status
 
-[Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
+[Section 14.15, “InnoDB Startup Options and System Variables”](innodb-parameters.html "14.15 InnoDB Startup Options and System Variables")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Innodb_buffer_pool_load_status
 
-[Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
+[Section 14.15, “InnoDB Startup Options and System Variables”](innodb-parameters.html "14.15 InnoDB Startup Options and System Variables")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### innodb_buffer_pool_pages_data
+### Innodb_buffer_pool_pages_data
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### innodb_buffer_pool_pages_dirty
+### Innodb_buffer_pool_pages_dirty
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### innodb_buffer_pool_pages_flushed
+### Innodb_buffer_pool_pages_flushed
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### innodb_buffer_pool_pages_free
+### Innodb_buffer_pool_pages_free
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### innodb_buffer_pool_pages_latched
+### Innodb_buffer_pool_pages_latched
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### innodb_buffer_pool_pages_misc
+### Innodb_buffer_pool_pages_misc
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### innodb_buffer_pool_pages_total
+### Innodb_buffer_pool_pages_total
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Innodb_buffer_pool_read_ahead
 
-[Seção 14.8.3.4, “Configurando a pré-visualização do pool de buffers InnoDB (leitura antecipada)](innodb-performance-read_ahead.html)
+[Section 14.8.3.4, “Configuring InnoDB Buffer Pool Prefetching (Read-Ahead)”](innodb-performance-read_ahead.html "14.8.3.4 Configuring InnoDB Buffer Pool Prefetching (Read-Ahead)")
 
-[Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
+[Section 14.15, “InnoDB Startup Options and System Variables”](innodb-parameters.html "14.15 InnoDB Startup Options and System Variables")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Innodb_buffer_pool_read_ahead_evicted
 
-[Seção 14.8.3.4, “Configurando a pré-visualização do pool de buffers InnoDB (leitura antecipada)](innodb-performance-read_ahead.html)
+[Section 14.8.3.4, “Configuring InnoDB Buffer Pool Prefetching (Read-Ahead)”](innodb-performance-read_ahead.html "14.8.3.4 Configuring InnoDB Buffer Pool Prefetching (Read-Ahead)")
 
-[Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
+[Section 14.15, “InnoDB Startup Options and System Variables”](innodb-parameters.html "14.15 InnoDB Startup Options and System Variables")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Innodb_buffer_pool_read_ahead_rnd
 
-[Seção 14.8.3.4, “Configurando a pré-visualização do pool de buffers InnoDB (leitura antecipada)](innodb-performance-read_ahead.html)
+[Section 14.8.3.4, “Configuring InnoDB Buffer Pool Prefetching (Read-Ahead)”](innodb-performance-read_ahead.html "14.8.3.4 Configuring InnoDB Buffer Pool Prefetching (Read-Ahead)")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Innodb_buffer_pool_read_requests
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Innodb_buffer_pool_reads
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Innodb_buffer_pool_resize_status
 
-[Seção 14.8.3.1, “Configurando o tamanho do pool de buffers InnoDB”](innodb-buffer-pool-resize.html)
+[Section 14.8.3.1, “Configuring InnoDB Buffer Pool Size”](innodb-buffer-pool-resize.html "14.8.3.1 Configuring InnoDB Buffer Pool Size")
 
-[Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
+[Section 14.15, “InnoDB Startup Options and System Variables”](innodb-parameters.html "14.15 InnoDB Startup Options and System Variables")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
 ### Innodb_buffer_pool_wait_free
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Innodb_buffer_pool_write_requests
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### innodb_data_fsyncs
+### Innodb_data_fsyncs
 
-[Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
+[Section 14.15, “InnoDB Startup Options and System Variables”](innodb-parameters.html "14.15 InnoDB Startup Options and System Variables")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Innodb_data_pending_fsyncs
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Innodb_data_pending_reads
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Innodb_data_pending_writes
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### innodb_data_read
+### Innodb_data_read
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Innodb_data_reads
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Innodb_data_writes
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Innodb_data_written
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Innodb_dblwr_pages_written
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Innodb_dblwr_writes
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Innodb_have_atomic_builtins
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Innodb_log_waits
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Innodb_log_write_requests
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Innodb_log_writes
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Innodb_num_open_files
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Innodb_os_log_fsyncs
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Innodb_os_log_pending_fsyncs
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Innodb_os_log_pending_writes
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Innodb_os_log_written
 
-[Seção 14.15, “Opções de inicialização do InnoDB e variáveis do sistema”](innodb-parameters.html)
+[Section 14.15, “InnoDB Startup Options and System Variables”](innodb-parameters.html "14.15 InnoDB Startup Options and System Variables")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Innodb_page_size
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### innodb_pages_created
+### Innodb_pages_created
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### innodb_pages_read
+### Innodb_pages_read
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### innodb_pages_written
+### Innodb_pages_written
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Innodb_row_lock_current_waits
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Innodb_row_lock_time
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Innodb_row_lock_time_avg
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Innodb_row_lock_time_max
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Innodb_row_lock_waits
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### innodb_rows_deleted
+### Innodb_rows_deleted
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### innodb_rows_inserted
+### Innodb_rows_inserted
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### innodb_rows_read
+### Innodb_rows_read
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### innodb_rows_updated
+### Innodb_rows_updated
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Innodb_truncated_status_writes
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### K
 
-index superior](dynindex-statvar.html#statvar-index-superior)]
+index top](dynindex-statvar.html#statvar-index-top)]
 
-### Blocos-chave não limpos
+### Key_blocks_not_flushed
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### Chaves_blocos_não_utilizadas
+### Key_blocks_unused
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-### blocos_chave_utilizados
+### Key_blocks_used
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### Solicitações de leitura de chave
+### Key_read_requests
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-### Leitura chave
+### Key_reads
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-### Solicitações de escrita de chave
+### Key_write_requests
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
 ### Key_writes
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
 ### L
 
-index superior](dynindex-statvar.html#statvar-index-superior)]
+index top](dynindex-statvar.html#statvar-index-top)]
 
-### Custo da última consulta
+### Last_query_cost
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### Última consulta de planos parciais
+### Last_query_partial_plans
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### Conexões bloqueadas
+### Locked_connects
 
-[Seção 6.2.15, “Bloqueio da Conta”](account-locking.html)
+[Section 6.2.15, “Account Locking”](account-locking.html "6.2.15 Account Locking")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### M
 
-index superior](dynindex-statvar.html#statvar-index-superior)]
+index top](dynindex-statvar.html#statvar-index-top)]
 
 ### Max_execution_time_exceeded
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Max_execution_time_set
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Max_execution_time_set_failed
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### Max_conexões_utilizadas
+### Max_used_connections
 
-[Seção 13.7.6.3, "Instrução FLUSH"](flush.html)
+[Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
 ### Max_used_connections_time
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### mecab_charset
 
-[Seção 12.9.9, “Plugin do Analizador de Texto Completo MeCab”](fulltext-search-mecab.html)
+[Section 12.9.9, “MeCab Full-Text Parser Plugin”](fulltext-search-mecab.html "12.9.9 MeCab Full-Text Parser Plugin")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Mysqlx_address
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_bytes_received
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_bytes_sent
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_connection_accept_errors
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_connection_errors
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_connections_accepted
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_connections_closed
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_connections_rejected
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_crud_create_view
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_crud_delete
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_crud_drop_view
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_crud_find
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_crud_insert
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_crud_modify_view
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_crud_update
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_errors_sent
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_errors_unknown_message_type
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_expect_close
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_expect_open
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_init_error
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_notice_other_sent
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_notice_warning_sent
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_port
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_rows_sent
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_sessions
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_sessions_accepted
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_sessions_closed
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_sessions_fatal_error
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_sessions_killed
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_sessions_rejected
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_socket
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
-### Mysqlx_ssl_accept_renegocia
+### Mysqlx_ssl_accept_renegotiates
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_ssl_accepts
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_ssl_active
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_ssl_cipher
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_ssl_cipher_list
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_ssl_ctx_verify_depth
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_ssl_ctx_verify_mode
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_ssl_finished_accepts
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_ssl_server_not_after
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_ssl_server_not_before
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_ssl_verify_depth
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_ssl_verify_mode
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_ssl_version
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_stmt_create_collection
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_stmt_create_collection_index
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_stmt_disable_notices
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_stmt_drop_collection
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_stmt_drop_collection_index
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_stmt_enable_notices
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_stmt_ensure_collection
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_stmt_execute_mysqlx
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_stmt_execute_sql
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_stmt_execute_xplugin
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_stmt_kill_client
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_stmt_list_clients
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_stmt_list_notices
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_stmt_list_objects
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_stmt_ping
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_worker_threads
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### Mysqlx_worker_threads_active
 
-[Seção 19.4.2.3, “Variáveis de Status do Plugin X”](x-plugin-status-variables.html)
+[Section 19.4.2.3, “X Plugin Status Variables”](x-plugin-status-variables.html "19.4.2.3 X Plugin Status Variables")
 
 ### N
 
-index superior](dynindex-statvar.html#statvar-index-superior)]
+index top](dynindex-statvar.html#statvar-index-top)]
 
 ### Ndb_api_adaptive_send_deferred_count
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_adaptive_send_deferred_count_session
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_adaptive_send_deferred_count_slave
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_adaptive_send_forced_count
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_adaptive_send_forced_count_session
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_adaptive_send_forced_count_slave
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_adaptive_send_unforced_count
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_adaptive_send_unforced_count_session
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_adaptive_send_unforced_count_slave
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_bytes_received_count
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_bytes_received_count_session
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_bytes_received_count_slave
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_bytes_sent_count
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_bytes_sent_count_session
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_bytes_sent_count_slave
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_event_bytes_count
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_event_bytes_count_injector
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_event_data_count
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_event_data_count_injector
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_event_nondata_count
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_event_nondata_count_injector
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_pk_op_count
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_pk_op_count_session
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_pk_op_count_slave
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_pruned_scan_count
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_pruned_scan_count_session
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_pruned_scan_count_slave
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_range_scan_count
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_range_scan_count_session
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_range_scan_count_slave
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_read_row_count
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_read_row_count_session
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_read_row_count_slave
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_scan_batch_count
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_scan_batch_count_session
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_scan_batch_count_slave
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_table_scan_count
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_table_scan_count_session
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_table_scan_count_slave
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_trans_abort_count
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_trans_abort_count_session
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_trans_abort_count_slave
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_trans_close_count
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_trans_close_count_session
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_trans_close_count_slave
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_trans_commit_count
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_trans_commit_count_session
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_trans_commit_count_slave
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_trans_local_read_row_count
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_trans_local_read_row_count_session
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_trans_local_read_row_count_slave
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_trans_start_count
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_trans_start_count_session
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_trans_start_count_slave
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_uk_op_count
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_uk_op_count_session
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_uk_op_count_slave
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_wait_exec_complete_count
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_wait_exec_complete_count_session
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_wait_exec_complete_count_slave
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_wait_meta_request_count
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_wait_meta_request_count_session
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_wait_meta_request_count_slave
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_wait_nanos_count
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_wait_nanos_count_session
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_wait_nanos_count_slave
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_wait_scan_result_count
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_wait_scan_result_count_session
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_api_wait_scan_result_count_slave
 
-[Seção 21.6.14, "Contas e variáveis de estatísticas da API NDB"] (mysql-cluster-ndb-api-statistics.html)
+[Section 21.6.14, “NDB API Statistics Counters and Variables”](mysql-cluster-ndb-api-statistics.html "21.6.14 NDB API Statistics Counters and Variables")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_cluster_node_id
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_config_from_host
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_config_from_port
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_conflict_fn_epoch
 
-[Seção 21.7.11, "Resolução de conflitos de replicação de cluster do NDB"](mysql-cluster-replication-conflict-resolution.html)
+[Section 21.7.11, “NDB Cluster Replication Conflict Resolution”](mysql-cluster-replication-conflict-resolution.html "21.7.11 NDB Cluster Replication Conflict Resolution")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_conflict_fn_epoch2
 
-[Seção 21.7.11, "Resolução de conflitos de replicação de cluster do NDB"](mysql-cluster-replication-conflict-resolution.html)
+[Section 21.7.11, “NDB Cluster Replication Conflict Resolution”](mysql-cluster-replication-conflict-resolution.html "21.7.11 NDB Cluster Replication Conflict Resolution")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_conflict_fn_epoch2_trans
 
-[Seção 21.7.11, "Resolução de conflitos de replicação de cluster do NDB"](mysql-cluster-replication-conflict-resolution.html)
+[Section 21.7.11, “NDB Cluster Replication Conflict Resolution”](mysql-cluster-replication-conflict-resolution.html "21.7.11 NDB Cluster Replication Conflict Resolution")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_conflict_fn_epoch_trans
 
-[Seção 21.7.11, "Resolução de conflitos de replicação de cluster do NDB"](mysql-cluster-replication-conflict-resolution.html)
+[Section 21.7.11, “NDB Cluster Replication Conflict Resolution”](mysql-cluster-replication-conflict-resolution.html "21.7.11 NDB Cluster Replication Conflict Resolution")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_conflict_fn_max
 
-[Seção 21.7.11, "Resolução de conflitos de replicação de cluster do NDB"](mysql-cluster-replication-conflict-resolution.html)
+[Section 21.7.11, “NDB Cluster Replication Conflict Resolution”](mysql-cluster-replication-conflict-resolution.html "21.7.11 NDB Cluster Replication Conflict Resolution")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_conflict_fn_max_del_win
 
-[Seção 21.7.11, "Resolução de conflitos de replicação de cluster do NDB"](mysql-cluster-replication-conflict-resolution.html)
+[Section 21.7.11, “NDB Cluster Replication Conflict Resolution”](mysql-cluster-replication-conflict-resolution.html "21.7.11 NDB Cluster Replication Conflict Resolution")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_conflict_fn_old
 
-[Seção 21.7.11, "Resolução de conflitos de replicação de cluster do NDB"](mysql-cluster-replication-conflict-resolution.html)
+[Section 21.7.11, “NDB Cluster Replication Conflict Resolution”](mysql-cluster-replication-conflict-resolution.html "21.7.11 NDB Cluster Replication Conflict Resolution")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_conflict_last_conflict_epoch
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_conflict_last_stable_epoch
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_conflict_reflected_op_discard_count
 
-[Seção 21.7.11, "Resolução de conflitos de replicação de cluster do NDB"](mysql-cluster-replication-conflict-resolution.html)
+[Section 21.7.11, “NDB Cluster Replication Conflict Resolution”](mysql-cluster-replication-conflict-resolution.html "21.7.11 NDB Cluster Replication Conflict Resolution")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_conflict_reflected_op_prepare_count
 
-[Seção 21.7.11, "Resolução de conflitos de replicação de cluster do NDB"](mysql-cluster-replication-conflict-resolution.html)
+[Section 21.7.11, “NDB Cluster Replication Conflict Resolution”](mysql-cluster-replication-conflict-resolution.html "21.7.11 NDB Cluster Replication Conflict Resolution")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_conflict_refresh_op_count
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_conflict_trans_conflict_commit_count
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_conflict_trans_detect_iter_count
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_conflict_trans_reject_count
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_conflict_trans_row_conflict_count
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_conflict_trans_row_reject_count
 
-[Seção 21.7.11, "Resolução de conflitos de replicação de cluster do NDB"](mysql-cluster-replication-conflict-resolution.html)
+[Section 21.7.11, “NDB Cluster Replication Conflict Resolution”](mysql-cluster-replication-conflict-resolution.html "21.7.11 NDB Cluster Replication Conflict Resolution")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_epoch_delete_delete_count
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_execute_count
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_last_commit_epoch_server
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_last_commit_epoch_session
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
-### Ndb_número_de_nós_de_dados
+### Ndb_number_of_data_nodes
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_pruned_scan_count
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_pushed_queries_defined
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
-[Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
+[Section 21.4.3.9.2, “NDB Cluster System Variables”](mysql-cluster-options-variables.html#mysql-cluster-system-variables "21.4.3.9.2 NDB Cluster System Variables")
 
 ### Ndb_pushed_queries_dropped
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
-[Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
+[Section 21.4.3.9.2, “NDB Cluster System Variables”](mysql-cluster-options-variables.html#mysql-cluster-system-variables "21.4.3.9.2 NDB Cluster System Variables")
 
 ### Ndb_pushed_queries_executed
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
-[Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
+[Section 21.4.3.9.2, “NDB Cluster System Variables”](mysql-cluster-options-variables.html#mysql-cluster-system-variables "21.4.3.9.2 NDB Cluster System Variables")
 
 ### Ndb_pushed_reads
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
-[Seção 21.4.3.9.2, “Variáveis do Sistema de Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-system-variables)
+[Section 21.4.3.9.2, “NDB Cluster System Variables”](mysql-cluster-options-variables.html#mysql-cluster-system-variables "21.4.3.9.2 NDB Cluster System Variables")
 
 ### Ndb_scan_count
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_slave_max_replicated_epoch
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
 ### Ndb_system_name
 
-[Seção 21.4.3.8, “Definindo o Sistema”](mysql-cluster-system-definition.html)
+[Section 21.4.3.8, “Defining the System”](mysql-cluster-system-definition.html "21.4.3.8 Defining the System")
 
-[Seção 21.4.3.9.3, “Variáveis de Status do Clúster NDB”](mysql-cluster-options-variables.html#mysql-cluster-status-variables)
+[Section 21.4.3.9.3, “NDB Cluster Status Variables”](mysql-cluster-options-variables.html#mysql-cluster-status-variables "21.4.3.9.3 NDB Cluster Status Variables")
 
-[Seção 21.2.4.1, “O que há de novo no NDB Cluster 7.5”](mysql-cluster-what-is-new-7-5.html)
+[Section 21.2.4.1, “What is New in NDB Cluster 7.5”](mysql-cluster-what-is-new-7-5.html "21.2.4.1 What is New in NDB Cluster 7.5")
 
-[Seção 21.2.4.2, “O que há de novo no NDB Cluster 7.6”](mysql-cluster-what-is-new-7-6.html)
+[Section 21.2.4.2, “What is New in NDB Cluster 7.6”](mysql-cluster-what-is-new-7-6.html "21.2.4.2 What is New in NDB Cluster 7.6")
 
-### Linhas atrasadas não limpas
+### Not_flushed_delayed_rows
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### O
 
-index superior](dynindex-statvar.html#statvar-index-superior)]
+index top](dynindex-statvar.html#statvar-index-top)]
 
-### Número de transações anônimas em violação ao gtid em andamento
+### Ongoing_anonymous_gtid_violating_transaction_count
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### Número de transações anônimas em andamento
+### Ongoing_anonymous_transaction_count
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### Número de transações que estão violando o *gtid* automático em andamento
+### Ongoing_automatic_gtid_violating_transaction_count
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### Abrir_arquivos
+### Open_files
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Open_streams
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### Definições de tabela abertas
+### Open_table_definitions
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### Mesas abertas
+### Open_tables
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### Arquivos abertos
+### Opened_files
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### Definições de tabelas abertas
+### Opened_table_definitions
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### Tabelas abertas
+### Opened_tables
 
-[Seção 8.4.3.1, “Como o MySQL Abre e Fecha Tabelas”](table-cache.html)
+[Section 8.4.3.1, “How MySQL Opens and Closes Tables”](table-cache.html "8.4.3.1 How MySQL Opens and Closes Tables")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
 ### P
 
-index superior](dynindex-statvar.html#statvar-index-superior)]
+index top](dynindex-statvar.html#statvar-index-top)]
 
-### schema_de_desempenho_contas_perdidas
+### Performance_schema_accounts_lost
 
-[Seção 25.16, “Variáveis de Status do Schema de Desempenho”](performance-schema-status-variables.html)
+[Section 25.16, “Performance Schema Status Variables”](performance-schema-status-variables.html "25.16 Performance Schema Status Variables")
 
-### schema_performance_cond_classes_perdidas
+### Performance_schema_cond_classes_lost
 
-[Seção 25.16, “Variáveis de Status do Schema de Desempenho”](performance-schema-status-variables.html)
+[Section 25.16, “Performance Schema Status Variables”](performance-schema-status-variables.html "25.16 Performance Schema Status Variables")
 
-### schema_performance_cond_instances_lost
+### Performance_schema_cond_instances_lost
 
-[Seção 25.16, “Variáveis de Status do Schema de Desempenho”](performance-schema-status-variables.html)
+[Section 25.16, “Performance Schema Status Variables”](performance-schema-status-variables.html "25.16 Performance Schema Status Variables")
 
-### schema_digest_lost
+### Performance_schema_digest_lost
 
-[Seção 25.16, “Variáveis de Status do Schema de Desempenho”](performance-schema-status-variables.html)
+[Section 25.16, “Performance Schema Status Variables”](performance-schema-status-variables.html "25.16 Performance Schema Status Variables")
 
-[Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
+[Section 25.15, “Performance Schema System Variables”](performance-schema-system-variables.html "25.15 Performance Schema System Variables")
 
-### classes_de_arquivo_do_schema_de_desempenho_perdidas
+### Performance_schema_file_classes_lost
 
-[Seção 25.16, “Variáveis de Status do Schema de Desempenho”](performance-schema-status-variables.html)
+[Section 25.16, “Performance Schema Status Variables”](performance-schema-status-variables.html "25.16 Performance Schema Status Variables")
 
 ### Performance_schema_file_handles_lost
 
-[Seção 25.16, “Variáveis de Status do Schema de Desempenho”](performance-schema-status-variables.html)
+[Section 25.16, “Performance Schema Status Variables”](performance-schema-status-variables.html "25.16 Performance Schema Status Variables")
 
-### schema_file_instances_lost
+### Performance_schema_file_instances_lost
 
-[Seção 25.16, “Variáveis de Status do Schema de Desempenho”](performance-schema-status-variables.html)
+[Section 25.16, “Performance Schema Status Variables”](performance-schema-status-variables.html "25.16 Performance Schema Status Variables")
 
-### schema_hosts_performace_perdido
+### Performance_schema_hosts_lost
 
-[Seção 25.16, “Variáveis de Status do Schema de Desempenho”](performance-schema-status-variables.html)
+[Section 25.16, “Performance Schema Status Variables”](performance-schema-status-variables.html "25.16 Performance Schema Status Variables")
 
-### schema_performance_index_stat_lost
+### Performance_schema_index_stat_lost
 
-[Seção 25.16, “Variáveis de Status do Schema de Desempenho”](performance-schema-status-variables.html)
+[Section 25.16, “Performance Schema Status Variables”](performance-schema-status-variables.html "25.16 Performance Schema Status Variables")
 
-[Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
+[Section 25.15, “Performance Schema System Variables”](performance-schema-system-variables.html "25.15 Performance Schema System Variables")
 
-### esquema_de_desempenho_bloqueado_perdido
+### Performance_schema_locker_lost
 
-[Seção 25.16, “Variáveis de Status do Schema de Desempenho”](performance-schema-status-variables.html)
+[Section 25.16, “Performance Schema Status Variables”](performance-schema-status-variables.html "25.16 Performance Schema Status Variables")
 
-### schema_performance_memory_classes_lost
+### Performance_schema_memory_classes_lost
 
-[Seção 25.16, “Variáveis de Status do Schema de Desempenho”](performance-schema-status-variables.html)
+[Section 25.16, “Performance Schema Status Variables”](performance-schema-status-variables.html "25.16 Performance Schema Status Variables")
 
-### método de desempenho_metadata_lock_perdido
+### Performance_schema_metadata_lock_lost
 
-[Seção 25.16, “Variáveis de Status do Schema de Desempenho”](performance-schema-status-variables.html)
+[Section 25.16, “Performance Schema Status Variables”](performance-schema-status-variables.html "25.16 Performance Schema Status Variables")
 
-[Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
+[Section 25.15, “Performance Schema System Variables”](performance-schema-system-variables.html "25.15 Performance Schema System Variables")
 
-### schema_performance_mutex_classes_lost
+### Performance_schema_mutex_classes_lost
 
-[Seção 25.7, “Monitoramento do estado do esquema de desempenho”](performance-schema-status-monitoring.html)
+[Section 25.7, “Performance Schema Status Monitoring”](performance-schema-status-monitoring.html "25.7 Performance Schema Status Monitoring")
 
-[Seção 25.16, “Variáveis de Status do Schema de Desempenho”](performance-schema-status-variables.html)
+[Section 25.16, “Performance Schema Status Variables”](performance-schema-status-variables.html "25.16 Performance Schema Status Variables")
 
-### schema_performance_mutex_instances_lost
+### Performance_schema_mutex_instances_lost
 
-[Seção 25.7, “Monitoramento do estado do esquema de desempenho”](performance-schema-status-monitoring.html)
+[Section 25.7, “Performance Schema Status Monitoring”](performance-schema-status-monitoring.html "25.7 Performance Schema Status Monitoring")
 
-[Seção 25.16, “Variáveis de Status do Schema de Desempenho”](performance-schema-status-variables.html)
+[Section 25.16, “Performance Schema Status Variables”](performance-schema-status-variables.html "25.16 Performance Schema Status Variables")
 
-### schema_de_desempenho_declaração_aninhada_perdida
+### Performance_schema_nested_statement_lost
 
-[Seção 25.16, “Variáveis de Status do Schema de Desempenho”](performance-schema-status-variables.html)
+[Section 25.16, “Performance Schema Status Variables”](performance-schema-status-variables.html "25.16 Performance Schema Status Variables")
 
-[Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
+[Section 25.15, “Performance Schema System Variables”](performance-schema-system-variables.html "25.15 Performance Schema System Variables")
 
-### schema_de_desempenho_declarações_preparadas_perdidas
+### Performance_schema_prepared_statements_lost
 
-[Seção 25.16, “Variáveis de Status do Schema de Desempenho”](performance-schema-status-variables.html)
+[Section 25.16, “Performance Schema Status Variables”](performance-schema-status-variables.html "25.16 Performance Schema Status Variables")
 
-[Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
+[Section 25.15, “Performance Schema System Variables”](performance-schema-system-variables.html "25.15 Performance Schema System Variables")
 
-[Seção 25.12.6.4, “Tabela prepared_statements_instances”](performance-schema-prepared-statements-instances-table.html)
+[Section 25.12.6.4, “The prepared_statements_instances Table”](performance-schema-prepared-statements-instances-table.html "25.12.6.4 The prepared_statements_instances Table")
 
-### schema_program_performance_perdeu
+### Performance_schema_program_lost
 
-[Seção 25.16, “Variáveis de Status do Schema de Desempenho”](performance-schema-status-variables.html)
+[Section 25.16, “Performance Schema Status Variables”](performance-schema-status-variables.html "25.16 Performance Schema Status Variables")
 
-[Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
+[Section 25.15, “Performance Schema System Variables”](performance-schema-system-variables.html "25.15 Performance Schema System Variables")
 
-### schema_rwlock_classes_lost
+### Performance_schema_rwlock_classes_lost
 
-[Seção 25.16, “Variáveis de Status do Schema de Desempenho”](performance-schema-status-variables.html)
+[Section 25.16, “Performance Schema Status Variables”](performance-schema-status-variables.html "25.16 Performance Schema Status Variables")
 
-### schema_rwlock_instances_lost
+### Performance_schema_rwlock_instances_lost
 
-[Seção 25.16, “Variáveis de Status do Schema de Desempenho”](performance-schema-status-variables.html)
+[Section 25.16, “Performance Schema Status Variables”](performance-schema-status-variables.html "25.16 Performance Schema Status Variables")
 
-### schema_session_connect_attrs_lost
+### Performance_schema_session_connect_attrs_lost
 
-[Seção 25.12.9, “Tabelas de atributos de conexão do esquema de desempenho”](performance-schema-connection-attribute-tables.html)
+[Section 25.12.9, “Performance Schema Connection Attribute Tables”](performance-schema-connection-attribute-tables.html "25.12.9 Performance Schema Connection Attribute Tables")
 
-[Seção 25.16, “Variáveis de Status do Schema de Desempenho”](performance-schema-status-variables.html)
+[Section 25.16, “Performance Schema Status Variables”](performance-schema-status-variables.html "25.16 Performance Schema Status Variables")
 
-[Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
+[Section 25.15, “Performance Schema System Variables”](performance-schema-system-variables.html "25.15 Performance Schema System Variables")
 
-### schema_performance_socket_classes_lost
+### Performance_schema_socket_classes_lost
 
-[Seção 25.16, “Variáveis de Status do Schema de Desempenho”](performance-schema-status-variables.html)
+[Section 25.16, “Performance Schema Status Variables”](performance-schema-status-variables.html "25.16 Performance Schema Status Variables")
 
-### schema_performance_socket_instances_lost
+### Performance_schema_socket_instances_lost
 
-[Seção 25.16, “Variáveis de Status do Schema de Desempenho”](performance-schema-status-variables.html)
+[Section 25.16, “Performance Schema Status Variables”](performance-schema-status-variables.html "25.16 Performance Schema Status Variables")
 
-### classes_de_etapa_do_schema_de_desempenho_perdidas
+### Performance_schema_stage_classes_lost
 
-[Seção 25.16, “Variáveis de Status do Schema de Desempenho”](performance-schema-status-variables.html)
+[Section 25.16, “Performance Schema Status Variables”](performance-schema-status-variables.html "25.16 Performance Schema Status Variables")
 
-### classes_de_declarações_do_schema_de_desempenho_perdidas
+### Performance_schema_statement_classes_lost
 
-[Seção 25.16, “Variáveis de Status do Schema de Desempenho”](performance-schema-status-variables.html)
+[Section 25.16, “Performance Schema Status Variables”](performance-schema-status-variables.html "25.16 Performance Schema Status Variables")
 
-### schema_performance_table_handles_lost
+### Performance_schema_table_handles_lost
 
-[Seção 25.16, “Variáveis de Status do Schema de Desempenho”](performance-schema-status-variables.html)
+[Section 25.16, “Performance Schema Status Variables”](performance-schema-status-variables.html "25.16 Performance Schema Status Variables")
 
-[Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
+[Section 25.15, “Performance Schema System Variables”](performance-schema-system-variables.html "25.15 Performance Schema System Variables")
 
-### schema_performance_table_instances_lost
+### Performance_schema_table_instances_lost
 
-[Seção 25.16, “Variáveis de Status do Schema de Desempenho”](performance-schema-status-variables.html)
+[Section 25.16, “Performance Schema Status Variables”](performance-schema-status-variables.html "25.16 Performance Schema Status Variables")
 
-### schema_table_lock_stat_lost
+### Performance_schema_table_lock_stat_lost
 
-[Seção 25.16, “Variáveis de Status do Schema de Desempenho”](performance-schema-status-variables.html)
+[Section 25.16, “Performance Schema Status Variables”](performance-schema-status-variables.html "25.16 Performance Schema Status Variables")
 
-[Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
+[Section 25.15, “Performance Schema System Variables”](performance-schema-system-variables.html "25.15 Performance Schema System Variables")
 
-### schema_de_desempenho_classes_de_thread_perdidas
+### Performance_schema_thread_classes_lost
 
-[Seção 25.16, “Variáveis de Status do Schema de Desempenho”](performance-schema-status-variables.html)
+[Section 25.16, “Performance Schema Status Variables”](performance-schema-status-variables.html "25.16 Performance Schema Status Variables")
 
-### schema_de_desempenho_instâncias_de_thread_perdidas
+### Performance_schema_thread_instances_lost
 
-[Seção 25.16, “Variáveis de Status do Schema de Desempenho”](performance-schema-status-variables.html)
+[Section 25.16, “Performance Schema Status Variables”](performance-schema-status-variables.html "25.16 Performance Schema Status Variables")
 
-[Seção 25.12.13, "Tabelas de Variáveis de Sistema do Schema de Desempenho"](performance-schema-system-variable-tables.html)
+[Section 25.12.13, “Performance Schema System Variable Tables”](performance-schema-system-variable-tables.html "25.12.13 Performance Schema System Variable Tables")
 
-[Seção 25.15, “Variáveis do Sistema de Schema de Desempenho”](performance-schema-system-variables.html)
+[Section 25.15, “Performance Schema System Variables”](performance-schema-system-variables.html "25.15 Performance Schema System Variables")
 
-### schema_performance_users_lost
+### Performance_schema_users_lost
 
-[Seção 25.16, “Variáveis de Status do Schema de Desempenho”](performance-schema-status-variables.html)
+[Section 25.16, “Performance Schema Status Variables”](performance-schema-status-variables.html "25.16 Performance Schema Status Variables")
 
-### Número de instruções preparadas
+### Prepared_stmt_count
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Q
 
-index superior](dynindex-statvar.html#statvar-index-superior)]
+index top](dynindex-statvar.html#statvar-index-top)]
 
 ### Qcache_free_blocks
 
-[Seção 8.10.3.3, “Configuração do Cache de Consulta”](query-cache-configuration.html)
+[Section 8.10.3.3, “Query Cache Configuration”](query-cache-configuration.html "8.10.3.3 Query Cache Configuration")
 
-[Seção 8.10.3.4, “Consultar o estado e a manutenção do cache de consultas”](query-cache-status-and-maintenance.html)
+[Section 8.10.3.4, “Query Cache Status and Maintenance”](query-cache-status-and-maintenance.html "8.10.3.4 Query Cache Status and Maintenance")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
 ### Qcache_free_memory
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
 ### Qcache_hits
 
-[Seção 8.10.3.1, “Como o Cache de Consultas Funciona”](query-cache-operation.html)
+[Section 8.10.3.1, “How the Query Cache Operates”](query-cache-operation.html "8.10.3.1 How the Query Cache Operates")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
 ### Qcache_inserts
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
 ### Qcache_lowmem_prunes
 
-[Seção 8.10.3.3, “Configuração do Cache de Consulta”](query-cache-configuration.html)
+[Section 8.10.3.3, “Query Cache Configuration”](query-cache-configuration.html "8.10.3.3 Query Cache Configuration")
 
-[Seção 8.10.3.4, “Consultar o estado e a manutenção do cache de consultas”](query-cache-status-and-maintenance.html)
+[Section 8.10.3.4, “Query Cache Status and Maintenance”](query-cache-status-and-maintenance.html "8.10.3.4 Query Cache Status and Maintenance")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
 ### Qcache_not_cached
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
 ### Qcache_queries_in_cache
 
-[Seção 8.10.3.3, “Configuração do Cache de Consulta”](query-cache-configuration.html)
+[Section 8.10.3.3, “Query Cache Configuration”](query-cache-configuration.html "8.10.3.3 Query Cache Configuration")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
 ### Qcache_total_blocks
 
-[Seção 8.10.3.3, “Configuração do Cache de Consulta”](query-cache-configuration.html)
+[Section 8.10.3.3, “Query Cache Configuration”](query-cache-configuration.html "8.10.3.3 Query Cache Configuration")
 
-[Seção 8.10.3.4, “Consultar o estado e a manutenção do cache de consultas”](query-cache-status-and-maintenance.html)
+[Section 8.10.3.4, “Query Cache Status and Maintenance”](query-cache-status-and-maintenance.html "8.10.3.4 Query Cache Status and Maintenance")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
-### Perguntas
+### Queries
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### Perguntas
+### Questions
 
-[Seção 4.5.2, “mysqladmin — Um programa de administração do servidor MySQL”](mysqladmin.html)
+[Section 4.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### R
 
-index superior](dynindex-statvar.html#statvar-index-superior)]
+index top](dynindex-statvar.html#statvar-index-top)]
 
-### Reescrevente_número_de_regras_carregadas
+### Rewriter_number_loaded_rules
 
-[Seção 5.5.4.3.4, “Variáveis de status do plugin de reescrita de consultas do reescritor”](rewriter-query-rewrite-plugin-reference.html#rewriter-query-rewrite-plugin-status-variables)
+[Section 5.5.4.3.4, “Rewriter Query Rewrite Plugin Status Variables”](rewriter-query-rewrite-plugin-reference.html#rewriter-query-rewrite-plugin-status-variables "5.5.4.3.4 Rewriter Query Rewrite Plugin Status Variables")
 
-### Reescrevente_número_recargas
+### Rewriter_number_reloads
 
-[Seção 5.5.4.3.4, “Variáveis de status do plugin de reescrita de consultas do reescritor”](rewriter-query-rewrite-plugin-reference.html#rewriter-query-rewrite-plugin-status-variables)
+[Section 5.5.4.3.4, “Rewriter Query Rewrite Plugin Status Variables”](rewriter-query-rewrite-plugin-reference.html#rewriter-query-rewrite-plugin-status-variables "5.5.4.3.4 Rewriter Query Rewrite Plugin Status Variables")
 
-### Reescrevente_número_de_consultas_reescritas
+### Rewriter_number_rewritten_queries
 
-[Seção 5.5.4.3.4, “Variáveis de status do plugin de reescrita de consultas do reescritor”](rewriter-query-rewrite-plugin-reference.html#rewriter-query-rewrite-plugin-status-variables)
+[Section 5.5.4.3.4, “Rewriter Query Rewrite Plugin Status Variables”](rewriter-query-rewrite-plugin-reference.html#rewriter-query-rewrite-plugin-status-variables "5.5.4.3.4 Rewriter Query Rewrite Plugin Status Variables")
 
-### Erro de recarregamento de Rewriter
+### Rewriter_reload_error
 
-[Seção 5.5.4.3.2, “Procedimentos e funções do plugin de reescrita de consultas do reescritor”](rewriter-query-rewrite-plugin-reference.html#rewriter-query-rewrite-plugin-routines)
+[Section 5.5.4.3.2, “Rewriter Query Rewrite Plugin Procedures and Functions”](rewriter-query-rewrite-plugin-reference.html#rewriter-query-rewrite-plugin-routines "5.5.4.3.2 Rewriter Query Rewrite Plugin Procedures and Functions")
 
-[Seção 5.5.4.3.1, “Tabela de Regras do Plugin de Reescrita de Consultas de Reescritor”](rewriter-query-rewrite-plugin-reference.html#rewriter-query-rewrite-plugin-table)
+[Section 5.5.4.3.1, “Rewriter Query Rewrite Plugin Rules Table”](rewriter-query-rewrite-plugin-reference.html#rewriter-query-rewrite-plugin-table "5.5.4.3.1 Rewriter Query Rewrite Plugin Rules Table")
 
-[Seção 5.5.4.3.4, “Variáveis de status do plugin de reescrita de consultas do reescritor”](rewriter-query-rewrite-plugin-reference.html#rewriter-query-rewrite-plugin-status-variables)
+[Section 5.5.4.3.4, “Rewriter Query Rewrite Plugin Status Variables”](rewriter-query-rewrite-plugin-reference.html#rewriter-query-rewrite-plugin-status-variables "5.5.4.3.4 Rewriter Query Rewrite Plugin Status Variables")
 
-[Seção 5.5.4.2, “Usando o Plugin de Reescrita de Consultas de Reescritor”](rewriter-query-rewrite-plugin-usage.html)
+[Section 5.5.4.2, “Using the Rewriter Query Rewrite Plugin”](rewriter-query-rewrite-plugin-usage.html "5.5.4.2 Using the Rewriter Query Rewrite Plugin")
 
 ### Rpl_semi_sync_master_clients
 
-[Seção 16.3.9.1, “Interface Administrativa de Replicação Semisincronizada”](replication-semisync-interface.html)
+[Section 16.3.9.1, “Semisynchronous Replication Administrative Interface”](replication-semisync-interface.html "16.3.9.1 Semisynchronous Replication Administrative Interface")
 
-[Seção 16.3.9.3, “Monitoramento da Replicação Semisincronizada”](replication-semisync-monitoring.html)
+[Section 16.3.9.3, “Semisynchronous Replication Monitoring”](replication-semisync-monitoring.html "16.3.9.3 Semisynchronous Replication Monitoring")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Rpl_semi_sync_master_net_avg_wait_time
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Rpl_semi_sync_master_net_wait_time
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Rpl_semi_sync_master_net_waits
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Rpl_semi_sync_master_no_times
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Rpl_semi_sync_master_no_tx
 
-[Seção 16.3.9.1, “Interface Administrativa de Replicação Semisincronizada”](replication-semisync-interface.html)
+[Section 16.3.9.1, “Semisynchronous Replication Administrative Interface”](replication-semisync-interface.html "16.3.9.1 Semisynchronous Replication Administrative Interface")
 
-[Seção 16.3.9.3, “Monitoramento da Replicação Semisincronizada”](replication-semisync-monitoring.html)
+[Section 16.3.9.3, “Semisynchronous Replication Monitoring”](replication-semisync-monitoring.html "16.3.9.3 Semisynchronous Replication Monitoring")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Rpl_semi_sync_master_status
 
-[Seção 16.3.9.1, “Interface Administrativa de Replicação Semisincronizada”](replication-semisync-interface.html)
+[Section 16.3.9.1, “Semisynchronous Replication Administrative Interface”](replication-semisync-interface.html "16.3.9.1 Semisynchronous Replication Administrative Interface")
 
-[Seção 16.3.9.3, “Monitoramento da Replicação Semisincronizada”](replication-semisync-monitoring.html)
+[Section 16.3.9.3, “Semisynchronous Replication Monitoring”](replication-semisync-monitoring.html "16.3.9.3 Semisynchronous Replication Monitoring")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Rpl_semi_sync_master_timefunc_failures
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Rpl_semi_sync_master_tx_avg_wait_time
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Rpl_semi_sync_master_tx_wait_time
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Rpl_semi_sync_master_tx_waits
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Rpl_semi_sync_master_wait_pos_backtraverse
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Rpl_semi_sync_master_wait_sessions
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Rpl_semi_sync_master_yes_tx
 
-[Seção 16.3.9.1, “Interface Administrativa de Replicação Semisincronizada”](replication-semisync-interface.html)
+[Section 16.3.9.1, “Semisynchronous Replication Administrative Interface”](replication-semisync-interface.html "16.3.9.1 Semisynchronous Replication Administrative Interface")
 
-[Seção 16.3.9.3, “Monitoramento da Replicação Semisincronizada”](replication-semisync-monitoring.html)
+[Section 16.3.9.3, “Semisynchronous Replication Monitoring”](replication-semisync-monitoring.html "16.3.9.3 Semisynchronous Replication Monitoring")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Rpl_semi_sync_slave_status
 
-[Seção 16.3.9.1, “Interface Administrativa de Replicação Semisincronizada”](replication-semisync-interface.html)
+[Section 16.3.9.1, “Semisynchronous Replication Administrative Interface”](replication-semisync-interface.html "16.3.9.1 Semisynchronous Replication Administrative Interface")
 
-[Seção 16.3.9.3, “Monitoramento da Replicação Semisincronizada”](replication-semisync-monitoring.html)
+[Section 16.3.9.3, “Semisynchronous Replication Monitoring”](replication-semisync-monitoring.html "16.3.9.3 Semisynchronous Replication Monitoring")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### chave pública pública_rsa
+### Rsa_public_key
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 6.4.1.5, “Autenticação Pluggable SHA-256”](sha256-pluggable-authentication.html)
+[Section 6.4.1.5, “SHA-256 Pluggable Authentication”](sha256-pluggable-authentication.html "6.4.1.5 SHA-256 Pluggable Authentication")
 
-[Seção 6.3.4, “Capacidades dependentes da biblioteca SSL”](ssl-libraries.html)
+[Section 6.3.4, “SSL Library-Dependent Capabilities”](ssl-libraries.html "6.3.4 SSL Library-Dependent Capabilities")
 
 ### S
 
-index superior](dynindex-statvar.html#statvar-index-superior)]
+index top](dynindex-statvar.html#statvar-index-top)]
 
-### Selecionar_join_completo
+### Select_full_join
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 25.12.6.1, “A tabela events_statements_current”](performance-schema-events-statements-current-table.html)
+[Section 25.12.6.1, “The events_statements_current Table”](performance-schema-events-statements-current-table.html "25.12.6.1 The events_statements_current Table")
 
-### Selecionar_join_full_range
+### Select_full_range_join
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 25.12.6.1, “A tabela events_statements_current”](performance-schema-events-statements-current-table.html)
+[Section 25.12.6.1, “The events_statements_current Table”](performance-schema-events-statements-current-table.html "25.12.6.1 The events_statements_current Table")
 
-### Selecionar_intervalo
+### Select_range
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 25.12.6.1, “A tabela events_statements_current”](performance-schema-events-statements-current-table.html)
+[Section 25.12.6.1, “The events_statements_current Table”](performance-schema-events-statements-current-table.html "25.12.6.1 The events_statements_current Table")
 
-### Selecionar_intervalo_de_verificação
+### Select_range_check
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 25.12.6.1, “A tabela events_statements_current”](performance-schema-events-statements-current-table.html)
+[Section 25.12.6.1, “The events_statements_current Table”](performance-schema-events-statements-current-table.html "25.12.6.1 The events_statements_current Table")
 
-### Selecionar_escanear
+### Select_scan
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 25.12.6.1, “A tabela events_statements_current”](performance-schema-events-statements-current-table.html)
+[Section 25.12.6.1, “The events_statements_current Table”](performance-schema-events-statements-current-table.html "25.12.6.1 The events_statements_current Table")
 
-### Período de batimento cardíaco do escravo
+### Slave_heartbeat_period
 
-[Seção 16.1.7.1, “Verificar o status da replicação”](replication-administration-status.html)
+[Section 16.1.7.1, “Checking Replication Status”](replication-administration-status.html "16.1.7.1 Checking Replication Status")
 
-[Seção 25.12.11, "Tabelas de Replicação do Schema de Desempenho"](performance-schema-replication-tables.html)
+[Section 25.12.11, “Performance Schema Replication Tables”](performance-schema-replication-tables.html "25.12.11 Performance Schema Replication Tables")
 
-[Seção 13.4.2.3, "Declaração de RESET SLAVE"](reset-slave.html)
+[Section 13.4.2.3, “RESET SLAVE Statement”](reset-slave.html "13.4.2.3 RESET SLAVE Statement")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Slave_last_heartbeat
 
-[Seção 16.1.7.1, “Verificar o status da replicação”](replication-administration-status.html)
+[Section 16.1.7.1, “Checking Replication Status”](replication-administration-status.html "16.1.7.1 Checking Replication Status")
 
-[Seção 25.12.11, "Tabelas de Replicação do Schema de Desempenho"](performance-schema-replication-tables.html)
+[Section 25.12.11, “Performance Schema Replication Tables”](performance-schema-replication-tables.html "25.12.11 Performance Schema Replication Tables")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Slave_open_temp_tables
 
-[Seção 13.4.2.1, “Mudar o mestre para declaração”](change-master-to.html)
+[Section 13.4.2.1, “CHANGE MASTER TO Statement”](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement")
 
-[Seção 16.4.1.29, “Replicação e Tabelas Temporárias”](replication-features-temptables.html)
+[Section 16.4.1.29, “Replication and Temporary Tables”](replication-features-temptables.html "16.4.1.29 Replication and Temporary Tables")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 13.4.2.6, "Declaração STOP SLAVE"](stop-slave.html)
+[Section 13.4.2.6, “STOP SLAVE Statement”](stop-slave.html "13.4.2.6 STOP SLAVE Statement")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
 ### Slave_received_heartbeats
 
-[Seção 13.4.2.1, “Mudar o mestre para declaração”](change-master-to.html)
+[Section 13.4.2.1, “CHANGE MASTER TO Statement”](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement")
 
-[Seção 16.1.7.1, “Verificar o status da replicação”](replication-administration-status.html)
+[Section 16.1.7.1, “Checking Replication Status”](replication-administration-status.html "16.1.7.1 Checking Replication Status")
 
-[Seção 25.12.11, "Tabelas de Replicação do Schema de Desempenho"](performance-schema-replication-tables.html)
+[Section 25.12.11, “Performance Schema Replication Tables”](performance-schema-replication-tables.html "25.12.11 Performance Schema Replication Tables")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Slave_retried_transactions
 
-[Seção 16.1.7.1, “Verificar o status da replicação”](replication-administration-status.html)
+[Section 16.1.7.1, “Checking Replication Status”](replication-administration-status.html "16.1.7.1 Checking Replication Status")
 
-[Seção 25.12.11, "Tabelas de Replicação do Schema de Desempenho"](performance-schema-replication-tables.html)
+[Section 25.12.11, “Performance Schema Replication Tables”](performance-schema-replication-tables.html "25.12.11 Performance Schema Replication Tables")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Slave_rows_last_search_algorithm_used
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### Escravidão
+### Slave_running
 
-[Seção 16.1.7.1, “Verificar o status da replicação”](replication-administration-status.html)
+[Section 16.1.7.1, “Checking Replication Status”](replication-administration-status.html "16.1.7.1 Checking Replication Status")
 
-[Seção 25.12.11, "Tabelas de Replicação do Schema de Desempenho"](performance-schema-replication-tables.html)
+[Section 25.12.11, “Performance Schema Replication Tables”](performance-schema-replication-tables.html "25.12.11 Performance Schema Replication Tables")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 13.7.5.34, "Declaração de Status de Escravo"](show-slave-status.html)
+[Section 13.7.5.34, “SHOW SLAVE STATUS Statement”](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement")
 
 ### Slow_launch_threads
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-### consultas lentas
+### Slow_queries
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-### Ordenar e combinar passes
+### Sort_merge_passes
 
-[Seção 8.2.1.14, “Otimização de ORDEM”](order-by-optimization.html)
+[Section 8.2.1.14, “ORDER BY Optimization”](order-by-optimization.html "8.2.1.14 ORDER BY Optimization")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 25.12.6.1, “A tabela events_statements_current”](performance-schema-events-statements-current-table.html)
+[Section 25.12.6.1, “The events_statements_current Table”](performance-schema-events-statements-current-table.html "25.12.6.1 The events_statements_current Table")
 
-### Intervalo_de_classificação
+### Sort_range
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 25.12.6.1, “A tabela events_statements_current”](performance-schema-events-statements-current-table.html)
+[Section 25.12.6.1, “The events_statements_current Table”](performance-schema-events-statements-current-table.html "25.12.6.1 The events_statements_current Table")
 
-### Ordenar_linhas
+### Sort_rows
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 25.12.6.1, “A tabela events_statements_current”](performance-schema-events-statements-current-table.html)
+[Section 25.12.6.1, “The events_statements_current Table”](performance-schema-events-statements-current-table.html "25.12.6.1 The events_statements_current Table")
 
-### Ordenar_escanear
+### Sort_scan
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 25.12.6.1, “A tabela events_statements_current”](performance-schema-events-statements-current-table.html)
+[Section 25.12.6.1, “The events_statements_current Table”](performance-schema-events-statements-current-table.html "25.12.6.1 The events_statements_current Table")
 
 ### Ssl_accept_renegotiates
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Ssl_accepts
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Ssl_callback_cache_hits
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Ssl_cipher
 
-[Seção 6.3.1, “Configurando o MySQL para usar conexões criptografadas”](using-encrypted-connections.html)
+[Section 6.3.1, “Configuring MySQL to Use Encrypted Connections”](using-encrypted-connections.html "6.3.1 Configuring MySQL to Use Encrypted Connections")
 
-[Seção 6.3.2, “Protocolos e cifra de conexão encriptada TLS”](encrypted-connection-protocols-ciphers.html)
+[Section 6.3.2, “Encrypted Connection TLS Protocols and Ciphers”](encrypted-connection-protocols-ciphers.html "6.3.2 Encrypted Connection TLS Protocols and Ciphers")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Ssl_cipher_list
 
-[Seção 6.3.2, “Protocolos e cifra de conexão encriptada TLS”](encrypted-connection-protocols-ciphers.html)
+[Section 6.3.2, “Encrypted Connection TLS Protocols and Ciphers”](encrypted-connection-protocols-ciphers.html "6.3.2 Encrypted Connection TLS Protocols and Ciphers")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Ssl_client_connects
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Ssl_connect_renegotiates
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Ssl_ctx_verify_depth
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Ssl_ctx_verify_mode
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Ssl_default_timeout
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Ssl_finished_accepts
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Ssl_finished_connects
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Ssl_server_not_after
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Ssl_server_not_before
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Ssl_session_cache_hits
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Ssl_session_cache_misses
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Ssl_session_cache_mode
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Ssl_session_cache_overflows
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Ssl_session_cache_size
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Ssl_session_cache_timeouts
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Ssl_sessions_reused
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Ssl_used_session_cache_entries
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Ssl_verify_depth
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Ssl_verify_mode
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Ssl_version
 
-[Seção 6.3.2, “Protocolos e cifra de conexão encriptada TLS”](encrypted-connection-protocols-ciphers.html)
+[Section 6.3.2, “Encrypted Connection TLS Protocols and Ciphers”](encrypted-connection-protocols-ciphers.html "6.3.2 Encrypted Connection TLS Protocols and Ciphers")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### T
 
-index superior](dynindex-statvar.html#statvar-index-superior)]
+index top](dynindex-statvar.html#statvar-index-top)]
 
-### Tabelas_bloques_imediatas
+### Table_locks_immediate
 
-[Seção 8.11.1, “Métodos de bloqueio interno”](internal-locking.html)
+[Section 8.11.1, “Internal Locking Methods”](internal-locking.html "8.11.1 Internal Locking Methods")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### Tabelas_bloqueadas_esperadas
+### Table_locks_waited
 
-[Seção 8.11.1, “Métodos de bloqueio interno”](internal-locking.html)
+[Section 8.11.1, “Internal Locking Methods”](internal-locking.html "8.11.1 Internal Locking Methods")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### Tabela_cache_acessos_abertos
+### Table_open_cache_hits
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### Tabela_falhas_de_cache_abertas
+### Table_open_cache_misses
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### Tabela_overlotes_cache_aberto
+### Table_open_cache_overflows
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Tc_log_max_pages_used
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Tc_log_page_size
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Tc_log_page_waits
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Threads_cached
 
-[Seção 5.1.11.1, “Interfaces de Conexão”](connection-interfaces.html)
+[Section 5.1.11.1, “Connection Interfaces”](connection-interfaces.html "5.1.11.1 Connection Interfaces")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### Fios_conectados
+### Threads_connected
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### Threads_created
 
-[Seção 5.1.11.1, “Interfaces de Conexão”](connection-interfaces.html)
+[Section 5.1.11.1, “Connection Interfaces”](connection-interfaces.html "5.1.11.1 Connection Interfaces")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
 ### Threads_running
 
-[Seção A.15, “Perguntas frequentes sobre o MySQL 5.7: Pool de threads do MySQL Enterprise”](faqs-thread-pool.html)
+[Section A.15, “MySQL 5.7 FAQ: MySQL Enterprise Thread Pool”](faqs-thread-pool.html "A.15 MySQL 5.7 FAQ: MySQL Enterprise Thread Pool")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### U
 
-index superior](dynindex-statvar.html#statvar-index-superior)]
+index top](dynindex-statvar.html#statvar-index-top)]
 
-### Tempo de funcionamento
+### Uptime
 
-[Seção 4.5.2, “mysqladmin — Um programa de administração do servidor MySQL”](mysqladmin.html)
+[Section 4.5.2, “mysqladmin — A MySQL Server Administration Program”](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program")
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
-### Tempo de atividade desde a última varredura
+### Uptime_since_flush_status
 
-[Seção 5.1.9, “Variáveis de Status do Servidor”](server-status-variables.html)
+[Section 5.1.9, “Server Status Variables”](server-status-variables.html "5.1.9 Server Status Variables")
 
 ### V
 
-index superior](dynindex-statvar.html#statvar-index-superior)]
+index top](dynindex-statvar.html#statvar-index-top)]
 
-### validar_dicionário_senha_arquivo_último_paralizado
+### validate_password_dictionary_file_last_parsed
 
-[Seção 6.4.3.2, “Opções e variáveis do plugin de validação de senha”](validate-password-options-variables.html)
+[Section 6.4.3.2, “Password Validation Plugin Options and Variables”](validate-password-options-variables.html "6.4.3.2 Password Validation Plugin Options and Variables")
 
-### validar_dicionário_senha_arquivo_número_palavras
+### validate_password_dictionary_file_words_count
 
-[Seção 6.4.3.2, “Opções e variáveis do plugin de validação de senha”](validate-password-options-variables.html)
+[Section 6.4.3.2, “Password Validation Plugin Options and Variables”](validate-password-options-variables.html "6.4.3.2 Password Validation Plugin Options and Variables")

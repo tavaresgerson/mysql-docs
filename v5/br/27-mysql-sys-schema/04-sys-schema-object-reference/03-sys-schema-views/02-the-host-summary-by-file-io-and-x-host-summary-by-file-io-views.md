@@ -1,17 +1,17 @@
-#### 26.4.3.2 As visualizações host_summary_by_file_io e x$host_summary_by_file_io
+#### 26.4.3.2 The host_summary_by_file_io and x$host_summary_by_file_io Views
 
-Esses pontos resumem o acesso e gravação de arquivos, agrupados por host. Por padrão, as linhas são ordenadas em ordem decrescente de latência total de acesso e gravação de arquivos.
+These views summarize file I/O, grouped by host. By default, rows are sorted by descending total file I/O latency.
 
-As views `host_summary_by_file_io` e `x$host_summary_by_file_io` possuem essas colunas:
+The `host_summary_by_file_io` and `x$host_summary_by_file_io` views have these columns:
 
-- `host`
+* `host`
 
-  O host a partir do qual o cliente se conectou. As linhas para as quais a coluna `HOST` na tabela subjacente do Gerenciamento de Desempenho é `NULL` são assumidas como pertencentes a threads de segundo plano e são relatadas com o nome do host `background`.
+  The host from which the client connected. Rows for which the `HOST` column in the underlying Performance Schema table is `NULL` are assumed to be for background threads and are reported with a host name of `background`.
 
-- `ios`
+* `ios`
 
-  O número total de eventos de E/S de arquivos para o host.
+  The total number of file I/O events for the host.
 
-- `io_latency`
+* `io_latency`
 
-  O tempo total de espera de eventos de E/S de arquivos com temporizador para o host.
+  The total wait time of timed file I/O events for the host.

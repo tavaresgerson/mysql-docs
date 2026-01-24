@@ -1,7 +1,7 @@
-#### 17.9.5.4 Recomendações de uso e limitações da recuperação distribuída
+#### 17.9.5.4 Usage Advice and Limitations of Distributed Recovery
 
-A recuperação distribuída tem algumas limitações. Ela é baseada na replicação assíncrona clássica e, como tal, pode ser lenta se o servidor que está se juntando ao grupo não estiver configurado ou estiver configurado com uma imagem de backup muito antiga. Isso significa que, se os dados a serem transferidos forem muito grandes na fase 1, o servidor pode levar muito tempo para se recuperar. Portanto, a recomendação é que, antes de adicionar um servidor ao grupo, ele deve ser configurado com um instantâneo bastante recente de um servidor já no grupo. Isso minimiza o comprimento da fase 1 e reduz o impacto no servidor doador, já que ele precisa salvar e transferir menos logs binários.
+Distributed recovery does have some limitations. It is based on classic asynchronous replication and as such it may be slow if the server joining the group is not provisioned at all or is provisioned with a very old backup image. This means that if the data to transfer is too big at phase 1, the server may take a very long time to recover. As such, the recommendation is that before adding a server to the group, one should provision it with a fairly recent snapshot of a server already in the group. This minimizes the length of phase 1 and reduces the impact on the donor server, since it has to save and transfer less binary logs.
 
-Aviso
+Warning
 
-Recomenda-se que um servidor seja provisionado antes de ser adicionado a um grupo. Dessa forma, o tempo gasto na etapa de recuperação é minimizado.
+It is recommended that a server is provisioned before it is added to a group. That way, one minimizes the time spent on the recovery step.

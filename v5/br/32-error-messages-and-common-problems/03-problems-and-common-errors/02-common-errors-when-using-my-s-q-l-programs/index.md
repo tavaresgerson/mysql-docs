@@ -1,37 +1,37 @@
-### B.3.2 Erros Comuns ao Usar Programas MySQL
+### B.3.2 Common Errors When Using MySQL Programs
 
-[B.3.2.1 Acesso negado](error-access-denied.html)
+[B.3.2.1 Access denied](error-access-denied.html)
 
-[B.3.2.2 Não consigo me conectar ao servidor MySQL [local](can-not-connect-to-server.html)
+[B.3.2.2 Can't connect to [local] MySQL server](can-not-connect-to-server.html)
 
-[B.3.2.3 Perda de conexão com o servidor MySQL](error-lost-connection.html)
+[B.3.2.3 Lost connection to MySQL server](error-lost-connection.html)
 
-[B.3.2.4 Senha falha ao ser inserida interativamente](password-too-long.html)
+[B.3.2.4 Password Fails When Entered Interactively](password-too-long.html)
 
-[B.3.2.5 Conexões em excesso](too-many-connections.html)
+[B.3.2.5 Too many connections](too-many-connections.html)
 
-[B.3.2.6 Sem memória](out-of-memory.html)
+[B.3.2.6 Out of memory](out-of-memory.html)
 
-[O servidor MySQL [B.3.2.7\] desapareceu](gone-away.html)
+[B.3.2.7 MySQL server has gone away](gone-away.html)
 
-[B.3.2.8 Pacote muito grande](packet-too-large.html)
+[B.3.2.8 Packet Too Large](packet-too-large.html)
 
-[B.3.2.9 Erros de Comunicação e Conexões Abortadas](communication-errors.html)
+[B.3.2.9 Communication Errors and Aborted Connections](communication-errors.html)
 
-[B.3.2.10 A tabela está cheia](full-table.html)
+[B.3.2.10 The table is full](full-table.html)
 
-[B.3.2.11 Não é possível criar/escrever no arquivo](cannot-create.html)
+[B.3.2.11 Can't create/write to file](cannot-create.html)
 
-[B.3.2.12 Comandos fora de sincronia](commands-out-of-sync.html)
+[B.3.2.12 Commands out of sync](commands-out-of-sync.html)
 
-[B.3.2.13 Ignorar o usuário](ignorar-usuario.html)
+[B.3.2.13 Ignoring user](ignoring-user.html)
 
-[A tabela 'tbl_name' não existe](cannot-find-table.html)
+[B.3.2.14 Table 'tbl_name' doesn't exist](cannot-find-table.html)
 
-[B.3.2.15 Não é possível inicializar o conjunto de caracteres](cannot-initialize-character-set.html)
+[B.3.2.15 Can't initialize character set](cannot-initialize-character-set.html)
 
-[B.3.2.16 Arquivo não encontrado e erros semelhantes](not-enough-file-handles.html)
+[B.3.2.16 File Not Found and Similar Errors](not-enough-file-handles.html)
 
-[B.3.2.17 Problemas de corrupção em tabelas](table-corruption.html)
+[B.3.2.17 Table-Corruption Issues](table-corruption.html)
 
-Esta seção lista alguns erros que os usuários frequentemente encontram ao executar programas MySQL. Embora os problemas apareçam quando você tenta executar programas cliente, muitas das soluções para esses problemas envolvem a alteração da configuração do servidor MySQL.
+This section lists some errors that users frequently encounter when running MySQL programs. Although the problems show up when you try to run client programs, the solutions to many of the problems involves changing the configuration of the MySQL server.

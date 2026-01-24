@@ -1,21 +1,21 @@
-## 24.5 Tabelas do Pool de Fios do Schema de Informação
+## 24.5 INFORMATION_SCHEMA Thread Pool Tables
 
-24.5.1 Referência da Tabela do Conjunto de Filas de Tarefas do Schema de Informações
+[24.5.1 INFORMATION_SCHEMA Thread Pool Table Reference](information-schema-thread-pool-table-reference.html)
 
-Tabela INFORMATION_SCHEMA TP_THREAD_GROUP_STATE
+[24.5.2 The INFORMATION_SCHEMA TP_THREAD_GROUP_STATE Table](information-schema-tp-thread-group-state-table.html)
 
-Tabela INFORMATION_SCHEMA TP_THREAD_GROUP_STATS
+[24.5.3 The INFORMATION_SCHEMA TP_THREAD_GROUP_STATS Table](information-schema-tp-thread-group-stats-table.html)
 
-Tabela INFORMATION_SCHEMA TP_THREAD_STATE
+[24.5.4 The INFORMATION_SCHEMA TP_THREAD_STATE Table](information-schema-tp-thread-state-table.html)
 
-As seções a seguir descrevem as tabelas `INFORMATION_SCHEMA` associadas ao plugin de pool de threads (consulte Seção 5.5.3, “MySQL Enterprise Thread Pool”). Elas fornecem informações sobre o funcionamento do pool de threads:
+The following sections describe the `INFORMATION_SCHEMA` tables associated with the thread pool plugin (see [Section 5.5.3, “MySQL Enterprise Thread Pool”](thread-pool.html "5.5.3 MySQL Enterprise Thread Pool")). They provide information about thread pool operation:
 
-- [`TP_THREAD_GROUP_STATE`](https://pt.wikipedia.org/wiki/TP_THREAD_GROUP_STATE): Informações sobre os estados dos grupos de threads do pool de threads
+* [`TP_THREAD_GROUP_STATE`](information-schema-tp-thread-group-state-table.html "24.5.2 The INFORMATION_SCHEMA TP_THREAD_GROUP_STATE Table"): Information about thread pool thread group states
 
-- [`TP_THREAD_GROUP_STATS`](https://information-schema-tp-thread-group-stats-table.html): Estatísticas do grupo de threads
+* [`TP_THREAD_GROUP_STATS`](information-schema-tp-thread-group-stats-table.html "24.5.3 The INFORMATION_SCHEMA TP_THREAD_GROUP_STATS Table"): Thread group statistics
 
-- [`TP_THREAD_STATE`](https://pt.wikipedia.org/wiki/TP_THREAD_STATE): Informações sobre os estados dos threads do pool de threads
+* [`TP_THREAD_STATE`](information-schema-tp-thread-state-table.html "24.5.4 The INFORMATION_SCHEMA TP_THREAD_STATE Table"): Information about thread pool thread states
 
-As linhas nessas tabelas representam instantâneos no tempo. No caso de `TP_THREAD_STATE`, todas as linhas de um grupo de threads compõem um instantâneo no tempo. Assim, o servidor MySQL mantém o mutex do grupo de threads enquanto produz o instantâneo. Mas ele não mantém mutexes em todos os grupos de threads ao mesmo tempo, para evitar que uma declaração contra `TP_THREAD_STATE` bloqueie todo o servidor MySQL.
+Rows in these tables represent snapshots in time. In the case of [`TP_THREAD_STATE`](information-schema-tp-thread-state-table.html "24.5.4 The INFORMATION_SCHEMA TP_THREAD_STATE Table"), all rows for a thread group comprise a snapshot in time. Thus, the MySQL server holds the mutex of the thread group while producing the snapshot. But it does not hold mutexes on all thread groups at the same time, to prevent a statement against [`TP_THREAD_STATE`](information-schema-tp-thread-state-table.html "24.5.4 The INFORMATION_SCHEMA TP_THREAD_STATE Table") from blocking the entire MySQL server.
 
-As tabelas do pool de threads `INFORMATION_SCHEMA` são implementadas por plugins individuais e a decisão de carregá-las pode ser tomada de forma independente das outras (consulte Seção 5.5.3.2, “Instalação do Pool de Threads”). No entanto, o conteúdo de todas as tabelas depende do plugin do pool de threads estar habilitado. Se um plugin de tabela estiver habilitado, mas o plugin do pool de threads não estiver, a tabela se tornará visível e poderá ser acessada, mas ficará vazia.
+The thread pool `INFORMATION_SCHEMA` tables are implemented by individual plugins and the decision whether to load one can be made independently of the others (see [Section 5.5.3.2, “Thread Pool Installation”](thread-pool-installation.html "5.5.3.2 Thread Pool Installation")). However, the content of all the tables depends on the thread pool plugin being enabled. If a table plugin is enabled but the thread pool plugin is not, the table becomes visible and can be accessed, but is empty.

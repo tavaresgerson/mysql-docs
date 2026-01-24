@@ -1,23 +1,23 @@
-## 13.2 Declarações de manipulação de dados
+## 13.2 Data Manipulation Statements
 
-13.2.1 Declaração CALL
+[13.2.1 CALL Statement](call.html)
 
-13.2.2 Declaração de DELETE
+[13.2.2 DELETE Statement](delete.html)
 
-13.2.3 Declaração do DO
+[13.2.3 DO Statement](do.html)
 
-13.2.4 Declaração do Manipulador
+[13.2.4 HANDLER Statement](handler.html)
 
-13.2.5 Declaração de inserção
+[13.2.5 INSERT Statement](insert.html)
 
-13.2.6 Declaração LOAD DATA
+[13.2.6 LOAD DATA Statement](load-data.html)
 
-13.2.7 Declaração de carregamento XML
+[13.2.7 LOAD XML Statement](load-xml.html)
 
-13.2.8 Declaração REPLACE
+[13.2.8 REPLACE Statement](replace.html)
 
-13.2.9 Instrução SELECT
+[13.2.9 SELECT Statement](select.html)
 
-13.2.10 Subconsultas
+[13.2.10 Subqueries](subqueries.html)
 
-13.2.11 Declaração de atualização
+[13.2.11 UPDATE Statement](update.html)

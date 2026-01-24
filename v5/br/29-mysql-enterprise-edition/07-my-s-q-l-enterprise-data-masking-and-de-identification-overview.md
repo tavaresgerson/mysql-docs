@@ -1,5 +1,5 @@
-## 28.7 Visão geral da Máscara de dados e desidentificação da MySQL Enterprise
+## 28.7 MySQL Enterprise Data Masking and De-Identification Overview
 
-A Edição Empresarial do MySQL 5.7 e superior inclui o MySQL Enterprise Data Masking e De-Identification, implementado como uma biblioteca de plugins que contém um plugin e várias funções carregáveis. O mascaramento de dados oculta informações sensíveis substituindo valores reais por substitutos. As funções de mascaramento de dados do MySQL Enterprise permitem mascarar dados existentes usando vários métodos, como ofuscação (removendo características identificadoras), geração de dados aleatórios formatados e substituição ou substituição de dados.
+MySQL Enterprise Edition 5.7 and higher includes MySQL Enterprise Data Masking and De-Identification, implemented as a plugin library containing a plugin and several loadable functions. Data masking hides sensitive information by replacing real values with substitutes. MySQL Enterprise Data Masking and De-Identification functions enable masking existing data using several methods such as obfuscation (removing identifying characteristics), generation of formatted random data, and data replacement or substitution.
 
-Para obter mais informações, consulte a Seção 6.5, “Mascagem e Desidentificação de Dados da MySQL Enterprise”.
+For more information, see Section 6.5, “MySQL Enterprise Data Masking and De-Identification”.

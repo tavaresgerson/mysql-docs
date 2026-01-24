@@ -1,11 +1,11 @@
-### 13.1.31 Declaração DROP TRIGGER
+### 13.1.31 DROP TRIGGER Statement
 
 ```sql
 DROP TRIGGER [IF EXISTS] [schema_name.]trigger_name
 ```
 
-Essa declaração elimina um gatilho. O nome do esquema (banco de dados) é opcional. Se o esquema for omitido, o gatilho será eliminado do esquema padrão. `DROP TRIGGER` requer o privilégio `TRIGGER` para a tabela associada ao gatilho.
+This statement drops a trigger. The schema (database) name is optional. If the schema is omitted, the trigger is dropped from the default schema. [`DROP TRIGGER`](drop-trigger.html "13.1.31 DROP TRIGGER Statement") requires the [`TRIGGER`](privileges-provided.html#priv_trigger) privilege for the table associated with the trigger.
 
-Use `IF EXISTS` para evitar que um erro ocorra para um gatilho que não existe. Uma `NOTA` é gerada para um gatilho inexistente quando você usa `IF EXISTS`. Veja Seção 13.7.5.40, “Instrução SHOW WARNINGS”.
+Use `IF EXISTS` to prevent an error from occurring for a trigger that does not exist. A `NOTE` is generated for a nonexistent trigger when using `IF EXISTS`. See [Section 13.7.5.40, “SHOW WARNINGS Statement”](show-warnings.html "13.7.5.40 SHOW WARNINGS Statement").
 
-Os gatilhos de uma tabela também são removidos se você excluir a tabela.
+Triggers for a table are also dropped if you drop the table.

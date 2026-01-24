@@ -1,275 +1,275 @@
-## Índice de Função C
+## C Function Index
 
 ### mysql_affected_rows()
 
-[Seção 13.2.1, “Instrução CALL”](call.html)
+[Section 13.2.1, “CALL Statement”](call.html "13.2.1 CALL Statement")
 
-[Seção 12.15, “Funções de Informação”](information-functions.html)
+[Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions")
 
-[Seção 13.2.5, “Instrução INSERT”](insert.html)
+[Section 13.2.5, “INSERT Statement”](insert.html "13.2.5 INSERT Statement")
 
-[Seção 13.2.8, “Instrução REPLACE”](replace.html)
+[Section 13.2.8, “REPLACE Statement”](replace.html "13.2.8 REPLACE Statement")
 
 ### mysql_change_user()
 
-[Seção 4.5.1.2, “Comandos do cliente do MySQL”](mysql-commands.html)
+[Section 4.5.1.2, “mysql Client Commands”](mysql-commands.html "4.5.1.2 mysql Client Commands")
 
 ### mysql_close()
 
-[Seção B.3.2.9, “Erros de Comunicação e Conexões Abortadas”](communication-errors.html)
+[Section B.3.2.9, “Communication Errors and Aborted Connections”](communication-errors.html "B.3.2.9 Communication Errors and Aborted Connections")
 
 ### mysql_errno()
 
-[Seção 6.4.5.4, "Formatos de arquivo de registro de auditoria"](audit-log-file-formats.html)
+[Section 6.4.5.4, “Audit Log File Formats”](audit-log-file-formats.html "6.4.5.4 Audit Log File Formats")
 
-[Seção B.2, “Interfaces de Informação de Erros”](error-interfaces.html)
+[Section B.2, “Error Information Interfaces”](error-interfaces.html "B.2 Error Information Interfaces")
 
-[Seção 13.6.7.5, “Declaração de Sinal”](signal.html)
+[Section 13.6.7.5, “SIGNAL Statement”](signal.html "13.6.7.5 SIGNAL Statement")
 
 ### mysql_error()
 
-[Seção B.2, “Interfaces de Informação de Erros”](error-interfaces.html)
+[Section B.2, “Error Information Interfaces”](error-interfaces.html "B.2 Error Information Interfaces")
 
-[Seção 13.6.7.5, “Declaração de Sinal”](signal.html)
+[Section 13.6.7.5, “SIGNAL Statement”](signal.html "13.6.7.5 SIGNAL Statement")
 
 ### mysql_escape_string()
 
-[Seção 6.1.7, “Diretrizes de Segurança para Programação de Clientes”](secure-client-programming.html)
+[Section 6.1.7, “Client Programming Security Guidelines”](secure-client-programming.html "6.1.7 Client Programming Security Guidelines")
 
 ### mysql_fetch_row()
 
-[Seção 15.8.1, “Visão geral do mecanismo de armazenamento federado”](federated-description.html)
+[Section 15.8.1, “FEDERATED Storage Engine Overview”](federated-description.html "15.8.1 FEDERATED Storage Engine Overview")
 
 ### mysql_free_result()
 
-[Seção B.3.2.12, “Comandos fora de sincronia”](commands-out-of-sync.html)
+[Section B.3.2.12, “Commands out of sync”](commands-out-of-sync.html "B.3.2.12 Commands out of sync")
 
 ### mysql_get_character_set_info()
 
-[Seção 10.14.2, “Escolher um ID de collation”](adding-collation-choosing-id.html)
+[Section 10.14.2, “Choosing a Collation ID”](adding-collation-choosing-id.html "10.14.2 Choosing a Collation ID")
 
 ### mysql_info()
 
-[Seção 13.1.8, "Instrução ALTER TABLE"](alter-table.html)
+[Section 13.1.8, “ALTER TABLE Statement”](alter-table.html "13.1.8 ALTER TABLE Statement")
 
-[Seção 13.2.5, “Instrução INSERT”](insert.html)
+[Section 13.2.5, “INSERT Statement”](insert.html "13.2.5 INSERT Statement")
 
-[Seção 13.2.6, “Instrução LOAD DATA”](load-data.html)
+[Section 13.2.6, “LOAD DATA Statement”](load-data.html "13.2.6 LOAD DATA Statement")
 
-[Seção 1.6.3.1, “Constrangimentos de Índices Primario e Único”](constraint-primary-key.html)
+[Section 1.6.3.1, “PRIMARY KEY and UNIQUE Index Constraints”](constraint-primary-key.html "1.6.3.1 PRIMARY KEY and UNIQUE Index Constraints")
 
-[Seção 13.2.11, "Declaração de Atualização"](update.html)
+[Section 13.2.11, “UPDATE Statement”](update.html "13.2.11 UPDATE Statement")
 
 ### mysql_insert_id()
 
-[Seção 13.1.18, "Instrução CREATE TABLE"](create-table.html)
+[Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement")
 
-[Seção 12.15, “Funções de Informação”](information-functions.html)
+[Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions")
 
-[Seção 13.2.5, “Instrução INSERT”](insert.html)
+[Section 13.2.5, “INSERT Statement”](insert.html "13.2.5 INSERT Statement")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 3.6.9, “Usando AUTO_INCREMENT”](example-auto-increment.html)
+[Section 3.6.9, “Using AUTO_INCREMENT”](example-auto-increment.html "3.6.9 Using AUTO_INCREMENT")
 
 ### mysql_kill()
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
 ### mysql_library_end()
 
-[Seção 27.6, “libmysqld, a biblioteca do servidor MySQL embutido”](libmysqld.html)
+[Section 27.6, “libmysqld, the Embedded MySQL Server Library”](libmysqld.html "27.6 libmysqld, the Embedded MySQL Server Library")
 
 ### mysql_library_init()
 
-[Seção 27.6, “libmysqld, a biblioteca do servidor MySQL embutido”](libmysqld.html)
+[Section 27.6, “libmysqld, the Embedded MySQL Server Library”](libmysqld.html "27.6 libmysqld, the Embedded MySQL Server Library")
 
-[Seção 27.6.3, “Opções com o Servidor Integrado”](libmysqld-options.html)
+[Section 27.6.3, “Options with the Embedded Server”](libmysqld-options.html "27.6.3 Options with the Embedded Server")
 
 ### mysql_list_fields()
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
 ### mysql_list_processes()
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
 ### mysql_next_result()
 
-[Seção 13.2.1, “Instrução CALL”](call.html)
+[Section 13.2.1, “CALL Statement”](call.html "13.2.1 CALL Statement")
 
 ### mysql_options()
 
-[Seção 6.2.1, “Nomes de Usuários e Senhas de Conta”](user-names.html)
+[Section 6.2.1, “Account User Names and Passwords”](user-names.html "6.2.1 Account User Names and Passwords")
 
-[Seção 6.4.1.4, “Cache de Autenticação Pluggable SHA-2”](caching-sha2-pluggable-authentication.html)
+[Section 6.4.1.4, “Caching SHA-2 Pluggable Authentication”](caching-sha2-pluggable-authentication.html "6.4.1.4 Caching SHA-2 Pluggable Authentication")
 
-[Seção 6.4.1.6, “Autenticação Pluggable de Texto Aberto no Lado do Cliente”](cleartext-pluggable-authentication.html)
+[Section 6.4.1.6, “Client-Side Cleartext Pluggable Authentication”](cleartext-pluggable-authentication.html "6.4.1.6 Client-Side Cleartext Pluggable Authentication")
 
-[Seção 10.4, "Conjunto de caracteres de conexão e codificações"](charset-connection.html)
+[Section 10.4, “Connection Character Sets and Collations”](charset-connection.html "10.4 Connection Character Sets and Collations")
 
-[Seção 4.2.6, “Controle de Compressão de Conexão”](connection-compression-control.html)
+[Section 4.2.6, “Connection Compression Control”](connection-compression-control.html "4.2.6 Connection Compression Control")
 
-[Seção B.3.2.7, “O servidor MySQL desapareceu”](gone-away.html)
+[Section B.3.2.7, “MySQL server has gone away”](gone-away.html "B.3.2.7 MySQL server has gone away")
 
-[Seção 25.12.9, “Tabelas de atributos de conexão do esquema de desempenho”](performance-schema-connection-attribute-tables.html)
+[Section 25.12.9, “Performance Schema Connection Attribute Tables”](performance-schema-connection-attribute-tables.html "25.12.9 Performance Schema Connection Attribute Tables")
 
-[Seção 6.1.6, “Considerações de segurança para LOAD DATA LOCAL”](load-data-local-security.html)
+[Section 6.1.6, “Security Considerations for LOAD DATA LOCAL”](load-data-local-security.html "6.1.6 Security Considerations for LOAD DATA LOCAL")
 
-[Seção 6.2.12, “Tratamento de Senhas Expirantes pelo Servidor”](expired-password-handling.html)
+[Section 6.2.12, “Server Handling of Expired Passwords”](expired-password-handling.html "6.2.12 Server Handling of Expired Passwords")
 
-[Seção 6.4.1.5, “Autenticação Pluggable SHA-256”](sha256-pluggable-authentication.html)
+[Section 6.4.1.5, “SHA-256 Pluggable Authentication”](sha256-pluggable-authentication.html "6.4.1.5 SHA-256 Pluggable Authentication")
 
-[Seção 5.7.4, “Usando programas de cliente em um ambiente de múltiplos servidores”](multiple-server-clients.html)
+[Section 5.7.4, “Using Client Programs in a Multiple-Server Environment”](multiple-server-clients.html "5.7.4 Using Client Programs in a Multiple-Server Environment")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
 ### mysql_options4()
 
-[Seção 25.12.9, “Tabelas de atributos de conexão do esquema de desempenho”](performance-schema-connection-attribute-tables.html)
+[Section 25.12.9, “Performance Schema Connection Attribute Tables”](performance-schema-connection-attribute-tables.html "25.12.9 Performance Schema Connection Attribute Tables")
 
 ### mysql_ping()
 
-[Seção B.3.2.7, “O servidor MySQL desapareceu”](gone-away.html)
+[Section B.3.2.7, “MySQL server has gone away”](gone-away.html "B.3.2.7 MySQL server has gone away")
 
 ### mysql_query()
 
-[Seção 13.2.1, “Instrução CALL”](call.html)
+[Section 13.2.1, “CALL Statement”](call.html "13.2.1 CALL Statement")
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
 ### mysql_real_connect()
 
-[Seção 13.2.1, “Instrução CALL”](call.html)
+[Section 13.2.1, “CALL Statement”](call.html "13.2.1 CALL Statement")
 
-[Capítulo 12, *Funções e Operadores*] (functions.html)
+[Chapter 12, *Functions and Operators*](functions.html "Chapter 12 Functions and Operators")
 
-[Seção 12.15, “Funções de Informação”](information-functions.html)
+[Section 12.15, “Information Functions”](information-functions.html "12.15 Information Functions")
 
-[Seção 13.2.5.2, "Instrução INSERT ... ON DUPLICATE KEY UPDATE"](insert-on-duplicate.html)
+[Section 13.2.5.2, “INSERT ... ON DUPLICATE KEY UPDATE Statement”](insert-on-duplicate.html "13.2.5.2 INSERT ... ON DUPLICATE KEY UPDATE Statement")
 
-[Seção 13.2.5, “Instrução INSERT”](insert.html)
+[Section 13.2.5, “INSERT Statement”](insert.html "13.2.5 INSERT Statement")
 
-[Seção 13.5, "Declarações Preparadas"](sql-prepared-statements.html)
+[Section 13.5, “Prepared Statements”](sql-prepared-statements.html "13.5 Prepared Statements")
 
-[Seção 6.2.12, “Tratamento de Senhas Expirantes pelo Servidor”](expired-password-handling.html)
+[Section 6.2.12, “Server Handling of Expired Passwords”](expired-password-handling.html "6.2.12 Server Handling of Expired Passwords")
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
-[Seção 23.2.1, "Sintaxe de Rotinas Armazenadas"](stored-routines-syntax.html)
+[Section 23.2.1, “Stored Routine Syntax”](stored-routines-syntax.html "23.2.1 Stored Routine Syntax")
 
-[Seção 4.10, "Tratamento de Sinais Unix no MySQL"](unix-signal-response.html)
+[Section 4.10, “Unix Signal Handling in MySQL”](unix-signal-response.html "4.10 Unix Signal Handling in MySQL")
 
-[Seção 5.7.4, “Usando programas de cliente em um ambiente de múltiplos servidores”](multiple-server-clients.html)
+[Section 5.7.4, “Using Client Programs in a Multiple-Server Environment”](multiple-server-clients.html "5.7.4 Using Client Programs in a Multiple-Server Environment")
 
 ### mysql_real_escape_string_quote()
 
-[Seção 6.1.7, “Diretrizes de Segurança para Programação de Clientes”](secure-client-programming.html)
+[Section 6.1.7, “Client Programming Security Guidelines”](secure-client-programming.html "6.1.7 Client Programming Security Guidelines")
 
-[Seção 11.4.6, “População de Colunas Espaciais”](população-de-colunas-espaciais.html)
+[Section 11.4.6, “Populating Spatial Columns”](populating-spatial-columns.html "11.4.6 Populating Spatial Columns")
 
-[Seção 9.1.1, "Literais de String"](string-literals.html)
+[Section 9.1.1, “String Literals”](string-literals.html "9.1.1 String Literals")
 
 ### mysql_real_query()
 
-[Seção 13.2.1, “Instrução CALL”](call.html)
+[Section 13.2.1, “CALL Statement”](call.html "13.2.1 CALL Statement")
 
-[Seção 15.8.1, “Visão geral do mecanismo de armazenamento federado”](federated-description.html)
+[Section 15.8.1, “FEDERATED Storage Engine Overview”](federated-description.html "15.8.1 FEDERATED Storage Engine Overview")
 
 ### mysql_refresh()
 
-[Seção 1.3, “O que há de novo no MySQL 5.7”](mysql-nutshell.html)
+[Section 1.3, “What Is New in MySQL 5.7”](mysql-nutshell.html "1.3 What Is New in MySQL 5.7")
 
 ### mysql_session_track_get_first()
 
-[Seção 5.1.15, “Rastreamento do Estado da Sessão do Cliente no Servidor”](session-state-tracking.html)
+[Section 5.1.15, “Server Tracking of Client Session State”](session-state-tracking.html "5.1.15 Server Tracking of Client Session State")
 
 ### mysql_session_track_get_next()
 
-[Seção 5.1.15, “Rastreamento do Estado da Sessão do Cliente no Servidor”](session-state-tracking.html)
+[Section 5.1.15, “Server Tracking of Client Session State”](session-state-tracking.html "5.1.15 Server Tracking of Client Session State")
 
 ### mysql_shutdown()
 
-[Seção 6.2.2, “Privilegios fornecidos pelo MySQL”](privileges-provided.html)
+[Section 6.2.2, “Privileges Provided by MySQL”](privileges-provided.html "6.2.2 Privileges Provided by MySQL")
 
-[Seção 13.7.6.7, "Declaração de DESATIVAÇÃO"](shutdown.html)
+[Section 13.7.6.7, “SHUTDOWN Statement”](shutdown.html "13.7.6.7 SHUTDOWN Statement")
 
 ### mysql_sqlstate()
 
-[Seção B.2, “Interfaces de Informação de Erros”](error-interfaces.html)
+[Section B.2, “Error Information Interfaces”](error-interfaces.html "B.2 Error Information Interfaces")
 
-[Seção 13.6.7.5, “Declaração de Sinal”](signal.html)
+[Section 13.6.7.5, “SIGNAL Statement”](signal.html "13.6.7.5 SIGNAL Statement")
 
 ### mysql_stmt_attr_set()
 
-[Seção 13.6.6.5, “Restrições aos cursors no lado do servidor”](cursor-restrictions.html)
+[Section 13.6.6.5, “Restrictions on Server-Side Cursors”](cursor-restrictions.html "13.6.6.5 Restrictions on Server-Side Cursors")
 
 ### mysql_stmt_close()
 
-[Seção 25.12.6.4, “Tabela prepared_statements_instances”](performance-schema-prepared-statements-instances-table.html)
+[Section 25.12.6.4, “The prepared_statements_instances Table”](performance-schema-prepared-statements-instances-table.html "25.12.6.4 The prepared_statements_instances Table")
 
 ### mysql_stmt_errno()
 
-[Seção B.2, “Interfaces de Informação de Erros”](error-interfaces.html)
+[Section B.2, “Error Information Interfaces”](error-interfaces.html "B.2 Error Information Interfaces")
 
 ### mysql_stmt_error()
 
-[Seção B.2, “Interfaces de Informação de Erros”](error-interfaces.html)
+[Section B.2, “Error Information Interfaces”](error-interfaces.html "B.2 Error Information Interfaces")
 
 ### mysql_stmt_execute()
 
-[Seção 8.10.3.1, “Como o Cache de Consultas Funciona”](query-cache-operation.html)
+[Section 8.10.3.1, “How the Query Cache Operates”](query-cache-operation.html "8.10.3.1 How the Query Cache Operates")
 
-[Seção 25.12.6.4, “Tabela prepared_statements_instances”](performance-schema-prepared-statements-instances-table.html)
+[Section 25.12.6.4, “The prepared_statements_instances Table”](performance-schema-prepared-statements-instances-table.html "25.12.6.4 The prepared_statements_instances Table")
 
 ### mysql_stmt_next_result()
 
-[Seção 13.2.1, “Instrução CALL”](call.html)
+[Section 13.2.1, “CALL Statement”](call.html "13.2.1 CALL Statement")
 
 ### mysql_stmt_prepare()
 
-[Seção 8.10.4, “Cache de Declarações Preparadas e Programas Armazenados”](statement-caching.html)
+[Section 8.10.4, “Caching of Prepared Statements and Stored Programs”](statement-caching.html "8.10.4 Caching of Prepared Statements and Stored Programs")
 
-[Seção 8.10.3.1, “Como o Cache de Consultas Funciona”](query-cache-operation.html)
+[Section 8.10.3.1, “How the Query Cache Operates”](query-cache-operation.html "8.10.3.1 How the Query Cache Operates")
 
-[Seção 13.5, "Declarações Preparadas"](sql-prepared-statements.html)
+[Section 13.5, “Prepared Statements”](sql-prepared-statements.html "13.5 Prepared Statements")
 
-[Seção 25.12.6.4, “Tabela prepared_statements_instances”](performance-schema-prepared-statements-instances-table.html)
+[Section 25.12.6.4, “The prepared_statements_instances Table”](performance-schema-prepared-statements-instances-table.html "25.12.6.4 The prepared_statements_instances Table")
 
 ### mysql_stmt_send_long_data()
 
-[Seção 5.1.7, “Variáveis do Sistema do Servidor”](server-system-variables.html)
+[Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")
 
 ### mysql_stmt_sqlstate()
 
-[Seção B.2, “Interfaces de Informação de Erros”](error-interfaces.html)
+[Section B.2, “Error Information Interfaces”](error-interfaces.html "B.2 Error Information Interfaces")
 
 ### mysql_store_result()
 
-[Seção B.3.2.12, “Comandos fora de sincronia”](commands-out-of-sync.html)
+[Section B.3.2.12, “Commands out of sync”](commands-out-of-sync.html "B.3.2.12 Commands out of sync")
 
-[Seção 15.8.1, “Visão geral do mecanismo de armazenamento federado”](federated-description.html)
+[Section 15.8.1, “FEDERATED Storage Engine Overview”](federated-description.html "15.8.1 FEDERATED Storage Engine Overview")
 
-[Seção 4.5.1, “mysql — O cliente de linha de comando MySQL”](mysql.html)
+[Section 4.5.1, “mysql — The MySQL Command-Line Client”](mysql.html "4.5.1 mysql — The MySQL Command-Line Client")
 
 ### mysql_thread_end()
 
-[Seção 27.6, “libmysqld, a biblioteca do servidor MySQL embutido”](libmysqld.html)
+[Section 27.6, “libmysqld, the Embedded MySQL Server Library”](libmysqld.html "27.6 libmysqld, the Embedded MySQL Server Library")
 
 ### mysql_thread_init()
 
-[Seção 27.6, “libmysqld, a biblioteca do servidor MySQL embutido”](libmysqld.html)
+[Section 27.6, “libmysqld, the Embedded MySQL Server Library”](libmysqld.html "27.6 libmysqld, the Embedded MySQL Server Library")
 
 ### mysql_use_result()
 
-[Seção B.3.2.12, “Comandos fora de sincronia”](commands-out-of-sync.html)
+[Section B.3.2.12, “Commands out of sync”](commands-out-of-sync.html "B.3.2.12 Commands out of sync")
 
-[Seção 4.5.1, “mysql — O cliente de linha de comando MySQL”](mysql.html)
+[Section 4.5.1, “mysql — The MySQL Command-Line Client”](mysql.html "4.5.1 mysql — The MySQL Command-Line Client")
 
-[Seção B.3.2.6, “Sem memória”](out-of-memory.html)
+[Section B.3.2.6, “Out of memory”](out-of-memory.html "B.3.2.6 Out of memory")
 
 ### mysql_warning_count()
 
-[Seção B.2, “Interfaces de Informação de Erros”](error-interfaces.html)
+[Section B.2, “Error Information Interfaces”](error-interfaces.html "B.2 Error Information Interfaces")
 
-[Seção 13.7.5.40, "Declaração de avisos"](show-warnings.html)
+[Section 13.7.5.40, “SHOW WARNINGS Statement”](show-warnings.html "13.7.5.40 SHOW WARNINGS Statement")

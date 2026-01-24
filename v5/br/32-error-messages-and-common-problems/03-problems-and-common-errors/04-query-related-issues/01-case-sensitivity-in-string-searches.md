@@ -1,12 +1,12 @@
-#### B.3.4.1 Sensibilidade à maiúscula e minúscula nas pesquisas de strings
+#### B.3.4.1 Case Sensitivity in String Searches
 
-Para cadeias não binárias ([`CHAR`](char.html), [`VARCHAR`](char.html), [`TEXT`](blob.html)), as pesquisas de strings usam a collation dos operadores de comparação. Para strings binárias ([`BINARY`](binary-varbinary.html), [`VARBINARY`](binary-varbinary.html), [`BLOB`](blob.html)), as comparações usam os valores numéricos dos bytes nos operadores; isso significa que, para caracteres alfabéticos, as comparações são sensíveis ao caso.
+For nonbinary strings ([`CHAR`](char.html "11.3.2 The CHAR and VARCHAR Types"), [`VARCHAR`](char.html "11.3.2 The CHAR and VARCHAR Types"), [`TEXT`](blob.html "11.3.4 The BLOB and TEXT Types")), string searches use the collation of the comparison operands. For binary strings ([`BINARY`](binary-varbinary.html "11.3.3 The BINARY and VARBINARY Types"), [`VARBINARY`](binary-varbinary.html "11.3.3 The BINARY and VARBINARY Types"), [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types")), comparisons use the numeric values of the bytes in the operands; this means that for alphabetic characters, comparisons are case-sensitive.
 
-Uma comparação entre uma string não binária e uma string binária é tratada como uma comparação de strings binárias.
+A comparison between a nonbinary string and binary string is treated as a comparison of binary strings.
 
-As operações de comparação simples (`>=, >, =, <, <=`, ordenação e agrupamento) são baseadas no "valor de ordenação" de cada caractere. Caracteres com o mesmo valor de ordenação são tratados como o mesmo caractere. Por exemplo, se `e` e `é` têm o mesmo valor de ordenação em uma determinada ordenação, eles são considerados iguais.
+Simple comparison operations (`>=, >, =, <, <=`, sorting, and grouping) are based on each character's “sort value.” Characters with the same sort value are treated as the same character. For example, if `e` and `é` have the same sort value in a given collation, they compare as equal.
 
-O conjunto de caracteres padrão e a ordenação são `latin1` e `latin1_swedish_ci`, portanto, as comparações de cadeias não binárias são case-insensitive por padrão. Isso significa que, se você pesquisar com `col_name LIKE 'a%'`, você obterá todos os valores da coluna que começam com `A` ou `a`. Para tornar essa pesquisa case-sensitive, certifique-se de que um dos operadores tenha uma ordenação case-sensitive ou binária. Por exemplo, se você estiver comparando uma coluna e uma string que têm o conjunto de caracteres `latin1`, você pode usar o operador `COLLATE` para fazer com que um dos operadores tenha a ordenação `latin1_general_cs` ou `latin1_bin`:
+The default character set and collation are `latin1` and `latin1_swedish_ci`, so nonbinary string comparisons are case-insensitive by default. This means that if you search with `col_name LIKE 'a%'`, you get all column values that start with `A` or `a`. To make this search case-sensitive, make sure that one of the operands has a case-sensitive or binary collation. For example, if you are comparing a column and a string that both have the `latin1` character set, you can use the `COLLATE` operator to cause either operand to have the `latin1_general_cs` or `latin1_bin` collation:
 
 ```sql
 col_name COLLATE latin1_general_cs LIKE 'a%'
@@ -15,9 +15,9 @@ col_name COLLATE latin1_bin LIKE 'a%'
 col_name LIKE 'a%' COLLATE latin1_bin
 ```
 
-Se você deseja que uma coluna seja tratada de forma sensível a maiúsculas e minúsculas, declare-a com uma collation sensível a maiúsculas e minúsculas ou binária. Consulte [Seção 13.1.18, “Instrução CREATE TABLE”](create-table.html).
+If you want a column always to be treated in case-sensitive fashion, declare it with a case-sensitive or binary collation. See [Section 13.1.18, “CREATE TABLE Statement”](create-table.html "13.1.18 CREATE TABLE Statement").
 
-Para fazer uma comparação sensível ao caso das letras de cadeias não binárias ser insensível ao caso, use `COLLATE` para nomear uma ordenação insensível ao caso. As cadeias no exemplo a seguir são normalmente sensíveis ao caso, mas `COLLATE` altera a comparação para ser insensível ao caso:
+To cause a case-sensitive comparison of nonbinary strings to be case-insensitive, use `COLLATE` to name a case-insensitive collation. The strings in the following example normally are case-sensitive, but `COLLATE` changes the comparison to be case-insensitive:
 
 ```sql
 mysql> SET @s1 = 'MySQL' COLLATE latin1_bin,
@@ -36,7 +36,7 @@ mysql> SELECT @s1 COLLATE latin1_swedish_ci = @s2;
 +-------------------------------------+
 ```
 
-Uma string binária é sensível ao caso em comparações. Para comparar a string de forma sensível ao caso, converta-a em uma string não binária e use `COLLATE` para nomear uma ordenação sensível ao caso:
+A binary string is case-sensitive in comparisons. To compare the string as case-insensitive, convert it to a nonbinary string and use `COLLATE` to name a case-insensitive collation:
 
 ```sql
 mysql> SET @s = BINARY 'MySQL';
@@ -54,7 +54,7 @@ mysql> SELECT CONVERT(@s USING latin1) COLLATE latin1_swedish_ci = 'mysql';
 +--------------------------------------------------------------+
 ```
 
-Para determinar se um valor é uma string não binária ou binária, use a função [`COLLATION()`](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator#function_collation). Este exemplo mostra que a função [`VERSION()`](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Intl/Collator#function_version) retorna uma string com uma collation sensível a maiúsculas e minúsculas, portanto, as comparações são sensíveis a maiúsculas e minúsculas:
+To determine whether a value compares as a nonbinary or binary string, use the [`COLLATION()`](information-functions.html#function_collation) function. This example shows that [`VERSION()`](information-functions.html#function_version) returns a string that has a case-insensitive collation, so comparisons are case-insensitive:
 
 ```sql
 mysql> SELECT COLLATION(VERSION());
@@ -65,7 +65,7 @@ mysql> SELECT COLLATION(VERSION());
 +----------------------+
 ```
 
-Para strings binárias, o valor de ordenação é `binary`, portanto, as comparações são sensíveis ao caso. Um contexto em que você pode ver `binary` é para funções de compressão, que, como regra geral, retornam strings binárias:
+For binary strings, the collation value is `binary`, so comparisons are case-sensitive. One context in which you may see `binary` is for compression functions, which return binary strings as a general rule:
 
 ```sql
 mysql> SELECT COLLATION(COMPRESS('x'));
@@ -76,4 +76,4 @@ mysql> SELECT COLLATION(COMPRESS('x'));
 +--------------------------+
 ```
 
-Para verificar o valor de classificação de uma string, a função [`WEIGHT_STRING()`](string-functions.html#function_weight-string) pode ser útil. Veja [Seção 12.8, “Funções e Operadores de String”](string-functions.html).
+To check the sort value of a string, the [`WEIGHT_STRING()`](string-functions.html#function_weight-string) may be helpful. See [Section 12.8, “String Functions and Operators”](string-functions.html "12.8 String Functions and Operators").

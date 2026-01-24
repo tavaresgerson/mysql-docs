@@ -1,36 +1,36 @@
-### 24.3.3 A tabela INFORMATION_SCHEMA COLLATIONS
+### 24.3.3 The INFORMATION_SCHEMA COLLATIONS Table
 
-A tabela `COLLATIONS` fornece informações sobre as colligações para cada conjunto de caracteres.
+The [`COLLATIONS`](information-schema-collations-table.html "24.3.3 The INFORMATION_SCHEMA COLLATIONS Table") table provides information about collations for each character set.
 
-A tabela `COLLATIONS` tem essas colunas:
+The [`COLLATIONS`](information-schema-collations-table.html "24.3.3 The INFORMATION_SCHEMA COLLATIONS Table") table has these columns:
 
-- `COLLATION_NAME`
+* `COLLATION_NAME`
 
-  O nome da agregação.
+  The collation name.
 
-- `CHARACTER_SET_NAME`
+* `CHARACTER_SET_NAME`
 
-  O nome do conjunto de caracteres com o qual a ordenação está associada.
+  The name of the character set with which the collation is associated.
 
-- `ID`
+* `ID`
 
-  O ID de agregação.
+  The collation ID.
 
-- `IS_DEFAULT`
+* `IS_DEFAULT`
 
-  Se a ordenação é a opção padrão para o conjunto de caracteres.
+  Whether the collation is the default for its character set.
 
-- `IS_COMPILED`
+* `IS_COMPILED`
 
-  Se o conjunto de caracteres é compilado no servidor.
+  Whether the character set is compiled into the server.
 
-- `SORTLEN`
+* `SORTLEN`
 
-  Isso está relacionado à quantidade de memória necessária para ordenar cadeias de caracteres expressas no conjunto de caracteres.
+  This is related to the amount of memory required to sort strings expressed in the character set.
 
-#### Notas
+#### Notes
 
-Informações sobre a collation também estão disponíveis na instrução `SHOW COLLATION`. Veja Seção 13.7.5.4, “Instrução SHOW COLLATION”. As seguintes instruções são equivalentes:
+Collation information is also available from the [`SHOW COLLATION`](show-collation.html "13.7.5.4 SHOW COLLATION Statement") statement. See [Section 13.7.5.4, “SHOW COLLATION Statement”](show-collation.html "13.7.5.4 SHOW COLLATION Statement"). The following statements are equivalent:
 
 ```sql
 SELECT COLLATION_NAME FROM INFORMATION_SCHEMA.COLLATIONS

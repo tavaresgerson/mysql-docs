@@ -1,41 +1,41 @@
-#### 26.4.3.45 As visualizações user_summary_by_statement_latency e x$user_summary_by_statement_latency
+#### 26.4.3.45 The user_summary_by_statement_latency and x$user_summary_by_statement_latency Views
 
-Essas visualizações resumem as estatísticas gerais da declaração, agrupadas por usuário. Por padrão, as linhas são ordenadas por latência total decrescente.
+These views summarize overall statement statistics, grouped by user. By default, rows are sorted by descending total latency.
 
-As views `user_summary_by_statement_latency` e `x$user_summary_by_statement_latency` possuem essas colunas:
+The `user_summary_by_statement_latency` and `x$user_summary_by_statement_latency` views have these columns:
 
-- `usuário`
+* `user`
 
-  O nome de usuário do cliente. As linhas para as quais a coluna `USER` na tabela subjacente do Schema de Desempenho é `NULL` são assumidas como pertencentes a threads de segundo plano e são relatadas com o nome do host `background`.
+  The client user name. Rows for which the `USER` column in the underlying Performance Schema table is `NULL` are assumed to be for background threads and are reported with a host name of `background`.
 
-- `total`
+* `total`
 
-  O número total de declarações para o usuário.
+  The total number of statements for the user.
 
-- `total_latency`
+* `total_latency`
 
-  O tempo total de espera de declarações cronometradas para o usuário.
+  The total wait time of timed statements for the user.
 
-- `max_latency`
+* `max_latency`
 
-  O tempo de espera máximo de uma única declaração com temporizador para o usuário.
+  The maximum single wait time of timed statements for the user.
 
-- `lock_latency`
+* `lock_latency`
 
-  O tempo total de espera por bloqueios por declarações cronometradas para o usuário.
+  The total time waiting for locks by timed statements for the user.
 
-- `rows_sent`
+* `rows_sent`
 
-  O número total de linhas devolvidas por declarações para o usuário.
+  The total number of rows returned by statements for the user.
 
-- `rows_examined`
+* `rows_examined`
 
-  O número total de linhas lidas dos motores de armazenamento por declarações para o usuário.
+  The total number of rows read from storage engines by statements for the user.
 
-- `rows_affected`
+* `rows_affected`
 
-  O número total de linhas afetadas por declarações para o usuário.
+  The total number of rows affected by statements for the user.
 
-- `full_scans`
+* `full_scans`
 
-  O número total de varreduras completas da tabela por declarações para o usuário.
+  The total number of full table scans by statements for the user.

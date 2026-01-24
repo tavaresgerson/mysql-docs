@@ -1,42 +1,42 @@
-#### 12.16.7.4 Funções de Propriedade de Poligono e MultiPoligono
+#### 12.16.7.4 Polygon and MultiPolygon Property Functions
 
-As funções nesta seção retornam propriedades dos valores de `Polygon` ou `MultiPolygon`.
+Functions in this section return properties of `Polygon` or `MultiPolygon` values.
 
-- `Área({poly|mpoly})`
+* `Area({poly|mpoly})`
 
-  `ST_Area()` e `Area()` são sinônimos. Para mais informações, consulte a descrição de `ST_Area()`.
+  `ST_Area()` and `Area()` are synonyms. For more information, see the description of `ST_Area()`.
 
-  `Area()` está desatualizado; espere que ele seja removido em uma futura versão do MySQL. Use `ST_Area()` em vez disso.
+  `Area()` is deprecated; expect it to be removed in a future MySQL release. Use `ST_Area()` instead.
 
-- `Centroid({poly|mpoly})`
+* `Centroid({poly|mpoly})`
 
-  `ST_Centroid()` e `Centroid()` são sinônimos. Para mais informações, consulte a descrição de `ST_Centroid()`.
+  `ST_Centroid()` and `Centroid()` are synonyms. For more information, see the description of `ST_Centroid()`.
 
-  `Centroid()` está desatualizado; espere que ele seja removido em uma futura versão do MySQL. Use `ST_Centroid()` em vez disso.
+  `Centroid()` is deprecated; expect it to be removed in a future MySQL release. Use `ST_Centroid()` instead.
 
-- `ExteriorRing(poly)`
+* `ExteriorRing(poly)`
 
-  `ST_ExteriorRing()` e `ExteriorRing()` são sinônimos. Para mais informações, consulte a descrição de `ST_ExteriorRing()`.
+  `ST_ExteriorRing()` and `ExteriorRing()` are synonyms. For more information, see the description of `ST_ExteriorRing()`.
 
-  `ExteriorRing()` está desatualizado; espere que ele seja removido em uma futura versão do MySQL. Use `ST_ExteriorRing()` em vez disso.
+  `ExteriorRing()` is deprecated; expect it to be removed in a future MySQL release. Use `ST_ExteriorRing()` instead.
 
-- `InteriorRingN(poly, N)`
+* `InteriorRingN(poly, N)`
 
-  `ST_InteriorRingN()` e `InteriorRingN()` são sinônimos. Para mais informações, consulte a descrição de `ST_InteriorRingN()`.
+  `ST_InteriorRingN()` and `InteriorRingN()` are synonyms. For more information, see the description of `ST_InteriorRingN()`.
 
-  `InteriorRingN()` está desatualizado; espere que ele seja removido em uma futura versão do MySQL. Use `ST_InteriorRingN()` em vez disso.
+  `InteriorRingN()` is deprecated; expect it to be removed in a future MySQL release. Use `ST_InteriorRingN()` instead.
 
-- `NumInteriorRings(poly)`
+* `NumInteriorRings(poly)`
 
-  `ST_NumInteriorRings()` e `NumInteriorRings()` são sinônimos. Para mais informações, consulte a descrição de `ST_NumInteriorRings()`.
+  `ST_NumInteriorRings()` and `NumInteriorRings()` are synonyms. For more information, see the description of `ST_NumInteriorRings()`.
 
-  `NumInteriorRings()` está desatualizado; espere que ele seja removido em uma futura versão do MySQL. Use `ST_NumInteriorRings()` em vez disso.
+  `NumInteriorRings()` is deprecated; expect it to be removed in a future MySQL release. Use `ST_NumInteriorRings()` instead.
 
-- `ST_Área({poly|mpoly})`
+* `ST_Area({poly|mpoly})`
 
-  Retorna um número de ponto dupla que indica a área do argumento `Polygon` ou `MultiPolygon`, medida em seu sistema de referência espacial. Para argumentos de dimensão 0 ou 1, o resultado é 0. Se o argumento for uma geometria vazia, o valor de retorno é 0. Se o argumento for `NULL`, o valor de retorno é `NULL`.
+  Returns a double-precision number indicating the area of the `Polygon` or `MultiPolygon` argument, as measured in its spatial reference system. For arguments of dimension 0 or 1, the result is 0. If the argument is an empty geometry the return value is 0. If the argument is `NULL` the return value is `NULL`.
 
-  O resultado é a soma dos valores de área de todos os componentes de uma coleção de geometrias. Se uma coleção de geometrias estiver vazia, sua área será devolvida como 0.
+  The result is the sum of the area values of all components for a geometry collection. If a geometry collection is empty, its area is returned as 0.
 
   ```sql
   mysql> SET @poly =
@@ -58,13 +58,13 @@ As funções nesta seção retornam propriedades dos valores de `Polygon` ou `Mu
   +----------------------------------+
   ```
 
-  `ST_Area()` e `Area()` são sinônimos.
+  `ST_Area()` and `Area()` are synonyms.
 
-- `ST_Centroid({poly|mpoly})`
+* `ST_Centroid({poly|mpoly})`
 
-  Retorna o centroide matemático para o argumento `Polygon` ou `MultiPolygon` como um `Point`. O resultado não é garantido estar na `MultiPolygon`. Se o argumento for `NULL` ou uma geometria vazia, o valor de retorno será `NULL`.
+  Returns the mathematical centroid for the `Polygon` or `MultiPolygon` argument as a `Point`. The result is not guaranteed to be on the `MultiPolygon`. If the argument is `NULL` or an empty geometry, the return value is `NULL`.
 
-  Essa função processa coleções de geometria, calculando o ponto central para os componentes de maior dimensão na coleção. Esses componentes são extraídos e transformados em um único `MultiPolygon`, `MultiLineString` ou `MultiPoint` para o cálculo do centroide. Se o argumento for uma coleção de geometria vazia, o valor de retorno é `NULL`.
+  This function processes geometry collections by computing the centroid point for components of highest dimension in the collection. Such components are extracted and made into a single `MultiPolygon`, `MultiLineString`, or `MultiPoint` for centroid computation. If the argument is an empty geometry collection, the return value is `NULL`.
 
   ```sql
   mysql> SET @poly =
@@ -77,11 +77,11 @@ As funções nesta seção retornam propriedades dos valores de `Polygon` ou `Mu
   +------------------------+--------------------------------------------+
   ```
 
-  `ST_Centroid()` e `Centroid()` são sinônimos.
+  `ST_Centroid()` and `Centroid()` are synonyms.
 
-- `ST_ExteriorRing(poly)`
+* `ST_ExteriorRing(poly)`
 
-  Retorna o anel externo do valor `Polygon` *`poly`* como uma `LineString`. Se o argumento for `NULL` ou uma geometria vazia, o valor de retorno será `NULL`.
+  Returns the exterior ring of the `Polygon` value *`poly`* as a `LineString`. If the argument is `NULL` or an empty geometry, the return value is `NULL`.
 
   ```sql
   mysql> SET @poly =
@@ -94,11 +94,11 @@ As funções nesta seção retornam propriedades dos valores de `Polygon` ou `Mu
   +----------------------------------------------------+
   ```
 
-  `ST_ExteriorRing()` e `ExteriorRing()` são sinônimos.
+  `ST_ExteriorRing()` and `ExteriorRing()` are synonyms.
 
-- `ST_InteriorRingN(poly, N)`
+* `ST_InteriorRingN(poly, N)`
 
-  Retorna o anel interno *`N`*-ésimo para o valor `Polygon` *`poly`* como uma `LineString`. Os anéis são numerados a partir de 1. Se o argumento for `NULL` ou uma geometria vazia, o valor de retorno é `NULL`.
+  Returns the *`N`*-th interior ring for the `Polygon` value *`poly`* as a `LineString`. Rings are numbered beginning with 1. If the argument is `NULL` or an empty geometry, the return value is `NULL`.
 
   ```sql
   mysql> SET @poly =
@@ -111,11 +111,11 @@ As funções nesta seção retornam propriedades dos valores de `Polygon` ou `Mu
   +-------------------------------------------------------+
   ```
 
-  `ST_InteriorRingN()` e `InteriorRingN()` são sinônimos.
+  `ST_InteriorRingN()` and `InteriorRingN()` are synonyms.
 
-- `ST_NumInteriorRing(poly)`, `ST_NumInteriorRings(poly)`
+* `ST_NumInteriorRing(poly)`, `ST_NumInteriorRings(poly)`
 
-  Retorna o número de anéis internos no valor `Polygon` *`poly`*. Se o argumento for `NULL` ou uma geometria vazia, o valor de retorno será `NULL`.
+  Returns the number of interior rings in the `Polygon` value *`poly`*. If the argument is `NULL` or an empty geometry, the return value is `NULL`.
 
   ```sql
   mysql> SET @poly =
@@ -128,4 +128,4 @@ As funções nesta seção retornam propriedades dos valores de `Polygon` ou `Mu
   +---------------------------------------------+
   ```
 
-  `ST_NumInteriorRing()`, `ST_NumInteriorRings()` e `NumInteriorRings()` são sinônimos.
+  `ST_NumInteriorRing()`, `ST_NumInteriorRings()`, and `NumInteriorRings()` are synonyms.

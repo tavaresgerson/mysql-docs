@@ -1,29 +1,29 @@
-### 16.3.10 Replicação atrasada
+### 16.3.10 Delayed Replication
 
-O MySQL 5.7 suporta a replicação atrasada, de modo que um servidor de replicação fica deliberadamente atrasado em relação à fonte por um período de tempo especificado. O atraso padrão é de 0 segundos. Use a opção `MASTER_DELAY` para `ALTERAR MASTER PARA` para definir o atraso em *`N`* segundos:
+MySQL 5.7 supports delayed replication such that a replica server deliberately lags behind the source by at least a specified amount of time. The default delay is 0 seconds. Use the `MASTER_DELAY` option for [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") to set the delay to *`N`* seconds:
 
 ```sql
 CHANGE MASTER TO MASTER_DELAY = N;
 ```
 
-Um evento recebido da fonte não é executado até, no mínimo, *`N`* segundos depois de sua execução na fonte. As exceções são que não há atraso para eventos de descrição de formato ou eventos de rotação de arquivo de log, que afetam apenas o estado interno do thread SQL.
+An event received from the source is not executed until at least *`N`* seconds later than its execution on the source. The exceptions are that there is no delay for format description events or log file rotation events, which affect only the internal state of the SQL thread.
 
-A replicação retardada pode ser usada para vários propósitos:
+Delayed replication can be used for several purposes:
 
-- Para proteger contra erros do usuário na fonte. Um DBA pode reverter uma replica atrasada para o momento imediatamente anterior ao desastre.
+* To protect against user mistakes on the source. A DBA can roll back a delayed replica to the time just before the disaster.
 
-- Para testar como o sistema se comporta quando há um atraso. Por exemplo, em uma aplicação, um atraso pode ser causado por uma carga pesada na replica. No entanto, pode ser difícil gerar esse nível de carga. A replicação atrasada pode simular o atraso sem precisar simular a carga. Também pode ser usado para depurar condições relacionadas a uma replica que está atrasada.
+* To test how the system behaves when there is a lag. For example, in an application, a lag might be caused by a heavy load on the replica. However, it can be difficult to generate this load level. Delayed replication can simulate the lag without having to simulate the load. It can also be used to debug conditions related to a lagging replica.
 
-- Para verificar como o banco de dados parecia há muito tempo, sem precisar recarregar um backup. Por exemplo, se o atraso for de uma semana e o DBA precise ver como o banco de dados parecia antes dos últimos dias de desenvolvimento, a replica atrasada pode ser verificada.
+* To inspect what the database looked like long ago, without having to reload a backup. For example, if the delay is one week and the DBA needs to see what the database looked like before the last few days' worth of development, the delayed replica can be inspected.
 
-`START SLAVE` e `STOP SLAVE` entram em vigor imediatamente e ignoram qualquer atraso. `RESET SLAVE` redefini o atraso para 0.
+[`START SLAVE`](start-slave.html "13.4.2.5 START SLAVE Statement") and [`STOP SLAVE`](stop-slave.html "13.4.2.6 STOP SLAVE Statement") take effect immediately and ignore any delay. [`RESET SLAVE`](reset-slave.html "13.4.2.3 RESET SLAVE Statement") resets the delay to 0.
 
-O botão `SHOW SLAVE STATUS` tem três campos que fornecem informações sobre o atraso:
+[`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") has three fields that provide information about the delay:
 
-- `SQL_Delay`: Um inteiro não negativo que indica o número de segundos que a réplica deve ficar atrasada em relação à fonte.
+* `SQL_Delay`: A nonnegative integer indicating the number of seconds that the replica must lag the source.
 
-- `SQL_Remaining_Delay`: Quando `Slave_SQL_Running_State` é `Aguardando até que o evento do MASTER_DELAY segundos após o evento do MASTER seja executado`, este campo contém um inteiro que indica o número de segundos restantes do atraso. Em outros momentos, este campo é `NULL`.
+* `SQL_Remaining_Delay`: When `Slave_SQL_Running_State` is `Waiting until MASTER_DELAY seconds after master executed event`, this field contains an integer indicating the number of seconds left of the delay. At other times, this field is `NULL`.
 
-- `Slave_SQL_Running_State`: Uma string que indica o estado do thread SQL (análogo ao `Slave_IO_State`). O valor é idêntico ao valor `State` do thread SQL, conforme exibido por `SHOW PROCESSLIST`.
+* `Slave_SQL_Running_State`: A string indicating the state of the SQL thread (analogous to `Slave_IO_State`). The value is identical to the `State` value of the SQL thread as displayed by [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement").
 
-Quando o thread de replicação SQL está aguardando o término do atraso antes de executar um evento, o `SHOW PROCESSLIST` exibe seu valor `State` como `Aguardando até os segundos `MASTER_DELAY` após o evento ser executado pelo mestre`.
+When the replication SQL thread is waiting for the delay to elapse before executing an event, [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement") displays its `State` value as `Waiting until MASTER_DELAY seconds after master executed event`.

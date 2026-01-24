@@ -1,53 +1,53 @@
-### 21.4.3 Arquivos de configuração do cluster do NDB
+### 21.4.3 NDB Cluster Configuration Files
 
-21.4.3.1 Configuração do NDB Cluster: Exemplo Básico
+[21.4.3.1 NDB Cluster Configuration: Basic Example](mysql-cluster-config-example.html)
 
-21.4.3.2 Configuração inicial recomendada para o NDB Cluster
+[21.4.3.2 Recommended Starting Configuration for NDB Cluster](mysql-cluster-config-starting.html)
 
-21.4.3.3 Strings de Conexão do NDB Cluster
+[21.4.3.3 NDB Cluster Connection Strings](mysql-cluster-connection-strings.html)
 
-21.4.3.4 Definindo Computadores em um Clúster NDB
+[21.4.3.4 Defining Computers in an NDB Cluster](mysql-cluster-computer-definition.html)
 
-21.4.3.5 Definindo um servidor de gerenciamento de cluster NDB
+[21.4.3.5 Defining an NDB Cluster Management Server](mysql-cluster-mgm-definition.html)
 
-21.4.3.6 Definindo nós de dados do cluster NDB
+[21.4.3.6 Defining NDB Cluster Data Nodes](mysql-cluster-ndbd-definition.html)
 
-21.4.3.7 Definindo SQL e Outros Nodos de API em um NDB Cluster
+[21.4.3.7 Defining SQL and Other API Nodes in an NDB Cluster](mysql-cluster-api-definition.html)
 
-21.4.3.8 Definindo o Sistema
+[21.4.3.8 Defining the System](mysql-cluster-system-definition.html)
 
-21.4.3.9 Opções e variáveis do servidor MySQL para o NDB Cluster
+[21.4.3.9 MySQL Server Options and Variables for NDB Cluster](mysql-cluster-options-variables.html)
 
-21.4.3.10 Conexões de cluster TCP/IP do NDB
+[21.4.3.10 NDB Cluster TCP/IP Connections](mysql-cluster-tcp-definition.html)
 
-21.4.3.11 Conexões de Cluster NDB TCP/IP Usando Conexões Direitas
+[21.4.3.11 NDB Cluster TCP/IP Connections Using Direct Connections](mysql-cluster-tcp-definition-direct.html)
 
-21.4.3.12 Conexões de Memória Compartilhada do NDB Cluster
+[21.4.3.12 NDB Cluster Shared Memory Connections](mysql-cluster-shm-definition.html)
 
-21.4.3.13 Configurando parâmetros do buffer de envio do NDB Cluster
+[21.4.3.13 Configuring NDB Cluster Send Buffer Parameters](mysql-cluster-config-send-buffers.html)
 
-Para configurar o NDB Cluster, é necessário trabalhar com dois arquivos:
+Configuring NDB Cluster requires working with two files:
 
-- `my.cnf`: Especifica opções para todos os executáveis do NDB Cluster. Este arquivo, com o qual você deve estar familiarizado por meio do trabalho anterior com o MySQL, deve ser acessível por cada executável que estiver em execução no cluster.
+* `my.cnf`: Specifies options for all NDB Cluster executables. This file, with which you should be familiar with from previous work with MySQL, must be accessible by each executable running in the cluster.
 
-- `config.ini`: Este arquivo, às vezes conhecido como o arquivo de configuração global, é lido apenas pelo servidor de gerenciamento do NDB Cluster, que, em seguida, distribui as informações contidas nele para todos os processos que participam do clúster. O `config.ini` contém uma descrição de cada nó envolvido no clúster. Isso inclui parâmetros de configuração para nós de dados e parâmetros de configuração para conexões entre todos os nós do clúster. Para uma referência rápida às seções que podem aparecer neste arquivo e quais tipos de parâmetros de configuração podem ser colocados em cada seção, consulte Seções do arquivo `config.ini`.
+* `config.ini`: This file, sometimes known as the global configuration file, is read only by the NDB Cluster management server, which then distributes the information contained therein to all processes participating in the cluster. `config.ini` contains a description of each node involved in the cluster. This includes configuration parameters for data nodes and configuration parameters for connections between all nodes in the cluster. For a quick reference to the sections that can appear in this file, and what sorts of configuration parameters may be placed in each section, see [Sections of the `config.ini` File](mysql-cluster-config-example.html#mysql-cluster-config-ini-sections "Sections of the config.ini File").
 
-**Cache de dados de configuração.** O `NDB` utiliza configuração estática. Em vez de ler o arquivo de configuração global toda vez que o servidor de gerenciamento é reiniciado, o servidor de gerenciamento armazena a configuração no cache na primeira vez que é iniciado, e, a partir daí, o arquivo de configuração global é lido apenas quando uma das seguintes condições for verdadeira:
+**Caching of configuration data.** `NDB` uses stateful configuration. Rather than reading the global configuration file every time the management server is restarted, the management server caches the configuration the first time it is started, and thereafter, the global configuration file is read only when one of the following conditions is true:
 
-- O servidor de gerenciamento é iniciado usando a opção `--initial`. Quando a opção `--initial` é usada, o arquivo de configuração global é lido novamente, quaisquer arquivos de cache existentes são excluídos e o servidor de gerenciamento cria um novo cache de configuração.
+* **The management server is started using the --initial option.** When [`--initial`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_initial) is used, the global configuration file is re-read, any existing cache files are deleted, and the management server creates a new configuration cache.
 
-- **O servidor de gerenciamento é iniciado usando a opção `--reload`.** A opção `--reload` faz com que o servidor de gerenciamento compare seu cache com o arquivo de configuração global. Se houver diferenças, o servidor de gerenciamento cria um novo cache de configuração; qualquer cache de configuração existente é preservado, mas não utilizado. Se o cache do servidor de gerenciamento e o arquivo de configuração global contiverem os mesmos dados de configuração, então o cache existente é utilizado e nenhum novo cache é criado.
+* **The management server is started using the --reload option.** The [`--reload`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_reload) option causes the management server to compare its cache with the global configuration file. If they differ, the management server creates a new configuration cache; any existing configuration cache is preserved, but not used. If the management server's cache and the global configuration file contain the same configuration data, then the existing cache is used, and no new cache is created.
 
-- O servidor de gerenciamento é iniciado usando `--config-cache=FALSE`. Isso desabilita `--config-cache` (ativado por padrão) e pode ser usado para forçar o servidor de gerenciamento a ignorar completamente o cache de configuração. Nesse caso, o servidor de gerenciamento ignora quaisquer arquivos de configuração que possam estar presentes, lendo sempre seus dados de configuração do arquivo `config.ini` em vez disso.
+* **The management server is started using --config-cache=FALSE.** This disables [`--config-cache`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_config-cache) (enabled by default), and can be used to force the management server to bypass configuration caching altogether. In this case, the management server ignores any configuration files that may be present, always reading its configuration data from the `config.ini` file instead.
 
-- **Não foi encontrado cache de configuração.** Nesse caso, o servidor de gerenciamento lê o arquivo de configuração global e cria um cache contendo os mesmos dados de configuração encontrados no arquivo.
+* **No configuration cache is found.** In this case, the management server reads the global configuration file and creates a cache containing the same configuration data as found in the file.
 
-**Arquivos de cache de configuração.** O servidor de gerenciamento, por padrão, cria arquivos de cache de configuração em um diretório chamado `mysql-cluster` no diretório de instalação do MySQL. (Se você construir o NDB Cluster a partir do código-fonte em um sistema Unix, a localização padrão é `/usr/local/mysql-cluster`. Isso pode ser substituído em tempo de execução iniciando o servidor de gerenciamento com a opção `--configdir`. Os arquivos de cache de configuração são arquivos binários nomeados de acordo com o padrão `ndb_node_id_config.bin.seq_id`, onde *`node_id`* é o ID do nó do servidor de gerenciamento no cluster e *`seq_id`* é um identificador de cache. Os arquivos de cache são numerados sequencialmente usando *`seq_id`*, na ordem em que são criados. O servidor de gerenciamento usa o arquivo de cache mais recente conforme determinado pelo *`seq_id`*.
+**Configuration cache files.** The management server by default creates configuration cache files in a directory named `mysql-cluster` in the MySQL installation directory. (If you build NDB Cluster from source on a Unix system, the default location is `/usr/local/mysql-cluster`.) This can be overridden at runtime by starting the management server with the [`--configdir`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_configdir) option. Configuration cache files are binary files named according to the pattern `ndb_node_id_config.bin.seq_id`, where *`node_id`* is the management server's node ID in the cluster, and *`seq_id`* is a cache idenitifer. Cache files are numbered sequentially using *`seq_id`*, in the order in which they are created. The management server uses the latest cache file as determined by the *`seq_id`*.
 
-Nota
+Note
 
-É possível reverter para uma configuração anterior ao excluir os arquivos de cache de configuração posteriores ou renomeando um arquivo de cache anterior para que ele tenha um ID *seq_id* maior. No entanto, como os arquivos de cache de configuração são escritos em um formato binário, você não deve tentar editar seu conteúdo manualmente.
+It is possible to roll back to a previous configuration by deleting later configuration cache files, or by renaming an earlier cache file so that it has a higher *`seq_id`*. However, since configuration cache files are written in a binary format, you should not attempt to edit their contents by hand.
 
-Para obter mais informações sobre as opções `--configdir` (mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_configdir), `--config-cache` (mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_config-cache), `--initial` (mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_initial) e `--reload` (mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_reload) para o servidor de gerenciamento do NDB Cluster, consulte Seção 21.5.4, “ndb_mgmd — O Daemon do Servidor de Gerenciamento do NDB Cluster”.
+For more information about the [`--configdir`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_configdir), [`--config-cache`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_config-cache), [`--initial`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_initial), and [`--reload`](mysql-cluster-programs-ndb-mgmd.html#option_ndb_mgmd_reload) options for the NDB Cluster management server, see [Section 21.5.4, “ndb_mgmd — The NDB Cluster Management Server Daemon”](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon").
 
-Estamos constantemente melhorando a configuração do Cluster e tentando simplificar esse processo. Embora nos esforcemos para manter a compatibilidade reversa, pode haver momentos em que introduzimos uma mudança incompatível. Nesses casos, tentamos informar os usuários do NDB Cluster com antecedência se uma mudança não for compatível com versões anteriores. Se você encontrar tal mudança e não a tenhamos documentado, por favor, informe-nos no banco de bugs do MySQL usando as instruções fornecidas em Seção 1.5, “Como relatar bugs ou problemas”.
+We are continuously making improvements in Cluster configuration and attempting to simplify this process. Although we strive to maintain backward compatibility, there may be times when introduce an incompatible change. In such cases we try to let NDB Cluster users know in advance if a change is not backward compatible. If you find such a change and we have not documented it, please report it in the MySQL bugs database using the instructions given in [Section 1.5, “How to Report Bugs or Problems”](bug-reports.html "1.5 How to Report Bugs or Problems").

@@ -1,19 +1,19 @@
-#### 21.2.7.9 Limitações relacionadas ao armazenamento de dados do disco do cluster NDB
+#### 21.2.7.9 Limitations Relating to NDB Cluster Disk Data Storage
 
-**Máximos e mínimos de objetos de dados de disco.** Os objetos de dados de disco estão sujeitos aos seguintes máximos e mínimos:
+**Disk Data object maximums and minimums.** Disk data objects are subject to the following maximums and minimums:
 
-- Número máximo de espaços de tabela: 232 (4294967296)
+* Maximum number of tablespaces: 232 (4294967296)
 
-- Número máximo de arquivos de dados por espaço de tabela: 216 (65536)
+* Maximum number of data files per tablespace: 216 (65536)
 
-- Os tamanhos mínimos e máximos possíveis de extensões para arquivos de dados de espaço de tabela são, respectivamente, 32K e 2G. Consulte Seção 13.1.19, “Instrução CREATE TABLESPACE” para obter mais informações.
+* The minimum and maximum possible sizes of extents for tablespace data files are 32K and 2G, respectively. See [Section 13.1.19, “CREATE TABLESPACE Statement”](create-tablespace.html "13.1.19 CREATE TABLESPACE Statement"), for more information.
 
-Além disso, ao trabalhar com tabelas de NDB Disk Data, você deve estar ciente dos seguintes problemas relacionados a arquivos de dados e extensões:
+In addition, when working with NDB Disk Data tables, you should be aware of the following issues regarding data files and extents:
 
-- Os arquivos de dados utilizam `DataMemory`. O uso é o mesmo que para dados em memória.
+* Data files use [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory). Usage is the same as for in-memory data.
 
-- Os arquivos de dados utilizam descritores de arquivo. É importante lembrar que os arquivos de dados estão sempre abertos, o que significa que os descritores de arquivo estão sempre em uso e não podem ser reutilizados para outras tarefas do sistema.
+* Data files use file descriptors. It is important to keep in mind that data files are always open, which means the file descriptors are always in use and cannot be re-used for other system tasks.
 
-- Os extensões exigem memória `DiskPageBufferMemory` suficiente; você deve reservar espaço suficiente para este parâmetro para cobrir toda a memória usada por todas as extensões (número de extensões vezes o tamanho das extensões).
+* Extents require sufficient `DiskPageBufferMemory`; you must reserve enough for this parameter to account for all memory used by all extents (number of extents times size of extents).
 
-Tabelas de dados de disco e modo sem disco. O uso de tabelas de dados de disco não é suportado quando o clúster está em modo sem disco.
+**Disk Data tables and diskless mode.** Use of Disk Data tables is not supported when running the cluster in diskless mode.

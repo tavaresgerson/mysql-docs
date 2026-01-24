@@ -1,13 +1,13 @@
-#### 16.4.1.31 Replicação e Fuso Horários
+#### 16.4.1.31 Replication and Time Zones
 
-Por padrão, os servidores de origem e replica assumem que estão na mesma zona horária. Se você estiver replicando entre servidores em diferentes zonas horárias, a zona horária deve ser definida tanto no servidor de origem quanto no servidor de replica. Caso contrário, as declarações que dependem da hora local no servidor de origem não serão replicadas corretamente, como as declarações que usam as funções `NOW()` ou `FROM_UNIXTIME()`.
+By default, source and replica servers assume that they are in the same time zone. If you are replicating between servers in different time zones, the time zone must be set on both source and replica. Otherwise, statements depending on the local time on the source are not replicated properly, such as statements that use the [`NOW()`](date-and-time-functions.html#function_now) or [`FROM_UNIXTIME()`](date-and-time-functions.html#function_from-unixtime) functions.
 
-Verifique se a combinação de configurações do fuso horário do sistema (`system_time_zone`), o fuso horário atual do servidor (o valor global de `time_zone`) e os fusos horários por sessão (o valor de sessão de `time_zone`) na fonte e na replica estão produzindo os resultados corretos. Em particular, se a variável de sistema `time_zone` estiver definida como `SYSTEM`, indicando que o fuso horário do servidor é o mesmo do fuso horário do sistema, isso pode fazer com que a fonte e a replica apliquem fusos horários diferentes. Por exemplo, uma fonte pode escrever a seguinte declaração no log binário:
+Verify that your combination of settings for the system time zone ([`system_time_zone`](server-system-variables.html#sysvar_system_time_zone)), server current time zone (the global value of [`time_zone`](server-system-variables.html#sysvar_time_zone)), and per-session time zones (the session value of [`time_zone`](server-system-variables.html#sysvar_time_zone)) on the source and replica is producing the correct results. In particular, if the [`time_zone`](server-system-variables.html#sysvar_time_zone) system variable is set to the value `SYSTEM`, indicating that the server time zone is the same as the system time zone, this can cause the source and replica to apply different time zones. For example, a source could write the following statement in the binary log:
 
 ```sql
 SET @@session.time_zone='SYSTEM';
 ```
 
-Se essa fonte e sua réplica tiverem configurações diferentes para seus fusos horários do sistema, essa declaração pode produzir resultados inesperados na réplica, mesmo que o valor global do `time_zone` da réplica tenha sido ajustado para corresponder ao da fonte. Para uma explicação sobre as configurações de fuso horário do MySQL Server e como alterá-las, consulte Seção 5.1.13, “Suporte de Fuso Horário do MySQL Server”.
+If this source and its replica have a different setting for their system time zones, this statement can produce unexpected results on the replica, even if the replica's global [`time_zone`](server-system-variables.html#sysvar_time_zone) value has been set to match the source's. For an explanation of MySQL Server's time zone settings, and how to change them, see [Section 5.1.13, “MySQL Server Time Zone Support”](time-zone-support.html "5.1.13 MySQL Server Time Zone Support").
 
-Veja também Seção 16.4.1.15, “Replicação e Funções do Sistema”.
+See also [Section 16.4.1.15, “Replication and System Functions”](replication-features-functions.html "16.4.1.15 Replication and System Functions").

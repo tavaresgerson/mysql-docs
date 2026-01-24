@@ -1,31 +1,31 @@
-### 21.7.2 Requisitos Gerais para a Replicação em Clúster do NDB
+### 21.7.2 General Requirements for NDB Cluster Replication
 
-Um canal de replicação requer dois servidores MySQL atuando como servidores de replicação (um para a fonte e outro para a replica). Por exemplo, isso significa que, no caso de uma configuração de replicação com dois canais de replicação (para fornecer um canal extra para redundância), deve haver um total de quatro nós de replicação, dois por clúster.
+A replication channel requires two MySQL servers acting as replication servers (one each for the source and replica). For example, this means that in the case of a replication setup with two replication channels (to provide an extra channel for redundancy), there should be a total of four replication nodes, two per cluster.
 
-A replicação de um NDB Cluster conforme descrito nesta seção e nas seguintes depende da replicação baseada em linhas. Isso significa que o servidor MySQL da fonte de replicação deve estar em execução com `--binlog-format=ROW` ou `--binlog-format=MIXED`, conforme descrito em Seção 21.7.6, “Iniciando a replicação do NDB Cluster (Canal de replicação único)”. Para informações gerais sobre a replicação baseada em linhas, consulte Seção 16.2.1, “Formatos de replicação”.
+Replication of an NDB Cluster as described in this section and those following is dependent on row-based replication. This means that the replication source MySQL server must be running with [`--binlog-format=ROW`](replication-options-binary-log.html#sysvar_binlog_format) or [`--binlog-format=MIXED`](replication-options-binary-log.html#sysvar_binlog_format), as described in [Section 21.7.6, “Starting NDB Cluster Replication (Single Replication Channel)”](mysql-cluster-replication-starting.html "21.7.6 Starting NDB Cluster Replication (Single Replication Channel)"). For general information about row-based replication, see [Section 16.2.1, “Replication Formats”](replication-formats.html "16.2.1 Replication Formats").
 
-Importante
+Important
 
-Se você tentar usar a Replicação de NDB Cluster com `--binlog-format=STATEMENT`, a replicação não funciona corretamente porque a tabela `ndb_binlog_index` no cluster de origem e a coluna `epoch` da tabela `ndb_apply_status` no cluster de replica não são atualizadas (veja Seção 21.7.4, “Esquema e tabelas de replicação de NDB Cluster”). Em vez disso, apenas as atualizações no servidor MySQL que atua como a fonte de replicação são propagadas para a replica, e nenhuma atualização de qualquer outro nó SQL no cluster de origem é replicada.
+If you attempt to use NDB Cluster Replication with [`--binlog-format=STATEMENT`](replication-options-binary-log.html#sysvar_binlog_format), replication fails to work properly because the `ndb_binlog_index` table on the source cluster and the `epoch` column of the `ndb_apply_status` table on the replica cluster are not updated (see [Section 21.7.4, “NDB Cluster Replication Schema and Tables”](mysql-cluster-replication-schema.html "21.7.4 NDB Cluster Replication Schema and Tables")). Instead, only updates on the MySQL server acting as the replication source propagate to the replica, and no updates from any other SQL nodes in the source cluster are replicated.
 
-O valor padrão para a opção [`--binlog-format`](https://pt.wikipedia.org/wiki/Op%C3%A7%C3%B5es_de_replic%C3%A3o#sysvar_binlog_format) é `MIXED`.
+The default value for the [`--binlog-format`](replication-options-binary-log.html#sysvar_binlog_format) option is `MIXED`.
 
-Cada servidor MySQL usado para replicação em qualquer um dos clústeres deve ser identificado de forma única entre todos os servidores de replicação MySQL participantes de qualquer um dos clústeres (não é possível ter servidores de replicação em ambos os clústeres de origem e replica compartilhando o mesmo ID). Isso pode ser feito iniciando cada nó SQL usando a opção `--server-id=id`, onde *`id`* é um número inteiro único. Embora não seja estritamente necessário, assumimos, para fins desta discussão, que todos os binários do NDB Cluster são da mesma versão de lançamento.
+Each MySQL server used for replication in either cluster must be uniquely identified among all the MySQL replication servers participating in either cluster (you cannot have replication servers on both the source and replica clusters sharing the same ID). This can be done by starting each SQL node using the `--server-id=id` option, where *`id`* is a unique integer. Although it is not strictly necessary, we assume for purposes of this discussion that all NDB Cluster binaries are of the same release version.
 
-Em geral, é verdade que, na replicação do MySQL, ambos os servidores MySQL (**mysqld**) envolvidos devem ser compatíveis entre si, tanto em relação à versão do protocolo de replicação usado quanto aos conjuntos de recursos SQL que eles suportam (veja Seção 16.4.2, “Compatibilidade da Replicação do NDB Cluster”). Devido a essas diferenças entre os binários das distribuições do NDB Cluster e do MySQL Server 5.7, a replicação do NDB Cluster tem o requisito adicional de que ambos os binários do **mysqld**]\(mysqld.html) vêm de uma distribuição do NDB Cluster. A maneira mais simples e fácil de garantir que os servidores do **mysqld**]\(mysqld.html) sejam compatíveis é usar a mesma distribuição do NDB Cluster para todos os binários de origem e replica do **mysqld**]\(mysqld.html).
+It is generally true in MySQL Replication that both MySQL servers ([**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") processes) involved must be compatible with one another with respect to both the version of the replication protocol used and the SQL feature sets which they support (see [Section 16.4.2, “Replication Compatibility Between MySQL Versions”](replication-compatibility.html "16.4.2 Replication Compatibility Between MySQL Versions")). It is due to such differences between the binaries in the NDB Cluster and MySQL Server 5.7 distributions that NDB Cluster Replication has the additional requirement that both [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") binaries come from an NDB Cluster distribution. The simplest and easiest way to assure that the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") servers are compatible is to use the same NDB Cluster distribution for all source and replica [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") binaries.
 
-Acreditamos que o servidor ou clúster de replicação é dedicado à replicação do clúster de origem e que nenhum outro dado está sendo armazenado nele.
+We assume that the replica server or cluster is dedicated to replication of the source cluster, and that no other data is being stored on it.
 
-Todas as tabelas `NDB` que estão sendo replicadas devem ser criadas usando um servidor e cliente MySQL. As tabelas e outros objetos do banco de dados criados usando a API NDB (com, por exemplo, `Dictionary::createTable()`) não são visíveis para um servidor MySQL e, portanto, não são replicadas. As atualizações feitas por aplicativos da API NDB em tabelas existentes que foram criadas usando um servidor MySQL podem ser replicadas.
+All `NDB` tables being replicated must be created using a MySQL server and client. Tables and other database objects created using the NDB API (with, for example, [`Dictionary::createTable()`](/doc/ndbapi/en/ndb-dictionary.html#ndb-dictionary-createtable)) are not visible to a MySQL server and so are not replicated. Updates by NDB API applications to existing tables that were created using a MySQL server can be replicated.
 
-Nota
+Note
 
-É possível replicar um NDB Cluster usando a replicação baseada em declarações. No entanto, neste caso, as seguintes restrições se aplicam:
+It is possible to replicate an NDB Cluster using statement-based replication. However, in this case, the following restrictions apply:
 
-- Todas as atualizações das linhas de dados no clúster que atua como fonte devem ser direcionadas a um único servidor MySQL.
+* All updates to data rows on the cluster acting as the source must be directed to a single MySQL server.
 
-- Não é possível replicar um clúster usando múltiplos processos de replicação MySQL simultâneos.
+* It is not possible to replicate a cluster using multiple simultaneous MySQL replication processes.
 
-- Apenas as alterações feitas no nível SQL são replicadas.
+* Only changes made at the SQL level are replicated.
 
-Esses são, além das outras limitações da replicação baseada em declarações em oposição à replicação baseada em linhas; consulte Seção 16.2.1.1, “Vantagens e Desvantagens da Replicação Baseada em Declarações e Baseada em Linhas”, para informações mais específicas sobre as diferenças entre os dois formatos de replicação.
+These are in addition to the other limitations of statement-based replication as opposed to row-based replication; see [Section 16.2.1.1, “Advantages and Disadvantages of Statement-Based and Row-Based Replication”](replication-sbr-rbr.html "16.2.1.1 Advantages and Disadvantages of Statement-Based and Row-Based Replication"), for more specific information concerning the differences between the two replication formats.

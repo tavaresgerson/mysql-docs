@@ -1,10 +1,10 @@
-## 19.1 Conceitos-chave
+## 19.1 Key Concepts
 
-Esta seção explica os conceitos introduzidos como parte do uso do MySQL como um repositório de documentos.
+This section explains the concepts introduced as part of using MySQL as a document store.
 
-### Documento
+### Document
 
-Um documento é um conjunto de pares chave-valor, representado por um objeto JSON. Um documento é representado internamente usando o objeto JSON binário do MySQL, através do tipo de dados JSON MySQL. Os valores dos campos podem conter outros documentos, arrays e listas de documentos.
+A Document is a set of key and value pairs, as represented by a JSON object. A Document is represented internally using the MySQL binary JSON object, through the JSON MySQL datatype. The values of fields can contain other documents, arrays, and lists of documents.
 
 ```sql
 {
@@ -29,23 +29,23 @@ Um documento é um conjunto de pares chave-valor, representado por um objeto JSO
 }
 ```
 
-### Coleção
+### Collection
 
-Uma Coleção é um contêiner que pode ser usado para armazenar Documentos em um banco de dados MySQL.
+A Collection is a container that may be used to store Documents in a MySQL database.
 
-### Operações CRUD
+### CRUD Operations
 
-As operações de Criação, Leitura, Atualização e Exclusão (CRUD) são as quatro operações básicas que podem ser realizadas em uma coleção ou tabela de banco de dados. Em termos do MySQL, isso significa:
+Create, Read, Update and Delete (CRUD) operations are the four basic operations that can be performed on a database Collection or Table. In terms of MySQL this means:
 
-- Crie uma nova entrada (inserção ou adição)
-- Ler entradas (consultas)
-- Atualizar entradas
-- Excluir entradas
+* Create a new entry (insertion or addition)
+* Read entries (queries)
+* Update entries
+* Delete entries
 
 ### X Plugin
 
-O plugin do MySQL Server, que permite a comunicação usando o protocolo X. Suporta clientes que implementam o X DevAPI e permite que você use o MySQL como um repositório de documentos.
+The MySQL Server plugin which enables communication using X Protocol. Supports clients that implement X DevAPI and enables you to use MySQL as a document store.
 
-### Protocolo X
+### X Protocol
 
-Um protocolo para se comunicar com um servidor MySQL que executa o X Plugin. O X Protocol suporta operações CRUD e SQL, autenticação via SASL, permite o streaming (pipelining) de comandos e é extenível tanto no nível do protocolo quanto na camada de mensagens.
+A protocol to communicate with a MySQL Server running X Plugin. X Protocol supports both CRUD and SQL operations, authentication via SASL, allows streaming (pipelining) of commands and is extensible on the protocol and the message layer.

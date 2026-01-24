@@ -1,5 +1,5 @@
-### 13.3.2 Declarações que não podem ser desfeitas
+### 13.3.2 Statements That Cannot Be Rolled Back
 
-Algumas declarações não podem ser desfeitas. Em geral, isso inclui declarações de linguagem de definição de dados (DDL), como aquelas que criam ou excluem bancos de dados, aquelas que criam, excluem ou alteram tabelas ou rotinas armazenadas.
+Some statements cannot be rolled back. In general, these include data definition language (DDL) statements, such as those that create or drop databases, those that create, drop, or alter tables or stored routines.
 
-Você deve projetar suas transações para não incluir tais declarações. Se você emitir uma declaração no início de uma transação que não pode ser revertida, e depois outra declaração falhar mais tarde, o efeito total da transação não pode ser revertido nesses casos ao emitir uma declaração `ROLLBACK`.
+You should design your transactions not to include such statements. If you issue a statement early in a transaction that cannot be rolled back, and then another statement later fails, the full effect of the transaction cannot be rolled back in such cases by issuing a [`ROLLBACK`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") statement.

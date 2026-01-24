@@ -1,17 +1,17 @@
-### 24.3.4 A tabela INFORMATION_SCHEMA COLLATION_CHARACTER_SET_APPLICABILITY
+### 24.3.4 The INFORMATION_SCHEMA COLLATION_CHARACTER_SET_APPLICABILITY Table
 
-A tabela [`COLLATION_CHARACTER_SET_APPLICABILITY`](https://pt.wikipedia.org/wiki/Tabela_de_aplic%C3%A1bilidade_de_conjunto_de_caracteres_de_collation) indica qual conjunto de caracteres é aplicável para qual collation.
+The [`COLLATION_CHARACTER_SET_APPLICABILITY`](information-schema-collation-character-set-applicability-table.html "24.3.4 The INFORMATION_SCHEMA COLLATION_CHARACTER_SET_APPLICABILITY Table") table indicates what character set is applicable for what collation.
 
-A tabela [`COLLATION_CHARACTER_SET_APPLICABILITY`](https://pt.wikipedia.org/wiki/Tabela_de_aplic%C3%A1bilidade_de_caracteres_de_colagem) tem essas colunas:
+The [`COLLATION_CHARACTER_SET_APPLICABILITY`](information-schema-collation-character-set-applicability-table.html "24.3.4 The INFORMATION_SCHEMA COLLATION_CHARACTER_SET_APPLICABILITY Table") table has these columns:
 
-- `COLLATION_NAME`
+* `COLLATION_NAME`
 
-  O nome da agregação.
+  The collation name.
 
-- `CHARACTER_SET_NAME`
+* `CHARACTER_SET_NAME`
 
-  O nome do conjunto de caracteres com o qual a ordenação está associada.
+  The name of the character set with which the collation is associated.
 
-#### Notas
+#### Notes
 
-As colunas [`COLLATION_CHARACTER_SET_APPLICABILITY`](https://pt.wikipedia.org/wiki/Informa%C3%A7%C3%A3o-schema-collation-character-set-applicability-table.html) são equivalentes às duas primeiras colunas exibidas pela declaração [`SHOW COLLATION`](https://pt.wikipedia.org/wiki/Mostrar_cola%C3%A7%C3%A3o.html).
+The [`COLLATION_CHARACTER_SET_APPLICABILITY`](information-schema-collation-character-set-applicability-table.html "24.3.4 The INFORMATION_SCHEMA COLLATION_CHARACTER_SET_APPLICABILITY Table") columns are equivalent to the first two columns displayed by the [`SHOW COLLATION`](show-collation.html "13.7.5.4 SHOW COLLATION Statement") statement.

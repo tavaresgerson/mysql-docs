@@ -1,53 +1,53 @@
-#### 21.6.15.31 A tabela de recursos ndbinfo
+#### 21.6.15.31 The ndbinfo resources Table
 
-Esta tabela fornece informações sobre a disponibilidade e o uso dos recursos do nó de dados.
+This table provides information about data node resource availability and usage.
 
-Esses recursos são, por vezes, conhecidos como super-pools.
+These resources are sometimes known as super-pools.
 
-A tabela `resources` contém as seguintes colunas:
+The `resources` table contains the following columns:
 
-- `node_id`
+* `node_id`
 
-  O ID único do nó deste nó de dados.
+  The unique node ID of this data node.
 
-- `nome_do_recurso`
+* `resource_name`
 
-  Nome do recurso; veja o texto.
+  Name of the resource; see text.
 
-- `reservado`
+* `reserved`
 
-  O valor reservado para este recurso, em número de páginas de 32 KB.
+  The amount reserved for this resource, as a number of 32KB pages.
 
-- "usada"
+* `used`
 
-  O valor realmente utilizado por este recurso, como número de páginas de 32 KB.
+  The amount actually used by this resource, as a number of 32KB pages.
 
-- `max`
+* `max`
 
-  O valor máximo (número de páginas de 32 KB) deste recurso disponível para este nó de dados. 0 nesta coluna indica que o recurso é ilimitado, o que significa que o máximo efetivo é 4294967295 (232-1).
+  The maximum amount (number of 32KB pages) of this resource that is available to this data node. 0 in this column indicates that the resource is unlimited, which means the effective maximum is 4294967295 (232-1).
 
-##### Notas
+##### Notes
 
-O `resource_name` pode ser qualquer um dos nomes mostrados na tabela a seguir:
+The `resource_name` can be any one of the names shown in the following table:
 
-- `RESERVADO`: Reservado pelo sistema; não pode ser sobrescrito.
+* `RESERVED`: Reserved by the system; cannot be overridden.
 
-- `TRANSACTION_MEMORY`: Memória alocada para transações neste nó de dados.
+* `TRANSACTION_MEMORY`: Memory allocated for transactions on this data node.
 
-- `DISK_OPERATIONS`: Se um grupo de arquivo de registro for alocado, o tamanho do buffer do log de desfazer é usado para definir o tamanho deste recurso. Este recurso é usado apenas para alocar o buffer do log de desfazer para um grupo de arquivo de registro de desfazer; pode haver apenas um grupo desse tipo. A sobrealocção ocorre conforme necessário por `CREATE LOGFILE GROUP`.
+* `DISK_OPERATIONS`: If a log file group is allocated, the size of the undo log buffer is used to set the size of this resource. This resource is used only to allocate the undo log buffer for an undo log file group; there can only be one such group. Overallocation occurs as needed by [`CREATE LOGFILE GROUP`](create-logfile-group.html "13.1.15 CREATE LOGFILE GROUP Statement").
 
-- `DISK_RECORDS`: Registros alocados para operações de dados do disco.
+* `DISK_RECORDS`: Records allocated for Disk Data operations.
 
-- `DATA_MEMORY`: Usado para tuplas de memória principal, índices e índices de hash. Soma de DataMemory e IndexMemory, mais 8 páginas de 32 KB cada, se o IndexMemory tiver sido definido. Não pode ser sobrealocionado.
+* `DATA_MEMORY`: Used for main memory tuples, indexes, and hash indexes. Sum of DataMemory and IndexMemory, plus 8 pages of 32 KB each if IndexMemory has been set. Cannot be overallocated.
 
-- `JOBBUFFER`: Usado para alocar buffers de trabalho pelo planejador NDB; não pode ser sobrealocionado. Isso é aproximadamente 2 MB por thread, mais um buffer de 1 MB em ambas as direções para todos os threads que podem se comunicar. Para configurações grandes, isso consome vários GB.
+* `JOBBUFFER`: Used for allocating job buffers by the NDB scheduler; cannot be overallocated. This is approximately 2 MB per thread plus a 1 MB buffer in both directions for all threads that can communicate. For large configurations this consume several GB.
 
-- `FILE_BUFFERS`: Usado pelo manipulador do log de refazer no bloco do kernel `DBLQH`; não pode ser sobrealocado. O tamanho é `NoOfFragmentLogParts` \* `RedoBuffer`, mais 1 MB por parte do arquivo de log.
+* `FILE_BUFFERS`: Used by the redo log handler in the [`DBLQH`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dblqh.html) kernel block; cannot be overallocated. Size is [`NoOfFragmentLogParts`](mysql-cluster-ndbd-definition.html#ndbparam-ndbmtd-nooffragmentlogparts) \* [`RedoBuffer`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-redobuffer), plus 1 MB per log file part.
 
-- `TRANSPORTER_BUFFERS`: Usado para buffers de envio por **ndbmtd**; a soma de `TotalSendBufferMemory` e `ExtraSendBufferMemory`. Este recurso pode ser sobrealocado em até 25 por cento. `TotalSendBufferMemory` é calculado somando a memória do buffer de envio por nó, cujo valor padrão é de 2 MB. Assim, em um sistema com quatro nós de dados e oito nós de API, os nós de dados têm 12 \* 2 MB de memória do buffer de envio. `ExtraSendBufferMemory` é usado por **ndbmtd** e equivale a 2 MB de memória extra por thread. Assim, com 4 threads LDM, 2 threads TC, 1 thread principal, 1 thread de replicação e 2 threads de recebimento, `ExtraSendBufferMemory` é 10 \* 2 MB. A sobrealocação deste recurso pode ser realizada configurando o parâmetro de configuração do nó de memória global compartilhada `SharedGlobalMemory`.
+* `TRANSPORTER_BUFFERS`: Used for send buffers by [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)"); the sum of [`TotalSendBufferMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-totalsendbuffermemory) and [`ExtraSendBufferMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-extrasendbuffermemory). This resource that can be overallocated by up to 25 percent. `TotalSendBufferMemory` is calculated by summing the send buffer memory per node, the default value of which is 2 MB. Thus, in a system having four data nodes and eight API nodes, the data nodes have 12 \* 2 MB send buffer memory. `ExtraSendBufferMemory` is used by [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") and amounts to 2 MB extra memory per thread. Thus, with 4 LDM threads, 2 TC threads, 1 main thread, 1 replication thread, and 2 receive threads, `ExtraSendBufferMemory` is 10 \* 2 MB. Overallocation of this resource can be performed by setting the [`SharedGlobalMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-sharedglobalmemory) data node configuration parameter.
 
-- `DISK_PAGE_BUFFER`: Usado para o buffer de página de disco; determinado pelo parâmetro de configuração `DiskPageBufferMemory`. Não pode ser sobrealocionado.
+* `DISK_PAGE_BUFFER`: Used for the disk page buffer; determined by the [`DiskPageBufferMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-diskpagebuffermemory) configuration parameter. Cannot be overallocated.
 
-- `QUERY_MEMORY`: Usado pelo bloco do kernel `DBSPJ`.
+* `QUERY_MEMORY`: Used by the [`DBSPJ`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbspj.html) kernel block.
 
-- `SCHEMA_TRANS_MEMORY`: O mínimo é de 2 MB; pode ser sobrealocável para usar qualquer memória disponível restante.
+* `SCHEMA_TRANS_MEMORY`: Minimum is 2 MB; can be overallocated to use any remaining available memory.

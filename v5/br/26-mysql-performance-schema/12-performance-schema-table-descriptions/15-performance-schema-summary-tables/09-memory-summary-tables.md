@@ -1,28 +1,28 @@
-#### 25.12.15.9 Tabelas de Resumo de Memória
+#### 25.12.15.9 Memory Summary Tables
 
-Os instrumentos do Schema de Desempenho monitoram o uso da memória e agregam estatísticas de uso de memória, detalhadas por esses fatores:
+The Performance Schema instruments memory usage and aggregates memory usage statistics, detailed by these factors:
 
-- Tipo de memória utilizada (várias caches, buffers internos, etc.)
+* Type of memory used (various caches, internal buffers, and so forth)
 
-- Ferramenta, conta, usuário, host que realiza indiretamente a operação de memória
+* Thread, account, user, host indirectly performing the memory operation
 
-O Schema de Desempenho auxilia na medição dos seguintes aspectos do uso da memória
+The Performance Schema instruments the following aspects of memory use
 
-- Tamanhos de memória utilizados
-- Contagem de operações
-- Marcas de água baixa e alta
+* Memory sizes used
+* Operation counts
+* Low and high water marks
 
-Os tamanhos de memória ajudam a entender ou ajustar o consumo de memória do servidor.
+Memory sizes help to understand or tune the memory consumption of the server.
 
-As contagens de operações ajudam a entender ou ajustar a pressão geral que o servidor está exercendo sobre o alocador de memória, o que tem um impacto no desempenho. Alocar um único byte um milhão de vezes não é a mesma coisa que alocar um milhão de bytes uma única vez; rastrear ambos os tamanhos e contagens pode expor a diferença.
+Operation counts help to understand or tune the overall pressure the server is putting on the memory allocator, which has an impact on performance. Allocating a single byte one million times is not the same as allocating one million bytes a single time; tracking both sizes and counts can expose the difference.
 
-As marcas de água baixa e alta são essenciais para detectar picos de carga de trabalho, estabilidade geral da carga de trabalho e possíveis vazamentos de memória.
+Low and high water marks are critical to detect workload spikes, overall workload stability, and possible memory leaks.
 
-As tabelas de resumo de memória não contêm informações de temporização, pois os eventos de memória não são temporizados.
+Memory summary tables do not contain timing information because memory events are not timed.
 
-Para obter informações sobre a coleta de dados de uso de memória, consulte Comportamento de Instrumentação de Memória.
+For information about collecting memory usage data, see [Memory Instrumentation Behavior](performance-schema-memory-summary-tables.html#memory-instrumentation-behavior "Memory Instrumentation Behavior").
 
-Resumo das informações de evento de memória:
+Example memory event summary information:
 
 ```sql
 mysql> SELECT *
@@ -42,83 +42,83 @@ CURRENT_NUMBER_OF_BYTES_USED: 652441
    HIGH_NUMBER_OF_BYTES_USED: 669269
 ```
 
-Cada tabela de resumo de memória tem uma ou mais colunas de agrupamento para indicar como a tabela agrega eventos. Os nomes dos eventos referem-se aos nomes dos instrumentos de evento na tabela `setup_instruments`:
+Each memory summary table has one or more grouping columns to indicate how the table aggregates events. Event names refer to names of event instruments in the [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table:
 
-- A tabela `memory_summary_by_account_by_event_name` (performance-schema-memory-summary-tables.html) possui as colunas `USER`, `HOST` e `EVENT_NAME`. Cada linha resume os eventos para uma conta específica (combinação de usuário e host) e nome do evento.
+* [`memory_summary_by_account_by_event_name`](performance-schema-memory-summary-tables.html "25.12.15.9 Memory Summary Tables") has `USER`, `HOST`, and `EVENT_NAME` columns. Each row summarizes events for a given account (user and host combination) and event name.
 
-- A tabela `memory_summary_by_host_by_event_name` (performance-schema-memory-summary-tables.html) possui as colunas `HOST` e `EVENT_NAME`. Cada linha resume os eventos para um determinado host e nome de evento.
+* [`memory_summary_by_host_by_event_name`](performance-schema-memory-summary-tables.html "25.12.15.9 Memory Summary Tables") has `HOST` and `EVENT_NAME` columns. Each row summarizes events for a given host and event name.
 
-- `memory_summary_by_thread_by_event_name` possui as colunas `THREAD_ID` e `EVENT_NAME`. Cada linha resume os eventos para um determinado thread e nome de evento.
+* [`memory_summary_by_thread_by_event_name`](performance-schema-memory-summary-tables.html "25.12.15.9 Memory Summary Tables") has `THREAD_ID` and `EVENT_NAME` columns. Each row summarizes events for a given thread and event name.
 
-- A tabela `memory_summary_by_user_by_event_name` (performance-schema-memory-summary-tables.html) possui as colunas `USER` e `EVENT_NAME`. Cada linha resume os eventos para um usuário e um nome de evento específicos.
+* [`memory_summary_by_user_by_event_name`](performance-schema-memory-summary-tables.html "25.12.15.9 Memory Summary Tables") has `USER` and `EVENT_NAME` columns. Each row summarizes events for a given user and event name.
 
-- A tabela `memory_summary_global_by_event_name` (performance-schema-memory-summary-tables.html) possui uma coluna `EVENT_NAME`. Cada linha resume os eventos para um nome de evento específico.
+* [`memory_summary_global_by_event_name`](performance-schema-memory-summary-tables.html "25.12.15.9 Memory Summary Tables") has an `EVENT_NAME` column. Each row summarizes events for a given event name.
 
-Cada tabela de resumo de memória tem essas colunas de resumo contendo valores agregados:
+Each memory summary table has these summary columns containing aggregated values:
 
-- `COUNT_ALLOC`, `COUNT_FREE`
+* `COUNT_ALLOC`, `COUNT_FREE`
 
-  Os números agregados de chamadas para funções de alocação de memória e liberação de memória.
+  The aggregated numbers of calls to memory-allocation and memory-free functions.
 
-- `SUM_NUMBER_OF_BYTES_ALLOC`, `SUM_NUMBER_OF_BYTES_FREE`
+* `SUM_NUMBER_OF_BYTES_ALLOC`, `SUM_NUMBER_OF_BYTES_FREE`
 
-  Os tamanhos agregados dos blocos de memória alocados e liberados.
+  The aggregated sizes of allocated and freed memory blocks.
 
-- `CONTAR_ATUAL_USADO`
+* `CURRENT_COUNT_USED`
 
-  O número agregado de blocos atualmente alocados que ainda não foram liberados. Esta é uma coluna de conveniência, igual a `COUNT_ALLOC` − `COUNT_FREE`.
+  The aggregated number of currently allocated blocks that have not been freed yet. This is a convenience column, equal to `COUNT_ALLOC` − `COUNT_FREE`.
 
-- `NUMÉRO_ATUAL_DE_BYTES_USADOS`
+* `CURRENT_NUMBER_OF_BYTES_USED`
 
-  O tamanho agregado dos blocos de memória atualmente alocados que ainda não foram liberados. Esta é uma coluna de conveniência, igual a `SUMA_NUMERO_DE_BYTES_ALLOC` − `SUMA_NUMERO_DE_BYTES_FREE`.
+  The aggregated size of currently allocated memory blocks that have not been freed yet. This is a convenience column, equal to `SUM_NUMBER_OF_BYTES_ALLOC` − `SUM_NUMBER_OF_BYTES_FREE`.
 
-- `LOW_COUNT_USED`, `HIGH_COUNT_USED`
+* `LOW_COUNT_USED`, `HIGH_COUNT_USED`
 
-  As marcas de água baixa e alta correspondentes à coluna `CURRENT_COUNT_USED`.
+  The low and high water marks corresponding to the `CURRENT_COUNT_USED` column.
 
-- `BAIXO NÚMERO DE BYTES USADOS`, `ALTO NÚMERO DE BYTES USADOS`
+* `LOW_NUMBER_OF_BYTES_USED`, `HIGH_NUMBER_OF_BYTES_USED`
 
-  As marcas de água baixa e alta correspondentes à coluna `CURRENT_NUMBER_OF_BYTES_USED`.
+  The low and high water marks corresponding to the `CURRENT_NUMBER_OF_BYTES_USED` column.
 
-A opção `TRUNCATE TABLE` é permitida para tabelas de resumo de memória. Ela tem esses efeitos:
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is permitted for memory summary tables. It has these effects:
 
-- Em geral, o truncamento redefini o nível de referência para as estatísticas, mas não altera o estado do servidor. Ou seja, truncar uma tabela de memória não libera memória.
+* In general, truncation resets the baseline for statistics, but does not change the server state. That is, truncating a memory table does not free memory.
 
-- `COUNT_ALLOC` e `COUNT_FREE` são redefinidos para uma nova linha de base, reduzindo cada contador pelo mesmo valor.
+* `COUNT_ALLOC` and `COUNT_FREE` are reset to a new baseline, by reducing each counter by the same value.
 
-- Da mesma forma, `SUM_NUMBER_OF_BYTES_ALLOC` e `SUM_NUMBER_OF_BYTES_FREE` são redefinidas para uma nova linha de base.
+* Likewise, `SUM_NUMBER_OF_BYTES_ALLOC` and `SUM_NUMBER_OF_BYTES_FREE` are reset to a new baseline.
 
-- `LOW_COUNT_USED` e `HIGH_COUNT_USED` são redefinidos para `CURRENT_COUNT_USED`.
+* `LOW_COUNT_USED` and `HIGH_COUNT_USED` are reset to `CURRENT_COUNT_USED`.
 
-- `LOW_NUMBER_OF_BYTES_USED` e `HIGH_NUMBER_OF_BYTES_USED` são redefinidos para `CURRENT_NUMBER_OF_BYTES_USED`.
+* `LOW_NUMBER_OF_BYTES_USED` and `HIGH_NUMBER_OF_BYTES_USED` are reset to `CURRENT_NUMBER_OF_BYTES_USED`.
 
-Além disso, cada tabela de resumo de memória que é agregada por conta, host, usuário ou thread é implicitamente truncada pela truncagem da tabela de conexão na qual depende, ou pela truncagem de `memory_summary_global_by_event_name`. Para obter detalhes, consulte Seção 25.12.8, “Tabelas de Conexão do Schema de Desempenho”.
+In addition, each memory summary table that is aggregated by account, host, user, or thread is implicitly truncated by truncation of the connection table on which it depends, or truncation of [`memory_summary_global_by_event_name`](performance-schema-memory-summary-tables.html "25.12.15.9 Memory Summary Tables"). For details, see [Section 25.12.8, “Performance Schema Connection Tables”](performance-schema-connection-tables.html "25.12.8 Performance Schema Connection Tables").
 
-##### Comportamento de Instrumentação de Memória
+##### Memory Instrumentation Behavior
 
-Os instrumentos de memória estão listados na tabela `setup_instruments` e têm nomes do tipo `memory/code_area/instrument_name`. A maioria dos instrumentos de memória está desabilitada por padrão.
+Memory instruments are listed in the [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table and have names of the form `memory/code_area/instrument_name`. Most memory instrumentation is disabled by default.
 
-Os instrumentos com o prefixo `memory/performance_schema/` mostram quanto memória é alocada para buffers internos no próprio Schema de Desempenho. Os instrumentos `memory/performance_schema/` são pré-construídos, sempre ativados e não podem ser desativados no início ou durante o runtime. Os instrumentos de memória pré-construídos são exibidos apenas na tabela `Resumo de memória global por nome de evento`.
+Instruments named with the prefix `memory/performance_schema/` expose how much memory is allocated for internal buffers in the Performance Schema itself. The `memory/performance_schema/` instruments are built in, always enabled, and cannot be disabled at startup or runtime. Built-in memory instruments are displayed only in the [`memory_summary_global_by_event_name`](performance-schema-memory-summary-tables.html "25.12.15.9 Memory Summary Tables") table.
 
-Para controlar o estado da instrumentação de memória no início do servidor, use linhas como estas no seu arquivo `my.cnf`:
+To control memory instrumentation state at server startup, use lines like these in your `my.cnf` file:
 
-- Ativar:
+* Enable:
 
   ```sql
   [mysqld]
   performance-schema-instrument='memory/%=ON'
   ```
 
-- Desativar:
+* Disable:
 
   ```sql
   [mysqld]
   performance-schema-instrument='memory/%=OFF'
   ```
 
-Para controlar o estado da instrumentação de memória em tempo de execução, atualize a coluna `ENABLED` dos instrumentos relevantes na tabela `setup_instruments` (performance-schema-setup-instruments-table.html):
+To control memory instrumentation state at runtime, update the `ENABLED` column of the relevant instruments in the [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") table:
 
-- Ativar:
+* Enable:
 
   ```sql
   UPDATE performance_schema.setup_instruments
@@ -126,7 +126,7 @@ Para controlar o estado da instrumentação de memória em tempo de execução, 
   WHERE NAME LIKE 'memory/%';
   ```
 
-- Desativar:
+* Disable:
 
   ```sql
   UPDATE performance_schema.setup_instruments
@@ -134,70 +134,66 @@ Para controlar o estado da instrumentação de memória em tempo de execução, 
   WHERE NAME LIKE 'memory/%';
   ```
 
-Para instrumentos de memória, a coluna `TIMED` em `setup_instruments` é ignorada porque as operações de memória não são temporizadas.
+For memory instruments, the `TIMED` column in [`setup_instruments`](performance-schema-setup-instruments-table.html "25.12.2.3 The setup_instruments Table") is ignored because memory operations are not timed.
 
-Quando um thread no servidor executa uma alocação de memória que foi instrumentada, essas regras se aplicam:
+When a thread in the server executes a memory allocation that has been instrumented, these rules apply:
 
-- Se o thread não estiver instrumentado ou o instrumento de memória não estiver habilitado, o bloco de memória alocado não será instrumentado.
+* If the thread is not instrumented or the memory instrument is not enabled, the memory block allocated is not instrumented.
 
-- Caso contrário (ou seja, se o thread e o instrumento estiverem habilitados), o bloco de memória alocado será instrumentado.
+* Otherwise (that is, both the thread and the instrument are enabled), the memory block allocated is instrumented.
 
-Para a liberação, essas regras se aplicam:
+For deallocation, these rules apply:
 
-- Se uma operação de alocação de memória foi instrumentada, a operação de liberação correspondente também é instrumentada, independentemente do status do instrumento ou da thread habilitada atual.
+* If a memory allocation operation was instrumented, the corresponding free operation is instrumented, regardless of the current instrument or thread enabled status.
 
-- Se uma operação de alocação de memória não foi instrumentada, a operação de liberação correspondente não será instrumentada, independentemente do status do instrumento ou da thread habilitada atual.
+* If a memory allocation operation was not instrumented, the corresponding free operation is not instrumented, regardless of the current instrument or thread enabled status.
 
-Para as estatísticas por thread, as seguintes regras se aplicam.
+For the per-thread statistics, the following rules apply.
 
-Quando um bloco de memória instrumentado de tamanho *`N`* é alocado, o Schema de Desempenho faz essas atualizações nas colunas da tabela de resumo de memória:
+When an instrumented memory block of size *`N`* is allocated, the Performance Schema makes these updates to memory summary table columns:
 
-- `COUNT_ALLOC`: Aumentada em 1
+* `COUNT_ALLOC`: Increased by 1
+* `CURRENT_COUNT_USED`: Increased by 1
+* `HIGH_COUNT_USED`: Increased if `CURRENT_COUNT_USED` is a new maximum
 
-- `CURRENT_COUNT_USED`: Aumentada em 1
+* `SUM_NUMBER_OF_BYTES_ALLOC`: Increased by *`N`*
 
-- `HIGH_COUNT_USED`: Aumenta se `CURRENT_COUNT_USED` for um novo máximo
+* `CURRENT_NUMBER_OF_BYTES_USED`: Increased by *`N`*
 
-- `SUM_NUMBER_OF_BYTES_ALLOC`: Aumentada em *`N`*
+* `HIGH_NUMBER_OF_BYTES_USED`: Increased if `CURRENT_NUMBER_OF_BYTES_USED` is a new maximum
 
-- `CURRENT_NUMBER_OF_BYTES_USED`: Aumentada em *`N`*
+When an instrumented memory block is deallocated, the Performance Schema makes these updates to memory summary table columns:
 
-- `HIGH_NUMBER_OF_BYTES_USED`: Aumenta se `CURRENT_NUMBER_OF_BYTES_USED` for um novo máximo
+* `COUNT_FREE`: Increased by 1
+* `CURRENT_COUNT_USED`: Decreased by 1
+* `LOW_COUNT_USED`: Decreased if `CURRENT_COUNT_USED` is a new minimum
 
-Quando um bloco de memória instrumentado é liberado, o Schema de Desempenho faz essas atualizações nas colunas da tabela de resumo de memória:
+* `SUM_NUMBER_OF_BYTES_FREE`: Increased by *`N`*
 
-- `COUNT_FREE`: Aumentada em 1
+* `CURRENT_NUMBER_OF_BYTES_USED`: Decreased by *`N`*
 
-- `CURRENT_COUNT_USED`: Reduzido em 1
+* `LOW_NUMBER_OF_BYTES_USED`: Decreased if `CURRENT_NUMBER_OF_BYTES_USED` is a new minimum
 
-- `LOW_COUNT_USED`: Reduzido se `CURRENT_COUNT_USED` for um novo mínimo
+For higher-level aggregates (global, by account, by user, by host), the same rules apply as expected for low and high water marks.
 
-- `SUM_NUMBER_OF_BYTES_FREE`: Aumentada em *`N`*
+* `LOW_COUNT_USED` and `LOW_NUMBER_OF_BYTES_USED` are lower estimates. The value reported by the Performance Schema is guaranteed to be less than or equal to the lowest count or size of memory effectively used at runtime.
 
-- `CURRENT_NUMBER_OF_BYTES_USED`: Reduzido em *`N`*
+* `HIGH_COUNT_USED` and `HIGH_NUMBER_OF_BYTES_USED` are higher estimates. The value reported by the Performance Schema is guaranteed to be greater than or equal to the highest count or size of memory effectively used at runtime.
 
-- `LOW_NUMBER_OF_BYTES_USED`: Reduzido se `CURRENT_NUMBER_OF_BYTES_USED` for um novo mínimo
+For lower estimates in summary tables other than [`memory_summary_global_by_event_name`](performance-schema-memory-summary-tables.html "25.12.15.9 Memory Summary Tables"), it is possible for values to go negative if memory ownership is transferred between threads.
 
-Para agregados de nível superior (global, por conta, por usuário, por host), as mesmas regras se aplicam, conforme esperado para marcas de água altas e baixas.
+Here is an example of estimate computation; but note that estimate implementation is subject to change:
 
-- `LOW_COUNT_USED` e `LOW_NUMBER_OF_BYTES_USED` são estimativas mais baixas. O valor reportado pelo Gerenciamento de Desempenho é garantido para ser menor ou igual à menor contagem ou tamanho de memória efetivamente usada durante a execução.
+Thread 1 uses memory in the range from 1MB to 2MB during execution, as reported by the `LOW_NUMBER_OF_BYTES_USED` and `HIGH_NUMBER_OF_BYTES_USED` columns of the [`memory_summary_by_thread_by_event_name`](performance-schema-memory-summary-tables.html "25.12.15.9 Memory Summary Tables") table.
 
-- `HIGH_COUNT_USED` e `HIGH_NUMBER_OF_BYTES_USED` são estimativas mais altas. O valor reportado pelo Performance Schema é garantido para ser maior ou igual à contagem ou tamanho mais alto de memória efetivamente usada durante a execução.
+Thread 2 uses memory in the range from 10MB to 12MB during execution, as reported likewise.
 
-Para estimativas mais baixas em tabelas resumidas que não sejam `memory_summary_global_by_event_name`, é possível que os valores sejam negativos se a propriedade da memória for transferida entre threads.
+When these two threads belong to the same user account, the per-account summary estimates that this account used memory in the range from 11MB to 14MB. That is, the `LOW_NUMBER_OF_BYTES_USED` for the higher level aggregate is the sum of each `LOW_NUMBER_OF_BYTES_USED` (assuming the worst case). Likewise, the `HIGH_NUMBER_OF_BYTES_USED` for the higher level aggregate is the sum of each `HIGH_NUMBER_OF_BYTES_USED` (assuming the worst case).
 
-Aqui está um exemplo de cálculo de estimativa; mas observe que a implementação da estimativa está sujeita a alterações:
+11MB is a lower estimate that can occur only if both threads hit the low usage mark at the same time.
 
-O thread 1 utiliza memória na faixa de 1 MB a 2 MB durante a execução, conforme relatado pelas colunas `LOW_NUMBER_OF_BYTES_USED` e `HIGH_NUMBER_OF_BYTES_USED` da tabela `memory_summary_by_thread_by_event_name`.
+14MB is a higher estimate that can occur only if both threads hit the high usage mark at the same time.
 
-O thread 2 usa memória na faixa de 10MB a 12MB durante a execução, conforme relatado da mesma forma.
+The real memory usage for this account could have been in the range from 11.5MB to 13.5MB.
 
-Quando esses dois fios pertencem à mesma conta de usuário, o resumo por conta estima que essa conta usou memória na faixa de 11 MB a 14 MB. Ou seja, o `LOW_NUMBER_OF_BYTES_USED` para o agregado de nível superior é a soma de cada `LOW_NUMBER_OF_BYTES_USED` (assumindo o pior caso). Da mesma forma, o `HIGH_NUMBER_OF_BYTES_USED` para o agregado de nível superior é a soma de cada `HIGH_NUMBER_OF_BYTES_USED` (assumindo o pior caso).
-
-11 MB é uma estimativa mais baixa que pode ocorrer apenas se ambos os threads atingirem a marca de baixo uso ao mesmo tempo.
-
-14 MB é uma estimativa mais alta que pode ocorrer apenas se ambos os threads atingirem a marca de alto uso ao mesmo tempo.
-
-O uso real da memória para essa conta poderia ter ficado na faixa de 11,5 MB a 13,5 MB.
-
-Para o planejamento de capacidade, relatar o pior cenário é, na verdade, o comportamento desejado, pois mostra o que pode acontecer quando as sessões não estão correlacionadas, o que geralmente é o caso.
+For capacity planning, reporting the worst case is actually the desired behavior, as it shows what can potentially happen when sessions are uncorrelated, which is typically the case.

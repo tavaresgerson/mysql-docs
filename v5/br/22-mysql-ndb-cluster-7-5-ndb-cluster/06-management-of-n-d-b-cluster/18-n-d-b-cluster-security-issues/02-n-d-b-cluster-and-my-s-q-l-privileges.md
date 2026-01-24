@@ -1,67 +1,67 @@
-#### 21.6.18.2 NDB Cluster e privilégios do MySQL
+#### 21.6.18.2 NDB Cluster and MySQL Privileges
 
-Nesta seção, discutimos como o sistema de privilégios do MySQL funciona em relação ao NDB Cluster e as implicações disso para manter o NDB Cluster seguro.
+In this section, we discuss how the MySQL privilege system works in relation to NDB Cluster and the implications of this for keeping an NDB Cluster secure.
 
-Os privilégios padrão do MySQL são aplicados às tabelas do NDB Cluster. Isso inclui todos os tipos de privilégios do MySQL ([privilégios fornecidos.html#priv_select] privilégio, [atualizar]\(privilégios fornecidos.html#priv_update) privilégio, [deletar]\(privilégios fornecidos.html#priv_delete) privilégio, e assim por diante) concedidos no nível de banco de dados, tabela e coluna. Como em qualquer outro servidor MySQL, as informações de usuário e privilégios são armazenadas no banco de dados do sistema `mysql`. As instruções SQL usadas para conceder e revogar privilégios em tabelas de `NDB`, bancos que contêm tais tabelas e colunas dentro dessas tabelas são idênticas em todos os aspectos com as instruções `GRANT` e `REVOKE` usadas em conexão com objetos de banco de dados envolvendo qualquer (outro) motor de armazenamento MySQL. A mesma coisa é verdadeira em relação às instruções `CREATE USER` e `DROP USER`.
+Standard MySQL privileges apply to NDB Cluster tables. This includes all MySQL privilege types ([`SELECT`](privileges-provided.html#priv_select) privilege, [`UPDATE`](privileges-provided.html#priv_update) privilege, [`DELETE`](privileges-provided.html#priv_delete) privilege, and so on) granted on the database, table, and column level. As with any other MySQL Server, user and privilege information is stored in the `mysql` system database. The SQL statements used to grant and revoke privileges on [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables, databases containing such tables, and columns within such tables are identical in all respects with the [`GRANT`](grant.html "13.7.1.4 GRANT Statement") and [`REVOKE`](revoke.html "13.7.1.6 REVOKE Statement") statements used in connection with database objects involving any (other) MySQL storage engine. The same thing is true with respect to the [`CREATE USER`](create-user.html "13.7.1.2 CREATE USER Statement") and [`DROP USER`](drop-user.html "13.7.1.3 DROP USER Statement") statements.
 
-É importante ter em mente que, por padrão, as tabelas de concessão do MySQL usam o mecanismo de armazenamento `MyISAM`. Por isso, essas tabelas normalmente não são duplicadas ou compartilhadas entre os servidores MySQL que atuam como nós SQL em um NDB Cluster. Em outras palavras, as alterações nos usuários e seus privilégios não se propagam automaticamente entre os nós SQL por padrão. Se desejar, você pode habilitar a distribuição automática de usuários e privilégios do MySQL entre os nós SQL do NDB Cluster; consulte Seção 21.6.13, “Privilégios Distribuídos Usando Tabelas de Concessão Compartilhadas” para obter detalhes.
+It is important to keep in mind that, by default, the MySQL grant tables use the [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine") storage engine. Because of this, those tables are not normally duplicated or shared among MySQL servers acting as SQL nodes in an NDB Cluster. In other words, changes in users and their privileges do not automatically propagate between SQL nodes by default. If you wish, you can enable automatic distribution of MySQL users and privileges across NDB Cluster SQL nodes; see [Section 21.6.13, “Distributed Privileges Using Shared Grant Tables”](mysql-cluster-privilege-distribution.html "21.6.13 Distributed Privileges Using Shared Grant Tables"), for details.
 
-Por outro lado, como não há como negar privilégios no MySQL (os privilégios podem ser revogados ou não concedidos em primeiro lugar, mas não negados como tal), não há proteção especial para as tabelas de `NDB` em um nó SQL de usuários que têm privilégios em outro nó SQL; (Isto é verdade mesmo que você não esteja usando a distribuição automática de privilégios de usuário. O exemplo definitivo disso é a conta `root` do MySQL, que pode realizar qualquer ação em qualquer objeto de banco de dados. Em combinação com as seções `[mysqld]` ou `[api]` vazias do arquivo `config.ini`, essa conta pode ser especialmente perigosa. Para entender por quê, considere o seguinte cenário:
+Conversely, because there is no way in MySQL to deny privileges (privileges can either be revoked or not granted in the first place, but not denied as such), there is no special protection for [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables on one SQL node from users that have privileges on another SQL node; (This is true even if you are not using automatic distribution of user privileges. The definitive example of this is the MySQL `root` account, which can perform any action on any database object. In combination with empty `[mysqld]` or `[api]` sections of the `config.ini` file, this account can be especially dangerous. To understand why, consider the following scenario:
 
-- O arquivo `config.ini` contém pelo menos uma seção `[mysqld]` ou `[api]` vazia. Isso significa que o servidor de gerenciamento do NDB Cluster não realiza nenhuma verificação do host a partir do qual um servidor MySQL (ou outro nó da API) acessa o NDB Cluster.
+* The `config.ini` file contains at least one empty `[mysqld]` or `[api]` section. This means that the NDB Cluster management server performs no checking of the host from which a MySQL Server (or other API node) accesses the NDB Cluster.
 
-- Não há firewall, ou o firewall não consegue proteger contra o acesso ao NDB Cluster de hosts externos à rede.
+* There is no firewall, or the firewall fails to protect against access to the NDB Cluster from hosts external to the network.
 
-- O nome do host ou o endereço IP do servidor de gerenciamento do NDB Cluster é conhecido ou pode ser determinado fora da rede.
+* The host name or IP address of the NDB Cluster management server is known or can be determined from outside the network.
 
-Se essas condições forem verdadeiras, qualquer pessoa, em qualquer lugar, pode iniciar um servidor MySQL com `--ndbcluster` `--ndb-connectstring=management_host` e acessar o NDB Cluster. Usando a conta `root` do MySQL, essa pessoa pode então realizar as seguintes ações:
+If these conditions are true, then anyone, anywhere can start a MySQL Server with [`--ndbcluster`](mysql-cluster-options-variables.html#option_mysqld_ndbcluster) [`--ndb-connectstring=management_host`](mysql-cluster-options-variables.html#option_mysqld_ndb-connectstring) and access this NDB Cluster. Using the MySQL `root` account, this person can then perform the following actions:
 
-- Execute declarações de metadados, como a declaração `SHOW DATABASES` (para obter uma lista de todas as bases de dados `NDB` no servidor) ou a declaração `SHOW TABLES FROM some_ndb_database` para obter uma lista de todas as tabelas `NDB` em uma determinada base de dados
+* Execute metadata statements such as [`SHOW DATABASES`](show-databases.html "13.7.5.14 SHOW DATABASES Statement") statement (to obtain a list of all [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") databases on the server) or [`SHOW TABLES FROM some_ndb_database`](show-tables.html "13.7.5.37 SHOW TABLES Statement") statement to obtain a list of all [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") tables in a given database
 
-- Execute quaisquer declarações legais do MySQL em qualquer uma das tabelas descobertas, como:
+* Run any legal MySQL statements on any of the discovered tables, such as:
 
-  - `SELECT * FROM alguma_tabela` para ler todos os dados de qualquer tabela
+  + `SELECT * FROM some_table` to read all the data from any table
 
-  - `DELETE FROM alguma_tabela` para excluir todos os dados de uma tabela
+  + `DELETE FROM some_table` to delete all the data from a table
 
-  - Use `DESCRIBE alguma_tabela` ou `SHOW CREATE TABLE alguma_tabela` para determinar o esquema da tabela
+  + `DESCRIBE some_table` or `SHOW CREATE TABLE some_table` to determine the table schema
 
-  - `UPDATE some_table SET column1 = some_value` para preencher uma coluna de uma tabela com dados "lixo"; isso pode causar danos muito maiores do que simplesmente excluir todos os dados
+  + `UPDATE some_table SET column1 = some_value` to fill a table column with “garbage” data; this could actually cause much greater damage than simply deleting all the data
 
-    Variantes mais subversivas podem incluir declarações como essas:
+    More insidious variations might include statements like these:
 
     ```sql
     UPDATE some_table SET an_int_column = an_int_column + 1
     ```
 
-    ou
+    or
 
     ```sql
     UPDATE some_table SET a_varchar_column = REVERSE(a_varchar_column)
     ```
 
-    Tais declarações maliciosas são limitadas apenas pela imaginação do agressor.
+    Such malicious statements are limited only by the imagination of the attacker.
 
-  As únicas tabelas que estariam seguras desse tipo de caos seriam aquelas criadas usando motores de armazenamento diferentes de `NDB`, e, portanto, não seriam visíveis para um nó SQL "vilão".
+  The only tables that would be safe from this sort of mayhem would be those tables that were created using storage engines other than [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6"), and so not visible to a “rogue” SQL node.
 
-  Um usuário que conseguir fazer login como `root` também pode acessar o banco de dados `INFORMATION_SCHEMA` e suas tabelas, e assim obter informações sobre bancos de dados, tabelas, rotinas armazenadas, eventos agendados e quaisquer outros objetos do banco de dados para os quais os metadados estão armazenados no `INFORMATION_SCHEMA`.
+  A user who can log in as `root` can also access the `INFORMATION_SCHEMA` database and its tables, and so obtain information about databases, tables, stored routines, scheduled events, and any other database objects for which metadata is stored in `INFORMATION_SCHEMA`.
 
-  Também é uma ótima ideia usar senhas diferentes para as contas `root` em diferentes nós do NDB Cluster SQL, a menos que você esteja usando privilégios distribuídos.
+  It is also a very good idea to use different passwords for the `root` accounts on different NDB Cluster SQL nodes unless you are using distributed privileges.
 
-Em resumo, você não pode ter um NDB Cluster seguro se ele estiver diretamente acessível de fora da sua rede local.
+In sum, you cannot have a safe NDB Cluster if it is directly accessible from outside your local network.
 
-Importante
+Important
 
-*Nunca deixe a senha da conta raiz do MySQL em branco*. Isso é igualmente verdadeiro ao executar o MySQL como um nó SQL do NDB Cluster, assim como ao executá-lo como um servidor MySQL autônomo (não Cluster), e deve ser feito como parte do processo de instalação do MySQL antes de configurar o servidor MySQL como um nó SQL em um NDB Cluster.
+*Never leave the MySQL root account password empty*. This is just as true when running MySQL as an NDB Cluster SQL node as it is when running it as a standalone (non-Cluster) MySQL Server, and should be done as part of the MySQL installation process before configuring the MySQL Server as an SQL node in an NDB Cluster.
 
-Se você deseja utilizar as capacidades de privilégios distribuídos do NDB Cluster, não deve simplesmente converter as tabelas do sistema no banco de dados `mysql` para usar o mecanismo de armazenamento `NDB` manualmente. Use o procedimento armazenado fornecido para esse propósito; veja Seção 21.6.13, “Privilégios Distribuídos Usando Tabelas de Concessão Compartilhadas”.
+If you wish to employ NDB Cluster's distributed privilege capabilities, you should not simply convert the system tables in the `mysql` database to use the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine manually. Use the stored procedure provided for this purpose instead; see [Section 21.6.13, “Distributed Privileges Using Shared Grant Tables”](mysql-cluster-privilege-distribution.html "21.6.13 Distributed Privileges Using Shared Grant Tables").
 
-Caso contrário, se você precisar sincronizar as tabelas do sistema `mysql` entre os nós SQL, você pode usar a replicação padrão do MySQL para fazer isso ou usar um script para copiar as entradas das tabelas entre os servidores MySQL.
+Otherwise, if you need to synchronize `mysql` system tables between SQL nodes, you can use standard MySQL replication to do so, or employ a script to copy table entries between the MySQL servers.
 
-**Resumo.** Aqui estão listados os pontos mais importantes a serem lembrados sobre o sistema de privilégios do MySQL em relação ao NDB Cluster:
+**Summary.** The most important points to remember regarding the MySQL privilege system with regard to NDB Cluster are listed here:
 
-1. Os usuários e privilégios estabelecidos em um nó SQL não existem ou não têm efeito automaticamente em outros nós SQL do clúster. Por outro lado, a remoção de um usuário ou privilégio em um nó SQL do clúster não remove o usuário ou privilégio de quaisquer outros nós SQL.
+1. Users and privileges established on one SQL node do not automatically exist or take effect on other SQL nodes in the cluster. Conversely, removing a user or privilege on one SQL node in the cluster does not remove the user or privilege from any other SQL nodes.
 
-2. Você pode distribuir usuários e privilégios do MySQL entre os nós SQL usando o script SQL e os procedimentos armazenados que ele contém, que são fornecidos para esse propósito na distribuição do NDB Cluster.
+2. You can distribute MySQL users and privileges among SQL nodes using the SQL script, and the stored procedures it contains, that are supplied for this purpose in the NDB Cluster distribution.
 
-3. Uma vez que um usuário do MySQL receba privilégios em uma tabela `NDB` de um nó SQL em um NDB Cluster, esse usuário poderá "ver" qualquer dado naquela tabela, independentemente do nó SQL do qual os dados foram originados, mesmo que você não esteja usando a distribuição de privilégios.
+3. Once a MySQL user is granted privileges on an [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table from one SQL node in an NDB Cluster, that user can “see” any data in that table regardless of the SQL node from which the data originated, even if you are not using privilege distribution.

@@ -1,13 +1,13 @@
-### 13.6.3 Declaração de DECLARE
+### 13.6.3 DECLARE Statement
 
-A declaração `DECLARE` é usada para definir vários itens locais de um programa:
+The [`DECLARE`](declare.html "13.6.3 DECLARE Statement") statement is used to define various items local to a program:
 
-- Variáveis locais. Veja Seção 13.6.4, “Variáveis em Programas Armazenados”.
+* Local variables. See [Section 13.6.4, “Variables in Stored Programs”](stored-program-variables.html "13.6.4 Variables in Stored Programs").
 
-- Condições e manipuladores. Consulte Seção 13.6.7, “Manipulação de Condições”.
+* Conditions and handlers. See [Section 13.6.7, “Condition Handling”](condition-handling.html "13.6.7 Condition Handling").
 
-- Cursoros. Veja Seção 13.6.6, “Cursoros”.
+* Cursors. See [Section 13.6.6, “Cursors”](cursors.html "13.6.6 Cursors").
 
-`DECLARE` é permitido apenas dentro de uma instrução composta `BEGIN ... END` e deve estar no início, antes de qualquer outra instrução.
+[`DECLARE`](declare.html "13.6.3 DECLARE Statement") is permitted only inside a [`BEGIN ... END`](begin-end.html "13.6.1 BEGIN ... END Compound Statement") compound statement and must be at its start, before any other statements.
 
-As declarações devem seguir uma certa ordem. As declarações de cursor devem aparecer antes das declarações de manipulador. As declarações de variáveis e condições devem aparecer antes das declarações de cursor ou manipulador.
+Declarations must follow a certain order. Cursor declarations must appear before handler declarations. Variable and condition declarations must appear before cursor or handler declarations.

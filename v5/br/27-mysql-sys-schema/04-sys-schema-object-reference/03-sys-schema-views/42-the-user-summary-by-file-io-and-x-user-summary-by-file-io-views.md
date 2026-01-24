@@ -1,17 +1,17 @@
-#### 26.4.3.42 As visualizações user_summary_by_file_io e x$user_summary_by_file_io
+#### 26.4.3.42 The user_summary_by_file_io and x$user_summary_by_file_io Views
 
-Esses pontos resumem o acesso e gravação de arquivos, agrupados por usuário. Por padrão, as linhas são ordenadas em ordem decrescente de latência total de acesso e gravação de arquivos.
+These views summarize file I/O, grouped by user. By default, rows are sorted by descending total file I/O latency.
 
-As views `user_summary_by_file_io` e `x$user_summary_by_file_io` possuem essas colunas:
+The `user_summary_by_file_io` and `x$user_summary_by_file_io` views have these columns:
 
-- `usuário`
+* `user`
 
-  O nome de usuário do cliente. As linhas para as quais a coluna `USER` na tabela subjacente do Schema de Desempenho é `NULL` são assumidas como pertencentes a threads de segundo plano e são relatadas com o nome do host `background`.
+  The client user name. Rows for which the `USER` column in the underlying Performance Schema table is `NULL` are assumed to be for background threads and are reported with a host name of `background`.
 
-- `ios`
+* `ios`
 
-  O número total de eventos de entrada/saída de arquivos para o usuário.
+  The total number of file I/O events for the user.
 
-- `io_latency`
+* `io_latency`
 
-  O tempo total de espera de eventos de E/S de arquivos com temporizador para o usuário.
+  The total wait time of timed file I/O events for the user.

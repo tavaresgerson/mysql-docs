@@ -1,9 +1,9 @@
-#### 11.4.2.12 Classe MultiSurface
+#### 11.4.2.12 MultiSurface Class
 
-Uma `MultiSurface` é uma coleção de geometrias composta por elementos de superfície. `MultiSurface` é uma classe não instanciável. Sua única subclasse instanciável é `MultiPolygon`.
+A `MultiSurface` is a geometry collection composed of surface elements. `MultiSurface` is a noninstantiable class. Its only instantiable subclass is `MultiPolygon`.
 
-**Afirmações `MultiSurface`**
+**`MultiSurface` Assertions**
 
-- As superfícies dentro de um `MultiSurface` não têm interiores que se intersectem.
+* Surfaces within a `MultiSurface` have no interiors that intersect.
 
-- As superfícies dentro de uma `MultiSurface` têm limites que se intersectam no máximo em um número finito de pontos.
+* Surfaces within a `MultiSurface` have boundaries that intersect at most at a finite number of points.

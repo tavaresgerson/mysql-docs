@@ -1,7 +1,7 @@
-### 14.1.5 Desligando o InnoDB
+### 14.1.5 Turning Off InnoDB
 
-A Oracle recomenda o `InnoDB` como o motor de armazenamento preferido para aplicações de banco de dados típicas, desde wikis e blogs de um único usuário que funcionam em um sistema local até aplicações de ponta que ultrapassam os limites de desempenho. No MySQL 5.7, o `InnoDB` é o motor de armazenamento padrão para novas tabelas.
+Oracle recommends `InnoDB` as the preferred storage engine for typical database applications, from single-user wikis and blogs running on a local system, to high-end applications pushing the limits of performance. In MySQL 5.7, `InnoDB` is the default storage engine for new tables.
 
-Importante
+Important
 
-O `InnoDB` não pode ser desativado. A opção `--skip-innodb` está desatualizada e não tem efeito, e seu uso resulta em um aviso. Espere que ele seja removido em uma futura versão do MySQL. Isso também se aplica a seus sinônimos (`--innodb=OFF`, `--disable-innodb`, e assim por diante).
+`InnoDB` cannot be disabled. The `--skip-innodb` option is deprecated and has no effect, and its use results in a warning. Expect it to be removed in a future MySQL release. This also applies to its synonyms (`--innodb=OFF`, `--disable-innodb`, and so forth).

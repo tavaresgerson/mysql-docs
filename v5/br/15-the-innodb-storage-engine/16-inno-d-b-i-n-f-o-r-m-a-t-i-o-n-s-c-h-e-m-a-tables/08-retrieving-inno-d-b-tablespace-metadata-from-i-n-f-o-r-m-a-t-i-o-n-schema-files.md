@@ -1,14 +1,14 @@
-### 14.16.8 Recuperação dos metadados do espaço de tabela InnoDB a partir do INFORMATION_SCHEMA.FILES
+### 14.16.8 Retrieving InnoDB Tablespace Metadata from INFORMATION_SCHEMA.FILES
 
-A tabela do esquema de informações `FILES` fornece metadados sobre todos os tipos de espaço de tabela `InnoDB`, incluindo espaços de tabela por arquivo, espaços de tabela gerais, o espaço de tabela do sistema, espaços de tabela de tabela temporária e espaços de tabela de desfazer (se presentes).
+The Information Schema `FILES` table provides metadata about all `InnoDB` tablespace types including file-per-table tablespaces, general tablespaces, the system tablespace, temporary table tablespaces, and undo tablespaces (if present).
 
-Esta seção fornece exemplos de uso específicos do InnoDB. Para mais informações, consulte a Seção 24.3.9, “A Tabela INFORMATION_SCHEMA FILES”.
+This section provides `InnoDB`-specific usage examples. For more information, see Section 24.3.9, “The INFORMATION_SCHEMA FILES Table”.
 
-Nota
+Note
 
-As tabelas `INNODB_SYS_TABLESPACES` e `INNODB_SYS_DATAFILES` também fornecem metadados sobre os espaços de tabelas do `InnoDB`, mas os dados são limitados a arquivos por tabela e espaços de tabelas gerais.
+The `INNODB_SYS_TABLESPACES` and `INNODB_SYS_DATAFILES` tables also provide metadata about `InnoDB` tablespaces, but data is limited to file-per-table and general tablespaces.
 
-Essa consulta recupera metadados sobre o espaço de tabela do sistema `InnoDB` a partir das colunas da tabela do esquema de informações `FILES` que são pertinentes aos espaços de tabela `InnoDB`. As colunas `FILES` que não são relevantes para `InnoDB` sempre retornam `NULL` e são excluídas da consulta.
+This query retrieves metadata about the `InnoDB` system tablespace from columns of the Information Schema `FILES` table that are pertinent to `InnoDB` tablespaces. `FILES` columns that are not relevant to `InnoDB` always return `NULL`, and are excluded from the query.
 
 ```sql
 mysql> SELECT FILE_ID, FILE_NAME, FILE_TYPE, TABLESPACE_NAME, FREE_EXTENTS,
@@ -29,7 +29,7 @@ AUTOEXTEND_SIZE: 67108864
          ENGINE: NORMAL
 ```
 
-Essa consulta recupera o `FILE_ID` (equivalente à ID de espaço) e o `FILE_NAME` (que inclui informações de caminho) para os espaços de tabela e espaços de tabela gerais `InnoDB`. Os espaços de tabela e espaços de tabela gerais têm a extensão de arquivo `.ibd`.
+This query retrieves the `FILE_ID` (equivalent to the space ID) and the `FILE_NAME` (which includes path information) for `InnoDB` file-per-table and general tablespaces. File-per-table and general tablespaces have a `.ibd` file extension.
 
 ```sql
 mysql> SELECT FILE_ID, FILE_NAME FROM INFORMATION_SCHEMA.FILES
@@ -62,7 +62,7 @@ mysql> SELECT FILE_ID, FILE_NAME FROM INFORMATION_SCHEMA.FILES
     +---------+---------------------------------------+
 ```
 
-Essa consulta recupera o `FILE_ID` e `FILE_NAME` para os espaços de tabelas temporárias do `InnoDB`. Os nomes dos arquivos de espaço de tabela temporário são prefixados com `ibtmp`.
+This query retrieves the `FILE_ID` and `FILE_NAME` for `InnoDB` temporary tablespaces. Temporary tablespace file names are prefixed by `ibtmp`.
 
 ```sql
 mysql> SELECT FILE_ID, FILE_NAME FROM INFORMATION_SCHEMA.FILES
@@ -74,7 +74,7 @@ mysql> SELECT FILE_ID, FILE_NAME FROM INFORMATION_SCHEMA.FILES
 +---------+-----------+
 ```
 
-Da mesma forma, os nomes dos arquivos de espaço de undo de `InnoDB` são prefixados por `undo`. A seguinte consulta retorna o `FILE_ID` e `FILE_NAME` para os espaços de undo de `InnoDB`, se espaços de undo separados forem configurados.
+Similarly, `InnoDB` undo tablespace file names are prefixed by `undo`. The following query returns the `FILE_ID` and `FILE_NAME` for `InnoDB` undo tablespaces, if separate undo tablespaces are configured.
 
 ```sql
 mysql> SELECT FILE_ID, FILE_NAME FROM INFORMATION_SCHEMA.FILES

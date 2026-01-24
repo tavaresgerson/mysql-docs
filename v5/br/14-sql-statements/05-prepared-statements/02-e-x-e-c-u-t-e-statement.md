@@ -1,12 +1,12 @@
-### 13.5.2 Declaração EXECUTE
+### 13.5.2 EXECUTE Statement
 
 ```sql
 EXECUTE stmt_name
     [USING @var_name [, @var_name] ...]
 ```
 
-Após preparar uma declaração com `PREPARE`, você a executa com uma declaração `EXECUTE` que faz referência ao nome da declaração preparada. Se a declaração preparada contiver marcadores de parâmetros, você deve fornecer uma cláusula `USING` que lista as variáveis do usuário que contêm os valores a serem vinculados aos parâmetros. Os valores dos parâmetros podem ser fornecidos apenas por variáveis do usuário, e a cláusula `USING` deve nomear exatamente tantas variáveis quanto o número de marcadores de parâmetros na declaração.
+After preparing a statement with [`PREPARE`](prepare.html "13.5.1 PREPARE Statement"), you execute it with an [`EXECUTE`](execute.html "13.5.2 EXECUTE Statement") statement that refers to the prepared statement name. If the prepared statement contains any parameter markers, you must supply a `USING` clause that lists user variables containing the values to be bound to the parameters. Parameter values can be supplied only by user variables, and the `USING` clause must name exactly as many variables as the number of parameter markers in the statement.
 
-Você pode executar uma instrução preparada dada várias vezes, passando diferentes variáveis para ela ou definindo as variáveis para diferentes valores antes de cada execução.
+You can execute a given prepared statement multiple times, passing different variables to it or setting the variables to different values before each execution.
 
-Para exemplos, veja Seção 13.5, "Declarações Preparadas".
+For examples, see [Section 13.5, “Prepared Statements”](sql-prepared-statements.html "13.5 Prepared Statements").

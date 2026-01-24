@@ -1,10 +1,10 @@
-#### 16.1.5.3 Adicionando fontes baseadas em GTID a uma réplica de múltiplas fontes
+#### 16.1.5.3 Adding GTID-Based Sources to a Multi-Source Replica
 
-Esses passos pressupõem que você tenha habilitado GTIDs para transações nos servidores da fonte de replicação usando `gtid_mode=ON`, criado um usuário de replicação, garantido que a replica esteja usando repositórios de metadados de replicação baseados em `TABLE` e, se apropriado, provisionado a replica com dados das fontes.
+These steps assume you have enabled GTIDs for transactions on the replication source servers using [`gtid_mode=ON`](replication-options-gtids.html#sysvar_gtid_mode), created a replication user, ensured that the replica is using `TABLE` based replication metadata repositories, and provisioned the replica with data from the sources if appropriate.
 
-Use a declaração `CHANGE MASTER TO` para configurar um canal de replicação para cada fonte na replica (consulte Seção 16.2.2, “Canais de Replicação”). A cláusula `FOR CHANNEL` é usada para especificar o canal. Para a replicação baseada em GTID, o autoposicionamento do GTID é usado para sincronizar com a fonte (consulte Seção 16.1.3.3, “Autoposicionamento do GTID”). A opção `MASTER_AUTO_POSITION` é definida para especificar o uso do autoposicionamento.
+Use the [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") statement to configure a replication channel for each source on the replica (see [Section 16.2.2, “Replication Channels”](replication-channels.html "16.2.2 Replication Channels")). The `FOR CHANNEL` clause is used to specify the channel. For GTID-based replication, GTID auto-positioning is used to synchronize with the source (see [Section 16.1.3.3, “GTID Auto-Positioning”](replication-gtids-auto-positioning.html "16.1.3.3 GTID Auto-Positioning")). The `MASTER_AUTO_POSITION` option is set to specify the use of auto-positioning.
 
-Por exemplo, para adicionar `source1` e `source2` como fontes na replica, use o cliente **mysql** para emitir a declaração `CHANGE MASTER TO` duas vezes na replica, assim:
+For example, to add `source1` and `source2` as sources to the replica, use the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client to issue the [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") statement twice on the replica, like this:
 
 ```sql
 mysql> CHANGE MASTER TO MASTER_HOST="source1", MASTER_USER="ted", \
@@ -13,4 +13,4 @@ mysql> CHANGE MASTER TO MASTER_HOST="source2", MASTER_USER="ted", \
 MASTER_PASSWORD="password", MASTER_AUTO_POSITION=1 FOR CHANNEL "source_2";
 ```
 
-Para a sintaxe completa da declaração `CHANGE MASTER TO` e outras opções disponíveis, consulte Seção 13.4.2.1, “Declaração CHANGE MASTER TO”.
+For the full syntax of the [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") statement and other available options, see [Section 13.4.2.1, “CHANGE MASTER TO Statement”](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement").

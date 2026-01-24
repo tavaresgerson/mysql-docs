@@ -1,24 +1,24 @@
-## 21.1 Informações Gerais
+## 21.1 General Information
 
-O MySQL NDB Cluster utiliza o servidor MySQL com o mecanismo de armazenamento `NDB`. O suporte ao mecanismo de armazenamento `NDB` não está incluído nos binários padrão do MySQL Server 5.7 construídos pela Oracle. Em vez disso, os usuários dos binários do NDB Cluster da Oracle devem atualizar para a versão binária mais recente do NDB Cluster para as plataformas suportadas — essas incluem RPMs que devem funcionar com a maioria das distribuições Linux. Os usuários do NDB Cluster que constroem a partir da fonte devem usar as fontes fornecidas para o NDB Cluster. (Os locais onde as fontes podem ser obtidas estão listados mais adiante nesta seção.)
+MySQL NDB Cluster uses the MySQL server with the `NDB` storage engine. Support for the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine is not included in standard MySQL Server 5.7 binaries built by Oracle. Instead, users of NDB Cluster binaries from Oracle should upgrade to the most recent binary release of NDB Cluster for supported platforms—these include RPMs that should work with most Linux distributions. NDB Cluster users who build from source should use the sources provided for NDB Cluster. (Locations where the sources can be obtained are listed later in this section.)
 
-Importante
+Important
 
-O MySQL NDB Cluster não suporta o InnoDB Cluster, que deve ser implantado usando o MySQL Server 5.7 com o mecanismo de armazenamento `InnoDB`, além de aplicações adicionais que não estão incluídas na distribuição do NDB Cluster. Os binários do MySQL Server 5.7 não podem ser usados com o MySQL NDB Cluster. Para obter mais informações sobre a implantação e uso do InnoDB Cluster, consulte MySQL AdminAPI. Seção 21.2.6, “MySQL Server Usando InnoDB Comparado com NDB Cluster”, discute as diferenças entre os mecanismos de armazenamento `NDB` e `InnoDB`.
+MySQL NDB Cluster does not support InnoDB Cluster, which must be deployed using MySQL Server 5.7 with the [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") storage engine as well as additional applications that are not included in the NDB Cluster distribution. MySQL Server 5.7 binaries cannot be used with MySQL NDB Cluster. For more information about deploying and using InnoDB Cluster, see [MySQL AdminAPI](/doc/mysql-shell/8.0/en/admin-api-userguide.html). [Section 21.2.6, “MySQL Server Using InnoDB Compared with NDB Cluster”](mysql-cluster-compared.html "21.2.6 MySQL Server Using InnoDB Compared with NDB Cluster"), discusses differences between the `NDB` and `InnoDB` storage engines.
 
-**Plataformas suportadas.** O NDB Cluster está atualmente disponível e é suportado em várias plataformas. Para obter os níveis exatos de suporte disponíveis para combinações específicas de versões de sistemas operacionais, distribuições de sistemas operacionais e plataformas de hardware, consulte <https://www.mysql.com/support/supportedplatforms/cluster.html>.
+**Supported Platforms.** NDB Cluster is currently available and supported on a number of platforms. For exact levels of support available for on specific combinations of operating system versions, operating system distributions, and hardware platforms, please refer to <https://www.mysql.com/support/supportedplatforms/cluster.html>.
 
-**Disponibilidade.** Os pacotes binários e de código-fonte do NDB Cluster estão disponíveis para as plataformas suportadas em <https://dev.mysql.com/downloads/cluster/>.
+**Availability.** NDB Cluster binary and source packages are available for supported platforms from <https://dev.mysql.com/downloads/cluster/>.
 
-**Números de lançamento do NDB Cluster.** O NDB Cluster segue um padrão de lançamento um pouco diferente da série de lançamentos do MySQL Server 5.7 principal. Neste *Manual* e em outras documentações do MySQL, identificamos esses e lançamentos posteriores do NDB Cluster usando um número de versão que começa com “NDB”. Este número de versão é o do motor de armazenamento `NDBCLUSTER` usado no lançamento, e não da versão do servidor MySQL em que o lançamento do NDB Cluster é baseado.
+**NDB Cluster release numbers.** NDB Cluster follows a somewhat different release pattern from the mainline MySQL Server 5.7 series of releases. In this *Manual* and other MySQL documentation, we identify these and later NDB Cluster releases employing a version number that begins with “NDB”. This version number is that of the [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine used in the release, and not of the MySQL server version on which the NDB Cluster release is based.
 
-**Cadeias de versão usadas no software do NDB Cluster.** A cadeia de versão exibida pelos programas do NDB Cluster usa este formato:
+**Version strings used in NDB Cluster software.** The version string displayed by NDB Cluster programs uses this format:
 
 ```sql
 mysql-mysql_server_version-ndb-ndb_engine_version
 ```
 
-*`mysql_server_version`* representa a versão do MySQL Server em que a versão do NDB Cluster é baseada. Para todas as versões do NDB Cluster 7.5 e 7.6, este é "5.7". *`ndb_engine_version`* é a versão do motor de armazenamento `NDB` usado por esta versão do software NDB Cluster. Você pode ver este formato usado no cliente **mysql**, como mostrado aqui:
+*`mysql_server_version`* represents the version of the MySQL Server on which the NDB Cluster release is based. For all NDB Cluster 7.5 and NDB Cluster 7.6 releases, this is “5.7”. *`ndb_engine_version`* is the version of the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine used by this release of the NDB Cluster software. You can see this format used in the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client, as shown here:
 
 ```sql
 $> mysql
@@ -34,7 +34,7 @@ VERSION(): 5.7.44-ndb-7.5.36
 1 row in set (0.00 sec)
 ```
 
-Essa string de versão também é exibida na saída do comando `SHOW` no cliente **ndb_mgm**:
+This version string is also displayed in the output of the `SHOW` command in the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") client:
 
 ```sql
 ndb_mgm> SHOW
@@ -53,32 +53,31 @@ id=4    @10.0.10.10  (5.7.44-ndb-7.5.36)
 id=5 (not connected, accepting connect from any host)
 ```
 
-A string de versão identifica a versão principal do MySQL da qual a versão do NDB Cluster foi derivada e a versão do motor de armazenamento `NDB` utilizado. Por exemplo, a string de versão completa para o NDB 7.5.4 (a primeira versão GA do NDB 7.5) foi `mysql-5.7.16-ndb-7.5.4`. Com isso, podemos determinar o seguinte:
+The version string identifies the mainline MySQL version from which the NDB Cluster release was branched and the version of the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine used. For example, the full version string for NDB 7.5.4 (the first NDB 7.5 GA release) was `mysql-5.7.16-ndb-7.5.4`. From this we can determine the following:
 
-- Como a parte da string da versão que precede `-ndb-` é a versão base do servidor MySQL, isso significa que o NDB 7.5.4 derivado do MySQL 5.7.16 continha todas as melhorias de recursos e correções de bugs do MySQL 5.7 até e incluindo o MySQL 5.7.16.
+* Since the portion of the version string preceding `-ndb-` is the base MySQL Server version, this means that NDB 7.5.4 derived from MySQL 5.7.16, and contained all feature enhancements and bug fixes from MySQL 5.7 up to and including MySQL 5.7.16.
 
-- Como a parte da string de versão após `-ndb-` representa o número de versão do mecanismo de armazenamento `NDB` (ou `NDBCLUSTER`), o NDB 7.5.4 usou a versão 7.5.4 do mecanismo de armazenamento `NDBCLUSTER`.
+* Since the portion of the version string following `-ndb-` represents the version number of the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") (or [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6")) storage engine, NDB 7.5.4 used version 7.5.4 of the [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine.
 
-As novas versões do NDB Cluster são numeradas de acordo com as atualizações do motor de armazenamento `NDB` e não correspondem necessariamente de forma direta às versões do MySQL Server principal. Por exemplo, o NDB 7.5.4 (como mencionado anteriormente) foi baseado no MySQL 5.7.16, enquanto o NDB 7.5.3 foi baseado no MySQL 5.7.13 (string de versão: `mysql-5.7.13-ndb-7.5.3`).
+New NDB Cluster releases are numbered according to updates in the `NDB` storage engine, and do not necessarily correspond in a one-to-one fashion with mainline MySQL Server releases. For example, NDB 7.5.4 (as previously noted) was based on MySQL 5.7.16, while NDB 7.5.3 was based on MySQL 5.7.13 (version string: `mysql-5.7.13-ndb-7.5.3`).
 
-**Compatibilidade com as versões padrão do MySQL 5.7.** Embora muitos esquemas e aplicativos padrão do MySQL possam funcionar com o NDB Cluster, também é verdade que aplicativos e esquemas de banco de dados não modificados podem ser ligeiramente incompatíveis ou ter desempenho subótimo quando executados com o NDB Cluster (consulte Seção 21.2.7, “Limitações Conhecidas do NDB Cluster”). A maioria desses problemas pode ser superada, mas isso também significa que é muito improvável que você possa mudar um banco de dados de aplicativo existente que atualmente usa, por exemplo, `MyISAM` ou `InnoDB` para usar o mecanismo de armazenamento `NDB` sem permitir a possibilidade de alterações em esquemas, consultas e aplicativos. Além disso, as bases de código do MySQL Server e do NDB Cluster divergem consideravelmente, de modo que o padrão **mysqld** não pode funcionar como um substituto direto para a versão de **mysqld** fornecida com o NDB Cluster.
+**Compatibility with standard MySQL 5.7 releases.** While many standard MySQL schemas and applications can work using NDB Cluster, it is also true that unmodified applications and database schemas may be slightly incompatible or have suboptimal performance when run using NDB Cluster (see [Section 21.2.7, “Known Limitations of NDB Cluster”](mysql-cluster-limitations.html "21.2.7 Known Limitations of NDB Cluster")). Most of these issues can be overcome, but this also means that you are very unlikely to be able to switch an existing application datastore—that currently uses, for example, [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine") or [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine")—to use the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine without allowing for the possibility of changes in schemas, queries, and applications. In addition, the MySQL Server and NDB Cluster codebases diverge considerably, so that the standard [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") cannot function as a drop-in replacement for the version of [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") supplied with NDB Cluster.
 
-**Árvores de código-fonte do desenvolvimento do NDB Cluster.** As árvores de código-fonte do desenvolvimento do NDB Cluster também podem ser acessadas em <https://github.com/mysql/mysql-server>.
+**NDB Cluster development source trees.** NDB Cluster development trees can also be accessed from <https://github.com/mysql/mysql-server>.
 
-As fontes de desenvolvimento do NDB Cluster mantidas em <https://github.com/mysql/mysql-server> estão licenciadas sob a GPL. Para obter informações sobre como obter as fontes do MySQL usando o Git e construí-las você mesmo, consulte Seção 2.8.5, “Instalando o MySQL usando uma árvore de fonte de desenvolvimento”.
+The NDB Cluster development sources maintained at <https://github.com/mysql/mysql-server> are licensed under the GPL. For information about obtaining MySQL sources using Git and building them yourself, see [Section 2.8.5, “Installing MySQL Using a Development Source Tree”](installing-development-tree.html "2.8.5 Installing MySQL Using a Development Source Tree").
 
-Nota
+Note
 
-As versões do NDB Cluster 7.6 são construídas usando **CMake**.
+NDB Cluster 7.6 releases are built using **CMake**.
 
-O NDB Cluster 8.0 (GA) e o NDB Cluster 8.4 (LTS) são recomendados para novas implantações; consulte O que há de novo no MySQL NDB Cluster 8.0 e O que há de novo no MySQL NDB Cluster 8.4, respectivamente, para obter mais informações sobre essas séries de lançamento. O NDB Cluster 9.3 também está disponível como um lançamento de inovação (consulte O que há de novo no MySQL NDB Cluster 9.4). O NDB Cluster 7.6 é um lançamento GA anterior ainda suportado em produção. O NDB Cluster 7.5 e versões anteriores são lançamentos GA anteriores que não são mais mantidos. Recomendamos que novas implantações para uso em produção usem o MySQL NDB Cluster 8.0.
+NDB Cluster 8.0 (GA) and NDB Cluster 8.4 (LTS), are recommended for new deployments; see [What is New in MySQL NDB Cluster 8.0](/doc/refman/8.0/en/mysql-cluster-what-is-new.html), and [What is New in MySQL NDB Cluster 8.4](/doc/refman/8.4/en/mysql-cluster-what-is-new.html), respectively, for more information about these release series. NDB Cluster 9.3 is also available as an Innovation release (see [What is New in MySQL NDB Cluster 9.4](/doc/refman/9.4/en/mysql-cluster-what-is-new.html)). NDB Cluster 7.6 is a previous GA release still supported in production. NDB Cluster 7.5 and earlier are previous GA releases which are no longer maintained. We recommend that new deployments for production use MySQL NDB Cluster 8.0.
 
-O conteúdo deste capítulo está sujeito a revisão à medida que o NDB Cluster continua a evoluir. Informações adicionais sobre o NDB Cluster podem ser encontradas no site da MySQL em <http://www.mysql.com/products/cluster/>.
+The contents of this chapter are subject to revision as NDB Cluster continues to evolve. Additional information regarding NDB Cluster can be found on the MySQL website at <http://www.mysql.com/products/cluster/>.
 
-**Recursos adicionais.** Mais informações sobre o NDB Cluster podem ser encontradas nos seguintes locais:
+**Additional Resources.** More information about NDB Cluster can be found in the following places:
 
-- Para respostas a algumas perguntas frequentes sobre o NDB Cluster, consulte Seção A.10, “Perguntas Frequentes do MySQL 5.7: NDB Cluster”.
+* For answers to some commonly asked questions about NDB Cluster, see [Section A.10, “MySQL 5.7 FAQ: NDB Cluster”](faqs-mysql-cluster.html "A.10 MySQL 5.7 FAQ: NDB Cluster").
 
-- O Fórum do NDB Cluster: <https://forums.mysql.com/list.php?25>.
-
-- Muitos usuários e desenvolvedores do NDB Cluster criam blogs sobre suas experiências com o NDB Cluster e disponibilizam esses feeds no PlanetMySQL.
+* The NDB Cluster Forum: <https://forums.mysql.com/list.php?25>.
+* Many NDB Cluster users and developers blog about their experiences with NDB Cluster, and make feeds of these available through [PlanetMySQL](http://www.planetmysql.org/).

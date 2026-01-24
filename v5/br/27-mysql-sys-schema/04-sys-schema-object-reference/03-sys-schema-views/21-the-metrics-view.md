@@ -1,63 +1,60 @@
-#### 26.4.3.21 As métricas Visualizar
+#### 26.4.3.21 The metrics View
 
-Essa visualização resume as métricas do servidor MySQL para mostrar os nomes, valores, tipos e se eles estão habilitados. Por padrão, as linhas são ordenadas por tipo e nome de variável.
+This view summarizes MySQL server metrics to show variable names, values, types, and whether they are enabled. By default, rows are sorted by variable type and name.
 
-A visualização `metrics` inclui essas informações:
+The `metrics` view includes this information:
 
-- Variáveis de status global da tabela `global_status` do Gerenciamento de Desempenho
+* Global status variables from the Performance Schema `global_status` table
 
-- Métricas do `InnoDB` da tabela `INFORMATION_SCHEMA` `INNODB_METRICS`
+* `InnoDB` metrics from the `INFORMATION_SCHEMA` `INNODB_METRICS` table
 
-- Alocação de memória atual e total, com base na instrumentação de memória do Gerenciamento de Desempenho
+* Current and total memory allocation, based on the Performance Schema memory instrumentation
 
-- A hora atual (em formatos legíveis para humanos e timestamp Unix)
+* The current time (human readable and Unix timestamp formats)
 
-Há alguma duplicação de informações entre as tabelas `global_status` e `INNODB_METRICS`, que a visualização `metrics` elimina.
+There is some duplication of information between the `global_status` and `INNODB_METRICS` tables, which the `metrics` view eliminates.
 
-A visualização `metrics` tem essas colunas:
+The `metrics` view has these columns:
 
-- `Nome_variável`
+* `Variable_name`
 
-  O nome métrico. O tipo métrico determina a fonte a partir da qual o nome é retirado:
+  The metric name. The metric type determines the source from which the name is taken:
 
-  - Para variáveis de status global: a coluna `VARIABLE_NAME` da tabela `global_status`
+  + For global status variables: The `VARIABLE_NAME` column of the `global_status` table
 
-  - Para métricas do `InnoDB`: A coluna `NOME` da tabela `INNODB_METRICS`
+  + For `InnoDB` metrics: The `NAME` column of the `INNODB_METRICS` table
 
-  - Para outras métricas: uma string descritiva fornecida pela visualização
+  + For other metrics: A view-provided descriptive string
+* `Variable_value`
 
-- `Valor_variável`
+  The metric value. The metric type determines the source from which the value is taken:
 
-  O valor métrico. O tipo métrico determina a fonte a partir da qual o valor é obtido:
+  + For global status variables: The `VARIABLE_VALUE` column of the `global_status` table
 
-  - Para variáveis de status global: a coluna `VARIABLE_VALUE` da tabela `global_status`
+  + For `InnoDB` metrics: The `COUNT` column of the `INNODB_METRICS` table
 
-  - Para métricas do `InnoDB`: A coluna `COUNT` da tabela `INNODB_METRICS`
+  + For memory metrics: The relevant column from the Performance Schema `memory_summary_global_by_event_name` table
 
-  - Para métricas de memória: A coluna relevante da tabela do Gerenciamento de Desempenho `memory_summary_global_by_event_name`
+  + For the current time: The value of `NOW(3)` or `UNIX_TIMESTAMP(NOW(3))`
 
-  - Para o momento atual: O valor de `NOW(3)` ou `UNIX_TIMESTAMP(NOW(3))`
+* `Type`
 
-- `Tipo`
+  The metric type:
 
-  O tipo métrico:
+  + For global status variables: `Global Status`
 
-  - Para variáveis de status global: `Status Global`
+  + For `InnoDB` metrics: `InnoDB Metrics - %`, where `%` is replaced by the value of the `SUBSYSTEM` column of the `INNODB_METRICS` table
 
-  - Para métricas do `InnoDB`: `Métricas do InnoDB - %`, onde o `%` é substituído pelo valor da coluna `SUBSISTEMA` da tabela `INNODB_METRICS`
+  + For memory metrics: `Performance Schema`
 
-  - Para métricas de memória: `Schema de desempenho`
+  + For the current time: `System Time`
+* `Enabled`
 
-  - Para o momento atual: `Horário do Sistema`
+  Whether the metric is enabled:
 
-- Ativado
+  + For global status variables: `YES`
+  + For `InnoDB` metrics: `YES` if the `STATUS` column of the `INNODB_METRICS` table is `enabled`, `NO` otherwise
 
-  Se a métrica está habilitada:
+  + For memory metrics: `NO`, `YES`, or `PARTIAL` (currently, `PARTIAL` occurs only for memory metrics and indicates that not all `memory/%` instruments are enabled; Performance Schema memory instruments are always enabled)
 
-  - Para variáveis de status globais: `SIM`
-
-  - Para métricas do `InnoDB`: `SIM` se a coluna `STATUS` da tabela `INNODB_METRICS` estiver habilitada, `NÃO` caso contrário
-
-  - Para métricas de memória: `NO`, `YES` ou `PARTIAL` (atualmente, `PARTIAL` ocorre apenas para métricas de memória e indica que nem todos os instrumentos de memória `%mem` estão habilitados; os instrumentos de memória do Schema de Desempenho estão sempre habilitados)
-
-  - Para o momento atual: `SIM`
+  + For the current time: `YES`

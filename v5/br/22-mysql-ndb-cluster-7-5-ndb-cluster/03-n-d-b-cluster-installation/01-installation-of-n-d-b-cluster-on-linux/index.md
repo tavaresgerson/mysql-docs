@@ -1,17 +1,17 @@
-### 21.3.1 Instalação do NDB Cluster no Linux
+### 21.3.1 Installation of NDB Cluster on Linux
 
-21.3.1.1 Instalação de uma versão binária de um cluster NDB no Linux
+[21.3.1.1 Installing an NDB Cluster Binary Release on Linux](mysql-cluster-install-linux-binary.html)
 
-21.3.1.2 Instalação do NDB Cluster a partir do RPM
+[21.3.1.2 Installing NDB Cluster from RPM](mysql-cluster-install-linux-rpm.html)
 
-21.3.1.3 Instalação do NDB Cluster usando arquivos .deb
+[21.3.1.3 Installing NDB Cluster Using .deb Files](mysql-cluster-install-debian.html)
 
-21.3.1.4 Construindo um NDB Cluster a partir do Código-Fonte no Linux
+[21.3.1.4 Building NDB Cluster from Source on Linux](mysql-cluster-install-linux-source.html)
 
-Esta seção abrange os métodos de instalação do NDB Cluster no Linux e em outros sistemas operacionais semelhantes ao Unix. Embora as próximas seções se refiram a um sistema operacional Linux, as instruções e procedimentos fornecidos lá devem ser facilmente adaptáveis a outras plataformas Unix-like suportadas. Para instruções de instalação e configuração manuais específicas para sistemas Windows, consulte Seção 21.3.2, “Instalando o NDB Cluster no Windows”.
+This section covers installation methods for NDB Cluster on Linux and other Unix-like operating systems. While the next few sections refer to a Linux operating system, the instructions and procedures given there should be easily adaptable to other supported Unix-like platforms. For manual installation and setup instructions specific to Windows systems, see [Section 21.3.2, “Installing NDB Cluster on Windows”](mysql-cluster-install-windows.html "21.3.2 Installing NDB Cluster on Windows").
 
-Cada computador hospedeiro do NDB Cluster deve ter os programas executáveis corretos instalados. Um hospedeiro que executa um nó SQL deve ter instalado um binário do servidor MySQL (**mysqld**). Os nós de gerenciamento requerem o daemon do servidor de gerenciamento (**ndb_mgmd**); os nós de dados requerem o daemon do nó de dados (**ndbd** ou **ndbmtd**). Não é necessário instalar o binário do servidor MySQL nos hosts dos nós de gerenciamento e dos nós de dados. Recomenda-se que você também instale o cliente de gerenciamento (**ndb_mgm**) no host do servidor de gerenciamento.
+Each NDB Cluster host computer must have the correct executable programs installed. A host running an SQL node must have installed on it a MySQL Server binary ([**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server")). Management nodes require the management server daemon ([**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon")); data nodes require the data node daemon ([**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") or [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)")). It is not necessary to install the MySQL Server binary on management node hosts and data node hosts. It is recommended that you also install the management client ([**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client")) on the management server host.
 
-A instalação do NDB Cluster no Linux pode ser feita usando binários pré-compilados da Oracle (baixados como um arquivo .tar.gz), com pacotes RPM (também disponíveis na Oracle) ou a partir do código-fonte. Todos esses três métodos de instalação são descritos na seção a seguir.
+Installation of NDB Cluster on Linux can be done using precompiled binaries from Oracle (downloaded as a .tar.gz archive), with RPM packages (also available from Oracle), or from source code. All three of these installation methods are described in the section that follow.
 
-Independentemente do método utilizado, ainda é necessário, após a instalação dos binários do NDB Cluster, criar arquivos de configuração para todos os nós do cluster antes de poder iniciar o cluster. Consulte Seção 21.3.3, “Configuração Inicial do NDB Cluster”.
+Regardless of the method used, it is still necessary following installation of the NDB Cluster binaries to create configuration files for all cluster nodes, before you can start the cluster. See [Section 21.3.3, “Initial Configuration of NDB Cluster”](mysql-cluster-install-configuration.html "21.3.3 Initial Configuration of NDB Cluster").

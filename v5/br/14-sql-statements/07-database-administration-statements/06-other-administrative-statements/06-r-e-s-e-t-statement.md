@@ -1,4 +1,4 @@
-#### 13.7.6.6 Declaração de RESET
+#### 13.7.6.6 RESET Statement
 
 ```sql
 RESET reset_option [, reset_option] ...
@@ -10,26 +10,26 @@ reset_option: {
 }
 ```
 
-A declaração `RESET` é usada para limpar o estado de várias operações do servidor. Você deve ter o privilégio `RELOAD` para executar `RESET`.
+The [`RESET`](reset.html "13.7.6.6 RESET Statement") statement is used to clear the state of various server operations. You must have the [`RELOAD`](privileges-provided.html#priv_reload) privilege to execute [`RESET`](reset.html "13.7.6.6 RESET Statement").
 
-`RESET` atua como uma versão mais forte da instrução `FLUSH`. Veja Seção 13.7.6.3, “Instrução FLUSH”.
+[`RESET`](reset.html "13.7.6.6 RESET Statement") acts as a stronger version of the [`FLUSH`](flush.html "13.7.6.3 FLUSH Statement") statement. See [Section 13.7.6.3, “FLUSH Statement”](flush.html "13.7.6.3 FLUSH Statement").
 
-A declaração `RESET` causa um commit implícito. Veja Seção 13.3.3, “Declarações que causam um commit implícito”.
+The [`RESET`](reset.html "13.7.6.6 RESET Statement") statement causes an implicit commit. See [Section 13.3.3, “Statements That Cause an Implicit Commit”](implicit-commit.html "13.3.3 Statements That Cause an Implicit Commit").
 
-A lista a seguir descreve os valores permitidos da declaração `RESET` *`reset_option`*:
+The following list describes the permitted [`RESET`](reset.html "13.7.6.6 RESET Statement") statement *`reset_option`* values:
 
-- `RESET MASTER`
+* `RESET MASTER`
 
-  Exclui todos os logs binários listados no arquivo de índice, redefini o arquivo de índice do log binário para estar vazio e cria um novo arquivo de log binário.
+  Deletes all binary logs listed in the index file, resets the binary log index file to be empty, and creates a new binary log file.
 
-- `REESTABELECER CACHE DA PESQUISA`
+* `RESET QUERY CACHE`
 
-  Remove todos os resultados da consulta do cache de consulta.
+  Removes all query results from the query cache.
 
-  Nota
+  Note
 
-  O cache de consultas é descontinuado a partir do MySQL 5.7.20 e é removido no MySQL 8.0. A descontinuidade inclui `RESET QUERY CACHE`.
+  The query cache is deprecated as of MySQL 5.7.20, and is removed in MySQL 8.0. Deprecation includes [`RESET QUERY CACHE`](reset.html "13.7.6.6 RESET Statement").
 
-- `RESET SLAVE`
+* `RESET SLAVE`
 
-  Faz com que a replica esqueça sua posição de replicação nos logs binários de origem. Também reinicia o log de retransmissão, excluindo todos os arquivos de log de retransmissão existentes e iniciando um novo.
+  Makes the replica forget its replication position in the source binary logs. Also resets the relay log by deleting any existing relay log files and beginning a new one.

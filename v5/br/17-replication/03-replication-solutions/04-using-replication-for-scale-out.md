@@ -1,24 +1,24 @@
-### 16.3.4 Usar a replicação para expansão em escala
+### 16.3.4 Using Replication for Scale-Out
 
-Você pode usar a replicação como uma solução de expansão; ou seja, onde você deseja dividir a carga das consultas do banco de dados em vários servidores de banco de dados, dentro de algumas limitações razoáveis.
+You can use replication as a scale-out solution; that is, where you want to split up the load of database queries across multiple database servers, within some reasonable limitations.
 
-Como a replicação funciona a partir da distribuição de uma fonte para uma ou mais réplicas, usar a replicação para expansão é mais eficaz em um ambiente onde você tem um grande número de leituras e um pequeno número de escritas/atualizações. A maioria dos sites se encaixa nessa categoria, onde os usuários navegam pelo site, leem artigos, posts ou visualizam produtos. As atualizações ocorrem apenas durante a gestão de sessões ou ao fazer uma compra ou adicionar um comentário/mensagem a um fórum.
+Because replication works from the distribution of one source to one or more replicas, using replication for scale-out works best in an environment where you have a high number of reads and low number of writes/updates. Most websites fit into this category, where users are browsing the website, reading articles, posts, or viewing products. Updates only occur during session management, or when making a purchase or adding a comment/message to a forum.
 
-A replicação nessa situação permite que você distribua os leitores pelas réplicas, permitindo que seus servidores da web se comuniquem com a fonte quando for necessário um registro. Você pode ver um layout de replicação de amostra para esse cenário na Figura 16.1, “Usando replicação para melhorar o desempenho durante a escala para fora”.
+Replication in this situation enables you to distribute the reads over the replicas, while still enabling your web servers to communicate with the source when a write is required. You can see a sample replication layout for this scenario in [Figure 16.1, “Using Replication to Improve Performance During Scale-Out”](replication-solutions-scaleout.html#figure_replication-scaleout "Figure 16.1 Using Replication to Improve Performance During Scale-Out").
 
-**Figura 16.1: Uso da replicação para melhorar o desempenho durante a expansão**
+**Figure 16.1 Using Replication to Improve Performance During Scale-Out**
 
-![Solicitações recebidas dos clientes são direcionadas para um balanceador de carga, que distribui os dados dos clientes entre vários clientes web. As escritas feitas pelos clientes web são direcionadas para um único servidor de origem MySQL, e as leituras feitas pelos clientes web são direcionadas para um dos três servidores de réplica MySQL. A replicação ocorre do servidor de origem MySQL para os três servidores de réplica MySQL.](images/scaleout.png)
+![Incoming requests from clients are directed to a load balancer, which distributes client data among a number of web clients. Writes made by web clients are directed to a single MySQL source server, and reads made by web clients are directed to one of three MySQL replica servers. Replication takes place from the MySQL source server to the three MySQL replica servers.](images/scaleout.png)
 
-Se a parte do seu código responsável pelo acesso ao banco de dados tiver sido adequadamente abstraída/modularizada, a conversão para funcionar com uma configuração replicada deve ser muito suave e fácil. Altere a implementação do acesso ao banco de dados para enviar todas as escritas para a fonte e ler para a fonte ou uma réplica. Se o seu código não tiver esse nível de abstração, configurar um sistema replicado lhe dá a oportunidade e a motivação para limpá-lo. Comece criando uma biblioteca ou módulo wrapper que implemente as seguintes funções:
+If the part of your code that is responsible for database access has been properly abstracted/modularized, converting it to run with a replicated setup should be very smooth and easy. Change the implementation of your database access to send all writes to the source, and to send reads to either the source or a replica. If your code does not have this level of abstraction, setting up a replicated system gives you the opportunity and motivation to clean it up. Start by creating a wrapper library or module that implements the following functions:
 
-- `safe_writer_connect()`
-- `safe_reader_connect()`
-- `safe_reader_statement()`
-- `safe_writer_statement()`
+* `safe_writer_connect()`
+* `safe_reader_connect()`
+* `safe_reader_statement()`
+* `safe_writer_statement()`
 
-O prefixo `safe_` em cada nome de função significa que a função cuida de lidar com todas as condições de erro. Você pode usar nomes diferentes para as funções. O importante é ter uma interface unificada para conectar para leituras, conectar para escritas, fazer uma leitura e fazer uma escrita.
+`safe_` in each function name means that the function takes care of handling all error conditions. You can use different names for the functions. The important thing is to have a unified interface for connecting for reads, connecting for writes, doing a read, and doing a write.
 
-Em seguida, converta seu código cliente para usar a biblioteca de wrapper. Esse processo pode ser doloroso e assustador no início, mas compensa a longo prazo. Todas as aplicações que usam a abordagem descrita acima podem aproveitar uma configuração de fonte/replica, mesmo uma que envolva múltiplas réplicas. O código é muito mais fácil de manter, e adicionar opções de solução de problemas é trivial. Você precisa modificar apenas uma ou duas funções (por exemplo, para registrar quanto tempo cada declaração levou ou qual declaração entre as emitidas causou um erro).
+Then convert your client code to use the wrapper library. This may be a painful and scary process at first, but it pays off in the long run. All applications that use the approach just described are able to take advantage of a source/replica configuration, even one involving multiple replicas. The code is much easier to maintain, and adding troubleshooting options is trivial. You need modify only one or two functions (for example, to log how long each statement took, or which statement among those issued gave you an error).
 
-Se você escreveu muito código, pode querer automatizar a tarefa de conversão usando a ferramenta **replace** que vem com as distribuições padrão do MySQL, ou escrever seu próprio script de conversão. Idealmente, seu código deve seguir convenções consistentes de estilo de programação. Se não, provavelmente é melhor reescrevê-lo ou, pelo menos, revisá-lo manualmente para regularizar o estilo e torná-lo consistente.
+If you have written a lot of code, you may want to automate the conversion task by using the [**replace**](replace-utility.html "4.8.3 replace — A String-Replacement Utility") utility that comes with standard MySQL distributions, or write your own conversion script. Ideally, your code uses consistent programming style conventions. If not, then you are probably better off rewriting it anyway, or at least going through and manually regularizing it to use a consistent style.

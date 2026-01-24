@@ -1,11 +1,11 @@
-### 13.7.2 Declarações de manutenção da tabela
+### 13.7.2 Table Maintenance Statements
 
-13.7.2.1 Declaração de Análise de Tabela
+[13.7.2.1 ANALYZE TABLE Statement](analyze-table.html)
 
-13.7.2.2 Declaração CHECK TABLE
+[13.7.2.2 CHECK TABLE Statement](check-table.html)
 
-13.7.2.3 Declaração de tabela CHECKSUM
+[13.7.2.3 CHECKSUM TABLE Statement](checksum-table.html)
 
-13.7.2.4 Declaração de otimização da tabela
+[13.7.2.4 OPTIMIZE TABLE Statement](optimize-table.html)
 
-13.7.2.5 Declaração de REPARO DE TÁBUA
+[13.7.2.5 REPAIR TABLE Statement](repair-table.html)

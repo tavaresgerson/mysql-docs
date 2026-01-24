@@ -1,7 +1,7 @@
-### 15.2.2 Espaço necessário para as chaves
+### 15.2.2 Space Needed for Keys
 
-As tabelas `MyISAM` usam índices de árvore B. Você pode calcular aproximadamente o tamanho do arquivo do índice como `(comprimento da chave + 4)/0,67`, somando todas as chaves. Isso é para o caso pior, quando todas as chaves são inseridas em ordem ordenada e a tabela não tem chaves compactadas.
+`MyISAM` tables use B-tree indexes. You can roughly calculate the size for the index file as `(key_length+4)/0.67`, summed over all keys. This is for the worst case when all keys are inserted in sorted order and the table does not have any compressed keys.
 
-Os índices de strings são compactados em termos de espaço. Se a primeira parte do índice for uma string, ela também é compactada em termos de prefixo. A compactação em termos de espaço torna o arquivo de índice menor do que o valor máximo se uma coluna de string tiver muitos espaços finais ou for uma coluna `VARCHAR` que não é sempre usada na extensão completa. A compactação em termos de prefixo é usada em chaves que começam com uma string. A compactação em termos de prefixo ajuda se houver muitas strings com um prefixo idêntico.
+String indexes are space compressed. If the first index part is a string, it is also prefix compressed. Space compression makes the index file smaller than the worst-case figure if a string column has a lot of trailing space or is a `VARCHAR` column that is not always used to the full length. Prefix compression is used on keys that start with a string. Prefix compression helps if there are many strings with an identical prefix.
 
-Nas tabelas `MyISAM`, você também pode prefixar os números com compressão, especificando a opção de tabela `PACK_KEYS=1` ao criar a tabela. Os números são armazenados com o byte mais alto primeiro, então isso ajuda quando você tem muitos inteiros com um prefixo idêntico.
+In `MyISAM` tables, you can also prefix compress numbers by specifying the `PACK_KEYS=1` table option when you create the table. Numbers are stored with the high byte first, so this helps when you have many integer keys that have an identical prefix.

@@ -1,84 +1,84 @@
-### 24.4.16 A tabela INFORMATION_SCHEMA INNODB_METRICS
+### 24.4.16 The INFORMATION_SCHEMA INNODB_METRICS Table
 
-A tabela `INNODB_METRICS` fornece uma ampla variedade de informações de desempenho do `InnoDB`, complementando as áreas de foco específicas das tabelas do Schema de Desempenho para `InnoDB`. Com consultas simples, você pode verificar a saúde geral do sistema. Com consultas mais detalhadas, você pode diagnosticar problemas como gargalos de desempenho, escassez de recursos e problemas de aplicação.
+The [`INNODB_METRICS`](information-schema-innodb-metrics-table.html "24.4.16 The INFORMATION_SCHEMA INNODB_METRICS Table") table provides a wide variety of `InnoDB` performance information, complementing the specific focus areas of the Performance Schema tables for `InnoDB`. With simple queries, you can check the overall health of the system. With more detailed queries, you can diagnose issues such as performance bottlenecks, resource shortages, and application issues.
 
-Cada monitor representa um ponto dentro do código-fonte do `InnoDB` que é instrumentado para coletar informações de contagem. Cada contador pode ser iniciado, parado e redefinido. Você também pode realizar essas ações para um grupo de contadores usando seu nome de módulo comum.
+Each monitor represents a point within the `InnoDB` source code that is instrumented to gather counter information. Each counter can be started, stopped, and reset. You can also perform these actions for a group of counters using their common module name.
 
-Por padrão, são coletados dados relativamente baixos. Para iniciar, parar e reiniciar contadores, defina uma das variáveis do sistema `innodb_monitor_enable`, `innodb_monitor_disable`, `innodb_monitor_reset` ou `innodb_monitor_reset_all`, usando o nome do contador, o nome do módulo, uma correspondência de ponto de interrogação para um nome desse tipo usando o caractere “%” ou a palavra-chave especial `all`.
+By default, relatively little data is collected. To start, stop, and reset counters, set one of the system variables [`innodb_monitor_enable`](innodb-parameters.html#sysvar_innodb_monitor_enable), [`innodb_monitor_disable`](innodb-parameters.html#sysvar_innodb_monitor_disable), [`innodb_monitor_reset`](innodb-parameters.html#sysvar_innodb_monitor_reset), or [`innodb_monitor_reset_all`](innodb-parameters.html#sysvar_innodb_monitor_reset_all), using the name of the counter, the name of the module, a wildcard match for such a name using the “%” character, or the special keyword `all`.
 
-Para informações sobre o uso, consulte Seção 14.16.6, “Tabela de métricas do InnoDB INFORMATION_SCHEMA”.
+For usage information, see [Section 14.16.6, “InnoDB INFORMATION_SCHEMA Metrics Table”](innodb-information-schema-metrics-table.html "14.16.6 InnoDB INFORMATION_SCHEMA Metrics Table").
 
-A tabela `INNODB_METRICS` tem as seguintes colunas:
+The [`INNODB_METRICS`](information-schema-innodb-metrics-table.html "24.4.16 The INFORMATION_SCHEMA INNODB_METRICS Table") table has these columns:
 
-- `NOME`
+* `NAME`
 
-  Um nome único para o balcão.
+  A unique name for the counter.
 
-- `SUBSISTEMA`
+* `SUBSYSTEM`
 
-  O aspecto do `InnoDB` ao qual a métrica se aplica.
+  The aspect of `InnoDB` that the metric applies to.
 
-- `CONTAR`
+* `COUNT`
 
-  O valor desde que o contador foi habilitado.
+  The value since the counter was enabled.
 
-- `MAX_COUNT`
+* `MAX_COUNT`
 
-  O valor máximo desde que o contador foi ativado.
+  The maximum value since the counter was enabled.
 
-- `MIN_COUNT`
+* `MIN_COUNT`
 
-  O valor mínimo desde que o contador foi ativado.
+  The minimum value since the counter was enabled.
 
-- `AVG_COUNT`
+* `AVG_COUNT`
 
-  O valor médio desde que o contador foi habilitado.
+  The average value since the counter was enabled.
 
-- `COUNT_RESET`
+* `COUNT_RESET`
 
-  O valor do contador desde que foi redefinido pela última vez. (As colunas _RESET funcionam como o contador de voltas de um cronômetro: você pode medir a atividade durante algum intervalo de tempo, enquanto os valores acumulados ainda estão disponíveis em COUNT, MAX_COUNT, e assim por diante.)
+  The counter value since it was last reset. (The `_RESET` columns act like the lap counter on a stopwatch: you can measure the activity during some time interval, while the cumulative figures are still available in `COUNT`, `MAX_COUNT`, and so on.)
 
-- `MAX_COUNT_RESET`
+* `MAX_COUNT_RESET`
 
-  O valor máximo de contagem desde que foi redefinido pela última vez.
+  The maximum counter value since it was last reset.
 
-- `MIN_COUNT_RESET`
+* `MIN_COUNT_RESET`
 
-  O valor mínimo de contagem desde que foi redefinido pela última vez.
+  The minimum counter value since it was last reset.
 
-- `AVG_COUNT_RESET`
+* `AVG_COUNT_RESET`
 
-  O valor médio do contador desde que foi redefinido pela última vez.
+  The average counter value since it was last reset.
 
-- `TIME_ENABLED`
+* `TIME_ENABLED`
 
-  O horário de início da última sessão.
+  The timestamp of the last start.
 
-- `TIME_DISABLED`
+* `TIME_DISABLED`
 
-  O horário da última parada.
+  The timestamp of the last stop.
 
-- `TEMPO_PASSADO`
+* `TIME_ELAPSED`
 
-  O tempo decorrido em segundos desde que o contador começou.
+  The elapsed time in seconds since the counter started.
 
-- `TIME_RESET`
+* `TIME_RESET`
 
-  O horário de registro da última reinicialização.
+  The timestamp of the last reset.
 
-- `STATUS`
+* `STATUS`
 
-  Se o contador ainda está em execução (`enabled`) ou parado (`disabled`).
+  Whether the counter is still running (`enabled`) or stopped (`disabled`).
 
-- `TIPO`
+* `TYPE`
 
-  Se o item for um contador cumulativo ou mede o valor atual de algum recurso.
+  Whether the item is a cumulative counter, or measures the current value of some resource.
 
-- `COMENTÁRIO`
+* `COMMENT`
 
-  A descrição do contador.
+  The counter description.
 
-#### Exemplo
+#### Example
 
 ```sql
 mysql> SELECT * FROM INFORMATION_SCHEMA.INNODB_METRICS WHERE NAME='dml_inserts'\G
@@ -102,10 +102,10 @@ AVG_COUNT_RESET: NULL
         COMMENT: Number of rows inserted
 ```
 
-#### Notas
+#### Notes
 
-- Você deve ter o privilégio `PROCESSO` para consultar esta tabela.
+* You must have the [`PROCESS`](privileges-provided.html#priv_process) privilege to query this table.
 
-- Use a tabela `INFORMATION_SCHEMA` `COLUMNS` ou a instrução `SHOW COLUMNS` para visualizar informações adicionais sobre as colunas desta tabela, incluindo tipos de dados e valores padrão.
+* Use the `INFORMATION_SCHEMA` [`COLUMNS`](information-schema-columns-table.html "24.3.5 The INFORMATION_SCHEMA COLUMNS Table") table or the [`SHOW COLUMNS`](show-columns.html "13.7.5.5 SHOW COLUMNS Statement") statement to view additional information about the columns of this table, including data types and default values.
 
-- Os valores do contador de transações `COUNT` podem diferir do número de eventos de transação relatados nas tabelas `EVENTS_TRANSACTIONS_SUMMARY` do Gerenciador de Desempenho. O `InnoDB` conta apenas as transações que ele executa, enquanto o Gerenciador de Desempenho coleta eventos para todas as transações não abortadas iniciadas pelo servidor, incluindo transações vazias.
+* Transaction counter `COUNT` values may differ from the number of transaction events reported in Performance Schema `EVENTS_TRANSACTIONS_SUMMARY` tables. `InnoDB` counts only those transactions that it executes, whereas Performance Schema collects events for all non-aborted transactions initiated by the server, including empty transactions.

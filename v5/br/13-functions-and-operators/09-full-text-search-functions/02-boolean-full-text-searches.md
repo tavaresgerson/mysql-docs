@@ -1,6 +1,6 @@
-### 12.9.2 Pesquisas de Texto Completas Booleanas
+### 12.9.2 Boolean Full-Text Searches
 
-O MySQL pode realizar pesquisas de texto completo booleanas usando o modificador `IN BOOLEAN MODE`. Com este modificador, certos caracteres têm um significado especial no início ou no final das palavras na string de pesquisa. Na seguinte consulta, os operadores `+` e `-` indicam que uma palavra deve estar presente ou ausente, respectivamente, para que uma correspondência ocorra. Assim, a consulta recupera todas as linhas que contêm a palavra “MySQL”, mas que *não* contêm a palavra “YourSQL”:
+MySQL can perform boolean full-text searches using the `IN BOOLEAN MODE` modifier. With this modifier, certain characters have special meaning at the beginning or end of words in the search string. In the following query, the `+` and `-` operators indicate that a word must be present or absent, respectively, for a match to occur. Thus, the query retrieves all the rows that contain the word “MySQL” but that do *not* contain the word “YourSQL”:
 
 ```sql
 mysql> SELECT * FROM articles WHERE MATCH (title,body)
@@ -16,147 +16,147 @@ mysql> SELECT * FROM articles WHERE MATCH (title,body)
 +----+-----------------------+-------------------------------------+
 ```
 
-Nota
+Note
 
-Ao implementar essa funcionalidade, o MySQL utiliza o que é às vezes chamado de lógica booleana implícita, na qual
+In implementing this feature, MySQL uses what is sometimes referred to as implied Boolean logic, in which
 
-- `+` representa `E`
-- `-` representa `NOT`
-- [*sem operador*] implica em `OU`
+* `+` stands for `AND`
+* `-` stands for `NOT`
+* [*no operator*] implies `OR`
 
-As pesquisas de texto completo booleanas têm essas características:
+Boolean full-text searches have these characteristics:
 
-- Eles não classificam automaticamente as linhas em ordem decrescente de relevância.
+* They do not automatically sort rows in order of decreasing relevance.
 
-- As tabelas `InnoDB` exigem um índice `FULLTEXT` em todas as colunas da expressão `MATCH()` para realizar consultas booleanas. Consultas booleanas em um índice de pesquisa `MyISAM` podem funcionar mesmo sem um índice `FULLTEXT`, embora uma pesquisa executada dessa maneira seja bastante lenta.
+* `InnoDB` tables require a `FULLTEXT` index on all columns of the `MATCH()` expression to perform boolean queries. Boolean queries against a `MyISAM` search index can work even without a `FULLTEXT` index, although a search executed in this fashion would be quite slow.
 
-- Os parâmetros de comprimento mínimo e máximo de palavras para o texto completo se aplicam aos índices `FULLTEXT` criados usando o analisador `FULLTEXT` integrado e o plugin de analisador MeCab. `innodb_ft_min_token_size` e `innodb_ft_max_token_size` são usados para índices de pesquisa `InnoDB`. `ft_min_word_len` e `ft_max_word_len` são usados para índices de pesquisa `MyISAM`.
+* The minimum and maximum word length full-text parameters apply to `FULLTEXT` indexes created using the built-in `FULLTEXT` parser and MeCab parser plugin. `innodb_ft_min_token_size` and `innodb_ft_max_token_size` are used for `InnoDB` search indexes. `ft_min_word_len` and `ft_max_word_len` are used for `MyISAM` search indexes.
 
-  Os parâmetros de comprimento mínimo e máximo de palavras para o texto completo não se aplicam aos índices `FULLTEXT` criados usando o analisador ngram. O tamanho do token ngram é definido pela opção `ngram_token_size`.
+  Minimum and maximum word length full-text parameters do not apply to `FULLTEXT` indexes created using the ngram parser. ngram token size is defined by the `ngram_token_size` option.
 
-- A lista de palavras-chave aplica-se, controlada por `innodb_ft_enable_stopword`, `innodb_ft_server_stopword_table` e `innodb_ft_user_stopword_table` para índices de pesquisa `InnoDB`, e `ft_stopword_file` para os de `MyISAM`.
+* The stopword list applies, controlled by `innodb_ft_enable_stopword`, `innodb_ft_server_stopword_table`, and `innodb_ft_user_stopword_table` for `InnoDB` search indexes, and `ft_stopword_file` for `MyISAM` ones.
 
-- A pesquisa de texto completo do `InnoDB` não suporta o uso de múltiplos operadores em uma única palavra de busca, como neste exemplo: `'++apple'`. O uso de múltiplos operadores em uma única palavra de busca retorna um erro sintático para a saída padrão. A pesquisa de texto completo do MyISAM processa com sucesso a mesma pesquisa, ignorando todos os operadores, exceto o operador imediatamente adjacente à palavra de busca.
+* `InnoDB` full-text search does not support the use of multiple operators on a single search word, as in this example: `'++apple'`. Use of multiple operators on a single search word returns a syntax error to standard out. MyISAM full-text search successfully processes the same search, ignoring all operators except for the operator immediately adjacent to the search word.
 
-- A pesquisa de texto completo do `InnoDB` só suporta sinais de mais ou menos no início. Por exemplo, o `InnoDB` suporta `'+apple'` mas não suporta `'apple+'`. Especificar um sinal de mais ou menos no final faz com que o `InnoDB` informe um erro de sintaxe.
+* `InnoDB` full-text search only supports leading plus or minus signs. For example, `InnoDB` supports `'+apple'` but does not support `'apple+'`. Specifying a trailing plus or minus sign causes `InnoDB` to report a syntax error.
 
-- A pesquisa de texto completo do `InnoDB` não suporta o uso de um sinal mais no início com um caractere curinga (`'+*'`), uma combinação de sinal mais e menos (`'+-'`) ou um sinal mais e menos no início (`'+-apple'`). Essas consultas inválidas retornam um erro de sintaxe.
+* `InnoDB` full-text search does not support the use of a leading plus sign with wildcard (`'+*'`), a plus and minus sign combination (`'+-'`), or leading a plus and minus sign combination (`'+-apple'`). These invalid queries return a syntax error.
 
-- A pesquisa de texto completo do InnoDB não suporta o uso do símbolo `@` em pesquisas de texto completo booleanas. O símbolo `@` é reservado para uso pelo operador de proximidade `@distance`.
+* `InnoDB` full-text search does not support the use of the `@` symbol in boolean full-text searches. The `@` symbol is reserved for use by the `@distance` proximity search operator.
 
-- Eles não usam o limiar de 50% que se aplica aos índices de pesquisa `MyISAM`.
+* They do not use the 50% threshold that applies to `MyISAM` search indexes.
 
-A capacidade de busca de texto completo booleano suporta os seguintes operadores:
+The boolean full-text search capability supports the following operators:
 
-- `+`
+* `+`
 
-  Um sinal de mais no início ou no final indica que essa palavra *deve* estar presente em cada linha que é retornada. O `InnoDB` só suporta sinais de mais no início.
+  A leading or trailing plus sign indicates that this word *must* be present in each row that is returned. `InnoDB` only supports leading plus signs.
 
-- `-`
+* `-`
 
-  Um sinal de menos no início ou no final indica que essa palavra *não* deve estar presente em nenhuma das linhas retornadas. O `InnoDB` só suporta sinais de menos no início.
+  A leading or trailing minus sign indicates that this word must *not* be present in any of the rows that are returned. `InnoDB` only supports leading minus signs.
 
-  Observação: O operador `-` atua apenas para excluir linhas que, de outra forma, sejam correspondidas por outros termos de pesquisa. Assim, uma pesquisa em modo lógico que contenha apenas termos precedidos por `-` retornará um resultado vazio. Não retornará “todas as linhas, exceto aquelas que contenham algum dos termos excluídos”.
+  Note: The `-` operator acts only to exclude rows that are otherwise matched by other search terms. Thus, a boolean-mode search that contains only terms preceded by `-` returns an empty result. It does not return “all rows except those containing any of the excluded terms.”
 
-- (sem operador)
+* (no operator)
 
-  Por padrão (quando nem `+` nem `-` é especificado), a palavra é opcional, mas as linhas que a contêm são classificadas como melhores. Isso imita o comportamento de `MATCH() AGAINST()` sem o modificador `IN BOOLEAN MODE`.
+  By default (when neither `+` nor `-` is specified), the word is optional, but the rows that contain it are rated higher. This mimics the behavior of `MATCH() AGAINST()` without the `IN BOOLEAN MODE` modifier.
 
-- @distance
+* `@distance`
 
-  Este operador funciona apenas em tabelas `InnoDB`. Ele testa se duas ou mais palavras começam todas dentro de uma distância especificada uma da outra, medida em palavras. Especifique as palavras de busca dentro de uma string entre aspas imediatamente antes do operador `@distance`, por exemplo, `MATCH(col1) CONTRA(`palavra1 palavra2 palavra3" @8' EM MODO TRUE)\`
+  This operator works on `InnoDB` tables only. It tests whether two or more words all start within a specified distance from each other, measured in words. Specify the search words within a double-quoted string immediately before the `@distance` operator, for example, `MATCH(col1) AGAINST('"word1 word2 word3" @8' IN BOOLEAN MODE)`
 
-- `> <`
+* `> <`
 
-  Esses dois operadores são usados para alterar a contribuição de uma palavra para o valor de relevância atribuído a uma linha. O operador `>` aumenta a contribuição e o operador `<` a diminui. Veja o exemplo que segue essa lista.
+  These two operators are used to change a word's contribution to the relevance value that is assigned to a row. The `>` operator increases the contribution and the `<` operator decreases it. See the example following this list.
 
-- `( )`
+* `( )`
 
-  As parênteses agrupam as palavras em subexpressões. Os grupos entre parênteses podem ser aninhados.
+  Parentheses group words into subexpressions. Parenthesized groups can be nested.
 
-- `~`
+* `~`
 
-  Uma tilde principal atua como um operador de negação, fazendo com que a contribuição da palavra para a relevância da linha seja negativa. Isso é útil para marcar palavras de "ruído". Uma linha que contém tal palavra é avaliada de forma mais baixa do que outras, mas não é excluída completamente, como seria com o operador `-`.
+  A leading tilde acts as a negation operator, causing the word's contribution to the row's relevance to be negative. This is useful for marking “noise” words. A row containing such a word is rated lower than others, but is not excluded altogether, as it would be with the `-` operator.
 
-- `*`
+* `*`
 
-  O asterisco serve como operador de truncação (ou caractere curinga). Ao contrário dos outros operadores, ele é *após* a palavra afetada. As palavras correspondem se começam com a palavra que precede o operador `*`.
+  The asterisk serves as the truncation (or wildcard) operator. Unlike the other operators, it is *appended* to the word to be affected. Words match if they begin with the word preceding the `*` operator.
 
-  Se uma palavra for especificada com o operador de truncação, ela não será removida de uma consulta booleana, mesmo que seja muito curta ou um termo comum. Se uma palavra é considerada muito curta, isso é determinado pelo ajuste `innodb_ft_min_token_size` para tabelas `InnoDB`, ou `ft_min_word_len` para tabelas `MyISAM`. Essas opções não são aplicáveis a índices `FULLTEXT` que usam o analisador de ngram.
+  If a word is specified with the truncation operator, it is not stripped from a boolean query, even if it is too short or a stopword. Whether a word is too short is determined from the `innodb_ft_min_token_size` setting for `InnoDB` tables, or `ft_min_word_len` for `MyISAM` tables. These options are not applicable to `FULLTEXT` indexes that use the ngram parser.
 
-  A palavra com wildcard é considerada um prefixo que deve estar presente no início de uma ou mais palavras. Se o comprimento mínimo da palavra for de 4, uma pesquisa por `'+word +the*'` pode retornar menos linhas do que uma pesquisa por `'+word +the'`, porque a segunda consulta ignora o termo de busca muito curto `the`.
+  The wildcarded word is considered as a prefix that must be present at the start of one or more words. If the minimum word length is 4, a search for `'+word +the*'` could return fewer rows than a search for `'+word +the'`, because the second query ignores the too-short search term `the`.
 
-- `"`
+* `"`
 
-  Uma frase que está entre aspas duplas (`"`) corresponde apenas às linhas que contêm a frase *literalmente, como foi digitada*. O mecanismo de pesquisa de texto completo divide a frase em palavras e realiza uma pesquisa no índice `FULLTEXT` pelas palavras. Os caracteres não-palavras não precisam ser correspondidos exatamente: a pesquisa de frase exige apenas que as correspondências contenham exatamente as mesmas palavras que a frase e na mesma ordem. Por exemplo, `"test phrase"` corresponde a `"test, phrase"`.
+  A phrase that is enclosed within double quote (`"`) characters matches only rows that contain the phrase *literally, as it was typed*. The full-text engine splits the phrase into words and performs a search in the `FULLTEXT` index for the words. Nonword characters need not be matched exactly: Phrase searching requires only that matches contain exactly the same words as the phrase and in the same order. For example, `"test phrase"` matches `"test, phrase"`.
 
-  Se a frase não contiver palavras no índice, o resultado será vazio. As palavras podem não estar no índice devido a uma combinação de fatores: se não existem no texto, são palavras-chave ou são mais curtas que o comprimento mínimo das palavras indexadas.
+  If the phrase contains no words that are in the index, the result is empty. The words might not be in the index because of a combination of factors: if they do not exist in the text, are stopwords, or are shorter than the minimum length of indexed words.
 
-Os exemplos a seguir demonstram algumas cadeias de busca que utilizam operadores booleanos de texto completo:
+The following examples demonstrate some search strings that use boolean full-text operators:
 
-- ‘maçã banana’
+* `'apple banana'`
 
-  Encontre linhas que contenham pelo menos uma das duas palavras.
+  Find rows that contain at least one of the two words.
 
-- `'+ suco de maçã'`
+* `'+apple +juice'`
 
-  Encontre linhas que contenham ambas as palavras.
+  Find rows that contain both words.
 
-- `'+apple macintosh'`
+* `'+apple macintosh'`
 
-  Encontre linhas que contenham a palavra “maçã”, mas classifique as linhas com maior prioridade se elas também contiverem “maçã McIntosh”.
+  Find rows that contain the word “apple”, but rank rows higher if they also contain “macintosh”.
 
-- `'+apple -macintosh'`
+* `'+apple -macintosh'`
 
-  Encontre linhas que contenham a palavra “maçã”, mas não “maçã McIntosh”.
+  Find rows that contain the word “apple” but not “macintosh”.
 
-- `'+apple ~macintosh'`
+* `'+apple ~macintosh'`
 
-  Encontre linhas que contenham a palavra “maçã”, mas se a linha também contiver a palavra “maçã McIntosh”, classifique-a como menos importante do que se a linha não contiver essa palavra. Isso é “mais suave” do que uma busca por `'+apple -macintosh'`, para a qual a presença de “maçã McIntosh” faz com que a linha não seja exibida.
+  Find rows that contain the word “apple”, but if the row also contains the word “macintosh”, rate it lower than if row does not. This is “softer” than a search for `'+apple -macintosh'`, for which the presence of “macintosh” causes the row not to be returned at all.
 
-- `'+apple +(>turnover <strudel)'`
+* `'+apple +(>turnover <strudel)'`
 
-  Encontre linhas que contenham as palavras “maçã” e “vendas totais”, ou “maçã” e “strudel” (em qualquer ordem), mas classifique “vendas totais da maçã” como mais importante do que “strudel de maçã”.
+  Find rows that contain the words “apple” and “turnover”, or “apple” and “strudel” (in any order), but rank “apple turnover” higher than “apple strudel”.
 
-- `'apple*'`
+* `'apple*'`
 
-  Encontre linhas que contenham palavras como “maçã”, “maçãs”, “purea de maçã” ou “maçã”.
+  Find rows that contain words such as “apple”, “apples”, “applesauce”, or “applet”.
 
-- `"algumas palavras"`
+* `'"some words"'`
 
-  Encontre linhas que contenham a frase exata “algumas palavras” (por exemplo, linhas que contenham “algumas palavras de sabedoria”, mas não “algumas palavras de barulho”). Observe que os caracteres `"` que encerram a frase são caracteres operadores que delimitam a frase. Eles não são as aspas que encerram a própria string de pesquisa.
+  Find rows that contain the exact phrase “some words” (for example, rows that contain “some words of wisdom” but not “some noise words”). Note that the `"` characters that enclose the phrase are operator characters that delimit the phrase. They are not the quotation marks that enclose the search string itself.
 
-#### Classificações de relevância para a pesquisa de modo booleano do InnoDB
+#### Relevancy Rankings for InnoDB Boolean Mode Search
 
-A pesquisa de texto completo do `InnoDB` é modelada pelo motor de busca de texto completo Sphinx, e os algoritmos utilizados são baseados nos algoritmos de classificação BM25 e TF-IDF. Por essas razões, as classificações de relevância para a pesquisa de texto completo booleana do `InnoDB` podem diferir das classificações de relevância do `MyISAM`.
+`InnoDB` full-text search is modeled on the Sphinx full-text search engine, and the algorithms used are based on BM25 and TF-IDF ranking algorithms. For these reasons, relevancy rankings for `InnoDB` boolean full-text search may differ from `MyISAM` relevancy rankings.
 
-O `InnoDB` utiliza uma variação do sistema de ponderação "frequência de termos - frequência inversa de documentos" (`TF-IDF`) para classificar a relevância de um documento para uma consulta de pesquisa de texto completo dada. A ponderação `TF-IDF` é baseada na frequência com que uma palavra aparece em um documento, compensada pela frequência com que a palavra aparece em todos os documentos da coleção. Em outras palavras, quanto mais frequentemente uma palavra aparece em um documento e menos frequentemente ela aparece na coleção de documentos, mais alto o documento é classificado.
+`InnoDB` uses a variation of the “term frequency-inverse document frequency” (`TF-IDF`) weighting system to rank a document's relevance for a given full-text search query. The `TF-IDF` weighting is based on how frequently a word appears in a document, offset by how frequently the word appears in all documents in the collection. In other words, the more frequently a word appears in a document, and the less frequently the word appears in the document collection, the higher the document is ranked.
 
-##### Como o Ranking de Relevância é Calculado
+##### How Relevancy Ranking is Calculated
 
-O valor da frequência de termos (`TF`) é o número de vezes que uma palavra aparece em um documento. O valor da frequência inversa de documentos (`IDF`) de uma palavra é calculado usando a seguinte fórmula, onde `total_records` é o número de registros na coleção e `matching_records` é o número de registros em que o termo de busca aparece.
+The term frequency (`TF`) value is the number of times that a word appears in a document. The inverse document frequency (`IDF`) value of a word is calculated using the following formula, where `total_records` is the number of records in the collection, and `matching_records` is the number of records that the search term appears in.
 
 ```sql
 ${IDF} = log10( ${total_records} / ${matching_records} )
 ```
 
-Quando um documento contém uma palavra várias vezes, o valor IDF é multiplicado pelo valor TF:
+When a document contains a word multiple times, the IDF value is multiplied by the TF value:
 
 ```sql
 ${TF} * ${IDF}
 ```
 
-Usando os valores de `TF` e `IDF`, o ranking de relevância para um documento é calculado usando esta fórmula:
+Using the `TF` and `IDF` values, the relevancy ranking for a document is calculated using this formula:
 
 ```sql
 ${rank} = ${TF} * ${IDF} * ${IDF}
 ```
 
-A fórmula é demonstrada nos exemplos a seguir.
+The formula is demonstrated in the following examples.
 
-##### Ranking de relevância para uma busca por uma única palavra
+##### Relevancy Ranking for a Single Word Search
 
-Este exemplo demonstra o cálculo do ranking de relevância para uma pesquisa de uma palavra.
+This example demonstrates the relevancy ranking calculation for a single-word search.
 
 ```sql
 mysql> CREATE TABLE articles (
@@ -197,19 +197,19 @@ mysql> SELECT id, title, body,
 8 rows in set (0.00 sec)
 ```
 
-Existem 8 registros no total, com 3 que correspondem ao termo de busca “banco de dados”. O primeiro registro (`id 6`) contém o termo de busca 6 vezes e tem um ranking de relevância de `1.0886961221694946`. Esse valor de classificação é calculado usando um valor de `TF` de 6 (o termo de busca “banco de dados” aparece 6 vezes no registro `id 6`) e um valor de `IDF` de 0,42596873216370745, que é calculado da seguinte forma (onde 8 é o número total de registros e 3 é o número de registros em que o termo de busca aparece):
+There are 8 records in total, with 3 that match the “database” search term. The first record (`id 6`) contains the search term 6 times and has a relevancy ranking of `1.0886961221694946`. This ranking value is calculated using a `TF` value of 6 (the “database” search term appears 6 times in record `id 6`) and an `IDF` value of 0.42596873216370745, which is calculated as follows (where 8 is the total number of records and 3 is the number of records that the search term appears in):
 
 ```sql
 ${IDF} = LOG10( 8 / 3 ) = 0.42596873216370745
 ```
 
-Os valores de `TF` e `IDF` são então inseridos na fórmula de classificação:
+The `TF` and `IDF` values are then entered into the ranking formula:
 
 ```sql
 ${rank} = ${TF} * ${IDF} * ${IDF}
 ```
 
-Ao realizar o cálculo no cliente de linha de comando do MySQL, o valor de classificação retornado é de 1,088696164686938.
+Performing the calculation in the MySQL command-line client returns a ranking value of 1.088696164686938.
 
 ```sql
 mysql> SELECT 6*LOG10(8/3)*LOG10(8/3);
@@ -221,21 +221,21 @@ mysql> SELECT 6*LOG10(8/3)*LOG10(8/3);
 1 row in set (0.00 sec)
 ```
 
-Nota
+Note
 
-Você pode notar uma pequena diferença nos valores de classificação retornados pela instrução `SELECT ... MATCH ... AGAINST` e pelo cliente de linha de comando do MySQL (`1.0886961221694946` versus `1.088696164686938`). A diferença ocorre devido à forma como os tipos de dados são convertidos entre inteiros e flutuantes/dobles internamente pelo `InnoDB` (junto com decisões relacionadas à precisão e arredondamento), e como isso é feito em outros lugares, como no cliente de linha de comando do MySQL ou em outros tipos de calculadoras.
+You may notice a slight difference in the ranking values returned by the `SELECT ... MATCH ... AGAINST` statement and the MySQL command-line client (`1.0886961221694946` versus `1.088696164686938`). The difference is due to how the casts between integers and floats/doubles are performed internally by `InnoDB` (along with related precision and rounding decisions), and how they are performed elsewhere, such as in the MySQL command-line client or other types of calculators.
 
-##### Ranking de relevância para uma busca por múltiplas palavras
+##### Relevancy Ranking for a Multiple Word Search
 
-Este exemplo demonstra o cálculo do ranking de relevância para uma pesquisa de texto completo de várias palavras com base na tabela `articles` e nos dados usados no exemplo anterior.
+This example demonstrates the relevancy ranking calculation for a multiple-word full-text search based on the `articles` table and data used in the previous example.
 
-Se você pesquisar em mais de uma palavra, o valor de classificação de relevância é a soma do valor de classificação de relevância para cada palavra, conforme mostrado nesta fórmula:
+If you search on more than one word, the relevancy ranking value is a sum of the relevancy ranking value for each word, as shown in this formula:
 
 ```sql
 ${rank} = ${TF} * ${IDF} * ${IDF} + ${TF} * ${IDF} * ${IDF}
 ```
 
-Realizar uma pesquisa com dois termos ('tutorial de MySQL') retorna os seguintes resultados:
+Performing a search on two terms ('mysql tutorial') returns the following results:
 
 ```sql
 mysql> SELECT id, title, body, MATCH (title,body)
@@ -256,7 +256,7 @@ mysql> SELECT id, title, body, MATCH (title,body)
 8 rows in set (0.00 sec)
 ```
 
-No primeiro registro (`id 8`), 'mysql' aparece uma vez e 'tutorial' aparece duas vezes. Existem seis registros correspondentes para 'mysql' e dois registros correspondentes para 'tutorial'. O cliente de linha de comando MySQL retorna o valor de classificação esperado ao inserir esses valores na fórmula de classificação para uma pesquisa de múltiplas palavras:
+In the first record (`id 8`), 'mysql' appears once and 'tutorial' appears twice. There are six matching records for 'mysql' and two matching records for 'tutorial'. The MySQL command-line client returns the expected ranking value when inserting these values into the ranking formula for a multiple word search:
 
 ```sql
 mysql> SELECT (1*log10(8/6)*log10(8/6)) + (2*log10(8/2)*log10(8/2));
@@ -268,6 +268,6 @@ mysql> SELECT (1*log10(8/6)*log10(8/6)) + (2*log10(8/2)*log10(8/2));
 1 row in set (0.00 sec)
 ```
 
-Nota
+Note
 
-A pequena diferença nos valores de classificação retornados pela instrução `SELECT ... MATCH ... AGAINST` e pelo cliente de linha de comando do MySQL é explicada no exemplo anterior.
+The slight difference in the ranking values returned by the `SELECT ... MATCH ... AGAINST` statement and the MySQL command-line client is explained in the preceding example.

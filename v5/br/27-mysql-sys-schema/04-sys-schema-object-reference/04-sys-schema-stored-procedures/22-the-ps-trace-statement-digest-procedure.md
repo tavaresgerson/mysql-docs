@@ -1,26 +1,26 @@
-#### 26.4.4.22 O procedimento ps_trace_statement_digest()
+#### 26.4.4.22 The ps_trace_statement_digest() Procedure
 
-Trace todos os instrumentos do Schema de Desempenho para um digest específico de declaração.
+Traces all Performance Schema instrumentation for a specific statement digest.
 
-Se você encontrar uma declaração de interesse na tabela `events_statements_summary_by_digest` do Schema de Desempenho, especifique o valor da coluna `DIGEST` MD5 desse procedimento e indique a duração e o intervalo de monitoramento. O resultado é um relatório de todas as estatísticas rastreadas no Schema de Desempenho para esse digest no intervalo.
+If you find a statement of interest within the Performance Schema `events_statements_summary_by_digest` table, specify its `DIGEST` column MD5 value to this procedure and indicate the polling duration and interval. The result is a report of all statistics tracked within Performance Schema for that digest for the interval.
 
-O procedimento também tenta executar `EXPLAIN` para o exemplo de digestão com maior duração durante o intervalo. Essa tentativa pode falhar porque o Schema de Desempenho corta valores longos de `SQL_TEXT`. Consequentemente, o `EXPLAIN` falha devido a erros de parse.
+The procedure also attempts to execute `EXPLAIN` for the longest running example of the digest during the interval. This attempt might fail because the Performance Schema truncates long `SQL_TEXT` values. Consequently, `EXPLAIN` fails due to parse errors.
 
-Esse procedimento desabilita o registro binário durante sua execução, manipulando o valor da sessão da variável de sistema `sql_log_bin`. Essa é uma operação restrita, portanto, o procedimento requer privilégios suficientes para definir variáveis de sessão restritas. Consulte a Seção 5.1.8.1, “Privilégios de Variáveis de Sistema”.
+This procedure disables binary logging during its execution by manipulating the session value of the `sql_log_bin` system variable. That is a restricted operation, so the procedure requires privileges sufficient to set restricted session variables. See Section 5.1.8.1, “System Variable Privileges”.
 
-##### Parâmetros
+##### Parameters
 
-- `in_digest VARCHAR(32)`: O identificador do digest do comunicado a ser analisado.
+* `in_digest VARCHAR(32)`: The statement digest identifier to analyze.
 
-- `in_runtime INT`: Quanto tempo a análise deve ser executada em segundos.
+* `in_runtime INT`: How long to run the analysis in seconds.
 
-- `in_interval DECIMAL(2,2)`: O intervalo de análise em segundos (que pode ser fracionário) em que tentar capturar instantâneos.
+* `in_interval DECIMAL(2,2)`: The analysis interval in seconds (which can be fractional) at which to try to take snapshots.
 
-- `in_start_fresh BOOLEAN`: Se deve truncar as tabelas `events_statements_history_long` e `events_stages_history_long` do Schema de Desempenho antes de iniciar.
+* `in_start_fresh BOOLEAN`: Whether to truncate the Performance Schema `events_statements_history_long` and `events_stages_history_long` tables before starting.
 
-- `in_auto_enable BOOLEAN`: Se os consumidores obrigatórios devem ser habilitados automaticamente.
+* `in_auto_enable BOOLEAN`: Whether to automatically enable required consumers.
 
-##### Exemplo
+##### Example
 
 ```sql
 mysql> CALL sys.ps_trace_statement_digest('891ec6860f98ba46d89dd20b0c03652c', 10, 0.1, TRUE, TRUE);

@@ -1,12 +1,12 @@
-#### 13.7.5.34 Declaração de exibição do status do escravo
+#### 13.7.5.34 SHOW SLAVE STATUS Statement
 
 ```sql
 SHOW SLAVE STATUS [FOR CHANNEL channel]
 ```
 
-Esta declaração fornece informações de status sobre os parâmetros essenciais dos threads replicados. Ela requer o privilégio `SUPER` ou `REPLICATION CLIENT`.
+This statement provides status information on essential parameters of the replica threads. It requires either the [`SUPER`](privileges-provided.html#priv_super) or [`REPLICATION CLIENT`](privileges-provided.html#priv_replication-client) privilege.
 
-Se você emitir essa declaração usando o cliente **mysql**, você pode usar um delimitador de declaração `\G` em vez de um ponto e vírgula para obter um layout vertical mais legível:
+If you issue this statement using the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client, you can use a `\G` statement terminator rather than a semicolon to obtain a more readable vertical layout:
 
 ```sql
 mysql> SHOW SLAVE STATUS\G
@@ -70,268 +70,269 @@ Master_SSL_Verify_Server_Cert: No
            Master_TLS_Version: TLSv1.2
 ```
 
-O Schema de Desempenho fornece tabelas que exibem informações de replicação. Isso é semelhante às informações disponíveis a partir da declaração `SHOW SLAVE STATUS`, mas representadas em formato de tabela. Para detalhes, consulte Seção 25.12.11, “Tabelas de Replicação do Schema de Desempenho”.
+The Performance Schema provides tables that expose replication information. This is similar to the information available from the [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") statement, but represented in table form. For details, see [Section 25.12.11, “Performance Schema Replication Tables”](performance-schema-replication-tables.html "25.12.11 Performance Schema Replication Tables").
 
-A lista a seguir descreve os campos retornados por `SHOW SLAVE STATUS`. Para obter informações adicionais sobre a interpretação de seus significados, consulte Seção 16.1.7.1, “Verificação do Status de Replicação”.
+The following list describes the fields returned by [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement"). For additional information about interpreting their meanings, see [Section 16.1.7.1, “Checking Replication Status”](replication-administration-status.html "16.1.7.1 Checking Replication Status").
 
-- `Slave_IO_State`
+* `Slave_IO_State`
 
-  Uma cópia do campo `State` da saída do `SHOW PROCESSLIST` para a thread de E/S de replica. Isso informa o que a thread está fazendo: tentando se conectar à fonte, esperando eventos da fonte, reconectando-se à fonte, e assim por diante. Para uma lista de estados possíveis, consulte Seção 8.14.6, “Estados de Thread de E/S de Replicação”.
+  A copy of the `State` field of the [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement") output for the replica I/O thread. This tells you what the thread is doing: trying to connect to the source, waiting for events from the source, reconnecting to the source, and so on. For a listing of possible states, see [Section 8.14.6, “Replication Replica I/O Thread States”](replica-io-thread-states.html "8.14.6 Replication Replica I/O Thread States").
 
-- `Master_Host`
+* `Master_Host`
 
-  O hospedeiro de origem ao qual a replica está conectada.
+  The source host that the replica is connected to.
 
-- `Master_User`
+* `Master_User`
 
-  O nome de usuário da conta usada para se conectar à fonte.
+  The user name of the account used to connect to the source.
 
-- `Master_Port`
+* `Master_Port`
 
-  O porto costumava se conectar à fonte.
+  The port used to connect to the source.
 
-- `Conectar_Retry`
+* `Connect_Retry`
 
-  O número de segundos entre as tentativas de conexão (padrão 60). Isso pode ser configurado com a instrução `CHANGE MASTER TO`.
+  The number of seconds between connect retries (default 60). This can be set with the [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") statement.
 
-- `Master_Log_File`
+* `Master_Log_File`
 
-  O nome do arquivo de log binário de origem a partir do qual a thread de E/S está lendo atualmente.
+  The name of the source binary log file from which the I/O thread is currently reading.
 
-- `Leia o log de posição do mestre`
+* `Read_Master_Log_Pos`
 
-  A posição no arquivo de log binário de origem atual até a qual o thread de E/S leu.
+  The position in the current source binary log file up to which the I/O thread has read.
 
-- `Relay_Log_File`
+* `Relay_Log_File`
 
-  O nome do arquivo de registro de relay a partir do qual o thread SQL está lendo e executando atualmente.
+  The name of the relay log file from which the SQL thread is currently reading and executing.
 
-- `Relay_Log_Pos`
+* `Relay_Log_Pos`
 
-  A posição no arquivo de registro do retransmissor atual até a qual o thread SQL leu e executou.
+  The position in the current relay log file up to which the SQL thread has read and executed.
 
-- `Relay_Master_Log_File`
+* `Relay_Master_Log_File`
 
-  O nome do arquivo de log binário de origem que contém o evento mais recente executado pelo thread SQL.
+  The name of the source binary log file containing the most recent event executed by the SQL thread.
 
-- `Slave_IO_Running`
+* `Slave_IO_Running`
 
-  Se a thread de E/S foi iniciada e se conectou com sucesso à fonte. Internamente, o estado dessa thread é representado por um dos seguintes três valores:
+  Whether the I/O thread is started and has connected successfully to the source. Internally, the state of this thread is represented by one of the following three values:
 
-  - **MYSQL_SLAVE_NOT_RUN.** A thread de I/O da replica não está em execução. Para este estado, `Slave_IO_Running` é `No`.
+  + **MYSQL_SLAVE_NOT_RUN.** The replica I/O thread is not running. For this state, `Slave_IO_Running` is `No`.
 
-  - **MYSQL_SLAVE_RUN_NOT_CONNECT.** A thread de I/O da replica está em execução, mas não está conectada a uma fonte de replicação. Para este estado, `Slave_IO_Running` é `Conectando`.
+  + **MYSQL_SLAVE_RUN_NOT_CONNECT.** The replica I/O thread is running, but is not connected to a replication source. For this state, `Slave_IO_Running` is `Connecting`.
 
-  - **MYSQL_SLAVE_RUN_CONNECT.** A thread de I/O da replica está em execução e está conectada a uma fonte de replicação. Para este estado, `Slave_IO_Running` é `Sim`.
+  + **MYSQL_SLAVE_RUN_CONNECT.** The replica I/O thread is running, and is connected to a replication source. For this state, `Slave_IO_Running` is `Yes`.
 
-  O valor da variável de status do sistema `Slave_running` corresponde a esse valor.
+  The value of the [`Slave_running`](server-status-variables.html#statvar_Slave_running) system status variable corresponds with this value.
 
-- `Slave_SQL_Running`
+* `Slave_SQL_Running`
 
-  Se o thread SQL foi iniciado.
+  Whether the SQL thread is started.
 
-- `Replicate_Do_DB`, `Replicate_Ignore_DB`
+* `Replicate_Do_DB`, `Replicate_Ignore_DB`
 
-  As listas de bancos de dados especificadas com as opções `--replicate-do-db` e `--replicate-ignore-db`, se houver.
+  The lists of databases that were specified with the [`--replicate-do-db`](replication-options-replica.html#option_mysqld_replicate-do-db) and [`--replicate-ignore-db`](replication-options-replica.html#option_mysqld_replicate-ignore-db) options, if any.
 
-- `Replicar_Na_Tabela`, `Replicar_Ignorar_Na_Tabela`, `Replicar_Com_Caracteres_Especiais_Na_Tabela`, `Replicar_Com_Caracteres_Especiais_Ignorar_Na_Tabela`
+* `Replicate_Do_Table`, `Replicate_Ignore_Table`, `Replicate_Wild_Do_Table`, `Replicate_Wild_Ignore_Table`
 
-  As listas de tabelas especificadas com as opções `--replicate-do-table`, `--replicate-ignore-table`, `--replicate-wild-do-table` e `--replicate-wild-ignore-table`, se houver.
+  The lists of tables that were specified with the [`--replicate-do-table`](replication-options-replica.html#option_mysqld_replicate-do-table), [`--replicate-ignore-table`](replication-options-replica.html#option_mysqld_replicate-ignore-table), [`--replicate-wild-do-table`](replication-options-replica.html#option_mysqld_replicate-wild-do-table), and [`--replicate-wild-ignore-table`](replication-options-replica.html#option_mysqld_replicate-wild-ignore-table) options, if any.
 
-- `Last_Errno`, `Last_Error`
+* `Last_Errno`, `Last_Error`
 
-  Essas colunas são aliases para `Last_SQL_Errno` e `Last_SQL_Error`.
+  These columns are aliases for `Last_SQL_Errno` and `Last_SQL_Error`.
 
-  A emissão de `RESET MASTER` ou `RESET SLAVE` redefiniu os valores exibidos nessas colunas.
+  Issuing [`RESET MASTER`](reset-master.html "13.4.1.2 RESET MASTER Statement") or [`RESET SLAVE`](reset-slave.html "13.4.2.3 RESET SLAVE Statement") resets the values shown in these columns.
 
-  Nota
+  Note
 
-  Quando o thread de replicação SQL recebe um erro, ele relata o erro primeiro e, em seguida, para o thread SQL. Isso significa que há uma pequena janela de tempo durante a qual `SHOW SLAVE STATUS` mostra um valor diferente de zero para `Last_SQL_Errno`, mesmo que `Slave_SQL_Running` ainda mostre `Sim`.
+  When the replica SQL thread receives an error, it reports the error first, then stops the SQL thread. This means that there is a small window of time during which [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") shows a nonzero value for `Last_SQL_Errno` even though `Slave_SQL_Running` still displays `Yes`.
 
-- `Contator de pular`
+* `Skip_Counter`
 
-  O valor atual da variável de sistema [`sql_slave_skip_counter`](https://pt.wikibooks.org/wiki/Replication_options_replica.html#sysvar_sql_slave_skip_counter). Consulte [Seção 13.4.2.4, "Sintaxe de SET GLOBAL sql_slave_skip_counter"](https://pt.wikibooks.org/wiki/Replication_options_replica.html#set-global-sql-slave-skip-counter).
+  The current value of the [`sql_slave_skip_counter`](replication-options-replica.html#sysvar_sql_slave_skip_counter) system variable. See [Section 13.4.2.4, “SET GLOBAL sql_slave_skip_counter Syntax”](set-global-sql-slave-skip-counter.html "13.4.2.4 SET GLOBAL sql_slave_skip_counter Syntax").
 
-- `Exec_Master_Log_Pos`
+* `Exec_Master_Log_Pos`
 
-  A posição no arquivo de log binário de origem atual para a qual o thread SQL leu e executou, marcando o início da próxima transação ou evento a ser processado. Você pode usar esse valor com a opção `MASTER_LOG_POS` da instrução `CHANGE MASTER TO` ao iniciar uma nova replica a partir de uma replica existente, para que a nova replica leia a partir desse ponto. As coordenadas fornecidas por (`Relay_Master_Log_File`, `Exec_Master_Log_Pos`) no log binário da origem correspondem às coordenadas fornecidas por (`Relay_Log_File`, `Relay_Log_Pos`) no log do retransmissor.
+  The position in the current source binary log file to which the SQL thread has read and executed, marking the start of the next transaction or event to be processed. You can use this value with the [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") statement's `MASTER_LOG_POS` option when starting a new replica from an existing replica, so that the new replica reads from this point. The coordinates given by (`Relay_Master_Log_File`, `Exec_Master_Log_Pos`) in the source's binary log correspond to the coordinates given by (`Relay_Log_File`, `Relay_Log_Pos`) in the relay log.
 
-  Inconsistências na sequência das transações do log de retransmissão que foram executadas podem fazer com que esse valor seja um "limite mínimo". Em outras palavras, as transações que aparecem antes da posição são garantidas para terem sido concluídas, mas as transações após a posição podem ter sido concluídas ou não. Se essas lacunas precisam ser corrigidas, use `START SLAVE UNTIL SQL_AFTER_MTS_GAPS`. Consulte Seção 16.4.1.32, “Replicação e Inconsistências de Transações” para obter mais informações.
+  Inconsistencies in the sequence of transactions from the relay log which have been executed can cause this value to be a “low-water mark”. In other words, transactions appearing before the position are guaranteed to have committed, but transactions after the position may have committed or not. If these gaps need to be corrected, use [`START SLAVE UNTIL SQL_AFTER_MTS_GAPS`](start-slave.html "13.4.2.5 START SLAVE Statement"). See [Section 16.4.1.32, “Replication and Transaction Inconsistencies”](replication-features-transaction-inconsistencies.html "16.4.1.32 Replication and Transaction Inconsistencies") for more information.
 
-- `Relay_Log_Space`
+* `Relay_Log_Space`
 
-  O tamanho total combinado de todos os arquivos de registro de relay existentes.
+  The total combined size of all existing relay log files.
 
-- `Até_Condição`, `Até_Arquivo_Log`, `Até_Pos_Log`
+* `Until_Condition`, `Until_Log_File`, `Until_Log_Pos`
 
-  Os valores especificados na cláusula `UNTIL` da declaração `START SLAVE`.
+  The values specified in the `UNTIL` clause of the [`START SLAVE`](start-slave.html "13.4.2.5 START SLAVE Statement") statement.
 
-  `Até_Condição` tem esses valores:
+  `Until_Condition` has these values:
 
-  - `Nenhum` se nenhuma cláusula `UNTIL` foi especificada
+  + `None` if no `UNTIL` clause was specified
 
-  - `Master` se a replica estiver lendo até uma posição específica no log binário da fonte
+  + `Master` if the replica is reading until a given position in the source's binary log
 
-  - `Relay` se a réplica estiver lendo até uma posição específica no log de retransmissão
+  + `Relay` if the replica is reading until a given position in its relay log
 
-  - `SQL_BEFORE_GTIDS` se o thread SQL da replica estiver processando transações até atingir a primeira transação cujo GTID está listado no `gtid_set`.
+  + `SQL_BEFORE_GTIDS` if the replica SQL thread is processing transactions until it has reached the first transaction whose GTID is listed in the `gtid_set`.
 
-  - `SQL_AFTER_GTIDS` se as threads da replica estiverem processando todas as transações até que a última transação no `gtid_set` tenha sido processada por ambas as threads.
+  + `SQL_AFTER_GTIDS` if the replica threads are processing all transactions until the last transaction in the `gtid_set` has been processed by both threads.
 
-  - `SQL_AFTER_MTS_GAPS` se os threads SQL de uma replica multithread estiverem em execução até que mais lacunas não sejam encontradas no log de retransmissão.
+  + [`SQL_AFTER_MTS_GAPS`](start-slave.html "13.4.2.5 START SLAVE Statement") if a multithreaded replica's SQL threads are running until no more gaps are found in the relay log.
 
-  `Until_Log_File` e `Until_Log_Pos` indicam o nome do arquivo de log e a posição que definem as coordenadas em que o thread SQL para de executar.
+  `Until_Log_File` and `Until_Log_Pos` indicate the log file name and position that define the coordinates at which the SQL thread stops executing.
 
-  Para mais informações sobre as cláusulas `UNTIL`, consulte Seção 13.4.2.5, "Instrução START SLAVE".
+  For more information on `UNTIL` clauses, see [Section 13.4.2.5, “START SLAVE Statement”](start-slave.html "13.4.2.5 START SLAVE Statement").
 
-- `Master_SSL_Allowed`, `Master_SSL_CA_File`, `Master_SSL_CA_Path`, `Master_SSL_Cert`, `Master_SSL_Cipher`, `Master_SSL_CRL_File`, `Master_SSL_CRL_Path`, `Master_SSL_Key`, `Master_SSL_Verify_Server_Cert`
+* `Master_SSL_Allowed`, `Master_SSL_CA_File`, `Master_SSL_CA_Path`, `Master_SSL_Cert`, `Master_SSL_Cipher`, `Master_SSL_CRL_File`, `Master_SSL_CRL_Path`, `Master_SSL_Key`, `Master_SSL_Verify_Server_Cert`
 
-  Esses campos mostram os parâmetros SSL usados pela replica para se conectar à fonte, se houver.
+  These fields show the SSL parameters used by the replica to connect to the source, if any.
 
-  `Master_SSL_Allowed` tem esses valores:
+  `Master_SSL_Allowed` has these values:
 
-  - Sim, se uma conexão SSL para a fonte for permitida
+  + `Yes` if an SSL connection to the source is permitted
 
-  - `Não` se uma conexão SSL para a fonte não for permitida
+  + `No` if an SSL connection to the source is not permitted
 
-  - `Ignorado` se uma conexão SSL for permitida, mas o servidor replicador não tiver o suporte SSL habilitado
+  + `Ignored` if an SSL connection is permitted but the replica server does not have SSL support enabled
 
-  Os valores dos outros campos relacionados ao SSL correspondem aos valores das opções `MASTER_SSL_CA`, `MASTER_SSL_CAPATH`, `MASTER_SSL_CERT`, `MASTER_SSL_CIPHER`, `MASTER_SSL_CRL`, `MASTER_SSL_CRLPATH`, `MASTER_SSL_KEY` e `MASTER_SSL_VERIFY_SERVER_CERT` da declaração `ALTERAR MASTER PARA` (change-master-to.html). Veja Seção 13.4.2.1, “Declaração ALTERAR MASTER PARA”.
+  The values of the other SSL-related fields correspond to the values of the `MASTER_SSL_CA`, `MASTER_SSL_CAPATH`, `MASTER_SSL_CERT`, `MASTER_SSL_CIPHER`, `MASTER_SSL_CRL`, `MASTER_SSL_CRLPATH`, `MASTER_SSL_KEY`, and `MASTER_SSL_VERIFY_SERVER_CERT` options to the [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") statement. See [Section 13.4.2.1, “CHANGE MASTER TO Statement”](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement").
 
-- `Segundos_Atrás_do_Master`
+* `Seconds_Behind_Master`
 
-  Esse campo indica o quão “tardia” é a réplica:
+  This field is an indication of how “late” the replica is:
 
-  - Quando a réplica está processando ativamente as atualizações, este campo mostra a diferença entre o timestamp atual na réplica e o timestamp original registrado na fonte para o evento que está sendo processado na réplica.
+  + When the replica is actively processing updates, this field shows the difference between the current timestamp on the replica and the original timestamp logged on the source for the event currently being processed on the replica.
 
-  - Quando nenhum evento está sendo processado na replica, esse valor é 0.
+  + When no event is currently being processed on the replica, this value is 0.
 
-  Em essência, este campo mede a diferença de tempo em segundos entre o thread de SQL da replica e o thread de E/S da replica. Se a conexão de rede entre a fonte e a replica for rápida, o thread de E/S da replica estará muito próximo da fonte, então este campo é uma boa aproximação de quão atrasado o thread de SQL da replica está em relação à fonte. Se a rede for lenta, isso *não* é uma boa aproximação; o thread de SQL da replica pode estar frequentemente atrasado em relação ao thread de E/S da replica que lê lentamente, então `Seconds_Behind_Master` muitas vezes mostra um valor de 0, mesmo que o thread de E/S esteja atrasado em relação à fonte. Em outras palavras, *esta coluna é útil apenas para redes rápidas*.
+  In essence, this field measures the time difference in seconds between the replica SQL thread and the replica I/O thread. If the network connection between source and replica is fast, the replica I/O thread is very close to the source, so this field is a good approximation of how late the replica SQL thread is compared to the source. If the network is slow, this is *not* a good approximation; the replica SQL thread may quite often be caught up with the slow-reading replica I/O thread, so `Seconds_Behind_Master` often shows a value of 0, even if the I/O thread is late compared to the source. In other words, *this column is useful only for fast networks*.
 
-  Essa computação da diferença de tempo funciona mesmo se a fonte e a réplica não tiverem tempos de relógio idênticos, desde que a diferença, calculada quando a thread de E/S da réplica começa, permaneça constante a partir daí. Quaisquer alterações — incluindo atualizações do NTP — podem levar a desalinhamentos de relógio que podem tornar o cálculo de `Seconds_Behind_Master` menos confiável.
+  This time difference computation works even if the source and replica do not have identical clock times, provided that the difference, computed when the replica I/O thread starts, remains constant from then on. Any changes—including NTP updates—can lead to clock skews that can make calculation of `Seconds_Behind_Master` less reliable.
 
-  No MySQL 5.7, este campo é `NULL` (definido como indefinido ou desconhecido) se o thread de SQL da replica não estiver em execução ou se o thread de I/O da replica não estiver em execução e o log de retransmissão tiver sido consumido. (Em versões mais antigas do MySQL, este campo era `NULL` se o thread de SQL da replica ou o thread de I/O da replica não estivesse em execução ou não estivesse conectado à fonte.) Se o thread de I/O estiver em execução, mas o log de retransmissão estiver esgotado, `Seconds_Behind_Master` é definido como 0.
+  In MySQL 5.7, this field is `NULL` (undefined or unknown) if the replica SQL thread is not running, or if the SQL thread has consumed all of the relay log and the replica I/O thread is not running. (In older versions of MySQL, this field was `NULL` if the replica SQL thread or the replica I/O thread was not running or was not connected to the source.) If the I/O thread is running but the relay log is exhausted, `Seconds_Behind_Master` is set to 0.
 
-  O valor de `Seconds_Behind_Master` é baseado nos timestamps armazenados nos eventos, que são preservados através da replicação. Isso significa que, se uma fonte M1 for ela mesma uma réplica de M0, qualquer evento do log binário de M1 que tenha origem no log binário de M0 terá o timestamp de M0 para esse evento. Isso permite que o MySQL replique o `TIMESTAMP` (datetime.html) com sucesso. No entanto, o problema para `Seconds_Behind_Master` é que, se M1 também receber atualizações diretas de clientes, o valor de `Seconds_Behind_Master` flutua aleatoriamente porque, às vezes, o último evento de M1 tem origem em M0 e, outras vezes, é o resultado de uma atualização direta em M1.
+  The value of `Seconds_Behind_Master` is based on the timestamps stored in events, which are preserved through replication. This means that if a source M1 is itself a replica of M0, any event from M1's binary log that originates from M0's binary log has M0's timestamp for that event. This enables MySQL to replicate [`TIMESTAMP`](datetime.html "11.2.2 The DATE, DATETIME, and TIMESTAMP Types") successfully. However, the problem for `Seconds_Behind_Master` is that if M1 also receives direct updates from clients, the `Seconds_Behind_Master` value randomly fluctuates because sometimes the last event from M1 originates from M0 and sometimes is the result of a direct update on M1.
 
-  Ao usar uma replica multithreading, você deve ter em mente que esse valor é baseado em `Exec_Master_Log_Pos`, e, portanto, pode não refletir a posição da transação mais recentemente confirmada.
+  When using a multithreaded replica, you should keep in mind that this value is based on `Exec_Master_Log_Pos`, and so may not reflect the position of the most recently committed transaction.
 
-- `Last_IO_Errno`, `Last_IO_Error`
+* `Last_IO_Errno`, `Last_IO_Error`
 
-  O número do erro e a mensagem de erro do erro mais recente que causou o bloqueio da thread de E/S. Um número de erro de 0 e uma mensagem de uma string vazia significam “sem erro”. Se o valor `Last_IO_Error` não estiver vazio, os valores de erro também aparecem no log de erro da replica.
+  The error number and error message of the most recent error that caused the I/O thread to stop. An error number of 0 and message of the empty string mean “no error.” If the `Last_IO_Error` value is not empty, the error values also appear in the replica's error log.
 
-  As informações sobre erros de E/S incluem um timestamp que mostra quando o erro mais recente da thread de E/S ocorreu. Esse timestamp usa o formato *`YYMMDD hh:mm:ss`* e aparece na coluna `Last_IO_Error_Timestamp`.
+  I/O error information includes a timestamp showing when the most recent I/O thread error occurred. This timestamp uses the format *`YYMMDD hh:mm:ss`*, and appears in the `Last_IO_Error_Timestamp` column.
 
-  A emissão de `RESET MASTER` ou `RESET SLAVE` redefiniu os valores exibidos nessas colunas.
+  Issuing [`RESET MASTER`](reset-master.html "13.4.1.2 RESET MASTER Statement") or [`RESET SLAVE`](reset-slave.html "13.4.2.3 RESET SLAVE Statement") resets the values shown in these columns.
 
-- `Last_SQL_Errno`, `Last_SQL_Error`
+* `Last_SQL_Errno`, `Last_SQL_Error`
 
-  O número do erro e a mensagem de erro do erro mais recente que causou o término do thread SQL. Um número de erro de 0 e uma mensagem de string vazia significam “sem erro”. Se o valor `Last_SQL_Error` não estiver vazio, os valores do erro também aparecem no log de erro da replica.
+  The error number and error message of the most recent error that caused the SQL thread to stop. An error number of 0 and message of the empty string mean “no error.” If the `Last_SQL_Error` value is not empty, the error values also appear in the replica's error log.
 
-  Se a replica for multithreading, o thread SQL é o coordenador dos threads de trabalho. Nesse caso, o campo `Last_SQL_Error` mostra exatamente o que a coluna `Last_Error_Message` na tabela do Schema de Desempenho `replication_applier_status_by_coordinator` mostra. O valor do campo é modificado para sugerir que pode haver mais falhas nos outros threads de trabalho, que podem ser vistas na tabela `replication_applier_status_by_worker` que mostra o status de cada thread de trabalho. Se essa tabela não estiver disponível, o log de erro da replica pode ser usado. O log ou a tabela `replication_applier_status_by_worker` também deve ser usada para saber mais sobre a falha mostrada por `SHOW SLAVE STATUS` ou a tabela do coordenador.
+  If the replica is multithreaded, the SQL thread is the coordinator for worker threads. In this case, the `Last_SQL_Error` field shows exactly what the `Last_Error_Message` column in the Performance Schema [`replication_applier_status_by_coordinator`](performance-schema-replication-applier-status-by-coordinator-table.html "25.12.11.5 The replication_applier_status_by_coordinator Table") table shows. The field value is modified to suggest that there may be more failures in the other worker threads which can be seen in the [`replication_applier_status_by_worker`](performance-schema-replication-applier-status-by-worker-table.html "25.12.11.6 The replication_applier_status_by_worker Table") table that shows each worker thread's status. If that table is not available, the replica error log can be used. The log or the [`replication_applier_status_by_worker`](performance-schema-replication-applier-status-by-worker-table.html "25.12.11.6 The replication_applier_status_by_worker Table") table should also be used to learn more about the failure shown by [`SHOW SLAVE STATUS`](show-slave-status.html "13.7.5.34 SHOW SLAVE STATUS Statement") or the coordinator table.
 
-  As informações de erro SQL incluem um timestamp que mostra quando o erro mais recente do thread SQL ocorreu. Esse timestamp usa o formato *`YYMMDD hh:mm:ss`* e aparece na coluna `Last_SQL_Error_Timestamp`.
+  SQL error information includes a timestamp showing when the most recent SQL thread error occurred. This timestamp uses the format *`YYMMDD hh:mm:ss`*, and appears in the `Last_SQL_Error_Timestamp` column.
 
-  A emissão de `RESET MASTER` ou `RESET SLAVE` redefiniu os valores exibidos nessas colunas.
+  Issuing [`RESET MASTER`](reset-master.html "13.4.1.2 RESET MASTER Statement") or [`RESET SLAVE`](reset-slave.html "13.4.2.3 RESET SLAVE Statement") resets the values shown in these columns.
 
-  No MySQL 5.7, todos os códigos de erro e mensagens exibidos nas colunas `Last_SQL_Errno` e `Last_SQL_Error` correspondem aos valores de erro listados em Referência de Mensagem de Erro do Servidor. Isso não era sempre verdade em versões anteriores. (Bug #11760365, Bug #52768)
+  In MySQL 5.7, all error codes and messages displayed in the `Last_SQL_Errno` and `Last_SQL_Error` columns correspond to error values listed in [Server Error Message Reference](/doc/mysql-errors/5.7/en/server-error-reference.html). This was not always true in previous versions. (Bug #11760365, Bug
+  #52768)
 
-- `Replicate_Ignore_Server_Ids`
+* `Replicate_Ignore_Server_Ids`
 
-  No MySQL 5.7, você define uma replica para ignorar eventos de 0 ou mais fontes usando a opção `IGNORE_SERVER_IDS` da instrução `CHANGE MASTER TO`. Por padrão, essa opção está em branco e geralmente é modificada apenas ao usar uma configuração de replicação circular ou de múltiplas fontes. A mensagem exibida para `Replicate_Ignore_Server_Ids` quando não está em branco consiste em uma lista separada por vírgula de um ou mais números, indicando os IDs de servidor a serem ignorados. Por exemplo:
+  In MySQL 5.7, you set a replica to ignore events from 0 or more sources using the `IGNORE_SERVER_IDS` option of the [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") statement. By default this is blank, and is usually modified only when using a circular or other multi-source replication setup. The message shown for `Replicate_Ignore_Server_Ids` when not blank consists of a comma-delimited list of one or more numbers, indicating the server IDs to be ignored. For example:
 
   ```sql
   	Replicate_Ignore_Server_Ids: 2, 6, 9
   ```
 
-  Nota
+  Note
 
-  `Ignored_server_ids` também mostra os IDs dos servidores a serem ignorados, mas é uma lista delimitada por espaços, que é precedida pelo número total de IDs de servidores a serem ignorados. Por exemplo, se uma declaração `CHANGE MASTER TO` contendo a opção `IGNORE_SERVER_IDS = (2,6,9)` tiver sido emitida para dizer a uma réplica que ignore fontes com o ID de servidor 2, 6 ou 9, essa informação aparece conforme mostrado aqui:
+  `Ignored_server_ids` also shows the server IDs to be ignored, but is a space-delimited list, which is preceded by the total number of server IDs to be ignored. For example, if a [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") statement containing the `IGNORE_SERVER_IDS = (2,6,9)` option has been issued to tell a replica to ignore sources having the server ID 2, 6, or 9, that information appears as shown here:
 
   ```sql
   	Ignored_server_ids: 3, 2, 6, 9
   ```
 
-  O primeiro número (neste caso, `3`) indica o número de IDs de servidor que estão sendo ignoradas.
+  The first number (in this case `3`) shows the number of server IDs being ignored.
 
-  O filtro `Replicate_Ignore_Server_Ids` é realizado pela thread de E/S, e não pela thread SQL, o que significa que os eventos que são filtrados não são escritos no log de retransmissão. Isso difere das ações de filtragem realizadas por opções do servidor, como `--replicate-do-table`, que se aplicam à thread SQL.
+  `Replicate_Ignore_Server_Ids` filtering is performed by the I/O thread, rather than by the SQL thread, which means that events which are filtered out are not written to the relay log. This differs from the filtering actions taken by server options such [`--replicate-do-table`](replication-options-replica.html#option_mysqld_replicate-do-table), which apply to the SQL thread.
 
-- `Master_Server_Id`
+* `Master_Server_Id`
 
-  O valor do [`server_id`](https://docs.mariadb.org/mariadb/en/latest/replication-options.html#sysvar_server_id) da fonte.
+  The [`server_id`](replication-options.html#sysvar_server_id) value from the source.
 
-- `Master_UUID`
+* `Master_UUID`
 
-  O valor [`server_uuid`](https://pt.wikipedia.org/wiki/Replicação_de_servidor#sysvar_server_uuid) da fonte.
+  The [`server_uuid`](replication-options.html#sysvar_server_uuid) value from the source.
 
-- `Master_Info_File`
+* `Master_Info_File`
 
-  Localização do arquivo `master.info`.
+  The location of the `master.info` file.
 
-- `SQL_Delay`
+* `SQL_Delay`
 
-  O número de segundos que a réplica deve ficar atrasada em relação à fonte.
+  The number of seconds that the replica must lag the source.
 
-- `SQL_Remaining_Delay`
+* `SQL_Remaining_Delay`
 
-  Quando `Slave_SQL_Running_State` é `Aguardando até que o evento MASTER_DELAY segundos após o evento do mestre seja executado`, este campo contém o número de segundos de atraso restantes. Em outros momentos, este campo é `NULL`.
+  When `Slave_SQL_Running_State` is `Waiting until MASTER_DELAY seconds after master executed event`, this field contains the number of delay seconds remaining. At other times, this field is `NULL`.
 
-- `Slave_SQL_Running_State`
+* `Slave_SQL_Running_State`
 
-  O estado do thread SQL (análogo ao `Slave_IO_State`). O valor é idêntico ao valor `State` do thread SQL SQL, conforme exibido por `SHOW PROCESSLIST`. Seção 8.14.7, “Estados dos fios SQL Replica da Replicação”, fornece uma lista dos possíveis estados
+  The state of the SQL thread (analogous to `Slave_IO_State`). The value is identical to the `State` value of the SQL thread as displayed by [`SHOW PROCESSLIST`](show-processlist.html "13.7.5.29 SHOW PROCESSLIST Statement"). [Section 8.14.7, “Replication Replica SQL Thread States”](replica-sql-thread-states.html "8.14.7 Replication Replica SQL Thread States"), provides a listing of possible states
 
-- `Master_Retry_Count`
+* `Master_Retry_Count`
 
-  O número de vezes que a réplica pode tentar se reconectar à fonte em caso de perda de conexão. Esse valor pode ser definido usando a opção `MASTER_RETRY_COUNT` da instrução `CHANGE MASTER TO` (preferível) ou a opção de servidor mais antiga `--master-retry-count` (replicação-options-replica.html#option_mysqld_master-retry-count) (ainda suportada para compatibilidade reversa).
+  The number of times the replica can attempt to reconnect to the source in the event of a lost connection. This value can be set using the `MASTER_RETRY_COUNT` option of the [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") statement (preferred) or the older [`--master-retry-count`](replication-options-replica.html#option_mysqld_master-retry-count) server option (still supported for backward compatibility).
 
-- `Master_Bind`
+* `Master_Bind`
 
-  A interface de rede à qual a replica está vinculada, se houver. Isso é definido usando a opção `MASTER_BIND` para a declaração `CHANGE MASTER TO`.
+  The network interface that the replica is bound to, if any. This is set using the `MASTER_BIND` option for the [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") statement.
 
-- `Último_Erro_de_Entrada/Saída_Timestamp`
+* `Last_IO_Error_Timestamp`
 
-  Um timestamp no formato *`YYMMDD hh:mm:ss`* que mostra quando ocorreu o último erro de E/S.
+  A timestamp in *`YYMMDD hh:mm:ss`* format that shows when the most recent I/O error took place.
 
-- `Último_timestamp_do_erro_SQL`
+* `Last_SQL_Error_Timestamp`
 
-  Um timestamp no formato *`YYMMDD hh:mm:ss`* que mostra quando o erro SQL mais recente ocorreu.
+  A timestamp in *`YYMMDD hh:mm:ss`* format that shows when the most recent SQL error occurred.
 
-- `Retrieved_Gtid_Set`
+* `Retrieved_Gtid_Set`
 
-  O conjunto de IDs de transação global correspondentes a todas as transações recebidas por esta réplica. Vazio se os GTIDs não estiverem em uso. Consulte GTID Sets para obter mais informações.
+  The set of global transaction IDs corresponding to all transactions received by this replica. Empty if GTIDs are not in use. See [GTID Sets](replication-gtids-concepts.html#replication-gtids-concepts-gtid-sets "GTID Sets") for more information.
 
-  Este é o conjunto de todos os GTIDs que existem ou existiram nos registros do retransmissor. Cada GTID é adicionado assim que o `Gtid_log_event` é recebido. Isso pode fazer com que transações parcialmente transmitidas tenham seus GTIDs incluídos no conjunto.
+  This is the set of all GTIDs that exist or have existed in the relay logs. Each GTID is added as soon as the `Gtid_log_event` is received. This can cause partially transmitted transactions to have their GTIDs included in the set.
 
-  Quando todos os logs de relay são perdidos devido à execução de `RESET SLAVE` ou `CHANGE MASTER TO`, ou devido aos efeitos da opção `--relay-log-recovery`, o conjunto é limpo. Quando `relay_log_purge = 1`, o log de relay mais recente é sempre mantido e o conjunto não é limpo.
+  When all relay logs are lost due to executing [`RESET SLAVE`](reset-slave.html "13.4.2.3 RESET SLAVE Statement") or [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement"), or due to the effects of the [`--relay-log-recovery`](replication-options-replica.html#sysvar_relay_log_recovery) option, the set is cleared. When [`relay_log_purge = 1`](replication-options-replica.html#sysvar_relay_log_purge), the newest relay log is always kept, and the set is not cleared.
 
-- `Executed_Gtid_Set`
+* `Executed_Gtid_Set`
 
-  O conjunto de IDs de transações globais escritos no log binário. Isso é o mesmo valor da variável de sistema global `gtid_executed` neste servidor, bem como o valor para `Executed_Gtid_Set` na saída de `SHOW MASTER STATUS` neste servidor. Vazio se os GTIDs não estiverem em uso. Consulte GTID Sets para obter mais informações.
+  The set of global transaction IDs written in the binary log. This is the same as the value for the global [`gtid_executed`](replication-options-gtids.html#sysvar_gtid_executed) system variable on this server, as well as the value for `Executed_Gtid_Set` in the output of [`SHOW MASTER STATUS`](show-master-status.html "13.7.5.23 SHOW MASTER STATUS Statement") on this server. Empty if GTIDs are not in use. See [GTID Sets](replication-gtids-concepts.html#replication-gtids-concepts-gtid-sets "GTID Sets") for more information.
 
-- `Auto_Position`
+* `Auto_Position`
 
-  1 se o autoposicionamento estiver em uso; caso contrário, 0.
+  1 if autopositioning is in use; otherwise 0.
 
-- `Replicate_Rewrite_DB`
+* `Replicate_Rewrite_DB`
 
-  O valor `Replicate_Rewrite_DB` exibe quaisquer regras de filtragem de replicação especificadas. Por exemplo, se a seguinte regra de filtro de replicação foi definida:
+  The `Replicate_Rewrite_DB` value displays any replication filtering rules that were specified. For example, if the following replication filter rule was set:
 
   ```sql
   CHANGE REPLICATION FILTER REPLICATE_REWRITE_DB=((db1,db2), (db3,db4));
   ```
 
-  o valor `Replicate_Rewrite_DB` exibe:
+  the `Replicate_Rewrite_DB` value displays:
 
   ```sql
   Replicate_Rewrite_DB: (db1,db2),(db3,db4)
   ```
 
-  Para mais informações, consulte Seção 13.4.2.2, “Declaração de REPLICAÇÃO DE MUDANÇAS”.
+  For more information, see [Section 13.4.2.2, “CHANGE REPLICATION FILTER Statement”](change-replication-filter.html "13.4.2.2 CHANGE REPLICATION FILTER Statement").
 
-- `Channel_name`
+* `Channel_name`
 
-  O canal de replicação que está sendo exibido. Sempre há um canal de replicação padrão, e mais canais de replicação podem ser adicionados. Consulte Seção 16.2.2, “Canais de Replicação” para obter mais informações.
+  The replication channel which is being displayed. There is always a default replication channel, and more replication channels can be added. See [Section 16.2.2, “Replication Channels”](replication-channels.html "16.2.2 Replication Channels") for more information.
 
-- `Master_TLS_Version`
+* `Master_TLS_Version`
 
-  A versão TLS usada na fonte. Para informações sobre a versão TLS, consulte Seção 6.3.2, “Protocolos e cifra de conexão encriptada”. Esta coluna foi adicionada no MySQL 5.7.10.
+  The TLS version used on the source. For TLS version information, see [Section 6.3.2, “Encrypted Connection TLS Protocols and Ciphers”](encrypted-connection-protocols-ciphers.html "6.3.2 Encrypted Connection TLS Protocols and Ciphers"). This column was added in MySQL 5.7.10.

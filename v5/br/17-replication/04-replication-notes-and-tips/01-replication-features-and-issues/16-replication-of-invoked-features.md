@@ -1,36 +1,35 @@
-#### 16.4.1.16 Replicação de recursos solicitados
+#### 16.4.1.16 Replication of Invoked Features
 
-A replicação de recursos invocados, como funções carregáveis e programas armazenados (procedimentos e funções armazenados, gatilhos e eventos), oferece as seguintes características:
+Replication of invoked features such as loadable functions and stored programs (stored procedures and functions, triggers, and events) provides the following characteristics:
 
-- Os efeitos do recurso são sempre replicados.
+* The effects of the feature are always replicated.
+* The following statements are replicated using statement-based replication:
 
-- As seguintes declarações são replicadas usando a replicação baseada em declarações:
+  + [`CREATE EVENT`](create-event.html "13.1.12 CREATE EVENT Statement")
+  + [`ALTER EVENT`](alter-event.html "13.1.2 ALTER EVENT Statement")
+  + [`DROP EVENT`](drop-event.html "13.1.23 DROP EVENT Statement")
+  + [`CREATE PROCEDURE`](create-procedure.html "13.1.16 CREATE PROCEDURE and CREATE FUNCTION Statements")
+  + [`DROP PROCEDURE`](drop-procedure.html "13.1.27 DROP PROCEDURE and DROP FUNCTION Statements")
+  + [`CREATE FUNCTION`](create-function.html "13.1.13 CREATE FUNCTION Statement")
+  + [`DROP FUNCTION`](drop-function.html "13.1.24 DROP FUNCTION Statement")
+  + [`CREATE TRIGGER`](create-trigger.html "13.1.20 CREATE TRIGGER Statement")
+  + [`DROP TRIGGER`](drop-trigger.html "13.1.31 DROP TRIGGER Statement")
 
-  - `Crie evento`
-  - `ALTERAR EVENTO`
-  - `DROP EVENT`
-  - `CREATE PROCEDURE`
-  - `DROP PROCEDURE`
-  - `Crie função`
-  - `DROP FUNCTION`
-  - `CREATE TRIGGER`
-  - `DROP TRIGGER`
+  However, the *effects* of features created, modified, or dropped using these statements are replicated using row-based replication.
 
-  No entanto, os *efeitos* das funcionalidades criadas, modificadas ou excluídas usando essas declarações são replicados usando a replicação baseada em linhas.
+  Note
 
-  Nota
+  Attempting to replicate invoked features using statement-based replication produces the warning Statement is not safe to log in statement format. For example, trying to replicate a loadable function with statement-based replication generates this warning because it currently cannot be determined by the MySQL server whether the function is deterministic. If you are absolutely certain that the invoked feature's effects are deterministic, you can safely disregard such warnings.
 
-  Tentar replicar recursos invocados usando replicação baseada em declarações gera o aviso "A declaração não é segura para ser registrada no formato de declaração". Por exemplo, ao tentar replicar uma função carregável com replicação baseada em declarações, esse aviso é gerado porque, atualmente, o servidor MySQL não pode determinar se a função é determinística. Se você tem certeza absoluta de que os efeitos do recurso invocado são determinísticos, pode ignorar esses avisos com segurança.
+* In the case of [`CREATE EVENT`](create-event.html "13.1.12 CREATE EVENT Statement") and [`ALTER EVENT`](alter-event.html "13.1.2 ALTER EVENT Statement"):
 
-- No caso de `CREATE EVENT` e `ALTER EVENT`:
+  + The status of the event is set to `SLAVESIDE_DISABLED` on the replica regardless of the state specified (this does not apply to [`DROP EVENT`](drop-event.html "13.1.23 DROP EVENT Statement")).
 
-  - O status do evento está definido como `SLAVESIDE_DISABLED` na replica, independentemente do estado especificado (isso não se aplica a `DROP EVENT`).
+  + The source on which the event was created is identified on the replica by its server ID. The `ORIGINATOR` column in the Information Schema [`EVENTS`](information-schema-events-table.html "24.3.8 The INFORMATION_SCHEMA EVENTS Table") table and the `originator` column in `mysql.event` store this information. See [Section 24.3.8, “The INFORMATION_SCHEMA EVENTS Table”](information-schema-events-table.html "24.3.8 The INFORMATION_SCHEMA EVENTS Table"), and [Section 13.7.5.18, “SHOW EVENTS Statement”](show-events.html "13.7.5.18 SHOW EVENTS Statement"), for more information.
 
-  - A fonte da qual o evento foi criado é identificada na replica por seu ID de servidor. A coluna `ORIGINATOR` na tabela do Schema de Informações `EVENTS` e a coluna `originator` na loja `mysql.event` armazenam essas informações. Consulte Seção 24.3.8, “A Tabela INFORMATION_SCHEMA EVENTS” e Seção 13.7.5.18, “Instrução SHOW EVENTS” para obter mais informações.
+* The feature implementation resides on the replica in a renewable state so that if the source fails, the replica can be used as the source without loss of event processing.
 
-- A implementação do recurso reside na replica em um estado renovável, para que, caso a fonte falhe, a replica possa ser usada como fonte sem perda do processamento de eventos.
-
-Para determinar se há eventos agendados em um servidor MySQL que foram criados em um servidor diferente (que estava atuando como servidor de origem de replicação), consulte a tabela Schema de Informações `EVENTS` de uma maneira semelhante à mostrada aqui:
+To determine whether there are any scheduled events on a MySQL server that were created on a different server (that was acting as a replication source server), query the Information Schema [`EVENTS`](information-schema-events-table.html "24.3.8 The INFORMATION_SCHEMA EVENTS Table") table in a manner similar to what is shown here:
 
 ```sql
 SELECT EVENT_SCHEMA, EVENT_NAME
@@ -38,16 +37,16 @@ SELECT EVENT_SCHEMA, EVENT_NAME
     WHERE STATUS = 'SLAVESIDE_DISABLED';
 ```
 
-Alternativamente, você pode usar a instrução `SHOW EVENTS`, assim:
+Alternatively, you can use the [`SHOW EVENTS`](show-events.html "13.7.5.18 SHOW EVENTS Statement") statement, like this:
 
 ```sql
 SHOW EVENTS
     WHERE STATUS = 'SLAVESIDE_DISABLED';
 ```
 
-Ao promover uma réplica com esses eventos para um servidor de origem de replicação, você deve habilitar cada evento usando `ALTER EVENT event_name ENABLE`, onde *`event_name`* é o nome do evento.
+When promoting a replica having such events to a replication source server, you must enable each event using [`ALTER EVENT event_name ENABLE`](alter-event.html "13.1.2 ALTER EVENT Statement"), where *`event_name`* is the name of the event.
 
-Se mais de uma fonte estiver envolvida na criação de eventos nesta réplica e você deseja identificar eventos criados apenas em uma fonte específica com o ID do servidor *`source_id`*, modifique a consulta anterior na tabela `EVENTS` para incluir a coluna `ORIGINATOR`, conforme mostrado aqui:
+If more than one source was involved in creating events on this replica, and you wish to identify events that were created only on a given source having the server ID *`source_id`*, modify the previous query on the [`EVENTS`](information-schema-events-table.html "24.3.8 The INFORMATION_SCHEMA EVENTS Table") table to include the `ORIGINATOR` column, as shown here:
 
 ```sql
 SELECT EVENT_SCHEMA, EVENT_NAME, ORIGINATOR
@@ -56,7 +55,7 @@ SELECT EVENT_SCHEMA, EVENT_NAME, ORIGINATOR
     AND   ORIGINATOR = 'source_id'
 ```
 
-Você pode usar `ORIGINATOR` com a instrução `SHOW EVENTS` de uma maneira semelhante:
+You can employ `ORIGINATOR` with the [`SHOW EVENTS`](show-events.html "13.7.5.18 SHOW EVENTS Statement") statement in a similar fashion:
 
 ```sql
 SHOW EVENTS
@@ -64,11 +63,11 @@ SHOW EVENTS
     AND   ORIGINATOR = 'source_id'
 ```
 
-Antes de habilitar eventos que foram replicados da fonte, você deve desabilitar o Cronômetro de Eventos do MySQL na replica (usando uma declaração como `SET GLOBAL event_scheduler = OFF;`), executar quaisquer declarações necessárias de `ALTER EVENT` (alter-event.html), reiniciar o servidor e, em seguida, reativar o Cronômetro de Eventos na replica posteriormente (usando uma declaração como `SET GLOBAL event_scheduler = ON;`)
+Before enabling events that were replicated from the source, you should disable the MySQL Event Scheduler on the replica (using a statement such as `SET GLOBAL event_scheduler = OFF;`), run any necessary [`ALTER EVENT`](alter-event.html "13.1.2 ALTER EVENT Statement") statements, restart the server, then re-enable the Event Scheduler on the replica afterward (using a statement such as `SET GLOBAL event_scheduler = ON;`)-
 
-Se você posteriormente descer a nova fonte para ser uma replica, você deve desabilitar manualmente todos os eventos habilitados pelas instruções `ALTER EVENT`. Você pode fazer isso armazenando em uma tabela separada os nomes dos eventos da instrução `SELECT` mostrada anteriormente, ou usando instruções `ALTER EVENT` para renomear os eventos com um prefixo comum, como `replicated_`, para identificá-los.
+If you later demote the new source back to being a replica, you must disable manually all events enabled by the [`ALTER EVENT`](alter-event.html "13.1.2 ALTER EVENT Statement") statements. You can do this by storing in a separate table the event names from the [`SELECT`](select.html "13.2.9 SELECT Statement") statement shown previously, or using [`ALTER EVENT`](alter-event.html "13.1.2 ALTER EVENT Statement") statements to rename the events with a common prefix such as `replicated_` to identify them.
 
-Se você renomear os eventos, então, ao degradar esse servidor de volta a ser uma réplica, você pode identificar os eventos consultando a tabela `EVENTS`, como mostrado aqui:
+If you rename the events, then when demoting this server back to being a replica, you can identify the events by querying the [`EVENTS`](information-schema-events-table.html "24.3.8 The INFORMATION_SCHEMA EVENTS Table") table, as shown here:
 
 ```sql
 SELECT CONCAT(EVENT_SCHEMA, '.', EVENT_NAME) AS 'Db.Event'

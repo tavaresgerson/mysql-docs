@@ -1,33 +1,32 @@
-#### B.3.6.2 Problemas com a Tabela TEMPORARY
+#### B.3.6.2 TEMPORARY Table Problems
 
-As tabelas temporárias criadas com [`CREATE TEMPORARY TABLE`](create-table.html) têm as seguintes limitações:
+Temporary tables created with [`CREATE TEMPORARY TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") have the following limitations:
 
-- As tabelas `TEMPORARY` são suportadas apenas pelos motores de armazenamento `InnoDB`, `MEMORY`, `MyISAM` e `MERGE`.
+* `TEMPORARY` tables are supported only by the `InnoDB`, `MEMORY`, `MyISAM`, and `MERGE` storage engines.
 
-- As tabelas temporárias não são suportadas para o NDB Cluster.
+* Temporary tables are not supported for NDB Cluster.
+* The [`SHOW TABLES`](show-tables.html "13.7.5.37 SHOW TABLES Statement") statement does not list `TEMPORARY` tables.
 
-- A instrução [`SHOW TABLES`](show-tables.html) não lista tabelas `TEMPORARY`.
-
-- Para renomear tabelas `TEMPORARY`, o comando `RENAME TABLE` não funciona. Use `ALTER TABLE` em vez disso:
+* To rename `TEMPORARY` tables, `RENAME TABLE` does not work. Use [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") instead:
 
   ```sql
   ALTER TABLE old_name RENAME new_name;
   ```
 
-- Você não pode referenciar uma tabela `TEMPORARY` mais de uma vez na mesma consulta. Por exemplo, o seguinte não funciona:
+* You cannot refer to a `TEMPORARY` table more than once in the same query. For example, the following does not work:
 
   ```sql
   SELECT * FROM temp_table JOIN temp_table AS t2;
   ```
 
-  A declaração produz esse erro:
+  The statement produces this error:
 
   ```sql
   ERROR 1137: Can't reopen table: 'temp_table'
   ```
 
-- O erro "A tabela não pode ser reaberta" também ocorre se você se referir a uma tabela temporária várias vezes em uma função armazenada sob diferentes aliases, mesmo que as referências ocorram em diferentes instruções dentro da função. Isso pode ocorrer para tabelas temporárias criadas fora das funções armazenadas e referenciadas em múltiplas funções chamadoras e chamadas.
+* The Can't reopen table error also occurs if you refer to a temporary table multiple times in a stored function under different aliases, even if the references occur in different statements within the function. It may occur for temporary tables created outside stored functions and referred to across multiple calling and callee functions.
 
-- Se uma tabela `TEMPORARY` for criada com o mesmo nome de uma tabela `NON-TEMPORARY` existente, a tabela `NON-TEMPORARY` será oculta até que a tabela `TEMPORARY` seja excluída, mesmo que as tabelas utilizem motores de armazenamento diferentes.
+* If a `TEMPORARY` is created with the same name as an existing non-`TEMPORARY` table, the non-`TEMPORARY` table is hidden until the `TEMPORARY` table is dropped, even if the tables use different storage engines.
 
-- Existem problemas conhecidos ao usar tabelas temporárias com replicação. Consulte [Seção 16.4.1.29, “Replicação e Tabelas Temporárias”](replication-features-temptables.html) para obter mais informações.
+* There are known issues in using temporary tables with replication. See [Section 16.4.1.29, “Replication and Temporary Tables”](replication-features-temptables.html "16.4.1.29 Replication and Temporary Tables"), for more information.

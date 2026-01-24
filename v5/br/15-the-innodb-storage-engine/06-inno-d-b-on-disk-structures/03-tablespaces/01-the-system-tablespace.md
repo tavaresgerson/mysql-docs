@@ -1,57 +1,56 @@
-#### 14.6.3.1 Espaço de Tabela do Sistema
+#### 14.6.3.1 The System Tablespace
 
-O espaço de tabela do sistema é a área de armazenamento para o dicionário de dados `InnoDB`, o buffer de escrita dupla, o buffer de alterações e os registros de desfazer. Ele também pode conter dados de tabelas e índices se as tabelas forem criadas no espaço de tabela do sistema, em vez de espaços de tabela por arquivo ou espaços de tabelas gerais.
+The system tablespace is the storage area for the `InnoDB` data dictionary, the doublewrite buffer, the change buffer, and undo logs. It may also contain table and index data if tables are created in the system tablespace rather than file-per-table or general tablespaces.
 
-O espaço de tabela do sistema pode ter um ou mais arquivos de dados. Por padrão, um único arquivo de dados do espaço de tabela do sistema, denominado `ibdata1`, é criado no diretório de dados. O tamanho e o número de arquivos de dados do espaço de tabela do sistema são definidos pela opção de inicialização `innodb_data_file_path`. Para informações de configuração, consulte Configuração do Arquivo de Dados do Espaço de Tabela do Sistema.
+The system tablespace can have one or more data files. By default, a single system tablespace data file, named `ibdata1`, is created in the data directory. The size and number of system tablespace data files is defined by the `innodb_data_file_path` startup option. For configuration information, see System Tablespace Data File Configuration.
 
-Informações adicionais sobre o espaço de tabela do sistema estão fornecidas nos tópicos a seguir na seção:
+Additional information about the system tablespace is provided under the following topics in the section:
 
-- Redimensionar o espaço de tabela do sistema
-- Usando Partições de Disco Bruto para o Espaço de Tabela do Sistema
+* Resizing the System Tablespace
+* Using Raw Disk Partitions for the System Tablespace
 
-##### Redimensionar o espaço de tabela do sistema
+##### Resizing the System Tablespace
 
-Esta seção descreve como aumentar ou diminuir o tamanho do espaço de tabela do sistema.
+This section describes how to increase or decrease the size of the system tablespace.
 
-###### Aumentar o espaço de tabelas do sistema
+###### Increasing the Size of the System Tablespace
 
-A maneira mais fácil de aumentar o tamanho do espaço de tabela do sistema é configurá-lo para ser autoextensivo. Para fazer isso, especifique o atributo `autoextend` para o último arquivo de dados na configuração `innodb_data_file_path` e reinicie o servidor. Por exemplo:
+The easiest way to increase the size of the system tablespace is to configure it to be auto-extending. To do so, specify the `autoextend` attribute for the last data file in the `innodb_data_file_path` setting, and restart the server. For example:
 
 ```sql
 innodb_data_file_path=ibdata1:10M:autoextend
 ```
 
-Quando o atributo `autoextend` é especificado, o arquivo de dados aumenta automaticamente em incrementos de 8 MB à medida que o espaço necessário é necessário. A variável `innodb_autoextend_increment` controla o tamanho do incremento.
+When the `autoextend` attribute is specified, the data file automatically increases in size by 8MB increments as space is required. The `innodb_autoextend_increment` variable controls the increment size.
 
-Você também pode aumentar o tamanho do espaço de tabela do sistema adicionando outro arquivo de dados. Para fazer isso:
+You can also increase system tablespace size by adding another data file. To do so:
 
-1. Pare o servidor MySQL.
+1. Stop the MySQL server.
+2. If the last data file in the `innodb_data_file_path` setting is defined with the `autoextend` attribute, remove it, and modify the size attribute to reflect the current data file size. To determine the appropriate data file size to specify, check your file system for the file size, and round that value down to the closest MB value, where a MB is equal to 1024 x 1024 bytes.
 
-2. Se o último arquivo de dados na configuração `innodb_data_file_path` estiver definido com o atributo `autoextend`, remova-o e modifique o atributo de tamanho para refletir o tamanho atual do arquivo de dados. Para determinar o tamanho apropriado do arquivo de dados a ser especificado, verifique o tamanho do arquivo no seu sistema de arquivos e arredonde esse valor para o valor mais próximo em MB, onde um MB é igual a 1024 x 1024 bytes.
+3. Append a new data file to the `innodb_data_file_path` setting, optionally specifying the `autoextend` attribute. The `autoextend` attribute can be specified only for the last data file in the `innodb_data_file_path` setting.
 
-3. Adicione um novo arquivo de dados ao ajuste `innodb_data_file_path`, especificando opcionalmente o atributo `autoextend`. O atributo `autoextend` pode ser especificado apenas para o último arquivo de dados no ajuste `innodb_data_file_path`.
+4. Start the MySQL server.
 
-4. Inicie o servidor MySQL.
-
-Por exemplo, este tablespace tem um arquivo de dados com expansão automática:
+For example, this tablespace has one auto-extending data file:
 
 ```sql
 innodb_data_home_dir =
 innodb_data_file_path = /ibdata/ibdata1:10M:autoextend
 ```
 
-Suponha que o arquivo de dados tenha crescido para 988 MB ao longo do tempo. Este é o ajuste `innodb_data_file_path` após a modificação do atributo de tamanho para refletir o tamanho atual do arquivo de dados e após a especificação de um novo arquivo de dados auto-extensível de 50 MB:
+Suppose that the data file has grown to 988MB over time. This is the `innodb_data_file_path` setting after modifying the size attribute to reflect the current data file size, and after specifying a new 50MB auto-extending data file:
 
 ```sql
 innodb_data_home_dir =
 innodb_data_file_path = /ibdata/ibdata1:988M;/disk2/ibdata2:50M:autoextend
 ```
 
-Ao adicionar um novo arquivo de dados, não especifique um nome de arquivo existente. O `InnoDB` cria e inicializa o novo arquivo de dados quando você inicia o servidor.
+When adding a new data file, do not specify an existing file name. `InnoDB` creates and initializes the new data file when you start the server.
 
-Nota
+Note
 
-Você não pode aumentar o tamanho de um arquivo de dados de espaço de tabela de sistema existente alterando seu atributo de tamanho. Por exemplo, alterar o ajuste `innodb_data_file_path` de `ibdata1:10M:autoextend` para `ibdata1:12M:autoextend` produz o seguinte erro ao iniciar o servidor:
+You cannot increase the size of an existing system tablespace data file by changing its size attribute. For example, changing the `innodb_data_file_path` setting from `ibdata1:10M:autoextend` to `ibdata1:12M:autoextend` produces the following error when starting the server:
 
 ```sql
 [ERROR] [MY-012263] [InnoDB] The Auto-extending innodb_system
@@ -59,13 +58,13 @@ data file './ibdata1' is of a different size 640 pages (rounded down to MB) than
 specified in the .cnf file: initial 768 pages, max 0 (relevant if non-zero) pages!
 ```
 
-O erro indica que o tamanho do arquivo de dados existente (expresso em páginas `InnoDB`) é diferente do tamanho do arquivo de dados especificado no arquivo de configuração. Se você encontrar esse erro, restaure o valor anterior do `innodb_data_file_path` e consulte as instruções para o redimensionamento do espaço de tabela do sistema.
+The error indicates that the existing data file size (expressed in `InnoDB` pages) is different from the data file size specified in the configuration file. If you encounter this error, restore the previous `innodb_data_file_path` setting, and refer to the system tablespace resizing instructions.
 
-###### Reduzindo o tamanho do espaço de tabela do InnoDB
+###### Decreasing the Size of the InnoDB System Tablespace
 
-Você não pode remover um arquivo de dados do espaço de tabelas do sistema. Para diminuir o tamanho do espaço de tabelas do sistema, use este procedimento:
+You cannot remove a data file from the system tablespace. To decrease the system tablespace size, use this procedure:
 
-1. Use o **mysqldump** para fazer o dump de todas as suas tabelas `InnoDB`, incluindo as tabelas `InnoDB` localizadas no esquema `mysql`. Identifique as tabelas `InnoDB` no esquema `mysql` usando a seguinte consulta:
+1. Use **mysqldump** to dump all of your `InnoDB` tables, including `InnoDB` tables located in the `mysql` schema. Identify `InnoDB` tables in the `mysql` schema using the following query:
 
    ```sql
    mysql> SELECT TABLE_NAME from INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA='mysql' and ENGINE='InnoDB';
@@ -94,35 +93,33 @@ Você não pode remover um arquivo de dados do espaço de tabelas do sistema. Pa
    +---------------------------+
    ```
 
-2. Pare o servidor.
+2. Stop the server.
+3. Remove all of the existing tablespace files (`*.ibd`), including the `ibdata` and `ib_log` files. Do not forget to remove `*.ibd` files for tables located in the `mysql` schema.
 
-3. Remova todos os arquivos do espaço de tabela existentes (`*.ibd`), incluindo os arquivos `ibdata` e `ib_log`. Não se esqueça de remover os arquivos `*.ibd` para tabelas localizadas no esquema `mysql`.
+4. Remove any `.frm` files for `InnoDB` tables.
 
-4. Remova quaisquer arquivos `.frm` para as tabelas do `InnoDB`.
+5. Configure the data files for the new system tablespace. See System Tablespace Data File Configuration.
 
-5. Configure os arquivos de dados para o novo espaço de tabela do sistema. Consulte Configuração de Arquivo de Dados do Espaço de Tabela do Sistema.
+6. Restart the server.
+7. Import the dump files.
 
-6. Reinicie o servidor.
+Note
 
-7. Importe os arquivos de dump.
+If your databases only use the `InnoDB` engine, it may be simpler to dump **all** databases, stop the server, remove all databases and `InnoDB` log files, restart the server, and import the dump files.
 
-Nota
+To avoid a large system tablespace, consider using file-per-table tablespaces or general tablespaces for your data. File-per-table tablespaces are the default tablespace type and are used implicitly when creating an `InnoDB` table. Unlike the system tablespace, file-per-table tablespaces return disk space to the operating system when they are truncated or dropped. For more information, see Section 14.6.3.2, “File-Per-Table Tablespaces”. General tablespaces are multi-table tablespaces that can also be used as an alternative to the system tablespace. See Section 14.6.3.3, “General Tablespaces”.
 
-Se suas bases de dados usam apenas o motor `InnoDB`, pode ser mais simples fazer o dump de **todas** as bases de dados, parar o servidor, remover todos os arquivos de log do `InnoDB`, reiniciar o servidor e importar os arquivos de dump.
+##### Using Raw Disk Partitions for the System Tablespace
 
-Para evitar um grande espaço de tabelas do sistema, considere usar espaços de tabelas por arquivo ou espaços de tabelas gerais para seus dados. Os espaços de tabelas por arquivo são o tipo padrão de espaço de tabelas e são usados implicitamente ao criar uma tabela `InnoDB`. Ao contrário do espaço de tabelas do sistema, os espaços de tabelas por arquivo devolvem espaço em disco ao sistema operacional quando são truncados ou excluídos. Para obter mais informações, consulte a Seção 14.6.3.2, “Espaços de tabelas por arquivo”. Os espaços de tabelas gerais são espaços de tabelas multitabela que também podem ser usados como alternativa ao espaço de tabelas do sistema. Consulte a Seção 14.6.3.3, “Espaços de tabelas gerais”.
+Raw disk partitions can be used as system tablespace data files. This technique enables nonbuffered I/O on Windows and some Linux and Unix systems without file system overhead. Perform tests with and without raw partitions to verify whether they improve performance on your system.
 
-##### Usando Partições de Disco Bruto para o Espaço de Tabela do Sistema
+When using a raw disk partition, ensure that the user ID that runs the MySQL server has read and write privileges for that partition. For example, if running the server as the `mysql` user, the partition must be readable and writeable by `mysql`. If running the server with the `--memlock` option, the server must be run as `root`, so the partition must be readable and writeable by `root`.
 
-As partições de disco bruto podem ser usadas como arquivos de dados do espaço de tabela do sistema. Essa técnica permite o I/O sem buffer em sistemas Windows e alguns sistemas Linux e Unix sem sobrecarga do sistema de arquivos. Realize testes com e sem partições brutais para verificar se elas melhoram o desempenho do seu sistema.
+The procedures described below involve option file modification. For additional information, see Section 4.2.2.2, “Using Option Files”.
 
-Ao usar uma partição de disco bruto, certifique-se de que o ID do usuário que executa o servidor MySQL tenha privilégios de leitura e escrita para essa partição. Por exemplo, se o servidor estiver sendo executado como o usuário `mysql`, a partição deve ser legível e gravável pelo `mysql`. Se o servidor estiver sendo executado com a opção `--memlock`, o servidor deve ser executado como `root`, então a partição deve ser legível e gravável pelo `root`.
+###### Allocating a Raw Disk Partition on Linux and Unix Systems
 
-Os procedimentos descritos abaixo envolvem a modificação de arquivos de opção. Para obter informações adicionais, consulte a Seção 4.2.2.2, “Usando arquivos de opção”.
-
-###### Alocar uma Partição de Disco Bruto em Sistemas Linux e Unix
-
-1. Para usar um dispositivo bruto para uma nova instância do servidor, prepare primeiro o arquivo de configuração definindo `innodb_data_file_path` com a palavra-chave `raw`. Por exemplo:
+1. To use a raw device for a new server instance, first prepare the configuration file by setting `innodb_data_file_path` with the `raw` keyword. For example:
 
    ```sql
    [mysqld]
@@ -130,15 +127,15 @@ Os procedimentos descritos abaixo envolvem a modificação de arquivos de opçã
    innodb_data_file_path=/dev/hdd1:3Graw;/dev/hdd2:2Graw
    ```
 
-   A partição deve ter pelo menos o tamanho especificado. Observe que 1 MB no `InnoDB` é 1024 × 1024 bytes, enquanto 1 MB nas especificações de disco geralmente significa 1.000.000 de bytes.
+   The partition must be at least as large as the size that you specify. Note that 1MB in `InnoDB` is 1024 × 1024 bytes, whereas 1MB in disk specifications usually means 1,000,000 bytes.
 
-2. Em seguida, inicie o servidor pela primeira vez usando `--initialize` ou `--initialize-insecure`. O InnoDB percebe a palavra-chave `raw` e inicia a nova partição, e depois ele para o servidor.
+2. Then initialize the server for the first time by using `--initialize` or `--initialize-insecure`. InnoDB notices the `raw` keyword and initializes the new partition, and then it stops the server.
 
-3. Agora, reinicie o servidor. O `InnoDB` agora permite que alterações sejam feitas.
+3. Now restart the server. `InnoDB` now permits changes to be made.
 
-###### Alocar uma partição de disco bruto no Windows
+###### Allocating a Raw Disk Partition on Windows
 
-Nos sistemas Windows, os mesmos passos e diretrizes que acompanham as descrições para sistemas Linux e Unix se aplicam, exceto que o ajuste `innodb_data_file_path` difere ligeiramente no Windows. Por exemplo:
+On Windows systems, the same steps and accompanying guidelines described for Linux and Unix systems apply except that the `innodb_data_file_path` setting differs slightly on Windows. For example:
 
 ```sql
 [mysqld]
@@ -146,4 +143,4 @@ innodb_data_home_dir=
 innodb_data_file_path=//./D::10Graw
 ```
 
-O `//./` corresponde à sintaxe do Windows de `\\.\` para acessar unidades físicas. No exemplo acima, `D:` é a letra da unidade da partição.
+The `//./` corresponds to the Windows syntax of `\\.\` for accessing physical drives. In the example above, `D:` is the drive letter of the partition.

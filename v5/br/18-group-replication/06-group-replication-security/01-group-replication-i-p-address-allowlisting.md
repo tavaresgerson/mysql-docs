@@ -1,8 +1,8 @@
-### 17.6.1 Permitir a lista de endereços IP de replicação em grupo
+### 17.6.1 Group Replication IP Address Allowlisting
 
-O plugin de replicação em grupo tem uma opção de configuração para determinar de quais hosts uma conexão de entrada do Sistema de Comunicação em Grupo pode ser aceita. Esta opção é chamada de [`group_replication_ip_whitelist`](group-replication-system-variables.html#sysvar_group_replication_ip_whitelist). Se você definir esta opção em um servidor s1, então, quando o servidor s2 está estabelecendo uma conexão com s1 com o propósito de participar da comunicação em grupo, s1 verifica primeiro a lista de permissão antes de aceitar a conexão de s2. Se s2 estiver na lista de permissão, então s1 aceita a tentativa de conexão de s2, caso contrário, s1 rejeita a tentativa de conexão de s2.
+The Group Replication plugin has a configuration option to determine from which hosts an incoming Group Communication System connection can be accepted. This option is called [`group_replication_ip_whitelist`](group-replication-system-variables.html#sysvar_group_replication_ip_whitelist). If you set this option on a server s1, then when server s2 is establishing a connection to s1 for the purpose of engaging group communication, s1 first checks the allowlist before accepting the connection from s2. If s2 is in the allowlist, then s1 accepts the connection, otherwise s1 rejects the connection attempt by s2.
 
-Se você não especificar explicitamente um allowlist, o motor de comunicação de grupo (XCom) escaneia automaticamente as interfaces ativas no host e identifica aquelas com endereços em sub-redes privadas. Esses endereços e o endereço IP `localhost` para IPv4 são usados para criar um allowlist automático de Replicação de Grupo. Portanto, o allowlist automático inclui quaisquer endereços IP encontrados para o host nos seguintes intervalos:
+If you do not specify an allowlist explicitly, the group communication engine (XCom) automatically scans active interfaces on the host, and identifies those with addresses on private subnetworks. These addresses and the `localhost` IP address for IPv4 are used to create an automatic Group Replication allowlist. The automatic allowlist therefore includes any IP addresses found for the host in the following ranges:
 
 ```sql
 10/8 prefix       (10.0.0.0 - 10.255.255.255) - Class A
@@ -11,25 +11,24 @@ Se você não especificar explicitamente um allowlist, o motor de comunicação 
 127.0.0.1 - localhost for IPv4
 ```
 
-Uma entrada é adicionada ao log de erros, indicando os endereços que foram automaticamente permitidos para o host.
+An entry is added to the error log stating the addresses that have been allowlisted automatically for the host.
 
-A lista de endereços privados permitidos automaticamente não pode ser usada para conexões de servidores fora da rede privada, portanto, um servidor, mesmo que tenha interfaces em IPs públicos, não permite, por padrão, conexões de Replicação de Grupo de hosts externos. Para conexões de Replicação de Grupo entre instâncias de servidor em máquinas diferentes, você deve fornecer endereços de IP público e especificá-los como uma lista de permissão explícita. Se você especificar qualquer entrada na lista de permissão, os endereços privados e `localhost` não são adicionados automaticamente, portanto, se você usar qualquer um desses, você deve especificá-los explicitamente.
+The automatic allowlist of private addresses cannot be used for connections from servers outside the private network, so a server, even if it has interfaces on public IPs, does not by default allow Group Replication connections from external hosts. For Group Replication connections between server instances that are on different machines, you must provide public IP addresses and specify these as an explicit allowlist. If you specify any entries for the allowlist, the private and `localhost` addresses are not added automatically, so if you use any of these, you must specify them explicitly.
 
-Para especificar uma lista de permissão manualmente, use a opção [`group_replication_ip_whitelist`](group-replication-system-variables.html#sysvar_group_replication_ip_whitelist). Você não pode alterar a lista de permissão em um servidor enquanto ele estiver sendo um membro ativo de um grupo de replicação. Se o membro estiver ativo, você deve emitir uma declaração [`STOP GROUP_REPLICATION`](stop-group-replication.html) antes de alterar a lista de permissão e uma declaração [`START GROUP_REPLICATION`](start-group-replication.html) depois.
+To specify an allowlist manually, use the [`group_replication_ip_whitelist`](group-replication-system-variables.html#sysvar_group_replication_ip_whitelist) option. You cannot change the allowlist on a server while it is an active member of a replication group. If the member is active, you must issue a [`STOP GROUP_REPLICATION`](stop-group-replication.html "13.4.3.2 STOP GROUP_REPLICATION Statement") statement before changing the allowlist, and a [`START GROUP_REPLICATION`](start-group-replication.html "13.4.3.1 START GROUP_REPLICATION Statement") statement afterwards.
 
-Na lista de permissão, você pode especificar qualquer combinação dos seguintes itens:
+In the allowlist, you can specify any combination of the following:
 
-- Endereços IPv4 (por exemplo, `198.51.100.44`)
+* IPv4 addresses (for example, `198.51.100.44`)
+* IPv4 addresses with CIDR notation (for example, `192.0.2.21/24`)
 
-- Endereços IPv4 com notação CIDR (por exemplo, `192.0.2.21/24`)
+* Host names, from MySQL 5.7.21 (for example, `example.org`)
 
-- Nomes de host, a partir do MySQL 5.7.21 (por exemplo, `example.org`)
+* Host names with CIDR notation, from MySQL 5.7.21 (for example, `www.example.com/24`)
 
-- Nomes de host com notação CIDR, a partir do MySQL 5.7.21 (por exemplo, `www.example.com/24`)
+IPv6 addresses, and host names that resolve to IPv6 addresses, are not supported in MySQL 5.7. You can use CIDR notation in combination with host names or IP addresses to allowlist a block of IP addresses with a particular network prefix, but do ensure that all the IP addresses in the specified subnet are under your control.
 
-Os endereços IPv6 e os nomes de host que resolvem para endereços IPv6 não são suportados no MySQL 5.7. Você pode usar a notação CIDR em combinação com nomes de host ou endereços IP para permitir um bloco de endereços IP com um prefixo de rede específico, mas certifique-se de que todos os endereços IP na sub-rede especificada estejam sob seu controle.
-
-Você deve parar e reiniciar a Replicação em Grupo em um membro para alterar sua lista de permissão. Uma vírgula deve separar cada entrada na lista de permissão. Por exemplo:
+You must stop and restart Group Replication on a member in order to change its allowlist. A comma must separate each entry in the allowlist. For example:
 
 ```sql
 mysql> STOP GROUP_REPLICATION;
@@ -37,16 +36,16 @@ mysql> SET GLOBAL group_replication_ip_whitelist="192.0.2.21/24,198.51.100.44,20
 mysql> START GROUP_REPLICATION;
 ```
 
-A lista de permissões deve conter o endereço IP ou o nome do host especificado na variável de sistema [`group_replication_local_address`](group-replication-system-variables.html#sysvar_group_replication_local_address) de cada membro. Esse endereço não é o mesmo do host e porta do protocolo SQL do servidor MySQL, e não é especificado na variável de sistema [`bind_address`](server-system-variables.html#sysvar_bind_address) da instância do servidor.
+The allowlist must contain the IP address or host name that is specified in each member's [`group_replication_local_address`](group-replication-system-variables.html#sysvar_group_replication_local_address) system variable. This address is not the same as the MySQL server SQL protocol host and port, and is not specified in the [`bind_address`](server-system-variables.html#sysvar_bind_address) system variable for the server instance.
 
-Quando um grupo de replicação é reconfigurado (por exemplo, quando um novo primário é eleito ou um membro se junta ou sai), os membros do grupo reestabelecem conexões entre si. Se um membro do grupo só for permitido por servidores que não fazem mais parte do grupo de replicação após a reconfiguração, ele não conseguirá se reconectar aos servidores restantes do grupo de replicação que não o permitem. Para evitar esse cenário completamente, especifique a mesma lista de permissões para todos os servidores que são membros do grupo de replicação.
+When a replication group is reconfigured (for example, when a new primary is elected or a member joins or leaves), the group members re-establish connections between themselves. If a group member is only allowlisted by servers that are no longer part of the replication group after the reconfiguration, it is unable to reconnect to the remaining servers in the replication group that do not allowlist it. To avoid this scenario entirely, specify the same allowlist for all servers that are members of the replication group.
 
-Nota
+Note
 
-É possível configurar diferentes listas de permissões para diferentes membros do grupo de acordo com os requisitos de segurança, por exemplo, para manter sub-redes diferentes separadas. Se você precisar configurar diferentes listas de permissões para atender aos seus requisitos de segurança, certifique-se de que haja uma sobreposição suficiente entre as listas de permissões no grupo de replicação para maximizar a possibilidade de os servidores conseguirem se reconectar na ausência de seu membro original de semente.
+It is possible to configure different allowlists on different group members according to your security requirements, for example, in order to keep different subnets separate. If you need to configure different allowlists to meet your security requirements, ensure that there is sufficient overlap between the allowlists in the replication group to maximize the possibility of servers being able to reconnect in the absence of their original seed member.
 
-Para os nomes de host, a resolução de nomes ocorre apenas quando um pedido de conexão é feito por outro servidor. Um nome de host que não pode ser resolvido não é considerado para validação da lista de permissão, e uma mensagem de aviso é escrita no log de erros. A verificação de DNS reversa confirmada (FCrDNS) é realizada para nomes de host resolvidos.
+For host names, name resolution takes place only when a connection request is made by another server. A host name that cannot be resolved is not considered for allowlist validation, and a warning message is written to the error log. Forward-confirmed reverse DNS (FCrDNS) verification is carried out for resolved host names.
 
-Aviso
+Warning
 
-Os nomes de host são inerentemente menos seguros do que os endereços IP em uma lista de permissão. A verificação do FCrDNS oferece um bom nível de proteção, mas pode ser comprometida por certos tipos de ataque. Especifique os nomes de host em sua lista de permissão apenas quando estritamente necessário e garanta que todos os componentes usados para resolução de nomes, como servidores DNS, estejam sob seu controle. Você também pode implementar a resolução de nomes localmente usando o arquivo hosts, para evitar o uso de componentes externos.
+Host names are inherently less secure than IP addresses in an allowlist. FCrDNS verification provides a good level of protection, but can be compromised by certain types of attack. Specify host names in your allowlist only when strictly necessary, and ensure that all components used for name resolution, such as DNS servers, are maintained under your control. You can also implement name resolution locally using the hosts file, to avoid the use of external components.

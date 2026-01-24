@@ -1,32 +1,32 @@
-### 17.5.4 Reiniciar um grupo
+### 17.5.4 Restarting a Group
 
-A Replicação em Grupo é projetada para garantir que o serviço de banco de dados esteja continuamente disponível, mesmo que alguns dos servidores que formam o grupo não possam participar atualmente devido a manutenção planejada ou problemas imprevistos. Enquanto os membros restantes representarem a maioria do grupo, eles poderão eleger um novo primário e continuar a funcionar como um grupo. No entanto, se todos os membros de um grupo de replicação deixarem o grupo e a Replicação em Grupo for interrompida em todos os membros por uma declaração `STOP GROUP_REPLICATION` ou desligamento do sistema, o grupo agora existe apenas em teoria, como uma configuração nos membros. Nessa situação, para recriar o grupo, ele deve ser iniciado como se estivesse sendo iniciado pela primeira vez.
+Group Replication is designed to ensure that the database service is continuously available, even if some of the servers that form the group are currently unable to participate in it due to planned maintenance or unplanned issues. As long as the remaining members are a majority of the group they can elect a new primary and continue to function as a group. However, if every member of a replication group leaves the group, and Group Replication is stopped on every member by a [`STOP GROUP_REPLICATION`](stop-group-replication.html "13.4.3.2 STOP GROUP_REPLICATION Statement") statement or system shutdown, the group now only exists in theory, as a configuration on the members. In that situation, to re-create the group, it must be started by bootstrapping as if it was being started for the first time.
 
-A diferença entre iniciar um grupo pela primeira vez e fazê-lo pela segunda ou em momentos subsequentes é que, na última situação, os membros de um grupo que foi encerrado podem ter conjuntos de transações diferentes uns dos outros, dependendo da ordem em que foram interrompidos ou falharam. Um membro não pode se juntar a um grupo se ele tiver transações que não estão presentes nos outros membros do grupo. Para a Replicação de Grupo, isso inclui tanto as transações que foram comprometidas e aplicadas, que estão no conjunto de GTID `gtid_executed`, quanto as transações que foram certificadas, mas ainda não aplicadas, que estão no canal `group_replication_applier`. Um membro do grupo de Replicação de Grupo nunca remove uma transação que foi certificada, o que é uma declaração da intenção do membro de comprometer a transação.
+The difference between bootstrapping a group for the first time and doing it for the second or subsequent times is that in the latter situation, the members of a group that was shut down might have different transaction sets from each other, depending on the order in which they were stopped or failed. A member cannot join a group if it has transactions that are not present on the other group members. For Group Replication, this includes both transactions that have been committed and applied, which are in the [`gtid_executed`](replication-options-gtids.html#sysvar_gtid_executed) GTID set, and transactions that have been certified but not yet applied, which are in the `group_replication_applier` channel. A Group Replication group member never removes a transaction that has been certified, which is a declaration of the member’s intent to commit the transaction.
 
-Portanto, o grupo de replicação deve ser reiniciado a partir do membro mais atualizado, ou seja, o membro que tem mais transações executadas e certificadas. Os membros com menos transações podem então se juntar e recuperar as transações que estão faltando por meio da recuperação distribuída. Não é correto assumir que o último membro primário conhecido do grupo é o membro mais atualizado do grupo, porque um membro que foi desligado mais tarde que o primário pode ter mais transações. Portanto, você deve reiniciar cada membro para verificar as transações, comparar todos os conjuntos de transações e identificar o membro mais atualizado. Esse membro pode então ser usado para iniciar o grupo.
+The replication group must therefore be restarted beginning with the most up to date member, that is, the member that has the most transactions executed and certified. The members with fewer transactions can then join and catch up with the transactions they are missing through distributed recovery. It is not correct to assume that the last known primary member of the group is the most up to date member of the group, because a member that was shut down later than the primary might have more transactions. You must therefore restart each member to check the transactions, compare all the transaction sets, and identify the most up to date member. This member can then be used to bootstrap the group.
 
-Siga este procedimento para reiniciar um grupo de replicação com segurança após cada membro ser desligado.
+Follow this procedure to restart a replication group safely after every member shuts down.
 
-1. Para cada membro do grupo, em ordem aleatória:
+1. For each group member in turn, in any order:
 
-   1. Conecte um cliente ao membro do grupo. Se a Replicação em Grupo ainda não estiver parada, execute a instrução `STOP GROUP_REPLICATION` e aguarde até que a Replicação em Grupo pare.
+   1. Connect a client to the group member. If Group Replication is not already stopped, issue a [`STOP GROUP_REPLICATION`](stop-group-replication.html "13.4.3.2 STOP GROUP_REPLICATION Statement") statement and wait for Group Replication to stop.
 
-   2. Editar o arquivo de configuração do MySQL Server (tipicamente chamado `my.cnf` em sistemas Linux e Unix, ou `my.ini` em sistemas Windows) e definir a variável do sistema `group_replication_start_on_boot=OFF`. Esta configuração impede que a Replicação de Grupo seja iniciada quando o MySQL Server é iniciado, o que é o padrão.
+   2. Edit the MySQL Server configuration file (typically named `my.cnf` on Linux and Unix systems, or `my.ini` on Windows systems) and set the system variable [`group_replication_start_on_boot=OFF`](group-replication-system-variables.html#sysvar_group_replication_start_on_boot). This setting prevents Group Replication from starting when MySQL Server is started, which is the default.
 
-      Se você não puder alterar essa configuração no sistema, pode simplesmente permitir que o servidor tente iniciar a Replicação de Grupo, o que falhará porque o grupo foi totalmente desligado e ainda não foi inicializado. Se você adotar essa abordagem, não defina `group_replication_bootstrap_group=ON` em nenhum servidor nesta fase.
+      If you cannot change that setting on the system, you can just allow the server to attempt to start Group Replication, which will fail because the group has been fully shut down and not yet bootstrapped. If you take that approach, do not set [`group_replication_bootstrap_group=ON`](group-replication-system-variables.html#sysvar_group_replication_bootstrap_group) on any server at this stage.
 
-   3. Inicie a instância do servidor MySQL e verifique se a replicação por grupo não foi iniciada (ou se não conseguiu iniciar). Não inicie a replicação por grupo nesta etapa.
+   3. Start the MySQL Server instance, and verify that Group Replication has not been started (or has failed to start). Do not start Group Replication at this stage.
 
-   4. Coleta as seguintes informações do membro do grupo:
+   4. Collect the following information from the group member:
 
-      - O conteúdo do conjunto de GTID `gtid_executed`. Você pode obtê-lo executando a seguinte instrução:
+      * The contents of the [`gtid_executed`](replication-options-gtids.html#sysvar_gtid_executed) GTID set. You can get this by issuing the following statement:
 
         ```sql
         mysql> SELECT @@GLOBAL.GTID_EXECUTED
         ```
 
-      - O conjunto de transações certificadas no canal `group_replication_applier`. Você pode obtê-lo emitindo a seguinte declaração:
+      * The set of certified transactions on the `group_replication_applier` channel. You can get this by issuing the following statement:
 
         ```sql
         mysql> SELECT received_transaction_set FROM \
@@ -34,9 +34,9 @@ Siga este procedimento para reiniciar um grupo de replicação com segurança ap
                 channel_name="group_replication_applier";
         ```
 
-2. Quando você tiver coletado os conjuntos de transações de todos os membros do grupo, compare-os para descobrir qual membro tem o maior conjunto de transações no geral, incluindo as transações executadas (`gtid_executed`) e as transações certificadas (no canal `group_replication_applier`). Você pode fazer isso manualmente, olhando para os GTIDs, ou pode comparar os conjuntos de GTIDs usando funções armazenadas, conforme descrito em Seção 16.1.3.7, “Exemplos de Funções Armazenadas para Manipular GTIDs”.
+2. When you have collected the transaction sets from all the group members, compare them to find which member has the biggest transaction set overall, including both the executed transactions ([`gtid_executed`](replication-options-gtids.html#sysvar_gtid_executed)) and the certified transactions (on the `group_replication_applier` channel). You can do this manually by looking at the GTIDs, or you can compare the GTID sets using stored functions, as described in [Section 16.1.3.7, “Stored Function Examples to Manipulate GTIDs”](replication-gtids-functions.html "16.1.3.7 Stored Function Examples to Manipulate GTIDs").
 
-3. Use o membro que tiver o conjunto de transações mais grande para iniciar o grupo, conectando um cliente ao membro do grupo e emitindo as seguintes declarações:
+3. Use the member that has the biggest transaction set to bootstrap the group, by connecting a client to the group member and issuing the following statements:
 
    ```sql
    mysql> SET GLOBAL group_replication_bootstrap_group=ON;
@@ -44,24 +44,24 @@ Siga este procedimento para reiniciar um grupo de replicação com segurança ap
    mysql> SET GLOBAL group_replication_bootstrap_group=OFF;
    ```
 
-   É importante não armazenar o ajuste `group_replication_bootstrap_group=ON` no arquivo de configuração, caso contrário, quando o servidor for reiniciado novamente, um segundo grupo com o mesmo nome será criado.
+   It is important not to store the setting [`group_replication_bootstrap_group=ON`](group-replication-system-variables.html#sysvar_group_replication_bootstrap_group) in the configuration file, otherwise when the server is restarted again, a second group with the same name is set up.
 
-4. Para verificar se o grupo agora existe com esse membro fundador, emita essa declaração sobre o membro que o criou:
+4. To verify that the group now exists with this founder member in it, issue this statement on the member that bootstrapped it:
 
    ```sql
    mysql> SELECT * FROM performance_schema.replication_group_members;
    ```
 
-5. Adicione cada um dos outros membros de volta ao grupo, em qualquer ordem, emitindo uma declaração `START GROUP_REPLICATION` sobre cada um deles:
+5. Add each of the other members back into the group, in any order, by issuing a [`START GROUP_REPLICATION`](start-group-replication.html "13.4.3.1 START GROUP_REPLICATION Statement") statement on each of them:
 
    ```sql
    mysql> START GROUP_REPLICATION;
    ```
 
-6. Para verificar se cada membro se juntou ao grupo, emita esta declaração sobre qualquer membro:
+6. To verify that each member has joined the group, issue this statement on any member:
 
    ```sql
    mysql> SELECT * FROM performance_schema.replication_group_members;
    ```
 
-7. Quando os membros se reunirem novamente ao grupo, se você editar seus arquivos de configuração para definir `group_replication_start_on_boot=OFF`, você pode editá-los novamente para definir `ON` (ou remover a variável do sistema, pois `ON` é o padrão).
+7. When the members have rejoined the group, if you edited their configuration files to set [`group_replication_start_on_boot=OFF`](group-replication-system-variables.html#sysvar_group_replication_start_on_boot), you can edit them again to set `ON` (or remove the system variable, since `ON` is the default).

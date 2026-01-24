@@ -1,25 +1,25 @@
-### 12.9.5 Restrições de texto completo
+### 12.9.5 Full-Text Restrictions
 
-- As pesquisas de texto completo são suportadas apenas para tabelas `InnoDB` e `MyISAM`.
+* Full-text searches are supported for `InnoDB` and `MyISAM` tables only.
 
-- As pesquisas de texto completo não são suportadas para tabelas particionadas. Consulte a Seção 22.6, “Restrições e Limitações na Partição”.
+* Full-text searches are not supported for partitioned tables. See Section 22.6, “Restrictions and Limitations on Partitioning”.
 
-- As pesquisas de texto completo podem ser usadas com a maioria dos conjuntos de caracteres multibyte. A exceção é que, para o Unicode, o conjunto de caracteres `utf8` pode ser usado, mas não o conjunto de caracteres `ucs2`. Embora os índices `FULLTEXT` em colunas `ucs2` não possam ser usados, você pode realizar pesquisas no modo `IN BOOLEAN MODE` em uma coluna `ucs2` que não tenha esse índice.
+* Full-text searches can be used with most multibyte character sets. The exception is that for Unicode, the `utf8` character set can be used, but not the `ucs2` character set. Although `FULLTEXT` indexes on `ucs2` columns cannot be used, you can perform `IN BOOLEAN MODE` searches on a `ucs2` column that has no such index.
 
-  As observações para `utf8` também se aplicam a `utf8mb4`, e as observações para `ucs2` também se aplicam a `utf16`, `utf16le` e `utf32`.
+  The remarks for `utf8` also apply to `utf8mb4`, and the remarks for `ucs2` also apply to `utf16`, `utf16le`, and `utf32`.
 
-- Línguas ideográficas, como o chinês e o japonês, não têm delimitadores de palavras. Portanto, o analisador de texto completo integrado *não pode determinar onde as palavras começam e terminam nessas e outras línguas semelhantes*.
+* Ideographic languages such as Chinese and Japanese do not have word delimiters. Therefore, the built-in full-text parser *cannot determine where words begin and end in these and other such languages*.
 
-  Um analisador de texto completo baseado em caracteres que suporta chinês, japonês e coreano (CJK) e um plugin de analisador MeCab baseado em palavras que suporta japonês são fornecidos para uso com as tabelas `InnoDB` e `MyISAM`.
+  A character-based ngram full-text parser that supports Chinese, Japanese, and Korean (CJK), and a word-based MeCab parser plugin that supports Japanese are provided for use with `InnoDB` and `MyISAM` tables.
 
-- Embora o uso de múltiplos conjuntos de caracteres dentro de uma única tabela seja suportado, todas as colunas de um índice `FULLTEXT` devem usar o mesmo conjunto de caracteres e ordenação.
+* Although the use of multiple character sets within a single table is supported, all columns in a `FULLTEXT` index must use the same character set and collation.
 
-- A lista de colunas `MATCH()` deve corresponder exatamente à lista de colunas em alguma definição de índice `FULLTEXT` para a tabela, a menos que essa `MATCH()` esteja no modo `IN BOOLEAN MODE` em uma tabela `MyISAM`. Para tabelas `MyISAM`, as pesquisas no modo booleano podem ser feitas em colunas não indexadas, embora sejam propensas a serem lentas.
+* The `MATCH()` column list must match exactly the column list in some `FULLTEXT` index definition for the table, unless this `MATCH()` is `IN BOOLEAN MODE` on a `MyISAM` table. For `MyISAM` tables, boolean-mode searches can be done on nonindexed columns, although they are likely to be slow.
 
-- O argumento para `AGAINST()` deve ser um valor de string que seja constante durante a avaliação da consulta. Isso exclui, por exemplo, uma coluna de tabela, pois ela pode variar para cada linha.
+* The argument to `AGAINST()` must be a string value that is constant during query evaluation. This rules out, for example, a table column because that can differ for each row.
 
-- Os índices de dicas são mais limitados para pesquisas `FULLTEXT` do que para pesquisas não `FULLTEXT`. Veja a Seção 8.9.4, “Indicação de índice”.
+* Index hints are more limited for `FULLTEXT` searches than for non-`FULLTEXT` searches. See Section 8.9.4, “Index Hints”.
 
-- Para o `InnoDB`, todas as operações de manipulação de dados (DML) (`INSERT`, `UPDATE`, `DELETE`) que envolvem colunas com índices de texto completo são processadas no momento do commit da transação. Por exemplo, para uma operação de `INSERT`, uma string inserida é tokenizada e decomposta em palavras individuais. As palavras individuais são então adicionadas às tabelas de índice de texto completo quando a transação é confirmada. Como resultado, as buscas de texto completo retornam apenas dados confirmados.
+* For `InnoDB`, all DML operations (`INSERT`, `UPDATE`, `DELETE`) involving columns with full-text indexes are processed at transaction commit time. For example, for an `INSERT` operation, an inserted string is tokenized and decomposed into individual words. The individual words are then added to full-text index tables when the transaction is committed. As a result, full-text searches only return committed data.
 
-- O caractere '%' não é um caractere de comodínio suportado para pesquisas de texto completo.
+* The '%' character is not a supported wildcard character for full-text searches.

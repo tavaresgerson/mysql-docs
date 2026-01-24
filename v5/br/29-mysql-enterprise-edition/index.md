@@ -1,41 +1,35 @@
-# Capítulo 28 MySQL Enterprise Edition
+# Chapter 28 MySQL Enterprise Edition
 
-**Índice**
+**Table of Contents**
 
-28.1 Visão geral do backup do MySQL Enterprise
+28.1 MySQL Enterprise Backup Overview
 
-28.2 Visão geral da segurança do MySQL Enterprise
+28.2 MySQL Enterprise Security Overview
 
-28.3 Visão geral da criptografia do MySQL Enterprise
+28.3 MySQL Enterprise Encryption Overview
 
-28.4 Visão geral de auditoria do MySQL Enterprise
+28.4 MySQL Enterprise Audit Overview
 
-28.5 Visão geral do Firewall Empresarial do MySQL
+28.5 MySQL Enterprise Firewall Overview
 
-28.6 Visão geral do Pool de Fios do MySQL Enterprise
+28.6 MySQL Enterprise Thread Pool Overview
 
-28.7 Visão geral da Máscara de dados e desidentificação do MySQL Enterprise
+28.7 MySQL Enterprise Data Masking and De-Identification Overview
 
-28.8 Visão geral do Monitor de MySQL Enterprise
+28.8 MySQL Enterprise Monitor Overview
 
-28.9 Telemetria do MySQL
+28.9 MySQL Telemetry
 
-A Edição Empresarial do MySQL é um produto comercial. Assim como a Edição Comunitária do MySQL, a Edição Empresarial do MySQL inclui o MySQL Server, um banco de dados totalmente integrado, seguro em transações, compatível com ACID, com recursos completos de commit, rollback, recuperação em caso de falha e bloqueio de nível de linha. Além disso, a Edição Empresarial do MySQL inclui os seguintes componentes projetados para fornecer monitoramento e backup online, bem como segurança e escalabilidade aprimoradas:
+MySQL Enterprise Edition is a commercial product. Like MySQL Community Edition, MySQL Enterprise Edition includes MySQL Server, a fully integrated transaction-safe, ACID-compliant database with full commit, rollback, crash-recovery, and row-level locking capabilities. In addition, MySQL Enterprise Edition includes the following components designed to provide monitoring and online backup, as well as improved security and scalability:
 
-As seções a seguir discutem brevemente cada um desses componentes e indicam onde encontrar informações mais detalhadas. Para saber mais sobre produtos comerciais, consulte <https://www.mysql.com/products/>.
+The following sections briefly discuss each of these components and indicate where to find more detailed information. To learn more about commercial products, see <https://www.mysql.com/products/>.
 
-- MySQL Enterprise Backup
+* MySQL Enterprise Backup
+* MySQL Enterprise Security
 
-- Segurança da MySQL Enterprise
-
-- Criptografia da MySQL Enterprise
-
-- MySQL Enterprise Audit
-
-- Firewall empresarial MySQL
-
-- Piscina de Fios do MySQL Enterprise
-
-- Mascagem e desidentificação de dados da MySQL Enterprise
-
-- MySQL Enterprise Monitor
+* MySQL Enterprise Encryption
+* MySQL Enterprise Audit
+* MySQL Enterprise Firewall
+* MySQL Enterprise Thread Pool
+* MySQL Enterprise Data Masking and De-Identification
+* MySQL Enterprise Monitor

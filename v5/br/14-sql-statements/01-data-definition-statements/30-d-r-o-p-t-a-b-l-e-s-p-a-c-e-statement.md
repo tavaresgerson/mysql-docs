@@ -1,31 +1,31 @@
-### 13.1.30 Declaração DROP TABLESPACE
+### 13.1.30 DROP TABLESPACE Statement
 
 ```sql
 DROP TABLESPACE tablespace_name
     [ENGINE [=] engine_name]
 ```
 
-Essa declaração exclui um espaço de tabelas que foi criado anteriormente usando `CREATE TABLESPACE`. É suportado com todas as versões do MySQL NDB Cluster 7.5 e também com o `InnoDB` no MySQL Server padrão.
+This statement drops a tablespace that was previously created using [`CREATE TABLESPACE`](create-tablespace.html "13.1.19 CREATE TABLESPACE Statement"). It is supported with all MySQL NDB Cluster 7.5 releases, and with `InnoDB` in the standard MySQL Server as well.
 
-`ENGINE` define o motor de armazenamento que utiliza o tablespace, onde *`engine_name`* é o nome do motor de armazenamento. Atualmente, os valores `InnoDB` e `NDB` são suportados. Se não for definido, o valor de `default_storage_engine` é usado. Se não for o mesmo motor de armazenamento usado para criar o tablespace, a instrução `DROP TABLESPACE` falhará.
+`ENGINE` sets the storage engine that uses the tablespace, where *`engine_name`* is the name of the storage engine. Currently, the values `InnoDB` and `NDB` are supported. If not set, the value of [`default_storage_engine`](server-system-variables.html#sysvar_default_storage_engine) is used. If it is not the same as the storage engine used to create the tablespace, the `DROP TABLESPACE` statement fails.
 
-Para um espaço de tabelas `InnoDB`, todas as tabelas devem ser excluídas do espaço de tabelas antes de uma operação `DROP TABLESPACE`. Se o espaço de tabelas não estiver vazio, o `DROP TABLESPACE` retornará um erro.
+For an `InnoDB` tablespace, all tables must be dropped from the tablespace prior to a `DROP TABLESPACE` operation. If the tablespace is not empty, `DROP TABLESPACE` returns an error.
 
-Assim como acontece com o espaço de tabela do sistema `InnoDB`, o truncamento ou a remoção de tabelas `InnoDB` armazenadas em um espaço de tabela geral cria espaço livre no arquivo de dados do `.ibd` (glossary.html#glos_ibd_file), que só pode ser usado para novos dados `InnoDB`. Espaço não é liberado de volta ao sistema operacional por operações como as que são feitas em espaços de tabela por arquivo.
+As with the `InnoDB` system tablespace, truncating or dropping `InnoDB` tables stored in a general tablespace creates free space in the tablespace [.ibd data file](glossary.html#glos_ibd_file ".ibd file"), which can only be used for new `InnoDB` data. Space is not released back to the operating system by such operations as it is for file-per-table tablespaces.
 
-Um espaço de tabela `NDB` que será excluído não deve conter nenhum arquivo de dados; em outras palavras, antes de poder excluir um espaço de tabela `NDB`, você deve primeiro excluir cada um de seus arquivos de dados usando `ALTER TABLESPACE ... DROP DATAFILE`.
+An `NDB` tablespace to be dropped must not contain any data files; in other words, before you can drop an `NDB` tablespace, you must first drop each of its data files using [`ALTER TABLESPACE ... DROP DATAFILE`](alter-tablespace.html "13.1.9 ALTER TABLESPACE Statement").
 
-#### Notas
+#### Notes
 
-- Os espaços de tabelas não são excluídos automaticamente. Um espaço de tabela deve ser excluído explicitamente usando `DROP TABLESPACE`. `DROP DATABASE` não tem efeito nesse sentido, mesmo que a operação exclua todas as tabelas pertencentes ao espaço de tabela.
+* Tablespaces are not deleted automatically. A tablespace must be dropped explicitly using `DROP TABLESPACE`. [`DROP DATABASE`](drop-database.html "13.1.22 DROP DATABASE Statement") has no effect in this regard, even if the operation drops all tables belonging to the tablespace.
 
-- Uma operação `DROP DATABASE` pode excluir tabelas que pertencem a um espaço de tabelas geral, mas não pode excluir o espaço de tabelas, mesmo que a operação exclua todas as tabelas que pertencem ao espaço de tabelas. O espaço de tabelas deve ser excluído explicitamente usando `DROP TABLESPACE nome_do_espaço_de_tabelas`.
+* A [`DROP DATABASE`](drop-database.html "13.1.22 DROP DATABASE Statement") operation can drop tables that belong to a general tablespace but it cannot drop the tablespace, even if the operation drops all tables that belong to the tablespace. The tablespace must be dropped explicitly using `DROP TABLESPACE tablespace_name`.
 
-- Assim como as tabelas de sistema, o truncar ou a remoção de tabelas armazenadas em um espaço de tabelas geral cria espaço livre internamente no arquivo de dados geral do IBД .ibd, que só pode ser usado para novos dados do `InnoDB`. O espaço não é liberado de volta ao sistema operacional, como acontece com os espaços de tabelas por arquivo.
+* Similar to the system tablespace, truncating or dropping tables stored in a general tablespace creates free space internally in the general tablespace [.ibd data file](glossary.html#glos_ibd_file ".ibd file") which can only be used for new `InnoDB` data. Space is not released back to the operating system as it is for file-per-table tablespaces.
 
-#### Exemplo de InnoDB
+#### InnoDB Example
 
-Este exemplo demonstra como excluir um espaço de tabelas geral `InnoDB`. O espaço de tabelas geral `ts1` é criado com uma única tabela. Antes de excluir o espaço de tabelas, a tabela deve ser excluída.
+This example demonstrates how to drop an `InnoDB` general tablespace. The general tablespace `ts1` is created with a single table. Before dropping the tablespace, the table must be dropped.
 
 ```sql
 mysql> CREATE TABLESPACE `ts1` ADD DATAFILE 'ts1.ibd' Engine=InnoDB;
@@ -37,9 +37,9 @@ mysql> DROP TABLE t1;
 mysql> DROP TABLESPACE ts1;
 ```
 
-#### Exemplo do NDB
+#### NDB Example
 
-Este exemplo mostra como excluir um espaço de tabelas `NDB` chamado `myts`, com um arquivo de dados chamado `mydata-1.dat`, após a criação inicial do espaço de tabelas, e assume a existência de um grupo de arquivos de log chamado `mylg` (consulte Seção 13.1.15, “Instrução CREATE LOGFILE GROUP”).
+This example shows how to drop an `NDB` tablespace `myts` having a data file named `mydata-1.dat` after first creating the tablespace, and assumes the existence of a log file group named `mylg` (see [Section 13.1.15, “CREATE LOGFILE GROUP Statement”](create-logfile-group.html "13.1.15 CREATE LOGFILE GROUP Statement")).
 
 ```sql
 mysql> CREATE TABLESPACE myts
@@ -48,7 +48,7 @@ mysql> CREATE TABLESPACE myts
     ->     ENGINE=NDB;
 ```
 
-Você deve remover todos os arquivos de dados do tablespace usando `ALTER TABLESPACE`, conforme mostrado aqui, antes que ele possa ser excluído:
+You must remove all data files from the tablespace using [`ALTER TABLESPACE`](alter-tablespace.html "13.1.9 ALTER TABLESPACE Statement"), as shown here, before it can be dropped:
 
 ```sql
 mysql> ALTER TABLESPACE myts

@@ -1,72 +1,71 @@
-#### 16.1.2.4 Escolhendo um Método para Instantâneos de Dados
+#### 16.1.2.4 Choosing a Method for Data Snapshots
 
-Se o banco de dados da fonte contiver dados existentes, é necessário copiar esses dados para cada replica. Existem diferentes maneiras de fazer o dump dos dados da fonte. As seções a seguir descrevem as opções possíveis.
+If the database on the source contains existing data it is necessary to copy this data to each replica. There are different ways to dump the data from the source. The following sections describe possible options.
 
-Para selecionar o método apropriado de descarte do banco de dados, escolha entre essas opções:
+To select the appropriate method of dumping the database, choose between these options:
 
-- Use a ferramenta **mysqldump** para criar um dump de todos os bancos de dados que você deseja replicar. Esse é o método recomendado, especialmente ao usar o `InnoDB`.
+* Use the [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") tool to create a dump of all the databases you want to replicate. This is the recommended method, especially when using [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine").
 
-- Se o seu banco de dados estiver armazenado em arquivos portáteis binários, você pode copiar os arquivos de dados brutos para uma replica. Isso pode ser mais eficiente do que usar **mysqldump** e importar o arquivo em cada replica, pois evita o overhead de atualizar índices à medida que as instruções `INSERT` são reexecutadas. Com motores de armazenamento como `InnoDB`, isso não é recomendado.
+* If your database is stored in binary portable files, you can copy the raw data files to a replica. This can be more efficient than using [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") and importing the file on each replica, because it skips the overhead of updating indexes as the `INSERT` statements are replayed. With storage engines such as [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") this is not recommended.
 
-##### 16.1.2.4.1 Criando um instantâneo de dados usando mysqldump
+##### 16.1.2.4.1 Creating a Data Snapshot Using mysqldump
 
-Para criar um instantâneo dos dados em uma fonte existente, use a ferramenta **mysqldump**. Após a conclusão do dump de dados, importe esses dados na replica antes de iniciar o processo de replicação.
+To create a snapshot of the data in an existing source, use the [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") tool. Once the data dump has been completed, import this data into the replica before starting the replication process.
 
-O exemplo a seguir descarrega todas as bases de dados em um arquivo chamado `dbdump.db` e inclui a opção `--master-data`, que anexa automaticamente a instrução `CHANGE MASTER TO` necessária na replica para iniciar o processo de replicação:
+The following example dumps all databases to a file named `dbdump.db`, and includes the [`--master-data`](mysqldump.html#option_mysqldump_master-data) option which automatically appends the [`CHANGE MASTER TO`](change-master-to.html "13.4.2.1 CHANGE MASTER TO Statement") statement required on the replica to start the replication process:
 
 ```sql
 $> mysqldump --all-databases --master-data > dbdump.db
 ```
 
-Nota
+Note
 
-Se você não usar `--master-data`, então é necessário bloquear todas as tabelas em uma sessão separada manualmente. Veja Seção 16.1.2.3, “Obtenção das coordenadas do log binário da fonte de replicação”.
+If you do not use [`--master-data`](mysqldump.html#option_mysqldump_master-data), then it is necessary to lock all tables in a separate session manually. See [Section 16.1.2.3, “Obtaining the Replication Source's Binary Log Coordinates”](replication-howto-masterstatus.html "16.1.2.3 Obtaining the Replication Source's Binary Log Coordinates").
 
-É possível excluir determinadas bases de dados do dump usando a ferramenta **mysqldump**. Se você quiser escolher quais bases de dados incluir no dump, não use `--all-databases`. Escolha uma dessas opções:
+It is possible to exclude certain databases from the dump using the [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") tool. If you want to choose which databases to include in the dump, do not use [`--all-databases`](mysqldump.html#option_mysqldump_all-databases). Choose one of these options:
 
-- Exclua todas as tabelas no banco de dados usando a opção `--ignore-table`.
+* Exclude all the tables in the database using [`--ignore-table`](mysqldump.html#option_mysqldump_ignore-table) option.
 
-- Nomeie apenas os bancos de dados que você deseja exportar usando a opção `--databases`.
+* Name only those databases which you want dumped using the [`--databases`](mysqldump.html#option_mysqldump_databases) option.
 
-Para obter mais informações, consulte Seção 4.5.4, “mysqldump — Um programa de backup de banco de dados”.
+For more information, see [Section 4.5.4, “mysqldump — A Database Backup Program”](mysqldump.html "4.5.4 mysqldump — A Database Backup Program").
 
-Para importar os dados, copie o arquivo de dump para a replica ou acesse o arquivo na fonte ao se conectar remotamente à replica.
+To import the data, either copy the dump file to the replica, or access the file from the source when connecting remotely to the replica.
 
-##### 16.1.2.4.2 Criando um Instantâneo de Dados Usando Arquivos de Dados Brutos
+##### 16.1.2.4.2 Creating a Data Snapshot Using Raw Data Files
 
-Esta seção descreve como criar um instantâneo de dados usando os arquivos brutos que compõem o banco de dados. Empregar esse método com uma tabela usando um mecanismo de armazenamento que possui algoritmos complexos de cache ou registro requer etapas extras para produzir um instantâneo perfeito “no momento atual”: o comando de cópia inicial pode deixar de fora informações de cache e atualizações de registro, mesmo que você tenha adquirido um bloqueio de leitura global. Como o mecanismo de armazenamento responde a isso depende de suas capacidades de recuperação em caso de falha.
+This section describes how to create a data snapshot using the raw files which make up the database. Employing this method with a table using a storage engine that has complex caching or logging algorithms requires extra steps to produce a perfect “point in time” snapshot: the initial copy command could leave out cache information and logging updates, even if you have acquired a global read lock. How the storage engine responds to this depends on its crash recovery abilities.
 
-Se você estiver usando tabelas do tipo `InnoDB`, você pode usar o comando **mysqlbackup** do componente MySQL Enterprise Backup para criar um instantâneo consistente. Esse comando registra o nome do log e o deslocamento correspondentes ao instantâneo a ser usado na replica. O MySQL Enterprise Backup é um produto comercial que está incluído como parte de uma assinatura do MySQL Enterprise. Consulte Seção 28.1, “MySQL Enterprise Backup Overview” para obter informações detalhadas.
+If you use [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") tables, you can use the **mysqlbackup** command from the MySQL Enterprise Backup component to produce a consistent snapshot. This command records the log name and offset corresponding to the snapshot to be used on the replica. MySQL Enterprise Backup is a commercial product that is included as part of a MySQL Enterprise subscription. See [Section 28.1, “MySQL Enterprise Backup Overview”](mysql-enterprise-backup.html "28.1 MySQL Enterprise Backup Overview") for detailed information.
 
-Esse método também não funciona de forma confiável se a fonte e a replica tiverem valores diferentes para `ft_stopword_file`, `ft_min_word_len` ou `ft_max_word_len` e você estiver copiando tabelas com índices de texto completo.
+This method also does not work reliably if the source and replica have different values for [`ft_stopword_file`](server-system-variables.html#sysvar_ft_stopword_file), [`ft_min_word_len`](server-system-variables.html#sysvar_ft_min_word_len), or [`ft_max_word_len`](server-system-variables.html#sysvar_ft_max_word_len) and you are copying tables having full-text indexes.
 
-Se as exceções acima não se aplicarem ao seu banco de dados, use a técnica de backup frio para obter um instantâneo binário confiável das tabelas do `InnoDB`: faça um desligamento lento do servidor MySQL e, em seguida, copie os arquivos de dados manualmente.
+Assuming the above exceptions do not apply to your database, use the [cold backup](glossary.html#glos_cold_backup "cold backup") technique to obtain a reliable binary snapshot of `InnoDB` tables: do a [slow shutdown](glossary.html#glos_slow_shutdown "slow shutdown") of the MySQL Server, then copy the data files manually.
 
-Para criar um instantâneo de dados brutos das tabelas de `MyISAM` quando seus arquivos de dados MySQL estiverem em um único sistema de arquivos, você pode usar ferramentas padrão de cópia de arquivos, como **cp** ou **copy**, uma ferramenta de cópia remota, como **scp** ou **rsync**, uma ferramenta de arquivamento, como **zip** ou **tar**, ou uma ferramenta de instantâneo de sistema de arquivos, como **dump**. Se você está replicando apenas certos bancos de dados, copie apenas os arquivos que se relacionam com essas tabelas. Para `InnoDB`, todas as tabelas em todos os bancos de dados são armazenadas nos arquivos do espaço de tabelas do sistema, a menos que você tenha a opção `innodb_file_per_table` habilitada.
+To create a raw data snapshot of [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine") tables when your MySQL data files exist on a single file system, you can use standard file copy tools such as **cp** or **copy**, a remote copy tool such as **scp** or **rsync**, an archiving tool such as **zip** or **tar**, or a file system snapshot tool such as **dump**. If you are replicating only certain databases, copy only those files that relate to those tables. For `InnoDB`, all tables in all databases are stored in the [system tablespace](glossary.html#glos_system_tablespace "system tablespace") files, unless you have the [`innodb_file_per_table`](innodb-parameters.html#sysvar_innodb_file_per_table) option enabled.
 
-Os seguintes arquivos não são necessários para a replicação:
+The following files are not required for replication:
 
-- Arquivos relacionados ao banco de dados `mysql`.
+* Files relating to the `mysql` database.
+* The replica's connection metadata repository file, if used (see [Section 16.2.4, “Relay Log and Replication Metadata Repositories”](replica-logs.html "16.2.4 Relay Log and Replication Metadata Repositories")).
 
-- O arquivo de repositório de metadados de conexão da réplica, se utilizado (consulte Seção 16.2.4, "Repositórios de Log de Relógio e Metadados de Replicação").
+* The source's binary log files, with the exception of the binary log index file if you are going to use this to locate the source's binary log coordinates for the replica.
 
-- Os arquivos de log binários da fonte, com exceção do arquivo de índice do log binário, se você vai usá-lo para localizar as coordenadas do log binário da fonte para a replica.
+* Any relay log files.
 
-- Quaisquer arquivos de registro de relay.
+Depending on whether you are using `InnoDB` tables or not, choose one of the following:
 
-Dependendo de você estar usando tabelas `InnoDB` ou não, escolha uma das seguintes opções:
+If you are using [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") tables, and also to get the most consistent results with a raw data snapshot, shut down the source server during the process, as follows:
 
-Se você estiver usando tabelas do `InnoDB` e também quiser obter os resultados mais consistentes com um instantâneo de dados brutos, desligue o servidor de origem durante o processo, conforme descrito a seguir:
+1. Acquire a read lock and get the source's status. See [Section 16.1.2.3, “Obtaining the Replication Source's Binary Log Coordinates”](replication-howto-masterstatus.html "16.1.2.3 Obtaining the Replication Source's Binary Log Coordinates").
 
-1. Adquira um bloqueio de leitura e obtenha o status da fonte. Veja Seção 16.1.2.3, “Obtenção das coordenadas do log binário da fonte de replicação”.
-
-2. Em uma sessão separada, desligue o servidor de origem:
+2. In a separate session, shut down the source server:
 
    ```sql
    $> mysqladmin shutdown
    ```
 
-3. Faça uma cópia dos arquivos de dados do MySQL. Os exemplos a seguir mostram as formas mais comuns de fazer isso. Você precisa escolher apenas uma delas:
+3. Make a copy of the MySQL data files. The following examples show common ways to do this. You need to choose only one of them:
 
    ```sql
    $> tar cf /tmp/db.tar ./data
@@ -74,13 +73,13 @@ Se você estiver usando tabelas do `InnoDB` e também quiser obter os resultados
    $> rsync --recursive ./data /tmp/dbdata
    ```
 
-4. Reinicie o servidor de origem.
+4. Restart the source server.
 
-Se você não estiver usando tabelas do `InnoDB`, você pode obter um instantâneo do sistema a partir de uma fonte sem desligar o servidor, conforme descrito nas etapas a seguir:
+If you are not using [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") tables, you can get a snapshot of the system from a source without shutting down the server as described in the following steps:
 
-1. Adquira um bloqueio de leitura e obtenha o status da fonte. Veja Seção 16.1.2.3, “Obtenção das coordenadas do log binário da fonte de replicação”.
+1. Acquire a read lock and get the source's status. See [Section 16.1.2.3, “Obtaining the Replication Source's Binary Log Coordinates”](replication-howto-masterstatus.html "16.1.2.3 Obtaining the Replication Source's Binary Log Coordinates").
 
-2. Faça uma cópia dos arquivos de dados do MySQL. Os exemplos a seguir mostram as formas mais comuns de fazer isso. Você precisa escolher apenas uma delas:
+2. Make a copy of the MySQL data files. The following examples show common ways to do this. You need to choose only one of them:
 
    ```sql
    $> tar cf /tmp/db.tar ./data
@@ -88,10 +87,10 @@ Se você não estiver usando tabelas do `InnoDB`, você pode obter um instantân
    $> rsync --recursive ./data /tmp/dbdata
    ```
 
-3. No cliente onde você adquiriu o bloqueio de leitura, libere o bloqueio:
+3. In the client where you acquired the read lock, release the lock:
 
    ```sql
    mysql> UNLOCK TABLES;
    ```
 
-Depois de criar o arquivo ou cópia do banco de dados, copie os arquivos para cada replica antes de iniciar o processo de replicação.
+Once you have created the archive or copy of the database, copy the files to each replica before starting the replication process.

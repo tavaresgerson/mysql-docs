@@ -1,4 +1,4 @@
-### 13.2.7 Declaração de CARREGAR XML
+### 13.2.7 LOAD XML Statement
 
 ```sql
 LOAD XML
@@ -15,25 +15,25 @@ LOAD XML
         [, col_name={expr | DEFAULT}] ...]
 ```
 
-A instrução `LOAD XML` lê dados de um arquivo XML em uma tabela. O *`file_name`* deve ser fornecido como uma string literal. O *`tagname`* na cláusula opcional `ROWS IDENTIFIED BY` também deve ser fornecido como uma string literal, e deve ser envolvido por colchetes angulares (`<` e `>`).
+The [`LOAD XML`](load-xml.html "13.2.7 LOAD XML Statement") statement reads data from an XML file into a table. The *`file_name`* must be given as a literal string. The *`tagname`* in the optional `ROWS IDENTIFIED BY` clause must also be given as a literal string, and must be surrounded by angle brackets (`<` and `>`).
 
-`LOAD XML` atua como complemento para executar o cliente **mysql** no modo de saída XML (ou seja, iniciar o cliente com a opção `--xml`). Para escrever dados de uma tabela em um arquivo XML, você pode invocar o cliente **mysql** com as opções `--xml` e `-e` a partir do shell do sistema, conforme mostrado aqui:
+[`LOAD XML`](load-xml.html "13.2.7 LOAD XML Statement") acts as the complement of running the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client in XML output mode (that is, starting the client with the [`--xml`](mysql-command-options.html#option_mysql_xml) option). To write data from a table to an XML file, you can invoke the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client with the [`--xml`](mysql-command-options.html#option_mysql_xml) and [`-e`](mysql-command-options.html#option_mysql_execute) options from the system shell, as shown here:
 
 ```sql
 $> mysql --xml -e 'SELECT * FROM mydb.mytable' > file.xml
 ```
 
-Para ler o arquivo de volta em uma tabela, use `LOAD XML`. Por padrão, o elemento `<row>` é considerado o equivalente a uma linha de tabela de banco de dados; isso pode ser alterado usando a cláusula `ROWS IDENTIFIED BY`.
+To read the file back into a table, use [`LOAD XML`](load-xml.html "13.2.7 LOAD XML Statement"). By default, the `<row>` element is considered to be the equivalent of a database table row; this can be changed using the `ROWS IDENTIFIED BY` clause.
 
-Esta declaração suporta três formatos de XML diferentes:
+This statement supports three different XML formats:
 
-- Nomes de colunas como atributos e valores de coluna como valores de atributo:
+* Column names as attributes and column values as attribute values:
 
   ```sql
   <row column1="value1" column2="value2" .../>
   ```
 
-- Nomes das colunas como etiquetas e valores das colunas como conteúdo dessas etiquetas:
+* Column names as tags and column values as the content of these tags:
 
   ```sql
   <row>
@@ -42,7 +42,7 @@ Esta declaração suporta três formatos de XML diferentes:
   </row>
   ```
 
-- Os nomes das colunas são os atributos `name` das tags `<field>` e os valores são o conteúdo dessas tags:
+* Column names are the `name` attributes of `<field>` tags, and values are the contents of these tags:
 
   ```sql
   <row>
@@ -51,31 +51,28 @@ Esta declaração suporta três formatos de XML diferentes:
   </row>
   ```
 
-  Este é o formato usado por outras ferramentas do MySQL, como **mysqldump**.
+  This is the format used by other MySQL tools, such as [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program").
 
-Todos os três formatos podem ser usados no mesmo arquivo XML; a rotina de importação detecta automaticamente o formato de cada linha e interpreta-o corretamente. As tags são correspondidas com base no nome da tag ou atributo e no nome da coluna.
+All three formats can be used in the same XML file; the import routine automatically detects the format for each row and interprets it correctly. Tags are matched based on the tag or attribute name and the column name.
 
-No MySQL 5.7, a função `LOAD XML` não suporta seções `CDATA` no XML de origem. Essa limitação é removida no MySQL 8.0. (Bug #30753708, Bug #98199)
+In MySQL 5.7, `LOAD XML` does not support `CDATA` sections in the source XML. This limitation is removed in MySQL 8.0. (Bug #30753708, Bug #98199)
 
-As seguintes cláusulas funcionam essencialmente da mesma maneira para `LOAD XML` do que para `LOAD DATA`:
+The following clauses work essentially the same way for [`LOAD XML`](load-xml.html "13.2.7 LOAD XML Statement") as they do for [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement"):
 
-- `BAIXA PRIORIDADE` ou `CONCORRENTE`
+* `LOW_PRIORITY` or `CONCURRENT`
 
-- `LOCAL`
+* `LOCAL`
+* `REPLACE` or `IGNORE`
+* `CHARACTER SET`
+* `SET`
 
-- `REPLACE` ou `IGNORE`
+See [Section 13.2.6, “LOAD DATA Statement”](load-data.html "13.2.6 LOAD DATA Statement"), for more information about these clauses.
 
-- `CARACTERES`
+`(field_name_or_user_var, ...)` is a list of one or more comma-separated XML fields or user variables. The name of a user variable used for this purpose must match the name of a field from the XML file, prefixed with `@`. You can use field names to select only desired fields. User variables can be employed to store the corresponding field values for subsequent re-use.
 
-- `SET`
+The `IGNORE number LINES` or `IGNORE number ROWS` clause causes the first *`number`* rows in the XML file to be skipped. It is analogous to the [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") statement's `IGNORE ... LINES` clause.
 
-Consulte a Seção 13.2.6, “Instrução LOAD DATA” para obter mais informações sobre essas cláusulas.
-
-`(campo_nome_ou_var_usuario, ...)` é uma lista de um ou mais campos XML ou variáveis de usuário separados por vírgula. O nome de uma variável de usuário usada para esse propósito deve corresponder ao nome de um campo do arquivo XML, precedido por `@`. Você pode usar os nomes de campos para selecionar apenas os campos desejados. As variáveis de usuário podem ser usadas para armazenar os valores correspondentes dos campos para uso posterior.
-
-A cláusula `IGNORE number LINES` ou `IGNORE number ROWS` faz com que as primeiras *`número`* linhas do arquivo XML sejam ignoradas. É análoga à cláusula `IGNORE ... LINES` da instrução `LOAD DATA`.
-
-Suponha que tenhamos uma tabela chamada `pessoa`, criada conforme mostrado aqui:
+Suppose that we have a table named `person`, created as shown here:
 
 ```sql
 USE test;
@@ -88,9 +85,9 @@ CREATE TABLE person (
 );
 ```
 
-Suponha, ainda, que essa tabela esteja inicialmente vazia.
+Suppose further that this table is initially empty.
 
-Agora, vamos supor que temos um arquivo XML simples `person.xml`, cujos conteúdos são mostrados aqui:
+Now suppose that we have a simple XML file `person.xml`, whose contents are as shown here:
 
 ```sql
 <list>
@@ -107,9 +104,9 @@ Agora, vamos supor que temos um arquivo XML simples `person.xml`, cujos conteúd
 </list>
 ```
 
-Cada um dos formatos XML permitidos discutidos anteriormente está representado neste arquivo de exemplo.
+Each of the permissible XML formats discussed previously is represented in this example file.
 
-Para importar os dados do `person.xml` na tabela `person`, você pode usar esta instrução:
+To import the data in `person.xml` into the `person` table, you can use this statement:
 
 ```sql
 mysql> LOAD XML LOCAL INFILE 'person.xml'
@@ -120,15 +117,15 @@ Query OK, 8 rows affected (0.00 sec)
 Records: 8  Deleted: 0  Skipped: 0  Warnings: 0
 ```
 
-Aqui, assumimos que `person.xml` está localizado no diretório de dados do MySQL. Se o arquivo não for encontrado, o seguinte erro será gerado:
+Here, we assume that `person.xml` is located in the MySQL data directory. If the file cannot be found, the following error results:
 
 ```sql
 ERROR 2 (HY000): File '/person.xml' not found (Errcode: 2)
 ```
 
-A cláusula `ROWS IDENTIFIED BY '<pessoa>'` significa que cada elemento `<pessoa>` no arquivo XML é considerado equivalente a uma linha na tabela na qual os dados devem ser importados. Neste caso, esta é a tabela `pessoa` no banco de dados `test`.
+The `ROWS IDENTIFIED BY '<person>'` clause means that each `<person>` element in the XML file is considered equivalent to a row in the table into which the data is to be imported. In this case, this is the `person` table in the `test` database.
 
-Como pode ser visto na resposta do servidor, 8 linhas foram importadas para a tabela `test.person`. Isso pode ser verificado por meio de uma simples instrução `SELECT`: [select.html]
+As can be seen by the response from the server, 8 rows were imported into the `test.person` table. This can be verified by a simple [`SELECT`](select.html "13.2.9 SELECT Statement") statement:
 
 ```sql
 mysql> SELECT * FROM person;
@@ -147,9 +144,9 @@ mysql> SELECT * FROM person;
 8 rows in set (0.00 sec)
 ```
 
-Isso mostra, conforme mencionado anteriormente nesta seção, que qualquer um ou todos os 3 formatos de XML permitidos podem aparecer em um único arquivo e serem lidos usando `LOAD XML`.
+This shows, as stated earlier in this section, that any or all of the 3 permitted XML formats may appear in a single file and be read using [`LOAD XML`](load-xml.html "13.2.7 LOAD XML Statement").
 
-A operação de importação inversa mostrada anteriormente, ou seja, o descarte de dados de uma tabela do MySQL em um arquivo XML, pode ser realizada usando o cliente **mysql** do shell do sistema, conforme mostrado aqui:
+The inverse of the import operation just shown—that is, dumping MySQL table data into an XML file—can be accomplished using the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client from the system shell, as shown here:
 
 ```sql
 $> mysql --xml -e "SELECT * FROM test.person" > person-dump.xml
@@ -207,11 +204,11 @@ $> cat person-dump.xml
 </resultset>
 ```
 
-Nota
+Note
 
-A opção `--xml` faz com que o cliente **mysql** use a formatação XML para sua saída; a opção `-e` faz com que o cliente execute a instrução SQL imediatamente após a opção. Veja Seção 4.5.1, “mysql — O Cliente de Linha de Comando MySQL”.
+The [`--xml`](mysql-command-options.html#option_mysql_xml) option causes the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client to use XML formatting for its output; the [`-e`](mysql-command-options.html#option_mysql_execute) option causes the client to execute the SQL statement immediately following the option. See [Section 4.5.1, “mysql — The MySQL Command-Line Client”](mysql.html "4.5.1 mysql — The MySQL Command-Line Client").
 
-Você pode verificar se o dump é válido criando uma cópia da tabela `person` e importando o arquivo do dump na nova tabela, da seguinte maneira:
+You can verify that the dump is valid by creating a copy of the `person` table and importing the dump file into the new table, like this:
 
 ```sql
 mysql> USE test;
@@ -239,7 +236,7 @@ mysql> SELECT * FROM person2;
 8 rows in set (0.00 sec)
 ```
 
-Não há necessidade de que todos os campos do arquivo XML sejam correspondidos a uma coluna na tabela correspondente. Os campos que não têm colunas correspondentes são ignorados. Você pode ver isso primeiro esvaziando a tabela `person2` e excluindo a coluna `created`, depois usando a mesma instrução `LOAD XML` que acabamos de usar anteriormente, assim:
+There is no requirement that every field in the XML file be matched with a column in the corresponding table. Fields which have no corresponding columns are skipped. You can see this by first emptying the `person2` table and dropping the `created` column, then using the same [`LOAD XML`](load-xml.html "13.2.7 LOAD XML Statement") statement we just employed previously, like this:
 
 ```sql
 mysql> TRUNCATE person2;
@@ -281,9 +278,9 @@ mysql> SELECT * FROM person2;
 8 rows in set (0.00 sec)
 ```
 
-A ordem em que os campos são apresentados em cada linha do arquivo XML não afeta o funcionamento do `LOAD XML`; a ordem dos campos pode variar de linha para linha e não precisa ser a mesma ordem das colunas correspondentes na tabela.
+The order in which the fields are given within each row of the XML file does not affect the operation of [`LOAD XML`](load-xml.html "13.2.7 LOAD XML Statement"); the field order can vary from row to row, and is not required to be in the same order as the corresponding columns in the table.
 
-Como mencionado anteriormente, você pode usar uma lista `(campo_nome_ou_var_usuario, ...)` de um ou mais campos XML (para selecionar apenas os campos desejados) ou variáveis de usuário (para armazenar os valores correspondentes do campo para uso posterior). As variáveis de usuário podem ser especialmente úteis quando você deseja inserir dados de um arquivo XML em colunas de tabela cujos nomes não correspondem aos dos campos XML. Para ver como isso funciona, primeiro criamos uma tabela chamada `individual` cuja estrutura corresponde à da tabela `pessoa`, mas cujas colunas são nomeadas de maneira diferente:
+As mentioned previously, you can use a `(field_name_or_user_var, ...)` list of one or more XML fields (to select desired fields only) or user variables (to store the corresponding field values for later use). User variables can be especially useful when you want to insert data from an XML file into table columns whose names do not match those of the XML fields. To see how this works, we first create a table named `individual` whose structure matches that of the `person` table, but whose columns are named differently:
 
 ```sql
 mysql> CREATE TABLE individual (
@@ -295,14 +292,14 @@ mysql> CREATE TABLE individual (
 Query OK, 0 rows affected (0.42 sec)
 ```
 
-Nesse caso, você não pode simplesmente carregar o arquivo XML diretamente na tabela, porque os nomes dos campos e das colunas não correspondem:
+In this case, you cannot simply load the XML file directly into the table, because the field and column names do not match:
 
 ```sql
 mysql> LOAD XML INFILE '../bin/person-dump.xml' INTO TABLE test.individual;
 ERROR 1263 (22004): Column set to default value; NULL supplied to NOT NULL column 'individual_id' at row 1
 ```
 
-Isso acontece porque o servidor MySQL procura por nomes de campos que correspondam aos nomes das colunas da tabela de destino. Você pode contornar esse problema selecionando os valores dos campos em variáveis de usuário e, em seguida, definindo as colunas da tabela de destino iguais aos valores dessas variáveis usando `SET`. Você pode realizar ambas as operações em uma única instrução, como mostrado aqui:
+This happens because the MySQL server looks for field names matching the column names of the target table. You can work around this problem by selecting the field values into user variables, then setting the target table's columns equal to the values of those variables using `SET`. You can perform both of these operations in a single statement, as shown here:
 
 ```sql
 mysql> LOAD XML INFILE '../bin/person-dump.xml'
@@ -327,9 +324,9 @@ mysql> SELECT * FROM individual;
 8 rows in set (0.00 sec)
 ```
 
-Os nomes das variáveis do usuário *devem* corresponder aos campos correspondentes do arquivo XML, com a adição do prefixo `@` necessário para indicar que são variáveis. As variáveis do usuário não precisam ser listadas ou atribuídas na mesma ordem que os campos correspondentes.
+The names of the user variables *must* match those of the corresponding fields from the XML file, with the addition of the required `@` prefix to indicate that they are variables. The user variables need not be listed or assigned in the same order as the corresponding fields.
 
-Usando uma cláusula `ROWS IDENTIFIED BY '<tagname>'`, é possível importar dados do mesmo arquivo XML para tabelas de banco de dados com definições diferentes. Para este exemplo, suponha que você tenha um arquivo chamado `address.xml` que contém o seguinte XML:
+Using a `ROWS IDENTIFIED BY '<tagname>'` clause, it is possible to import data from the same XML file into database tables with different definitions. For this example, suppose that you have a file named `address.xml` which contains the following XML:
 
 ```sql
 <?xml version="1.0"?>
@@ -352,7 +349,7 @@ Usando uma cláusula `ROWS IDENTIFIED BY '<tagname>'`, é possível importar dad
 </list>
 ```
 
-Você pode usar novamente a tabela `test.person`, conforme definida anteriormente nesta seção, após limpar todos os registros existentes da tabela e, em seguida, exibir sua estrutura conforme mostrado aqui:
+You can again use the `test.person` table as defined previously in this section, after clearing all the existing records from the table and then showing its structure as shown here:
 
 ```sql
 mysql< TRUNCATE person;
@@ -371,7 +368,7 @@ Create Table: CREATE TABLE `person` (
 1 row in set (0.00 sec)
 ```
 
-Agora, crie uma tabela `address` no banco de dados `test` usando a seguinte instrução `CREATE TABLE`:
+Now create an `address` table in the `test` database using the following [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement:
 
 ```sql
 CREATE TABLE address (
@@ -384,7 +381,7 @@ CREATE TABLE address (
 );
 ```
 
-Para importar os dados do arquivo XML para a tabela `pessoa`, execute a seguinte instrução `LOAD XML`, que especifica que as linhas devem ser especificadas pelo elemento `<pessoa>`, conforme mostrado aqui;
+To import the data from the XML file into the `person` table, execute the following [`LOAD XML`](load-xml.html "13.2.7 LOAD XML Statement") statement, which specifies that rows are to be specified by the `<person>` element, as shown here;
 
 ```sql
 mysql> LOAD XML LOCAL INFILE 'address.xml'
@@ -394,7 +391,7 @@ Query OK, 2 rows affected (0.00 sec)
 Records: 2  Deleted: 0  Skipped: 0  Warnings: 0
 ```
 
-Você pode verificar se os registros foram importados usando uma instrução `SELECT`:
+You can verify that the records were imported using a [`SELECT`](select.html "13.2.9 SELECT Statement") statement:
 
 ```sql
 mysql> SELECT * FROM person;
@@ -407,9 +404,9 @@ mysql> SELECT * FROM person;
 2 rows in set (0.00 sec)
 ```
 
-Como os elementos `<address>` no arquivo XML não têm colunas correspondentes na tabela `person`, eles são ignorados.
+Since the `<address>` elements in the XML file have no corresponding columns in the `person` table, they are skipped.
 
-Para importar os dados dos elementos `<address>` para a tabela `address`, use a instrução `LOAD XML` mostrada aqui:
+To import the data from the `<address>` elements into the `address` table, use the [`LOAD XML`](load-xml.html "13.2.7 LOAD XML Statement") statement shown here:
 
 ```sql
 mysql> LOAD XML LOCAL INFILE 'address.xml'
@@ -419,7 +416,7 @@ Query OK, 3 rows affected (0.00 sec)
 Records: 3  Deleted: 0  Skipped: 0  Warnings: 0
 ```
 
-Você pode ver que os dados foram importados usando uma instrução `SELECT` como esta:
+You can see that the data was imported using a [`SELECT`](select.html "13.2.9 SELECT Statement") statement such as this one:
 
 ```sql
 mysql> SELECT * FROM address;
@@ -433,20 +430,20 @@ mysql> SELECT * FROM address;
 3 rows in set (0.00 sec)
 ```
 
-Os dados do elemento `<address>` que estão dentro de comentários XML não são importados. No entanto, como há uma coluna `person_id` na tabela `address`, o valor do atributo `person_id` do elemento pai `<person>` para cada `<address>` *é* importado para a tabela `address`.
+The data from the `<address>` element that is enclosed in XML comments is not imported. However, since there is a `person_id` column in the `address` table, the value of the `person_id` attribute from the parent `<person>` element for each `<address>` *is* imported into the `address` table.
 
-**Considerações de segurança.** Assim como com a instrução `LOAD DATA`, a transferência do arquivo XML do host do cliente para o host do servidor é iniciada pelo servidor MySQL. Em teoria, poderia ser construído um servidor com correções que informaria ao programa cliente para transferir um arquivo escolhido pelo servidor, em vez do arquivo nomeado pelo cliente na instrução `LOAD XML`. Tal servidor poderia acessar qualquer arquivo no host do cliente para o qual o usuário cliente tenha acesso de leitura.
+**Security Considerations.** As with the [`LOAD DATA`](load-data.html "13.2.6 LOAD DATA Statement") statement, the transfer of the XML file from the client host to the server host is initiated by the MySQL server. In theory, a patched server could be built that would tell the client program to transfer a file of the server's choosing rather than the file named by the client in the [`LOAD XML`](load-xml.html "13.2.7 LOAD XML Statement") statement. Such a server could access any file on the client host to which the client user has read access.
 
-Em um ambiente web, os clientes geralmente se conectam ao MySQL a partir de um servidor web. Um usuário que pode executar qualquer comando contra o servidor MySQL pode usar `LOAD XML LOCAL` para ler quaisquer arquivos para os quais o servidor web tenha acesso de leitura. Nesse ambiente, o cliente em relação ao servidor MySQL é na verdade o servidor web, e não o programa remoto executado pelo usuário que se conecta ao servidor web.
+In a Web environment, clients usually connect to MySQL from a Web server. A user that can run any command against the MySQL server can use [`LOAD XML LOCAL`](load-xml.html "13.2.7 LOAD XML Statement") to read any files to which the Web server process has read access. In this environment, the client with respect to the MySQL server is actually the Web server, not the remote program being run by the user who connects to the Web server.
 
-Você pode desabilitar o carregamento de arquivos XML dos clientes iniciando o servidor com `--local-infile=0` ou `--local-infile=OFF`. Esta opção também pode ser usada ao iniciar o cliente **mysql** para desabilitar `LOAD XML` durante a sessão do cliente.
+You can disable loading of XML files from clients by starting the server with [`--local-infile=0`](server-system-variables.html#sysvar_local_infile) or [`--local-infile=OFF`](server-system-variables.html#sysvar_local_infile). This option can also be used when starting the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client to disable [`LOAD XML`](load-xml.html "13.2.7 LOAD XML Statement") for the duration of the client session.
 
-Para impedir que um cliente carregue arquivos XML do servidor, não conceda o privilégio `FILE` à conta de usuário MySQL correspondente, ou revogue esse privilégio se a conta de usuário do cliente já o tiver.
+To prevent a client from loading XML files from the server, do not grant the [`FILE`](privileges-provided.html#priv_file) privilege to the corresponding MySQL user account, or revoke this privilege if the client user account already has it.
 
-Importante
+Important
 
-Revocar o privilégio `FILE` (ou não concedê-lo em primeiro lugar) impede que o usuário execute apenas a instrução `LOAD XML` (assim como a função `LOAD_FILE()`; isso *não* impede que o usuário execute `LOAD XML LOCAL`. Para impedir essa instrução, você deve iniciar o servidor ou o cliente com `--local-infile=OFF`.
+Revoking the [`FILE`](privileges-provided.html#priv_file) privilege (or not granting it in the first place) keeps the user only from executing the [`LOAD XML`](load-xml.html "13.2.7 LOAD XML Statement") statement (as well as the [`LOAD_FILE()`](string-functions.html#function_load-file) function; it does *not* prevent the user from executing [`LOAD XML LOCAL`](load-xml.html "13.2.7 LOAD XML Statement"). To disallow this statement, you must start the server or the client with `--local-infile=OFF`.
 
-Em outras palavras, o privilégio `FILE` afeta apenas se o cliente pode ler arquivos no servidor; ele não tem nenhuma influência sobre se o cliente pode ler arquivos no sistema de arquivos local.
+In other words, the [`FILE`](privileges-provided.html#priv_file) privilege affects only whether the client can read files on the server; it has no bearing on whether the client can read files on the local file system.
 
-Para tabelas particionadas que utilizam motores de armazenamento que empregam bloqueios de tabela, como `MyISAM`, quaisquer bloqueios causados por `LOAD XML` realizam bloqueios em todas as partições da tabela. Isso não se aplica a tabelas que utilizam motores de armazenamento que empregam bloqueios em nível de linha, como `InnoDB`. Para mais informações, consulte Seção 22.6.4, “Particionamento e Bloqueio”.
+For partitioned tables using storage engines that employ table locks, such as [`MyISAM`](myisam-storage-engine.html "15.2 The MyISAM Storage Engine"), any locks caused by [`LOAD XML`](load-xml.html "13.2.7 LOAD XML Statement") perform locks on all partitions of the table. This does not apply to tables using storage engines which employ row-level locking, such as [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine"). For more information, see [Section 22.6.4, “Partitioning and Locking”](partitioning-limitations-locking.html "22.6.4 Partitioning and Locking").

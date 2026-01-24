@@ -1,3 +1,3 @@
-### 21.5.8 ndb_cpcd — Automatizar testes para o desenvolvimento do NDB
+### 21.5.8 ndb_cpcd — Automate Testing for NDB Development
 
-Uma ferramenta com esse nome fazia parte de uma estrutura de teste automatizada interna usada no teste e depuração do NDB Cluster. Ela não está mais incluída nas distribuições do NDB Cluster fornecidas pela Oracle.
+A utility having this name was formerly part of an internal automated test framework used in testing and debugging NDB Cluster. It is no longer included in NDB Cluster distributions provided by Oracle.

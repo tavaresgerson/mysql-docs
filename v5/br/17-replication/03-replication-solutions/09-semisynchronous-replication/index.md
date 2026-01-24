@@ -1,61 +1,61 @@
-### 16.3.9 Replicação semiesincronizada
+### 16.3.9 Semisynchronous Replication
 
-Interface Administrativa de Replicação Semisíncrona
+[16.3.9.1 Semisynchronous Replication Administrative Interface](replication-semisync-interface.html)
 
-16.3.9.2 Instalação e Configuração da Replicação Semisíncrona
+[16.3.9.2 Semisynchronous Replication Installation and Configuration](replication-semisync-installation.html)
 
-16.3.9.3 Monitoramento da Replicação Semisíncrona
+[16.3.9.3 Semisynchronous Replication Monitoring](replication-semisync-monitoring.html)
 
-Além da replicação assíncrona integrada, o MySQL 5.7 suporta uma interface para replicação semi-síncrona, implementada por plugins. Esta seção discute o que é a replicação semi-síncrona e como ela funciona. As seções seguintes abordam a interface administrativa para replicação semi-síncrona e como instalá-la, configurá-la e monitorá-la.
+In addition to the built-in asynchronous replication, MySQL 5.7 supports an interface to semisynchronous replication that is implemented by plugins. This section discusses what semisynchronous replication is and how it works. The following sections cover the administrative interface to semisynchronous replication and how to install, configure, and monitor it.
 
-A replicação do MySQL, por padrão, é assíncrona. A fonte escreve eventos em seu log binário e as réplicas solicitam-nos quando estão prontas. A fonte não sabe se uma réplica já recuperou e processou as transações ou quando, e não há garantia de que algum evento chegue a qualquer réplica. Com a replicação assíncrona, se a fonte falhar, as transações que ela tenha comprometido podem não ter sido transmitidas a nenhuma réplica. A falha do servidor fonte para a réplica, nesse caso, pode resultar em uma falha para um servidor que está faltando transações em relação à fonte.
+MySQL replication by default is asynchronous. The source writes events to its binary log and replicas request them when they are ready. The source does not know whether or when a replica has retrieved and processed the transactions, and there is no guarantee that any event ever reaches any replica. With asynchronous replication, if the source crashes, transactions that it has committed might not have been transmitted to any replica. Failover from source to replica in this case might result in failover to a server that is missing transactions relative to the source.
 
-Com a replicação totalmente síncrona, quando uma fonte executa uma transação, todas as réplicas também devem ter executado a transação antes de a fonte retornar à sessão que executou a transação. A replicação totalmente síncrona significa que o failover da fonte para qualquer réplica é possível a qualquer momento. A desvantagem da replicação totalmente síncrona é que pode haver um grande atraso para concluir uma transação.
+With fully synchronous replication, when a source commits a transaction, all replicas must also have committed the transaction before the source returns to the session that performed the transaction. Fully synchronous replication means failover from the source to any replica is possible at any time. The drawback of fully synchronous replication is that there might be a lot of delay to complete a transaction.
 
-A replicação semiesincronizada fica entre a replicação assíncrona e a replicação totalmente sincronizada. A fonte aguarda até que pelo menos uma réplica tenha recebido e registrado os eventos (o número necessário de réplicas é configurável) e, então, confirma a transação. A fonte não espera que todas as réplicas confirmem a recepção e requer apenas uma confirmação das réplicas, não que os eventos tenham sido totalmente executados e confirmados no lado da réplica. Portanto, a replicação semiesincronizada garante que, se a fonte falhar, todas as transações que ela confirmou foram transmitidas para pelo menos uma réplica.
+Semisynchronous replication falls between asynchronous and fully synchronous replication. The source waits until at least one replica has received and logged the events (the required number of replicas is configurable), and then commits the transaction. The source does not wait for all replicas to acknowledge receipt, and it requires only an acknowledgement from the replicas, not that the events have been fully executed and committed on the replica side. Semisynchronous replication therefore guarantees that if the source crashes, all the transactions that it has committed have been transmitted to at least one replica.
 
-Em comparação com a replicação assíncrona, a replicação semiesincrônica oferece maior integridade dos dados, pois, quando um commit retorna com sucesso, sabe-se que os dados existem em pelo menos dois locais. Até que uma fonte semiesincrônica receba confirmação do número necessário de réplicas, a transação fica suspensa e não é confirmada.
+Compared to asynchronous replication, semisynchronous replication provides improved data integrity, because when a commit returns successfully, it is known that the data exists in at least two places. Until a semisynchronous source receives acknowledgment from the required number of replicas, the transaction is on hold and not committed.
 
-Comparado à replicação totalmente síncrona, a replicação sem síncrona é mais rápida, pois pode ser configurada para equilibrar suas necessidades de integridade dos dados (o número de réplicas que confirmam a recepção da transação) com a velocidade dos commits, que são mais lentos devido à necessidade de esperar pelas réplicas.
+Compared to fully synchronous replication, semisynchronous replication is faster, because it can be configured to balance your requirements for data integrity (the number of replicas acknowledging receipt of the transaction) with the speed of commits, which are slower due to the need to wait for replicas.
 
-Importante
+Important
 
-Com a replicação semiesincronizada, se a fonte falhar e uma falha de replicação for realizada, a fonte falha não deve ser reutilizada como servidor de fonte de replicação e deve ser descartada. Ela pode ter transações que não foram reconhecidas por nenhuma replica, portanto, não foram comprometidas antes da falha de replicação.
+With semisynchronous replication, if the source crashes and a failover to a replica is carried out, the failed source should not be reused as the replication source server, and should be discarded. It could have transactions that were not acknowledged by any replica, which were therefore not committed before the failover.
 
-Se o seu objetivo é implementar uma topologia de replicação tolerante a falhas, onde todos os servidores recebem as mesmas transações na mesma ordem, e um servidor que falha pode se reiniciar no grupo e ser atualizado automaticamente, você pode usar a Replicação por Grupo para alcançar isso. Para obter informações, consulte [Capítulo 17, *Replicação por Grupo*] (group-replication.html).
+If your goal is to implement a fault-tolerant replication topology where all the servers receive the same transactions in the same order, and a server that crashes can rejoin the group and be brought up to date automatically, you can use Group Replication to achieve this. For information, see [Chapter 17, *Group Replication*](group-replication.html "Chapter 17 Group Replication").
 
-O impacto no desempenho da replicação semi-sincrona em comparação com a replicação assíncrona é o compromisso com o aumento da integridade dos dados. A quantidade de desaceleração é, no mínimo, o tempo de ida e volta do TCP/IP para enviar o commit para a réplica e esperar o reconhecimento da recepção pela réplica. Isso significa que a replicação semi-sincrona funciona melhor para servidores próximos que se comunicam em redes rápidas e pior para servidores distantes que se comunicam em redes lentas. A replicação semi-sincrona também coloca um limite de taxa em sessões ocupadas, restringindo a velocidade com que eventos de log binário podem ser enviados da fonte para a réplica. Quando um usuário está muito ocupado, isso o desacelera, o que pode ser útil em algumas situações de implantação.
+The performance impact of semisynchronous replication compared to asynchronous replication is the tradeoff for increased data integrity. The amount of slowdown is at least the TCP/IP roundtrip time to send the commit to the replica and wait for the acknowledgment of receipt by the replica. This means that semisynchronous replication works best for close servers communicating over fast networks, and worst for distant servers communicating over slow networks. Semisynchronous replication also places a rate limit on busy sessions by constraining the speed at which binary log events can be sent from source to replica. When one user is too busy, this slows it down, which can be useful in some deployment situations.
 
-A replicação semiesincronizada entre uma fonte e suas réplicas funciona da seguinte maneira:
+Semisynchronous replication between a source and its replicas operates as follows:
 
-- Uma réplica indica se é compatível com semi-sincronização quando se conecta à fonte.
+* A replica indicates whether it is semisynchronous-capable when it connects to the source.
 
-- Se a replicação semissíncrona estiver habilitada no lado de origem e houver pelo menos uma replica semissíncrona, uma thread que realiza um commit de transação nos blocos de origem e aguarda até que pelo menos uma replica semissíncrona reconheça que recebeu todos os eventos da transação, ou até que ocorra um tempo limite.
+* If semisynchronous replication is enabled on the source side and there is at least one semisynchronous replica, a thread that performs a transaction commit on the source blocks and waits until at least one semisynchronous replica acknowledges that it has received all events for the transaction, or until a timeout occurs.
 
-- A réplica só reconhece a recepção dos eventos de uma transação após esses eventos terem sido escritos em seu log de retransmissão e descarregados no disco.
+* The replica acknowledges receipt of a transaction's events only after the events have been written to its relay log and flushed to disk.
 
-- Se ocorrer um tempo de espera sem que nenhuma réplica tenha confirmado a transação, a fonte retorna à replicação assíncrona. Quando pelo menos uma réplica semissíncrona recupera o atraso, a fonte retorna à replicação semissíncrona.
+* If a timeout occurs without any replica having acknowledged the transaction, the source reverts to asynchronous replication. When at least one semisynchronous replica catches up, the source returns to semisynchronous replication.
 
-- A replicação semiesincronizada deve ser habilitada tanto no lado da fonte quanto no lado das réplicas. Se a replicação semiesincronizada estiver desabilitada na fonte ou habilitada na fonte, mas não nas réplicas, a fonte usará a replicação assíncrona.
+* Semisynchronous replication must be enabled on both the source and replica sides. If semisynchronous replication is disabled on the source, or enabled on the source but on no replicas, the source uses asynchronous replication.
 
-Enquanto a fonte está bloqueando (esperando por confirmação de uma réplica), ela não retorna à sessão que realizou a transação. Quando o bloqueio termina, a fonte retorna à sessão, que então pode prosseguir para executar outras instruções. Neste ponto, a transação foi confirmada no lado da fonte e o recebimento de seus eventos foi confirmado por pelo menos uma réplica. O número de confirmações de réplica que a fonte deve receber por transação antes de retornar à sessão é configurável usando a variável de sistema `rpl_semi_sync_master_wait_for_slave_count`, cujo valor padrão é 1.
+While the source is blocking (waiting for acknowledgment from a replica), it does not return to the session that performed the transaction. When the block ends, the source returns to the session, which then can proceed to execute other statements. At this point, the transaction has committed on the source side, and receipt of its events has been acknowledged by at least one replica. The number of replica acknowledgments the source must receive per transaction before returning to the session is configurable using the [`rpl_semi_sync_master_wait_for_slave_count`](replication-options-source.html#sysvar_rpl_semi_sync_master_wait_for_slave_count) system variable, for which the default value is 1.
 
-O bloqueio também ocorre após recuos que são escritos no log binário, o que acontece quando uma transação que modifica tabelas não transacionais é revertida. A transação revertida é registrada, mesmo que não tenha efeito para tabelas transacionais, porque as modificações nas tabelas não transacionais não podem ser revertidas e devem ser enviadas para réplicas.
+Blocking also occurs after rollbacks that are written to the binary log, which occurs when a transaction that modifies nontransactional tables is rolled back. The rolled-back transaction is logged even though it has no effect for transactional tables because the modifications to the nontransactional tables cannot be rolled back and must be sent to replicas.
 
-Para declarações que não ocorrem em contexto de transação (ou seja, quando nenhuma transação foi iniciada com `START TRANSACTION` ou `SET autocommit = 0`), o autocommit está habilitado e cada declaração executa implicitamente. Com a replicação semi-sincrona, o bloco de origem para cada declaração é bloqueado, assim como acontece com os commits explícitos de transação.
+For statements that do not occur in transactional context (that is, when no transaction has been started with [`START TRANSACTION`](commit.html "13.3.1 START TRANSACTION, COMMIT, and ROLLBACK Statements") or [`SET autocommit = 0`](set-variable.html "13.7.4.1 SET Syntax for Variable Assignment")), autocommit is enabled and each statement commits implicitly. With semisynchronous replication, the source blocks for each such statement, just as it does for explicit transaction commits.
 
-A variável de sistema `rpl_semi_sync_master_wait_point` controla o ponto em que uma fonte de replicação semi-sincronizada espera pela confirmação da replica da recepção da transação antes de retornar um status ao cliente que comprometeu a transação. Esses valores são permitidos:
+The [`rpl_semi_sync_master_wait_point`](replication-options-source.html#sysvar_rpl_semi_sync_master_wait_point) system variable controls the point at which a semisynchronous replication source waits for replica acknowledgment of transaction receipt before returning a status to the client that committed the transaction. These values are permitted:
 
-- `AFTER_SYNC` (padrão): A fonte escreve cada transação em seu log binário e na replica, e sincroniza o log binário com o disco. A fonte aguarda o reconhecimento da replica da recepção da transação após a sincronização. Ao receber o reconhecimento, a fonte confirma a transação no mecanismo de armazenamento e retorna um resultado ao cliente, que pode então prosseguir.
+* `AFTER_SYNC` (the default): The source writes each transaction to its binary log and the replica, and syncs the binary log to disk. The source waits for replica acknowledgment of transaction receipt after the sync. Upon receiving acknowledgment, the source commits the transaction to the storage engine and returns a result to the client, which then can proceed.
 
-- `AFTER_COMMIT`: A fonte escreve cada transação no seu log binário e na replica, sincroniza o log binário e confirma a transação no motor de armazenamento. A fonte aguarda a confirmação da replica sobre a recepção da transação após o commit. Ao receber a confirmação, a fonte retorna um resultado ao cliente, que pode então prosseguir.
+* `AFTER_COMMIT`: The source writes each transaction to its binary log and the replica, syncs the binary log, and commits the transaction to the storage engine. The source waits for replica acknowledgment of transaction receipt after the commit. Upon receiving acknowledgment, the source returns a result to the client, which then can proceed.
 
-As características de replicação desses ajustes diferem da seguinte forma:
+The replication characteristics of these settings differ as follows:
 
-- Com `AFTER_SYNC`, todos os clientes veem a transação comprometida ao mesmo tempo, ou seja, após ela ter sido reconhecida pela replica e comprometida no motor de armazenamento na fonte. Assim, todos os clientes veem os mesmos dados na fonte.
+* With `AFTER_SYNC`, all clients see the committed transaction at the same time, which is after it has been acknowledged by the replica and committed to the storage engine on the source. Thus, all clients see the same data on the source.
 
-  Em caso de falha na fonte, todas as transações realizadas na fonte foram replicadas para a replica (salvadas em seu log de retransmissão). Uma saída inesperada da fonte e a transição para a replica são irreversíveis porque a replica está atualizada. Como mencionado acima, a fonte não deve ser reutilizada após a transição.
+  In the event of source failure, all transactions committed on the source have been replicated to the replica (saved to its relay log). An unexpected exit of the source and failover to the replica is lossless because the replica is up to date. As noted above, the source should not be reused after the failover.
 
-- Com `AFTER_COMMIT`, o cliente que emite a transação recebe o status de retorno apenas após o servidor confirmar o armazenamento no mecanismo de armazenamento e receber o reconhecimento da replica. Após o commit e antes do reconhecimento da replica, outros clientes podem ver a transação confirmada antes do cliente que a confirmou.
+* With `AFTER_COMMIT`, the client issuing the transaction gets a return status only after the server commits to the storage engine and receives replica acknowledgment. After the commit and before replica acknowledgment, other clients can see the committed transaction before the committing client.
 
-  Se algo der errado de modo que a réplica não processe a transação, então, em caso de uma saída inesperada da fonte e failover para a réplica, é possível que esses clientes percam dados em relação ao que viram na fonte.
+  If something goes wrong such that the replica does not process the transaction, then in the event of an unexpected source exit and failover to the replica, it is possible that such clients see a loss of data relative to what they saw on the source.

@@ -1,39 +1,39 @@
-# Apêndice A Perguntas Frequentes sobre o MySQL 5.7
+# Appendix A MySQL 5.7 Frequently Asked Questions
 
-**Índice**
+**Table of Contents**
 
-[A.1 Perguntas frequentes do MySQL 5.7: Geral](faqs-general.html)
+[A.1 MySQL 5.7 FAQ: General](faqs-general.html)
 
-[A.2 Perguntas frequentes sobre o MySQL 5.7: Motores de armazenamento](faqs-storage-engines.html)
+[A.2 MySQL 5.7 FAQ: Storage Engines](faqs-storage-engines.html)
 
-[A.3 Perguntas frequentes do MySQL 5.7: Modo SQL do servidor](faqs-sql-modes.html)
+[A.3 MySQL 5.7 FAQ: Server SQL Mode](faqs-sql-modes.html)
 
-[FAQ do MySQL 5.7: Procedimentos e Funções Armazenadas](faqs-stored-procs.html)
+[A.4 MySQL 5.7 FAQ: Stored Procedures and Functions](faqs-stored-procs.html)
 
-[A.5 Perguntas frequentes sobre o MySQL 5.7: gatilhos](faqs-triggers.html)
+[A.5 MySQL 5.7 FAQ: Triggers](faqs-triggers.html)
 
-[A.6 Perguntas frequentes do MySQL 5.7: Visualizações](faqs-views.html)
+[A.6 MySQL 5.7 FAQ: Views](faqs-views.html)
 
-[A.7 Perguntas frequentes do MySQL 5.7: INFORMATION_SCHEMA](faqs-information-schema.html)
+[A.7 MySQL 5.7 FAQ: INFORMATION_SCHEMA](faqs-information-schema.html)
 
-[A.8 Perguntas frequentes sobre o MySQL 5.7: Migração](faqs-migration.html)
+[A.8 MySQL 5.7 FAQ: Migration](faqs-migration.html)
 
-[A.9 Perguntas frequentes sobre o MySQL 5.7: Segurança](faqs-security.html)
+[A.9 MySQL 5.7 FAQ: Security](faqs-security.html)
 
-[FAQ do MySQL 5.7: NDB Cluster](faqs-mysql-cluster.html)
+[A.10 MySQL 5.7 FAQ: NDB Cluster](faqs-mysql-cluster.html)
 
-[Perguntas frequentes do MySQL 5.7 (A.11): Conjuntos de caracteres chineses, japoneses e coreanos do MySQL](faqs-cjk.html)
+[A.11 MySQL 5.7 FAQ: MySQL Chinese, Japanese, and Korean Character Sets](faqs-cjk.html)
 
-[FAQ do MySQL 5.7 [A.12: Conectores e APIs](faqs-connectors-apis.html)]
+[A.12 MySQL 5.7 FAQ: Connectors & APIs](faqs-connectors-apis.html)
 
-[A.13 Perguntas frequentes do MySQL 5.7: API C, libmysql](faqs-c-api.html)
+[A.13 MySQL 5.7 FAQ: C API, libmysql](faqs-c-api.html)
 
-[FAQ do MySQL 5.7 (A.14): Replicação](faqs-replication.html)
+[A.14 MySQL 5.7 FAQ: Replication](faqs-replication.html)
 
-[FAQ do MySQL 5.7 [A.15: Pool de Fios do MySQL Enterprise](faqs-thread-pool.html)]\(faqs-thread-pool.html)
+[A.15 MySQL 5.7 FAQ: MySQL Enterprise Thread Pool](faqs-thread-pool.html)
 
-[FAQ do MySQL 5.7 [A.16: Buffer de Mudança InnoDB](faqs-innodb-change-buffer.html)]
+[A.16 MySQL 5.7 FAQ: InnoDB Change Buffer](faqs-innodb-change-buffer.html)
 
-[A.17 Perguntas frequentes sobre o MySQL 5.7: Criptografia de dados em repouso do InnoDB](faqs-tablespace-encryption.html)
+[A.17 MySQL 5.7 FAQ: InnoDB Data-at-Rest Encryption](faqs-tablespace-encryption.html)
 
-[A.18 Perguntas frequentes sobre o MySQL 5.7: Suporte à virtualização](faqs-virtualização.html)
+[A.18 MySQL 5.7 FAQ: Virtualization Support](faqs-virtualization.html)

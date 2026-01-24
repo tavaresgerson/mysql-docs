@@ -1,3 +1,3 @@
-#### 26.4.2.2 O gatilho sys_config_insert_set_user
+#### 26.4.2.2 The sys_config_insert_set_user Trigger
 
-Para as linhas adicionadas à tabela `sys_config` por instruções `INSERT`, o gatilho `sys_config_insert_set_user` define a coluna `set_by` para o usuário atual.
+For rows added to the `sys_config` table by `INSERT` statements, the `sys_config_insert_set_user` trigger sets the `set_by` column to the current user.

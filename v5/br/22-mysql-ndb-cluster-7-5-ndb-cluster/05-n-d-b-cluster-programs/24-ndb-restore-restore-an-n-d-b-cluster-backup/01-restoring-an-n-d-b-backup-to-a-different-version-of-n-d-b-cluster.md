@@ -1,41 +1,41 @@
-#### 21.5.24.1 Restaurando um backup do NDB para uma versão diferente do cluster NDB
+#### 21.5.24.1 Restoring an NDB Backup to a Different Version of NDB Cluster
 
-As duas seções a seguir fornecem informações sobre como restaurar um backup nativo do NDB para uma versão diferente do NDB Cluster, diferente da versão em que o backup foi feito.
+The following two sections provide information about restoring a native NDB backup to a different version of NDB Cluster from the version in which the backup was taken.
 
-Além disso, consulte Seção 21.3.7, “Atualização e Downgrade do NDB Cluster”, para outras questões que você pode encontrar ao tentar restaurar um backup do NDB para um cluster que está executando uma versão diferente do software NDB.
+In addition, you should consult [Section 21.3.7, “Upgrading and Downgrading NDB Cluster”](mysql-cluster-upgrade-downgrade.html "21.3.7 Upgrading and Downgrading NDB Cluster"), for other issues you may encounter when attempting to restore an NDB backup to a cluster running a different version of the NDB software.
 
-Também é aconselhável revisar O que há de novo no NDB Cluster 8.0, bem como Seção 2.10.3, “Alterações no MySQL 5.7”, para outras mudanças entre o NDB 8.0 e as versões anteriores do NDB Cluster que possam ser relevantes para suas circunstâncias específicas.
+It is also advisable to review [What is New in NDB Cluster 8.0](/doc/refman/8.0/en/mysql-cluster-what-is-new.html#mysql-cluster-what-is-new-8-0), as well as [Section 2.10.3, “Changes in MySQL 5.7”](upgrading-from-previous-series.html "2.10.3 Changes in MySQL 5.7"), for other changes between NDB 8.0 and previous versions of NDB Cluster that may be relevant to your particular circumstances.
 
-##### 21.5.24.1.1 Restaurando um backup do NDB para uma versão anterior do NDB Cluster
+##### 21.5.24.1.1 Restoring an NDB backup to a previous version of NDB Cluster
 
-Você pode encontrar problemas ao restaurar um backup feito de uma versão mais recente do NDB Cluster para uma versão anterior, devido ao uso de recursos que não existem na versão anterior. Alguns desses problemas estão listados aqui:
+You may encounter issues when restoring a backup taken from a later version of NDB Cluster to a previous one, due to the use of features which do not exist in the earlier version. Some of these issues are listed here:
 
-- As tabelas criadas no NDB 8.0, por padrão, usam o conjunto de caracteres `utf8mb4_ai_ci`, que não está disponível no NDB 7.6 e versões anteriores, e, portanto, não podem ser lidas por um binário **ndb_restore** de uma dessas versões anteriores. Nesses casos, é necessário alterar quaisquer tabelas que usem `utf8mb4_ai_ci` para que elas usem um conjunto de caracteres suportado na versão mais antiga antes de realizar o backup.
+* Tables created in NDB 8.0 by default use the `utf8mb4_ai_ci` character set, which is not available in NDB 7.6 and earlier, and so cannot be read by an [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") binary from one of these earlier versions. In such cases, it is necessary to alter any tables using `utf8mb4_ai_ci` so that they use a character set supported in the older version prior to performing the backup.
 
-- Devido às mudanças na forma como o MySQL Server e o NDB gerenciam os metadados das tabelas, as tabelas criadas ou alteradas usando o binário do servidor MySQL incluído no NDB 8.0.14 ou versões posteriores não podem ser restauradas usando **ndb_restore** para uma versão anterior do NDB Cluster. Essas tabelas usam arquivos `.sdi` que não são compreendidos pelas versões mais antigas do **mysqld**.
+* Due to changes in how the MySQL Server and NDB handle table metadata, tables created or altered using the included MySQL server binary from NDB 8.0.14 or later cannot be restored using [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") to an earlier version of NDB Cluster. Such tables use `.sdi` files which are not understood by older versions of [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server").
 
-  Um backup feito no NDB 8.0.14 ou posterior de tabelas criadas no NDB 8.0.13 ou versões anteriores, e que não foram alteradas desde a atualização para o NDB 8.0.14 ou posterior, deve ser recuperável para versões mais antigas do NDB Cluster.
+  A backup taken in NDB 8.0.14 or later of tables which were created in NDB 8.0.13 or earlier, and which have not been altered since upgrading to NDB 8.0.14 or later, should be restorable to older versions of NDB Cluster.
 
-  Como é possível restaurar os metadados e os dados da tabela separadamente, você pode, nesses casos, restaurar os esquemas da tabela a partir de um dump feito usando **mysqldump**, ou executando as instruções necessárias de `CREATE TABLE` manualmente, e, em seguida, importar apenas os dados da tabela usando **ndb_restore** com a opção `--restore-data`.
+  Since it is possible to restore metadata and table data separately, you can in such cases restore the table schemas from a dump made using [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program"), or by executing the necessary [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statements manually, then import only the table data using [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") with the [`--restore-data`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_restore-data) option.
 
-- Os backups criptografados criados no NDB 8.0.22 e versões posteriores não podem ser restaurados usando **ndb_restore** do NDB 8.0.21 ou versões anteriores.
+* Encrypted backups created in NDB 8.0.22 and later cannot be restored using [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") from NDB 8.0.21 or earlier.
 
-- O privilégio `NDB_STORED_USER` não é suportado antes da versão NDB 8.0.18.
+* The [`NDB_STORED_USER`](/doc/refman/8.0/en/privileges-provided.html#priv_ndb-stored-user) privilege is not supported prior to NDB 8.0.18.
 
-- O NDB Cluster 8.0.18 e versões posteriores suportam até 144 nós de dados, enquanto versões anteriores suportam no máximo apenas 48 nós de dados. Consulte Seção 21.5.24.2.1, “Restauração com menos nós do que o original” para obter informações sobre situações em que essa incompatibilidade causa um problema.
+* NDB Cluster 8.0.18 and later supports up to 144 data nodes, while earlier versions support a maximum of only 48 data nodes. See [Section 21.5.24.2.1, “Restoring to Fewer Nodes Than the Original”](ndb-restore-different-number-nodes.html#ndb-restore-to-fewer-nodes "21.5.24.2.1 Restoring to Fewer Nodes Than the Original"), for information with situations in which this incompatibility causes an issue.
 
-##### 21.5.24.1.2 Restaurando um backup do NDB para uma versão posterior do NDB Cluster
+##### 21.5.24.1.2 Restoring an NDB backup to a later version of NDB Cluster
 
-Em geral, deve ser possível restaurar um backup criado usando o comando `START BACKUP` do cliente **ndb_mgm** em uma versão mais antiga do NDB para uma versão mais recente, desde que você use o binário **ndb_restore** que vem com a versão mais recente. (É possível usar a versão mais antiga do **ndb_restore**, mas isso não é recomendado.) Problemas adicionais potenciais estão listados aqui:
+In general, it should be possible to restore a backup created using the [**ndb_mgm**](mysql-cluster-programs-ndb-mgm.html "21.5.5 ndb_mgm — The NDB Cluster Management Client") client [`START BACKUP`](mysql-cluster-backup-using-management-client.html "21.6.8.2 Using The NDB Cluster Management Client to Create a Backup") command in an older version of NDB to a newer version, provided that you use the [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") binary that comes with the newer version. (It may be possible to use the older version of [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup"), but this is not recommended.) Additional potential issues are listed here:
 
-- Ao restaurar os metadados de um backup (opção `--restore-meta`), o **ndb_restore** normalmente tenta reproduzir o esquema da tabela capturado exatamente como estava quando o backup foi feito.
+* When restoring the metadata from a backup ([`--restore-meta`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_restore-meta) option), [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") normally attempts to reproduce the captured table schema exactly as it was when the backup was taken.
 
-  As tabelas criadas em versões do NDB anteriores à 8.0.14 usam arquivos `.frm` para seus metadados. Esses arquivos podem ser lidos pelo **mysqld** no NDB 8.0.14 e versões posteriores, que podem usar as informações contidas neles para criar os arquivos `.sdi` usados pelo dicionário de dados MySQL em versões posteriores.
+  Tables created in versions of NDB prior to 8.0.14 use `.frm` files for their metadata. These files can be read by the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") in NDB 8.0.14 and later, which can use the information contained therein to create the `.sdi` files used by the MySQL data dictionary in later versions.
 
-- Ao restaurar um backup mais antigo para uma versão mais recente do NDB, pode não ser possível aproveitar recursos mais recentes, como a partição do hashmap, maior número de buckets do hashmap, backup de leitura e diferentes layouts de partição. Por essa razão, pode ser preferível restaurar esquemas mais antigos usando o **mysqldump** e o cliente **mysql**, que permite que o NDB utilize os novos recursos do esquema.
+* When restoring an older backup to a newer version of NDB, it may not be possible to take advantage of newer features such as hashmap partitioning, greater number of hashmap buckets, read backup, and different partitioning layouts. For this reason, it may be preferable to restore older schemas using [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program") and the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client, which allows NDB to make use of the new schema features.
 
-- As tabelas que utilizam os antigos tipos temporais e não suportam segundos fracionários (usados antes do MySQL 5.6.4 e do NDB 7.3.31) não podem ser restauradas no NDB 8.0 usando **ndb_restore**. Você pode verificar essas tabelas usando `CHECK TABLE` e, se necessário, atualizá-las para o novo formato de coluna temporal usando `REPAIR TABLE` no cliente **mysql**; isso deve ser feito antes de fazer o backup. Consulte Preparando sua instalação para atualização para obter mais informações.
+* Tables using the old temporal types which did not support fractional seconds (used prior to MySQL 5.6.4 and NDB 7.3.31) cannot be restored to NDB 8.0 using [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup"). You can check such tables using [`CHECK TABLE`](check-table.html "13.7.2.2 CHECK TABLE Statement"), and then upgrade them to the newer temporal column format, if necessary, using [`REPAIR TABLE`](repair-table.html "13.7.2.5 REPAIR TABLE Statement") in the [**mysql**](mysql.html "4.5.1 mysql — The MySQL Command-Line Client") client; this must be done prior to taking the backup. See [Preparing Your Installation for Upgrade](/doc/refman/8.0/en/upgrade-prerequisites.html), for more information.
 
-  Você também pode restaurar essas tabelas usando um dump criado com **mysqldump**.
+  You also restore such tables using a dump created with [**mysqldump**](mysqldump.html "4.5.4 mysqldump — A Database Backup Program").
 
-- As tabelas de concessão distribuídas criadas no NDB 7.6 e versões anteriores não são suportadas no NDB 8.0. Essas tabelas podem ser restauradas em um cluster NDB 8.0, mas não têm efeito no controle de acesso.
+* Distributed grant tables created in NDB 7.6 and earlier are not supported in NDB 8.0. Such tables can be restored to an NDB 8.0 cluster, but they have no effect on access control.

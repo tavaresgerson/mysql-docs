@@ -1,31 +1,31 @@
-## 17.4 Replicação do Grupo de Monitoramento
+## 17.4 Monitoring Group Replication
 
-17.4.1 Estados dos Servidores de Replicação de Grupo
+[17.4.1 Group Replication Server States](group-replication-server-states.html)
 
-17.4.2 A tabela replication_group_members
+[17.4.2 The replication_group_members Table](group-replication-replication-group-members.html)
 
-Tabela replication_group_member_stats
+[17.4.3 The replication_group_member_stats Table](group-replication-replication-group-member-stats.html)
 
-Você pode usar o MySQL Schema de Desempenho para monitorar a Replicação de Grupo. Essas tabelas do Schema de Desempenho exibem informações específicas para a Replicação de Grupo:
+You can use the MySQL [Performance Schema](performance-schema.html "Chapter 25 MySQL Performance Schema") to monitor Group Replication. These Performance Schema tables display information specific to Group Replication:
 
-- `replication_group_member_stats`: Veja a Seção 17.4.3, “A tabela replication_group_member_stats”.
+* [`replication_group_member_stats`](performance-schema-replication-group-member-stats-table.html "25.12.11.7 The replication_group_member_stats Table"): See [Section 17.4.3, “The replication_group_member_stats Table”](group-replication-replication-group-member-stats.html "17.4.3 The replication_group_member_stats Table").
 
-- `replication_group_members`: Veja [Seção 17.4.2, “A tabela replication_group_members”](group-replication-replication-group-members.html).
+* [`replication_group_members`](performance-schema-replication-group-members-table.html "25.12.11.8 The replication_group_members Table"): See [Section 17.4.2, “The replication_group_members Table”](group-replication-replication-group-members.html "17.4.2 The replication_group_members Table").
 
-Essas tabelas de replicação do Schema de Desempenho também mostram informações relacionadas à Replicação por Grupo:
+These Performance Schema replication tables also show information relating to Group Replication:
 
-- O [`replication_connection_status`](performance-schema-replication-connection-status-table.html) mostra informações sobre a Replicação por Grupo, como as transações recebidas do grupo e colocadas na fila do aplicável (registro do retransmissor).
+* [`replication_connection_status`](performance-schema-replication-connection-status-table.html "25.12.11.2 The replication_connection_status Table") shows information regarding Group Replication, such as transactions received from the group and queued in the applier queue (relay log).
 
-- O [`replication_applier_status`](performance-schema-replication-applier-status-table.html) mostra os estados dos canais e threads relacionados à Replicação por Grupo. Esses dados também podem ser usados para monitorar o que as threads individuais dos trabalhadores estão fazendo.
+* [`replication_applier_status`](performance-schema-replication-applier-status-table.html "25.12.11.4 The replication_applier_status Table") shows the states of channels and threads relating to Group Replication. These can also be used to monitor what individual worker threads are doing.
 
-Os canais de replicação criados pelo plugin de replicação em grupo estão listados aqui:
+Replication channels created by the Group Replication plugin are listed here:
 
-- `group_replication_recovery`: Usado para alterações de replicação relacionadas à recuperação distribuída.
+* `group_replication_recovery`: Used for replication changes related to distributed recovery.
 
-- `group_replication_applier`: Usado para as alterações recebidas do grupo, para aplicar transações que vêm diretamente do grupo.
+* `group_replication_applier`: Used for the incoming changes from the group, to apply transactions coming directly from the group.
 
-Para obter informações sobre as variáveis do sistema que afetam a Replicação em Grupo, consulte [Seção 17.7.1, “Variáveis do Sistema de Replicação em Grupo”](group-replication-system-variables.html). Consulte [Seção 17.7.2, “Variáveis de Status da Replicação em Grupo”](group-replication-status-variables.html), para variáveis de status que fornecem informações sobre a Replicação em Grupo.
+For information about system variables affecting Group Replication, see [Section 17.7.1, “Group Replication System Variables”](group-replication-system-variables.html "17.7.1 Group Replication System Variables"). See [Section 17.7.2, “Group Replication Status Variables”](group-replication-status-variables.html "17.7.2 Group Replication Status Variables"), for status variables providing information about Group Replication.
 
-Nota
+Note
 
-Se você está monitorando uma ou mais instâncias secundárias usando [**mysqladmin**](mysqladmin.html), você deve estar ciente de que uma instrução [`FLUSH STATUS`](flush.html#flush-status) executada por esse utilitário cria um evento GTID na instância local, o que pode afetar operações futuras do grupo.
+If you are monitoring one or more secondary instances using [**mysqladmin**](mysqladmin.html "4.5.2 mysqladmin — A MySQL Server Administration Program"), you should be aware that a [`FLUSH STATUS`](flush.html#flush-status) statement executed by this utility creates a GTID event on the local instance which may impact future group operations.

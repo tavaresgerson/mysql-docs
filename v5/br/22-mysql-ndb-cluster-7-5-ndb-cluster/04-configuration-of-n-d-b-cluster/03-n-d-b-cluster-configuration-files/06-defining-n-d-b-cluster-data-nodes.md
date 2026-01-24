@@ -1,197 +1,196 @@
-#### 21.4.3.6 Definindo nós de dados do cluster NDB
+#### 21.4.3.6 Defining NDB Cluster Data Nodes
 
-As seções `[ndbd]` e `[ndbd default]` são usadas para configurar o comportamento dos nós de dados do cluster.
+The `[ndbd]` and `[ndbd default]` sections are used to configure the behavior of the cluster's data nodes.
 
-`[ndbd]` e `[ndbd default]` são sempre usados como nomes de seção, seja você usar os binários **ndbd** ou **ndbmtd** para os processos do nó de dados.
+`[ndbd]` and `[ndbd default]` are always used as the section names whether you are using [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") or [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") binaries for the data node processes.
 
-Existem muitos parâmetros que controlam os tamanhos dos buffers, os tamanhos dos pools, os tempos de espera, e assim por diante. O único parâmetro obrigatório é `HostName`; este deve ser definido na seção local `[ndbd]`.
+There are many parameters which control buffer sizes, pool sizes, timeouts, and so forth. The only mandatory parameter is `HostName`; this must be defined in the local `[ndbd]` section.
 
-O parâmetro `NoOfReplicas` deve ser definido na seção `[ndbd default]`, pois é comum a todos os nós de dados do Cluster. Não é estritamente necessário definir `NoOfReplicas`, mas é uma boa prática defini-lo explicitamente.
+The parameter [`NoOfReplicas`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-noofreplicas) should be defined in the `[ndbd default]` section, as it is common to all Cluster data nodes. It is not strictly necessary to set [`NoOfReplicas`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-noofreplicas), but it is good practice to set it explicitly.
 
-A maioria dos parâmetros do nó de dados é definida na seção `[ndbd default]`. Apenas os parâmetros explicitamente declarados como capazes de definir valores locais podem ser alterados na seção `[ndbd]`. Quando presentes, `HostName` e `NodeId` *devem* ser definidos na seção local `[ndbd]` e não em nenhuma outra seção do `config.ini`. Em outras palavras, as configurações para esses parâmetros são específicas para um nó de dados.
+Most data node parameters are set in the `[ndbd default]` section. Only those parameters explicitly stated as being able to set local values are permitted to be changed in the `[ndbd]` section. Where present, `HostName` and `NodeId` *must* be defined in the local `[ndbd]` section, and not in any other section of `config.ini`. In other words, settings for these parameters are specific to one data node.
 
-Para esses parâmetros que afetam o uso da memória ou os tamanhos dos buffers, é possível usar `K`, `M` ou `G` como sufixo para indicar unidades de 1024, 1024×1024 ou 1024×1024×1024. (Por exemplo, `100K` significa 100 × 1024 = 102400.)
+For those parameters affecting memory usage or buffer sizes, it is possible to use `K`, `M`, or `G` as a suffix to indicate units of 1024, 1024×1024, or 1024×1024×1024. (For example, `100K` means 100 × 1024 = 102400.)
 
-Os nomes e valores dos parâmetros são ignorados pelo caso, a menos que sejam usados em um arquivo `my.cnf` ou `my.ini` do MySQL Server, caso em que são sensíveis ao caso.
+Parameter names and values are case-insensitive, unless used in a MySQL Server `my.cnf` or `my.ini` file, in which case they are case-sensitive.
 
-Informações sobre os parâmetros de configuração específicos para as tabelas de NDB Cluster Disk Data podem ser encontradas mais adiante nesta seção (veja Parâmetros de Configuração de Dados de Disco NDB).
+Information about configuration parameters specific to NDB Cluster Disk Data tables can be found later in this section (see [Disk Data Configuration Parameters](mysql-cluster-ndbd-definition.html#mysql-cluster-ndbd-definition-disk-data-parameters "Disk Data Configuration Parameters")).
 
-Todos esses parâmetros também se aplicam a **ndbmtd** (a versão multithreading de **ndbd**). Três parâmetros adicionais de configuração de nó de dados — `MaxNoOfExecutionThreads`, `ThreadConfig` e `NoOfFragmentLogParts` — aplicam-se apenas a **ndbmtd**; eles não têm efeito quando usados com **ndbd**. Para mais informações, consulte Parâmetros de Configuração de Multithreading (ndbmtd). Veja também Seção 21.5.3, “ndbmtd — O Daemon de Nó de Dados do NDB Cluster (Multithreading)”.
+All of these parameters also apply to [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") (the multithreaded version of [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon")). Three additional data node configuration parameters—[`MaxNoOfExecutionThreads`](mysql-cluster-ndbd-definition.html#ndbparam-ndbmtd-maxnoofexecutionthreads), [`ThreadConfig`](mysql-cluster-ndbd-definition.html#ndbparam-ndbmtd-threadconfig), and [`NoOfFragmentLogParts`](mysql-cluster-ndbd-definition.html#ndbparam-ndbmtd-nooffragmentlogparts)—apply to [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") only; these have no effect when used with [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon"). For more information, see [Multi-Threading Configuration Parameters (ndbmtd)](mysql-cluster-ndbd-definition.html#mysql-cluster-ndbd-definition-ndbmtd-parameters "Multi-Threading Configuration Parameters (ndbmtd)"). See also [Section 21.5.3, “ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)”](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)").
 
-**Identificando nós de dados.** O valor `NodeId` ou `Id` (ou seja, o identificador do nó de dados) pode ser atribuído na linha de comando quando o nó é iniciado ou no arquivo de configuração.
+**Identifying data nodes.** The `NodeId` or `Id` value (that is, the data node identifier) can be allocated on the command line when the node is started or in the configuration file.
 
-- `NodeId`
+* `NodeId`
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó NodeId" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>não assinado</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>1 - 48</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do sistema:</strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir debackup, e, em seguida, reinicie o clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="NodeId data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>1 - 48</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requires a complete shutdown of the cluster, wiping and restoring the cluster file system from a backup, and then restarting the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Um ID de nó único é usado como endereço do nó para todas as mensagens internas do cluster. Para os nós de dados, esse é um número inteiro no intervalo de 1 a 48, inclusive. Cada nó no cluster deve ter um identificador único.
+  A unique node ID is used as the node's address for all cluster internal messages. For data nodes, this is an integer in the range 1 to 48 inclusive. Each node in the cluster must have a unique identifier.
 
-  `NodeId` é o único nome de parâmetro suportado para identificar nós de dados. (`Id` foi removido na versão NDB 7.5.0.)
+  `NodeId` is the only supported parameter name to use when identifying data nodes. (`Id` was removed in NDB 7.5.0.)
 
-- `ExecuteOnComputer`
+* `ExecuteOnComputer`
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Isso se refere ao conjunto `Id` para um dos computadores definidos em uma seção `[computer]`.
+  This refers to the `Id` set for one of the computers defined in a `[computer]` section.
 
-  Importante
+  Important
 
-  Este parâmetro é desaconselhável a partir da NDB 7.5.0 e está sujeito à remoção em uma futura versão. Use o parâmetro `HostName` em vez disso.
+  This parameter is deprecated as of NDB 7.5.0, and is subject to removal in a future release. Use the [`HostName`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-hostname) parameter instead.
 
-- `HostName`
+* `HostName`
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados HostName" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome ou endereço IP</td> </tr><tr> <th>Padrão</th> <td>localhost</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="HostName data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name or IP address</td> </tr><tr> <th>Default</th> <td>localhost</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Especificar este parâmetro define o nome do host do computador em que o nó de dados deve residir. Use `HostName` para especificar um nome de host diferente de `localhost`.
+  Specifying this parameter defines the hostname of the computer on which the data node is to reside. Use `HostName` to specify a host name other than `localhost`.
 
-- `ServerPort`
+* [`ServerPort`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-serverport)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados ServerPort" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>não assinado</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>1 - 64K</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ServerPort data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>1 - 64K</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Cada nó no clúster usa uma porta para se conectar a outros nós. Por padrão, essa porta é alocada dinamicamente de forma a garantir que nenhum dos dois nós no mesmo computador do host receba o mesmo número de porta, portanto, normalmente não é necessário especificar um valor para este parâmetro.
+  Each node in the cluster uses a port to connect to other nodes. By default, this port is allocated dynamically in such a way as to ensure that no two nodes on the same host computer receive the same port number, so it should normally not be necessary to specify a value for this parameter.
 
-  No entanto, se você precisar abrir portas específicas em um firewall para permitir a comunicação entre nós de dados e nós de API (incluindo nós SQL), você pode definir esse parâmetro para o número da porta desejada em uma seção `[ndbd]` ou (se você precisar fazer isso para vários nós de dados) na seção `[ndbd default]` do arquivo `config.ini`, e depois abrir a porta com esse número para conexões de entrada de nós SQL, nós de API ou ambos.
+  However, if you need to be able to open specific ports in a firewall to permit communication between data nodes and API nodes (including SQL nodes), you can set this parameter to the number of the desired port in an `[ndbd]` section or (if you need to do this for multiple data nodes) the `[ndbd default]` section of the `config.ini` file, and then open the port having that number for incoming connections from SQL nodes, API nodes, or both.
 
-  Nota
+  Note
 
-  As conexões dos nós de dados aos nós de gerenciamento são feitas usando a porta de gerenciamento **ndb_mgmd** (a `PortNumber` do servidor de gerenciamento [mysql-cluster-mgm-definition.html#ndbparam-mgmd-portnumber]) para que as conexões saindo dessa porta de qualquer nó de dados sempre sejam permitidas.
+  Connections from data nodes to management nodes is done using the [**ndb_mgmd**](mysql-cluster-programs-ndb-mgmd.html "21.5.4 ndb_mgmd — The NDB Cluster Management Server Daemon") management port (the management server's [`PortNumber`](mysql-cluster-mgm-definition.html#ndbparam-mgmd-portnumber)) so outgoing connections to that port from any data nodes should always be permitted.
 
-- `TcpBind_INADDR_ANY`
+* `TcpBind_INADDR_ANY`
 
-  Definir este parâmetro para `TRUE` ou `1` vincula `IP_ADDR_ANY` para que as conexões possam ser feitas de qualquer lugar (para conexões geradas automaticamente). O padrão é `FALSE` (`0`).
+  Setting this parameter to `TRUE` or `1` binds `IP_ADDR_ANY` so that connections can be made from anywhere (for autogenerated connections). The default is `FALSE` (`0`).
 
-- `NodeGroup`
+* [`NodeGroup`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-nodegroup)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó do NodeGroup" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>não assinado</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>0 - 65536</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do sistema:</strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir debackup, e, em seguida, reinicie o clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="NodeGroup data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>0 - 65536</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requires a complete shutdown of the cluster, wiping and restoring the cluster file system from a backup, and then restarting the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro pode ser usado para atribuir um nó de dados a um grupo de nós específico. Ele é apenas de leitura quando o clúster é iniciado pela primeira vez e não pode ser usado para reatribuir um nó de dados a um grupo de nós diferente online. Geralmente, não é desejável usar este parâmetro na seção `[ndbd default]` do arquivo `config.ini`, e deve-se ter cuidado para não atribuir nós a grupos de nós de maneira que um número inválido de nós seja atribuído a quaisquer grupos de nós.
+  This parameter can be used to assign a data node to a specific node group. It is read only when the cluster is started for the first time, and cannot be used to reassign a data node to a different node group online. It is generally not desirable to use this parameter in the `[ndbd default]` section of the `config.ini` file, and care must be taken not to assign nodes to node groups in such a way that an invalid numbers of nodes are assigned to any node groups.
 
-  O parâmetro `NodeGroup` é principalmente destinado ao uso na adição de um novo grupo de nós a um NDB Cluster em execução sem a necessidade de realizar um reinício contínuo. Para isso, você deve configurá-lo para 65536 (o valor máximo). Você não precisa configurar um valor para `NodeGroup` para todos os nós de dados do cluster, apenas para aqueles que devem ser iniciados e adicionados ao cluster como um novo grupo de nós posteriormente. Para obter mais informações, consulte Seção 21.6.7.3, “Adicionando Nodos de Dados do NDB Cluster Online: Exemplo Detalhado”.
+  The [`NodeGroup`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-nodegroup) parameter is chiefly intended for use in adding a new node group to a running NDB Cluster without having to perform a rolling restart. For this purpose, you should set it to 65536 (the maximum value). You are not required to set a [`NodeGroup`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-nodegroup) value for all cluster data nodes, only for those nodes which are to be started and added to the cluster as a new node group at a later time. For more information, see [Section 21.6.7.3, “Adding NDB Cluster Data Nodes Online: Detailed Example”](mysql-cluster-online-add-node-example.html "21.6.7.3 Adding NDB Cluster Data Nodes Online: Detailed Example").
 
-- `LocationDomainId`
+* [`LocationDomainId`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-locationdomainid)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados LocationDomainId" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.6.4</td> </tr><tr> <th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr> <th>Padrão</th> <td>0</td> </tr><tr> <th>Gama</th> <td>0 - 16</td> </tr><tr> <th>Adicionei</th> <td>NDB 7.6.4</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="LocationDomainId data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.6.4</td> </tr><tr> <th>Type or units</th> <td>integer</td> </tr><tr> <th>Default</th> <td>0</td> </tr><tr> <th>Range</th> <td>0 - 16</td> </tr><tr> <th>Added</th> <td>NDB 7.6.4</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Atribui um nó de dados a um domínio de disponibilidade específico (também conhecido como zona de disponibilidade) dentro de uma nuvem. Ao informar o `NDB` quais nós estão em quais domínios de disponibilidade, o desempenho pode ser melhorado em um ambiente de nuvem das seguintes maneiras:
+  Assigns a data node to a specific [availability domain](https://docs.us-phoenix-1.oraclecloud.com/Content/General/Concepts/regions.htm) (also known as an availability zone) within a cloud. By informing `NDB` which nodes are in which availability domains, performance can be improved in a cloud environment in the following ways:
 
-  - Se os dados solicitados não forem encontrados no mesmo nó, as leituras podem ser direcionadas para outro nó no mesmo domínio de disponibilidade.
+  + If requested data is not found on the same node, reads can be directed to another node in the same availability domain.
 
-  - A comunicação entre nós em diferentes domínios de disponibilidade é garantida para usar o suporte de WAN dos transportadores `NDB` sem qualquer intervenção manual adicional.
+  + Communication between nodes in different availability domains are guaranteed to use `NDB` transporters' WAN support without any further manual intervention.
 
-  - O número do grupo do transportador pode ser baseado no domínio de disponibilidade utilizado, de modo que, sempre que possível, os nós SQL e outros nós de API também se comuniquem com os nós de dados locais no mesmo domínio de disponibilidade.
+  + The transporter's group number can be based on which availability domain is used, such that also SQL and other API nodes communicate with local data nodes in the same availability domain whenever possible.
 
-  - O árbitro pode ser selecionado a partir de um domínio de disponibilidade no qual não há nós de dados, ou, se tal domínio de disponibilidade não puder ser encontrado, de um terceiro domínio de disponibilidade.
+  + The arbitrator can be selected from an availability domain in which no data nodes are present, or, if no such availability domain can be found, from a third availability domain.
 
-  `LocationDomainId` recebe um valor inteiro entre 0 e 16, inclusive, com 0 sendo o valor padrão; usar 0 é o mesmo que deixar o parâmetro sem definição.
+  `LocationDomainId` takes an integer value between 0 and 16 inclusive, with 0 being the default; using 0 is the same as leaving the parameter unset.
 
-- `NoOfReplicas`
+* [`NoOfReplicas`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-noofreplicas)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados NoOfReplicas" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr> <th>Padrão</th> <td>2</td> </tr><tr> <th>Gama</th> <td>1 - 2</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do sistema:</strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir debackup, e, em seguida, reinicie o clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="NoOfReplicas data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>integer</td> </tr><tr> <th>Default</th> <td>2</td> </tr><tr> <th>Range</th> <td>1 - 2</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requires a complete shutdown of the cluster, wiping and restoring the cluster file system from a backup, and then restarting the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro global pode ser definido apenas na seção `[ndbd default]` e define o número de réplicas de fragmentos para cada tabela armazenada no cluster. Este parâmetro também especifica o tamanho dos grupos de nós. Um grupo de nós é um conjunto de nós que armazenam as mesmas informações.
+  This global parameter can be set only in the `[ndbd default]` section, and defines the number of fragment replicas for each table stored in the cluster. This parameter also specifies the size of node groups. A node group is a set of nodes all storing the same information.
 
-  Os grupos de nós são formados implicitamente. O primeiro grupo de nós é formado pelo conjunto de nós de dados com os IDs de nó mais baixos, o próximo grupo de nós pelo conjunto dos próximos IDs de nó mais baixos, e assim por diante. Por exemplo, suponha que temos 4 nós de dados e que `NoOfReplicas` está definido para 2. Os quatro nós de dados têm IDs de nó 2, 3, 4 e
+  Node groups are formed implicitly. The first node group is formed by the set of data nodes with the lowest node IDs, the next node group by the set of the next lowest node identities, and so on. By way of example, assume that we have 4 data nodes and that `NoOfReplicas` is set to 2. The four data nodes have node IDs 2, 3, 4 and
 
-  5. Em seguida, o primeiro grupo de nós é formado pelos nós 2 e 3, e o segundo grupo de nós pelos nós 4 e 5. É importante configurar o clúster de tal forma que os nós dos mesmos grupos de nós não estejam localizados no mesmo computador, pois uma falha no hardware de um deles poderia fazer com que todo o clúster falhasse.
+  5. Then the first node group is formed from nodes 2 and 3, and the second node group by nodes 4 and 5. It is important to configure the cluster in such a manner that nodes in the same node groups are not placed on the same computer because a single hardware failure would cause the entire cluster to fail.
 
-  Se não forem fornecidos IDs de nós, a ordem dos nós de dados será o fator determinante para o grupo de nós. Independentemente de atribuições explícitas serem feitas ou não, elas podem ser visualizadas na saída do comando `SHOW` do cliente de gerenciamento.
+  If no node IDs are provided, the order of the data nodes is the determining factor for the node group. Whether or not explicit assignments are made, they can be viewed in the output of the management client's [`SHOW`](mysql-cluster-mgm-client-commands.html#ndbclient-show) command.
 
-  O valor padrão e máximo recomendado para `NoOfReplicas` é 2. *Este é o valor recomendado para a maioria dos ambientes de produção*.
+  The default and recommended maximum value for `NoOfReplicas` is 2. *This is the recommended value for most production environments*.
 
-  Importante
+  Important
 
-  Embora seja teoricamente possível que o valor deste parâmetro seja 3 ou 4, **o NDB Cluster 7.5 e o NDB Cluster 7.6 não suportam definir `NoOfReplicas` para um valor maior que 2 em produção**.
+  While it is theoretically possible for the value of this parameter to be 3 or 4, **NDB Cluster 7.5 and NDB Cluster 7.6 do not support setting `NoOfReplicas` to a value greater than 2 in production**.
 
-  Aviso
+  Warning
 
-  Definir `NoOfReplicas` para 1 significa que há apenas uma única cópia de todos os dados do cluster; nesse caso, a perda de um único nó de dados faz com que o cluster falhe, pois não há cópias adicionais dos dados armazenados por esse nó.
+  Setting `NoOfReplicas` to 1 means that there is only a single copy of all Cluster data; in this case, the loss of a single data node causes the cluster to fail because there are no additional copies of the data stored by that node.
 
-  O número de nós de dados no clúster deve ser divisível pelo valor deste parâmetro. Por exemplo, se houver dois nós de dados, então `NoOfReplicas` deve ser igual a 1 ou 2, pois 2/3 e 2/4 produzem valores fracionários; se houver quatro nós de dados, então `NoOfReplicas` deve ser igual a 1, 2 ou 4.
+  The number of data nodes in the cluster must be evenly divisible by the value of this parameter. For example, if there are two data nodes, then [`NoOfReplicas`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-noofreplicas) must be equal to either 1 or 2, since 2/3 and 2/4 both yield fractional values; if there are four data nodes, then `NoOfReplicas` must be equal to 1, 2, or 4.
 
-- `DataDir`
+* `DataDir`
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados DataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>.</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="DataDir data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>path</td> </tr><tr> <th>Default</th> <td>.</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial Node Restart: </strong></span>Requires a rolling restart of the cluster; each data node must be restarted with <code>--initial</code>. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro especifica o diretório onde os arquivos de registro, arquivos de log, arquivos de PID e logs de erro são armazenados.
+  This parameter specifies the directory where trace files, log files, pid files and error logs are placed.
 
-  O diretório de trabalho padrão é o diretório do processo do nó de dados.
+  The default is the data node process working directory.
 
-- `FileSystemPath`
+* [`FileSystemPath`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-filesystempath)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados FileSystemPath" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>DataDir</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="FileSystemPath data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>path</td> </tr><tr> <th>Default</th> <td>DataDir</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial Node Restart: </strong></span>Requires a rolling restart of the cluster; each data node must be restarted with <code>--initial</code>. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro especifica o diretório onde todos os arquivos criados para metadados, logs REDO, logs UNDO (para tabelas de Dados de Disco) e arquivos de dados serão colocados. O padrão é o diretório especificado por `DataDir`.
+  This parameter specifies the directory where all files created for metadata, REDO logs, UNDO logs (for Disk Data tables), and data files are placed. The default is the directory specified by `DataDir`.
 
-  Nota
+  Note
 
-  Este diretório deve existir antes que o processo **ndbd** seja iniciado.
+  This directory must exist before the [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") process is initiated.
 
-  A hierarquia de diretórios recomendada para o NDB Cluster inclui `/var/lib/mysql-cluster`, sob o qual é criado um diretório para o sistema de arquivos do nó. O nome deste subdiretório contém o ID do nó. Por exemplo, se o ID do nó for 2, este subdiretório será chamado de `ndb_2_fs`.
+  The recommended directory hierarchy for NDB Cluster includes `/var/lib/mysql-cluster`, under which a directory for the node's file system is created. The name of this subdirectory contains the node ID. For example, if the node ID is 2, this subdirectory is named `ndb_2_fs`.
 
-- `BackupDataDir`
+* [`BackupDataDir`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-backupdatadir)
 
-  <table frame="box" rules="all" summary="Tipo e valor da configuração do parâmetro do nó de dados BackupDataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>CaminhoDoSistemaDeArquivos</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="BackupDataDir data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>path</td> </tr><tr> <th>Default</th> <td>FileSystemPath</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial Node Restart: </strong></span>Requires a rolling restart of the cluster; each data node must be restarted with <code>--initial</code>. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro especifica o diretório onde os backups serão armazenados.
+  This parameter specifies the directory in which backups are placed.
 
-  Importante
+  Important
 
-  A string `/BACKUP` é sempre anexada a esse valor. Por exemplo, se você definir o valor de `BackupDataDir` para `/var/lib/cluster-data`, então todos os backups serão armazenados em `/var/lib/cluster-data/BACKUP`. Isso também significa que o local de backup padrão *efetivo* é o diretório nomeado `BACKUP` na localização especificada pelo parâmetro `FileSystemPath`.
+  The string '`/BACKUP`' is always appended to this value. For example, if you set the value of [`BackupDataDir`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-backupdatadir) to `/var/lib/cluster-data`, then all backups are stored under `/var/lib/cluster-data/BACKUP`. This also means that the *effective* default backup location is the directory named `BACKUP` under the location specified by the [`FileSystemPath`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-filesystempath) parameter.
 
-##### Memória de dados, memória de índice e memória de string
+##### Data Memory, Index Memory, and String Memory
 
-`DataMemory` e `IndexMemory` são parâmetros `[ndbd]` que especificam o tamanho dos segmentos de memória usados para armazenar os registros reais e seus índices. Ao definir valores para esses parâmetros, é importante entender como `DataMemory` e `IndexMemory` são usados, pois geralmente precisam ser atualizados para refletir o uso real pelo cluster.
+[`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory) and [`IndexMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexmemory) are `[ndbd]` parameters specifying the size of memory segments used to store the actual records and their indexes. In setting values for these, it is important to understand how [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory) and [`IndexMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexmemory) are used, as they usually need to be updated to reflect actual usage by the cluster.
 
-Nota
+Note
 
-O `IndexMemory` está desatualizado no NDB 7.6 e está sujeito à remoção em uma versão futura do NDB Cluster. Consulte as descrições a seguir para obter mais informações.
+`IndexMemory` is deprecated in NDB 7.6, and subject to removal in a future version of NDB Cluster. See the descriptions that follow for further information.
 
-- `DataMemory`
+* [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro define a quantidade de espaço (em bytes) disponível para armazenar registros do banco de dados. Toda a quantidade especificada por este valor é alocada na memória, portanto, é extremamente importante que a máquina tenha memória física suficiente para acomodá-la.
+  This parameter defines the amount of space (in bytes) available for storing database records. The entire amount specified by this value is allocated in memory, so it is extremely important that the machine has sufficient physical memory to accommodate it.
 
-  A memória alocada por `DataMemory` é usada para armazenar tanto os registros quanto os índices. Há um sobrecarga de 16 bytes em cada registro; uma quantidade adicional é incorrida por cada registro porque ele é armazenado em uma página de 32 KB com uma sobrecarga de página de 128 bytes (veja abaixo). Há também uma pequena quantidade desperdiçada por página devido ao fato de que cada registro é armazenado em apenas uma página.
+  The memory allocated by [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory) is used to store both the actual records and indexes. There is a 16-byte overhead on each record; an additional amount for each record is incurred because it is stored in a 32KB page with 128 byte page overhead (see below). There is also a small amount wasted per page due to the fact that each record is stored in only one page.
 
-  Para atributos de tabela de tamanho variável, os dados são armazenados em páginas de dados separadas, alocadas a partir de `DataMemory`. Os registros de comprimento variável usam uma parte de tamanho fixo com um sobrecarga extra de 4 bytes para referenciar a parte de tamanho variável. A parte de tamanho variável tem uma sobrecarga de 2 bytes mais 2 bytes por atributo.
+  For variable-size table attributes, the data is stored on separate data pages, allocated from [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory). Variable-length records use a fixed-size part with an extra overhead of 4 bytes to reference the variable-size part. The variable-size part has 2 bytes overhead plus 2 bytes per attribute.
 
-  O tamanho máximo do registro é de 14000 bytes.
+  The maximum record size is 14000 bytes.
 
-  No NDB 7.5 (e versões anteriores), o espaço de memória definido por `DataMemory` também é usado para armazenar índices ordenados, que utilizam cerca de 10 bytes por registro. Cada linha da tabela é representada no índice ordenado. Um erro comum entre os usuários é assumir que todos os índices são armazenados na memória alocada por `IndexMemory`, mas isso não é o caso: apenas os índices de chave primária e hash únicos usam essa memória; os índices ordenados usam a memória alocada por `DataMemory`. No entanto, criar um índice de chave primária ou hash único também cria um índice ordenado nas mesmas chaves, a menos que você especifique `USING HASH` na declaração de criação do índice. Isso pode ser verificado executando **ndb_desc -d *`db_name`* *\`table_name***.
+  In NDB 7.5 (and earlier), the memory space defined by [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory) is also used to store ordered indexes, which use about 10 bytes per record. Each table row is represented in the ordered index. A common error among users is to assume that all indexes are stored in the memory allocated by [`IndexMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexmemory), but this is not the case: Only primary key and unique hash indexes use this memory; ordered indexes use the memory allocated by [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory). However, creating a primary key or unique hash index also creates an ordered index on the same keys, unless you specify `USING HASH` in the index creation statement. This can be verified by running [**ndb_desc -d *`db_name`* *`table_name`***](mysql-cluster-programs-ndb-desc.html "21.5.10 ndb_desc — Describe NDB Tables").
 
-  No NDB 7.6, os recursos atribuídos ao `DataMemory` são usados para armazenar *todos* os dados e índices; qualquer memória configurada como `IndexMemory` é automaticamente adicionada ao usado pelo `DataMemory` para formar um conjunto de recursos comum.
+  In NDB 7.6, resources assigned to `DataMemory` are used for storing *all* data and indexes; any memory configured as `IndexMemory` is automatically added to that used by `DataMemory` to form a common resource pool.
 
-  O espaço de memória alocado por `DataMemory` consiste em páginas de 32 KB, que são alocadas para fragmentos de tabela. Cada tabela é normalmente dividida no mesmo número de fragmentos que há de nós de dados no clúster. Assim, para cada nó, há o mesmo número de fragmentos que estão definidos em `NoOfReplicas`.
+  The memory space allocated by [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory) consists of 32KB pages, which are allocated to table fragments. Each table is normally partitioned into the same number of fragments as there are data nodes in the cluster. Thus, for each node, there are the same number of fragments as are set in [`NoOfReplicas`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-noofreplicas).
 
-  Uma vez que uma página tenha sido alocada, atualmente não é possível devolvê-la ao conjunto de páginas livres, exceto por meio da exclusão da tabela. (Isso também significa que páginas de `DataMemory`, uma vez alocadas a uma determinada tabela, não podem ser usadas por outras tabelas.) Realizar uma recuperação de nó de dados também comprime a partição, pois todos os registros são inseridos em partições vazias de outros nós ativos.
+  Once a page has been allocated, it is currently not possible to return it to the pool of free pages, except by deleting the table. (This also means that [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory) pages, once allocated to a given table, cannot be used by other tables.) Performing a data node recovery also compresses the partition because all records are inserted into empty partitions from other live nodes.
 
-  O espaço de memória `DataMemory` também contém informações de ANULAMENTO: Para cada atualização, uma cópia do registro não alterado é alocada na `DataMemory`. Há também uma referência a cada cópia nos índices das tabelas ordenadas. Os índices de hash únicos são atualizados apenas quando as colunas do índice único são atualizadas, nesse caso, uma nova entrada na tabela de índice é inserida e a entrada antiga é excluída após o commit. Por essa razão, também é necessário alocar memória suficiente para lidar com as maiores transações realizadas pelas aplicações que utilizam o clúster. Em qualquer caso, realizar algumas transações grandes não oferece vantagem em relação ao uso de muitas menores, pelas seguintes razões:
+  The [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory) memory space also contains UNDO information: For each update, a copy of the unaltered record is allocated in the [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory). There is also a reference to each copy in the ordered table indexes. Unique hash indexes are updated only when the unique index columns are updated, in which case a new entry in the index table is inserted and the old entry is deleted upon commit. For this reason, it is also necessary to allocate enough memory to handle the largest transactions performed by applications using the cluster. In any case, performing a few large transactions holds no advantage over using many smaller ones, for the following reasons:
 
-  - Grandes transações não são mais rápidas do que as menores
+  + Large transactions are not any faster than smaller ones
+  + Large transactions increase the number of operations that are lost and must be repeated in event of transaction failure
 
-  - Grandes transações aumentam o número de operações perdidas e que precisam ser repetidas em caso de falha na transação
+  + Large transactions use more memory
 
-  - Transações grandes usam mais memória
+  In NDB 7.5 (and earlier), the default value for [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory) is 80MB; in NDB 7.6, this is 98MB. The minimum value is 1MB. There is no maximum size, but in reality the maximum size has to be adapted so that the process does not start swapping when the limit is reached. This limit is determined by the amount of physical RAM available on the machine and by the amount of memory that the operating system may commit to any one process. 32-bit operating systems are generally limited to 2−4GB per process; 64-bit operating systems can use more. For large databases, it may be preferable to use a 64-bit operating system for this reason.
 
-  No NDB 7.5 (e versões anteriores), o valor padrão para `DataMemory` é de 80 MB; no NDB 7.6, esse valor é de 98 MB. O valor mínimo é de 1 MB. Não há um tamanho máximo, mas, na realidade, o tamanho máximo deve ser adaptado para que o processo não comece a fazer swap quando o limite for atingido. Esse limite é determinado pela quantidade de RAM física disponível na máquina e pela quantidade de memória que o sistema operacional pode reservar para qualquer processo. Os sistemas operacionais de 32 bits geralmente têm um limite de 2 a 4 GB por processo; os sistemas operacionais de 64 bits podem usar mais. Para bancos de dados grandes, pode ser preferível usar um sistema operacional de 64 bits por essa razão.
+* [`IndexMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexmemory)
 
-- `IndexMemory`
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  In NDB 7.5 and earlier, this parameter controls the amount of storage used for hash indexes in NDB Cluster. Hash indexes are always used for primary key indexes, unique indexes, and unique constraints. When defining a primary key or a unique index, two indexes are created, one of which is a hash index used for all tuple accesses as well as lock handling. This index is also used to enforce unique constraints.
 
-  No NDB 7.5 e versões anteriores, este parâmetro controla a quantidade de armazenamento usada para índices de hash no NDB Cluster. Os índices de hash são sempre usados para índices de chave primária, índices únicos e restrições únicas. Ao definir uma chave primária ou um índice único, dois índices são criados, um dos quais é um índice de hash usado para todos os acessos de tupla, bem como para a gestão de bloqueios. Este índice também é usado para impor restrições únicas.
+  In NDB 7.6.2, the `IndexMemory` parameter is deprecated (and subject to future removal); any any memory assigned to `IndexMemory` is allocated instead to the same pool as [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory), which becomes solely responsible for all resources needed for storing data and indexes in memory. In NDB 7.6, the use of `IndexMemory` in the cluster configuration file triggers a warning from the management server.
 
-  No NDB 7.6.2, o parâmetro `IndexMemory` é desaconselhado (e sujeito à remoção futura); qualquer memória atribuída a `IndexMemory` é alocada, em vez disso, para o mesmo pool que `DataMemory`, que se torna exclusivamente responsável por todos os recursos necessários para armazenar dados e índices na memória. No NDB 7.6, o uso de `IndexMemory` no arquivo de configuração do cluster aciona uma mensagem de aviso do servidor de gerenciamento.
-
-  Você pode estimar o tamanho de um índice de hash usando esta fórmula:
+  You can estimate the size of a hash index using this formula:
 
   ```sql
     size  = ( (fragments * 32K) + (rows * 18) )
             * fragment_replicas
   ```
 
-  *`fragments`* é o número de fragmentos, *`fragment_replicas`* é o número de réplicas de fragmentos (normalmente dois), e *`rows`* é o número de linhas. Se uma tabela tiver um milhão de linhas, oito fragmentos e duas réplicas de fragmentos, o uso esperado da memória do índice é calculado da seguinte forma:
+  *`fragments`* is the number of fragments, *`fragment_replicas`* is the number of fragment replicas (normally two), and *`rows`* is the number of rows. If a table has one million rows, eight fragments, and two fragment replicas, the expected index memory usage is calculated as shown here:
 
   ```sql
     ((8 * 32K) + (1000000 * 18)) * 2 = ((8 * 32768) + (1000000 * 18)) * 2
@@ -199,7 +198,7 @@ O `IndexMemory` está desatualizado no NDB 7.6 e está sujeito à remoção em u
     = 18262144 * 2 = 36524288 bytes = ~35MB
   ```
 
-  As estatísticas de índice para índices ordenados (quando esses estão habilitados) são armazenadas na tabela `mysql.ndb_index_stat_sample`. Como essa tabela tem um índice de hash, isso aumenta o uso de memória do índice. Um limite superior para o número de linhas para um determinado índice ordenado pode ser calculado da seguinte forma:
+  Index statistics for ordered indexes (when these are enabled) are stored in the `mysql.ndb_index_stat_sample` table. Since this table has a hash index, this adds to index memory usage. An upper bound to the number of rows for a given ordered index can be calculated as follows:
 
   ```sql
     sample_size= key_size + ((key_attributes + 1) * 4)
@@ -209,9 +208,9 @@ O `IndexMemory` está desatualizado no NDB 7.6 e está sujeito à remoção em u
                   / sample_size
   ```
 
-  Na fórmula anterior, *`key_size`* é o tamanho da chave do índice ordenado em bytes, *`key_attributes`* é o número de atributos na chave do índice ordenado e *`rows`* é o número de linhas na tabela base.
+  In the preceding formula, *`key_size`* is the size of the ordered index key in bytes, *`key_attributes`* is the number ot attributes in the ordered index key, and *`rows`* is the number of rows in the base table.
 
-  Suponha que a tabela `t1` tenha 1 milhão de linhas e um índice ordenado chamado `ix1` em dois inteiros de quatro bytes. Além disso, suponha que `[IndexStatSaveSize]` (mysql-cluster-ndbd-definition.html#ndbparam-ndb-indexstatsavesize) e `[IndexStatSaveScale]` (mysql-cluster-ndbd-definition.html#ndbparam-ndb-indexstatsavescale) estejam configurados com seus valores padrão (32K e 100, respectivamente). Usando as fórmulas anteriores, podemos calcular da seguinte forma:
+  Assume that table `t1` has 1 million rows and an ordered index named `ix1` on two four-byte integers. Assume in addition that [`IndexStatSaveSize`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexstatsavesize) and [`IndexStatSaveScale`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexstatsavescale) are set to their default values (32K and 100, respectively). Using the previous 2 formulas, we can calculate as follows:
 
   ```sql
     sample_size = 8  + ((1 + 2) * 4) = 20 bytes
@@ -224,23 +223,23 @@ O `IndexMemory` está desatualizado no NDB 7.6 e está sujeito à remoção em u
                   = ~29182 rows
   ```
 
-  O uso esperado da memória do índice é, portanto, 2 \* 18 \* 29182 = \~1050550 bytes.
+  The expected index memory usage is thus 2 \* 18 \* 29182 = ~1050550 bytes.
 
-  Antes da versão 7.6 do NDB, o valor padrão para `IndexMemory` é de 18 MB e o mínimo é de 1 MB; na versão 7.6 do NDB, o valor mínimo e padrão para este parâmetro é 0 (zero). Isso tem implicações para as descerrações do NDB 7.6 para versões anteriores do NDB Cluster; consulte Seção 21.3.7, “Atualização e Descerramento do NDB Cluster” para mais informações.
+  Prior to NDB 7.6, the default value for [`IndexMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexmemory) is 18MB and the minimum is 1 MB; in NDB 7.6, the minimum and default vaue for this parameter is 0 (zero). This has implications for downgrades from NDB 7.6 to earlier versions of NDB Cluster; see [Section 21.3.7, “Upgrading and Downgrading NDB Cluster”](mysql-cluster-upgrade-downgrade.html "21.3.7 Upgrading and Downgrading NDB Cluster"), for more information.
 
-- `StringMemory`
+* [`StringMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-stringmemory)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro determina a quantidade de memória alocada para strings, como nomes de tabelas, e é especificado em uma seção `[ndbd]` ou `[ndbd default]` do arquivo `config.ini`. Um valor entre `0` e `100` inclusivo é interpretado como um percentual do valor padrão máximo, que é calculado com base em vários fatores, incluindo o número de tabelas, tamanho máximo de nomes de tabelas, tamanho máximo de arquivos `.FRM`, `MaxNoOfTriggers`, tamanho máximo de nomes de colunas e valor máximo de coluna padrão.
+  This parameter determines how much memory is allocated for strings such as table names, and is specified in an `[ndbd]` or `[ndbd default]` section of the `config.ini` file. A value between `0` and `100` inclusive is interpreted as a percent of the maximum default value, which is calculated based on a number of factors including the number of tables, maximum table name size, maximum size of `.FRM` files, [`MaxNoOfTriggers`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnooftriggers), maximum column name size, and maximum default column value.
 
-  Um valor maior que `100` é interpretado como um número de bytes.
+  A value greater than `100` is interpreted as a number of bytes.
 
-  O valor padrão é de 25 — ou seja, 25% do valor máximo padrão.
+  The default value is 25—that is, 25 percent of the default maximum.
 
-  Na maioria das circunstâncias, o valor padrão deve ser suficiente, mas quando você tem muitas tabelas `NDB` (1000 ou mais), é possível obter o erro 773 "Sem memória de string", modifique o parâmetro de configuração StringMemory: Erro permanente: erro de esquema, nesse caso, você deve aumentar esse valor. `25` (25 por cento) não é excessivo e deve impedir que esse erro ocorra em todas as condições, exceto nas mais extremas.
+  Under most circumstances, the default value should be sufficient, but when you have a great many `NDB` tables (1000 or more), it is possible to get Error 773 Out of string memory, please modify StringMemory config parameter: Permanent error: Schema error, in which case you should increase this value. `25` (25 percent) is not excessive, and should prevent this error from recurring in all but the most extreme conditions.
 
-O exemplo a seguir ilustra como a memória é usada para uma tabela. Considere esta definição de tabela:
+The following example illustrates how memory is used for a table. Consider this table definition:
 
 ```sql
 CREATE TABLE example (
@@ -252,41 +251,41 @@ CREATE TABLE example (
 ) ENGINE=NDBCLUSTER;
 ```
 
-Para cada registro, há 12 bytes de dados mais 12 bytes de sobrecarga. Não ter colunas nulas economiza 4 bytes de sobrecarga. Além disso, temos dois índices ordenados nas colunas `a` e `b`, consumindo aproximadamente 10 bytes cada por registro. Há um índice de hash de chave primária na tabela base, usando aproximadamente 29 bytes por registro. A restrição de unicidade é implementada por uma tabela separada com `b` como chave primária e `a` como coluna. Essa outra tabela consome 29 bytes adicionais de memória de índice por registro na tabela `example`, além de 8 bytes de dados de registro mais 12 bytes de sobrecarga.
+For each record, there are 12 bytes of data plus 12 bytes overhead. Having no nullable columns saves 4 bytes of overhead. In addition, we have two ordered indexes on columns `a` and `b` consuming roughly 10 bytes each per record. There is a primary key hash index on the base table using roughly 29 bytes per record. The unique constraint is implemented by a separate table with `b` as primary key and `a` as a column. This other table consumes an additional 29 bytes of index memory per record in the `example` table as well 8 bytes of record data plus 12 bytes of overhead.
 
-Assim, para um milhão de registros, precisamos de 58 MB de memória de índice para lidar com os índices de hash da chave primária e da restrição exclusiva. Também precisamos de 64 MB para os registros da tabela base e da tabela de índice exclusivo, além das duas tabelas de índice ordenado.
+Thus, for one million records, we need 58MB for index memory to handle the hash indexes for the primary key and the unique constraint. We also need 64MB for the records of the base table and the unique index table, plus the two ordered index tables.
 
-Você pode ver que os índices de hash ocupam uma quantidade razoável de espaço de memória; no entanto, eles fornecem acesso muito rápido aos dados em troca. Eles também são usados no NDB Cluster para lidar com restrições de unicidade.
+You can see that hash indexes takes up a fair amount of memory space; however, they provide very fast access to the data in return. They are also used in NDB Cluster to handle uniqueness constraints.
 
-Atualmente, o único algoritmo de particionamento é o hashing e os índices ordenados são locais a cada nó. Assim, os índices ordenados não podem ser usados para lidar com restrições de unicidade no caso geral.
+Currently, the only partitioning algorithm is hashing and ordered indexes are local to each node. Thus, ordered indexes cannot be used to handle uniqueness constraints in the general case.
 
-Um ponto importante tanto para `IndexMemory` quanto para `DataMemory` é que o tamanho total do banco de dados é a soma de toda a memória de dados e toda a memória de índice para cada grupo de nós. Cada grupo de nós é usado para armazenar informações replicadas, então, se houver quatro nós com duas réplicas de fragmentação, haverá dois grupos de nós. Assim, a memória de dados total disponível é 2 × `DataMemory` para cada nó de dados.
+An important point for both [`IndexMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexmemory) and [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory) is that the total database size is the sum of all data memory and all index memory for each node group. Each node group is used to store replicated information, so if there are four nodes with two fragment replicas, there are two node groups. Thus, the total data memory available is 2 × [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory) for each data node.
 
-É altamente recomendável que `DataMemory` e `IndexMemory` sejam definidos com os mesmos valores para todos os nós. A distribuição de dados é uniforme em todos os nós do clúster, portanto, a quantidade máxima de espaço disponível para qualquer nó não pode ser maior que a do nó mais pequeno do clúster.
+It is highly recommended that [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory) and [`IndexMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexmemory) be set to the same values for all nodes. Data distribution is even over all nodes in the cluster, so the maximum amount of space available for any node can be no greater than that of the smallest node in the cluster.
 
-`DataMemory` (e, no NDB 7.5 e versões anteriores, `IndexMemory`) podem ser alterados, mas diminuí-los pode ser arriscado; isso pode facilmente levar a um nó ou até mesmo a um NDB Cluster inteiro que não consegue reiniciar devido à falta de espaço de memória suficiente. Aumentos devem ser aceitáveis, mas é recomendável que essas atualizações sejam realizadas da mesma maneira que uma atualização de software, começando com uma atualização do arquivo de configuração e, em seguida, reiniciando o servidor de gerenciamento, seguido pela reinicialização de cada nó de dados, uma a uma.
+[`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory) (and in NDB 7.5 and earlier [`IndexMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexmemory)) can be changed, but decreasing it can be risky; doing so can easily lead to a node or even an entire NDB Cluster that is unable to restart due to there being insufficient memory space. Increases should be acceptable, but it is recommended that such upgrades are performed in the same manner as a software upgrade, beginning with an update of the configuration file, and then restarting the management server followed by restarting each data node in turn.
 
 **MinFreePct.**
 
-Uma proporção (5% por padrão) dos recursos do nó de dados, incluindo `DataMemory` (e, no NDB 7.5 e versões anteriores, `IndexMemory`) é mantida em reserva para garantir que o nó de dados não esgote sua memória ao realizar um reinício. Isso pode ser ajustado usando o parâmetro de configuração do nó de dados `MinFreePct` (padrão 5).
+A proportion (5% by default) of data node resources including [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory) (and in NDB 7.5 and earlier, [`IndexMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexmemory)) is kept in reserve to insure that the data node does not exhaust its memory when performing a restart. This can be adjusted using the [`MinFreePct`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-minfreepct "MinFreePct") data node configuration parameter (default 5).
 
-<table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-As atualizações não aumentam a quantidade de memória de índice usada. As inserções entram em vigor imediatamente; no entanto, as linhas não são realmente excluídas até que a transação seja confirmada.
+Updates do not increase the amount of index memory used. Inserts take effect immediately; however, rows are not actually deleted until the transaction is committed.
 
-**Parâmetros da transação.** Os próximos parâmetros `[ndbd]` que discutimos são importantes porque afetam o número de transações paralelas e o tamanho das transações que podem ser processadas pelo sistema. `MaxNoOfConcurrentTransactions` define o número de transações paralelas possíveis em um nó. `MaxNoOfConcurrentOperations` define o número de registros que podem estar na fase de atualização ou bloqueados simultaneamente.
+**Transaction parameters.** The next few `[ndbd]` parameters that we discuss are important because they affect the number of parallel transactions and the sizes of transactions that can be handled by the system. [`MaxNoOfConcurrentTransactions`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnoofconcurrenttransactions) sets the number of parallel transactions possible in a node. [`MaxNoOfConcurrentOperations`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnoofconcurrentoperations) sets the number of records that can be in update phase or locked simultaneously.
 
-Ambos esses parâmetros (especialmente `MaxNoOfConcurrentOperations`) são provavelmente alvos para usuários que definem valores específicos e não usam o valor padrão. O valor padrão é definido para sistemas que utilizam transações pequenas, para garantir que esses não utilizem memória excessiva.
+Both of these parameters (especially [`MaxNoOfConcurrentOperations`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnoofconcurrentoperations)) are likely targets for users setting specific values and not using the default value. The default value is set for systems using small transactions, to ensure that these do not use excessive memory.
 
-`MaxDMLOperationsPerTransaction` define o número máximo de operações DML que podem ser realizadas em uma transação específica.
+[`MaxDMLOperationsPerTransaction`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxdmloperationspertransaction) sets the maximum number of DML operations that can be performed in a given transaction.
 
-- `MaxNoOfConcurrentTransactions`
+* [`MaxNoOfConcurrentTransactions`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnoofconcurrenttransactions)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Cada nó de dados do cluster requer um registro de transação para cada transação ativa no cluster. A tarefa de coordenação das transações é distribuída entre todos os nós de dados. O número total de registros de transações no cluster é o número de transações em qualquer nó dado multiplicado pelo número de nós no cluster.
+  Each cluster data node requires a transaction record for each active transaction in the cluster. The task of coordinating transactions is distributed among all of the data nodes. The total number of transaction records in the cluster is the number of transactions in any given node times the number of nodes in the cluster.
 
-  Os registros de transação são alocados para servidores MySQL individuais. Cada conexão com um servidor MySQL requer pelo menos um registro de transação, além de um objeto de transação adicional por tabela acessada por essa conexão. Isso significa que um mínimo razoável para o número total de transações no clúster pode ser expresso como
+  Transaction records are allocated to individual MySQL servers. Each connection to a MySQL server requires at least one transaction record, plus an additional transaction object per table accessed by that connection. This means that a reasonable minimum for the total number of transactions in the cluster can be expressed as
 
   ```sql
   TotalNoOfConcurrentTransactions =
@@ -294,962 +293,962 @@ Ambos esses parâmetros (especialmente `MaxNoOfConcurrentOperations`) são prova
       * number of SQL nodes
   ```
 
-  Suponha que haja 10 nós SQL usando o clúster. Uma única junção envolvendo 10 tabelas requer 11 registros de transação; se houver 10 junções desse tipo em uma transação, então 10 \* 11 = 110 registros de transação são necessários para essa transação, por servidor MySQL, ou 110 \* 10 = 1100 registros de transação no total. Espera-se que cada nó de dados possa lidar com TotalNoOfConcurrentTransactions / número de nós de dados. Para um NDB Cluster com 4 nós de dados, isso significaria definir `MaxNoOfConcurrentTransactions` em cada nó de dados para 1100 / 4 = 275. Além disso, você deve prever a recuperação em caso de falha, garantindo que um único grupo de nós possa acomodar todas as transações concorrentes; em outras palavras, que o MaxNoOfConcurrentTransactions de cada nó de dados seja suficiente para cobrir um número de transações igual a TotalNoOfConcurrentTransactions / número de grupos de nós. Se este clúster tiver um único grupo de nós, então `MaxNoOfConcurrentTransactions` deve ser definido para 1100 (o mesmo que o número total de transações concorrentes para todo o clúster).
+  Suppose that there are 10 SQL nodes using the cluster. A single join involving 10 tables requires 11 transaction records; if there are 10 such joins in a transaction, then 10 \* 11 = 110 transaction records are required for this transaction, per MySQL server, or 110 \* 10 = 1100 transaction records total. Each data node can be expected to handle TotalNoOfConcurrentTransactions / number of data nodes. For an NDB Cluster having 4 data nodes, this would mean setting `MaxNoOfConcurrentTransactions` on each data node to 1100 / 4 = 275. In addition, you should provide for failure recovery by ensuring that a single node group can accommodate all concurrent transactions; in other words, that each data node's MaxNoOfConcurrentTransactions is sufficient to cover a number of transactions equal to TotalNoOfConcurrentTransactions / number of node groups. If this cluster has a single node group, then `MaxNoOfConcurrentTransactions` should be set to 1100 (the same as the total number of concurrent transactions for the entire cluster).
 
-  Além disso, cada transação envolve pelo menos uma operação; por essa razão, o valor definido para `MaxNoOfConcurrentTransactions` deve ser sempre menor ou igual ao valor de `MaxNoOfConcurrentOperations`.
+  In addition, each transaction involves at least one operation; for this reason, the value set for `MaxNoOfConcurrentTransactions` should always be no more than the value of [`MaxNoOfConcurrentOperations`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnoofconcurrentoperations).
 
-  Este parâmetro deve ser definido com o mesmo valor para todos os nós de dados do cluster. Isso ocorre porque, quando um nó de dados falha, o nó mais antigo que sobrevive recria o estado da transação de todas as transações que estavam em andamento no nó falhado.
+  This parameter must be set to the same value for all cluster data nodes. This is due to the fact that, when a data node fails, the oldest surviving node re-creates the transaction state of all transactions that were ongoing in the failed node.
 
-  É possível alterar esse valor usando um reinício contínuo, mas a quantidade de tráfego no clúster deve ser tal que não ocorram mais transações do que o menor dos níveis antigo e novo durante esse processo.
+  It is possible to change this value using a rolling restart, but the amount of traffic on the cluster must be such that no more transactions occur than the lower of the old and new levels while this is taking place.
 
-  O valor padrão é 4096.
+  The default value is 4096.
 
-- `MaxNoOfConcurrentOperations`
+* [`MaxNoOfConcurrentOperations`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnoofconcurrentoperations)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  É uma boa ideia ajustar o valor deste parâmetro de acordo com o tamanho e o número de transações. Ao realizar transações que envolvem apenas algumas operações e registros, o valor padrão deste parâmetro geralmente é suficiente. Realizar grandes transações que envolvem muitos registros geralmente exige que você aumente seu valor.
+  It is a good idea to adjust the value of this parameter according to the size and number of transactions. When performing transactions which involve only a few operations and records, the default value for this parameter is usually sufficient. Performing large transactions involving many records usually requires that you increase its value.
 
-  Os registros são mantidos para cada transação que atualiza os dados do cluster, tanto no coordenador da transação quanto nos nós onde as atualizações reais são realizadas. Esses registros contêm informações de estado necessárias para encontrar registros de ANULAMENTO para o rollback, filas de bloqueio e outros fins.
+  Records are kept for each transaction updating cluster data, both in the transaction coordinator and in the nodes where the actual updates are performed. These records contain state information needed to find UNDO records for rollback, lock queues, and other purposes.
 
-  Este parâmetro deve ser definido no mínimo para o número de registros que serão atualizados simultaneamente nas transações, dividido pelo número de nós de dados do cluster. Por exemplo, em um cluster que tem quatro nós de dados e que deve lidar com uma atualização concorrente de um milhão de registros usando transações, você deve definir esse valor para 1.000.000 / 4 = 250.000. Para ajudar a fornecer resiliência contra falhas, sugere-se que você defina esse parâmetro para um valor suficientemente alto para permitir que um nó de dados individual lidere a carga para seu grupo de nós. Em outras palavras, você deve definir o valor igual ao `número total de operações concorrentes / número de grupos de nós`. (No caso em que há um único grupo de nós, isso é o mesmo que o número total de operações concorrentes para todo o cluster.)
+  This parameter should be set at a minimum to the number of records to be updated simultaneously in transactions, divided by the number of cluster data nodes. For example, in a cluster which has four data nodes and which is expected to handle one million concurrent updates using transactions, you should set this value to 1000000 / 4 = 250000. To help provide resiliency against failures, it is suggested that you set this parameter to a value that is high enough to permit an individual data node to handle the load for its node group. In other words, you should set the value equal to `total number of concurrent operations / number of node groups`. (In the case where there is a single node group, this is the same as the total number of concurrent operations for the entire cluster.)
 
-  Como cada transação sempre envolve pelo menos uma operação, o valor de `MaxNoOfConcurrentOperations` deve sempre ser maior ou igual ao valor de `MaxNoOfConcurrentTransactions`.
+  Because each transaction always involves at least one operation, the value of `MaxNoOfConcurrentOperations` should always be greater than or equal to the value of [`MaxNoOfConcurrentTransactions`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnoofconcurrenttransactions).
 
-  As consultas que definem bloqueios também geram a criação de registros de operação. Alguns espaços extras são alocados dentro dos nós individuais para acomodar casos em que a distribuição não é perfeita pelos nós.
+  Read queries which set locks also cause operation records to be created. Some extra space is allocated within individual nodes to accommodate cases where the distribution is not perfect over the nodes.
 
-  Quando as consultas utilizam o índice de hash exclusivo, na verdade, são usados dois registros de operação por registro na transação. O primeiro registro representa a leitura na tabela de índice e o segundo lida com a operação na tabela base.
+  When queries make use of the unique hash index, there are actually two operation records used per record in the transaction. The first record represents the read in the index table and the second handles the operation on the base table.
 
-  O valor padrão é 32768.
+  The default value is 32768.
 
-  Este parâmetro, na verdade, lida com dois valores que podem ser configurados separadamente. O primeiro deles especifica quantos registros de operação devem ser colocados com o coordenador da transação. A segunda parte especifica quantos registros de operação devem ser locais para o banco de dados.
+  This parameter actually handles two values that can be configured separately. The first of these specifies how many operation records are to be placed with the transaction coordinator. The second part specifies how many operation records are to be local to the database.
 
-  Uma transação muito grande realizada em um clúster de oito nós requer tantos registros de operação no coordenador de transações quanto houver de leituras, atualizações e exclusões envolvidas na transação. No entanto, os registros de operação estão espalhados por todos os oito nós. Portanto, se for necessário configurar o sistema para uma transação muito grande, é uma boa ideia configurá-las separadamente. O `MaxNoOfConcurrentOperations` é sempre usado para calcular o número de registros de operação na parte do coordenador de transações do nó.
+  A very large transaction performed on an eight-node cluster requires as many operation records in the transaction coordinator as there are reads, updates, and deletes involved in the transaction. However, the operation records of the are spread over all eight nodes. Thus, if it is necessary to configure the system for one very large transaction, it is a good idea to configure the two parts separately. [`MaxNoOfConcurrentOperations`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnoofconcurrentoperations) is always used to calculate the number of operation records in the transaction coordinator portion of the node.
 
-  É importante também ter uma ideia dos requisitos de memória para os registros de operação. Esses consomem cerca de 1 KB por registro.
+  It is also important to have an idea of the memory requirements for operation records. These consume about 1KB per record.
 
-- `MaxNoOfLocalOperations`
+* [`MaxNoOfLocalOperations`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnooflocaloperations)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Por padrão, este parâmetro é calculado como 1,1 × `MaxNoOfConcurrentOperations`. Isso é adequado para sistemas com muitas operações simultâneas, sem que nenhuma delas seja muito grande. Se houver a necessidade de lidar com uma transação muito grande de cada vez e houver muitos nós, é uma boa ideia substituir o valor padrão, especificando explicitamente este parâmetro.
+  By default, this parameter is calculated as 1.1 × [`MaxNoOfConcurrentOperations`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnoofconcurrentoperations). This fits systems with many simultaneous transactions, none of them being very large. If there is a need to handle one very large transaction at a time and there are many nodes, it is a good idea to override the default value by explicitly specifying this parameter.
 
-- `MaxDMLOperationsPerTransaction`
+* [`MaxDMLOperationsPerTransaction`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxdmloperationspertransaction)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro limita o tamanho de uma transação. A transação é abortada se exigir mais do que esse número de operações DML.
+  This parameter limits the size of a transaction. The transaction is aborted if it requires more than this many DML operations.
 
-**Armazenamento temporário de transações.** O próximo conjunto de parâmetros de `[ndbd]` é usado para determinar o armazenamento temporário ao executar uma instrução que faz parte de uma transação de cluster. Todos os registros são liberados quando a instrução é concluída e o cluster está aguardando o commit ou rollback.
+**Transaction temporary storage.** The next set of `[ndbd]` parameters is used to determine temporary storage when executing a statement that is part of a Cluster transaction. All records are released when the statement is completed and the cluster is waiting for the commit or rollback.
 
-Os valores padrão para esses parâmetros são adequados para a maioria das situações. No entanto, os usuários que precisam suportar transações envolvendo um grande número de linhas ou operações podem precisar aumentar esses valores para permitir um melhor paralelismo no sistema, enquanto os usuários cujas aplicações exigem transações relativamente pequenas podem diminuir os valores para economizar memória.
+The default values for these parameters are adequate for most situations. However, users with a need to support transactions involving large numbers of rows or operations may need to increase these values to enable better parallelism in the system, whereas users whose applications require relatively small transactions can decrease the values to save memory.
 
-- `MaxNoOfConcurrentIndexOperations`
+* [`MaxNoOfConcurrentIndexOperations`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnoofconcurrentindexoperations)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Para consultas que utilizam um índice de hash único, outro conjunto temporário de registros de operação é usado durante a fase de execução da consulta. Este parâmetro define o tamanho desse conjunto de registros. Assim, este registro é alocado apenas durante a execução de uma parte de uma consulta. Assim que essa parte for executada, o registro é liberado. O estado necessário para lidar com abortos e commits é gerenciado pelos registros de operação normais, onde o tamanho do conjunto é definido pelo parâmetro `MaxNoOfConcurrentOperations`.
+  For queries using a unique hash index, another temporary set of operation records is used during a query's execution phase. This parameter sets the size of that pool of records. Thus, this record is allocated only while executing a part of a query. As soon as this part has been executed, the record is released. The state needed to handle aborts and commits is handled by the normal operation records, where the pool size is set by the parameter [`MaxNoOfConcurrentOperations`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnoofconcurrentoperations).
 
-  O valor padrão deste parâmetro é 8192. Somente em casos raros de paralelismo extremamente alto usando índices de hash únicos é que será necessário aumentar esse valor. É possível usar um valor menor e isso pode economizar memória se o DBA tiver certeza de que um alto grau de paralelismo não é necessário para o clúster.
+  The default value of this parameter is 8192. Only in rare cases of extremely high parallelism using unique hash indexes should it be necessary to increase this value. Using a smaller value is possible and can save memory if the DBA is certain that a high degree of parallelism is not required for the cluster.
 
-- `MaxNoOfFiredTriggers`
+* [`MaxNoOfFiredTriggers`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnooffiredtriggers)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  O valor padrão de `MaxNoOfFiredTriggers` é 4000, o que é suficiente para a maioria das situações. Em alguns casos, ele pode até ser reduzido se o DBA considerar que a necessidade de paralelismo no clúster não é alta.
+  The default value of [`MaxNoOfFiredTriggers`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnooffiredtriggers) is 4000, which is sufficient for most situations. In some cases it can even be decreased if the DBA feels certain the need for parallelism in the cluster is not high.
 
-  Um registro é criado quando uma operação é realizada que afeta um índice de hash único. Inserir ou excluir um registro em uma tabela com índices de hash únicos ou atualizar uma coluna que faz parte de um índice de hash único aciona um inserção ou uma exclusão na tabela do índice. O registro resultante é usado para representar essa operação da tabela do índice enquanto espera que a operação original que a acionou seja concluída. Essa operação é de curta duração, mas ainda pode exigir um grande número de registros em seu pool para situações com muitas operações de escrita paralelas em uma tabela base que contém um conjunto de índices de hash únicos.
+  A record is created when an operation is performed that affects a unique hash index. Inserting or deleting a record in a table with unique hash indexes or updating a column that is part of a unique hash index fires an insert or a delete in the index table. The resulting record is used to represent this index table operation while waiting for the original operation that fired it to complete. This operation is short-lived but can still require a large number of records in its pool for situations with many parallel write operations on a base table containing a set of unique hash indexes.
 
-- `TransactionBufferMemory`
+* [`TransactionBufferMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-transactionbuffermemory)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados HostName" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome ou endereço IP</td> </tr><tr> <th>Padrão</th> <td>localhost</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="HostName data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name or IP address</td> </tr><tr> <th>Default</th> <td>localhost</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  A memória afetada por este parâmetro é usada para rastrear operações realizadas ao atualizar tabelas de índice e ler índices únicos. Esta memória é usada para armazenar as informações da chave e da coluna para essas operações. Apenas raramente é necessário alterar o valor deste parâmetro em relação ao padrão.
+  The memory affected by this parameter is used for tracking operations fired when updating index tables and reading unique indexes. This memory is used to store the key and column information for these operations. It is only very rarely that the value for this parameter needs to be altered from the default.
 
-  O valor padrão para `TransactionBufferMemory` é de 1 MB.
+  The default value for [`TransactionBufferMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-transactionbuffermemory) is 1MB.
 
-  As operações de leitura e escrita normais usam um buffer semelhante, cujo uso é ainda mais de curta duração. O parâmetro de tempo de compilação `ZATTRBUF_FILESIZE` (encontrado em `ndb/src/kernel/blocks/Dbtc/Dbtc.hpp`) definido para 4000 × 128 bytes (500KB). Um buffer semelhante para informações chave, `ZDATABUF_FILESIZE` (também em `Dbtc.hpp`) contém 4000 × 16 = 62,5KB de espaço de buffer. `Dbtc` é o módulo que lida com a coordenação das transações.
+  Normal read and write operations use a similar buffer, whose usage is even more short-lived. The compile-time parameter `ZATTRBUF_FILESIZE` (found in `ndb/src/kernel/blocks/Dbtc/Dbtc.hpp`) set to 4000 × 128 bytes (500KB). A similar buffer for key information, `ZDATABUF_FILESIZE` (also in `Dbtc.hpp`) contains 4000 × 16 = 62.5KB of buffer space. `Dbtc` is the module that handles transaction coordination.
 
-**Escaneios e bufferização.** Existem parâmetros adicionais de `[ndbd]` no módulo `Dblqh` (em `ndb/src/kernel/blocks/Dblqh/Dblqh.hpp`) que afetam leituras e atualizações. Esses incluem `ZATTRINBUF_FILESIZE`, definido por padrão para 10000 × 128 bytes (1250KB) e `ZDATABUF_FILE_SIZE`, definido por padrão para 10000\*16 bytes (aproximadamente 156KB) de espaço de buffer. Até o momento, não houve relatos de usuários nem resultados de nossos próprios extensos testes que sugiram que nenhum desses limites de tempo de compilação deva ser aumentado.
+**Scans and buffering.** There are additional `[ndbd]` parameters in the `Dblqh` module (in `ndb/src/kernel/blocks/Dblqh/Dblqh.hpp`) that affect reads and updates. These include `ZATTRINBUF_FILESIZE`, set by default to 10000 × 128 bytes (1250KB) and `ZDATABUF_FILE_SIZE`, set by default to 10000\*16 bytes (roughly 156KB) of buffer space. To date, there have been neither any reports from users nor any results from our own extensive tests suggesting that either of these compile-time limits should be increased.
 
-- `BatchSizePerLocalScan`
+* [`BatchSizePerLocalScan`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-batchsizeperlocalscan)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados HostName" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome ou endereço IP</td> </tr><tr> <th>Padrão</th> <td>localhost</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="HostName data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name or IP address</td> </tr><tr> <th>Default</th> <td>localhost</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro é usado para calcular o número de registros de bloqueio utilizados para lidar com operações de varredura concorrentes.
+  This parameter is used to calculate the number of lock records used to handle concurrent scan operations.
 
-  `BatchSizePerLocalScan` tem uma forte conexão com o `BatchSize` definido nos nós SQL.
+  `BatchSizePerLocalScan` has a strong connection to the [`BatchSize`](mysql-cluster-api-definition.html#ndbparam-api-batchsize) defined in the SQL nodes.
 
-- `LongMessageBuffer`
+* [`LongMessageBuffer`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-longmessagebuffer)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados HostName" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome ou endereço IP</td> </tr><tr> <th>Padrão</th> <td>localhost</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="HostName data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name or IP address</td> </tr><tr> <th>Default</th> <td>localhost</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este é um buffer interno usado para passar mensagens dentro de nós individuais e entre nós. O padrão é de 64 MB.
+  This is an internal buffer used for passing messages within individual nodes and between nodes. The default is 64MB.
 
-  Esse parâmetro raramente precisa ser alterado do padrão.
+  This parameter seldom needs to be changed from the default.
 
-- `MaxFKBuildBatchSize`
+* [`MaxFKBuildBatchSize`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxfkbuildbatchsize)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados HostName" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome ou endereço IP</td> </tr><tr> <th>Padrão</th> <td>localhost</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="HostName data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name or IP address</td> </tr><tr> <th>Default</th> <td>localhost</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Tamanho máximo do lote de varredura usado para criar chaves estrangeiras. Aumentar o valor definido para este parâmetro pode acelerar a criação de chaves estrangeiras, mas isso pode afetar negativamente o tráfego em andamento.
+  Maximum scan batch size used for building foreign keys. Increasing the value set for this parameter may speed up building of foreign key builds at the expense of greater impact to ongoing traffic.
 
-- `MaxNoOfConcurrentScans`
+* [`MaxNoOfConcurrentScans`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnoofconcurrentscans)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados HostName" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome ou endereço IP</td> </tr><tr> <th>Padrão</th> <td>localhost</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="HostName data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name or IP address</td> </tr><tr> <th>Default</th> <td>localhost</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro é usado para controlar o número de varreduras paralelas que podem ser realizadas no clúster. Cada coordenador de transação pode lidar com o número de varreduras paralelas definido para este parâmetro. Cada consulta de varredura é realizada realizando a varredura de todas as partições em paralelo. Cada varredura de partição usa um registro de varredura no nó onde a partição está localizada, com o número de registros sendo o valor deste parâmetro multiplicado pelo número de nós. O clúster deve ser capaz de sustentar varreduras `MaxNoOfConcurrentScans` simultâneas de todos os nós no clúster.
+  This parameter is used to control the number of parallel scans that can be performed in the cluster. Each transaction coordinator can handle the number of parallel scans defined for this parameter. Each scan query is performed by scanning all partitions in parallel. Each partition scan uses a scan record in the node where the partition is located, the number of records being the value of this parameter times the number of nodes. The cluster should be able to sustain [`MaxNoOfConcurrentScans`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnoofconcurrentscans) scans concurrently from all nodes in the cluster.
 
-  Os scans são realizados em dois casos. O primeiro desses casos ocorre quando não existe hash ou índices ordenados para lidar com a consulta, nesse caso, a consulta é executada realizando um varredura completa da tabela. O segundo caso ocorre quando não existe índice hash para suportar a consulta, mas existe um índice ordenado. Usar o índice ordenado significa executar uma varredura paralela de intervalo. A ordem é mantida apenas nas partições locais, portanto, é necessário realizar a varredura do índice em todas as partições.
+  Scans are actually performed in two cases. The first of these cases occurs when no hash or ordered indexes exists to handle the query, in which case the query is executed by performing a full table scan. The second case is encountered when there is no hash index to support the query but there is an ordered index. Using the ordered index means executing a parallel range scan. The order is kept on the local partitions only, so it is necessary to perform the index scan on all partitions.
 
-  O valor padrão de `MaxNoOfConcurrentScans` é 256. O valor máximo é 500.
+  The default value of [`MaxNoOfConcurrentScans`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnoofconcurrentscans) is 256. The maximum value is 500.
 
-- `MaxNoOfLocalScans`
+* [`MaxNoOfLocalScans`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnooflocalscans)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados HostName" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome ou endereço IP</td> </tr><tr> <th>Padrão</th> <td>localhost</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="HostName data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name or IP address</td> </tr><tr> <th>Default</th> <td>localhost</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Especifica o número de registros de varredura local, caso muitas varreduras não sejam totalmente paralelizadas. Quando o número de registros de varredura local não for fornecido, ele será calculado conforme mostrado aqui:
+  Specifies the number of local scan records if many scans are not fully parallelized. When the number of local scan records is not provided, it is calculated as shown here:
 
   ```sql
   4 * MaxNoOfConcurrentScans * [# data nodes] + 2
   ```
 
-  O valor mínimo é de 32.
+  The minimum value is 32.
 
-- `MaxParallelCopyInstances`
+* [`MaxParallelCopyInstances`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxparallelcopyinstances)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados HostName" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome ou endereço IP</td> </tr><tr> <th>Padrão</th> <td>localhost</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="HostName data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name or IP address</td> </tr><tr> <th>Default</th> <td>localhost</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro define a paralelização utilizada na fase de cópia de um reinício de nó ou de um reinício do sistema, quando um nó que está apenas começando é sincronizado com um nó que já tem os dados atuais, copiando quaisquer registros alterados do nó que está atualizado. Como a paralelização total nessas situações pode levar a situações de sobrecarga, o `MaxParallelCopyInstances` fornece uma maneira de diminuí-la. O valor padrão deste parâmetro é 0. Esse valor significa que a paralelização efetiva é igual ao número de instâncias do LDM no nó que está apenas começando, bem como no nó que está atualizando.
+  This parameter sets the parallelization used in the copy phase of a node restart or system restart, when a node that is currently just starting is synchronised with a node that already has current data by copying over any changed records from the node that is up to date. Because full parallelism in such cases can lead to overload situations, `MaxParallelCopyInstances` provides a means to decrease it. This parameter's default value 0. This value means that the effective parallelism is equal to the number of LDM instances in the node just starting as well as the node updating it.
 
-- `MaxParallelScansPerFragment`
+* [`MaxParallelScansPerFragment`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxparallelscansperfragment)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados HostName" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome ou endereço IP</td> </tr><tr> <th>Padrão</th> <td>localhost</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="HostName data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name or IP address</td> </tr><tr> <th>Default</th> <td>localhost</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  É possível configurar o número máximo de varreduras paralelas (`TUP` varreduras e `TUX`]\(/doc/ndb-internals/pt-BR/ndb-internals-kernel-blocks-dbtux.html) varreduras) permitidas antes de elas começarem a ficar na fila para serem processadas em série. Você pode aumentar esse valor para aproveitar qualquer CPU não utilizada ao realizar um grande número de varreduras em paralelo e melhorar seu desempenho.
+  It is possible to configure the maximum number of parallel scans ([`TUP`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbtup.html) scans and [`TUX`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbtux.html) scans) allowed before they begin queuing for serial handling. You can increase this to take advantage of any unused CPU when performing large number of scans in parallel and improve their performance.
 
-- `MaxReorgBuildBatchSize`
+* [`MaxReorgBuildBatchSize`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxreorgbuildbatchsize)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados HostName" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome ou endereço IP</td> </tr><tr> <th>Padrão</th> <td>localhost</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="HostName data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name or IP address</td> </tr><tr> <th>Default</th> <td>localhost</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Tamanho máximo do lote de varredura usado para reorganização de partições de tabela. Aumentar o valor definido para este parâmetro pode acelerar a reorganização, mas com um maior impacto no tráfego em andamento.
+  Maximum scan batch size used for reorganization of table partitions. Increasing the value set for this parameter may speed up reorganization at the expense of greater impact to ongoing traffic.
 
-- `MaxUIBuildBatchSize`
+* [`MaxUIBuildBatchSize`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxuibuildbatchsize)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados HostName" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome ou endereço IP</td> </tr><tr> <th>Padrão</th> <td>localhost</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reiniciar o nó:</strong></span>Requer umreinício em rotaçãodo aglomerado. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="HostName data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name or IP address</td> </tr><tr> <th>Default</th> <td>localhost</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Node Restart: </strong></span>Requires a rolling restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Tamanho máximo do lote de varredura usado para criar chaves únicas. Aumentar o valor definido para este parâmetro pode acelerar essas compilações, mas isso pode afetar negativamente o tráfego em andamento.
+  Maximum scan batch size used for building unique keys. Increasing the value set for this parameter may speed up such builds at the expense of greater impact to ongoing traffic.
 
-##### Alocação de memória
+##### Memory Allocation
 
-`MaxAllocate`
+[`MaxAllocate`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxallocate)
 
-<table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados ServerPort" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>não assinado</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>1 - 64K</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="ServerPort data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>1 - 64K</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-Esse parâmetro era usado em versões mais antigas do NDB Cluster, mas não tem efeito no NDB 7.5 ou no NDB 7.6.
+This parameter was used in older versions of NDB Cluster, but has no effect in NDB 7.5 or NDB 7.6.
 
-##### Tamanho do Mapa de Hash
+##### Hash Map Size
 
-`DefaultHashMapSize`
+[`DefaultHashMapSize`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-defaulthashmapsize)
 
-<table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados ServerPort" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>não assinado</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>1 - 64K</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="ServerPort data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>1 - 64K</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-O tamanho dos mapas de hash da tabela usados pelo `NDB` é configurável usando este parâmetro. `DefaultHashMapSize` pode assumir qualquer um dos três valores possíveis (0, 240, 3840).
+The size of the table hash maps used by [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") is configurable using this parameter. `DefaultHashMapSize` can take any of three possible values (0, 240, 3840).
 
-O uso original previsto para este parâmetro era facilitar as atualizações e, especialmente, as desatualizações para e a partir de versões muito antigas com tamanhos de mapa de hash padrão diferentes. Isso não é um problema ao atualizar o NDB Cluster 7.3 (ou versões posteriores).
+The original intended use for this parameter was to facilitate upgrades and especially downgrades to and from very old releases with differing default hash map sizes. This is not an issue when upgrading from NDB Cluster 7.3 (or later) to later versions.
 
-A redução deste parâmetro online após a criação ou modificação de tabelas com `DefaultHashMapSize` igual a 3840 não é suportada.
+Decreasing this parameter online after any tables have been created or modified with `DefaultHashMapSize` equal to 3840 is not supported.
 
-**Registro e verificação de ponto de controle.** Os seguintes parâmetros de `[ndbd]` controlam o comportamento do registro e do ponto de controle.
+**Logging and checkpointing.** The following `[ndbd]` parameters control log and checkpoint behavior.
 
-- `FragmentLogFileSize`
+* [`FragmentLogFileSize`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-fragmentlogfilesize)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados ServerPort" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>não assinado</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>1 - 64K</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ServerPort data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>1 - 64K</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Definir este parâmetro permite que você controle diretamente o tamanho dos arquivos de registro de revisão. Isso pode ser útil em situações em que o NDB Cluster está operando sob uma carga alta e não consegue fechar os arquivos de log de fragmentação rapidamente o suficiente antes de tentar abrir novos (apenas 2 arquivos de log de fragmentação podem ser abertos de cada vez); aumentar o tamanho dos arquivos de log de fragmentação dá ao cluster mais tempo antes de ter que abrir cada novo arquivo de log de fragmentação. O valor padrão para este parâmetro é 16M.
+  Setting this parameter enables you to control directly the size of redo log files. This can be useful in situations when NDB Cluster is operating under a high load and it is unable to close fragment log files quickly enough before attempting to open new ones (only 2 fragment log files can be open at one time); increasing the size of the fragment log files gives the cluster more time before having to open each new fragment log file. The default value for this parameter is 16M.
 
-  Para obter mais informações sobre os arquivos de registro de fragmentos, consulte a descrição de `NoOfFragmentLogFiles`.
+  For more information about fragment log files, see the description for [`NoOfFragmentLogFiles`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-nooffragmentlogfiles).
 
-- `InitialNoOfOpenFiles`
+* [`InitialNoOfOpenFiles`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-initialnoofopenfiles)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados ServerPort" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>não assinado</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>1 - 64K</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ServerPort data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>1 - 64K</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro define o número inicial de threads internas a serem alocadas para arquivos abertos.
+  This parameter sets the initial number of internal threads to allocate for open files.
 
-  O valor padrão é 27.
+  The default value is 27.
 
-- `InitFragmentLogFiles`
+* [`InitFragmentLogFiles`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-initfragmentlogfiles)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados ServerPort" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>não assinado</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>1 - 64K</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ServerPort data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>1 - 64K</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Por padrão, os arquivos de registro de fragmentos são criados de forma esparsa ao realizar o início inicial de um nó de dados — ou seja, dependendo do sistema operacional e do sistema de arquivos em uso, nem todos os bytes são necessariamente escritos no disco. No entanto, é possível sobrescrever esse comportamento e forçar que todos os bytes sejam escritos, independentemente da plataforma e do tipo de sistema de arquivos em uso, por meio deste parâmetro. `InitFragmentLogFiles` aceita um dos dois valores:
+  By default, fragment log files are created sparsely when performing an initial start of a data node—that is, depending on the operating system and file system in use, not all bytes are necessarily written to disk. However, it is possible to override this behavior and force all bytes to be written, regardless of the platform and file system type being used, by means of this parameter. [`InitFragmentLogFiles`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-initfragmentlogfiles) takes either of two values:
 
-  - `SPARSE`. Os arquivos de registro fragmentados são criados de forma esparsa. Este é o valor padrão.
+  + `SPARSE`. Fragment log files are created sparsely. This is the default value.
 
-  - `FULL`. Forçar que todos os bytes do arquivo de log do fragmento sejam escritos no disco.
+  + `FULL`. Force all bytes of the fragment log file to be written to disk.
 
-  Dependendo do seu sistema operacional e do sistema de arquivos, definir `InitFragmentLogFiles=FULL` pode ajudar a eliminar erros de E/S nas gravações no log REDO.
+  Depending on your operating system and file system, setting `InitFragmentLogFiles=FULL` may help eliminate I/O errors on writes to the REDO log.
 
-- `AtivarPartialLcp`
+* [`EnablePartialLcp`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-enablepartiallcp)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados ServerPort" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>não assinado</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>1 - 64K</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ServerPort data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>1 - 64K</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Quando `true`, habilite verificações locais parciais: Isso significa que cada LCP registra apenas parte do banco de dados completo, além de quaisquer registros que contenham linhas alteradas desde o último LCP; se nenhuma linha tiver sido alterada, o LCP atualiza apenas o arquivo de controle do LCP e não atualiza nenhum arquivo de dados.
+  When `true`, enable partial local checkpoints: This means that each LCP records only part of the full database, plus any records containing rows changed since the last LCP; if no rows have changed, the LCP updates only the LCP control file and does not update any data files.
 
-  Se `EnablePartialLcp` estiver desativado (`false`), cada LCP usa apenas um único arquivo e escreve um ponto de verificação completo; isso requer a menor quantidade de espaço em disco para os LCPs, mas aumenta a carga de escrita para cada LCP. O valor padrão está ativado (`true`). A proporção de espaço usada pelos LCPS parciais pode ser modificada pelo ajuste do parâmetro de configuração `RecoveryWork`.
+  If `EnablePartialLcp` is disabled (`false`), each LCP uses only a single file and writes a full checkpoint; this requires the least amount of disk space for LCPs, but increases the write load for each LCP. The default value is enabled (`true`). The proportion of space used by partial LCPS can be modified by the setting for the [`RecoveryWork`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-recoverywork) configuration parameter.
 
-  Para obter mais informações sobre os arquivos e diretórios usados para LCPs completos e parciais, consulte Diretório do Sistema de Arquivos do Nó de Dados do NDB Cluster.
+  For more information about files and directories used for full and partial LCPs, see [NDB Cluster Data Node File System Directory](/doc/ndb-internals/en/ndb-internals-ndbd-filesystemdir-files.html).
 
-  No NDB 7.6.7 e versões posteriores, definir esse parâmetro como `false` também desabilita o cálculo da velocidade de escrita do disco usado pelo mecanismo de controle LCP adaptativo.
+  In NDB 7.6.7 and later, setting this parameter to `false` also disables the calculation of disk write speed used by the adaptive LCP control mechanism.
 
-- `LcpScanProgressTimeout`
+* [`LcpScanProgressTimeout`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-lcpscanprogresstimeout)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados ServerPort" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>não assinado</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>1 - 64K</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ServerPort data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>1 - 64K</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Um monitor de verificação de progresso de varredura de fragmentos de ponto de verificação local verifica periodicamente se não há progresso em cada varredura de fragmentos realizada como parte de um ponto de verificação local e desativa o nó se não houver progresso após um determinado período de tempo ter se passado. Esse intervalo pode ser definido usando o parâmetro de configuração do nó de dados `LcpScanProgressTimeout`, que define o tempo máximo em que o ponto de verificação local pode ficar parado antes de o monitor de varredura de fragmentos LCP desativar o nó.
+  A local checkpoint fragment scan watchdog checks periodically for no progress in each fragment scan performed as part of a local checkpoint, and shuts down the node if there is no progress after a given amount of time has elapsed. This interval can be set using the [`LcpScanProgressTimeout`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-lcpscanprogresstimeout) data node configuration parameter, which sets the maximum time for which the local checkpoint can be stalled before the LCP fragment scan watchdog shuts down the node.
 
-  O valor padrão é de 60 segundos (para garantir compatibilidade com versões anteriores). Definir esse parâmetro para 0 desativa completamente o monitoramento do rastreamento de fragmentos LCP.
+  The default value is 60 seconds (providing compatibility with previous releases). Setting this parameter to 0 disables the LCP fragment scan watchdog altogether.
 
-- `MaxNoOfOpenFiles`
+* [`MaxNoOfOpenFiles`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnoofopenfiles)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados ServerPort" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>não assinado</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>1 - 64K</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ServerPort data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>1 - 64K</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro define um limite para o número de threads internas a serem alocadas para arquivos abertos. *Qualquer situação que exija uma alteração neste parâmetro deve ser relatada como um erro*.
+  This parameter sets a ceiling on how many internal threads to allocate for open files. *Any situation requiring a change in this parameter should be reported as a bug*.
 
-  O valor padrão é 0. No entanto, o valor mínimo para o qual este parâmetro pode ser definido é 20.
+  The default value is 0. However, the minimum value to which this parameter can be set is 20.
 
-- `MaxNoOfSavedMessages`
+* [`MaxNoOfSavedMessages`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnoofsavedmessages)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados ServerPort" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>não assinado</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>1 - 64K</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ServerPort data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>1 - 64K</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro define o número máximo de erros escritos no log de erros, bem como o número máximo de arquivos de registro que serão mantidos antes de sobrescrever os existentes. Os arquivos de registro são gerados quando, por qualquer motivo, o nó falha.
+  This parameter sets the maximum number of errors written in the error log as well as the maximum number of trace files that are kept before overwriting the existing ones. Trace files are generated when, for whatever reason, the node crashes.
 
-  O padrão é 25, que define esses limites em 25 mensagens de erro e 25 arquivos de rastreamento.
+  The default is 25, which sets these maximums to 25 error messages and 25 trace files.
 
-- `MaxLCPStartDelay`
+* [`MaxLCPStartDelay`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxlcpstartdelay)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados ServerPort" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>não assinado</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>1 - 64K</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ServerPort data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>1 - 64K</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Na recuperação de nós de dados em paralelo, apenas os dados da tabela são realmente copiados e sincronizados em paralelo; a sincronização dos metadados, como dicionário e informações de ponto de verificação, é feita de forma serial. Além disso, a recuperação do dicionário e das informações de ponto de verificação não pode ser executada em paralelo com a realização de pontos de verificação locais. Isso significa que, ao iniciar ou reiniciar muitos nós de dados simultaneamente, os nós podem ser forçados a esperar enquanto um ponto de verificação local é realizado, o que pode resultar em tempos de recuperação dos nós mais longos.
+  In parallel data node recovery, only table data is actually copied and synchronized in parallel; synchronization of metadata such as dictionary and checkpoint information is done in a serial fashion. In addition, recovery of dictionary and checkpoint information cannot be executed in parallel with performing of local checkpoints. This means that, when starting or restarting many data nodes concurrently, data nodes may be forced to wait while a local checkpoint is performed, which can result in longer node recovery times.
 
-  É possível forçar um atraso no ponto de verificação local para permitir que mais (e possivelmente todos) nós de dados completem a sincronização de metadados; uma vez que a sincronização de metadados de cada nó de dados esteja concluída, todos os nós de dados podem recuperar os dados da tabela em paralelo, mesmo enquanto o ponto de verificação local estiver sendo executado. Para forçar esse atraso, defina `MaxLCPStartDelay`, que determina o número de segundos que o clúster pode esperar para iniciar um ponto de verificação local enquanto os nós de dados continuam a sincronizar metadados. Este parâmetro deve ser definido na seção `[ndbd default]` do arquivo `config.ini`, para que seja o mesmo para todos os nós de dados. O valor máximo é 600; o padrão é 0.
+  It is possible to force a delay in the local checkpoint to permit more (and possibly all) data nodes to complete metadata synchronization; once each data node's metadata synchronization is complete, all of the data nodes can recover table data in parallel, even while the local checkpoint is being executed. To force such a delay, set [`MaxLCPStartDelay`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxlcpstartdelay), which determines the number of seconds the cluster can wait to begin a local checkpoint while data nodes continue to synchronize metadata. This parameter should be set in the `[ndbd default]` section of the `config.ini` file, so that it is the same for all data nodes. The maximum value is 600; the default is 0.
 
-- `NoOfFragmentLogFiles`
+* [`NoOfFragmentLogFiles`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-nooffragmentlogfiles)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó do NodeGroup" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>não assinado</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>0 - 65536</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do sistema:</strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir debackup, e, em seguida, reinicie o clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="NodeGroup data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>0 - 65536</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requires a complete shutdown of the cluster, wiping and restoring the cluster file system from a backup, and then restarting the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro define o número de arquivos de registro REDO para o nó e, portanto, a quantidade de espaço alocada para o registro REDO. Como os arquivos de registro REDO são organizados em um anel, é extremamente importante que os primeiros e últimos arquivos de registro do conjunto (às vezes referidos como os arquivos de registro "cabeça" e "cauda", respectivamente) não se encontrem. Quando eles se aproximam muito um do outro, o nó começa a abortar todas as transações que envolvem atualizações devido à falta de espaço para novos registros de log.
+  This parameter sets the number of REDO log files for the node, and thus the amount of space allocated to REDO logging. Because the REDO log files are organized in a ring, it is extremely important that the first and last log files in the set (sometimes referred to as the “head” and “tail” log files, respectively) do not meet. When these approach one another too closely, the node begins aborting all transactions encompassing updates due to a lack of room for new log records.
 
-  Um registro de log `REDO` não é removido até que ambos os pontos de verificação locais exigidos tenham sido concluídos desde que o registro de log foi inserido. A frequência de verificação é determinada por seu próprio conjunto de parâmetros de configuração discutidos em outras partes deste capítulo.
+  A `REDO` log record is not removed until both required local checkpoints have been completed since that log record was inserted. Checkpointing frequency is determined by its own set of configuration parameters discussed elsewhere in this chapter.
 
-  O valor padrão do parâmetro é 16, o que, por padrão, significa 16 conjuntos de 4 arquivos de 16 MB, totalizando 1024 MB. O tamanho dos arquivos de log individuais é configurável usando o parâmetro `FragmentLogFileSize`. Em cenários que exigem muitas atualizações, o valor de `NoOfFragmentLogFiles` pode precisar ser configurado para um valor alto, como 300 ou até maior, para fornecer espaço suficiente para os logs REDO.
+  The default parameter value is 16, which by default means 16 sets of 4 16MB files for a total of 1024MB. The size of the individual log files is configurable using the [`FragmentLogFileSize`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-fragmentlogfilesize) parameter. In scenarios requiring a great many updates, the value for [`NoOfFragmentLogFiles`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-nooffragmentlogfiles) may need to be set as high as 300 or even higher to provide sufficient space for REDO logs.
 
-  Se o checkpoint estiver lento e houver muitas escritas no banco de dados, os arquivos de log estiverem cheios e a cauda do log não puder ser cortada sem comprometer a recuperação, todas as transações de atualização serão abortadas com o código de erro interno 410 (`Espaço do arquivo de log temporariamente esgotado`). Esta condição prevalece até que um checkpoint seja concluído e a cauda do log possa ser movida para frente.
+  If the checkpointing is slow and there are so many writes to the database that the log files are full and the log tail cannot be cut without jeopardizing recovery, all updating transactions are aborted with internal error code 410 (`Out of log file space temporarily`). This condition prevails until a checkpoint has completed and the log tail can be moved forward.
 
-  Importante
+  Important
 
-  Este parâmetro não pode ser alterado “em tempo real”; você deve reiniciar o nó usando `--initial`. Se você deseja alterar esse valor para todos os nós de dados em um clúster em execução, pode fazê-lo usando um reinício de nó em rolagem (usando `--initial` ao iniciar cada nó de dados).
+  This parameter cannot be changed “on the fly”; you must restart the node using `--initial`. If you wish to change this value for all data nodes in a running cluster, you can do so using a rolling node restart (using `--initial` when starting each data node).
 
-- `RecoveryWork`
+* [`RecoveryWork`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-recoverywork)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó do NodeGroup" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>não assinado</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>0 - 65536</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do sistema:</strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir debackup, e, em seguida, reinicie o clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="NodeGroup data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>0 - 65536</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requires a complete shutdown of the cluster, wiping and restoring the cluster file system from a backup, and then restarting the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Porcentagem de overhead de armazenamento para arquivos LCP. Este parâmetro só tem efeito quando `EnablePartialLcp` é verdadeiro, ou seja, apenas quando os pontos de verificação locais parciais são habilitados. Um valor maior significa:
+  Percentage of storage overhead for LCP files. This parameter has an effect only when [`EnablePartialLcp`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-enablepartiallcp) is true, that is, only when partial local checkpoints are enabled. A higher value means:
 
-  - Menos registros são escritos para cada LCP, os LCPs usam mais espaço
+  + Fewer records are written for each LCP, LCPs use more space
 
-  - Mais trabalho é necessário durante os reinícios
+  + More work is needed during restarts
 
-  Um valor menor para `RecoveryWork` significa:
+  A lower value for `RecoveryWork` means:
 
-  - Mais registros são escritos durante cada LCP, mas os LCPs exigem menos espaço no disco.
+  + More records are written during each LCP, but LCPs require less space on disk.
 
-  - Menos trabalho durante o reinício e, portanto, reinícios mais rápidos, em detrimento de mais trabalho durante as operações normais
+  + Less work during restart and thus faster restarts, at the expense of more work during normal operations
 
-  Por exemplo, definir `RecoveryWork` para 60 significa que o tamanho total de um LCP é aproximadamente 1 + 0,6 = 1,6 vezes o tamanho dos dados a serem checkpointeados. Isso significa que é necessário realizar 60% mais trabalho durante a fase de restauração de um reinício em comparação com o trabalho realizado durante um reinício que usa pontos de verificação completos. (Isso é mais do que compensado durante outras fases do reinício, de modo que o reinício como um todo ainda é mais rápido ao usar LCPs parciais do que ao usar LCPs completos.) Para não encher o log de refazer, é necessário escrever na taxa de 1 + (1 / `RecoveryWork`) vezes a taxa de mudanças de dados durante os checkpoints — assim, quando `RecoveryWork` = 60, é necessário escrever aproximadamente 1 + (1 / 0,6) = 2,67 vezes a taxa de mudança. Em outras palavras, se as mudanças estão sendo escritas a 10 Mbytes por segundo, o checkpoint precisa ser escrito aproximadamente a 26,7 Mbytes por segundo.
+  For example, setting `RecoveryWork` to 60 means that the total size of an LCP is roughly 1 + 0.6 = 1.6 times the size of the data to be checkpointed. This means that 60% more work is required during the restore phase of a restart compared to the work done during a restart that uses full checkpoints. (This is more than compensated for during other phases of the restart such that the restart as a whole is still faster when using partial LCPs than when using full LCPs.) In order not to fill up the redo log, it is necessary to write at 1 + (1 / `RecoveryWork`) times the rate of data changes during checkpoints—thus, when `RecoveryWork` = 60, it is necessary to write at approximately 1 + (1 / 0.6 ) = 2.67 times the change rate. In other words, if changes are being written at 10 MByte per second, the checkpoint needs to be written at roughly 26.7 MByte per second.
 
-  Definir `RecoveryWork` = 40 significa que apenas 1,4 vezes o tamanho total do LCP é necessário (e, assim, a fase de restauração leva 10 a 15% menos tempo. Neste caso, a taxa de escrita do ponto de verificação é 3,5 vezes a taxa de mudança.
+  Setting `RecoveryWork` = 40 means that only 1.4 times the total LCP size is needed (and thus the restore phase takes 10 to 15 percent less time. In this case, the checkpoint write rate is 3.5 times the rate of change.
 
-  A distribuição de código-fonte do NDB inclui um programa de teste para simular LCPs. `lcp_simulator.cc` pode ser encontrado em `storage/ndb/src/kernel/blocks/backup/`. Para compilar e executá-lo em plataformas Unix, execute os comandos mostrados aqui:
+  The NDB source distribution includes a test program for simulating LCPs. `lcp_simulator.cc` can be found in `storage/ndb/src/kernel/blocks/backup/`. To compile and run it on Unix platforms, execute the commands shown here:
 
   ```sql
   $> gcc lcp_simulator.cc
   $> ./a.out
   ```
 
-  Este programa não depende de outras dependências além de `stdio.h` e não requer uma conexão a um cluster NDB ou a um servidor MySQL. Por padrão, ele simula 300 LCPs (três conjuntos de 100 LCPs, cada um consistindo de inserções, atualizações e exclusões, respectivamente), relatando o tamanho do LCP após cada um. Você pode alterar a simulação alterando os valores de `recovery_work`, `insert_work` e `delete_work` na fonte e recompilar. Para mais informações, consulte a fonte do programa.
+  This program has no dependencies other than `stdio.h`, and does not require a connection to an NDB cluster or a MySQL server. By default, it simulates 300 LCPs (three sets of 100 LCPs, each consisting of inserts, updates, and deletes, in turn), reporting the size of the LCP after each one. You can alter the simulation by changing the values of `recovery_work`, `insert_work`, and `delete_work` in the source and recompiling. For more information, see the source of the program.
 
-- `InsertRecoveryWork`
+* [`InsertRecoveryWork`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-insertrecoverywork)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó do NodeGroup" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>não assinado</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>0 - 65536</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do sistema:</strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir debackup, e, em seguida, reinicie o clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="NodeGroup data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>0 - 65536</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requires a complete shutdown of the cluster, wiping and restoring the cluster file system from a backup, and then restarting the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Porcentagem de `RecoveryWork` usada para as linhas inseridas. Um valor maior aumenta o número de escritas durante um ponto de verificação local e diminui o tamanho total do LCP. Um valor menor diminui o número de escritas durante um LCP, mas resulta em mais espaço sendo usado para o LCP, o que significa que a recuperação leva mais tempo. Este parâmetro tem efeito apenas quando `EnablePartialLcp` é verdadeiro, ou seja, apenas quando os pontos de verificação locais parciais estão habilitados.
+  Percentage of [`RecoveryWork`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-recoverywork) used for inserted rows. A higher value increases the number of writes during a local checkpoint, and decreases the total size of the LCP. A lower value decreases the number of writes during an LCP, but results in more space being used for the LCP, which means that recovery takes longer. This parameter has an effect only when [`EnablePartialLcp`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-enablepartiallcp) is true, that is, only when partial local checkpoints are enabled.
 
-- `EnableRedoControl`
+* [`EnableRedoControl`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-enableredocontrol)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó do NodeGroup" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>não assinado</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>0 - 65536</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do sistema:</strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir debackup, e, em seguida, reinicie o clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="NodeGroup data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>0 - 65536</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requires a complete shutdown of the cluster, wiping and restoring the cluster file system from a backup, and then restarting the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Ative a velocidade adaptativa de verificação de ponto para controlar o uso do log de revisão. Defina para `false` para desativá-lo (o padrão). Definir `EnablePartialLcp` para `false` também desativa o cálculo adaptativo.
+  Enable adaptive checkpointing speed for controlling redo log usage. Set to `false` to disable (the default). Setting [`EnablePartialLcp`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-enablepartiallcp) to `false` also disables the adaptive calculation.
 
-  Quando ativado, o `EnableRedoControl` permite que os nós de dados tenham maior flexibilidade em relação à taxa na qual eles escrevem LCPs no disco. Mais especificamente, ativar esse parâmetro significa que taxas de escrita mais altas podem ser empregadas, para que os LCPs possam ser concluídos e os registros de Redo possam ser cortados mais rapidamente, reduzindo assim o tempo de recuperação e os requisitos de espaço no disco. Essa funcionalidade permite que os nós de dados utilizem melhor a taxa mais alta de I/O e a maior largura de banda disponíveis em dispositivos de armazenamento de estado sólido modernos e protocolos, como unidades de estado sólido (SSDs) que utilizam Memória Não Volátil Expressa (NVMe).
+  When enabled, `EnableRedoControl` allows the data nodes greater flexibility with regard to the rate at which they write LCPs to disk. More specifically, enabling this parameter means that higher write rates can be employed, so that LCPs can complete and Redo logs be trimmed more quickly, thereby reducing recovery time and disk space requirements. This functionality allows data nodes to make better use of the higher rate of I/O and greater bandwidth available from modern solid-state storage devices and protocols, such as solid-state drives (SSDs) using Non-Volatile Memory Express (NVMe).
 
-  O parâmetro atualmente tem o valor padrão `false` (desativado) devido ao fato de que o `NDB` ainda é amplamente implantado em sistemas cujos I/O ou largura de banda são limitados em relação aos que utilizam tecnologia de estado sólido, como os que usam discos rígidos convencionais (HDDs). Em configurações como essas, o mecanismo `EnableRedoControl` pode facilmente fazer com que o subsistema de I/O fique saturado, aumentando os tempos de espera para a entrada e saída de nós de dados. Em particular, isso pode causar problemas com as tabelas de Dados de Disco do NDB que têm espaços de tabelas ou grupos de arquivos de log compartilhando um subsistema de I/O limitado com os arquivos de LCP e arquivos de log de refazer do nó de dados; tais problemas podem incluir falhas no nó ou no clúster devido a erros de parada do GCP.
+  The parameter currently defaults to `false` (disabled) due to the fact that `NDB` is still deployed widely on systems whose I/O or bandwidth is constrained relative to those employing solid-state technology, such as those using conventional hard disks (HDDs). In settings such as these, the `EnableRedoControl` mechanism can easily cause the I/O subsystem to become saturated, increasing wait times for data node input and output. In particular, this can cause issues with NDB Disk Data tables which have tablespaces or log file groups sharing a constrained IO subsystem with data node LCP and redo log files; such problems potentially include node or cluster failure due to GCP stop errors.
 
-**Objetos de metadados.** O próximo conjunto de parâmetros de [ndbd] define os tamanhos dos pools para objetos de metadados, usados para definir o número máximo de atributos, tabelas, índices e objetos de gatilho usados por índices, eventos e replicação entre clusters.
+**Metadata objects.** The next set of `[ndbd]` parameters defines pool sizes for metadata objects, used to define the maximum number of attributes, tables, indexes, and trigger objects used by indexes, events, and replication between clusters.
 
-Nota
+Note
 
-Esses atuam apenas como "sugestões" para o grupo, e quaisquer que não sejam especificadas retornam aos valores padrão mostrados.
+These act merely as “suggestions” to the cluster, and any that are not specified revert to the default values shown.
 
-- `MaxNoOfAttributes`
+* [`MaxNoOfAttributes`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnoofattributes)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó do NodeGroup" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>não assinado</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>0 - 65536</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do sistema:</strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir debackup, e, em seguida, reinicie o clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="NodeGroup data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>0 - 65536</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requires a complete shutdown of the cluster, wiping and restoring the cluster file system from a backup, and then restarting the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro define um número máximo sugerido de atributos que podem ser definidos no cluster; assim como `MaxNoOfTables`, ele não é destinado a funcionar como um limite superior rígido.
+  This parameter sets a suggested maximum number of attributes that can be defined in the cluster; like [`MaxNoOfTables`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnooftables), it is not intended to function as a hard upper limit.
 
-  (Em versões mais antigas do NDB Cluster, esse parâmetro às vezes era tratado como um limite rígido para certas operações. Isso causava problemas com a Replicação do NDB Cluster, quando era possível criar mais tabelas do que poderiam ser replicadas, e às vezes levava a confusões quando era possível [ou não possível, dependendo das circunstâncias] criar mais de `MaxNoOfAttributes` atributos.)
+  (In older NDB Cluster releases, this parameter was sometimes treated as a hard limit for certain operations. This caused problems with NDB Cluster Replication, when it was possible to create more tables than could be replicated, and sometimes led to confusion when it was possible [or not possible, depending on the circumstances] to create more than `MaxNoOfAttributes` attributes.)
 
-  O valor padrão é 1000, com o valor mínimo possível sendo 32. O máximo é 4294967039. Cada atributo consome cerca de 200 bytes de armazenamento por nó devido ao fato de que todos os metadados são totalmente replicados nos servidores.
+  The default value is 1000, with the minimum possible value being 32. The maximum is 4294967039. Each attribute consumes around 200 bytes of storage per node due to the fact that all metadata is fully replicated on the servers.
 
-  Ao definir `MaxNoOfAttributes`, é importante se preparar antecipadamente para quaisquer instruções de `ALTER TABLE` que você possa querer executar no futuro. Isso ocorre porque, durante a execução de `ALTER TABLE` em uma tabela do NDB Cluster, são usados 3 vezes o número de atributos da tabela original, e uma boa prática é permitir o dobro desse valor. Por exemplo, se a tabela NDB Cluster com o maior número de atributos (*`greatest_number_of_attributes`*) tiver 100 atributos, um bom ponto de partida para o valor de `MaxNoOfAttributes` seria `6 * greatest_number_of_attributes = 600`.
+  When setting [`MaxNoOfAttributes`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnoofattributes), it is important to prepare in advance for any [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") statements that you might want to perform in the future. This is due to the fact, during the execution of [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") on a Cluster table, 3 times the number of attributes as in the original table are used, and a good practice is to permit double this amount. For example, if the NDB Cluster table having the greatest number of attributes (*`greatest_number_of_attributes`*) has 100 attributes, a good starting point for the value of [`MaxNoOfAttributes`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnoofattributes) would be `6 * greatest_number_of_attributes = 600`.
 
-  Você também deve estimar o número médio de atributos por tabela e multiplicar esse valor por `MaxNoOfTables`. Se esse valor for maior que o valor obtido no parágrafo anterior, você deve usar o valor maior.
+  You should also estimate the average number of attributes per table and multiply this by [`MaxNoOfTables`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnooftables). If this value is larger than the value obtained in the previous paragraph, you should use the larger value instead.
 
-  Supondo que você possa criar todas as tabelas desejadas sem problemas, você também deve verificar se esse número é suficiente, tentando um `ALTER TABLE` real após configurar o parâmetro. Se isso não for bem-sucedido, aumente `MaxNoOfAttributes` (mysql-cluster-ndbd-definition.html#ndbparam-ndb-maxnoofattributes) por outro múltiplo de `MaxNoOfTables` (mysql-cluster-ndbd-definition.html#ndbparam-ndb-maxnooftables) e teste novamente.
+  Assuming that you can create all desired tables without any problems, you should also verify that this number is sufficient by trying an actual [`ALTER TABLE`](alter-table.html "13.1.8 ALTER TABLE Statement") after configuring the parameter. If this is not successful, increase [`MaxNoOfAttributes`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnoofattributes) by another multiple of [`MaxNoOfTables`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnooftables) and test it again.
 
-- `MaxNoOfTables`
+* [`MaxNoOfTables`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnooftables)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó do NodeGroup" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>não assinado</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>0 - 65536</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do sistema:</strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir debackup, e, em seguida, reinicie o clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="NodeGroup data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>0 - 65536</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requires a complete shutdown of the cluster, wiping and restoring the cluster file system from a backup, and then restarting the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Um objeto de tabela é alocado para cada tabela e para cada índice de hash único no cluster. Este parâmetro define um número máximo sugerido de objetos de tabela para o conjunto como um todo; assim como `MaxNoOfAttributes`, ele não é destinado a funcionar como um limite superior rígido.
+  A table object is allocated for each table and for each unique hash index in the cluster. This parameter sets a suggested maximum number of table objects for the cluster as a whole; like [`MaxNoOfAttributes`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnoofattributes), it is not intended to function as a hard upper limit.
 
-  (Em versões mais antigas do NDB Cluster, esse parâmetro às vezes era tratado como um limite rígido para certas operações. Isso causava problemas com a Replicação do NDB Cluster, quando era possível criar mais tabelas do que poderiam ser replicadas, e às vezes levava a confusões quando era possível [ou não possível, dependendo das circunstâncias] criar mais de `MaxNoOfTables` tabelas.)
+  (In older NDB Cluster releases, this parameter was sometimes treated as a hard limit for certain operations. This caused problems with NDB Cluster Replication, when it was possible to create more tables than could be replicated, and sometimes led to confusion when it was possible [or not possible, depending on the circumstances] to create more than `MaxNoOfTables` tables.)
 
-  Para cada atributo que tem um tipo de dados `BLOB`, uma tabela extra é usada para armazenar a maioria dos dados do `BLOB`. Essas tabelas também devem ser consideradas ao definir o número total de tabelas.
+  For each attribute that has a [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") data type an extra table is used to store most of the [`BLOB`](blob.html "11.3.4 The BLOB and TEXT Types") data. These tables also must be taken into account when defining the total number of tables.
 
-  O valor padrão deste parâmetro é 128. O mínimo é 8 e o máximo é 20320. Cada objeto de tabela consome aproximadamente 20 KB por nó.
+  The default value of this parameter is 128. The minimum is 8 and the maximum is 20320. Each table object consumes approximately 20KB per node.
 
-  Nota
+  Note
 
-  A soma de `MaxNoOfTables`, `MaxNoOfOrderedIndexes` e `MaxNoOfUniqueHashIndexes` não deve exceder `232 − 2` (4294967294).
+  The sum of [`MaxNoOfTables`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnooftables), [`MaxNoOfOrderedIndexes`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnooforderedindexes), and [`MaxNoOfUniqueHashIndexes`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnoofuniquehashindexes) must not exceed `232 − 2` (4294967294).
 
-- `MaxNoOfOrderedIndexes`
+* [`MaxNoOfOrderedIndexes`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnooforderedindexes)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó do NodeGroup" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>não assinado</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>0 - 65536</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do sistema:</strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir debackup, e, em seguida, reinicie o clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="NodeGroup data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>0 - 65536</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requires a complete shutdown of the cluster, wiping and restoring the cluster file system from a backup, and then restarting the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Para cada índice solicitado no cluster, um objeto é alocado descrevendo o que está sendo indexado e seus segmentos de armazenamento. Por padrão, cada índice assim definido também define um índice ordenado. Cada índice único e chave primária tem tanto um índice ordenado quanto um índice de hash. `MaxNoOfOrderedIndexes` define o número total de índices ordenados que podem estar em uso no sistema a qualquer momento.
+  For each ordered index in the cluster, an object is allocated describing what is being indexed and its storage segments. By default, each index so defined also defines an ordered index. Each unique index and primary key has both an ordered index and a hash index. [`MaxNoOfOrderedIndexes`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnooforderedindexes) sets the total number of ordered indexes that can be in use in the system at any one time.
 
-  O valor padrão deste parâmetro é 128. Cada objeto de índice consome aproximadamente 10 KB de dados por nó.
+  The default value of this parameter is 128. Each index object consumes approximately 10KB of data per node.
 
-  Nota
+  Note
 
-  A soma de `MaxNoOfTables`, `MaxNoOfOrderedIndexes` e `MaxNoOfUniqueHashIndexes` não deve exceder `232 − 2` (4294967294).
+  The sum of [`MaxNoOfTables`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnooftables), [`MaxNoOfOrderedIndexes`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnooforderedindexes), and [`MaxNoOfUniqueHashIndexes`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnoofuniquehashindexes) must not exceed `232 − 2` (4294967294).
 
-- `MaxNoOfUniqueHashIndexes`
+* [`MaxNoOfUniqueHashIndexes`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnoofuniquehashindexes)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó do NodeGroup" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>não assinado</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>0 - 65536</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do sistema:</strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir debackup, e, em seguida, reinicie o clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="NodeGroup data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>0 - 65536</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requires a complete shutdown of the cluster, wiping and restoring the cluster file system from a backup, and then restarting the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Para cada índice único que não é uma chave primária, é alocada uma tabela especial que mapeia a chave única para a chave primária da tabela indexada. Por padrão, um índice ordenado também é definido para cada índice único. Para evitar isso, você deve especificar a opção `USING HASH` ao definir o índice único.
+  For each unique index that is not a primary key, a special table is allocated that maps the unique key to the primary key of the indexed table. By default, an ordered index is also defined for each unique index. To prevent this, you must specify the `USING HASH` option when defining the unique index.
 
-  O valor padrão é 64. Cada índice consome aproximadamente 15 KB por nó.
+  The default value is 64. Each index consumes approximately 15KB per node.
 
-  Nota
+  Note
 
-  A soma de `MaxNoOfTables`, `MaxNoOfOrderedIndexes` e `MaxNoOfUniqueHashIndexes` não deve exceder `232 − 2` (4294967294).
+  The sum of [`MaxNoOfTables`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnooftables), [`MaxNoOfOrderedIndexes`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnooforderedindexes), and [`MaxNoOfUniqueHashIndexes`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnoofuniquehashindexes) must not exceed `232 − 2` (4294967294).
 
-- `MaxNoOfTriggers`
+* [`MaxNoOfTriggers`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnooftriggers)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó do NodeGroup" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>não assinado</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>0 - 65536</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do sistema:</strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir debackup, e, em seguida, reinicie o clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="NodeGroup data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>0 - 65536</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requires a complete shutdown of the cluster, wiping and restoring the cluster file system from a backup, and then restarting the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Atualizações internas, inserções e deletações de gatilhos são alocadas para cada índice de hash único. (Isso significa que três gatilhos são criados para cada índice de hash único.) No entanto, um índice *ordenado* requer apenas um único objeto de gatilho. Os backups também usam três objetos de gatilho para cada tabela normal no clúster.
+  Internal update, insert, and delete triggers are allocated for each unique hash index. (This means that three triggers are created for each unique hash index.) However, an *ordered* index requires only a single trigger object. Backups also use three trigger objects for each normal table in the cluster.
 
-  A replicação entre clusters também utiliza gatilhos internos.
+  Replication between clusters also makes use of internal triggers.
 
-  Este parâmetro define o número máximo de objetos de gatilho no cluster.
+  This parameter sets the maximum number of trigger objects in the cluster.
 
-  O valor padrão é 768.
+  The default value is 768.
 
-- `MaxNoOfSubscriptions`
+* [`MaxNoOfSubscriptions`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnoofsubscriptions)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó do NodeGroup" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>não assinado</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>0 - 65536</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do sistema:</strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir debackup, e, em seguida, reinicie o clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="NodeGroup data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>unsigned</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>0 - 65536</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requires a complete shutdown of the cluster, wiping and restoring the cluster file system from a backup, and then restarting the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Cada tabela `NDB` em um NDB Cluster requer uma assinatura no kernel NDB. Para alguns aplicativos da API NDB, pode ser necessário ou desejável alterar esse parâmetro. No entanto, para o uso normal com servidores MySQL atuando como nós SQL, não há necessidade de fazer isso.
+  Each [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table in an NDB Cluster requires a subscription in the NDB kernel. For some NDB API applications, it may be necessary or desirable to change this parameter. However, for normal usage with MySQL servers acting as SQL nodes, there is not any need to do so.
 
-  O valor padrão para `MaxNoOfSubscriptions` é 0, que é tratado como igual a `MaxNoOfTables`. Cada assinatura consome 108 bytes.
+  The default value for [`MaxNoOfSubscriptions`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnoofsubscriptions) is 0, which is treated as equal to [`MaxNoOfTables`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnooftables). Each subscription consumes 108 bytes.
 
-- `MaxNoOfSubscribers`
+* [`MaxNoOfSubscribers`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnoofsubscribers)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados LocationDomainId" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.6.4</td> </tr><tr> <th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr> <th>Padrão</th> <td>0</td> </tr><tr> <th>Gama</th> <td>0 - 16</td> </tr><tr> <th>Adicionei</th> <td>NDB 7.6.4</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="LocationDomainId data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.6.4</td> </tr><tr> <th>Type or units</th> <td>integer</td> </tr><tr> <th>Default</th> <td>0</td> </tr><tr> <th>Range</th> <td>0 - 16</td> </tr><tr> <th>Added</th> <td>NDB 7.6.4</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro é interessante apenas quando se usa a Replicação em NDB Cluster. O valor padrão é 0, que é tratado como `2 * MaxNoOfTables`; ou seja, há uma assinatura por tabela `NDB` para cada um dos dois servidores MySQL (um atuando como a fonte de replicação e o outro como a replica). Cada assinante usa 16 bytes de memória.
+  This parameter is of interest only when using NDB Cluster Replication. The default value is 0, which is treated as `2 * MaxNoOfTables`; that is, there is one subscription per [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") table for each of two MySQL servers (one acting as the replication source and the other as the replica). Each subscriber uses 16 bytes of memory.
 
-  Ao usar replicação circular, replicação de múltiplas fontes e outras configurações de replicação que envolvem mais de 2 servidores MySQL, você deve aumentar esse parâmetro para o número de processos do **mysqld** incluídos na replicação (geralmente, mas nem sempre, é o mesmo número de clusters). Por exemplo, se você tiver uma configuração de replicação circular usando três NDB Cluster s, com um **mysqld** conectado a cada cluster, e cada um desses processos do **mysqld** atuar como fonte e como replica, você deve definir `MaxNoOfSubscribers` igual a `3 * MaxNoOfTables`.
+  When using circular replication, multi-source replication, and other replication setups involving more than 2 MySQL servers, you should increase this parameter to the number of [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") processes included in replication (this is often, but not always, the same as the number of clusters). For example, if you have a circular replication setup using three NDB Cluster s, with one [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") attached to each cluster, and each of these [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") processes acts as a source and as a replica, you should set [`MaxNoOfSubscribers`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnoofsubscribers) equal to `3 * MaxNoOfTables`.
 
-  Para obter mais informações, consulte Seção 21.7, “Replicação de aglomerado NDB”.
+  For more information, see [Section 21.7, “NDB Cluster Replication”](mysql-cluster-replication.html "21.7 NDB Cluster Replication").
 
-- `MaxNoOfConcurrentSubOperations`
+* [`MaxNoOfConcurrentSubOperations`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxnoofconcurrentsuboperations)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados LocationDomainId" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.6.4</td> </tr><tr> <th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr> <th>Padrão</th> <td>0</td> </tr><tr> <th>Gama</th> <td>0 - 16</td> </tr><tr> <th>Adicionei</th> <td>NDB 7.6.4</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="LocationDomainId data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.6.4</td> </tr><tr> <th>Type or units</th> <td>integer</td> </tr><tr> <th>Default</th> <td>0</td> </tr><tr> <th>Range</th> <td>0 - 16</td> </tr><tr> <th>Added</th> <td>NDB 7.6.4</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro define um limite para o número de operações que podem ser realizadas por todos os nós da API no clúster de uma só vez. O valor padrão (256) é suficiente para operações normais e pode precisar ser ajustado apenas em cenários em que há muitos nós da API executando um grande volume de operações simultaneamente.
+  This parameter sets a ceiling on the number of operations that can be performed by all API nodes in the cluster at one time. The default value (256) is sufficient for normal operations, and might need to be adjusted only in scenarios where there are a great many API nodes each performing a high volume of operations concurrently.
 
-**Parâmetros lógicos.** O comportamento dos nós de dados também é afetado por um conjunto de parâmetros `[ndbd]` que assumem valores lógicos. Esses parâmetros podem ser especificados como `TRUE` (igual a `1` ou `Y`) ou `FALSE` (igual a `0` ou `N`).
+**Boolean parameters.** The behavior of data nodes is also affected by a set of `[ndbd]` parameters taking on boolean values. These parameters can each be specified as `TRUE` by setting them equal to `1` or `Y`, and as `FALSE` by setting them equal to `0` or `N`.
 
-- `CompressedLCP`
+* [`CompressedLCP`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-compressedlcp)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados LocationDomainId" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.6.4</td> </tr><tr> <th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr> <th>Padrão</th> <td>0</td> </tr><tr> <th>Gama</th> <td>0 - 16</td> </tr><tr> <th>Adicionei</th> <td>NDB 7.6.4</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="LocationDomainId data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.6.4</td> </tr><tr> <th>Type or units</th> <td>integer</td> </tr><tr> <th>Default</th> <td>0</td> </tr><tr> <th>Range</th> <td>0 - 16</td> </tr><tr> <th>Added</th> <td>NDB 7.6.4</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Definir este parâmetro para `1` faz com que os arquivos de ponto de verificação locais sejam comprimidos. A compressão usada é equivalente a **gzip --fast** e pode economizar 50% ou mais do espaço necessário no nó de dados para armazenar arquivos de ponto de verificação não comprimidos. Os LCPs comprimidos podem ser habilitados para nós de dados individuais ou para todos os nós de dados (definindo este parâmetro na seção `[ndbd default]` do arquivo `config.ini`).
+  Setting this parameter to `1` causes local checkpoint files to be compressed. The compression used is equivalent to **gzip --fast**, and can save 50% or more of the space required on the data node to store uncompressed checkpoint files. Compressed LCPs can be enabled for individual data nodes, or for all data nodes (by setting this parameter in the `[ndbd default]` section of the `config.ini` file).
 
-  Importante
+  Important
 
-  Você não pode restaurar um ponto de verificação local compactado em um clúster que esteja executando uma versão do MySQL que não suporte essa funcionalidade.
+  You cannot restore a compressed local checkpoint to a cluster running a MySQL version that does not support this feature.
 
-  O valor padrão é `0` (desativado).
+  The default value is `0` (disabled).
 
-  Nas plataformas Windows, este parâmetro não tem efeito no NDB 7.5 ou no NDB 7.6.
+  On Windows platforms, this parameter has no effect in NDB 7.5 or NDB 7.6.
 
-- `CrashOnCorruptedTuple`
+* [`CrashOnCorruptedTuple`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-crashoncorruptedtuple)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados LocationDomainId" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.6.4</td> </tr><tr> <th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr> <th>Padrão</th> <td>0</td> </tr><tr> <th>Gama</th> <td>0 - 16</td> </tr><tr> <th>Adicionei</th> <td>NDB 7.6.4</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="LocationDomainId data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.6.4</td> </tr><tr> <th>Type or units</th> <td>integer</td> </tr><tr> <th>Default</th> <td>0</td> </tr><tr> <th>Range</th> <td>0 - 16</td> </tr><tr> <th>Added</th> <td>NDB 7.6.4</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Quando este parâmetro é ativado, ele obriga um nó de dados a ser desligado sempre que encontrar uma tupla corrompida. No NDB 7.5, ele é ativado por padrão.
+  When this parameter is enabled, it forces a data node to shut down whenever it encounters a corrupted tuple. In NDB 7.5, it is enabled by default.
 
-- `Sem disco`
+* [`Diskless`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-diskless)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados LocationDomainId" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.6.4</td> </tr><tr> <th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr> <th>Padrão</th> <td>0</td> </tr><tr> <th>Gama</th> <td>0 - 16</td> </tr><tr> <th>Adicionei</th> <td>NDB 7.6.4</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="LocationDomainId data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.6.4</td> </tr><tr> <th>Type or units</th> <td>integer</td> </tr><tr> <th>Default</th> <td>0</td> </tr><tr> <th>Range</th> <td>0 - 16</td> </tr><tr> <th>Added</th> <td>NDB 7.6.4</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  É possível especificar tabelas do NDB Cluster como sem disco, o que significa que as tabelas não são gravadas em disco e que não há registro de eventos. Tais tabelas existem apenas na memória principal. Uma consequência do uso de tabelas sem disco é que nem as tabelas nem os registros nessas tabelas sobrevivem a um crash. No entanto, ao operar no modo sem disco, é possível executar o **ndbd** em um computador sem disco.
+  It is possible to specify NDB Cluster tables as diskless, meaning that tables are not checkpointed to disk and that no logging occurs. Such tables exist only in main memory. A consequence of using diskless tables is that neither the tables nor the records in those tables survive a crash. However, when operating in diskless mode, it is possible to run [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") on a diskless computer.
 
-  Importante
+  Important
 
-  Essa funcionalidade faz com que *todo* o cluster opere no modo sem disco.
+  This feature causes the *entire* cluster to operate in diskless mode.
 
-  Quando essa funcionalidade estiver habilitada, o backup online do cluster será desativado. Além disso, não será possível iniciar parcialmente o cluster.
+  When this feature is enabled, Cluster online backup is disabled. In addition, a partial start of the cluster is not possible.
 
-  O `Diskless` está desativado por padrão.
+  [`Diskless`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-diskless) is disabled by default.
 
-- `LateAlloc`
+* [`LateAlloc`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-latealloc)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados LocationDomainId" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.6.4</td> </tr><tr> <th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr> <th>Padrão</th> <td>0</td> </tr><tr> <th>Gama</th> <td>0 - 16</td> </tr><tr> <th>Adicionei</th> <td>NDB 7.6.4</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="LocationDomainId data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.6.4</td> </tr><tr> <th>Type or units</th> <td>integer</td> </tr><tr> <th>Default</th> <td>0</td> </tr><tr> <th>Range</th> <td>0 - 16</td> </tr><tr> <th>Added</th> <td>NDB 7.6.4</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Aloque memória para este nó de dados após a conexão com o servidor de gerenciamento ter sido estabelecida. Ativado por padrão.
+  Allocate memory for this data node after a connection to the management server has been established. Enabled by default.
 
-- `LockPagesInMainMemory`
+* [`LockPagesInMainMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-lockpagesinmainmemory)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados LocationDomainId" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.6.4</td> </tr><tr> <th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr> <th>Padrão</th> <td>0</td> </tr><tr> <th>Gama</th> <td>0 - 16</td> </tr><tr> <th>Adicionei</th> <td>NDB 7.6.4</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="LocationDomainId data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.6.4</td> </tr><tr> <th>Type or units</th> <td>integer</td> </tr><tr> <th>Default</th> <td>0</td> </tr><tr> <th>Range</th> <td>0 - 16</td> </tr><tr> <th>Added</th> <td>NDB 7.6.4</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Para vários sistemas operacionais, incluindo Solaris e Linux, é possível bloquear um processo na memória e, assim, evitar qualquer troca para o disco. Isso pode ser usado para ajudar a garantir as características em tempo real do clúster.
+  For a number of operating systems, including Solaris and Linux, it is possible to lock a process into memory and so avoid any swapping to disk. This can be used to help guarantee the cluster's real-time characteristics.
 
-  Este parâmetro aceita um dos valores inteiros `0`, `1` ou `2`, que atuam conforme mostrado na lista a seguir:
+  This parameter takes one of the integer values `0`, `1`, or `2`, which act as shown in the following list:
 
-  - `0`: Desativa o bloqueio. Este é o valor padrão.
+  + `0`: Disables locking. This is the default value.
 
-  - `1`: Realiza o bloqueio após a alocação de memória para o processo.
+  + `1`: Performs the lock after allocating memory for the process.
 
-  - `2`: Realiza o bloqueio antes que a memória para o processo seja alocada.
+  + `2`: Performs the lock before memory for the process is allocated.
 
-  Se o sistema operacional não estiver configurado para permitir que usuários não privilegiados bloqueiem páginas, o processo do nó de dados que utilize este parâmetro pode precisar ser executado como root do sistema. (`LockPagesInMainMemory` usa a função `mlockall`. A partir do kernel Linux 2.6.9, usuários não privilegiados podem bloquear a memória conforme limitado por `max locked memory`. Para mais informações, consulte **ulimit -l** e <http://linux.die.net/man/2/mlock>).
+  If the operating system is not configured to permit unprivileged users to lock pages, then the data node process making use of this parameter may have to be run as system root. ([`LockPagesInMainMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-lockpagesinmainmemory) uses the `mlockall` function. From Linux kernel 2.6.9, unprivileged users can lock memory as limited by `max locked memory`. For more information, see **ulimit -l** and <http://linux.die.net/man/2/mlock>).
 
-  Nota
+  Note
 
-  Em versões mais antigas do NDB Cluster, esse parâmetro era um Booleano. `0` ou `false` era o valor padrão e desativava o bloqueio. `1` ou `true` habilitava o bloqueio do processo após a alocação de sua memória. O NDB Cluster 7.5 trata `true` ou `false` como um erro para o valor desse parâmetro.
+  In older NDB Cluster releases, this parameter was a Boolean. `0` or `false` was the default setting, and disabled locking. `1` or `true` enabled locking of the process after its memory was allocated. NDB Cluster 7.5 treats `true` or `false` for the value of this parameter as an error.
 
-  Importante
+  Important
 
-  A partir da versão `glibc` 2.10, a `glibc` utiliza arenas por thread para reduzir a concorrência por bloqueio em um pool compartilhado, que consome memória real. Geralmente, um processo de nó de dados não precisa de arenas por thread, uma vez que ele não realiza nenhuma alocação de memória após o início. (Essa diferença nos alocadores não parece afetar significativamente o desempenho.)
+  Beginning with `glibc` 2.10, `glibc` uses per-thread arenas to reduce lock contention on a shared pool, which consumes real memory. In general, a data node process does not need per-thread arenas, since it does not perform any memory allocation after startup. (This difference in allocators does not appear to affect performance significantly.)
 
-  O comportamento do `glibc` deve ser configurável via variável de ambiente `MALLOC_ARENA_MAX`, mas um bug nesse mecanismo antes do `glibc` 2.16 significava que essa variável não poderia ser definida para menos de 8, de modo que a memória desperdiçada não poderia ser recuperada. (Bug #15907219; veja também <http://sourceware.org/bugzilla/show_bug.cgi?id=13137> para mais informações sobre esse problema.)
+  The `glibc` behavior is intended to be configurable via the `MALLOC_ARENA_MAX` environment variable, but a bug in this mechanism prior to `glibc` 2.16 meant that this variable could not be set to less than 8, so that the wasted memory could not be reclaimed. (Bug #15907219; see also <http://sourceware.org/bugzilla/show_bug.cgi?id=13137> for more information concerning this issue.)
 
-  Uma solução possível para esse problema é usar a variável de ambiente `LD_PRELOAD` para pré-carregar uma biblioteca de alocação de memória `jemalloc` para substituir a fornecida com o `glibc`.
+  One possible workaround for this problem is to use the `LD_PRELOAD` environment variable to preload a `jemalloc` memory allocation library to take the place of that supplied with `glibc`.
 
-- `ODirect`
+* [`ODirect`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-odirect)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados LocationDomainId" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.6.4</td> </tr><tr> <th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr> <th>Padrão</th> <td>0</td> </tr><tr> <th>Gama</th> <td>0 - 16</td> </tr><tr> <th>Adicionei</th> <td>NDB 7.6.4</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="LocationDomainId data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.6.4</td> </tr><tr> <th>Type or units</th> <td>integer</td> </tr><tr> <th>Default</th> <td>0</td> </tr><tr> <th>Range</th> <td>0 - 16</td> </tr><tr> <th>Added</th> <td>NDB 7.6.4</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Ativação deste parâmetro faz com que o `NDB` tente usar escritas `O_DIRECT` para LCP, backups e logs de refazer, muitas vezes reduzindo o uso de **kswapd** e CPU. Ao usar o NDB Cluster no Linux, ative `ODirect` se você estiver usando um kernel 2.6 ou posterior.
+  Enabling this parameter causes [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") to attempt using `O_DIRECT` writes for LCP, backups, and redo logs, often lowering **kswapd** and CPU usage. When using NDB Cluster on Linux, enable [`ODirect`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-odirect) if you are using a 2.6 or later kernel.
 
-  O `ODirect` está desativado por padrão.
+  [`ODirect`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-odirect) is disabled by default.
 
-- `ODirectSyncFlag`
+* [`ODirectSyncFlag`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-odirectsyncflag)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados LocationDomainId" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.6.4</td> </tr><tr> <th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr> <th>Padrão</th> <td>0</td> </tr><tr> <th>Gama</th> <td>0 - 16</td> </tr><tr> <th>Adicionei</th> <td>NDB 7.6.4</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="LocationDomainId data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.6.4</td> </tr><tr> <th>Type or units</th> <td>integer</td> </tr><tr> <th>Default</th> <td>0</td> </tr><tr> <th>Range</th> <td>0 - 16</td> </tr><tr> <th>Added</th> <td>NDB 7.6.4</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Quando este parâmetro estiver habilitado, as gravações do log de refazer são realizadas de forma que cada gravação de sistema de arquivos concluída é tratada como uma chamada para `fsync`. O ajuste deste parâmetro é ignorado se pelo menos uma das seguintes condições for verdadeira:
+  When this parameter is enabled, redo log writes are performed such that each completed file system write is handled as a call to `fsync`. The setting for this parameter is ignored if at least one of the following conditions is true:
 
-  - `ODirect` não está habilitado.
+  + [`ODirect`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-odirect) is not enabled.
 
-  - `InitFragmentLogFiles` está definido como `SPARSE`.
+  + `InitFragmentLogFiles` is set to `SPARSE`.
 
-  Desativado por padrão.
+  Disabled by default.
 
-- `RestartOnErrorInsert`
+* [`RestartOnErrorInsert`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-restartonerrorinsert)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados LocationDomainId" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.6.4</td> </tr><tr> <th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr> <th>Padrão</th> <td>0</td> </tr><tr> <th>Gama</th> <td>0 - 16</td> </tr><tr> <th>Adicionei</th> <td>NDB 7.6.4</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="LocationDomainId data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.6.4</td> </tr><tr> <th>Type or units</th> <td>integer</td> </tr><tr> <th>Default</th> <td>0</td> </tr><tr> <th>Range</th> <td>0 - 16</td> </tr><tr> <th>Added</th> <td>NDB 7.6.4</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Essa funcionalidade é acessível apenas ao criar a versão de depuração, onde é possível inserir erros na execução de blocos individuais de código como parte do teste.
+  This feature is accessible only when building the debug version where it is possible to insert errors in the execution of individual blocks of code as part of testing.
 
-  Essa funcionalidade está desativada por padrão.
+  This feature is disabled by default.
 
-- `StopOnError`
+* [`StopOnError`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-stoponerror)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados NoOfReplicas" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr> <th>Padrão</th> <td>2</td> </tr><tr> <th>Gama</th> <td>1 - 2</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do sistema:</strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir debackup, e, em seguida, reinicie o clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="NoOfReplicas data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>integer</td> </tr><tr> <th>Default</th> <td>2</td> </tr><tr> <th>Range</th> <td>1 - 2</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requires a complete shutdown of the cluster, wiping and restoring the cluster file system from a backup, and then restarting the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro especifica se um processo de nó de dados deve sair ou realizar um reinício automático quando uma condição de erro for encontrada.
+  This parameter specifies whether a data node process should exit or perform an automatic restart when an error condition is encountered.
 
-  O valor padrão deste parâmetro é 1; isso significa que, por padrão, um erro faz com que o processo do nó de dados seja interrompido.
+  This parameter's default value is 1; this means that, by default, an error causes the data node process to halt.
 
-  Quando um erro é encontrado e `StopOnError` é 0, o processo do nó de dados é reiniciado.
+  When an error is encountered and `StopOnError` is 0, the data node process is restarted.
 
-  Antes do NDB Cluster 7.5.5, se o processo do nó de dados sair de forma descontrolada (devido, por exemplo, à execução de **kill -9** no processo do nó de dados enquanto uma consulta está sendo realizada, ou a um erro de segmentação), e o `StopOnError` estiver definido como 0, o processo do anjo tenta reiniciá-lo exatamente da mesma maneira que foi iniciado anteriormente — ou seja, usando as mesmas opções de inicialização que foram empregadas na última vez que o nó foi iniciado. Assim, se o processo do nó de dados foi originalmente iniciado usando a opção `--initial`, ele também é reiniciado com `--initial`. Isso significa que, nesses casos, se a falha ocorrer em um número suficiente de nós de dados em um intervalo muito curto, o efeito é o mesmo que se tivesse realizado um reinício inicial de todo o clúster, levando à perda de todos os dados. Esse problema é resolvido no NDB Cluster 7.5.5 e em versões posteriores do NDB 7.5 (Bug #83510, Bug
-  \#24945638).
+  Prior to NDB Cluster 7.5.5, if the data node process exits in an uncontrolled fashion (due, for example, to performing [**kill -9**](kill.html "13.7.6.4 KILL Statement") on the data node process while performing a query, or to a segmentation fault), and `StopOnError` is set to 0, the angel process attempts to restart it in exactly the same way as it was started previously—that is, using the same startup options that were employed the last time the node was started. Thus, if the data node process was originally started using the [`--initial`](mysql-cluster-programs-ndbd.html#option_ndbd_initial) option, it is also restarted with `--initial`. This means that, in such cases, if the failure occurs on a sufficient number of data nodes in a very short interval, the effect is the same as if you had performed an initial restart of the entire cluster, leading to loss of all data. This issue is resolved in NDB Cluster 7.5.5 and later NDB 7.5 releases (Bug #83510, Bug
+  #24945638).
 
-  Os usuários do MySQL Cluster Manager devem notar que, quando `StopOnError` é igual a 1, isso impede que o agente do MySQL Cluster Manager reinicie quaisquer nós de dados após realizar seu próprio reinício e recuperação. Consulte Iniciar e Parar o Agente no Linux para obter mais informações.
+  Users of MySQL Cluster Manager should note that, when `StopOnError` equals 1, this prevents the MySQL Cluster Manager agent from restarting any data nodes after it has performed its own restart and recovery. See [Starting and Stopping the Agent on Linux](/doc/mysql-cluster-manager/1.4/en/mcm-using-start-stop-agent-linux.html), for more information.
 
-- `UseShm`
+* [`UseShm`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-useshm)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados NoOfReplicas" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr> <th>Padrão</th> <td>2</td> </tr><tr> <th>Gama</th> <td>1 - 2</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do sistema:</strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir debackup, e, em seguida, reinicie o clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="NoOfReplicas data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>integer</td> </tr><tr> <th>Default</th> <td>2</td> </tr><tr> <th>Range</th> <td>1 - 2</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requires a complete shutdown of the cluster, wiping and restoring the cluster file system from a backup, and then restarting the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Use conexões de memória compartilhada entre este nó de dados e o nó da API que também está rodando neste host. Defina para 1 para ativar.
+  Use shared memory connections between this data node and the API node also running on this host. Set to 1 to enable.
 
-  Para obter mais informações, consulte Seção 21.4.3.12, "Conexões de Memória Compartilhada do NDB Cluster".
+  See [Section 21.4.3.12, “NDB Cluster Shared Memory Connections”](mysql-cluster-shm-definition.html "21.4.3.12 NDB Cluster Shared Memory Connections"), for more information.
 
-##### Controle de Temporizadores, Intervalos e Paginação de Disco
+##### Controlling Timeouts, Intervals, and Disk Paging
 
-Existem vários parâmetros `[ndbd]` que especificam tempos de espera e intervalos entre várias ações nos nós de dados do Cluster. A maioria dos valores de tempo de espera é especificada em milissegundos. Qualquer exceção a isso é mencionada quando aplicável.
+There are a number of `[ndbd]` parameters specifying timeouts and intervals between various actions in Cluster data nodes. Most of the timeout values are specified in milliseconds. Any exceptions to this are mentioned where applicable.
 
-- `TimeBetweenWatchDogCheck`
+* [`TimeBetweenWatchDogCheck`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-timebetweenwatchdogcheck)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados NoOfReplicas" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr> <th>Padrão</th> <td>2</td> </tr><tr> <th>Gama</th> <td>1 - 2</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do sistema:</strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir debackup, e, em seguida, reinicie o clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="NoOfReplicas data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>integer</td> </tr><tr> <th>Default</th> <td>2</td> </tr><tr> <th>Range</th> <td>1 - 2</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requires a complete shutdown of the cluster, wiping and restoring the cluster file system from a backup, and then restarting the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Para evitar que o thread principal fique preso em um loop infinito em algum momento, um thread "guarda-costas" verifica o thread principal. Este parâmetro especifica o número de milissegundos entre as verificações. Se o processo permanecer no mesmo estado após três verificações, o thread guarda-costas o encerra.
+  To prevent the main thread from getting stuck in an endless loop at some point, a “watchdog” thread checks the main thread. This parameter specifies the number of milliseconds between checks. If the process remains in the same state after three checks, the watchdog thread terminates it.
 
-  Esse parâmetro pode ser facilmente alterado para fins de experimentação ou para se adaptar às condições locais. Pode ser especificado por nó, embora pareça haver pouca razão para isso.
+  This parameter can easily be changed for purposes of experimentation or to adapt to local conditions. It can be specified on a per-node basis although there seems to be little reason for doing so.
 
-  O tempo de espera padrão é de 6000 milissegundos (6 segundos).
+  The default timeout is 6000 milliseconds (6 seconds).
 
-- `TimeBetweenWatchDogCheckInitial`
+* [`TimeBetweenWatchDogCheckInitial`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-timebetweenwatchdogcheckinitial)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados NoOfReplicas" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr> <th>Padrão</th> <td>2</td> </tr><tr> <th>Gama</th> <td>1 - 2</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do sistema:</strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir debackup, e, em seguida, reinicie o clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="NoOfReplicas data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>integer</td> </tr><tr> <th>Default</th> <td>2</td> </tr><tr> <th>Range</th> <td>1 - 2</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requires a complete shutdown of the cluster, wiping and restoring the cluster file system from a backup, and then restarting the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Isso é semelhante ao parâmetro `TimeBetweenWatchDogCheck`, exceto que `TimeBetweenWatchDogCheckInitial` controla o tempo que passa entre os verificações de execução dentro de um nó de armazenamento nas fases iniciais, durante as quais a memória é alocada.
+  This is similar to the [`TimeBetweenWatchDogCheck`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-timebetweenwatchdogcheck) parameter, except that [`TimeBetweenWatchDogCheckInitial`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-timebetweenwatchdogcheckinitial) controls the amount of time that passes between execution checks inside a storage node in the early start phases during which memory is allocated.
 
-  O tempo de espera padrão é de 6000 milissegundos (6 segundos).
+  The default timeout is 6000 milliseconds (6 seconds).
 
-- `StartPartialTimeout`
+* [`StartPartialTimeout`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-startpartialtimeout)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados NoOfReplicas" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr> <th>Padrão</th> <td>2</td> </tr><tr> <th>Gama</th> <td>1 - 2</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do sistema:</strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir debackup, e, em seguida, reinicie o clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="NoOfReplicas data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>integer</td> </tr><tr> <th>Default</th> <td>2</td> </tr><tr> <th>Range</th> <td>1 - 2</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requires a complete shutdown of the cluster, wiping and restoring the cluster file system from a backup, and then restarting the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro especifica quanto tempo o cluster espera que todos os nós de dados estejam prontos antes que a rotina de inicialização do cluster seja acionada. Esse tempo de espera é usado para evitar uma inicialização parcial do cluster sempre que possível.
+  This parameter specifies how long the Cluster waits for all data nodes to come up before the cluster initialization routine is invoked. This timeout is used to avoid a partial Cluster startup whenever possible.
 
-  Este parâmetro é substituído ao realizar um início inicial ou reinício inicial do clúster.
+  This parameter is overridden when performing an initial start or initial restart of the cluster.
 
-  O valor padrão é de 30000 milissegundos (30 segundos). 0 desabilita o tempo limite, caso em que o clúster só pode começar se todos os nós estiverem disponíveis.
+  The default value is 30000 milliseconds (30 seconds). 0 disables the timeout, in which case the cluster may start only if all nodes are available.
 
-- `StartPartitionedTimeout`
+* [`StartPartitionedTimeout`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-startpartitionedtimeout)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados NoOfReplicas" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr> <th>Padrão</th> <td>2</td> </tr><tr> <th>Gama</th> <td>1 - 2</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do sistema:</strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir debackup, e, em seguida, reinicie o clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="NoOfReplicas data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>integer</td> </tr><tr> <th>Default</th> <td>2</td> </tr><tr> <th>Range</th> <td>1 - 2</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requires a complete shutdown of the cluster, wiping and restoring the cluster file system from a backup, and then restarting the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Se o clúster estiver pronto para começar após esperar [`StartPartialTimeout`]\(mysql-cluster-ndbd-definition.html#ndbparam-ndbd-startpartialtimeout] milisegundos, mas ainda estiver possivelmente em um estado particionado, o clúster aguarda até que esse tempo limite também tenha passado. Se `StartPartitionedTimeout` estiver definido como 0, o clúster aguarda indefinidamente (232−1 ms, ou aproximadamente 49,71 dias).
+  If the cluster is ready to start after waiting for [`StartPartialTimeout`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-startpartialtimeout) milliseconds but is still possibly in a partitioned state, the cluster waits until this timeout has also passed. If [`StartPartitionedTimeout`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-startpartitionedtimeout) is set to 0, the cluster waits indefinitely (232−1 ms, or approximately 49.71 days).
 
-  Este parâmetro é substituído ao realizar um início inicial ou reinício inicial do clúster.
+  This parameter is overridden when performing an initial start or initial restart of the cluster.
 
-  O valor padrão no NDB 7.6 é 0; anteriormente, era 60000 (60 segundos).
+  The default value in NDB 7.6 is 0; previously it was 60000 (60 seconds).
 
-- `StartFailureTimeout`
+* [`StartFailureTimeout`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-startfailuretimeout)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados NoOfReplicas" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr> <th>Padrão</th> <td>2</td> </tr><tr> <th>Gama</th> <td>1 - 2</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do sistema:</strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir debackup, e, em seguida, reinicie o clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="NoOfReplicas data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>integer</td> </tr><tr> <th>Default</th> <td>2</td> </tr><tr> <th>Range</th> <td>1 - 2</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requires a complete shutdown of the cluster, wiping and restoring the cluster file system from a backup, and then restarting the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Se um nó de dados não completar sua sequência de inicialização dentro do tempo especificado por este parâmetro, a inicialização do nó falha. Definir este parâmetro para 0 (o valor padrão) significa que nenhum tempo limite para o nó de dados é aplicado.
+  If a data node has not completed its startup sequence within the time specified by this parameter, the node startup fails. Setting this parameter to 0 (the default value) means that no data node timeout is applied.
 
-  Para valores não nulos, esse parâmetro é medido em milissegundos. Para nós de dados que contêm quantidades extremamente grandes de dados, esse parâmetro deve ser aumentado. Por exemplo, no caso de um nó de dados que contém vários gigabytes de dados, pode ser necessário um período de até 10−15 minutos (ou seja, de 600.000 a 1.000.000 de milissegundos) para realizar o reinício de um nó.
+  For nonzero values, this parameter is measured in milliseconds. For data nodes containing extremely large amounts of data, this parameter should be increased. For example, in the case of a data node containing several gigabytes of data, a period as long as 10−15 minutes (that is, 600000 to 1000000 milliseconds) might be required to perform a node restart.
 
-- `StartNoNodeGroupTimeout`
+* [`StartNoNodeGroupTimeout`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-startnonodegrouptimeout)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados NoOfReplicas" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr> <th>Padrão</th> <td>2</td> </tr><tr> <th>Gama</th> <td>1 - 2</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do sistema:</strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir debackup, e, em seguida, reinicie o clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="NoOfReplicas data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>integer</td> </tr><tr> <th>Default</th> <td>2</td> </tr><tr> <th>Range</th> <td>1 - 2</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requires a complete shutdown of the cluster, wiping and restoring the cluster file system from a backup, and then restarting the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Quando um nó de dados é configurado com `Nodegroup = 65536`, ele é considerado não sendo atribuído a nenhum grupo de nós. Quando isso é feito, o clúster aguarda `StartNoNodegroupTimeout` milissegundos, depois trata esses nós como se tivessem sido adicionados à lista passada para a opção `--nowait-nodes` e começa. O valor padrão é `15000` (ou seja, o servidor de gerenciamento aguarda 15 segundos). Definir esse parâmetro igual a `0` significa que o clúster aguarda indefinidamente.
+  When a data node is configured with [`Nodegroup = 65536`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-nodegroup), is regarded as not being assigned to any node group. When that is done, the cluster waits `StartNoNodegroupTimeout` milliseconds, then treats such nodes as though they had been added to the list passed to the [`--nowait-nodes`](mysql-cluster-programs-ndbd.html#option_ndbd_nowait-nodes) option, and starts. The default value is `15000` (that is, the management server waits 15 seconds). Setting this parameter equal to `0` means that the cluster waits indefinitely.
 
-  `StartNoNodegroupTimeout` deve ser o mesmo para todos os nós de dados no clúster; por essa razão, você deve defini-lo sempre na seção `[ndbd default]` do arquivo `config.ini`, e não para nós de dados individuais.
+  `StartNoNodegroupTimeout` must be the same for all data nodes in the cluster; for this reason, you should always set it in the `[ndbd default]` section of the `config.ini` file, rather than for individual data nodes.
 
-  Para obter mais informações, consulte Seção 21.6.7, “Adicionar nós de dados do NDB Cluster Online”.
+  See [Section 21.6.7, “Adding NDB Cluster Data Nodes Online”](mysql-cluster-online-add-node.html "21.6.7 Adding NDB Cluster Data Nodes Online"), for more information.
 
-- `HeartbeatIntervalDbDb`
+* [`HeartbeatIntervalDbDb`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-heartbeatintervaldbdb)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados NoOfReplicas" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr> <th>Padrão</th> <td>2</td> </tr><tr> <th>Gama</th> <td>1 - 2</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do sistema:</strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir debackup, e, em seguida, reinicie o clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="NoOfReplicas data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>integer</td> </tr><tr> <th>Default</th> <td>2</td> </tr><tr> <th>Range</th> <td>1 - 2</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requires a complete shutdown of the cluster, wiping and restoring the cluster file system from a backup, and then restarting the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Um dos principais métodos para descobrir nós falhos é através do uso de batimentos cardíacos. Esse parâmetro indica com que frequência os sinais de batimento cardíaco são enviados e com que frequência é esperado recebê-los. Os batimentos cardíacos não podem ser desativados.
+  One of the primary methods of discovering failed nodes is by the use of heartbeats. This parameter states how often heartbeat signals are sent and how often to expect to receive them. Heartbeats cannot be disabled.
 
-  Após perder quatro intervalos de batimento cardíaco consecutivos, o nó é declarado morto. Assim, o tempo máximo para descobrir uma falha através do mecanismo de batimento cardíaco é cinco vezes o intervalo de batimento cardíaco.
+  After missing four heartbeat intervals in a row, the node is declared dead. Thus, the maximum time for discovering a failure through the heartbeat mechanism is five times the heartbeat interval.
 
-  O intervalo padrão do batimento cardíaco é de 5000 milissegundos (5 segundos). Este parâmetro não deve ser alterado drasticamente e não deve variar muito entre os nós. Se um nó usar 5000 milissegundos e o nó que o monitora usar 1000 milissegundos, obviamente o nó é declarado morto muito rapidamente. Este parâmetro pode ser alterado durante uma atualização de software online, mas apenas em incrementos pequenos.
+  The default heartbeat interval is 5000 milliseconds (5 seconds). This parameter must not be changed drastically and should not vary widely between nodes. If one node uses 5000 milliseconds and the node watching it uses 1000 milliseconds, obviously the node is declared dead very quickly. This parameter can be changed during an online software upgrade, but only in small increments.
 
-  Veja também Comunicação de rede e latência, bem como a descrição do parâmetro de configuração `ConnectCheckIntervalDelay`.
+  See also [Network communication and latency](mysql-cluster-overview-requirements.html#mysql-cluster-network-latency-issues "Network communication and latency"), as well as the description of the [`ConnectCheckIntervalDelay`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-connectcheckintervaldelay) configuration parameter.
 
-- `HeartbeatIntervalDbApi`
+* [`HeartbeatIntervalDbApi`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-heartbeatintervaldbapi)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados NoOfReplicas" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>inteiro</td> </tr><tr> <th>Padrão</th> <td>2</td> </tr><tr> <th>Gama</th> <td>1 - 2</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do sistema:</strong></span>Requer o desligamento completo do clúster, apagando e restaurando o sistema de arquivos do clúster a partir debackup, e, em seguida, reinicie o clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="NoOfReplicas data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>integer</td> </tr><tr> <th>Default</th> <td>2</td> </tr><tr> <th>Range</th> <td>1 - 2</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial System Restart: </strong></span>Requires a complete shutdown of the cluster, wiping and restoring the cluster file system from a backup, and then restarting the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Cada nó de dados envia sinais de batimentos cardíacos para cada servidor MySQL (nó SQL) para garantir que ele permaneça em contato. Se um servidor MySQL não enviar um batimento cardíaco a tempo, ele é declarado "morto", caso em que todas as transações em andamento são concluídas e todos os recursos são liberados. O nó SQL não pode se reconectar até que todas as atividades iniciadas pela instância MySQL anterior tenham sido concluídas. Os critérios de três batimentos cardíacos para essa determinação são os mesmos descritos em `HeartbeatIntervalDbDb`.
+  Each data node sends heartbeat signals to each MySQL server (SQL node) to ensure that it remains in contact. If a MySQL server fails to send a heartbeat in time it is declared “dead,” in which case all ongoing transactions are completed and all resources released. The SQL node cannot reconnect until all activities initiated by the previous MySQL instance have been completed. The three-heartbeat criteria for this determination are the same as described for [`HeartbeatIntervalDbDb`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-heartbeatintervaldbdb).
 
-  O intervalo padrão é de 1500 milissegundos (1,5 segundo). Esse intervalo pode variar entre os nós de dados individuais, pois cada nó de dados monitora os servidores MySQL conectados a ele, independentemente de todos os outros nós de dados.
+  The default interval is 1500 milliseconds (1.5 seconds). This interval can vary between individual data nodes because each data node watches the MySQL servers connected to it, independently of all other data nodes.
 
-  Para obter mais informações, consulte Comunicação de rede e latência.
+  For more information, see [Network communication and latency](mysql-cluster-overview-requirements.html#mysql-cluster-network-latency-issues "Network communication and latency").
 
-- `HeartbeatOrder`
+* [`HeartbeatOrder`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-heartbeatorder)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados DataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>.</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="DataDir data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>path</td> </tr><tr> <th>Default</th> <td>.</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial Node Restart: </strong></span>Requires a rolling restart of the cluster; each data node must be restarted with <code>--initial</code>. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Os nós de dados enviam batimentos cardíacos uns para os outros de forma circular, onde cada nó de dados monitora o anterior. Se um batimento cardíaco não for detectado por um determinado nó de dados, esse nó declara o nó de dados anterior no círculo como "morto" (ou seja, não mais acessível pelo clúster). A determinação de que um nó de dados está morto é feita globalmente; em outras palavras, uma vez que um nó de dados é declarado morto, ele é considerado como tal por todos os nós do clúster.
+  Data nodes send heartbeats to one another in a circular fashion whereby each data node monitors the previous one. If a heartbeat is not detected by a given data node, this node declares the previous data node in the circle “dead” (that is, no longer accessible by the cluster). The determination that a data node is dead is done globally; in other words; once a data node is declared dead, it is regarded as such by all nodes in the cluster.
 
-  É possível que os batimentos cardíacos entre nós de dados localizados em diferentes hosts sejam muito lentos em comparação com os batimentos cardíacos entre outros pares de nós (por exemplo, devido a um intervalo de batimentos cardíacos muito baixo ou a um problema temporário de conexão), de modo que um nó de dados seja declarado como morto, mesmo que o nó ainda possa funcionar como parte do clúster.
+  It is possible for heartbeats between data nodes residing on different hosts to be too slow compared to heartbeats between other pairs of nodes (for example, due to a very low heartbeat interval or temporary connection problem), such that a data node is declared dead, even though the node can still function as part of the cluster. .
 
-  Nesse tipo de situação, pode ser que a ordem em que os batimentos cardíacos são transmitidos entre os nós de dados faça a diferença em relação à declaração de um nó de dados como morto ou não. Se essa declaração ocorrer desnecessariamente, isso pode, por sua vez, levar à perda desnecessária de um grupo de nós e, assim, a uma falha do clúster.
+  In this type of situation, it may be that the order in which heartbeats are transmitted between data nodes makes a difference as to whether or not a particular data node is declared dead. If this declaration occurs unnecessarily, this can in turn lead to the unnecessary loss of a node group and as thus to a failure of the cluster.
 
-  Considere uma configuração em que existem 4 nós de dados A, B, C e D em execução em 2 computadores hospedeiros `host1` e `host2`, e que esses nós de dados compõem 2 grupos de nós, conforme mostrado na tabela a seguir:
+  Consider a setup where there are 4 data nodes A, B, C, and D running on 2 host computers `host1` and `host2`, and that these data nodes make up 2 node groups, as shown in the following table:
 
-  **Tabela 21.9 Quatro nós de dados A, B, C, D, operando em dois computadores hospedeiros host1, host2; cada nó de dados pertence a um dos dois grupos de nós.**
+  **Table 21.9 Four data nodes A, B, C, D running on two host computers host1, host2; each data node belongs to one of two node groups.**
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados DataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>.</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="DataDir data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>path</td> </tr><tr> <th>Default</th> <td>.</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial Node Restart: </strong></span>Requires a rolling restart of the cluster; each data node must be restarted with <code>--initial</code>. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Suponha que os batimentos cardíacos sejam transmitidos na ordem A->B->C->D->A. Nesse caso, a perda do batimento cardíaco entre os hosts faz com que o nó B declare o nó A como morto e o nó C declare o nó B como morto. Isso resulta na perda do Grupo de Nodos 0, e assim o clúster falha. Por outro lado, se a ordem de transmissão for A->B->D->C->A (e todas as outras condições permanecerem como anteriormente declaradas), a perda do batimento cardíaco faz com que os nós A e D sejam declarados como mortos; nesse caso, cada grupo de nós tem um nó sobrevivente, e o clúster sobrevive.
+  Suppose the heartbeats are transmitted in the order A->B->C->D->A. In this case, the loss of the heartbeat between the hosts causes node B to declare node A dead and node C to declare node B dead. This results in loss of Node Group 0, and so the cluster fails. On the other hand, if the order of transmission is A->B->D->C->A (and all other conditions remain as previously stated), the loss of the heartbeat causes nodes A and D to be declared dead; in this case, each node group has one surviving node, and the cluster survives.
 
-  O parâmetro de configuração `HeartbeatOrder` permite que a ordem de transmissão de batimentos cardíacos seja configurada pelo usuário. O valor padrão para `HeartbeatOrder` é zero; permitindo que o valor padrão seja usado em todos os nós de dados, a ordem de transmissão de batimentos cardíacos é determinada pelo `NDB`. Se este parâmetro for usado, ele deve ser definido para um valor não nulo (máximo de 65535) para cada nó de dados no clúster, e esse valor deve ser único para cada nó de dados; isso faz com que a transmissão de batimentos cardíacos prossiga do nó de dados para o nó de dados na ordem de seus valores de `HeartbeatOrder` de menor para maior (e depois diretamente do nó de dados com o valor mais alto para o nó de dados com o valor mais baixo, para completar o círculo). Os valores não precisam ser consecutivos. Por exemplo, para forçar a ordem de transmissão de batimentos cardíacos A->B->D->C->A no cenário descrito anteriormente, você poderia definir os valores de `HeartbeatOrder` conforme mostrado aqui:
+  The [`HeartbeatOrder`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-heartbeatorder) configuration parameter makes the order of heartbeat transmission user-configurable. The default value for [`HeartbeatOrder`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-heartbeatorder) is zero; allowing the default value to be used on all data nodes causes the order of heartbeat transmission to be determined by `NDB`. If this parameter is used, it must be set to a nonzero value (maximum 65535) for every data node in the cluster, and this value must be unique for each data node; this causes the heartbeat transmission to proceed from data node to data node in the order of their [`HeartbeatOrder`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-heartbeatorder) values from lowest to highest (and then directly from the data node having the highest [`HeartbeatOrder`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-heartbeatorder) to the data node having the lowest value, to complete the circle). The values need not be consecutive. For example, to force the heartbeat transmission order A->B->D->C->A in the scenario outlined previously, you could set the [`HeartbeatOrder`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-heartbeatorder) values as shown here:
 
-  **Tabela 21.10 Valores de HeartbeatOrder para forçar uma ordem de transição de heartbeat de A->B->D->C->A.**
+  **Table 21.10 HeartbeatOrder values to force a heartbeat transition order of A->B->D->C->A.**
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados DataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>.</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="DataDir data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>path</td> </tr><tr> <th>Default</th> <td>.</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial Node Restart: </strong></span>Requires a rolling restart of the cluster; each data node must be restarted with <code>--initial</code>. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Para usar este parâmetro para alterar a ordem de transmissão do batimento cardíaco em um NDB Cluster em execução, você deve primeiro definir `HeartbeatOrder` para cada nó de dados no cluster no arquivo de configuração global (`config.ini`) (ou arquivos). Para fazer a mudança entrar em vigor, você deve realizar uma das seguintes ações:
+  To use this parameter to change the heartbeat transmission order in a running NDB Cluster, you must first set [`HeartbeatOrder`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-heartbeatorder) for each data node in the cluster in the global configuration (`config.ini`) file (or files). To cause the change to take effect, you must perform either of the following:
 
-  - Um desligamento completo e reinício de todo o clúster.
-  - 2 reinicializações em rolagem do clúster consecutivas. *Todos os nós devem ser reiniciados na mesma ordem em ambas as reinicializações em rolagem*.
+  + A complete shutdown and restart of the entire cluster.
+  + 2 rolling restarts of the cluster in succession. *All nodes must be restarted in the same order in both rolling restarts*.
 
-  Você pode usar `DUMP 908` para observar o efeito deste parâmetro nos logs do nó de dados.
+  You can use [`DUMP 908`](/doc/ndb-internals/en/dump-command-908.html) to observe the effect of this parameter in the data node logs.
 
-- `ConnectCheckIntervalDelay`
+* [`ConnectCheckIntervalDelay`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-connectcheckintervaldelay)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados DataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>.</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="DataDir data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>path</td> </tr><tr> <th>Default</th> <td>.</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial Node Restart: </strong></span>Requires a rolling restart of the cluster; each data node must be restarted with <code>--initial</code>. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro permite a verificação de conexão entre nós de dados após um deles ter falhado nas verificações de batimentos cardíacos por 5 intervalos de até `HeartbeatIntervalDbDb` milissegundos.
+  This parameter enables connection checking between data nodes after one of them has failed heartbeat checks for 5 intervals of up to [`HeartbeatIntervalDbDb`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-heartbeatintervaldbdb) milliseconds.
 
-  Um nó de dados que não responder dentro de um intervalo de `ConnectCheckIntervalDelay` milissegundos é considerado suspeito e considerado morto após dois desses intervalos. Isso pode ser útil em configurações com problemas de latência conhecidos.
+  Such a data node that further fails to respond within an interval of `ConnectCheckIntervalDelay` milliseconds is considered suspect, and is considered dead after two such intervals. This can be useful in setups with known latency issues.
 
-  O valor padrão para este parâmetro é 0 (desativado).
+  The default value for this parameter is 0 (disabled).
 
-- `TimeBetweenLocalCheckpoints`
+* [`TimeBetweenLocalCheckpoints`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-timebetweenlocalcheckpoints)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados DataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>.</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="DataDir data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>path</td> </tr><tr> <th>Default</th> <td>.</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial Node Restart: </strong></span>Requires a rolling restart of the cluster; each data node must be restarted with <code>--initial</code>. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro é uma exceção, pois não especifica um tempo de espera antes de iniciar um novo ponto de verificação local; em vez disso, é usado para garantir que os pontos de verificação locais não sejam realizados em um clúster onde ocorrem relativamente poucas atualizações. Na maioria dos clústeres com taxas de atualização elevadas, é provável que um novo ponto de verificação local seja iniciado imediatamente após o anterior ter sido concluído.
+  This parameter is an exception in that it does not specify a time to wait before starting a new local checkpoint; rather, it is used to ensure that local checkpoints are not performed in a cluster where relatively few updates are taking place. In most clusters with high update rates, it is likely that a new local checkpoint is started immediately after the previous one has been completed.
 
-  O tamanho de todas as operações de escrita executadas desde o início dos pontos de verificação locais anteriores é adicionado. Este parâmetro também é excecional porque é especificado como o logaritmo base-2 do número de palavras de 4 bytes, de modo que o valor padrão de 20 significa 4 MB (4 × 220) de operações de escrita, 21 significaria 8 MB, e assim por diante até um valor máximo de 31, que equivale a 8 GB de operações de escrita.
+  The size of all write operations executed since the start of the previous local checkpoints is added. This parameter is also exceptional in that it is specified as the base-2 logarithm of the number of 4-byte words, so that the default value 20 means 4MB (4 × 220) of write operations, 21 would mean 8MB, and so on up to a maximum value of 31, which equates to 8GB of write operations.
 
-  Todas as operações de escrita no clúster são somadas. Definir `TimeBetweenLocalCheckpoints` para 6 ou menos significa que os pontos de verificação locais são executados continuamente sem pausa, independentemente da carga de trabalho do clúster.
+  All the write operations in the cluster are added together. Setting [`TimeBetweenLocalCheckpoints`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-timebetweenlocalcheckpoints) to 6 or less means that local checkpoints are executed continuously without pause, independent of the cluster's workload.
 
-- `TimeBetweenGlobalCheckpoints`
+* [`TimeBetweenGlobalCheckpoints`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-timebetweenglobalcheckpoints)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados DataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>.</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="DataDir data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>path</td> </tr><tr> <th>Default</th> <td>.</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial Node Restart: </strong></span>Requires a rolling restart of the cluster; each data node must be restarted with <code>--initial</code>. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Quando uma transação é confirmada, ela é confirmada na memória principal em todos os nós nos quais os dados são espelhados. No entanto, os registros do log de transação não são descarregados no disco como parte do commit. O motivo por trás desse comportamento é que ter a transação confirmada com segurança em pelo menos duas máquinas hospedeiras autônomas deve atender a padrões razoáveis de durabilidade.
+  When a transaction is committed, it is committed in main memory in all nodes on which the data is mirrored. However, transaction log records are not flushed to disk as part of the commit. The reasoning behind this behavior is that having the transaction safely committed on at least two autonomous host machines should meet reasonable standards for durability.
 
-  É também importante garantir que até os piores casos — um crash completo do clúster — sejam tratados corretamente. Para garantir que isso aconteça, todas as transações que ocorrem dentro de um intervalo específico são colocadas em um ponto de verificação global, que pode ser visto como um conjunto de transações comprometidas que foram descarregadas no disco. Em outras palavras, como parte do processo de commit, uma transação é colocada em um grupo de registros de ponto de verificação global. Mais tarde, os registros do log desse grupo são descarregados no disco, e então todo o grupo de transações é comprometido de forma segura no disco em todos os computadores do clúster.
+  It is also important to ensure that even the worst of cases—a complete crash of the cluster—is handled properly. To guarantee that this happens, all transactions taking place within a given interval are put into a global checkpoint, which can be thought of as a set of committed transactions that has been flushed to disk. In other words, as part of the commit process, a transaction is placed in a global checkpoint group. Later, this group's log records are flushed to disk, and then the entire group of transactions is safely committed to disk on all computers in the cluster.
 
-  Este parâmetro define o intervalo entre os pontos de verificação globais. O padrão é de 2000 milissegundos.
+  This parameter defines the interval between global checkpoints. The default is 2000 milliseconds.
 
-- `TimeBetweenGlobalCheckpointsTimeout`
+* [`TimeBetweenGlobalCheckpointsTimeout`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-timebetweenglobalcheckpointstimeout)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados DataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>.</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="DataDir data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>path</td> </tr><tr> <th>Default</th> <td>.</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial Node Restart: </strong></span>Requires a rolling restart of the cluster; each data node must be restarted with <code>--initial</code>. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro define o tempo máximo mínimo entre os pontos de verificação globais. O valor padrão é de 120000 milissegundos.
+  This parameter defines the minimum timeout between global checkpoints. The default is 120000 milliseconds.
 
-- `TimeBetweenEpochs`
+* [`TimeBetweenEpochs`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-timebetweenepochs)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados DataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>.</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="DataDir data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>path</td> </tr><tr> <th>Default</th> <td>.</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial Node Restart: </strong></span>Requires a rolling restart of the cluster; each data node must be restarted with <code>--initial</code>. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro define o intervalo entre as épocas de sincronização para a replicação em cluster do NDB. O valor padrão é de 100 milissegundos.
+  This parameter defines the interval between synchronization epochs for NDB Cluster Replication. The default value is 100 milliseconds.
 
-  `TimeBetweenEpochs` faz parte da implementação dos "micro-GCPs", que podem ser usados para melhorar o desempenho da Replicação do NDB Cluster.
+  [`TimeBetweenEpochs`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-timebetweenepochs) is part of the implementation of “micro-GCPs”, which can be used to improve the performance of NDB Cluster Replication.
 
-- `TimeBetweenEpochsTimeout`
+* [`TimeBetweenEpochsTimeout`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-timebetweenepochstimeout)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados DataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>.</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="DataDir data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>path</td> </tr><tr> <th>Default</th> <td>.</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial Node Restart: </strong></span>Requires a rolling restart of the cluster; each data node must be restarted with <code>--initial</code>. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro define um tempo limite para as épocas de sincronização da replicação em cluster NDB. Se um nó não conseguir participar de um ponto de verificação global dentro do tempo determinado por este parâmetro, o nó é desligado. O valor padrão é 0; em outras palavras, o tempo limite está desativado.
+  This parameter defines a timeout for synchronization epochs for NDB Cluster Replication. If a node fails to participate in a global checkpoint within the time determined by this parameter, the node is shut down. The default value is 0; in other words, the timeout is disabled.
 
-  `TimeBetweenEpochsTimeout` faz parte da implementação dos "micro-GCPs", que podem ser usados para melhorar o desempenho da Replicação do NDB Cluster.
+  [`TimeBetweenEpochsTimeout`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-timebetweenepochstimeout) is part of the implementation of “micro-GCPs”, which can be used to improve the performance of NDB Cluster Replication.
 
-  O valor atual deste parâmetro e uma mensagem de alerta são escritos no log do cluster sempre que uma operação de salvamento do GCP leva mais de 1 minuto ou uma operação de commit do GCP leva mais de 10 segundos.
+  The current value of this parameter and a warning are written to the cluster log whenever a GCP save takes longer than 1 minute or a GCP commit takes longer than 10 seconds.
 
-  Definir esse parâmetro para zero desabilita as paradas do GCP causadas por temporizadores de salvamento, temporizadores de commit ou ambos. O valor máximo possível para esse parâmetro é de 256000 milissegundos.
+  Setting this parameter to zero has the effect of disabling GCP stops caused by save timeouts, commit timeouts, or both. The maximum possible value for this parameter is 256000 milliseconds.
 
-- `MaxBufferedEpochs`
+* [`MaxBufferedEpochs`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxbufferedepochs)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados DataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>.</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="DataDir data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>path</td> </tr><tr> <th>Default</th> <td>.</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial Node Restart: </strong></span>Requires a rolling restart of the cluster; each data node must be restarted with <code>--initial</code>. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  O número de épocas não processadas pelas quais um nó assinante pode ficar para trás. Exceder esse número faz com que o assinante que está atrasado seja desconectado.
+  The number of unprocessed epochs by which a subscribing node can lag behind. Exceeding this number causes a lagging subscriber to be disconnected.
 
-  O valor padrão de 100 é suficiente para a maioria das operações normais. Se um nó assinante estiver atrasado o suficiente para causar desconexões, geralmente isso ocorre devido a problemas de rede ou de agendamento em relação a processos ou threads. (Em circunstâncias raras, o problema pode ser devido a um bug no cliente `NDB`. Pode ser desejável definir o valor menor que o padrão quando as épocas são mais longas.
+  The default value of 100 is sufficient for most normal operations. If a subscribing node does lag enough to cause disconnections, it is usually due to network or scheduling issues with regard to processes or threads. (In rare circumstances, the problem may be due to a bug in the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") client.) It may be desirable to set the value lower than the default when epochs are longer.
 
-  A desconexão impede que problemas do cliente afetem o serviço do nó de dados, que fica sem memória para bufferizar dados e, eventualmente, para desligar. Em vez disso, apenas o cliente é afetado como resultado da desconexão (por exemplo, eventos de intervalo no log binário), forçando o cliente a se reconectar ou reiniciar o processo.
+  Disconnection prevents client issues from affecting the data node service, running out of memory to buffer data, and eventually shutting down. Instead, only the client is affected as a result of the disconnect (by, for example gap events in the binary log), forcing the client to reconnect or restart the process.
 
-- `MaxBufferedEpochBytes`
+* [`MaxBufferedEpochBytes`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxbufferedepochbytes)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados FileSystemPath" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>DataDir</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="FileSystemPath data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>path</td> </tr><tr> <th>Default</th> <td>DataDir</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial Node Restart: </strong></span>Requires a rolling restart of the cluster; each data node must be restarted with <code>--initial</code>. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  O número total de bytes alocados para buffer de épocas por este nó.
+  The total number of bytes allocated for buffering epochs by this node.
 
-- `TimeBetweenInactiveTransactionAbortCheck`
+* [`TimeBetweenInactiveTransactionAbortCheck`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-timebetweeninactivetransactionabortcheck)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados FileSystemPath" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>DataDir</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="FileSystemPath data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>path</td> </tr><tr> <th>Default</th> <td>DataDir</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial Node Restart: </strong></span>Requires a rolling restart of the cluster; each data node must be restarted with <code>--initial</code>. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  O gerenciamento de tempo de espera é realizado verificando um temporizador em cada transação uma vez para cada intervalo especificado por este parâmetro. Assim, se este parâmetro for definido para 1000 milissegundos, cada transação é verificada para tempo de espera uma vez por segundo.
+  Timeout handling is performed by checking a timer on each transaction once for every interval specified by this parameter. Thus, if this parameter is set to 1000 milliseconds, every transaction is checked for timing out once per second.
 
-  O valor padrão é de 1000 milissegundos (1 segundo).
+  The default value is 1000 milliseconds (1 second).
 
-- `TransactionInactiveTimeout`
+* [`TransactionInactiveTimeout`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-transactioninactivetimeout)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados FileSystemPath" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>DataDir</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="FileSystemPath data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>path</td> </tr><tr> <th>Default</th> <td>DataDir</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial Node Restart: </strong></span>Requires a rolling restart of the cluster; each data node must be restarted with <code>--initial</code>. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro define o tempo máximo permitido para o intervalo entre operações na mesma transação antes de a transação ser abortada.
+  This parameter states the maximum time that is permitted to lapse between operations in the same transaction before the transaction is aborted.
 
-  O valor padrão para este parâmetro é `4G` (também o máximo). Para um banco de dados em tempo real que precisa garantir que nenhuma transação mantenha os bloqueios por muito tempo, este parâmetro deve ser definido para um valor relativamente pequeno. Definir para 0 significa que o aplicativo nunca expira. A unidade é milissegundos.
+  The default for this parameter is `4G` (also the maximum). For a real-time database that needs to ensure that no transaction keeps locks for too long, this parameter should be set to a relatively small value. Setting it to 0 means that the application never times out. The unit is milliseconds.
 
-- `TransactionDeadlockDetectionTimeout`
+* [`TransactionDeadlockDetectionTimeout`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-transactiondeadlockdetectiontimeout)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados FileSystemPath" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>DataDir</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="FileSystemPath data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>path</td> </tr><tr> <th>Default</th> <td>DataDir</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial Node Restart: </strong></span>Requires a rolling restart of the cluster; each data node must be restarted with <code>--initial</code>. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Quando um nó executa uma consulta que envolve uma transação, o nó aguarda a resposta dos outros nós do clúster antes de continuar. Este parâmetro define o tempo que a transação pode gastar executando dentro de um nó de dados, ou seja, o tempo que o coordenador da transação aguarda para cada nó de dados que participa da transação executar uma solicitação.
+  When a node executes a query involving a transaction, the node waits for the other nodes in the cluster to respond before continuing. This parameter sets the amount of time that the transaction can spend executing within a data node, that is, the time that the transaction coordinator waits for each data node participating in the transaction to execute a request.
 
-  A falha na resposta pode ocorrer por qualquer uma das seguintes razões:
+  A failure to respond can occur for any of the following reasons:
 
-  - O nó está "morto"
-  - A operação entrou em fila de bloqueio
-  - O nó solicitado para realizar a ação pode estar muito sobrecarregado.
+  + The node is “dead”
+  + The operation has entered a lock queue
+  + The node requested to perform the action could be heavily overloaded.
 
-  Este parâmetro de tempo de espera indica quanto tempo o coordenador de transações espera para a execução de uma consulta por outro nó antes de abortar a transação, e é importante tanto para o tratamento de falhas de nós quanto para a detecção de impasses.
+  This timeout parameter states how long the transaction coordinator waits for query execution by another node before aborting the transaction, and is important for both node failure handling and deadlock detection.
 
-  O valor padrão do tempo de espera é de 1200 milissegundos (1,2 segundos).
+  The default timeout value is 1200 milliseconds (1.2 seconds).
 
-  O mínimo para este parâmetro é de 50 milissegundos.
+  The minimum for this parameter is 50 milliseconds.
 
-- `DiskSyncSize`
+* [`DiskSyncSize`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-disksyncsize)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados FileSystemPath" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>DataDir</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="FileSystemPath data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>path</td> </tr><tr> <th>Default</th> <td>DataDir</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial Node Restart: </strong></span>Requires a rolling restart of the cluster; each data node must be restarted with <code>--initial</code>. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este é o número máximo de bytes a serem armazenados antes de descartar os dados para um arquivo de ponto de verificação local. Isso é feito para evitar o bufferamento de escrita, o que pode prejudicar significativamente o desempenho. Este parâmetro *não* é destinado a substituir `TimeBetweenLocalCheckpoints`.
+  This is the maximum number of bytes to store before flushing data to a local checkpoint file. This is done to prevent write buffering, which can impede performance significantly. This parameter is *not* intended to take the place of [`TimeBetweenLocalCheckpoints`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-timebetweenlocalcheckpoints).
 
-  Nota
+  Note
 
-  Quando o `ODirect` está habilitado, não é necessário definir o `DiskSyncSize`;, na verdade, nesses casos, seu valor é simplesmente ignorado.
+  When [`ODirect`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-odirect) is enabled, it is not necessary to set [`DiskSyncSize`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-disksyncsize); in fact, in such cases its value is simply ignored.
 
-  O valor padrão é 4M (4 megabytes).
+  The default value is 4M (4 megabytes).
 
-- `MaxDiskWriteSpeed`
+* [`MaxDiskWriteSpeed`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxdiskwritespeed)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados FileSystemPath" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>DataDir</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="FileSystemPath data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>path</td> </tr><tr> <th>Default</th> <td>DataDir</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial Node Restart: </strong></span>Requires a rolling restart of the cluster; each data node must be restarted with <code>--initial</code>. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Defina a taxa máxima de gravação no disco, em bytes por segundo, por pontos de verificação locais e operações de backup quando não houver reinicializações (por este nó de dados ou qualquer outro nó de dados) neste NDB Cluster.
+  Set the maximum rate for writing to disk, in bytes per second, by local checkpoints and backup operations when no restarts (by this data node or any other data node) are taking place in this NDB Cluster.
 
-  Para definir a taxa máxima de gravação de disco permitida enquanto este nó de dados estiver sendo reiniciado, use `MaxDiskWriteSpeedOwnRestart`. Para definir a taxa máxima de gravação de disco permitida enquanto outros nós de dados estiverem sendo reiniciados, use `MaxDiskWriteSpeedOtherNodeRestart`. A velocidade mínima para a gravação de disco por todos os LCPs e operações de backup pode ser ajustada definindo `MinDiskWriteSpeed`.
+  For setting the maximum rate of disk writes allowed while this data node is restarting, use [`MaxDiskWriteSpeedOwnRestart`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxdiskwritespeedownrestart). For setting the maximum rate of disk writes allowed while other data nodes are restarting, use [`MaxDiskWriteSpeedOtherNodeRestart`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxdiskwritespeedothernoderestart). The minimum speed for disk writes by all LCPs and backup operations can be adjusted by setting [`MinDiskWriteSpeed`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-mindiskwritespeed).
 
-- `MaxDiskWriteSpeedOtherNodeRestart`
+* [`MaxDiskWriteSpeedOtherNodeRestart`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxdiskwritespeedothernoderestart)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados FileSystemPath" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>DataDir</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="FileSystemPath data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>path</td> </tr><tr> <th>Default</th> <td>DataDir</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial Node Restart: </strong></span>Requires a rolling restart of the cluster; each data node must be restarted with <code>--initial</code>. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Defina a taxa máxima para gravação em disco, em bytes por segundo, por pontos de verificação locais e operações de backup quando um ou mais nós de dados neste NDB Cluster estiverem reiniciando, exceto este nó.
+  Set the maximum rate for writing to disk, in bytes per second, by local checkpoints and backup operations when one or more data nodes in this NDB Cluster are restarting, other than this node.
 
-  Para definir a taxa máxima de gravação de disco permitida enquanto este nó de dados estiver sendo reiniciado, use `MaxDiskWriteSpeedOwnRestart`. Para definir a taxa máxima de gravação de disco permitida quando nenhum nó de dados estiver sendo reiniciado em nenhum lugar do clúster, use `MaxDiskWriteSpeed`. A velocidade mínima para a gravação de disco por todos os LCPs e operações de backup pode ser ajustada definindo `MinDiskWriteSpeed`.
+  For setting the maximum rate of disk writes allowed while this data node is restarting, use [`MaxDiskWriteSpeedOwnRestart`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxdiskwritespeedownrestart). For setting the maximum rate of disk writes allowed when no data nodes are restarting anywhere in the cluster, use [`MaxDiskWriteSpeed`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxdiskwritespeed). The minimum speed for disk writes by all LCPs and backup operations can be adjusted by setting [`MinDiskWriteSpeed`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-mindiskwritespeed).
 
-- `MaxDiskWriteSpeedOwnRestart`
+* [`MaxDiskWriteSpeedOwnRestart`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxdiskwritespeedownrestart)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados FileSystemPath" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>DataDir</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="FileSystemPath data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>path</td> </tr><tr> <th>Default</th> <td>DataDir</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial Node Restart: </strong></span>Requires a rolling restart of the cluster; each data node must be restarted with <code>--initial</code>. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Defina a taxa máxima de gravação no disco, em bytes por segundo, por pontos de verificação locais e operações de backup enquanto este nó de dados estiver sendo reiniciado.
+  Set the maximum rate for writing to disk, in bytes per second, by local checkpoints and backup operations while this data node is restarting.
 
-  Para definir a taxa máxima de escrita em disco permitida enquanto outros nós de dados estão sendo reiniciados, use `MaxDiskWriteSpeedOtherNodeRestart`. Para definir a taxa máxima de escrita em disco permitida quando nenhum nó de dados está sendo reiniciado em nenhum lugar do clúster, use `MaxDiskWriteSpeed`. A velocidade mínima para a escrita em disco por todos os LCPs e operações de backup pode ser ajustada definindo `MinDiskWriteSpeed`.
+  For setting the maximum rate of disk writes allowed while other data nodes are restarting, use [`MaxDiskWriteSpeedOtherNodeRestart`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxdiskwritespeedothernoderestart). For setting the maximum rate of disk writes allowed when no data nodes are restarting anywhere in the cluster, use [`MaxDiskWriteSpeed`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxdiskwritespeed). The minimum speed for disk writes by all LCPs and backup operations can be adjusted by setting [`MinDiskWriteSpeed`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-mindiskwritespeed).
 
-- `MinDiskWriteSpeed`
+* [`MinDiskWriteSpeed`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-mindiskwritespeed)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados FileSystemPath" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>DataDir</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="FileSystemPath data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>path</td> </tr><tr> <th>Default</th> <td>DataDir</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial Node Restart: </strong></span>Requires a rolling restart of the cluster; each data node must be restarted with <code>--initial</code>. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Defina a taxa mínima para gravação em disco, em bytes por segundo, por pontos de verificação locais e operações de backup.
+  Set the minimum rate for writing to disk, in bytes per second, by local checkpoints and backup operations.
 
-  As taxas máximas de gravação de discos permitidas para LCPs e backups sob várias condições são ajustáveis usando os parâmetros `MaxDiskWriteSpeed`, `MaxDiskWriteSpeedOwnRestart` e `MaxDiskWriteSpeedOtherNodeRestart`. Consulte as descrições desses parâmetros para obter mais informações.
+  The maximum rates of disk writes allowed for LCPs and backups under various conditions are adjustable using the parameters [`MaxDiskWriteSpeed`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxdiskwritespeed), [`MaxDiskWriteSpeedOwnRestart`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxdiskwritespeedownrestart), and [`MaxDiskWriteSpeedOtherNodeRestart`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxdiskwritespeedothernoderestart). See the descriptions of these parameters for more information.
 
-- `ApiFailureHandlingTimeout`
+* [`ApiFailureHandlingTimeout`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-apifailurehandlingtimeout)
 
-  <table frame="box" rules="all" summary="Tipo e informações de valor do parâmetro de configuração do nó de dados FileSystemPath" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>DataDir</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="FileSystemPath data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>path</td> </tr><tr> <th>Default</th> <td>DataDir</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial Node Restart: </strong></span>Requires a rolling restart of the cluster; each data node must be restarted with <code>--initial</code>. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Especifica o tempo máximo (em segundos) que o nó de dados espera para que o tratamento de falha do nó de API seja concluído antes de escalar para o tratamento de falha do nó de dados.
+  Specifies the maximum time (in seconds) that the data node waits for API node failure handling to complete before escalating it to data node failure handling.
 
-  Adicionado na NDB 7.6.34.
+  Added in NDB 7.6.34.
 
-- `ArbitrationTimeout`
+* [`ArbitrationTimeout`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-arbitrationtimeout)
 
-  <table frame="box" rules="all" summary="Tipo e valor da configuração do parâmetro do nó de dados BackupDataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>CaminhoDoSistemaDeArquivos</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="BackupDataDir data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>path</td> </tr><tr> <th>Default</th> <td>FileSystemPath</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial Node Restart: </strong></span>Requires a rolling restart of the cluster; each data node must be restarted with <code>--initial</code>. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro especifica quanto tempo os nós de dados esperam por uma resposta do árbitro a uma mensagem de arbitragem. Se isso for excedido, presume-se que a rede tenha se dividido.
+  This parameter specifies how long data nodes wait for a response from the arbitrator to an arbitration message. If this is exceeded, the network is assumed to have split.
 
-  O valor padrão é de 7500 milissegundos (7,5 segundos).
+  The default value is 7500 milliseconds (7.5 seconds).
 
-- `Arbitração`
+* [`Arbitration`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-arbitration)
 
-  <table frame="box" rules="all" summary="Tipo e valor da configuração do parâmetro do nó de dados BackupDataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>CaminhoDoSistemaDeArquivos</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="BackupDataDir data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>path</td> </tr><tr> <th>Default</th> <td>FileSystemPath</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial Node Restart: </strong></span>Requires a rolling restart of the cluster; each data node must be restarted with <code>--initial</code>. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  O parâmetro `Arbitration` permite a escolha de esquemas de arbitragem, correspondendo a um dos 3 valores possíveis para este parâmetro:
+  The [`Arbitration`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-arbitration) parameter enables a choice of arbitration schemes, corresponding to one of 3 possible values for this parameter:
 
-  - **Padrão.** Isso permite que a arbitragem prossiga normalmente, conforme determinado pelas configurações de `ArbitrationRank` para os nós de gerenciamento e API. Esse é o valor padrão.
+  + **Default.** This enables arbitration to proceed normally, as determined by the `ArbitrationRank` settings for the management and API nodes. This is the default value.
 
-  - **Desativado.** Definir `Arbitração = Desativado` na seção `[ndbd default]` do arquivo `config.ini` para realizar a mesma tarefa que definir `ArbitraçãoRank` para 0 em todos os nós de gerenciamento e API. Quando `Arbitração` é definido dessa maneira, quaisquer configurações de `ArbitraçãoRank` são ignoradas.
+  + **Disabled.** Setting `Arbitration = Disabled` in the `[ndbd default]` section of the `config.ini` file to accomplishes the same task as setting `ArbitrationRank` to 0 on all management and API nodes. When `Arbitration` is set in this way, any `ArbitrationRank` settings are ignored.
 
-  - **Aguarde externo.** O parâmetro `Arbitração` também permite configurar a arbitragem de forma que o clúster espere até que o tempo determinado por `ArbitraçãoTimeout` tenha passado para que um aplicativo de gerenciamento de clúster externo realize a arbitragem em vez de lidar com a arbitragem internamente. Isso pode ser feito definindo `Arbitração = WaitExternal` na seção `[ndbd default]` do arquivo `config.ini`. Para obter os melhores resultados com o ajuste `WaitExternal`, recomenda-se que `ArbitraçãoTimeout` seja duas vezes maior que o intervalo necessário pelo gerenciador de clúster externo para realizar a arbitragem.
+  + **WaitExternal.** The [`Arbitration`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-arbitration) parameter also makes it possible to configure arbitration in such a way that the cluster waits until after the time determined by [`ArbitrationTimeout`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-arbitrationtimeout) has passed for an external cluster manager application to perform arbitration instead of handling arbitration internally. This can be done by setting `Arbitration = WaitExternal` in the `[ndbd default]` section of the `config.ini` file. For best results with the `WaitExternal` setting, it is recommended that [`ArbitrationTimeout`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-arbitrationtimeout) be 2 times as long as the interval required by the external cluster manager to perform arbitration.
 
-  Importante
+  Important
 
-  Este parâmetro deve ser usado apenas na seção `[ndbd default]` do arquivo de configuração do cluster. O comportamento do cluster não é especificado quando a opção `Arbitration` (Arbitração) (mysql-cluster-ndbd-definition.html#ndbparam-ndbd-arbitration) é definida com diferentes valores para os nós de dados individuais.
+  This parameter should be used only in the `[ndbd default]` section of the cluster configuration file. The behavior of the cluster is unspecified when [`Arbitration`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-arbitration) is set to different values for individual data nodes.
 
-- `RestartSubscriberConnectTimeout`
+* [`RestartSubscriberConnectTimeout`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-restartsubscriberconnecttimeout)
 
-  <table frame="box" rules="all" summary="Tipo e valor da configuração do parâmetro do nó de dados BackupDataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>CaminhoDoSistemaDeArquivos</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="BackupDataDir data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>path</td> </tr><tr> <th>Default</th> <td>FileSystemPath</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial Node Restart: </strong></span>Requires a rolling restart of the cluster; each data node must be restarted with <code>--initial</code>. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro determina o tempo que um nó de dados espera para os nós de API que se subscrevem se conectarem. Quando esse tempo de espera expirar, quaisquer nós de API "ausentes" são desconectados do clúster. Para desabilitar esse tempo de espera, defina `RestartSubscriberConnectTimeout` para 0.
+  This parameter determines the time that a data node waits for subscribing API nodes to connect. Once this timeout expires, any “missing” API nodes are disconnected from the cluster. To disable this timeout, set `RestartSubscriberConnectTimeout` to 0.
 
-  Embora este parâmetro seja especificado em milissegundos, o próprio tempo de espera é resolvido para o segundo inteiro mais próximo.
+  While this parameter is specified in milliseconds, the timeout itself is resolved to the next-greatest whole second.
 
-O intervalo de batimento cardíaco entre os nós de gerenciamento e os nós de dados é sempre de 100 milissegundos e não é configurável.
+The heartbeat interval between management nodes and data nodes is always 100 milliseconds, and is not configurable.
 
-**Buffering e registro.** Vários parâmetros de configuração do `[ndbd]` permitem que o usuário avançado tenha mais controle sobre os recursos usados pelos processos do nó e ajuste vários tamanhos de buffer conforme necessário.
+**Buffering and logging.** Several `[ndbd]` configuration parameters enable the advanced user to have more control over the resources used by node processes and to adjust various buffer sizes at need.
 
-Esses buffers são usados como interfaces do sistema de arquivos ao gravar registros de log no disco. Se o nó estiver em modo sem disco, esses parâmetros podem ser definidos para seus valores mínimos sem penalidade, devido ao fato de que as gravações no disco são "falsas" pela camada de abstração do sistema de arquivos do mecanismo de armazenamento `NDB`.
+These buffers are used as front ends to the file system when writing log records to disk. If the node is running in diskless mode, these parameters can be set to their minimum values without penalty due to the fact that disk writes are “faked” by the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine's file system abstraction layer.
 
-- `UndoIndexBuffer`
+* [`UndoIndexBuffer`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-undoindexbuffer)
 
-  <table frame="box" rules="all" summary="Tipo e valor da configuração do parâmetro do nó de dados BackupDataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>CaminhoDoSistemaDeArquivos</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="BackupDataDir data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>path</td> </tr><tr> <th>Default</th> <td>FileSystemPath</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial Node Restart: </strong></span>Requires a rolling restart of the cluster; each data node must be restarted with <code>--initial</code>. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro definia anteriormente o tamanho do buffer do índice de desfazer, mas não tem efeito nas versões atuais do NDB Cluster.
+  This parameter formerly set the size of the undo index buffer, but has no effect in current versions of NDB Cluster.
 
-- `UndoDataBuffer`
+* [`UndoDataBuffer`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-undodatabuffer)
 
-  <table frame="box" rules="all" summary="Tipo e valor da configuração do parâmetro do nó de dados BackupDataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>CaminhoDoSistemaDeArquivos</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="BackupDataDir data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>path</td> </tr><tr> <th>Default</th> <td>FileSystemPath</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial Node Restart: </strong></span>Requires a rolling restart of the cluster; each data node must be restarted with <code>--initial</code>. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro definia anteriormente o tamanho do buffer de dados de desfazer, mas não tem efeito nas versões atuais do NDB Cluster.
+  This parameter formerly set the size of the undo data buffer, but has no effect in current versions of NDB Cluster.
 
-- `RedoBuffer`
+* [`RedoBuffer`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-redobuffer)
 
-  <table frame="box" rules="all" summary="Tipo e valor da configuração do parâmetro do nó de dados BackupDataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>CaminhoDoSistemaDeArquivos</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="BackupDataDir data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>path</td> </tr><tr> <th>Default</th> <td>FileSystemPath</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial Node Restart: </strong></span>Requires a rolling restart of the cluster; each data node must be restarted with <code>--initial</code>. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Todas as atividades de atualização também precisam ser registradas. O log REDO permite reproduzir essas atualizações sempre que o sistema for reiniciado. O algoritmo de recuperação NDB usa um ponto de verificação "duro" dos dados junto com o log UNDO e, em seguida, aplica o log REDO para reproduzir todas as alterações até o ponto de restauração.
+  All update activities also need to be logged. The REDO log makes it possible to replay these updates whenever the system is restarted. The NDB recovery algorithm uses a “fuzzy” checkpoint of the data together with the UNDO log, and then applies the REDO log to play back all changes up to the restoration point.
 
-  `RedoBuffer` define o tamanho do buffer no qual o log REDO é escrito. O valor padrão é de 32 MB; o valor mínimo é de 1 MB.
+  `RedoBuffer` sets the size of the buffer in which the REDO log is written. The default value is 32MB; the minimum value is 1MB.
 
-  Se esse buffer for muito pequeno, o mecanismo de armazenamento `NDB` emite o código de erro 1221 (log buffers do REDO sobrecarregados). Por essa razão, você deve ter cuidado ao tentar diminuir o valor de `RedoBuffer` como parte de uma alteração online na configuração do cluster.
+  If this buffer is too small, the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") storage engine issues error code 1221 (REDO log buffers overloaded). For this reason, you should exercise care if you attempt to decrease the value of `RedoBuffer` as part of an online change in the cluster's configuration.
 
-  **ndbmtd** aloca um buffer separado para cada thread do LDM (consulte `ThreadConfig`). Por exemplo, com 4 threads do LDM, um nó de dados **ndbmtd** na verdade tem 4 buffers e aloca `RedoBuffer` bytes para cada um, totalizando `4 * RedoBuffer` bytes.
+  [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") allocates a separate buffer for each LDM thread (see [`ThreadConfig`](mysql-cluster-ndbd-definition.html#ndbparam-ndbmtd-threadconfig)). For example, with 4 LDM threads, an [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") data node actually has 4 buffers and allocates `RedoBuffer` bytes to each one, for a total of `4 * RedoBuffer` bytes.
 
-- `EventLogBufferSize`
+* [`EventLogBufferSize`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-eventlogbuffersize)
 
-  <table frame="box" rules="all" summary="Tipo e valor da configuração do parâmetro do nó de dados BackupDataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>CaminhoDoSistemaDeArquivos</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="BackupDataDir data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>path</td> </tr><tr> <th>Default</th> <td>FileSystemPath</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial Node Restart: </strong></span>Requires a rolling restart of the cluster; each data node must be restarted with <code>--initial</code>. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Controla o tamanho do buffer circular usado para eventos de log do NDB dentro dos nós de dados.
+  Controls the size of the circular buffer used for NDB log events within data nodes.
 
-**Controle de mensagens de log.** Ao gerenciar o clúster, é muito importante ser capaz de controlar o número de mensagens de log enviadas para o `stdout` para vários tipos de eventos. Para cada categoria de evento, existem 16 níveis de evento possíveis (numerados de 0 a 15). Definir o relatório de eventos para uma determinada categoria de evento no nível 15 significa que todos os relatórios de eventos nessa categoria são enviados para o `stdout`; definir no nível 0 significa que não há relatórios de eventos feitos nessa categoria.
+**Controlling log messages.** In managing the cluster, it is very important to be able to control the number of log messages sent for various event types to `stdout`. For each event category, there are 16 possible event levels (numbered 0 through 15). Setting event reporting for a given event category to level 15 means all event reports in that category are sent to `stdout`; setting it to 0 means that there are no event reports made in that category.
 
-Por padrão, apenas a mensagem de inicialização é enviada para `stdout`, com os valores padrão do nível de relatório de eventos restantes sendo definidos como 0. A razão para isso é que essas mensagens também são enviadas para o log do clúster do servidor de gerenciamento.
+By default, only the startup message is sent to `stdout`, with the remaining event reporting level defaults being set to 0. The reason for this is that these messages are also sent to the management server's cluster log.
 
-Um conjunto análogo de níveis pode ser definido para o cliente de gerenciamento para determinar quais níveis de evento devem ser registrados no log do clúster.
+An analogous set of levels can be set for the management client to determine which event levels to record in the cluster log.
 
-- `LogLevelStartup`
+* [`LogLevelStartup`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-loglevelstartup)
 
-  <table frame="box" rules="all" summary="Tipo e valor da configuração do parâmetro do nó de dados BackupDataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>CaminhoDoSistemaDeArquivos</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="BackupDataDir data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>path</td> </tr><tr> <th>Default</th> <td>FileSystemPath</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial Node Restart: </strong></span>Requires a rolling restart of the cluster; each data node must be restarted with <code>--initial</code>. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  O nível de relatórios para eventos gerados durante o início do processo.
+  The reporting level for events generated during startup of the process.
 
-  O nível padrão é 1.
+  The default level is 1.
 
-- `LogLevelShutdown`
+* [`LogLevelShutdown`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-loglevelshutdown)
 
-  <table frame="box" rules="all" summary="Tipo e valor da configuração do parâmetro do nó de dados BackupDataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>CaminhoDoSistemaDeArquivos</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="BackupDataDir data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>path</td> </tr><tr> <th>Default</th> <td>FileSystemPath</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial Node Restart: </strong></span>Requires a rolling restart of the cluster; each data node must be restarted with <code>--initial</code>. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  O nível de relatórios para eventos gerados como parte do desligamento suave de um nó.
+  The reporting level for events generated as part of graceful shutdown of a node.
 
-  O nível padrão é 0.
+  The default level is 0.
 
-- `LogLevelStatistic`
+* [`LogLevelStatistic`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-loglevelstatistic)
 
-  <table frame="box" rules="all" summary="Tipo e valor da configuração do parâmetro do nó de dados BackupDataDir" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>caminho</td> </tr><tr> <th>Padrão</th> <td>CaminhoDoSistemaDeArquivos</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício inicial do nó:</strong></span>Requer umreinício em rotaçãodo cluster; cada nó de dados deve ser reiniciado com<code>--initial</code>. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="BackupDataDir data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>path</td> </tr><tr> <th>Default</th> <td>FileSystemPath</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>Initial Node Restart: </strong></span>Requires a rolling restart of the cluster; each data node must be restarted with <code>--initial</code>. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  O nível de relatórios para eventos estatísticos, como número de leituras da chave primária, número de atualizações, número de inserções, informações relacionadas ao uso do buffer, e assim por diante.
+  The reporting level for statistical events such as number of primary key reads, number of updates, number of inserts, information relating to buffer usage, and so on.
 
-  O nível padrão é 0.
+  The default level is 0.
 
-- `LogLevelCheckpoint`
+* [`LogLevelCheckpoint`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-loglevelcheckpoint)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  O nível de relatórios para eventos gerados por pontos de verificação locais e globais.
+  The reporting level for events generated by local and global checkpoints.
 
-  O nível padrão é 0.
+  The default level is 0.
 
-- `LogLevelNodeRestart`
+* [`LogLevelNodeRestart`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-loglevelnoderestart)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  O nível de relatórios para eventos gerados durante o reinício do nó.
+  The reporting level for events generated during node restart.
 
-  O nível padrão é 0.
+  The default level is 0.
 
-- `LogLevelConnection`
+* [`LogLevelConnection`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-loglevelconnection)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  O nível de relatórios para eventos gerados por conexões entre nós do cluster.
+  The reporting level for events generated by connections between cluster nodes.
 
-  O nível padrão é 0.
+  The default level is 0.
 
-- `LogLevelError`
+* [`LogLevelError`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-loglevelerror)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  O nível de relatórios para eventos gerados por erros e avisos pelo clúster como um todo. Esses erros não causam falhas em nenhum nó, mas ainda são considerados dignos de serem relatados.
+  The reporting level for events generated by errors and warnings by the cluster as a whole. These errors do not cause any node failure but are still considered worth reporting.
 
-  O nível padrão é 0.
+  The default level is 0.
 
-- `LogLevelCongestion`
+* [`LogLevelCongestion`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-loglevelcongestion)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  O nível de relatórios para eventos gerados por congestionamento. Esses erros não causam falha no nó, mas ainda são considerados dignos de serem relatados.
+  The reporting level for events generated by congestion. These errors do not cause node failure but are still considered worth reporting.
 
-  O nível padrão é 0.
+  The default level is 0.
 
-- `LogLevelInfo`
+* [`LogLevelInfo`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-loglevelinfo)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  O nível de relatórios para eventos gerados para informações sobre o estado geral do cluster.
+  The reporting level for events generated for information about the general state of the cluster.
 
-  O nível padrão é 0.
+  The default level is 0.
 
-- `MemReportFrequency`
+* [`MemReportFrequency`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-memreportfrequency)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro controla a frequência com que os relatórios de uso da memória dos nós de dados são registrados no log do clúster; é um valor inteiro que representa o número de segundos entre os relatórios.
+  This parameter controls how often data node memory usage reports are recorded in the cluster log; it is an integer value representing the number of seconds between reports.
 
-  O uso da memória de dados e da memória de índice de cada nó de dados é registrado tanto como uma porcentagem quanto como o número de páginas de 32 KB da `DataMemory` e (NDB 7.5 e versões anteriores) `IndexMemory`, respectivamente, definidas no arquivo `config.ini`. Por exemplo, se a `DataMemory` for igual a 100 MB e um dado nó de dados estiver usando 50 MB para armazenamento de memória de dados, a linha correspondente no log do cluster pode parecer assim:
+  Each data node's data memory and index memory usage is logged as both a percentage and a number of 32 KB pages of the [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory) and (NDB 7.5 and earlier) [`IndexMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexmemory), respectively, set in the `config.ini` file. For example, if [`DataMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-datamemory) is equal to 100 MB, and a given data node is using 50 MB for data memory storage, the corresponding line in the cluster log might look like this:
 
   ```sql
   2006-12-24 01:18:16 [MgmSrvr] INFO -- Node 2: Data usage is 50%(1280 32K pages of total 2560)
   ```
 
-  `MemReportFrequency` não é um parâmetro obrigatório. Se usado, pode ser definido para todos os nós de dados do cluster na seção `[ndbd default]` do `config.ini` e também pode ser definido ou substituído para nós de dados individuais nas seções correspondentes `[ndbd]` do arquivo de configuração. O valor mínimo — que também é o valor padrão — é 0, caso em que os relatórios de memória são registrados apenas quando o uso de memória atinge certos porcentagens (80%, 90% e 100%), conforme mencionado na discussão sobre eventos de estatísticas em Seção 21.6.3.2, “Eventos de Log do NDB Cluster”.
+  [`MemReportFrequency`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-memreportfrequency) is not a required parameter. If used, it can be set for all cluster data nodes in the `[ndbd default]` section of `config.ini`, and can also be set or overridden for individual data nodes in the corresponding `[ndbd]` sections of the configuration file. The minimum value—which is also the default value—is 0, in which case memory reports are logged only when memory usage reaches certain percentages (80%, 90%, and 100%), as mentioned in the discussion of statistics events in [Section 21.6.3.2, “NDB Cluster Log Events”](mysql-cluster-log-events.html "21.6.3.2 NDB Cluster Log Events").
 
-- `StartupStatusReportFrequency`
+* [`StartupStatusReportFrequency`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-startupstatusreportfrequency)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Quando um nó de dados é iniciado com a opção `--initial`, ele inicia o arquivo de log de refazer durante a Fase de Início 4 (veja Seção 21.6.4, “Resumo das Fases de Início do NDB Cluster”). Quando valores muito grandes são definidos para `NoOfFragmentLogFiles`, `FragmentLogFileSize` ou ambos, essa inicialização pode levar muito tempo. Você pode forçar que os relatórios sobre o progresso desse processo sejam registrados periodicamente, por meio do parâmetro de configuração `StartupStatusReportFrequency`. Nesse caso, o progresso é relatado no log do cluster, em termos de número de arquivos e quantidade de espaço que foram inicializados, como mostrado aqui:
+  When a data node is started with the [`--initial`](mysql-cluster-programs-ndbd.html#option_ndbd_initial), it initializes the redo log file during Start Phase 4 (see [Section 21.6.4, “Summary of NDB Cluster Start Phases”](mysql-cluster-start-phases.html "21.6.4 Summary of NDB Cluster Start Phases")). When very large values are set for [`NoOfFragmentLogFiles`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-nooffragmentlogfiles), [`FragmentLogFileSize`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-fragmentlogfilesize), or both, this initialization can take a long time.You can force reports on the progress of this process to be logged periodically, by means of the [`StartupStatusReportFrequency`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-startupstatusreportfrequency) configuration parameter. In this case, progress is reported in the cluster log, in terms of both the number of files and the amount of space that have been initialized, as shown here:
 
   ```sql
   2009-06-20 16:39:23 [MgmSrvr] INFO -- Node 1: Local redo log file initialization status:
@@ -1260,269 +1259,269 @@ Um conjunto análogo de níveis pode ser definido para o cliente de gerenciament
   #Total MBytes: 20480, Completed: 15570
   ```
 
-  Esses relatórios são registrados a cada `StartupStatusReportFrequency` segundos durante a Fase de Início 4. Se `StartupStatusReportFrequency` for 0 (o padrão), então os relatórios são escritos no log do cluster apenas no início e no término do processo de inicialização do arquivo de log de refazer.
+  These reports are logged each [`StartupStatusReportFrequency`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-startupstatusreportfrequency) seconds during Start Phase 4. If [`StartupStatusReportFrequency`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-startupstatusreportfrequency) is 0 (the default), then reports are written to the cluster log only when at the beginning and at the completion of the redo log file initialization process.
 
-##### Parâmetros de depuração do nó de dados
+##### Data Node Debugging Parameters
 
-Os seguintes parâmetros são destinados ao uso durante o teste ou depuração de nós de dados e não para uso em produção.
+The following parameters are intended for use during testing or debugging of data nodes, and not for use in production.
 
-- `DictTrace`
+* [`DictTrace`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-dicttrace)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  É possível registrar traços para eventos gerados ao criar e excluir tabelas usando `DictTrace`. Esse parâmetro é útil apenas no depuração do código do kernel NDB. `DictTrace` aceita um valor inteiro. 0 desabilita o registro; 1 a habilita; definir esse parâmetro para 2 habilita o registro de saída adicional de depuração de `DBDICT` (Bug #20368450).
+  It is possible to cause logging of traces for events generated by creating and dropping tables using `DictTrace`. This parameter is useful only in debugging NDB kernel code. `DictTrace` takes an integer value. 0 disables logging; 1 enables it; setting this parameter to 2 enables logging of additional [`DBDICT`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbdict.html) debugging output (Bug #20368450).
 
-- `WatchDogImmediateKill`
+* [`WatchDogImmediateKill`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-watchdogimmediatekill)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  No NDB 7.6.7 e versões posteriores, você pode fazer com que os threads sejam interrompidos imediatamente sempre que ocorrerem problemas de watchdog, habilitando o parâmetro de configuração do nó de dados `WatchDogImmediateKill`. Este parâmetro deve ser usado apenas durante a depuração ou solução de problemas, para obter arquivos de registro que relatam exatamente o que estava acontecendo no momento em que a execução foi interrompida.
+  In NDB 7.6.7 and later, you can cause threads to be killed immediately whenever watchdog issues occur by enabling the `WatchDogImmediateKill` data node configuration parameter. This parameter should be used only when debugging or troubleshooting, to obtain trace files reporting exactly what was occurring the instant that execution ceased.
 
-**Parâmetros de backup.** Os parâmetros `[ndbd]` discutidos nesta seção definem buffers de memória reservados para a execução de backups online.
+**Backup parameters.** The `[ndbd]` parameters discussed in this section define memory buffers set aside for execution of online backups.
 
-- `BackupDataBufferSize`
+* [`BackupDataBufferSize`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-backupdatabuffersize)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Ao criar um backup, são usados dois buffers para enviar dados para o disco. O buffer de dados do backup é usado para preencher os dados registrados ao digitalizar as tabelas de um nó. Uma vez que este buffer estiver preenchido até o nível especificado como `BackupWriteSize`, as páginas são enviadas para o disco. Enquanto o processo de gravação de dados para o disco, o processo de backup pode continuar preenchendo este buffer até esgotar o espaço. Quando isso acontece, o processo de backup pausa a digitalização e aguarda até que alguns escritos no disco tenham concluído, liberando memória para que a digitalização possa continuar.
+  In creating a backup, there are two buffers used for sending data to the disk. The backup data buffer is used to fill in data recorded by scanning a node's tables. Once this buffer has been filled to the level specified as [`BackupWriteSize`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-backupwritesize), the pages are sent to disk. While flushing data to disk, the backup process can continue filling this buffer until it runs out of space. When this happens, the backup process pauses the scan and waits until some disk writes have completed freeing up memory so that scanning may continue.
 
-- `BackupDiskWriteSpeedPct`
+* [`BackupDiskWriteSpeedPct`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-backupdiskwritespeedpct)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Durante o funcionamento normal, os nós de dados tentam maximizar a velocidade de escrita no disco usada para verificações locais e backups, mantendo-se dentro dos limites definidos por `MinDiskWriteSpeed` e `MaxDiskWriteSpeed`. O controle de velocidade de escrita no disco dá a cada thread do LDM uma parcela igual do orçamento total. Isso permite que os LCPs paralelos ocorram sem exceder o orçamento de I/O do disco. Como um backup é executado por apenas uma thread do LDM, isso efetivamente causou uma redução no orçamento, resultando em tempos de conclusão do backup mais longos e, se a taxa de mudança for suficientemente alta, em falha na conclusão do backup quando a taxa de enchimento do buffer de log de backup for maior que a taxa de escrita alcançável.
+  During normal operation, data nodes attempt to maximize the disk write speed used for local checkpoints and backups while remaining within the bounds set by [`MinDiskWriteSpeed`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-mindiskwritespeed) and [`MaxDiskWriteSpeed`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxdiskwritespeed). Disk write throttling gives each LDM thread an equal share of the total budget. This allows parallel LCPs to take place without exceeding the disk I/O budget. Because a backup is executed by only one LDM thread, this effectively caused a budget cut, resulting in longer backup completion times, and—if the rate of change is sufficiently high—in failure to complete the backup when the backup log buffer fill rate is higher than the achievable write rate.
 
-  Esse problema pode ser resolvido usando o parâmetro de configuração `BackupDiskWriteSpeedPct`, que aceita um valor no intervalo de 0 a 90 (inclusivo), que é interpretado como a porcentagem do orçamento máximo de taxa de escrita do nó que é reservada antes de distribuir o restante do orçamento entre os threads do LDM para os LCPs. O thread do LDM que executa o backup recebe todo o orçamento de taxa de escrita para o backup, mais sua (reduzida) parcela do orçamento de taxa de escrita para os pontos de verificação locais. (Isso faz com que o orçamento de taxa de escrita do disco se comporte de maneira semelhante àquela manuseada no NDB Cluster 7.3 e versões anteriores.)
+  This problem can be addressed by using the `BackupDiskWriteSpeedPct` configuration parameter, which takes a value in the range 0-90 (inclusive) which is interpreted as the percentage of the node's maximum write rate budget that is reserved prior to sharing out the remainder of the budget among LDM threads for LCPs. The LDM thread running the backup receives the whole write rate budget for the backup, plus its (reduced) share of the write rate budget for local checkpoints. (This makes the disk write rate budget behave similarly to how it was handled in NDB Cluster 7.3 and earlier.)
 
-  O valor padrão para este parâmetro é 50 (interpretado como 50%).
+  The default value for this parameter is 50 (interpreted as 50%).
 
-- `BackupLogBufferSize`
+* [`BackupLogBufferSize`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-backuplogbuffersize)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  O buffer de log de backup desempenha um papel semelhante ao desempenhado pelo buffer de dados de backup, exceto que ele é usado para gerar um log de todas as escritas de tabelas feitas durante a execução do backup. Os mesmos princípios se aplicam à escrita dessas páginas, como no buffer de dados de backup, exceto que, quando não houver mais espaço no buffer de log de backup, o backup falha. Por essa razão, o tamanho do buffer de log de backup deve ser grande o suficiente para lidar com a carga causada pelas atividades de escrita enquanto o backup está sendo feito. Veja Seção 21.6.8.3, “Configuração para Backups de NDB Cluster”.
+  The backup log buffer fulfills a role similar to that played by the backup data buffer, except that it is used for generating a log of all table writes made during execution of the backup. The same principles apply for writing these pages as with the backup data buffer, except that when there is no more space in the backup log buffer, the backup fails. For that reason, the size of the backup log buffer must be large enough to handle the load caused by write activities while the backup is being made. See [Section 21.6.8.3, “Configuration for NDB Cluster Backups”](mysql-cluster-backup-configuration.html "21.6.8.3 Configuration for NDB Cluster Backups").
 
-  O valor padrão para este parâmetro deve ser suficiente para a maioria das aplicações. De fato, é mais provável que uma falha de backup seja causada por uma velocidade de gravação do disco insuficiente do que pelo buffer do log de backup ficar cheio. Se o subsistema de disco não estiver configurado para a carga de escrita causada pelas aplicações, é improvável que o clúster consiga realizar as operações desejadas.
+  The default value for this parameter should be sufficient for most applications. In fact, it is more likely for a backup failure to be caused by insufficient disk write speed than it is for the backup log buffer to become full. If the disk subsystem is not configured for the write load caused by applications, the cluster is unlikely to be able to perform the desired operations.
 
-  É preferível configurar os nós do cluster de maneira que o processador se torne o gargalo, e não os discos ou as conexões de rede.
+  It is preferable to configure cluster nodes in such a manner that the processor becomes the bottleneck rather than the disks or the network connections.
 
-  O valor padrão para este parâmetro é 16 MB.
+  The default value for this parameter is 16MB.
 
-- `BackupMemory`
+* [`BackupMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-backupmemory)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro está desatualizado e está sujeito à remoção em uma versão futura do NDB Cluster. Qualquer configuração feita para ele será ignorada.
+  This parameter is deprecated, and subject to removal in a future version of NDB Cluster. Any setting made for it is ignored.
 
-- `BackupReportFrequency`
+* [`BackupReportFrequency`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-backupreportfrequency)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro controla a frequência com que os relatórios de status de backup são emitidos no cliente de gerenciamento durante um backup, bem como a frequência com que esses relatórios são escritos no log do clúster (desde que a log de eventos do clúster esteja configurada para permitir isso — consulte Log de eventos de registro e ponto de verificação). `BackupReportFrequency` representa o tempo em segundos entre os relatórios de status de backup.
+  This parameter controls how often backup status reports are issued in the management client during a backup, as well as how often such reports are written to the cluster log (provided cluster event logging is configured to permit it—see [Logging and checkpointing](mysql-cluster-ndbd-definition.html#mysql-cluster-logging-and-checkpointing "Logging and checkpointing")). [`BackupReportFrequency`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-backupreportfrequency) represents the time in seconds between backup status reports.
 
-  O valor padrão é 0.
+  The default value is 0.
 
-- `BackupWriteSize`
+* [`BackupWriteSize`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-backupwritesize)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro especifica o tamanho padrão das mensagens escritas no disco pelo log de backup e nos buffers de dados de backup.
+  This parameter specifies the default size of messages written to disk by the backup log and backup data buffers.
 
-  O valor padrão para este parâmetro é 256 KB.
+  The default value for this parameter is 256KB.
 
-- `BackupMaxWriteSize`
+* [`BackupMaxWriteSize`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-backupmaxwritesize)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro especifica o tamanho máximo das mensagens escritas no disco pelo log de backup e nos buffers de dados de backup.
+  This parameter specifies the maximum size of messages written to disk by the backup log and backup data buffers.
 
-  O valor padrão para este parâmetro é 1 MB.
+  The default value for this parameter is 1MB.
 
-- `Backup Compactado`
+* [`CompressedBackup`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-compressedbackup)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Ativação deste parâmetro faz com que os arquivos de backup sejam comprimidos. A compressão utilizada é equivalente a **gzip --fast** e pode economizar 50% ou mais do espaço necessário no nó de dados para armazenar arquivos de backup não comprimidos. Os backups comprimidos podem ser ativados para nós de dados individuais ou para todos os nós de dados (definindo este parâmetro na seção `[ndbd default]` do arquivo `config.ini`).
+  Enabling this parameter causes backup files to be compressed. The compression used is equivalent to **gzip --fast**, and can save 50% or more of the space required on the data node to store uncompressed backup files. Compressed backups can be enabled for individual data nodes, or for all data nodes (by setting this parameter in the `[ndbd default]` section of the `config.ini` file).
 
-  Importante
+  Important
 
-  Você não pode restaurar um backup compactado em um clúster que esteja executando uma versão do MySQL que não suporte essa funcionalidade.
+  You cannot restore a compressed backup to a cluster running a MySQL version that does not support this feature.
 
-  O valor padrão é `0` (desativado).
+  The default value is `0` (disabled).
 
-Nota
+Note
 
-A localização dos arquivos de backup é determinada pelo parâmetro de configuração do nó de dados `BackupDataDir`.
+The location of the backup files is determined by the [`BackupDataDir`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-backupdatadir) data node configuration parameter.
 
-**Requisitos adicionais.** Ao especificar esses parâmetros, as seguintes relações devem ser respeitadas. Caso contrário, o nó de dados não poderá ser iniciado.
+**Additional requirements.** When specifying these parameters, the following relationships must hold true. Otherwise, the data node cannot start.
 
-- `BackupDataBufferSize >= BackupWriteSize + 188KB`
+* `BackupDataBufferSize >= BackupWriteSize + 188KB`
 
-- `BackupLogBufferSize >= BackupWriteSize + 16KB`
+* `BackupLogBufferSize >= BackupWriteSize + 16KB`
 
-- `BackupMaxWriteSize >= BackupWriteSize`
+* `BackupMaxWriteSize >= BackupWriteSize`
 
-##### Parâmetros de desempenho em tempo real do NDB Cluster
+##### NDB Cluster Realtime Performance Parameters
 
-Os parâmetros `[ndbd]` discutidos nesta seção são usados na programação e bloqueio de threads para CPUs específicas em hosts de nós de dados de multiprocessador.
+The `[ndbd]` parameters discussed in this section are used in scheduling and locking of threads to specific CPUs on multiprocessor data node hosts.
 
-Nota
+Note
 
-Para utilizar esses parâmetros, o processo do nó de dados deve ser executado como raiz do sistema.
+To make use of these parameters, the data node process must be run as system root.
 
-- `BuildIndexThreads`
+* [`BuildIndexThreads`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-buildindexthreads)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro determina o número de threads a serem criados ao reconstruir índices ordenados durante o início de um sistema ou nó, bem como ao executar o comando **ndb_restore** com a opção `--rebuild-indexes` (mysql-cluster-programs-ndb-restore.html#option_ndb_restore_rebuild-indexes). Ele é suportado apenas quando há mais de um fragmento para a tabela por nó de dados (por exemplo, quando `COMMENT="NDB_TABLE=PARTITION_BALANCE=FOR_RA_BY_LDM_X_2"` é usado com `CREATE TABLE` (create-table.html)).
+  This parameter determines the number of threads to create when rebuilding ordered indexes during a system or node start, as well as when running [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") [`--rebuild-indexes`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_rebuild-indexes). It is supported only when there is more than one fragment for the table per data node (for example, when `COMMENT="NDB_TABLE=PARTITION_BALANCE=FOR_RA_BY_LDM_X_2"` is used with [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement")).
 
-  Definir este parâmetro para 0 (o padrão) desabilita a construção em multithread de índices ordenados.
+  Setting this parameter to 0 (the default) disables multithreaded building of ordered indexes.
 
-  Este parâmetro é suportado ao usar **ndbd** ou **ndbmtd**.
+  This parameter is supported when using [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") or [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)").
 
-  Você pode habilitar a construção multithreading durante os reinicializações iniciais do nó de dados configurando o parâmetro de configuração do nó de dados `TwoPassInitialNodeRestartCopy` para `TRUE`.
+  You can enable multithreaded builds during data node initial restarts by setting the [`TwoPassInitialNodeRestartCopy`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-twopassinitialnoderestartcopy) data node configuration parameter to `TRUE`.
 
-- `LockExecuteThreadToCPU`
+* [`LockExecuteThreadToCPU`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-lockexecutethreadtocpu)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Quando usado com **ndbd**, este parâmetro (agora uma string) especifica o ID da CPU atribuído para lidar com o thread de execução do `NDBCLUSTER`. Quando usado com **ndbmtd**, o valor deste parâmetro é uma lista de IDs de CPU separados por vírgula, atribuídos para lidar com os fios de execução. Cada ID de CPU na lista deve ser um inteiro no intervalo de 0 a 65535 (inclusivo).
+  When used with [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon"), this parameter (now a string) specifies the ID of the CPU assigned to handle the [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") execution thread. When used with [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)"), the value of this parameter is a comma-separated list of CPU IDs assigned to handle execution threads. Each CPU ID in the list should be an integer in the range 0 to 65535 (inclusive).
 
-  O número de IDs especificados deve corresponder ao número de threads de execução determinado por `MaxNoOfExecutionThreads`. No entanto, não há garantia de que as threads sejam atribuídas às CPUs em qualquer ordem específica ao usar este parâmetro. Você pode obter um controle mais detalhado desse tipo usando `ThreadConfig`.
+  The number of IDs specified should match the number of execution threads determined by [`MaxNoOfExecutionThreads`](mysql-cluster-ndbd-definition.html#ndbparam-ndbmtd-maxnoofexecutionthreads). However, there is no guarantee that threads are assigned to CPUs in any given order when using this parameter. You can obtain more finely-grained control of this type using [`ThreadConfig`](mysql-cluster-ndbd-definition.html#ndbparam-ndbmtd-threadconfig).
 
-  `LockExecuteThreadToCPU` não tem valor padrão.
+  [`LockExecuteThreadToCPU`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-lockexecutethreadtocpu) has no default value.
 
-- `LockMaintThreadsToCPU`
+* [`LockMaintThreadsToCPU`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-lockmaintthreadstocpu)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro especifica o ID da CPU atribuído para lidar com os threads de manutenção do `NDBCLUSTER`.
+  This parameter specifies the ID of the CPU assigned to handle [`NDBCLUSTER`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") maintenance threads.
 
-  O valor deste parâmetro é um número inteiro no intervalo de 0 a 65535 (inclusivo). *Não há valor padrão*.
+  The value of this parameter is an integer in the range 0 to 65535 (inclusive). *There is no default value*.
 
-- `Numa`
+* [`Numa`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-numa)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro determina se o Acesso Não Uniforme à Memória (NUMA) é controlado pelo sistema operacional ou pelo processo do nó de dados, se o nó de dados usa **ndbd** ou **ndbmtd**. Por padrão, o `NDB` tenta usar uma política de alocação de memória NUMA interlaçada em qualquer nó de dados onde o sistema operacional do host oferece suporte NUMA.
+  This parameter determines whether Non-Uniform Memory Access (NUMA) is controlled by the operating system or by the data node process, whether the data node uses [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") or [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)"). By default, `NDB` attempts to use an interleaved NUMA memory allocation policy on any data node where the host operating system provides NUMA support.
 
-  Definir `Numa = 0` significa que o processo de datanode não tenta definir uma política para a alocação de memória e permite que esse comportamento seja determinado pelo sistema operacional, que pode ser orientado ainda mais pela ferramenta separada **numactl**. Ou seja, `Numa = 0` produz o comportamento padrão do sistema, que pode ser personalizado pelo **numactl**. Para muitos sistemas Linux, o comportamento padrão do sistema é alocar memória local de soquete para qualquer processo dado no momento da alocação. Isso pode ser problemático ao usar **ndbmtd**; isso ocorre porque o **nbdmtd** aloca toda a memória no início, levando a um desequilíbrio, dando velocidades de acesso diferentes para diferentes soquetes, especialmente ao bloquear páginas na memória principal.
+  Setting `Numa = 0` means that the datanode process does not itself attempt to set a policy for memory allocation, and permits this behavior to be determined by the operating system, which may be further guided by the separate **numactl** tool. That is, `Numa = 0` yields the system default behavior, which can be customised by **numactl**. For many Linux systems, the system default behavior is to allocate socket-local memory to any given process at allocation time. This can be problematic when using [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)"); this is because **nbdmtd** allocates all memory at startup, leading to an imbalance, giving different access speeds for different sockets, especially when locking pages in main memory.
 
-  Definir `Numa = 1` significa que o processo do nó de dados usa `libnuma` para solicitar a alocação de memória interlaçada. (Isso também pode ser feito manualmente, no nível do sistema operacional, usando **numactl**.) Usar a alocação interlaçada, na verdade, indica ao processo do nó de dados que ignore o acesso não uniforme à memória, mas não tente aproveitar a memória local rápida; em vez disso, o processo do nó de dados tenta evitar desequilíbrios devido à memória remota lenta. Se a alocação interlaçada não for desejada, defina `Numa` para 0 para que o comportamento desejado possa ser determinado no nível do sistema operacional.
+  Setting `Numa = 1` means that the data node process uses `libnuma` to request interleaved memory allocation. (This can also be accomplished manually, on the operating system level, using **numactl**.) Using interleaved allocation in effect tells the data node process to ignore non-uniform memory access but does not attempt to take any advantage of fast local memory; instead, the data node process tries to avoid imbalances due to slow remote memory. If interleaved allocation is not desired, set `Numa` to 0 so that the desired behavior can be determined on the operating system level.
 
-  O parâmetro de configuração `Numa` é suportado apenas em sistemas Linux onde o `libnuma.so` está disponível.
+  The `Numa` configuration parameter is supported only on Linux systems where `libnuma.so` is available.
 
-- `RealtimeScheduler`
+* [`RealtimeScheduler`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-realtimescheduler)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Definir esse parâmetro para 1 habilita a agendamento em tempo real das threads dos nós de dados.
+  Setting this parameter to 1 enables real-time scheduling of data node threads.
 
-  O padrão é 0 (agendamento desativado).
+  The default is 0 (scheduling disabled).
 
-- `SchedulerExecutionTimer`
+* [`SchedulerExecutionTimer`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-schedulerexecutiontimer)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro especifica o tempo em microsegundos para que os threads sejam executados no agendador antes de serem enviados. Definindo-o como 0, minimiza o tempo de resposta; para alcançar um maior desempenho, você pode aumentar o valor em detrimento de tempos de resposta mais longos.
+  This parameter specifies the time in microseconds for threads to be executed in the scheduler before being sent. Setting it to 0 minimizes the response time; to achieve higher throughput, you can increase the value at the expense of longer response times.
 
-  O padrão é de 50 μs, o que, segundo nossos testes, aumenta ligeiramente o desempenho em casos de alta carga sem atrasar substancialmente as solicitações.
+  The default is 50 μsec, which our testing shows to increase throughput slightly in high-load cases without materially delaying requests.
 
-- `SchedulerResponsiveness`
+* [`SchedulerResponsiveness`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-schedulerresponsiveness)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Defina o equilíbrio no planejador `NDB` entre velocidade e desempenho. Este parâmetro aceita um número inteiro cujo valor está no intervalo de 0 a 10, inclusive, com 5 como o valor padrão. Valores mais altos proporcionam tempos de resposta melhores em relação ao desempenho. Valores mais baixos proporcionam um aumento no desempenho à custa de tempos de resposta mais longos.
+  Set the balance in the `NDB` scheduler between speed and throughput. This parameter takes an integer whose value is in the range 0-10 inclusive, with 5 as the default. Higher values provide better response times relative to throughput. Lower values provide increased throughput at the expense of longer response times.
 
-- `SchedulerSpinTimer`
+* [`SchedulerSpinTimer`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-schedulerspintimer)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro especifica o tempo em microsegundos para que os threads sejam executados no agendador antes de dormir.
+  This parameter specifies the time in microseconds for threads to be executed in the scheduler before sleeping.
 
-  O valor padrão é 0.
+  The default value is 0.
 
-- `TwoPassInitialNodeRestartCopy`
+* [`TwoPassInitialNodeRestartCopy`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-twopassinitialnoderestartcopy)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  A construção de índices ordenados em múltiplas threads pode ser habilitada para reinicializações iniciais dos nós de dados, definindo esse parâmetro de configuração como `true`, o que permite a cópia de dados em duas passadas durante as reinicializações iniciais dos nós. No NDB 7.6, esse é o valor padrão (Bug #26704312, Bug #27109117).
+  Multithreaded building of ordered indexes can be enabled for initial restarts of data nodes by setting this configuration parameter to `true`, which enables two-pass copying of data during initial node restarts. In NDB 7.6, this is the default value (Bug #26704312, Bug #27109117).
 
-  Você também deve definir `BuildIndexThreads` para um valor diferente de zero.
+  You must also set [`BuildIndexThreads`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-buildindexthreads) to a nonzero value.
 
-**Parâmetros de Configuração de Multithreading (ndbmtd).** **ndbmtd** é executado, por padrão, como um processo de único thread e deve ser configurado para usar múltiplos fios, utilizando um dos dois métodos, ambos os quais exigem a definição de parâmetros de configuração no arquivo `config.ini`. O primeiro método é simplesmente definir um valor apropriado para o parâmetro de configuração `MaxNoOfExecutionThreads`. Um segundo método permite configurar regras mais complexas para o multithreading do **ndbmtd** usando `ThreadConfig`. Os próximos parágrafos fornecem informações sobre esses parâmetros e seu uso com nós de dados multithreaded.
+**Multi-Threading Configuration Parameters (ndbmtd).** [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") runs by default as a single-threaded process and must be configured to use multiple threads, using either of two methods, both of which require setting configuration parameters in the `config.ini` file. The first method is simply to set an appropriate value for the [`MaxNoOfExecutionThreads`](mysql-cluster-ndbd-definition.html#ndbparam-ndbmtd-maxnoofexecutionthreads) configuration parameter. A second method makes it possible to set up more complex rules for [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") multithreading using [`ThreadConfig`](mysql-cluster-ndbd-definition.html#ndbparam-ndbmtd-threadconfig). The next few paragraphs provide information about these parameters and their use with multithreaded data nodes.
 
-- `MaxNoOfExecutionThreads`
+* `MaxNoOfExecutionThreads`
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro controla diretamente o número de threads de execução usadas por **ndbmtd**, até um máximo de 72. Embora este parâmetro seja definido nas seções `[ndbd]` ou `[ndbd default]` do arquivo `config.ini`, ele é exclusivo para **ndbmtd** e não se aplica a **ndbd**.
+  This parameter directly controls the number of execution threads used by [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)"), up to a maximum of 72. Although this parameter is set in `[ndbd]` or `[ndbd default]` sections of the `config.ini` file, it is exclusive to [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") and does not apply to [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon").
 
-  A definição de `MaxNoOfExecutionThreads` define o número de threads para cada tipo, conforme determinado por uma matriz no arquivo `storage/ndb/src/kernel/vm/mt_thr_config.cpp`. Esta tabela mostra esses números de threads para os possíveis valores de `MaxNoOfExecutionThreads`.
+  Setting `MaxNoOfExecutionThreads` sets the number of threads for each type as determined by a matrix in the file `storage/ndb/src/kernel/vm/mt_thr_config.cpp`. This table shows these numbers of threads for possible values of `MaxNoOfExecutionThreads`.
 
-  **Tabela 21.11 Valores de MaxNoOfExecutionThreads e o número correspondente de threads por tipo de thread (LQH, TC, Enviar, Receber).**
+  **Table 21.11 MaxNoOfExecutionThreads values and the corresponding number of threads by thread type (LQH, TC, Send, Receive).**
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Há sempre uma única thread de SUMA (replicação).
+  There is always one SUMA (replication) thread.
 
-  `NoOfFragmentLogParts` deve ser igual ao número de threads LDM usadas pelo **ndbmtd**, conforme determinado pelo ajuste para este parâmetro. Essa proporção não deve ser maior que 4:1; a partir do NDB 7.5.7, uma configuração em que isso ocorre é especificamente desaconselhada. (Bug #25333414)
+  [`NoOfFragmentLogParts`](mysql-cluster-ndbd-definition.html#ndbparam-ndbmtd-nooffragmentlogparts) should be set equal to the number of LDM threads used by [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)"), as determined by the setting for this parameter. This ratio should not be any greater than 4:1; beginning with NDB 7.5.7, a configuration in which this is the case is specifically disallowed. (Bug #25333414)
 
-  O número de threads LDM também determina o número de partições usadas por uma tabela `NDB` que não está explicitamente particionada; este é o número de threads LDM vezes o número de nós de dados no clúster. (Se **ndbd** for usado nos nós de dados em vez de **ndbmtd**, então há sempre um único thread LDM; nesse caso, o número de partições criadas automaticamente é simplesmente igual ao número de nós de dados. Consulte Seção 21.2.2, “Nodos do Clúster NDB, Grupos de Nó, Replicas de Fragmento e Partições” para obter mais informações.
+  The number of LDM threads also determines the number of partitions used by an `NDB` table that is not explicitly partitioned; this is the number of LDM threads times the number of data nodes in the cluster. (If [**ndbd**](mysql-cluster-programs-ndbd.html "21.5.1 ndbd — The NDB Cluster Data Node Daemon") is used on the data nodes rather than [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)"), then there is always a single LDM thread; in this case, the number of partitions created automatically is simply equal to the number of data nodes. See [Section 21.2.2, “NDB Cluster Nodes, Node Groups, Fragment Replicas, and Partitions”](mysql-cluster-nodes-groups.html "21.2.2 NDB Cluster Nodes, Node Groups, Fragment Replicas, and Partitions"), for more information.
 
-  Adicionar grandes tabelaspaces para tabelas de Dados de Disco ao usar mais do que o número padrão de threads do LDM pode causar problemas com o uso de recursos e CPU se o buffer de página de disco for insuficientemente grande; consulte a descrição do parâmetro de configuração `DiskPageBufferMemory` para obter mais informações.
+  Adding large tablespaces for Disk Data tables when using more than the default number of LDM threads may cause issues with resource and CPU usage if the disk page buffer is insufficiently large; see the description of the [`DiskPageBufferMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-diskpagebuffermemory) configuration parameter, for more information.
 
-  Os tipos de thread são descritos mais adiante nesta seção (consulte `ThreadConfig`).
+  The thread types are described later in this section (see [`ThreadConfig`](mysql-cluster-ndbd-definition.html#ndbparam-ndbmtd-threadconfig)).
 
-  Definir este parâmetro fora do intervalo de valores permitido faz com que o servidor de gerenciamento abordem no início com o erro Erro linha *`número`*: Valor ilegal *`valor`* para o parâmetro MaxNoOfExecutionThreads.
+  Setting this parameter outside the permitted range of values causes the management server to abort on startup with the error Error line *`number`*: Illegal value *`value`* for parameter MaxNoOfExecutionThreads.
 
-  Para `MaxNoOfExecutionThreads`, um valor de 0 ou 1 é arredondado para cima internamente por `NDB` para 2, de modo que 2 seja considerado o valor padrão e mínimo deste parâmetro.
+  For `MaxNoOfExecutionThreads`, a value of 0 or 1 is rounded up internally by [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") to 2, so that 2 is considered this parameter's default and minimum value.
 
-  O `MaxNoOfExecutionThreads` é geralmente destinado a ser definido igual ao número de threads da CPU disponíveis e a alocar um número de threads de cada tipo adequado para cargas de trabalho típicas. Ele não atribui threads específicos a CPUs especificadas. Para casos em que seja desejável variar das configurações fornecidas ou vincular threads a CPUs, você deve usar `ThreadConfig` em vez disso, que permite que você aloque cada thread diretamente a um tipo desejado, CPU ou ambos.
+  `MaxNoOfExecutionThreads` is generally intended to be set equal to the number of CPU threads available, and to allocate a number of threads of each type suitable to typical workloads. It does not assign particular threads to specified CPUs. For cases where it is desirable to vary from the settings provided, or to bind threads to CPUs, you should use [`ThreadConfig`](mysql-cluster-ndbd-definition.html#ndbparam-ndbmtd-threadconfig) instead, which allows you to allocate each thread directly to a desired type, CPU, or both.
 
-  O processo do nó de dados multithread sempre gera, no mínimo, os seguintes threads:
+  The multithreaded data node process always spawns, at a minimum, the threads listed here:
 
-  - 1 thread de manipulador de consulta local (LDM)
-  - 1 thread de recebimento
-  - 1 thread de gerenciador de assinaturas (SUMA ou replicação)
+  + 1 local query handler (LDM) thread
+  + 1 receive thread
+  + 1 subscription manager (SUMA or replication) thread
 
-  Para um valor de `MaxNoOfExecutionThreads` de 8 ou menos, nenhuma thread TC é criada, e o gerenciamento do TC é realizado pela thread principal.
+  For a `MaxNoOfExecutionThreads` value of 8 or less, no TC threads are created, and TC handling is instead performed by the main thread.
 
-  Antes da versão 7.6 do NDB, alterar o número de threads LDM sempre requer um reinício do sistema, seja alterado usando este parâmetro ou `ThreadConfig`. Na versão 7.6 e em versões posteriores, é possível efetuar a alteração usando um reinício inicial do nó (*NI*) desde que as seguintes condições sejam atendidas:
+  Prior to NDB 7.6, changing the number of LDM threads always requires a system restart, whether it is changed using this parameter or [`ThreadConfig`](mysql-cluster-ndbd-definition.html#ndbparam-ndbmtd-threadconfig). In NDB 7.6 and later it is possible to effect the change using a node initial restart (*NI*) provided the following conditions are met:
 
-  - Se, após a mudança, o número de threads do LDM permanecer o mesmo que antes, nada mais é necessário do que um simples reinício do nó (reinício em rolagem, ou *N*) para implementar a mudança.
+  + If, following the change, the number of LDM threads remains the same as before, nothing more than a simple node restart (rolling restart, or *N*) is required to implement the change.
 
-  - Caso contrário (ou seja, se o número de threads do LDM mudar), ainda é possível efetuar a alteração usando um reinício inicial do nó (*NI*) desde que as duas condições a seguir sejam atendidas:
+  + Otherwise (that is, if the number of LDM threads changes), it is still possible to effect the change using a node initial restart (*NI*) provided the following two conditions are met:
 
-    1. Cada thread LDM lida com um máximo de 8 fragmentos, e
+    1. Each LDM thread handles a maximum of 8 fragments, and
 
-    2. O número total de fragmentos de tabela é um múltiplo inteiro do número de threads LDM.
+    2. The total number of table fragments is an integer multiple of the number of LDM threads.
 
-  Antes da versão 7.6 do NDB, se o uso do `IndexMemory` do clúster for maior que 50%, alterar isso requer um reinício inicial do clúster. (Nesse caso, é recomendado um uso máximo de 30-35% do `IndexMemory`.) Caso contrário, o uso de recursos e a alocação de threads do LDM não podem ser equilibrados entre os nós, o que pode resultar em threads LDM subutilizadas e superutilizadas e, no final, falhas nos nós de dados. Na versão 7.6 e em versões posteriores do NDB, um reinício inicial *não* é necessário para efetuar uma alteração neste parâmetro.
+  Prior to NDB 7.6, if the cluster's [`IndexMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexmemory) usage is greater than 50%, changing this requires an initial restart of the cluster. (A maximum of 30-35% `IndexMemory` usage is recommended in such cases.) Otherwise, resource usage and LDM thread allocation cannot be balanced between nodes, which can result in underutilized and overutilized LDM threads, and ultimately data node failures. In NDB 7.6 and later, an initial restart is *not* required to effect a change in this parameter.
 
-- `MaxSendDelay`
+* `MaxSendDelay`
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Esse parâmetro pode ser usado para fazer com que os nós de dados esperem momentaneamente antes de enviar dados para os nós da API; em algumas circunstâncias, descritas nos parágrafos seguintes, isso pode resultar em uma transmissão mais eficiente de volumes maiores de dados e em um desempenho geral maior.
+  This parameter can be used to cause data nodes to wait momentarily before sending data to API nodes; in some circumstances, described in the following paragraphs, this can result in more efficient sending of larger volumes of data and higher overall throughput.
 
-  `MaxSendDelay` pode ser útil quando há muitos nós da API no ponto de saturação ou próximo a ele, o que pode resultar em ondas de desempenho crescente e decrescente. Isso ocorre quando os nós de dados conseguem enviar resultados de volta aos nós da API de forma relativamente rápida, com muitos pacotes pequenos a serem processados, o que pode levar mais tempo para ser processado por byte em comparação com pacotes grandes, desacelerando assim os nós da API; mais tarde, os nós de dados começam a enviar pacotes maiores novamente.
+  `MaxSendDelay` can be useful when there are a great many API nodes at saturation point or close to it, which can result in waves of increasing and decreasing performance. This occurs when the data nodes are able to send results back to the API nodes relatively quickly, with many small packets to process, which can take longer to process per byte compared to large packets, thus slowing down the API nodes; later, the data nodes start sending larger packets again.
 
-  Para lidar com esse tipo de cenário, você pode definir `MaxSendDelay` para um valor não nulo, o que ajuda a garantir que as respostas não sejam enviadas de volta aos nós da API tão rapidamente. Quando isso é feito, as respostas são enviadas imediatamente quando não há outro tráfego concorrente, mas quando há, definir `MaxSendDelay` faz com que os nós de dados esperem o tempo suficiente para garantir que enviem pacotes maiores. Na verdade, isso introduz um gargalo artificial no processo de envio, o que pode melhorar significativamente o desempenho.
+  To handle this type of scenario, you can set `MaxSendDelay` to a nonzero value, which helps to ensure that responses are not sent back to the API nodes so quickly. When this is done, responses are sent immediately when there is no other competing traffic, but when there is, setting `MaxSendDelay` causes the data nodes to wait long enough to ensure that they send larger packets. In effect, this introduces an artificial bottleneck into the send process, which can actually improve throughput significantly.
 
-- `NoOfFragmentLogParts`
+* `NoOfFragmentLogParts`
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Defina o número de grupos de arquivos de registro para logs de recuperação pertencentes a este **ndbmtd**. O valor deste parâmetro deve ser igual ao número de threads LDM usadas por **ndbmtd**, conforme determinado pelo ajuste para `MaxNoOfExecutionThreads`. A partir do NDB 7.5.7, uma configuração com mais de 4 partes de log de recuperação por LDM é desativada. (Bug #25333414)
+  Set the number of log file groups for redo logs belonging to this [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)"). The value of this parameter should be set equal to the number of LDM threads used by [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") as determined by the setting for [`MaxNoOfExecutionThreads`](mysql-cluster-ndbd-definition.html#ndbparam-ndbmtd-maxnoofexecutionthreads). Beginning with NDB 7.5.7, a configuration using more than 4 redo log parts per LDM is disallowed. (Bug #25333414)
 
-  Consulte a descrição de `MaxNoOfExecutionThreads` para obter mais informações.
+  See the description of [`MaxNoOfExecutionThreads`](mysql-cluster-ndbd-definition.html#ndbparam-ndbmtd-maxnoofexecutionthreads) for more information.
 
-- `ThreadConfig`
+* `ThreadConfig`
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro é usado com **ndbmtd** para atribuir threads de diferentes tipos a diferentes CPUs. Seu valor é uma string cujo formato tem a seguinte sintaxe:
+  This parameter is used with [**ndbmtd**](mysql-cluster-programs-ndbmtd.html "21.5.3 ndbmtd — The NDB Cluster Data Node Daemon (Multi-Threaded)") to assign threads of different types to different CPUs. Its value is a string whose format has the following syntax:
 
   ```sql
   ThreadConfig := entry[,entry[,...
@@ -1542,135 +1541,135 @@ Para utilizar esses parâmetros, o processo do nó de dados deve ser executado c
     | cpuset_exclusive=cpu_list
   ```
 
-  As chaves curvas (`{`...`}`) que cercam a lista de parâmetros são necessárias, mesmo que haja apenas um parâmetro na lista.
+  The curly braces (`{`...`}`) surrounding the list of parameters are required, even if there is only one parameter in the list.
 
-  Um *`param`* (parâmetro) especifica qualquer ou todas as seguintes informações:
+  A *`param`* (parameter) specifies any or all of the following information:
 
-  - O número de threads do tipo dado (`count`).
+  + The number of threads of the given type (`count`).
 
-  - O conjunto de CPUs a que os threads do tipo especificado devem ser vinculados de forma não exclusiva. Isso é determinado por `cpubind` ou `cpuset`). `cpubind` faz com que cada thread seja vinculada (de forma não exclusiva) a uma CPU no conjunto; `cpuset` significa que cada thread é vinculada (de forma não exclusiva) ao conjunto de CPUs especificadas.
+  + The set of CPUs to which the threads of the given type are to be nonexclusively bound. This is determined by either one of `cpubind` or `cpuset`). `cpubind` causes each thread to be bound (nonexclusively) to a CPU in the set; `cpuset` means that each thread is bound (nonexclusively) to the set of CPUs specified.
 
-    No Solaris, você pode, em vez disso, especificar um conjunto de CPUs para o qual os threads do tipo dado devem ser vinculados exclusivamente. `cpubind_exclusive` faz com que cada thread seja vinculada exclusivamente a uma CPU do conjunto; `cpuset_exclusive` significa que cada thread é vinculada exclusivamente ao conjunto de CPUs especificadas.
+    On Solaris, you can instead specify a set of CPUs to which the threads of the given type are to be bound exclusively. `cpubind_exclusive` causes each thread to be bound exclusively to a CPU in the set; `cpuset_exclsuive` means that each thread is bound exclusively to the set of CPUs specified.
 
-    Apenas um dos comandos `cpubind`, `cpuset`, `cpubind_exclusive` ou `cpuset_exclusive` pode ser fornecido em uma única configuração.
+    Only one of `cpubind`, `cpuset`, `cpubind_exclusive`, or `cpuset_exclusive` can be provided in a single configuration.
 
-  - `spintime` determina o tempo de espera em microsegundos que a thread gasta girando antes de entrar em modo de espera.
+  + `spintime` determines the wait time in microseconds the thread spins before going to sleep.
 
-    O valor padrão para `spintime` é o valor do parâmetro de configuração do nó de dados `SchedulerSpinTimer`.
+    The default value for `spintime` is the value of the [`SchedulerSpinTimer`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-schedulerspintimer) data node configuration parameter.
 
-    O `spintime` não se aplica a threads de E/S, watchdog ou threads de construção de índice offline, portanto, não pode ser definido para esses tipos de threads.
+    `spintime` does not apply to I/O threads, watchdog, or offline index build threads, and so cannot be set for these thread types.
 
-  - `realtime` pode ser definido como 0 ou 1. Se definido como 1, os threads são executados com prioridade em tempo real. Isso também significa que `thread_prio` não pode ser definido.
+  + `realtime` can be set to 0 or 1. If it is set to 1, the threads run with real-time priority. This also means that `thread_prio` cannot be set.
 
-    O parâmetro `realtime` é definido por padrão para o valor do parâmetro de configuração do nó de dados do `RealtimeScheduler` ([mysql-cluster-ndbd-definition.html#ndbparam-ndb-realtimescheduler]).
+    The `realtime` parameter is set by default to the value of the [`RealtimeScheduler`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-realtimescheduler) data node configuration parameter.
 
-    `realtime` não pode ser definido para threads de construção de índice offline.
+    `realtime` cannot be set for offline index build threads.
 
-  - Ao definir `nosend` para 1, você pode impedir que um thread `main`, `ldm`, `rep` ou `tc` ajude os fios de envio. Esse parâmetro é 0 por padrão e não pode ser usado com outros tipos de fios.
+  + By setting `nosend` to 1, you can prevent a `main`, `ldm`, `rep`, or `tc` thread from assisting the send threads. This parameter is 0 by default, and cannot be used with other types of threads.
 
-  - `thread_prio` é um nível de prioridade de thread que pode ser definido de 0 a 10, sendo 10 a maior prioridade. O padrão é 5. Os efeitos precisos deste parâmetro são específicos da plataforma e são descritos mais adiante nesta seção.
+  + `thread_prio` is a thread priority level that can be set from 0 to 10, with 10 representing the greatest priority. The default is 5. The precise effects of this parameter are platform-specific, and are described later in this section.
 
-    O nível de prioridade do thread não pode ser definido para os fios de construção de índice offline.
+    The thread priority level cannot be set for offline index build threads.
 
-  **Configurações e efeitos de `thread_prio` por plataforma.** A implementação de `thread_prio` difere entre Linux/FreeBSD, Solaris e Windows. Na lista a seguir, discutimos seus efeitos em cada uma dessas plataformas, uma após a outra:
+  **thread_prio settings and effects by platform.** The implementation of `thread_prio` differs between Linux/FreeBSD, Solaris, and Windows. In the following list, we discuss its effects on each of these platforms in turn:
 
-  - *Linux e FreeBSD*: Mapeamos `thread_prio` para um valor a ser fornecido à chamada de sistema `nice`. Como um valor de niceness menor para um processo indica uma prioridade de processo maior, aumentar `thread_prio` tem o efeito de diminuir o valor `nice`.
+  + *Linux and FreeBSD*: We map `thread_prio` to a value to be supplied to the `nice` system call. Since a lower niceness value for a process indicates a higher process priority, increasing `thread_prio` has the effect of lowering the `nice` value.
 
-    **Tabela 21.12: Mapeamento de thread_prio para valores nice no Linux e FreeBSD**
+    **Table 21.12 Mapping of thread_prio to nice values on Linux and FreeBSD**
 
-    <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+    <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-    Alguns sistemas operacionais podem permitir um nível máximo de gentileza do processo de 20, mas isso não é suportado por todas as versões visadas; por essa razão, escolhemos 19 como o valor máximo de `nice` que pode ser definido.
+    Some operating systems may provide for a maximum process niceness level of 20, but this is not supported by all targeted versions; for this reason, we choose 19 as the maximum `nice` value that can be set.
 
-  - *Solaris*: Definir `thread_prio` em Solaris define a prioridade do Solaris FX, com mapeamentos conforme mostrado na tabela a seguir:
+  + *Solaris*: Setting `thread_prio` on Solaris sets the Solaris FX priority, with mappings as shown in the following table:
 
-    **Tabela 21.13 Mapeamento de thread_prio para prioridade FX no Solaris**
+    **Table 21.13 Mapping of thread_prio to FX priority on Solaris**
 
-    <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+    <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-    Um ajuste de `thread_prio` de 9 é mapeado no Solaris para o valor de prioridade especial FX 59, o que significa que o sistema operacional também tenta forçar o thread a rodar sozinho em seu próprio núcleo de CPU.
+    A `thread_prio` setting of 9 is mapped on Solaris to the special FX priority value 59, which means that the operating system also attempts to force the thread to run alone on its own CPU core.
 
-  - *Windows*: Mapeamos `thread_prio` para um valor de prioridade de thread do Windows passado para a função `SetThreadPriority()` da API do Windows. Esse mapeamento é mostrado na tabela a seguir:
+  + *Windows*: We map `thread_prio` to a Windows thread priority value passed to the Windows API `SetThreadPriority()` function. This mapping is shown in the following table:
 
-    **Tabela 21.14 Mapeamento de thread_prio para prioridade de thread do Windows**
+    **Table 21.14 Mapping of thread_prio to Windows thread priority**
 
-    <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+    <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  O atributo *`type`* representa um tipo de thread do NDB. Os tipos de thread suportados e a faixa de valores permitidos para `count` para cada um deles estão fornecidos na lista a seguir:
+  The *`type`* attribute represents an NDB thread type. The thread types supported, and the range of permitted `count` values for each, are provided in the following list:
 
-  - `ldm`: Manipulador de consulta local (`DBLQH` bloco do kernel) que lida com os dados. Quanto mais threads LDM forem usadas, mais altamente particionadas serão as informações. Cada thread LDM mantém seus próprios conjuntos de dados e particionamentos de índice, além de seu próprio log de refazer. O valor definido para `ldm` deve ser um dos valores 1, 2, 4, 6, 8, 12, 16, 24 ou 32.
+  + `ldm`: Local query handler ([`DBLQH`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dblqh.html) kernel block) that handles data. The more LDM threads that are used, the more highly partitioned the data becomes. Each LDM thread maintains its own sets of data and index partitions, as well as its own redo log. The value set for `ldm` must be one of the values 1, 2, 4, 6, 8, 12, 16, 24, or 32.
 
-    Alterar o número de threads do LDM normalmente requer um reinício inicial do sistema para ser eficaz e seguro para as operações do clúster. Esse requisito é relaxado no NDB 7.6, conforme explicado mais adiante nesta seção. (Isso também é verdadeiro quando isso é feito usando `MaxNoOfExecutionThreads`.) *NDB 7.5 e versões anteriores*: Se o uso de `IndexMemory` exceder 50%, é necessário um reinício inicial do clúster; recomenda-se um uso máximo de 30-35% de `IndexMemory` nesses casos. Caso contrário, a alocação de memória e threads do LDM não pode ser equilibrada entre os nós, o que pode, em última análise, levar a falhas nos nós de dados.
+    Changing the number of LDM threads normally requires an initial system restart to be effective and safe for cluster operations. This requirement is relaxed in NDB 7.6, as explained later in this section. (This is also true when this is done using [`MaxNoOfExecutionThreads`](mysql-cluster-ndbd-definition.html#ndbparam-ndbmtd-maxnoofexecutionthreads).) *NDB 7.5 and earlier*: If [`IndexMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexmemory) usage is in excess of 50%, an initial restart of the cluster is required; a maximum of 30-35% `IndexMemory` usage is recommended in such cases. Otherwise, allocation of memory and LDM threads cannot be balanced between nodes, which can ultimately lead to data node failures.
 
-    Adicionar grandes tabelaspaces (centenas de gigabytes ou mais) para tabelas de Dados de Disco quando se usa mais do número padrão de LDMs pode causar problemas com o uso de recursos e CPU se `DiskPageBufferMemory` não for suficientemente grande.
+    Adding large tablespaces (hundreds of gigabytes or more) for Disk Data tables when using more than the default number of LDMs may cause issues with resource and CPU usage if [`DiskPageBufferMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-diskpagebuffermemory) is not sufficiently large.
 
-  - `tc`: Fio do coordenador de transação (`DBTC` bloco do kernel) que contém o estado de uma transação em andamento. O número máximo de fios TC é de 32.
+  + `tc`: Transaction coordinator thread ([`DBTC`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbtc.html) kernel block) containing the state of an ongoing transaction. The maximum number of TC threads is 32.
 
-    Idealmente, cada nova transação pode ser atribuída a um novo thread TC. Na maioria dos casos, 1 thread TC por 2 fios LDM é suficiente para garantir que isso possa acontecer. Em casos em que o número de escritas é relativamente pequeno em comparação com o número de leituras, pode ser necessário apenas 1 thread TC por 4 fios LQH para manter os estados das transações. Por outro lado, em aplicações que realizam muitas atualizações, pode ser necessário que a proporção de fios TC para fios LDM se aproxime de 1 (por exemplo, 3 fios TC para 4 fios LDM).
+    Optimally, every new transaction can be assigned to a new TC thread. In most cases 1 TC thread per 2 LDM threads is sufficient to guarantee that this can happen. In cases where the number of writes is relatively small when compared to the number of reads, it is possible that only 1 TC thread per 4 LQH threads is required to maintain transaction states. Conversely, in applications that perform a great many updates, it may be necessary for the ratio of TC threads to LDM threads to approach 1 (for example, 3 TC threads to 4 LDM threads).
 
-    Definir `tc` para 0 faz com que o gerenciamento de TC seja feito pela thread principal. Na maioria dos casos, isso é praticamente o mesmo que definir para 1.
+    Setting `tc` to 0 causes TC handling to be done by the main thread. In most cases, this is effectively the same as setting it to 1.
 
-    Faixa: 0 - 32
+    Range: 0 - 32
 
-  - `main`: Dicionário de dados e blocos do kernel `DBTC` e `DBDIH` (`DBDIH` e `DBTC`), que fornecem gerenciamento de esquema. Isso é sempre gerenciado por um único thread dedicado.
+  + `main`: Data dictionary and transaction coordinator ([`DBDIH`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbdih.html) and [`DBTC`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-dbtc.html) kernel blocks), providing schema management. This is always handled by a single dedicated thread.
 
-    Alcance: apenas 1.
+    Range: 1 only.
 
-  - `recv`: Thread de recebimento (`CMVMI` bloco do kernel). Cada thread de recebimento lida com um ou mais sockets para se comunicar com outros nós em um NDB Cluster, com um socket por nó. O NDB Cluster suporta múltiplas threads de recebimento; o máximo é de 16 dessas threads.
+  + `recv`: Receive thread ([`CMVMI`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-cmvmi.html) kernel block). Each receive thread handles one or more sockets for communicating with other nodes in an NDB Cluster, with one socket per node. NDB Cluster supports multiple receive threads; the maximum is 16 such threads.
 
-    Faixa: 1 - 16
+    Range: 1 - 16
 
-  - `send`: Enviar thread (`CMVMI` bloco do kernel). Para aumentar a taxa de transferência, é possível realizar envios a partir de um ou mais threads separados e dedicados (máximo de 8).
+  + `send`: Send thread ([`CMVMI`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-cmvmi.html) kernel block). To increase throughput, it is possible to perform sends from one or more separate, dedicated threads (maximum 8).
 
-    Anteriormente, todos os threads gerenciavam seu próprio envio diretamente; isso ainda pode ser feito configurando o número de threads de envio para 0 (isso também acontece quando `MaxNoOfExecutionThreads` é definido menor que 10). Embora isso possa ter um impacto negativo no desempenho, em alguns casos, também pode reduzir a latência.
+    Previously, all threads handled their own sending directly; this can still be made to happen by setting the number of send threads to 0 (this also happens when [`MaxNoOfExecutionThreads`](mysql-cluster-ndbd-definition.html#ndbparam-ndbmtd-maxnoofexecutionthreads) is set less than 10). While doing so can have an adeverse impact on throughput, it can also in some cases provide decreased latency.
 
-    Faixa: 0 - 16
+    Range: 0 - 16
 
-  - `rep`: Fundo de replicação (`SUMA` bloco do kernel `SUMA`). As operações de replicação assíncronas são sempre tratadas por um único thread dedicado.
+  + `rep`: Replication thread ([`SUMA`](/doc/ndb-internals/en/ndb-internals-kernel-blocks-suma.html) kernel block). Asynchronous replication operations are always handled by a single, dedicated thread.
 
-    Alcance: apenas 1.
+    Range: 1 only.
 
-  - `io`: Sistema de arquivos e outras operações diversas. Estas não são tarefas exigentes e são sempre tratadas como um grupo por uma única thread dedicada de E/S.
+  + `io`: File system and other miscellaneous operations. These are not demanding tasks, and are always handled as a group by a single, dedicated I/O thread.
 
-    Alcance: apenas 1.
+    Range: 1 only.
 
-  - `watchdog`: Os parâmetros associados a este tipo são aplicados a vários threads, cada um com um uso específico. Esses threads incluem o thread `SocketServer`, que recebe configurações de conexão de outros nós; o thread `SocketClient`, que tenta configurar conexões com outros nós; e o thread watchdog, que verifica se os threads estão progredindo.
+  + `watchdog`: Parameters settings associated with this type are actually applied to several threads, each having a specific use. These threads include the `SocketServer` thread, which receives connection setups from other nodes; the `SocketClient` thread, which attempts to set up connections to other nodes; and the thread watchdog thread that checks that threads are progressing.
 
-    Alcance: apenas 1.
+    Range: 1 only.
 
-  - `idxbld`: Threads de construção de índice offline. Ao contrário dos outros tipos de threads listados anteriormente, que são permanentes, esses são threads temporários que são criados e usados apenas durante reinicializações de nós ou sistemas ou quando executando **ndb_restore** `--rebuild-indexes`. Eles podem estar vinculados a conjuntos de CPU que se sobrepõem com conjuntos de CPU vinculados a tipos de thread permanentes.
+  + `idxbld`: Offline index build threads. Unlike the other thread types listed previously, which are permanent, these are temporary threads which are created and used only during node or system restarts, or when running [**ndb_restore**](mysql-cluster-programs-ndb-restore.html "21.5.24 ndb_restore — Restore an NDB Cluster Backup") [`--rebuild-indexes`](mysql-cluster-programs-ndb-restore.html#option_ndb_restore_rebuild-indexes). They may be bound to CPU sets which overlap with CPU sets bound to permanent thread types.
 
-    Os valores `thread_prio`, `realtime` e `spintime` não podem ser definidos para os threads de construção de índice offline. Além disso, o `count` é ignorado para esse tipo de thread.
+    `thread_prio`, `realtime`, and `spintime` values cannot be set for offline index build threads. In addition, `count` is ignored for this type of thread.
 
-    Se `idxbld` não for especificado, o comportamento padrão é o seguinte:
+    If `idxbld` is not specified, the default behavior is as follows:
 
-    - Os tópicos de construção de índice offline não são vinculados se o thread de E/S também não estiver vinculado, e esses tópicos usam quaisquer núcleos disponíveis.
+    - Offline index build threads are not bound if the I/O thread is also not bound, and these threads use any available cores.
 
-    - Se a thread de E/S estiver vinculada, então as threads de construção do índice offline estarão vinculadas ao conjunto inteiro de threads vinculadas, devido ao fato de que não deverão haver outras tarefas para essas threads realizarem.
+    - If the I/O thread is bound, then the offline index build threads are bound to the entire set of bound threads, due to the fact that there should be no other tasks for these threads to perform.
 
-    Alcance: 0 - 1.
+    Range: 0 - 1.
 
-    Este tipo de thread foi adicionado no NDB 7.6. (Bug #25835748, Bug #26928111)
+    This thread type was added in NDB 7.6. (Bug #25835748, Bug #26928111)
 
-  Antes da versão 7.6 do NDB, a alteração do `ThreadCOnfig` exigia um reinício inicial do sistema. Na versão 7.6 (e em versões posteriores), essa exigência pode ser relaxada em determinadas circunstâncias:
+  Prior to NDB 7.6, changing `ThreadCOnfig` requires a system initial restart. In NDB 7.6 (and later), this requirement can be relaxed under certain circumstances:
 
-  - Se, após a mudança, o número de threads do LDM permanecer o mesmo que antes, nada mais é necessário do que um simples reinício do nó (reinício em rolagem, ou *N*) para implementar a mudança.
+  + If, following the change, the number of LDM threads remains the same as before, nothing more than a simple node restart (rolling restart, or *N*) is required to implement the change.
 
-  - Caso contrário (ou seja, se o número de threads do LDM mudar), ainda é possível efetuar a alteração usando um reinício inicial do nó (*NI*) desde que as duas condições a seguir sejam atendidas:
+  + Otherwise (that is, if the number of LDM threads changes), it is still possible to effect the change using a node initial restart (*NI*) provided the following two conditions are met:
 
-    1. Cada thread LDM lida com um máximo de 8 fragmentos, e
+    1. Each LDM thread handles a maximum of 8 fragments, and
 
-    2. O número total de fragmentos de tabela é um múltiplo inteiro do número de threads LDM.
+    2. The total number of table fragments is an integer multiple of the number of LDM threads.
 
-  Em qualquer outro caso, é necessário reiniciar o sistema para alterar esse parâmetro.
+  In any other case, a system initial restart is needed to change this parameter.
 
-  O NDB 7.6 pode distinguir entre os tipos de rosca com base nos seguintes critérios:
+  NDB 7.6 can distinguish between thread types by both of the following criteria:
 
-  - Se o thread é um thread de execução. Fios do tipo `main`, `ldm`, `recv`, `rep`, `tc` e `send` são fios de execução; os fios `io`, `watchdog` e `idxbld` não são considerados fios de execução.
+  + Whether the thread is an execution thread. Threads of type `main`, `ldm`, `recv`, `rep`, `tc`, and `send` are execution threads; `io`, `watchdog`, and `idxbld` threads are not considered execution threads.
 
-  - Se a alocação de threads para uma tarefa específica é permanente ou temporária. Atualmente, todos os tipos de threads, exceto `idxbld`, são considerados permanentes; as threads `idxbld` são consideradas threads temporárias.
+  + Whether the allocation of threads to a given task is permanent or temporary. Currently all thread types except `idxbld` are considered permanent; `idxbld` threads are regarded as temporary threads.
 
-  Exemplos simples:
+  Simple examples:
 
   ```sql
   # Example 1.
@@ -1682,7 +1681,7 @@ Para utilizar esses parâmetros, o processo do nó de dados deve ser executado c
   Threadconfig=main={cpubind=0},ldm={count=4,cpubind=1,2,5,6},io={cpubind=3}
   ```
 
-  É geralmente desejável, ao configurar o uso de threads para um host de nó de dados, reservar um ou mais núcleos de CPU para o sistema operacional e outras tarefas. Assim, para uma máquina host com 24 CPUs, você pode querer usar 20 threads de CPU (restando 4 para outros usos), com 8 threads LDM, 4 threads TC (metade do número de threads LDM), 3 threads de envio, 3 threads de recebimento e 1 thread para cada uma das seguintes tarefas: gerenciamento de esquema, replicação assíncrona e operações de E/S. (Essa é quase a mesma distribuição de threads usada quando `MaxNoOfExecutionThreads` é definido igual a 20.) O seguinte ajuste de `ThreadConfig` realiza essas atribuições, além de vincular todos esses threads a CPUs específicas:
+  It is usually desirable when configuring thread usage for a data node host to reserve one or more number of CPUs for operating system and other tasks. Thus, for a host machine with 24 CPUs, you might want to use 20 CPU threads (leaving 4 for other uses), with 8 LDM threads, 4 TC threads (half the number of LDM threads), 3 send threads, 3 receive threads, and 1 thread each for schema management, asynchronous replication, and I/O operations. (This is almost the same distribution of threads used when [`MaxNoOfExecutionThreads`](mysql-cluster-ndbd-definition.html#ndbparam-ndbmtd-maxnoofexecutionthreads) is set equal to 20.) The following `ThreadConfig` setting performs these assignments, additionally binding all of these threads to specific CPUs:
 
   ```sql
   ThreadConfig=ldm{count=8,cpubind=1,2,3,4,5,6,7,8},main={cpubind=9},io={cpubind=9}, \
@@ -1690,9 +1689,9 @@ Para utilizar esses parâmetros, o processo do nó de dados deve ser executado c
   send{count=3,cpubind=18,19,20}
   ```
 
-  Na maioria dos casos, deve ser possível vincular o thread principal (gestão do esquema) e o thread de E/S à mesma CPU, como fizemos no exemplo que acabamos de mostrar.
+  It should be possible in most cases to bind the main (schema management) thread and the I/O thread to the same CPU, as we have done in the example just shown.
 
-  O exemplo a seguir incorpora grupos de CPUs definidos usando `cpuset` e `cpubind`, além do uso da priorização de threads.
+  The following example incorporates groups of CPUs defined using both `cpuset` and `cpubind`, as well as use of thread prioritization.
 
   ```sql
   ThreadConfig=ldm={count=4,cpuset=0-3,thread_prio=8,spintime=200}, \
@@ -1701,9 +1700,9 @@ Para utilizar esses parâmetros, o processo do nó de dados deve ser executado c
   main={count=1,cpubind=10},rep={count=1,cpubind=11}
   ```
 
-  Neste caso, criamos dois grupos LDM; o primeiro usa `cpubind` e o segundo usa `cpuset`. `thread_prio` e `spintime` são definidos com os mesmos valores para cada grupo. Isso significa que há oito threads LDM no total. (Você deve garantir que `NoOfFragmentLogParts` também esteja definido como 8.) As quatro threads TC usam apenas duas CPUs; é possível, ao usar `cpuset`, especificar menos CPUs do que threads no grupo. (Isso não é verdade para `cpubind`.) As threads de envio usam duas threads usando `cpubind` para vincular essas threads às CPUs 10 e 11. As threads principal e rep podem reutilizar essas CPUs.
+  In this case we create two LDM groups; the first uses `cpubind` and the second uses `cpuset`. `thread_prio` and `spintime` are set to the same values for each group. This means there are eight LDM threads in total. (You should ensure that [`NoOfFragmentLogParts`](mysql-cluster-ndbd-definition.html#ndbparam-ndbmtd-nooffragmentlogparts) is also set to 8.) The four TC threads use only two CPUs; it is possible when using `cpuset` to specify fewer CPUs than threads in the group. (This is not true for `cpubind`.) The send threads use two threads using `cpubind` to bind these threads to CPUs 10 and 11. The main and rep threads can reuse these CPUs.
 
-  Este exemplo mostra como `ThreadConfig` e `NoOfFragmentLogParts` podem ser configurados para um host com 24 CPUs e hyperthreading, deixando as CPUs 10, 11, 22 e 23 disponíveis para funções do sistema operacional e interrupções:
+  This example shows how `ThreadConfig` and `NoOfFragmentLogParts` might be set up for a 24-CPU host with hyperthreading, leaving CPUs 10, 11, 22, and 23 available for operating system functions and interrupts:
 
   ```sql
   NoOfFragmentLogParts=10
@@ -1713,7 +1712,7 @@ Para utilizar esses parâmetros, o processo do nó de dados deve ser executado c
   io={count=1,cpuset=9,21,thread_prio=8},watchdog={count=1,cpuset=9,21,thread_prio=9}
   ```
 
-  Os próximos exemplos incluem configurações para `idxbld`. Os dois primeiros demonstram como um conjunto de CPU definido para `idxbld` pode sobrepor-se aos especificados para outros tipos de threads (permanentes), o primeiro usando `cpuset` e o segundo usando `cpubind`:
+  The next few examples include settings for `idxbld`. The first two of these demonstrate how a CPU set defined for `idxbld` can overlap those specified for other (permanent) thread types, the first using `cpuset` and the second using `cpubind`:
 
   ```sql
   ThreadConfig=main,ldm={count=4,cpuset=1-4},tc={count=4,cpuset=5,6,7}, \
@@ -1722,103 +1721,103 @@ Para utilizar esses parâmetros, o processo do nó de dados deve ser executado c
   ThreadConfig=main,ldm={count=1,cpubind=1},idxbld={count=1,cpubind=1}
   ```
 
-  O próximo exemplo especifica uma CPU para a thread de E/S, mas não para as threads de construção do índice:
+  The next example specifies a CPU for the I/O thread, but not for the index build threads:
 
   ```sql
   ThreadConfig=main,ldm={count=4,cpuset=1-4},tc={count=4,cpuset=5,6,7}, \
   io={cpubind=8}
   ```
 
-  Como o ajuste `ThreadConfig` que acabamos de mostrar bloqueia os threads em oito núcleos numerados de 1 a 8, ele é equivalente ao ajuste mostrado aqui:
+  Since the `ThreadConfig` setting just shown locks threads to eight cores numbered 1 through 8, it is equivalent to the setting shown here:
 
   ```sql
   ThreadConfig=main,ldm={count=4,cpuset=1-4},tc={count=4,cpuset=5,6,7}, \
   io={cpubind=8},idxbld={cpuset=1,2,3,4,5,6,7,8}
   ```
 
-  Para aproveitar a maior estabilidade que o uso do `ThreadConfig` oferece, é necessário garantir que as CPUs estejam isoladas e não sejam sujeitas a interrupções ou a serem agendadas para outras tarefas pelo sistema operacional. Em muitos sistemas Linux, você pode fazer isso configurando `IRQBALANCE_BANNED_CPUS` em `/etc/sysconfig/irqbalance` para `0xFFFFF0` e usando a opção de inicialização `isolcpus` em `grub.conf`. Para informações específicas, consulte a documentação do seu sistema operacional ou plataforma.
+  In order to take advantage of the enhanced stability that the use of `ThreadConfig` offers, it is necessary to insure that CPUs are isolated, and that they not subject to interrupts, or to being scheduled for other tasks by the operating system. On many Linux systems, you can do this by setting `IRQBALANCE_BANNED_CPUS` in `/etc/sysconfig/irqbalance` to `0xFFFFF0`, and by using the `isolcpus` boot option in `grub.conf`. For specific information, see your operating system or platform documentation.
 
-**Parâmetros de configuração de dados de disco.** Os parâmetros de configuração que afetam o comportamento dos dados de disco incluem os seguintes:
+**Disk Data Configuration Parameters.** Configuration parameters affecting Disk Data behavior include the following:
 
-- `DiskPageBufferEntries`
+* [`DiskPageBufferEntries`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-diskpagebufferentries)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este é o número de entradas de página (referências de página) a serem alocadas. É especificado como um número de 32K páginas em `DiskPageBufferMemory`. O valor padrão é suficiente para a maioria dos casos, mas você pode precisar aumentar o valor deste parâmetro se encontrar problemas com transações muito grandes em tabelas de Dados de Disco. Cada entrada de página requer aproximadamente 100 bytes.
+  This is the number of page entries (page references) to allocate. It is specified as a number of 32K pages in [`DiskPageBufferMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-diskpagebuffermemory). The default is sufficient for most cases but you may need to increase the value of this parameter if you encounter problems with very large transactions on Disk Data tables. Each page entry requires approximately 100 bytes.
 
-- `DiskPageBufferMemory`
+* [`DiskPageBufferMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-diskpagebuffermemory)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Isso determina a quantidade de espaço usado para armazenar páginas no disco, e é definido na seção `[ndbd]` ou `[ndbd default]` do arquivo `config.ini`. É medido em bytes. Cada página ocupa 32 KB. Isso significa que o armazenamento de dados do NDB Cluster Disk Data sempre usa *`N`* \* 32 KB de memória, onde *`N`* é um inteiro não negativo.
+  This determines the amount of space used for caching pages on disk, and is set in the `[ndbd]` or `[ndbd default]` section of the `config.ini` file. It is measured in bytes. Each page takes up 32 KB. This means that NDB Cluster Disk Data storage always uses *`N`* \* 32 KB memory where *`N`* is some nonnegative integer.
 
-  O valor padrão para este parâmetro é `64M` (2000 páginas de 32 KB cada).
+  The default value for this parameter is `64M` (2000 pages of 32 KB each).
 
-  Se o valor para `DiskPageBufferMemory` for definido muito baixo em conjunto com o uso de mais do número padrão de threads do LDM em `ThreadConfig` (por exemplo, `{ldm=6...}`), problemas podem surgir ao tentar adicionar um arquivo de dados grande (por exemplo, 500G) a uma tabela `NDB` baseada em disco, onde o processo leva um tempo indefinidamente longo, ocupando um dos núcleos da CPU.
+  If the value for `DiskPageBufferMemory` is set too low in conjunction with using more than the default number of LDM threads in [`ThreadConfig`](mysql-cluster-ndbd-definition.html#ndbparam-ndbmtd-threadconfig) (for example `{ldm=6...}`), problems can arise when trying to add a large (for example 500G) data file to a disk-based `NDB` table, wherein the process takes indefinitely long while occupying one of the CPU cores.
 
-  Isso ocorre porque, ao adicionar um arquivo de dados a um espaço de tabelas, as páginas de extensão são bloqueadas na memória em um thread de trabalhador PGMAN adicional, para acesso rápido aos metadados. Ao adicionar um arquivo grande, esse trabalhador tem memória insuficiente para todos os metadados do arquivo de dados. Nesses casos, você deve aumentar `DiskPageBufferMemory` ou adicionar arquivos de espaço de tabelas menores. Você também pode precisar ajustar `DiskPageBufferEntries`.
+  This is due to the fact that, as part of adding a data file to a tablespace, extent pages are locked into memory in an extra PGMAN worker thread, for quick metadata access. When adding a large file, this worker has insufficient memory for all of the data file metadata. In such cases, you should either increase `DiskPageBufferMemory`, or add smaller tablespace files. You may also need to adjust [`DiskPageBufferEntries`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-diskpagebufferentries).
 
-  Você pode consultar a tabela `ndbinfo.diskpagebuffer` para ajudar a determinar se o valor desse parâmetro deve ser aumentado para minimizar buscas desnecessárias no disco. Consulte Seção 21.6.15.20, “A tabela ndbinfo diskpagebuffer” para obter mais informações.
+  You can query the [`ndbinfo.diskpagebuffer`](mysql-cluster-ndbinfo-diskpagebuffer.html "21.6.15.20 The ndbinfo diskpagebuffer Table") table to help determine whether the value for this parameter should be increased to minimize unnecessary disk seeks. See [Section 21.6.15.20, “The ndbinfo diskpagebuffer Table”](mysql-cluster-ndbinfo-diskpagebuffer.html "21.6.15.20 The ndbinfo diskpagebuffer Table"), for more information.
 
-- `SharedGlobalMemory`
+* [`SharedGlobalMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-sharedglobalmemory)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro determina a quantidade de memória utilizada para buffers de log, operações de disco (como solicitações de páginas e filas de espera) e metadados para espaços de tabela, grupos de arquivos de log, arquivos `UNDO` e arquivos de dados. O pool de memória global compartilhada também fornece a memória utilizada para atender aos requisitos de memória da opção `UNDO_BUFFER_SIZE` usada com as instruções `CREATE LOGFILE GROUP` e `ALTER LOGFILE GROUP`, incluindo qualquer valor padrão implícito para essa opção pela configuração do parâmetro de configuração do nó de dados `InitialLogFileGroup` (mysql-cluster-ndbd-definition.html#ndbparam-ndb-initiallogfilegroup). `SharedGlobalMemory` pode ser definido na seção `[ndbd]` ou `[ndbd default]` do arquivo de configuração `config.ini` e é medido em bytes.
+  This parameter determines the amount of memory that is used for log buffers, disk operations (such as page requests and wait queues), and metadata for tablespaces, log file groups, `UNDO` files, and data files. The shared global memory pool also provides memory used for satisfying the memory requirements of the `UNDO_BUFFER_SIZE` option used with [`CREATE LOGFILE GROUP`](create-logfile-group.html "13.1.15 CREATE LOGFILE GROUP Statement") and [`ALTER LOGFILE GROUP`](alter-logfile-group.html "13.1.5 ALTER LOGFILE GROUP Statement") statements, including any default value implied for this options by the setting of the [`InitialLogFileGroup`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-initiallogfilegroup) data node configuration parameter. `SharedGlobalMemory` can be set in the `[ndbd]` or `[ndbd default]` section of the `config.ini` configuration file, and is measured in bytes.
 
-  O valor padrão é `128M`.
+  The default value is `128M`.
 
-- `DiskIOThreadPool`
+* [`DiskIOThreadPool`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-diskiothreadpool)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro determina o número de threads não associadas usadas para o acesso ao arquivo de dados do disco. Antes de o `DiskIOThreadPool` ter sido introduzido, exatamente uma thread era gerada para cada arquivo de dados do disco, o que poderia levar a problemas de desempenho, especialmente ao usar arquivos de dados muito grandes. Com o `DiskIOThreadPool`, você pode, por exemplo, acessar um único arquivo de dados grande usando várias threads trabalhando em paralelo.
+  This parameter determines the number of unbound threads used for Disk Data file access. Before [`DiskIOThreadPool`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-diskiothreadpool) was introduced, exactly one thread was spawned for each Disk Data file, which could lead to performance issues, particularly when using very large data files. With [`DiskIOThreadPool`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-diskiothreadpool), you can—for example—access a single large data file using several threads working in parallel.
 
-  Este parâmetro aplica-se apenas às threads de E/S de dados do disco.
+  This parameter applies to Disk Data I/O threads only.
 
-  O valor ótimo para este parâmetro depende do seu hardware e da sua configuração, e inclui os seguintes fatores:
+  The optimum value for this parameter depends on your hardware and configuration, and includes these factors:
 
-  - **Distribuição física dos arquivos de dados do disco.** Você pode obter um melhor desempenho ao colocar os arquivos de dados, os arquivos de log de desfazer e o sistema de arquivos do nó de dados em discos físicos separados. Se você fizer isso com alguns ou todos esses conjuntos de arquivos, poderá definir o `DiskIOThreadPool` para um valor mais alto para permitir que os threads separados lidem com os arquivos em cada disco.
+  + **Physical distribution of Disk Data files.** You can obtain better performance by placing data files, undo log files, and the data node file system on separate physical disks. If you do this with some or all of these sets of files, then you can set [`DiskIOThreadPool`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-diskiothreadpool) higher to enable separate threads to handle the files on each disk.
 
-  - **Desempenho e tipos de disco.** O número de threads que podem ser acomodados para o manuseio de arquivos de dados de disco também depende da velocidade e do desempenho dos discos. Discos mais rápidos e maior capacidade de transferência permitem mais threads de E/S de disco. Nossos resultados de teste indicam que os discos de estado sólido podem lidar com muito mais threads de E/S de disco do que os discos convencionais, e, portanto, valores mais altos para `DiskIOThreadPool`.
+  + **Disk performance and types.** The number of threads that can be accommodated for Disk Data file handling is also dependent on the speed and throughput of the disks. Faster disks and higher throughput allow for more disk I/O threads. Our test results indicate that solid-state disk drives can handle many more disk I/O threads than conventional disks, and thus higher values for [`DiskIOThreadPool`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-diskiothreadpool).
 
-  O valor padrão para este parâmetro é 2.
+  The default value for this parameter is 2.
 
-- **Parâmetros do sistema de arquivos de dados do disco.** Os parâmetros na lista a seguir permitem que os arquivos de dados do disco do NDB Cluster sejam colocados em diretórios específicos sem a necessidade de usar links simbólicos.
+* **Disk Data file system parameters.** The parameters in the following list make it possible to place NDB Cluster Disk Data files in specific directories without the need for using symbolic links.
 
-  - `FileSystemPathDD`
+  + [`FileSystemPathDD`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-filesystempathdd)
 
-    <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+    <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-    Se este parâmetro for especificado, os arquivos de dados do NDB Cluster Disk e os arquivos de log de desfazer serão colocados no diretório indicado. Isso pode ser substituído para arquivos de dados, arquivos de log de desfazer ou ambos, especificando valores para `FileSystemPathDataFiles`, `FileSystemPathUndoFiles` ou ambos, conforme explicado para esses parâmetros. Também pode ser substituído para arquivos de dados, especificando um caminho na cláusula `ADD DATAFILE` de uma declaração `[CREATE TABLESPACE]`]\(create-tablespace.html) ou `ALTER TABLESPACE`]\(alter-tablespace.html), e para arquivos de log de desfazer, especificando um caminho na cláusula `ADD UNDOFILE` de uma declaração `[CREATE LOGFILE GROUP`]\(create-logfile-group.html) ou `ALTER LOGFILE GROUP`]\(alter-logfile-group.html). Se `FileSystemPathDD` não for especificado, então `FileSystemPath` é usado.
+    If this parameter is specified, then NDB Cluster Disk Data data files and undo log files are placed in the indicated directory. This can be overridden for data files, undo log files, or both, by specifying values for [`FileSystemPathDataFiles`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-filesystempathdatafiles), [`FileSystemPathUndoFiles`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-filesystempathundofiles), or both, as explained for these parameters. It can also be overridden for data files by specifying a path in the `ADD DATAFILE` clause of a [`CREATE TABLESPACE`](create-tablespace.html "13.1.19 CREATE TABLESPACE Statement") or [`ALTER TABLESPACE`](alter-tablespace.html "13.1.9 ALTER TABLESPACE Statement") statement, and for undo log files by specifying a path in the `ADD UNDOFILE` clause of a [`CREATE LOGFILE GROUP`](create-logfile-group.html "13.1.15 CREATE LOGFILE GROUP Statement") or [`ALTER LOGFILE GROUP`](alter-logfile-group.html "13.1.5 ALTER LOGFILE GROUP Statement") statement. If [`FileSystemPathDD`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-filesystempathdd) is not specified, then [`FileSystemPath`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-filesystempath) is used.
 
-    Se um diretório `FileSystemPathDD` for especificado para um nó de dados dado (incluindo o caso em que o parâmetro é especificado na seção `[ndbd default]` do arquivo `config.ini`), então iniciar esse nó de dados com `--initial` faz com que todos os arquivos no diretório sejam excluídos.
+    If a [`FileSystemPathDD`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-filesystempathdd) directory is specified for a given data node (including the case where the parameter is specified in the `[ndbd default]` section of the `config.ini` file), then starting that data node with `--initial` causes all files in the directory to be deleted.
 
-  - `FileSystemPathDataFiles`
+  + [`FileSystemPathDataFiles`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-filesystempathdatafiles)
 
-    <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+    <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-    Se este parâmetro for especificado, os arquivos de dados do disco do NDB Cluster serão colocados no diretório indicado. Isso substitui qualquer valor definido para `FileSystemPathDD`. Este parâmetro pode ser substituído para um arquivo de dados específico, especificando um caminho na cláusula `ADD DATAFILE` de uma declaração `CREATE TABLESPACE` ou `ALTER TABLESPACE` usada para criar esse arquivo de dados. Se `FileSystemPathDataFiles` não for especificado, então `FileSystemPathDD` será usado (ou `FileSystemPath`, se `FileSystemPathDD` também não tiver sido definido).
+    If this parameter is specified, then NDB Cluster Disk Data data files are placed in the indicated directory. This overrides any value set for [`FileSystemPathDD`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-filesystempathdd). This parameter can be overridden for a given data file by specifying a path in the `ADD DATAFILE` clause of a [`CREATE TABLESPACE`](create-tablespace.html "13.1.19 CREATE TABLESPACE Statement") or [`ALTER TABLESPACE`](alter-tablespace.html "13.1.9 ALTER TABLESPACE Statement") statement used to create that data file. If [`FileSystemPathDataFiles`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-filesystempathdatafiles) is not specified, then [`FileSystemPathDD`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-filesystempathdd) is used (or [`FileSystemPath`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-filesystempath), if [`FileSystemPathDD`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-filesystempathdd) has also not been set).
 
-    Se um diretório `FileSystemPathDataFiles` for especificado para um nó de dados dado (incluindo o caso em que o parâmetro é especificado na seção `[ndbd default]` do arquivo `config.ini`), então iniciar esse nó de dados com `--initial` faz com que todos os arquivos no diretório sejam excluídos.
+    If a [`FileSystemPathDataFiles`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-filesystempathdatafiles) directory is specified for a given data node (including the case where the parameter is specified in the `[ndbd default]` section of the `config.ini` file), then starting that data node with `--initial` causes all files in the directory to be deleted.
 
-  - `FileSystemPathUndoFiles`
+  + [`FileSystemPathUndoFiles`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-filesystempathundofiles)
 
-    <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+    <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-    Se este parâmetro for especificado, os arquivos de log de desfazer do disco do NDB Cluster serão colocados no diretório indicado. Isso substitui qualquer valor definido para `FileSystemPathDD`. Este parâmetro pode ser substituído para um arquivo de dados específico, especificando um caminho na cláusula `ADD UNDO` de uma declaração `CREATE LOGFILE GROUP` (criar grupo de arquivos de log) ou `ALTER LOGFILE GROUP` (alterar grupo de arquivos de log) usada para criar esse arquivo de dados. Se `FileSystemPathUndoFiles` não for especificado, então `FileSystemPathDD` será usado (ou `FileSystemPath`, se `FileSystemPathDD` também não tiver sido definido).
+    If this parameter is specified, then NDB Cluster Disk Data undo log files are placed in the indicated directory. This overrides any value set for [`FileSystemPathDD`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-filesystempathdd). This parameter can be overridden for a given data file by specifying a path in the `ADD UNDO` clause of a [`CREATE LOGFILE GROUP`](create-logfile-group.html "13.1.15 CREATE LOGFILE GROUP Statement") or [`ALTER LOGFILE GROUP`](alter-logfile-group.html "13.1.5 ALTER LOGFILE GROUP Statement") statement used to create that data file. If [`FileSystemPathUndoFiles`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-filesystempathundofiles) is not specified, then [`FileSystemPathDD`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-filesystempathdd) is used (or [`FileSystemPath`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-filesystempath), if [`FileSystemPathDD`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-filesystempathdd) has also not been set).
 
-    Se um diretório `FileSystemPathUndoFiles` for especificado para um nó de dados dado (incluindo o caso em que o parâmetro é especificado na seção `[ndbd default]` do arquivo `config.ini`), então iniciar esse nó de dados com `--initial` faz com que todos os arquivos no diretório sejam excluídos.
+    If a [`FileSystemPathUndoFiles`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-filesystempathundofiles) directory is specified for a given data node (including the case where the parameter is specified in the `[ndbd default]` section of the `config.ini` file), then starting that data node with `--initial` causes all files in the directory to be deleted.
 
-  Para obter mais informações, consulte Seção 21.6.11.1, “Objetos de dados de disco do cluster NDB”.
+  For more information, see [Section 21.6.11.1, “NDB Cluster Disk Data Objects”](mysql-cluster-disk-data-objects.html "21.6.11.1 NDB Cluster Disk Data Objects").
 
-- **Parâmetros de criação do objeto de dados de disco.** Os dois parâmetros seguintes permitem que, ao iniciar o clúster pela primeira vez, você crie um grupo de arquivos de log de dados de disco, um espaço de tabelas ou ambos, sem o uso de instruções SQL.
+* **Disk Data object creation parameters.** The next two parameters enable you—when starting the cluster for the first time—to cause a Disk Data log file group, tablespace, or both, to be created without the use of SQL statements.
 
-  - `InitialLogFileGroup`
+  + [`InitialLogFileGroup`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-initiallogfilegroup)
 
-    <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+    <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-    Este parâmetro pode ser usado para especificar um grupo de arquivo de registro que é criado ao realizar o início inicial do clúster. `InitialLogFileGroup` é especificado conforme mostrado aqui:
+    This parameter can be used to specify a log file group that is created when performing an initial start of the cluster. [`InitialLogFileGroup`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-initiallogfilegroup) is specified as shown here:
 
     ```sql
     InitialLogFileGroup = [name=name;] [undo_buffer_size=size;] file-specification-list
@@ -1830,15 +1829,15 @@ Para utilizar esses parâmetros, o processo do nó de dados deve ser executado c
         filename:size
     ```
 
-    O `nome` do grupo de arquivos de registro é opcional e tem como padrão `DEFAULT-LG`. O `undo_buffer_size` também é opcional; se omitido, tem como padrão `64M`. Cada *`file-specification`* corresponde a um arquivo de registro de desfazer, e pelo menos um deve ser especificado na *`file-specification-list`*. Os arquivos de registro de desfazer são colocados de acordo com quaisquer valores que tenham sido definidos para `FileSystemPath`, `FileSystemPathDD` e `FileSystemPathUndoFiles`, assim como se tivessem sido criados como resultado de uma declaração de `[CREATE LOGFILE GROUP]`]\(create-logfile-group.html) ou `[ALTER LOGFILE GROUP`]\(alter-logfile-group.html).
+    The `name` of the log file group is optional and defaults to `DEFAULT-LG`. The `undo_buffer_size` is also optional; if omitted, it defaults to `64M`. Each *`file-specification`* corresponds to an undo log file, and at least one must be specified in the *`file-specification-list`*. Undo log files are placed according to any values that have been set for [`FileSystemPath`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-filesystempath), [`FileSystemPathDD`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-filesystempathdd), and [`FileSystemPathUndoFiles`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-filesystempathundofiles), just as if they had been created as the result of a [`CREATE LOGFILE GROUP`](create-logfile-group.html "13.1.15 CREATE LOGFILE GROUP Statement") or [`ALTER LOGFILE GROUP`](alter-logfile-group.html "13.1.5 ALTER LOGFILE GROUP Statement") statement.
 
-    Considere o seguinte:
+    Consider the following:
 
     ```sql
     InitialLogFileGroup = name=LG1; undo_buffer_size=128M; undo1.log:250M; undo2.log:150M
     ```
 
-    Isso é equivalente às seguintes instruções SQL:
+    This is equivalent to the following SQL statements:
 
     ```sql
     CREATE LOGFILE GROUP LG1
@@ -1853,31 +1852,31 @@ Para utilizar esses parâmetros, o processo do nó de dados deve ser executado c
         ENGINE NDBCLUSTER;
     ```
 
-    Esse grupo de arquivos de registro é criado quando os nós de dados são iniciados com `--initial`.
+    This logfile group is created when the data nodes are started with `--initial`.
 
-    Os recursos do grupo inicial de arquivos de registro são adicionados ao pool de memória global juntamente com os indicados pelo valor de `SharedGlobalMemory`.
+    Resources for the initial log file group are added to the global memory pool along with those indicated by the value of [`SharedGlobalMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-sharedglobalmemory).
 
-    Este parâmetro, se utilizado, deve ser definido sempre na seção `[ndbd default]` do arquivo `config.ini`. O comportamento de um NDB Cluster quando diferentes valores são definidos em diferentes nós de dados não é definido.
+    This parameter, if used, should always be set in the `[ndbd default]` section of the `config.ini` file. The behavior of an NDB Cluster when different values are set on different data nodes is not defined.
 
-  - `InitialTablespace`
+  + [`InitialTablespace`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-initialtablespace)
 
-    <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+    <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-    Este parâmetro pode ser usado para especificar um espaço de dados de tabela de disco do NDB Cluster que é criado ao realizar o início inicial do cluster. `InitialTablespace` é especificado conforme mostrado aqui:
+    This parameter can be used to specify an NDB Cluster Disk Data tablespace that is created when performing an initial start of the cluster. [`InitialTablespace`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-initialtablespace) is specified as shown here:
 
     ```sql
     InitialTablespace = [name=name;] [extent_size=size;] file-specification-list
     ```
 
-    O `nome` do espaço de tabelas é opcional e tem como padrão `DEFAULT-TS`. O `extensão_tamanho` também é opcional; tem como padrão `1M`. A *`lista-especificação-de-arquivo`* usa a mesma sintaxe mostrada com o parâmetro `InitialLogfileGroup`, a única diferença sendo que cada *`especificação-arquivo`* usada com `InitialTablespace` corresponde a um arquivo de dados. Pelo menos um deve ser especificado na *`lista-especificação-de-arquivo`*. Os arquivos de dados são colocados de acordo com quaisquer valores que tenham sido definidos para `FileSystemPath`, `FileSystemPathDD` e `FileSystemPathDataFiles`, assim como se tivessem sido criados como resultado de uma declaração de `[CREATE TABLESPACE]`]\(create-tablespace.html) ou `[ALTER TABLESPACE`]\(alter-tablespace.html).
+    The `name` of the tablespace is optional and defaults to `DEFAULT-TS`. The `extent_size` is also optional; it defaults to `1M`. The *`file-specification-list`* uses the same syntax as shown with the [`InitialLogfileGroup`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-initiallogfilegroup) parameter, the only difference being that each *`file-specification`* used with [`InitialTablespace`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-initialtablespace) corresponds to a data file. At least one must be specified in the *`file-specification-list`*. Data files are placed according to any values that have been set for [`FileSystemPath`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-filesystempath), [`FileSystemPathDD`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-filesystempathdd), and [`FileSystemPathDataFiles`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-filesystempathdatafiles), just as if they had been created as the result of a [`CREATE TABLESPACE`](create-tablespace.html "13.1.19 CREATE TABLESPACE Statement") or [`ALTER TABLESPACE`](alter-tablespace.html "13.1.9 ALTER TABLESPACE Statement") statement.
 
-    Por exemplo, considere a seguinte linha que especifica `InitialTablespace` na seção `[ndbd default]` do arquivo `config.ini` (assim como `InitialLogfileGroup`, este parâmetro deve ser sempre definido na seção `[ndbd default]`, pois o comportamento de um NDB Cluster quando valores diferentes são definidos em diferentes nós de dados não é definido):
+    For example, consider the following line specifying [`InitialTablespace`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-initialtablespace) in the `[ndbd default]` section of the `config.ini` file (as with [`InitialLogfileGroup`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-initiallogfilegroup), this parameter should always be set in the `[ndbd default]` section, as the behavior of an NDB Cluster when different values are set on different data nodes is not defined):
 
     ```sql
     InitialTablespace = name=TS1; extent_size=8M; data1.dat:2G; data2.dat:4G
     ```
 
-    Isso é equivalente às seguintes instruções SQL:
+    This is equivalent to the following SQL statements:
 
     ```sql
     CREATE TABLESPACE TS1
@@ -1892,118 +1891,118 @@ Para utilizar esses parâmetros, o processo do nó de dados deve ser executado c
         ENGINE NDBCLUSTER;
     ```
 
-    Esse espaço de tabela é criado quando os nós de dados são iniciados com `--initial` e pode ser usado sempre que for criado um banco de dados NDB Cluster Disk Data posteriormente.
+    This tablespace is created when the data nodes are started with `--initial`, and can be used whenever creating NDB Cluster Disk Data tables thereafter.
 
-**Erros de dados do disco e GCP Stop.**
+**Disk Data and GCP Stop errors.**
 
-Os erros encontrados ao usar tabelas de Dados de disco, como o nó *`nodeid`*, que mataram esse nó porque foi detectado um travamento do GCP (erro 2303), são frequentemente chamados de “erros de travamento do GCP”. Esses erros ocorrem quando o log de redo não é descarregado no disco com rapidez suficiente; isso geralmente ocorre devido a discos lentos e capacidade de processamento de disco insuficiente.
+Errors encountered when using Disk Data tables such as Node *`nodeid`* killed this node because GCP stop was detected (error 2303) are often referred to as “GCP stop errors”. Such errors occur when the redo log is not flushed to disk quickly enough; this is usually due to slow disks and insufficient disk throughput.
 
-Você pode ajudar a evitar esses erros usando discos mais rápidos e colocando os arquivos de dados do disco em um disco separado do sistema de arquivos do nó de dados. Reduzir o valor de `TimeBetweenGlobalCheckpoints` tende a diminuir a quantidade de dados a serem escritos para cada ponto de verificação global, e assim pode oferecer alguma proteção contra transbordamentos do buffer do log de refazer ao tentar escrever um ponto de verificação global; no entanto, reduzir esse valor também permite menos tempo para escrever o GCP, então isso deve ser feito com cautela.
+You can help prevent these errors from occurring by using faster disks, and by placing Disk Data files on a separate disk from the data node file system. Reducing the value of [`TimeBetweenGlobalCheckpoints`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-timebetweenglobalcheckpoints) tends to decrease the amount of data to be written for each global checkpoint, and so may provide some protection against redo log buffer overflows when trying to write a global checkpoint; however, reducing this value also permits less time in which to write the GCP, so this must be done with caution.
 
-Além das considerações dadas para `DiskPageBufferMemory` conforme explicado anteriormente, também é muito importante que o parâmetro de configuração `DiskIOThreadPool` seja configurado corretamente; ter `DiskIOThreadPool` configurado muito alto é muito provável que cause erros de parada do GCP (Bug #37227).
+In addition to the considerations given for [`DiskPageBufferMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-diskpagebuffermemory) as explained previously, it is also very important that the [`DiskIOThreadPool`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-diskiothreadpool) configuration parameter be set correctly; having [`DiskIOThreadPool`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-diskiothreadpool) set too high is very likely to cause GCP stop errors (Bug #37227).
 
-As interrupções no GCP podem ser causadas por temporizadores de salvamento ou commit; o parâmetro de configuração do nó de dados `TimeBetweenEpochsTimeout` determina o temporizador para commits. No entanto, é possível desativar ambos os tipos de temporizadores ao definir este parâmetro para 0.
+GCP stops can be caused by save or commit timeouts; the [`TimeBetweenEpochsTimeout`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-timebetweenepochstimeout) data node configuration parameter determines the timeout for commits. However, it is possible to disable both types of timeouts by setting this parameter to 0.
 
-**Parâmetros para configurar a alocação de memória do buffer de envio.** A memória do buffer de envio é alocada dinamicamente de um pool de memória compartilhado entre todos os transportadores, o que significa que o tamanho do buffer de envio pode ser ajustado conforme necessário. (Anteriormente, o kernel NDB usava um buffer de envio de tamanho fixo para cada nó no clúster, que era alocado quando o nó era iniciado e não podia ser alterado enquanto o nó estivesse em execução.) Os parâmetros de configuração do nó de dados `TotalSendBufferMemory` e `OverLoadLimit` permitem a definição de limites para essa alocação de memória. Para mais informações sobre o uso desses parâmetros (assim como `SendBufferMemory`), consulte Seção 21.4.3.13, “Configurando Parâmetros do Buffer de Envio do NDB Cluster”.
+**Parameters for configuring send buffer memory allocation.** Send buffer memory is allocated dynamically from a memory pool shared between all transporters, which means that the size of the send buffer can be adjusted as necessary. (Previously, the NDB kernel used a fixed-size send buffer for every node in the cluster, which was allocated when the node started and could not be changed while the node was running.) The [`TotalSendBufferMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-totalsendbuffermemory) and [`OverLoadLimit`](mysql-cluster-tcp-definition.html#ndbparam-tcp-overloadlimit) data node configuration parameters permit the setting of limits on this memory allocation. For more information about the use of these parameters (as well as [`SendBufferMemory`](mysql-cluster-tcp-definition.html#ndbparam-tcp-sendbuffermemory)), see [Section 21.4.3.13, “Configuring NDB Cluster Send Buffer Parameters”](mysql-cluster-config-send-buffers.html "21.4.3.13 Configuring NDB Cluster Send Buffer Parameters").
 
-- `ExtraSendBufferMemory`
+* [`ExtraSendBufferMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-extrasendbuffermemory)
 
-  Este parâmetro especifica a quantidade de memória de buffer de envio do transportador a ser alocada, além de qualquer configuração feita com `TotalSendBufferMemory`, `SendBufferMemory` ou ambas.
+  This parameter specifies the amount of transporter send buffer memory to allocate in addition to any set using [`TotalSendBufferMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-totalsendbuffermemory), [`SendBufferMemory`](mysql-cluster-tcp-definition.html#ndbparam-tcp-sendbuffermemory), or both.
 
-- `TotalSendBufferMemory`
+* [`TotalSendBufferMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-totalsendbuffermemory)
 
-  Este parâmetro é usado para determinar a quantidade total de memória a ser alocada neste nó para a memória do buffer de envio compartilhado entre todos os transportadores configurados.
+  This parameter is used to determine the total amount of memory to allocate on this node for shared send buffer memory among all configured transporters.
 
-  Se este parâmetro for definido, seu valor mínimo permitido é de 256 KB; 0 indica que o parâmetro não foi definido. Para obter informações mais detalhadas, consulte Seção 21.4.3.13, “Configurando Parâmetros de Buffer de Envio do NDB Cluster”.
+  If this parameter is set, its minimum permitted value is 256KB; 0 indicates that the parameter has not been set. For more detailed information, see [Section 21.4.3.13, “Configuring NDB Cluster Send Buffer Parameters”](mysql-cluster-config-send-buffers.html "21.4.3.13 Configuring NDB Cluster Send Buffer Parameters").
 
-Veja também Seção 21.6.7, “Adicionar nós de dados do NDB Cluster Online”.
+See also [Section 21.6.7, “Adding NDB Cluster Data Nodes Online”](mysql-cluster-online-add-node.html "21.6.7 Adding NDB Cluster Data Nodes Online").
 
-**Tratamento de super-compromissos no log de refazer.** É possível controlar o tratamento de operações de um nó de dados quando muito tempo é gasto para limpar os logs de refazer no disco. Isso ocorre quando uma limpeza de log de refazer específico leva mais de [`RedoOverCommitLimit`]\(mysql-cluster-ndbd-definition.html#ndbparam-ndbd-redoovercommitlimit] segundos, mais de [`RedoOverCommitCounter`]\(mysql-cluster-ndbd-definition.html#ndbparam-ndbd-redoovercommitcounter] vezes, fazendo com que quaisquer transações pendentes sejam abortadas. Quando isso acontece, o nó da API que enviou a transação pode lidar com as operações que deveriam ter sido comprometidas, agilizando as operações e tentando novamente, ou abortando-as, conforme determinado por [`DefaultOperationRedoProblemAction`]\(mysql-cluster-api-definition.html#ndbparam-api-defaultoperationredoproblemaction]. Os parâmetros de configuração do nó de dados para definir o tempo de espera e o número de vezes que ele pode ser excedido antes que o nó da API tome essa ação são descritos na lista a seguir:
+**Redo log over-commit handling.** It is possible to control a data node's handling of operations when too much time is taken flushing redo logs to disk. This occurs when a given redo log flush takes longer than [`RedoOverCommitLimit`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-redoovercommitlimit) seconds, more than [`RedoOverCommitCounter`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-redoovercommitcounter) times, causing any pending transactions to be aborted. When this happens, the API node that sent the transaction can handle the operations that should have been committed either by queuing the operations and re-trying them, or by aborting them, as determined by [`DefaultOperationRedoProblemAction`](mysql-cluster-api-definition.html#ndbparam-api-defaultoperationredoproblemaction). The data node configuration parameters for setting the timeout and number of times it may be exceeded before the API node takes this action are described in the following list:
 
-- `RedoOverCommitCounter`
+* [`RedoOverCommitCounter`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-redoovercommitcounter)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Quando o limite de recomeçar o commit (`RedoOverCommitLimit`) é excedido ao tentar escrever um log de recomeçar em disco quantas vezes for necessário, quaisquer transações que não foram concluídas como resultado são abortadas, e um nó da API que originou qualquer uma dessas transações gerencia as operações que compõem essas transações de acordo com seu valor para `DefaultOperationRedoProblemAction` (`mysql-cluster-api-definition.html#ndbparam-api-defaultoperationredoproblemaction`) (enviando as operações para serem re-tentativas ou abortando-as).
+  When [`RedoOverCommitLimit`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-redoovercommitlimit) is exceeded when trying to write a given redo log to disk this many times or more, any transactions that were not committed as a result are aborted, and an API node where any of these transactions originated handles the operations making up those transactions according to its value for [`DefaultOperationRedoProblemAction`](mysql-cluster-api-definition.html#ndbparam-api-defaultoperationredoproblemaction) (by either queuing the operations to be re-tried, or aborting them).
 
-- `RedoOverCommitLimit`
+* [`RedoOverCommitLimit`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-redoovercommitlimit)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Este parâmetro define um limite superior em segundos para tentar escrever um log de refazer dado no disco antes de expirar o tempo de espera. O número de vezes que o nó de dados tenta descartar este log de refazer, mas leva mais tempo do que `RedoOverCommitLimit`, é mantido e comparado com `RedoOverCommitCounter`, e quando o descarte leva muito tempo, mais vezes do que o valor desse parâmetro, quaisquer transações que não foram confirmadas como resultado do tempo de espera para o descarte são abortadas. Quando isso ocorre, o nó da API onde qualquer uma dessas transações foi originada processa as operações que compõem essas transações de acordo com sua configuração de `[DefaultOperationRedoProblemAction]` (mysql-cluster-api-definition.html#ndbparam-api-defaultoperationredoproblemaction) (ele ou enfileira as operações para serem re-providas, ou as aborta).
+  This parameter sets an upper limit in seconds for trying to write a given redo log to disk before timing out. The number of times the data node tries to flush this redo log, but takes longer than `RedoOverCommitLimit`, is kept and compared with [`RedoOverCommitCounter`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-redoovercommitcounter), and when flushing takes too long more times than the value of that parameter, any transactions that were not committed as a result of the flush timeout are aborted. When this occurs, the API node where any of these transactions originated handles the operations making up those transactions according to its [`DefaultOperationRedoProblemAction`](mysql-cluster-api-definition.html#ndbparam-api-defaultoperationredoproblemaction) setting (it either queues the operations to be re-tried, or aborts them).
 
-**Controle de tentativas de reinício.** É possível exercer um controle detalhado sobre as tentativas de reinício dos nós de dados quando eles não conseguem iniciar o uso dos parâmetros de configuração dos nós de dados `MaxStartFailRetries` e `StartFailRetryDelay`.
+**Controlling restart attempts.** It is possible to exercise finely-grained control over restart attempts by data nodes when they fail to start using the [`MaxStartFailRetries`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxstartfailretries) and [`StartFailRetryDelay`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-startfailretrydelay) data node configuration parameters.
 
-`MaxStartFailRetries` limita o número total de tentativas de reinício antes de desistir de iniciar o nó de dados, e `StartFailRetryDelay` define o número de segundos entre as tentativas de reinício. Esses parâmetros estão listados aqui:
+[`MaxStartFailRetries`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxstartfailretries) limits the total number of retries made before giving up on starting the data node, [`StartFailRetryDelay`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-startfailretrydelay) sets the number of seconds between retry attempts. These parameters are listed here:
 
-- `StartFailRetryDelay`
+* [`StartFailRetryDelay`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-startfailretrydelay)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Use este parâmetro para definir o número de segundos entre as tentativas de reinício do nó de dados no evento de falha ao iniciar. O padrão é 0 (sem atraso).
+  Use this parameter to set the number of seconds between restart attempts by the data node in the event on failure on startup. The default is 0 (no delay).
 
-  Ambos os parâmetros e `MaxStartFailRetries` são ignorados, a menos que `StopOnError` seja igual a 0.
+  Both this parameter and [`MaxStartFailRetries`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxstartfailretries) are ignored unless [`StopOnError`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-stoponerror) is equal to 0.
 
-- `MaxStartFailRetries`
+* [`MaxStartFailRetries`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-maxstartfailretries)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Use este parâmetro para limitar o número de tentativas de reinício feitas pelo nó de dados no caso de ele falhar ao iniciar. O padrão é 3 tentativas.
+  Use this parameter to limit the number restart attempts made by the data node in the event that it fails on startup. The default is 3 attempts.
 
-  Ambos os parâmetros e `StartFailRetryDelay` são ignorados, a menos que `StopOnError` seja igual a 0.
+  Both this parameter and [`StartFailRetryDelay`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-startfailretrydelay) are ignored unless [`StopOnError`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-stoponerror) is equal to 0.
 
-**Parâmetros das estatísticas do índice NDB.**
+**NDB index statistics parameters.**
 
-Os parâmetros na lista a seguir estão relacionados à geração de estatísticas do índice NDB.
+The parameters in the following list relate to NDB index statistics generation.
 
-- `IndexStatAutoCreate`
+* [`IndexStatAutoCreate`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexstatautocreate)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Ative (defina igual a 1) ou desative (defina igual a 0) a coleta automática de estatísticas quando os índices são criados.
+  Enable (set equal to 1) or disable (set equal to 0) automatic statistics collection when indexes are created.
 
-- `IndexStatAutoUpdate`
+* [`IndexStatAutoUpdate`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexstatautoupdate)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Ative (defina como 1) ou desative (defina como 0) o monitoramento de índices para alterações e inicie atualizações automáticas de estatísticas quando essas alterações forem detectadas. O grau de mudança necessário para ativar as atualizações é determinado pelas configurações das opções `IndexStatTriggerPct` e `IndexStatTriggerScale`.
+  Enable (set equal to 1) or disable (set equal to 0) monitoring of indexes for changes, and trigger automatic statistics updates when these are detected. The degree of change needed to trigger the updates are determined by the settings for the [`IndexStatTriggerPct`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexstattriggerpct) and [`IndexStatTriggerScale`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexstattriggerscale) options.
 
-- `IndexStatSaveSize`
+* [`IndexStatSaveSize`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexstatsavesize)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Espaço máximo em bytes permitido para as estatísticas salvas de qualquer índice dado nas tabelas de sistema `NDB` e no cache de memória **mysqld**. No NDB 7.5 e versões anteriores, isso consome `IndexMemory`.
+  Maximum space in bytes allowed for the saved statistics of any given index in the [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") system tables and in the [**mysqld**](mysqld.html "4.3.1 mysqld — The MySQL Server") memory cache. In NDB 7.5 and earlier, this consumes [`IndexMemory`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexmemory).
 
-  Pelo menos uma amostra é sempre produzida, independentemente de qualquer limite de tamanho. Esse tamanho é escalado por `IndexStatSaveScale`.
+  At least one sample is always produced, regardless of any size limit. This size is scaled by [`IndexStatSaveScale`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexstatsavescale).
 
-  O tamanho especificado por `IndexStatSaveSize` é escalado pelo valor de `IndexStatTriggerPct` para um grande índice, multiplicado por 0,01. Isso é multiplicado ainda mais pelo logaritmo na base 2 do tamanho do índice. Definir `IndexStatTriggerPct` igual a 0 desativa o efeito de escala.
+  The size specified by [`IndexStatSaveSize`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexstatsavesize) is scaled by the value of `IndexStatTriggerPct` for a large index, times 0.01. This is further multiplied by the logarithm to the base 2 of the index size. Setting `IndexStatTriggerPct` equal to 0 disables the scaling effect.
 
-- `IndexStatSaveScale`
+* [`IndexStatSaveScale`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexstatsavescale)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  O tamanho especificado por `IndexStatSaveSize` é escalado pelo valor de `IndexStatTriggerPct` para um grande índice, multiplicado por 0,01. Isso é multiplicado ainda mais pelo logaritmo na base 2 do tamanho do índice. Definir `IndexStatTriggerPct` igual a 0 desativa o efeito de escala.
+  The size specified by [`IndexStatSaveSize`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexstatsavesize) is scaled by the value of `IndexStatTriggerPct` for a large index, times 0.01. This is further multiplied by the logarithm to the base 2 of the index size. Setting `IndexStatTriggerPct` equal to 0 disables the scaling effect.
 
-- `IndexStatTriggerPct`
+* [`IndexStatTriggerPct`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexstattriggerpct)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Mudança percentual nas atualizações que desencadeia uma atualização das estatísticas do índice. O valor é escalado por `IndexStatTriggerScale`. Você pode desabilitar esse gatilho completamente definindo `IndexStatTriggerPct` como 0.
+  Percentage change in updates that triggers an index statistics update. The value is scaled by [`IndexStatTriggerScale`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexstattriggerscale). You can disable this trigger altogether by setting `IndexStatTriggerPct` to 0.
 
-- `IndexStatTriggerScale`
+* [`IndexStatTriggerScale`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexstattriggerscale)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Aumente `IndexStatTriggerPct` por esse valor vezes 0,01 para um grande índice. Um valor de 0 desativa a escalabilidade.
+  Scale [`IndexStatTriggerPct`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexstattriggerpct) by this amount times 0.01 for a large index. A value of 0 disables scaling.
 
-- `IndexStatUpdateDelay`
+* [`IndexStatUpdateDelay`](mysql-cluster-ndbd-definition.html#ndbparam-ndbd-indexstatupdatedelay)
 
-  <table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+  <table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>
 
-  Atraso mínimo em segundos entre as atualizações automáticas das estatísticas do índice para um determinado índice. Definir essa variável para 0 desabilita qualquer atraso. O valor padrão é de 60 segundos.
+  Minimum delay in seconds between automatic index statistics updates for a given index. Setting this variable to 0 disables any delay. The default is 60 seconds.
 
-**Tipos de reinício.** As informações sobre os tipos de reinício utilizados pelas descrições dos parâmetros nesta seção estão mostradas na tabela a seguir:
+**Restart types.** Information about the restart types used by the parameter descriptions in this section is shown in the following table:
 
-**Tabela 21.15 Tipos de reinício de cluster do NDB**
+**Table 21.15 NDB Cluster restart types**
 
-<table frame="box" rules="all" summary="Tipo e valor das informações do parâmetro de configuração do nó de dados ExecuteOnComputer" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Versão (ou posterior)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo ou unidades</th> <td>nome</td> </tr><tr> <th>Padrão</th> <td>[...]</td> </tr><tr> <th>Gama</th> <td>...</td> </tr><tr> <th>Desatualizado</th> <td>NDB 7.5.0</td> </tr><tr> <th>Tipo de reinício</th> <td><p> <span><strong>Reinício do sistema:</strong></span>Requer o desligamento completo e o reinício do clúster. (NDB 7.5.0)</p></td> </tr></tbody></table>
+<table frame="box" rules="all" summary="ExecuteOnComputer data node configuration parameter type and value information" width="35%"><col style="width: 50%"/><col style="width: 50%"/><tbody><tr> <th>Version (or later)</th> <td>NDB 7.5.0</td> </tr><tr> <th>Type or units</th> <td>name</td> </tr><tr> <th>Default</th> <td>[...]</td> </tr><tr> <th>Range</th> <td>...</td> </tr><tr> <th>Deprecated</th> <td>NDB 7.5.0</td> </tr><tr> <th>Restart Type</th> <td><p> <span><strong>System Restart: </strong></span>Requires a complete shutdown and restart of the cluster. (NDB 7.5.0) </p></td> </tr></tbody></table>

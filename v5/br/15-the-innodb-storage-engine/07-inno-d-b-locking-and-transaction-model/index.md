@@ -1,25 +1,25 @@
-## 14.7 Modelo de Transição e Bloqueio do InnoDB
+## 14.7 InnoDB Locking and Transaction Model
 
-14.7.1 Bloqueio do InnoDB
+14.7.1 InnoDB Locking
 
-14.7.2 Modelo de Transação InnoDB
+14.7.2 InnoDB Transaction Model
 
-14.7.3 Lâminas definidas por diferentes instruções SQL no InnoDB
+14.7.3 Locks Set by Different SQL Statements in InnoDB
 
-14.7.4 Linhas Fantoma
+14.7.4 Phantom Rows
 
-14.7.5 Bloqueios em InnoDB
+14.7.5 Deadlocks in InnoDB
 
-Para implementar uma aplicação de banco de dados em grande escala, com alta atividade ou alta confiabilidade, para migrar código substancial de outro sistema de banco de dados ou para ajustar o desempenho do MySQL, é importante entender o bloqueio do `InnoDB` e o modelo de transação do `InnoDB`.
+To implement a large-scale, busy, or highly reliable database application, to port substantial code from a different database system, or to tune MySQL performance, it is important to understand `InnoDB` locking and the `InnoDB` transaction model.
 
-Esta seção discute vários tópicos relacionados ao bloqueio do `InnoDB` e ao modelo de transação do `InnoDB`, com os quais você deve estar familiarizado.
+This section discusses several topics related to `InnoDB` locking and the `InnoDB` transaction model with which you should be familiar.
 
-- A Seção 14.7.1, “Bloqueio InnoDB”, descreve os tipos de bloqueio usados pelo `InnoDB`.
+* Section 14.7.1, “InnoDB Locking” describes lock types used by `InnoDB`.
 
-- A Seção 14.7.2, “Modelo de Transação InnoDB”, descreve os níveis de isolamento de transação e as estratégias de bloqueio utilizadas por cada um. Ela também discute o uso de `autocommit`, leituras consistentes sem bloqueio e leituras com bloqueio.
+* Section 14.7.2, “InnoDB Transaction Model” describes transaction isolation levels and the locking strategies used by each. It also discusses the use of `autocommit`, consistent non-locking reads, and locking reads.
 
-- A seção 14.7.3, "Bloqueios Definidos por Diferentes Instruções SQL no InnoDB", discute tipos específicos de bloqueios definidos no `InnoDB` para várias instruções.
+* Section 14.7.3, “Locks Set by Different SQL Statements in InnoDB” discusses specific types of locks set in `InnoDB` for various statements.
 
-- A Seção 14.7.4, “Linhas Fantasma”, descreve como o `InnoDB` usa o bloqueio de próximo chave para evitar linhas fantasmas.
+* Section 14.7.4, “Phantom Rows” describes how `InnoDB` uses next-key locking to avoid phantom rows.
 
-- A seção 14.7.5, "Bloqueios em InnoDB", fornece um exemplo de bloqueio, discute a detecção de bloqueios e oferece dicas para minimizar e lidar com bloqueios em `InnoDB`.
+* Section 14.7.5, “Deadlocks in InnoDB” provides a deadlock example, discusses deadlock detection, and provides tips for minimizing and handling deadlocks in `InnoDB`.

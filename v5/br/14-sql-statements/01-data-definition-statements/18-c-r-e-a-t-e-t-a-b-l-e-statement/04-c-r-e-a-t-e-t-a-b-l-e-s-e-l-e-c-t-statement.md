@@ -1,12 +1,12 @@
-#### 13.1.18.4 Criar uma tabela com uma instrução SELECT
+#### 13.1.18.4 CREATE TABLE ... SELECT Statement
 
-Você pode criar uma tabela a partir de outra adicionando uma instrução `SELECT` no final da instrução `CREATE TABLE`:
+You can create one table from another by adding a [`SELECT`](select.html "13.2.9 SELECT Statement") statement at the end of the [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement:
 
 ```sql
 CREATE TABLE new_tbl [AS] SELECT * FROM orig_tbl;
 ```
 
-O MySQL cria novas colunas para todos os elementos na consulta `SELECT`. Por exemplo:
+MySQL creates new columns for all elements in the [`SELECT`](select.html "13.2.9 SELECT Statement"). For example:
 
 ```sql
 mysql> CREATE TABLE test (a INT NOT NULL AUTO_INCREMENT,
@@ -14,9 +14,9 @@ mysql> CREATE TABLE test (a INT NOT NULL AUTO_INCREMENT,
     ->        ENGINE=InnoDB SELECT b,c FROM test2;
 ```
 
-Isso cria uma tabela `InnoDB` com três colunas, `a`, `b` e `c`. A opção `ENGINE` faz parte da instrução `CREATE TABLE` e não deve ser usada após a instrução `SELECT`; isso resultaria em um erro de sintaxe. O mesmo vale para outras opções de `CREATE TABLE`, como `CHARSET`.
+This creates an [`InnoDB`](innodb-storage-engine.html "Chapter 14 The InnoDB Storage Engine") table with three columns, `a`, `b`, and `c`. The `ENGINE` option is part of the [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") statement, and should not be used following the [`SELECT`](select.html "13.2.9 SELECT Statement"); this would result in a syntax error. The same is true for other [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") options such as `CHARSET`.
 
-Observe que as colunas da instrução `SELECT` são anexadas ao lado direito da tabela, e não sobrepostas sobre ela. Veja o exemplo a seguir:
+Notice that the columns from the [`SELECT`](select.html "13.2.9 SELECT Statement") statement are appended to the right side of the table, not overlapped onto it. Take the following example:
 
 ```sql
 mysql> SELECT * FROM foo;
@@ -39,27 +39,27 @@ mysql> SELECT * FROM bar;
 1 row in set (0.00 sec)
 ```
 
-Para cada linha da tabela `foo`, uma linha é inserida na `bar` com os valores de `foo` e valores padrão para as novas colunas.
+For each row in table `foo`, a row is inserted in `bar` with the values from `foo` and default values for the new columns.
 
-Em uma tabela resultante de `CREATE TABLE ... SELECT`, as colunas nomeadas apenas na parte `CREATE TABLE` aparecem primeiro. As colunas nomeadas nas duas partes ou apenas na parte `SELECT` aparecem depois. O tipo de dados das colunas de `SELECT` pode ser sobrescrito especificando também a coluna na parte `CREATE TABLE`.
+In a table resulting from [`CREATE TABLE ... SELECT`](create-table.html "13.1.18 CREATE TABLE Statement"), columns named only in the [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") part come first. Columns named in both parts or only in the [`SELECT`](select.html "13.2.9 SELECT Statement") part come after that. The data type of [`SELECT`](select.html "13.2.9 SELECT Statement") columns can be overridden by also specifying the column in the [`CREATE TABLE`](create-table.html "13.1.18 CREATE TABLE Statement") part.
 
-Se ocorrerem erros durante a cópia dos dados para a tabela, eles serão automaticamente excluídos e não criados.
+If any errors occur while copying the data to the table, it is automatically dropped and not created.
 
-Você pode preceder o `SELECT` com `IGNORE` ou `REPLACE` para indicar como lidar com linhas que duplicam valores de chave única. Com `IGNORE`, as linhas que duplicam uma linha existente em um valor de chave única são descartadas. Com `REPLACE`, novas linhas substituem linhas que têm o mesmo valor de chave única. Se nenhum `IGNORE` ou `REPLACE` for especificado, valores de chave única duplicados resultam em um erro. Para mais informações, consulte O efeito de IGNORE na execução da declaração.
+You can precede the [`SELECT`](select.html "13.2.9 SELECT Statement") by `IGNORE` or `REPLACE` to indicate how to handle rows that duplicate unique key values. With `IGNORE`, rows that duplicate an existing row on a unique key value are discarded. With `REPLACE`, new rows replace rows that have the same unique key value. If neither `IGNORE` nor `REPLACE` is specified, duplicate unique key values result in an error. For more information, see [The Effect of IGNORE on Statement Execution](sql-mode.html#ignore-effect-on-execution "The Effect of IGNORE on Statement Execution").
 
-Como a ordem das linhas nas instruções subjacentes de `SELECT` não pode ser determinada sempre, as instruções `CREATE TABLE ... IGNORE SELECT` e `CREATE TABLE ... REPLACE SELECT` são marcadas como inseguras para a replicação baseada em instruções. Essas instruções produzem um aviso no log de erro ao usar o modo baseado em instruções e são escritas no log binário usando o formato baseado em linha quando usar o modo `MIXED`. Veja também Seção 16.2.1.1, “Vantagens e Desvantagens da Replicação Baseada em Instruções e Baseada em Linhas”.
+Because the ordering of the rows in the underlying [`SELECT`](select.html "13.2.9 SELECT Statement") statements cannot always be determined, `CREATE TABLE ... IGNORE SELECT` and `CREATE TABLE ... REPLACE SELECT` statements are flagged as unsafe for statement-based replication. Such statements produce a warning in the error log when using statement-based mode and are written to the binary log using the row-based format when using `MIXED` mode. See also [Section 16.2.1.1, “Advantages and Disadvantages of Statement-Based and Row-Based Replication”](replication-sbr-rbr.html "16.2.1.1 Advantages and Disadvantages of Statement-Based and Row-Based Replication").
 
-`CREATE TABLE ... SELECT` não cria automaticamente nenhum índice para você. Isso é feito intencionalmente para tornar a declaração o mais flexível possível. Se você quiser ter índices na tabela criada, você deve especificar esses índices antes da declaração `SELECT`:
+[`CREATE TABLE ... SELECT`](create-table.html "13.1.18 CREATE TABLE Statement") does not automatically create any indexes for you. This is done intentionally to make the statement as flexible as possible. If you want to have indexes in the created table, you should specify these before the [`SELECT`](select.html "13.2.9 SELECT Statement") statement:
 
 ```sql
 mysql> CREATE TABLE bar (UNIQUE (n)) SELECT n FROM foo;
 ```
 
-Para `CREATE TABLE ... SELECT`, a tabela de destino não preserva informações sobre se as colunas da tabela selecionada são colunas geradas. A parte `SELECT` da instrução não pode atribuir valores às colunas geradas na tabela de destino.
+For `CREATE TABLE ... SELECT`, the destination table does not preserve information about whether columns in the selected-from table are generated columns. The [`SELECT`](select.html "13.2.9 SELECT Statement") part of the statement cannot assign values to generated columns in the destination table.
 
-Pode ocorrer alguma conversão de tipos de dados. Por exemplo, o atributo `AUTO_INCREMENT` não é preservado, e as colunas `VARCHAR` podem se tornar colunas `CHAR`. Os atributos retreinados são `NULL` (ou `NOT NULL`) e, para aquelas colunas que os possuem, `CHARACTER SET`, `COLLATION`, `COMMENT` e a cláusula `DEFAULT`.
+Some conversion of data types might occur. For example, the `AUTO_INCREMENT` attribute is not preserved, and [`VARCHAR`](char.html "11.3.2 The CHAR and VARCHAR Types") columns can become [`CHAR`](char.html "11.3.2 The CHAR and VARCHAR Types") columns. Retrained attributes are `NULL` (or `NOT NULL`) and, for those columns that have them, `CHARACTER SET`, `COLLATION`, `COMMENT`, and the `DEFAULT` clause.
 
-Ao criar uma tabela com `CREATE TABLE ... SELECT`, certifique-se de dar um alias a quaisquer chamadas de função ou expressões na consulta. Caso contrário, a instrução `CREATE` pode falhar ou resultar em nomes de colunas indesejados.
+When creating a table with [`CREATE TABLE ... SELECT`](create-table-select.html "13.1.18.4 CREATE TABLE ... SELECT Statement"), make sure to alias any function calls or expressions in the query. If you do not, the `CREATE` statement might fail or result in undesirable column names.
 
 ```sql
 CREATE TABLE artists_and_works
@@ -68,14 +68,14 @@ CREATE TABLE artists_and_works
   GROUP BY artist.id;
 ```
 
-Você também pode especificar explicitamente o tipo de dado para uma coluna na tabela criada:
+You can also explicitly specify the data type for a column in the created table:
 
 ```sql
 CREATE TABLE foo (a TINYINT NOT NULL) SELECT b+1 AS a FROM bar;
 ```
 
-Para `CREATE TABLE ... SELECT`, se `IF NOT EXISTS` for fornecido e a tabela de destino existir, nada é inserido na tabela de destino, e a instrução não é registrada.
+For [`CREATE TABLE ... SELECT`](create-table.html "13.1.18 CREATE TABLE Statement"), if `IF NOT EXISTS` is given and the target table exists, nothing is inserted into the destination table, and the statement is not logged.
 
-Para garantir que o log binário possa ser usado para recriar as tabelas originais, o MySQL não permite inserções concorrentes durante `CREATE TABLE ... SELECT`.
+To ensure that the binary log can be used to re-create the original tables, MySQL does not permit concurrent inserts during [`CREATE TABLE ... SELECT`](create-table.html "13.1.18 CREATE TABLE Statement").
 
-Você não pode usar `FOR UPDATE` como parte da instrução `SELECT` em uma declaração como `CREATE TABLE new_table SELECT ... FROM old_table ...`. Se você tentar fazer isso, a declaração falhará.
+You cannot use `FOR UPDATE` as part of the [`SELECT`](select.html "13.2.9 SELECT Statement") in a statement such as [`CREATE TABLE new_table SELECT ... FROM old_table ...`](create-table-select.html "13.1.18.4 CREATE TABLE ... SELECT Statement"). If you attempt to do so, the statement fails.

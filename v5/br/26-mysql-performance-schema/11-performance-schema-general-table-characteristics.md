@@ -1,27 +1,27 @@
-## 25.11 Características gerais da tabela do esquema de desempenho
+## 25.11 Performance Schema General Table Characteristics
 
-O nome do banco de dados `performance_schema` é minúsculo, assim como os nomes das tabelas nele contidas. As consultas devem especificar os nomes em minúsculas.
+The name of the `performance_schema` database is lowercase, as are the names of tables within it. Queries should specify the names in lowercase.
 
-Muitas tabelas no banco de dados `performance_schema` são apenas de leitura e não podem ser modificadas:
+Many tables in the `performance_schema` database are read only and cannot be modified:
 
 ```sql
 mysql> TRUNCATE TABLE performance_schema.setup_instruments;
 ERROR 1683 (HY000): Invalid performance_schema usage.
 ```
 
-Algumas das tabelas de configuração têm colunas que podem ser modificadas para afetar o funcionamento do Gerenciador de Desempenho; algumas também permitem a inserção ou exclusão de linhas. A truncação é permitida para limpar eventos coletados, então `TRUNCATE TABLE` pode ser usado em tabelas que contêm esse tipo de informação, como tabelas com o prefixo `events_waits_`.
+Some of the setup tables have columns that can be modified to affect Performance Schema operation; some also permit rows to be inserted or deleted. Truncation is permitted to clear collected events, so [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") can be used on tables containing those kinds of information, such as tables named with a prefix of `events_waits_`.
 
-As tabelas de resumo podem ser truncadas com `TRUNCATE TABLE`. Geralmente, o efeito é redefinir as colunas de resumo para 0 ou `NULL`, e não para remover linhas. Isso permite limpar os valores coletados e reiniciar a agregação. Isso pode ser útil, por exemplo, após você ter feito uma alteração na configuração de execução. Exceções a esse comportamento de truncação são mencionadas nas seções individuais das tabelas de resumo.
+Summary tables can be truncated with [`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement"). Generally, the effect is to reset the summary columns to 0 or `NULL`, not to remove rows. This enables you to clear collected values and restart aggregation. That might be useful, for example, after you have made a runtime configuration change. Exceptions to this truncation behavior are noted in individual summary table sections.
 
-Os privilégios são os mesmos que para outras bases de dados e tabelas:
+Privileges are as for other databases and tables:
 
-- Para recuperar de tabelas do `performance_schema`, você deve ter o privilégio `SELECT`.
+* To retrieve from `performance_schema` tables, you must have the [`SELECT`](privileges-provided.html#priv_select) privilege.
 
-- Para alterar as colunas que podem ser modificadas, você deve ter o privilégio `UPDATE`.
+* To change those columns that can be modified, you must have the [`UPDATE`](privileges-provided.html#priv_update) privilege.
 
-- Para truncar tabelas que podem ser truncadas, você deve ter o privilégio `DROP`.
+* To truncate tables that can be truncated, you must have the [`DROP`](privileges-provided.html#priv_drop) privilege.
 
-Como apenas um conjunto limitado de privilégios se aplica às tabelas do Schema de Desempenho, as tentativas de usar `GRANT ALL` como abreviação para conceder privilégios no nível de banco de dados ou tabela falham com um erro:
+Because only a limited set of privileges apply to Performance Schema tables, attempts to use `GRANT ALL` as shorthand for granting privileges at the database or table leval fail with an error:
 
 ```sql
 mysql> GRANT ALL ON performance_schema.*
@@ -34,7 +34,7 @@ ERROR 1044 (42000): Access denied for user 'root'@'localhost'
 to database 'performance_schema'
 ```
 
-Em vez disso, conceda exatamente os privilégios desejados:
+Instead, grant exactly the desired privileges:
 
 ```sql
 mysql> GRANT SELECT ON performance_schema.*

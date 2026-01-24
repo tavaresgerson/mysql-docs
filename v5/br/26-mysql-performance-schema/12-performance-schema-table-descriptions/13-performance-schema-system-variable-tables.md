@@ -1,43 +1,43 @@
-### 25.12.13 Tabelas de variáveis do sistema do esquema de desempenho
+### 25.12.13 Performance Schema System Variable Tables
 
-Nota
+Note
 
-O valor da variável de sistema `show_compatibility_56` afeta as informações disponíveis nas tabelas descritas aqui. Para obter detalhes, consulte a descrição dessa variável em Seção 5.1.7, "Variáveis de Sistema do Servidor".
+The value of the [`show_compatibility_56`](server-system-variables.html#sysvar_show_compatibility_56) system variable affects the information available from the tables described here. For details, see the description of that variable in [Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables").
 
-O servidor MySQL mantém muitas variáveis de sistema que indicam como ele está configurado (veja Seção 5.1.7, “Variáveis de Sistema do Servidor”). As informações das variáveis de sistema estão disponíveis nessas tabelas do Schema de Desempenho:
+The MySQL server maintains many system variables that indicate how it is configured (see [Section 5.1.7, “Server System Variables”](server-system-variables.html "5.1.7 Server System Variables")). System variable information is available in these Performance Schema tables:
 
-- `variáveis globais`: Variáveis globais do sistema. Uma aplicação que deseja apenas valores globais deve usar esta tabela.
+* [`global_variables`](performance-schema-system-variable-tables.html "25.12.13 Performance Schema System Variable Tables"): Global system variables. An application that wants only global values should use this table.
 
-- `session_variables`: Variáveis do sistema para a sessão atual. Uma aplicação que deseja obter todos os valores das variáveis do sistema para sua própria sessão deve usar essa tabela. Ela inclui as variáveis da sessão para sua sessão, bem como os valores das variáveis globais que não têm correspondência na sessão.
+* [`session_variables`](performance-schema-system-variable-tables.html "25.12.13 Performance Schema System Variable Tables"): System variables for the current session. An application that wants all system variable values for its own session should use this table. It includes the session variables for its session, as well as the values of global variables that have no session counterpart.
 
-- `variables_by_thread`: Variáveis do sistema de sessão para cada sessão ativa. Uma aplicação que deseja saber os valores das variáveis de sessão para sessões específicas deve usar esta tabela. Ela inclui apenas as variáveis de sessão, identificadas pelo ID do thread.
+* [`variables_by_thread`](performance-schema-system-variable-tables.html "25.12.13 Performance Schema System Variable Tables"): Session system variables for each active session. An application that wants to know the session variable values for specific sessions should use this table. It includes session variables only, identified by thread ID.
 
-As tabelas de variáveis de sessão (`session_variables`, `variables_by_thread`) contêm informações apenas para sessões ativas, não para sessões encerradas.
+The session variable tables ([`session_variables`](performance-schema-system-variable-tables.html "25.12.13 Performance Schema System Variable Tables"), [`variables_by_thread`](performance-schema-system-variable-tables.html "25.12.13 Performance Schema System Variable Tables")) contain information only for active sessions, not terminated sessions.
 
-As tabelas `global_variables` e `session_variables` possuem as seguintes colunas:
+The [`global_variables`](performance-schema-system-variable-tables.html "25.12.13 Performance Schema System Variable Tables") and [`session_variables`](performance-schema-system-variable-tables.html "25.12.13 Performance Schema System Variable Tables") tables have these columns:
 
-- `VARIAVEL_NOME`
+* `VARIABLE_NAME`
 
-  O nome da variável do sistema.
+  The system variable name.
 
-- `VARIABLE_VALUE`
+* `VARIABLE_VALUE`
 
-  O valor da variável do sistema. Para `global_variables`, esta coluna contém o valor global. Para `session_variables`, esta coluna contém o valor da variável em vigor para a sessão atual.
+  The system variable value. For [`global_variables`](performance-schema-system-variable-tables.html "25.12.13 Performance Schema System Variable Tables"), this column contains the global value. For [`session_variables`](performance-schema-system-variable-tables.html "25.12.13 Performance Schema System Variable Tables"), this column contains the variable value in effect for the current session.
 
-A tabela `variables_by_thread` tem as seguintes colunas:
+The [`variables_by_thread`](performance-schema-system-variable-tables.html "25.12.13 Performance Schema System Variable Tables") table has these columns:
 
-- `THREAD_ID`
+* `THREAD_ID`
 
-  O identificador de thread da sessão na qual a variável de sistema é definida.
+  The thread identifier of the session in which the system variable is defined.
 
-- `VARIAVEL_NOME`
+* `VARIABLE_NAME`
 
-  O nome da variável do sistema.
+  The system variable name.
 
-- `VARIABLE_VALUE`
+* `VARIABLE_VALUE`
 
-  O valor da variável de sessão para a sessão nomeada pela coluna `THREAD_ID`.
+  The session variable value for the session named by the `THREAD_ID` column.
 
-A tabela `variables_by_thread` contém informações sobre variáveis de sistema apenas sobre os threads em primeiro plano. Se nem todos os threads estiverem instrumentados pelo Schema de Desempenho, essa tabela pode perder algumas linhas. Nesse caso, a variável de status `Performance_schema_thread_instances_lost` é maior que zero.
+The [`variables_by_thread`](performance-schema-system-variable-tables.html "25.12.13 Performance Schema System Variable Tables") table contains system variable information only about foreground threads. If not all threads are instrumented by the Performance Schema, this table may miss some rows. In this case, the [`Performance_schema_thread_instances_lost`](performance-schema-status-variables.html#statvar_Performance_schema_thread_instances_lost) status variable is greater than zero.
 
-A opção `TRUNCATE TABLE` não é suportada para as tabelas da variável de sistema do Schema de Desempenho.
+[`TRUNCATE TABLE`](truncate-table.html "13.1.34 TRUNCATE TABLE Statement") is not supported for Performance Schema system variable tables.

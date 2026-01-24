@@ -1,27 +1,27 @@
-#### 11.4.2.13 Classe MultiPolygon
+#### 11.4.2.13 MultiPolygon Class
 
-Um `MultiPolygon` é um objeto `MultiSurface` composto por elementos `Polygon`.
+A `MultiPolygon` is a `MultiSurface` object composed of `Polygon` elements.
 
-**Exemplos de `MultiPolygon`**
+**`MultiPolygon` Examples**
 
-- Em um mapa regional, um `MultiPolygon` poderia representar um sistema de lagos.
+* On a region map, a `MultiPolygon` could represent a system of lakes.
 
-**Afirmações `MultiPolygon`**
+**`MultiPolygon` Assertions**
 
-- Um `MultiPolygon` não tem dois elementos `Polygon` com interiores que se intersectam.
+* A `MultiPolygon` has no two `Polygon` elements with interiors that intersect.
 
-- Um `MultiPolygon` não tem dois elementos `Polygon` que se cruzam (a interseção também é proibida pela afirmação anterior) ou que tocam em um número infinito de pontos.
+* A `MultiPolygon` has no two `Polygon` elements that cross (crossing is also forbidden by the previous assertion), or that touch at an infinite number of points.
 
-- Uma `MultiPolygon` não pode ter linhas de corte, espinhos ou perfurações. Uma `MultiPolygon` é um conjunto de pontos regular e fechado.
+* A `MultiPolygon` may not have cut lines, spikes, or punctures. A `MultiPolygon` is a regular, closed point set.
 
-- Um `MultiPolygon` que tem mais de um `Polygon` tem um interior que não está conectado. O número de componentes conectados do interior de um `MultiPolygon` é igual ao número de valores de `Polygon` na `MultiPolygon`.
+* A `MultiPolygon` that has more than one `Polygon` has an interior that is not connected. The number of connected components of the interior of a `MultiPolygon` is equal to the number of `Polygon` values in the `MultiPolygon`.
 
-**Propriedades de `MultiPolygon`**
+**`MultiPolygon` Properties**
 
-- Um `MultiPolygon` é uma geometria bidimensional.
+* A `MultiPolygon` is a two-dimensional geometry.
 
-- Uma fronteira `MultiPolygon` é um conjunto de curvas fechadas (`LineString` valores) que correspondem às fronteiras dos seus elementos `Polygon`.
+* A `MultiPolygon` boundary is a set of closed curves (`LineString` values) corresponding to the boundaries of its `Polygon` elements.
 
-- Cada `Curva` na borda da `MultiPolygon` está na borda de exatamente um elemento `Polygon`.
+* Each `Curve` in the boundary of the `MultiPolygon` is in the boundary of exactly one `Polygon` element.
 
-- Cada `Curva` na borda de um elemento `Polygon` está na borda do `MultiPolygon`.
+* Every `Curve` in the boundary of an `Polygon` element is in the boundary of the `MultiPolygon`.

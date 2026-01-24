@@ -1,53 +1,53 @@
-#### 26.4.3.41 O resumo do usuário e as visualizações do resumo do usuário x$
+#### 26.4.3.41 The user_summary and x$user_summary Views
 
-Essas visualizações resumem a atividade de declarações, o acesso de arquivos e as conexões, agrupadas por usuário. Por padrão, as linhas são ordenadas por latência total decrescente.
+These views summarize statement activity, file I/O, and connections, grouped by user. By default, rows are sorted by descending total latency.
 
-As visualizações `user_summary` e `x$user_summary` têm essas colunas:
+The `user_summary` and `x$user_summary` views have these columns:
 
-- `usuário`
+* `user`
 
-  O nome de usuário do cliente. As linhas para as quais a coluna `USER` na tabela subjacente do Schema de Desempenho é `NULL` são assumidas como pertencentes a threads de segundo plano e são relatadas com o nome do host `background`.
+  The client user name. Rows for which the `USER` column in the underlying Performance Schema table is `NULL` are assumed to be for background threads and are reported with a host name of `background`.
 
-- `declarações`
+* `statements`
 
-  O número total de declarações para o usuário.
+  The total number of statements for the user.
 
-- `statement_latency`
+* `statement_latency`
 
-  O tempo total de espera de declarações cronometradas para o usuário.
+  The total wait time of timed statements for the user.
 
-- `declaração_latência_média`
+* `statement_avg_latency`
 
-  O tempo médio de espera por declaração cronometrada para o usuário.
+  The average wait time per timed statement for the user.
 
-- `table_scans`
+* `table_scans`
 
-  O número total de varreduras de tabela para o usuário.
+  The total number of table scans for the user.
 
-- `file_ios`
+* `file_ios`
 
-  O número total de eventos de entrada/saída de arquivos para o usuário.
+  The total number of file I/O events for the user.
 
-- `file_io_latency`
+* `file_io_latency`
 
-  O tempo total de espera de eventos de E/S de arquivos com temporizador para o usuário.
+  The total wait time of timed file I/O events for the user.
 
-- `conexões atuais`
+* `current_connections`
 
-  O número atual de conexões para o usuário.
+  The current number of connections for the user.
 
-- `total_connections`
+* `total_connections`
 
-  O número total de conexões para o usuário.
+  The total number of connections for the user.
 
-- `hosts únicos`
+* `unique_hosts`
 
-  O número de hosts distintos de onde as conexões do usuário se originaram.
+  The number of distinct hosts from which connections for the user have originated.
 
-- `memória_atual`
+* `current_memory`
 
-  A quantidade atual de memória alocada para o usuário.
+  The current amount of allocated memory for the user.
 
-- `total_memory_allocated`
+* `total_memory_allocated`
 
-  O valor total de memória alocada para o usuário.
+  The total amount of allocated memory for the user.

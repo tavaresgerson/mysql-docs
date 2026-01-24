@@ -1,71 +1,71 @@
-## 25.3 Configuração de inicialização do esquema de desempenho
+## 25.3 Performance Schema Startup Configuration
 
-Para usar o Schema de Desempenho do MySQL, ele deve ser habilitado durante a inicialização do servidor para que a coleta de eventos possa ocorrer.
+To use the MySQL Performance Schema, it must be enabled at server startup to enable event collection to occur.
 
-Supondo que o Schema de Desempenho esteja disponível, ele está ativado por padrão. Para ativá-lo ou desativá-lo explicitamente, inicie o servidor com a variável `performance_schema` definida para um valor apropriado. Por exemplo, use essas linhas em seu arquivo `my.cnf`:
+Assuming that the Performance Schema is available, it is enabled by default. To enable or disable it explicitly, start the server with the [`performance_schema`](performance-schema-system-variables.html#sysvar_performance_schema) variable set to an appropriate value. For example, use these lines in your `my.cnf` file:
 
 ```sql
 [mysqld]
 performance_schema=ON
 ```
 
-Se o servidor não conseguir alocar nenhum buffer interno durante a inicialização do Schema de Desempenho, o Schema de Desempenho desabilita-se e define `performance_schema` para `OFF`, e o servidor é executado sem instrumentação.
+If the server is unable to allocate any internal buffer during Performance Schema initialization, the Performance Schema disables itself and sets [`performance_schema`](performance-schema-system-variables.html#sysvar_performance_schema) to `OFF`, and the server runs without instrumentation.
 
-O Schema de Desempenho também permite a configuração de instrumentos e consumidores no início da inicialização do servidor.
+The Performance Schema also permits instrument and consumer configuration at server startup.
 
-Para controlar um instrumento ao iniciar o servidor, use uma opção deste formulário:
+To control an instrument at server startup, use an option of this form:
 
 ```sql
 --performance-schema-instrument='instrument_name=value'
 ```
 
-Aqui, *`instrument_name`* é o nome do instrumento, como `wait/synch/mutex/sql/LOCK_open`, e *`value`* é um desses valores:
+Here, *`instrument_name`* is an instrument name such as `wait/synch/mutex/sql/LOCK_open`, and *`value`* is one of these values:
 
-- `OFF`, `FALSE` ou `0`: Desativar o instrumento
+* `OFF`, `FALSE`, or `0`: Disable the instrument
 
-- `ON`, `TRUE` ou `1`: Ative e cronometre o instrumento
+* `ON`, `TRUE`, or `1`: Enable and time the instrument
 
-- `COUNTED`: Ative e conte (em vez de medir o tempo) o instrumento
+* `COUNTED`: Enable and count (rather than time) the instrument
 
-Cada opção `--performance-schema-instrument` pode especificar apenas um nome de instrumento, mas múltiplas instâncias da opção podem ser fornecidas para configurar múltiplos instrumentos. Além disso, padrões são permitidos nos nomes dos instrumentos para configurar instrumentos que correspondem ao padrão. Para configurar todos os instrumentos de sincronização de condições como habilitados e contados, use esta opção:
+Each [`--performance-schema-instrument`](performance-schema-options.html#option_mysqld_performance-schema-instrument) option can specify only one instrument name, but multiple instances of the option can be given to configure multiple instruments. In addition, patterns are permitted in instrument names to configure instruments that match the pattern. To configure all condition synchronization instruments as enabled and counted, use this option:
 
 ```sql
 --performance-schema-instrument='wait/synch/cond/%=COUNTED'
 ```
 
-Para desativar todos os instrumentos, use esta opção:
+To disable all instruments, use this option:
 
 ```sql
 --performance-schema-instrument='%=OFF'
 ```
 
-Exceção: Os instrumentos `memory/performance_schema/%` estão integrados e não podem ser desativados durante a inicialização.
+Exception: The `memory/performance_schema/%` instruments are built in and cannot be disabled at startup.
 
-Cadeias de nomes de instrumentos mais longas têm precedência sobre nomes de padrões mais curtos, independentemente da ordem. Para obter informações sobre como especificar padrões para selecionar instrumentos, consulte Seção 25.4.9, “Nomeação de Instrumentos ou Consumidores para Operações de Filtragem”.
+Longer instrument name strings take precedence over shorter pattern names, regardless of order. For information about specifying patterns to select instruments, see [Section 25.4.9, “Naming Instruments or Consumers for Filtering Operations”](performance-schema-filtering-names.html "25.4.9 Naming Instruments or Consumers for Filtering Operations").
 
-Um nome de instrumento não reconhecido é ignorado. É possível que um plugin instalado posteriormente crie o instrumento, momento em que o nome é reconhecido e configurado.
+An unrecognized instrument name is ignored. It is possible that a plugin installed later may create the instrument, at which time the name is recognized and configured.
 
-Para controlar um consumidor ao iniciar o servidor, use uma opção deste formulário:
+To control a consumer at server startup, use an option of this form:
 
 ```sql
 --performance-schema-consumer-consumer_name=value
 ```
 
-Aqui, *`consumer_name`* é o nome do consumidor, como `events_waits_history`, e *`value`* é um desses valores:
+Here, *`consumer_name`* is a consumer name such as `events_waits_history`, and *`value`* is one of these values:
 
-- `OFF`, `FALSE` ou `0`: Não coletar eventos para o consumidor
+* `OFF`, `FALSE`, or `0`: Do not collect events for the consumer
 
-- `ON`, `TRUE` ou `1`: Colete eventos para o consumidor
+* `ON`, `TRUE`, or `1`: Collect events for the consumer
 
-Por exemplo, para habilitar o consumidor `events_waits_history`, use esta opção:
+For example, to enable the `events_waits_history` consumer, use this option:
 
 ```sql
 --performance-schema-consumer-events-waits-history=ON
 ```
 
-Os nomes de consumidores permitidos podem ser encontrados examinando a tabela `setup_consumers`. Padrões não são permitidos. Os nomes de consumidores na tabela `setup_consumers` usam sublinhados, mas para consumidores definidos no momento do início, traços e sublinhados dentro do nome são equivalentes.
+The permitted consumer names can be found by examining the [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") table. Patterns are not permitted. Consumer names in the [`setup_consumers`](performance-schema-setup-consumers-table.html "25.12.2.2 The setup_consumers Table") table use underscores, but for consumers set at startup, dashes and underscores within the name are equivalent.
 
-O Schema de Desempenho inclui várias variáveis de sistema que fornecem informações de configuração:
+The Performance Schema includes several system variables that provide configuration information:
 
 ```sql
 mysql> SHOW VARIABLES LIKE 'perf%';
@@ -87,13 +87,13 @@ mysql> SHOW VARIABLES LIKE 'perf%';
 ...
 ```
 
-A variável `performance_schema` está em `ON` ou `OFF` para indicar se o Schema de Desempenho está habilitado ou desabilitado. As outras variáveis indicam os tamanhos das tabelas (número de linhas) ou os valores de alocação de memória.
+The [`performance_schema`](performance-schema-system-variables.html#sysvar_performance_schema) variable is `ON` or `OFF` to indicate whether the Performance Schema is enabled or disabled. The other variables indicate table sizes (number of rows) or memory allocation values.
 
-Nota
+Note
 
-Com o Gerenciamento de Desempenho habilitado, o número de instâncias do Gerenciamento de Desempenho afeta a pegada de memória do servidor, talvez em grande medida. O Gerenciamento de Desempenho autoescalona muitos parâmetros para usar a memória apenas quando necessário; veja Seção 25.17, “O Modelo de Alocação de Memória do Gerenciamento de Desempenho”.
+With the Performance Schema enabled, the number of Performance Schema instances affects the server memory footprint, perhaps to a large extent. The Performance Schema autoscales many parameters to use memory only as required; see [Section 25.17, “The Performance Schema Memory-Allocation Model”](performance-schema-memory-model.html "25.17 The Performance Schema Memory-Allocation Model").
 
-Para alterar o valor das variáveis do sistema do Gerenciamento de Desempenho, defina-as durante a inicialização do servidor. Por exemplo, coloque as seguintes linhas em um arquivo `my.cnf` para alterar os tamanhos das tabelas de histórico para eventos de espera:
+To change the value of Performance Schema system variables, set them at server startup. For example, put the following lines in a `my.cnf` file to change the sizes of the history tables for wait events:
 
 ```sql
 [mysqld]
@@ -102,9 +102,9 @@ performance_schema_events_waits_history_size=20
 performance_schema_events_waits_history_long_size=15000
 ```
 
-O Schema de Desempenho dimensiona automaticamente os valores de vários de seus parâmetros ao iniciar o servidor, se não forem definidos explicitamente. Por exemplo, ele dimensiona os parâmetros que controlam o tamanho das tabelas de espera de eventos da seguinte maneira. O Schema de Desempenho aloca memória incrementalmente, ajustando seu uso de memória à carga real do servidor, em vez de alocar toda a memória necessária durante o início do servidor. Consequentemente, muitos parâmetros de dimensionamento podem não precisar ser definidos. Para ver quais parâmetros são dimensionados automaticamente ou ajustados automaticamente, use **mysqld --verbose --help** e examine as descrições das opções, ou veja Seção 25.15, “Variáveis do Sistema do Schema de Desempenho”.
+The Performance Schema automatically sizes the values of several of its parameters at server startup if they are not set explicitly. For example, it sizes the parameters that control the sizes of the events waits tables this way. the Performance Schema allocates memory incrementally, scaling its memory use to actual server load, instead of allocating all the memory it needs during server startup. Consequently, many sizing parameters need not be set at all. To see which parameters are autosized or autoscaled, use [**mysqld --verbose --help**](mysqld.html "4.3.1 mysqld — The MySQL Server") and examine the option descriptions, or see [Section 25.15, “Performance Schema System Variables”](performance-schema-system-variables.html "25.15 Performance Schema System Variables").
 
-Para cada parâmetro autodimensionado que não é definido na inicialização do servidor, o Schema de Desempenho determina como definir seu valor com base no valor dos seguintes valores do sistema, que são considerados como “dicas” sobre como você configurou seu servidor MySQL:
+For each autosized parameter that is not set at server startup, the Performance Schema determines how to set its value based on the value of the following system values, which are considered as “hints” about how you have configured your MySQL server:
 
 ```sql
 max_connections
@@ -113,8 +113,8 @@ table_definition_cache
 table_open_cache
 ```
 
-Para substituir o dimensionamento automático ou a escala automática para um determinado parâmetro, defina-o para um valor diferente de -1 ao iniciar. Nesse caso, o Schema de Desempenho atribui o valor especificado.
+To override autosizing or autoscaling for a given parameter, set it to a value other than −1 at startup. In this case, the Performance Schema assigns it the specified value.
 
-Durante a execução, `SHOW VARIABLES` (show-variables.html) exibe os valores reais nos quais os parâmetros autodimensionados foram definidos. Os parâmetros autodimensionados são exibidos com um valor de -1.
+At runtime, [`SHOW VARIABLES`](show-variables.html "13.7.5.39 SHOW VARIABLES Statement") displays the actual values that autosized parameters were set to. Autoscaled parameters display with a value of −1.
 
-Se o Schema de Desempenho estiver desativado, seus parâmetros de tamanho automático e escala automática permanecem definidos como -1 e `SHOW VARIABLES` exibe -1.
+If the Performance Schema is disabled, its autosized and autoscaled parameters remain set to −1 and [`SHOW VARIABLES`](show-variables.html "13.7.5.39 SHOW VARIABLES Statement") displays −1.

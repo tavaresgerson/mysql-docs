@@ -1,7 +1,7 @@
-### 15.2.4 Problemas com tabelas MyISAM
+### 15.2.4 MyISAM Table Problems
 
-15.2.4.1 Tabelas Corrompidas do MyISAM
+15.2.4.1 Corrupted MyISAM Tables
 
-15.2.4.2 Problemas com tabelas que não são fechadas corretamente
+15.2.4.2 Problems from Tables Not Being Closed Properly
 
-O formato de arquivo que o MySQL usa para armazenar dados foi amplamente testado, mas sempre existem circunstâncias que podem causar a corrupção das tabelas do banco de dados. A discussão a seguir descreve como isso pode acontecer e como lidar com isso.
+The file format that MySQL uses to store data has been extensively tested, but there are always circumstances that may cause database tables to become corrupted. The following discussion describes how this can happen and how to handle it.

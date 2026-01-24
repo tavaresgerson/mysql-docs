@@ -1,4 +1,4 @@
-#### 13.7.5.38. EXIBIR TRIGGERS Statement
+#### 13.7.5.38 SHOW TRIGGERS Statement
 
 ```sql
 SHOW TRIGGERS
@@ -6,9 +6,9 @@ SHOW TRIGGERS
     [LIKE 'pattern' | WHERE expr]
 ```
 
-`SHOW TRIGGERS` lista os gatilhos atualmente definidos para tabelas em um banco de dados (o banco de dados padrão, a menos que uma cláusula `FROM` seja fornecida). Esta declaração retorna resultados apenas para bancos de dados e tabelas para os quais você tem o privilégio `[TRIGGER]` (privilegios-fornecidos.html#priv_trigger). A cláusula `LIKE` (funções de comparação de strings.html#operador_like), se presente, indica quais nomes de tabelas (e não nomes de gatilhos) devem ser correspondidos e faz com que a declaração exiba gatilhos para essas tabelas. A cláusula `WHERE` pode ser fornecida para selecionar linhas usando condições mais gerais, conforme discutido em Seção 24.8, “Extensões para Declarações SHOW”.
+[`SHOW TRIGGERS`](show-triggers.html "13.7.5.38 SHOW TRIGGERS Statement") lists the triggers currently defined for tables in a database (the default database unless a `FROM` clause is given). This statement returns results only for databases and tables for which you have the [`TRIGGER`](privileges-provided.html#priv_trigger) privilege. The [`LIKE`](string-comparison-functions.html#operator_like) clause, if present, indicates which table names (not trigger names) to match and causes the statement to display triggers for those tables. The `WHERE` clause can be given to select rows using more general conditions, as discussed in [Section 24.8, “Extensions to SHOW Statements”](extended-show.html "24.8 Extensions to SHOW Statements").
 
-Para o gatilho `ins_sum` definido em Seção 23.3, “Usando gatilhos”, o resultado da consulta `SHOW TRIGGERS` é mostrado aqui:
+For the `ins_sum` trigger defined in [Section 23.3, “Using Triggers”](triggers.html "23.3 Using Triggers"), the output of [`SHOW TRIGGERS`](show-triggers.html "13.7.5.38 SHOW TRIGGERS Statement") is as shown here:
 
 ```sql
 mysql> SHOW TRIGGERS LIKE 'acc%'\G
@@ -29,50 +29,50 @@ collation_connection: utf8_general_ci
   Database Collation: latin1_swedish_ci
 ```
 
-A saída `SHOW TRIGGERS` tem essas colunas:
+[`SHOW TRIGGERS`](show-triggers.html "13.7.5.38 SHOW TRIGGERS Statement") output has these columns:
 
-- `Trigger`
+* `Trigger`
 
-  O nome do gatilho.
+  The name of the trigger.
 
-- Evento
+* `Event`
 
-  O evento desencadeador. Este é o tipo de operação na tabela associada para a qual o gatilho é ativado. O valor é `INSERT` (uma linha foi inserida), `DELETE` (uma linha foi excluída) ou `UPDATE` (uma linha foi modificada).
+  The trigger event. This is the type of operation on the associated table for which the trigger activates. The value is `INSERT` (a row was inserted), `DELETE` (a row was deleted), or `UPDATE` (a row was modified).
 
-- `Mesa`
+* `Table`
 
-  A tabela para a qual o gatilho é definido.
+  The table for which the trigger is defined.
 
-- "Declaração"
+* `Statement`
 
-  O corpo do gatilho; ou seja, a declaração executada quando o gatilho é ativado.
+  The trigger body; that is, the statement executed when the trigger activates.
 
-- `Horário`
+* `Timing`
 
-  Se o gatilho é ativado antes ou depois do evento que o desencadeia. O valor é `BEFORE` ou `AFTER`.
+  Whether the trigger activates before or after the triggering event. The value is `BEFORE` or `AFTER`.
 
-- Criado
+* `Created`
 
-  A data e a hora em que o gatilho foi criado. Este é um valor `TIMESTAMP(2)` (com uma parte fracionária em centésimos de segundo) para gatilhos criados no MySQL 5.7.2 ou posterior, `NULL` para gatilhos criados antes de 5.7.2.
+  The date and time when the trigger was created. This is a `TIMESTAMP(2)` value (with a fractional part in hundredths of seconds) for triggers created in MySQL 5.7.2 or later, `NULL` for triggers created prior to 5.7.2.
 
-- `sql_mode`
+* `sql_mode`
 
-  O modo SQL em vigor quando o gatilho foi criado e sob o qual o gatilho é executado. Para os valores permitidos, consulte Seção 5.1.10, “Modos SQL do Servidor”.
+  The SQL mode in effect when the trigger was created, and under which the trigger executes. For the permitted values, see [Section 5.1.10, “Server SQL Modes”](sql-mode.html "5.1.10 Server SQL Modes").
 
-- `Definer`
+* `Definer`
 
-  A conta do usuário que criou o gatilho, no formato `'user_name'@'host_name'`.
+  The account of the user who created the trigger, in `'user_name'@'host_name'` format.
 
-- `character_set_client`
+* `character_set_client`
 
-  O valor da sessão da variável de sistema `character_set_client` quando o gatilho foi criado.
+  The session value of the [`character_set_client`](server-system-variables.html#sysvar_character_set_client) system variable when the trigger was created.
 
-- `collation_connection`
+* `collation_connection`
 
-  O valor da sessão da variável de sistema `collation_connection` quando o gatilho foi criado.
+  The session value of the [`collation_connection`](server-system-variables.html#sysvar_collation_connection) system variable when the trigger was created.
 
-- `Colagem de banco de dados`
+* `Database Collation`
 
-  A agregação do banco de dados com o qual o gatilho está associado.
+  The collation of the database with which the trigger is associated.
 
-As informações sobre gatilhos também estão disponíveis na tabela `INFORMATION_SCHEMA [`TRIGGERS\`]\(information-schema-triggers-table.html). Veja Seção 24.3.29, “A Tabela INFORMATION_SCHEMA TRIGGERS”.
+Trigger information is also available from the `INFORMATION_SCHEMA` [`TRIGGERS`](information-schema-triggers-table.html "24.3.29 The INFORMATION_SCHEMA TRIGGERS Table") table. See [Section 24.3.29, “The INFORMATION_SCHEMA TRIGGERS Table”](information-schema-triggers-table.html "24.3.29 The INFORMATION_SCHEMA TRIGGERS Table").

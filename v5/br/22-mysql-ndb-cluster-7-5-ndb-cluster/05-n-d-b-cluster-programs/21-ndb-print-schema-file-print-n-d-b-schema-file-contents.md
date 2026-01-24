@@ -1,17 +1,17 @@
-### 21.5.21 ndb_print_schema_file — Imprimir o conteúdo do arquivo de esquema do NDB
+### 21.5.21 ndb_print_schema_file — Print NDB Schema File Contents
 
-**ndb_print_schema_file** obtém informações de diagnóstico de um arquivo de esquema de cluster.
+[**ndb_print_schema_file**](mysql-cluster-programs-ndb-print-schema-file.html "21.5.21 ndb_print_schema_file — Print NDB Schema File Contents") obtains diagnostic information from a cluster schema file.
 
-#### Uso
+#### Usage
 
 ```sql
 ndb_print_schema_file file_name
 ```
 
-*`file_name`* é o nome de um arquivo de esquema de cluster. Para obter mais informações sobre arquivos de esquema de cluster, consulte Diretório do Sistema de Arquivos do Nó de Dados do NDB Cluster.
+*`file_name`* is the name of a cluster schema file. For more information about cluster schema files, see [NDB Cluster Data Node File System Directory](/doc/ndb-internals/en/ndb-internals-ndbd-filesystemdir-files.html).
 
-Assim como **ndb_print_backup_file** e **ndb_print_sys_file** (e ao contrário da maioria das outras ferramentas de `NDB` (mysql-cluster.html) que são destinadas a serem executadas em um servidor de gerenciamento ou para se conectar a um servidor de gerenciamento), **ndb_print_schema_file** deve ser executado em um nó de dados do cluster, pois ele acessa diretamente o sistema de arquivos do nó de dados. Como ele não faz uso do servidor de gerenciamento, essa ferramenta pode ser usada quando o servidor de gerenciamento não está em execução e até mesmo quando o cluster foi completamente desligado.
+Like [**ndb_print_backup_file**](mysql-cluster-programs-ndb-print-backup-file.html "21.5.18 ndb_print_backup_file — Print NDB Backup File Contents") and [**ndb_print_sys_file**](mysql-cluster-programs-ndb-print-sys-file.html "21.5.22 ndb_print_sys_file — Print NDB System File Contents") (and unlike most of the other [`NDB`](mysql-cluster.html "Chapter 21 MySQL NDB Cluster 7.5 and NDB Cluster 7.6") utilities that are intended to be run on a management server host or to connect to a management server) [**ndb_print_schema_file**](mysql-cluster-programs-ndb-print-schema-file.html "21.5.21 ndb_print_schema_file — Print NDB Schema File Contents") must be run on a cluster data node, since it accesses the data node file system directly. Because it does not make use of the management server, this utility can be used when the management server is not running, and even when the cluster has been completely shut down.
 
-#### Opções adicionais
+#### Additional Options
 
-Nenhum.
+None.

@@ -1,53 +1,53 @@
-#### 26.4.3.1 As visualizações host_summary e x$host_summary
+#### 26.4.3.1 The host_summary and x$host_summary Views
 
-Essas visualizações resumem a atividade de declarações, o acesso de arquivos e as conexões, agrupadas por host.
+These views summarize statement activity, file I/O, and connections, grouped by host.
 
-As views `host_summary` e `x$host_summary` possuem essas colunas:
+The `host_summary` and `x$host_summary` views have these columns:
 
-- `host`
+* `host`
 
-  O host a partir do qual o cliente se conectou. As linhas para as quais a coluna `HOST` na tabela subjacente do Gerenciamento de Desempenho é `NULL` são assumidas como pertencentes a threads de segundo plano e são relatadas com o nome do host `background`.
+  The host from which the client connected. Rows for which the `HOST` column in the underlying Performance Schema table is `NULL` are assumed to be for background threads and are reported with a host name of `background`.
 
-- `declarações`
+* `statements`
 
-  O número total de declarações para o anfitrião.
+  The total number of statements for the host.
 
-- `statement_latency`
+* `statement_latency`
 
-  O tempo total de espera de declarações cronometradas para o host.
+  The total wait time of timed statements for the host.
 
-- `declaração_latência_média`
+* `statement_avg_latency`
 
-  O tempo médio de espera por declaração cronometrada para o anfitrião.
+  The average wait time per timed statement for the host.
 
-- `table_scans`
+* `table_scans`
 
-  O número total de varreduras de tabela para o host.
+  The total number of table scans for the host.
 
-- `file_ios`
+* `file_ios`
 
-  O número total de eventos de E/S de arquivos para o host.
+  The total number of file I/O events for the host.
 
-- `file_io_latency`
+* `file_io_latency`
 
-  O tempo total de espera de eventos de E/S de arquivos com temporizador para o host.
+  The total wait time of timed file I/O events for the host.
 
-- `conexões atuais`
+* `current_connections`
 
-  O número atual de conexões para o host.
+  The current number of connections for the host.
 
-- `total_connections`
+* `total_connections`
 
-  O número total de conexões para o host.
+  The total number of connections for the host.
 
-- `usuários únicos`
+* `unique_users`
 
-  O número de usuários distintos para o host.
+  The number of distinct users for the host.
 
-- `memória_atual`
+* `current_memory`
 
-  A quantidade atual de memória alocada para o host.
+  The current amount of allocated memory for the host.
 
-- `total_memory_allocated`
+* `total_memory_allocated`
 
-  O valor total de memória alocada para o host.
+  The total amount of allocated memory for the host.

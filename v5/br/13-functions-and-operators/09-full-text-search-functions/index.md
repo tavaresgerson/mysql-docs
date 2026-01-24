@@ -1,24 +1,24 @@
-## 12.9 Funções de pesquisa de texto completo
+## 12.9 Full-Text Search Functions
 
-12.9.1 Pesquisas de Texto Completo em Linguagem Natural
+12.9.1 Natural Language Full-Text Searches
 
-12.9.2 Pesquisas de Texto Completas Booleanas
+12.9.2 Boolean Full-Text Searches
 
-12.9.3 Pesquisas de texto completo com expansão de consulta
+12.9.3 Full-Text Searches with Query Expansion
 
-12.9.4 Palavras-chave completas de texto
+12.9.4 Full-Text Stopwords
 
-12.9.5 Restrições de texto completo
+12.9.5 Full-Text Restrictions
 
-12.9.6 Ajuste fino da pesquisa de texto completo do MySQL
+12.9.6 Fine-Tuning MySQL Full-Text Search
 
-12.9.7 Adicionando uma Cotação Definida pelo Usuário para Indexação de Texto Completo
+12.9.7 Adding a User-Defined Collation for Full-Text Indexing
 
 12.9.8 ngram Full-Text Parser
 
-12.9.9 Plugin do analisador de texto completo MeCab
+12.9.9 MeCab Full-Text Parser Plugin
 
-`MATCH (col1,col2,...) CONTRA (expr [modificador de pesquisa])`
+`MATCH (col1,col2,...) AGAINST (expr [search_modifier])`
 
 ```sql
 search_modifier:
@@ -30,34 +30,34 @@ search_modifier:
   }
 ```
 
-O MySQL oferece suporte para indexação e busca de texto completo:
+MySQL has support for full-text indexing and searching:
 
-- Um índice de texto completo no MySQL é um índice do tipo `FULLTEXT`.
+* A full-text index in MySQL is an index of type `FULLTEXT`.
 
-- Os índices de texto completo só podem ser usados com tabelas `InnoDB` ou `MyISAM` e só podem ser criados para colunas `CHAR`, `VARCHAR` ou `TEXT`.
+* Full-text indexes can be used only with `InnoDB` or `MyISAM` tables, and can be created only for `CHAR`, `VARCHAR`, or `TEXT` columns.
 
-- O MySQL oferece um analisador de ngram de texto completo integrado que suporta chinês, japonês e coreano (CJK), e um plugin de analisador de texto completo MeCab instalável para japonês. As diferenças de análise são descritas na Seção 12.9.8, “Analisador de ngram de texto completo”, e na Seção 12.9.9, “Plugin de analisador de texto completo MeCab”.
+* MySQL provides a built-in full-text ngram parser that supports Chinese, Japanese, and Korean (CJK), and an installable MeCab full-text parser plugin for Japanese. Parsing differences are outlined in Section 12.9.8, “ngram Full-Text Parser”, and Section 12.9.9, “MeCab Full-Text Parser Plugin”.
 
-- Uma definição de índice `FULLTEXT` pode ser dada na instrução `CREATE TABLE` quando uma tabela é criada, ou adicionada posteriormente usando `ALTER TABLE` ou `CREATE INDEX`.
+* A `FULLTEXT` index definition can be given in the `CREATE TABLE` statement when a table is created, or added later using `ALTER TABLE` or `CREATE INDEX`.
 
-- Para conjuntos de dados grandes, é muito mais rápido carregar seus dados em uma tabela que não tenha um índice `FULLTEXT` e, em seguida, criar o índice depois disso, do que carregar dados em uma tabela que tenha um índice `FULLTEXT` existente.
+* For large data sets, it is much faster to load your data into a table that has no `FULLTEXT` index and then create the index after that, than to load data into a table that has an existing `FULLTEXT` index.
 
-A pesquisa de texto completo é realizada usando a sintaxe `MATCH() CONTRA()`. `MATCH()` recebe uma lista separada por vírgula que nomeia as colunas a serem pesquisadas. `CONTRAS` recebe uma string para pesquisar e um modificador opcional que indica que tipo de pesquisa deve ser realizada. A string de pesquisa deve ser um valor de string que é constante durante a avaliação da consulta. Isso exclui, por exemplo, uma coluna de tabela porque ela pode diferir para cada linha.
+Full-text searching is performed using `MATCH() AGAINST()` syntax. `MATCH()` takes a comma-separated list that names the columns to be searched. `AGAINST` takes a string to search for, and an optional modifier that indicates what type of search to perform. The search string must be a string value that is constant during query evaluation. This rules out, for example, a table column because that can differ for each row.
 
-Existem três tipos de pesquisas de texto completo:
+There are three types of full-text searches:
 
-- Uma pesquisa em linguagem natural interpreta a cadeia de busca como uma frase em linguagem humana natural (uma frase em texto livre). Não há operadores especiais, com exceção dos caracteres de aspas duplas ("). A lista de palavras-chave não usadas se aplica. Para obter mais informações sobre listas de palavras-chave não usadas, consulte a Seção 12.9.4, “Palavras-chave não usadas para pesquisa de texto completo”.
+* A natural language search interprets the search string as a phrase in natural human language (a phrase in free text). There are no special operators, with the exception of double quote (") characters. The stopword list applies. For more information about stopword lists, see Section 12.9.4, “Full-Text Stopwords”.
 
-  As pesquisas de texto completo são pesquisas em linguagem natural se o modificador `EM MODO DE LINGUAGEM NATURAL` for fornecido ou se nenhum modificador for fornecido. Para mais informações, consulte a Seção 12.9.1, “Pesquisas de Texto Completo em Linguagem Natural”.
+  Full-text searches are natural language searches if the `IN NATURAL LANGUAGE MODE` modifier is given or if no modifier is given. For more information, see Section 12.9.1, “Natural Language Full-Text Searches”.
 
-- Uma pesquisa booleana interpreta a string de pesquisa usando as regras de uma linguagem de consulta especial. A string contém as palavras a serem pesquisadas. Também pode conter operadores que especificam requisitos, como a presença ou ausência de uma palavra em linhas correspondentes, ou que ela deve ser ponderada mais alta ou mais baixa do que o usual. Algumas palavras comuns (palavras-chave) são omitidas do índice de pesquisa e não correspondem se estiverem presentes na string de pesquisa. O modificador `IN BOOLEAN MODE` especifica uma pesquisa booleana. Para mais informações, consulte a Seção 12.9.2, “Pesquisas de Texto Completas Booleanas”.
+* A boolean search interprets the search string using the rules of a special query language. The string contains the words to search for. It can also contain operators that specify requirements such that a word must be present or absent in matching rows, or that it should be weighted higher or lower than usual. Certain common words (stopwords) are omitted from the search index and do not match if present in the search string. The `IN BOOLEAN MODE` modifier specifies a boolean search. For more information, see Section 12.9.2, “Boolean Full-Text Searches”.
 
-- Uma pesquisa de expansão de consulta é uma modificação de uma pesquisa de linguagem natural. A string de pesquisa é usada para realizar uma pesquisa de linguagem natural. Em seguida, palavras das linhas mais relevantes retornadas pela pesquisa são adicionadas à string de pesquisa e a pesquisa é realizada novamente. A consulta retorna as linhas da segunda pesquisa. O modificador `IN NATURAL LANGUAGE MODE WITH QUERY EXPANSION` ou `WITH QUERY EXPANSION` especifica uma pesquisa de expansão de consulta. Para mais informações, consulte a Seção 12.9.3, “Pesquisas de Texto Completo com Expansão de Consulta”.
+* A query expansion search is a modification of a natural language search. The search string is used to perform a natural language search. Then words from the most relevant rows returned by the search are added to the search string and the search is done again. The query returns the rows from the second search. The `IN NATURAL LANGUAGE MODE WITH QUERY EXPANSION` or `WITH QUERY EXPANSION` modifier specifies a query expansion search. For more information, see Section 12.9.3, “Full-Text Searches with Query Expansion”.
 
-Para obter informações sobre o desempenho das consultas `FULLTEXT`, consulte a Seção 8.3.4, “Índices de Colunas”.
+For information about `FULLTEXT` query performance, see Section 8.3.4, “Column Indexes”.
 
-Para obter mais informações sobre os índices `FULLTEXT` do `InnoDB`, consulte a Seção 14.6.2.4, “Índices Full-Text do InnoDB”.
+For more information about `InnoDB` `FULLTEXT` indexes, see Section 14.6.2.4, “InnoDB Full-Text Indexes”.
 
-As restrições para a pesquisa de texto completo estão listadas na Seção 12.9.5, “Restrições de Texto Completo”.
+Constraints on full-text searching are listed in Section 12.9.5, “Full-Text Restrictions”.
 
-O utilitário **myisam_ftdump** descarrega o conteúdo de um índice de texto completo `MyISAM`. Isso pode ser útil para depuração de consultas de texto completo. Veja a Seção 4.6.2, “myisam_ftdump — Exibir informações do índice de texto completo”.
+The **myisam_ftdump** utility dumps the contents of a `MyISAM` full-text index. This may be helpful for debugging full-text queries. See Section 4.6.2, “myisam_ftdump — Display Full-Text Index information”.

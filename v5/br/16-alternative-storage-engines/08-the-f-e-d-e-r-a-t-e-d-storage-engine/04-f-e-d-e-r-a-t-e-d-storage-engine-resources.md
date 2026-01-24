@@ -1,5 +1,5 @@
-### 15.8.4 Recursos do Motor de Armazenamento FEDERATED
+### 15.8.4 FEDERATED Storage Engine Resources
 
-Os seguintes recursos adicionais estão disponíveis para o mecanismo de armazenamento `FEDERATED`:
+The following additional resources are available for the `FEDERATED` storage engine:
 
-- Um fórum dedicado ao motor de armazenamento `FEDERATED` está disponível em <https://forums.mysql.com/list.php?105>.
+* A forum dedicated to the `FEDERATED` storage engine is available at <https://forums.mysql.com/list.php?105>.

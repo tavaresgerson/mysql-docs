@@ -1,39 +1,37 @@
-#### 13.4.1.2 Declaração de REESTABELECER MASTER
+#### 13.4.1.2 RESET MASTER Statement
 
 ```sql
 RESET MASTER
 ```
 
-Aviso
+Warning
 
-Use essa declaração com cautela para garantir que você não perca nenhum dado de arquivo de log binário desejado e o histórico de execução do GTID.
+Use this statement with caution to ensure you do not lose any wanted binary log file data and GTID execution history.
 
-O comando `RESET MASTER` requer o privilégio `RELOAD`.
+[`RESET MASTER`](reset-master.html "13.4.1.2 RESET MASTER Statement") requires the [`RELOAD`](privileges-provided.html#priv_reload) privilege.
 
-Para um servidor onde o registro binário está habilitado (`log_bin` está ativado), o comando `RESET MASTER` exclui todos os arquivos de registro binário existentes e redefini o arquivo de índice do registro binário, restaurando o servidor ao estado anterior ao início do registro binário. Um novo arquivo de registro binário vazio é criado para que o registro binário possa ser reiniciado.
+For a server where binary logging is enabled ([`log_bin`](replication-options-binary-log.html#sysvar_log_bin) is `ON`), `RESET MASTER` deletes all existing binary log files and resets the binary log index file, resetting the server to its state before binary logging was started. A new empty binary log file is created so that binary logging can be restarted.
 
-Para um servidor onde os GTIDs estão em uso (`gtid_mode` é `ON`), emitir `RESET MASTER` redefiniu o histórico de execução do GTID. O valor da variável de sistema `gtid_purged` é definido como uma string vazia (`''`), o valor global (mas não o valor da sessão) da variável de sistema `gtid_executed` é definido como uma string vazia e a tabela `mysql.gtid_executed` é limpa (veja mysql.gtid_executed Table). Se o servidor habilitado para GTIDs tiver o registro binário habilitado, `RESET MASTER` também redefiniu o log binário conforme descrito acima. Note que `RESET MASTER` é o método para redefinir o histórico de execução do GTID, mesmo que o servidor habilitado para GTIDs seja uma replica onde o registro binário está desativado; `RESET SLAVE` não tem efeito no histórico de execução do GTID. Para mais informações sobre a redefinição do histórico de execução do GTID, consulte Resetting the GTID Execution History.
+For a server where GTIDs are in use ([`gtid_mode`](replication-options-gtids.html#sysvar_gtid_mode) is `ON`), issuing `RESET MASTER` resets the GTID execution history. The value of the [`gtid_purged`](replication-options-gtids.html#sysvar_gtid_purged) system variable is set to an empty string (`''`), the global value (but not the session value) of the [`gtid_executed`](replication-options-gtids.html#sysvar_gtid_executed) system variable is set to an empty string, and the `mysql.gtid_executed` table is cleared (see [mysql.gtid_executed Table](replication-gtids-concepts.html#replication-gtids-gtid-executed-table "mysql.gtid_executed Table")). If the GTID-enabled server has binary logging enabled, [`RESET MASTER`](reset-master.html "13.4.1.2 RESET MASTER Statement") also resets the binary log as described above. Note that [`RESET MASTER`](reset-master.html "13.4.1.2 RESET MASTER Statement") is the method to reset the GTID execution history even if the GTID-enabled server is a replica where binary logging is disabled; [`RESET SLAVE`](reset-slave.html "13.4.2.3 RESET SLAVE Statement") has no effect on the GTID execution history. For more information on resetting the GTID execution history, see [Resetting the GTID Execution History](replication-gtids-lifecycle.html#replication-gtids-execution-history "Resetting the GTID Execution History").
 
-Importante
+Important
 
-Os efeitos de `RESET MASTER` diferem dos de `PURGE BINARY LOGS` de duas maneiras principais:
+The effects of [`RESET MASTER`](reset-master.html "13.4.1.2 RESET MASTER Statement") differ from those of [`PURGE BINARY LOGS`](purge-binary-logs.html "13.4.1.1 PURGE BINARY LOGS Statement") in 2 key ways:
 
-1. `RESET MASTER` remove *todos* os arquivos de log binários listados no arquivo de índice, deixando apenas um único arquivo de log binário vazio com um sufixo numérico de `.000001`, enquanto a numeração não é redefinida por `PURGE BINARY LOGS`.
+1. [`RESET MASTER`](reset-master.html "13.4.1.2 RESET MASTER Statement") removes *all* binary log files that are listed in the index file, leaving only a single, empty binary log file with a numeric suffix of `.000001`, whereas the numbering is not reset by [`PURGE BINARY LOGS`](purge-binary-logs.html "13.4.1.1 PURGE BINARY LOGS Statement").
 
-2. `RESET MASTER` *não* é destinado a ser usado enquanto houver réplicas em execução. O comportamento de `RESET MASTER` quando usado enquanto as réplicas estão em execução é indefinido (e, portanto, não é suportado), enquanto `PURGE BINARY LOGS` pode ser usado com segurança enquanto as réplicas estão em execução.
+2. [`RESET MASTER`](reset-master.html "13.4.1.2 RESET MASTER Statement") is *not* intended to be used while any replicas are running. The behavior of [`RESET MASTER`](reset-master.html "13.4.1.2 RESET MASTER Statement") when used while replicas are running is undefined (and thus unsupported), whereas [`PURGE BINARY LOGS`](purge-binary-logs.html "13.4.1.1 PURGE BINARY LOGS Statement") may be safely used while replicas are running.
 
-Veja também Seção 13.4.1.1, “Declaração de PURGE BINARY LOGS”.
+See also [Section 13.4.1.1, “PURGE BINARY LOGS Statement”](purge-binary-logs.html "13.4.1.1 PURGE BINARY LOGS Statement").
 
-`RESET MASTER` pode ser útil quando você configura a fonte e a replica pela primeira vez, para que você possa verificar a configuração da seguinte forma:
+[`RESET MASTER`](reset-master.html "13.4.1.2 RESET MASTER Statement") can prove useful when you first set up the source and the replica, so that you can verify the setup as follows:
 
-1. Inicie a fonte e a replica, e inicie a replicação (consulte Seção 16.1.2, “Configurando a replicação com base na posição do arquivo de log binário”).
+1. Start the source and replica, and start replication (see [Section 16.1.2, “Setting Up Binary Log File Position Based Replication”](replication-howto.html "16.1.2 Setting Up Binary Log File Position Based Replication")).
 
-2. Execute algumas consultas de teste na fonte.
+2. Execute a few test queries on the source.
+3. Check that the queries were replicated to the replica.
+4. When replication is running correctly, issue [`STOP SLAVE`](stop-slave.html "13.4.2.6 STOP SLAVE Statement") followed by [`RESET SLAVE`](reset-slave.html "13.4.2.3 RESET SLAVE Statement") on the replica, then verify that any unwanted data no longer exists on the replica.
 
-3. Verifique se as consultas foram replicadas para a replica.
+5. Issue [`RESET MASTER`](reset-master.html "13.4.1.2 RESET MASTER Statement") on the source to clean up the test queries.
 
-4. Quando a replicação estiver funcionando corretamente, execute o comando `STOP SLAVE` seguido de `RESET SLAVE` na replica, e, em seguida, verifique se os dados indesejados não existem mais na replica.
-
-5. Emita a instrução `RESET MASTER` na fonte para limpar as consultas de teste.
-
-Após verificar a configuração, reiniciar a fonte e a réplica e garantir que nenhum dado indesejado ou arquivo de log binário gerado pelo teste permaneça na fonte ou na réplica, você pode iniciar a réplica e começar a replicar.
+After verifying the setup, resetting the source and replica and ensuring that no unwanted data or binary log files generated by testing remain on source or replica, you can start the replica and begin replicating.
