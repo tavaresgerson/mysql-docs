@@ -1,24 +1,24 @@
-## 10.10 Conjuntos de caracteres e codificações suportados
+## 10.10 Character Sets e Collations Suportados
 
-10.10.1 Conjuntos de caracteres Unicode
+10.10.1 Character Sets Unicode
 
-10.10.2 Conjuntos de Caracteres da Europa Ocidental
+10.10.2 Character Sets da Europa Ocidental
 
-10.10.3 Caracteres de conjuntos de caracteres da Europa Central
+10.10.3 Character Sets da Europa Central
 
-10.10.4 Conjuntos de caracteres do sul da Europa e do Oriente Médio
+10.10.4 Character Sets do Sul da Europa e Oriente Médio
 
-10.10.5 Conjuntos de Caracteres Bálticos
+10.10.5 Character Sets Bálticos
 
-10.10.6 Conjuntos de caracteres cirílicos
+10.10.6 Character Sets Cirílicos
 
-10.10.7 Conjuntos de caracteres asiáticos
+10.10.7 Character Sets Asiáticos
 
-10.10.8 O Conjunto de Caracteres Binário
+10.10.8 O Character Set Binário
 
-Esta seção indica quais conjuntos de caracteres o MySQL suporta. Há uma subseção para cada grupo de conjuntos de caracteres relacionados. Para cada conjunto de caracteres, as colorações permitidas são listadas.
+Esta seção indica quais *character sets* o MySQL suporta. Há uma subseção para cada grupo de *character sets* relacionados. Para cada *character set*, as *collations* permitidas são listadas.
 
-Para listar os conjuntos de caracteres disponíveis e suas colatações padrão, use a instrução `SHOW CHARACTER SET` ou consulte a tabela `INFORMATION_SCHEMA` `CHARACTER_SETS`. Por exemplo:
+Para listar os *character sets* disponíveis e suas *collations* padrão, utilize a instrução `SHOW CHARACTER SET` ou faça uma *Query* na tabela `CHARACTER_SETS` do `INFORMATION_SCHEMA`. Por exemplo:
 
 ```sql
 mysql> SHOW CHARACTER SET;
@@ -69,4 +69,4 @@ mysql> SHOW CHARACTER SET;
 +----------+---------------------------------+---------------------+--------+
 ```
 
-Em casos em que um conjunto de caracteres possui múltiplas classificações, pode não ser claro qual classificação é mais adequada para uma aplicação específica. Para evitar escolher a classificação errada, pode ser útil realizar algumas comparações com valores de dados representativos para garantir que uma classificação específica ordene os valores da maneira que você espera.
+Nos casos em que um *character set* possui múltiplas *collations*, pode não estar claro qual *collation* é a mais adequada para uma determinada aplicação. Para evitar a escolha de uma *collation* incorreta, pode ser útil realizar algumas comparações com valores de dados representativos para garantir que uma determinada *collation* ordene os valores da maneira esperada.

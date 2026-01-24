@@ -1,10 +1,10 @@
-### 10.14.1 Tipos de implementação de cotação
+### 10.14.1 Tipos de Implementação de Collation
 
-O MySQL implementa vários tipos de colatações:
+O MySQL implementa diversos tipos de collations:
 
-**Colagens simples para conjuntos de caracteres de 8 bits**
+**Collations simples para Character Sets de 8-bit**
 
-Esse tipo de ordenação é implementado usando um array de 256 pesos que define uma correspondência um-para-um entre códigos de caracteres e pesos. `latin1_swedish_ci` é um exemplo. É uma ordenação insensível a maiúsculas e minúsculas, portanto, as versões maiúsculas e minúsculas de um caractere têm os mesmos pesos e são consideradas iguais.
+Este tipo de collation é implementado usando um array de 256 weights que define um mapeamento um-para-um (one-to-one mapping) de character codes para weights. `latin1_swedish_ci` é um exemplo. É um collation case-insensitive, portanto, as versões maiúsculas e minúsculas de um caractere têm os mesmos weights e são comparadas como iguais.
 
 ```sql
 mysql> SET NAMES 'latin1' COLLATE 'latin1_swedish_ci';
@@ -27,17 +27,17 @@ mysql> SELECT 'a' = 'A';
 1 row in set (0.12 sec)
 ```
 
-Para obter instruções de implementação, consulte a Seção 10.14.3, “Adicionando uma Colagem Simples a um Conjunto de Caracteres de 8 Bits”.
+Para instruções de implementação, consulte a Seção 10.14.3, “Adicionando um Simple Collation a um Character Set de 8-Bit”.
 
-**Colagens complexas para conjuntos de caracteres de 8 bits**
+**Collations complexos para Character Sets de 8-bit**
 
-Esse tipo de ordenação é implementado usando funções em um arquivo de código-fonte em C que definem como ordenar os caracteres, conforme descrito na Seção 10.13, “Adicionando um Conjunto de Caracteres”.
+Este tipo de collation é implementado usando funções em um arquivo C source que definem como ordenar caracteres, conforme descrito na Seção 10.13, “Adicionando um Character Set”.
 
-**Colagens para conjuntos de caracteres multibyte não Unicode**
+**Collations para Character Sets multibyte não-Unicode**
 
-Para este tipo de ordenação, os caracteres de 8 bits (um único byte) e os caracteres multibyte são tratados de maneira diferente. Para caracteres de 8 bits, os códigos de caracteres correspondem a pesos de forma insensível a maiúsculas e minúsculas. (Por exemplo, os caracteres de um único byte `'a'` e `'A'` têm o mesmo peso, que é `0x41`.) Para caracteres multibyte, existem dois tipos de relação entre os códigos de caracteres e os pesos:
+Para este tipo de collation, caracteres de 8-bit (single-byte) e multibyte são tratados de forma diferente. Para caracteres de 8-bit, os character codes mapeiam para weights de maneira case-insensitive. (Por exemplo, os caracteres single-byte `'a'` e `'A'` ambos têm um weight de `0x41`.) Para caracteres multibyte, existem dois tipos de relacionamento entre character codes e weights:
 
-- Os pesos correspondem aos códigos de caracteres. `sjis_japanese_ci` é um exemplo desse tipo de ordenação. O caractere multibyte `'ぢ'` tem um código de caracteres de `0x82C0`, e o peso também é `0x82C0`.
+* Weights iguais aos character codes. `sjis_japanese_ci` é um exemplo deste tipo de collation. O caractere multibyte `'ぢ'` tem um character code de `0x82C0`, e o weight também é `0x82C0`.
 
   ```sql
   mysql> CREATE TABLE t1
@@ -59,7 +59,7 @@ Para este tipo de ordenação, os caracteres de 8 bits (um único byte) e os car
   3 rows in set (0.00 sec)
   ```
 
-- Os códigos de caracteres mapeiam um para um com os pesos, mas um código não é necessariamente igual ao peso. `gbk_chinese_ci` é um exemplo desse tipo de ordenação. O caractere multibyte `'膰'` tem um código de caracteres de `0x81B0`, mas um peso de `0xC286`.
+* Character codes mapeiam um-para-um para weights, mas um code não é necessariamente igual ao weight. `gbk_chinese_ci` é um exemplo deste tipo de collation. O caractere multibyte `'膰'` tem um character code de `0x81B0`, mas um weight de `0xC286`.
 
   ```sql
   mysql> CREATE TABLE t1
@@ -81,13 +81,13 @@ Para este tipo de ordenação, os caracteres de 8 bits (um único byte) e os car
   3 rows in set (0.00 sec)
   ```
 
-Para obter instruções de implementação, consulte a Seção 10.13, “Adicionar um Conjunto de Caracteres”.
+Para instruções de implementação, consulte a Seção 10.13, “Adicionando um Character Set”.
 
-**Colagens para conjuntos de caracteres multibyte Unicode**
+**Collations para Character Sets multibyte Unicode**
 
-Algumas dessas ordenações são baseadas no Algoritmo de Ordenação Unicode (UCA), outras
+Alguns desses collations são baseados no Unicode Collation Algorithm (UCA), outros não.
 
-As collation não-UCA têm uma correspondência um-para-um entre o código de caracteres e o peso. No MySQL, essas collation são insensíveis ao caso e ao acento. `utf8_general_ci` é um exemplo: `'a'`, `'A'`, `'À'` e `'á'` têm códigos de caracteres diferentes, mas todos têm o mesmo peso (`0x0041`) e são comparados como iguais.
+Collations não-UCA têm um mapeamento um-para-um de character code para weight. No MySQL, esses collations são case-insensitive e accent-insensitive. `utf8_general_ci` é um exemplo: `'a'`, `'A'`, `'À'` e `'á'` cada um tem character codes diferentes, mas todos têm um weight de `0x0041` e são comparados como iguais.
 
 ```sql
 mysql> SET NAMES 'utf8' COLLATE 'utf8_general_ci';
@@ -113,13 +113,13 @@ mysql> SELECT c1, HEX(c1), HEX(WEIGHT_STRING(c1)) FROM t1;
 4 rows in set (0.00 sec)
 ```
 
-As collation de base em UCA no MySQL têm essas propriedades:
+Collations baseados em UCA no MySQL têm estas propriedades:
 
-- Se um caractere tiver pesos, cada peso usa 2 bytes (16 bits).
+* Se um caractere tem weights, cada weight usa 2 bytes (16 bits).
 
-- Um caractere pode ter zero pesos (ou um peso vazio). Nesse caso, o caractere é ignorável. Exemplo: "U+0000 NULL" não tem peso e é ignorável.
+* Um caractere pode ter zero weights (ou um weight vazio). Neste caso, o caractere é ignorável. Exemplo: "U+0000 NULL" não tem um weight e é ignorável.
 
-- Um caractere pode ter um peso. Exemplo: `'a'` tem um peso de `0x0E33`.
+* Um caractere pode ter um weight. Exemplo: `'a'` tem um weight de `0x0E33`.
 
   ```sql
   mysql> SET NAMES 'utf8' COLLATE 'utf8_unicode_ci';
@@ -134,7 +134,7 @@ As collation de base em UCA no MySQL têm essas propriedades:
   1 row in set (0.02 sec)
   ```
 
-- Um caractere pode ter vários pesos. Isso é uma expansão. Exemplo: A letra alemã `'ß'` (ligatura SZ, ou S AFUNDADO) tem um peso de `0x0FEA0FEA`.
+* Um caractere pode ter muitos weights. Isso é uma expansão. Exemplo: A letra alemã `'ß'` (ligatura SZ, ou SHARP S) tem um weight de `0x0FEA0FEA`.
 
   ```sql
   mysql> SET NAMES 'utf8' COLLATE 'utf8_unicode_ci';
@@ -149,7 +149,7 @@ As collation de base em UCA no MySQL têm essas propriedades:
   1 row in set (0.00 sec)
   ```
 
-- Muitos caracteres podem ter um peso. Isso é uma contração. Exemplo: `'ch'` é uma única letra em checo e tem um peso de `0x0EE2`.
+* Muitos caracteres podem ter um weight. Isso é uma contração. Exemplo: `'ch'` é uma única letra em Tcheco e tem um weight de `0x0EE2`.
 
   ```sql
   mysql> SET NAMES 'utf8' COLLATE 'utf8_czech_ci';
@@ -164,10 +164,10 @@ As collation de base em UCA no MySQL têm essas propriedades:
   1 row in set (0.00 sec)
   ```
 
-É também possível criar uma mapeia de muitos caracteres para muitos pesos (essa é a contração com expansão), mas isso não é suportado pelo MySQL.
+Um mapeamento de muitos-caracteres-para-muitos-weights também é possível (isso é contração com expansão), mas não é suportado pelo MySQL.
 
-Para obter instruções de implementação, para uma ordenação que não seja da UCA, consulte a Seção 10.13, “Adicionando um Conjunto de Caracteres”. Para uma ordenação da UCA, consulte a Seção 10.14.4, “Adicionando uma Ordenação da UCA a um Conjunto de Caracteres Unicode”.
+Para instruções de implementação, para um collation não-UCA, consulte a Seção 10.13, “Adicionando um Character Set”. Para um collation UCA, consulte a Seção 10.14.4, “Adicionando um UCA Collation a um Character Set Unicode”.
 
-**Colagens variadas**
+**Collations Diversos**
 
-Há também algumas combinações que não se enquadram em nenhuma das categorias anteriores.
+Existem também alguns collations que não se enquadram em nenhuma das categorias anteriores.

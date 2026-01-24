@@ -1,6 +1,6 @@
-### 10.3.5 Conjunto de caracteres da coluna e classificação
+### 10.3.5 Character Set e Collation de Coluna
 
-Cada coluna de “caractere” (ou seja, uma coluna do tipo `CHAR`, `VARCHAR`, um tipo `TEXT` ou qualquer sinônimo) tem um conjunto de caracteres da coluna e uma collation da coluna. A sintaxe de definição de coluna para `CREATE TABLE` e `ALTER TABLE` tem cláusulas opcionais para especificar o conjunto de caracteres da coluna e a collation:
+Toda coluna de "caractere" (ou seja, uma coluna do tipo `CHAR`, `VARCHAR`, um tipo `TEXT` ou qualquer sinônimo) possui um character set de coluna e uma collation de coluna. A sintaxe de definição de coluna para `CREATE TABLE` e `ALTER TABLE` possui cláusulas opcionais para especificar o character set e a collation da coluna:
 
 ```sql
 col_name {CHAR | VARCHAR | TEXT} (col_length)
@@ -8,7 +8,7 @@ col_name {CHAR | VARCHAR | TEXT} (col_length)
     [COLLATE collation_name]
 ```
 
-Essas cláusulas também podem ser usadas para colunas `ENUM` e `SET`:
+Estas cláusulas também podem ser usadas para colunas `ENUM` e `SET`:
 
 ```sql
 col_name {ENUM | SET} (val_list)
@@ -32,9 +32,9 @@ ALTER TABLE t1 MODIFY
       COLLATE latin1_swedish_ci;
 ```
 
-O MySQL escolhe o conjunto de caracteres da coluna e a ordenação da seguinte maneira:
+O MySQL escolhe o character set e a collation da coluna da seguinte maneira:
 
-- Se ambos `CHARACTER SET charset_name` e `COLLATE collation_name` forem especificados, o conjunto de caracteres *`charset_name`* e a ordenação *`collation_name`* serão usados.
+* Se ambos `CHARACTER SET charset_name` e `COLLATE collation_name` forem especificados, o character set *`charset_name`* e a collation *`collation_name`* são usados.
 
   ```sql
   CREATE TABLE t1
@@ -43,9 +43,9 @@ O MySQL escolhe o conjunto de caracteres da coluna e a ordenação da seguinte m
   ) CHARACTER SET latin1 COLLATE latin1_bin;
   ```
 
-  O conjunto de caracteres e a ordenação são especificados para a coluna, então eles são usados. A coluna tem o conjunto de caracteres `utf8` e a ordenação `utf8_unicode_ci`.
+  O character set e a collation são especificados para a coluna, portanto, são usados. A coluna tem character set `utf8` e collation `utf8_unicode_ci`.
 
-- Se `CHARACTER SET charset_name` for especificado sem `COLLATE`, o conjunto de caracteres `charset_name`\* e sua collation padrão serão usados.
+* Se `CHARACTER SET charset_name` for especificado sem `COLLATE`, o character set *`charset_name`* e sua collation padrão são usados.
 
   ```sql
   CREATE TABLE t1
@@ -54,9 +54,9 @@ O MySQL escolhe o conjunto de caracteres da coluna e a ordenação da seguinte m
   ) CHARACTER SET latin1 COLLATE latin1_bin;
   ```
 
-  O conjunto de caracteres é especificado para a coluna, mas a concordância não está definida. A coluna tem o conjunto de caracteres `utf8` e a concordância padrão para `utf8`, que é `utf8_general_ci`. Para ver a concordância padrão para cada conjunto de caracteres, use a instrução `SHOW CHARACTER SET` ou consulte a tabela `INFORMATION_SCHEMA` `CHARACTER_SETS`.
+  O character set é especificado para a coluna, mas a collation não é. A coluna tem character set `utf8` e a collation padrão para `utf8`, que é `utf8_general_ci`. Para ver a collation padrão para cada character set, use a instrução `SHOW CHARACTER SET` ou faça uma Query na tabela `CHARACTER_SETS` do `INFORMATION_SCHEMA`.
 
-- Se `COLLATE collation_name` for especificado sem `CHARACTER SET`, o conjunto de caracteres associado a *`collation_name`* e a collation *`collation_name`* serão usados.
+* Se `COLLATE collation_name` for especificado sem `CHARACTER SET`, o character set associado a *`collation_name`* e a collation *`collation_name`* são usados.
 
   ```sql
   CREATE TABLE t1
@@ -65,9 +65,9 @@ O MySQL escolhe o conjunto de caracteres da coluna e a ordenação da seguinte m
   ) CHARACTER SET latin1 COLLATE latin1_bin;
   ```
 
-  A ordenação é especificada para a coluna, mas o conjunto de caracteres não é. A coluna tem a ordenação `utf8_polish_ci` e o conjunto de caracteres é o associado à ordenação, que é `utf8`.
+  A collation é especificada para a coluna, mas o character set não é. A coluna tem collation `utf8_polish_ci` e o character set é aquele associado à collation, que é `utf8`.
 
-- Caso contrário (nem `CHARACTER SET` nem `COLLATE` sejam especificados), o conjunto de caracteres da tabela e a collation serão usados.
+* Caso contrário (nem `CHARACTER SET` nem `COLLATE` é especificado), o character set e a collation da tabela são usados.
 
   ```sql
   CREATE TABLE t1
@@ -76,8 +76,8 @@ O MySQL escolhe o conjunto de caracteres da coluna e a ordenação da seguinte m
   ) CHARACTER SET latin1 COLLATE latin1_bin;
   ```
 
-  Não foi especificado o conjunto de caracteres nem a ordenação para a coluna, então os valores padrão da tabela são usados. A coluna tem o conjunto de caracteres `latin1` e a ordenação `latin1_bin`.
+  Nem o character set nem a collation são especificados para a coluna, portanto, os defaults da tabela são usados. A coluna tem character set `latin1` e collation `latin1_bin`.
 
 As cláusulas `CHARACTER SET` e `COLLATE` são SQL padrão.
 
-Se você usar `ALTER TABLE` para converter uma coluna de um conjunto de caracteres para outro, o MySQL tenta mapear os valores dos dados, mas se os conjuntos de caracteres forem incompatíveis, pode haver perda de dados.
+Se você usar `ALTER TABLE` para converter uma coluna de um character set para outro, o MySQL tentará mapear os valores dos dados, mas se os character sets forem incompatíveis, pode haver perda de dados.

@@ -1,24 +1,24 @@
-## 10.12 Definindo o idioma da mensagem de erro
+## 10.12 Configurando o Idioma das Mensagens de Erro
 
-Por padrão, o **mysqld** gera mensagens de erro em inglês, mas elas podem ser exibidas em vez disso em qualquer uma das várias outras línguas: checo, dinamarquês, holandês, estoniano, francês, alemão, grego, húngaro, italiano, japonês, coreano, norueguês, norueguês-ny, polonês, português, romeno, russo, eslovaco, espanhol ou sueco. Isso se aplica às mensagens que o servidor escreve no log de erro e envia aos clientes.
+Por padrão, o **mysqld** produz mensagens de erro em inglês, mas elas podem ser exibidas em qualquer um destes outros idiomas: Tcheco, Dinamarquês, Holandês, Estoniano, Francês, Alemão, Grego, Húngaro, Italiano, Japonês, Coreano, Norueguês, Norwegian-ny, Polonês, Português, Romeno, Russo, Eslovaco, Espanhol ou Sueco. Isso se aplica às mensagens que o servidor grava no *error log* e envia aos *clients*.
 
-Para selecionar o idioma no qual o servidor escreve as mensagens de erro, siga as instruções nesta seção. Para obter informações sobre a alteração do conjunto de caracteres para as mensagens de erro (em vez do idioma), consulte a Seção 10.6, “Conjunto de caracteres de mensagens de erro”. Para informações gerais sobre a configuração do registro de erros, consulte a Seção 5.4.2, “O Log de Erros”.
+Para selecionar o idioma no qual o servidor grava as mensagens de erro, siga as instruções nesta seção. Para obter informações sobre como alterar o *character set* para mensagens de erro (em vez do idioma), consulte a Seção 10.6, “Error Message Character Set”. Para informações gerais sobre a configuração do registro de erros, consulte a Seção 5.4.2, “O Error Log”.
 
-O servidor procura o arquivo de mensagem de erro usando essas regras:
+O servidor busca o arquivo de mensagens de erro usando estas regras:
 
-- Ele procura pelo arquivo em um diretório construído a partir de dois valores de variáveis do sistema, `lc_messages_dir` e `lc_messages`, com este último convertido para um nome de idioma. Suponha que você inicie o servidor usando este comando:
+* Ele procura o arquivo em um diretório construído a partir de dois valores de *system variable*, `lc_messages_dir` e `lc_messages`, com o último convertido para um nome de idioma. Suponha que você inicie o servidor usando este comando:
 
   ```sql
   mysqld --lc_messages_dir=/usr/share/mysql --lc_messages=fr_FR
   ```
 
-  Neste caso, o **mysqld** mapeia o local `fr_FR` para o idioma `french` e procura o arquivo de erro no diretório `/usr/share/mysql/french`.
+  Neste caso, o **mysqld** mapeia o *locale* `fr_FR` para o idioma *french* e procura o arquivo de erro no diretório `/usr/share/mysql/french`.
 
-  Por padrão, os arquivos de idioma estão localizados no diretório `share/mysql/LANGUAGE` sob o diretório de base do MySQL.
+  Por padrão, os arquivos de idioma estão localizados no diretório `share/mysql/LANGUAGE` sob o diretório base do MySQL.
 
-- Se o arquivo de mensagens não for encontrado no diretório descrito acima, o servidor ignora o valor `lc_messages` e usa apenas o valor `lc_messages_dir` como local para procurar.
+* Se o arquivo de mensagem não puder ser encontrado no diretório construído conforme descrito, o servidor ignora o valor de `lc_messages` e usa apenas o valor de `lc_messages_dir` como o local onde procurar.
 
-A variável de sistema `lc_messages_dir` pode ser definida apenas no início do servidor e tem apenas um valor de leitura global durante a execução. `lc_messages` pode ser definido no início do servidor e tem valores globais e de sessão que podem ser modificados durante a execução. Assim, a linguagem da mensagem de erro pode ser alterada enquanto o servidor estiver em execução, e cada cliente pode ter sua própria linguagem de mensagem de erro definindo o valor de `lc_messages` da sessão para o nome do idioma desejado. Por exemplo, se o servidor estiver usando o `fr_FR` como idioma de mensagens de erro, um cliente pode executar essa instrução para receber mensagens de erro em inglês:
+A *system variable* `lc_messages_dir` pode ser configurada apenas na inicialização do servidor e possui apenas um valor global de somente leitura em *runtime*. `lc_messages` pode ser configurada na inicialização do servidor e possui valores globais e de *session* que podem ser modificados em *runtime*. Assim, o idioma da mensagem de erro pode ser alterado enquanto o servidor está em execução, e cada *client* pode ter seu próprio idioma de mensagem de erro definindo o valor de sua *session* `lc_messages` para o nome de *locale* desejado. Por exemplo, se o servidor estiver usando o *locale* `fr_FR` para mensagens de erro, um *client* pode executar esta instrução para receber mensagens de erro em inglês:
 
 ```sql
 SET lc_messages = 'en_US';

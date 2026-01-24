@@ -1,55 +1,55 @@
-## 10.4 Conjuntos de caracteres de conexão e codificações
+## 10.4 Character Sets e Collations de Conexão
 
-Uma "conexão" é o que um programa cliente faz ao se conectar ao servidor, para iniciar uma sessão na qual ele interage com o servidor. O cliente envia instruções SQL, como consultas, através da conexão da sessão. O servidor envia respostas, como conjuntos de resultados ou mensagens de erro, de volta ao cliente através da conexão.
+Uma "conexão" é o que um programa cliente estabelece ao se conectar ao servidor, para iniciar uma session na qual ele interage com o servidor. O cliente envia instruções SQL, como Queries, através da conexão da session. O servidor envia respostas, como result sets ou mensagens de erro, através da conexão de volta ao cliente.
 
-- Variáveis de Conjunto de Caracteres e Sistema de Cotação de Conexão
-- Conjunto de caracteres de cliente impermissível
-- Configuração do Conjunto de Caracteres da Conexão do Programa do Cliente
-- Instruções SQL para configuração do conjunto de caracteres de conexão
-- Tratamento de Erros no Conjunto de Caracteres de Conexão
+* Variáveis de Sistema de Character Set e Collation de Conexão
+* Character Sets de Cliente Não Permitidos
+* Configuração de Character Set de Conexão de Programas Cliente
+* Instruções SQL para Configuração de Character Set de Conexão
+* Tratamento de Erros de Character Set de Conexão
 
-### Variáveis de Conjunto de Caracteres e Sistema de Cotação de Conexão
+### Variáveis de Sistema de Character Set e Collation de Conexão
 
-Várias variáveis de conjuntos de caracteres e sistemas de ordenação estão relacionadas à interação do cliente com o servidor. Algumas dessas variáveis foram mencionadas em seções anteriores:
+Várias system variables de character set e collation se relacionam com a interação do cliente com o servidor. Algumas delas foram mencionadas em seções anteriores:
 
-- As variáveis de sistema `character_set_server` e `collation_server` indicam o conjunto de caracteres do servidor e a colagem. Consulte a Seção 10.3.2, “Conjunto de caracteres do servidor e colagem”.
+* As system variables `character_set_server` e `collation_server` indicam o character set e a collation do servidor. Veja Seção 10.3.2, “Server Character Set and Collation”.
 
-- As variáveis de sistema `character_set_database` e `collation_database` indicam o conjunto de caracteres e a collation do banco de dados padrão. Veja a Seção 10.3.3, “Conjunto de caracteres e collation do banco de dados”.
+* As system variables `character_set_database` e `collation_database` indicam o character set e a collation do Database default. Veja Seção 10.3.3, “Database Character Set and Collation”.
 
-Variáveis adicionais do conjunto de caracteres e do sistema de ordenação estão envolvidas no gerenciamento do tráfego para a conexão entre um cliente e o servidor. Cada cliente tem variáveis específicas de conjunto de caracteres e sistema de ordenação relacionadas à conexão. Esses valores das variáveis do sistema de sessão são inicializados no momento da conexão, mas podem ser alterados durante a sessão.
+System variables adicionais de character set e collation estão envolvidas no tratamento do tráfego para a conexão entre um cliente e o servidor. Cada cliente tem system variables de character set e collation relacionadas à conexão e específicas da session. Esses valores de system variables de session são inicializados no momento da conexão, mas podem ser alterados dentro da session.
 
-Várias perguntas sobre o conjunto de caracteres e o tratamento de ordenação para conexões de clientes podem ser respondidas em termos de variáveis do sistema:
+Várias perguntas sobre o tratamento de character set e collation para conexões de cliente podem ser respondidas em termos de system variables:
 
-- Que conjunto de caracteres os comandos têm quando saem do cliente?
+* Em qual character set as instruções estão quando deixam o cliente?
 
-  O servidor considera a variável de sistema `character_set_client` como o conjunto de caracteres no qual as instruções são enviadas pelo cliente.
+  O servidor considera que a system variable `character_set_client` é o character set no qual as instruções são enviadas pelo cliente.
 
-  Nota
+  Note
 
-  Alguns conjuntos de caracteres não podem ser usados como conjunto de caracteres do cliente. Veja Conjuntos de caracteres do cliente impermissíveis.
+  Alguns character sets não podem ser usados como o character set do cliente. Veja Character Sets de Cliente Não Permitidos.
 
-- Que conjunto de caracteres o servidor deve traduzir as declarações após recebê-las?
+* Para qual character set o servidor deve traduzir as instruções após recebê-las?
 
-  Para determinar isso, o servidor usa as variáveis de sistema `character_set_connection` e `collation_connection`:
+  Para determinar isso, o servidor usa as system variables `character_set_connection` e `collation_connection`:
 
-  - O servidor converte as declarações enviadas pelo cliente de `character_set_client` para `character_set_connection`. Exceção: Para as cadeias de caracteres literais que têm um introducer, como `_utf8mb4` ou `_latin2`, o introducer determina o conjunto de caracteres. Veja a Seção 10.3.8, “Introdutores de Conjunto de Caracteres”.
+  + O servidor converte as instruções enviadas pelo cliente de `character_set_client` para `character_set_connection`. Exceção: Para literais de string que têm um introducer como `_utf8mb4` ou `_latin2`, o introducer determina o character set. Veja Seção 10.3.8, “Character Set Introducers”.
 
-  - `collation_connection` é importante para comparações de strings literais. Para comparações de strings com valores de coluna, `collation_connection` não importa, pois as colunas têm sua própria collation, que tem precedência de collation mais alta (veja a Seção 10.8.4, “Coercibilidade de collation em expressões”).
+  + `collation_connection` é importante para comparações de strings literais. Para comparações de strings com valores de coluna, `collation_connection` não importa porque as colunas têm sua própria collation, que tem uma precedência de collation mais alta (veja Seção 10.8.4, “Collation Coercibility in Expressions”).
 
-- Qual conjunto de caracteres o servidor deve usar para traduzir os resultados da consulta antes de enviá-los de volta ao cliente?
+* Para qual character set o servidor deve traduzir os resultados da Query antes de enviá-los de volta ao cliente?
 
-  A variável de sistema `character_set_results` indica o conjunto de caracteres no qual o servidor retorna os resultados da consulta ao cliente. Isso inclui dados de resultado, como valores de coluna, metadados de resultado, como nomes de colunas e mensagens de erro.
+  A system variable `character_set_results` indica o character set no qual o servidor retorna os resultados da Query ao cliente. Isso inclui dados de resultado, como valores de coluna, metadata de resultado, como nomes de coluna, e mensagens de erro.
 
-  Para indicar ao servidor que não realize nenhuma conversão de conjuntos de resultados ou mensagens de erro, defina `character_set_results` para `NULL` ou `binary`:
+  Para instruir o servidor a não realizar conversão de result sets ou mensagens de erro, defina `character_set_results` como `NULL` ou `binary`:
 
   ```sql
   SET character_set_results = NULL;
   SET character_set_results = binary;
   ```
 
-  Para obter mais informações sobre conjuntos de caracteres e mensagens de erro, consulte a Seção 10.6, “Conjunto de caracteres de mensagens de erro”.
+  Para mais informações sobre character sets e mensagens de erro, veja Seção 10.6, “Error Message Character Set”.
 
-Para ver os valores das variáveis de conjunto de caracteres e sistema de ordenação que se aplicam à sessão atual, use esta instrução:
+Para ver os valores das system variables de character set e collation que se aplicam à session atual, use esta instrução:
 
 ```sql
 SELECT * FROM performance_schema.session_variables
@@ -59,18 +59,18 @@ WHERE VARIABLE_NAME IN (
 ) ORDER BY VARIABLE_NAME;
 ```
 
-As seguintes declarações mais simples também exibem as variáveis de conexão, mas incluem outras variáveis relacionadas também. Elas podem ser úteis para ver *todas* as variáveis do conjunto de caracteres e do sistema de ordenação:
+As seguintes instruções mais simples também exibem as variáveis de conexão, mas incluem outras variáveis relacionadas. Elas podem ser úteis para ver *todas* as system variables de character set e collation:
 
 ```sql
 SHOW SESSION VARIABLES LIKE 'character_set_%';
 SHOW SESSION VARIABLES LIKE 'collation_%';
 ```
 
-Os clientes podem ajustar as configurações dessas variáveis ou depender dos padrões (neste caso, você pode pular o restante desta seção). Se você não usar os padrões, você deve alterar as configurações de caracteres *para cada conexão com o servidor.*
+Os clientes podem refinar as configurações para essas variáveis, ou depender dos defaults (caso em que você pode pular o restante desta seção). Se você não usar os defaults, você deve alterar as configurações de character set *para cada conexão ao servidor.*
 
-### Conjunto de caracteres de cliente impermissível
+### Character Sets de Cliente Não Permitidos
 
-A variável de sistema `character_set_client` não pode ser definida para determinados conjuntos de caracteres:
+A system variable `character_set_client` não pode ser definida para certos character sets:
 
 ```sql
 ucs2
@@ -79,7 +79,7 @@ utf16le
 utf32
 ```
 
-Tentar usar qualquer um desses conjuntos de caracteres como conjunto de caracteres do cliente produz um erro:
+A tentativa de usar qualquer um desses character sets como o character set do cliente produz um erro:
 
 ```sql
 mysql> SET character_set_client = 'ucs2';
@@ -87,29 +87,29 @@ ERROR 1231 (42000): Variable 'character_set_client'
 can't be set to the value of 'ucs2'
 ```
 
-O mesmo erro ocorre se algum desses conjuntos de caracteres for usado nos seguintes contextos, todos os quais resultam em uma tentativa de definir `character_set_client` para o conjunto de caracteres nomeado:
+O mesmo erro ocorre se qualquer um desses character sets for usado nos seguintes contextos, todos os quais resultam em uma tentativa de definir `character_set_client` para o character set nomeado:
 
-- A opção de comando `--default-character-set=charset_name`, usada por programas clientes do MySQL, como **mysql** e **mysqladmin**.
+* A opção de comando `--default-character-set=charset_name` usada por programas clientes MySQL como **mysql** e **mysqladmin**.
 
-- A declaração `SET NAMES 'charset_name'`.
+* A instrução `SET NAMES 'charset_name'`.
 
-- A declaração `SET CHARACTER SET 'charset_name'`.
+* A instrução `SET CHARACTER SET 'charset_name'`.
 
-### Configuração do Conjunto de Caracteres da Conexão do Programa do Cliente
+### Configuração de Character Set de Conexão de Programas Cliente
 
-Quando um cliente se conecta ao servidor, ele indica qual conjunto de caracteres deseja usar para a comunicação com o servidor. (Na verdade, o cliente indica a collation padrão para esse conjunto de caracteres, a partir da qual o servidor pode determinar o conjunto de caracteres.) O servidor usa essas informações para definir as variáveis de sistema `character_set_client`, `character_set_results` e `character_set_connection` para o conjunto de caracteres e `collation_connection` para a collation padrão do conjunto de caracteres. Na prática, o servidor realiza o equivalente a uma operação `SET NAMES`.
+Quando um cliente se conecta ao servidor, ele indica qual character set ele deseja usar para a comunicação com o servidor. (Na verdade, o cliente indica a collation default para esse character set, a partir da qual o servidor pode determinar o character set.) O servidor usa esta informação para definir as system variables `character_set_client`, `character_set_results`, `character_set_connection` para o character set, e `collation_connection` para a collation default do character set. Na verdade, o servidor executa o equivalente a uma operação `SET NAMES`.
 
-Se o servidor não suportar o conjunto de caracteres ou a ordem de classificação solicitados, ele usa o conjunto de caracteres e a ordem de classificação do servidor para configurar a conexão. Para obter informações adicionais sobre esse comportamento de fallback, consulte Gerenciamento de Erros de Conjunto de Caracteres de Conexão.
+Se o servidor não suportar o character set ou collation solicitados, ele recorrerá ao uso do character set e collation do servidor para configurar a conexão. Para detalhes adicionais sobre esse comportamento de fallback, veja Tratamento de Erros de Character Set de Conexão.
 
-Os programas clientes **mysql**, **mysqladmin**, **mysqlcheck**, **mysqlimport** e **mysqlshow** determinam o conjunto de caracteres padrão a ser usado da seguinte forma:
+Os programas cliente **mysql**, **mysqladmin**, **mysqlcheck**, **mysqlimport** e **mysqlshow** determinam o character set default a ser usado da seguinte forma:
 
-- Na ausência de outras informações, cada cliente usa o conjunto de caracteres padrão incorporado, geralmente `latin1`.
+* Na ausência de outras informações, cada cliente usa o character set default compilado, geralmente `latin1`.
 
-- Cada cliente pode autodetectar qual conjunto de caracteres usar com base na configuração do sistema operacional, como o valor da variável de ambiente `LANG` ou `LC_ALL` em sistemas Unix ou a configuração da página de código em sistemas Windows. Para sistemas nos quais o local é disponível a partir do sistema operacional, o cliente usa-o para definir o conjunto de caracteres padrão em vez de usar o padrão embutido. Por exemplo, definir `LANG` para `ru_RU.KOI8-R` faz com que o conjunto de caracteres `koi8r` seja usado. Assim, os usuários podem configurar o local em seu ambiente para uso pelos clientes MySQL.
+* Cada cliente pode autodetectar qual character set usar com base na configuração do sistema operacional, como o valor da variável de ambiente de locale `LANG` ou `LC_ALL` em sistemas Unix ou a configuração de code page em sistemas Windows. Para sistemas nos quais o locale está disponível no OS, o cliente o usa para definir o character set default em vez de usar o default compilado. Por exemplo, definir `LANG` como `ru_RU.KOI8-R` faz com que o character set `koi8r` seja usado. Assim, os usuários podem configurar o locale em seu ambiente para uso pelos clientes MySQL.
 
-  O conjunto de caracteres do sistema operacional é mapeado para o conjunto de caracteres MySQL mais próximo, se não houver correspondência exata. Se o cliente não suportar o conjunto de caracteres de correspondência, ele usa o padrão predefinido compilado. Por exemplo, `ucs2` não é suportado como conjunto de caracteres de conexão, então ele é mapeado para o padrão predefinido compilado.
+  O character set do OS é mapeado para o character set MySQL mais próximo, se não houver uma correspondência exata. Se o cliente não suportar o character set correspondente, ele usa o default compilado. Por exemplo, `ucs2` não é suportado como um character set de conexão, então ele mapeia para o default compilado.
 
-  As aplicações C podem usar a autodetecção de conjuntos de caracteres com base na configuração do sistema operacional, invocando `mysql_options()` da seguinte forma antes de se conectar ao servidor:
+  Aplicações C podem usar a autodeteção de character set baseada na configuração do OS invocando `mysql_options()` da seguinte forma antes de se conectar ao servidor:
 
   ```sql
   mysql_options(mysql,
@@ -117,39 +117,39 @@ Os programas clientes **mysql**, **mysqladmin**, **mysqlcheck**, **mysqlimport**
                 MYSQL_AUTODETECT_CHARSET_NAME);
   ```
 
-- Cada cliente suporta a opção `--default-character-set`, que permite aos usuários especificar explicitamente o conjunto de caracteres para substituir qualquer padrão que o cliente determine de outra forma.
+* Cada cliente suporta uma opção `--default-character-set`, que permite aos usuários especificar o character set explicitamente para sobrescrever qualquer default que o cliente determine de outra forma.
 
-  Nota
+  Note
 
-  Alguns conjuntos de caracteres não podem ser usados como conjunto de caracteres do cliente. Tentar usá-los com `--default-character-set` produz um erro. Veja Conjuntos de caracteres do cliente impermissíveis.
+  Alguns character sets não podem ser usados como o character set do cliente. A tentativa de usá-los com `--default-character-set` produz um erro. Veja Character Sets de Cliente Não Permitidos.
 
-Com o cliente **mysql**, para usar um conjunto de caracteres diferente do padrão, você pode executar explicitamente uma instrução `SET NAMES` toda vez que se conectar ao servidor (veja Configuração de Conjunto de Caracteres do Programa de Cliente). Para obter o mesmo resultado de forma mais fácil, especifique o conjunto de caracteres em seu arquivo de opções. Por exemplo, o seguinte ajuste no arquivo de opções altera as três variáveis de sistema de conjunto de caracteres relacionadas à conexão para `koi8r` toda vez que você invoca **mysql**:
+Com o cliente **mysql**, para usar um character set diferente do default, você pode executar explicitamente uma instrução `SET NAMES` toda vez que se conectar ao servidor (veja Configuração de Character Set de Conexão de Programas Cliente). Para alcançar o mesmo resultado mais facilmente, especifique o character set em seu arquivo de opção. Por exemplo, a seguinte configuração de arquivo de opção altera as três system variables de character set relacionadas à conexão para `koi8r` toda vez que você invoca **mysql**:
 
 ```sql
 [mysql]
 default-character-set=koi8r
 ```
 
-Se você estiver usando o cliente **mysql** com o recurso de reconexão automática habilitado (o que não é recomendado), é preferível usar o comando `charset` em vez de `SET NAMES`. Por exemplo:
+Se você estiver usando o cliente **mysql** com auto-reconnect ativado (o que não é recomendado), é preferível usar o comando `charset` em vez de `SET NAMES`. Por exemplo:
 
 ```sql
 mysql> charset koi8r
 Charset changed
 ```
 
-O comando `charset` emite uma declaração `SET NAMES` e também altera o conjunto de caracteres padrão que o **mysql** usa quando ele se reconecta após a conexão ter sido perdida.
+O comando `charset` emite uma instrução `SET NAMES` e também altera o character set default que o **mysql** usa quando se reconecta após a queda da conexão.
 
-Ao configurar programas cliente, você também deve considerar o ambiente em que eles serão executados. Consulte a Seção 10.5, “Configurando o Conjunto de Caracteres e a Codificação da Aplicação”.
+Ao configurar programas cliente, você também deve considerar o ambiente no qual eles são executados. Veja Seção 10.5, “Configuring Application Character Set and Collation”.
 
-### Instruções SQL para configuração do conjunto de caracteres de conexão
+### Instruções SQL para Configuração de Character Set de Conexão
 
-Após a conexão ser estabelecida, os clientes podem alterar as variáveis de conjunto de caracteres e sistema de ordenação para a sessão atual. Essas variáveis podem ser alteradas individualmente usando instruções `SET`, mas duas instruções mais convenientes afetam as variáveis de sistema de conjunto de caracteres relacionadas à conexão como um grupo:
+Depois que uma conexão é estabelecida, os clientes podem alterar as system variables de character set e collation para a session atual. Essas variáveis podem ser alteradas individualmente usando instruções `SET`, mas duas instruções mais convenientes afetam as system variables de character set relacionadas à conexão como um grupo:
 
-- `SET NAMES 'charset_name' [COLLATE 'collation_name']`
+* `SET NAMES 'charset_name' [COLLATE 'collation_name']`
 
-  `SET NAMES` indica qual conjunto de caracteres o cliente usa para enviar instruções SQL para o servidor. Assim, `SET NAMES 'cp1251'` informa ao servidor: “mensagens futuras recebidas deste cliente estão no conjunto de caracteres `cp1251`”. Também especifica o conjunto de caracteres que o servidor deve usar para enviar resultados de volta ao cliente. (Por exemplo, indica qual conjunto de caracteres usar para os valores das colunas se você usar uma instrução `SELECT` que produz um conjunto de resultados.)
+  `SET NAMES` indica qual character set o cliente usa para enviar instruções SQL ao servidor. Assim, `SET NAMES 'cp1251'` diz ao servidor: “futuras mensagens de entrada deste cliente estão no character set `cp1251`.” Ele também especifica o character set que o servidor deve usar para enviar resultados de volta ao cliente. (Por exemplo, ele indica qual character set usar para valores de coluna se você usar uma instrução `SELECT` que produz um result set.)
 
-  Uma declaração `SET NAMES 'charset_name'` é equivalente a estas três declarações:
+  Uma instrução `SET NAMES 'charset_name'` é equivalente a estas três instruções:
 
   ```sql
   SET character_set_client = charset_name;
@@ -157,17 +157,17 @@ Após a conexão ser estabelecida, os clientes podem alterar as variáveis de co
   SET character_set_connection = charset_name;
   ```
 
-  Definir `character_set_connection` para *`charset_name`* também define implicitamente `collation_connection` para a collation padrão para *`charset_name`*. Não é necessário definir explicitamente essa collation. Para especificar uma collation particular a ser usada para `collation_connection`, adicione uma cláusula `COLLATE`:
+  A definição de `character_set_connection` para *`charset_name`* também define implicitamente `collation_connection` para a collation default para *`charset_name`*. É desnecessário definir essa collation explicitamente. Para especificar uma collation particular a ser usada para `collation_connection`, adicione uma cláusula `COLLATE`:
 
   ```sql
   SET NAMES 'charset_name' COLLATE 'collation_name'
   ```
 
-- `SET CHARACTER SET 'nome_do_charset'`
+* `SET CHARACTER SET 'charset_name`'
 
-  `SET CHARACTER SET` é semelhante a `SET NAMES`, mas define `character_set_connection` e `collation_connection` para `character_set_database` e `collation_database` (que, como mencionado anteriormente, indicam o conjunto de caracteres e a collation do banco de dados padrão).
+  `SET CHARACTER SET` é semelhante a `SET NAMES`, mas define `character_set_connection` e `collation_connection` para `character_set_database` e `collation_database` (que, como mencionado anteriormente, indicam o character set e a collation do Database default).
 
-  Uma declaração `SET CHARACTER SET charset_name` é equivalente a estas três declarações:
+  Uma instrução `SET CHARACTER SET charset_name` é equivalente a estas três instruções:
 
   ```sql
   SET character_set_client = charset_name;
@@ -175,24 +175,24 @@ Após a conexão ser estabelecida, os clientes podem alterar as variáveis de co
   SET collation_connection = @@collation_database;
   ```
 
-  Definir `collation_connection` também define implicitamente `character_set_connection` para o conjunto de caracteres associado à collation (equivalente a executar `SET character_set_connection = @@character_set_database`). Não é necessário definir `character_set_connection` explicitamente.
+  A definição de `collation_connection` também define implicitamente `character_set_connection` para o character set associado à collation (equivalente à execução de `SET character_set_connection = @@character_set_database`). É desnecessário definir `character_set_connection` explicitamente.
 
-Nota
+Note
 
-Alguns conjuntos de caracteres não podem ser usados como conjunto de caracteres do cliente. Tentar usá-los com `SET NAMES` ou `SET CHARACTER SET` produz um erro. Veja Conjuntos de caracteres do cliente impermissíveis.
+Alguns character sets não podem ser usados como o character set do cliente. A tentativa de usá-los com `SET NAMES` ou `SET CHARACTER SET` produz um erro. Veja Character Sets de Cliente Não Permitidos.
 
-Exemplo: Suponha que `column1` seja definido como `CHAR(5) CHARACTER SET latin2`. Se você não disser `SET NAMES` ou `SET CHARACTER SET`, então para `SELECT column1 FROM t`, o servidor envia de volta todos os valores para `column1` usando o conjunto de caracteres especificado pelo cliente quando ele se conectou. Por outro lado, se você disser `SET NAMES 'latin1'` ou `SET CHARACTER SET 'latin1'` antes de emitir a instrução `SELECT`, o servidor converte os valores `latin2` para `latin1` logo antes de enviar os resultados de volta. A conversão pode ser perda de dados para caracteres que não estão em ambos os conjuntos de caracteres.
+Exemplo: Suponha que `column1` seja definida como `CHAR(5) CHARACTER SET latin2`. Se você não usar `SET NAMES` ou `SET CHARACTER SET`, então para `SELECT column1 FROM t`, o servidor envia de volta todos os valores para `column1` usando o character set que o cliente especificou quando se conectou. Por outro lado, se você usar `SET NAMES 'latin1'` ou `SET CHARACTER SET 'latin1'` antes de emitir a instrução `SELECT`, o servidor converte os valores `latin2` para `latin1` pouco antes de enviar os resultados de volta. A conversão pode ser com perda (lossy) para caracteres que não estão em ambos os character sets.
 
-### Tratamento de Erros no Conjunto de Caracteres de Conexão
+### Tratamento de Erros de Character Set de Conexão
 
-Tentativas de usar um conjunto de caracteres de conexão ou uma ordem de classificação inadequados podem produzir um erro ou fazer com que o servidor volte ao conjunto de caracteres e à ordem de classificação padrão para uma conexão específica. Esta seção descreve os problemas que podem ocorrer ao configurar o conjunto de caracteres de conexão. Esses problemas podem ocorrer ao estabelecer uma conexão ou ao alterar o conjunto de caracteres dentro de uma conexão estabelecida.
+Tentativas de usar um character set ou collation de conexão inapropriados podem produzir um erro, ou fazer com que o servidor recorra ao seu character set e collation default para uma dada conexão. Esta seção descreve problemas que podem ocorrer ao configurar o character set de conexão. Esses problemas podem ocorrer ao estabelecer uma conexão ou ao alterar o character set dentro de uma conexão estabelecida.
 
-- Tratamento de Erros de Tempo de Conexão
-- Tratamento de Erros em Tempo de Execução
+* Tratamento de Erros no Tempo de Conexão
+* Tratamento de Erros em Tempo de Execução
 
-#### Tratamento de Erros de Tempo de Conexão
+#### Tratamento de Erros no Tempo de Conexão
 
-Alguns conjuntos de caracteres não podem ser usados como conjunto de caracteres do cliente; veja Conjuntos de caracteres do cliente impermissíveis. Se você especificar um conjunto de caracteres válido, mas não permitido como conjunto de caracteres do cliente, o servidor retorna um erro:
+Alguns character sets não podem ser usados como o character set do cliente; veja Character Sets de Cliente Não Permitidos. Se você especificar um character set que é válido, mas não permitido como um character set do cliente, o servidor retorna um erro:
 
 ```sql
 $> mysql --default-character-set=ucs2
@@ -200,7 +200,7 @@ ERROR 1231 (42000): Variable 'character_set_client' can't be set to
 the value of 'ucs2'
 ```
 
-Se você especificar um conjunto de caracteres que o cliente não reconhece, ele produz um erro:
+Se você especificar um character set que o cliente não reconhece, ele produz um erro:
 
 ```sql
 $> mysql --default-character-set=bogus
@@ -210,7 +210,7 @@ ERROR 2019 (HY000): Can't initialize character set bogus
 (path: /usr/local/mysql/share/charsets/)
 ```
 
-Se você especificar um conjunto de caracteres que o cliente reconhece, mas o servidor não, o servidor retorna ao seu conjunto de caracteres e ordenação padrão. Suponha que o servidor esteja configurado para usar `latin1` e `latin1_swedish_ci` como seus padrões, e que ele não reconheça `gb18030` como um conjunto de caracteres válido. Um cliente que especifica `--default-character-set=gb18030` consegue se conectar ao servidor, mas o conjunto de caracteres resultante não é o que o cliente deseja:
+Se você especificar um character set que o cliente reconhece, mas o servidor não, o servidor recorre ao seu character set e collation default. Suponha que o servidor esteja configurado para usar `latin1` e `latin1_swedish_ci` como seus defaults, e que ele não reconheça `gb18030` como um character set válido. Um cliente que especifica `--default-character-set=gb18030` consegue se conectar ao servidor, mas o character set resultante não é o que o cliente deseja:
 
 ```sql
 mysql> SHOW SESSION VARIABLES LIKE 'character_set_%';
@@ -231,11 +231,11 @@ mysql> SHOW SESSION VARIABLES LIKE 'collation_connection';
 +----------------------+-------------------+
 ```
 
-Você pode ver que as variáveis do sistema de conexão foram configuradas para refletir um conjunto de caracteres e uma ordenação de `latin1` e `latin1_swedish_ci`. Isso ocorre porque o servidor não consegue atender à solicitação do conjunto de caracteres do cliente e retorna aos valores padrão.
+Você pode ver que as system variables de conexão foram definidas para refletir um character set e collation de `latin1` e `latin1_swedish_ci`. Isso ocorre porque o servidor não pode satisfazer a solicitação do character set do cliente e recorre aos seus defaults.
 
-Nesse caso, o cliente não pode usar o conjunto de caracteres que deseja, porque o servidor não o suporta. O cliente deve estar disposto a usar um conjunto de caracteres diferente ou se conectar a um servidor diferente que suporte o conjunto de caracteres desejado.
+Neste caso, o cliente não pode usar o character set que deseja porque o servidor não o suporta. O cliente deve estar disposto a usar um character set diferente ou conectar-se a um servidor diferente que suporte o character set desejado.
 
-O mesmo problema ocorre em um contexto mais sutil: quando o cliente instrui o servidor a usar um conjunto de caracteres que o servidor reconhece, mas a collation padrão para esse conjunto de caracteres no lado do cliente não é conhecida no lado do servidor. Isso ocorre, por exemplo, quando um cliente MySQL 8.0 deseja se conectar a um servidor MySQL 5.7 usando `utf8mb4` como o conjunto de caracteres do cliente. Um cliente que especifica `--default-character-set=utf8mb4` consegue se conectar ao servidor. No entanto, como no exemplo anterior, o servidor retorna ao seu conjunto de caracteres e collation padrão, e não ao solicitado pelo cliente:
+O mesmo problema ocorre em um contexto mais sutil: Quando o cliente informa ao servidor para usar um character set que o servidor reconhece, mas a collation default para esse character set no lado do cliente não é conhecida no lado do servidor. Isso ocorre, por exemplo, quando um cliente MySQL 8.0 deseja se conectar a um servidor MySQL 5.7 usando `utf8mb4` como o character set do cliente. Um cliente que especifica `--default-character-set=utf8mb4` consegue se conectar ao servidor. No entanto, assim como no exemplo anterior, o servidor recorre ao seu character set e collation default, não ao que o cliente solicitou:
 
 ```sql
 mysql> SHOW SESSION VARIABLES LIKE 'character_set_%';
@@ -256,23 +256,23 @@ mysql> SHOW SESSION VARIABLES LIKE 'collation_connection';
 +----------------------+-------------------+
 ```
 
-Por que isso ocorre? Afinal, o `utf8mb4` é conhecido pelo cliente 8.0 e pelo servidor 5.7, então ambos o reconhecem. Para entender esse comportamento, é necessário entender que, quando o cliente informa ao servidor qual conjunto de caracteres ele deseja usar, ele realmente está informando ao servidor a collation padrão para esse conjunto de caracteres. Portanto, o comportamento mencionado acima ocorre devido a uma combinação de fatores:
+Por que isso ocorre? Afinal, `utf8mb4` é conhecido pelo cliente 8.0 e pelo servidor 5.7, então ambos o reconhecem. Para entender esse comportamento, é necessário entender que quando o cliente informa ao servidor qual character set ele deseja usar, ele, na verdade, informa ao servidor a collation default para esse character set. Portanto, o comportamento mencionado ocorre devido a uma combinação de fatores:
 
-- A collation padrão para `utf8mb4` difere entre o MySQL 5.7 e 8.0 (`utf8mb4_general_ci` para 5.7, `utf8mb4_0900_ai_ci` para 8.0).
+* A collation default para `utf8mb4` difere entre MySQL 5.7 e 8.0 (`utf8mb4_general_ci` para 5.7, `utf8mb4_0900_ai_ci` para 8.0).
 
-- Quando o cliente 8.0 solicita um conjunto de caracteres de `utf8mb4`, o que ele envia para o servidor é a collation padrão 8.0 `utf8mb4`, ou seja, `utf8mb4_0900_ai_ci`.
+* Quando o cliente 8.0 solicita um character set de `utf8mb4`, o que ele envia ao servidor é a collation `utf8mb4` default do 8.0; ou seja, a `utf8mb4_0900_ai_ci`.
 
-- `utf8mb4_0900_ai_ci` é implementado apenas a partir do MySQL 8.0, então o servidor 5.7 não o reconhece.
+* `utf8mb4_0900_ai_ci` é implementada apenas a partir do MySQL 8.0, então o servidor 5.7 não a reconhece.
 
-- Como o servidor 5.7 não reconhece `utf8mb4_0900_ai_ci`, ele não pode atender à solicitação do conjunto de caracteres do cliente e retorna ao seu conjunto de caracteres e ordenação padrão (`latin1` e `latin1_swedish_ci`).
+* Como o servidor 5.7 não reconhece `utf8mb4_0900_ai_ci`, ele não pode satisfazer a solicitação do character set do cliente e recorre ao seu character set e collation default (`latin1` e `latin1_swedish_ci`).
 
-Nesse caso, o cliente ainda pode usar `utf8mb4` ao emitir uma declaração `SET NAMES 'utf8mb4'` após a conexão. A collation resultante é a collation padrão `utf8mb4` da versão 5.7; ou seja, `utf8mb4_general_ci`. Se o cliente também quiser uma collation de `utf8mb4_0900_ai_ci`, não conseguirá alcançá-la porque o servidor não reconhece essa collation. O cliente deve estar disposto a usar uma collation `utf8mb4` diferente ou se conectar a um servidor do MySQL 8.0 ou superior.
+Neste caso, o cliente ainda pode usar `utf8mb4` emitindo uma instrução `SET NAMES 'utf8mb4'` após a conexão. A collation resultante é a collation `utf8mb4` default do 5.7; ou seja, `utf8mb4_general_ci`. Se o cliente desejar adicionalmente uma collation de `utf8mb4_0900_ai_ci`, ele não pode conseguir isso porque o servidor não reconhece essa collation. O cliente deve estar disposto a usar uma collation `utf8mb4` diferente, ou conectar-se a um servidor MySQL 8.0 ou superior.
 
 #### Tratamento de Erros em Tempo de Execução
 
-Dentro de uma conexão estabelecida, o cliente pode solicitar uma mudança do conjunto de caracteres e da ordenação da conexão com `SET NAMES` ou `SET CHARACTER SET`.
+Dentro de uma conexão estabelecida, o cliente pode solicitar uma mudança de character set e collation de conexão com `SET NAMES` ou `SET CHARACTER SET`.
 
-Alguns conjuntos de caracteres não podem ser usados como conjunto de caracteres do cliente; veja Conjuntos de caracteres do cliente impermissíveis. Se você especificar um conjunto de caracteres válido, mas não permitido como conjunto de caracteres do cliente, o servidor retorna um erro:
+Alguns character sets não podem ser usados como o character set do cliente; veja Character Sets de Cliente Não Permitidos. Se você especificar um character set que é válido, mas não permitido como um character set do cliente, o servidor retorna um erro:
 
 ```sql
 mysql> SET NAMES 'ucs2';
@@ -280,7 +280,7 @@ ERROR 1231 (42000): Variable 'character_set_client' can't be set to
 the value of 'ucs2'
 ```
 
-Se o servidor não reconhecer o conjunto de caracteres (ou a ordenação), ele produzirá um erro:
+Se o servidor não reconhecer o character set (ou a collation), ele produz um erro:
 
 ```sql
 mysql> SET NAMES 'bogus';
@@ -292,7 +292,7 @@ ERROR 1273 (HY000): Unknown collation: 'bogus'
 
 Dica
 
-Um cliente que deseja verificar se o conjunto de caracteres solicitado foi atendido pelo servidor pode executar a seguinte instrução após se conectar e verificar que o resultado é o conjunto de caracteres esperado:
+Um cliente que deseja verificar se o seu character set solicitado foi atendido pelo servidor pode executar a seguinte instrução após a conexão e verificar se o resultado é o character set esperado:
 
 ```sql
 SELECT @@character_set_client;

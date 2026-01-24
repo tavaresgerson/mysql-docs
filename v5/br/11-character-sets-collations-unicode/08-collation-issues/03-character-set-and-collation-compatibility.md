@@ -1,6 +1,6 @@
-### 10.8.3 Conjunto de caracteres e compatibilidade de cotação
+### 10.8.3 Compatibilidade de Character Set e Collation
 
-Cada conjunto de caracteres tem uma ou mais colatações, mas cada colatação está associada a apenas um conjunto de caracteres. Portanto, a seguinte declaração causa uma mensagem de erro porque a colatação `latin2_bin` não é válida com o conjunto de caracteres `latin1`:
+Cada Character Set possui uma ou mais Collations, mas cada Collation está associada a um e apenas um Character Set. Portanto, a seguinte instrução causa uma mensagem de erro porque a Collation `latin2_bin` não é válida com o Character Set `latin1`:
 
 ```sql
 mysql> SELECT _latin1 'x' COLLATE latin2_bin;

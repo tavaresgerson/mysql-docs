@@ -1,28 +1,28 @@
-### 10.10.4 Conjuntos de caracteres do sul da Europa e do Oriente Médio
+### 10.10.4 Conjuntos de Caracteres do Sul da Europa e Oriente Médio
 
-Os conjuntos de caracteres do sul da Europa e do Oriente Médio suportados pelo MySQL incluem armênio, árabe, georgiano, grego, hebraico e turco.
+Os conjuntos de caracteres do Sul da Europa e Oriente Médio suportados pelo MySQL incluem Armênio, Árabe, Georgiano, Grego, Hebraico e Turco.
 
-- Colagens `armscii8` (ARMSCII-8 armênio):
+* `armscii8` (ARMSCII-8 Armênio) collations:
 
-  - `armscii8_bin`
-  - `armscii8_general_ci` (padrão)
-- Colagens `cp1256` (árabe do Windows):
+  + `armscii8_bin`
+  + `armscii8_general_ci` (padrão)
+* `cp1256` (Windows Árabe) collations:
 
-  - `cp1256_bin`
-  - `cp1256_general_ci` (padrão)
-- Colagens `geostd8` (GEOSTD8 georgiano):
+  + `cp1256_bin`
+  + `cp1256_general_ci` (padrão)
+* `geostd8` (GEOSTD8 Georgiano) collations:
 
-  - `geostd8_bin`
-  - `geostd8_general_ci` (padrão)
-- `greek` (colaborações gregas do ISO 8859-7):
+  + `geostd8_bin`
+  + `geostd8_general_ci` (padrão)
+* `greek` (ISO 8859-7 Grego) collations:
 
-  - `greek_bin`
-  - `greek_general_ci` (padrão)
-- Colagens em `hebrew` (ISO 8859-8 Hebraico):
+  + `greek_bin`
+  + `greek_general_ci` (padrão)
+* `hebrew` (ISO 8859-8 Hebraico) collations:
 
-  - `hebrew_bin`
-  - `hebrew_general_ci` (padrão)
-- Colagens `latin5` (ISO 8859-9 turco):
+  + `hebrew_bin`
+  + `hebrew_general_ci` (padrão)
+* `latin5` (ISO 8859-9 Turco) collations:
 
-  - `latin5_bin`
-  - `latin5_turkish_ci` (padrão)
+  + `latin5_bin`
+  + `latin5_turkish_ci` (padrão)

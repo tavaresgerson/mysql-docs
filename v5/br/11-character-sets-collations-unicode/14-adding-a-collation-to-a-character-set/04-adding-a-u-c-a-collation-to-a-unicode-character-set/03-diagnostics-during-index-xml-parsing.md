@@ -1,24 +1,24 @@
-#### 10.14.4.3 Diagnósticos durante a análise do Index.xml
+#### 10.14.4.3 Diagnóstico Durante a Análise de Index.xml
 
-O servidor MySQL gera diagnósticos quando encontra problemas ao analisar o arquivo `Index.xml`:
+O servidor MySQL gera diagnósticos quando encontra problemas durante a análise do arquivo `Index.xml`:
 
-- Marcadores desconhecidos são escritos no log de erros. Por exemplo, a seguinte mensagem é gerada se uma definição de ordenação contiver um marcador `<aaa>`:
+* Tags desconhecidas são escritas no *error log*. Por exemplo, a seguinte mensagem é gerada se uma definição de *collation* contiver uma *tag* `<aaa>`:
 
   ```sql
   [Warning] Buffered warning: Unknown LDML tag:
   'charsets/charset/collation/rules/aaa'
   ```
 
-- Se a inicialização da codificação não for possível, o servidor relata um erro de “Codificação desconhecida” e também gera avisos explicando os problemas, como no exemplo anterior. Em outros casos, quando a descrição da codificação é geralmente correta, mas contém algumas tags desconhecidas, a codificação é inicializada e está disponível para uso. As partes desconhecidas são ignoradas, mas um aviso é gerado no log de erros.
+* Se a inicialização do *collation* não for possível, o servidor relata um erro de "Unknown collation" e também gera *warnings* explicando os problemas, como no exemplo anterior. Em outros casos, quando uma descrição de *collation* está geralmente correta, mas contém algumas *tags* desconhecidas, o *collation* é inicializado e fica disponível para uso. As partes desconhecidas são ignoradas, mas um *warning* é gerado no *error log*.
 
-- Problemas com as colatações geram avisos que os clientes podem exibir com `SHOW WARNINGS`. Suponha que uma regra de redefinição contenha uma expansão maior que o comprimento máximo suportado de 6 caracteres:
+* Problemas com *collations* geram *warnings* que os *clients* podem exibir usando `SHOW WARNINGS`. Suponha que uma regra de *reset* contenha uma expansão maior do que o comprimento máximo suportado de 6 caracteres:
 
   ```sql
   <reset>abcdefghi</reset>
   <i>x</i>
   ```
 
-  Uma tentativa de usar a ordenação produz avisos:
+  Uma tentativa de usar o *collation* produz *warnings*:
 
   ```sql
   mysql> SELECT _utf8'test' COLLATE utf8_test_ci;

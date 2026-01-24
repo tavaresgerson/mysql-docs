@@ -1,16 +1,16 @@
-### 10.3.8 Introdutores de Conjunto de Caracteres
+### 10.3.8 Introducers de Conjunto de Caracteres
 
-Uma literal de cadeia de caracteres, literal hexadecimal ou literal de valor de bit pode ter um introducer de conjunto de caracteres opcional e a cláusula `COLLATE`, para designá-la como uma cadeia de caracteres que usa um conjunto de caracteres e uma ordenação específicas:
+Um literal de string de caracteres, literal hexadecimal ou literal de valor de bit pode ter um *introducer* de conjunto de caracteres opcional e uma cláusula `COLLATE`, para designá-lo como uma string que usa um *character set* e um *collation* específicos:
 
 ```sql
 [_charset_name] literal [COLLATE collation_name]
 ```
 
-A expressão `_charset_name` é formalmente chamada de *introduzir*. Ela informa ao analisador: “a string que segue usa o conjunto de caracteres *`charset_name`*”. Um introduzir não altera a string para o conjunto de caracteres do introduzir, como faria o `CONVERT()`. Ele não altera o valor da string, embora possa ocorrer preenchimento. O introduzir é apenas um sinal.
+A expressão `_charset_name` é formalmente chamada de *introducer*. Ela informa ao *parser*: "a string que se segue usa o *character set* *`charset_name`*." Um *introducer* não altera a string para o *character set* do *introducer*, como a função `CONVERT()` faria. Ele não altera o valor da string, embora possa ocorrer *padding*. O *introducer* é apenas um sinal.
 
-Para as cadeias de caracteres literais, o espaço entre o introduzir e a string é permitido, mas opcional.
+Para literais de string de caracteres, o espaço entre o *introducer* e a string é permitido, mas opcional.
 
-Para literais de conjuntos de caracteres, um introduzir indica o conjunto de caracteres para a string seguinte, mas não altera a forma como o analisador processa as escapas dentro da string. As escapas são sempre interpretadas pelo analisador de acordo com o conjunto de caracteres fornecido por `character_set_connection`. Para discussões e exemplos adicionais, consulte a Seção 10.3.6, “Conjunto de caracteres de literais de strings de caracteres e cotação”.
+Para literais de conjunto de caracteres, um *introducer* indica o *character set* para a string seguinte, mas não altera a forma como o *parser* realiza o processamento de *escape* dentro da string. Os *escapes* são sempre interpretados pelo *parser* de acordo com o *character set* fornecido pela variável de sistema `character_set_connection`. Para discussões e exemplos adicionais, consulte a Seção 10.3.6, “Character String Literal Character Set and Collation”.
 
 Exemplos:
 
@@ -27,31 +27,31 @@ SELECT _latin1 b'1000001';
 SELECT _utf8 0b1000001 COLLATE utf8_danish_ci;
 ```
 
-Os introdutores de conjuntos de caracteres e a cláusula `COLLATE` são implementados de acordo com as especificações padrão do SQL.
+Os *introducers* de *character set* e a cláusula `COLLATE` são implementados de acordo com as especificações padrão do SQL.
 
-As cadeias de caracteres literais podem ser designadas como strings binárias usando o introduzir `_binary`. As strings hexadecimais e as strings de valores de bits são strings binárias por padrão, então `_binary` é permitido, mas desnecessário.
+Literais de string de caracteres podem ser designados como strings binárias usando o *introducer* `_binary`. Literais hexadecimais e literais de valor de bit são strings binárias por padrão, então `_binary` é permitido, mas desnecessário.
 
-O MySQL determina o conjunto de caracteres e a ordenação de uma literal de string de caracteres, uma literal hexadecimal ou uma literal de valor de bit da seguinte maneira:
+O MySQL determina o *character set* e o *collation* de um literal de string de caracteres, literal hexadecimal ou literal de valor de bit da seguinte maneira:
 
-- Se ambos os valores de *`_charset_name`* e `COLLATE collation_name` forem especificados, o conjunto de caracteres *`charset_name`* e a collation *`collation_name`* serão usados. *`collation_name`* deve ser uma collation permitida para *`charset_name`*.
+* Se ambos *`_charset_name`* e `COLLATE collation_name` forem especificados, o *character set* *`charset_name`* e o *collation* *`collation_name`* são usados. *`collation_name`* deve ser um *collation* permitido para *`charset_name`*.
 
-- Se *`_charset_name`* for especificado, mas `COLLATE` não for especificado, o conjunto de caracteres *`charset_name`* e sua collation padrão serão usados. Para ver a collation padrão para cada conjunto de caracteres, use a instrução `SHOW CHARACTER SET` ou consulte a tabela `INFORMATION_SCHEMA` `CHARACTER_SETS`.
+* Se *`_charset_name`* for especificado, mas `COLLATE` não for especificado, o *character set* *`charset_name`* e seu *collation* padrão são usados. Para ver o *collation* padrão para cada *character set*, use a instrução `SHOW CHARACTER SET` ou consulte a tabela `CHARACTER_SETS` do `INFORMATION_SCHEMA`.
 
-- Se o nome da codificação de caracteres *`_charset_name`* não for especificado, mas o nome da ordenação `COLLATE collation_name` for especificado:
+* Se *`_charset_name`* não for especificado, mas `COLLATE collation_name` for especificado:
 
-  - Para uma literal de cadeia de caracteres, o conjunto de caracteres padrão de conexão fornecido pela variável de sistema `character_set_connection` e a *`collation_name`* são usados. *`collation_name`* deve ser uma collation permitida para o conjunto de caracteres padrão de conexão.
+  + Para um literal de string de caracteres, são usados o *character set* padrão da conexão fornecido pela variável de sistema `character_set_connection` e o *collation* *`collation_name`*. *`collation_name`* deve ser um *collation* permitido para o *character set* padrão da conexão.
 
-  - Para uma literal hexadecimal ou literal de valor de bit, a única collation permitida é `binary`, pois esses tipos de literais são strings binárias por padrão.
+  + Para um literal hexadecimal ou literal de valor de bit, o único *collation* permitido é `binary`, pois esses tipos de literais são strings binárias por padrão.
 
-- Caso contrário (nem `_charset_name` nem `COLLATE collation_name` sejam especificados):
+* Caso contrário (nem *`_charset_name`* nem `COLLATE collation_name` é especificado):
 
-  - Para uma literal de cadeia de caracteres, o conjunto de caracteres padrão de conexão e a ordenação padrão de conexão fornecidos pelas variáveis de sistema `character_set_connection` e `collation_connection` são usados.
+  + Para um literal de string de caracteres, são usados o *character set* e o *collation* padrão da conexão, fornecidos pelas variáveis de sistema `character_set_connection` e `collation_connection`.
 
-  - Para um literal hexadecimal ou literal de valor de bit, o conjunto de caracteres e a ordenação são `binary`.
+  + Para um literal hexadecimal ou literal de valor de bit, o *character set* e o *collation* são `binary`.
 
 Exemplos:
 
-- Cadeias não binárias com o conjunto de caracteres `latin1` e a classificação `latin1_german1_ci`:
+* Strings não binárias com *character set* `latin1` e *collation* `latin1_german1_ci`:
 
   ```sql
   SELECT _latin1'Müller' COLLATE latin1_german1_ci;
@@ -59,7 +59,7 @@ Exemplos:
   SELECT _latin1 b'0110' COLLATE latin1_german1_ci;
   ```
 
-- Cadeias não binárias com o conjunto de caracteres `utf8` e sua ordenação padrão (ou seja, `utf8_general_ci`):
+* Strings não binárias com *character set* `utf8` e seu *collation* padrão (ou seja, `utf8_general_ci`):
 
   ```sql
   SELECT _utf8'Müller';
@@ -67,7 +67,7 @@ Exemplos:
   SELECT _utf8 b'0110';
   ```
 
-- Cadeias binárias com o conjunto de caracteres `binary` e sua ordenação padrão (ou seja, `binary`):
+* Strings binárias com *character set* `binary` e seu *collation* padrão (ou seja, `binary`):
 
   ```sql
   SELECT _binary'Müller';
@@ -75,17 +75,17 @@ Exemplos:
   SELECT b'0110';
   ```
 
-  Os literais hexadecimais e os literais de valor de bit não precisam de introdução, pois são cadeias binárias por padrão.
+  O literal hexadecimal e o literal de valor de bit não precisam de um *introducer* porque são strings binárias por padrão.
 
-- Uma cadeia não binária com o conjunto de caracteres padrão de conexão e a collation `utf8_general_ci` (falha se o conjunto de caracteres de conexão não for `utf8`):
+* Uma string não binária com o *character set* padrão da conexão e *collation* `utf8_general_ci` (falha se o *character set* da conexão não for `utf8`):
 
   ```sql
   SELECT 'Müller' COLLATE utf8_general_ci;
   ```
 
-  Essa construção (`COLLATE` apenas) não funciona para literais hexadecimais ou literais de bits porque seu conjunto de caracteres é `binary`, independentemente do conjunto de caracteres de conexão, e `binary` não é compatível com a collation `utf8_general_ci`. A única cláusula `COLLATE` permitida na ausência de um introducer é `COLLATE binary`.
+  Essa construção (somente `COLLATE`) não funciona para literais hexadecimais ou literais de bit, pois o *character set* deles é `binary` independentemente do *character set* da conexão, e `binary` não é compatível com o *collation* `utf8_general_ci`. A única cláusula `COLLATE` permitida na ausência de um *introducer* é `COLLATE binary`.
 
-- Uma cadeia com o conjunto de caracteres padrão de conexão e a concordância:
+* Uma string com o *character set* e *collation* padrão da conexão:
 
   ```sql
   SELECT 'Müller';

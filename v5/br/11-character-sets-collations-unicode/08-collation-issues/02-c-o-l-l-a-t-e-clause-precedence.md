@@ -1,6 +1,6 @@
-### 10.8.2 Cláusula de Precedência da cláusula COLLATE
+### 10.8.2 Precedência da Cláusula COLLATE
 
-A cláusula `COLLATE` tem precedência alta (maior que `||`), então as duas expressões seguintes são equivalentes:
+A cláusula `COLLATE` tem alta precedência (maior que `||`), portanto, as duas expressões a seguir são equivalentes:
 
 ```sql
 x || y COLLATE z

@@ -1,18 +1,18 @@
-## 10.14 Adicionando uma Codificação a um Conjunto de Caracteres
+## 10.14 Adicionando uma Collation a um Character Set
 
-10.14.1 Tipos de implementação de colagem
+10.14.1 Tipos de Implementação de Collation
 
-10.14.2 Escolher um ID de collation
+10.14.2 Escolhendo um Collation ID
 
-10.14.3 Adicionando uma Colagem Simples a um Conjunto de Caracteres de 8 Bits
+10.14.3 Adicionando uma Collation Simples a um Character Set de 8 Bits
 
-10.14.4 Adicionando uma Codificação UCA a um Conjunto de Caracteres Unicode
+10.14.4 Adicionando uma Collation UCA a um Character Set Unicode
 
-Uma correspondência é um conjunto de regras que define como comparar e ordenar cadeias de caracteres. Cada correspondência no MySQL pertence a um único conjunto de caracteres. Cada conjunto de caracteres tem pelo menos uma correspondência e a maioria tem duas ou mais correspondências.
+Uma collation é um conjunto de regras que define como comparar e ordenar strings de caracteres. Cada collation no MySQL pertence a um único character set. Todo character set tem pelo menos uma collation, e a maioria tem duas ou mais collations.
 
-Uma ordenação de collation ordena os caracteres com base nos pesos. Cada caractere em um conjunto de caracteres é mapeado para um peso. Caracteres com pesos iguais são comparados como iguais, e caracteres com pesos desiguais são comparados de acordo com a magnitude relativa de seus pesos.
+Uma collation ordena caracteres baseada em pesos (weights). Cada caractere em um character set é mapeado para um peso. Caracteres com pesos iguais são comparados como iguais, e caracteres com pesos desiguais são comparados de acordo com a magnitude relativa de seus pesos.
 
-A função `WEIGHT_STRING()` pode ser usada para ver os pesos dos caracteres em uma string. O valor que ela retorna para indicar os pesos é uma string binária, então é conveniente usar `HEX(WEIGHT_STRING(str))` para exibir os pesos em formato imprimível. O exemplo a seguir mostra que os pesos não diferem para maiúsculas e minúsculas para as letras em `'AaBb'` se for uma string não binária e sensível a maiúsculas e minúsculas, mas diferem se for uma string binária:
+A função `WEIGHT_STRING()` pode ser usada para ver os pesos dos caracteres em uma string. O valor que ela retorna para indicar os pesos é uma binary string, então é conveniente usar `HEX(WEIGHT_STRING(str))` para exibir os pesos em formato imprimível. O exemplo a seguir mostra que os pesos não diferem para maiúsculas/minúsculas (lettercase) para as letras em `'AaBb'` se for uma string nonbinary case-insensitive, mas diferem se for uma binary string:
 
 ```sql
 mysql> SELECT HEX(WEIGHT_STRING('AaBb' COLLATE latin1_swedish_ci));
@@ -29,34 +29,32 @@ mysql> SELECT HEX(WEIGHT_STRING(BINARY 'AaBb'));
 +-----------------------------------+
 ```
 
-O MySQL suporta várias implementações de cotação, conforme discutido na Seção 10.14.1, “Tipos de Implementação de Cotação”. Algumas dessas podem ser adicionadas ao MySQL sem recompilar:
+O MySQL suporta várias implementações de collation, conforme discutido na Seção 10.14.1, “Tipos de Implementação de Collation”. Algumas delas podem ser adicionadas ao MySQL sem a necessidade de recompilação:
 
-- Coleções simples para conjuntos de caracteres de 8 bits.
-- Colagens baseadas em UCA para conjuntos de caracteres Unicode.
-- Colagens binárias (`xxx_bin`).
+* Collations simples para character sets de 8 bits.
+* Collations baseadas em UCA para character sets Unicode.
+* Collations Binary (`xxx_bin`).
 
-As seções a seguir descrevem como adicionar colateções definidas pelo usuário dos dois primeiros tipos a conjuntos de caracteres existentes. Todos os conjuntos de caracteres existentes já possuem uma colateção binária, portanto, não há necessidade de descrever como adicionar uma.
+As seções a seguir descrevem como adicionar collations definidas pelo usuário dos dois primeiros tipos a character sets existentes. Todos os character sets existentes já possuem uma collation binary, então não é necessário descrever aqui como adicionar uma delas.
 
-Resumo do procedimento para adicionar uma nova ordenação definida pelo usuário:
+Resumo do procedimento para adicionar uma nova collation definida pelo usuário:
 
-1. Escolha um ID de ordenação.
+1. Escolha um Collation ID.
+2. Adicione informações de configuração que nomeiam a collation e descrevem as regras de ordenação de caracteres.
 
-2. Adicione informações de configuração que nomeiem a concordância e descrevam as regras de ordenação de caracteres.
+3. Reinicie o server.
+4. Verifique se o server reconhece a collation.
 
-3. Reinicie o servidor.
+As instruções aqui cobrem apenas collations definidas pelo usuário que podem ser adicionadas sem a recompilação do MySQL. Para adicionar uma collation que exija recompilação (conforme implementado por meio de funções em um arquivo C source), use as instruções na Seção 10.13, “Adicionando um Character Set”. No entanto, em vez de adicionar todas as informações necessárias para um character set completo, modifique apenas os arquivos apropriados para um character set existente. Ou seja, com base no que já está presente para as collations atuais do character set, adicione estruturas de dados, funções e informações de configuração para a nova collation.
 
-4. Verifique se o servidor reconhece a codificação.
+Note
 
-As instruções aqui cobrem apenas as collation definidas pelo usuário que podem ser adicionadas sem recompilar o MySQL. Para adicionar uma collation que exija a recompilação (como implementada por meio de funções em um arquivo de código-fonte C), use as instruções na Seção 10.13, “Adicionando um Conjunto de Caracteres”. No entanto, em vez de adicionar todas as informações necessárias para um conjunto de caracteres completo, basta modificar os arquivos apropriados para um conjunto de caracteres existente. Ou seja, com base no que já está presente para as collation atuais do conjunto de caracteres, adicione estruturas de dados, funções e informações de configuração para a nova collation.
+Se você modificar uma collation existente definida pelo usuário, isso pode afetar a ordenação de linhas para Indexes em colunas que usam a collation. Neste caso, reconstrua quaisquer Indexes para evitar problemas como resultados de Query incorretos. Consulte a Seção 2.10.12, “Reconstruindo ou Reparando Tables ou Indexes”.
 
-Nota
+### Recursos Adicionais
 
-Se você modificar uma colagem definida pelo usuário existente, isso pode afetar a ordem das linhas para índices em colunas que utilizam a colagem. Nesse caso, reconstrua quaisquer índices desse tipo para evitar problemas, como resultados de consultas incorretos. Consulte a Seção 2.10.12, “Reconstrução ou reparo de tabelas ou índices”.
+* Exemplo mostrando como adicionar uma collation para full-text searches: Seção 12.9.7, “Adicionando uma Collation Definida pelo Usuário para Full-Text Indexing”
 
-### Recursos adicionais
+* A especificação do Unicode Collation Algorithm (UCA): <http://www.unicode.org/reports/tr10/>
 
-- Exemplo mostrando como adicionar uma concordância para pesquisas de texto completo: Seção 12.9.7, “Adicionar uma Concordância Definida pelo Usuário para Indexação de Texto Completo”
-
-- A especificação do Algoritmo de Cotação Unicode (UCA): <http://www.unicode.org/reports/tr10/>
-
-- A especificação Locale Data Markup Language (LDML): <http://www.unicode.org/reports/tr35/>
+* A especificação da Locale Data Markup Language (LDML): <http://www.unicode.org/reports/tr35/>

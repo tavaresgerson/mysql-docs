@@ -1,3 +1,3 @@
-### 10.9.6 O conjunto de caracteres utf16le (codificação Unicode UTF-16LE)
+### 10.9.6 O Character Set utf16le (Codificação Unicode UTF-16LE)
 
-Isso é o mesmo que `utf16`, mas é little-endian em vez de big-endian.
+Isso é o mesmo que `utf16`, mas é *little-endian* em vez de *big-endian*.

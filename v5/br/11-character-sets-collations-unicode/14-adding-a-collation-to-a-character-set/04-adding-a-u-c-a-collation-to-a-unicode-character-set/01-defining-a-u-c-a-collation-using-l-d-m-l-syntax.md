@@ -1,8 +1,8 @@
-#### 10.14.4.1 Definindo uma Colaboração UCA Usando Sintaxe LDML
+#### 10.14.4.1 Definindo uma Collation UCA Usando a Sintaxe LDML
 
-Para adicionar uma ordenação UCA para um conjunto de caracteres Unicode sem recompilar o MySQL, use o procedimento a seguir. Se você não estiver familiarizado com as regras LDML usadas para descrever as características de ordenação da ordenação, consulte a Seção 10.14.4.2, “Sintaxe LDML suportada no MySQL”.
+Para adicionar uma collation UCA para um character set Unicode sem recompilar o MySQL, use o procedimento a seguir. Se você não estiver familiarizado com as regras LDML usadas para descrever as características de ordenação da collation, consulte a Seção 10.14.4.2, “Sintaxe LDML Suportada no MySQL”.
 
-O exemplo adiciona uma ordenação chamada `utf8_phone_ci` ao conjunto de caracteres `utf8`. A ordenação é projetada para um cenário envolvendo um aplicativo da Web, para o qual os usuários postam seus nomes e números de telefone. Os números de telefone podem ser fornecidos em formatos muito diferentes:
+O exemplo adiciona uma collation chamada `utf8_phone_ci` ao character set `utf8`. A collation é projetada para um cenário que envolve uma aplicação Web para a qual os usuários postam seus nomes e números de telefone. Os números de telefone podem ser fornecidos em formatos muito diferentes:
 
 ```sql
 +7-12345-67
@@ -12,11 +12,11 @@ O exemplo adiciona uma ordenação chamada `utf8_phone_ci` ao conjunto de caract
 +71234567
 ```
 
-O problema levantado ao lidar com esse tipo de valor é que os formatos permitidos variam, o que dificulta muito a busca por um número de telefone específico. A solução é definir uma nova ordenação que reordene os caracteres de pontuação, tornando-os ignoráveis.
+O problema levantado ao lidar com esses tipos de valores é que os diversos formatos permitidos tornam a busca por um número de telefone específico muito difícil. A solução é definir uma nova collation que reordena os caracteres de pontuação, tornando-os ignoráveis.
 
-1. Escolha um ID de collation, conforme mostrado na Seção 10.14.2, “Escolhendo um ID de collation”. Os passos seguintes usam um ID de 1029.
+1. Escolha um Collation ID, conforme mostrado na Seção 10.14.2, “Escolhendo um Collation ID”. As etapas a seguir usam o ID 1029.
 
-2. Para modificar o arquivo de configuração `Index.xml`. Este arquivo está localizado no diretório nomeado pela variável de sistema `character_sets_dir`. Você pode verificar o valor da variável da seguinte forma, embora o nome do caminho possa ser diferente no seu sistema:
+2. Modifique o arquivo de configuração `Index.xml`. Este arquivo está localizado no diretório nomeado pela system variable `character_sets_dir`. Você pode verificar o valor da variável da seguinte forma, embora o nome do caminho possa ser diferente em seu sistema:
 
    ```sql
    mysql> SHOW VARIABLES LIKE 'character_sets_dir';
@@ -27,7 +27,7 @@ O problema levantado ao lidar com esse tipo de valor é que os formatos permitid
    +--------------------+-----------------------------------------+
    ```
 
-3. Escolha um nome para a ordenação e liste-o no arquivo `Index.xml`. Além disso, você precisará fornecer as regras de ordenação da colagem. Encontre o elemento `<charset>` para o conjunto de caracteres ao qual a ordenação está sendo adicionada e adicione um elemento `<collation>` que indique o nome e o ID da ordenação, para associar o nome ao ID. Dentro do elemento `<collation>`, forneça um elemento `<rules>` contendo as regras de ordenação:
+3. Escolha um nome para a collation e liste-o no arquivo `Index.xml`. Além disso, você precisará fornecer as regras de ordenação da collation. Encontre o elemento `<charset>` para o character set ao qual a collation está sendo adicionada e adicione um elemento `<collation>` que indica o nome e o ID da collation, para associar o nome ao ID. Dentro do elemento `<collation>`, forneça um elemento `<rules>` contendo as regras de ordenação:
 
    ```sql
    <charset name="utf8">
@@ -46,9 +46,9 @@ O problema levantado ao lidar com esse tipo de valor é que os formatos permitid
    </charset>
    ```
 
-4. Se você deseja uma correspondência semelhante para outros conjuntos de caracteres Unicode, adicione outros elementos `<collation>`. Por exemplo, para definir `ucs2_phone_ci`, adicione um elemento `<collation>` ao elemento `<charset name="ucs2">`. Lembre-se de que cada correspondência deve ter seu próprio ID único.
+4. Se você quiser uma collation semelhante para outros character sets Unicode, adicione outros elementos `<collation>`. Por exemplo, para definir `ucs2_phone_ci`, adicione um elemento `<collation>` ao elemento `<charset name="ucs2">`. Lembre-se de que cada collation deve ter seu próprio ID exclusivo.
 
-5. Reinicie o servidor e use essa declaração para verificar se a collation está presente:
+5. Reinicie o server e use esta instrução para verificar se a collation está presente:
 
    ```sql
    mysql> SHOW COLLATION WHERE Collation = 'utf8_phone_ci';
@@ -59,9 +59,9 @@ O problema levantado ao lidar com esse tipo de valor é que os formatos permitid
    +---------------+---------+------+---------+----------+---------+
    ```
 
-Agora, teste a ordenação para garantir que ela tenha as propriedades desejadas.
+Agora teste a collation para garantir que ela tenha as propriedades desejadas.
 
-Crie uma tabela contendo alguns números de telefone de amostra usando a nova ordenação:
+Crie uma table contendo alguns números de telefone de exemplo usando a nova collation:
 
 ```sql
 mysql> CREATE TABLE phonebook (
@@ -86,7 +86,7 @@ mysql> INSERT INTO phonebook VALUES ('Sanja','+380 (912) 8008005');
 Query OK, 1 row affected (0.00 sec)
 ```
 
-Execute algumas consultas para verificar se os caracteres de pontuação ignorados estão, de fato, sendo ignorados para comparação e ordenação:
+Execute algumas queries para ver se os caracteres de pontuação ignorados são de fato ignorados para comparação e ordenação:
 
 ```sql
 mysql> SELECT * FROM phonebook ORDER BY phone;

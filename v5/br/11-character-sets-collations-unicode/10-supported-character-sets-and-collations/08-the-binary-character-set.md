@@ -1,10 +1,10 @@
-### 10.10.8 O Conjunto de Caracteres Binário
+### 10.10.8 O Conjunto de Caracteres `binary`
 
-O conjunto de caracteres `binary` é o conjunto de caracteres para strings binárias, que são sequências de bytes. O conjunto de caracteres `binary` tem uma ordenação, também chamada `binary`. A comparação e ordenação são baseadas em valores numéricos de bytes, em vez de em valores de código de caracteres numéricos (que, para caracteres multibyte, diferem dos valores de bytes numéricos). Para obter informações sobre as diferenças entre a ordenação `binary` do conjunto de caracteres `binary` e as ordenações `_bin` dos conjuntos de caracteres não binários, consulte a Seção 10.8.5, “A ordenação binária em comparação com as ordenações _bin”.
+O conjunto de caracteres `binary` é o conjunto de caracteres para *strings* binárias, que são sequências de *bytes*. O conjunto de caracteres `binary` possui uma única *collation*, também denominada `binary`. A comparação e a ordenação são baseadas em valores numéricos de *byte*, em vez de valores numéricos de código de caractere (que, para caracteres *multibyte*, diferem dos valores numéricos de *byte*). Para obter informações sobre as diferenças entre a *collation* `binary` do conjunto de caracteres `binary` e as *collations* `_bin` de conjuntos de caracteres não binários, consulte a Seção 10.8.5, “A Collation `binary` Comparada às Collations `_bin`”.
 
-Para o conjunto de caracteres `binary`, os conceitos de maiúsculas e equivalência de acentos não se aplicam:
+Para o conjunto de caracteres `binary`, os conceitos de equivalência de maiúsculas/minúsculas (*lettercase*) e acentuação não se aplicam:
 
-- Para caracteres de único byte armazenados como strings binárias, os limites de caracteres e bytes são os mesmos, portanto, as diferenças de maiúsculas e acentos são significativas nas comparações. Isso significa que a classificação `binary` é sensível à maiúscula e ao acento.
+* Para caracteres de *single-byte* armazenados como *strings* binárias, os limites de caractere e de *byte* são os mesmos, portanto, as diferenças de maiúsculas/minúsculas e acentuação são significativas nas comparações. Ou seja, a *collation* `binary` é *case-sensitive* (sensível a maiúsculas/minúsculas) e *accent-sensitive* (sensível a acentuação).
 
   ```sql
   mysql> SET NAMES 'binary';
@@ -22,9 +22,9 @@ Para o conjunto de caracteres `binary`, os conceitos de maiúsculas e equivalên
   +---------------+------------+
   ```
 
-- Para caracteres multibyte armazenados como strings binárias, os limites de caracteres e bytes diferem. Os limites de caracteres são perdidos, portanto, as comparações que dependem deles não têm significado.
+* Para caracteres *multibyte* armazenados como *strings* binárias, os limites de caractere e de *byte* diferem. Os limites de caractere são perdidos, de modo que as comparações que dependem deles não são significativas.
 
-Para realizar a conversão de maiúsculas e minúsculas de uma string binária, primeiro converta-a em uma string não binária usando um conjunto de caracteres apropriado para os dados armazenados na string:
+Para realizar a conversão de maiúsculas/minúsculas (*lettercase*) de uma *string* binária, primeiro converta-a para uma *string* não binária usando um conjunto de caracteres apropriado para os dados armazenados na *string*:
 
 ```sql
 mysql> SET @str = BINARY 'New York';
@@ -36,7 +36,7 @@ mysql> SELECT LOWER(@str), LOWER(CONVERT(@str USING utf8mb4));
 +-------------+------------------------------------+
 ```
 
-Para converter uma expressão de cadeia em uma string binária, esses construtores são equivalentes:
+Para converter uma expressão de *string* para uma *string* binária, estas construções são equivalentes:
 
 ```sql
 BINARY expr
@@ -44,16 +44,16 @@ CAST(expr AS BINARY)
 CONVERT(expr USING BINARY)
 ```
 
-Se um valor for uma literal de string de caracteres, o introduzir `_binary` pode ser usado para designá-lo como uma string binária. Por exemplo:
+Se um valor for um literal de *string* de caracteres, o introdutor `_binary` pode ser usado para designá-lo como uma *string* binária. Por exemplo:
 
 ```sql
 _binary 'a'
 ```
 
-O introducedor `_binary` também é permitido para literais hexadecimais e literais de valores de bits, mas é desnecessário; tais literais são strings binárias por padrão.
+O introdutor `_binary` é permitido para literais hexadecimais e literais de valor de *bit* também, mas é desnecessário; esses literais são *strings* binárias por padrão.
 
-Para obter mais informações sobre introdutores, consulte a Seção 10.3.8, “Introdutores de Conjunto de Caracteres”.
+Para mais informações sobre introdutores, consulte a Seção 10.3.8, “Introdutores de Conjunto de Caracteres”.
 
-Nota
+Note
 
-No cliente **mysql**, as cadeias binárias são exibidas usando notação hexadecimal, dependendo do valor da opção `--binary-as-hex`. Para obter mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O cliente de linha de comando do MySQL”.
+Dentro do cliente **mysql**, *strings* binárias são exibidas usando notação hexadecimal, dependendo do valor de `--binary-as-hex`. Para mais informações sobre essa opção, consulte a Seção 4.5.1, “mysql — O Cliente de Linha de Comando MySQL”.

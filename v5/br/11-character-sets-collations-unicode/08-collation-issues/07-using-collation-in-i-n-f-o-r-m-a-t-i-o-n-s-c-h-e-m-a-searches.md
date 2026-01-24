@@ -1,8 +1,8 @@
-### 10.8.7 Uso da Colagem em Pesquisas no INFORMATION_SCHEMA
+### 10.8.7 Usando Collation em Buscas no INFORMATION_SCHEMA
 
-As colunas de texto nas tabelas do `INFORMATION_SCHEMA` têm uma concordância de `utf8_general_ci`, que é insensível a maiúsculas e minúsculas. No entanto, para valores que correspondem a objetos representados no sistema de arquivos, como bancos de dados e tabelas, as pesquisas nas colunas de texto do `INFORMATION_SCHEMA` podem ser sensíveis ou insensíveis a maiúsculas, dependendo das características do sistema de arquivos subjacente e do valor da variável de sistema `lower_case_table_names`. Por exemplo, as pesquisas podem ser sensíveis a maiúsculas se o sistema de arquivos for sensível a maiúsculas. Esta seção descreve esse comportamento e como modificá-lo, se necessário; veja também o Bug #34921.
+Colunas de string nas tabelas do `INFORMATION_SCHEMA` possuem uma `collation` de `utf8_general_ci`, que não diferencia maiúsculas de minúsculas (`case-insensitive`). No entanto, para valores que correspondem a objetos representados no sistema de arquivos, como Databases e tabelas, as buscas em colunas de string do `INFORMATION_SCHEMA` podem ser `case-sensitive` (sensíveis a maiúsculas e minúsculas) ou `case-insensitive`, dependendo das características do sistema de arquivos subjacente e do valor da variável de sistema `lower_case_table_names`. Por exemplo, as buscas podem ser `case-sensitive` se o sistema de arquivos for `case-sensitive`. Esta seção descreve este comportamento e como modificá-lo, se necessário; veja também Bug #34921.
 
-Suponha que uma consulta procure a coluna `SCHEMATA.SCHEMA_NAME` para o banco de dados `test`. No Linux, os sistemas de arquivos são case-sensitive, então as comparações de `SCHEMATA.SCHEMA_NAME` com `'test'` correspondem, mas as comparações com `'TEST'` não:
+Suponha que uma Query busque a coluna `SCHEMATA.SCHEMA_NAME` pelo Database `test`. No Linux, os sistemas de arquivos são `case-sensitive`, portanto, comparações de `SCHEMATA.SCHEMA_NAME` com `'test'` encontram correspondência, mas comparações com `'TEST'` não:
 
 ```sql
 mysql> SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA
@@ -18,9 +18,9 @@ mysql> SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA
 Empty set (0.00 sec)
 ```
 
-Esses resultados ocorrem quando a variável de sistema `lower_case_table_names` é definida como 0. Alterar o valor de `lower_case_table_names` para 1 ou 2 faz com que a segunda consulta retorne o mesmo resultado (não vazio) que a primeira consulta.
+Estes resultados ocorrem com a variável de sistema `lower_case_table_names` definida como 0. Alterar o valor de `lower_case_table_names` para 1 ou 2 faz com que a segunda Query retorne o mesmo resultado (não vazio) que a primeira Query.
 
-Em Windows ou macOS, os sistemas de arquivos não são case-sensitive, então as comparações correspondem tanto a `'test'` quanto a `'TEST'`:
+No Windows ou macOS, os sistemas de arquivos não são `case-sensitive`, portanto, as comparações encontram correspondência tanto para `'test'` quanto para `'TEST'`:
 
 ```sql
 mysql> SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA
@@ -42,9 +42,9 @@ mysql> SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA
 
 O valor de `lower_case_table_names` não faz diferença neste contexto.
 
-Esse comportamento anterior ocorre porque a collation `utf8_general_ci` não é usada para consultas do `INFORMATION_SCHEMA` ao procurar valores que correspondem a objetos representados no sistema de arquivos. É um resultado das otimizações de varredura do sistema de arquivos implementadas para as pesquisas do `INFORMATION_SCHEMA`. Para obter informações sobre essas otimizações, consulte a Seção 8.2.3, “Otimizando consultas do INFORMATION_SCHEMA”.
+O comportamento anterior ocorre porque a `collation` `utf8_general_ci` não é utilizada para Queries no `INFORMATION_SCHEMA` ao buscar valores que correspondem a objetos representados no sistema de arquivos. Isso é resultado de otimizações de varredura do sistema de arquivos implementadas para buscas no `INFORMATION_SCHEMA`. Para obter informações sobre essas otimizações, consulte Seção 8.2.3, “Optimizing INFORMATION_SCHEMA Queries”.
 
-Se o resultado de uma operação de string em uma coluna do `INFORMATION_SCHEMA` for diferente das expectativas, uma solução é usar uma cláusula `COLLATE` explícita para forçar uma collation adequada (consulte a Seção 10.8.1, “Usando COLLATE em Instruções SQL”). Por exemplo, para realizar uma pesquisa não sensível ao caso, use `COLLATE` com o nome da coluna `INFORMATION_SCHEMA`:
+Se o resultado de uma operação de string em uma coluna do `INFORMATION_SCHEMA` for diferente do esperado, uma solução alternativa (`workaround`) é usar uma cláusula `COLLATE` explícita para forçar uma `collation` adequada (consulte Seção 10.8.1, “Using COLLATE in SQL Statements”). Por exemplo, para realizar uma busca `case-insensitive`, use `COLLATE` com o nome da coluna do `INFORMATION_SCHEMA`:
 
 ```sql
 mysql> SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA
@@ -64,7 +64,7 @@ mysql> SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA
 +-------------+
 ```
 
-Nas consultas anteriores, é importante aplicar a cláusula `COLLATE` ao nome da coluna `INFORMATION_SCHEMA`. Aplicar `COLLATE` ao valor de comparação não tem efeito.
+Nas Queries anteriores, é importante aplicar a cláusula `COLLATE` ao nome da coluna do `INFORMATION_SCHEMA`. Aplicar `COLLATE` ao valor de comparação não tem efeito.
 
 Você também pode usar a função `UPPER()` ou `LOWER()`:
 
@@ -73,7 +73,7 @@ WHERE UPPER(SCHEMA_NAME) = 'TEST'
 WHERE LOWER(SCHEMA_NAME) = 'test'
 ```
 
-Embora uma comparação não sensível à maiúscula possa ser realizada mesmo em plataformas com sistemas de arquivos sensíveis à maiúscula, como foi demonstrado, nem sempre é a coisa certa a fazer. Nessas plataformas, é possível ter vários objetos com nomes que diferem apenas na grafia. Por exemplo, tabelas chamadas `city`, `CITY` e `City` podem existir simultaneamente. Considere se uma pesquisa deve corresponder a todos esses nomes ou apenas a um deles e escreva consultas de acordo. A primeira das seguintes comparações (com `utf8_bin`) é sensível à maiúscula; as outras não são:
+Embora uma comparação `case-insensitive` possa ser realizada mesmo em plataformas com sistemas de arquivos `case-sensitive`, como acabamos de mostrar, isso não é necessariamente sempre o correto a se fazer. Em tais plataformas, é possível ter múltiplos objetos com nomes que diferem apenas no uso de maiúsculas/minúsculas. Por exemplo, tabelas nomeadas `city`, `CITY` e `City` podem coexistir simultaneamente. Considere se uma busca deve corresponder a todos esses nomes ou apenas a um, e escreva as Queries de acordo. A primeira das seguintes comparações (com `utf8_bin`) é `case-sensitive`; as outras não são:
 
 ```sql
 WHERE TABLE_NAME COLLATE utf8_bin = 'City'
@@ -82,7 +82,7 @@ WHERE UPPER(TABLE_NAME) = 'CITY'
 WHERE LOWER(TABLE_NAME) = 'city'
 ```
 
-As pesquisas nas colunas de texto `INFORMATION_SCHEMA` para valores que se referem ao próprio `INFORMATION_SCHEMA` usam a collation `utf8_general_ci` porque `INFORMATION_SCHEMA` é um banco de dados “virtual” que não está representado no sistema de arquivos. Por exemplo, as comparações com `SCHEMATA.SCHEMA_NAME` correspondem a `'information_schema'` ou `'INFORMATION_SCHEMA'` independentemente da plataforma:
+Buscas em colunas de string do `INFORMATION_SCHEMA` por valores que se referem ao próprio `INFORMATION_SCHEMA` usam a `collation` `utf8_general_ci` porque `INFORMATION_SCHEMA` é um Database “virtual” não representado no sistema de arquivos. Por exemplo, comparações com `SCHEMATA.SCHEMA_NAME` encontram correspondência para `'information_schema'` ou `'INFORMATION_SCHEMA'` independentemente da plataforma:
 
 ```sql
 mysql> SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA

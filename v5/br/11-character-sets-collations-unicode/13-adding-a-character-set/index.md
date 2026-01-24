@@ -1,22 +1,22 @@
-## 10.13 Adicionando um Conjunto de Caracteres
+## 10.13 Adicionando um Character Set
 
-10.13.1 Matrizes de Definição de Caracteres
+10.13.1 Character Definition Arrays
 
-10.13.2 Suporte para a Colagem de Cadeias para Conjuntos de Caracteres Complexos
+10.13.2 Suporte a String Collating para Character Sets Complexos
 
-10.13.3 Suporte a Caracteres Multi-Bytes para Conjuntos de Caracteres Complexos
+10.13.3 Suporte a Caracteres Multi-Byte para Character Sets Complexos
 
-Esta seção discute o procedimento para adicionar um conjunto de caracteres ao MySQL. O procedimento adequado depende se o conjunto de caracteres é simples ou complexo:
+Esta seção discute o procedimento para adicionar um *Character Set* ao MySQL. O procedimento adequado depende se o *Character Set* é simples ou complexo:
 
-- Se o conjunto de caracteres não precisar de rotinas especiais de ordenação de strings e não precisar de suporte para caracteres multibyte, é simples.
+* Se o *Character Set* não necessitar de rotinas especiais de *string collating* para ordenação e não necessitar de suporte a caracteres *multibyte*, ele é simples.
 
-- Se o conjunto de caracteres precisar de qualquer uma dessas funcionalidades, isso é complexo.
+* Se o *Character Set* necessitar de qualquer uma dessas funcionalidades, ele é complexo.
 
-Por exemplo, `greek` e `swe7` são conjuntos de caracteres simples, enquanto `big5` e `czech` são conjuntos de caracteres complexos.
+Por exemplo, `greek` e `swe7` são *Character Sets* simples, enquanto `big5` e `czech` são *Character Sets* complexos.
 
-Para usar as instruções a seguir, você deve ter uma distribuição de fonte MySQL. Nas instruções, *`MYSET`* representa o nome do conjunto de caracteres que você deseja adicionar.
+Para usar as instruções a seguir, você deve ter uma *source distribution* do MySQL. Nas instruções, *`MYSET`* representa o nome do *Character Set* que você deseja adicionar.
 
-1. Adicione um elemento `<charset>` para *`MYSET`* ao arquivo `sql/share/charsets/Index.xml`. Use o conteúdo existente no arquivo como guia para adicionar novos conteúdos. Uma lista parcial do elemento `<charset>` `latin1` segue:
+1. Adicione um elemento `<charset>` para *`MYSET`* ao arquivo `sql/share/charsets/Index.xml`. Use o conteúdo existente no arquivo como guia para adicionar novo conteúdo. Segue uma listagem parcial para o elemento `<charset>` de `latin1`:
 
    ```sql
    <charset name="latin1">
@@ -37,43 +37,43 @@ Para usar as instruções a seguir, você deve ter uma distribuição de fonte M
    </charset>
    ```
 
-   O elemento `<charset>` deve listar todas as colatações para o conjunto de caracteres. Essas devem incluir pelo menos uma colatação binária e uma colatação padrão (primaria). A colatação padrão é frequentemente nomeada usando um sufixo de `general_ci` (geral, não sensível a maiúsculas e minúsculas). É possível que a colatação binária seja a colatação padrão, mas geralmente elas são diferentes. A colatação padrão deve ter uma bandeira `primary`. A colatação binária deve ter uma bandeira `binary`.
+   O elemento `<charset>` deve listar todas as *Collations* para o *Character Set*. Elas devem incluir pelo menos uma *Binary Collation* e uma *Collation* padrão (*Primary*). A *Collation* padrão é frequentemente nomeada usando o sufixo `general_ci` (geral, insensível a maiúsculas e minúsculas). É possível que a *Binary Collation* seja a *Collation* padrão, mas geralmente elas são diferentes. A *Collation* padrão deve ter um *flag* `primary`. A *Binary Collation* deve ter um *flag* `binary`.
 
-   Você deve atribuir um número de ID único a cada colagem. A faixa de IDs de 1024 a 2047 é reservada para colagens definidas pelo usuário. Para encontrar o máximo dos IDs de colagem atualmente usados, use esta consulta:
+   Você deve atribuir um número de ID exclusivo para cada *Collation*. O intervalo de IDs de 1024 a 2047 é reservado para *Collations* definidas pelo usuário. Para encontrar o máximo dos IDs de *Collation* atualmente utilizados, use esta *Query*:
 
    ```sql
    SELECT MAX(ID) FROM INFORMATION_SCHEMA.COLLATIONS;
    ```
 
-2. Essa etapa depende de você estar adicionando um conjunto de caracteres simples ou complexo. Um conjunto de caracteres simples requer apenas um arquivo de configuração, enquanto um conjunto de caracteres complexo requer um arquivo de código C que defina funções de ordenação, funções multibyte ou ambas.
+2. Esta etapa depende se você está adicionando um *Character Set* simples ou complexo. Um *Character Set* simples requer apenas um arquivo de configuração, enquanto um *Character Set* complexo requer um arquivo C *source* que define funções de *Collation*, funções *multibyte*, ou ambas.
 
-   Para um conjunto de caracteres simples, crie um arquivo de configuração, `MYSET.xml`, que descreva as propriedades do conjunto de caracteres. Crie esse arquivo no diretório `sql/share/charsets`. Você pode usar uma cópia de `latin1.xml` como base para esse arquivo. A sintaxe do arquivo é muito simples:
+   Para um *Character Set* simples, crie um arquivo de configuração, `MYSET.xml`, que descreva as propriedades do *Character Set*. Crie este arquivo no diretório `sql/share/charsets`. Você pode usar uma cópia de `latin1.xml` como base para este arquivo. A sintaxe para o arquivo é muito simples:
 
-   - Os comentários são escritos como comentários XML comuns (`<!-- texto -->`).
+   * Comentários são escritos como comentários XML comuns (`<!-- text -->`).
 
-   - As palavras dentro dos elementos do array `<map>` são separadas por quantidades arbitrárias de espaços em branco.
+   * Palavras dentro de elementos de *array* `<map>` são separadas por quantidades arbitrárias de espaços em branco (*whitespace*).
 
-   - Cada palavra dentro dos elementos do array `<map>` deve ser um número no formato hexadecimal.
+   * Cada palavra dentro de elementos de *array* `<map>` deve ser um número em formato hexadecimal.
 
-   - O elemento de matriz `<map>` para o elemento `<ctype>` tem 257 palavras. Os outros elementos de matriz `<map>` têm 256 palavras. Veja a Seção 10.13.1, “Matrizes de Definição de Caracteres”.
+   * O elemento de *array* `<map>` para o elemento `<ctype>` possui 257 palavras. Os outros elementos de *array* `<map>` após esse possuem 256 palavras. Consulte a Seção 10.13.1, “Character Definition Arrays”.
 
-   - Para cada ordenação listada no elemento `<charset>` para o conjunto de caracteres no `Index.xml`, o arquivo `MYSET.xml` deve conter um elemento `<collation>` que defina a ordem de ordenação dos caracteres.
+   * Para cada *Collation* listada no elemento `<charset>` para o *Character Set* em `Index.xml`, `MYSET.xml` deve conter um elemento `<collation>` que defina a ordenação dos caracteres.
 
-   Para um conjunto de caracteres complexo, crie um arquivo de código C que descreva as propriedades do conjunto de caracteres e defina as rotinas de suporte necessárias para realizar operações adequadas no conjunto de caracteres:
+   Para um *Character Set* complexo, crie um arquivo C *source* que descreva as propriedades do *Character Set* e defina as rotinas de suporte necessárias para executar corretamente as operações no *Character Set*:
 
-   - Crie o arquivo `ctype-MYSET.c` no diretório `strings`. Veja um dos arquivos `ctype-*.c` existentes (como `ctype-big5.c`) para ver o que precisa ser definido. Os arrays do seu arquivo devem ter nomes como `ctype_MYSET`, `to_lower_MYSET`, e assim por diante. Estes correspondem aos arrays para um conjunto de caracteres simples. Veja a Seção 10.13.1, “Arrays de Definição de Caracteres”.
+   * Crie o arquivo `ctype-MYSET.c` no diretório `strings`. Consulte um dos arquivos `ctype-*.c` existentes (como `ctype-big5.c`) para ver o que precisa ser definido. Os *arrays* em seu arquivo devem ter nomes como `ctype_MYSET`, `to_lower_MYSET`, e assim por diante. Estes correspondem aos *arrays* para um *Character Set* simples. Consulte a Seção 10.13.1, “Character Definition Arrays”.
 
-   - Para cada elemento `<collation>` listado no elemento `<charset>` para o conjunto de caracteres em `Index.xml`, o arquivo `ctype-MYSET.c` deve fornecer uma implementação da colagem.
+   * Para cada elemento `<collation>` listado no elemento `<charset>` para o *Character Set* em `Index.xml`, o arquivo `ctype-MYSET.c` deve fornecer uma implementação da *Collation*.
 
-   - Se o conjunto de caracteres exigir funções de ordenação de cadeias, consulte a Seção 10.13.2, “Suporte de ordenação de cadeias para conjuntos de caracteres complexos”.
+   * Se o *Character Set* exigir funções de *string collating*, consulte a Seção 10.13.2, “String Collating Support for Complex Character Sets”.
 
-   - Se o conjunto de caracteres exigir suporte a caracteres multibyte, consulte a Seção 10.13.3, “Suporte a Caracteres Multibyte para Conjuntos de Caracteres Complexos”.
+   * Se o *Character Set* exigir suporte a caracteres *multibyte*, consulte a Seção 10.13.3, “Multi-Byte Character Support for Complex Character Sets”.
 
-3. Modifique as informações de configuração. Use as informações de configuração existentes como guia para adicionar informações para *`MYSYS`*. O exemplo aqui assume que o conjunto de caracteres tem colunas padrão e binárias, mas são necessárias mais linhas se o *`MYSET`* tiver colunas adicionais.
+3. Modifique as informações de configuração. Use as informações de configuração existentes como guia para adicionar informações para *`MYSYS`*. O exemplo aqui assume que o *Character Set* possui *Collations* padrão e *binary*, mas mais linhas são necessárias se *`MYSET`* tiver *Collations* adicionais.
 
-   1. Editar `mysys/charset-def.c` e “registrar” as codificações para o novo conjunto de caracteres.
+   1. Edite `mysys/charset-def.c` e "registre" as *Collations* para o novo *Character Set*.
 
-      Adicione essas linhas à seção “declaração”:
+      Adicione estas linhas à seção de “declaração”:
 
       ```sql
       #ifdef HAVE_CHARSET_MYSET
@@ -82,7 +82,7 @@ Para usar as instruções a seguir, você deve ter uma distribuição de fonte M
       #endif
       ```
 
-      Adicione essas linhas à seção “registro”:
+      Adicione estas linhas à seção de “registro”:
 
       ```sql
       #ifdef HAVE_CHARSET_MYSET
@@ -91,12 +91,12 @@ Para usar as instruções a seguir, você deve ter uma distribuição de fonte M
       #endif
       ```
 
-   2. Se o conjunto de caracteres usa `ctype-MYSET.c`, edite `strings/CMakeLists.txt` e adicione `ctype-MYSET.c` à definição da variável `STRINGS_SOURCES`.
+   2. Se o *Character Set* usar `ctype-MYSET.c`, edite `strings/CMakeLists.txt` e adicione `ctype-MYSET.c` à definição da variável `STRINGS_SOURCES`.
 
-   3. Editar `cmake/character_sets.cmake`:
+   3. Edite `cmake/character_sets.cmake`:
 
       1. Adicione *`MYSET`* ao valor de `CHARSETS_AVAILABLE` em ordem alfabética.
 
-      2. Adicione *`MYSET`* ao valor de `CHARSETS_COMPLEX` em ordem alfabética. Isso é necessário mesmo para conjuntos de caracteres simples, ou **CMake** não reconhece `-DDEFAULT_CHARSET=MYSET`.
+      2. Adicione *`MYSET`* ao valor de `CHARSETS_COMPLEX` em ordem alfabética. Isso é necessário mesmo para *Character Sets* simples, ou o **CMake** não reconhecerá `-DDEFAULT_CHARSET=MYSET`.
 
-4. Reconfigurar, recompilar e testar.
+4. Reconfigure, recompile e test.

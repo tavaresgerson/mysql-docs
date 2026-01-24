@@ -1,10 +1,10 @@
-## 10.2 Conjuntos de caracteres e collation no MySQL
+## 10.2 Conjuntos de Caracteres e Collations no MySQL
 
-10.2.1 Repertório de Caracteres
+10.2.1 Repertório de Conjuntos de Caracteres
 
-10.2.2 UTF-8 para metadados
+10.2.2 UTF-8 para Metadados
 
-O MySQL Server suporta vários conjuntos de caracteres. Para exibir os conjuntos de caracteres disponíveis, use a tabela `INFORMATION_SCHEMA` `CHARACTER_SETS` ou a instrução `SHOW CHARACTER SET`. Uma lista parcial segue. Para obter informações mais completas, consulte a Seção 10.10, “Conjunto de caracteres e coligações suportadas”.
+O MySQL Server suporta múltiplos conjuntos de caracteres. Para exibir os conjuntos de caracteres disponíveis, use a tabela `CHARACTER_SETS` do `INFORMATION_SCHEMA` ou a instrução `SHOW CHARACTER SET`. Uma listagem parcial segue abaixo. Para informações mais completas, consulte a Seção 10.10, “Conjuntos de Caracteres e Collations Suportados”.
 
 ```sql
 mysql> SHOW CHARACTER SET;
@@ -39,9 +39,9 @@ mysql> SHOW CHARACTER SET LIKE 'latin%';
 +---------+-----------------------------+-------------------+--------+
 ```
 
-Um conjunto de caracteres específico sempre tem pelo menos uma ordenação, e a maioria dos conjuntos de caracteres tem várias. Para listar as ordenações de exibição para um conjunto de caracteres, use a tabela `INFORMATION_SCHEMA` `COLLATIONS` ou a instrução `SHOW COLLATION`.
+Um determinado conjunto de caracteres sempre tem pelo menos uma collation, e a maioria dos conjuntos de caracteres tem várias. Para listar as collations de exibição para um conjunto de caracteres, use a tabela `COLLATIONS` do `INFORMATION_SCHEMA` ou a instrução `SHOW COLLATION`.
 
-Por padrão, a instrução `SHOW COLLATION` exibe todas as collation disponíveis. Ela aceita uma cláusula opcional `LIKE` ou `WHERE` que indica quais nomes de collation devem ser exibidos. Por exemplo, para ver as collation para o conjunto de caracteres padrão, `latin1` (cp1252 da Europa Ocidental), use esta instrução:
+Por padrão, a instrução `SHOW COLLATION` exibe todas as collations disponíveis. Ela aceita uma cláusula opcional `LIKE` ou `WHERE` que indica quais nomes de collation exibir. Por exemplo, para ver as collations para o conjunto de caracteres padrão, `latin1` (cp1252 West European), use esta instrução:
 
 ```sql
 mysql> SHOW COLLATION WHERE Charset = 'latin1';
@@ -59,16 +59,15 @@ mysql> SHOW COLLATION WHERE Charset = 'latin1';
 +-------------------+---------+----+---------+----------+---------+
 ```
 
-As colorações `latin1` têm os seguintes significados.
+As collations `latin1` têm os seguintes significados.
 
-<table summary="Conjunto de caracteres latin1, conforme descrito no exemplo anterior, e o significado de cada collation."><col style="width: 40%"/><col style="width: 60%"/><thead><tr> <th>Collation</th> <th>Significado</th> </tr></thead><tbody><tr> <td><code>latin1_bin</code></td> <td>Binário de acordo com a codificação <code>latin1</code></td> </tr><tr> <td><code>latin1_danish_ci</code></td> <td>Dinamarquês/Norueguês</td> </tr><tr> <td><code>latin1_general_ci</code></td> <td>Multilíngue (Europa Ocidental)</td> </tr><tr> <td><code>latin1_general_cs</code></td> <td>Multilíngue (ISO Europa Ocidental), sensível ao caso</td> </tr><tr> <td><code>latin1_german1_ci</code></td> <td>alemão DIN-1 (ordem do dicionário)</td> </tr><tr> <td><code>latin1_german2_ci</code></td> <td>alemão DIN-2 (ordem de catálogo telefônico)</td> </tr><tr> <td><code>latin1_spanish_ci</code></td> <td>Espanhol moderno</td> </tr><tr> <td><code>latin1_swedish_ci</code></td> <td>Sueca/Finlandesa</td> </tr></tbody></table>
+<table summary="collations do conjunto de caracteres latin1, conforme descrito no exemplo anterior, e o significado de cada collation."><col style="width: 40%"/><col style="width: 60%"/><thead><tr> <th>Collation</th> <th>Significado</th> </tr></thead><tbody><tr> <td><code>latin1_bin</code></td> <td>Binário de acordo com a codificação `latin1`</td> </tr><tr> <td><code>latin1_danish_ci</code></td> <td>Dinamarquês/Norueguês</td> </tr><tr> <td><code>latin1_general_ci</code></td> <td>Multilíngue (Europa Ocidental)</td> </tr><tr> <td><code>latin1_general_cs</code></td> <td>Multilíngue (ISO Europa Ocidental), sensível a maiúsculas e minúsculas</td> </tr><tr> <td><code>latin1_german1_ci</code></td> <td>Alemão DIN-1 (ordem de dicionário)</td> </tr><tr> <td><code>latin1_german2_ci</code></td> <td>Alemão DIN-2 (ordem de lista telefônica)</td> </tr><tr> <td><code>latin1_spanish_ci</code></td> <td>Espanhol Moderno</td> </tr><tr> <td><code>latin1_swedish_ci</code></td> <td>Sueco/Finlandês</td> </tr></tbody></table>
 
-As refeições têm essas características gerais:
+As collations possuem estas características gerais:
 
-- Duas sequências de caracteres diferentes não podem ter a mesma ordem de classificação.
+* Dois conjuntos de caracteres diferentes não podem ter a mesma collation.
+* Cada conjunto de caracteres tem uma *collation padrão*. Por exemplo, as collations padrão para `latin1` e `utf8` são `latin1_swedish_ci` e `utf8_general_ci`, respectivamente. A tabela `CHARACTER_SETS` do `INFORMATION_SCHEMA` e a instrução `SHOW CHARACTER SET` indicam a collation padrão para cada conjunto de caracteres. A tabela `COLLATIONS` do `INFORMATION_SCHEMA` e a instrução `SHOW COLLATION` possuem uma coluna que indica se cada collation é a padrão para seu conjunto de caracteres (`Yes`, se for, vazio, se não for).
 
-- Cada conjunto de caracteres tem uma *collation padrão*. Por exemplo, as collation padrão para `latin1` e `utf8` são `latin1_swedish_ci` e `utf8_general_ci`, respectivamente. A tabela `CHARACTER_SETS` do `INFORMATION_SCHEMA` e a instrução `SHOW CHARACTER SET` indicam a collation padrão para cada conjunto de caracteres. A tabela `COLLATIONS` do `INFORMATION_SCHEMA` e a instrução `SHOW COLLATION` têm uma coluna que indica, para cada collation, se ela é a padrão para seu conjunto de caracteres (`Sim` se for, vazia se não for).
+* Os nomes das collations começam com o nome do conjunto de caracteres ao qual estão associadas, geralmente seguidos por um ou mais sufixos que indicam outras características da collation. Para informações adicionais sobre convenções de nomenclatura, consulte a Seção 10.3.1, “Convenções de Nomenclatura de Collation”.
 
-- Os nomes das ordenações começam com o nome do conjunto de caracteres com o qual estão associados, geralmente seguidos por um ou mais sufixos que indicam outras características da ordenação. Para obter informações adicionais sobre as convenções de nomeação, consulte a Seção 10.3.1, “Convenções de Nomenclatura de Ordenação”.
-
-Quando um conjunto de caracteres tem várias collation, pode não ser claro qual a collation mais adequada para uma determinada aplicação. Para evitar escolher uma collation inadequada, realize algumas comparações com valores de dados representativos para garantir que uma determinada collation ordene os valores da maneira que você espera.
+Quando um conjunto de caracteres tem múltiplas collations, pode não estar claro qual é a mais adequada para uma determinada aplicação. Para evitar a escolha de uma collation inadequada, realize algumas comparações com valores de dados representativos para garantir que uma determinada collation ordene os valores da maneira esperada.

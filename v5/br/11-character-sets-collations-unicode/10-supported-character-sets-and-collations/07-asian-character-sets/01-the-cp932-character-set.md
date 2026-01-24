@@ -1,61 +1,58 @@
-#### 10.10.7.1 Conjunto de Caracteres cp932
+#### 10.10.7.1 O Character Set cp932
 
-**Por que é necessário o `cp932`?**
+**Por que o `cp932` é necessário?**
 
-No MySQL, o conjunto de caracteres `sjis` corresponde ao conjunto de caracteres `Shift_JIS`, definido pela IANA, que suporta os caracteres JIS X0201 e JIS X0208. (Veja <http://www.iana.org/assignments/character-sets>.)
+No MySQL, o character set `sjis` corresponde ao character set `Shift_JIS` definido pela IANA, que suporta caracteres JIS X0201 e JIS X0208. (Veja <http://www.iana.org/assignments/character-sets>.)
 
-No entanto, o significado de “SHIFT JIS” como um termo descritivo tornou-se muito vago e muitas vezes inclui as extensões para `Shift_JIS` definidas por vários fornecedores.
+No entanto, o significado de “SHIFT JIS” como um termo descritivo tornou-se muito vago e frequentemente inclui as extensões do `Shift_JIS` definidas por vários fornecedores.
 
-Por exemplo, “SHIFT JIS” usado em ambientes Windows japoneses é uma extensão da Microsoft do `Shift_JIS` e seu nome exato é `Microsoft Windows Codepage : 932` ou `cp932`. Além dos caracteres suportados pelo `Shift_JIS`, o `cp932` suporta caracteres de extensão, como caracteres especiais NEC, caracteres selecionados NEC, caracteres IBM ampliados e caracteres IBM selecionados.
+Por exemplo, o “SHIFT JIS” usado em ambientes Windows japoneses é uma extensão Microsoft do `Shift_JIS` e seu nome exato é `Microsoft Windows Codepage : 932` ou `cp932`. Além dos caracteres suportados pelo `Shift_JIS`, o `cp932` suporta caracteres de extensão, como caracteres especiais NEC, caracteres estendidos NEC selecionados—IBM, e caracteres selecionados IBM.
 
 Muitos usuários japoneses tiveram problemas ao usar esses caracteres de extensão. Esses problemas decorrem dos seguintes fatores:
 
-- O MySQL converte automaticamente os conjuntos de caracteres.
+* O MySQL converte character sets automaticamente.
+* Os character sets são convertidos usando Unicode (`ucs2`).
+* O character set `sjis` não suporta a conversão desses caracteres de extensão.
+* Existem várias regras de conversão do chamado “SHIFT JIS” para Unicode, e alguns caracteres são convertidos para Unicode de forma diferente, dependendo da regra de conversão. O MySQL suporta apenas uma dessas regras (descrita posteriormente).
 
-- Os conjuntos de caracteres são convertidos usando o Unicode (`ucs2`).
+O character set `cp932` do MySQL foi projetado para resolver esses problemas.
 
-- O conjunto de caracteres `sjis` não suporta a conversão desses caracteres de extensão.
+Como o MySQL suporta conversão de character set, é importante separar IANA `Shift_JIS` e `cp932` em dois character sets diferentes, pois eles fornecem regras de conversão distintas.
 
-- Existem várias regras de conversão do chamado “SHIFT JIS” para o Unicode, e alguns caracteres são convertidos para o Unicode de maneira diferente, dependendo da regra de conversão. O MySQL suporta apenas uma dessas regras (descrita mais adiante).
+**Em que o `cp932` difere do `sjis`?**
 
-O conjunto de caracteres MySQL `cp932` foi projetado para resolver esses problemas.
+O character set `cp932` difere do `sjis` das seguintes maneiras:
 
-Como o MySQL suporta conversão de conjuntos de caracteres, é importante separar os conjuntos de caracteres IANA `Shift_JIS` e `cp932` em dois conjuntos de caracteres diferentes, pois eles fornecem regras de conversão diferentes.
+* O `cp932` suporta caracteres especiais NEC, caracteres estendidos NEC selecionados—IBM, e caracteres selecionados IBM.
 
-**Como o `cp932` difere do `sjis`?**
+* Alguns caracteres `cp932` têm dois Code Points diferentes, ambos convertendo para o mesmo Code Point Unicode. Ao converter de Unicode de volta para `cp932`, um dos Code Points deve ser selecionado. Para esta “Round Trip Conversion” (Conversão de Ida e Volta), é usada a regra recomendada pela Microsoft. (Veja <http://support.microsoft.com/kb/170559/EN-US/>.)
 
-O conjunto de caracteres `cp932` difere do `sjis` nas seguintes maneiras:
+  A regra de conversão funciona assim:
 
-- O `cp932` suporta caracteres especiais NEC, caracteres selecionados NEC e caracteres extensos IBM e caracteres selecionados IBM.
+  + Se o caractere estiver tanto em JIS X 0208 quanto em caracteres especiais NEC, use o Code Point de JIS X 0208.
 
-- Alguns caracteres `cp932` têm dois pontos de código diferentes, ambos convertidos para o mesmo ponto de código Unicode. Ao converter do Unicode de volta para `cp932`, um dos pontos de código deve ser selecionado. Para essa “conversão de ida e volta”, a regra recomendada pela Microsoft é usada. (Veja <http://support.microsoft.com/kb/170559/EN-US/>).
+  + Se o caractere estiver tanto em caracteres especiais NEC quanto em caracteres selecionados IBM, use o Code Point de caracteres especiais NEC.
 
-  A regra de conversão funciona da seguinte forma:
+  + Se o caractere estiver tanto em caracteres selecionados IBM quanto em caracteres estendidos NEC selecionados—IBM, use o Code Point de caracteres estendidos IBM.
 
-  - Se o caractere estiver nos caracteres especiais JIS X 0208 e NEC, use o ponto de código do JIS X 0208.
+  A tabela mostrada em <https://msdn.microsoft.com/en-us/goglobal/cc305152.aspx> fornece informações sobre os valores Unicode dos caracteres `cp932`. Para entradas da tabela `cp932` com caracteres sob os quais aparece um número de quatro dígitos, o número representa a codificação Unicode (`ucs2`) correspondente. Para entradas da tabela onde aparece um valor sublinhado de dois dígitos, existe um intervalo de valores de caracteres `cp932` que começam com esses dois dígitos. Clicar em tal entrada da tabela leva você a uma página que exibe o valor Unicode para cada um dos caracteres `cp932` que começam com esses dígitos.
 
-  - Se o caractere estiver nos caracteres especiais da NEC e nos caracteres selecionados pela IBM, use o código do caractere especial da NEC.
+  Os links a seguir são de interesse especial. Eles correspondem às codificações para os seguintes conjuntos de caracteres:
 
-  - Se o caractere estiver tanto nos caracteres selecionados da IBM quanto da NEC (caracteres estendidos da IBM), use o ponto de código dos caracteres estendidos da IBM.
-
-  A tabela mostrada em <https://msdn.microsoft.com/en-us/goglobal/cc305152.aspx> fornece informações sobre os valores Unicode dos caracteres `cp932`. Para entradas da tabela `cp932` com caracteres sob os quais aparece um número de quatro dígitos, o número representa a codificação Unicode correspondente (`ucs2`). Para entradas da tabela com um valor sublinhado de duas casas decimais, há uma faixa de valores de caracteres `cp932` que começam com esses dois dígitos. Ao clicar em uma entrada da tabela, você é direcionado para uma página que exibe o valor Unicode para cada um dos caracteres `cp932` que começam com esses dígitos.
-
-  Os seguintes links são de interesse especial. Eles correspondem às codificações para os seguintes conjuntos de caracteres:
-
-  - Caracteres especiais da NEC (byte principal `0x87`):
+  + Caracteres especiais NEC (byte principal `0x87`):
 
     ```sql
     https://msdn.microsoft.com/en-us/goglobal/gg674964
     ```
 
-  - NEC selecionada — caracteres extensos da IBM (byte principal `0xED` e `0xEE`):
+  + Caracteres estendidos NEC selecionados—IBM (byte principal `0xED` e `0xEE`):
 
     ```sql
     https://msdn.microsoft.com/en-us/goglobal/gg671837
     https://msdn.microsoft.com/en-us/goglobal/gg671838
     ```
 
-  - A IBM selecionou os caracteres (byte principal `0xFA`, `0xFB`, `0xFC`):
+  + Caracteres selecionados IBM (byte principal `0xFA`, `0xFB`, `0xFC`):
 
     ```sql
     https://msdn.microsoft.com/en-us/goglobal/gg671839
@@ -63,16 +60,16 @@ O conjunto de caracteres `cp932` difere do `sjis` nas seguintes maneiras:
     https://msdn.microsoft.com/en-us/goglobal/gg671841
     ```
 
-- O `cp932` suporta a conversão de caracteres definidos pelo usuário em combinação com `eucjpms` e resolve os problemas com a conversão de `sjis`/`ujis`. Para obter detalhes, consulte <http://www.sljfaq.org/afaq/encodings.html>.
+* O `cp932` suporta a conversão de caracteres definidos pelo usuário em combinação com `eucjpms`, e resolve os problemas com a conversão `sjis`/`ujis`. Para detalhes, consulte <http://www.sljfaq.org/afaq/encodings.html>.
 
-Para alguns caracteres, a conversão para e a partir de `ucs2` é diferente para `sjis` e `cp932`. As tabelas a seguir ilustram essas diferenças.
+Para alguns caracteres, a conversão de e para `ucs2` é diferente para `sjis` e `cp932`. As tabelas a seguir ilustram essas diferenças.
 
 Conversão para `ucs2`:
 
-<table summary="valores sjis/cp932 e a diferença entre a conversão de sjis para ucs2 e a conversão de cp932 para ucs2."><col style="width: 33%"/><col style="width: 33%"/><col style="width: 33%"/><thead><tr> <th><code>sjis</code>/<code>cp932</code> Valor</th> <th><code>sjis</code> -&gt; <code>ucs2</code> Conversão</th> <th><code>cp932</code> -&gt; <code>ucs2</code> Conversão</th> </tr></thead><tbody><tr> <th>5C</th> <td>005C</td> <td>005C</td> </tr><tr> <th>7E</th> <td>007E</td> <td>007E</td> </tr><tr> <th>815C</th> <td>2015</td> <td>2015</td> </tr><tr> <th>815F</th> <td>005C</td> <td>FF3C</td> </tr><tr> <th>8160</th> <td>301C</td> <td>FF5E</td> </tr><tr> <th>8161</th> <td>2016</td> <td>2225</td> </tr><tr> <th>817C</th> <td>2212</td> <td>FF0D</td> </tr><tr> <th>8191</th> <td>00A2</td> <td>FFF0</td> </tr><tr> <th>8192</th> <td>00A3</td> <td>FE1</td> </tr><tr> <th>81CA</th> <td>00AC</td> <td>FE2</td> </tr></tbody></table>
+<table summary="Valores sjis/cp932 e a diferença entre a conversão de sjis para ucs2 e a conversão de cp932 para ucs2."><col style="width: 33%"/><col style="width: 33%"/><col style="width: 33%"/><thead><tr> <th><code>Valor sjis</code>/<code>cp932</code></th> <th><code>Conversão sjis</code> -&gt; <code>ucs2</code></th> <th><code>Conversão cp932</code> -&gt; <code>ucs2</code></th> </tr></thead><tbody><tr> <th>5C</th> <td>005C</td> <td>005C</td> </tr><tr> <th>7E</th> <td>007E</td> <td>007E</td> </tr><tr> <th>815C</th> <td>2015</td> <td>2015</td> </tr><tr> <th>815F</th> <td>005C</td> <td>FF3C</td> </tr><tr> <th>8160</th> <td>301C</td> <td>FF5E</td> </tr><tr> <th>8161</th> <td>2016</td> <td>2225</td> </tr><tr> <th>817C</th> <td>2212</td> <td>FF0D</td> </tr><tr> <th>8191</th> <td>00A2</td> <td>FFE0</td> </tr><tr> <th>8192</th> <td>00A3</td> <td>FFE1</td> </tr><tr> <th>81CA</th> <td>00AC</td> <td>FFE2</td> </tr> </tbody></table>
 
-Conversão de `ucs2`:
+Conversão a partir de `ucs2`:
 
-<table summary="Valores do UCS2 e a diferença entre a conversão de UCS2 para SJIS e a conversão de UCS2 para CP932."><col style="width: 33%"/><col style="width: 33%"/><col style="width: 33%"/><thead><tr> <th>valor <code>ucs2</code></th> <th><code>ucs2</code> -&gt; <code>sjis</code> Conversão</th> <th><code>ucs2</code> -&gt; <code>cp932</code> Conversão</th> </tr></thead><tbody><tr> <th>005C</th> <td>815F</td> <td>5C</td> </tr><tr> <th>007E</th> <td>7E</td> <td>7E</td> </tr><tr> <th>00A2</th> <td>8191</td> <td>3F</td> </tr><tr> <th>00A3</th> <td>8192</td> <td>3F</td> </tr><tr> <th>00AC</th> <td>81CA</td> <td>3F</td> </tr><tr> <th>2015</th> <td>815C</td> <td>815C</td> </tr><tr> <th>2016</th> <td>8161</td> <td>3F</td> </tr><tr> <th>2212</th> <td>817C</td> <td>3F</td> </tr><tr> <th>2225</th> <td>3F</td> <td>8161</td> </tr><tr> <th>301C</th> <td>8160</td> <td>3F</td> </tr><tr> <th>FF0D</th> <td>3F</td> <td>817C</td> </tr><tr> <th>FF3C</th> <td>3F</td> <td>815F</td> </tr><tr> <th>FF5E</th> <td>3F</td> <td>8160</td> </tr><tr> <th>FFF0</th> <td>3F</td> <td>8191</td> </tr><tr> <th>FE1</th> <td>3F</td> <td>8192</td> </tr><tr> <th>FE2</th> <td>3F</td> <td>81CA</td> </tr></tbody></table>
+<table summary="Valores ucs2 e a diferença entre a conversão de ucs2 para sjis e a conversão de ucs2 para cp932."><col style="width: 33%"/><col style="width: 33%"/><col style="width: 33%"/><thead><tr> <th><code>Valor ucs2</code></th> <th><code>Conversão ucs2</code> -&gt; <code>sjis</code></th> <th><code>Conversão ucs2</code> -&gt; <code>cp932</code></th> </tr></thead><tbody><tr> <th>005C</th> <td>815F</td> <td>5C</td> </tr><tr> <th>007E</th> <td>7E</td> <td>7E</td> </tr><tr> <th>00A2</th> <td>8191</td> <td>3F</td> </tr><tr> <th>00A3</th> <td>8192</td> <td>3F</td> </tr><tr> <th>00AC</th> <td>81CA</td> <td>3F</td> </tr><tr> <th>2015</th> <td>815C</td> <td>815C</td> </tr><tr> <th>2016</th> <td>8161</td> <td>3F</td> </tr><tr> <th>2212</th> <td>817C</td> <td>3F</td> </tr><tr> <th>2225</th> <td>3F</td> <td>8161</td> </tr><tr> <th>301C</th> <td>8160</td> <td>3F</td> </tr><tr> <th>FF0D</th> <td>3F</td> <td>817C</td> </tr><tr> <th>FF3C</th> <td>3F</td> <td>815F</td> </tr><tr> <th>FF5E</th> <td>3F</td> <td>8160</td> </tr><tr> <th>FFE0</th> <td>3F</td> <td>8191</td> </tr><tr> <th>FFE1</th> <td>3F</td> <td>8192</td> </tr><tr> <th>FFE2</th> <td>3F</td> <td>81CA</td> </tr> </tbody></table>
 
-Os usuários de qualquer conjunto de caracteres japonês devem estar cientes de que o uso de `--character-set-client-handshake` (ou `--skip-character-set-client-handshake`) tem um efeito importante. Veja a Seção 5.1.6, “Opções de comando do servidor”.
+Os usuários de qualquer character set japonês devem estar cientes de que usar `--character-set-client-handshake` (ou `--skip-character-set-client-handshake`) tem um efeito importante. Consulte a Seção 5.1.6, “Opções de Comando do Servidor”.

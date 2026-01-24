@@ -1,20 +1,20 @@
-### 10.13.1 Matrizes de Definição de Caracteres
+### 10.13.1 Arrays de Definição de Caracteres
 
-Cada conjunto de caracteres simples tem um arquivo de configuração localizado no diretório `sql/share/charsets`. Para um conjunto de caracteres chamado *`MYSYS`*, o arquivo é chamado `MYSET.xml`. Ele usa elementos de matriz `<map>` para listar as propriedades do conjunto de caracteres. Os elementos `<map>` aparecem dentro desses elementos:
+Cada conjunto de caracteres simples possui um arquivo de configuração localizado no diretório `sql/share/charsets`. Para um conjunto de caracteres chamado *`MYSYS`*, o arquivo é nomeado `MYSET.xml`. Ele usa elementos de array `<map>` para listar as propriedades do conjunto de caracteres. Os elementos `<map>` aparecem dentro destes elementos:
 
-- `<ctype>` define atributos para cada caractere.
+* `<ctype>` define os atributos para cada caractere.
 
-- `<lower>` e `<upper>` listam os caracteres minúsculos e maiúsculos.
+* `<lower>` e `<upper>` listam os caracteres minúsculos e maiúsculos.
 
-- `<unicode>` mapeia valores de caracteres de 8 bits para valores Unicode.
+* `<unicode>` mapeia valores de caracteres de 8 bits para valores Unicode.
 
-- Os elementos `<collation>` indicam a ordem de caracteres para comparação e ordenação, um elemento por collation. As collation binárias não precisam do elemento `<map>` porque os próprios códigos de caracteres fornecem a ordem.
+* Os elementos `<collation>` indicam a ordenação de caracteres para comparação e sorting (classificação), um elemento por Collation. Collations binárias não precisam de um elemento `<map>` porque os próprios códigos de caracteres fornecem a ordenação.
 
-Para um conjunto de caracteres complexo, conforme implementado em um arquivo `ctype-MYSET.c` no diretório `strings`, existem arrays correspondentes: `ctype_MYSET[]`, `to_lower_MYSET[]`, e assim por diante. Nem todos os conjuntos de caracteres complexos têm todos os arrays. Veja também os arquivos `ctype-*.c` existentes para exemplos. Veja o arquivo `CHARSET_INFO.txt` no diretório `strings` para informações adicionais.
+Para um conjunto de caracteres complexo, conforme implementado em um arquivo `ctype-MYSET.c` no diretório `strings`, existem os Arrays correspondentes: `ctype_MYSET[]`, `to_lower_MYSET[]`, e assim por diante. Nem todo conjunto de caracteres complexo possui todos os Arrays. Veja também os arquivos `ctype-*.c` existentes para exemplos. Consulte o arquivo `CHARSET_INFO.txt` no diretório `strings` para informações adicionais.
 
-A maioria dos arrays é indexada pelo valor do caractere e tem 256 elementos. O array `<ctype>` é indexado pelo valor do caractere + 1 e tem 257 elementos. Essa é uma convenção herdada para lidar com o `EOF`.
+A maioria dos Arrays é indexada pelo valor do caractere e possui 256 elementos. O Array `<ctype>` é indexado pelo valor do caractere + 1 e possui 257 elementos. Esta é uma convenção legada para o tratamento de `EOF`.
 
-Os elementos do array `<ctype>` são valores de bits. Cada elemento descreve os atributos de um único caractere no conjunto de caracteres. Cada atributo está associado a uma máscara de bits, conforme definido em `include/m_ctype.h`:
+Os elementos do Array `<ctype>` são valores de bit. Cada elemento descreve os atributos de um único caractere no conjunto de caracteres. Cada atributo está associado a um Bitmask, conforme definido em `include/m_ctype.h`:
 
 ```sql
 #define _MY_U   01      /* Upper case */
@@ -27,19 +27,19 @@ Os elementos do array `<ctype>` são valores de bits. Cada elemento descreve os 
 #define _MY_X   0200    /* heXadecimal digit */
 ```
 
-O valor `<ctype>` para um caractere específico deve ser a união dos valores de máscara de bits aplicáveis que descrevem o caractere. Por exemplo, `'A'` é um caractere maiúsculo (_MY_U) e também um dígito hexadecimal (_MY_X), então seu valor `ctype` deve ser definido da seguinte forma:
+O valor `<ctype>` para um determinado caractere deve ser a união dos valores de Bitmask aplicáveis que descrevem o caractere. Por exemplo, `'A'` é um caractere maiúsculo (`_MY_U`), bem como um dígito hexadecimal (`_MY_X`), portanto, seu valor `ctype` deve ser definido assim:
 
 ```sql
 ctype['A'+1] = _MY_U | _MY_X = 01 | 0200 = 0201
 ```
 
-Os valores de bitmask em `m_ctype.h` são valores octal, mas os elementos do array `<ctype>` em `MYSET.xml` devem ser escritos como valores hexadecimais.
+Os valores de Bitmask em `m_ctype.h` são valores octais, mas os elementos do Array `<ctype>` em `MYSET.xml` devem ser escritos como valores hexadecimais.
 
-Os arrays `<lower>` e `<upper>` contêm os caracteres minúsculos e maiúsculos correspondentes a cada membro do conjunto de caracteres. Por exemplo:
+Os Arrays `<lower>` e `<upper>` contêm os caracteres minúsculos e maiúsculos correspondentes a cada membro do conjunto de caracteres. Por exemplo:
 
 ```sql
 lower['A'] should contain 'a'
 upper['a'] should contain 'A'
 ```
 
-Cada matriz `<collation>` indica como os caracteres devem ser ordenados para fins de comparação e ordenação. O MySQL ordena os caracteres com base nos valores dessa informação. Em alguns casos, isso é o mesmo que a matriz `<upper>`, o que significa que a ordenação é case-insensitive. Para regras de ordenação mais complicadas (para conjuntos de caracteres complexos), consulte a discussão sobre a ordenação de strings na Seção 10.13.2, “Suporte à Ordenação de Strings para Conjuntos de Caracteres Complexos”.
+Cada Array `<collation>` indica como os caracteres devem ser ordenados para fins de comparação e sorting (classificação). O MySQL classifica os caracteres com base nos valores desta informação. Em alguns casos, isso é o mesmo que o Array `<upper>`, o que significa que o sorting é *case-insensitive* (não diferencia maiúsculas de minúsculas). Para regras de sorting mais complicadas (para conjuntos de caracteres complexos), consulte a discussão sobre String Collating na Seção 10.13.2, “Suporte a String Collating para Conjuntos de Caracteres Complexos”.
